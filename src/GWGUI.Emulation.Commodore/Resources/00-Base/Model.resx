@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Commodore Amiga 500</value></data>
+  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Commodore Amiga 500 Plus</value></data>
+  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Commodore Amiga 600</value></data>
+  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Commodore Amiga 1000</value></data>
+  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Commodore Amiga 1200</value></data>
+  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Commodore Amiga 2000</value></data>
+  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Commodore Amiga 3000</value></data>
+  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Commodore Amiga 4000</value></data>
+  <data name="Emulation.Commodore.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
+  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Commodore Amiga CD32</value></data>
+</root>

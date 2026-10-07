@@ -17,7 +17,7 @@
   - [x] 2.1 Ouvrir une configuration de matériel uniquement lorsque l’émulateur la déclare
     - [x] Créer `src/GWGUI.Emulation/Enums/EmulationStorageConfigurationKind.cs` avec les types de boîte de configuration génériques disquette et disque dur.
     - [x] Modifier `src/GWGUI.Emulation/Contracts/EmulationMediaDevice.cs` pour transporter le type de configuration déclaré par l’émulateur.
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Machines/Common/Functions/StorageFunctions.cs` pour déclarer les boîtes de configuration disquette et disque dur disponibles dans PUAE.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/StorageFunctions.cs` pour déclarer les boîtes de configuration disquette et disque dur disponibles dans PUAE.
     - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/StorageFunctions.Settings.cs` pour déclarer les boîtes de configuration disquette et disque dur disponibles selon l’émulateur Atari.
     - [x] Modifier `src/GWGUI.App/Contracts/Emulation/Storage/EmulationStorageDeviceItem.cs`, `Controllers/Emulation/Storage/EmulationStorageSettingsController.cs` et `Views/Controls/Emulation/Storage/EmulationStorageDeviceList.cs` pour afficher « Configurer » uniquement pour une boîte déclarée, jamais pour choisir directement un fichier.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Amiga/AmigaEmulatorAdapterTests.cs`, `Atari/AtariEmulatorAdapterTests.cs` et `Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier les déclarations de configuration des périphériques.
@@ -31,7 +31,7 @@
     - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Services/ExternalHostCallbacks.Input.cs` pour transmettre toutes les touches CPC exposées au cœur.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier l’inventaire et les affectations par défaut du clavier CPC.
   - [x] 3.2 Vérifier et compléter les touches Amiga et Atari
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Visuals.cs` pour exposer toutes les touches Amiga prises en charge et leurs affectations hôte par défaut.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Visuals.cs` pour exposer toutes les touches Amiga prises en charge et leurs affectations hôte par défaut.
     - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Visuals.cs` pour exposer toutes les touches propres à chaque clavier Atari pris en charge et leurs affectations hôte par défaut.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Amiga/AmigaEmulatorAdapterTests.cs` et `Atari/AtariEmulatorAdapterTests.cs` pour vérifier les inventaires et affectations clavier.
 
@@ -75,11 +75,11 @@
     - [x] Modifier `src/GWGUI.Emulation.Amstrad/Emulators/Caprice32/Services/ExternalHostCallbacks.Input.cs` et ses constantes pour transmettre les mouvements et boutons au périphérique réellement accepté par Caprice32 sans convertir les deltas en frappes ou en impulsions erratiques.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier les mouvements positifs, négatifs et nuls ainsi que les boutons sans répétition parasite.
   - [x] 7.4 Nettoyer le résumé de configuration
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Machines/Common/Functions/ConfigurationFunctions.cs` et `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs` pour retirer l’état audio du nom résumé ; vérifier que `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/ConfigurationFunctions.cs` ne l’ajoute déjà pas.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/ConfigurationFunctions.cs` et `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/ConfigurationFunctions.Summary.cs` pour retirer l’état audio du nom résumé ; vérifier que `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/ConfigurationFunctions.cs` ne l’ajoute déjà pas.
     - [x] Modifier les trois fichiers `Common/Constants/ConfigurationSummaryFunctionsConstants.cs` d’Amiga, Atari et Amstrad pour retirer ensemble les clés audio devenues inutiles et conserver leur structure commune.
     - [x] Modifier les tests de résumé dans `tests/GWGUI.Tests/Emulation/Amiga/`, `Amstrad/` et `Atari/` afin d’interdire les mentions audio dans les noms affichés.
   - [x] 7.5 Uniformiser les dossiers des machines et préserver les profils vidéo actifs
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs` et `AmigaEmulationModuleFactory.cs` pour donner à chaque adaptateur son dossier `Core/<emulator-id>` et garantir le dossier `Firmware` de la famille Amiga lors du chargement réel du module.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Modules/CommodoreEmulationModule.cs` et `CommodoreEmulationModuleFactory.cs` pour donner à chaque adaptateur son dossier `Core/<emulator-id>` et garantir le dossier `Firmware` de la famille Amiga lors du chargement réel du module.
     - [x] Modifier `src/GWGUI.Emulation.Amstrad/Modules/AmstradEmulationModule.cs` et `AmstradEmulationModuleFactory.cs` pour donner à chaque adaptateur son dossier `Core/<emulator-id>` et garantir le dossier `Firmware` Amstrad même s’il reste vide lors du chargement réel du module.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Amiga/AmigaEmulatorAdapterTests.cs` et `tests/GWGUI.Tests/Emulation/Amstrad/AmstradEmulatorAdapterTests.cs` pour vérifier les sous-dossiers par émulateur et les dossiers `Firmware`.
     - [x] Modifier `docs/tasks/emulation/amstrad.md` pour consigner que `616D696761`, `616D7374726164` et `6174617269` sont les identifiants actifs `amiga`, `amstrad` et `atari` encodés par `VideoPresentationProfileStore`, et qu’aucun de ces profils ne doit être supprimé : ces trois dossiers contiennent respectivement les profils actifs des modules `amiga`, `amstrad` et `atari`.
@@ -90,15 +90,15 @@
     - [x] Modifier `tests/GWGUI.Tests/Emulation/EmulatorManagerTests.cs`, `Emulation/Amstrad/AmstradEmulatorAdapterTests.cs`, `Interface/SettingsViews/EmulationModuleSettingsNavigationScenarios.cs` et `SettingsViewsTests.cs` pour vérifier liste, installation, sélection et marquage de la version recommandée.
   - [x] 7.7 Généraliser les aides et les claviers propres aux machines
     - [x] Créer `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Dictionaries/SettingsHelpDictionary.cs`, y déplacer la table statique d’aides, puis modifier `Machines/Common/Functions/SettingsFunctions.cs` pour uniquement consommer ce dictionnaire.
-    - [x] Modifier les fichiers C# actuellement changés sous `src/GWGUI.Emulation.Amiga/`, `src/GWGUI.Emulation.Atari/` et `src/GWGUI.Emulation.Amstrad/` afin de déplacer hors des fichiers `Functions` toute constante, liste, table ou catalogue ajouté au mauvais propriétaire, sans déplacer la logique exécutable.
+    - [x] Modifier les fichiers C# actuellement changés sous `src/GWGUI.Emulation.Commodore/`, `src/GWGUI.Emulation.Atari/` et `src/GWGUI.Emulation.Amstrad/` afin de déplacer hors des fichiers `Functions` toute constante, liste, table ou catalogue ajouté au mauvais propriétaire, sans déplacer la logique exécutable.
     - [x] Créer les constantes de légendes clavier propres à `CpcClassic` et `CpcPlus` sous leurs dossiers `Constants`, créer leurs correspondances `EmulationKey` sous leurs dossiers `Dictionaries`, puis modifier `InputFunctions.Visuals.cs` pour supprimer `CpcKeyLabel` et tout texte brut de légende.
     - [x] Modifier les nouveaux fichiers clavier Amiga et Atari afin que leurs listes immuables restent dans `Constants`, que leurs correspondances clé/affectation ou clé/libellé résident dans `Dictionaries`, et que les fonctions ne contiennent que la sélection et la transformation.
     - [x] Modifier `src/GWGUI.Emulation/Enums/EmulationStorageConfigurationKind.cs` après audit des dialogues existants afin de représenter explicitement disquette, disque dur, cassette et cartouche ; conserver `ConfigurationKind.None` sur tout périphérique sans réglage matériel ni boîte dédiée afin de ne jamais afficher un faux bouton `Configurer`.
     - [x] Supprimer `src/GWGUI.Emulation/Constants/EmulationKeyboardKeys.cs` après suppression de ses éventuels consommateurs, puisque l’inventaire générique des touches PC contredit les catalogues de touches spéciales possédés par chaque famille de machines.
     - [x] Créer `InputSnapshotDictionary.cs` sous les dossiers `Dictionaries` communs d’Amiga, Atari et Amstrad, y déplacer les tables statiques de boutons et d’affectations souris, puis modifier chaque `InputFunctions.Snapshot.cs` pour uniquement les consommer.
     - [x] Modifier les constructeurs de champs et dispositions génériques sous `src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/` et `Functions/Views/Emulation/Settings/` uniquement là où une aide fournie par un module est encore perdue dans un onglet autre que Vidéo.
-    - [x] Modifier les descriptions de réglages sous `src/GWGUI.Emulation.Amiga/Common/Machines/Common/Functions/`, `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/` et `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/` pour que chaque champ affiché de chaque onglet fournisse une aide courte et détaillée localisée.
-    - [x] Créer les constantes de clavier sous `src/GWGUI.Emulation.Amiga/Common/Machines/AmigaComputers/Constants/` et `AmigaCDTV/Constants/`, déclarer explicitement l’absence de clavier du CD32 dans son modèle, puis modifier `Machines/Common/Functions/InputFunctions.Settings.cs`, `InputFunctions.Visuals.cs` et la visibilité des onglets pour n’exposer que les touches propres à la machine sélectionnée et leur affectation PC par défaut.
+    - [x] Modifier les descriptions de réglages sous `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/`, `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/` et `src/GWGUI.Emulation.Amstrad/Common/Machines/Common/Functions/` pour que chaque champ affiché de chaque onglet fournisse une aide courte et détaillée localisée.
+    - [x] Créer les constantes de clavier sous `src/GWGUI.Emulation.Commodore/Common/Machines/AmigaComputers/Constants/` et `AmigaCDTV/Constants/`, déclarer explicitement l’absence de clavier du CD32 dans son modèle, puis modifier `Machines/Common/Functions/InputFunctions.Settings.cs`, `InputFunctions.Visuals.cs` et la visibilité des onglets pour n’exposer que les touches propres à la machine sélectionnée et leur affectation PC par défaut.
     - [x] Déplacer les constantes de clavier Atari depuis `src/GWGUI.Emulation.Atari/Common/Machines/Common/Constants/InputSettingsConstants.cs` vers `Machines/AtariST/Constants/` et `Machines/Atari8Bit/Constants/`, puis modifier `Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Visuals.cs` pour choisir celles de la famille sélectionnée ; les consoles sans clavier ne déclarent aucune touche.
     - [x] Créer les constantes de clavier sous `src/GWGUI.Emulation.Amstrad/Common/Machines/CpcClassic/Constants/` et `CpcPlus/Constants/`, puis modifier `Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Visuals.cs` afin que les CPC exposent leurs touches spéciales et que GX4000 n’expose aucun clavier.
     - [x] Modifier les tests sous `tests/GWGUI.Tests/Emulation/Amiga/`, `Amstrad/`, `Atari/` et `Interface/SettingsViews/` pour vérifier toutes les aides affichées et les touches propres à chaque famille sans lettres ni chiffres PC ordinaires.
@@ -114,7 +114,7 @@
 
 - [x] 9. Corriger la fenêtre vide des paramètres Amiga
   - [x] 9.1 Reproduire la construction avec le vrai module Amiga
-    - [x] Modifier `tests/GWGUI.Tests/Interface/SettingsViews/EmulationModuleSettingsNavigationScenarios.cs` pour construire la fenêtre avec `AmigaEmulationModule`, vérifier son arbre visuel après chargement et libérer la fenêtre, la section, le client HTTP et les dossiers temporaires dans `finally`.
+    - [x] Modifier `tests/GWGUI.Tests/Interface/SettingsViews/EmulationModuleSettingsNavigationScenarios.cs` pour construire la fenêtre avec `CommodoreEmulationModule`, vérifier son arbre visuel après chargement et libérer la fenêtre, la section, le client HTTP et les dossiers temporaires dans `finally`.
     - [x] Modifier `tests/GWGUI.Tests/Interface/SettingsViews/SettingsViewsTests.cs` pour exécuter le scénario de régression Amiga.
   - [x] 9.2 Isoler l'influence des données Amiga actuelles
     - [x] Créer temporairement `tests/GWGUI.Tests/Interface/SettingsViews/AmigaLiveSettingsDiagnosticTests.cs` pour construire en lecture seule la fenêtre depuis les chemins Amiga actuels et garantir sa fermeture dans `finally`.
@@ -126,8 +126,8 @@
 
 - [x] 10. Faire détecter les changements de disquette par l'Amiga émulé
   - [x] 10.1 Séparer l'éjection et la réinsertion dans PUAE
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Constants/MediaConstants.cs` pour définir le délai matériel de changement de disquette observé par la machine émulée.
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Services/Machine.Lifecycle.cs` pour éjecter la disquette courante, laisser PUAE exécuter des trames lecteur vide, puis remplacer et réinsérer la nouvelle image.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Constants/MediaConstants.cs` pour définir le délai matériel de changement de disquette observé par la machine émulée.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Services/Machine.Lifecycle.cs` pour éjecter la disquette courante, laisser PUAE exécuter des trames lecteur vide, puis remplacer et réinsérer la nouvelle image.
   - [x] 10.2 Vérifier l'ordre du changement et la libération du runtime
     - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs` pour enregistrer éjection, trames intermédiaires et insertion, puis toujours arrêter et libérer la machine dans `finally`.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdaptersTests.cs` pour exécuter le scénario de changement de disquette Amiga.
@@ -207,7 +207,7 @@
 
 - [x] 18. Ne plus afficher la trace technique PUAE dans la boîte d’erreur
   - [x] 18.1 Séparer le message utilisateur du diagnostic de console
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Factories/PuaeMachineFactory.cs` pour traduire une erreur de démarrage PUAE avec le code localisé `MachineStartFailed`, tout en conservant l’exception complète comme cause journalisée.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Factories/PuaeMachineFactory.cs` pour traduire une erreur de démarrage PUAE avec le code localisé `MachineStartFailed`, tout en conservant l’exception complète comme cause journalisée.
   - [x] 18.2 Verrouiller le rendu et produire le Debug complet
     - [x] Modifier `tests/GWGUI.Tests/Emulation/Amiga/AmigaEmulatorAdapterTests.cs` pour vérifier que PUAE conserve l’exception technique comme cause sans la placer dans le texte de dialogue, puis faire réussir ce scénario et le scénario existant de console sous `tests/GWGUI.Tests/Interface/EmulationViews/` avant `scripts\local-building.cmd --building=debug --modules=A`.
 

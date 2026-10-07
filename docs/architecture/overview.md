@@ -8,7 +8,7 @@
 - `GWGUI.MediaFileSystems` : détection des volumes et lecture des vrais dossiers et fichiers des images décodées ; construction des volumes cibles pour la migration de fichiers.
 - `GWGUI.MediaAnalysis` : reconnaissance des types, catégories, icônes et clés de traduction des fichiers.
 - `GWGUI.Emulation` : contrats, services et fonctions communs à toutes les familles émulées.
-- `GWGUI.Emulation.Amiga` : modèles, catalogues, fonctions et modules propres à l’Amiga.
+- `GWGUI.Emulation.Commodore` : modèles, catalogues, fonctions et modules propres à l’Amiga.
 - `GWGUI.Emulation.Atari` : modèles, catalogues, fonctions et modules propres aux machines Atari.
 - `GWGUI.VideoPresentation` : profils et traitements de présentation de la vidéo d'émulation.
 - `GWGUI.Updates` : catalogues, validation et plans de mise à jour de l'application et des modules.
@@ -100,7 +100,7 @@ encore dans App ; les réglages généraux d'émulation enregistrés par `AppSet
 Infrastructure. Cette répartition actuelle ne change pas la responsabilité fonctionnelle de
 GWGUI.Emulation : gérer l'émulation commune aux machines.
 
-**`GWGUI.Emulation.Amiga`, `GWGUI.Emulation.Atari` et les futurs modules de machine** fournissent
+**`GWGUI.Emulation.Commodore`, `GWGUI.Emulation.Atari` et les futurs modules de machine** fournissent
 les modèles, choix de machines, configurations et implémentations propres à leur famille. Les modules
 Amiga et Atari référencent `GWGUI.Emulation` pour les contrats communs et `GWGUI.MediaEngine` quand
 ils ont besoin d'une opération sur une image média. App les découvre et les charge comme modules ;

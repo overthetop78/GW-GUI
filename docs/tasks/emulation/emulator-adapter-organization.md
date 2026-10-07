@@ -13,7 +13,7 @@ commandes stables et les options communes vers l’API native de son cœur.
 
 - [x] 1. Établir le rangement exact sans changer le fonctionnement
   - [x] 1.1 Inventorier la propriété des fichiers Atari et Amiga
-    - [x] Créer `docs/reference/emulator-adapter-file-map.md` avec, pour chaque fichier de `src/GWGUI.Emulation.Atari` et `src/GWGUI.Emulation.Amiga`, son propriétaire (`Common` ou un cœur précis), son chemin actuel et son chemin cible.
+    - [x] Créer `docs/reference/emulator-adapter-file-map.md` avec, pour chaque fichier de `src/GWGUI.Emulation.Atari` et `src/GWGUI.Emulation.Commodore`, son propriétaire (`Common` ou un cœur précis), son chemin actuel et son chemin cible.
   - [x] 1.2 Figer les déplacements avant leur exécution
     - [x] Modifier `docs/tasks/emulation/emulator-adapter-organization.md` pour désigner chaque ligne de `docs/reference/emulator-adapter-file-map.md` dont les deux chemins diffèrent comme une action de déplacement exacte des points 3.2 ou 4.2. Les espaces de noms publics existants seront conservés : le rangement demandé est physique et ne doit pas provoquer une rupture d’API inutile.
 
@@ -21,8 +21,8 @@ commandes stables et les options communes vers l’API native de son cœur.
   - [x] 2.0 Partager les mêmes contrats entre toutes les familles
     - [x] Créer `src/GWGUI.Emulation/Contracts/EmulationMachineCreationContext.cs` avec le contexte de création commun à tous les adaptateurs de machines.
     - [x] Créer `src/GWGUI.Emulation/Interfaces/IEmulationMachineFactory.cs` avec l’identifiant générique du cœur et la création d’un `IEmulatedMachine` depuis une `IEmulationConfiguration`.
-    - [x] Supprimer `src/GWGUI.Emulation.Atari/Interfaces/IAtariMachineFactory.cs` et `src/GWGUI.Emulation.Amiga/Interfaces/IAmigaMachineFactory.cs` après migration vers `IEmulationMachineFactory`.
-    - [x] Supprimer `src/GWGUI.Emulation.Atari/Contracts/AtariMachineCreationContext.cs` et `src/GWGUI.Emulation.Amiga/Contracts/AmigaMachineCreationContext.cs` après migration vers `EmulationMachineCreationContext`.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Interfaces/IAtariMachineFactory.cs` et `src/GWGUI.Emulation.Commodore/Interfaces/IAmigaMachineFactory.cs` après migration vers `IEmulationMachineFactory`.
+    - [x] Supprimer `src/GWGUI.Emulation.Atari/Contracts/AtariMachineCreationContext.cs` et `src/GWGUI.Emulation.Commodore/Contracts/AmigaMachineCreationContext.cs` après migration vers `EmulationMachineCreationContext`.
   - [x] 2.1 Exposer les données nécessaires à l’App
     - [x] Créer `src/GWGUI.Emulation/Contracts/EmulationEmulatorDefinition.cs` avec l’identifiant, le nom invariant, la clé de description et les machines compatibles communs à toutes les familles.
     - [x] Modifier `src/GWGUI.Emulation/Contracts/EmulationEmulatorInstallation.cs` pour transporter la définition générique et l’état d’installation, sans référence à un type Atari, Amiga ou Amstrad.
@@ -49,15 +49,15 @@ commandes stables et les options communes vers l’API native de son cœur.
 
 - [x] 4. Séparer la gestion commune et les cœurs Amiga
   - [x] 4.1 Définir les capacités internes communes
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Factories/PuaeMachineFactory.cs` pour implémenter le contrat partagé `IEmulationMachineFactory` et traduire la configuration générique en configuration Amiga.
-    - [x] Créer `src/GWGUI.Emulation.Amiga/Dictionaries/AmigaCoreCatalog.cs` avec l’enregistrement des adaptateurs, leurs machines compatibles et leurs données génériques de présentation.
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Services/AmigaEngine.cs` pour supprimer la création directe de `PuaeMachineFactory` et sélectionner le cœur au travers de `IEmulationMachineFactory`.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Factories/PuaeMachineFactory.cs` pour implémenter le contrat partagé `IEmulationMachineFactory` et traduire la configuration générique en configuration Amiga.
+    - [x] Créer `src/GWGUI.Emulation.Commodore/Dictionaries/AmigaCoreCatalog.cs` avec l’enregistrement des adaptateurs, leurs machines compatibles et leurs données génériques de présentation.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Services/AmigaEngine.cs` pour supprimer la création directe de `PuaeMachineFactory` et sélectionner le cœur au travers de `IEmulationMachineFactory`.
   - [x] 4.2 Ranger PUAE derrière les interfaces communes
     - [x] Modifier `docs/reference/emulator-adapter-file-map.md` pour conserver les catégories Amiga partagées comme gestion commune du module, sans les dupliquer sous un dossier `Common`.
-    - [x] Déplacer les fichiers propres à PUAE dans `src/GWGUI.Emulation.Amiga/Emulators/PUAE/` et modifier leurs espaces de noms et références.
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Factories/PuaeMachineFactory.cs` pour fournir la création du runtime et la traduction de la configuration par les interfaces communes de `GWGUI.Emulation`.
+    - [x] Déplacer les fichiers propres à PUAE dans `src/GWGUI.Emulation.Commodore/Emulators/PUAE/` et modifier leurs espaces de noms et références.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Factories/PuaeMachineFactory.cs` pour fournir la création du runtime et la traduction de la configuration par les interfaces communes de `GWGUI.Emulation`.
   - [x] 4.3 Conserver les commandes par machine
-    - [x] Créer `src/GWGUI.Emulation.Amiga/Emulators/README.md` pour imposer aux adaptateurs la traduction des commandes déjà définies par les modèles Amiga, sans les redéfinir par cœur.
+    - [x] Créer `src/GWGUI.Emulation.Commodore/Emulators/README.md` pour imposer aux adaptateurs la traduction des commandes déjà définies par les modèles Amiga, sans les redéfinir par cœur.
 
 - [x] 5. Appliquer le même modèle au squelette Amstrad
   - [x] 5.1 Préparer les emplacements communs
@@ -73,22 +73,22 @@ commandes stables et les options communes vers l’API native de son cœur.
     - [x] Créer `src/GWGUI.Emulation.Atari/Common/Contracts/EmulatorCreationContext.cs` avec les services transmis par la gestion commune Atari aux adaptateurs.
     - [x] Modifier `src/GWGUI.Emulation.Atari/Services/AtariEngine.cs` pour être la couche commune qui sélectionne un `IEmulatorAdapter` et renvoie le résultat vers les contrats de `GWGUI.Emulation`.
   - [x] 5.2.3 Créer la prise interne Amiga
-    - [x] Créer `src/GWGUI.Emulation.Amiga/Common/Interfaces/IEmulatorAdapter.cs` avec l’identité du cœur et la création depuis les types internes Amiga uniquement.
-    - [x] Créer `src/GWGUI.Emulation.Amiga/Common/Contracts/EmulatorCreationContext.cs` avec les services transmis par la gestion commune Amiga aux adaptateurs.
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Services/AmigaEngine.cs` pour être la couche commune qui sélectionne un `IEmulatorAdapter` et renvoie le résultat vers les contrats de `GWGUI.Emulation`.
+    - [x] Créer `src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs` avec l’identité du cœur et la création depuis les types internes Amiga uniquement.
+    - [x] Créer `src/GWGUI.Emulation.Commodore/Common/Contracts/EmulatorCreationContext.cs` avec les services transmis par la gestion commune Amiga aux adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Services/AmigaEngine.cs` pour être la couche commune qui sélectionne un `IEmulatorAdapter` et renvoie le résultat vers les contrats de `GWGUI.Emulation`.
   - [x] 5.2.4 Aligner les namespaces physiques
     - [x] Modifier tous les fichiers sous `src/GWGUI.Emulation.Atari/Emulators/<cœur>/` pour employer `GWGUI.Emulation.Atari.Emulators.<cœur>.<catégorie>` et mettre à jour leurs consommateurs.
-    - [x] Modifier tous les fichiers sous `src/GWGUI.Emulation.Amiga/Emulators/PUAE/` pour employer `GWGUI.Emulation.Amiga.Emulators.PUAE.<catégorie>` et mettre à jour leurs consommateurs.
+    - [x] Modifier tous les fichiers sous `src/GWGUI.Emulation.Commodore/Emulators/PUAE/` pour employer `GWGUI.Emulation.Commodore.Emulators.PUAE.<catégorie>` et mettre à jour leurs consommateurs.
 
 - [x] 6. Gérer les descriptions localisées des cœurs
   - [x] 6.1 Conserver les noms invariants dans les catalogues
     - [x] Modifier `src/GWGUI.Emulation.Atari/Dictionaries/AtariCoreCatalog.cs` pour fournir les noms invariants des cœurs et leurs clés de descriptions localisées.
-    - [x] Créer `src/GWGUI.Emulation.Amiga/Dictionaries/AmigaCoreCatalog.cs` avec le nom invariant de PUAE et sa clé de description localisée.
-    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/00-Base/Emulation.resx` et `src/GWGUI.Emulation.Amiga/Resources/00-Base/Emulation.resx` pour ajouter uniquement les descriptions sources.
+    - [x] Créer `src/GWGUI.Emulation.Commodore/Dictionaries/AmigaCoreCatalog.cs` avec le nom invariant de PUAE et sa clé de description localisée.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/00-Base/Emulation.resx` et `src/GWGUI.Emulation.Commodore/Resources/00-Base/Emulation.resx` pour ajouter uniquement les descriptions sources.
   - [x] 6.2 Traduire uniquement les descriptions
-    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/en-US/Emulation.resx` et `src/GWGUI.Emulation.Amiga/Resources/en-US/Emulation.resx` pour y copier toutes les clés traduisibles déjà présentes dans les cultures avant la synchronisation Argos.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Resources/en-US/Emulation.resx` et `src/GWGUI.Emulation.Commodore/Resources/en-US/Emulation.resx` pour y copier toutes les clés traduisibles déjà présentes dans les cultures avant la synchronisation Argos.
     - [x] Modifier tous les fichiers `src/GWGUI.Emulation.Atari/Resources/<culture>/Emulation.resx` avec les descriptions traduites par `scripts/tools/translate-resx-argos.py`, sans dupliquer les noms invariants des cœurs.
-    - [x] Modifier tous les fichiers `src/GWGUI.Emulation.Amiga/Resources/<culture>/Emulation.resx` avec la description PUAE traduite par `scripts/tools/translate-resx-argos.py`, sans dupliquer son nom invariant.
+    - [x] Modifier tous les fichiers `src/GWGUI.Emulation.Commodore/Resources/<culture>/Emulation.resx` avec la description PUAE traduite par `scripts/tools/translate-resx-argos.py`, sans dupliquer son nom invariant.
 
 - [x] 7. Vérifier l’architecture et les comportements conservés
   - [x] 7.1 Vérifier les frontières de dépendances

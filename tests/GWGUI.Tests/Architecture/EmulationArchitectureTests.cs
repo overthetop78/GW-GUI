@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using GWGUI.App.Views.Windows.Shell;
 using GWGUI.Emulation.Interfaces;
-using GWGUI.Emulation.Amiga.Modules;
+using GWGUI.Emulation.Commodore.Modules;
 using GWGUI.Emulation.Atari.Modules;
 
 namespace GWGUI.Tests.Architecture;
@@ -13,7 +13,7 @@ public sealed class EmulationArchitectureTests
     [Fact]
     public void AppAndEmulationDoNotReferenceFamilyModules()
     {
-        var forbidden = new[] { "gwgui.emulation.amiga", "gwgui.emulation.atari", "gwgui.emulation.amstrad" };
+        var forbidden = new[] { "gwgui.emulation.commodore", "gwgui.emulation.atari", "gwgui.emulation.amstrad" };
         Assert.DoesNotContain(References(typeof(MainWindow).Assembly), forbidden.Contains);
         Assert.DoesNotContain(References(typeof(IEmulationModule).Assembly), forbidden.Contains);
     }
@@ -22,7 +22,7 @@ public sealed class EmulationArchitectureTests
     public void FamilyModulesExposeTheSameInternalAdapterNames()
     {
         var atari = CommonAdapter(typeof(AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari");
-        var amiga = CommonAdapter(typeof(AmigaEmulationModule).Assembly, "GWGUI.Emulation.Amiga");
+        var amiga = CommonAdapter(typeof(CommodoreEmulationModule).Assembly, "GWGUI.Emulation.Commodore");
         Assert.Equal(MemberNames(atari.Adapter), MemberNames(amiga.Adapter));
         Assert.Equal(new[]
         {
@@ -46,7 +46,7 @@ public sealed class EmulationArchitectureTests
         var atariSource = NormalizedFamilySource(Path.Combine(root, "src",
             "GWGUI.Emulation.Atari", "Common", "Interfaces", "IEmulatorAdapter.cs"), "Atari");
         var amigaSource = NormalizedFamilySource(Path.Combine(root, "src",
-            "GWGUI.Emulation.Amiga", "Common", "Interfaces", "IEmulatorAdapter.cs"), "Amiga");
+            "GWGUI.Emulation.Commodore", "Common", "Interfaces", "IEmulatorAdapter.cs"), "Commodore");
         Assert.Equal(atariSource, amigaSource);
     }
 
@@ -55,7 +55,7 @@ public sealed class EmulationArchitectureTests
     {
         var root = RepositoryRoot();
         VerifyFamily(root, "Atari");
-        VerifyFamily(root, "Amiga");
+        VerifyFamily(root, "Commodore");
     }
 
     [Fact]
@@ -115,19 +115,19 @@ public sealed class EmulationArchitectureTests
     {
         var root = RepositoryRoot();
         var atariFiles = ConstantFileNames(root, "Atari");
-        var amigaFiles = ConstantFileNames(root, "Amiga");
+        var amigaFiles = ConstantFileNames(root, "Commodore");
         Assert.Equal(atariFiles, amigaFiles);
 
         var atariTypes = ConstantTypes(typeof(AtariEmulationModule).Assembly,
             "GWGUI.Emulation.Atari.Common.Constants");
-        var amigaTypes = ConstantTypes(typeof(AmigaEmulationModule).Assembly,
-            "GWGUI.Emulation.Amiga.Common.Constants");
+        var amigaTypes = ConstantTypes(typeof(CommodoreEmulationModule).Assembly,
+            "GWGUI.Emulation.Commodore.Common.Constants");
         Assert.Equal(atariTypes.Keys, amigaTypes.Keys);
         foreach (var typeName in atariTypes.Keys)
             Assert.Equal(ConstantMemberNames(atariTypes[typeName]),
                 ConstantMemberNames(amigaTypes[typeName]));
 
-        foreach (var family in new[] { "Atari", "Amiga", "Amstrad" })
+        foreach (var family in new[] { "Atari", "Commodore", "Amstrad" })
         {
             Assert.DoesNotContain(Directory.EnumerateDirectories(
                     Path.Combine(root, "src", $"GWGUI.Emulation.{family}"), "*", SearchOption.AllDirectories),
@@ -143,8 +143,8 @@ public sealed class EmulationArchitectureTests
             "AtariJaguar", "AtariLynx", "AtariST", "Common");
         AssertMachineCommonFolders(root, "Atari", "Constants", "Contracts", "Dictionaries",
             "Enums", "Functions");
-        AssertFamilyFolders(root, "Amiga", "AmigaComputers", "AmigaCDTV", "AmigaCD32", "Common");
-        AssertMachineCommonFolders(root, "Amiga", "Constants", "Contracts", "Dictionaries",
+        AssertFamilyFolders(root, "Commodore", "AmigaComputers", "CommodoreCDTV", "AmigaCD32", "Common");
+        AssertMachineCommonFolders(root, "Commodore", "Constants", "Contracts", "Dictionaries",
             "Enums", "Exceptions", "Functions");
     }
 
@@ -153,7 +153,7 @@ public sealed class EmulationArchitectureTests
     {
         var root = RepositoryRoot();
         var atari = ContractFileNames(root, "Atari");
-        var amiga = ContractFileNames(root, "Amiga");
+        var amiga = ContractFileNames(root, "Commodore");
         Assert.Equal(atari, amiga);
 
         foreach (var fileName in atari)
@@ -161,7 +161,7 @@ public sealed class EmulationArchitectureTests
             var atariSource = NormalizedFamilySource(Path.Combine(root, "src",
                 "GWGUI.Emulation.Atari", "Common", "Contracts", fileName), "Atari");
             var amigaSource = NormalizedFamilySource(Path.Combine(root, "src",
-                "GWGUI.Emulation.Amiga", "Common", "Contracts", fileName), "Amiga");
+                "GWGUI.Emulation.Commodore", "Common", "Contracts", fileName), "Commodore");
             Assert.Equal(atariSource, amigaSource);
         }
     }
@@ -209,7 +209,7 @@ public sealed class EmulationArchitectureTests
             Assert.DoesNotContain($"\"{nativeOption}\"", atariGenericSource,
                 StringComparison.Ordinal);
 
-        var amiga = Path.Combine(root, "src", "GWGUI.Emulation.Amiga");
+        var amiga = Path.Combine(root, "src", "GWGUI.Emulation.Commodore");
         var amigaGenericSource = string.Join('\n', new[] { "Common", "Modules" }
             .SelectMany(area => Directory.EnumerateFiles(Path.Combine(amiga, area), "*.cs",
                 SearchOption.AllDirectories)).Select(File.ReadAllText));
@@ -223,7 +223,7 @@ public sealed class EmulationArchitectureTests
         var prefixedDeclaration = new Regex(
             @"\b(?:class|record|enum|interface|struct)\s+(?:Amiga|Atari(?!800))",
             RegexOptions.CultureInvariant);
-        foreach (var family in new[] { "Atari", "Amiga" })
+        foreach (var family in new[] { "Atari", "Commodore" })
         foreach (var file in Directory.EnumerateFiles(Path.Combine(root, "src",
                      $"GWGUI.Emulation.{family}", "Emulators"), "*.cs", SearchOption.AllDirectories))
             Assert.DoesNotMatch(prefixedDeclaration, File.ReadAllText(file));
@@ -249,7 +249,7 @@ public sealed class EmulationArchitectureTests
     {
         var root = RepositoryRoot();
         var atari = CommonFileNames(root, "Atari", "Dictionaries");
-        var amiga = CommonFileNames(root, "Amiga", "Dictionaries");
+        var amiga = CommonFileNames(root, "Commodore", "Dictionaries");
         Assert.Equal(atari, amiga);
 
         foreach (var fileName in atari)
@@ -257,7 +257,7 @@ public sealed class EmulationArchitectureTests
             var atariSource = NormalizedFamilySource(Path.Combine(root, "src",
                 "GWGUI.Emulation.Atari", "Common", "Dictionaries", fileName), "Atari");
             var amigaSource = NormalizedFamilySource(Path.Combine(root, "src",
-                "GWGUI.Emulation.Amiga", "Common", "Dictionaries", fileName), "Amiga");
+                "GWGUI.Emulation.Commodore", "Common", "Dictionaries", fileName), "Commodore");
             Assert.Equal(atariSource, amigaSource);
         }
     }
@@ -267,7 +267,7 @@ public sealed class EmulationArchitectureTests
     {
         var root = RepositoryRoot();
         var atari = CommonFileNames(root, "Atari", "Enums");
-        var amiga = CommonFileNames(root, "Amiga", "Enums");
+        var amiga = CommonFileNames(root, "Commodore", "Enums");
         Assert.Equal(atari, amiga);
         Assert.Empty(atari);
     }
@@ -277,7 +277,7 @@ public sealed class EmulationArchitectureTests
     {
         var root = RepositoryRoot();
         var atari = CommonFileNames(root, "Atari", "Exceptions");
-        var amiga = CommonFileNames(root, "Amiga", "Exceptions");
+        var amiga = CommonFileNames(root, "Commodore", "Exceptions");
         Assert.Equal(atari, amiga);
         Assert.Empty(atari);
     }
@@ -287,7 +287,7 @@ public sealed class EmulationArchitectureTests
     {
         var root = RepositoryRoot();
         var atari = CommonFileNames(root, "Atari", "Factories");
-        var amiga = CommonFileNames(root, "Amiga", "Factories");
+        var amiga = CommonFileNames(root, "Commodore", "Factories");
         Assert.Equal(atari, amiga);
         Assert.Empty(atari);
     }
@@ -297,7 +297,7 @@ public sealed class EmulationArchitectureTests
     {
         var root = RepositoryRoot();
         var atari = CommonFileNames(root, "Atari", "Functions");
-        var amiga = CommonFileNames(root, "Amiga", "Functions");
+        var amiga = CommonFileNames(root, "Commodore", "Functions");
         Assert.Equal(atari, amiga);
         Assert.Empty(atari);
     }
@@ -307,14 +307,14 @@ public sealed class EmulationArchitectureTests
     {
         var root = RepositoryRoot();
         var atari = CommonFileNames(root, "Atari", "Interfaces");
-        var amiga = CommonFileNames(root, "Amiga", "Interfaces");
+        var amiga = CommonFileNames(root, "Commodore", "Interfaces");
         Assert.Equal(atari, amiga);
         Assert.Equal(["IEmulatorAdapter.cs"], atari);
 
         var atariSource = NormalizedFamilySource(Path.Combine(root, "src",
             "GWGUI.Emulation.Atari", "Common", "Interfaces", atari[0]), "Atari");
         var amigaSource = NormalizedFamilySource(Path.Combine(root, "src",
-            "GWGUI.Emulation.Amiga", "Common", "Interfaces", amiga[0]), "Amiga");
+            "GWGUI.Emulation.Commodore", "Common", "Interfaces", amiga[0]), "Commodore");
         Assert.Equal(atariSource, amigaSource);
     }
 

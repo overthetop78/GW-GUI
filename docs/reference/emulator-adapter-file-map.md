@@ -54,6 +54,6 @@ capacité sans équivalent dans l'autre famille.
   `Common/Machines/Common/Contracts/HardwareModelContracts.cs`, puis
   `Common/Machines/Common/Dictionaries/HardwareModelCatalog.cs` les agrège sans recopier leurs données.
 - Amiga utilise `Common/Machines/AmigaComputers/` pour les ordinateurs A500 à A4000,
-  `Common/Machines/AmigaCDTV/` pour le CDTV et `Common/Machines/AmigaCD32/` pour le CD32.
+  `Common/Machines/CommodoreCDTV/` pour le CDTV et `Common/Machines/AmigaCD32/` pour le CD32.
 - Les contrats réellement identiques entre plusieurs familles restent dans le `Common` général ; les
   constantes et catalogues propres à une famille restent dans son dossier.

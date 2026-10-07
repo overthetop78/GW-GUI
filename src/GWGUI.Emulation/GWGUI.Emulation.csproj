@@ -27,7 +27,7 @@
     <PackageReference Include="LTRData.DiscUtils.ExFat" Version="1.0.88" />
     <PackageReference Include="LTRData.DiscUtils.Ext" Version="1.0.88" />
     <PackageReference Include="LTRData.DiscUtils.HfsPlus" Version="1.0.88" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Amiga" />
+    <InternalsVisibleTo Include="GWGUI.Emulation.Commodore" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Atari" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Amstrad" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Sega" />

@@ -2,7 +2,7 @@ using GWGUI.MediaEngine.Images.Formats.Tape;
 using System.Reflection;
 using GWGUI.App.Views.Windows.Shell;
 using GWGUI.MediaEngine.Enums;
-using GWGUI.Emulation.Amiga.Modules;
+using GWGUI.Emulation.Commodore.Modules;
 using GWGUI.Emulation.Atari.Modules;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Images.Reading;
@@ -23,7 +23,7 @@ public sealed class MediaEngineProjectBoundaryTests
         AssertGwguiReferences(typeof(MediaVolumeDetectorRegistry).Assembly, ["gwgui.mediaanalysis"]);
         AssertGwguiReferences(typeof(MediaEngineComposition).Assembly, ["gwgui.mediafilesystems"]);
         AssertGwguiReferences(typeof(GWGUI.Infrastructure.Processes.GreaseweazleRunner).Assembly, ["gwgui.mediaengine"]);
-        AssertGwguiReferences(typeof(AmigaEmulationModule).Assembly, ["gwgui.emulation", "gwgui.mediaengine"]);
+        AssertGwguiReferences(typeof(CommodoreEmulationModule).Assembly, ["gwgui.emulation", "gwgui.mediaengine"]);
         AssertGwguiReferences(typeof(AtariEmulationModule).Assembly, ["gwgui.emulation", "gwgui.mediaengine"]);
 
         var appReferences = References(typeof(MainWindow).Assembly);

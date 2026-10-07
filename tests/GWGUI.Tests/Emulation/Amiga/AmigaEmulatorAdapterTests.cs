@@ -3,12 +3,12 @@ using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 using System.Globalization;
-using GWGUI.Emulation.Amiga.Common.Machines.Common.Contracts;
-using GWGUI.Emulation.Amiga.Common.Machines.Common.Enums;
-using GWGUI.Emulation.Amiga.Common.Contracts;
-using GWGUI.Emulation.Amiga.Modules;
-using GWGUI.Emulation.Amiga.Common.Services;
-using GWGUI.Emulation.Amiga.Emulators.PUAE.Factories;
+using GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Commodore.Common.Machines.Common.Enums;
+using GWGUI.Emulation.Commodore.Common.Contracts;
+using GWGUI.Emulation.Commodore.Modules;
+using GWGUI.Emulation.Commodore.Common.Services;
+using GWGUI.Emulation.Commodore.Emulators.PUAE.Factories;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Exceptions;
@@ -37,9 +37,9 @@ public sealed class AmigaEmulatorAdapterTests
     [Fact]
     public void PuaeUsesItsPhysicalNamespaceAndTheCommonAdapter()
     {
-        var assembly = typeof(AmigaEmulationModule).Assembly;
-        var adapter = assembly.GetType("GWGUI.Emulation.Amiga.Emulators.PUAE.Factories.PuaeMachineFactory");
-        var common = assembly.GetType("GWGUI.Emulation.Amiga.Common.Interfaces.IEmulatorAdapter");
+        var assembly = typeof(CommodoreEmulationModule).Assembly;
+        var adapter = assembly.GetType("GWGUI.Emulation.Commodore.Emulators.PUAE.Factories.PuaeMachineFactory");
+        var common = assembly.GetType("GWGUI.Emulation.Commodore.Common.Interfaces.IEmulatorAdapter");
         Assert.NotNull(adapter);
         Assert.NotNull(common);
         Assert.Contains(common!, adapter!.GetInterfaces());
@@ -98,8 +98,8 @@ public sealed class AmigaEmulatorAdapterTests
             await File.WriteAllTextAsync(Path.Combine(coreDirectory, "core.json"),
                 "{\"version\":\"test-version\"}");
             using var httpClient = new HttpClient();
-            var factory = new AmigaEmulationModuleFactory();
-            var module = Assert.IsType<AmigaEmulationModule>(factory.Create(
+            var factory = new CommodoreEmulationModuleFactory();
+            var module = Assert.IsType<CommodoreEmulationModule>(factory.Create(
                 new EmulationModuleContext(directory, moduleDirectory, httpClient)));
 
             var installation = await module.GetEmulatorInstallationAsync("A500");
@@ -121,7 +121,7 @@ public sealed class AmigaEmulatorAdapterTests
         try
         {
             using var httpClient = new HttpClient();
-            var module = new AmigaEmulationModule(directory, directory, httpClient, directory);
+            var module = new CommodoreEmulationModule(directory, directory, httpClient, directory);
             var configuration = module.CreateConfiguration("A600");
 
             await module.SaveConfigurationAsync(configuration);
@@ -141,7 +141,7 @@ public sealed class AmigaEmulatorAdapterTests
     public void PuaeDeclaresOnlyItsHardwareConfigurationDialogs()
     {
         using var httpClient = new HttpClient();
-        var module = new AmigaEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
+        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
             httpClient, Path.GetTempPath());
         var storage = module.DescribeStorageSettings(module.CreateConfiguration("A1200"));
 
@@ -158,7 +158,7 @@ public sealed class AmigaEmulatorAdapterTests
     public void AmigaKeyboardListsOnlyUniqueMachineKeysWithAutomaticHostBindings()
     {
         using var httpClient = new HttpClient();
-        var module = new AmigaEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
+        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
             httpClient, Path.GetTempPath());
         var keyboard = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(
             module.CreateConfiguration("A500")).Keyboard);
@@ -183,7 +183,7 @@ public sealed class AmigaEmulatorAdapterTests
     public void AmigaConfigurationSummaryDoesNotDisplayAudioState()
     {
         using var httpClient = new HttpClient();
-        var module = new AmigaEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
+        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
             httpClient, Path.GetTempPath());
         var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration("A600"));
 
@@ -195,7 +195,7 @@ public sealed class AmigaEmulatorAdapterTests
     public void EveryAmigaMachineSettingDeclaresLocalizedHelp()
     {
         using var httpClient = new HttpClient();
-        var module = new AmigaEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
+        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
             httpClient, Path.GetTempPath());
 
         var missing = new HashSet<string>(StringComparer.Ordinal);

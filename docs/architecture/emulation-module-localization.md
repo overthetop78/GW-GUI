@@ -151,7 +151,7 @@ pour rendre les attributions vérifiables sans modifier le logiciel.
 | `Emulation.Amiga.Model.A500PLUS` | Emulation.resx | Préfixe de famille | Amiga 500 Plus |
 | `Emulation.Amiga.Model.A600` | Emulation.resx | Préfixe de famille | Amiga 600 |
 | `Emulation.Amiga.Model.CD32` | Emulation.resx | Préfixe de famille | Amiga CD32 |
-| `Emulation.Amiga.Model.CDTV` | Emulation.resx | Préfixe de famille | Commodore CDTV |
+| `Emulation.Commodore.Model.CDTV` | Emulation.resx | Préfixe de famille | Commodore CDTV |
 | `Emulation.Amiga.Storage.Floppy.Dd` | Emulation.resx | Préfixe de famille | Amiga 3.5-inch DD · 880 KiB |
 | `Emulation.Amiga.Storage.Floppy.Hd` | Emulation.resx | Préfixe de famille | Amiga 3.5-inch HD · 1.76 MiB |
 | `Emulation.Amiga.Storage.MediaFilter` | Emulation.resx | Préfixe de famille | Amiga media&#124;*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z&#124;All files&#124;*.* |
@@ -294,7 +294,7 @@ pour rendre les attributions vérifiables sans modifier le logiciel.
 | `Emulation.Cpu.Processor` | Emulation.resx | Amiga, Atari | Processor |
 | `Emulation.Cpu.Speed` | Emulation.resx | Amiga, Atari | CPU speed |
 | `Emulation.Cpu.SpeedOriginal` | Emulation.resx | Amiga, Atari | Original speed |
-| `Emulation.Family.Amiga` | Emulation.resx | Amiga | Amiga |
+| `Emulation.Family.Commodore` | Emulation.resx | Amiga | Amiga |
 | `Emulation.Family.Atari` | Emulation.resx | Atari | Atari |
 | `Emulation.Firmware.Rom.Basic` | Emulation.resx | Atari | BASIC ROM |
 | `Emulation.Firmware.Rom.Extended` | Emulation.resx | Amiga | Extended ROM |

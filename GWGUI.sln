@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GWGUI.MediaEngine", "src\GW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GWGUI.Emulation", "src\GWGUI.Emulation\GWGUI.Emulation.csproj", "{8EBC8D17-93A5-4B37-BBCA-B34E71E326E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GWGUI.Emulation.Amiga", "src\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj", "{317B06AA-A8D3-4024-A4CB-92A2EBB4EEB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GWGUI.Emulation.Commodore", "src\GWGUI.Emulation.Commodore\GWGUI.Emulation.Commodore.csproj", "{317B06AA-A8D3-4024-A4CB-92A2EBB4EEB8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
 EndProject

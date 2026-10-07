@@ -1,7 +1,7 @@
 # Cartographie des fichiers des modules d’émulation
 
 Ce document décrit l’état existant avant toute création du module Amstrad. Les chemins des colonnes
-Amiga et Atari sont relatifs respectivement à `src/GWGUI.Emulation.Amiga` et
+Amiga et Atari sont relatifs respectivement à `src/GWGUI.Emulation.Commodore` et
 `src/GWGUI.Emulation.Atari`. Une cellule vide signifie qu’aucun fichier de l’autre module
 n’assume directement la même responsabilité. La colonne Amstrad reste volontairement vide jusqu’à
 la fin de l’étude des deux modules fonctionnels. Le rapprochement porte sur la responsabilité réelle,
@@ -12,7 +12,7 @@ pas seulement sur la ressemblance du nom.
 | Amiga | Atari | Amstrad | Description |
 |---|---|---|---|
 | `EmulationGlobalUsings.cs` | `EmulationGlobalUsings.cs` |  | Dans les deux modules, importe globalement les contrats, enums, interfaces et espaces de noms communs utilisés par le module. |
-| `GWGUI.Emulation.Amiga.csproj` | `GWGUI.Emulation.Atari.csproj` |  | Dans les deux modules, configure la cible .NET/x64, les références vers le SDK et MediaEngine, la copie du manifeste et l’intégration des ressources. |
+| `GWGUI.Emulation.Commodore.csproj` | `GWGUI.Emulation.Atari.csproj` |  | Dans les deux modules, configure la cible .NET/x64, les références vers le SDK et MediaEngine, la copie du manifeste et l’intégration des ressources. |
 | `module.json` | `module.json` |  | Dans les deux modules, déclare l’identifiant, l’assembly d’entrée, la version du module, la plage d’API hôte et l’URL du catalogue. |
 ## Constants
 
@@ -25,7 +25,7 @@ pas seulement sur la ressemblance du nom.
 | `Constants/AmigaCoreHostConstants.cs` | `Constants/AtariCoreHostConstants.cs` |  | Amiga : centralise pour Core Host Constants les valeurs `HostName`. Atari : centralise pour Core Host Constants les valeurs `CommandLineArgument`, `HostName`, `PipePrefix`, `VideoMapPrefix`, `LocalPipeServerName`, `UniqueNameFormat`, …. |
 | `Constants/AmigaCoreHostValues.cs` | `Constants/AtariCoreHostValues.cs` |  | Amiga : centralise pour Core Host Values les valeurs `Windows`, `Value`, `TheAmigaHostConfigurationIsInvalid`, `TheAmigaHostIsNotInitialized`. Atari : centralise pour Core Host Values les valeurs `Windows`. |
 | `Constants/AmigaCoreReleaseServiceConstants.cs` |  |  | Amiga : centralise pour Core Release Service Constants les valeurs `Validated96ebfcfc`, `Value96ebfcfc31072026GWGUI`, `HttpsBuildbotLibretroComNightlyWindowsX8664LatestPuaeLibretroDllZip`, `OptionLibretroDll`, `CoreJson`, `Unknown`, …. |
-| `Constants/AmigaEmulationModuleConstants.cs` | `Constants/AtariEmulationModuleConstants.cs` |  | Amiga : centralise pour Emulation Module Constants les valeurs `Amiga`, `ResourceFamilyAmiga`, `AmigaCoreHost`, `OptionModel`, `OptionVideoStandard`, `PAL`, …. Atari : centralise pour Emulation Module Constants les valeurs `Atari`, `ResourceFamilyAtari`, `Enabled`, `N`. |
+| `Constants/CommodoreEmulationModuleConstants.cs` | `Constants/AtariEmulationModuleConstants.cs` |  | Amiga : centralise pour Emulation Module Constants les valeurs `Amiga`, `ResourceFamilyAmiga`, `AmigaCoreHost`, `OptionModel`, `OptionVideoStandard`, `PAL`, …. Atari : centralise pour Emulation Module Constants les valeurs `Atari`, `ResourceFamilyAtari`, `Enabled`, `N`. |
 | `Constants/AmigaExternalCoreConstants.cs` |  |  | Amiga : centralise pour External Core Constants les valeurs `Hash0B8442C311CA`, `Kick31034A1000`, `Hash1FA1F93D3D7B`, `Kick32034A1000`, `Hash85AD74194E87`, `Kick33180A500`, …. |
 | `Constants/AmigaExternalCoreInstallerConstants.cs` |  |  | Amiga : centralise pour External Core Installer Constants les valeurs `Value96ebfcfc`, `HttpsBuildbotLibretroComNightlyWindowsX8664LatestPuaeLibretroDllZip`, `OptionLibretroDll`, `Download`, `Extract`, `TheOfficialAmigaCoreArchiveDoesNotContainPuaeLibretroDll`, …. |
 | `Constants/AmigaExternalDiskControlConstants.cs` |  |  | Amiga : centralise pour External Disk Control Constants les valeurs `TheAmigaMediaDriveCouldNotBeEjected`, `TheAmigaCoreCouldNotSelectTheRequestedDisk`, `TheAmigaMediaDriveCouldNotInsertTheRequestedImage`, `TheAmigaMediaImageOrDirectoryWasNotFound`, `TheAmigaCoreCouldNotCreateAMediaSlot`, `TheAmigaCoreRefusedTheMediaImage`, …. |
@@ -338,8 +338,8 @@ pas seulement sur la ressemblance du nom.
 
 | Amiga | Atari | Amstrad | Description |
 |---|---|---|---|
-| `Modules/AmigaEmulationModule.cs` | `Modules/AtariEmulationModule.cs` |  | Dans les deux modules, implémente la façade SDK du module : machines, réglages, configurations, runtime et services optionnels. |
-| `Modules/AmigaEmulationModuleFactory.cs` | `Modules/AtariEmulationModuleFactory.cs` |  | Dans les deux modules, implémente le point d’entrée découvert par l’App et construit le module depuis son contexte. |
+| `Modules/CommodoreEmulationModule.cs` | `Modules/AtariEmulationModule.cs` |  | Dans les deux modules, implémente la façade SDK du module : machines, réglages, configurations, runtime et services optionnels. |
+| `Modules/CommodoreEmulationModuleFactory.cs` | `Modules/AtariEmulationModuleFactory.cs` |  | Dans les deux modules, implémente le point d’entrée découvert par l’App et construit le module depuis son contexte. |
 ## Services
 
 | Amiga | Atari | Amstrad | Description |
@@ -539,7 +539,7 @@ une future DLL sans ajouter son nom dans l’App.
 | Resources | 30 | 30 |
 | **Total** | **115** | **329** |
 
-- Chaque chemin retourné par `rg --files src/GWGUI.Emulation.Amiga src/GWGUI.Emulation.Atari` apparaît dans le tableau interne.
+- Chaque chemin retourné par `rg --files src/GWGUI.Emulation.Commodore src/GWGUI.Emulation.Atari` apparaît dans le tableau interne.
 - Aucun chemin supplémentaire ou dupliqué n’est compté dans les totaux.
 - Les 30 fichiers de ressources de chaque module sont recensés individuellement : `00-Base` et les 29 cultures.
 - La colonne Amstrad ne contient encore aucun chemin ; elle ne décrit donc aucune architecture anticipée.

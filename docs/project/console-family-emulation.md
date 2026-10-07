@@ -644,7 +644,7 @@ les tests et le comportement complet correspondant.
   - [x] Construire la présentation sur une seule ligne par niveau, sans cartes ni grille.
     - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour remplacer les deux `ComboBox` par deux bandes horizontales d'icônes sélectionnables, avec le libellé traduit `Marques` sur la première et `Machines` sur la seconde.
   - [x] Utiliser les images et les noms déjà fournis par chaque module d'émulation, avec un intitulé accessible pour chaque élément.
-    - [x] Modifier `src/GWGUI.Emulation/Interfaces/IEmulationModule.cs` et `src/GWGUI.Emulation/Contracts/EmulationMachineDefinition.cs` pour exposer les identifiants de ressources d'image de la marque et de chaque machine, puis modifier les modules `src/GWGUI.Emulation.Amiga/`, `src/GWGUI.Emulation.Amstrad/`, `src/GWGUI.Emulation.Atari/`, `src/GWGUI.Emulation.Microsoft/`, `src/GWGUI.Emulation.Nec/`, `src/GWGUI.Emulation.Nintendo/`, `src/GWGUI.Emulation.Sega/` et `src/GWGUI.Emulation.Sony/` pour fournir ces identifiants avec leurs noms existants.
+    - [x] Modifier `src/GWGUI.Emulation/Interfaces/IEmulationModule.cs` et `src/GWGUI.Emulation/Contracts/EmulationMachineDefinition.cs` pour exposer les identifiants de ressources d'image de la marque et de chaque machine, puis modifier les modules `src/GWGUI.Emulation.Commodore/`, `src/GWGUI.Emulation.Amstrad/`, `src/GWGUI.Emulation.Atari/`, `src/GWGUI.Emulation.Microsoft/`, `src/GWGUI.Emulation.Nec/`, `src/GWGUI.Emulation.Nintendo/`, `src/GWGUI.Emulation.Sega/` et `src/GWGUI.Emulation.Sony/` pour fournir ces identifiants avec leurs noms existants.
   - [x] Réutiliser les traductions existantes des libellés et des info-bulles dans la base commune et toutes les cultures (`Emulation.Configuration.Brand` et `Emulation.Configuration.Machine`), sans dupliquer de texte invariant.
   - [x] Afficher uniquement les images dans les vignettes, avec le nom conservé dans l'info-bulle et l'intitulé d'accessibilité.
     - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour retirer les noms visibles, cadrer chaque image dans une vignette fixe de `60 × 40` et réduire l'image à `42 × 26`.
@@ -682,23 +682,23 @@ les tests et le comportement complet correspondant.
     - [x] Modifier les huit fichiers `src/GWGUI.Emulation.*/GWGUI.Emulation.*.csproj` pour inclure `Assets/*.png` et `Assets/Machines/*.png` avec des noms logiques stables.
     - [x] Ajouter `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationAssetFunctions.cs` pour charger les flux en `BitmapImage` avec `OnLoad` et préserver le canal alpha.
     - [x] Créer le logo de marque directement dans `src/GWGUI.Emulation.<famille>/Assets/<marque-logo>.(png|jpg|bmp|webp)` et les logos des machines dans `src/GWGUI.Emulation.<famille>/Assets/Machines/<machine-id>.(png|jpg|bmp|webp)`, avec un fichier par entrée publiée et aucun fichier dans `GWGUI.App`; les huit logos de marques sont présents en PNG légers, dimensionnés à environ 960 px sur leur plus grand côté.
-      - [x] Remplacer `src/GWGUI.Emulation.Amiga/Assets/amiga.png` par le logo Amiga 1985 fourni par Wikimedia Commons, en conservant son dégradé de couleurs.
+      - [x] Remplacer `src/GWGUI.Emulation.Commodore/Assets/amiga.png` par le logo Amiga 1985 fourni par Wikimedia Commons, en conservant son dégradé de couleurs.
       - [x] Remplacer `src/GWGUI.Emulation.Microsoft/Assets/microsoft.png` par le logotype Microsoft fourni par l’utilisateur, en supprimant le damier et en conservant la transparence.
       - [x] Modifier `src/GWGUI.Emulation.Nintendo/Assets/nintendo.png` pour rendre transparent le fond rouge extérieur et conserver uniquement l’ovale blanc, son fond rouge et le mot-symbole Nintendo.
       - [x] Remplacer `src/GWGUI.Emulation.Amstrad/Assets/amstrad.png` par le logo Amstrad des années 1980 fourni par Wikimedia Commons.
-    - [x] Ajouter les images de machines Amiga acceptées dans `src/GWGUI.Emulation.Amiga/Assets/Machines/` : `A500.png`, `A500PLUS.png`, `A600.png` et `CD32.png`, avec fond transparent et un côté maximal de 960 px.
-    - [x] Supprimer les anciennes images textuelles ou les candidats rejetés (`CDTV.png`, `A1000`, `A1200`, `A2000`, `A3000` et `A4000`) de `src/GWGUI.Emulation.Amiga/Assets/Machines/` avant l’ajout des images acceptées.
+    - [x] Ajouter les images de machines Amiga acceptées dans `src/GWGUI.Emulation.Commodore/Assets/Machines/` : `A500.png`, `A500PLUS.png`, `A600.png` et `CD32.png`, avec fond transparent et un côté maximal de 960 px.
+    - [x] Supprimer les anciennes images textuelles ou les candidats rejetés (`CDTV.png`, `A1000`, `A1200`, `A2000`, `A3000` et `A4000`) de `src/GWGUI.Emulation.Commodore/Assets/Machines/` avant l’ajout des images acceptées.
     - [ ] Remplacer les modèles Amiga sans image acceptée par une image de machine nette, sans écran ni périphériques inutiles, ou utiliser une image de référence avec le libellé du modèle fourni séparément par le module.
-      - [x] Créer `src/GWGUI.Emulation.Amiga/Assets/Machines/A1000.png` à partir des vues fournies, en ne conservant que le boîtier de bureau Amiga, avec fond transparent et sans écran, clavier, table ni câble.
-      - [x] Redimensionner `src/GWGUI.Emulation.Amiga/Assets/Machines/A1000.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
-      - [x] Créer `src/GWGUI.Emulation.Amiga/Assets/Machines/A1200.png` à partir de la vue fournie, en ne conservant que l’ordinateur et en retirant la manette et son câble.
-      - [x] Redimensionner `src/GWGUI.Emulation.Amiga/Assets/Machines/A1200.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
-      - [x] Créer `src/GWGUI.Emulation.Amiga/Assets/Machines/A3000.png` à partir de la vue Wikimedia fournie, en supprimant le fond blanc et l’ombre.
-      - [x] Redimensionner `src/GWGUI.Emulation.Amiga/Assets/Machines/A3000.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
-      - [x] Créer `src/GWGUI.Emulation.Amiga/Assets/Machines/A4000.png` à partir des vues fournies, en conservant le lecteur CD et en retirant les marques visibles du boîtier et du lecteur.
-      - [x] Redimensionner `src/GWGUI.Emulation.Amiga/Assets/Machines/A4000.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
-      - [x] Créer `src/GWGUI.Emulation.Amiga/Assets/Machines/CDTV.png` à partir des vues fournies, en ne conservant que l’unité CDTV et en supprimant l’écran, le clavier, la télécommande, le disque et le décor.
-      - [x] Redimensionner `src/GWGUI.Emulation.Amiga/Assets/Machines/CDTV.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+      - [x] Créer `src/GWGUI.Emulation.Commodore/Assets/Machines/A1000.png` à partir des vues fournies, en ne conservant que le boîtier de bureau Amiga, avec fond transparent et sans écran, clavier, table ni câble.
+      - [x] Redimensionner `src/GWGUI.Emulation.Commodore/Assets/Machines/A1000.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+      - [x] Créer `src/GWGUI.Emulation.Commodore/Assets/Machines/A1200.png` à partir de la vue fournie, en ne conservant que l’ordinateur et en retirant la manette et son câble.
+      - [x] Redimensionner `src/GWGUI.Emulation.Commodore/Assets/Machines/A1200.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+      - [x] Créer `src/GWGUI.Emulation.Commodore/Assets/Machines/A3000.png` à partir de la vue Wikimedia fournie, en supprimant le fond blanc et l’ombre.
+      - [x] Redimensionner `src/GWGUI.Emulation.Commodore/Assets/Machines/A3000.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+      - [x] Créer `src/GWGUI.Emulation.Commodore/Assets/Machines/A4000.png` à partir des vues fournies, en conservant le lecteur CD et en retirant les marques visibles du boîtier et du lecteur.
+      - [x] Redimensionner `src/GWGUI.Emulation.Commodore/Assets/Machines/A4000.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
+      - [x] Créer `src/GWGUI.Emulation.Commodore/Assets/Machines/CDTV.png` à partir des vues fournies, en ne conservant que l’unité CDTV et en supprimant l’écran, le clavier, la télécommande, le disque et le décor.
+      - [x] Redimensionner `src/GWGUI.Emulation.Commodore/Assets/Machines/CDTV.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.
     - [x] Ajouter l’image du premier modèle Amstrad dans `src/GWGUI.Emulation.Amstrad/Assets/Machines/`.
       - [x] Créer `src/GWGUI.Emulation.Amstrad/Assets/Machines/CPC464.png` à partir de la vue fournie, en conservant le boîtier CPC 464 et son lecteur de cassette, avec fond transparent.
       - [x] Redimensionner `src/GWGUI.Emulation.Amstrad/Assets/Machines/CPC464.png` à 960 px maximum sur son plus grand côté, sans déformer son ratio.

@@ -2,8 +2,8 @@ using GWGUI.Emulation.Atari.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Atari.Common.Machines.Common.Contracts;
 using AtariMachineConfiguration = GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.MachineConfiguration;
 using AtariModelCatalog = GWGUI.Emulation.Atari.Common.Machines.Common.Dictionaries.ModelCatalog;
-using AmigaModelCatalog = GWGUI.Emulation.Amiga.Common.Machines.Common.Dictionaries.ModelCatalog;
-using GWGUI.Emulation.Amiga.Common.Machines.Common.Dictionaries;
+using AmigaModelCatalog = GWGUI.Emulation.Commodore.Common.Machines.Common.Dictionaries.ModelCatalog;
+using GWGUI.Emulation.Commodore.Common.Machines.Common.Dictionaries;
 namespace GWGUI.Tests.Emulation.MachineAdapters;
 internal static class MachineCapabilitiesScenarios
 {
@@ -31,12 +31,12 @@ internal static class MachineCapabilitiesScenarios
         Assert.Equal(cpu, definition.DefaultCpu); Assert.Equal(chipset, definition.Chipset); Assert.Equal(chipMemory, definition.ChipMemoryKib);
         Assert.Equal(2, definition.ControllerPortCount);
         Assert.Contains(MachineCatalog.All, item => item.Id == model);
-        var configuration = new GWGUI.Emulation.Amiga.Common.Machines.Common.Contracts.MachineConfiguration(model,"virtual-rom",Options:new Dictionary<string,string>{{"gwgui_floppy_drive_count","99"},{"gwgui_hard_drive_count","99"}});
-        var storage = GWGUI.Emulation.Amiga.Common.Machines.Common.Functions.StorageSettingsFunctions.Describe(configuration);
+        var configuration = new GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts.MachineConfiguration(model,"virtual-rom",Options:new Dictionary<string,string>{{"gwgui_floppy_drive_count","99"},{"gwgui_hard_drive_count","99"}});
+        var storage = GWGUI.Emulation.Commodore.Common.Machines.Common.Functions.StorageSettingsFunctions.Describe(configuration);
         Assert.Equal(definition.MaximumFloppyDrives,storage.ConfiguredSlots.Count(s=>s.Category==GWGUI.Emulation.Enums.EmulationMediaCategory.FloppyDrive));
         Assert.Equal(definition.MaximumHardDrives,storage.ConfiguredSlots.Count(s=>s.Category==GWGUI.Emulation.Enums.EmulationMediaCategory.HardDisk));
         Assert.Equal(definition.HasCdDrive,storage.ConfiguredSlots.Contains(GWGUI.Emulation.Contracts.EmulationMediaSlot.Cd0));
-        var empty = GWGUI.Emulation.Amiga.Common.Machines.Common.Functions.StorageSettingsFunctions.Describe(configuration with { Options=new Dictionary<string,string>{{"gwgui_floppy_drive_count","-1"},{"gwgui_hard_drive_count","-1"}} });
+        var empty = GWGUI.Emulation.Commodore.Common.Machines.Common.Functions.StorageSettingsFunctions.Describe(configuration with { Options=new Dictionary<string,string>{{"gwgui_floppy_drive_count","-1"},{"gwgui_hard_drive_count","-1"}} });
         Assert.All(empty.ConfiguredSlots,slot=>Assert.Equal(GWGUI.Emulation.Contracts.EmulationMediaSlot.Cd0,slot));
     }
     public static void Invalid()

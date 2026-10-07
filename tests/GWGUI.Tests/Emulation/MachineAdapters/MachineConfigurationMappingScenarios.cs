@@ -6,8 +6,8 @@ using GWGUI.Emulation.Atari.Emulators.Hatari.Functions;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using AtariMachineConfiguration = GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.MachineConfiguration;
-using AmigaMachineConfiguration = GWGUI.Emulation.Amiga.Common.Machines.Common.Contracts.MachineConfiguration;
-using AmigaMediaCategory = GWGUI.Emulation.Amiga.Common.Machines.Common.Enums.MediaCategory;
+using AmigaMachineConfiguration = GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts.MachineConfiguration;
+using AmigaMediaCategory = GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.MediaCategory;
 namespace GWGUI.Tests.Emulation.MachineAdapters;
 internal static class MachineConfigurationMappingScenarios
 {
@@ -21,7 +21,7 @@ internal static class MachineConfigurationMappingScenarios
     public static void AmigaOptions()
     {
         using var http = new System.Net.Http.HttpClient();
-        var module = new GWGUI.Emulation.Amiga.Modules.AmigaEmulationModule("virtual-config","virtual-base",http,"virtual-core");
+        var module = new GWGUI.Emulation.Commodore.Modules.CommodoreEmulationModule("virtual-config","virtual-base",http,"virtual-core");
         var original = AmigaMachineConfiguration.A500("original-rom");
         var mapped = Assert.IsType<AmigaMachineConfiguration>(module.ApplySettings(original,new Dictionary<string,string?>
         {
@@ -39,15 +39,15 @@ internal static class MachineConfigurationMappingScenarios
         Assert.Equal("200",mapped.Options["gwgui_amiga_cpu_throttle"]); Assert.Equal("4",mapped.Options["gwgui_amiga_cpu_multiplier"]);
         Assert.False(mapped.Options.ContainsKey("gwgui_amiga_floppy_multidrive")); Assert.False(mapped.Options.ContainsKey("configuration.cpuSpeed"));
         Assert.Equal("original-rom",original.KickstartPath); Assert.False(original.Options!.ContainsKey("gwgui_amiga_crop")); Assert.Equal(original.Id,mapped.Id);
-        var storage = GWGUI.Emulation.Amiga.Common.Machines.Common.Functions.StorageSettingsFunctions.Describe(mapped);
-        var changed = GWGUI.Emulation.Amiga.Common.Machines.Common.Functions.StorageSettingsFunctions.Apply(mapped,storage with
+        var storage = GWGUI.Emulation.Commodore.Common.Machines.Common.Functions.StorageSettingsFunctions.Describe(mapped);
+        var changed = GWGUI.Emulation.Commodore.Common.Machines.Common.Functions.StorageSettingsFunctions.Apply(mapped,storage with
         {
             ConfiguredSlots=[EmulationMediaSlot.Floppy0], MountedMedia=[new("virtual.adf",EmulationMediaSlot.Floppy0,EmulationMediaType.Floppy,true,true)]
         });
         Assert.Equal("virtual.adf",changed.InitialDiskPath); Assert.True(Assert.Single(changed.Media!).IsReadOnly);
         Assert.Equal("automatic",changed.Options!["gwgui_amiga_crop"]);
 
-        var native = GWGUI.Emulation.Amiga.Emulators.PUAE.Functions.PuaeOptionFunctions
+        var native = GWGUI.Emulation.Commodore.Emulators.PUAE.Functions.PuaeOptionFunctions
             .ToNative(mapped);
         Assert.Equal("automatic", native.Options!["puae_crop"]);
         Assert.Equal("kept", native.Options["custom"]);
@@ -97,7 +97,7 @@ internal static class MachineConfigurationMappingScenarios
     }
     public static void Media()
     {
-        var mapped = GWGUI.Emulation.Amiga.Common.Machines.Common.Functions.EmulationMediaConversionFunctions.ToCommon([
+        var mapped = GWGUI.Emulation.Commodore.Common.Machines.Common.Functions.EmulationMediaConversionFunctions.ToCommon([
             new("disk-a", AmigaMediaCategory.Floppy), new("hard-disk", AmigaMediaCategory.HardDrive), new("disk-b", AmigaMediaCategory.Floppy)]);
         Assert.Equal(new[] { EmulationMediaSlot.Floppy0, EmulationMediaSlot.HardDisk0, EmulationMediaSlot.Floppy1 }, mapped.Select(item => item.Slot));
         Assert.Equal(Path.GetFullPath("disk-b"), mapped[2].Path);

@@ -6,16 +6,16 @@ namespace GWGUI.Tests.Emulation.Modules;
 public sealed class EmulationModuleManifestTests
 {
     private const string Valid = """
-        {"schemaVersion":2,"id":"amiga","entryAssembly":"gwgui.emulation.amiga.dll",
+        {"schemaVersion":2,"id":"commodore","entryAssembly":"gwgui.emulation.commodore.dll",
          "moduleVersion":"1.0.0","hostApiMinimum":"1.0","hostApiMaximum":"1.0",
-         "updateCatalogUrl":"https://example.test/amiga/update-catalog.json"}
+         "updateCatalogUrl":"https://example.test/commodore/update-catalog.json"}
         """;
 
     [Fact]
     public void CurrentManifestIsAccepted()
     {
         var manifest = EmulationModuleManifestReader.Parse(Valid);
-        Assert.Equal("amiga", manifest.Id);
+        Assert.Equal("commodore", manifest.Id);
         Assert.Equal("1.0.0", manifest.ModuleVersion);
     }
 
@@ -35,11 +35,11 @@ public sealed class EmulationModuleManifestTests
     }
 
     [Theory]
-    [InlineData("id", "../amiga")]
+    [InlineData("id", "../commodore")]
     [InlineData("id", "..")]
-    [InlineData("id", "C:\\amiga")]
+    [InlineData("id", "C:\\commodore")]
     [InlineData("id", "CON")]
-    [InlineData("id", "amiga ")]
+    [InlineData("id", "commodore ")]
     [InlineData("id", "")]
     [InlineData("entryAssembly", "../outside.dll")]
     [InlineData("entryAssembly", "folder\\module.dll")]
@@ -82,7 +82,7 @@ public sealed class EmulationModuleManifestTests
     public void UnknownSchemaAndDuplicateFieldsAreRejected()
     {
         Assert.Throws<InvalidDataException>(() => EmulationModuleManifestReader.Parse(Valid.Replace("\"schemaVersion\":2", "\"schemaVersion\":3")));
-        Assert.Throws<InvalidDataException>(() => EmulationModuleManifestReader.Parse(Valid.Replace("\"id\":\"amiga\"", "\"id\":\"amiga\",\"Id\":\"atari\"")));
+        Assert.Throws<InvalidDataException>(() => EmulationModuleManifestReader.Parse(Valid.Replace("\"id\":\"commodore\"", "\"id\":\"commodore\",\"Id\":\"atari\"")));
         Assert.ThrowsAny<System.Text.Json.JsonException>(() => EmulationModuleManifestReader.Parse("{"));
         Assert.Throws<InvalidDataException>(() => EmulationModuleManifestReader.Parse("[]"));
     }

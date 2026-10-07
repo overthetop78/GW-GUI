@@ -8,11 +8,11 @@ using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Exceptions;
 using GWGUI.Tests.Emulation.EmulationContracts;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Amiga.Common.Contracts;
-using GWGUI.Emulation.Amiga.Common.Machines.Common.Contracts;
-using GWGUI.Emulation.Amiga.Common.Interfaces;
-using GWGUI.Emulation.Amiga.Emulators.PUAE.Interfaces;
-using GWGUI.Emulation.Amiga.Common.Services;
+using GWGUI.Emulation.Commodore.Common.Contracts;
+using GWGUI.Emulation.Commodore.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Commodore.Common.Interfaces;
+using GWGUI.Emulation.Commodore.Emulators.PUAE.Interfaces;
+using GWGUI.Emulation.Commodore.Common.Services;
 namespace GWGUI.Tests.Emulation.MachineAdapters;
 internal static class MachineAdapterFailureScenarios
 {
@@ -62,7 +62,7 @@ internal static class MachineAdapterFailureScenarios
         var cleanups = 0;
         var machine = new Machine(Guid.NewGuid(), MachineConfiguration.A500("virtual-rom"), core,
             [new MediaConfiguration("disk-1.adf",
-                GWGUI.Emulation.Amiga.Common.Machines.Common.Enums.MediaCategory.Floppy)], "virtual-session",
+                GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.MediaCategory.Floppy)], "virtual-session",
             deleteSession: path => { Assert.Equal("virtual-session", path); cleanups++; });
         try
         {

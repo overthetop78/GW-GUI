@@ -11,7 +11,7 @@ using GWGUI.App.Views.Windows.EmulationModuleOptions;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Interfaces;
-using GWGUI.Emulation.Amiga.Modules;
+using GWGUI.Emulation.Commodore.Modules;
 using GWGUI.Emulation.Nec.Modules;
 using GWGUI.Tests.Application.TestInfrastructure;
 using GWGUI.Tests.Interface.EmulationViews;
@@ -344,7 +344,7 @@ internal static class EmulationModuleSettingsNavigationScenarios
         EmulationModuleOptionsWindow? window = null;
         try
         {
-            var module = new AmigaEmulationModule(
+            var module = new CommodoreEmulationModule(
                 Path.Combine(root, "Configurations"), root, httpClient, Path.Combine(root, "Core"));
             var configuration = module.ChangeMachine(module.CreateConfiguration("A500"), "A600");
             await module.SaveConfigurationAsync(configuration);

@@ -13,19 +13,19 @@ Architecture cible :
   - [x] 1.1 Inventorier les fichiers Atari
     - [x] Modifier `docs/reference/emulator-adapter-file-map.md` pour ajouter à chaque fichier de `src/GWGUI.Emulation.Atari/Constants`, `Contracts`, `Dictionaries`, `Enums`, `Exceptions`, `Factories`, `Functions`, `Interfaces` et `Services` son chemin cible sous `Common/<catégorie>` ou `Emulators/<émulateur>/<catégorie>`, ainsi que son nom cible sans préfixe Atari lorsqu’il représente un rôle général du module.
   - [x] 1.2 Inventorier les fichiers Amiga
-    - [x] Modifier `docs/reference/emulator-adapter-file-map.md` pour ajouter à chaque fichier de `src/GWGUI.Emulation.Amiga/Constants`, `Contracts`, `Dictionaries`, `Enums`, `Factories`, `Functions`, `Interfaces` et `Services` son chemin cible sous `Common/<catégorie>` ou `Emulators/PUAE/<catégorie>`, ainsi que son nom cible sans préfixe Amiga lorsqu’il représente un rôle général du module.
+    - [x] Modifier `docs/reference/emulator-adapter-file-map.md` pour ajouter à chaque fichier de `src/GWGUI.Emulation.Commodore/Constants`, `Contracts`, `Dictionaries`, `Enums`, `Factories`, `Functions`, `Interfaces` et `Services` son chemin cible sous `Common/<catégorie>` ou `Emulators/PUAE/<catégorie>`, ainsi que son nom cible sans préfixe Amiga lorsqu’il représente un rôle général du module.
   - [x] 1.3 Vérifier les équivalences entre familles
     - [x] Modifier `docs/reference/emulator-adapter-file-map.md` pour associer les fichiers Atari et Amiga qui remplissent le même rôle, leur attribuer exactement le même chemin relatif et le même nom sous `Common`, et laisser explicitement sans équivalent les types propres à une machine ou à une famille.
 
 - [x] 2. Compléter les prises internes identiques
   - [x] 2.1 Définir toutes les opérations communes nécessaires
-    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs` et `src/GWGUI.Emulation.Amiga/Common/Interfaces/IEmulatorAdapter.cs` avec les mêmes membres pour la création du runtime, l’état d’installation, la recherche et l’installation des versions, le lancement éventuel du processus hôte et la résolution des médias, sans exposer un type d’émulateur concret.
-    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Contracts/EmulatorCreationContext.cs` et `src/GWGUI.Emulation.Amiga/Common/Contracts/EmulatorCreationContext.cs` avec les mêmes membres et le même ordre pour fournir uniquement les services appartenant à la gestion commune.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs` et `src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs` avec les mêmes membres pour la création du runtime, l’état d’installation, la recherche et l’installation des versions, le lancement éventuel du processus hôte et la résolution des médias, sans exposer un type d’émulateur concret.
+    - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Contracts/EmulatorCreationContext.cs` et `src/GWGUI.Emulation.Commodore/Common/Contracts/EmulatorCreationContext.cs` avec les mêmes membres et le même ordre pour fournir uniquement les services appartenant à la gestion commune.
   - [x] 2.2 Ajouter les contrats internes nécessaires
-    - [x] Créer `src/GWGUI.Emulation.Atari/Common/Contracts/EmulatorManagementContext.cs` et `src/GWGUI.Emulation.Amiga/Common/Contracts/EmulatorManagementContext.cs` avec exactement les mêmes membres pour transporter le client HTTP et le répertoire des cœurs nécessaires aux opérations de gestion.
+    - [x] Créer `src/GWGUI.Emulation.Atari/Common/Contracts/EmulatorManagementContext.cs` et `src/GWGUI.Emulation.Commodore/Common/Contracts/EmulatorManagementContext.cs` avec exactement les mêmes membres pour transporter le client HTTP et le répertoire des cœurs nécessaires aux opérations de gestion.
   - [x] 2.3 Enregistrer les adaptateurs sans les exposer
     - [x] Déplacer et renommer `src/GWGUI.Emulation.Atari/Dictionaries/AtariCoreCatalog.cs` en `src/GWGUI.Emulation.Atari/Common/Dictionaries/EmulatorCatalog.cs`, puis modifier son espace de noms et son contenu pour retourner uniquement les contrats internes communs et les adaptateurs enregistrés.
-    - [x] Déplacer et renommer `src/GWGUI.Emulation.Amiga/Dictionaries/AmigaCoreCatalog.cs` en `src/GWGUI.Emulation.Amiga/Common/Dictionaries/EmulatorCatalog.cs`, puis modifier son espace de noms et son contenu selon le même contrat que le catalogue Atari.
+    - [x] Déplacer et renommer `src/GWGUI.Emulation.Commodore/Dictionaries/AmigaCoreCatalog.cs` en `src/GWGUI.Emulation.Commodore/Common/Dictionaries/EmulatorCatalog.cs`, puis modifier son espace de noms et son contenu selon le même contrat que le catalogue Atari.
 
 - [x] 3. Ranger toute la gestion commune Atari
   - [x] 3.1 Déplacer les catégories communes
@@ -60,23 +60,23 @@ Architecture cible :
 
 - [x] 5. Ranger toute la gestion commune Amiga
   - [x] 5.1 Déplacer les catégories communes
-    - [x] Déplacer, selon les chemins Amiga validés dans `docs/reference/emulator-adapter-file-map.md`, les fichiers familiaux des dossiers racine `Constants`, `Contracts`, `Dictionaries`, `Enums`, `Factories`, `Functions`, `Interfaces` et `Services` vers les catégories correspondantes sous `src/GWGUI.Emulation.Amiga/Common/`, puis modifier leurs espaces de noms et références.
+    - [x] Déplacer, selon les chemins Amiga validés dans `docs/reference/emulator-adapter-file-map.md`, les fichiers familiaux des dossiers racine `Constants`, `Contracts`, `Dictionaries`, `Enums`, `Factories`, `Functions`, `Interfaces` et `Services` vers les catégories correspondantes sous `src/GWGUI.Emulation.Commodore/Common/`, puis modifier leurs espaces de noms et références.
   - [x] 5.2 Uniformiser uniquement les noms généraux
-    - [x] Renommer, selon les correspondances validées dans `docs/reference/emulator-adapter-file-map.md`, les types généraux déplacés sous `src/GWGUI.Emulation.Amiga/Common/` pour retirer le préfixe `Amiga`, puis modifier leurs constructeurs et toutes leurs références sans renommer les types propres aux machines Amiga.
+    - [x] Renommer, selon les correspondances validées dans `docs/reference/emulator-adapter-file-map.md`, les types généraux déplacés sous `src/GWGUI.Emulation.Commodore/Common/` pour retirer le préfixe `Amiga`, puis modifier leurs constructeurs et toutes leurs références sans renommer les types propres aux machines Amiga.
   - [x] 5.3 Conserver la traduction des commandes par machine
-    - [x] Modifier les catalogues et contrats déplacés sous `src/GWGUI.Emulation.Amiga/Common/` pour conserver les commandes de joystick, clavier, souris et trackball dans les définitions de chaque machine et les transmettre à l’adaptateur sélectionné.
+    - [x] Modifier les catalogues et contrats déplacés sous `src/GWGUI.Emulation.Commodore/Common/` pour conserver les commandes de joystick, clavier, souris et trackball dans les définitions de chaque machine et les transmettre à l’adaptateur sélectionné.
 
 - [x] 6. Isoler complètement PUAE
   - [x] 6.1 Déplacer tous les éléments PUAE
-    - [x] Déplacer, selon les chemins validés dans `docs/reference/emulator-adapter-file-map.md`, toutes les constantes, contrats, fonctions et services qui connaissent Libretro PUAE, sa DLL, son téléchargement, son protocole hôte ou ses options vers les catégories correspondantes sous `src/GWGUI.Emulation.Amiga/Emulators/PUAE/`, puis aligner leurs espaces de noms.
+    - [x] Déplacer, selon les chemins validés dans `docs/reference/emulator-adapter-file-map.md`, toutes les constantes, contrats, fonctions et services qui connaissent Libretro PUAE, sa DLL, son téléchargement, son protocole hôte ou ses options vers les catégories correspondantes sous `src/GWGUI.Emulation.Commodore/Emulators/PUAE/`, puis aligner leurs espaces de noms.
   - [x] 6.1.1 Limiter les imports à PUAE
-    - [x] Modifier les fichiers C# sous `src/GWGUI.Emulation.Amiga/Emulators/PUAE/` pour importer localement leurs catégories internes nécessaires et modifier `src/GWGUI.Emulation.Amiga/EmulationGlobalUsings.cs` afin qu’aucun import PUAE ne soit globalement visible par `Common`.
+    - [x] Modifier les fichiers C# sous `src/GWGUI.Emulation.Commodore/Emulators/PUAE/` pour importer localement leurs catégories internes nécessaires et modifier `src/GWGUI.Emulation.Commodore/EmulationGlobalUsings.cs` afin qu’aucun import PUAE ne soit globalement visible par `Common`.
   - [x] 6.2 Retirer les appels directs depuis Common et Modules
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Services/Machine.cs` pour remplacer toute utilisation directe de `ExternalCore` ou d’un autre type PUAE par les résultats fournis par `IEmulatorAdapter`.
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs` pour remplacer les appels directs à `CoreHost`, `CoreProvider`, `CoreReleaseService` et `ExternalCore` par le catalogue et les interfaces internes de `Common`.
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Services/Engine.cs` pour sélectionner uniquement un `IEmulatorAdapter` par son identifiant, sans contenir l’identifiant ou le type PUAE.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Services/Machine.cs` pour remplacer toute utilisation directe de `ExternalCore` ou d’un autre type PUAE par les résultats fournis par `IEmulatorAdapter`.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Modules/CommodoreEmulationModule.cs` pour remplacer les appels directs à `CoreHost`, `CoreProvider`, `CoreReleaseService` et `ExternalCore` par le catalogue et les interfaces internes de `Common`.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Services/Engine.cs` pour sélectionner uniquement un `IEmulatorAdapter` par son identifiant, sans contenir l’identifiant ou le type PUAE.
   - [x] 6.3 Adapter les noms internes à PUAE
-    - [x] Renommer sous `src/GWGUI.Emulation.Amiga/Emulators/PUAE/` les fichiers et types préfixés `Amiga` lorsqu’ils décrivent uniquement PUAE, puis modifier leurs références sans changer les identifiants invariants affichés ou persistés.
+    - [x] Renommer sous `src/GWGUI.Emulation.Commodore/Emulators/PUAE/` les fichiers et types préfixés `Amiga` lorsqu’ils décrivent uniquement PUAE, puis modifier leurs références sans changer les identifiants invariants affichés ou persistés.
   - [x] 6.4 Corriger la propriété des réglages des machines Atari 8 bits
     - [x] Déplacer les fichiers `AtariEightBitSettings*`, `AtariEightBitNativeSetting.cs` et `AtariEightBitSettingDisposition.cs` de `src/GWGUI.Emulation.Atari/Emulators/Atari800/` vers les catégories correspondantes de `src/GWGUI.Emulation.Atari/Common/`, puis modifier leurs espaces de noms, car ils définissent les possibilités stables des machines et non l’API de l’émulateur Atari800.
     - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Functions/AtariRuntimeOptionFunctions.cs` pour ne plus dépendre d’une constante appartenant à l’adaptateur Atari800.
@@ -86,10 +86,10 @@ Architecture cible :
   - [x] 7.1 Corriger le module Atari
     - [x] Modifier `src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs` pour utiliser seulement les contrats, catalogues et services placés sous `src/GWGUI.Emulation.Atari/Common/`, sans référencer un espace de noms ou un type sous `Emulators/`.
   - [x] 7.2 Corriger le module Amiga
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs` pour utiliser seulement les contrats, catalogues et services placés sous `src/GWGUI.Emulation.Amiga/Common/`, sans référencer un espace de noms ou un type sous `Emulators/`.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Modules/CommodoreEmulationModule.cs` pour utiliser seulement les contrats, catalogues et services placés sous `src/GWGUI.Emulation.Commodore/Common/`, sans référencer un espace de noms ou un type sous `Emulators/`.
   - [x] 7.3 Mettre à jour les imports globaux
     - [x] Modifier `src/GWGUI.Emulation.Atari/EmulationGlobalUsings.cs` pour importer les nouveaux espaces de noms de `Common` nécessaires sans importer globalement les implémentations sous `Emulators/`.
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/EmulationGlobalUsings.cs` pour importer les nouveaux espaces de noms de `Common` nécessaires sans importer globalement les implémentations sous `Emulators/`.
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/EmulationGlobalUsings.cs` pour importer les nouveaux espaces de noms de `Common` nécessaires sans importer globalement les implémentations sous `Emulators/`.
 
 - [x] 8. Préparer la reproduction pour Amstrad
   - [x] 8.1 Documenter la structure à copier
@@ -100,9 +100,9 @@ Architecture cible :
   - [x] 9.1 Définir la règle Git
     - [x] Modifier `.gitattributes` pour déclarer les fichiers texte du dépôt en CRLF sous Windows tout en conservant les formats qui exigent LF, puis garder `*.pdf binary`.
   - [x] 9.2 Normaliser les fichiers touchés
-    - [x] Modifier les fichiers texte concernés sous `src/GWGUI.Emulation.Atari/`, `src/GWGUI.Emulation.Amiga/`, `src/GWGUI.Emulation/`, `src/GWGUI.App/`, `tests/GWGUI.Tests/` et `docs/` pour appliquer les fins de ligne déclarées sans modifier leur contenu fonctionnel.
+    - [x] Modifier les fichiers texte concernés sous `src/GWGUI.Emulation.Atari/`, `src/GWGUI.Emulation.Commodore/`, `src/GWGUI.Emulation/`, `src/GWGUI.App/`, `tests/GWGUI.Tests/` et `docs/` pour appliquer les fins de ligne déclarées sans modifier leur contenu fonctionnel.
   - [x] 9.3 Aligner les fichiers partiels PUAE
-    - [x] Déplacer `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/ExternalHostCallbacks/ExternalHostCallbacks.AudioVideo.cs`, `ExternalHostCallbacks.Environment.cs` et `ExternalHostCallbacks.Input.cs` vers `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/` afin que leur chemin corresponde à l’espace de noms de la classe partielle.
+    - [x] Déplacer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Services/ExternalHostCallbacks/ExternalHostCallbacks.AudioVideo.cs`, `ExternalHostCallbacks.Environment.cs` et `ExternalHostCallbacks.Input.cs` vers `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Services/` afin que leur chemin corresponde à l’espace de noms de la classe partielle.
   - [x] 9.4 Qualifier les consommateurs utilisant plusieurs familles
     - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineConfigurationMappingScenarios.cs` et `MachineCapabilitiesScenarios.cs` pour employer des alias Atari et Amiga explicites lorsque les nouveaux noms communs sont identiques.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs` pour fournir à la machine Amiga les médias résolus désormais transmis par son adaptateur.
@@ -133,7 +133,7 @@ Architecture cible :
 
 - [x] 11. Uniformiser l’interface du cœur interne
   - [x] 11.1 Employer le même nom dans les deux familles
-    - [x] Déplacer et renommer `src/GWGUI.Emulation.Atari/Common/Interfaces/IAtariCore.cs` et `src/GWGUI.Emulation.Amiga/Common/Interfaces/IAmigaCore.cs` en `Common/Interfaces/IEmulatorCore.cs`, puis renommer les types et modifier toutes leurs références dans leur module familial et leurs tests.
+    - [x] Déplacer et renommer `src/GWGUI.Emulation.Atari/Common/Interfaces/IAtariCore.cs` et `src/GWGUI.Emulation.Commodore/Common/Interfaces/IAmigaCore.cs` en `Common/Interfaces/IEmulatorCore.cs`, puis renommer les types et modifier toutes leurs références dans leur module familial et leurs tests.
   - [x] 11.2 Revalider après l’uniformisation
     - [x] Modifier `docs/tasks/emulation/emulation-family-common-organization.md` avec les résultats de la compilation, des tests d’émulation et des audits finaux après le renommage.
 
@@ -148,13 +148,13 @@ Architecture cible :
     - [x] Créer `src/GWGUI.Emulation.Atari/Common/Constants/AudioConstants.cs` avec les constantes de `AtariAudioConstants.cs` et `AtariAudioOutputConstants.cs`, modifier leurs références, puis supprimer ces deux anciens fichiers.
     - [x] Renommer les fichiers, types et références audio génériques sous `src/GWGUI.Emulation.Atari/Common/Functions/` et `src/GWGUI.Emulation.Atari/Common/Services/` afin d'utiliser les noms `AudioFunctions`, `AudioOutputFunctions`, `AudioBuffer` et `AudioOutputController`.
   - [x] 13.3 Regrouper les éléments audio Amiga
-    - [x] Créer `src/GWGUI.Emulation.Amiga/Common/Constants/AudioConstants.cs` avec les constantes de `AmigaAudioConfigurationConstants.cs`, modifier leurs références, puis supprimer l'ancien fichier.
-    - [x] Renommer `src/GWGUI.Emulation.Amiga/Common/Contracts/AmigaAudioConfiguration.cs` en `AudioConfiguration.cs`, renommer le type et modifier toutes ses références sans mélanger le contrat de configuration avec les constantes audio.
+    - [x] Créer `src/GWGUI.Emulation.Commodore/Common/Constants/AudioConstants.cs` avec les constantes de `AmigaAudioConfigurationConstants.cs`, modifier leurs références, puis supprimer l'ancien fichier.
+    - [x] Renommer `src/GWGUI.Emulation.Commodore/Common/Contracts/AmigaAudioConfiguration.cs` en `AudioConfiguration.cs`, renommer le type et modifier toutes ses références sans mélanger le contrat de configuration avec les constantes audio.
   - [x] 13.4 Préparer le même emplacement pour Amstrad
     - [x] Créer `src/GWGUI.Emulation.Amstrad/Common/Constants/AudioConstants.cs` avec une classe statique vide servant d'emplacement commun jusqu'à l'ajout des constantes audio Amstrad.
   - [x] 13.5 Harmoniser les autres domaines communs
     - [x] Renommer les fichiers et types généralistes encore préfixés sous `src/GWGUI.Emulation.Atari/Common/` selon la correspondance documentée, puis modifier toutes leurs références en conservant les noms désignant réellement une machine ou une technologie Atari.
-    - [x] Renommer les fichiers et types généralistes encore préfixés sous `src/GWGUI.Emulation.Amiga/Common/` selon la correspondance documentée, puis modifier toutes leurs références en conservant les noms désignant réellement une machine ou une technologie Amiga.
+    - [x] Renommer les fichiers et types généralistes encore préfixés sous `src/GWGUI.Emulation.Commodore/Common/` selon la correspondance documentée, puis modifier toutes leurs références en conservant les noms désignant réellement une machine ou une technologie Amiga.
 
 - [x] 14. Clarifier la propriété des traductions
   - [x] 14.1 Documenter le passage des textes localisés
@@ -162,7 +162,7 @@ Architecture cible :
 
 - [x] 15. Supprimer les répertoires devenus vides
   - [x] 15.1 Nettoyer Atari, Amiga et Amstrad
-    - [x] Supprimer les répertoires vides sous `src/GWGUI.Emulation.Atari/`, `src/GWGUI.Emulation.Amiga/` et `src/GWGUI.Emulation.Amstrad/` après vérification de leur chemin absolu et de l'absence de fichiers.
+    - [x] Supprimer les répertoires vides sous `src/GWGUI.Emulation.Atari/`, `src/GWGUI.Emulation.Commodore/` et `src/GWGUI.Emulation.Amstrad/` après vérification de leur chemin absolu et de l'absence de fichiers.
 
 - [x] 16. Vérifier le rangement harmonisé
   - [x] 16.1 Renforcer les contrôles d'architecture
@@ -186,23 +186,23 @@ Architecture cible :
   - [x] 17.2 Regrouper les constantes Atari
     - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Atari/Common/Constants/` pour regrouper les petites classes apparentées dans les fichiers canoniques de leur domaine et supprimer les anciens fichiers dispersés.
   - [x] 17.3 Regrouper les constantes Amiga
-    - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Amiga/Common/Constants/` pour employer les mêmes fichiers canoniques qu'Atari, déplacer les constantes existantes dans leur domaine et créer les domaines communs réellement nécessaires.
+    - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Commodore/Common/Constants/` pour employer les mêmes fichiers canoniques qu'Atari, déplacer les constantes existantes dans leur domaine et créer les domaines communs réellement nécessaires.
   - [x] 17.4 Aligner le squelette Amstrad
     - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Amstrad/Common/Constants/` et `src/GWGUI.Emulation.Amstrad/Common/README.md` pour fournir les mêmes emplacements canoniques sans inventer de valeurs propres à des machines Amstrad encore absentes.
   - [x] 17.5 Harmoniser les noms de données équivalentes
     - [x] Modifier les classes de constantes canoniques Atari et Amiga afin que les données ayant le même rôle utilisent le même nom de membre lorsque cela ne change ni une valeur persistée ni un identifiant externe.
   - [x] 17.6 Harmoniser les contrats et les enums
     - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Atari/Common/Contracts/`, `Enums/` et `Dictionaries/` pour regrouper les petits types apparentés par domaine, employer les noms génériques canoniques et conserver séparément uniquement les types propres aux machines Atari.
-    - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Amiga/Common/Contracts/`, `Enums/` et `Dictionaries/` pour reprendre les mêmes domaines et noms canoniques, en conservant séparément uniquement les types propres aux machines Amiga.
+    - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Commodore/Common/Contracts/`, `Enums/` et `Dictionaries/` pour reprendre les mêmes domaines et noms canoniques, en conservant séparément uniquement les types propres aux machines Amiga.
   - [x] 17.7 Harmoniser les fonctions
     - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Atari/Common/Functions/` pour regrouper les fonctions apparentées dans les domaines canoniques sans déplacer dans `Common` une traduction propre à un émulateur.
-    - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Amiga/Common/Functions/` pour reprendre les mêmes domaines et noms canoniques, créer les domaines communs utiles et laisser absentes les fonctions sans comportement Amiga réel.
+    - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Commodore/Common/Functions/` pour reprendre les mêmes domaines et noms canoniques, créer les domaines communs utiles et laisser absentes les fonctions sans comportement Amiga réel.
   - [x] 17.8 Harmoniser les interfaces, services et fabriques
     - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Atari/Common/Interfaces/`, `Services/`, `Factories/` et `Exceptions/` pour employer les prises et services canoniques, regrouper les petits éléments apparentés et conserver séparément les capacités réellement propres à Atari.
-    - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Amiga/Common/Interfaces/`, `Services/`, `Factories/` et `Exceptions/` pour reprendre les mêmes prises et services canoniques lorsqu'un rôle équivalent existe, sans créer de comportement factice.
+    - [x] Modifier les fichiers sous `src/GWGUI.Emulation.Commodore/Common/Interfaces/`, `Services/`, `Factories/` et `Exceptions/` pour reprendre les mêmes prises et services canoniques lorsqu'un rôle équivalent existe, sans créer de comportement factice.
   - [x] 17.9 Isoler les données par machine
     - [x] Déplacer les constantes, contrats, enums, catalogues et fonctions propres à une machine sous le dossier de machine validé dans `src/GWGUI.Emulation.Atari/Common/` et modifier leurs espaces de noms et références.
-    - [x] Déplacer les constantes, contrats, enums, catalogues et fonctions propres à une machine sous le dossier de machine validé dans `src/GWGUI.Emulation.Amiga/Common/` et modifier leurs espaces de noms et références.
+    - [x] Déplacer les constantes, contrats, enums, catalogues et fonctions propres à une machine sous le dossier de machine validé dans `src/GWGUI.Emulation.Commodore/Common/` et modifier leurs espaces de noms et références.
 
 - [x] 18. Vérifier le nouveau découpage de Common
   - [x] 18.1 Vérifier la structure canonique
@@ -258,12 +258,12 @@ Architecture cible :
 
 - [x] 20. Rendre les données génériques et les erreurs réellement indépendantes des émulateurs
   - [x] 20.1 Remplacer les clés PUAE présentes dans Common par des clés Amiga
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Constants/SettingsConstants.cs` et ses
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Constants/SettingsConstants.cs` et ses
       consommateurs pour employer uniquement des clés `gwgui_amiga_*` dans Common et Modules.
-    - [x] Créer `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Constants/PuaeOptionConstants.cs` et
+    - [x] Créer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Constants/PuaeOptionConstants.cs` et
       `Functions/PuaeOptionFunctions.cs` avec la conversion entre les clés génériques et natives.
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Interfaces/IEmulatorAdapter.cs`,
-      `Emulators/PUAE/Factories/PuaeMachineFactory.cs` et `Modules/AmigaEmulationModule.cs` pour
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs`,
+      `Emulators/PUAE/Factories/PuaeMachineFactory.cs` et `Modules/CommodoreEmulationModule.cs` pour
       normaliser les anciennes configurations et préparer la configuration native à la frontière.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineConfigurationMappingScenarios.cs`
       pour vérifier l'aller-retour entre clés génériques et clés PUAE.
@@ -272,18 +272,18 @@ Architecture cible :
       `Exceptions/EmulationLocalizedException.cs`, puis modifier `Enums/EmulationMessageCode.cs`
       pour transporter une erreur localisée ou une erreur générique réutilisable.
     - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Functions/RuntimeFunctions.cs`,
-      `src/GWGUI.Emulation.Amiga/Common/Services/Machine.Commands.cs` et
+      `src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs` et
       `src/GWGUI.App/Presenters/Common/ControlErrorPresenter.cs` pour relayer ce contrat jusqu'à App.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs`
       pour vérifier la catégorie, le code public et la conservation de l'exception technique interne.
   - [x] 20.3 Regrouper et traduire toutes les erreurs PUAE
-    - [x] Créer `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Exceptions/PuaeExceptions.cs` avec des
+    - [x] Créer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Exceptions/PuaeExceptions.cs` avec des
       appels aux clés `Emulation.Error.PUAE.*`, sans constante contenant une phrase d'erreur.
-    - [x] Modifier les services sous `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Services/` pour
+    - [x] Modifier les services sous `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Services/` pour
       remplacer leurs phrases et constantes d'erreur par les appels à `PuaeExceptions`.
-    - [x] Supprimer `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Constants/ExternalDiskControlConstants.cs`
+    - [x] Supprimer `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Constants/ExternalDiskControlConstants.cs`
       devenu vide et retirer les anciennes phrases des autres fichiers de constantes PUAE.
-    - [x] Modifier les 30 fichiers `src/GWGUI.Emulation.Amiga/Resources/*/Emulation.resx` avec
+    - [x] Modifier les 30 fichiers `src/GWGUI.Emulation.Commodore/Resources/*/Emulation.resx` avec
       `scripts/tools/translate-resx-argos.py`, puis corriger par le même script la phrase paramétrée
       afin que les paramètres `{0}` et `{1}` restent identiques dans toutes les cultures.
   - [x] 20.4 Retirer les clés natives des émulateurs Atari de Common
@@ -301,7 +301,7 @@ Architecture cible :
       et interdire les préfixes natifs dans Common et Modules.
   - [x] 20.4.1 Retirer la compatibilité de configuration et restaurer les interfaces inchangées
     - [x] Modifier `src/GWGUI.Emulation.Atari/Common/Interfaces/IEmulatorAdapter.cs`,
-      `IEmulatorMediaAdapter.cs` et `src/GWGUI.Emulation.Amiga/Common/Interfaces/IEmulatorAdapter.cs`
+      `IEmulatorMediaAdapter.cs` et `src/GWGUI.Emulation.Commodore/Common/Interfaces/IEmulatorAdapter.cs`
       pour retrouver exactement leurs membres antérieurs au rangement interne.
     - [x] Modifier les catalogues, fabriques et modules Atari et Amiga pour conserver les métadonnées
       et conversions dans les classes concrètes, sans normalisation d'ancienne configuration au chargement.
@@ -317,7 +317,7 @@ Architecture cible :
     - [x] Supprimer `src/GWGUI.Emulation/Exceptions/EmulationLocalizedException.cs` et modifier
       `src/GWGUI.Emulation/Services/EmulationErrorService.cs` pour choisir uniquement entre un
       message de module déjà localisé et un code générique existant.
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Services/Machine.Commands.cs` et les tests
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs` et les tests
       concernés afin que les erreurs PUAE localisées atteignent App sans nouvelle interface publique.
   - [x] 20.5 Verrouiller la chaîne commune de connexion des émulateurs
     - [x] Modifier `docs/reference/emulator-adapter-file-map.md` pour décrire exactement la chaîne
@@ -330,10 +330,10 @@ Architecture cible :
       texte normalisé des interfaces et contextes communs Atari/Amiga, vérifier leur surface exacte
       et interdire toute dépendance App ou GWGUI.Emulation vers un module familial concret.
   - [x] 20.5.1 Limiter le texte localisé aux erreurs provenant de PUAE
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Services/Machine.cs` et `Machine.Commands.cs`
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Services/Machine.cs` et `Machine.Commands.cs`
       pour accepter une fonction interne facultative de présentation des erreurs de démarrage, sans
       ajouter de membre à une interface.
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Emulators/PUAE/Factories/PuaeMachineFactory.cs` pour
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Emulators/PUAE/Factories/PuaeMachineFactory.cs` pour
       injecter la conversion du texte PUAE déjà localisé vers le message public existant.
     - [x] Modifier `tests/GWGUI.Tests/Emulation/MachineAdapters/MachineAdapterFailureScenarios.cs`
       uniquement si nécessaire pour vérifier qu'un cœur synthétique reste une erreur générique.
@@ -343,7 +343,7 @@ Architecture cible :
     - [x] Modifier `docs/reference/emulator-adapter-file-map.md` et
       `docs/tasks/emulation/emulation-family-common-organization.md` pour supprimer cette règle et
       décrire uniquement un découpage fondé sur les responsabilités.
-    - [x] Modifier `src/GWGUI.Emulation.Amiga/Common/Services/Machine.Commands.cs` pour restaurer
+    - [x] Modifier `src/GWGUI.Emulation.Commodore/Common/Services/Machine.Commands.cs` pour restaurer
       l'espacement lisible supprimé uniquement afin de satisfaire l'ancienne limite.
   - [x] 20.6 Vérifier et nettoyer le résultat
     - [x] Modifier `docs/tasks/emulation/emulation-family-common-organization.md` avec les résultats

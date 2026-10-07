@@ -21,11 +21,11 @@ retrait d'une DLL ne supprime jamais les configurations ni les données utilisat
 
 Décision validée : chaque paquet contient `module.json`. Les DLL déposées directement dans
 `Modules` sans manifeste ne sont plus chargées ; aucun chemin de compatibilité n'est conservé.
-Amiga et Atari sont adaptés ensemble. Les données `Data/Emulation/Machines/<Id>` ne changent pas.
+Commodore et Atari utilisent le même contrat. Le module Commodore réutilise le stockage ancien `Emulation/Machines/amiga` lorsqu il existe et que le nouveau dossier est absent.
 
 ```text
-Modules/Amiga/module.json
-Modules/Amiga/gwgui.emulation.amiga.dll
+Modules/commodore/module.json
+Modules/commodore/gwgui.emulation.commodore.dll
 Modules/Atari/module.json
 Modules/Atari/gwgui.emulation.atari.dll
 ```
@@ -33,8 +33,8 @@ Modules/Atari/gwgui.emulation.atari.dll
 ```json
 {
   "schemaVersion": 2,
-  "id": "amiga",
-  "entryAssembly": "gwgui.emulation.amiga.dll",
+  "id": "commodore",
+  "entryAssembly": "gwgui.emulation.commodore.dll",
   "moduleVersion": "1.0.0",
   "hostApiMinimum": "1.0",
   "hostApiMaximum": "1.0",
@@ -56,7 +56,7 @@ installé, cette adresse est l’unique source de ses recherches de mise à jour
 L'identifiant est stable et comparé sans distinction de casse entre manifeste, factory et module.
 Il doit être utilisable comme nom de dossier : pas de séparateur, de chemin absolu, de caractère
 interdit, de nom réservé Windows, de nom `.`/`..` ni de point ou espace final. Les identifiants
-existants `amiga` et `atari` sont conservés, y compris pour les chemins persistants.
+actuels sont `commodore` et `atari` pour ces deux modules. La factory Commodore conserve l accès au stockage Amiga existant lors du renommage.
 
 `entryAssembly` est un nom de fichier `.dll` directement dans le dossier du paquet. Les chemins
 absolus, sous-chemins et remontées sont refusés. Le dossier, le manifeste et la DLL d'entrée ne
@@ -76,7 +76,7 @@ Un module référence `GWGUI.Emulation` et ses bibliothèques techniques. Il ne 
 
 ### Inventaire des modules officiels
 
-Les projets `GWGUI.Emulation.Amiga` et `GWGUI.Emulation.Atari` ont actuellement la même
+Les projets `GWGUI.Emulation.Commodore` et `GWGUI.Emulation.Atari` ont actuellement la même
 frontière de compilation :
 
 | Dépendance produite | Rôle | Destination dans GW GUI |
@@ -89,7 +89,7 @@ Chaque paquet officiel contient directement `module.json`, sa DLL d'entrée et, 
 Debug, son PDB. Les 29 catalogues de traduction et `00-Base` sont des ressources embarquées
 dans la DLL d'entrée ; aucun fichier de langue propre au module n'est distribué à côté.
 
-Amiga et Atari n'ont aujourd'hui aucune DLL managée ou native privée à placer dans leur
+Commodore et Atari n'ont aujourd'hui aucune DLL managée ou native privée à placer dans leur
 dossier de paquet. Le chargeur doit cependant résoudre en priorité depuis ce dossier les futures
 dépendances privées d'un module, tout en partageant les assemblies `gwgui.*` fournies par
 l'application afin de conserver une seule identité des contrats et traitements communs.
