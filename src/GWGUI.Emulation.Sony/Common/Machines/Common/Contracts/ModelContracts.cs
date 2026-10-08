@@ -20,7 +20,8 @@ public sealed record Model(
     string? VideoChip = null,
     string? AudioChip = null,
     int RomKib = 0,
-    string? CpuFrequency = null)
+    string? CpuFrequency = null,
+    bool HasBuiltInMemoryCard = false)
 {
     public IReadOnlyList<string> Processors => CpuModels ?? [];
 }

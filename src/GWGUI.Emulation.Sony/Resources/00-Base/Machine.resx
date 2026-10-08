@@ -43,4 +43,5 @@
   <data name="Emulation.Sony.Machine.ZN1"><value>Sony ZN-1</value></data>
   <data name="Emulation.Sony.Machine.ZN2"><value>Sony ZN-2</value></data>
   <data name="Emulation.Sony.Machine.PS3ExtraSlim"><value>Sony PS3 Extra Slim</value></data>
+  <data name="Emulation.Sony.Machine.PocketStation"><value>PocketStation</value></data>
 </root>

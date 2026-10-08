@@ -8,6 +8,10 @@ internal static class StorageSettingsFunctions
         var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId);
         var options = configuration.Options ?? new Dictionary<string, string>();
         var devices = new List<EmulationMediaDevice>();
+        if (model.HasBuiltInMemoryCard)
+            devices.Add(new EmulationMediaDevice(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard,
+                Machines.PocketStation.Constants.MediaConstants.FlashImageExtensions,
+                RequiresMachineRecreation: true, IsPermanent: true));
         if (model.SupportsCompactDiscDrive && adapter is not null)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
                 adapter.SupportedContentExtensions,
@@ -16,6 +20,7 @@ internal static class StorageSettingsFunctions
                 IsPermanent: model.HasBuiltInCompactDiscDrive));
         var configured = devices.Where(device => device.Slot.Category switch
         {
+            EmulationMediaCategory.MemoryCard => model.HasBuiltInMemoryCard,
             EmulationMediaCategory.CompactDiscDrive => model.HasBuiltInCompactDiscDrive
                 || OptionBool(options, StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption),
             _ => false
@@ -34,6 +39,7 @@ internal static class StorageSettingsFunctions
                 EmulationMediaType.Cassette => MediaCategory.Cassette,
                 EmulationMediaType.Cartridge => MediaCategory.Cartridge,
                 EmulationMediaType.CompactDisc => MediaCategory.CompactDisc,
+                EmulationMediaType.MemoryCard => MediaCategory.MemoryCard,
                 _ => throw new ArgumentOutOfRangeException(nameof(settings), item.Type, null)
             }, IsReadOnly: item.IsReadOnly, IsInserted: item.IsInserted, MountOrder: index)).ToArray();
         var model = ModelCatalog.Get(configuration.Model);

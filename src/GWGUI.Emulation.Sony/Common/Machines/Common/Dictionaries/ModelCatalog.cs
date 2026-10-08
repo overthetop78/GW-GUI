@@ -4,6 +4,7 @@ public static class ModelCatalog
 {
     public static IReadOnlyList<Model> All { get; } =
     [
+        Machines.PocketStation.Dictionaries.ModelCatalog.PocketStation,
         new(ModelConstants.PlayStation, "PlayStation / PS one", ModelConstants.BackendPlayStation,
             (int)RamCapacity._2MB, false, 0, 0, false, false, false, false, HasBuiltInCompactDiscDrive: true,
             SupportsCompactDiscDrive: true, CpuModels: [ModelConstants.CpuR3000A],

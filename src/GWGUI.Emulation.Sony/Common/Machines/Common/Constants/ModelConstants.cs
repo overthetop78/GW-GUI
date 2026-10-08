@@ -2,6 +2,7 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
 
 internal static class ModelConstants
 {
+    internal const string PocketStation = Machines.PocketStation.Constants.ModelConstants.Id;
     internal const string PlayStation = "PlayStation";
     internal const string PlayStation2 = "PlayStation2";
     internal const string Psp = "Psp";

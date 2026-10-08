@@ -54,6 +54,7 @@ internal static class ConfigurationValidationFunctions
         MediaCategory.Cartridge => model.SupportsCartridgeSlot,
         MediaCategory.CompactDisc => model.SupportsCompactDiscDrive,
         MediaCategory.Snapshot => true,
+        MediaCategory.MemoryCard => model.HasBuiltInMemoryCard,
         _ => false
     };
 }
