@@ -6278,4 +6278,5 @@ L'aggiornamento del titolo in esecuzione o DLC è in uso, quindi viene rimosso q
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>No.</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Opzioni di emulatore</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emula SNES e Super Famicom con bsnes C++98.</value></data>
 </root>

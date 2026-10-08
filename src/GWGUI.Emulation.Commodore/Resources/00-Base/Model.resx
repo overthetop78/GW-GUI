@@ -43,4 +43,5 @@
   <data name="Emulation.Commodore.Model.C232" xml:space="preserve"><value>Commodore 232</value></data>
   <data name="Emulation.Commodore.Model.Vic20" xml:space="preserve"><value>VIC-20</value></data>
   <data name="Emulation.Commodore.Model.Vic21" xml:space="preserve"><value>VIC-21 / Super VIC</value></data>
+  <data name="Emulation.Commodore.Model.C128D" xml:space="preserve"><value>C128D</value></data>
 </root>

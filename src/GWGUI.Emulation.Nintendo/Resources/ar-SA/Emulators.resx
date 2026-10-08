@@ -6278,4 +6278,5 @@ When this is ON, installing begins immediately, with its progress shown as a not
   <data name="Emulation.Option.Common.Value.Unchanged"><value>كما هو</value></data>
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>لا</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emulates SNES and Super Famicom with bsnes C++98.</value></data>
 </root>

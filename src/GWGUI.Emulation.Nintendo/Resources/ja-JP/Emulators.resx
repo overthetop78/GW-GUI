@@ -6278,4 +6278,5 @@ OpenGLが使用できない場合は、ソフトウェアレンダリングに�
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-Upについて</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>いいえ</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>エミュレータオプション</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>bsnesのC++98.とのSNESおよび極度のFamicomを模倣して下さい</value></data>
 </root>

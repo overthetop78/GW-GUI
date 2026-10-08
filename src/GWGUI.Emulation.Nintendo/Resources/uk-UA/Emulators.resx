@@ -6278,4 +6278,5 @@ OpenGL (Compute) є точним і підтримує зарахування, �
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-додаток</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Ні</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Параметри емулятора</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Емулятори SNES і Super Famicom з bsnes C++98.</value></data>
 </root>

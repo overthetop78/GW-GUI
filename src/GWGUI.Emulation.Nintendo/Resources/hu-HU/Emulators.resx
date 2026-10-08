@@ -6278,4 +6278,5 @@ A futó cím frissítése vagy DLC van használatban, így eltávolítják, ha a
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C - Fel</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Nem</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Emulátor opciók</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emulátumok SNES és Super Famicom bsnes C++98.</value></data>
 </root>

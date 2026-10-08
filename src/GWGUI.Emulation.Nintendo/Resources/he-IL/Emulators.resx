@@ -6278,4 +6278,5 @@ OpenGL (Compute) הוא מדויק ותומכת בהרחבה, אבל לא יעב
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>לא</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>אפשרויות Emulator</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emulates SNES Super Famicom עם bsnes C++98.</value></data>
 </root>

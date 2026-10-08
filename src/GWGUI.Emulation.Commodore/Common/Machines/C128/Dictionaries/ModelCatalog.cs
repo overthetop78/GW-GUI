@@ -13,8 +13,16 @@ internal static class ModelCatalog
         HasCdDrive: false, HasBuiltInFloppyDrive: false, HasKeyboard: true,
         ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
 
+    internal static Model C128D { get; } = C128 with
+    {
+        Id = ModelConstants.C128D,
+        DisplayName = ModelConstants.C128DDisplayName,
+        HasBuiltInFloppyDrive = true
+    };
+
     internal static IReadOnlyList<Model> All { get; } =
     [
-        C128
+        C128,
+        C128D
     ];
 }

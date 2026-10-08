@@ -15,5 +15,5 @@ internal static class CoreConstants
         Extensions, new(new Uri(OfficialPackageUrl), LibraryFileName, LibraryFileName, DisplayName),
         OptionConstants.All, FirmwareConstants.All,
         new(Id, DisplayName, DescriptionResourceKey,
-            new HashSet<string>(StringComparer.Ordinal) { ModelConstants.GameBoyAdvance }));
+            new HashSet<string>(StringComparer.Ordinal) { ModelConstants.GameBoy, ModelConstants.GameBoyColor, ModelConstants.GameBoyAdvance }));
 }

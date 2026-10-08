@@ -6278,4 +6278,5 @@ Den løpende tittelens oppdatering eller DLC er i bruk, slik at den fjernes når
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Nei</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Emulatoralternativer</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>emulgerer SNES Super Famicom med bsnes C++98.</value></data>
 </root>

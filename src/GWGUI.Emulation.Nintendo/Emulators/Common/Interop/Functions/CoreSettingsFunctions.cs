@@ -38,7 +38,21 @@ internal static class CoreSettingsFunctions
     }
 
     private static string DefaultValue(MachineConfiguration configuration, CoreOption option) =>
-        option.Key == Emulators.Skyemu.Constants.OptionConstants.CoreOverrideOption
+        option.Key == Emulators.Mgba.Constants.OptionConstants.HardwareModelOption
+            ? configuration.Model switch
+            {
+                ModelConstants.GameBoy => Emulators.Mgba.Constants.OptionConstants.GameBoyModel,
+                ModelConstants.GameBoyColor => Emulators.Mgba.Constants.OptionConstants.GameBoyColorModel,
+                _ => option.DefaultValue
+            }
+            : option.Key == Emulators.VbaM.Constants.OptionConstants.HardwareModelOption
+            ? configuration.Model switch
+            {
+                ModelConstants.GameBoy => Emulators.VbaM.Constants.OptionConstants.GameBoyModel,
+                ModelConstants.GameBoyColor => Emulators.VbaM.Constants.OptionConstants.GameBoyColorModel,
+                _ => option.DefaultValue
+            }
+            : option.Key == Emulators.Skyemu.Constants.OptionConstants.CoreOverrideOption
             ? configuration.Model switch
             {
                 ModelConstants.GameBoy or ModelConstants.GameBoyColor => Emulators.Skyemu.Constants.OptionConstants.GameBoyCore,

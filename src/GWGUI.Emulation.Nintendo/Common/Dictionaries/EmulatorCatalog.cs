@@ -44,6 +44,7 @@ public static class EmulatorCatalog
         new Emulators.PokeMini.Factories.MachineFactory(),
         new Emulators.BeetleSnes.Factories.MachineFactory(),
         new Emulators.Bsnes.Factories.MachineFactory(),
+        new Emulators.BsnesCpp98.Factories.MachineFactory(),
         new Emulators.BsnesJg.Factories.MachineFactory(),
         new Emulators.BsnesHd.Factories.MachineFactory(),
         new Emulators.Bsnes2014Accuracy.Factories.MachineFactory(),

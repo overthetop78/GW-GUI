@@ -6278,4 +6278,5 @@ Rulltitelns uppdatering eller DLC används, så den tas bort när titeln är st�
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Nej</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Emulator alternativ</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emulerar SNES och Super Famicom med bsnes C++98.</value></data>
 </root>

@@ -7082,4 +7082,6 @@ The running title's update or DLC is in use, so it is removed when the title is 
   <data name="Emulation.Option.Common.Value.Unchanged"><value>As Is</value></data>
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>No</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emulates SNES and Super Famicom with bsnes C++98.</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98"><value>bsnes C++98</value></data>
 </root>

@@ -10,9 +10,12 @@ internal static class EmulatorConstants
     internal const string LibraryFile = "vice_x128_libretro.dll";
     internal const string DownloadUrl = "https://buildbot.libretro.com/nightly/windows/x86_64/latest/vice_x128_libretro.dll.zip";
     internal const string ModelOption = "vice_c128_model";
+    internal const string C128DPalModel = "C128 D PAL";
+    internal const string C128DCommand = "c128d";
     internal static IReadOnlyDictionary<string, (string Option, string Command)> Models { get; } =
         new Dictionary<string, (string, string)>(StringComparer.Ordinal)
         {
             [Hardware.C128] = ("C128 PAL", "c128"),
+            [Hardware.C128D] = (C128DPalModel, C128DCommand),
         };
 }

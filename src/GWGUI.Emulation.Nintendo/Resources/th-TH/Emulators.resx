@@ -6278,4 +6278,5 @@ OpenGL (Compute) แม่นยํา และรองรับการย�
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>ไม่</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>ตัวเลือกการจําลอง</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>จําลอง SNES และซูเปอร์ Famicom กับ bsnese C++98.</value></data>
 </root>

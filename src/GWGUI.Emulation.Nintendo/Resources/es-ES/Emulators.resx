@@ -6278,4 +6278,5 @@ La actualización del título de ejecución o DLC está en uso, por lo que se el
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>No.</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Opciones de emulador</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emula SNES y Super Famicom con bsnes C++98.</value></data>
 </root>

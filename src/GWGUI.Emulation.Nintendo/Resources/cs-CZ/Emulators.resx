@@ -6278,4 +6278,5 @@ Aktualizace běžícího titulu nebo DLC je v provozu, takže se odstraní při 
   <data name="Emulation.Option.Common.Value.Unchanged"><value>Jak je</value></data>
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C- Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Ne</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emuláty SNES a Super Famicom s bsnes C++98.</value></data>
 </root>

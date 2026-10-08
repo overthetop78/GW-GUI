@@ -6278,4 +6278,5 @@ Ajo-otsikon päivitys tai DLC on käytössä, joten se poistetaan, kun otsikko s
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Ei</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Emulaattorivalinnat</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emulates SNES ja Super Famicom bsnes C++98.</value></data>
 </root>

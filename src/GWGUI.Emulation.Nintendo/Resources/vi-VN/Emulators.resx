@@ -6278,4 +6278,5 @@ Các tập tin .wua và ảnh đĩa không bao giờ bị gỡ bỏ, vì chúng 
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Không</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Tùy chọn giả lập</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Tính SNES và Super Famicom với bsnes C++98.</value></data>
 </root>

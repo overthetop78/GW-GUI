@@ -6278,4 +6278,5 @@ OpenGL (Compute) точен и поддерживает масштабирова
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>Вверх</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Нет</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Варианты эмулятора</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Подражает SNES и Super Famicom с bsnes C++98.</value></data>
 </root>

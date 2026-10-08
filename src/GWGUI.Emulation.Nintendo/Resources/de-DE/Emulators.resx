@@ -6278,4 +6278,5 @@ Wua-Dateien und Disc-Images werden niemals entfernt, da sie auch das Basisspiel 
   <data name="Emulation.Option.Common.Value.Unchanged"><value>Wie ist</value></data>
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Nein</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emuliert SNES und Super Famicom mit bsnes C++98.</value></data>
 </root>

@@ -6278,4 +6278,5 @@ Den kørende titel opdatering eller DLC er i brug, så det fjernes, når titlen 
   <data name="Emulation.Option.Common.Value.Unchanged"><value>Som det er.</value></data>
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C- Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Nej</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emulater SNES og Super Familicom med bsnes C++98.</value></data>
 </root>

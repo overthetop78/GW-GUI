@@ -6278,4 +6278,5 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Όχι</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Επιλογές εξομοιωτή</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Προσομοιάζει SNES και Super Famicom με bsnes C++98.</value></data>
 </root>

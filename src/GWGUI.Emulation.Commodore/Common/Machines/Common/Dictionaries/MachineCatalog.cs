@@ -31,6 +31,7 @@ public static class MachineCatalog
         new(C64Models.C64Dtv.Id, MachineCatalogConstants.C64DtvResourceKey, MachineCatalogConstants.C64DtvImageResource),
         new(C64Models.C64SuperCpu.Id, MachineCatalogConstants.C64SuperCpuResourceKey, MachineCatalogConstants.C64SuperCpuImageResource),
         new(C128Models.C128.Id, MachineCatalogConstants.C128ResourceKey, MachineCatalogConstants.C128ImageResource),
+        new(C128Models.C128D.Id, MachineCatalogConstants.C128DResourceKey, MachineCatalogConstants.C128DImageResource),
         new(CbmIIModels.CbmII510.Id, MachineCatalogConstants.CbmII510ResourceKey, MachineCatalogConstants.CbmII510ImageResource),
         new(CbmIIModels.CbmII610.Id, MachineCatalogConstants.CbmII610ResourceKey, MachineCatalogConstants.CbmII610ImageResource),
         new(CbmIIModels.CbmII620.Id, MachineCatalogConstants.CbmII620ResourceKey, MachineCatalogConstants.CbmII610ImageResource),

@@ -29,6 +29,7 @@ public static class ModelCatalog
         C64Models.C64Dtv,
         C64Models.C64SuperCpu,
         C128Models.C128,
+        C128Models.C128D,
         CbmIIModels.CbmII510,
         CbmIIModels.CbmII610,
         CbmIIModels.CbmII620,

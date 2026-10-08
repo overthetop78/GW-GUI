@@ -6278,4 +6278,5 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C -Up (英語).</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>否</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>模擬選項</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>模拟 SNES和超级Fami通用 bsnes C++98.</value></data>
 </root>

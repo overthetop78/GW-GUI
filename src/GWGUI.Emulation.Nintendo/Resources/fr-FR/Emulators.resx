@@ -6277,4 +6277,5 @@ Les fichiers .wua et les images de disque ne sont jamais supprimés, car ils peu
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Non</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Options d'émulateur</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emule SNES et Super Famicom avec bsnes C++98.</value></data>
 </root>

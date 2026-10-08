@@ -55,11 +55,11 @@ public sealed class NintendoEmulatorCatalogTests
     [InlineData("Nintendo3Ds", "azahar,citra,citra2018,panda3ds")]
     [InlineData("NintendoDs", "desmume,desmume2015,melonds,melondsds,noods,skyemu")]
     [InlineData("NintendoDsi", "melondsds")]
-    [InlineData("GameBoy", "skyemu,mesen2,doublecherrygb,fixgb,gambatte,gearboy,irogb,mesen_s,sameboy,tgbdual")]
+    [InlineData("GameBoy", "mgba,vbam,skyemu,mesen2,doublecherrygb,fixgb,gambatte,gearboy,irogb,mesen_s,sameboy,tgbdual")]
     [InlineData("GameBoyAdvance", "skyemu,mednafen_gba,gpsp,meteor,mgba,vbam,vba_next")]
-    [InlineData("GameBoyColor", "skyemu,mesen2,doublecherrygb,fixgb,gambatte,gearboy,irogb,mesen_s,sameboy,tgbdual")]
+    [InlineData("GameBoyColor", "mgba,vbam,skyemu,mesen2,doublecherrygb,fixgb,gambatte,gearboy,irogb,mesen_s,sameboy,tgbdual")]
     [InlineData("Nes", "fceumm,fixnes,mesen,mesen2,nestopia,quicknes,rustynes")]
-    [InlineData("Snes", "mesen2,mesen_s,nside_sfc_balanced,mednafen_snes,bsnes,bsnes_jg,bsnes_hd_beta,bsnes2014_accuracy,bsnes2014_balanced,bsnes2014_performance,bsnes_mercury_accuracy,bsnes_mercury_balanced,bsnes_mercury_performance,snes9x,snes9x2002,snes9x2005,snes9x2005_plus,snes9x2010,mednafen_supafaust")]
+    [InlineData("Snes", "mesen2,mesen_s,nside_sfc_balanced,mednafen_snes,bsnes,bsnes_cplusplus98,bsnes_jg,bsnes_hd_beta,bsnes2014_accuracy,bsnes2014_balanced,bsnes2014_performance,bsnes_mercury_accuracy,bsnes_mercury_balanced,bsnes_mercury_performance,snes9x,snes9x2002,snes9x2005,snes9x2005_plus,snes9x2010,mednafen_supafaust")]
     [InlineData("GameWatch", "gw")]
     [InlineData("GameCube", "dolphin")]
     [InlineData("Wii", "dolphin")]
@@ -77,8 +77,8 @@ public sealed class NintendoEmulatorCatalogTests
     [Fact]
     public void EveryCoreHasDistinctOptionsWithSelectableDefaults()
     {
-        Assert.Equal(55, CoreCatalog.All.Count);
-        Assert.Equal(55, CoreCatalog.All.Select(core => core.Id).Distinct().Count());
+        Assert.Equal(56, CoreCatalog.All.Count);
+        Assert.Equal(56, CoreCatalog.All.Select(core => core.Id).Distinct().Count());
         foreach (var core in CoreCatalog.All)
         {
             Assert.Equal(core.Options.Count, core.Options.Select(option => option.Key).Distinct().Count());
@@ -99,6 +99,10 @@ public sealed class NintendoEmulatorCatalogTests
     [Theory]
     [InlineData("NintendoDsi", "melondsds")]
     [InlineData("GameBoyAdvance", "mgba")]
+    [InlineData("GameBoy", "mgba")]
+    [InlineData("GameBoyColor", "mgba")]
+    [InlineData("GameBoy", "vbam")]
+    [InlineData("GameBoyColor", "vbam")]
     public void FirmwareSelectionPreservesArbitraryUserFileNames(string machine, string emulator)
     {
         var configuration = new MachineConfiguration(machine, emulator);
@@ -167,11 +171,45 @@ public sealed class NintendoEmulatorCatalogTests
     [InlineData("Wii", "dolphin", "dolphin_skip_gc_bios")]
     [InlineData("GameBoy", "skyemu", "system_gba_bios_enable")]
     [InlineData("GameBoyAdvance", "skyemu", "system_nds_bios_enable")]
+    [InlineData("GameBoy", "mgba", "mgba_solar_sensor_level")]
+    [InlineData("GameBoyColor", "mgba", "mgba_force_gbp")]
+    [InlineData("GameBoyAdvance", "mgba", "mgba_gb_model")]
+    [InlineData("GameBoy", "vbam", "vbam_forceRTCenable")]
+    [InlineData("GameBoyColor", "vbam", "vbam_layer_1")]
+    [InlineData("GameBoyAdvance", "vbam", "vbam_gbHardware")]
     public void SettingsOfOtherMachinesAreNotPresented(string machine, string emulator, string key)
     {
         var fields = CoreSettingsFunctions.Blocks(new MachineConfiguration(machine, emulator))
             .SelectMany(block => block.Fields);
         Assert.DoesNotContain(fields, field => field.Id == key);
+    }
+
+    [Theory]
+    [InlineData("GameBoy", "mgba", "mgba_gb_model", "Game Boy")]
+    [InlineData("GameBoyColor", "mgba", "mgba_gb_model", "Game Boy Color")]
+    [InlineData("GameBoy", "vbam", "vbam_gbHardware", "gb")]
+    [InlineData("GameBoyColor", "vbam", "vbam_gbHardware", "gbc")]
+    public void GameBoyHardwareDefaultsFollowTheSelectedMachine(string machine, string emulator, string key, string expected)
+    {
+        var configuration = CoreSettingsFunctions.Configure(new MachineConfiguration(machine, emulator));
+        Assert.Equal(expected, configuration.Options![key]);
+    }
+
+    [Theory]
+    [InlineData("GameBoy", "mgba", ".gb")]
+    [InlineData("GameBoyColor", "mgba", ".gbc")]
+    [InlineData("GameBoy", "vbam", ".gb")]
+    [InlineData("GameBoyColor", "vbam", ".gbc")]
+    public void GameBoyAssociationsExposeCompatibleBiosAndCartridges(string machine, string emulator, string extension)
+    {
+        var configuration = new MachineConfiguration(machine, emulator);
+        var firmware = FirmwareFunctions.Slots(configuration);
+        Assert.Contains(firmware, slot => slot.FileName == "gb_bios.bin");
+        Assert.Contains(firmware, slot => slot.FileName == "gbc_bios.bin");
+        Assert.DoesNotContain(firmware, slot => slot.FileName == "gba_bios.bin");
+        var storage = StorageSettingsFunctions.Describe(configuration, new Engine().Adapter(configuration));
+        Assert.Contains(storage.AvailableDevices, device => device.AcceptedExtensions.Contains(extension));
+        Assert.DoesNotContain(storage.AvailableDevices, device => device.AcceptedExtensions.Contains(".gba"));
     }
 
     [Theory]

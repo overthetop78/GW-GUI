@@ -31,6 +31,8 @@ internal static class MachineCatalogConstants
     internal const string C64SuperCpuResourceKey = "Emulation.Commodore.Model.C64SuperCpu";
     internal const string C64SuperCpuImageResource = "GWGUI.Emulation.Commodore.Assets.Machines.C64SuperCpu.png";
     internal const string C128ResourceKey = "Emulation.Commodore.Model.C128";
+    internal const string C128DResourceKey = "Emulation.Commodore.Model.C128D";
+    internal const string C128DImageResource = "GWGUI.Emulation.Commodore.Assets.Machines.C128D.png";
     internal const string C128ImageResource = "GWGUI.Emulation.Commodore.Assets.Machines.C128.png";
     internal const string CbmII510ResourceKey = "Emulation.Commodore.Model.CbmII510";
     internal const string CbmII510ImageResource = "GWGUI.Emulation.Commodore.Assets.Machines.CbmII510.png";

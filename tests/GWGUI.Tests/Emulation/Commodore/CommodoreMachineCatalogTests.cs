@@ -19,6 +19,7 @@ public sealed class CommodoreMachineCatalogTests
         yield return ["C64Dtv", new[] {"vice_x64dtv"}];
         yield return ["C64SuperCpu", new[] {"vice_xscpu64"}];
         yield return ["C128", new[] {"vice_x128"}];
+        yield return ["C128D", new[] {"vice_x128"}];
         yield return ["CbmII510", new[] {"vice_xcbm5x0"}];
         foreach (var model in new[] {"CbmII610", "CbmII620", "CbmII620Plus", "CbmII710", "CbmII720", "CbmII720Plus"})
             yield return [model, new[] {"vice_xcbm2"}];
@@ -42,8 +43,8 @@ public sealed class CommodoreMachineCatalogTests
     [Fact]
     public void CatalogHasUniqueMachinesAndProfiles()
     {
-        Assert.Equal(39, ModelCatalog.All.Count);
-        Assert.Equal(39, ModelCatalog.All.Select(model => model.Id).Distinct().Count());
+        Assert.Equal(40, ModelCatalog.All.Count);
+        Assert.Equal(40, ModelCatalog.All.Select(model => model.Id).Distinct().Count());
         Assert.Equal(14, EmulatorCatalog.All.Count);
         Assert.Equal(14, EmulatorCatalog.All.Select(profile => profile.Id).Distinct().Count());
         Assert.Equal(ModelCatalog.All.Select(model => model.Id).Order(), MachineCatalog.All.Select(model => model.Id).Order());

@@ -6278,4 +6278,5 @@ De update van de draaiende titel of DLC is in gebruik, dus het wordt verwijderd 
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Nee</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Emulatoropties</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emuleert SNES en Super Famicom met bsnes C++98.</value></data>
 </root>

@@ -45,6 +45,7 @@ internal static class CoreCatalog
         Emulators.PokeMini.Constants.CoreConstants.Definition,
         Emulators.BeetleSnes.Constants.CoreConstants.Definition,
         Emulators.Bsnes.Constants.CoreConstants.Definition,
+        Emulators.BsnesCpp98.Constants.CoreConstants.Definition,
         Emulators.BsnesJg.Constants.CoreConstants.Definition,
         Emulators.BsnesHd.Constants.CoreConstants.Definition,
         Emulators.Bsnes2014Accuracy.Constants.CoreConstants.Definition,

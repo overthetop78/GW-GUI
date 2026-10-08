@@ -6278,4 +6278,5 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-업</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>아니요</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Emulator 옵션</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>에뮬레이트 SNES 과 슈퍼 Famicom 와 bsnes C++98.</value></data>
 </root>

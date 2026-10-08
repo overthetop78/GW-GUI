@@ -6278,4 +6278,5 @@ Pemutakhiran judul yang berjalan atau DLC sedang digunakan, sehingga dihapus ket
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Tidak</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Opsi emulator</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emulates SNES and Super Famcom with bsnes C++98.</value></data>
 </root>

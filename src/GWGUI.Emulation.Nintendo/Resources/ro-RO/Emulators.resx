@@ -6278,4 +6278,5 @@ Actualizarea titlului de funcționare sau DLC este în uz, astfel încât se eli
   <data name="Emulation.Option.Common.Value.CButtonUp"><value>C-Up</value></data>
   <data name="Emulation.Option.Common.Value.Negative"><value>Nu</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>Opțiuni de emulator</value></data>
+  <data name="Emulation.Emulator.bsnes_cplusplus98.Description"><value>Emulează SNES și Super Famicom cu bsnes C++98.</value></data>
 </root>
