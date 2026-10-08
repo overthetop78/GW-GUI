@@ -4,8 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.flycast.Description"><value>Emulates Sega Dreamcast -järjestelmät.</value></data>
   <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emuloi SG-1000, Mark III, Master System, Game Gear, Mega Drive ja Mega-CD järjestelmiä.</value></data>
-  <data name="Emulation.Emulator.yabause.Description"><value>Emuloi Sega Saturn -järjestelmiä.</value></data>
-  <data name="Emulation.Emulator.picodrive.Description"><value>Emulgoi PicoDrive Sega -järjestelmiä.</value></data>
 </root>

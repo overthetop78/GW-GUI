@@ -16,7 +16,8 @@ public sealed record MachineConfiguration(
     string? ValidatedCoreSha256 = null,
     IReadOnlyList<MediaConfiguration>? Media = null,
     AudioConfiguration? Audio = null,
-    IReadOnlyList<EmulationMediaSlot>? ConfiguredMediaSlots = null)
+    IReadOnlyList<EmulationMediaSlot>? ConfiguredMediaSlots = null,
+    string? HardDiskDirectory = null)
     : GWGUI.Emulation.Interfaces.IEmulationConfiguration
 {
     public string ModuleId => EmulationModuleConstants.ModuleId;

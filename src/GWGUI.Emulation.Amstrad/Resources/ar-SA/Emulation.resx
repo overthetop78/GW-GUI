@@ -19,8 +19,8 @@
   <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>نوع الرصد</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_resize"><value>رسم الصور</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_hack"><value>اختراق سريع</value></data>
-  <data name="Emulation.CrocoDS.Value.Auto"><value>Automatic</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>تلقائي</value></data>
   <data name="Emulation.CrocoDS.Value.Overscan"><value>فوق الكان</value></data>
-  <data name="Emulation.CrocoDS.Value.yes"><value>مُتاحة</value></data>
-  <data name="Emulation.CrocoDS.Value.no"><value>المعوقون</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>التمكين</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>المعوقين</value></data>
 </root>

@@ -29,7 +29,7 @@
   <data name="Emulation.Controller.Action.Fire2"><value>Nút bắn 2</value></data>
   <data name="Emulation.Controller.AnalogJoystick"><value>Cần điều khiển analog</value></data>
   <data name="Emulation.Controller.Automatic"><value>Tự động</value></data>
-  <data name="Emulation.Controller.None"><value>Không có</value></data>
+  <data name="Emulation.Controller.None"><value>Không</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Name</value></data>
   <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Không thể khởi tạo GameInput. Hãy cài đặt hoặc sửa chữa runtime GameInput đi kèm.</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (bên trái)</value></data>

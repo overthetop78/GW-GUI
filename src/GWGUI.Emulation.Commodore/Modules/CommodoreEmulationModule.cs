@@ -82,7 +82,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         var options = new Dictionary<string, string>(current.Options ?? new Dictionary<string, string>());
         foreach (var value in values)
         {
-            if (firmwareFields.Contains(value.Key) || value.Key is MachineSettingsConstants.AudioEnabled
+            if (firmwareFields.Contains(value.Key) || value.Key is StorageDirectorySettings.HardDiskDirectory or MachineSettingsConstants.AudioEnabled
                 or MachineSettingsConstants.AudioOutput
                 or MachineSettingsConstants.AudioLatency or MachineSettingsConstants.AudioStereoSeparation) continue;
             if (value.Value is null) options.Remove(value.Key);
@@ -97,6 +97,8 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         var updated = current with
         {
             Options = options,
+            HardDiskDirectory = values.TryGetValue(StorageDirectorySettings.HardDiskDirectory, out var directory)
+                ? string.IsNullOrWhiteSpace(directory) ? null : directory : current.HardDiskDirectory,
             FirmwarePaths = ApplyFirmwarePaths(current, values, firmwareFields),
             AudioEnabled = values.TryGetValue(MachineSettingsConstants.AudioEnabled, out var audioEnabled)
                 ? audioEnabled == MachineSettingsConstants.Enabled : current.AudioEnabled,

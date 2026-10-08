@@ -46,18 +46,20 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
         var current = configuration as MachineConfiguration
             ?? (MachineConfiguration)CreateConfiguration(machineId);
         var model = ModelCatalog.Get(current.Model);
-        var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
+        var adapter = _engine.Adapter(current);
+        var optionTabs = adapter.GetSettingsBlocks(current).Select(block => block.Tab).ToHashSet();
+        var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => optionTabs.Contains(item.Key) || item.Key switch
         {
             EmulationMachineTab.Keyboard => model.HasKeyboard,
             EmulationMachineTab.Mouse => model.MouseButtonCount > 0,
-            EmulationMachineTab.Rom => _engine.Adapter(current).GetFirmwareSlots(current).Count > 0,
+            EmulationMachineTab.Rom => adapter.GetFirmwareSlots(current).Count > 0,
             EmulationMachineTab.Storage => model.MaximumFloppyDriveCount > 0
                 || model.SupportsCassetteDrive || model.SupportsCartridgeSlot
                 || model.SupportsCompactDiscDrive,
             _ => item.Value
         });
         return new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs),
-            SettingsDescriptionFunctions.Create(current, _engine.Adapter(current)));
+            SettingsDescriptionFunctions.Create(current, adapter));
     }
 
     public IEmulationConfiguration CreateConfiguration(string machineId)

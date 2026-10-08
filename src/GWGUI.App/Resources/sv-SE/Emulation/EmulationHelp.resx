@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Ställ in uppspelningsvolymen av ljudspår som läses från den emulerade kompakt-skivan.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Ställ mus rörelse hastighet</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Justerar hur värdmusrörelsen omvandlas till rörelse som rapporteras till den emulerade maskinen.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Välj mappen för hard-disk bilder</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Ställ in mappen ursprungligen öppnas när du väljer en hårddisk bild. Mappen själv är inte monterad som en disk.</value></data>
 </root>

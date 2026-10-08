@@ -19,8 +19,8 @@
   <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>עקבו אחרי type</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_resize"><value>צילום: framing</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_hack"><value>מהירות ההאקר</value></data>
-  <data name="Emulation.CrocoDS.Value.Auto"><value>אוטומטי</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>אוֹטוֹמָטִי</value></data>
   <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
-  <data name="Emulation.CrocoDS.Value.yes"><value>Enable</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>המונחים</value></data>
   <data name="Emulation.CrocoDS.Value.no"><value>מוגבלות</value></data>
 </root>

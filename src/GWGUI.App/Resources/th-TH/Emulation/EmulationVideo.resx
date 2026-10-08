@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>การลดแถบกระดาษ</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>การ กู้ ข้อมูล</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>การไล่ระดับสี</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>ปิด</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>บ็อบ - แม้แต่เส้น</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>บ็อบ - เส้นคี่</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>ไล่ระดับสีในแนวตั้ง</value></data>

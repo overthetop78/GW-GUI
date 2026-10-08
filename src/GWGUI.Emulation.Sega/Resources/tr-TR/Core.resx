@@ -4,8 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.flycast.Description"><value>Sega Dreamcast sistemleri.</value></data>
   <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>SG-1000, Mark III, Master System, Game Gear, Mega Drive ve Mega-CD sistemleri.</value></data>
-  <data name="Emulation.Emulator.yabause.Description"><value>Sega Saturn sistemlerini emüle eder.</value></data>
-  <data name="Emulation.Emulator.picodrive.Description"><value>PicoDrive Sega sistemleri.</value></data>
 </root>

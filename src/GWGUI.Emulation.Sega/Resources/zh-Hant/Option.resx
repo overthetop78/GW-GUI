@@ -6,16 +6,16 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.MasterSystem.Variant"><value>Master System型号</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>三维眼镜</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>已启用</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>已啟用</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>已停用</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Mega Drive型号</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>地区</value></data>
-  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>自动</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>自動的</value></data>
   <data name="Emulation.Sega.MegaDrive.VideoStandard"><value>视频标准</value></data>
-  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>自动</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>自動的</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega-CD型号</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>启用 Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>启用 32X</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>已启用</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>已啟用</value></data>
   <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>已停用</value></data>
 </root>

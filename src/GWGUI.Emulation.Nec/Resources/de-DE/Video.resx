@@ -19,7 +19,7 @@
   <data name="Emulation.Nec.Video.LastScanline"><value>Letzte sichtbare Scanline</value></data>
   <data name="Emulation.Nec.Video.FrameSkip"><value>Frame Skip</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Deaktiviert</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Automatik</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Automatisch</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Handbuch</value></data>
   <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Rahmenübersprungschwelle</value></data>
   <data name="Emulation.Nec.Video.Overscan"><value>Bildgrenzen anzeigen</value></data>

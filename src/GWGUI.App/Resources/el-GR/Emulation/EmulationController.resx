@@ -29,7 +29,7 @@
   <data name="Emulation.Controller.Action.Fire2"><value>Κουμπί πυρός 2</value></data>
   <data name="Emulation.Controller.AnalogJoystick"><value>Αναλογικό χειριστήριο</value></data>
   <data name="Emulation.Controller.Automatic"><value>Αυτόματο</value></data>
-  <data name="Emulation.Controller.None"><value>Καμία</value></data>
+  <data name="Emulation.Controller.None"><value>Κανένα</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Εναλλαγή χειριστήριο/ποντίκι</value></data>
   <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Δεν ήταν δυνατή η αρχικοποίηση του GameInput. Εγκαταστήστε ή επιδιορθώστε το παρεχόμενο περιβάλλον εκτέλεσης GameInput.</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Ταχύτητα Konix (αριστερό χέρι)</value></data>

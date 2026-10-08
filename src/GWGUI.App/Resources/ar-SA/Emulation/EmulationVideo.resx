@@ -44,7 +44,7 @@
   <data name="Emulation.Video.Crt.Color.White"><value>مونيكروم أبيض</value></data>
   <data name="Emulation.Video.Crt.Color.Gray"><value>مونوكروم رمادي</value></data>
   <data name="Emulation.Video.Crt.Color.Custom"><value>الاحتكار العرفي</value></data>
-  <data name="Emulation.Video.Crt.Mask.None"><value>لا</value></data>
+  <data name="Emulation.Video.Crt.Mask.None"><value>بلا</value></data>
   <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>مدفعية من طراز Aperture</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>قناع الظلال</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>قناع الطيار</value></data>
@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>تخفيض الحظر</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>استرداد التفاصيل</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>إزالة التداخل</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>قبالة</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>المعوقين</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>(بوب) حتى الخطوط</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>(بوب) خطوط غريبة</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>الخلل الرأسي</value></data>
@@ -232,7 +232,7 @@
   <data name="Emulation.Video.Tab.Signal"><value>الإشارة</value></data>
   <data name="Emulation.Video.Tab.Effects"><value>الآثار</value></data>
   <data name="Emulation.Video.Parameter.FineDetails"><value>التفاصيل الدقيقة</value></data>
-  <data name="Emulation.Video.Restoration.Level.None"><value>بدون</value></data>
+  <data name="Emulation.Video.Restoration.Level.None"><value>بلا</value></data>
   <data name="Emulation.Video.Restoration.Level.Light"><value>خفيف</value></data>
   <data name="Emulation.Video.Restoration.Level.Medium"><value>متوسط</value></data>
   <data name="Emulation.Video.Restoration.Level.Strong"><value>قوي</value></data>
@@ -242,8 +242,8 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>تدهور السلوك</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>معيار الكول</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>كثافة التأثيرات القياسية</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>الآلية</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>لا</value></data>
+  <data name="Emulation.Video.Signal.Standard.Automatic"><value>تلقائي</value></data>
+  <data name="Emulation.Video.Signal.Connection.None"><value>بلا</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>الاختناق الأفقي</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>التمزق الرأسي</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>تريبزويد</value></data>

@@ -26,7 +26,7 @@
   <data name="Emulation.Emulator.beetle_sgx.Description"><value>PC Engine SuperGrafx 게임, HuCards 및 CD-ROM2 미디어를 격리합니다.</value></data>
   <data name="Emulation.Emulator.geargrafx.Description"><value>PC Engine, SuperGrafx 및 NEC LaserActive 시스템을 격리합니다.</value></data>
   <data name="Emulation.Nec.Cpu.Region"><value>콘솔 영역</value></data>
-  <data name="Emulation.Nec.Cpu.Region.Auto"><value>제품정보</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>오토매틱</value></data>
   <data name="Emulation.Nec.Cpu.Region.Japan"><value>(주)태국</value></data>
   <data name="Emulation.Nec.Cpu.Region.Usa"><value>대한민국</value></data>
 </root>

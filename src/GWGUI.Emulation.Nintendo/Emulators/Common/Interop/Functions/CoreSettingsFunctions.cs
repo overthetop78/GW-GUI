@@ -26,14 +26,27 @@ internal static class CoreSettingsFunctions
     {
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         foreach (var option in CoreCatalog.Get(configuration.EmulatorId).Options.Select(WithSupportedGraphicsApis))
-            options[option.Key] = option.Key == CoreSettingsConstants.MelonDsConsoleModeOption
-                ? DefaultValue(configuration, option)
-                : configuration.Options?.GetValueOrDefault(option.Key) ?? DefaultValue(configuration, option);
+        {
+            var fallback = DefaultValue(configuration, option);
+            var selected = AppliesTo(option, configuration.Model)
+                ? configuration.Options?.GetValueOrDefault(option.Key) ?? fallback : fallback;
+            options[option.Key] = IsForcedOption(option.Key) ? fallback
+                : AvailableValues(option, configuration.Model).Any(value => value.Value == selected)
+                    ? selected : fallback;
+        }
         return configuration with { Options = options };
     }
 
     private static string DefaultValue(MachineConfiguration configuration, CoreOption option) =>
-        option.Key is CoreSettingsConstants.MelonDsConsoleModeOption
+        option.Key == Emulators.Skyemu.Constants.OptionConstants.CoreOverrideOption
+            ? configuration.Model switch
+            {
+                ModelConstants.GameBoy or ModelConstants.GameBoyColor => Emulators.Skyemu.Constants.OptionConstants.GameBoyCore,
+                ModelConstants.GameBoyAdvance => Emulators.Skyemu.Constants.OptionConstants.GameBoyAdvanceCore,
+                ModelConstants.NintendoDs => Emulators.Skyemu.Constants.OptionConstants.NintendoDsCore,
+                _ => option.DefaultValue
+            }
+            : option.Key is CoreSettingsConstants.MelonDsConsoleModeOption
             ? configuration.EmulatorId == Emulators.MelonDsDs.Constants.CoreConstants.Id
                 ? configuration.Model == ModelConstants.NintendoDsi ? Emulators.MelonDsDs.Constants.OptionConstants.DsiConsoleMode : Emulators.MelonDsDs.Constants.OptionConstants.DsConsoleMode
                 : CoreSettingsConstants.DsConsoleMode
@@ -42,18 +55,28 @@ internal static class CoreSettingsFunctions
     internal static IReadOnlyList<EmulationSettingsBlock> Blocks(MachineConfiguration configuration)
     {
         if (string.IsNullOrEmpty(configuration.EmulatorId)) return [];
-        var fields = CoreCatalog.Get(configuration.EmulatorId).Options.Select(WithSupportedGraphicsApis).Where(option => option.Key != CoreSettingsConstants.MelonDsConsoleModeOption
+        var fields = CoreCatalog.Get(configuration.EmulatorId).Options.Select(WithSupportedGraphicsApis).Where(option => AppliesTo(option, configuration.Model) && !IsForcedOption(option.Key)
             && (configuration.EmulatorId != Emulators.MelonDsDs.Constants.CoreConstants.Id
                 || !Emulators.MelonDsDs.Constants.FirmwareConstants.PathOptions.Values.Contains(option.Key, StringComparer.Ordinal))).Select(option => new EmulationSettingsField(
-            option.Key, EmulationMachineTab.General, CoreSettingsConstants.OptionsBlock,
+            option.Key, option.Tab, CoreSettingsConstants.OptionsBlock + option.Tab,
             option.Name, EmulationSettingsEditor.Selection,
             configuration.Options?.GetValueOrDefault(option.Key) ?? DefaultValue(configuration, option),
-            option.Values.Select(value => new EmulationSettingsChoice(value.Value,
+            AvailableValues(option, configuration.Model).Select(value => new EmulationSettingsChoice(value.Value,
                 value.Label.StartsWith(CoreSettingsConstants.OptionResourcePrefix, StringComparison.Ordinal) ? value.Label : string.Empty,
                 value.Label.StartsWith(CoreSettingsConstants.OptionResourcePrefix, StringComparison.Ordinal) ? null : value.Label)).ToArray(),
-            ExplanationResourceKey: option.Description, RequiresRestart: true)).ToArray();
-        return fields.Length == 0 ? [] : [new EmulationSettingsBlock(CoreSettingsConstants.OptionsBlock,
-            EmulationMachineTab.General, CoreSettingsConstants.OptionsResource, fields,
-            CoreSettingsConstants.OptionsIcon, CoreSettingsConstants.OptionsColumnCount)];
+            ExplanationResourceKey: option.Description, RequiresRestart: option.RequiresRestart)).ToArray();
+        return fields.GroupBy(field => field.Tab).Select(group => new EmulationSettingsBlock(
+            CoreSettingsConstants.OptionsBlock + group.Key, group.Key,
+            CoreSettingsConstants.Sections[group.Key].Title, group.ToArray(),
+            CoreSettingsConstants.Sections[group.Key].Icon, CoreSettingsConstants.OptionsColumnCount)).ToArray();
     }
+
+    private static bool AppliesTo(CoreOption option, string machineId) =>
+        option.IsVisible && (option.MachineIds is null || option.MachineIds.Contains(machineId));
+
+    private static bool IsForcedOption(string key) => key is CoreSettingsConstants.MelonDsConsoleModeOption
+        or Emulators.Skyemu.Constants.OptionConstants.CoreOverrideOption;
+
+    private static IEnumerable<CoreOptionValue> AvailableValues(CoreOption option, string machineId) =>
+        option.Values.Where(value => value.MachineIds is null || value.MachineIds.Contains(machineId));
 }

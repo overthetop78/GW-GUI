@@ -5,35 +5,31 @@ internal static class StorageSettingsFunctions
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
     {
         var model = ModelCatalog.Get(configuration.Model);
+        var contentExtensions = new Engine().Adapter(configuration).SupportedContentExtensions;
+        var cartridgeFormats = model.Id switch
+        {
+            ModelConstants.MegaDrive or ModelConstants.MegaCd or ModelConstants.ThirtyTwoX or ModelConstants.Pico => StorageSettingsFunctionsConstants.MegaDriveCartridgeExtensions,
+            ModelConstants.Naomi or ModelConstants.Naomi2 or ModelConstants.Atomiswave or ModelConstants.SystemSp or ModelConstants.StV or ModelConstants.Model3 => StorageSettingsFunctionsConstants.ArcadeCartridgeExtensions,
+            _ => StorageSettingsFunctionsConstants.EightBitCartridgeExtensions
+        };
         var options = configuration.Options ?? new Dictionary<string, string>();
         var devices = new List<EmulationMediaDevice>();
         for (var index = 0; index < model.MaximumFloppyDriveCount; index++)
             devices.Add(new EmulationMediaDevice(new EmulationMediaSlot(
                     EmulationMediaCategory.FloppyDrive, index), EmulationMediaType.Floppy,
-                [StorageSettingsFunctionsConstants.Dsk, StorageSettingsFunctionsConstants.M3u],
+                contentExtensions.Where(StorageSettingsFunctionsConstants.FloppyExtensions.Contains).ToArray(),
                 DisplayLabel: index == 0 ? StorageSettingsFunctionsConstants.FloppyDriveLabel
                     : StorageSettingsFunctionsConstants.SecondFloppyDriveLabel,
                 IsPermanent: index < model.BuiltInFloppyDriveCount));
         if (model.SupportsCassetteDrive)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cassette0, EmulationMediaType.Cassette,
-                [StorageSettingsFunctionsConstants.Cdt, StorageSettingsFunctionsConstants.Tap, StorageSettingsFunctionsConstants.Voc],
+                contentExtensions.Where(StorageSettingsFunctionsConstants.CassetteExtensions.Contains).ToArray(),
                 RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CassetteDriveLabel,
                 IsPermanent: model.HasBuiltInCassetteDrive));
         if (model.SupportsCartridgeSlot)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge,
-                model.Id == ModelConstants.MegaDrive
-                    ? [StorageSettingsFunctionsConstants.Md, StorageSettingsFunctionsConstants.Mdx,
-                       StorageSettingsFunctionsConstants.Sgd, StorageSettingsFunctionsConstants.Smd,
-                       StorageSettingsFunctionsConstants.Bms, StorageSettingsFunctionsConstants.SixtyEightK,
-                       StorageSettingsFunctionsConstants.Gen, StorageSettingsFunctionsConstants.ThirtyTwoX]
-                    : model.Id is ModelConstants.Naomi or ModelConstants.Naomi2
-                        ? [StorageSettingsFunctionsConstants.Zip, StorageSettingsFunctionsConstants.Bin,
-                           StorageSettingsFunctionsConstants.Dat, StorageSettingsFunctionsConstants.Lst]
-                    : model.Id == ModelConstants.Atomiswave
-                        ? [StorageSettingsFunctionsConstants.Zip]
-                    : [StorageSettingsFunctionsConstants.Sms, StorageSettingsFunctionsConstants.Sg,
-                       StorageSettingsFunctionsConstants.Cpr], RequiresMachineRecreation: true,
+                contentExtensions.Where(cartridgeFormats.Contains).ToArray(), RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CartridgeSlotLabel,
                 IsPermanent: model.HasBuiltInCartridgeSlot));
         var megaCdEnabled = model.Id == ModelConstants.MegaDrive
@@ -53,12 +49,7 @@ internal static class StorageSettingsFunctions
                     ? SettingsDescriptionFunctionsConstants.ResourceMasterSystemThreeDGlasses : null,
                 ConfigurationOptionDetailedResourceKey: model.SupportsThreeDGlasses
                     ? SettingsDescriptionFunctionsConstants.ResourceMasterSystemThreeDGlassesHelp : null));
-        IReadOnlyList<string> opticalExtensions = model.Id == ModelConstants.Saturn
-            ? [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Ccd,
-               StorageSettingsFunctionsConstants.Chd, StorageSettingsFunctionsConstants.Iso]
-            : [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Chd,
-               StorageSettingsFunctionsConstants.Iso, StorageSettingsFunctionsConstants.Gdi,
-               StorageSettingsFunctionsConstants.Cdi];
+        IReadOnlyList<string> opticalExtensions = contentExtensions.Where(StorageSettingsFunctionsConstants.OpticalExtensions.Contains).ToArray();
         if (model.SupportsCompactDiscDrive || megaCdEnabled)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
                 opticalExtensions, RequiresMachineRecreation: true,

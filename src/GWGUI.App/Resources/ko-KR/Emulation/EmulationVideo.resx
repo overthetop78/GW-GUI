@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>공급 업체</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>옵션 복구</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>메뉴 닫기</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>끄기</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>사용 안 함</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>밥 - 심지어 선</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - 이상한 선</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>수직 혼합</value></data>
@@ -242,8 +242,8 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>연결 degradation</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>색깔 기준</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>표준 효력 강렬</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>의 특징</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>ᄋᄋ</value></data>
+  <data name="Emulation.Video.Signal.Standard.Automatic"><value>오토매틱</value></data>
+  <data name="Emulation.Video.Signal.Connection.None"><value>없음</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>수평 curvature</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>수직 curvature</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>팟캐스트</value></data>

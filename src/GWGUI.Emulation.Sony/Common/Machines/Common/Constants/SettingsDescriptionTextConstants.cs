@@ -2,6 +2,7 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
 
 internal static partial class SettingsDescriptionFunctionsConstants
 {
+    internal const int SingleColumnLayout = 1;
     internal const string Enabled = "enabled";
     internal const string Disabled = "disabled";
     internal const string General = "general";

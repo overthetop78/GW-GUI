@@ -19,8 +19,8 @@
   <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Тип монітора</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Зображення обрамлення</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Швидкість хак</value></data>
-  <data name="Emulation.CrocoDS.Value.Auto"><value>Автоматика</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Автоматичний</value></data>
   <data name="Emulation.CrocoDS.Value.Overscan"><value>Поза «69»</value></data>
-  <data name="Emulation.CrocoDS.Value.yes"><value>Увімкнути</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Увімкнено</value></data>
   <data name="Emulation.CrocoDS.Value.no"><value>Вимкнено</value></data>
 </root>

@@ -19,7 +19,7 @@
   <data name="Emulation.Nec.Video.LastScanline"><value>마지막 눈에 보이는 scanline</value></data>
   <data name="Emulation.Nec.Video.FrameSkip"><value>프레임 건너뛰기</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>사용 안 함</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>제품정보</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>오토매틱</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>(주)</value></data>
   <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>프레임 건너뛰기 문턱</value></data>
   <data name="Emulation.Nec.Video.Overscan"><value>이미지 경계 표시</value></data>

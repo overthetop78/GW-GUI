@@ -21,6 +21,6 @@
   <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Gyorshack</value></data>
   <data name="Emulation.CrocoDS.Value.Auto"><value>Automatikus</value></data>
   <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
-  <data name="Emulation.CrocoDS.Value.yes"><value>Engedélyezve</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Engedélyezett</value></data>
   <data name="Emulation.CrocoDS.Value.no"><value>Letiltva</value></data>
 </root>

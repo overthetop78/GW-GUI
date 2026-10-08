@@ -132,7 +132,7 @@
   <data name="Emulation.Help.Storage.Sector.Detailed"><value>Affiche le secteur actuellement accessible par le périphérique de stockage émulé.</value></data>
   <data name="Emulation.Help.Video.Resolution.Short"><value>Sélectionnez la résolution émulée</value></data>
   <data name="Emulation.Help.Video.Resolution.Detailed"><value>Sélectionne la résolution vidéo interne produite par l'émulateur avant GW GUI écaille l'image pour la fenêtre.</value></data>
-  <data name="Emulation.Help.Video.Crop.Short"><value>Cultiver les frontières émulées</value></data>
+  <data name="Emulation.Help.Video.Crop.Short"><value>Cultiver les bordures émulées</value></data>
   <data name="Emulation.Help.Video.Crop.Detailed"><value>Supprime les bordures générées par la sortie vidéo émulée tout en préservant le rapport d'aspect d'image utilisé par GW GUI.</value></data>
   <data name="Emulation.Help.Video.Hue.Short"><value>Régler la teinte vidéo</value></data>
   <data name="Emulation.Help.Video.Hue.Detailed"><value>Déplace la teinte des couleurs générées par le matériel vidéo émulé.</value></data>
@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Définit le volume de lecture des pistes audio lues à partir du lecteur de disque compact émulé.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Définissez la vitesse du mouvement de la souris</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Ajuste la conversion du mouvement de la souris hôte en mouvement signalé à la machine émulée.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Choisissez le dossier pour les images disque dur</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Définit le dossier initialement ouvert lors de la sélection d'une image disque dur. Le dossier lui-même n'est pas monté comme un disque.</value></data>
 </root>

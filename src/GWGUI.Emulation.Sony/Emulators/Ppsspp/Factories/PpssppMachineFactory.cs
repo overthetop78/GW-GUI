@@ -11,12 +11,16 @@ internal sealed class PpssppMachineFactory : IEmulatorAdapter
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
         new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
+    public bool RequiresExternalFirmware => false;
+    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => [];
+    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => [];
+    public IReadOnlyList<string> SupportedContentExtensions => PpssppConstants.ContentExtensions;
     public string EmulatorId => PpssppConstants.Id;
     public string EmulatorKey => PpssppConstants.Id;
     public EmulationEmulatorDefinition Definition { get; } = new(
         PpssppConstants.Id, PpssppConstants.DisplayName,
         PpssppConstants.DescriptionResourceKey,
-        new[] { "Psp" }.ToHashSet(StringComparer.Ordinal));
+        new[] { ModelConstants.Psp }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -68,11 +72,27 @@ internal sealed class PpssppMachineFactory : IEmulatorAdapter
     {
         var machineId = Guid.NewGuid();
         var native = PpssppOptionFunctions.ToNative(configuration.EnsureId());
-        return new Machine(machineId, native,
-            new ProcessCore(context.HostExecutablePath, context.CorePath),
-            native.Media ?? [], Path.Combine(context.SessionsDirectory,
-                machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
-            native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
-            context.SaveDirectoryResolver?.Invoke(configuration));
+        var sessionDirectory = Path.Combine(context.SessionsDirectory,
+            machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
+        ProcessCore? core = null;
+        IAudioOutput? audio = null;
+        var ownershipTransferred = false;
+        try
+        {
+            core = new ProcessCore(context.HostExecutablePath, context.CorePath);
+            audio = native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null;
+            var machine = new Machine(machineId, native, core, native.Media ?? [], sessionDirectory,
+                audio, context.SaveDirectoryResolver?.Invoke(configuration));
+            ownershipTransferred = true;
+            return machine;
+        }
+        finally
+        {
+            if (!ownershipTransferred)
+            {
+                try { core?.Dispose(); }
+                finally { audio?.Dispose(); }
+            }
+        }
     }
 }

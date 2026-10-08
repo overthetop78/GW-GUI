@@ -26,7 +26,7 @@
   <data name="Emulation.Emulator.beetle_sgx.Description"><value>Emuliert PC Engine SuperGrafx Spiele, HuCards und CD-ROM2 Medien.</value></data>
   <data name="Emulation.Emulator.geargrafx.Description"><value>Emuliert PC Engine, SuperGrafx und NEC LaserActive Systeme.</value></data>
   <data name="Emulation.Nec.Cpu.Region"><value>Konsolenregion</value></data>
-  <data name="Emulation.Nec.Cpu.Region.Auto"><value>Automatik</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>Automatisch</value></data>
   <data name="Emulation.Nec.Cpu.Region.Japan"><value>Japan</value></data>
   <data name="Emulation.Nec.Cpu.Region.Usa"><value>Vereinigte Staaten</value></data>
 </root>

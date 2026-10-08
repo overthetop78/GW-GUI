@@ -10,7 +10,7 @@ public static class ControllerCatalog
             {
                 ControllerType.SegaSg1000Joystick, ControllerType.SegaSg1000IiJoypad
             },
-            ModelConstants.Sc3000 => new[] { ControllerType.SegaSc3000Keyboard },
+            ModelConstants.Sc3000 or ModelConstants.Sf7000 => new[] { ControllerType.SegaSc3000Keyboard },
             ModelConstants.MarkIII => new[]
             {
                 ControllerType.SegaMasterSystemController, ControllerType.SegaControlStick,
@@ -21,7 +21,7 @@ public static class ControllerCatalog
                 ControllerType.SegaMasterSystemController, ControllerType.SegaControlStick,
                 ControllerType.SegaLightPhaser
             },
-            ModelConstants.MegaDrive => new[]
+            ModelConstants.MegaDrive or ModelConstants.MegaCd or ModelConstants.ThirtyTwoX => new[]
             {
                 ControllerType.SegaMegaDriveThreeButton, ControllerType.SegaMegaDriveSixButton,
                 ControllerType.SegaMegaMouse, ControllerType.SegaMenacer,
@@ -31,7 +31,7 @@ public static class ControllerCatalog
                 ControllerType.SegaActivator
             },
             ModelConstants.GameGear => new[] { ControllerType.SegaGameGearController },
-            ModelConstants.Saturn => new[]
+            ModelConstants.Saturn or ModelConstants.StV => new[]
             {
                 ControllerType.SegaSaturnController, ControllerType.SegaSaturnThreeDControlPad,
                 ControllerType.SegaSaturnVirtuaGun, ControllerType.SegaSaturnShuttleMouse,
@@ -46,7 +46,7 @@ public static class ControllerCatalog
                 ControllerType.SegaDreamcastArcadeStick, ControllerType.SegaDreamcastTwinStick,
                 ControllerType.SegaDreamcastMaracas
             },
-            ModelConstants.Naomi or ModelConstants.Naomi2 => new[]
+            ModelConstants.Naomi or ModelConstants.Naomi2 or ModelConstants.Atomiswave or ModelConstants.SystemSp or ModelConstants.Model3 => new[]
             {
                 ControllerType.SegaDreamcastController, ControllerType.SegaDreamcastLightGun,
                 ControllerType.SegaDreamcastArcadeStick

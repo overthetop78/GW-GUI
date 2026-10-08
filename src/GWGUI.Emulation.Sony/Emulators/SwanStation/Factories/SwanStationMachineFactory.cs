@@ -1,3 +1,4 @@
+using FirmwareConstants = GWGUI.Emulation.Sony.Emulators.SwanStation.Constants.FirmwareConstants;
 using GWGUI.Emulation.Sony.Emulators.SwanStation.Functions;
 using GWGUI.Emulation.Sony.Emulators.SwanStation.Contracts;
 using GWGUI.Emulation.Sony.Emulators.SwanStation.Constants;
@@ -11,12 +12,16 @@ internal sealed class SwanStationMachineFactory : IEmulatorAdapter
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
         new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
+    public bool RequiresExternalFirmware => true;
+    public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => FirmwareConstants.All;
+    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => [];
+    public IReadOnlyList<string> SupportedContentExtensions => FirmwareConstants.ContentExtensions;
     public string EmulatorId => SwanStationConstants.Id;
     public string EmulatorKey => SwanStationConstants.Id;
     public EmulationEmulatorDefinition Definition { get; } = new(
         SwanStationConstants.Id, SwanStationConstants.DisplayName,
         SwanStationConstants.DescriptionResourceKey,
-        new[] { "PlayStation" }.ToHashSet(StringComparer.Ordinal));
+        new[] { ModelConstants.PlayStation }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -68,12 +73,28 @@ internal sealed class SwanStationMachineFactory : IEmulatorAdapter
     {
         var machineId = Guid.NewGuid();
         var native = SwanStationOptionFunctions.ToNative(configuration.EnsureId());
-        return new Machine(machineId, native,
-            new ProcessCore(context.HostExecutablePath, context.CorePath),
-            native.Media ?? [], Path.Combine(context.SessionsDirectory,
-                machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
-            native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
-            context.SaveDirectoryResolver?.Invoke(configuration));
+        var sessionDirectory = Path.Combine(context.SessionsDirectory,
+            machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
+        ProcessCore? core = null;
+        IAudioOutput? audio = null;
+        var ownershipTransferred = false;
+        try
+        {
+            core = new ProcessCore(context.HostExecutablePath, context.CorePath);
+            audio = native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null;
+            var machine = new Machine(machineId, native, core, native.Media ?? [], sessionDirectory,
+                audio, context.SaveDirectoryResolver?.Invoke(configuration));
+            ownershipTransferred = true;
+            return machine;
+        }
+        finally
+        {
+            if (!ownershipTransferred)
+            {
+                try { core?.Dispose(); }
+                finally { audio?.Dispose(); }
+            }
+        }
     }
 }
 

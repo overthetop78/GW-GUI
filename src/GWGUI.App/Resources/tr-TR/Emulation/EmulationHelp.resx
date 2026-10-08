@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Ses parçalarının geri dönüşü, emated kompakt-disc sürücüsünden okunuyor.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Set fare hareket hızı hız hızı</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Ev sahibi fare hareketini taklit makineye bildirilen harekete nasıl dönüştürülür.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Sert-disk görüntüler için klasörü seçin</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Dosyayı başlangıçta sert bir görüntü seçerken ayarlar. klasörün kendisi bir disk olarak monte edilmez.</value></data>
 </root>

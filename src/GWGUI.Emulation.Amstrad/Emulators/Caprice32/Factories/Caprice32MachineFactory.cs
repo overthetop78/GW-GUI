@@ -17,6 +17,9 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
         new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
+    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration,
+        IReadOnlyList<CoreOption> coreOptions) =>
+        GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration, coreOptions);
     public string EmulatorId => EmulatorConstants.Id;
     public string EmulatorKey => Emulator.Caprice32.ToString();
     public IReadOnlyList<CoreOption> GetOptions(EmulatorManagementContext context) => [];

@@ -7,11 +7,10 @@ internal static class EmulatorCatalog
             .OrderBy(definition => definition.Id, StringComparer.Ordinal).ToArray();
 
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() =>
-        typeof(EmulatorCatalog).Assembly.GetTypes()
-            .Where(type => !type.IsAbstract && typeof(IEmulatorAdapter).IsAssignableFrom(type))
-            .Select(type => (IEmulatorAdapter)Activator.CreateInstance(type, nonPublic: true)!)
-            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)
-            .ToArray();
+    [
+        new Emulators.Caprice32.Factories.Caprice32MachineFactory(),
+        new Emulators.CrocoDS.Factories.CrocoDSMachineFactory()
+    ];
 
     internal static IEmulatorAdapter CreateAdapter(Emulator emulator) =>
         CreateAdapters().SingleOrDefault(adapter => string.Equals(

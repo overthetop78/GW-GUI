@@ -18,8 +18,8 @@
   <data name="Emulation.Nec.Video.InitialScanline"><value>המונחים: Serline</value></data>
   <data name="Emulation.Nec.Video.LastScanline"><value>המונחים: סריקה</value></data>
   <data name="Emulation.Nec.Video.FrameSkip"><value>תגית: Legion</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>כבוי</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>אוטומטי</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>מוגבלות</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>אוֹטוֹמָטִי</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>ידני</value></data>
   <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>המונחים: סף הסף</value></data>
   <data name="Emulation.Nec.Video.Overscan"><value>הצגת שולי התמונה</value></data>

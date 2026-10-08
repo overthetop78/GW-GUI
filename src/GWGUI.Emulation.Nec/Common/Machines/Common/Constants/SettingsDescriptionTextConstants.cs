@@ -60,3 +60,14 @@ internal static partial class SettingsDescriptionFunctionsConstants
     internal const string IconVideo = "\uE7F4";
     internal const string IconAudio = "\uE767";
 }
+
+internal static class StorageDirectorySettings
+{
+    internal const string HardDiskDirectory = "folders.hardDisks";
+    internal const string BlockId = "default-folders";
+    internal const string TitleResource = "Emulation.Folder.Default";
+    internal const string HardDiskResource = "Emulation.Storage.HardDisk.List";
+    internal const string ShortHelp = "Emulation.Help.Storage.HardDiskImageDirectory.Short";
+    internal const string DetailedHelp = "Emulation.Help.Storage.HardDiskImageDirectory.Detailed";
+    internal const string Icon = "\uEDA2";
+}

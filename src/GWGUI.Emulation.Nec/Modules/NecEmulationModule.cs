@@ -95,14 +95,14 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
     public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration,
         IReadOnlyDictionary<string, string?> values)
     {
-        var nintendo = RequireConfiguration(configuration);
-        var options = new Dictionary<string, string>(nintendo.Options
+        var necConfiguration = RequireConfiguration(configuration);
+        var options = new Dictionary<string, string>(necConfiguration.Options
             ?? new Dictionary<string, string>(), StringComparer.Ordinal);
-        var firmwareSlots = FirmwareFunctions.Slots(nintendo.EmulatorId);
+        var firmwareSlots = FirmwareFunctions.Slots(necConfiguration.EmulatorId);
         foreach (var item in values)
         {
             if (firmwareSlots.Any(slot => slot.FieldId == item.Key)) continue;
-            if (item.Key is SettingsConstants.Model or SettingsConstants.Emulator
+            if (item.Key is StorageDirectorySettings.HardDiskDirectory or SettingsConstants.Model or SettingsConstants.Emulator
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
                 or SettingsConstants.AudioLatency or SettingsConstants.FirmwarePath
                 or SettingsConstants.Ram or SettingsConstants.FirmwareIntegrated
@@ -111,14 +111,16 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
             if (item.Value is null) options.Remove(item.Key);
             else options[item.Key] = item.Value;
         }
-        var audio = nintendo.Audio ?? new AudioConfiguration();
-        return FirmwareFunctions.Apply(nintendo, values) with
+        var audio = necConfiguration.Audio ?? new AudioConfiguration();
+        return FirmwareFunctions.Apply(necConfiguration, values) with
         {
             Options = options,
+            HardDiskDirectory = values.TryGetValue(StorageDirectorySettings.HardDiskDirectory, out var directory)
+                ? string.IsNullOrWhiteSpace(directory) ? null : directory : necConfiguration.HardDiskDirectory,
             FirmwarePath = values.TryGetValue(SettingsConstants.FirmwarePath, out var firmware)
-                ? string.IsNullOrWhiteSpace(firmware) ? null : firmware : nintendo.FirmwarePath,
+                ? string.IsNullOrWhiteSpace(firmware) ? null : firmware : necConfiguration.FirmwarePath,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled)
-                ? enabled == SettingsDescriptionFunctionsConstants.Enabled : nintendo.AudioEnabled,
+                ? enabled == SettingsDescriptionFunctionsConstants.Enabled : necConfiguration.AudioEnabled,
             Audio = audio with
             {
                 OutputDeviceId = values.TryGetValue(SettingsConstants.AudioOutput, out var output)
@@ -131,8 +133,8 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
     }
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) =>
-        configuration is MachineConfiguration nintendo
-            ? nintendo.Options ?? new Dictionary<string, string>()
+        configuration is MachineConfiguration necConfiguration
+            ? necConfiguration.Options ?? new Dictionary<string, string>()
             : throw new ArgumentException(nameof(configuration));
 
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) =>
@@ -269,9 +271,9 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
     public async ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(
         IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
-        var nintendo = RequireConfiguration(configuration);
+        var necConfiguration = RequireConfiguration(configuration);
         var installations = new List<EmulationEmulatorInstallation>();
-        foreach (var emulator in EmulatorCatalog.GetAll(nintendo.Model))
+        foreach (var emulator in EmulatorCatalog.GetAll(necConfiguration.Model))
         {
             var adapter = _engine.Adapter(emulator.Id);
             installations.Add(await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken)
@@ -284,11 +286,11 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         string emulatorId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        var nintendo = RequireConfiguration(configuration);
-        if (!EmulatorCatalog.GetAll(nintendo.Model).Any(item => item.Id == emulatorId))
+        var necConfiguration = RequireConfiguration(configuration);
+        if (!EmulatorCatalog.GetAll(necConfiguration.Model).Any(item => item.Id == emulatorId))
             return ValueTask.FromException<IEmulationConfiguration>(
                 new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null));
-        return ValueTask.FromResult<IEmulationConfiguration>(nintendo with { EmulatorId = emulatorId });
+        return ValueTask.FromResult<IEmulationConfiguration>(necConfiguration with { EmulatorId = emulatorId });
     }
 
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
@@ -327,15 +329,15 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         IEmulationConfiguration configuration, EmulationRuntimeServices services,
         CancellationToken cancellationToken = default)
     {
-        if (configuration is not MachineConfiguration nintendo)
+        if (configuration is not MachineConfiguration necConfiguration)
             throw new ArgumentException(nameof(configuration));
-        var adapter = _engine.Adapter(nintendo);
+        var adapter = _engine.Adapter(necConfiguration);
         var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken)
             .ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(
                 EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
                 EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
                 new EmulationEmulatorMessageContext(adapter.EmulatorId)));
-        var audio = nintendo.Audio ?? new AudioConfiguration();
+        var audio = necConfiguration.Audio ?? new AudioConfiguration();
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
@@ -343,14 +345,14 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
                 : Path.Combine(services.StatesDirectory,
                     value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat),
                     CoreDirectoryConstants.SavesDirectoryName),
-            GetFirmwareDirectory(nintendo.Model));
-        var storage = StorageSettingsFunctions.Describe(nintendo);
-        var mounted = adapter.ResolveConfiguredMedia(nintendo);
-        return new EmulationMachineRuntime(nintendo,
-            media => _engine.CreateMachine(WithMedia(nintendo, media), context),
+            GetFirmwareDirectory(necConfiguration.Model));
+        var storage = StorageSettingsFunctions.Describe(necConfiguration);
+        var mounted = adapter.ResolveConfiguredMedia(necConfiguration);
+        return new EmulationMachineRuntime(necConfiguration,
+            media => _engine.CreateMachine(WithMedia(necConfiguration, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
-            MachineConfigurationConstants.ResourcePrefix + nintendo.Model,
-            SupportsPointerCapture: ModelCatalog.Get(nintendo.Model).MouseButtonCount > 0);
+            MachineConfigurationConstants.ResourcePrefix + necConfiguration.Model,
+            SupportsPointerCapture: ModelCatalog.Get(necConfiguration.Model).MouseButtonCount > 0);
     }
 
     private static MachineConfiguration WithMedia(MachineConfiguration configuration,

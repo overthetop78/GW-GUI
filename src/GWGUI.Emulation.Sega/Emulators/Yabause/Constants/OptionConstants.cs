@@ -1,0 +1,14 @@
+namespace GWGUI.Emulation.Sega.Emulators.Yabause.Constants;
+
+internal static class OptionConstants
+{
+    internal static IReadOnlyList<CoreOption> All { get; } =
+    [
+        new("yabause_frameskip", "Emulation.Option.yabause.yabause_frameskip", "Emulation.Option.yabause.yabause_frameskip.Description", null, "disabled", "disabled", [new("disabled", "Emulation.Option.yabause.yabause_frameskip.Value.disabled"), new("enabled", "Emulation.Option.yabause.yabause_frameskip.Value.enabled")], Tab: EmulationMachineTab.Video, RequiresRestart: false),
+        new("yabause_force_hle_bios", "Emulation.Option.yabause.yabause_force_hle_bios", "Emulation.Option.yabause.yabause_force_hle_bios.Description", null, "disabled", "disabled", [new("disabled", "Emulation.Option.yabause.yabause_force_hle_bios.Value.disabled"), new("enabled", "Emulation.Option.yabause.yabause_force_hle_bios.Value.enabled")], Tab: EmulationMachineTab.Rom, RequiresRestart: true),
+        new("yabause_addon_cartridge", "Emulation.Option.yabause.yabause_addon_cartridge", "Emulation.Option.yabause.yabause_addon_cartridge.Description", null, "none", "none", [new("none", "Emulation.Option.yabause.yabause_addon_cartridge.Value.none"), new("1M_ram", "Emulation.Option.yabause.yabause_addon_cartridge.Value.1M_ram"), new("4M_ram", "Emulation.Option.yabause.yabause_addon_cartridge.Value.4M_ram")], Tab: EmulationMachineTab.Ram, RequiresRestart: true),
+        new("yabause_multitap_port1", "Emulation.Option.yabause.yabause_multitap_port1", "Emulation.Option.yabause.yabause_multitap_port1.Description", null, "disabled", "disabled", [new("disabled", "Emulation.Option.yabause.yabause_multitap_port1.Value.disabled"), new("enabled", "Emulation.Option.yabause.yabause_multitap_port1.Value.enabled")], Tab: EmulationMachineTab.Controllers, RequiresRestart: false),
+        new("yabause_multitap_port2", "Emulation.Option.yabause.yabause_multitap_port2", "Emulation.Option.yabause.yabause_multitap_port2.Description", null, "disabled", "disabled", [new("disabled", "Emulation.Option.yabause.yabause_multitap_port2.Value.disabled"), new("enabled", "Emulation.Option.yabause.yabause_multitap_port2.Value.enabled")], Tab: EmulationMachineTab.Controllers, RequiresRestart: false),
+        new("yabause_numthreads", "Emulation.Option.yabause.yabause_numthreads", "Emulation.Option.yabause.yabause_numthreads.Description", null, "4", "4", [new("1", "Emulation.Option.yabause.yabause_numthreads.Value.1"), new("2", "Emulation.Option.yabause.yabause_numthreads.Value.2"), new("4", "Emulation.Option.yabause.yabause_numthreads.Value.4"), new("8", "Emulation.Option.yabause.yabause_numthreads.Value.8"), new("16", "Emulation.Option.yabause.yabause_numthreads.Value.16"), new("32", "Emulation.Option.yabause.yabause_numthreads.Value.32")], Tab: EmulationMachineTab.Cpu, RequiresRestart: true),
+    ];
+}

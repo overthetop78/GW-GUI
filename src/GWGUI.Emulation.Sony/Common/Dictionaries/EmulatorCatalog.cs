@@ -7,12 +7,11 @@ public static class EmulatorCatalog
             .OrderBy(definition => definition.Id, StringComparer.Ordinal).ToArray();
 
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() =>
-        typeof(EmulatorCatalog).Assembly.GetTypes()
-            .Where(type => !type.IsAbstract && typeof(IEmulatorAdapter).IsAssignableFrom(type)
-                && type.Namespace?.Contains(".Emulators.", StringComparison.Ordinal) == true)
-            .Select(type => (IEmulatorAdapter)Activator.CreateInstance(type, nonPublic: true)!)
-            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)
-            .ToArray();
+    [
+        new Emulators.Pcsx2.Factories.Pcsx2MachineFactory(),
+        new Emulators.Ppsspp.Factories.PpssppMachineFactory(),
+        new Emulators.SwanStation.Factories.SwanStationMachineFactory()
+    ];
 
     public static string DefaultFor(string machineId) => GetAll(machineId).FirstOrDefault()?.Id
         ?? throw new NotSupportedException($"No Sony emulator adapter is installed for '{machineId}'.");

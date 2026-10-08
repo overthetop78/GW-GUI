@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Angi lydsporenes lydvolum som leses fra den emulerte kompaktdisc-stasjonen.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Sett bevegelseshastighet på musen</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Justerer hvordan vertsmusbevegelsen konverteres til bevegelse som er rapportert til den emulerte maskinen.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Velg mappen for harddiskbilder</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Angi mappen opprinnelig åpnet når du velger et harddiskbilde. Selve mappen er ikke montert som en disk.</value></data>
 </root>

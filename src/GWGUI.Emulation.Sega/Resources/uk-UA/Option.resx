@@ -6,16 +6,16 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.MasterSystem.Variant"><value>Master System модель</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>3-D окуляри</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Увімкнути</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Модель Mega Drive</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>Офіціант</value></data>
-  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>Автоматика</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>Автоматичний</value></data>
   <data name="Emulation.Sega.MegaDrive.VideoStandard"><value>Відео стандарт</value></data>
-  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>Автоматика</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>Автоматичний</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Модель Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Увімкнути Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>Увімкнути 32X</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Увімкнути</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Вимкнено</value></data>
 </root>

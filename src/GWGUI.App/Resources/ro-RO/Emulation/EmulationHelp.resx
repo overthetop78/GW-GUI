@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Setează volumul de redare a pieselor audio citite de pe unitatea compact-disc emulată.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Setează viteza de mișcare a mouse-ului</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Ajustează modul în care mișcarea mouse-ului gazdă este convertită în mișcare raportată la mașina emulată.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Alegeți dosarul pentru imagini hard-disc</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Setează dosarul deschis iniţial la selectarea unei imagini hard-disc. Dosarul în sine nu este montat ca un disc.</value></data>
 </root>

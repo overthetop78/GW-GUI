@@ -1,7 +1,7 @@
 using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.BeetleSgx.Constants;
-using static GWGUI.Emulation.Nec.Common.Machines.Common.Functions.SettingsDescriptionFunctions;
+using static GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions;
 
 namespace GWGUI.Emulation.Nec.Emulators.BeetleSgx.Functions;
 

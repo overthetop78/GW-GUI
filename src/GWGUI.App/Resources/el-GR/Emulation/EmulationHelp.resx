@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Ορίζει τον όγκο αναπαραγωγής των κομματιών ήχου που διαβάζονται από την προσομοίωση compact-disc drive.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Ορισμός ταχύτητας κίνησης του ποντικιού</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Ρυθμίζει πώς η κίνηση του ποντικιού ξενιστή μετατρέπεται σε κίνηση που αναφέρεται στην προσομοίωση μηχανή.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Επιλέξτε το φάκελο για εικόνες σκληρού δίσκου</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Ορισμός του αρχικού ανοίγματος του φακέλου κατά την επιλογή μιας εικόνας σκληρού δίσκου. Ο ίδιος ο φάκελος δεν είναι προσαρτημένος ως δίσκος.</value></data>
 </root>

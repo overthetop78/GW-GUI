@@ -5,8 +5,9 @@ internal static partial class SettingsDescriptionFunctions
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
     {
         var model = ModelCatalog.Get(configuration.Model);
-        return
-        [
+        var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId);
+        var blocks = new List<EmulationSettingsBlock>
+        {
             Block(SettingsDescriptionFunctionsConstants.General, EmulationMachineTab.General,
                 SettingsDescriptionFunctionsConstants.ResourceGeneral,
                 SettingsDescriptionFunctionsConstants.IconGeneral, 2,
@@ -16,7 +17,7 @@ internal static partial class SettingsDescriptionFunctions
                 Information(SettingsConstants.Emulator, EmulationMachineTab.General,
                     SettingsDescriptionFunctionsConstants.General,
                     SettingsDescriptionFunctionsConstants.ResourceEmulator,
-                    configuration.EmulatorId)),
+                    adapter?.Definition.DisplayName ?? configuration.EmulatorId)),
             Block(SettingsDescriptionFunctionsConstants.Cpu, EmulationMachineTab.Cpu,
                 SettingsDescriptionFunctionsConstants.ResourceCpuProcessor,
                 SettingsDescriptionFunctionsConstants.IconCpu, 2,
@@ -35,13 +36,6 @@ internal static partial class SettingsDescriptionFunctions
                     SettingsDescriptionFunctionsConstants.Memory,
                     SettingsDescriptionFunctionsConstants.ResourceMemoryMain,
                     $"{model.RamKib} KiB")),
-            Block(SettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,
-                SettingsDescriptionFunctionsConstants.ResourceRom,
-                SettingsDescriptionFunctionsConstants.IconFirmware, 2,
-                Information(SettingsConstants.FirmwareIntegrated, EmulationMachineTab.Rom,
-                    SettingsDescriptionFunctionsConstants.Firmware,
-                    SettingsDescriptionFunctionsConstants.ResourceFirmwareIntegrated,
-                    configuration.EmulatorId)),
             Block(SettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video,
                 SettingsDescriptionFunctionsConstants.ResourceVideo,
                 SettingsDescriptionFunctionsConstants.IconVideo, 2,
@@ -67,6 +61,27 @@ internal static partial class SettingsDescriptionFunctions
                     SettingsDescriptionFunctionsConstants.Audio,
                     SettingsDescriptionFunctionsConstants.ResourceAudio,
                     model.AudioChip ?? SettingsDescriptionFunctionsConstants.CpuFrequency))
-        ];
+        };
+        if (adapter is not null)
+        {
+            var firmware = FirmwareConfigurationFunctions.Fields(configuration, adapter);
+            if (firmware.Count != 0)
+                blocks.Add(Block(SettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,
+                    SettingsDescriptionFunctionsConstants.ResourceRom, SettingsDescriptionFunctionsConstants.IconFirmware,
+                    SettingsDescriptionFunctionsConstants.SingleColumnLayout, [.. firmware]));
+            foreach (var coreBlock in adapter.GetSettingsBlocks(configuration))
+            {
+                var index = blocks.FindIndex(block => block.Tab == coreBlock.Tab);
+                if (index < 0) blocks.Add(coreBlock);
+                else
+                {
+                    var existing = blocks[index];
+                    blocks[index] = existing with { Fields = [.. existing.Fields,
+                        .. coreBlock.Fields.Select(field => field with { BlockId = existing.Id })],
+                        Columns = Math.Min(existing.Columns, coreBlock.Columns) };
+                }
+            }
+        }
+        return blocks;
     }
 }

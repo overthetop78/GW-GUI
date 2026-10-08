@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Define o volume de reprodução de faixas de áudio lidas da unidade compacta-disc emulado.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Definir a velocidade do movimento do rato</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Ajusta como o movimento do mouse do hospedeiro é convertido em movimento relatado para a máquina emulado.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Escolha a pasta para imagens de disco rígido</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Define a pasta aberta inicialmente ao selecionar uma imagem de disco rígido. A pasta em si não está montada como um disco.</value></data>
 </root>

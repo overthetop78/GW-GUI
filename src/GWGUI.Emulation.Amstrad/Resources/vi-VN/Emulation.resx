@@ -21,6 +21,6 @@
   <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Đang hack tốc độ</value></data>
   <data name="Emulation.CrocoDS.Value.Auto"><value>Tự động</value></data>
   <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
-  <data name="Emulation.CrocoDS.Value.yes"><value>Bật</value></data>
-  <data name="Emulation.CrocoDS.Value.no"><value>Tắt</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Đã bật</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Đã tắt</value></data>
 </root>

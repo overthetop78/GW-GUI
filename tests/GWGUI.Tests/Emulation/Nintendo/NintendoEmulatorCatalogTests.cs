@@ -140,4 +140,51 @@ public sealed class NintendoEmulatorCatalogTests
         Assert.NotNull(definition.ImageResourceName);
         Assert.Contains(definition.ImageResourceName, typeof(ModelCatalog).Assembly.GetManifestResourceNames());
     }
+
+    [Theory]
+    [InlineData("Nes", "mesen2", "mesen_palette", EmulationMachineTab.Video)]
+    [InlineData("Snes", "mesen2", "mesen_snes_hide_bg_layer_1", EmulationMachineTab.Video)]
+    [InlineData("GameBoy", "mesen2", "mesen_gameboy_adjust_colors", EmulationMachineTab.Video)]
+    [InlineData("NintendoDs", "desmume", "desmume_cpu_mode", EmulationMachineTab.Cpu)]
+    [InlineData("GameBoyAdvance", "gpsp", "gpsp_bios", EmulationMachineTab.Rom)]
+    public void NativeSettingsUseTheirFunctionalTab(string machine, string emulator, string key, EmulationMachineTab tab)
+    {
+        var configuration = new MachineConfiguration(machine, emulator);
+        var blocks = SettingsDescriptionFunctions.Create(configuration, new Engine().Adapter(configuration));
+        var block = Assert.Single(blocks, block => block.Fields.Any(field => field.Id == key));
+        var field = Assert.Single(block.Fields, field => field.Id == key);
+        Assert.Equal(tab, block.Tab);
+        Assert.Equal(tab, field.Tab);
+        Assert.Equal(block.Id, field.BlockId);
+        Assert.Single(blocks, block => block.Tab == EmulationMachineTab.General);
+    }
+
+    [Theory]
+    [InlineData("Nes", "mesen2", "mesen_snes_hide_bg_layer_1")]
+    [InlineData("Snes", "mesen2", "mesen_palette")]
+    [InlineData("GameBoy", "mesen2", "mesen_palette")]
+    [InlineData("GameCube", "dolphin", "dolphin_sensor_bar_position")]
+    [InlineData("Wii", "dolphin", "dolphin_skip_gc_bios")]
+    [InlineData("GameBoy", "skyemu", "system_gba_bios_enable")]
+    [InlineData("GameBoyAdvance", "skyemu", "system_nds_bios_enable")]
+    public void SettingsOfOtherMachinesAreNotPresented(string machine, string emulator, string key)
+    {
+        var fields = CoreSettingsFunctions.Blocks(new MachineConfiguration(machine, emulator))
+            .SelectMany(block => block.Fields);
+        Assert.DoesNotContain(fields, field => field.Id == key);
+    }
+
+    [Theory]
+    [InlineData("GameBoy", "Game Boy")]
+    [InlineData("GameBoyColor", "Game Boy")]
+    [InlineData("GameBoyAdvance", "Game Boy Advance")]
+    [InlineData("NintendoDs", "Nintendo DS")]
+    public void SkyEmuUsesTheConfiguredMachine(string machine, string core)
+    {
+        var configuration = CoreSettingsFunctions.Configure(new MachineConfiguration(machine, "skyemu",
+            Options: new Dictionary<string, string> { ["system_core_override"] = "Nintendo DS" }));
+        Assert.Equal(core, configuration.Options!["system_core_override"]);
+        Assert.DoesNotContain(CoreSettingsFunctions.Blocks(configuration).SelectMany(block => block.Fields),
+            field => field.Id == "system_core_override");
+    }
 }

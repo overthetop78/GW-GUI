@@ -19,7 +19,7 @@
   <data name="Emulation.Nec.Video.LastScanline"><value>Poslední viditelná scanline</value></data>
   <data name="Emulation.Nec.Video.FrameSkip"><value>Přeskočení rámu</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Zakázáno</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Automatické</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Automatický</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Ručně</value></data>
   <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Mezní hodnota přeskoku rámu</value></data>
   <data name="Emulation.Nec.Video.Overscan"><value>Zobrazit okraje obrázku</value></data>

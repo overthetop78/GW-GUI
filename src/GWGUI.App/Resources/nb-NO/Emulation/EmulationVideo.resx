@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Bandingsreduksjon</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Detalj recovery</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Avslapping</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Av</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Deaktivert</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - jevne linjer</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - rare linjer</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Vertikal blanding</value></data>

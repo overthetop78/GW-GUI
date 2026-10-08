@@ -6,16 +6,16 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.MasterSystem.Variant"><value>מודל Master System</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>3D משקפיים</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Enable</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>מושבת</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>המונחים</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>מוגבלות</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Mega Drive מודל</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>אזור</value></data>
-  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>אוטומטי</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>אוֹטוֹמָטִי</value></data>
   <data name="Emulation.Sega.MegaDrive.VideoStandard"><value>וידאו סטנדרטי</value></data>
-  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>אוטומטי</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>אוֹטוֹמָטִי</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd"><value>דגם Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>אפשרות 32X</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Enable</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>מושבת</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>המונחים</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>מוגבלות</value></data>
 </root>

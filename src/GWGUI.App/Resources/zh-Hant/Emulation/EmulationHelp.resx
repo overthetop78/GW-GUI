@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>设置从模拟的压缩盘驱动器读取的音频音轨的回放量。</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>设定鼠标移动速度</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>调整主机鼠标移动转换为向模拟机器报告的移动的方式。</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>选择硬盘图像的文件夹</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>设置在选择硬盘图像时打开的文件夹 。 文件夹本身没有被挂载为磁盘 。</value></data>
 </root>

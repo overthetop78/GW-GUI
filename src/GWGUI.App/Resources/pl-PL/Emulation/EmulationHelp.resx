@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Ustawia głośność odtwarzania utworów audio odczytywanych z emulowanego dysku kompaktowego.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Ustaw prędkość ruchu myszy</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Dostosuje sposób, w jaki ruch myszy hosta jest przekształcany do ruchu zgłaszanego do maszyny emulowanej.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Wybierz folder obrazków dysku twardego</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Ustawia folder początkowo otwarty przy wyborze obrazu twardego dysku. Sam folder nie jest montowany jako dysk.</value></data>
 </root>

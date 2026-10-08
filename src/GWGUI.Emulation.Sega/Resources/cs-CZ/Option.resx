@@ -7,15 +7,15 @@
   <data name="Emulation.Sega.MasterSystem.Variant"><value>Master System model</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>3-D Brýle</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Povoleno</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Deaktivováno</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Zakázáno</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Model Mega Drive</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>Region</value></data>
-  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>Automatické</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>Automatický</value></data>
   <data name="Emulation.Sega.MegaDrive.VideoStandard"><value>Video standard</value></data>
-  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>Automatické</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>Automatický</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega-CD model</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Povolit Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>Povolit 32X</value></data>
   <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Povoleno</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Deaktivováno</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Zakázáno</value></data>
 </root>

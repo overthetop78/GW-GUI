@@ -44,7 +44,7 @@
   <data name="Emulation.Video.Crt.Color.White"><value>Putih monokrom</value></data>
   <data name="Emulation.Video.Crt.Color.Gray"><value>Monokrom abu-abu</value></data>
   <data name="Emulation.Video.Crt.Color.Custom"><value>Monokrom kustom</value></data>
-  <data name="Emulation.Video.Crt.Mask.None"><value>Nihil</value></data>
+  <data name="Emulation.Video.Crt.Mask.None"><value>Tidak ada</value></data>
   <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>Aperture grille</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>Topeng bayangan</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>undo-type</value></data>
@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Penurunan banding</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Pemulihan detail</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Deinterlacing</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Mati</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - bahkan garis</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - baris aneh</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Campuran vertikal</value></data>
@@ -243,7 +243,7 @@
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Standar warna</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Ketebalan efek standar</value></data>
   <data name="Emulation.Video.Signal.Standard.Automatic"><value>Otomatis</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>Nihil</value></data>
+  <data name="Emulation.Video.Signal.Connection.None"><value>Tidak ada</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Kurva horisontal</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Kurva vertikal</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>trapezoid</value></data>

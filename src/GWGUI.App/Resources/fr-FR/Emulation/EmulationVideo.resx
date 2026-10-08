@@ -44,7 +44,7 @@
   <data name="Emulation.Video.Crt.Color.White"><value>Blanc monochrome</value></data>
   <data name="Emulation.Video.Crt.Color.Gray"><value>Gris monochrome</value></data>
   <data name="Emulation.Video.Crt.Color.Custom"><value>Monochrome personnalisé</value></data>
-  <data name="Emulation.Video.Crt.Mask.None"><value>Aucune</value></data>
+  <data name="Emulation.Video.Crt.Mask.None"><value>Aucun</value></data>
   <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>Grille d&apos;ouverture</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>Masque perforé</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>Masque à fentes</value></data>

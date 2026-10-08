@@ -6,16 +6,16 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.MasterSystem.Variant"><value>Master System model modelleme modeli</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>3D Gözlük</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Enabled</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Etkin</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Mega Drive modeli</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>Bölge Bölgesi</value></data>
-  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>Otomatik Otomatik Otomatik</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>Otomatik</value></data>
   <data name="Emulation.Sega.MegaDrive.VideoStandard"><value>Video standart</value></data>
-  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>Otomatik Otomatik Otomatik</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>Otomatik</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega-CD modeli</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Enable Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>Enable 32X</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Enabled</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Etkin</value></data>
   <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Devre dışı</value></data>
 </root>

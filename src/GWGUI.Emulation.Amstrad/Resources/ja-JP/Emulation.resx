@@ -19,8 +19,8 @@
   <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>モニタータイプ</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_resize"><value>イメージの組み立て</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_hack"><value>スピードハック</value></data>
-  <data name="Emulation.CrocoDS.Value.Auto"><value>自動自動制御</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>自動</value></data>
   <data name="Emulation.CrocoDS.Value.Overscan"><value>オーバースキャン</value></data>
-  <data name="Emulation.CrocoDS.Value.yes"><value>有効化</value></data>
-  <data name="Emulation.CrocoDS.Value.no"><value>バリアフリー</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>有効</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>無効</value></data>
 </root>

@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.MasterSystem.Variant"><value>Modello Master System</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>Bicchieri 3D</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Abilitato</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Attivato</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Disattivato</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Mega Drive modello</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>Regione</value></data>
@@ -16,6 +16,6 @@
   <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Modello Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Abilitare Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>Abilitare 32X</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Abilitato</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Attivato</value></data>
   <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Disattivato</value></data>
 </root>

@@ -44,7 +44,7 @@
   <data name="Emulation.Video.Crt.Color.White"><value>מונוכרום לבן</value></data>
   <data name="Emulation.Video.Crt.Color.Gray"><value>מונוכרום אפור</value></data>
   <data name="Emulation.Video.Crt.Color.Custom"><value>מונוכרום</value></data>
-  <data name="Emulation.Video.Crt.Mask.None"><value>אף אחד לא</value></data>
+  <data name="Emulation.Video.Crt.Mask.None"><value>ללא</value></data>
   <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>גרילה</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>מסכה הצללים</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>מסכה</value></data>
@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>הורדת Banding</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>התאוששות מפורטת</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>המונחים:</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Off Off Off</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>מוגבלות</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>בוב - אפילו קווים</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>בוב - קווים מוזרים</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>תערובת Vertical</value></data>
@@ -242,8 +242,8 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>השפלה</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>צבע סטנדרטי</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>אפקט אפקט העצמה</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>אוטומטי</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>אף אחד לא</value></data>
+  <data name="Emulation.Video.Signal.Standard.Automatic"><value>אוֹטוֹמָטִי</value></data>
+  <data name="Emulation.Video.Signal.Connection.None"><value>ללא</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>עקמומיות אופקית</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>המונחים: curvature</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>מלכוד</value></data>

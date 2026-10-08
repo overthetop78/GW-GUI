@@ -44,7 +44,7 @@
   <data name="Emulation.Video.Crt.Color.White"><value>单色白色</value></data>
   <data name="Emulation.Video.Crt.Color.Gray"><value>单色灰色</value></data>
   <data name="Emulation.Video.Crt.Color.Custom"><value>自定义单色</value></data>
-  <data name="Emulation.Video.Crt.Mask.None"><value>无</value></data>
+  <data name="Emulation.Video.Crt.Mask.None"><value>無</value></data>
   <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>光圈烤盘</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>阴影口罩</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>槽口罩</value></data>
@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>减少宽幅工资</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>详细回收</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>解开连接</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>关闭</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>已停用</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>鲍勃,连线</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - 奇数行</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>垂直组合</value></data>
@@ -242,8 +242,8 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>连接降解</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>颜色标准</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>标准效果强度</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>自动</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>无</value></data>
+  <data name="Emulation.Video.Signal.Standard.Automatic"><value>自動的</value></data>
+  <data name="Emulation.Video.Signal.Connection.None"><value>無</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>水平曲率</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>垂直曲率</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>铁皮</value></data>

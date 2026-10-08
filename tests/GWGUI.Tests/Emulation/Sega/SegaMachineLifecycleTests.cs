@@ -10,16 +10,16 @@ using GWGUI.Emulation.Sega.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Sega.Common.Services;
 using GWGUI.Emulation.Sega.Modules;
 using GWGUI.Emulation.Interfaces;
-using GenesisPlusGxExternalCore = GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services.ExternalCore;
-using FlycastExternalCore = GWGUI.Emulation.Sega.Emulators.Flycast.Services.ExternalCore;
-using YabauseExternalCore = GWGUI.Emulation.Sega.Emulators.Yabause.Services.ExternalCore;
-using GenesisPlusGxProcessCore = GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Services.ProcessCore;
-using GenesisPlusGxConstants = GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants.GenesisPlusGXConstants;
-using PicoDriveConstants = GWGUI.Emulation.Sega.Emulators.PicoDrive.Constants.PicoDriveConstants;
+using GenesisPlusGxExternalCore = GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore;
+using FlycastExternalCore = GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore;
+using YabauseExternalCore = GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore;
+using GenesisPlusGxProcessCore = GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ProcessCore;
+using GenesisPlusGxConstants = GWGUI.Emulation.Sega.Emulators.GenesisPlusGX.Constants.CoreConstants;
+using PicoDriveConstants = GWGUI.Emulation.Sega.Emulators.PicoDrive.Constants.CoreConstants;
 using System.Runtime.InteropServices;
 using System.Net.Http;
 using GWGUI.Emulation.Constants;
-using FlycastHostConstants = GWGUI.Emulation.Sega.Emulators.Flycast.Constants.ExternalHostCallbacksConstants;
+using FlycastHostConstants = GWGUI.Emulation.Sega.Emulators.Common.Interop.Constants.ExternalHostCallbacksConstants;
 
 namespace GWGUI.Tests.Emulation.Sega;
 
@@ -156,8 +156,7 @@ public sealed class SegaMachineLifecycleTests
                     EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
-        var core = new GenesisPlusGxProcessCore(hostPath, corePath,
-            GenesisPlusGxConstants.CoreHostCommand);
+        var core = new GenesisPlusGxProcessCore(hostPath, corePath);
         var machine = new Machine(Guid.NewGuid(), configuration, core, configuration.Media!, session);
         var frame = new TaskCompletionSource<VideoFrame>(TaskCreationOptions.RunContinuationsAsynchronously);
         machine.VideoFrameReady += OnVideoFrame;
@@ -203,7 +202,7 @@ public sealed class SegaMachineLifecycleTests
                     EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
-        var core = new GenesisPlusGxProcessCore(hostPath, corePath, PicoDriveConstants.CoreHostCommand);
+        var core = new GenesisPlusGxProcessCore(hostPath, corePath);
         var machine = new Machine(Guid.NewGuid(), configuration, core, configuration.Media!, session);
         var frame = new TaskCompletionSource<VideoFrame>(TaskCreationOptions.RunContinuationsAsynchronously);
         machine.VideoFrameReady += OnVideoFrame;
@@ -420,7 +419,7 @@ public sealed class SegaMachineLifecycleTests
                     EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
-        var core = new GenesisPlusGxExternalCore(corePath, "PicoDrive", false);
+        var core = new GenesisPlusGxExternalCore(corePath);
         try
         {
             core.Initialize(configuration, session);
@@ -461,7 +460,7 @@ public sealed class SegaMachineLifecycleTests
                     EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
-        var core = new GenesisPlusGxExternalCore(corePath, "PicoDrive", false);
+        var core = new GenesisPlusGxExternalCore(corePath);
         try
         {
             core.Initialize(configuration, session);
@@ -508,7 +507,7 @@ public sealed class SegaMachineLifecycleTests
                         EmulationMediaSlot.Cartridge0, IsInserted: true)
                 ]
             };
-            var core = new GenesisPlusGxExternalCore(corePath, "PicoDrive", false);
+            var core = new GenesisPlusGxExternalCore(corePath);
             try
             {
                 core.Initialize(configuration, session);
@@ -544,17 +543,14 @@ public sealed class SegaMachineLifecycleTests
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.MegaDrive, "picodrive")
         {
-            Options = new Dictionary<string, string>
-            {
-                [SettingsConstants.FirmwarePath] = firmwarePath
-            },
+            FirmwarePaths = new Dictionary<string, string> { ["configuration.firmware.picodrive.0"] = firmwarePath },
             Media =
             [
                 new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
                     EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
-        var core = new GenesisPlusGxExternalCore(corePath, "PicoDrive", false);
+        var core = new GenesisPlusGxExternalCore(corePath);
         try
         {
             core.Initialize(configuration, session);
@@ -588,7 +584,7 @@ public sealed class SegaMachineLifecycleTests
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.MasterSystem, "genesisplusgx")
         {
-            Options = new Dictionary<string, string> { [SettingsConstants.FirmwarePath] = firmwarePath },
+            FirmwarePaths = new Dictionary<string, string> { ["configuration.firmware.genesisplusgx.4"] = firmwarePath },
             Media =
             [
                 new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
@@ -710,10 +706,10 @@ public sealed class SegaMachineLifecycleTests
         var content = Path.Combine(root, "content");
         var save = Path.Combine(root, "save");
         Directory.CreateDirectory(root);
-        using var callbacks = new GWGUI.Emulation.Sega.Emulators.Flycast.Services.ExternalHostCallbacks(
+        using var callbacks = new GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks(
             system, content, save, null);
         var pointers = new List<nint>();
-        var definitionSize = (FlycastHostConstants.LegacyCoreOptionPointerFieldsBeforeValues
+        var definitionSize = (FlycastHostConstants.CoreOptionV1PointerFieldsBeforeValues
             + FlycastHostConstants.MaximumCoreOptionValues * FlycastHostConstants.CoreOptionValueFieldCount
             + FlycastHostConstants.CoreOptionTerminatorFieldCount) * IntPtr.Size;
         var definitions = Marshal.AllocHGlobal(definitionSize * 2);
@@ -730,7 +726,7 @@ public sealed class SegaMachineLifecycleTests
             Marshal.WriteIntPtr(definitions, 0, Native("flycast_test_option"));
             Marshal.WriteIntPtr(definitions, IntPtr.Size, Native("Test option"));
             Marshal.WriteIntPtr(definitions, IntPtr.Size * 2, Native("Test option description"));
-            var valuesOffset = FlycastHostConstants.LegacyCoreOptionPointerFieldsBeforeValues * IntPtr.Size;
+            var valuesOffset = FlycastHostConstants.CoreOptionV1PointerFieldsBeforeValues * IntPtr.Size;
             Marshal.WriteIntPtr(definitions, valuesOffset, Native("true"));
             Marshal.WriteIntPtr(definitions, valuesOffset + IntPtr.Size, Native("Enabled"));
             Marshal.WriteIntPtr(definitions, valuesOffset + IntPtr.Size * FlycastHostConstants.CoreOptionValueFieldCount,
@@ -772,10 +768,7 @@ public sealed class SegaMachineLifecycleTests
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.Dreamcast, "flycast")
         {
-            Options = new Dictionary<string, string>
-            {
-                [SettingsConstants.FirmwarePath] = firmwarePath
-            },
+            FirmwarePaths = new Dictionary<string, string> { ["configuration.firmware.flycast.0"] = firmwarePath },
             Media =
             [
                 new MediaConfiguration(mediaPath, MediaCategory.CompactDisc,
@@ -817,10 +810,7 @@ public sealed class SegaMachineLifecycleTests
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.Atomiswave, "flycast")
         {
-            Options = new Dictionary<string, string>
-            {
-                [SettingsConstants.FirmwarePath] = firmwarePath
-            },
+            FirmwarePaths = new Dictionary<string, string> { ["configuration.firmware.flycast.7"] = firmwarePath },
             Media =
             [
                 new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
@@ -862,10 +852,7 @@ public sealed class SegaMachineLifecycleTests
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.Saturn, "yabause")
         {
-            Options = new Dictionary<string, string>
-            {
-                [SettingsConstants.FirmwarePath] = firmwarePath
-            },
+            FirmwarePaths = new Dictionary<string, string> { ["configuration.firmware.yabause.0"] = firmwarePath },
             Media =
             [
                 new MediaConfiguration(mediaPath, MediaCategory.CompactDisc,
@@ -914,10 +901,7 @@ public sealed class SegaMachineLifecycleTests
             Directory.CreateDirectory(session);
             var configuration = new MachineConfiguration(ModelConstants.Saturn, "yabause")
             {
-                Options = new Dictionary<string, string>
-                {
-                    [SettingsConstants.FirmwarePath] = firmwarePath!
-                },
+                FirmwarePaths = new Dictionary<string, string> { ["configuration.firmware.yabause.0"] = firmwarePath! },
                 Media =
                 [
                     new MediaConfiguration(mediaPath, MediaCategory.CompactDisc,
@@ -944,7 +928,7 @@ public sealed class SegaMachineLifecycleTests
 
     private static Machine CreateMachine(Core core, string session) => new(
         Guid.NewGuid(),
-        new MachineConfiguration(ModelConstants.MegaDrive, "genesis-plus-gx"),
+        new MachineConfiguration(ModelConstants.MegaDrive, "genesisplusgx"),
         core, [], session);
 
     private static void AssertEmptyInput(EmulationInputSnapshot input)

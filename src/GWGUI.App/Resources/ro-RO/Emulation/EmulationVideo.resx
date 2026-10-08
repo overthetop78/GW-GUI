@@ -44,7 +44,7 @@
   <data name="Emulation.Video.Crt.Color.White"><value>Alb monocrom</value></data>
   <data name="Emulation.Video.Crt.Color.Gray"><value>Gri monocrom</value></data>
   <data name="Emulation.Video.Crt.Color.Custom"><value>Monocrom personalizat</value></data>
-  <data name="Emulation.Video.Crt.Mask.None"><value>Niciuna</value></data>
+  <data name="Emulation.Video.Crt.Mask.None"><value>Niciunul</value></data>
   <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>Grilă pentru apertură</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>Mască de umbră</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>Mască slot</value></data>
@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Reducerea bandajelor</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Recuperarea detaliilor</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Deinterconectare</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>închis</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Dezactivat</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - chiar linii</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - linii ciudate</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Amestec vertical</value></data>
@@ -232,7 +232,7 @@
   <data name="Emulation.Video.Tab.Signal"><value>Semnal</value></data>
   <data name="Emulation.Video.Tab.Effects"><value>Efecte</value></data>
   <data name="Emulation.Video.Parameter.FineDetails"><value>Detalii fine</value></data>
-  <data name="Emulation.Video.Restoration.Level.None"><value>Fără</value></data>
+  <data name="Emulation.Video.Restoration.Level.None"><value>Niciunul</value></data>
   <data name="Emulation.Video.Restoration.Level.Light"><value>Ușor</value></data>
   <data name="Emulation.Video.Restoration.Level.Medium"><value>Mediu</value></data>
   <data name="Emulation.Video.Restoration.Level.Strong"><value>Puternic</value></data>
@@ -243,7 +243,7 @@
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Standard de culoare</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Intensitatea standard a efectului</value></data>
   <data name="Emulation.Video.Signal.Standard.Automatic"><value>Automat</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>Niciuna</value></data>
+  <data name="Emulation.Video.Signal.Connection.None"><value>Niciunul</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Curbura orizontală</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Curbură verticală</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>Trapezoid</value></data>

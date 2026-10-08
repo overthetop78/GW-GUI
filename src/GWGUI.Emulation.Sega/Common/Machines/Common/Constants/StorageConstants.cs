@@ -29,6 +29,17 @@ internal static class StorageSettingsFunctionsConstants
     internal const string Cdi = ".cdi";
     internal const string Zip = ".zip";
     internal const string Bin = ".bin";
+    internal const string Sc = ".sc";
+    internal const string Gg = ".gg";
+    internal const string Rom = ".rom";
+    internal const string Mds = ".mds";
+    internal const string Cas = ".cas";
+    internal static IReadOnlySet<string> FloppyExtensions { get; } = new HashSet<string>([Dsk], StringComparer.OrdinalIgnoreCase);
+    internal static IReadOnlySet<string> CassetteExtensions { get; } = new HashSet<string>([Cas, Tap, Cdt, Voc], StringComparer.OrdinalIgnoreCase);
+    internal static IReadOnlySet<string> OpticalExtensions { get; } = new HashSet<string>([Cue, Ccd, Chd, Iso, Mds, Zip, Gdi, Cdi, M3u], StringComparer.OrdinalIgnoreCase);
+    internal static IReadOnlySet<string> MegaDriveCartridgeExtensions { get; } = new HashSet<string>([Md, Mdx, Sgd, Smd, Bms, SixtyEightK, Gen, Bin, ThirtyTwoX], StringComparer.OrdinalIgnoreCase);
+    internal static IReadOnlySet<string> EightBitCartridgeExtensions { get; } = new HashSet<string>([Sms, Sg, Sc, Gg, Rom, Bin, Zip], StringComparer.OrdinalIgnoreCase);
+    internal static IReadOnlySet<string> ArcadeCartridgeExtensions { get; } = new HashSet<string>([Zip, Bin, Dat, Lst], StringComparer.OrdinalIgnoreCase);
     internal const string Dat = ".dat";
     internal const string Lst = ".lst";
     internal const string FloppyDriveCountOption = "storage.floppyDriveCount";

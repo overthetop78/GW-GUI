@@ -19,8 +19,8 @@
   <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Monitortyp</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Bildrahmen</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Speed Hack</value></data>
-  <data name="Emulation.CrocoDS.Value.Auto"><value>Automatik</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Automatisch</value></data>
   <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
   <data name="Emulation.CrocoDS.Value.yes"><value>Aktiviert</value></data>
-  <data name="Emulation.CrocoDS.Value.no"><value>Behinderte</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Deaktiviert</value></data>
 </root>

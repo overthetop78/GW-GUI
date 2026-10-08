@@ -7,7 +7,7 @@
   <data name="Emulation.Sega.MasterSystem.Variant"><value>Master System μοντέλο</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>Τρισδιάστατα γυαλιά</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Ενεργοποιημένο</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Απενεργοποιημένο</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Μοντέλο Mega Drive</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>Περιφέρεια</value></data>
   <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>Αυτόματο</value></data>
@@ -17,5 +17,5 @@
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Ενεργοποίηση Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>Ενεργοποίηση 32X</value></data>
   <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Ενεργοποιημένο</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Απενεργοποιημένο</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Απενεργοποίηση</value></data>
 </root>

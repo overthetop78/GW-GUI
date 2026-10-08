@@ -6,8 +6,8 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.MasterSystem.Variant"><value>Mô hình Master System</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>Kính 3 chiều</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Bật</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Tắt</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Đã bật</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Mô hình Mega Drive</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>Vùng</value></data>
   <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>Tự động</value></data>
@@ -16,6 +16,6 @@
   <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mô hình Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Kích hoạt Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>Bật 32X</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Bật</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Tắt</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Đã bật</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Đã tắt</value></data>
 </root>

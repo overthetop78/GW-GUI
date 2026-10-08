@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>バンディング削減</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>詳細回復</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>デインターレース</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>オフ</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>無効</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>ボブ - でもライン</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>ボブ - オッズライン</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>縦のブレンド</value></data>
@@ -242,7 +242,7 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>関係の低下</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>色の標準</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>標準的な効果の強度</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>オートマチック</value></data>
+  <data name="Emulation.Video.Signal.Standard.Automatic"><value>自動</value></data>
   <data name="Emulation.Video.Signal.Connection.None"><value>なし</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>横の湾曲</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>縦の湾曲</value></data>

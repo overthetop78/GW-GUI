@@ -19,7 +19,7 @@
   <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Typ monitoru</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Zarámování obrázků</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Hack rychlosti</value></data>
-  <data name="Emulation.CrocoDS.Value.Auto"><value>Automatické</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Automatický</value></data>
   <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
   <data name="Emulation.CrocoDS.Value.yes"><value>Povoleno</value></data>
   <data name="Emulation.CrocoDS.Value.no"><value>Zakázáno</value></data>

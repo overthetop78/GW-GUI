@@ -10,9 +10,9 @@
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>已禁用</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Mega Drive型号</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>地区</value></data>
-  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>自动</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>自动的</value></data>
   <data name="Emulation.Sega.MegaDrive.VideoStandard"><value>视频标准</value></data>
-  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>自动</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>自动的</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega-CD型号</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>启用 Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>启用 32X</value></data>

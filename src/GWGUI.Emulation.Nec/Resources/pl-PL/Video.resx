@@ -19,7 +19,7 @@
   <data name="Emulation.Nec.Video.LastScanline"><value>Ostatnia widoczna linia skanowania</value></data>
   <data name="Emulation.Nec.Video.FrameSkip"><value>Ramka skip</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Wyłączone</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Automatyczne</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Automatyczny</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Podręcznik</value></data>
   <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Próg ramki skip</value></data>
   <data name="Emulation.Nec.Video.Overscan"><value>Pokaż obramowanie obrazu</value></data>

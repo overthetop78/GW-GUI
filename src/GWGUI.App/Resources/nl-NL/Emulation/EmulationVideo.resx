@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Verbindingsreductie</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Detailherstel</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Ontkoppeling</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Uit</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - gelijkmatige lijnen</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - oneven lijnen</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Verticaal mengen</value></data>

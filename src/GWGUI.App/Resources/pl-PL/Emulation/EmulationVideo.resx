@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Redukcja bandowania</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Odzyskiwanie szczegółów</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Odwarstwienie</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Wyłącz</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Wyłączone</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - linie parzyste</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - nieparzyste linie</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Mieszanka pionowa</value></data>
@@ -242,7 +242,7 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Degradacja połączeń</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Standardowy kolor</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Standardowe natężenie działania</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Automatyczne</value></data>
+  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Automatyczny</value></data>
   <data name="Emulation.Video.Signal.Connection.None"><value>Brak</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Krzywa pozioma</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Krzywizna pionowa</value></data>

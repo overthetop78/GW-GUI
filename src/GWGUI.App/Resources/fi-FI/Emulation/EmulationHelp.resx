@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Asettaa soittotilavuuden ääniraitoja lukea emulated compact-levyasema.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Aseta hiiren liikenopeus</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Säätää, miten isäntä hiiren liike muunnetaan liike ilmoitetaan emulated kone.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Valitse kansio kovalevykuville</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Asettaa alun perin avatun kansion valitessaan kovalevykuvaa. Kansiota itsessään ei ole asennettu levyksi.</value></data>
 </root>

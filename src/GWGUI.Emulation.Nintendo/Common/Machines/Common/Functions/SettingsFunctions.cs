@@ -65,7 +65,21 @@ internal static partial class SettingsDescriptionFunctions
                     SettingsDescriptionFunctionsConstants.ResourceAudio,
                     model.AudioChip ?? SettingsDescriptionFunctionsConstants.CpuFrequency))
         ];
-        blocks.AddRange(adapter.GetSettingsBlocks(configuration));
+        foreach (var coreBlock in adapter.GetSettingsBlocks(configuration))
+        {
+            var index = blocks.FindIndex(block => block.Tab == coreBlock.Tab);
+            if (index < 0)
+            {
+                blocks.Add(coreBlock);
+                continue;
+            }
+            var existing = blocks[index];
+            blocks[index] = existing with
+            {
+                Fields = [.. existing.Fields, .. coreBlock.Fields.Select(field => field with { BlockId = existing.Id })],
+                Columns = Math.Min(existing.Columns, coreBlock.Columns)
+            };
+        }
         return blocks;
     }
 }

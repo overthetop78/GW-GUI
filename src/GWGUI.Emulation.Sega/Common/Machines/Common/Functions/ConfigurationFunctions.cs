@@ -7,7 +7,13 @@ internal static class ConfigurationSummaryFunctions
     internal static EmulationConfigurationSummary Create(MachineConfiguration configuration)
     {
         var model = ModelCatalog.Get(configuration.Model);
-        var details = new List<string> { $"CPU · {model.RamKib} KiB RAM" };
+        var details = new List<string>
+        {
+            string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                model.RamBytes.HasValue ? ConfigurationSummaryFunctionsConstants.MemorySummaryBytesFormat
+                    : ConfigurationSummaryFunctionsConstants.MemorySummaryKibFormat,
+                model.RamBytes ?? model.RamKib)
+        };
         details.AddRange((configuration.Media ?? []).OrderBy(media => media.MountOrder)
             .Select(media => Path.GetFileName(media.Path)));
         return new EmulationConfigurationSummary(

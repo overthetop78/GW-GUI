@@ -19,7 +19,7 @@
   <data name="Emulation.Nec.Video.LastScanline"><value>最終可視スキャンライン</value></data>
   <data name="Emulation.Nec.Video.FrameSkip"><value>フレームのスキップ</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>無効</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>自動自動制御</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>自動</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>マニュアル</value></data>
   <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>フレームスキップしきい値</value></data>
   <data name="Emulation.Nec.Video.Overscan"><value>画像の境界を表示する</value></data>

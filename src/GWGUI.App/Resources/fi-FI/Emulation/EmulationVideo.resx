@@ -44,7 +44,7 @@
   <data name="Emulation.Video.Crt.Color.White"><value>Yksivärinen</value></data>
   <data name="Emulation.Video.Crt.Color.Gray"><value>Yksivärinen harmaa</value></data>
   <data name="Emulation.Video.Crt.Color.Custom"><value>Oma yksivärinen</value></data>
-  <data name="Emulation.Video.Crt.Mask.None"><value>Ei ole</value></data>
+  <data name="Emulation.Video.Crt.Mask.None"><value>Ei mitään</value></data>
   <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>Aperture-ristikko</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>Varjonaamio</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>Slot maski</value></data>
@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Siteiden vähentäminen</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Yksityiskohtainen takaisinperintä</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Rinnakkaistaminen</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Pois</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Ei käytössä</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - tasan</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - oudot viivat</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Pystysuuntainen sekoitus</value></data>
@@ -243,7 +243,7 @@
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Väristandardi</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Vakiovaikutusintensiteetti</value></data>
   <data name="Emulation.Video.Signal.Standard.Automatic"><value>Automaattinen</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>Ei ole</value></data>
+  <data name="Emulation.Video.Signal.Connection.None"><value>Ei mitään</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Vaakakaarevuus</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Pystykaarevuus</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>Trapetsoidi</value></data>

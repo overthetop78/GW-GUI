@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.MasterSystem.Variant"><value>Master System modell</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>3-D szemüveg</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Engedélyezve</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Engedélyezett</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Letiltva</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Mega Drive modell</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>Régió</value></data>
@@ -16,6 +16,6 @@
   <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega-CD modell</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Mega-CD engedélyezése</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>32X engedélyezése</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Engedélyezve</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Engedélyezett</value></data>
   <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Letiltva</value></data>
 </root>

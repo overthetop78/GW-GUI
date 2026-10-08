@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Memory.Main"><value>Mémoire principale</value></data>
   <data name="Emulation.Memory.Extensions"><value>Extensions mémoire</value></data>
-  <data name="Emulation.Memory.None"><value>Aucune</value></data>
+  <data name="Emulation.Memory.None"><value>Aucun</value></data>
   <data name="Emulation.Memory.CompatibleWithModel"><value>Configuration compatible avec l’{0}.</value></data>
   <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Extensions mémoire compatibles avec l’{0}.</value></data>
   <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM n&apos;est pas disponible sur {0}.</value></data>

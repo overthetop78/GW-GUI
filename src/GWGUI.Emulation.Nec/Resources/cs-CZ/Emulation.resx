@@ -26,7 +26,7 @@
   <data name="Emulation.Emulator.beetle_sgx.Description"><value>Emuluje PC Engine SuperGrafx hry, HuCards a CD-ROM ² média.</value></data>
   <data name="Emulation.Emulator.geargrafx.Description"><value>Emuluje PC Engine, SuperGrafx a NEC LaserActive systémy.</value></data>
   <data name="Emulation.Nec.Cpu.Region"><value>Konzolová oblast</value></data>
-  <data name="Emulation.Nec.Cpu.Region.Auto"><value>Automatické</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>Automatický</value></data>
   <data name="Emulation.Nec.Cpu.Region.Japan"><value>Japonsko</value></data>
   <data name="Emulation.Nec.Cpu.Region.Usa"><value>Spojené státy americké</value></data>
 </root>

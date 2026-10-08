@@ -6,8 +6,8 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.MasterSystem.Variant"><value>طراز Master System</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>3D Glasses</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>مُتاحة</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>معطّل</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>التمكين</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>المعوقين</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>طراز Mega Drive</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>المنطقة</value></data>
   <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>تلقائي</value></data>
@@ -16,6 +16,6 @@
   <data name="Emulation.Sega.MegaDrive.MegaCd"><value>طراز Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>التمكين Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>التمكين 32X</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>مُتاحة</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>معطّل</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>التمكين</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>المعوقين</value></data>
 </root>

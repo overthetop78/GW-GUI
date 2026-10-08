@@ -21,7 +21,8 @@ internal static class AmigaStorageSettingsFunctions
                 ? Enumerable.Range(BufferConstants.FirstCollectionIndex, model.MaximumHardDrives).Select(index => new EmulationMediaDevice(
                     new EmulationMediaSlot(EmulationMediaCategory.HardDisk, index),
                     EmulationMediaType.HardDisk, AmigaHardDiskFormats.All.Select(format => format.Extension).ToArray(), false,
-                    DisplayLabel: string.Format(StorageSettingsFunctionsConstants.HardDriveLabelFormat, index), HardDiskFormats: AmigaHardDiskFormats.All,
+                    DisplayLabel: string.Format(StorageSettingsFunctionsConstants.HardDriveLabelFormat, index),
+                    ImageDirectory: configuration.HardDiskDirectory, HardDiskFormats: AmigaHardDiskFormats.All,
                     ConfigurationKind: EmulationStorageConfigurationKind.HardDiskDrive)) : [])
             .Concat(model.HasCdDrive
                 ? [new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,

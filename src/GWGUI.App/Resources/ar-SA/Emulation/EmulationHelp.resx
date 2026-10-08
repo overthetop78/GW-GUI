@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>يُعدّ مجلد العزف من المسارات الصوتية مُقرأ من القرص المُحتَزَم</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>سرعة حركة الفأر</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>عدل كيف تحولت حركة الفأر إلى حركة نقل تم إبلاغها إلى آلة محاكاة</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>اختر الملف للصور ذات الأقدام الصلبة</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>يُحدد الملف الذي فُتح في البداية عند اختيار صورة صلبة. الملف نفسه ليس مثبتاً على أنه قرص</value></data>
 </root>

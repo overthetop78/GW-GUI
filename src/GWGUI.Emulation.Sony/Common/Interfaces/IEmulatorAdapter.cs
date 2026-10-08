@@ -2,6 +2,10 @@ namespace GWGUI.Emulation.Sony.Common.Interfaces;
 
 internal interface IEmulatorAdapter
 {
+    bool RequiresExternalFirmware { get; }
+    IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration);
+    IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration);
+    IReadOnlyList<string> SupportedContentExtensions { get; }
     string EmulatorId { get; }
     string EmulatorKey { get; }
     EmulationEmulatorDefinition Definition { get; }

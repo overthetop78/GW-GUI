@@ -44,7 +44,7 @@
   <data name="Emulation.Video.Crt.Color.White"><value>Монохромний білий</value></data>
   <data name="Emulation.Video.Crt.Color.Gray"><value>Монохромний сірий</value></data>
   <data name="Emulation.Video.Crt.Color.Custom"><value>Спеціальний монохромний</value></data>
-  <data name="Emulation.Video.Crt.Mask.None"><value>Ні</value></data>
+  <data name="Emulation.Video.Crt.Mask.None"><value>Немає</value></data>
   <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>Апертура гриль</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>Тінь маска</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>Маска для слотів</value></data>
@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Зниження смуги</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Відновлення деталей</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Демонтаж</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Відправити</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Вимкнено</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Боб - навіть лінії</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Боб - непарні лінії</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Вертикальне поєднання</value></data>
@@ -242,8 +242,8 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Зняття з&apos;єднання</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Колір стандарт</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Частота дії</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Автоматична</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>Ні</value></data>
+  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Автоматичний</value></data>
+  <data name="Emulation.Video.Signal.Connection.None"><value>Немає</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Горизонтальні викривлення</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Вертикальне заготовка</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>Трапецієподібна</value></data>

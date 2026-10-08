@@ -5,8 +5,9 @@ internal static partial class SettingsDescriptionFunctions
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
     {
         var model = ModelCatalog.Get(configuration.Model);
+        var adapter = new Engine().Adapter(configuration);
         var options = configuration.Options ?? new Dictionary<string, string>();
-        var ram = options.GetValueOrDefault(SettingsConstants.Ram,
+        var ram = model.RamBytes is { } bytes ? bytes.ToString(System.Globalization.CultureInfo.InvariantCulture) + ModelConstants.BytesUnit : options.GetValueOrDefault(SettingsConstants.Ram,
             model.RamKib.ToString(System.Globalization.CultureInfo.InvariantCulture));
         var processors = string.Join(" / ", model.Processors);
         var hardwareFields = model.Id switch
@@ -84,7 +85,7 @@ internal static partial class SettingsDescriptionFunctions
             },
             _ => []
         };
-        return
+        EmulationSettingsBlock[] blocks =
         [
             Block(SettingsDescriptionFunctionsConstants.General, EmulationMachineTab.General,
                 SettingsDescriptionFunctionsConstants.ResourceGeneral,
@@ -95,7 +96,7 @@ internal static partial class SettingsDescriptionFunctions
                 Information(SettingsConstants.Emulator, EmulationMachineTab.General,
                     SettingsDescriptionFunctionsConstants.General,
                     SettingsDescriptionFunctionsConstants.ResourceEmulator,
-                    "Sega")),
+                    adapter.Definition.DisplayName)),
             Block(SettingsDescriptionFunctionsConstants.Hardware, EmulationMachineTab.General,
                 SettingsDescriptionFunctionsConstants.ResourceHardware,
                 SettingsDescriptionFunctionsConstants.IconGeneral, 2, hardwareFields),
@@ -124,7 +125,7 @@ internal static partial class SettingsDescriptionFunctions
             Block(SettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,
                 SettingsDescriptionFunctionsConstants.ResourceRom,
                 SettingsDescriptionFunctionsConstants.IconFirmware, 2,
-                Firmware(configuration, model)),
+                FirmwareConfigurationFunctions.Fields(configuration, adapter).ToArray()),
             Block(SettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video,
                 SettingsDescriptionFunctionsConstants.ResourceVideo,
                 SettingsDescriptionFunctionsConstants.IconVideo, 2,
@@ -151,27 +152,26 @@ internal static partial class SettingsDescriptionFunctions
                     SettingsDescriptionFunctionsConstants.ResourceAudioChip,
                     model.AudioChip ?? SettingsDescriptionFunctionsConstants.Unknown))
         ];
-    }
-
-    private static EmulationSettingsField Firmware(MachineConfiguration configuration, Model model)
-    {
-        var options = configuration.Options ?? new Dictionary<string, string>();
-        var requiresExternalRom = model.Id is ModelConstants.MarkIII or ModelConstants.MasterSystem
-            or ModelConstants.GameGear or ModelConstants.Saturn or ModelConstants.Dreamcast
-            or ModelConstants.Naomi or ModelConstants.Naomi2 or ModelConstants.Atomiswave
-            || model.Id == ModelConstants.MegaDrive
-            && options.GetValueOrDefault(SettingsConstants.MegaCdEnabled,
-                SettingsDescriptionFunctionsConstants.Disabled)
-                == SettingsDescriptionFunctionsConstants.Enabled;
-        return requiresExternalRom
-            ? Path(SettingsConstants.FirmwarePath,
-                SettingsDescriptionFunctionsConstants.Firmware,
-                SettingsDescriptionFunctionsConstants.ResourceFirmwareSystemRom,
-                options.GetValueOrDefault(SettingsConstants.FirmwarePath))
-            : Information(SettingsConstants.FirmwareIntegrated, EmulationMachineTab.Rom,
-                SettingsDescriptionFunctionsConstants.Firmware,
-                SettingsDescriptionFunctionsConstants.ResourceFirmwareIntegrated,
-                "Sega");
+        var result = blocks.Where(block => block.Fields.Count > 0).ToList();
+        foreach (var coreBlock in adapter.GetSettingsBlocks(configuration))
+        {
+            var existingIndex = result.FindIndex(block => block.Tab == coreBlock.Tab);
+            if (existingIndex < 0)
+            {
+                result.Add(coreBlock);
+                continue;
+            }
+            var existing = result[existingIndex];
+            result[existingIndex] = existing with
+            {
+                Fields = existing.Fields.Concat(coreBlock.Fields.Select(field => field with
+                {
+                    BlockId = existing.Id
+                })).ToArray(),
+                Columns = Math.Min(existing.Columns, coreBlock.Columns)
+            };
+        }
+        return result;
     }
 
     private static IEnumerable<EmulationSettingsChoice> MemoryChoices(Model model)

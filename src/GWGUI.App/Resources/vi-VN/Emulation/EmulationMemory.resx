@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Memory.Main"><value>Bộ nhớ chính</value></data>
   <data name="Emulation.Memory.Extensions"><value>Mở rộng bộ nhớ</value></data>
-  <data name="Emulation.Memory.None"><value>Không có</value></data>
+  <data name="Emulation.Memory.None"><value>Không</value></data>
   <data name="Emulation.Memory.CompatibleWithModel"><value>Cấu hình bộ nhớ tương thích với {0}.</value></data>
   <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Các phần mở rộng bộ nhớ tương thích với {0}.</value></data>
   <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM không sẵn sàng trên {0}.</value></data>

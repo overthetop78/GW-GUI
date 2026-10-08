@@ -6,16 +6,16 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.MasterSystem.Variant"><value>Master Systemモデル</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>3-D メガネ</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>有効化</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>有効</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>無効</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Mega Driveモデル</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>地域紹介</value></data>
-  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>自動自動制御</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>自動</value></data>
   <data name="Emulation.Sega.MegaDrive.VideoStandard"><value>ビデオ規格</value></data>
-  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>自動自動制御</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>自動</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega-CDモデル</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Mega-CD を有効にする</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>32X を有効にする</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>有効化</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>有効</value></data>
   <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>無効</value></data>
 </root>

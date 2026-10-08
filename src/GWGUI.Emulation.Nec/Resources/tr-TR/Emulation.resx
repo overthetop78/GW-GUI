@@ -26,7 +26,7 @@
   <data name="Emulation.Emulator.beetle_sgx.Description"><value>PC Engine SuperGrafx oyunları, HuCards ve CD-ROM2 medya.</value></data>
   <data name="Emulation.Emulator.geargrafx.Description"><value>PC Engine, SuperGrafx ve NEC LaserActive sistemleri.</value></data>
   <data name="Emulation.Nec.Cpu.Region"><value>Konsol bölgesi</value></data>
-  <data name="Emulation.Nec.Cpu.Region.Auto"><value>Otomatik Otomatik Otomatik</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>Otomatik</value></data>
   <data name="Emulation.Nec.Cpu.Region.Japan"><value>Japonya</value></data>
   <data name="Emulation.Nec.Cpu.Region.Usa"><value>Amerika Birleşik Devletleri</value></data>
 </root>

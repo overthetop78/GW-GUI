@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Verringerung der Bandagen</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Detaildeckung</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Deinterlacing</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Ausgeschaltet</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Deaktiviert</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - gerade Linien</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - ungerade Linien</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Vertikale Mischung</value></data>
@@ -232,7 +232,7 @@
   <data name="Emulation.Video.Tab.Signal"><value>Signal</value></data>
   <data name="Emulation.Video.Tab.Effects"><value>Auswirkungen</value></data>
   <data name="Emulation.Video.Parameter.FineDetails"><value>Feine Details</value></data>
-  <data name="Emulation.Video.Restoration.Level.None"><value>Aus</value></data>
+  <data name="Emulation.Video.Restoration.Level.None"><value>Keine</value></data>
   <data name="Emulation.Video.Restoration.Level.Light"><value>Leicht</value></data>
   <data name="Emulation.Video.Restoration.Level.Medium"><value>Mittel</value></data>
   <data name="Emulation.Video.Restoration.Level.Strong"><value>Stark</value></data>
@@ -242,7 +242,7 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Verbindungsdegradation</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Farbstandard</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Standardeffektintensität</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Automatik</value></data>
+  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Automatisch</value></data>
   <data name="Emulation.Video.Signal.Connection.None"><value>Keine</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Horizontale Krümmung</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Vertikale Krümmung</value></data>

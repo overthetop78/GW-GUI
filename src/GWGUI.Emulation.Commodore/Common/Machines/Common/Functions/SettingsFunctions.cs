@@ -20,6 +20,17 @@ internal static class SettingsDescriptionFunctions
                         ExplanationResourceKey: slot.ExplanationResourceKey,
                         DetailedExplanationResourceKey: slot.DetailedExplanationResourceKey)).ToArray(),
                 SettingsGlyphs.Firmware, MachineSettingsConstants.InformationColumnCount));
+        if (EmulatorCatalog.CreateAdapter(configuration.Core).GetMediaDevices(configuration)
+            .Any(device => device.MediaType == EmulationMediaType.HardDisk))
+            blocks.Add(new EmulationSettingsBlock(StorageDirectorySettings.BlockId, EmulationMachineTab.General,
+                StorageDirectorySettings.TitleResource,
+                [new EmulationSettingsField(StorageDirectorySettings.HardDiskDirectory, EmulationMachineTab.General,
+                    StorageDirectorySettings.BlockId, StorageDirectorySettings.HardDiskResource,
+                    EmulationSettingsEditor.DirectoryPath, configuration.HardDiskDirectory ?? string.Empty,
+                    DefaultFolderCategory: EmulationDefaultFolderCategory.HardDisk,
+                    ExplanationResourceKey: StorageDirectorySettings.ShortHelp,
+                    DetailedExplanationResourceKey: StorageDirectorySettings.DetailedHelp)],
+                StorageDirectorySettings.Icon, MachineSettingsConstants.InformationColumnCount));
         return blocks;
     }
 

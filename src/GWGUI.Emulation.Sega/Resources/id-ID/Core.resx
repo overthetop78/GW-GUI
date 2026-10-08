@@ -4,8 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.flycast.Description"><value>Emulasi Sega Dreamcast systems.</value></data>
   <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Emulasi SG-1000, Mark III,]Master System, Game Gear, Mega Drive dan Mega-CD sistem.</value></data>
-  <data name="Emulation.Emulator.yabause.Description"><value>Mengemulasikan sistem Sega Saturn.</value></data>
-  <data name="Emulation.Emulator.picodrive.Description"><value>Emulasi sistem PicoDrive Sega.</value></data>
 </root>

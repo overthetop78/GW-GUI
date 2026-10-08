@@ -21,6 +21,6 @@
   <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Velocidad hackeo</value></data>
   <data name="Emulation.CrocoDS.Value.Auto"><value>Automático</value></data>
   <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
-  <data name="Emulation.CrocoDS.Value.yes"><value>Enabled</value></data>
-  <data name="Emulation.CrocoDS.Value.no"><value>Discapacitados</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Activado</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Desactivado</value></data>
 </root>

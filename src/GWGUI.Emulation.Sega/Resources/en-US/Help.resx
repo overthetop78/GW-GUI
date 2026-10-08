@@ -31,8 +31,6 @@
   <data name="Emulation.Sega.Help.General.Model.Detailed"><value>Identifies the Sega model whose hardware configuration is being edited.</value></data>
   <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Short"><value>Mega-CD hardware model.</value></data>
   <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Detailed"><value>Selects Mega-CD I or Mega-CD II.</value></data>
-  <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Short"><value>Mega-CD</value></data>
   <data name="Emulation.Sega.Help.MegaDrive.MegaCd.Enabled.Detailed"><value>Enables Mega-CD. Its optical drive is added automatically.</value></data>
-  <data name="Emulation.Sega.Help.MegaDrive.32X.Short"><value>32X</value></data>
   <data name="Emulation.Sega.Help.MegaDrive.32X.Detailed"><value>Enables 32X on the Mega Drive. It is disabled by default and 32X cartridges are available when it is enabled.</value></data>
 </root>

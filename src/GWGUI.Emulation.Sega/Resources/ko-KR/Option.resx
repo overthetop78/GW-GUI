@@ -6,16 +6,16 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sega.MasterSystem.Variant"><value>Master System 모델</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>3D 안경</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>활성화</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>비활성화</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>사용</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Mega Drive 모델</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>(주)</value></data>
-  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>자동</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>오토매틱</value></data>
   <data name="Emulation.Sega.MegaDrive.VideoStandard"><value>영상 기준</value></data>
-  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>자동</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>오토매틱</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Mega-CD 모델</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>사용 가능한 Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>32X 사용</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>활성화</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>비활성화</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>사용</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>사용 안 함</value></data>
 </root>

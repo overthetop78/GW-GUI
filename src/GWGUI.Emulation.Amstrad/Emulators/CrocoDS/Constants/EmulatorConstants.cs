@@ -11,5 +11,6 @@ internal static class EmulatorConstants
         new HashSet<string>([StorageSettingsFunctionsConstants.Dsk, StorageSettingsFunctionsConstants.Sna, StorageSettingsFunctionsConstants.Kcr], StringComparer.OrdinalIgnoreCase);
     internal const string CoreHostCommand = "--amstrad-crocods-core-host";
     internal const string OptionKeyPrefix = "crocods_";
+    internal const string SpeedHackOption = "crocods_hack";
     internal const int MaximumInsertedMediaCount = 1;
 }

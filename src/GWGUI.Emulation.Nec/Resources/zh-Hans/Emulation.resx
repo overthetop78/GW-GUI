@@ -26,7 +26,7 @@
   <data name="Emulation.Emulator.beetle_sgx.Description"><value>模拟了PC Engine SuperGrafx游戏,HuCards和CD-ROM2媒体.</value></data>
   <data name="Emulation.Emulator.geargrafx.Description"><value>模拟PC Engine,SuperGrafx和NEC LaserActive等系统.</value></data>
   <data name="Emulation.Nec.Cpu.Region"><value>控制台区域</value></data>
-  <data name="Emulation.Nec.Cpu.Region.Auto"><value>自动</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>自动的</value></data>
   <data name="Emulation.Nec.Cpu.Region.Japan"><value>日本</value></data>
   <data name="Emulation.Nec.Cpu.Region.Usa"><value>美国</value></data>
 </root>

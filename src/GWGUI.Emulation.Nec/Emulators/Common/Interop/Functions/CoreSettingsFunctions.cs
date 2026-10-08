@@ -21,7 +21,7 @@ internal static class CoreSettingsFunctions
 
     internal static IReadOnlyList<EmulationSettingsField> Fields(MachineConfiguration configuration,
         EmulationMachineTab tab, string blockId) => Definitions(configuration.EmulatorId)
-        .Where(option => option.Tab == tab).Select(option => new EmulationSettingsField(
+        .Where(option => option.Tab == tab && AppliesTo(option, configuration.Model)).Select(option => new EmulationSettingsField(
             option.Key, tab, blockId, option.LabelResourceKey, EmulationSettingsEditor.Selection,
             configuration.Options?.GetValueOrDefault(option.Key) ?? Default(configuration, option),
             option.Choices.Select(choice => new EmulationSettingsChoice(choice.Value,
@@ -33,9 +33,17 @@ internal static class CoreSettingsFunctions
         var options = new Dictionary<string, string>(configuration.Options
             ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         foreach (var option in Definitions(configuration.EmulatorId))
-            options.TryAdd(option.Key, Default(configuration, option));
+        {
+            var fallback = Default(configuration, option);
+            var selected = AppliesTo(option, configuration.Model)
+                ? options.GetValueOrDefault(option.Key) ?? fallback : fallback;
+            options[option.Key] = option.Choices.Any(choice => choice.Value == selected) ? selected : fallback;
+        }
         return configuration with { Options = options };
     }
+
+    private static bool AppliesTo(CoreOptionDefinition option, string machineId) =>
+        option.MachineIds is null || option.MachineIds.Contains(machineId);
 
     private static string Default(MachineConfiguration configuration, CoreOptionDefinition option) =>
         configuration.EmulatorId == Quasi.CoreConstants.Id && option.Key == Quasi.ModelConstants.BasicModeOption

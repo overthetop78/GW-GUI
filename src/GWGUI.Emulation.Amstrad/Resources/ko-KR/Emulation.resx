@@ -19,8 +19,8 @@
   <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>감시자 유형</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_resize"><value>이미지 framing</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_hack"><value>속도 해킹</value></data>
-  <data name="Emulation.CrocoDS.Value.Auto"><value>제품정보</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>오토매틱</value></data>
   <data name="Emulation.CrocoDS.Value.Overscan"><value>구름 많음</value></data>
-  <data name="Emulation.CrocoDS.Value.yes"><value>이름 *</value></data>
-  <data name="Emulation.CrocoDS.Value.no"><value>지원하다</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>사용</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>사용 안 함</value></data>
 </root>

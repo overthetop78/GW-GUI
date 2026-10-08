@@ -18,8 +18,8 @@
   <data name="Emulation.Nec.Video.InitialScanline"><value>أول مسح مرئي</value></data>
   <data name="Emulation.Nec.Video.LastScanline"><value>آخر مسح مرئي</value></data>
   <data name="Emulation.Nec.Video.FrameSkip"><value>هروب من الصدمة</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>معطّل</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Automatic</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>المعوقين</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>تلقائي</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>الدليل</value></data>
   <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>عتبة الرطوبة</value></data>
   <data name="Emulation.Nec.Video.Overscan"><value>إظهار حدود الصورة</value></data>

@@ -29,7 +29,7 @@
   <data name="Emulation.Controller.Action.Fire2"><value>Botão de disparo 2</value></data>
   <data name="Emulation.Controller.AnalogJoystick"><value>Joystick analógico</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automático</value></data>
-  <data name="Emulation.Controller.None"><value>Nenhuma</value></data>
+  <data name="Emulation.Controller.None"><value>Nenhum</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Mudar joystick/rato</value></data>
   <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Não foi possível inicializar o GameInput. Instale ou repare o runtime do GameInput incluído.</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (esquerda)</value></data>

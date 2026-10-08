@@ -5,4 +5,14 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Firmware.Integrated"><value>System ROM</value></data>
+  <data name="Emulation.Sony.Firmware.SwanStation.Japan"><value>SCPH5500</value></data>
+  <data name="Emulation.Sony.Firmware.SwanStation.NorthAmerica"><value>SCPH5501</value></data>
+  <data name="Emulation.Sony.Firmware.SwanStation.Europe"><value>SCPH5502</value></data>
+  <data name="Emulation.Sony.Firmware.SwanStation.Psp"><value>PSXONPSP660</value></data>
+  <data name="Emulation.Sony.Firmware.SwanStation.Ps3"><value>PS1_ROM</value></data>
+  <data name="Emulation.Sony.Firmware.Pcsx2.System"><value>BIOS</value></data>
+  <data name="Emulation.Sony.Firmware.Pcsx2.Rom1"><value>ROM1</value></data>
+  <data name="Emulation.Sony.Firmware.Pcsx2.Extended"><value>EROM</value></data>
+  <data name="Emulation.Sony.Firmware.Pcsx2.Mechanics"><value>MEC</value></data>
+  <data name="Emulation.Sony.Firmware.Pcsx2.Nvram"><value>NVRAM</value></data>
 </root>

@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Налаштовує гучність відтворення аудіо треків, що прочитаються з емульсійного диска компактного диска.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Налаштування швидкості руху миші</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Налаштування руху мишки перетворюється на рух, що допускається до емульгованої машини.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Виберіть папку для жорстких зображень</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Налаштовує папку спочатку відкрито при виборі зображення жорсткого диска. Сама папка не монтується як диск.</value></data>
 </root>

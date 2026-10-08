@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed" xml:space="preserve"><value>Sets the playback volume of audio tracks read from the emulated compact-disc drive.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short" xml:space="preserve"><value>Set mouse movement speed</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed" xml:space="preserve"><value>Adjusts how host mouse movement is converted to movement reported to the emulated machine.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Choose the folder for hard-disk images</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Sets the folder initially opened when selecting a hard-disk image. The folder itself is not mounted as a disk.</value></data>
 </root>

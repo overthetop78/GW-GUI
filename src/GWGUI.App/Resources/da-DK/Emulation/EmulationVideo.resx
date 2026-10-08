@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Reduktion af banderoler</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Detalje genopretning</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Deinterlacing</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Fra</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Deaktiveret</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - lige linjer</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - ulige linjer</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Lodret blanding</value></data>

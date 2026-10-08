@@ -7,6 +7,14 @@ namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Factories;
 
 internal abstract class CoreMachineFactory : IEmulatorAdapter
 {
+    public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) =>
+        GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Describe(configuration);
+    public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) =>
+        GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Apply(configuration, settings);
+
+    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) =>
+        GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration);
+
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
         new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 

@@ -29,7 +29,7 @@
   <data name="Emulation.Controller.Action.Fire2"><value>Buton de foc 2</value></data>
   <data name="Emulation.Controller.AnalogJoystick"><value>Joystick analogic</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automat</value></data>
-  <data name="Emulation.Controller.None"><value>Niciuna</value></data>
+  <data name="Emulation.Controller.None"><value>Niciunul</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Schimbă joystick/șoarece</value></data>
   <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput nu a putut fi inițializat. Instalați sau reparați runtime-ul GameInput inclus.</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (în mâna stângă)</value></data>

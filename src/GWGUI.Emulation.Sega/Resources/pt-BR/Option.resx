@@ -7,7 +7,7 @@
   <data name="Emulation.Sega.MasterSystem.Variant"><value>Modelo Master System</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>Óculos 3-D</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>Activado</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Desativado</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Desactivado</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Modelo Mega Drive</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>Região</value></data>
   <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>Automático</value></data>
@@ -17,5 +17,5 @@
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Activar Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>Activar o 32X</value></data>
   <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>Activado</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Desativado</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>Desactivado</value></data>
 </root>

@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>ตั้งค่าระดับเสียงการเล่นของร่องเสียงที่อ่านจากไดรฟ์คอมเพล็ตที่ย่อหาย</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>ตั้งค่าความเร็วการเคลื่อนเมาส์</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>ปรับวิธีที่การเคลื่อนไหวของเมาส์ในเครื่องถูกแปลงมาเป็นการเคลื่อนไหวที่รายงานไปยังเครื่องจําลอง</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>เลือกโฟลเดอร์สําหรับอิมเมจฮาร์ดดิสก์</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>ตั้งค่าให้โฟลเดอร์ถูกเปิดใช้ก่อนเมื่อมีการเลือกอิมเมจแบบฮาร์ดดิสก์ โฟลเดอร์เองไม่ได้ถูกติดตั้งเป็นดิสก์</value></data>
 </root>

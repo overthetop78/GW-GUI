@@ -69,6 +69,8 @@ internal sealed class ExternalCore : IEmulatorCore
         saveDirectory = Path.GetFullPath(saveDirectory
             ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
         Directory.CreateDirectory(systemDirectory);
+        FirmwareConfigurationFunctions.CopySelectedFiles(configuration,
+            new GWGUI.Emulation.Sony.Emulators.SwanStation.Factories.SwanStationMachineFactory(), systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
         var isolatedCoreDirectory = Path.Combine(sessionDirectory, ExternalCoreConstants.CoreDirectory);

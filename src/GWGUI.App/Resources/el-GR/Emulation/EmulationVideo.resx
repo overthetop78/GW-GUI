@@ -44,7 +44,7 @@
   <data name="Emulation.Video.Crt.Color.White"><value>Μονόχρωμο λευκό</value></data>
   <data name="Emulation.Video.Crt.Color.Gray"><value>Μονόχρωμο γκρι</value></data>
   <data name="Emulation.Video.Crt.Color.Custom"><value>Προσαρμοσμένο μονόχρωμο</value></data>
-  <data name="Emulation.Video.Crt.Mask.None"><value>Καμία</value></data>
+  <data name="Emulation.Video.Crt.Mask.None"><value>Κανένα</value></data>
   <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>Σχάρα διάφραξης</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>Μάσκα σκιάς</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>Μάσκα υποδοχής</value></data>
@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Μείωση λίπανσης</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Λεπτομέρεια ανάκτησης</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Αποπλήρωση</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Κλείσιμο</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - ακόμα και γραμμές</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - παράξενες γραμμές</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Κατακόρυφο μείγμα</value></data>
@@ -243,7 +243,7 @@
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Πρότυπο χρώματος</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Τυπική ένταση αποτελέσματος</value></data>
   <data name="Emulation.Video.Signal.Standard.Automatic"><value>Αυτόματο</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>Καμία</value></data>
+  <data name="Emulation.Video.Signal.Connection.None"><value>Κανένα</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Οριζόντια καμπυλότητα</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Κατακόρυφη καμπυλότητα</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>Τραπεζοειδές</value></data>

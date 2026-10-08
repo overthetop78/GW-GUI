@@ -5,13 +5,12 @@ internal static class StorageSettingsFunctions
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
     {
         var model = ModelCatalog.Get(configuration.Model);
+        var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId);
         var options = configuration.Options ?? new Dictionary<string, string>();
         var devices = new List<EmulationMediaDevice>();
-        if (model.SupportsCompactDiscDrive)
+        if (model.SupportsCompactDiscDrive && adapter is not null)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
-                model.Id == ModelConstants.Psp
-                    ? StorageSettingsFunctionsConstants.PspExtensions
-                    : StorageSettingsFunctionsConstants.PlayStationExtensions,
+                adapter.SupportedContentExtensions,
                 RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CompactDiscDriveLabel,
                 IsPermanent: model.HasBuiltInCompactDiscDrive));

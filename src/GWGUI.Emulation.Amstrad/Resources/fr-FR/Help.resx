@@ -15,7 +15,7 @@
   <data name="Emulation.Amstrad.Help.Video.Intensity.Short"><value>Luminosité du moniteur émulé.</value></data>
   <data name="Emulation.Amstrad.Help.Video.Intensity.Detailed"><value>Ajuste l'intensité de l'écran de 5 à 15, comme exposé par Caprice32.</value></data>
   <data name="Emulation.Amstrad.Help.Video.Crop.Short"><value>Enlève la bordure de l'écran externe.</value></data>
-  <data name="Emulation.Amstrad.Help.Video.Crop.Detailed"><value>Demande Caprice32 pour cultiver la frontière extérieure. GW GUI conserve le rapport d'aspect signalé par l'émulateur.</value></data>
+  <data name="Emulation.Amstrad.Help.Video.Crop.Detailed"><value>Demande Caprice32 pour cultiver la bordure extérieure. GW GUI conserve le rapport d'aspect signalé par l'émulateur.</value></data>
   <data name="Emulation.Amstrad.Help.Audio.FloppySound.Short"><value>Son mécanique du lecteur de disquettes.</value></data>
   <data name="Emulation.Amstrad.Help.Audio.FloppySound.Detailed"><value>Active ou désactive le son du lecteur de disquettes généré par Caprice32.</value></data>
   <data name="Emulation.Amstrad.Help.General.Model.Short"><value>Amstrad modèle de machine en cours de configuration.</value></data>

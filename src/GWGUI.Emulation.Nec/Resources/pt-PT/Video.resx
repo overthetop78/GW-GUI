@@ -18,7 +18,7 @@
   <data name="Emulation.Nec.Video.InitialScanline"><value>Primeiro scanline visível</value></data>
   <data name="Emulation.Nec.Video.LastScanline"><value>Última linha de digitalização visível</value></data>
   <data name="Emulation.Nec.Video.FrameSkip"><value>Saltar o Quadro</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Desactivado</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Desativado</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Automático</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Manual</value></data>
   <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Limiar de salto da moldura</value></data>

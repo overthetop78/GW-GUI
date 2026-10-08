@@ -24,6 +24,21 @@ internal static class ConfigurationValidationFunctions
             throw new InvalidDataException(nameof(configuration.EmulatorId));
         if (configuration.SchemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion)
             throw new InvalidDataException(nameof(configuration.SchemaVersion));
+        var adapter = EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == configuration.EmulatorId);
+        if (!adapter.Definition.MachineIds.Contains(configuration.Model))
+            throw new InvalidDataException(nameof(configuration.Model));
+        var slots = adapter.GetFirmwareSlots(configuration);
+        var paths = configuration.FirmwarePaths ?? new Dictionary<string, string>();
+        if (adapter.RequiresExternalFirmware && !slots.Any(slot => paths.ContainsKey(slot.FieldId)))
+            throw new InvalidDataException(nameof(configuration.FirmwarePaths));
+        foreach (var slot in slots)
+            if (slot.IsRequired && !paths.ContainsKey(slot.FieldId))
+                throw new InvalidDataException(slot.FieldId);
+        foreach (var item in paths)
+        {
+            if (!slots.Any(slot => slot.FieldId == item.Key)) throw new InvalidDataException(item.Key);
+            if (!File.Exists(item.Value)) throw new FileNotFoundException(null, item.Value);
+        }
         foreach (var media in configuration.Media ?? [])
         {
             if (!File.Exists(media.Path)) throw new FileNotFoundException(null, media.Path);

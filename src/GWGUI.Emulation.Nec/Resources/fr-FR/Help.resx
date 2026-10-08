@@ -15,7 +15,7 @@
   <data name="Emulation.Nec.Help.Video.Intensity.Short"><value>Luminosité du moniteur émulé.</value></data>
   <data name="Emulation.Nec.Help.Video.Intensity.Detailed"><value>Ajuste l'intensité du moniteur de 5 à 15, comme exposé par BeetlePce.</value></data>
   <data name="Emulation.Nec.Help.Video.Crop.Short"><value>Supprime la bordure externe de l'écran.</value></data>
-  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>Demande à BeetlePce de cultiver la frontière externe. GW GUI conserve le rapport d'aspect rapporté par l'émulateur.</value></data>
+  <data name="Emulation.Nec.Help.Video.Crop.Detailed"><value>Demande à BeetlePce de cultiver la bordure externe. GW GUI conserve le rapport d'aspect rapporté par l'émulateur.</value></data>
   <data name="Emulation.Nec.Help.Audio.FloppySound.Short"><value>Son mécanique du lecteur de disquettes.</value></data>
   <data name="Emulation.Nec.Help.Audio.FloppySound.Detailed"><value>Active ou désactive le son du lecteur de disquette généré par BeetlePce.</value></data>
   <data name="Emulation.Nec.Help.General.Model.Short"><value>Modèle Nec machine en cours de configuration.</value></data>

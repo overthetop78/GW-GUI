@@ -2,6 +2,8 @@ namespace GWGUI.Emulation.Amstrad.Common.Interfaces;
 
 internal interface IEmulatorAdapter
 {
+    IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration,
+        IReadOnlyList<CoreOption> coreOptions);
     string EmulatorId { get; }
     string EmulatorKey { get; }
     EmulationEmulatorDefinition Definition { get; }

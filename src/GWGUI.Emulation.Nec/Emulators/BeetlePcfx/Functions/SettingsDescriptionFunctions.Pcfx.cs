@@ -1,6 +1,6 @@
 using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.Common.Functions;
-using static GWGUI.Emulation.Nec.Common.Machines.Common.Functions.SettingsDescriptionFunctions;
+using static GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions;
 
 namespace GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions;
 

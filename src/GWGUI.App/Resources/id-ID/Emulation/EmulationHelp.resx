@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Tata volume putar trek audio dibaca dari compact- disc drive yang tertimulasi.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Set kecepatan gerakan mouse</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Atur bagaimana pergerakan mouse diubah menjadi pergerakan yang dilaporkan pada mesin yang telah digandakan.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Pilih folder untuk gambar hard- disk</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Tata folder awalnya dibuka ketika memilih image hard-disk. Folder itu sendiri tidak dikait sebagai disk.</value></data>
 </root>

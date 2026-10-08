@@ -47,15 +47,18 @@ public sealed class SegaEmulationModule : IEmulationModule, IEmulationEmulatorMa
         var current = configuration as MachineConfiguration
             ?? (MachineConfiguration)CreateConfiguration(machineId);
         var model = ModelCatalog.Get(current.Model);
-        var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
+        var adapter = _engine.Adapter(current);
+        var optionTabs = adapter.GetSettingsBlocks(current).Select(block => block.Tab).ToHashSet();
+        var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => optionTabs.Contains(item.Key) || (item.Key switch
         {
             EmulationMachineTab.Keyboard => model.HasKeyboard,
+            EmulationMachineTab.Rom => adapter.GetFirmwareSlots(current).Count > 0,
             EmulationMachineTab.Mouse => model.MouseButtonCount > 0,
             EmulationMachineTab.Storage => model.MaximumFloppyDriveCount > 0
                 || model.SupportsCassetteDrive || model.SupportsCartridgeSlot
                 || model.SupportsSegaCardSlot || model.SupportsCompactDiscDrive,
             _ => item.Value
-        });
+        }));
         return new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs),
             SettingsDescriptionFunctions.Create(current));
     }
@@ -100,7 +103,7 @@ public sealed class SegaEmulationModule : IEmulationModule, IEmulationEmulatorMa
             else options[item.Key] = item.Value;
         }
         var audio = sega.Audio ?? new AudioConfiguration();
-        return sega with
+        return FirmwareConfigurationFunctions.Apply(sega with
         {
             Options = options,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled)
@@ -113,7 +116,7 @@ public sealed class SegaEmulationModule : IEmulationModule, IEmulationEmulatorMa
                     && int.TryParse(latency, out var parsedLatency)
                     ? parsedLatency : audio.LatencyMilliseconds
             }
-        };
+        }, values, _engine.Adapter(sega));
     }
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) =>
@@ -253,38 +256,21 @@ public sealed class SegaEmulationModule : IEmulationModule, IEmulationEmulatorMa
     {
         cancellationToken.ThrowIfCancellationRequested();
         _ = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
-        var entries = new FirmwareCatalog(GetFirmwareDirectory(machineId)).Scan()
-            .Select(firmware => new EmulationFirmwareCandidate(firmware.Sha256, firmware.Path,
-                firmware.Name ?? Path.GetFileName(firmware.Path), firmware.Version,
-                FirmwareCompatibility(firmware, machineId), firmware.IsKnown
-                    ? SettingsConstants.FirmwarePath : null)).ToArray();
-        return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(entries);
+        var sega = RequireConfiguration(configuration);
+        return ValueTask.FromResult(FirmwareConfigurationFunctions.Scan(sega,
+            GetFirmwareDirectory(machineId), _engine.Adapter(sega)));
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration,
         EmulationFirmwareCandidate firmware)
     {
         var sega = RequireConfiguration(configuration);
-        if (!string.Equals(firmware.DestinationFieldId, SettingsConstants.FirmwarePath,
-                StringComparison.Ordinal) || firmware.Compatibility
-            == EmulationFirmwareCompatibility.Incompatible)
+        if (firmware.DestinationFieldId is not { } field
+            || !_engine.Adapter(sega).GetFirmwareSlots(sega).Any(slot => slot.FieldId == field)
+            || firmware.Compatibility == EmulationFirmwareCompatibility.Incompatible)
             throw new InvalidOperationException(nameof(firmware));
-        var options = new Dictionary<string, string>(sega.Options
-            ?? new Dictionary<string, string>(), StringComparer.Ordinal)
-        {
-            [SettingsConstants.FirmwarePath] = firmware.Path
-        };
-        return sega with { Options = options };
-    }
-
-    private static EmulationFirmwareCompatibility FirmwareCompatibility(Firmware firmware,
-        string machineId)
-    {
-        if (!firmware.CompatibleModels.Contains(machineId, StringComparer.OrdinalIgnoreCase))
-            return EmulationFirmwareCompatibility.Incompatible;
-        return firmware.IsOfficial ? EmulationFirmwareCompatibility.Official
-            : firmware.IsKnown ? EmulationFirmwareCompatibility.Compatible
-            : EmulationFirmwareCompatibility.PartiallyCompatible;
+        return FirmwareConfigurationFunctions.Apply(sega,
+            new Dictionary<string, string?> { [field] = firmware.Path }, _engine.Adapter(sega));
     }
 
     public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(
@@ -331,7 +317,7 @@ public sealed class SegaEmulationModule : IEmulationModule, IEmulationEmulatorMa
     };
 
     private static string DefaultEmulatorId(string machineId) =>
-        EmulatorCatalog.GetAll(machineId).FirstOrDefault()?.Id ?? string.Empty;
+        EmulatorCatalog.DefaultFor(machineId);
 
     private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) =>
         configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));

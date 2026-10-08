@@ -19,7 +19,7 @@
   <data name="Emulation.Nec.Video.LastScanline"><value>Son görünür tarama</value></data>
   <data name="Emulation.Nec.Video.FrameSkip"><value>Frame atlar</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Devre dışı</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Otomatik Otomatik Otomatik</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Otomatik</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Manual</value></data>
   <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Çerçeve eşiği atlayabilir</value></data>
   <data name="Emulation.Nec.Video.Overscan"><value>Görüntü kenarlarını göster</value></data>

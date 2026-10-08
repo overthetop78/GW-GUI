@@ -3,7 +3,7 @@ using GWGUI.Emulation.Nec.Common.Machines.SuperGrafx.Constants;
 using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Constants;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Nec.Emulators.Geargrafx.Constants;
-using static GWGUI.Emulation.Nec.Common.Machines.Common.Functions.SettingsDescriptionFunctions;
+using static GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions;
 
 namespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;
 

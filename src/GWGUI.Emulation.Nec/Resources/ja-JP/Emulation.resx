@@ -26,7 +26,7 @@
   <data name="Emulation.Emulator.beetle_sgx.Description"><value>PC Engine SuperGrafxのゲーム、ハカードおよびCD-ROM2媒体をエミュレートして下さい。</value></data>
   <data name="Emulation.Emulator.geargrafx.Description"><value>PC Engine、SuperGrafx および NEC LaserActive システムを模倣して下さい。</value></data>
   <data name="Emulation.Nec.Cpu.Region"><value>コンソール領域</value></data>
-  <data name="Emulation.Nec.Cpu.Region.Auto"><value>自動自動制御</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>自動</value></data>
   <data name="Emulation.Nec.Cpu.Region.Japan"><value>ジャパン・ジャパン</value></data>
   <data name="Emulation.Nec.Cpu.Region.Usa"><value>アメリカ合衆国</value></data>
 </root>

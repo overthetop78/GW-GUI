@@ -18,8 +18,8 @@
   <data name="Emulation.Nec.Video.InitialScanline"><value>第一个可见的扫描线</value></data>
   <data name="Emulation.Nec.Video.LastScanline"><value>最后一个可见的扫描线</value></data>
   <data name="Emulation.Nec.Video.FrameSkip"><value>框架跳过</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>已禁用</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>自动</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>已停用</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>自動的</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>手动</value></data>
   <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>框架跳过阈值</value></data>
   <data name="Emulation.Nec.Video.Overscan"><value>顯示影像邊框</value></data>

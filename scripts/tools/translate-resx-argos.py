@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from functools import lru_cache
 import re
 from pathlib import Path
 import xml.etree.ElementTree as ET
@@ -87,6 +88,71 @@ RESOURCE_ENTRY_BLOCK_PATTERN = re.compile(
     r"(?P<indent>[ \t]*)<(?P<tag>data|resheader)\b[^>]*>.*?</(?P=tag)>[ \t]*(?P<newline>\r?\n)?",
     re.MULTILINE | re.DOTALL,
 )
+
+# These are identifiers and named algorithms, not ordinary interface states.
+INVARIANT_OPTION_NAMES = frozenset({
+    "PAL", "NTSC", "CPU", "GPU", "RAM", "ROM", "CRT", "LCD", "HDMI", "VGA",
+    "Vulkan", "GLideN64", "gln64", "Angrylion", "cxd4", "Bayer", "B-Spline",
+    "Catmull-Rom", "Mitchell-Netravali", "ScaleForce", "Anime4K Ultrafast",
+    "Dynarec", "jit", "hli", "Sinc", "HuC1", "HuC3", "Bung/EMS", "Hitek",
+    "Li Cheng", "Sachen MMC1", "Sachen MMC2", "MemPak", "SummerCart64", "64DD IPL",
+    "Dendy", "Nintendo DS", "DSi", "New 3DS", "gba sp", "CANDYPOP!",
+    "2Bit DEMICHROME", "Andrade Gameboy", "Kirokaze Gameboy", "Lospec GB",
+    "HoneyGB", "SpaceHaze", "RGR-Papercut4", "T-Lollipop", "GB MŒBIUS",
+    "Sony CXA2025AS", "Composite Direct FBX", "Magnum FBX", "Smooth V2 FBX",
+})
+INVARIANT_OPTION_PATTERN = re.compile(
+    r"(?:[+-]?\d+(?:[.,]\d+)?\s*(?:%|[kKmMgG]?Hz|[KMGT]?i?B)|"
+    r"\d+-bit|0x[0-9A-Fa-f]+|0rgb1555|rgb565|\d+x (?:MSAA|SSAA)|"
+    r"\d+:\d+ (?:\(DAR\)|PAR)|(?:[2-6])?xBRZ|xBRZ freescale|Bisqwit [248]x|"
+    r"(?:AltWFC|Kaeru WFC) \([\d.]+\)|EEPROM \(\d+kB\)|"
+    r"CXA2025AS \((?:JP|US)\)|(?:Super )?Game Boy(?: Color| Advance| DMG| 2)?"
+    r"(?: #\d+| (?:NTSC|PAL)| \((?:DMG-CPU B|CPU AGB A|CPU CGB [0A-E]|SGB[12]\.sfc)\))?|"
+    r"Super Game Boy2|Super Game Boy Color|[\w-]+\.(?:rom|bin|bmp|wav|sfc)/?)",
+    re.IGNORECASE,
+)
+
+
+def is_invariant_entry(key: str, value: str) -> bool:
+    if re.fullmatch(r"Emulation\.Emulator\.[^.]+", key):
+        return True
+    if re.fullmatch(r"Emulation\.[^.]+\.(?:Model|Machine)\.[^.]+", key):
+        return True
+    if ".Value." not in key:
+        return False
+    # Numbered palette names identify presets; palette descriptions remain translatable.
+    if re.match(r"(?:TWB64|PixelShift) \d+ - ", value):
+        return True
+    return value in INVARIANT_OPTION_NAMES or INVARIANT_OPTION_PATTERN.fullmatch(value) is not None
+
+
+def remove_invariant_copies(root: Path, pattern: str = "*.resx") -> int:
+    removed = 0
+    for base_path in (root / "00-Base").rglob(pattern):
+        keys = {key for key, value in read_entries(base_path).items()
+                if is_invariant_entry(key, value)}
+        if not keys:
+            continue
+        relative = base_path.relative_to(root / "00-Base")
+        for culture_path in root.iterdir():
+            path = culture_path / relative
+            if not culture_path.is_dir() or culture_path.name == "00-Base" or not path.exists():
+                continue
+            with path.open(encoding="utf-8", newline="") as source:
+                text = source.read()
+
+            def remove(match: re.Match[str]) -> str:
+                nonlocal removed
+                if match.group("tag") == "data" and ET.fromstring(match.group(0).strip()).attrib["name"] in keys:
+                    removed += 1
+                    return ""
+                return match.group(0)
+
+            corrected = RESOURCE_ENTRY_BLOCK_PATTERN.sub(remove, text)
+            if corrected != text:
+                ET.fromstring(corrected)
+                path.write_text(corrected, encoding="utf-8", newline="")
+    return removed
 def read_entries(path: Path) -> dict[str, str]:
     root = ET.parse(path).getroot()
     return {
@@ -118,8 +184,7 @@ def read_catalogs(root: Path, pattern: str = "*.resx") -> dict[str, dict[str, st
             base_entries = read_entries(base_path) if base_path.exists() else {}
             catalogs[catalog] = {
                 key: value for key, value in entries.items()
-                if base_entries.get(key) != value
-                or PROTECTED_TOKEN_PATTERN.fullmatch(value) is None
+                if not is_invariant_entry(key, base_entries.get(key, value))
             }
     return catalogs
 
@@ -311,14 +376,124 @@ def translate_preserving_placeholders(
     return translated_texts
 
 
+@lru_cache(maxsize=None)
+def common_state_labels(culture: str) -> dict[str, str]:
+    """Use the application's established switch vocabulary, not isolated ML terms."""
+    resources = Path(__file__).resolve().parents[2] / "src/GWGUI.App/Resources"
+    values = read_entries(resources / culture / "Emulation/EmulationValue.resx")
+    automatic = read_entries(resources / culture / "Visualizer.resx").get("Visual.Automatic")
+    labels = {
+        "disabled": values["Emulation.Value.Disabled"],
+        "enabled": values["Emulation.Value.Enabled"],
+        "none": values["Emulation.Value.None"],
+    }
+    labels.update(off=labels["disabled"], on=labels["enabled"])
+    if automatic:
+        labels.update(auto=automatic, automatic=automatic)
+    return labels
+
+
+def normalize_technical_translation(english: str, translated: str, culture: str) -> str:
+    labels = common_state_labels(culture)
+    if english.strip().lower() in labels:
+        return labels[english.strip().lower()]
+    # Only repair disability words when the source actually describes a disabled
+    # setting. Never replace them in unrelated accessibility text.
+    if re.search(r"\b(?:disabled|off)\b", english, re.IGNORECASE):
+        disability_words = {
+            "fr-FR": r"\bhandicap(?:é|ée|és|ées|e|es)?\b",
+            "cs-CZ": r"\bhandicapovan\w*\b",
+            "da-DK": r"\bhandicap(?:pede)?\b",
+            "ro-RO": r"\bhandicap(?:ați|aţi|ati|ate|at)?\b",
+            "nl-NL": r"\bgehandicapten\b",
+        }
+        if culture in disability_words:
+            if culture == "cs-CZ":
+                translated = re.sub(r"s tímto handicapovaným", "pokud je tato možnost zakázána",
+                    translated, flags=re.IGNORECASE)
+            elif culture == "ro-RO":
+                translated = re.sub(r"cu acest handicap", "cu această opțiune dezactivată",
+                    translated, flags=re.IGNORECASE)
+            translated = re.sub(disability_words[culture], labels["disabled"], translated,
+                flags=re.IGNORECASE)
+    if culture == "fr-FR":
+        if english.lower() == "per-cart":
+            return "Par cartouche"
+        if english.lower() == "per-game":
+            return "Par jeu"
+        if english == "When running Sega CD/Mega-CD content, specifies whether to share a single backup ram cart for all games (Per-Cart) or to create a separate backup ram cart for each game (Per-Game).":
+            return ("Pour les jeux Sega CD/Mega-CD, choisit entre une cartouche RAM de sauvegarde "
+                "commune à tous les jeux (par cartouche) et une cartouche RAM de sauvegarde distincte "
+                "pour chaque jeu (par jeu).")
+        if english == "Sets the backup ram cart size when running Sega CD/Mega-CD content. Useful when setting the backup ram cart to Per-Game to avoid multiple larger cart sizes.":
+            return ("Définit la capacité de la cartouche RAM de sauvegarde pour les jeux Sega CD/Mega-CD. "
+                "En mode par jeu, une capacité plus faible évite de multiplier les grandes cartouches de sauvegarde.")
+        if english.startswith(("Run the audio pipeline at 44.1 kHz", "Run the entire audio pipeline at 44.1 kHz")):
+            return ("Utilise une fréquence audio de 44.1 kHz pour les jeux MSU-1. "
+                "Lorsque cette option est désactivée, le flux PCM MSU-1 à 44.1 kHz est ramené "
+                "à la fréquence native de la SNES, environ 32 kHz, sans filtre anti-repliement. "
+                "Les hautes fréquences peuvent alors produire un léger souffle. Lorsqu’elle est activée, "
+                "le flux MSU-1 est transmis sans altération et le son SPC est rééchantillonné à 44.1 kHz. "
+                "Cette option n’a aucun effet sur les jeux sans MSU-1 et s’applique au prochain chargement.")
+        reviewed_labels = {
+            "System Boot ROM": "ROM de démarrage du système",
+            "Force VDP Mode": "Mode VDP forcé",
+            "CD System BRAM": "Mémoire de sauvegarde du Mega-CD",
+            "CD Backup RAM Cart": "Cartouche de sauvegarde RAM du Mega-CD",
+            "CD Backup RAM Cart Size": "Capacité de la cartouche de sauvegarde RAM",
+            "CD Add-on (MD mode)": "Extension Mega-CD (mode Mega Drive)",
+            "Borders": "Bordures",
+            "CPU Speed": "Vitesse du CPU",
+            "CD Access Time": "Temps d’accès au CD",
+            "CD Image Cache": "Cache de l’image CD",
+            "Enhanced per-tile vertical scroll": "Défilement vertical amélioré par tuile",
+            "Enhanced per-tile vertical scroll limit": "Limite du défilement vertical amélioré par tuile",
+        }
+        if english in reviewed_labels:
+            return reviewed_labels[english]
+        plane = re.fullmatch(r"Debug > Disable (Sprite Plane|Window Plane|Plane [AB])", english)
+        if plane:
+            name = {"Sprite Plane": "plan des sprites", "Window Plane": "plan de fenêtre",
+                "Plane A": "plan A", "Plane B": "plan B"}[plane[1]]
+            return f"Débogage > Désactiver le {name}"
+        plane = re.fullmatch(r"Disable the VDP's (Sprite Plane|Window Plane|Plane [AB])\.", english)
+        if plane:
+            name = {"Sprite Plane": "plan des sprites", "Window Plane": "plan de fenêtre",
+                "Plane A": "plan A", "Plane B": "plan B"}[plane[1]]
+            return f"Désactive le {name} du VDP."
+        channel = re.fullmatch(r"Disable the (YM2612|SN76496)'s (FM\d|PSG\d|DAC) channel\.", english)
+        if channel:
+            return f"Désactive le canal {channel[2]} du {channel[1]}."
+        if re.search(r"\bplane\b", english, re.IGNORECASE):
+            translated = re.sub(r"l['’]avion", "le plan", translated, flags=re.IGNORECASE)
+            translated = re.sub(r"\bavions?\b", "plan", translated, flags=re.IGNORECASE)
+        if re.search(r"\b(?:cart|cartridge)\b", english, re.IGNORECASE):
+            translated = re.sub(r"\b(?:panier|chariot)s?\b", "cartouche", translated, flags=re.IGNORECASE)
+            for incorrect, correct in (("du cartouche", "de la cartouche"), ("un seul cartouche", "une seule cartouche"),
+                    ("un cartouche", "une cartouche"), ("le cartouche", "la cartouche")):
+                translated = translated.replace(incorrect, correct)
+        if re.search(r"\bborders?\b", english, re.IGNORECASE):
+            translated = re.sub(r"\bfrontières\b", "bordures", translated, flags=re.IGNORECASE)
+            translated = re.sub(r"\bfrontière\b", "bordure", translated, flags=re.IGNORECASE)
+        if "scroll" in english.lower():
+            translated = re.sub(r"\bparchemin\b", "défilement", translated, flags=re.IGNORECASE)
+        if "add-on" in english.lower():
+            translated = re.sub(r"\badditif\b", "extension", translated, flags=re.IGNORECASE)
+    return translated
+
+
 def translate_entries(
     entries: list[tuple[str, str]], tokenizer, translator: ctranslate2.Translator,
-    force_context: bool = False,
+    force_context: bool = False, culture: str | None = None,
 ) -> list[str]:
-    return translate_preserving_placeholders(
+    translated = translate_preserving_placeholders(
         [english for _, english in entries], tokenizer, translator,
         force_context=force_context,
     )
+    if culture:
+        return [normalize_technical_translation(english, value, culture)
+            for (_, english), value in zip(entries, translated)]
+    return translated
 
 
 def remove_entries_not_in_source(path: Path, source_entries: dict[str, str]) -> int:
@@ -526,6 +701,30 @@ def insert(path: Path, key: str, value: str, replace_existing: bool = False) -> 
     path.write_text(text.replace(marker, entry + marker, 1), encoding="utf-8", newline="")
 
 
+def replace_existing_values(path: Path, updates: dict[str, str]) -> None:
+    """Replace values once per catalog, preserving attributes and untouched XML."""
+    if not updates:
+        return
+    with path.open(encoding="utf-8", newline="") as source:
+        text = source.read()
+
+    def replace(match: re.Match[str]) -> str:
+        block = match.group(0)
+        if match.group("tag") != "data":
+            return block
+        element = ET.fromstring(block.strip())
+        key = element.attrib["name"]
+        if key not in updates:
+            return block
+        return re.sub(r"(<value(?:\s[^>]*)?>).*?(</value>)",
+            lambda value: value[1] + encode_element_text(updates[key]) + value[2],
+            block, count=1, flags=re.DOTALL)
+
+    corrected = RESOURCE_ENTRY_BLOCK_PATTERN.sub(replace, text)
+    ET.fromstring(corrected)
+    path.write_text(corrected, encoding="utf-8", newline="")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("resource", nargs="?")
@@ -545,6 +744,8 @@ def main() -> None:
         help="limit --sync-all to one RESX catalog, for example Visualizer.resx")
     parser.add_argument("--clean-only", action="store_true",
         help="remove duplicate keys and localized entries absent from en-US")
+    parser.add_argument("--clean-invariants", action="store_true",
+        help="keep technical identifiers only in 00-Base, including removing en-US copies")
     parser.add_argument("--audit", action="store_true",
         help="validate catalogs, translatable keys and format placeholders")
     parser.add_argument("--repair-mixed", action="store_true",
@@ -553,10 +754,36 @@ def main() -> None:
         help="put every RESX data/value translation on one physical XML line")
     parser.add_argument("--root", type=Path, default=Path("src/GWGUI.App/Resources"),
         help="RESX root containing 00-Base and culture directories (application or module)")
+    parser.add_argument("--repair-technical", action="store_true",
+        help="repair known technical mistranslations using English sources and common labels")
     args = parser.parse_args()
     root = args.root
     global PROTECTED_TOKEN_PATTERN
     PROTECTED_TOKEN_PATTERN = protected_token_pattern(root)
+
+    if args.clean_invariants:
+        print(f"Invariant copies removed: {remove_invariant_copies(root, args.catalog or '*.resx')}")
+        return
+
+    if args.repair_technical:
+        catalogs = read_catalogs(root / "en-US", args.catalog or "*.resx")
+        for culture in ([args.culture] if args.culture else LANGUAGE_CODES):
+            changes = 0
+            for catalog, sources in catalogs.items():
+                path = root / culture / catalog
+                if not path.exists():
+                    continue
+                updates: dict[str, str] = {}
+                for key, current in read_entries(path).items():
+                    if key not in sources:
+                        continue
+                    corrected = normalize_technical_translation(sources[key], current, culture)
+                    if corrected != current:
+                        updates[key] = corrected
+                        changes += 1
+                replace_existing_values(path, updates)
+            print(f"{culture}: technical translations corrected={changes}", flush=True)
+        return
 
     if args.audit:
         audit_resources(root)
@@ -616,6 +843,7 @@ def main() -> None:
                 installed_package.tokenizer,
                 translator,
                 force_context=True,
+                culture=culture,
             )
             for (target_path, key, _), value in zip(pending, translated_values):
                 insert(target_path, key, value, replace_existing=True)
@@ -671,7 +899,7 @@ def main() -> None:
                         pending.append((target_path, key, english))
 
             translated_values = translate_entries(
-                [(key, english) for _, key, english in pending], tokenizer, translator
+                [(key, english) for _, key, english in pending], tokenizer, translator, culture=culture
             )
             updates_by_path: dict[Path, list[tuple[str, str]]] = {}
             for (target_path, key, _), value in zip(pending, translated_values):
@@ -695,8 +923,12 @@ def main() -> None:
     entries = [(args.key, args.english), *[tuple(entry) for entry in args.entry]]
     for key, english in entries:
         insert(root / "00-Base" / args.resource, key, english, args.replace)
-        insert(root / "en-US" / args.resource, key, english, args.replace)
-    translatable_entries = entries
+        if not is_invariant_entry(key, english):
+            insert(root / "en-US" / args.resource, key, english, args.replace)
+    remove_invariant_copies(root, args.resource)
+    translatable_entries = [(key, value) for key, value in entries if not is_invariant_entry(key, value)]
+    if not translatable_entries:
+        return
     english_entries = read_entries(root / "en-US" / args.resource)
     packages = {(item.from_code, item.to_code): item
         for item in package.get_installed_packages() if item.type == "translate"}
@@ -707,7 +939,7 @@ def main() -> None:
         translator = ctranslate2.Translator(str(installed_package.package_path / "model"))
         tokenizer = installed_package.tokenizer
         translated_values = translate_entries(
-            translatable_entries, tokenizer, translator
+            translatable_entries, tokenizer, translator, culture=culture
         )
         for (key, _), value in zip(translatable_entries, translated_values):
             insert(root / culture / args.resource, key, value, args.replace)

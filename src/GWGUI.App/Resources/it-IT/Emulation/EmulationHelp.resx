@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Imposta il volume di riproduzione delle tracce audio lette dall'unità compatta emulata.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Impostare la velocità di movimento del mouse</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Regola il modo in cui il movimento del mouse ospite viene convertito in movimento riportato alla macchina emulata.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Scegliere la cartella per le immagini hard-disk</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Imposta la cartella inizialmente aperta quando si seleziona un'immagine hard-disk. La cartella stessa non è montata come un disco.</value></data>
 </root>

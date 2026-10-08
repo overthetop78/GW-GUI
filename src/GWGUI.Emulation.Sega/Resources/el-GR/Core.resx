@@ -4,8 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.flycast.Description"><value>Προσομοιάζει συστήματα Sega Dreamcast.</value></data>
   <data name="Emulation.Emulator.GenesisPlusGX.Description"><value>Εξομοιάζει τα συστήματα SG-1000, Mark III, Master System, Game Gear, Mega Drive και Mega-CD.</value></data>
-  <data name="Emulation.Emulator.yabause.Description"><value>Εξομοιώνει τα συστήματα Sega Saturn.</value></data>
-  <data name="Emulation.Emulator.picodrive.Description"><value>Προσομοιάζει τα συστήματα PicoDrive Sega.</value></data>
 </root>

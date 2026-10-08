@@ -24,7 +24,8 @@ public sealed record Model(
     bool SupportsSegaCardSlot = false,
     bool SupportsThreeDGlasses = false,
     string? CpuFrequency = null,
-    bool SupportsRamConfiguration = false)
+    bool SupportsRamConfiguration = false,
+    int? RamBytes = null)
 {
     public IReadOnlyList<string> Processors => CpuModels ?? [];
 }

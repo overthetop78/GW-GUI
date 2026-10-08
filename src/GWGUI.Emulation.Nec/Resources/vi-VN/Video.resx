@@ -18,7 +18,7 @@
   <data name="Emulation.Nec.Video.InitialScanline"><value>Trục quét nhìn thấy đầu tiên</value></data>
   <data name="Emulation.Nec.Video.LastScanline"><value>Trục quét hiển thị cuối cùng</value></data>
   <data name="Emulation.Nec.Video.FrameSkip"><value>Bỏ qua khung</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Tắt</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Tự động</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Thủ công</value></data>
   <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Ngưỡng bỏ qua khung</value></data>

@@ -26,7 +26,7 @@
   <data name="Emulation.Emulator.beetle_sgx.Description"><value>Emulates PC Engine SuperGrafx games, HuCards and CD-ROM2 media.</value></data>
   <data name="Emulation.Emulator.geargrafx.Description"><value>المواد PC Engine, SuperGrafx و NEC LaserActive أنظمة.</value></data>
   <data name="Emulation.Nec.Cpu.Region"><value>منطقة كونسول</value></data>
-  <data name="Emulation.Nec.Cpu.Region.Auto"><value>Automatic</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>تلقائي</value></data>
   <data name="Emulation.Nec.Cpu.Region.Japan"><value>اليابان</value></data>
   <data name="Emulation.Nec.Cpu.Region.Usa"><value>الولايات المتحدة</value></data>
 </root>

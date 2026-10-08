@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>Se establece el volumen de reproducción de pistas de audio leído en la unidad compact-disc emulado.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>Establecer velocidad de movimiento del ratón</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>Ajusta cómo el movimiento del ratón anfitrión se convierte en movimiento reportado a la máquina emulada.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>Elija la carpeta para imágenes de disco duro</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>Establece la carpeta inicialmente abierta al seleccionar una imagen de disco duro. La carpeta en sí no se monta como un disco.</value></data>
 </root>

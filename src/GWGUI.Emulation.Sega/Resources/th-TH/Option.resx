@@ -7,7 +7,7 @@
   <data name="Emulation.Sega.MasterSystem.Variant"><value>Master System รุ่น</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses"><value>กระจก 3 มิติ</value></data>
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>ปิดใช้งาน</value></data>
+  <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Mega Drive รุ่น</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>ขอบเขต</value></data>
   <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>อัตโนมัติ</value></data>
@@ -17,5 +17,5 @@
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>เปิดใช้งาน Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>เปิดใช้งาน 32X</value></data>
   <data name="Emulation.Sega.MegaDrive.32X.Enabled"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>ปิดใช้งาน</value></data>
+  <data name="Emulation.Sega.MegaDrive.32X.Disabled"><value>ปิดการใช้งาน</value></data>
 </root>

@@ -26,7 +26,7 @@
   <data name="Emulation.Emulator.beetle_sgx.Description"><value>מפתחת: PC Engine SuperGrafx Games, HuCards ו- CD-ROM2 Media.</value></data>
   <data name="Emulation.Emulator.geargrafx.Description"><value>PC Engine מערכות SuperGrafx וNEC LaserActive.</value></data>
   <data name="Emulation.Nec.Cpu.Region"><value>אזור הקונסולה</value></data>
-  <data name="Emulation.Nec.Cpu.Region.Auto"><value>אוטומטי</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>אוֹטוֹמָטִי</value></data>
   <data name="Emulation.Nec.Cpu.Region.Japan"><value>יפן יפן</value></data>
   <data name="Emulation.Nec.Cpu.Region.Usa"><value>ארצות הברית</value></data>
 </root>

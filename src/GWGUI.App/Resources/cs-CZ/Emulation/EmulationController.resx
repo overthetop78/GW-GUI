@@ -29,7 +29,7 @@
   <data name="Emulation.Controller.Action.Fire2"><value>Tlačítko střelby 2</value></data>
   <data name="Emulation.Controller.AnalogJoystick"><value>Analogový joystick</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automatický</value></data>
-  <data name="Emulation.Controller.None"><value>Žádná</value></data>
+  <data name="Emulation.Controller.None"><value>Žádné</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Přepnout joystick / myš</value></data>
   <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput se nepodařilo inicializovat. Nainstalujte nebo opravte přiložené běhové prostředí GameInput.</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (left- hand)</value></data>

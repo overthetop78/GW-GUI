@@ -19,8 +19,8 @@
   <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Тип монитора</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Обрамление изображения</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Скоростной взлом</value></data>
-  <data name="Emulation.CrocoDS.Value.Auto"><value>автоматический</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Автоматический</value></data>
   <data name="Emulation.CrocoDS.Value.Overscan"><value>Оверскэн</value></data>
-  <data name="Emulation.CrocoDS.Value.yes"><value>Включенный</value></data>
-  <data name="Emulation.CrocoDS.Value.no"><value>инвалид</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Включено</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Отключено</value></data>
 </root>

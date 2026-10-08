@@ -156,4 +156,6 @@
   <data name="Emulation.Help.Audio.CdVolume.Detailed"><value>הגדר את נפח השמע של מסלולים לקרוא מן כונן קומפקטי קומפקטי disc.</value></data>
   <data name="Emulation.Help.Mouse.Speed.Short"><value>מהירות תנועת העכבר</value></data>
   <data name="Emulation.Help.Mouse.Speed.Detailed"><value>מכוונן כיצד תנועת העכבר המארחת מומרת לתנועה שדווחה למכונה החיקויית.</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Short"><value>בחר את התיקיה עבור תמונות קשות</value></data>
+  <data name="Emulation.Help.Storage.HardDiskImageDirectory.Detailed"><value>הגדר את התיקיה נפתחת בתחילה בעת בחירת תמונה קשה. התיקיה עצמה אינה מורכבת כדיסק.</value></data>
 </root>

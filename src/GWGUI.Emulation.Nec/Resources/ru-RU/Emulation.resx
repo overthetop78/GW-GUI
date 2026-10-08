@@ -26,7 +26,7 @@
   <data name="Emulation.Emulator.beetle_sgx.Description"><value>Имитирует игры PC Engine SuperGrafx, HuCards и CD-ROM2.</value></data>
   <data name="Emulation.Emulator.geargrafx.Description"><value>Имитирует системы PC Engine, SuperGrafx и NEC LaserActive.</value></data>
   <data name="Emulation.Nec.Cpu.Region"><value>Консольная область</value></data>
-  <data name="Emulation.Nec.Cpu.Region.Auto"><value>автоматический</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>Автоматический</value></data>
   <data name="Emulation.Nec.Cpu.Region.Japan"><value>Япония</value></data>
   <data name="Emulation.Nec.Cpu.Region.Usa"><value>Соединенные Штаты Америки</value></data>
 </root>

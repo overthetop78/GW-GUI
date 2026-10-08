@@ -44,6 +44,7 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
             ?? (MachineConfiguration)CreateConfiguration(machineId);
         var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
         {
+            EmulationMachineTab.Rom => false,
             EmulationMachineTab.Keyboard => model.HasKeyboard,
             EmulationMachineTab.Mouse => model.MouseButtonCount > 0,
             EmulationMachineTab.Storage => model.MaximumFloppyDriveCount > 0

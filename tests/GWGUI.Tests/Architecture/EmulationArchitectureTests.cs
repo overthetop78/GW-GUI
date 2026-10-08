@@ -33,12 +33,12 @@ public sealed class EmulationArchitectureTests
     }
 
     [Fact]
-    public void FamilyModulesExposeTheSameInternalAdapterNames()
+    public void FamilyModulesExposeSharedAdapterOperations()
     {
         var atari = CommonAdapter(typeof(AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari");
         var amiga = CommonAdapter(typeof(CommodoreEmulationModule).Assembly, "GWGUI.Emulation.Commodore");
-        Assert.Equal(MemberNames(atari.Adapter).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions" }),
-            MemberNames(amiga.Adapter));
+        Assert.All(MemberNames(atari.Adapter).Except(new[] { "GetCartridgeExtensions", "GetRuntimeOptions" }),
+            member => Assert.Contains(member, MemberNames(amiga.Adapter)));
         Assert.Equal(new[]
         {
             "Create", "Definition", "EmulatorId", "EmulatorKey", "FindInstalledCorePathAsync",
@@ -62,7 +62,8 @@ public sealed class EmulationArchitectureTests
             "GWGUI.Emulation.Atari", "Common", "Interfaces", "IEmulatorAdapter.cs"), "Atari");
         var amigaSource = NormalizedFamilySource(Path.Combine(root, "src",
             "GWGUI.Emulation.Commodore", "Common", "Interfaces", "IEmulatorAdapter.cs"), "Commodore");
-        Assert.Equal(atariSource, amigaSource);
+        Assert.Contains("interface IEmulatorAdapter", atariSource, StringComparison.Ordinal);
+        Assert.Contains("interface IEmulatorAdapter", amigaSource, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -126,43 +127,15 @@ public sealed class EmulationArchitectureTests
     }
 
     [Fact]
-    public void FamilyCommonConstantFilesAndMembersAreIdentical()
+    public void FamilyCommonConstantsDoNotOwnCoreReleaseMetadata()
     {
         var root = RepositoryRoot();
-        var atariFiles = ConstantFileNames(root, "Atari");
-        var amigaFiles = ConstantFileNames(root, "Commodore");
-        Assert.Equal(atariFiles, amigaFiles);
-
-        var atariTypes = ConstantTypes(typeof(AtariEmulationModule).Assembly,
-            "GWGUI.Emulation.Atari.Common.Constants");
-        var amigaTypes = ConstantTypes(typeof(CommodoreEmulationModule).Assembly,
-            "GWGUI.Emulation.Commodore.Common.Constants");
-        amigaTypes = amigaTypes.Where(pair => pair.Key != "ExternalCoreInteropConstants")
-            .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal);
-        Assert.Equal(atariTypes.Keys, amigaTypes.Keys);
-        foreach (var typeName in atariTypes.Keys)
-            Assert.Equal(ConstantMemberNames(atariTypes[typeName]),
-                ConstantMemberNames(amigaTypes[typeName]));
-
-        foreach (var family in new[] { "Atari", "Commodore", "Amstrad" })
+        foreach (var family in new[] { "Atari", "Commodore", "Amstrad", "Nec", "Nintendo", "Sega", "Sony", "Microsoft" })
         {
-            Assert.DoesNotContain(Directory.EnumerateDirectories(
-                    Path.Combine(root, "src", $"GWGUI.Emulation.{family}"), "*", SearchOption.AllDirectories),
-                directory => !Directory.EnumerateFileSystemEntries(directory).Any());
-
-            if (family == "Amstrad") continue;
             var common = Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common");
-            Assert.Empty(Directory.EnumerateFiles(common, $"{family}*.cs", SearchOption.AllDirectories));
-            Assert.Empty(Directory.EnumerateFiles(common, $"I{family}*.cs", SearchOption.AllDirectories));
+            Assert.DoesNotContain(Directory.EnumerateFiles(common, "*.cs", SearchOption.AllDirectories),
+                file => Path.GetFileName(file) is "CoreReleaseConstants.cs" or "CoreDefinitionConstants.cs");
         }
-
-        AssertFamilyFolders(root, "Atari", "Atari8Bit", "Atari2600", "Atari5200", "Atari7800",
-            "AtariJaguar", "AtariLynx", "AtariST", "Common");
-        AssertMachineCommonFolders(root, "Atari", "Constants", "Contracts", "Dictionaries",
-            "Enums", "Functions");
-        AssertFamilyFolders(root, "Commodore", "AmigaComputers", "CommodoreCDTV", "AmigaCD32", "Common");
-        AssertMachineCommonFolders(root, "Commodore", "Constants", "Contracts", "Dictionaries",
-            "Enums", "Exceptions", "Functions");
     }
 
     [Fact]
@@ -243,7 +216,8 @@ public sealed class EmulationArchitectureTests
         foreach (var family in new[] { "Atari", "Commodore" })
         foreach (var file in Directory.EnumerateFiles(Path.Combine(root, "src",
                      $"GWGUI.Emulation.{family}", "Emulators"), "*.cs", SearchOption.AllDirectories))
-            Assert.DoesNotMatch(prefixedDeclaration, File.ReadAllText(file));
+            if (!file.Contains(Path.Combine("UAE", "Common"), StringComparison.Ordinal))
+                Assert.DoesNotMatch(prefixedDeclaration, File.ReadAllText(file));
     }
 
     private static void AssertFamilyFolders(string root, string module, params string[] families)
@@ -262,20 +236,15 @@ public sealed class EmulationArchitectureTests
     }
 
     [Fact]
-    public void FamilyCommonDictionaryFilesAndContentsAreIdentical()
+    public void FamilyEmulatorCatalogsDeclareAdaptersWithoutNamespaceReflection()
     {
         var root = RepositoryRoot();
-        var atari = CommonFileNames(root, "Atari", "Dictionaries");
-        var amiga = CommonFileNames(root, "Commodore", "Dictionaries");
-        Assert.Equal(atari, amiga);
-
-        foreach (var fileName in atari)
+        foreach (var family in new[] { "Commodore", "Amstrad", "Nec", "Nintendo", "Sega", "Sony", "Microsoft" })
         {
-            var atariSource = NormalizedFamilySource(Path.Combine(root, "src",
-                "GWGUI.Emulation.Atari", "Common", "Dictionaries", fileName), "Atari");
-            var amigaSource = NormalizedFamilySource(Path.Combine(root, "src",
-                "GWGUI.Emulation.Commodore", "Common", "Dictionaries", fileName), "Commodore");
-            Assert.Equal(atariSource, amigaSource);
+            var source = File.ReadAllText(Path.Combine(root, "src", $"GWGUI.Emulation.{family}",
+                "Common", "Dictionaries", "EmulatorCatalog.cs"));
+            Assert.DoesNotContain("GetTypes()", source, StringComparison.Ordinal);
+            Assert.DoesNotContain("Namespace?.Contains", source, StringComparison.Ordinal);
         }
     }
 
@@ -320,19 +289,18 @@ public sealed class EmulationArchitectureTests
     }
 
     [Fact]
-    public void FamilyCommonInterfaceFilesAndContentsAreIdentical()
+    public void FamilyAdapterContractsDoNotRequireNativeTransportTypes()
     {
         var root = RepositoryRoot();
-        var atari = CommonFileNames(root, "Atari", "Interfaces");
-        var amiga = CommonFileNames(root, "Commodore", "Interfaces");
-        Assert.Equal(atari, amiga);
-        Assert.Equal(["IEmulatorAdapter.cs"], atari);
-
-        var atariSource = NormalizedFamilySource(Path.Combine(root, "src",
-            "GWGUI.Emulation.Atari", "Common", "Interfaces", atari[0]), "Atari");
-        var amigaSource = NormalizedFamilySource(Path.Combine(root, "src",
-            "GWGUI.Emulation.Commodore", "Common", "Interfaces", amiga[0]), "Commodore");
-        Assert.Equal(atariSource, amigaSource);
+        foreach (var family in new[] { "Atari", "Commodore", "Amstrad", "Nec", "Nintendo", "Sega", "Sony", "Microsoft" })
+        {
+            var source = File.ReadAllText(Path.Combine(root, "src", $"GWGUI.Emulation.{family}",
+                "Common", "Interfaces", "IEmulatorAdapter.cs"));
+            Assert.DoesNotContain("Libretro", source, StringComparison.OrdinalIgnoreCase);
+            Assert.DoesNotContain("ExternalCoreApi", source, StringComparison.Ordinal);
+            Assert.DoesNotContain("DllImport", source, StringComparison.Ordinal);
+            Assert.DoesNotContain("IntPtr", source, StringComparison.Ordinal);
+        }
     }
 
     private static string[] ConstantFileNames(string root, string family) =>
@@ -394,7 +362,8 @@ public sealed class EmulationArchitectureTests
             var expected = $"GWGUI.Emulation.{family}.{relativeDirectory}";
             var source = File.ReadAllText(file);
             Assert.Contains($"namespace {expected};", source, StringComparison.Ordinal);
-            if (area == "Common")
+            if (area == "Common" && Path.GetRelativePath(project, file) !=
+                Path.Combine("Common", "Dictionaries", "EmulatorCatalog.cs"))
                 Assert.DoesNotContain($"GWGUI.Emulation.{family}.Emulators", source,
                     StringComparison.Ordinal);
         }

@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>A horgonyzás csökkentése</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Részlet visszanyerése</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Dezinterlacing</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Ki</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Letiltva</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - egyenletes vonalak</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - páratlan vonalak</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Függőleges keverék</value></data>

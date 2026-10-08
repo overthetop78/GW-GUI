@@ -29,7 +29,7 @@
   <data name="Emulation.Controller.Action.Fire2"><value>زر إطلاق 2</value></data>
   <data name="Emulation.Controller.AnalogJoystick"><value>عصا تحكم تناظرية</value></data>
   <data name="Emulation.Controller.Automatic"><value>تلقائي</value></data>
-  <data name="Emulation.Controller.None"><value>لا شيء</value></data>
+  <data name="Emulation.Controller.None"><value>بلا</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>بدل الفرح/الموت</value></data>
   <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>تعذرت تهيئة GameInput. ثبّت بيئة تشغيل GameInput المضمّنة أو أصلحها.</value></data>
   <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand"><value>Konix Speedking (Lft-hand)</value></data>

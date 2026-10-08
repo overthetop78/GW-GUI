@@ -10,9 +10,9 @@
   <data name="Emulation.Sega.MasterSystem.ThreeDGlasses.Disabled"><value>Wyłączone</value></data>
   <data name="Emulation.Sega.MegaDrive.Model"><value>Model Mega Drive</value></data>
   <data name="Emulation.Sega.MegaDrive.Region"><value>Region</value></data>
-  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>Automatyczne</value></data>
+  <data name="Emulation.Sega.MegaDrive.Region.Automatic"><value>Automatyczny</value></data>
   <data name="Emulation.Sega.MegaDrive.VideoStandard"><value>Standard wideo</value></data>
-  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>Automatyczne</value></data>
+  <data name="Emulation.Sega.MegaDrive.VideoStandard.Automatic"><value>Automatyczny</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd"><value>Model Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.MegaCd.Enabled"><value>Włącz Mega-CD</value></data>
   <data name="Emulation.Sega.MegaDrive.32X"><value>Włącz 32X</value></data>

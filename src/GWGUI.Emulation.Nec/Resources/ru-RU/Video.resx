@@ -19,7 +19,7 @@
   <data name="Emulation.Nec.Video.LastScanline"><value>Последнее видимое сканирование</value></data>
   <data name="Emulation.Nec.Video.FrameSkip"><value>Пропуск рамы</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Отключено</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>автоматический</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Автоматический</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Ручной</value></data>
   <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Порог пропуска рамы</value></data>
   <data name="Emulation.Nec.Video.Overscan"><value>Показать границы изображения</value></data>

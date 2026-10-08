@@ -19,8 +19,8 @@
   <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Monitor tipi</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Image framing</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Hız hack</value></data>
-  <data name="Emulation.CrocoDS.Value.Auto"><value>Otomatik Otomatik Otomatik</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Otomatik</value></data>
   <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan</value></data>
-  <data name="Emulation.CrocoDS.Value.yes"><value>Enabled</value></data>
-  <data name="Emulation.CrocoDS.Value.no"><value>Engelliler</value></data>
+  <data name="Emulation.CrocoDS.Value.yes"><value>Etkin</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Devre dışı</value></data>
 </root>

@@ -12,7 +12,8 @@ public sealed record MachineConfiguration(
     IReadOnlyList<MediaConfiguration>? Media = null,
     AudioConfiguration? Audio = null,
     string? FirmwarePath = null,
-    IReadOnlyDictionary<string, string>? FirmwarePaths = null)
+    IReadOnlyDictionary<string, string>? FirmwarePaths = null,
+    string? HardDiskDirectory = null)
     : GWGUI.Emulation.Interfaces.IEmulationConfiguration
 {
     public string ModuleId => MachineConfigurationConstants.ModuleId;

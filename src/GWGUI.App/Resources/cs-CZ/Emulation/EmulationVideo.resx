@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Redukce při vykládce</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Obnovení detailů</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Deinterlacing</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Vypnout</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Zakázáno</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - i řádky</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - liché řádky</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Vertikální směs</value></data>
@@ -242,7 +242,7 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Rozklad spoje</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Barevný standard</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Standardní intenzita účinku</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Automatické</value></data>
+  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Automatický</value></data>
   <data name="Emulation.Video.Signal.Connection.None"><value>Žádné</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Horizontální zakřivení</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Vertikální zakřivení</value></data>

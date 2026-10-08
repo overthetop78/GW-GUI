@@ -19,7 +19,7 @@
   <data name="Emulation.CrocoDS.Option.crocods_greenmonitor"><value>Typ monitora</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_resize"><value>Obrazowanie</value></data>
   <data name="Emulation.CrocoDS.Option.crocods_hack"><value>Hack Speed</value></data>
-  <data name="Emulation.CrocoDS.Value.Auto"><value>Automatyczne</value></data>
+  <data name="Emulation.CrocoDS.Value.Auto"><value>Automatyczny</value></data>
   <data name="Emulation.CrocoDS.Value.Overscan"><value>Overscan Przewodniczący</value></data>
   <data name="Emulation.CrocoDS.Value.yes"><value>Włączone</value></data>
   <data name="Emulation.CrocoDS.Value.no"><value>Wyłączone</value></data>

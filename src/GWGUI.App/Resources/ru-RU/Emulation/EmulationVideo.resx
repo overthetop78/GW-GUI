@@ -44,7 +44,7 @@
   <data name="Emulation.Video.Crt.Color.White"><value>монохромный белый</value></data>
   <data name="Emulation.Video.Crt.Color.Gray"><value>монохромный серый</value></data>
   <data name="Emulation.Video.Crt.Color.Custom"><value>Пользовательский монохром</value></data>
-  <data name="Emulation.Video.Crt.Mask.None"><value>Никто</value></data>
+  <data name="Emulation.Video.Crt.Mask.None"><value>Нет</value></data>
   <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>решетка с диафрагмой</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>Теневая маска</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>Слот-маска</value></data>
@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Сокращение бандажей</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Подробное восстановление</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>деинтерлейшн</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Оставить</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Отключено</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Боб, даже линии</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Боб - странные линии</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Вертикальная смесь</value></data>
@@ -242,8 +242,8 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Деградация соединений</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Цветовой стандарт</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Стандартная интенсивность эффекта</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>автоматический</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>Ни одного</value></data>
+  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Автоматический</value></data>
+  <data name="Emulation.Video.Signal.Connection.None"><value>Нет</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Горизонтальная кривизна</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Вертикальная кривизна</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>трапезоид</value></data>

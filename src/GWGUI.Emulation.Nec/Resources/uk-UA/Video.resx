@@ -19,7 +19,7 @@
   <data name="Emulation.Nec.Video.LastScanline"><value>Остання видима скандина</value></data>
   <data name="Emulation.Nec.Video.FrameSkip"><value>Каркасні кальмари</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Disabled"><value>Вимкнено</value></data>
-  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Автоматика</value></data>
+  <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Автоматичний</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Посібник</value></data>
   <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Каркасний поріг</value></data>
   <data name="Emulation.Nec.Video.Overscan"><value>Показати краї зображення</value></data>

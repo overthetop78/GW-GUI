@@ -44,7 +44,7 @@
   <data name="Emulation.Video.Crt.Color.White"><value>Monokro beyaz</value></data>
   <data name="Emulation.Video.Crt.Color.Gray"><value>Monokro gri</value></data>
   <data name="Emulation.Video.Crt.Color.Custom"><value>Özel monokrom</value></data>
-  <data name="Emulation.Video.Crt.Mask.None"><value>Hiçbir şey yok</value></data>
+  <data name="Emulation.Video.Crt.Mask.None"><value>Yok</value></data>
   <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>Aperture ızgara</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>Gölge maskesi</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>Slot maskesi</value></data>
@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Banding azaltımı</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>kurtarma</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Deinterlacing</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Off Off Off Off Off</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Devre dışı</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - hatta çizgiler</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - garip çizgiler</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Dikey karışım</value></data>
@@ -242,8 +242,8 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Bağlantı bozulması</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Renk standart standart standart</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Standart etki yoğunluğu</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik Otomatik</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>Hiçbir şey yok</value></data>
+  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Otomatik</value></data>
+  <data name="Emulation.Video.Signal.Connection.None"><value>Yok</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Yatay curvature</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Dikey eğrilik</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>Tuzoid</value></data>

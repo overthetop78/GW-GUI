@@ -125,7 +125,7 @@
   <data name="Emulation.Video.Parameter.Debanding"><value>Reducción de la banda</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Recuperación de datos</value></data>
   <data name="Emulation.Video.Parameter.Deinterlacing"><value>Deinterlacing</value></data>
-  <data name="Emulation.Video.Deinterlacing.Off"><value>Fuera.</value></data>
+  <data name="Emulation.Video.Deinterlacing.Off"><value>Desactivado</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - incluso líneas</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - líneas extrañas</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Combinación vertical</value></data>

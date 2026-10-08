@@ -22,5 +22,5 @@
   <data name="Emulation.CrocoDS.Value.Auto"><value>Automático</value></data>
   <data name="Emulation.CrocoDS.Value.Overscan"><value>Examiná-lo</value></data>
   <data name="Emulation.CrocoDS.Value.yes"><value>Activado</value></data>
-  <data name="Emulation.CrocoDS.Value.no"><value>Desabilitado</value></data>
+  <data name="Emulation.CrocoDS.Value.no"><value>Desactivado</value></data>
 </root>
