@@ -141,6 +141,7 @@ public sealed class ConsoleFamilyModuleTests
             NintendoModelConstants.VirtualBoy, NintendoModelConstants.Nintendo64,
             NintendoModelConstants.GameBoy, NintendoModelConstants.GameBoyColor,
             NintendoModelConstants.GameBoyAdvance, NintendoModelConstants.NintendoDs,
+            NintendoModelConstants.NintendoDsi, NintendoModelConstants.PokemonMini,
             NintendoModelConstants.Nintendo3Ds, NintendoModelConstants.GameCube,
             NintendoModelConstants.Wii, NintendoModelConstants.WiiU,
             NintendoModelConstants.Switch
@@ -174,7 +175,7 @@ public sealed class ConsoleFamilyModuleTests
             {
                 var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
                     module.CreateConfiguration(machineId));
-                Assert.Equal(definition.Id, configuration.EmulatorId);
+                Assert.Equal(NintendoEmulatorCatalog.DefaultFor(machineId), configuration.EmulatorId);
             }
         }
         finally
@@ -214,6 +215,8 @@ public sealed class ConsoleFamilyModuleTests
                 }
                 else if (model.Id is NintendoModelConstants.GameCube or NintendoModelConstants.Wii)
                     Assert.Equal([".cue", ".chd", ".iso", ".gcm"], optical);
+                else if (model.Id == NintendoModelConstants.WiiU)
+                    Assert.Contains(".rpx", optical!);
                 else
                     Assert.Null(optical);
                 if (model.SupportsCartridgeSlot)
@@ -266,8 +269,10 @@ public sealed class ConsoleFamilyModuleTests
             "Emulation.Nintendo.Help.Audio.FloppySound.Short",
             "Emulation.Nintendo.Help.Audio.FloppySound.Detailed"
         };
-        var baseEntries = ResxEntries(Path.Combine(resources, "00-Base", "Emulation.resx"));
-        var englishEntries = ResxEntries(Path.Combine(resources, "en-US", "Emulation.resx"));
+        var baseEntries = Directory.EnumerateFiles(Path.Combine(resources, "00-Base"), "*.resx")
+            .SelectMany(ResxEntries).ToDictionary(item => item.Key, item => item.Value);
+        var englishEntries = Directory.EnumerateFiles(Path.Combine(resources, "en-US"), "*.resx")
+            .SelectMany(ResxEntries).ToDictionary(item => item.Key, item => item.Value);
         Assert.DoesNotContain(baseEntries.Keys, key => obsolete.Contains(key));
         Assert.DoesNotContain(englishEntries.Keys, key => obsolete.Contains(key));
         Assert.Equal("System ROM", baseEntries["Emulation.Nintendo.Firmware.Integrated"]);
@@ -283,21 +288,28 @@ public sealed class ConsoleFamilyModuleTests
         Assert.DoesNotContain("Mesen", englishEntries["Emulation.Nintendo.Help.Firmware.Integrated.Detailed"],
             StringComparison.Ordinal);
         var forbiddenFamilyNames = new[] { "Caprice32", "Caprice 32", "Amstrad", "GenesisPlusGX", "Sega" };
-        Assert.DoesNotContain(baseEntries.Values, value => forbiddenFamilyNames.Any(name =>
-            value.Contains(name, StringComparison.OrdinalIgnoreCase)));
-        Assert.DoesNotContain(englishEntries.Values, value => forbiddenFamilyNames.Any(name =>
-            value.Contains(name, StringComparison.OrdinalIgnoreCase)));
+        const string namedGameBoyPaletteKey = "Emulation.Option.gambatte.gambatte_gb_palette_twb64_2.Value.TWB64 192 - SEGA Tokyo Blue";
+        bool HasForeignFamilyName(string value) => forbiddenFamilyNames.Any(name =>
+            System.Text.RegularExpressions.Regex.IsMatch(value,
+                @"\b" + System.Text.RegularExpressions.Regex.Escape(name) + @"\b",
+                System.Text.RegularExpressions.RegexOptions.IgnoreCase
+                    | System.Text.RegularExpressions.RegexOptions.CultureInvariant));
+        Assert.DoesNotContain(baseEntries, entry => entry.Key != namedGameBoyPaletteKey
+            && HasForeignFamilyName(entry.Value));
+        Assert.DoesNotContain(englishEntries, entry => entry.Key != namedGameBoyPaletteKey
+            && HasForeignFamilyName(entry.Value));
         foreach (var culture in Directory.EnumerateDirectories(resources)
                      .Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal)
                          && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
         {
-            var entries = ResxEntries(Path.Combine(culture, "Emulation.resx"));
+            var entries = Directory.EnumerateFiles(culture, "*.resx").SelectMany(ResxEntries)
+                .ToDictionary(item => item.Key, item => item.Value);
             Assert.DoesNotContain(entries.Keys, key => obsolete.Contains(key));
             Assert.DoesNotContain("Mesen", entries["Emulation.Nintendo.Firmware.Integrated"],
                 StringComparison.Ordinal);
             Assert.Equal(englishEntries.Keys.Order(StringComparer.Ordinal), entries.Keys.Order(StringComparer.Ordinal));
-            Assert.DoesNotContain(entries.Values, value => forbiddenFamilyNames.Any(name =>
-                value.Contains(name, StringComparison.OrdinalIgnoreCase)));
+            Assert.DoesNotContain(entries, entry => entry.Key != namedGameBoyPaletteKey
+                && HasForeignFamilyName(entry.Value));
         }
 
         static IReadOnlyDictionary<string, string> ResxEntries(string path)
@@ -474,33 +486,17 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
-    public void NintendoCoreOptionAdaptersForwardOnlyPersistedValues()
+    public void NintendoCoreOptionsPreservePersistedValuesAndFillDefaults()
     {
         var input = new GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration(
             "Nes", "mesen", new Dictionary<string, string>(StringComparer.Ordinal)
             {
                 ["core_option"] = "selected"
             });
-        var adapters = new Func<
-            GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration,
-            GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>[]
-        {
-            GWGUI.Emulation.Nintendo.Emulators.BeetleVb.Functions.BeetleVbOptionFunctions.ToNative,
-            GWGUI.Emulation.Nintendo.Emulators.Citra.Functions.CitraOptionFunctions.ToNative,
-            GWGUI.Emulation.Nintendo.Emulators.Dolphin.Functions.DolphinOptionFunctions.ToNative,
-            GWGUI.Emulation.Nintendo.Emulators.Gambatte.Functions.GambatteOptionFunctions.ToNative,
-            GWGUI.Emulation.Nintendo.Emulators.GameWatch.Functions.GameWatchOptionFunctions.ToNative,
-            GWGUI.Emulation.Nintendo.Emulators.MelonDs.Functions.MelonDsOptionFunctions.ToNative,
-            GWGUI.Emulation.Nintendo.Emulators.Mesen.Functions.MesenOptionFunctions.ToNative,
-            GWGUI.Emulation.Nintendo.Emulators.Mgba.Functions.MgbaOptionFunctions.ToNative,
-            GWGUI.Emulation.Nintendo.Emulators.Mupen64PlusNext.Functions.Mupen64PlusNextOptionFunctions.ToNative,
-            GWGUI.Emulation.Nintendo.Emulators.Snes9x.Functions.Snes9xOptionFunctions.ToNative
-        };
-        foreach (var adapter in adapters)
-        {
-            var native = adapter(input);
-            Assert.Equal(input.Options, native.Options);
-        }
+        var configured = GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions.CoreSettingsFunctions.Configure(input);
+        Assert.Equal("selected", configured.Options!["core_option"]);
+        foreach (var option in GWGUI.Emulation.Nintendo.Emulators.Mesen.Constants.OptionConstants.All)
+            Assert.Equal(option.DefaultValue, configured.Options[option.Key]);
     }
 
     [Fact]

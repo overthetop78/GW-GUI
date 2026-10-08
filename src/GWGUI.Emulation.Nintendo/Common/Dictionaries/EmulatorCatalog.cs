@@ -2,22 +2,85 @@ namespace GWGUI.Emulation.Nintendo.Common.Dictionaries;
 
 public static class EmulatorCatalog
 {
-    internal static IReadOnlyList<EmulationEmulatorDefinition> All =>
-        CreateAdapters().Select(adapter => adapter.Definition)
-            .OrderBy(definition => definition.Id, StringComparer.Ordinal).ToArray();
-
+    internal static IReadOnlyList<EmulationEmulatorDefinition> All => CreateAdapters().Select(adapter => adapter.Definition).ToArray();
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() =>
-        typeof(EmulatorCatalog).Assembly.GetTypes()
-            .Where(type => !type.IsAbstract && typeof(IEmulatorAdapter).IsAssignableFrom(type)
-                && type.Namespace?.Contains(".Emulators.", StringComparison.Ordinal) == true)
-            .Select(type => (IEmulatorAdapter)Activator.CreateInstance(type, nonPublic: true)!)
-            .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal)
-            .ToArray();
-
-    public static string DefaultFor(string machineId) => GetAll(machineId).FirstOrDefault()?.Id
-        ?? throw new NotSupportedException($"No Nintendo emulator adapter is installed for '{machineId}'.");
-
+    [
+        new Emulators.Azahar.Factories.MachineFactory(),
+        new Emulators.Citra.Factories.CitraMachineFactory(),
+        new Emulators.Citra2018.Factories.MachineFactory(),
+        new Emulators.Panda3ds.Factories.MachineFactory(),
+        new Emulators.DeSmuME.Factories.MachineFactory(),
+        new Emulators.DeSmuME2015.Factories.MachineFactory(),
+        new Emulators.MelonDs.Factories.MelonDsMachineFactory(),
+        new Emulators.MelonDsDs.Factories.MachineFactory(),
+        new Emulators.Noods.Factories.MachineFactory(),
+        new Emulators.Skyemu.Factories.MachineFactory(),
+        new Emulators.FceUmm.Factories.MachineFactory(),
+        new Emulators.Fixnes.Factories.MachineFactory(),
+        new Emulators.Mesen.Factories.MesenMachineFactory(),
+        new Emulators.Mesen2.Factories.MachineFactory(),
+        new Emulators.Nestopia.Factories.MachineFactory(),
+        new Emulators.Quicknes.Factories.MachineFactory(),
+        new Emulators.Rustynes.Factories.MachineFactory(),
+        new Emulators.DoubleCherryGB.Factories.MachineFactory(),
+        new Emulators.Fixgb.Factories.MachineFactory(),
+        new Emulators.Gambatte.Factories.GambatteMachineFactory(),
+        new Emulators.Gearboy.Factories.MachineFactory(),
+        new Emulators.Irogb.Factories.MachineFactory(),
+        new Emulators.MesenS.Factories.MachineFactory(),
+        new Emulators.NSide.Factories.MachineFactory(),
+        new Emulators.Sameboy.Factories.MachineFactory(),
+        new Emulators.TgbDual.Factories.MachineFactory(),
+        new Emulators.BeetleGba.Factories.MachineFactory(),
+        new Emulators.Gpsp.Factories.MachineFactory(),
+        new Emulators.Meteor.Factories.MachineFactory(),
+        new Emulators.Mgba.Factories.MgbaMachineFactory(),
+        new Emulators.VbaM.Factories.MachineFactory(),
+        new Emulators.VbaNext.Factories.MachineFactory(),
+        new Emulators.GameWatch.Factories.GameWatchMachineFactory(),
+        new Emulators.Dolphin.Factories.DolphinMachineFactory(),
+        new Emulators.Mupen64PlusNext.Factories.Mupen64PlusNextMachineFactory(),
+        new Emulators.ParallelN64.Factories.MachineFactory(),
+        new Emulators.PokeMini.Factories.MachineFactory(),
+        new Emulators.BeetleSnes.Factories.MachineFactory(),
+        new Emulators.Bsnes.Factories.MachineFactory(),
+        new Emulators.BsnesJg.Factories.MachineFactory(),
+        new Emulators.BsnesHd.Factories.MachineFactory(),
+        new Emulators.Bsnes2014Accuracy.Factories.MachineFactory(),
+        new Emulators.Bsnes2014Balanced.Factories.MachineFactory(),
+        new Emulators.Bsnes2014Performance.Factories.MachineFactory(),
+        new Emulators.BsnesMercuryAccuracy.Factories.MachineFactory(),
+        new Emulators.BsnesMercuryBalanced.Factories.MachineFactory(),
+        new Emulators.BsnesMercuryPerformance.Factories.MachineFactory(),
+        new Emulators.Snes9x.Factories.Snes9xMachineFactory(),
+        new Emulators.Snes9x2002.Factories.MachineFactory(),
+        new Emulators.Snes9x2005.Factories.MachineFactory(),
+        new Emulators.Snes9x2005Plus.Factories.MachineFactory(),
+        new Emulators.Snes9x2010.Factories.MachineFactory(),
+        new Emulators.Supafaust.Factories.MachineFactory(),
+        new Emulators.BeetleVb.Factories.BeetleVbMachineFactory(),
+        new Emulators.Cemu.Factories.MachineFactory()
+    ];
+    public static string DefaultFor(string machineId) => machineId switch
+    {
+        ModelConstants.GameWatch => Emulators.GameWatch.Constants.CoreConstants.Id,
+        ModelConstants.Nes => Emulators.Mesen.Constants.CoreConstants.Id,
+        ModelConstants.FamicomDisk => Emulators.Mesen.Constants.CoreConstants.Id,
+        ModelConstants.Snes => Emulators.Snes9x.Constants.CoreConstants.Id,
+        ModelConstants.VirtualBoy => Emulators.BeetleVb.Constants.CoreConstants.Id,
+        ModelConstants.Nintendo64 => Emulators.Mupen64PlusNext.Constants.CoreConstants.Id,
+        ModelConstants.GameBoy => Emulators.Gambatte.Constants.CoreConstants.Id,
+        ModelConstants.GameBoyColor => Emulators.Gambatte.Constants.CoreConstants.Id,
+        ModelConstants.GameBoyAdvance => Emulators.Mgba.Constants.CoreConstants.Id,
+        ModelConstants.NintendoDs => Emulators.MelonDs.Constants.CoreConstants.Id,
+        ModelConstants.NintendoDsi => Emulators.MelonDsDs.Constants.CoreConstants.Id,
+        ModelConstants.Nintendo3Ds => Emulators.Citra.Constants.CoreConstants.Id,
+        ModelConstants.GameCube => Emulators.Dolphin.Constants.CoreConstants.Id,
+        ModelConstants.Wii => Emulators.Dolphin.Constants.CoreConstants.Id,
+        ModelConstants.WiiU => Emulators.Cemu.Constants.CoreConstants.Id,
+        ModelConstants.PokemonMini => Emulators.PokeMini.Constants.CoreConstants.Id,
+        _ => throw new NotSupportedException(machineId)
+    };
     public static IReadOnlyList<EmulationEmulatorDefinition> GetAll(string machineId) =>
         All.Where(definition => definition.MachineIds.Contains(machineId)).ToArray();
 }
-

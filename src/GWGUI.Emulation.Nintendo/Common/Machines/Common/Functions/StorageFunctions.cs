@@ -4,7 +4,7 @@ namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Functions;
 
 internal static class StorageSettingsFunctions
 {
-    internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
+    internal static EmulationStorageSettings Describe(MachineConfiguration configuration, IEmulatorAdapter? adapter = null)
     {
         var model = ModelCatalog.Get(configuration.Model);
         var options = configuration.Options ?? new Dictionary<string, string>();
@@ -35,7 +35,7 @@ internal static class StorageSettingsFunctions
         if (model.SupportsCompactDiscDrive)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
                 model.Id == ModelConstants.WiiU
-                    ? StorageSettingsFunctionsConstants.WiiUExtensions
+                    ? adapter?.SupportedContentExtensions ?? StorageSettingsFunctionsConstants.WiiUExtensions
                     : StorageSettingsFunctionsConstants.OpticalExtensions,
                 RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CompactDiscDriveLabel,
@@ -109,6 +109,8 @@ internal static class StorageSettingsFunctions
         ModelConstants.GameBoyColor => StorageSettingsFunctionsConstants.GameBoyColorExtensions,
         ModelConstants.GameBoyAdvance => StorageSettingsFunctionsConstants.GameBoyAdvanceExtensions,
         ModelConstants.NintendoDs => StorageSettingsFunctionsConstants.NintendoDsExtensions,
+        ModelConstants.NintendoDsi => StorageSettingsFunctionsConstants.NintendoDsiExtensions,
+        ModelConstants.PokemonMini => [StorageSettingsFunctionsConstants.PokemonMiniExtension],
         ModelConstants.GameWatch => StorageSettingsFunctionsConstants.GameWatchExtensions,
         ModelConstants.Nintendo3Ds => StorageSettingsFunctionsConstants.Nintendo3DsExtensions,
         _ => []

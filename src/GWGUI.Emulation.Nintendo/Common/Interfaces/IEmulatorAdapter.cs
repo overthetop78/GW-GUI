@@ -2,6 +2,9 @@ namespace GWGUI.Emulation.Nintendo.Common.Interfaces;
 
 internal interface IEmulatorAdapter
 {
+    IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration);
+    IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration);
+    IReadOnlyList<string> SupportedContentExtensions { get; }
     string EmulatorId { get; }
     string EmulatorKey { get; }
     EmulationEmulatorDefinition Definition { get; }

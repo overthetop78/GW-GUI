@@ -9,14 +9,14 @@
   <data name="Emulation.Nintendo.Language.French"><value>الفرنسية</value></data>
   <data name="Emulation.Nintendo.Language.Spanish"><value>الإسبانية</value></data>
   <data name="Emulation.Nintendo.Firmware.Integrated"><value>نظام ROM</value></data>
-  <data name="Emulation.Emulator.mesen.Description"><value>Emulates Nintendo Entertainment System and Famicom Disk System.</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>:: فرض نظم متوافقة قوامها Nintendo مع Mesen.</value></data>
   <data name="Emulation.Emulator.gw.Description"><value>Emulates Nintendo Game &amp; Watch.</value></data>
   <data name="Emulation.Emulator.beetle_vb.Description"><value>Emulates the Nintendo Virtual Boy.</value></data>
   <data name="Emulation.Emulator.mupen64plus-next.Description"><value>:: فرض Nintendo 64 نظاماً.</value></data>
-  <data name="Emulation.Emulator.melonds.Description"><value>Emulates Nintendo DS and DSi systems.</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>:: فرض نظم متوافقة قوامها Nintendo مع melonDS.</value></data>
   <data name="Emulation.Emulator.snes9x.Description"><value>Emulates Super Nintendo and Super Famicom systems.</value></data>
-  <data name="Emulation.Emulator.gambatte.Description"><value>Emulates the Nintendo Game Boy system. ويجسد أيضا نظام Game Boy Color.</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>:: فرض نظم متوافقة قوامها Nintendo مع Gambatte.</value></data>
   <data name="Emulation.Emulator.mgba.Description"><value>Emulates Nintendo Game Boy Advance systems.</value></data>
-  <data name="Emulation.Emulator.citra.Description"><value>Emulates Nintendo 3DS systems with Citra.</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>:: فرض نظم متوافقة قوامها Nintendo مع Citra.</value></data>
   <data name="Emulation.Emulator.dolphin.Description"><value>يحاكي أنظمة Nintendo GameCube وWii باستخدام Dolphin.</value></data>
 </root>

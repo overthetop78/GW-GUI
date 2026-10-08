@@ -1,0 +1,66 @@
+using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Contracts;
+
+namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Dictionaries;
+
+internal static class CoreCatalog
+{
+    internal static IReadOnlyList<CoreDefinition> All { get; } =
+    [
+        Emulators.Azahar.Constants.CoreConstants.Definition,
+        Emulators.Citra.Constants.CoreConstants.Definition,
+        Emulators.Citra2018.Constants.CoreConstants.Definition,
+        Emulators.Panda3ds.Constants.CoreConstants.Definition,
+        Emulators.DeSmuME.Constants.CoreConstants.Definition,
+        Emulators.DeSmuME2015.Constants.CoreConstants.Definition,
+        Emulators.MelonDs.Constants.CoreConstants.Definition,
+        Emulators.MelonDsDs.Constants.CoreConstants.Definition,
+        Emulators.Noods.Constants.CoreConstants.Definition,
+        Emulators.Skyemu.Constants.CoreConstants.Definition,
+        Emulators.FceUmm.Constants.CoreConstants.Definition,
+        Emulators.Fixnes.Constants.CoreConstants.Definition,
+        Emulators.Mesen.Constants.CoreConstants.Definition,
+        Emulators.Mesen2.Constants.CoreConstants.Definition,
+        Emulators.Nestopia.Constants.CoreConstants.Definition,
+        Emulators.Quicknes.Constants.CoreConstants.Definition,
+        Emulators.Rustynes.Constants.CoreConstants.Definition,
+        Emulators.DoubleCherryGB.Constants.CoreConstants.Definition,
+        Emulators.Fixgb.Constants.CoreConstants.Definition,
+        Emulators.Gambatte.Constants.CoreConstants.Definition,
+        Emulators.Gearboy.Constants.CoreConstants.Definition,
+        Emulators.Irogb.Constants.CoreConstants.Definition,
+        Emulators.MesenS.Constants.CoreConstants.Definition,
+        Emulators.NSide.Constants.CoreConstants.Definition,
+        Emulators.Sameboy.Constants.CoreConstants.Definition,
+        Emulators.TgbDual.Constants.CoreConstants.Definition,
+        Emulators.BeetleGba.Constants.CoreConstants.Definition,
+        Emulators.Gpsp.Constants.CoreConstants.Definition,
+        Emulators.Meteor.Constants.CoreConstants.Definition,
+        Emulators.Mgba.Constants.CoreConstants.Definition,
+        Emulators.VbaM.Constants.CoreConstants.Definition,
+        Emulators.VbaNext.Constants.CoreConstants.Definition,
+        Emulators.GameWatch.Constants.CoreConstants.Definition,
+        Emulators.Dolphin.Constants.CoreConstants.Definition,
+        Emulators.Mupen64PlusNext.Constants.CoreConstants.Definition,
+        Emulators.ParallelN64.Constants.CoreConstants.Definition,
+        Emulators.PokeMini.Constants.CoreConstants.Definition,
+        Emulators.BeetleSnes.Constants.CoreConstants.Definition,
+        Emulators.Bsnes.Constants.CoreConstants.Definition,
+        Emulators.BsnesJg.Constants.CoreConstants.Definition,
+        Emulators.BsnesHd.Constants.CoreConstants.Definition,
+        Emulators.Bsnes2014Accuracy.Constants.CoreConstants.Definition,
+        Emulators.Bsnes2014Balanced.Constants.CoreConstants.Definition,
+        Emulators.Bsnes2014Performance.Constants.CoreConstants.Definition,
+        Emulators.BsnesMercuryAccuracy.Constants.CoreConstants.Definition,
+        Emulators.BsnesMercuryBalanced.Constants.CoreConstants.Definition,
+        Emulators.BsnesMercuryPerformance.Constants.CoreConstants.Definition,
+        Emulators.Snes9x.Constants.CoreConstants.Definition,
+        Emulators.Snes9x2002.Constants.CoreConstants.Definition,
+        Emulators.Snes9x2005.Constants.CoreConstants.Definition,
+        Emulators.Snes9x2005Plus.Constants.CoreConstants.Definition,
+        Emulators.Snes9x2010.Constants.CoreConstants.Definition,
+        Emulators.Supafaust.Constants.CoreConstants.Definition,
+        Emulators.BeetleVb.Constants.CoreConstants.Definition,
+        Emulators.Cemu.Constants.CoreConstants.Definition
+    ];
+    internal static CoreDefinition Get(string id) => All.First(core => core.Id.Equals(id, StringComparison.Ordinal));
+}

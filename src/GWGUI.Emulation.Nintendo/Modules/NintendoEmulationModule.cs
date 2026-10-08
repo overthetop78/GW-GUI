@@ -3,13 +3,14 @@ using System.IO;
 namespace GWGUI.Emulation.Nintendo.Modules;
 
 public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulatorManager,
-    IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization
+    IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationFirmwareManager, IEmulationModuleLocalization
 {
     private static readonly EmulationModuleLocalization Localization = new(
         typeof(NintendoEmulationModule).Assembly, "GWGUI.Emulation.Nintendo.Resources.Emulation");
     private readonly ConfigurationStore _store;
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;
+    private readonly string _firmwareDirectory;
     private readonly Engine _engine = new();
     private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) =>
         new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
@@ -20,6 +21,9 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
         _store = new ConfigurationStore(configurationDirectory, pathBase);
         _httpClient = httpClient;
         _coreDirectory = coreDirectory;
+        _firmwareDirectory = Path.Combine(pathBase, EmulationPathConstants.RootDirectoryName,
+            EmulationPathConstants.MachinesDirectoryName, EmulationModuleConstants.ModuleId,
+            EmulationPathConstants.FirmwareDirectoryName);
     }
 
     public string Id => EmulationModuleConstants.ModuleId;
@@ -46,13 +50,14 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
         {
             EmulationMachineTab.Keyboard => model.HasKeyboard,
             EmulationMachineTab.Mouse => model.MouseButtonCount > 0,
+            EmulationMachineTab.Rom => _engine.Adapter(current).GetFirmwareSlots(current).Count > 0,
             EmulationMachineTab.Storage => model.MaximumFloppyDriveCount > 0
                 || model.SupportsCassetteDrive || model.SupportsCartridgeSlot
                 || model.SupportsCompactDiscDrive,
             _ => item.Value
         });
         return new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs),
-            SettingsDescriptionFunctions.Create(current));
+            SettingsDescriptionFunctions.Create(current, _engine.Adapter(current)));
     }
 
     public IEmulationConfiguration CreateConfiguration(string machineId)
@@ -87,6 +92,7 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
             ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         foreach (var item in values)
         {
+            if (_engine.Adapter(nintendo).GetFirmwareSlots(nintendo).Any(slot => slot.FieldId == item.Key)) continue;
             if (item.Key is SettingsConstants.Model or SettingsConstants.Emulator
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
                 or SettingsConstants.AudioLatency || item.Key.StartsWith(
@@ -95,7 +101,7 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
             else options[item.Key] = item.Value;
         }
         var audio = nintendo.Audio ?? new AudioConfiguration();
-        return nintendo with
+        return FirmwareConfigurationFunctions.Apply(nintendo, values, _engine.Adapter(nintendo)) with
         {
             Options = options,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled)
@@ -120,9 +126,11 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
         ConfigurationSummaryFunctions.Create(configuration as MachineConfiguration
             ?? throw new ArgumentException(nameof(configuration)));
 
-    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) =>
-        StorageSettingsFunctions.Describe(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration)
+    {
+        var current = RequireConfiguration(configuration);
+        return StorageSettingsFunctions.Describe(current, _engine.Adapter(current));
+    }
 
     public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration,
         EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(
@@ -256,7 +264,7 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
             value => Path.Combine(services.StatesDirectory,
                 value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat),
                 CoreDirectoryConstants.SavesDirectoryName));
-        var storage = StorageSettingsFunctions.Describe(nintendo);
+        var storage = StorageSettingsFunctions.Describe(nintendo, _engine.Adapter(nintendo));
         var mounted = adapter.ResolveConfiguredMedia(nintendo);
         return new EmulationMachineRuntime(nintendo,
             media => _engine.CreateMachine(WithMedia(nintendo, media), context),
@@ -281,7 +289,32 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
     };
 
     private static string DefaultEmulatorId(string machineId) =>
-        EmulatorCatalog.GetAll(machineId).FirstOrDefault()?.Id ?? string.Empty;
+        machineId == ModelConstants.Switch ? string.Empty : EmulatorCatalog.DefaultFor(machineId);
+
+    public string GetFirmwareDirectory(string machineId)
+    {
+        _ = ModelCatalog.Get(machineId);
+        return _firmwareDirectory;
+    }
+
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId,
+        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        var current = RequireConfiguration(configuration);
+        if (!current.Model.Equals(machineId, StringComparison.Ordinal)) throw new ArgumentException(nameof(machineId));
+        return ValueTask.FromResult(FirmwareConfigurationFunctions.Scan(current, GetFirmwareDirectory(machineId), _engine.Adapter(current)));
+    }
+
+    public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)
+    {
+        var current = RequireConfiguration(configuration);
+        if (!_engine.Adapter(current).GetFirmwareSlots(current).Any(slot => slot.FieldId == firmware.DestinationFieldId))
+            throw new ArgumentException(nameof(firmware));
+        if (!File.Exists(firmware.Path)) throw new FileNotFoundException(null, firmware.Path);
+        return FirmwareConfigurationFunctions.Apply(current,
+            new Dictionary<string, string?> { [firmware.DestinationFieldId!] = Path.GetFullPath(firmware.Path) }, _engine.Adapter(current));
+    }
 
     private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) =>
         configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));

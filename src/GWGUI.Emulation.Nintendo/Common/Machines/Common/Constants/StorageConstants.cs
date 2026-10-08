@@ -4,6 +4,7 @@ namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Constants;
 
 internal static class StorageSettingsFunctionsConstants
 {
+    internal const string PokemonMiniExtension = ".min";
     internal const string M3u = ".m3u";
     internal const string Cue = ".cue";
     internal const string Chd = DiskImageFileExtensions.Chd;
@@ -47,6 +48,8 @@ internal static class StorageSettingsFunctionsConstants
 
     internal static readonly IReadOnlyList<string> NintendoDsExtensions =
         [DiskImageFileExtensions.Nds];
+
+    internal static readonly IReadOnlyList<string> NintendoDsiExtensions = [".nds", ".dsi", ".ids"];
 
     internal static readonly IReadOnlyList<string> GameWatchExtensions =
         [DiskImageFileExtensions.Mgw];

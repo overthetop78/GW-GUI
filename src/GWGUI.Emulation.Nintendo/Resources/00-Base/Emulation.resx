@@ -10,14 +10,14 @@
   <data name="Emulation.Nintendo.Language.French"><value>French</value></data>
   <data name="Emulation.Nintendo.Language.Spanish"><value>Spanish</value></data>
   <data name="Emulation.Nintendo.Firmware.Integrated"><value>System ROM</value></data>
-  <data name="Emulation.Emulator.mesen.Description"><value>Emulates Nintendo Entertainment System and Famicom Disk System.</value></data>
-  <data name="Emulation.Emulator.gw.Description"><value>Emulates Nintendo Game &amp; Watch.</value></data>
-  <data name="Emulation.Emulator.beetle_vb.Description"><value>Emulates the Nintendo Virtual Boy.</value></data>
-  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>Emulates Nintendo 64 systems.</value></data>
-  <data name="Emulation.Emulator.melonds.Description"><value>Emulates Nintendo DS and DSi systems.</value></data>
-  <data name="Emulation.Emulator.snes9x.Description"><value>Emulates Super Nintendo and Super Famicom systems.</value></data>
-  <data name="Emulation.Emulator.gambatte.Description"><value>Emulates Nintendo Game Boy and Game Boy Color systems.</value></data>
-  <data name="Emulation.Emulator.mgba.Description"><value>Emulates Nintendo Game Boy Advance systems.</value></data>
-  <data name="Emulation.Emulator.citra.Description"><value>Emulates Nintendo 3DS systems with Citra.</value></data>
-  <data name="Emulation.Emulator.dolphin.Description"><value>Emulates Nintendo GameCube and Wii systems with Dolphin.</value></data>
+  <data name="Emulation.Emulator.mesen.Description"><value>Emulates compatible Nintendo systems with Mesen.</value></data>
+  <data name="Emulation.Emulator.gw.Description"><value>Emulates compatible Nintendo systems with GW.</value></data>
+  <data name="Emulation.Emulator.beetle_vb.Description"><value>Emulates compatible Nintendo systems with Beetle VB.</value></data>
+  <data name="Emulation.Emulator.mupen64plus-next.Description"><value>Emulates compatible Nintendo systems with Mupen64Plus-Next.</value></data>
+  <data name="Emulation.Emulator.melonds.Description"><value>Emulates compatible Nintendo systems with melonDS.</value></data>
+  <data name="Emulation.Emulator.snes9x.Description"><value>Emulates compatible Nintendo systems with Snes9x.</value></data>
+  <data name="Emulation.Emulator.gambatte.Description"><value>Emulates compatible Nintendo systems with Gambatte.</value></data>
+  <data name="Emulation.Emulator.mgba.Description"><value>Emulates compatible Nintendo systems with mGBA.</value></data>
+  <data name="Emulation.Emulator.citra.Description"><value>Emulates compatible Nintendo systems with Citra.</value></data>
+  <data name="Emulation.Emulator.dolphin.Description"><value>Emulates compatible Nintendo systems with Dolphin.</value></data>
 </root>

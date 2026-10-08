@@ -2,10 +2,10 @@ namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Functions;
 
 internal static partial class SettingsDescriptionFunctions
 {
-    internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
+    internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration, IEmulatorAdapter adapter)
     {
         var model = ModelCatalog.Get(configuration.Model);
-        return
+        List<EmulationSettingsBlock> blocks =
         [
             Block(SettingsDescriptionFunctionsConstants.General, EmulationMachineTab.General,
                 SettingsDescriptionFunctionsConstants.ResourceGeneral,
@@ -38,10 +38,7 @@ internal static partial class SettingsDescriptionFunctions
             Block(SettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,
                 SettingsDescriptionFunctionsConstants.ResourceRom,
                 SettingsDescriptionFunctionsConstants.IconFirmware, 2,
-                Information(SettingsConstants.FirmwareIntegrated, EmulationMachineTab.Rom,
-                    SettingsDescriptionFunctionsConstants.Firmware,
-                    SettingsDescriptionFunctionsConstants.ResourceFirmwareIntegrated,
-                    configuration.EmulatorId)),
+                [.. FirmwareConfigurationFunctions.Fields(configuration, adapter)]),
             Block(SettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video,
                 SettingsDescriptionFunctionsConstants.ResourceVideo,
                 SettingsDescriptionFunctionsConstants.IconVideo, 2,
@@ -68,5 +65,7 @@ internal static partial class SettingsDescriptionFunctions
                     SettingsDescriptionFunctionsConstants.ResourceAudio,
                     model.AudioChip ?? SettingsDescriptionFunctionsConstants.CpuFrequency))
         ];
+        blocks.AddRange(adapter.GetSettingsBlocks(configuration));
+        return blocks;
     }
 }
