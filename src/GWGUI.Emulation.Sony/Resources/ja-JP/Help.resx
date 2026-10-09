@@ -6,14 +6,14 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>GW GUIがエミュレータによって生成されたオーディオサンプルを再生するかどうかを制御します。</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>エミュレートされた音を有効または無効にします。</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>このエミュレートされたマシンから音を再生するために使用されるWindowsオーディオ出力を選択します。</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>このエミュレートされたマシンから音を再生するWindowsデバイスを選択します。</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>GW GUIの音声出力。</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>選択されたSony機械のプロセッサのわずかなクロック周波数を示します。</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>元のプロセッサのクロック頻度。</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>選択されたSony機械によって提供されるプロセッサ モデルを示します。</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>この機械のためにエミュレートされるプロセッサ。</value></data>
   <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>選択された機械およびエミュレーターのためのシステムROMの状態を示します。</value></data>
-  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>システム ROM.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>システム ROM。</value></data>
   <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>このマシン構成を実行するために使用されるエミュレータの実装を特定します。</value></data>
   <data name="Emulation.Sony.Help.General.Emulator.Short"><value>この機械のために選ばれるエミュレータ。</value></data>
   <data name="Emulation.Sony.Help.General.Model.Detailed"><value>ハードウェア構成を編集しているSonyモデルを特定します。</value></data>

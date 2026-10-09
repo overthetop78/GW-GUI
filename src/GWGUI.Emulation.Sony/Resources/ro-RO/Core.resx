@@ -7,4 +7,11 @@
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emulează sistemele PlayStation 2.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Emulează sistemele PlayStation Portable.</value></data>
   <data name="Emulation.Emulator.swanstation.Description"><value>Emulează sistemele Sony PlayStation și PS one.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Emulează Sony PocketStation portabil cu un BIOS extern și imagini card de memorie.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Emulează sistemele PlayStation cu randatorul software Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Emulează sistemele PlayStation cu randatorul hardware Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Emulează sistemele PlayStation cu PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Emulează sistemele PlayStation 2 cu PCEE2 şi un BIOS extern.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Emulează sistemele PlayStation 2 cu Play! şi emulaţia integrată a sistemului firmware.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Emulează sistemele PlayStation 3 cu RPCS3 și firmware-ul sistemului extern.</value></data>
 </root>

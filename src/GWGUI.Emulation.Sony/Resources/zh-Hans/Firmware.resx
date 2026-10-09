@@ -5,4 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Firmware.Integrated"><value>系统ROM</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Japan"><value>BIOS(日本)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.NorthAmerica"><value>BIOS(北美)</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Europe"><value>BIOS(欧洲)</value></data>
 </root>

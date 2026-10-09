@@ -5,6 +5,8 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
 
 internal static class InputSnapshotFunctionsConstants
 {
+    internal const float ReleasedPressure = 0f;
+    internal const float FullPressure = 1f;
     internal const string B = "B";
     internal const string Y = "Y";
     internal const string Select = "Select";

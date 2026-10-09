@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Контролирует, воспроизводит ли GW GUI аудиообразцы, генерируемые эмулятором.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Включить или отключить эмулированный звук.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Выбирает аудиовыход Windows, используемый для воспроизведения звука с этой эмулированной машины.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Выберите устройство Windows, которое воспроизводит звук с этой эмулированной машины.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Аудио выход, используемый GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Показывает номинальную тактовую частоту процессора в выбранной машине Sony.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Оригинальная тактовая частота процессора.</value></data>

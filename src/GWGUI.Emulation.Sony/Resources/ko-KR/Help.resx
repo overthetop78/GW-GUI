@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>GW GUI가 에뮬레이터에 의해 생성 된 오디오 샘플을 재생하는지 여부를 제어합니다.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>음을 분리하거나 비활성화 할 수 있습니다.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>이 에뮬레이션 기계에서 사운드를 재생하는 데 사용되는 Windows 오디오 출력을 선택합니다.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>이 에뮬레이션 기계에서 소리를 연주하는 Windows 장치를 선택하십시오.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>GW GUI에서 사용하는 오디오 출력.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>선택된 Sony 기계에 있는 가공업자의 명목상 시계 빈도를 보여줍니다.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>본래 가공업자 시계 빈도.</value></data>

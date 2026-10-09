@@ -7,7 +7,7 @@
   <data name="Emulation.Sony.Machine.PlayStation"><value>Sony PlayStation</value></data>
   <data name="Emulation.Sony.Machine.PSOne"><value>Sony PS one</value></data>
   <data name="Emulation.Sony.Machine.PlayStationClassic"><value>Sony PlayStation Classic</value></data>
-  <data name="Emulation.Sony.Machine.PocketStation"><value>Sony PocketStation</value></data>
+  <data name="Emulation.Sony.Machine.PocketStation"><value>PocketStation</value></data>
   <data name="Emulation.Sony.Machine.PlayStation2"><value>Sony PlayStation 2</value></data>
   <data name="Emulation.Sony.Machine.PlayStation2Slim"><value>Sony PS two</value></data>
   <data name="Emulation.Sony.Machine.PSX"><value>Sony PSX</value></data>
@@ -43,5 +43,4 @@
   <data name="Emulation.Sony.Machine.ZN1"><value>Sony ZN-1</value></data>
   <data name="Emulation.Sony.Machine.ZN2"><value>Sony ZN-2</value></data>
   <data name="Emulation.Sony.Machine.PS3ExtraSlim"><value>Sony PS3 Extra Slim</value></data>
-  <data name="Emulation.Sony.Machine.PocketStation"><value>PocketStation</value></data>
 </root>

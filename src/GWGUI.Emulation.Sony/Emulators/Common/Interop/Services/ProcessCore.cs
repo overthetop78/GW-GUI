@@ -14,6 +14,7 @@ using System.IO.MemoryMappedFiles;
 using System.Text.Json;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Functions;
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Dictionaries;
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 
@@ -35,6 +36,7 @@ internal sealed class ProcessCore : IEmulatorCore
     private MachineConfiguration? _configuration;
     private string? _sessionDirectory;
     private string? _saveDirectory;
+    private TimeSpan _requestTimeout = TimeSpan.FromSeconds(ProcessCoreConstants.ResponseTimeoutSeconds);
 
     internal ProcessCore(string hostExecutablePath, string? corePath = null)
     {
@@ -52,8 +54,8 @@ internal sealed class ProcessCore : IEmulatorCore
     public string CoreVersion { get; private set; } = string.Empty;
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     public string CoreSha256 { get; private set; } = string.Empty;
-    public double FramesPerSecond { get; private set; } = 50;
-    public int SampleRate { get; private set; } = 44100;
+    public double FramesPerSecond { get; private set; } = ExternalCoreConstants.FallbackFramesPerSecond;
+    public int SampleRate { get; private set; } = ExternalCoreConstants.FallbackSampleRate;
     public int DiskCount { get; private set; }
     public int CurrentDiskIndex { get; private set; } = -1;
 
@@ -101,7 +103,7 @@ internal sealed class ProcessCore : IEmulatorCore
             _process = Process.Start(startInfo)
                 ?? throw new InvalidOperationException(CoreExceptions.ProcessStartFailed());
             EmulationChildProcessLifetime.Attach(_process);
-            using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(15));
+            using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(ProcessCoreConstants.ConnectionTimeoutSeconds));
             _pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult();
             _writer = new BinaryWriter(_pipe, System.Text.Encoding.UTF8, true);
             Begin(HostCommand.Initialize);
@@ -198,6 +200,18 @@ internal sealed class ProcessCore : IEmulatorCore
         CompleteRequest();
     }
 
+    public void SetControllerPortDevice(int port, ControllerType type)
+    {
+        var configuration = _configuration
+            ?? throw new InvalidOperationException(CoreExceptions.ProcessNotInitialized());
+        ControllerFunctions.Validate(configuration, port, type);
+        Begin(HostCommand.SetControllerPortDevice);
+        _writer!.Write(port);
+        _writer.Write((int)type);
+        CompleteRequest();
+        _configuration = ControllerFunctions.WithControllerType(configuration, port, type);
+    }
+
     public void Dispose()
     {
         if (_disposed) return;
@@ -213,6 +227,7 @@ internal sealed class ProcessCore : IEmulatorCore
             {
                 try
                 {
+                    _requestTimeout = RequestTimeoutFor(HostCommand.Dispose);
                     _writer!.Write((byte)HostCommand.Dispose);
                     CompleteRequest();
                 }
@@ -232,10 +247,9 @@ internal sealed class ProcessCore : IEmulatorCore
             {
                 try
                 {
-                    if (!process.WaitForExit(5_000)) process.Kill(true);
-                    process.WaitForExit(5_000);
+                    if (!process.WaitForExit(ProcessCoreConstants.GracefulShutdownTimeoutMilliseconds)) process.Kill(true);
+                    process.WaitForExit();
                 }
-                catch (Exception) { }
                 finally { DisposeSafely(process); }
             }
             while (_audio.TryDequeue(out _)) { }
@@ -271,7 +285,21 @@ internal sealed class ProcessCore : IEmulatorCore
         if (_connectionFailed) throw new InvalidOperationException(CoreExceptions.ProcessUnavailable());
         if (command != HostCommand.Initialize && !_initialized)
             throw new InvalidOperationException(CoreExceptions.ProcessNotInitialized());
+        _requestTimeout = RequestTimeoutFor(command);
         _writer!.Write((byte)command);
+    }
+
+    private TimeSpan RequestTimeoutFor(HostCommand command)
+    {
+        var defaultTimeout = TimeSpan.FromSeconds(ProcessCoreConstants.ResponseTimeoutSeconds);
+        if (_configuration is null) return defaultTimeout;
+        var definition = CoreCatalog.Get(_configuration.EmulatorId);
+        return command switch
+        {
+            HostCommand.Initialize or HostCommand.HardReset => definition.StartupTimeout ?? defaultTimeout,
+            HostCommand.Stop or HostCommand.Dispose => definition.ShutdownTimeout ?? defaultTimeout,
+            _ => defaultTimeout
+        };
     }
 
     private void CompleteRequest()
@@ -297,7 +325,7 @@ internal sealed class ProcessCore : IEmulatorCore
 
     private async Task<byte[]> ReadResponseAsync()
     {
-        using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+        using var timeout = new CancellationTokenSource(_requestTimeout);
         var header = new byte[sizeof(int)];
         await _pipe!.ReadExactlyAsync(header, timeout.Token).ConfigureAwait(false);
         var length = BinaryPrimitives.ReadInt32LittleEndian(header);
@@ -318,9 +346,8 @@ internal sealed class ProcessCore : IEmulatorCore
         try
         {
             if (!process.HasExited) process.Kill(true);
-            process.WaitForExit(5_000);
+            process.WaitForExit();
         }
-        catch (Exception) { }
         finally { DisposeSafely(process); }
     }
 

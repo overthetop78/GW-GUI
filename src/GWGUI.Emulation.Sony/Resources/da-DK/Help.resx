@@ -6,9 +6,9 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Kontrollerer om GW GUI spiller lydprøverne genereret af emulatoren.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Aktivér eller deaktivér emuleret lyd.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Vælger Windows audio output, der bruges til at afspille lyd fra denne emulerede maskine.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Vælg Windows-enhed, der spiller lyd fra denne emulerede maskine.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Lydudgang brugt af GW GUI.</value></data>
-  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Viser processorens nominelle urfrekvens i den valgte Sony-maskine.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Viser processorens nominelle urfrekvens i den valgte Sony maskine.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Original processor clockfrekvens.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Viser processormodellen som leveres af den valgte Sony maskine.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Processor emulerede til denne maskine.</value></data>

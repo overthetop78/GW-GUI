@@ -9,4 +9,7 @@ internal sealed record CoreDefinition(
     IReadOnlyList<CoreOption> Options,
     IReadOnlyList<FirmwareSlot> Firmware,
     EmulationEmulatorDefinition Emulator,
-    bool RequiresExternalFirmware);
+    bool RequiresExternalFirmware,
+    IReadOnlyList<ControllerType> ControllerTypes,
+    TimeSpan? StartupTimeout = null,
+    TimeSpan? ShutdownTimeout = null);

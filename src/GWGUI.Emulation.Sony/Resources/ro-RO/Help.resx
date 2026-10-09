@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Controlează dacă GW GUI rulează probele audio generate de emulator.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Activează sau dezactivează sunetul emulat.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Selectează ieșire audio Windows folosit pentru a reda sunet de la această mașină emulată.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Alegeți dispozitivul Windows care joacă sunet de la această mașină emulată.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Putere audio utilizată de GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Afișează frecvența nominală a ceasului procesorului în mașina Sony selectată.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Frecvenţa originală a ceasului procesorului.</value></data>

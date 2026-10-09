@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>GW GUI'nin emülatör tarafından üretilen ses örneklerini oynadığını kontroller.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Enable veya devre dışı bırakılmış ses.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Bu emated makineden ses çıkarmak için kullanılan Windows ses çıktısını seçin.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Bu emated makineden gelen Windows cihazı seçin.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>GW GUI tarafından kullanılan ses çıktı.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Seçilen Sony makinesindeki işlemcinin nominal saat frekansı gösterir.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Orijinal işlemci saati frekansı.</value></data>

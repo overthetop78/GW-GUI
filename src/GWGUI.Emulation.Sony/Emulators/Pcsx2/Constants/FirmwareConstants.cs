@@ -3,7 +3,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
 internal static class FirmwareConstants
 {
     internal const string SystemField = "firmware.system";
-    internal const string SystemLabelResource = "Emulation.Sony.Firmware.Pcsx2.System";
+    internal const string SystemLabelResource = FirmwareCatalogConstants.ResourceBios;
     internal const string SystemFile = "pcsx2/bios/scph.bin";
     internal const string Rom1Field = "firmware.rom1";
     internal const string Rom1LabelResource = "Emulation.Sony.Firmware.Pcsx2.Rom1";

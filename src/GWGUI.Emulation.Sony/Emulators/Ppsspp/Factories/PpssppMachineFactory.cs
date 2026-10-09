@@ -14,6 +14,8 @@ internal sealed class PpssppMachineFactory : IEmulatorAdapter
     public bool RequiresExternalFirmware => false;
     public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => [];
     public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => [];
+    public IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) =>
+        [ControllerType.Joystick, ControllerType.None];
     public IReadOnlyList<string> SupportedContentExtensions => PpssppConstants.ContentExtensions;
     public string EmulatorId => PpssppConstants.Id;
     public string EmulatorKey => PpssppConstants.Id;

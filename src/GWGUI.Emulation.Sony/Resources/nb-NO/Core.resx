@@ -7,4 +7,11 @@
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emulgerer PlayStation 2 systemer.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Emulerer PlayStation Portable systemer.</value></data>
   <data name="Emulation.Emulator.swanstation.Description"><value>Emulgerer Sony PlayStation og PS one systemer.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Emulerer Sony PocketStation håndholdt med en ekstern BIOS og minnekortbilder.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Emulerer PlayStation systemer med den Beetle PSX programvaregjenger.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Emulerer PlayStation systemer med den Beetle PSX maskinvaren render.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Emulerer PlayStation systemer med PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>emulgerer PlayStation 2 systemer med PCEE2 og en ekstern BIOS.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Emulerer PlayStation 2 systemer med Play! og det integrerte systemets firmware emulering.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Etterlikner PlayStation 3 systemer med RPCS3 og ekstern system firmware.</value></data>
 </root>

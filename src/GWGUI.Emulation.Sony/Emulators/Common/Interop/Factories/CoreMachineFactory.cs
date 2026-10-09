@@ -17,7 +17,13 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
     public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) =>
         CoreDefinition.Firmware;
     public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) =>
-        [];
+        CoreSettingsFunctions.Blocks(CoreDefinition, configuration);
+    public IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) =>
+        CoreDefinition.ControllerTypes;
+    public virtual IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration, int port) =>
+        GetControllerTypes(configuration);
+    public virtual int GetControllerPortCount(MachineConfiguration configuration) =>
+        ModelCatalog.Get(configuration.Model).ControllerPortCount;
     public IReadOnlyList<string> SupportedContentExtensions => CoreDefinition.Extensions;
     public string EmulatorId => CoreDefinition.Id;
     public string EmulatorKey => EmulatorId;
@@ -106,7 +112,8 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
         }
     }
 
-    protected virtual MachineConfiguration Configure(MachineConfiguration configuration) => configuration;
+    protected virtual MachineConfiguration Configure(MachineConfiguration configuration) =>
+        CoreSettingsFunctions.Configure(CoreDefinition, configuration);
 
     private CoreReleaseService ReleaseService(EmulatorManagementContext context) =>
         new(context.HttpClient, context.CoreDirectory, ReleaseSettings);

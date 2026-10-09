@@ -6,19 +6,22 @@ internal static partial class InputSettingsFunctions
     {
         var model = ModelCatalog.Get(configuration.Model);
         var input = configuration.Input ?? new InputConfiguration();
-        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(
-            KeyboardDefinitions(model), input.KeyboardBindings ?? ToStrings(input.KeyboardMappings),
+        var types = ControllerCatalog.Types(configuration);
+        var keyboard = model.HasKeyboard || types.Any(type => type is
+            ControllerType.Keyboard or ControllerType.KeyboardAndMouse) ? new EmulationInputBindingSet(
+            KeyboardDefinitions(), input.KeyboardBindings ?? ToStrings(input.KeyboardMappings),
             EmulationInputSource.Keyboard) : null;
         var mouse = model.MouseButtonCount > 0 ? new EmulationInputBindingSet(
             MouseDefinitions(), MouseValues(input), EmulationInputSource.Mouse
                 | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         var configured = input.ControllerBindings ?? [];
-        var ports = Enumerable.Range(0, model.ControllerPortCount).Select(index =>
+        var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort,
+            ControllerFunctions.PortCount(configuration)).Select(index =>
         {
             var current = configured.FirstOrDefault(item => item.Port == index);
-            var type = current?.Type ?? ControllerCatalog.Default(model);
+            var type = ControllerFunctions.Resolve(configuration, index);
             return new EmulationControllerPort(index + 1,
-                ControllerCatalog.Types(model).Select(choice => Choice(choice, model)).ToArray(),
+                ControllerFunctions.Supported(configuration, index).Select(choice => Choice(choice, model)).ToArray(),
                 type.ToString(),
                 current?.DeviceId,
                 new EmulationInputBindingSet(ControllerDefinitions(type, model),
@@ -41,16 +44,20 @@ internal static partial class InputSettingsFunctions
                 && action != MouseAction.None)
             .ToDictionary(item => item.Value, item => Enum.Parse<MouseAction>(item.Key, true),
                 StringComparer.OrdinalIgnoreCase) ?? new Dictionary<string, MouseAction>();
-        var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(
-            port.Number - 1,
-            Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type)
-                ? type : ControllerType.None,
-            port.PhysicalDeviceId,
-            port.Bindings.Values
-                .Where(item => !string.IsNullOrWhiteSpace(item.Key)
-                    && !string.IsNullOrWhiteSpace(item.Value))
-                .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal),
-            port.VisualId)).ToArray();
+        var controllers = settings.ControllerPorts.Select(port =>
+        {
+            var index = port.Number - ControllerPortConstants.OneControllerPort;
+            if (!Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type))
+                throw new ArgumentOutOfRangeException(nameof(port.SelectedControllerId),
+                    port.SelectedControllerId, null);
+            ControllerFunctions.Validate(configuration, index, type);
+            return new ControllerBinding(index, type, port.PhysicalDeviceId,
+                port.Bindings.Values
+                    .Where(item => !string.IsNullOrWhiteSpace(item.Key)
+                        && !string.IsNullOrWhiteSpace(item.Value))
+                    .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal),
+                port.VisualId);
+        }).ToArray();
         return configuration with
         {
             Input = current with
@@ -62,9 +69,6 @@ internal static partial class InputSettingsFunctions
             }
         };
     }
-
-    private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(Model model)
-        => [];
 
     private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() =>
     [
@@ -83,9 +87,13 @@ internal static partial class InputSettingsFunctions
 
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(
         ControllerType type, Model model) => type is ControllerType.None ? []
+        : type == ControllerType.Mouse ? MouseDefinitions()
+        : type == ControllerType.Keyboard ? []
+        : model.Id == ModelConstants.PocketStation ? Machines.PocketStation.Functions.ControllerFunctions.Definitions
         : model.Id == ModelConstants.Psp ? PspControllerDefinitions()
         : model.Id is ModelConstants.PlayStation or ModelConstants.PlayStation2
-            ? PlayStationControllerDefinitions() :
+            or ModelConstants.PlayStation3
+            ? PlayStationControllerDefinitions(type, model) :
         [
             Definition(InputSettingsFunctionsConstants.Up,
                 InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
@@ -137,7 +145,74 @@ internal static partial class InputSettingsFunctions
             InputSettingsFunctionsConstants.PspStickRightLabel, string.Empty)
     ];
 
-    private static IReadOnlyList<InputBindingDefinition> PlayStationControllerDefinitions() =>
+    private static IReadOnlyList<InputBindingDefinition> PlayStationControllerDefinitions(
+        ControllerType type, Model model)
+    {
+        var buttons = PlayStationButtonDefinitions();
+        if (type is ControllerType.GunCon or ControllerType.Justifier)
+            return
+            [
+                Definition(EmulationControllerCommandIds.B,
+                    InputSettingsFunctionsConstants.ResourceControllerActionFire1, string.Empty),
+                Definition(EmulationControllerCommandIds.A, EmulationControllerCommandIds.A,
+                    string.Empty),
+                type == ControllerType.Justifier
+                    ? Definition(EmulationControllerCommandIds.Start,
+                        InputSettingsFunctionsConstants.ControllerStart, string.Empty)
+                    : Definition(EmulationControllerCommandIds.X, EmulationControllerCommandIds.B,
+                        string.Empty)
+            ];
+        if (type is ControllerType.NeGcon or ControllerType.NeGconRumble)
+            return buttons.Where(definition => definition.Id is
+                EmulationControllerCommandIds.Up or EmulationControllerCommandIds.Down
+                or EmulationControllerCommandIds.Left or EmulationControllerCommandIds.Right
+                or EmulationControllerCommandIds.Start).Concat(
+                new InputBindingDefinition[]
+                {
+                    Definition(EmulationControllerCommandIds.A, EmulationControllerCommandIds.A,
+                        string.Empty),
+                    Definition(EmulationControllerCommandIds.X, EmulationControllerCommandIds.B,
+                        string.Empty),
+                    Definition(EmulationControllerCommandIds.R, EmulationControllerCommandIds.R,
+                        string.Empty),
+                    Definition(EmulationControllerCommandIds.R2,
+                        InputSettingsFunctionsConstants.NeGconButtonI, string.Empty),
+                    Definition(EmulationControllerCommandIds.L2,
+                        InputSettingsFunctionsConstants.NeGconButtonII, string.Empty),
+                    Definition(EmulationControllerCommandIds.L, EmulationControllerCommandIds.L,
+                        string.Empty),
+                    Definition(InputSettingsFunctionsConstants.LeftStickLeft,
+                        InputSettingsFunctionsConstants.ResourceSteeringLeft, string.Empty),
+                    Definition(InputSettingsFunctionsConstants.LeftStickRight,
+                        InputSettingsFunctionsConstants.ResourceSteeringRight, string.Empty)
+                }).ToArray();
+        if (model.Id == ModelConstants.PlayStation && type == ControllerType.Joystick)
+            return buttons.Where(definition => definition.Id is not
+                (EmulationControllerCommandIds.L3 or EmulationControllerCommandIds.R3)).ToArray();
+        return buttons.Concat(AnalogStickDefinitions()).ToArray();
+    }
+
+    private static IReadOnlyList<InputBindingDefinition> AnalogStickDefinitions() =>
+    [
+        Definition(InputSettingsFunctionsConstants.LeftStickUp,
+            InputSettingsFunctionsConstants.LeftStickUpLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.LeftStickDown,
+            InputSettingsFunctionsConstants.LeftStickDownLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.LeftStickLeft,
+            InputSettingsFunctionsConstants.LeftStickLeftLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.LeftStickRight,
+            InputSettingsFunctionsConstants.LeftStickRightLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.RightStickUp,
+            InputSettingsFunctionsConstants.RightStickUpLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.RightStickDown,
+            InputSettingsFunctionsConstants.RightStickDownLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.RightStickLeft,
+            InputSettingsFunctionsConstants.RightStickLeftLabel, string.Empty),
+        Definition(InputSettingsFunctionsConstants.RightStickRight,
+            InputSettingsFunctionsConstants.RightStickRightLabel, string.Empty)
+    ];
+
+    private static IReadOnlyList<InputBindingDefinition> PlayStationButtonDefinitions() =>
     [
         Definition(InputSettingsFunctionsConstants.Up,
             InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
@@ -179,6 +254,13 @@ internal static partial class InputSettingsFunctions
 
     private static EmulationControllerChoice Choice(ControllerType type, Model model) => new(
         type.ToString(), ControllerResourceKey(type, model),
+        InvariantDisplayValue: type switch
+        {
+            ControllerType.NeGcon => InputSettingsFunctionsConstants.NeGcon,
+            ControllerType.NeGconRumble => InputSettingsFunctionsConstants.NeGconRumble,
+            ControllerType.KeyboardAndMouse => InputSettingsFunctionsConstants.KeyboardAndMouseGlyphs,
+            _ => null
+        },
         BindingDefinitions: ControllerDefinitions(type, model),
         CompatibleVisualIds: CompatibleVisualIds(type, model),
         DefaultVisualId: DefaultVisualId(type, model),

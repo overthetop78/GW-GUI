@@ -199,6 +199,18 @@ internal sealed class ProcessCore : IEmulatorCore
         CompleteRequest();
     }
 
+    public void SetControllerPortDevice(int port, ControllerType type)
+    {
+        var configuration = _configuration
+            ?? throw new InvalidOperationException(PpssppExceptions.ProcessNotInitialized());
+        ControllerFunctions.Validate(configuration, port, type);
+        Begin(HostCommand.SetControllerPortDevice);
+        _writer!.Write(port);
+        _writer.Write((int)type);
+        CompleteRequest();
+        _configuration = ControllerFunctions.WithControllerType(configuration, port, type);
+    }
+
     public void Dispose()
     {
         if (_disposed) return;

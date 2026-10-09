@@ -3,8 +3,6 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 internal static class ExternalCoreConstants
 {
     internal const string CoreDirectory = "Core";
-    internal const string PlaylistName = "GW GUI media.m3u";
-    internal const int MaximumPlaylistEntries = 64;
     internal const string RetroApiVersion = "retro_api_version";
     internal const string RetroGetSystemInfo = "retro_get_system_info";
     internal const string RetroSetEnvironment = "retro_set_environment";
@@ -27,7 +25,8 @@ internal static class ExternalCoreConstants
     internal const string RetroSetControllerPortDevice = "retro_set_controller_port_device";
     internal const string RetroLoadGame = "retro_load_game";
     internal const string RetroGetSystemAvInfo = "retro_get_system_av_info";
-    internal const uint JoypadDevice = 1;
+    internal const double FallbackFramesPerSecond = 50d;
+    internal const int FallbackSampleRate = 44_100;
 }
 
 

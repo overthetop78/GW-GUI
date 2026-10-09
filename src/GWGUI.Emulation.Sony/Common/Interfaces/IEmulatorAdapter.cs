@@ -5,6 +5,11 @@ internal interface IEmulatorAdapter
     bool RequiresExternalFirmware { get; }
     IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration);
     IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration);
+    IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration);
+    IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration, int port) =>
+        GetControllerTypes(configuration);
+    int GetControllerPortCount(MachineConfiguration configuration) =>
+        ModelCatalog.Get(configuration.Model).ControllerPortCount;
     IReadOnlyList<string> SupportedContentExtensions { get; }
     string EmulatorId { get; }
     string EmulatorKey { get; }

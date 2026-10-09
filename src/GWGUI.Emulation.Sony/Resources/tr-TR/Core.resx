@@ -7,4 +7,11 @@
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emulates PlayStation 2 sistemleri.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Emulates PlayStation Portable sistemleri.</value></data>
   <data name="Emulation.Emulator.swanstation.Description"><value>Sony PlayStation ve PS one sistemleri.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Sony PocketStation elini dış bir BIOS ve hafıza kartı görüntüleri ile kullanın.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Beetle PSX yazılım sunucusu ile PlayStation sistemleri.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Beetle PSX donanım sunucusu ile PlayStation sistemleri.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>PCSX-ReARMed ile PlayStation sistemleri.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>PCEE2 ve dış BIOS ile PlayStation 2 sistemleri.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Play! ile PlayStation 2 sistemi ve entegre sistem donanım emülasyonu.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>RPCS3 ve dış sistem donanımı ile PlayStation 3 sistemleri.</value></data>
 </root>

@@ -30,7 +30,8 @@ public sealed class PspControllerTests
     public void ProfilePublishesOneIntegratedPortAndEveryVisibleCommand()
     {
         var settings = InputSettingsFunctions.Describe(
-            new MachineConfiguration(ModelConstants.Psp, string.Empty));
+            new MachineConfiguration(ModelConstants.Psp,
+                GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants.PpssppConstants.Id));
 
         var port = Assert.Single(settings.ControllerPorts);
         var choice = Assert.Single(port.ControllerChoices,

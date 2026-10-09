@@ -7,4 +7,11 @@
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emulates PlayStation 2 rendszerek.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Emulátumok PlayStation Portable rendszer.</value></data>
   <data name="Emulation.Emulator.swanstation.Description"><value>Emulátumok Sony PlayStation és PS one rendszerek.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Emulálja a Sony PocketStation kézi külső BIOS és memóriakártya képeket.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Emulál PlayStation rendszerek a Beetle PSX szoftver renderelő.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Emulálja a PlayStation rendszereket a Beetle PSX hardverrel.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Emulátumok PlayStation rendszerek PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Emulates PlayStation 2 rendszerek PCEE2 és egy külső BIOS.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Emulálja PlayStation 2 rendszerek Play! és az integrált rendszer firmware emuláció.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Emulates PlayStation 3 rendszerek RPCS3 és külső rendszer firmware.</value></data>
 </root>

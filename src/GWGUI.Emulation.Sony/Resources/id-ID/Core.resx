@@ -7,4 +7,11 @@
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emulasi sistem PlayStation 2.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Emulat PlayStation Portable sistem.</value></data>
   <data name="Emulation.Emulator.swanstation.Description"><value>Emulasi sistem Sony PlayStation dan PS one.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Emulasi Sony PocketStation genggam dengan BIOS eksternal dan gambar kartu memori.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Emulasi sistem PlayStation dengan renderer perangkat lunak Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Emulasi sistem PlayStation dengan renderer perangkat keras Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Emulasi sistem PlayStation dengan PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Emulasi sistem PlayStation 2 dengan PCEE2 dan BIOS eksternal.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Emulasi sistem PlayStation 2 dengan Play! dan penyatuan sistem terintegrasi firmware.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Emulasi sistem PlayStation 3 dengan RPCS3 dan firmware sistem eksternal.</value></data>
 </root>

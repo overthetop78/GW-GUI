@@ -1,0 +1,50 @@
+namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
+
+internal static class CoreExceptionsResourceConstants
+{
+    internal const string ResourceName = "GWGUI.Emulation.Sony.Resources.Error";
+    internal const string ArchiveMissingLibrary = "Emulation.Error.Core.ArchiveMissingLibrary";
+    internal const string ContentRefused = "Emulation.Error.Core.ContentRefused";
+    internal const string CoreNotFound = "Emulation.Error.Core.CoreNotFound";
+    internal const string CoreNotInitialized = "Emulation.Error.Core.CoreNotInitialized";
+    internal const string CoreNotLoaded = "Emulation.Error.Core.CoreNotLoaded";
+    internal const string CorePathNotAbsolute = "Emulation.Error.Core.CorePathNotAbsolute";
+    internal const string DiskControlIncomplete = "Emulation.Error.Core.DiskControlIncomplete";
+    internal const string DiskControlUnavailable = "Emulation.Error.Core.DiskControlUnavailable";
+    internal const string DiskLabelInvalid = "Emulation.Error.Core.DiskLabelInvalid";
+    internal const string DownloadedCoreInvalidPe = "Emulation.Error.Core.DownloadedCoreInvalidPe";
+    internal const string DownloadedCoreNotPe = "Emulation.Error.Core.DownloadedCoreNotPe";
+    internal const string DownloadedCoreWrongArchitecture = "Emulation.Error.Core.DownloadedCoreWrongArchitecture";
+    internal const string HostConfigurationInvalid = "Emulation.Error.Core.HostConfigurationInvalid";
+    internal const string HostExecutableNotFound = "Emulation.Error.Core.HostExecutableNotFound";
+    internal const string HostNotInitialized = "Emulation.Error.Core.HostNotInitialized";
+    internal const string HostResponseUnavailable = "Emulation.Error.Core.HostResponseUnavailable";
+    internal const string InvalidOptionValue = "Emulation.Error.Core.InvalidOptionValue";
+    internal const string InvalidResponseLength = "Emulation.Error.Core.InvalidResponseLength";
+    internal const string InvalidStateSize = "Emulation.Error.Core.InvalidStateSize";
+    internal const string LibraryIdentityMismatch = "Emulation.Error.Core.LibraryIdentityMismatch";
+    internal const string MediaEjectFailed = "Emulation.Error.Core.MediaEjectFailed";
+    internal const string MediaInsertFailed = "Emulation.Error.Core.MediaInsertFailed";
+    internal const string MediaNotFound = "Emulation.Error.Core.MediaNotFound";
+    internal const string MediaRefused = "Emulation.Error.Core.MediaRefused";
+    internal const string MediaSelectionFailed = "Emulation.Error.Core.MediaSelectionFailed";
+    internal const string MediaSlotCreationFailed = "Emulation.Error.Core.MediaSlotCreationFailed";
+    internal const string ProcessAlreadyInitialized = "Emulation.Error.Core.ProcessAlreadyInitialized";
+    internal const string ProcessCommunicationFailed = "Emulation.Error.Core.ProcessCommunicationFailed";
+    internal const string ProcessNotInitialized = "Emulation.Error.Core.ProcessNotInitialized";
+    internal const string ProcessStartFailed = "Emulation.Error.Core.ProcessStartFailed";
+    internal const string ProcessTimeout = "Emulation.Error.Core.ProcessTimeout";
+    internal const string ProcessUnavailable = "Emulation.Error.Core.ProcessUnavailable";
+    internal const string RequestedDiskSelectionFailed = "Emulation.Error.Core.RequestedDiskSelectionFailed";
+    internal const string RequestedMediaInsertFailed = "Emulation.Error.Core.RequestedMediaInsertFailed";
+    internal const string StartWithoutMediaUnsupported = "Emulation.Error.Core.StartWithoutMediaUnsupported";
+    internal const string StateEmpty = "Emulation.Error.Core.StateEmpty";
+    internal const string StateRestoreFailed = "Emulation.Error.Core.StateRestoreFailed";
+    internal const string StateSaveFailed = "Emulation.Error.Core.StateSaveFailed";
+    internal const string UnknownCoreOption = "Emulation.Error.Core.UnknownCoreOption";
+    internal const string UnknownHostCommand = "Emulation.Error.Core.UnknownHostCommand";
+    internal const string UnsupportedApiVersion = "Emulation.Error.Core.UnsupportedApiVersion";
+    internal const string UnsupportedContentExtension = "Emulation.Error.Core.UnsupportedContentExtension";
+    internal const string UnsupportedPixelFormat = "Emulation.Error.Core.UnsupportedPixelFormat";
+    internal const string VideoBufferUnavailable = "Emulation.Error.Core.VideoBufferUnavailable";
+}

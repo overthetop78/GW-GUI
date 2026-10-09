@@ -3,25 +3,28 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 internal static partial class InputSettingsFunctions
 {
     private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type,
-        Model model) => type != ControllerType.Joystick ? null : model.Id switch
+        Model model) => type is not (ControllerType.Joystick or ControllerType.DualShock)
+            ? null : model.Id switch
         {
-            ModelConstants.PlayStation => [EmulationControllerVisualIds.SonyPlayStationController,
-                EmulationControllerVisualIds.SonyDualShock1],
+            ModelConstants.PlayStation => type == ControllerType.DualShock
+                ? [EmulationControllerVisualIds.SonyDualShock1]
+                : [EmulationControllerVisualIds.SonyPlayStationController],
             ModelConstants.PlayStation2 => [EmulationControllerVisualIds.SonyDualShock2],
+            ModelConstants.PocketStation => null,
             ModelConstants.Psp => [EmulationControllerVisualIds.SonyPsp1000],
             ModelConstants.PlayStation4 => [EmulationControllerVisualIds.SonyDualShock4],
             ModelConstants.PlayStation5 => [EmulationControllerVisualIds.SonyDualSense],
-            _ => [EmulationControllerVisualIds.QuickShot,
-                EmulationControllerVisualIds.CompetitionPro5000,
-                EmulationControllerVisualIds.ZipstikSuperPro]
+            _ => null
         };
 
     private static string? DefaultVisualId(ControllerType type, Model model) =>
         CompatibleVisualIds(type, model)?.FirstOrDefault();
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
-        VisualCommandIds(ControllerType type, Model model) => type != ControllerType.Joystick
-            ? null : model.Id == ModelConstants.Psp
+        VisualCommandIds(ControllerType type, Model model) =>
+            type is not (ControllerType.Joystick or ControllerType.DualShock)
+            ? null : model.Id == ModelConstants.PocketStation ? null
+            : model.Id == ModelConstants.Psp
             ? new Dictionary<EmulationControllerVisualControl, string>
             {
                 [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
@@ -42,6 +45,7 @@ internal static partial class InputSettingsFunctions
                 [EmulationControllerVisualControl.StickRight] = InputSettingsFunctionsConstants.PspStickRight
             }
             : model.Id is ModelConstants.PlayStation or ModelConstants.PlayStation2
+                or ModelConstants.PlayStation3
             ? new Dictionary<EmulationControllerVisualControl, string>
             {
                 [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
@@ -76,6 +80,8 @@ internal static partial class InputSettingsFunctions
         {
             ModelConstants.PlayStation => InputSettingsFunctionsConstants.ResourcePlayStationController,
             ModelConstants.PlayStation2 => InputSettingsFunctionsConstants.ResourceDualShock2,
+            ModelConstants.PlayStation3 => InputSettingsFunctionsConstants.ResourceDualShock3,
+            ModelConstants.PocketStation => Machines.PocketStation.Constants.InputConstants.IntegratedControllerLabel,
             ModelConstants.Psp => InputSettingsFunctionsConstants.ResourcePspIntegrated,
             ModelConstants.PlayStation4 => InputSettingsFunctionsConstants.ResourceDualShock4,
             ModelConstants.PlayStation5 => InputSettingsFunctionsConstants.ResourceDualSense,
@@ -84,7 +90,16 @@ internal static partial class InputSettingsFunctions
     {
         ControllerType.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
         ControllerType.None => InputSettingsFunctionsConstants.ResourceControllerNone,
-        _ => $"Emulation.Controller.{type}"
+        ControllerType.DualShock => InputSettingsFunctionsConstants.ResourceDualShock,
+        ControllerType.AnalogController => InputSettingsFunctionsConstants.ResourceDualAnalog,
+        ControllerType.AnalogJoystick => InputSettingsFunctionsConstants.ResourceAnalogJoystick,
+        ControllerType.GunCon => InputSettingsFunctionsConstants.ResourceGunCon,
+        ControllerType.Justifier => InputSettingsFunctionsConstants.ResourceJustifier,
+        ControllerType.Mouse => InputSettingsFunctionsConstants.ResourcePlayStationMouse,
+        ControllerType.Keyboard => InputSettingsFunctionsConstants.ResourceControllerKeyboard,
+        ControllerType.NeGcon or ControllerType.NeGconRumble or ControllerType.KeyboardAndMouse
+            => string.Empty,
+        _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
     };
 
     private static IReadOnlyDictionary<string, string> ToStrings(

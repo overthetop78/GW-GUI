@@ -26,6 +26,8 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private bool _disposed;
     private int _optionsUpdated;
     private readonly object _inputGate = new();
+    private readonly int[] _controllerTypes = Enumerable.Repeat((int)ControllerType.None,
+        GWGUI.Emulation.Sony.Common.Constants.ControllerPortConstants.MaximumControllerPortCount).ToArray();
     private EmulationInputSnapshot _pendingInput = EmulationInputSnapshot.Empty;
     private EmulationInputSnapshot _polledInput = EmulationInputSnapshot.Empty;
     private int _pointerX = ExternalHostCallbacksConstants.PointerCoordinateCenter;
@@ -92,6 +94,13 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         }
     }
     internal ExternalCoreApi.EnvironmentCallback Environment { get; }
+    internal void SetControllerType(int port, ControllerType type)
+    {
+        if (port < GWGUI.Emulation.Sony.Common.Constants.ControllerPortConstants.MinimumControllerPort
+            || port >= _controllerTypes.Length)
+            throw new ArgumentOutOfRangeException(nameof(port), port, null);
+        Volatile.Write(ref _controllerTypes[port], (int)type);
+    }
     internal ExternalCoreApi.VideoCallback Video { get; }
     internal ExternalCoreApi.AudioSampleCallback AudioSample { get; }
     internal ExternalCoreApi.AudioBatchCallback AudioBatch { get; }
@@ -99,8 +108,8 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal ExternalCoreApi.InputStateCallback InputState { get; }
     internal ExternalCoreApi.LogCallback Log { get; }
     internal ExternalCoreApi.SetLedState Led { get; }
-    internal int SampleRate { get; set; } = 44100;
-    internal double FramesPerSecond { get; private set; } = 50;
+    internal int SampleRate { get; set; } = ExternalCoreConstants.FallbackSampleRate;
+    internal double FramesPerSecond { get; private set; } = ExternalCoreConstants.FallbackFramesPerSecond;
     internal bool SupportsNoGame { get; private set; }
     internal IReadOnlyList<IReadOnlyList<ControllerDevice>> ControllerPorts { get; private set; } = [];
     internal IReadOnlyList<CoreOption> OptionCatalog { get; private set; } = [];
@@ -136,10 +145,14 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         if (_disposed) return;
         try
         {
-            foreach (var pointer in _nativeStrings.Values)
+            try { DestroyHardwareContext(); }
+            finally
             {
-                try { Marshal.FreeCoTaskMem(pointer); }
-                catch (Exception) { }
+                foreach (var pointer in _nativeStrings.Values)
+                {
+                    try { Marshal.FreeCoTaskMem(pointer); }
+                    catch (Exception) { }
+                }
             }
         }
         finally

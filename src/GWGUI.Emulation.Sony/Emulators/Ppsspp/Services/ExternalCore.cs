@@ -1,8 +1,10 @@
+using ExternalCoreInteropConstants = GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
+using NativeControllerConstants = GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ControllerPortConstants;
 
 namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;
 
@@ -15,6 +17,7 @@ internal sealed class ExternalCore : IEmulatorCore
     private ExternalCoreApi.VoidCall? _unloadGame;
     private ExternalCoreApi.VoidCall? _run;
     private ExternalCoreApi.VoidCall? _reset;
+    private ExternalCoreApi.SetControllerPortDevice? _setControllerPortDevice;
     private ExternalCoreApi.GetSerializedSize? _getSerializedSize;
     private ExternalCoreApi.Serialize? _serialize;
     private ExternalCoreApi.Serialize? _unserialize;
@@ -118,10 +121,11 @@ internal sealed class ExternalCore : IEmulatorCore
             Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroInit)();
             _initialized = true;
             _host.ValidateConfiguredOptions();
-            var setController = Export<ExternalCoreApi.SetControllerPortDevice>(
+            _setControllerPortDevice = Export<ExternalCoreApi.SetControllerPortDevice>(
                 ExternalCoreConstants.RetroSetControllerPortDevice);
-            for (var port = 0; port < ModelCatalog.Get(configuration.Model).ControllerPortCount; port++)
-                setController((uint)port, ExternalCoreConstants.JoypadDevice);
+            for (var port = ControllerPortConstants.MinimumControllerPort;
+                port < ControllerFunctions.PortCount(configuration); port++)
+                SetControllerPortDevice(port, ControllerFunctions.Resolve(configuration, port));
 
             var loadGame = Export<ExternalCoreApi.LoadGame>(ExternalCoreConstants.RetroLoadGame);
             if (contentPath is null)
@@ -178,6 +182,19 @@ internal sealed class ExternalCore : IEmulatorCore
     public void SetInput(EmulationInputSnapshot snapshot)
     {
         if (_host is not null) _host.Input = snapshot;
+    }
+    public void SetControllerPortDevice(int port, ControllerType type)
+    {
+        var configuration = _configuration
+            ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized());
+        var host = _host ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized());
+        var setter = _setControllerPortDevice
+            ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized());
+        ControllerFunctions.Validate(configuration, port, type);
+        setter((uint)port, type == ControllerType.None
+            ? NativeControllerConstants.NoneDevice : NativeControllerConstants.JoypadDevice);
+        host.SetControllerType(port, type);
+        _configuration = ControllerFunctions.WithControllerType(configuration, port, type);
     }
     public void InsertMedia(string path) => (_host
         ?? throw new InvalidOperationException(PpssppExceptions.CoreNotInitialized()))
@@ -279,6 +296,7 @@ internal sealed class ExternalCore : IEmulatorCore
                 _unloadGame = null;
                 _run = null;
                 _reset = null;
+                _setControllerPortDevice = null;
                 _getSerializedSize = null;
                 _serialize = null;
                 _unserialize = null;

@@ -33,6 +33,17 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         lock (_gate) Monitor.PulseAll(_gate);
         return new ValueTask(completion.Task.WaitAsync(cancellationToken));
     }
+
+    private void SetControllerPortDevice(int port, ControllerType type)
+    {
+        ControllerFunctions.Validate(Configuration, port, type);
+        QueueCommand(() =>
+        {
+            var updated = ControllerFunctions.WithControllerType(Configuration, port, type);
+            _core.SetControllerPortDevice(port, type);
+            Configuration = updated;
+        }, CancellationToken.None).AsTask().GetAwaiter().GetResult();
+    }
     private void Run(CancellationToken cancellationToken)
     {
         var initialized = false;

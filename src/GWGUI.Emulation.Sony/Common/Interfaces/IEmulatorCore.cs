@@ -22,6 +22,7 @@ internal interface IEmulatorCore : IDisposable
     void SoftReset();
     void Stop();
     void SetInput(EmulationInputSnapshot snapshot);
+    void SetControllerPortDevice(int port, ControllerType type);
     void InsertMedia(string path);
     void EjectMedia();
     void SelectDisk(int index);

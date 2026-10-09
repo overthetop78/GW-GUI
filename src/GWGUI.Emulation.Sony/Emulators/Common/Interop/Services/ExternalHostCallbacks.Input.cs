@@ -1,7 +1,9 @@
+using static GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerInputFunctions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums;
 
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -27,7 +29,8 @@ internal sealed partial class ExternalHostCallbacks
                 Pointer = _pendingInput.Pointer with { DeltaX = 0, DeltaY = 0, Wheel = 0, HorizontalWheel = 0 }
             };
         }
-        PublishKeyboardTransitions(_polledInput.Keys);
+        PublishKeyboardTransitions(_controllerTypes.Any(type => (ControllerType)type != ControllerType.None)
+            ? _polledInput.Keys : new HashSet<EmulationKey>());
     }
 
     private void PublishKeyboardTransitions(IReadOnlySet<EmulationKey> keys)
@@ -97,51 +100,88 @@ internal sealed partial class ExternalHostCallbacks
 
     private short HandleInputState(uint port, uint device, uint index, uint id)
     {
+        if (port >= _controllerTypes.Length
+            || (ControllerType)Volatile.Read(ref _controllerTypes[(int)port]) == ControllerType.None)
+            return default;
         var input = _polledInput;
+        var controller = port < input.Controllers.Count
+            ? input.Controllers[(int)port] : EmulationControllerState.Empty;
         if (device == KeyboardDevice)
             return KeyboardMap.TryGetValue(id, out var key) && input.Keys.Contains(key) ? (short)1 : (short)0;
 
-        if (device == MouseDevice && port == 0)
-            return id switch
+        if (device == MouseDevice)
+            return (MouseInput)id switch
             {
-                0 => ClampToShort(input.Pointer.DeltaX),
-                1 => ClampToShort(input.Pointer.DeltaY),
-                2 => Bool(input.Pointer.Left),
-                3 => Bool(input.Pointer.Right),
-                4 => Bool(input.Pointer.Wheel > 0),
-                5 => Bool(input.Pointer.Wheel < 0),
-                6 => Bool(input.Pointer.Middle),
-                _ => 0
+                MouseInput.X => ClampToShort(input.Pointer.DeltaX),
+                MouseInput.Y => ClampToShort(input.Pointer.DeltaY),
+                MouseInput.Left => Bool(PortButton(controller, nameof(MouseAction.LeftButton), input.Pointer.Left)),
+                MouseInput.Right => Bool(PortButton(controller, nameof(MouseAction.RightButton), input.Pointer.Right)),
+                MouseInput.Middle => Bool(PortButton(controller, nameof(MouseAction.MiddleButton), input.Pointer.Middle)),
+                MouseInput.WheelUp => Bool(input.Pointer.Wheel > NeutralWheelDelta),
+                MouseInput.WheelDown => Bool(input.Pointer.Wheel < NeutralWheelDelta),
+                MouseInput.HorizontalWheelUp => Bool(input.Pointer.HorizontalWheel > NeutralWheelDelta),
+                MouseInput.HorizontalWheelDown => Bool(input.Pointer.HorizontalWheel < NeutralWheelDelta),
+                MouseInput.Button4 => Bool(input.Pointer.ExtendedButton1),
+                MouseInput.Button5 => Bool(input.Pointer.ExtendedButton2),
+                _ => default
             };
 
-        if (device == PointerDevice && port == 0)
+        if (device == PointerDevice && index == PrimaryPointerIndex)
             return id switch
             {
                 PointerX => (short)_pointerX,
                 PointerY => (short)_pointerY,
                 PointerPressed => Bool(input.Pointer.Left),
-                _ => 0
+                PointerCount => input.Pointer.Left ? (short)SinglePointerCount : default,
+                PointerOffscreen => Bool(PointerIsOffscreen()),
+                _ => default
+            };
+
+        if (device == LightGunDevice)
+            return (LightGunInput)id switch
+            {
+                LightGunInput.ScreenX => (short)_pointerX,
+                LightGunInput.ScreenY => (short)_pointerY,
+                LightGunInput.RelativeX => ClampToShort(input.Pointer.DeltaX),
+                LightGunInput.RelativeY => ClampToShort(input.Pointer.DeltaY),
+                LightGunInput.Offscreen => Bool(PointerIsOffscreen()),
+                LightGunInput.Reload => Bool(input.Pointer.ExtendedButton1),
+                LightGunInput.Trigger => Bool(PortButton(controller, EmulationControllerCommandIds.B, input.Pointer.Left)),
+                LightGunInput.AuxiliaryA => Bool(PortButton(controller, EmulationControllerCommandIds.A, input.Pointer.Right)),
+                LightGunInput.AuxiliaryB => Bool(PortButton(controller, EmulationControllerCommandIds.X, input.Pointer.Middle)),
+                LightGunInput.Start or LightGunInput.Pause => Bool(PortButton(controller, EmulationControllerCommandIds.Start)),
+                LightGunInput.Select => Bool(PortButton(controller, EmulationControllerCommandIds.Select)),
+                LightGunInput.Up => Bool(PortButton(controller, EmulationControllerCommandIds.Up)),
+                LightGunInput.Down => Bool(PortButton(controller, EmulationControllerCommandIds.Down)),
+                LightGunInput.Left => Bool(PortButton(controller, EmulationControllerCommandIds.Left)),
+                LightGunInput.Right => Bool(PortButton(controller, EmulationControllerCommandIds.Right)),
+                _ => default
             };
 
         if (port >= input.Controllers.Count) return 0;
-        var controller = input.Controllers[(int)port];
         if (device == JoypadDevice)
         {
             var buttons = controller.Buttons;
             if (id == JoypadMask) return unchecked((short)(buttons & ushort.MaxValue));
-            return id < 32 && (buttons & (1u << (int)id)) != 0 ? (short)1 : (short)0;
+            return id < ControllerButtonMaskWidth && (buttons & (1u << (int)id)) != EmptyButtonMask
+                ? Bool(true) : default;
         }
         if (device == AnalogDevice)
-            return (index, id) switch
+            return ((AnalogInputIndex)index, (AnalogAxis)id) switch
             {
-                (0, 0) => controller.LeftX,
-                (0, 1) => controller.LeftY,
-                (1, 0) => controller.RightX,
-                (1, 1) => controller.RightY,
-                _ => 0
+                (AnalogInputIndex.LeftStick, AnalogAxis.X) => controller.LeftX,
+                (AnalogInputIndex.LeftStick, AnalogAxis.Y) => controller.LeftY,
+                (AnalogInputIndex.RightStick, AnalogAxis.X) => controller.RightX,
+                (AnalogInputIndex.RightStick, AnalogAxis.Y) => controller.RightY,
+                (AnalogInputIndex.Button, _) => AnalogButton(controller, (JoypadInput)id),
+                _ => default
             };
         return 0;
     }
+
+    private bool PointerIsOffscreen() => _pointerX <= PointerCoordinateMinimum
+        || _pointerX >= PointerCoordinateMaximum || _pointerY <= PointerCoordinateMinimum
+        || _pointerY >= PointerCoordinateMaximum;
 
     private static short Bool(bool value) => value ? (short)1 : (short)0;
     private static short ClampToShort(int value) => (short)Math.Clamp(value, short.MinValue, short.MaxValue);

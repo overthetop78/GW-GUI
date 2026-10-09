@@ -26,6 +26,7 @@ public static class ModelCatalog
             AudioChip: ModelConstants.AudioVita, CpuFrequency: ModelConstants.FrequencyVita),
         new(ModelConstants.PlayStation3, "PlayStation 3", ModelConstants.BackendPlayStation3,
             (int)RamCapacity._256MB, false, 0, 0, false, false, false, false,
+            ControllerPortCount: Machines.PlayStation3.Constants.HardwareConstants.ControllerPortCount,
             HasBuiltInCompactDiscDrive: true, SupportsCompactDiscDrive: true,
             CpuModels: [ModelConstants.CpuCellBroadbandEngine], VideoChip: ModelConstants.VideoRsx,
             AudioChip: ModelConstants.AudioCell, CpuFrequency: ModelConstants.FrequencyPs3),

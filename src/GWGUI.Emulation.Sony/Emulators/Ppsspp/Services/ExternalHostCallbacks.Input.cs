@@ -28,7 +28,8 @@ internal sealed partial class ExternalHostCallbacks
                 Pointer = _pendingInput.Pointer with { DeltaX = 0, DeltaY = 0, Wheel = 0, HorizontalWheel = 0 }
             };
         }
-        PublishKeyboardTransitions(_polledInput.Keys);
+        PublishKeyboardTransitions(_controllerTypes.Any(type => (ControllerType)type != ControllerType.None)
+            ? _polledInput.Keys : new HashSet<EmulationKey>());
     }
 
     private void PublishKeyboardTransitions(IReadOnlySet<EmulationKey> keys)
@@ -98,6 +99,9 @@ internal sealed partial class ExternalHostCallbacks
 
     private short HandleInputState(uint port, uint device, uint index, uint id)
     {
+        if (port >= _controllerTypes.Length
+            || (ControllerType)Volatile.Read(ref _controllerTypes[(int)port]) == ControllerType.None)
+            return default;
         var input = _polledInput;
         if (device == KeyboardDevice)
             return KeyboardMap.TryGetValue(id, out var key) && input.Keys.Contains(key) ? (short)1 : (short)0;

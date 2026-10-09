@@ -95,6 +95,11 @@ public static class CoreHost
                             var state = EnsureCore(core).SaveState(); writer.Write(true); CoreHostProtocol.WriteBytes(writer, state); break;
                         case HostCommand.LoadState: EnsureCore(core).LoadState(CoreHostProtocol.ReadBytes(reader)); WriteSuccess(writer); break;
                         case HostCommand.SetOption: EnsureCore(core).SetOption(reader.ReadString(), reader.ReadString()); WriteSuccess(writer); break;
+                        case HostCommand.SetControllerPortDevice:
+                            EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(),
+                                (ControllerType)reader.ReadInt32());
+                            WriteSuccess(writer);
+                            break;
                         case HostCommand.SelectDisk: EnsureCore(core).SelectDisk(reader.ReadInt32()); WriteSuccess(writer); break;
                         case HostCommand.Dispose: core?.Dispose(); core = null; WriteSuccess(writer); break;
                         default: throw new InvalidDataException(Pcsx2Exceptions.UnknownHostCommand((byte)command));

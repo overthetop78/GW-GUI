@@ -23,8 +23,8 @@ public static class CoreHost
         using var videoMemory = MemoryMappedFile.OpenExisting(videoMapName, MemoryMappedFileRights.ReadWrite);
         using var videoMap = videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity,
             MemoryMappedFileAccess.ReadWrite);
-        using var pipe = new NamedPipeClientStream(CoreHostConstants.Value, pipeName, PipeDirection.InOut, PipeOptions.None);
-        pipe.Connect(15_000);
+        using var pipe = new NamedPipeClientStream(CoreHostConstants.LocalPipeServer, pipeName, PipeDirection.InOut, PipeOptions.None);
+        pipe.Connect(checked((int)TimeSpan.FromSeconds(ProcessCoreConstants.ConnectionTimeoutSeconds).TotalMilliseconds));
         using var reader = new BinaryReader(pipe, System.Text.Encoding.UTF8, true);
         using var transportWriter = new BinaryWriter(pipe, System.Text.Encoding.UTF8, true);
         ExternalCore? core = null;
@@ -50,6 +50,7 @@ public static class CoreHost
                             var saves = CoreHostProtocol.ReadString(reader);
                             var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(), CoreHostProtocol.JsonOptions)
                                 ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid());
+                            core?.Dispose();
                             core = new ExternalCore(CoreCatalog.Get(configuration.EmulatorId), corePath);
                             core.Initialize(configuration, session, saves);
                             writer.Write(true);
@@ -95,6 +96,11 @@ public static class CoreHost
                             var state = EnsureCore(core).SaveState(); writer.Write(true); CoreHostProtocol.WriteBytes(writer, state); break;
                         case HostCommand.LoadState: EnsureCore(core).LoadState(CoreHostProtocol.ReadBytes(reader)); WriteSuccess(writer); break;
                         case HostCommand.SetOption: EnsureCore(core).SetOption(reader.ReadString(), reader.ReadString()); WriteSuccess(writer); break;
+                        case HostCommand.SetControllerPortDevice:
+                            EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(),
+                                (ControllerType)reader.ReadInt32());
+                            WriteSuccess(writer);
+                            break;
                         case HostCommand.SelectDisk: EnsureCore(core).SelectDisk(reader.ReadInt32()); WriteSuccess(writer); break;
                         case HostCommand.Dispose: core?.Dispose(); core = null; WriteSuccess(writer); break;
                         default: throw new InvalidDataException(CoreExceptions.UnknownHostCommand((byte)command));

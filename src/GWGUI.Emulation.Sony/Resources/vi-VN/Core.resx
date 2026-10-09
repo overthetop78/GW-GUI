@@ -7,4 +7,11 @@
   <data name="Emulation.Emulator.pcsx2.Description"><value>Tính toán hệ thống PlayStation 2.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Hệ thống PlayStation Portable.</value></data>
   <data name="Emulation.Emulator.swanstation.Description"><value>Kết hợp Sony PlayStation và PS one hệ thống.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Tính toán Sony PocketStation Name BIOS và các hình thẻ nhớ.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Tính PlayStation hệ thống với Beetle PSX Trình biên dịch phần mềm.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Tính PlayStation hệ thống với Beetle PSX Trình vẽ phần cứng.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Tính toán hệ thống PlayStation với PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Tính PlayStation 2 hệ thống có PCEE2 và một bên ngoài BIOS.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Kết hợp PlayStation 2 hệ thống với Play! và hệ thống kết hợp phần mềm.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Tính toán hệ thống PlayStation 3 với phần mềm RPCS3 và bên ngoài.</value></data>
 </root>

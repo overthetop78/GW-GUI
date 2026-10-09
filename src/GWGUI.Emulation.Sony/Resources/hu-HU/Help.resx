@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Ellenőrzi, hogy a GW GUI lejátszja-e az emulátor által létrehozott hangmintákat.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Emulált hang engedélyezése vagy letiltása.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Kiválasztja a Windows audio kimenetet használt játszani hang ebből az emulált gép.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Válassza ki a Windows eszköz, amely játszik hangot ebből az emulált gép.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>A GW GUI által használt hangkimenet.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Megjeleníti a processzor névleges óra frekvenciáját a kiválasztott Sony gépben.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Eredeti processzor óra frekvencia.</value></data>

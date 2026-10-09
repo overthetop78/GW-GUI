@@ -7,4 +7,11 @@
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emuluje systemy PlayStation 2.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Emuluje systemy PlayStation Portable.</value></data>
   <data name="Emulation.Emulator.swanstation.Description"><value>Emuluje systemy Sony PlayStation i PS one.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Emuluje uchwyt Sony PocketStation za pomocą zewnętrznych obrazów BIOS i kart pamięci.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Emuluje systemy PlayStation z wypożyczalnikiem oprogramowania Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Emuluje systemy PlayStation z wypożyczalnikiem sprzętu Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Emulaty PlayStation systemów z PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Emuluje systemy PlayStation 2 z PCEE2 i zewnętrznym BIOS.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Emuluje systemy PlayStation 2 za pomocą gry Play! i jego wbudowaną emulację oprogramowania firmowego.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Emuluje systemy PlayStation 3 z RPCS3 i zewnętrznym oprogramowaniem systemowym.</value></data>
 </root>

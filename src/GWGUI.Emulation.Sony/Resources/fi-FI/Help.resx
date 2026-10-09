@@ -6,18 +6,18 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Kontrolloi onko GW GUI soittaa ääninäytteitä luotu emulaattori.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Ota käyttöön tai poista emulgoitu ääni.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Valitsee Windowsin äänilähdön, jota käytetään tämän emulgoidun koneen äänen soittamiseen.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Valitse Windows laite, joka soittaa ääntä tästä emulgoitu kone.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Ääniteho GW GUI.</value></data>
-  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Näyttää valitun Sony-koneen prosessorin nimellisen kellotaajuuden.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Näyttää prosessorin nimellisen kellotaajuuden valitussa Sony koneessa.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Alkuperäinen prosessorin kellotaajuus.</value></data>
-  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Näyttää valitun Sony-koneen tarjoaman prosessorimallin.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>Näyttää valitun Sony koneen prosessorimallin.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>Prosessori emulgoi tämän koneen.</value></data>
   <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>Näyttää valitun koneen ja emulaattorin järjestelmän ROM- tilan.</value></data>
   <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>Järjestelmä ROM.</value></data>
   <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Tunnistaa tämän koneen konfigurointiin käytetyn emulaattorin toteutuksen.</value></data>
   <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulaattori valittu tähän koneeseen.</value></data>
-  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Tunnistaa Sony-mallin, jonka laitteistokonfiguraatiota muokataan.</value></data>
-  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony-koneen malli on konfiguroitu.</value></data>
-  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Näyttää valitun Sony-koneen RAM:n.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Tunnistetaan Sony malli, jonka laitteistokonfiguraatio on muokattu.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony konemalli konfiguroitu.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Näyttää RAM:n, jonka tarjoaa valittu Sony kone.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Emuloidulle koneelle käytettävissä olevan RAM-muistin määrä.</value></data>
 </root>

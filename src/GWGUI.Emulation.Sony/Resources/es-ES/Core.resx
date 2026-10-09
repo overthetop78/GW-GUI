@@ -6,5 +6,12 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emula los sistemas de PlayStation 2.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Emula los sistemas de PlayStation Portable.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>Emulates Sony PlayStation and PS one systems.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Emulates Sony PlayStation Y... PS one Sistemas.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Emula el Sony PocketStation portátil con un BIOS externo e imágenes de tarjetas de memoria.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Emula los sistemas PlayStation con el renderizador de software Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Emula los sistemas PlayStation con el renderizador de hardware Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Emula sistemas de PlayStation con PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Emula los sistemas PlayStation 2 con PCEE2 y un BIOS externo.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Emula los sistemas PlayStation 2 con Play! y su emulación de firmware integrado.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Emula sistemas de PlayStation 3 con RPCS3 y firmware del sistema externo.</value></data>
 </root>

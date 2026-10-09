@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Ελέγχει αν το GW GUI παίζει τα δείγματα ήχου που παράγονται από τον εξομοιωτή.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Ενεργοποίηση ή απενεργοποίηση εικονιζόμενου ήχου.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Επιλέγει την έξοδο ήχου των Windows που χρησιμοποιείται για να παίξει τον ήχο από αυτό το μιμούμενο μηχάνημα.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Επιλέξτε τη συσκευή των Windows που παίζει ήχο από αυτό το μιμούμενο μηχάνημα.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Έξοδος ήχου που χρησιμοποιείται από το GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Εμφανίζει την ονομαστική συχνότητα ⁇ ολογιού του επεξεργαστή στην επιλεγμένη μηχανή Sony.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Αρχική συχνότητα ⁇ ολογιού επεξεργαστή.</value></data>

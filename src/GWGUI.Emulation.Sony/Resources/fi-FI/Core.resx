@@ -6,5 +6,12 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emuloi PlayStation 2 -järjestelmiä.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Emultaa PlayStation Portable -järjestelmiä.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>Emuloi Sony PlayStation- ja PS one -järjestelmiä.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>Emuloidaan Sony PlayStation ja PS one järjestelmiä.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Emulgoi Sony PocketStation -tietokoneen ulkoisilla BIOS- ja muistikorttikuvilla.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Emulgoi PlayStation järjestelmiä Beetle PSX ohjelmiston renderöintiin.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Emulgoi PlayStation järjestelmiä Beetle PSX laitteiston renderointiin.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Emuloidaan PlayStation järjestelmää, jossa on PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Emuloi PlayStation 2 -järjestelmiä PCEE2:lla ja ulkoisella BIOS:llä.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Emuloi PlayStation 2 järjestelmää, jossa on Play! ja sen integroitu järjestelmäohjelmistojen emulointi.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Emuloi PlayStation 3 -järjestelmiä RPCS3 ja ulkoisia järjestelmäohjelmistoja.</value></data>
 </root>

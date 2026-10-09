@@ -7,4 +7,11 @@
   <data name="Emulation.Emulator.pcsx2.Description"><value>Emuluje PlayStation 2 systémy.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Emuláty PlayStation Portable systémů.</value></data>
   <data name="Emulation.Emulator.swanstation.Description"><value>Emuluje systémy Sony PlayStation a PS one.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Emuluje Sony PocketStation s externím BIOS a obrázky paměťových karet.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Emuluje PlayStation systémy s Beetle PSX software renderer.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Emuluje PlayStation systémy s Beetle PSX hardware renderer.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Emuláty PlayStation se systémy s PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Emuluje systémy PlayStation 2 s PCEE2 a externím BIOS.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Emuluje PlayStation 2 systémy s Play! a jeho integrovaný systém emulace firmwaru.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Emuluje PlayStation 3 systémy s RPCS3 a externím systémem firmware.</value></data>
 </root>

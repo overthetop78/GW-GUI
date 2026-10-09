@@ -4,10 +4,13 @@ using System.Security.Cryptography;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
+using SemanticControllerFunctions = GWGUI.Emulation.Sony.Common.Machines.Common.Functions.ControllerFunctions;
+using SemanticPortConstants = GWGUI.Emulation.Sony.Common.Constants.ControllerPortConstants;
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
 
-internal sealed class ExternalCore : IEmulatorCore
+internal sealed partial class ExternalCore : IEmulatorCore
 {
     private readonly string _corePath;
     private readonly CoreDefinition _definition;
@@ -17,12 +20,14 @@ internal sealed class ExternalCore : IEmulatorCore
     private ExternalCoreApi.VoidCall? _unloadGame;
     private ExternalCoreApi.VoidCall? _run;
     private ExternalCoreApi.VoidCall? _reset;
+    private ExternalCoreApi.SetControllerPortDevice? _setControllerPortDevice;
     private ExternalCoreApi.GetSerializedSize? _getSerializedSize;
     private ExternalCoreApi.Serialize? _serialize;
     private ExternalCoreApi.Serialize? _unserialize;
     private MachineConfiguration? _configuration;
     private string? _sessionDirectory;
     private string? _saveDirectory;
+    private nint _contentBuffer;
     private bool _gameLoaded;
     private bool _initialized;
 
@@ -43,8 +48,8 @@ internal sealed class ExternalCore : IEmulatorCore
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } =
         new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     public string CoreSha256 { get; private set; } = string.Empty;
-    public double FramesPerSecond => _host?.FramesPerSecond ?? 50d;
-    public int SampleRate => _host?.SampleRate ?? 44_100;
+    public double FramesPerSecond => _host?.FramesPerSecond ?? ExternalCoreConstants.FallbackFramesPerSecond;
+    public int SampleRate => _host?.SampleRate ?? ExternalCoreConstants.FallbackSampleRate;
     public int DiskCount => _host?.DiskControl.ImageCount ?? 0;
     public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? -1;
 
@@ -61,6 +66,7 @@ internal sealed class ExternalCore : IEmulatorCore
         _configuration = configuration;
         _sessionDirectory = Path.GetFullPath(sessionDirectory);
         _saveDirectory = saveDirectory is null ? null : Path.GetFullPath(saveDirectory);
+        _saveMemoryReady = false;
         var media = ResolveConfiguredMedia(configuration);
         foreach (var item in media)
             if (!File.Exists(item.Path))
@@ -70,10 +76,12 @@ internal sealed class ExternalCore : IEmulatorCore
         using (var stream = File.OpenRead(sourceCorePath))
             CoreSha256 = Convert.ToHexString(SHA256.HashData(stream));
 
-        var systemDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
         var contentDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.ContentDirectoryName);
         saveDirectory = Path.GetFullPath(saveDirectory
             ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
+        var coreSaveDirectory = Path.Combine(saveDirectory, _definition.Id);
+        var systemDirectory = Path.Combine(coreSaveDirectory, CoreDirectoryConstants.SystemDirectoryName);
+        _saveMemoryPath = Path.Combine(coreSaveDirectory, SaveMemoryConstants.FileName);
         Directory.CreateDirectory(systemDirectory);
         FirmwareConfigurationFunctions.CopySelectedFiles(configuration,
             new Engine().Adapter(configuration), systemDirectory);
@@ -99,8 +107,6 @@ internal sealed class ExternalCore : IEmulatorCore
             if (!string.Equals(libraryName, _definition.LibraryName,
                     StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException(CoreExceptions.LibraryIdentityMismatch(libraryName));
-            if (!info.NeedFullPath)
-                throw new InvalidDataException(CoreExceptions.FullContentPathsRequired());
             CoreName = libraryName!;
             CoreVersion = Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty;
             SupportedContentExtensions = (Marshal.PtrToStringUTF8(info.ValidExtensions) ?? string.Empty)
@@ -123,13 +129,14 @@ internal sealed class ExternalCore : IEmulatorCore
             _getSerializedSize = Export<ExternalCoreApi.GetSerializedSize>(ExternalCoreConstants.RetroSerializeSize);
             _serialize = Export<ExternalCoreApi.Serialize>(ExternalCoreConstants.RetroSerialize);
             _unserialize = Export<ExternalCoreApi.Serialize>(ExternalCoreConstants.RetroUnserialize);
+            _getMemoryData = Export<ExternalCoreApi.GetMemoryData>(ExternalCoreConstants.RetroGetMemoryData);
+            _getMemorySize = Export<ExternalCoreApi.GetMemorySize>(ExternalCoreConstants.RetroGetMemorySize);
             Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroInit)();
             _initialized = true;
             _host.ValidateConfiguredOptions();
-            var setController = Export<ExternalCoreApi.SetControllerPortDevice>(
+            _setControllerPortDevice = Export<ExternalCoreApi.SetControllerPortDevice>(
                 ExternalCoreConstants.RetroSetControllerPortDevice);
-            for (var port = 0; port < ModelCatalog.Get(configuration.Model).ControllerPortCount; port++)
-                setController((uint)port, ExternalCoreConstants.JoypadDevice);
+            ApplyConfiguredControllers(requireAdvertised: false);
 
             var loadGame = Export<ExternalCoreApi.LoadGame>(ExternalCoreConstants.RetroLoadGame);
             if (contentPath is null)
@@ -138,10 +145,15 @@ internal sealed class ExternalCore : IEmulatorCore
                     throw new InvalidOperationException(CoreExceptions.StartWithoutMediaUnsupported());
                 _gameLoaded = loadGame(0);
             }
-            else _gameLoaded = LoadGame(loadGame, contentPath);
+            else _gameLoaded = LoadGame(loadGame, contentPath, info.NeedFullPath);
             if (!_gameLoaded) throw new InvalidOperationException(CoreExceptions.ContentRefused());
+            _host.ValidateConfiguredOptions();
+            ApplyConfiguredControllers(requireAdvertised: true);
+            RestoreSaveMemory();
+            _saveMemoryReady = true;
             Export<ExternalCoreApi.GetSystemAvInfo>(ExternalCoreConstants.RetroGetSystemAvInfo)(out var av);
             _host.ApplyInitialAvInfo(av);
+            _host.ResetHardwareContext();
         }
         catch
         {
@@ -158,15 +170,7 @@ internal sealed class ExternalCore : IEmulatorCore
         string contentDirectory)
     {
         if (media.Count == 0) return null;
-        if (media.Count == 1 || media.Any(item => item.Category != MediaCategory.Floppy))
-            return Path.GetFullPath(media[0].Path);
-        if (media.Count > ExternalCoreConstants.MaximumPlaylistEntries)
-            throw new ArgumentOutOfRangeException(nameof(media),
-                CoreExceptions.PlaylistLimitExceeded());
-        var playlist = Path.Combine(contentDirectory, ExternalCoreConstants.PlaylistName);
-        File.WriteAllLines(playlist, media.Select(item => Path.GetFullPath(item.Path)),
-            new System.Text.UTF8Encoding(false));
-        return playlist;
+        return Path.GetFullPath(media[0].Path);
     }
 
     public void RunFrame() => (_run
@@ -186,6 +190,34 @@ internal sealed class ExternalCore : IEmulatorCore
     public void SetInput(EmulationInputSnapshot snapshot)
     {
         if (_host is not null) _host.Input = snapshot;
+    }
+    public void SetControllerPortDevice(int port, ControllerType type)
+    {
+        var configuration = _configuration
+            ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());
+        var host = _host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());
+        var setter = _setControllerPortDevice
+            ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());
+        SemanticControllerFunctions.Validate(configuration, port, type);
+        var nativeId = ControllerPortFunctions.Resolve(type, port, host.ControllerPorts);
+        setter((uint)port, nativeId);
+        host.SetControllerType(port, type);
+        _configuration = SemanticControllerFunctions.WithControllerType(configuration, port, type);
+    }
+
+    private void ApplyConfiguredControllers(bool requireAdvertised)
+    {
+        var configuration = _configuration
+            ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());
+        for (var port = SemanticPortConstants.MinimumControllerPort;
+            port < SemanticControllerFunctions.PortCount(configuration); port++)
+        {
+            var type = SemanticControllerFunctions.Resolve(configuration, port);
+            if (!requireAdvertised && !_host!.ControllerPorts.Any()
+                && type is not (ControllerType.Joystick or ControllerType.None))
+                continue;
+            SetControllerPortDevice(port, type);
+        }
     }
     public void InsertMedia(string path) => (_host
         ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))
@@ -235,8 +267,17 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void Stop()
     {
-        if (_gameLoaded) _unloadGame?.Invoke();
-        _gameLoaded = false;
+        if (!_gameLoaded) return;
+        try { PersistSaveMemory(); }
+        finally
+        {
+            try { _unloadGame?.Invoke(); }
+            finally
+            {
+                _gameLoaded = false;
+                _saveMemoryReady = false;
+            }
+        }
     }
 
     private void ValidateExtension(string? path)
@@ -247,14 +288,24 @@ internal sealed class ExternalCore : IEmulatorCore
             throw new InvalidDataException(CoreExceptions.UnsupportedContentExtension(extension));
     }
 
-    private static bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path)
+    private bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path, bool needFullPath)
     {
         using var nativePath = new ExternalCoreUtf8String(path);
         var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
         try
         {
-            Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = nativePath.Pointer },
-                game, false);
+            var content = needFullPath ? null : File.ReadAllBytes(path);
+            if (content is not null)
+            {
+                _contentBuffer = Marshal.AllocHGlobal(content.Length);
+                Marshal.Copy(content, BufferConstants.FirstBufferIndex, _contentBuffer, content.Length);
+            }
+            Marshal.StructureToPtr(new ExternalCoreApi.GameInfo
+            {
+                Path = nativePath.Pointer,
+                Data = _contentBuffer,
+                Size = content is null ? ExternalCoreInteropConstants.EmptyNativeSize : (nuint)content.Length
+            }, game, false);
             return loadGame(game);
         }
         finally { Marshal.FreeHGlobal(game); }
@@ -273,33 +324,47 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void Dispose()
     {
-        try { Stop(); }
+        try { _host?.NotifyHardwareContextDestroy(); }
         finally
         {
-            try
-            {
-                if (_initialized) _deinitialize?.Invoke();
-            }
+
+            try { Stop(); }
             finally
             {
-                _initialized = false;
-                _deinitialize = null;
-                _unloadGame = null;
-                _run = null;
-                _reset = null;
-                _getSerializedSize = null;
-                _serialize = null;
-                _unserialize = null;
-                try { _host?.Dispose(); }
+                try
+                {
+                    if (_initialized) _deinitialize?.Invoke();
+                }
                 finally
                 {
-                    _host = null;
-                    try { _library?.Dispose(); }
-                    finally { _library = null; }
+                    _initialized = false;
+                    _deinitialize = null;
+                    _unloadGame = null;
+                    _run = null;
+                    _reset = null;
+                    _setControllerPortDevice = null;
+                    _getSerializedSize = null;
+                    _serialize = null;
+                    _unserialize = null;
+                    _getMemoryData = null;
+                    _getMemorySize = null;
+                    try { _host?.Dispose(); }
+                    finally
+                    {
+                        _host = null;
+                        try { _library?.Dispose(); }
+                        finally
+                        {
+                            _library = null;
+                            if (_contentBuffer != nint.Zero)
+                            {
+                                Marshal.FreeHGlobal(_contentBuffer);
+                                _contentBuffer = nint.Zero;
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 }
-
-

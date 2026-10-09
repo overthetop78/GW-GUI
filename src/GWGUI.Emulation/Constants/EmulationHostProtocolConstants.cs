@@ -7,7 +7,7 @@ internal static class EmulationHostProtocolConstants
     internal const string InvalidSharedVideoMetadata = "The host sent invalid shared video metadata.";
     internal const string SharedVideoEndedEarly = "The shared video frame ended early.";
     internal const int MaximumBlobLength = 512 * 1024 * 1024;
-    internal const int VideoSlotCapacity = 32 * 1024 * 1024;
+    internal const int VideoSlotCapacity = 128 * 1024 * 1024;
     internal const int VideoSlotCount = 2;
     internal const long VideoMapCapacity = (long)VideoSlotCapacity * VideoSlotCount;
     internal const int MaximumInputKeyCount = 512;

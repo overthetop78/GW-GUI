@@ -18,4 +18,5 @@ public sealed record EmulationSettingsField(
     long? NumericValue = null,
     EmulationSettingsChoiceSource ChoiceSource = EmulationSettingsChoiceSource.Declared,
     bool RefreshSettingsOnChange = false,
-    bool RequiresRestart = false);
+    bool RequiresRestart = false,
+    EmulationSettingsNumericRange? NumericRange = null);

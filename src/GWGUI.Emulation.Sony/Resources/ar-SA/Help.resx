@@ -6,18 +6,18 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>يتحكم في ما إذا كان GW GUI يلعب العينات الصوتية المتولدة عن المرشد.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>صوت محاكاة أو غير قابل للتحلل.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>يَختارُ المخرج الصوتي ويندوز كَانَ لِعْب الصوت مِنْ هذه الآلةِ المحاكاةِ.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>اختر جهاز (ويندوز) الذي يعزف الصوت من هذه الآلة المحاكاة</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>الناتج الصوتي الذي تستخدمه شركة GW GUI.</value></data>
-  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>يُظهر تواتر الساعة الاسمية للمعالجة في الآلة المختارة Sony.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>يُظهر تواتر الساعة الاسمية للمعالج في آلة مختارة من طراز Sony.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>تواتر الساعة الأصلي.</value></data>
-  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>يبين نموذج المعالج الذي قدمته آلة Sony المختارة.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>يُظهر نموذج المعالج الذي توفره آلة Sony المختارة.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>المُعالجة محاكاة لهذه الآلة.</value></data>
   <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>يُظهِرُ النظامَ ROM حالة للآلةِ المُختارةِ والشعارِ.</value></data>
-  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>النظام ROM.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>ROM النظام.</value></data>
   <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>يُحدّد تنفيذ المرشد المستخدم لإدارة هذه التشكيلة الآلية.</value></data>
   <data name="Emulation.Sony.Help.General.Emulator.Short"><value>تم اختيار المرشد لهذه الآلة</value></data>
-  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>يحدد طراز Sony الذي يجري تعديل تكوين أجهزته.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Detailed"><value>يُحدد Sony النموذج الذي يجري تحرير تركيبة معداته.</value></data>
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony آلة تم تشكيلها</value></data>
-  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>يعرض مقدار RAM المتاح في جهاز Sony المحدد.</value></data>
+  <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>التلاعبات RAM مقدم من المختار Sony Machine.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>كمية RAM المتاحة للآلة المحاكاة.</value></data>
 </root>

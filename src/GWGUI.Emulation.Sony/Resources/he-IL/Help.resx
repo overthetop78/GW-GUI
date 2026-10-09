@@ -6,14 +6,14 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>שליטה אם GW GUI משחק את הדגימות אודיו שנוצרו על ידי החיקוי.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>צליל אמין או מפוחד.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>בחר את הפלט אודיו של Windows המשמש כדי לנגן קול ממכונה זו.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>בחר את מכשיר Windows שמנגן צליל מהמכונה הזו.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>צילום אודיו בשימוש על ידי GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>מציג את תדירות השעון הדומינלי של המעבד במכונת Sony שנבחרה.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>תדירות שעון המעבד המקורי</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Detailed"><value>מציג את מודל המעבד המסופק על ידי מכונת Sony שנבחרה.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Model.Short"><value>מעבד חיקוי למכונה זו.</value></data>
   <data name="Emulation.Sony.Help.Firmware.Integrated.Detailed"><value>מציג את מצב המערכת ROM עבור המכונה שנבחרה וחיקוי.</value></data>
-  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>מערכת ROM.</value></data>
+  <data name="Emulation.Sony.Help.Firmware.Integrated.Short"><value>מערכת ROM</value></data>
   <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Identifing היישום של החיקוי המשמש להפעיל את תצורת מכונה זו.</value></data>
   <data name="Emulation.Sony.Help.General.Emulator.Short"><value>אדמירטור נבחר למכונה זו.</value></data>
   <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Identifies דגם Sony שתצורת החומרה שלו נערכת.</value></data>

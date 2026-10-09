@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Sony.Common.Constants;
+namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 
 internal static class ExternalCoreInteropConstants
 {

@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Controla si GW GUI reproduce las muestras de audio generadas por el emulador.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Activar o desactivar el sonido emulado.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Selecciona la salida de audio de Windows utilizada para reproducir el sonido de esta máquina emulada.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Elija el dispositivo Windows que reproduce sonido de esta máquina emulada.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Salida de audio utilizada por GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Muestra la frecuencia nominal del reloj del procesador en la máquina de Sony seleccionada.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Frecuencia del reloj de procesador original.</value></data>

@@ -7,4 +7,11 @@
   <data name="Emulation.Emulator.pcsx2.Description"><value>Προσομοιάζει τα συστήματα PlayStation 2.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Προσομοιάζει τα συστήματα του PlayStation Portable.</value></data>
   <data name="Emulation.Emulator.swanstation.Description"><value>Προσομοιάζει τα συστήματα Sony PlayStation και PS one.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Προσομοιάζει το Sony PocketStation χειρός με ένα εξωτερικό BIOS και εικόνες καρτών μνήμης.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Προσομοιάζει τα συστήματα PlayStation με τον αποθέτη λογισμικού Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Προσομοιάζει τα συστήματα PlayStation με τον αποθέτη υλικού Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Προσομοιάζει τα συστήματα PlayStation με το PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Προσομοιάζει τα συστήματα PlayStation 2 με το PCEE2 και ένα εξωτερικό BIOS.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Προσομοιάζει τα συστήματα PlayStation 2 με το Play! και την imulation του ολοκληρωμένου συστήματος firmware.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Προσομοιάζει τα συστήματα PlayStation 3 με το RPCS3 και το firmware του εξωτερικού συστήματος.</value></data>
 </root>

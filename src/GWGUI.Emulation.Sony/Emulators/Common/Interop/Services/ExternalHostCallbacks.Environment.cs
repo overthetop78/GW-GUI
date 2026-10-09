@@ -18,6 +18,12 @@ internal sealed partial class ExternalHostCallbacks
         {
             switch (command)
             {
+                case HardwareRenderConstants.SetHardwareRender:
+                    return ConfigureHardwareRender(data);
+                case HardwareRenderConstants.GetPreferredHardwareRender:
+                    if (data == nint.Zero) return false;
+                    Marshal.WriteInt32(data, OpenGlHardwareRenderContext.OpenGlCoreContextType);
+                    return true;
                 case ExternalCoreApiConstants.GetSystemDirectory:
                     Marshal.WriteIntPtr(data, NativeString(SystemDirectory));
                     return true;

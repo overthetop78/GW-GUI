@@ -8,6 +8,13 @@ public static class EmulatorCatalog
 
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() =>
     [
+        new Emulators.BeetlePsx.Factories.BeetlePsxMachineFactory(),
+        new Emulators.BeetlePsxHw.Factories.BeetlePsxHwMachineFactory(),
+        new Emulators.PcsxRearmed.Factories.PcsxRearmedMachineFactory(),
+        new Emulators.Pcee2.Factories.Pcee2MachineFactory(),
+        new Emulators.Play.Factories.PlayMachineFactory(),
+        new Emulators.Rpcs3.Factories.Rpcs3MachineFactory(),
+        new Emulators.PokketStation.Factories.PokketStationMachineFactory(),
         new Emulators.Pcsx2.Factories.Pcsx2MachineFactory(),
         new Emulators.Ppsspp.Factories.PpssppMachineFactory(),
         new Emulators.SwanStation.Factories.SwanStationMachineFactory()

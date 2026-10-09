@@ -7,4 +7,11 @@
   <data name="Emulation.Emulator.pcsx2.Description"><value>Подражает системам PlayStation 2.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Имитирует системы PlayStation Portable.</value></data>
   <data name="Emulation.Emulator.swanstation.Description"><value>Имитирует системы Sony PlayStation и PS one.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Подражает портативной Sony PocketStation с внешними изображениями BIOS и карт памяти.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Эмулирует системы PlayStation с помощью рендерера программного обеспечения Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Эмулирует системы PlayStation с аппаратным рендером Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Подражает системам PlayStation с PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Эмулирует системы PlayStation 2 с PCEE2 и внешним BIOS.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Подражает системам PlayStation 2 с Play! и его интегрированной эмуляцией прошивки системы.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Подражает системам PlayStation 3 с RPCS3 и внешней системной прошивкой.</value></data>
 </root>

@@ -4,6 +4,13 @@ internal static class CoreCatalog
 {
     internal static IReadOnlyList<Contracts.CoreDefinition> All { get; } =
     [
+        BeetlePsx.Constants.CoreConstants.Definition,
+        BeetlePsxHw.Constants.CoreConstants.Definition,
+        PcsxRearmed.Constants.CoreConstants.Definition,
+        Pcee2.Constants.CoreConstants.Definition,
+        Play.Constants.CoreConstants.Definition,
+        Rpcs3.Constants.CoreConstants.Definition,
+        PokketStation.Constants.CoreConstants.Definition,
         SwanStation.Constants.CoreConstants.Definition
     ];
 

@@ -27,6 +27,8 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private bool _disposed;
     private int _optionsUpdated;
     private readonly object _inputGate = new();
+    private readonly int[] _controllerTypes = Enumerable.Repeat((int)ControllerType.None,
+        ControllerPortConstants.MaximumControllerPortCount).ToArray();
     private EmulationInputSnapshot _pendingInput = EmulationInputSnapshot.Empty;
     private EmulationInputSnapshot _polledInput = EmulationInputSnapshot.Empty;
     private int _pointerX = ExternalHostCallbacksConstants.PointerCoordinateCenter;
@@ -93,6 +95,12 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         }
     }
     internal ExternalCoreApi.EnvironmentCallback Environment { get; }
+    internal void SetControllerType(int port, ControllerType type)
+    {
+        if (port < ControllerPortConstants.MinimumControllerPort || port >= _controllerTypes.Length)
+            throw new ArgumentOutOfRangeException(nameof(port), port, null);
+        Volatile.Write(ref _controllerTypes[port], (int)type);
+    }
     internal ExternalCoreApi.VideoCallback Video { get; }
     internal ExternalCoreApi.AudioSampleCallback AudioSample { get; }
     internal ExternalCoreApi.AudioBatchCallback AudioBatch { get; }

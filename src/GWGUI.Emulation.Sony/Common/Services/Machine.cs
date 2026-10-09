@@ -8,6 +8,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
     private readonly object _gate = new();
+    private MachineConfiguration _configuration;
     private readonly IEmulatorCore _core;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
@@ -36,7 +37,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null)
     {
         Id = id;
-        Configuration = configuration;
+        _configuration = configuration;
         _core = core;
         _sessionDirectory = sessionDirectory;
         _saveDirectory = saveDirectory;
@@ -52,7 +53,11 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     }
 
     public Guid Id { get; }
-    public MachineConfiguration Configuration { get; }
+    public MachineConfiguration Configuration
+    {
+        get => Volatile.Read(ref _configuration);
+        private set => Volatile.Write(ref _configuration, value);
+    }
     public IEmulationLifecycle Lifecycle => this;
     public IEmulationInput Input => this;
     public IEmulationMedia Media => this;
@@ -140,7 +145,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) =>
         LoadStateAsync(path, cancellationToken);
     void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) =>
-        throw new NotSupportedException();
+        SetControllerPortDevice(port, ControllerFunctions.FromCommon(peripheral, Configuration));
     ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) =>
         SwitchControllerPointerAsync(cancellationToken);
 }

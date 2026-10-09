@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Mengendalikan apakah GW GUI memainkan sampel audio yang dihasilkan oleh emulator.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Aktifkan atau matikan suara yang tertimulasi.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Memilih keluaran audio Windows yang digunakan untuk memutar suara dari mesin terukur ini.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Pilih perangkat Windows yang memainkan suara dari mesin ini beremulasi.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Keluaran audio yang digunakan oleh GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Menunjukkan frekuensi jam nominal dari prosesor dalam mesin Sony terpilih.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Frekuensi jam prosesor asli.</value></data>

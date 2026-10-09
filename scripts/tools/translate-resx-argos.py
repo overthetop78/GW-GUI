@@ -4,6 +4,9 @@
 from __future__ import annotations
 
 import argparse
+import ctypes
+from collections import Counter
+from contextlib import contextmanager
 from functools import lru_cache
 import re
 from pathlib import Path
@@ -13,6 +16,9 @@ from xml.sax.saxutils import escape, quoteattr
 from argostranslate import package
 import ctranslate2
 
+
+MAX_TRANSLATION_BATCH_SIZE = 32
+TRANSLATION_CPU_THREADS = 4
 
 LANGUAGE_CODES = {
     "ar-SA": "ar", "cs-CZ": "cs", "da-DK": "da", "de-DE": "de", "el-GR": "el",
@@ -24,7 +30,7 @@ LANGUAGE_CODES = {
 }
 PLACEHOLDER_PATTERN = re.compile(r"\{[^{}\r\n]+\}")
 STRUCTURAL_TOKEN_PATTERN = re.compile(
-    r"\{[^{}\r\n]+\}|\r\n|\r|\n|\*[^|\s]*|\|"
+    r"\{[^{}\r\n]+\}|\r\n|\r|\n|\*\.(?:\*|[A-Za-z0-9]+)|\*|\|"
 )
 PROTECTED_TOKEN_SOURCE = (
     STRUCTURAL_TOKEN_PATTERN.pattern + r"|"
@@ -33,7 +39,8 @@ PROTECTED_TOKEN_SOURCE = (
     r"\d+(?:[.,]\d+)?\s*(?:Hz|kHz|MHz|GHz|KB|MB|GB)|"
     r"(?<![\w-])(?:[A-Z][A-Za-z0-9-]*\s+)+[IVX]+(?![\w-])|"
     r"(?<![\w.-])[\w-]+\.[A-Za-z0-9]+(?![\w.-])|"
-    r"(?<![A-Za-z])[A-Z][A-Z0-9+.-]{1,}(?![A-Za-z])"
+    r"(?<!\w)\.[A-Za-z][A-Za-z0-9]{1,7}\b|(?<!\w)_\d+(?!\w)|"
+    r"(?<![A-Za-z])[A-Z][A-Z0-9]+(?:[+.-][A-Z0-9]+)*(?:(?=s\b)|(?![A-Za-z\u00C0-\u024F\u1E00-\u1EFF]))"
 )
 
 
@@ -49,6 +56,14 @@ def protected_token_pattern(root: Path) -> re.Pattern[str]:
     )
     if manufacturer:
         names.add(manufacturer)
+    names.update(INVARIANT_OPTION_NAMES)
+    names.update(INVARIANT_CONTROLLER_NAMES)
+    names.add("PlayStation Move")
+    names.update({"neGcon", "NeGcon", "MMap", "GunCon", "Konami Gun",
+        "Hyper Blaster", "Justifier", "DualShock", "FastMAD", "Doom", "Hexen",
+        "Soul Blade", "Pro Pinball", "Saga Frontier", "RetroArch",
+        "DualSense", "DualSense Edge", "Dual Analog", "Emotion Engine",
+        "Weave", "Bob", "Bob (Offset)"})
     for path in base.rglob("*.resx"):
         for key, value in read_entries(path).items():
             values.append(value)
@@ -56,6 +71,8 @@ def protected_token_pattern(root: Path) -> re.Pattern[str]:
                 family_names.add(value)
             if key.startswith("Emulation.Emulator."):
                 emulator_ids.add(key.split(".")[2])
+                if re.fullmatch(r"Emulation\.Emulator\.[^.]+", key) and value:
+                    names.add(value)
             if path.stem in {"Model", "Machine"} or (
                 ".Model." in key and ".Help." not in key
             ):
@@ -77,10 +94,17 @@ def protected_token_pattern(root: Path) -> re.Pattern[str]:
     if not names:
         return re.compile(PROTECTED_TOKEN_SOURCE)
 
-    invariant_pattern = r"(?<![\w-])(?:" + "|".join(
+    invariant_pattern = r"(?<!\w)(?:" + "|".join(
         re.escape(name) for name in sorted(names, key=len, reverse=True)
-    ) + r")(?![\w-])"
-    return re.compile(invariant_pattern + r"|" + PROTECTED_TOKEN_SOURCE)
+    ) + r")(?!\w)"
+    # Texture pack folders and configuration paths are literal core inputs.
+    path_pattern = r"(?:<[A-Za-z]+>|[A-Za-z0-9_-]+)(?:/[A-Za-z0-9_.-]+)+/(?![A-Za-z0-9_.-])|<[A-Za-z]+>-texture-[A-Za-z-]+/?"
+    literal_paths = {match.group(0) for value in values
+        for match in re.finditer(path_pattern, value)}
+    protected_paths = "|".join(re.escape(path)
+        for path in sorted(literal_paths, key=len, reverse=True))
+    return re.compile((protected_paths + r"|" if protected_paths else "")
+        + invariant_pattern + r"|" + PROTECTED_TOKEN_SOURCE)
 
 
 PROTECTED_TOKEN_PATTERN = re.compile(PROTECTED_TOKEN_SOURCE)
@@ -91,6 +115,7 @@ RESOURCE_ENTRY_BLOCK_PATTERN = re.compile(
 
 # These are identifiers and named algorithms, not ordinary interface states.
 INVARIANT_OPTION_NAMES = frozenset({
+    "Weave", "Bob", "FastMAD", "RetroArch", "neGcon", "NeGcon", "GunCon",
     "PAL", "NTSC", "CPU", "GPU", "RAM", "ROM", "CRT", "LCD", "HDMI", "VGA",
     "Vulkan", "GLideN64", "gln64", "Angrylion", "cxd4", "Bayer", "B-Spline",
     "Catmull-Rom", "Mitchell-Netravali", "ScaleForce", "Anime4K Ultrafast",
@@ -111,15 +136,37 @@ INVARIANT_OPTION_PATTERN = re.compile(
     r"Super Game Boy2|Super Game Boy Color|[\w-]+\.(?:rom|bin|bmp|wav|sfc)/?)",
     re.IGNORECASE,
 )
+INVARIANT_CONTROLLER_NAMES = frozenset({
+    "PlayStation Move Sharp Shooter",
+    "Konami Justifier / Hyper Blaster",
+    "Namco GunCon / G-Con 45",
+    "Namco GunCon 2",
+    "Namco GunCon 3",
+})
+SONY_CONTROLLER_BUTTON_PATTERN = re.compile(
+    r"(?:L[123]|R[123]|Start|Select)"
+    r"(?:\s*\+\s*(?:L[123]|R[123]|Start|Select))*"
+)
 
 
 def is_invariant_entry(key: str, value: str) -> bool:
+    if key.startswith("Emulation.Sony.Input.Key."):
+        return re.fullmatch(r"[A-Z0-9]|F\d+|[^\w\s]", value) is not None
+    if re.fullmatch(r"Emulation\.Family\.[^.]+", key):
+        return True
     if re.fullmatch(r"Emulation\.Emulator\.[^.]+", key):
         return True
     if re.fullmatch(r"Emulation\.[^.]+\.(?:Model|Machine)\.[^.]+", key):
         return True
+    if re.fullmatch(r"Emulation\.[^.]+\.Firmware\..+", key):
+        return re.fullmatch(r"[A-Z][A-Z0-9_]*|OpenBIOS|[\w-]+\.(?:rom|bin|PUP)", value) is not None
+    if ".Controller." in key and value in INVARIANT_CONTROLLER_NAMES:
+        return True
     if ".Value." not in key:
         return False
+    # Printed Start/Select and L/R button names are invariant; symbol names and directions are translated.
+    if key.startswith("Emulation.Option.Sony.Value.") and SONY_CONTROLLER_BUTTON_PATTERN.fullmatch(value):
+        return True
     # Numbered palette names identify presets; palette descriptions remain translatable.
     if re.match(r"(?:TWB64|PixelShift) \d+ - ", value):
         return True
@@ -189,15 +236,31 @@ def read_catalogs(root: Path, pattern: str = "*.resx") -> dict[str, dict[str, st
     return catalogs
 
 
+def normalize_acronym_plurals(source: str, candidate: str) -> str:
+    for acronym in set(re.findall(r"(?<![A-Za-z])([A-Z][A-Z0-9]+)s\b", source)):
+        candidate = re.sub(rf"(?<![A-Za-z]){re.escape(acronym)}S(?![A-Za-z])",
+            acronym + "s", candidate)
+    return candidate
+
+
 def protected_tokens_preserved(source: str, candidate: str) -> bool:
+    candidate = normalize_acronym_plurals(source, candidate)
     # CJK particles may immediately follow a Latin name: regex word boundaries
     # on the translated text would incorrectly treat that name as missing.
-    literals = set(PROTECTED_TOKEN_PATTERN.findall(source))
-    return all(candidate.count(token) == source.count(token) for token in literals)
+    source_tokens = Counter(PROTECTED_TOKEN_PATTERN.findall(source))
+    if not source_tokens:
+        return True
+    # Use the same token definitions on both sides. Here every \w occurs
+    # inside a character class; limiting those classes to Latin identifiers
+    # allows CJK particles beside names without counting CPU inside CPUs.
+    target_pattern = re.compile(PROTECTED_TOKEN_PATTERN.pattern.replace(r"\w", "A-Za-z0-9_"))
+    target_tokens = Counter(target_pattern.findall(candidate))
+    return all(target_tokens[token] == count for token, count in source_tokens.items())
 
 
 def translate_around_protected_tokens(
     source: str, tokenizer, translator: ctranslate2.Translator,
+    sentence_case: bool = False,
 ) -> str:
     parts: list[str] = []
     fragments: list[str] = []
@@ -207,13 +270,18 @@ def translate_around_protected_tokens(
         if not any(character.isalnum() for character in fragment):
             parts.append(fragment)
             return
-        leading = fragment[:len(fragment) - len(fragment.lstrip())]
-        trailing = fragment[len(fragment.rstrip()):]
+        leading = re.match(r"[^\w]*", fragment)[0]
+        trailing = re.search(r"[^\w]*$", fragment)[0]
         parts.append(leading)
         positions.append(len(parts))
         parts.append("")
         parts.append(trailing)
-        fragments.append(fragment.strip())
+        text = fragment[len(leading):len(fragment) - len(trailing) if trailing else None]
+        if sentence_case:
+            text = re.sub(r"\bdeadzone\b", "dead zone", text, flags=re.IGNORECASE)
+            text = text.lower()
+            text = text[:1].upper() + text[1:]
+        fragments.append(text)
 
     position = 0
     for match in PROTECTED_TOKEN_PATTERN.finditer(source):
@@ -225,7 +293,7 @@ def translate_around_protected_tokens(
     if fragments:
         results = translator.translate_batch(
             [tokenizer.encode(fragment) for fragment in fragments],
-            beam_size=4, repetition_penalty=1.2, no_repeat_ngram_size=3,
+            max_batch_size=MAX_TRANSLATION_BATCH_SIZE, beam_size=4, repetition_penalty=1.2, no_repeat_ngram_size=3,
         )
         for index, result in zip(positions, results):
             parts[index] = tokenizer.decode(result.hypotheses[0]).strip()
@@ -272,7 +340,7 @@ def translate_preserving_placeholders(
 
     source_tokens = [tokenizer.encode(text) for text in source_segments]
     results = translator.translate_batch(
-        source_tokens, beam_size=4, repetition_penalty=1.2, no_repeat_ngram_size=3
+        source_tokens, max_batch_size=MAX_TRANSLATION_BATCH_SIZE, beam_size=4, repetition_penalty=1.2, no_repeat_ngram_size=3
     ) if source_tokens else []
     translated_segments = [tokenizer.decode(result.hypotheses[0]).strip() for result in results]
     contextual_indexes = [
@@ -285,14 +353,19 @@ def translate_preserving_placeholders(
             for index in contextual_indexes
         ]
         contextual_results = translator.translate_batch(
-            contextual_tokens, beam_size=4, repetition_penalty=1.2, no_repeat_ngram_size=3
+            contextual_tokens, max_batch_size=MAX_TRANSLATION_BATCH_SIZE, beam_size=4, repetition_penalty=1.2, no_repeat_ngram_size=3
         )
         for index, result in zip(contextual_indexes, contextual_results):
             contextual = tokenizer.decode(result.hypotheses[0]).strip()
             if ":" not in contextual:
                 continue
             candidate = contextual.split(":", 1)[1].strip()
-            if candidate:
+            current = translated_segments[index]
+            source = source_segments[index]
+            if candidate and (
+                not contains_untranslated_english_run(source, candidate)
+                or contains_untranslated_english_run(source, current)
+            ):
                 translated_segments[index] = candidate
     for index, (source, translated) in enumerate(zip(source_segments, translated_segments)):
         if source != translated or not PROTECTED_TOKEN_PATTERN.search(source):
@@ -321,7 +394,7 @@ def translate_preserving_placeholders(
     if masked_sources:
         masked_results = translator.translate_batch(
             [tokenizer.encode(source) for source in masked_sources],
-            beam_size=4, repetition_penalty=1.2, no_repeat_ngram_size=3,
+            max_batch_size=MAX_TRANSLATION_BATCH_SIZE, beam_size=4, repetition_penalty=1.2, no_repeat_ngram_size=3,
         )
         for index, result, markers in zip(masked_indexes, masked_results, marker_maps):
             candidate = tokenizer.decode(result.hypotheses[0]).strip()
@@ -349,7 +422,7 @@ def translate_preserving_placeholders(
                     return marker
                 retry_source = PROTECTED_TOKEN_PATTERN.sub(retry_mask, source_segments[index])
                 retry_result = translator.translate_batch(
-                    [tokenizer.encode(retry_source)], beam_size=4,
+                    [tokenizer.encode(retry_source)], max_batch_size=MAX_TRANSLATION_BATCH_SIZE, beam_size=4,
                     repetition_penalty=1.2, no_repeat_ngram_size=3,
                 )[0]
                 candidate = tokenizer.decode(retry_result.hypotheses[0]).strip()
@@ -362,6 +435,35 @@ def translate_preserving_placeholders(
                         f"Argos changed protected tokens in {source_segments[index]!r}: {candidate!r}"
                     )
             translated_segments[index] = candidate
+    for index, (source, translated) in enumerate(zip(source_segments, translated_segments)):
+        if not contains_untranslated_english_run(source, translated):
+            continue
+        # Some Argos models copy title-cased interface text verbatim. Retry
+        # the complete sentence in ordinary casing while preserving names.
+        ordinary_parts: list[str] = []
+        position = 0
+        for match in PROTECTED_TOKEN_PATTERN.finditer(source):
+            ordinary_parts.extend((source[position:match.start()].lower(), match.group(0)))
+            position = match.end()
+        ordinary_parts.append(source[position:].lower())
+        ordinary_source = "".join(ordinary_parts)
+        ordinary_result = translator.translate_batch(
+            [tokenizer.encode(ordinary_source)], max_batch_size=MAX_TRANSLATION_BATCH_SIZE, beam_size=4,
+            repetition_penalty=1.2, no_repeat_ngram_size=3,
+        )[0]
+        candidate = tokenizer.decode(ordinary_result.hypotheses[0]).strip()
+        if (not contains_untranslated_english_run(source, candidate)
+                and protected_tokens_preserved(source, candidate)):
+            translated_segments[index] = candidate
+            continue
+        candidate = translate_around_protected_tokens(
+            source, tokenizer, translator, sentence_case=True,
+        )
+        if (
+            not contains_untranslated_english_run(source, candidate)
+            and protected_tokens_preserved(source, candidate)
+        ):
+            translated_segments[index] = candidate
     translated_texts: list[str] = []
     for encoded_text in encoded_segments:
         parts: list[str] = []
@@ -373,7 +475,8 @@ def translate_preserving_placeholders(
                 leading, trailing = whitespace[index]
                 parts.append(leading + translated_segments[index] + trailing)
         translated_texts.append("".join(parts))
-    return translated_texts
+    return [normalize_acronym_plurals(source, translated)
+            for source, translated in zip(texts, translated_texts)]
 
 
 @lru_cache(maxsize=None)
@@ -393,14 +496,55 @@ def common_state_labels(culture: str) -> dict[str, str]:
     return labels
 
 
+@lru_cache(maxsize=None)
+def traditional_chinese(value: str) -> str:
+    """Convert Argos Chinese output through Windows Unicode script mapping."""
+    if not value:
+        return value
+    mapping = ctypes.WinDLL("kernel32", use_last_error=True).LCMapStringEx
+    mapping.argtypes = [ctypes.c_wchar_p, ctypes.c_uint32, ctypes.c_wchar_p,
+        ctypes.c_int, ctypes.c_wchar_p, ctypes.c_int, ctypes.c_void_p,
+        ctypes.c_void_p, ctypes.c_ssize_t]
+    mapping.restype = ctypes.c_int
+    traditional_chinese_flag = 0x04000000
+    required = mapping("zh-Hant", traditional_chinese_flag, value, -1,
+        None, 0, None, None, 0)
+    if not required:
+        raise ctypes.WinError(ctypes.get_last_error())
+    buffer = ctypes.create_unicode_buffer(required)
+    written = mapping("zh-Hant", traditional_chinese_flag, value, -1,
+        buffer, required, None, None, 0)
+    if not written:
+        raise ctypes.WinError(ctypes.get_last_error())
+    return buffer.value
+
+
 def normalize_technical_translation(english: str, translated: str, culture: str) -> str:
+    # Several models decorate labels with Markdown emphasis. RESX values do
+    # not use Markdown; preserve wildcards/emphasis only when present in source.
+    if "*" not in english:
+        translated = translated.replace("*", "")
     labels = common_state_labels(culture)
+    if re.search(r"\bOff\b", english):
+        translated = re.sub(r"\bOff\b", labels["disabled"], translated)
+    rendering_terms = {
+        "da-DK": {"hardware rendering": "hardwaregengivelse",
+            "software rendering": "softwaregengivelse"},
+        "nl-NL": {"software renderer": "softwarerenderer",
+            "hardware rendering": "hardwarematige weergave",
+            "software rendering": "softwarematige weergave"},
+    }
+    if re.search(r"\brender(?:er|ing)\b", english, re.IGNORECASE):
+        for term, replacement in rendering_terms.get(culture, {}).items():
+            translated = re.sub(r"\b" + term + r"\b", replacement,
+                translated, flags=re.IGNORECASE)
     if english.strip().lower() in labels:
         return labels[english.strip().lower()]
     # Only repair disability words when the source actually describes a disabled
     # setting. Never replace them in unrelated accessibility text.
     if re.search(r"\b(?:disabled|off)\b", english, re.IGNORECASE):
         disability_words = {
+            "ar-SA": r"(?<!\w)(?:المعوقين|معاق(?:اً|ا|ة|ون|ين)?)(?!\w)",
             "fr-FR": r"\bhandicap(?:é|ée|és|ées|e|es)?\b",
             "cs-CZ": r"\bhandicapovan\w*\b",
             "da-DK": r"\bhandicap(?:pede)?\b",
@@ -417,6 +561,23 @@ def normalize_technical_translation(english: str, translated: str, culture: str)
             translated = re.sub(disability_words[culture], labels["disabled"], translated,
                 flags=re.IGNORECASE)
     if culture == "fr-FR":
+        if re.search(r"\bthreads?\b", english, re.IGNORECASE):
+            translated = re.sub(r"\bfil(s)?\b(?!\s+d['’]exécution)",
+                lambda match: f"fil{match[1] or ''} d’exécution", translated)
+        reviewed_rendering_values = {
+            "Shooting attachment for PlayStation Move": "Accessoire de tir PlayStation Move",
+            "Racing wheel for PlayStation Move": "Volant PlayStation Move",
+            "Software": "Logiciel",
+            "Disabled (Slower)": "Désactivé (plus lent)",
+            "Disabled (Beetle Interpreter)": "Désactivé (interpréteur Beetle)",
+        }
+        if english in reviewed_rendering_values:
+            return reviewed_rendering_values[english]
+        crop_help = re.fullmatch(
+            r"Pads or crops off lines from the (left|right|top|bottom) of the displayed image\.", english)
+        if crop_help:
+            edge = {"left": "à gauche", "right": "à droite", "top": "en haut", "bottom": "en bas"}[crop_help[1]]
+            return f"Ajoute ou retire des lignes {edge} de l’image affichée."
         if english.lower() == "per-cart":
             return "Par cartouche"
         if english.lower() == "per-game":
@@ -436,6 +597,7 @@ def normalize_technical_translation(english: str, translated: str, culture: str)
                 "le flux MSU-1 est transmis sans altération et le son SPC est rééchantillonné à 44.1 kHz. "
                 "Cette option n’a aucun effet sur les jeux sans MSU-1 et s’applique au prochain chargement.")
         reviewed_labels = {
+            "Do not display identical video frames.": "Ignorer les images vidéo identiques",
             "System Boot ROM": "ROM de démarrage du système",
             "Force VDP Mode": "Mode VDP forcé",
             "CD System BRAM": "Mémoire de sauvegarde du Mega-CD",
@@ -479,7 +641,7 @@ def normalize_technical_translation(english: str, translated: str, culture: str)
             translated = re.sub(r"\bparchemin\b", "défilement", translated, flags=re.IGNORECASE)
         if "add-on" in english.lower():
             translated = re.sub(r"\badditif\b", "extension", translated, flags=re.IGNORECASE)
-    return translated
+    return traditional_chinese(translated) if culture == "zh-Hant" else translated
 
 
 def translate_entries(
@@ -556,19 +718,21 @@ def contains_untranslated_english_run(english: str, translated: str) -> bool:
         word.lower()
         for word in re.findall(r"[A-Za-z][A-Za-z'-]*", english)
     ]
-    if len(source_words) < 4:
+    if len(source_words) < 3:
         return False
     target_words = [
         word.lower() for word in re.findall(r"[A-Za-z][A-Za-z'-]*", translated)
     ]
     source_runs = {
-        tuple(source_words[index:index + 4])
-        for index in range(len(source_words) - 3)
-        if sum(len(word) for word in source_words[index:index + 4]) >= 18
+        tuple(source_words[index:index + width])
+        for width in (3, 4)
+        for index in range(len(source_words) - width + 1)
+        if sum(len(word) for word in source_words[index:index + width]) >= 18
     }
     return any(
-        tuple(target_words[index:index + 4]) in source_runs
-        for index in range(len(target_words) - 3)
+        tuple(target_words[index:index + width]) in source_runs
+        for width in (3, 4)
+        for index in range(len(target_words) - width + 1)
     )
 
 
@@ -652,6 +816,8 @@ def audit_resources(root: Path) -> None:
                     errors.append(f"{culture_path.name}/{catalog}: placeholders differ for {key}")
                 elif protected_signature(english) != protected_signature(target_entries[key]):
                     errors.append(f"{culture_path.name}/{catalog}: protected tokens differ for {key}")
+                elif not protected_tokens_preserved(english, target_entries[key]):
+                    errors.append(f"{culture_path.name}/{catalog}: technical names or paths differ for {key}")
                 elif contains_untranslated_english_run(english, target_entries[key]):
                     errors.append(f"{culture_path.name}/{catalog}: partially untranslated {key}")
             for key in target_entries.keys() - english_entries.keys():
@@ -725,6 +891,19 @@ def replace_existing_values(path: Path, updates: dict[str, str]) -> None:
     path.write_text(corrected, encoding="utf-8", newline="")
 
 
+@contextmanager
+def translation_model(installed_package):
+    translator = ctranslate2.Translator(
+        str(installed_package.package_path / "model"),
+        intra_threads=TRANSLATION_CPU_THREADS,
+    )
+    try:
+        yield translator
+    finally:
+        translator.unload_model()
+        del translator
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("resource", nargs="?")
@@ -740,6 +919,8 @@ def main() -> None:
         help="retranslate every entry in every RESX catalog from en-US")
     parser.add_argument("--culture", choices=[*LANGUAGE_CODES],
         help="limit --sync-all to one culture")
+    parser.add_argument("--from-culture", choices=[*LANGUAGE_CODES],
+        help="resume bulk translation starting at this culture")
     parser.add_argument("--catalog",
         help="limit --sync-all to one RESX catalog, for example Visualizer.resx")
     parser.add_argument("--clean-only", action="store_true",
@@ -790,7 +971,8 @@ def main() -> None:
         return
 
     if args.format:
-        changed = sum(format_resx_data_entries(path) for path in root.rglob("*.resx"))
+        changed = sum(format_resx_data_entries(path)
+                      for path in root.rglob(args.catalog or "*.resx"))
         print(f"RESX entries normalized: {changed}")
         return
 
@@ -816,7 +998,9 @@ def main() -> None:
         packages = {(item.from_code, item.to_code): item
             for item in package.get_installed_packages() if item.type == "translate"}
         total = 0
-        for culture, language_code in LANGUAGE_CODES.items():
+        selected_cultures = ({args.culture: LANGUAGE_CODES[args.culture]}
+            if args.culture else LANGUAGE_CODES)
+        for culture, language_code in selected_cultures.items():
             installed_package = packages.get(("en", language_code))
             if installed_package is None:
                 raise RuntimeError(f"Missing Argos model en -> {language_code}")
@@ -831,24 +1015,25 @@ def main() -> None:
                         and (
                             contains_untranslated_english_run(english, current)
                             or protected_signature(english) != protected_signature(current)
+                            or not protected_tokens_preserved(english, current)
                         )
                     ):
                         pending.append((target_path, key, english))
             if not pending:
                 print(f"{culture}: repaired=0", flush=True)
                 continue
-            translator = ctranslate2.Translator(str(installed_package.package_path / "model"))
-            translated_values = translate_entries(
-                [(key, english) for _, key, english in pending],
-                installed_package.tokenizer,
-                translator,
-                force_context=True,
-                culture=culture,
-            )
-            for (target_path, key, _), value in zip(pending, translated_values):
-                insert(target_path, key, value, replace_existing=True)
-            total += len(pending)
-            print(f"{culture}: repaired={len(pending)}", flush=True)
+            with translation_model(installed_package) as translator:
+                translated_values = translate_entries(
+                    [(key, english) for _, key, english in pending],
+                    installed_package.tokenizer,
+                    translator,
+                    force_context=True,
+                    culture=culture,
+                )
+                for (target_path, key, _), value in zip(pending, translated_values):
+                    insert(target_path, key, value, replace_existing=True)
+                total += len(pending)
+                print(f"{culture}: repaired={len(pending)}", flush=True)
         print(f"Partially untranslated entries repaired: {total}")
         return
 
@@ -858,6 +1043,12 @@ def main() -> None:
             if args.culture in LANGUAGE_CODES
             else LANGUAGE_CODES
         )
+        if args.from_culture:
+            cultures = list(selected_cultures)
+            if args.from_culture not in cultures:
+                parser.error("--from-culture must belong to the selected cultures")
+            selected_cultures = {culture: selected_cultures[culture]
+                for culture in cultures[cultures.index(args.from_culture):]}
         selected_directories = (
             [root / args.culture]
             if args.culture is not None
@@ -886,36 +1077,41 @@ def main() -> None:
             installed_package = packages.get(("en", language_code))
             if installed_package is None:
                 raise RuntimeError(f"Missing Argos model en -> {language_code}")
-            translator = ctranslate2.Translator(str(installed_package.package_path / "model"))
-            tokenizer = installed_package.tokenizer
-            pending: list[tuple[Path, str, str]] = []
-            for catalog, english_entries in english_catalogs.items():
-                target_path = root / culture / Path(catalog)
-                create_empty_catalog(target_path, root / "en-US" / Path(catalog))
-                target_entries = read_entries(target_path)
-                for key, english in english_entries.items():
-                    current = target_entries.get(key)
-                    if args.retranslate_all or current is None or current == english:
-                        pending.append((target_path, key, english))
+            with translation_model(installed_package) as translator:
+                tokenizer = installed_package.tokenizer
+                pending: list[tuple[Path, str, str]] = []
+                for catalog, english_entries in english_catalogs.items():
+                    target_path = root / culture / Path(catalog)
+                    create_empty_catalog(target_path, root / "en-US" / Path(catalog))
+                    target_entries = read_entries(target_path)
+                    for key, english in english_entries.items():
+                        current = target_entries.get(key)
+                        if args.retranslate_all or current is None or current == english:
+                            pending.append((target_path, key, english))
 
-            translated_values = translate_entries(
-                [(key, english) for _, key, english in pending], tokenizer, translator, culture=culture
-            )
-            updates_by_path: dict[Path, list[tuple[str, str]]] = {}
-            for (target_path, key, _), value in zip(pending, translated_values):
-                updates_by_path.setdefault(target_path, []).append((key, value))
-            for target_path, updates in updates_by_path.items():
-                for key, value in updates:
-                    insert(target_path, key, value, replace_existing=True)
-
-            removed = 0
-            culture_root = root / culture
-            for target_path in culture_root.rglob(catalog_pattern):
-                catalog = target_path.relative_to(culture_root).as_posix()
-                removed += remove_entries_not_in_source(
-                    target_path, english_catalogs.get(catalog, {})
+                translated_values = translate_entries(
+                    [(key, english) for _, key, english in pending], tokenizer, translator, culture=culture
                 )
-            print(f"{culture}: translated={len(pending)}, obsolete entries removed={removed}", flush=True)
+                updates_by_path: dict[Path, list[tuple[str, str]]] = {}
+                for (target_path, key, _), value in zip(pending, translated_values):
+                    updates_by_path.setdefault(target_path, []).append((key, value))
+                for target_path, updates in updates_by_path.items():
+                    existing = read_entries(target_path)
+                    replace_existing_values(target_path,
+                        {key: value for key, value in updates if key in existing})
+                    for key, value in updates:
+                        if key in existing:
+                            continue
+                        insert(target_path, key, value, replace_existing=True)
+
+                removed = 0
+                culture_root = root / culture
+                for target_path in culture_root.rglob(catalog_pattern):
+                    catalog = target_path.relative_to(culture_root).as_posix()
+                    removed += remove_entries_not_in_source(
+                        target_path, english_catalogs.get(catalog, {})
+                    )
+                print(f"{culture}: translated={len(pending)}, obsolete entries removed={removed}", flush=True)
         return
 
     if not args.resource or not args.key or args.english is None:
@@ -936,17 +1132,17 @@ def main() -> None:
         installed_package = packages.get(("en", language_code))
         if installed_package is None:
             raise RuntimeError(f"Missing Argos model en -> {language_code}")
-        translator = ctranslate2.Translator(str(installed_package.package_path / "model"))
-        tokenizer = installed_package.tokenizer
-        translated_values = translate_entries(
-            translatable_entries, tokenizer, translator, culture=culture
-        )
-        for (key, _), value in zip(translatable_entries, translated_values):
-            insert(root / culture / args.resource, key, value, args.replace)
-        remove_entries_not_in_source(
-            root / culture / args.resource, english_entries
-        )
-        print(culture, flush=True)
+        with translation_model(installed_package) as translator:
+            tokenizer = installed_package.tokenizer
+            translated_values = translate_entries(
+                translatable_entries, tokenizer, translator, culture=culture
+            )
+            for (key, _), value in zip(translatable_entries, translated_values):
+                insert(root / culture / args.resource, key, value, args.replace)
+            remove_entries_not_in_source(
+                root / culture / args.resource, english_entries
+            )
+            print(culture, flush=True)
 
 
 if __name__ == "__main__":

@@ -5,6 +5,7 @@ using GWGUI.App.Controllers.Emulation.Options;
 using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Services.Emulation;
+using GWGUI.App.Constants.Views.Emulation;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -94,6 +95,8 @@ internal sealed partial class EmulationModuleSettingsSection
             ? field.EnabledValue : field.DisabledValue,
         TextBox text => text.Text,
         Grid { Tag: TextBox path } => path.Text,
+        Grid { Tag: Slider slider } => slider.Value.ToString(
+            EmulationSliderConstants.NumericFormat, CultureInfo.InvariantCulture),
         _ => null
     };
 

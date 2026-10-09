@@ -91,7 +91,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
     {
         _lastPhysicalInput = snapshot;
         _core.SetInput(InputSnapshotFunctions.Apply(snapshot, Configuration.Input,
-            _controllerPointerSwitchPressed));
+            _controllerPointerSwitchPressed, ControllerFunctions.PortCount(Configuration)));
     }
 
     private async ValueTask<bool> SwitchControllerPointerAsync(CancellationToken cancellationToken)

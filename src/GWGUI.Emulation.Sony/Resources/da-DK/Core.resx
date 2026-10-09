@@ -4,7 +4,14 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.pcsx2.Description"><value>Emulerer PlayStation 2-systemer.</value></data>
-  <data name="Emulation.Emulator.ppsspp.Description"><value>Emulerer PlayStation Portable-systemer.</value></data>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>Emulerer PlayStation 2 systemer.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>Emulerer PlayStation Portable systemer.</value></data>
   <data name="Emulation.Emulator.swanstation.Description"><value>Emulerer Sony PlayStation og PS one systemer.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Emulerer Sony PocketStation håndholdt med en ekstern BIOS og hukommelseskort billeder.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Emulerer PlayStation systemer med Beetle PSX software renderer.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Emulerer PlayStation systemer med Beetle PSX hardware renderer.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Emulater PlayStation systemer med PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Emulerer PlayStation 2 systemer med PCEE2 og en ekstern BIOS.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Emulerer PlayStation 2 systemer med Play! og dets integrerede system firmware emulering.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Emulerer PlayStation 3 systemer med RPCS3 og eksterne system firmware.</value></data>
 </root>

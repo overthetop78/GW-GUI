@@ -6,5 +6,12 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>מערכות PlayStation 2</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>מערכות PlayStation Portable</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>מערכות Sony PlayStation ו-PS one.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>מערכות Sony PlayStation וPS one.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>משערים כי Sony PocketStation) החזיקו ב-BIOS חיצוני ודימויי כרטיס זיכרון.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>מערכות PlayStation עם יוצר התוכנה Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>מערכות PlayStation עם חומרת החומרה Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Emulates PlayStation מערכות עם PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>מערכות PlayStation 2 עם PCEE2 ו-BIOS חיצוני.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>משערים את מערכות PlayStation 2 עם Play! ואת חיקוי המערכת המשולב שלה.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>מערכות PlayStation 3 עם RPCS3 ומערכת חיצונית.</value></data>
 </root>

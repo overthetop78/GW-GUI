@@ -4,9 +4,9 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>ควบคุมว่า GW GUI จะเล่นตัวอย่างเสียงที่สร้างโดยเครื่องจําลองเสียงหรือไม่</value></data>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>ควบคุมว่า GW GUI บรรเลงตัวอย่างเสียงที่สร้างโดยเครื่องจําลองเสียงหรือไม่</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>เปิดหรือปิดเสียงที่คัดลอกมา</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>เลือกการแสดงผลเสียงของวินโดวส์ที่ใช้ในการเล่นเพลงจากเครื่องจําลองนี้</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>เลือกอุปกรณ์วินโดวส์ที่เล่นเสียงจากเครื่องจําลองนี้</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>การแสดงผลเสียงที่ใช้โดย GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>แสดงความถี่ของนาฬิกาที่ระบุในตัวประมวลผล ในเครื่อง Sony</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>ความถี่ของตัวประมวลผลดั้งเดิม</value></data>

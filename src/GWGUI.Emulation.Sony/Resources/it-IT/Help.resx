@@ -4,9 +4,9 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Controlla se GW GUI riproduce i campioni audio generati dall'emulatore.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Controlli se GW GUI riproduce i campioni audio generati dall'emulatore.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Abilitare o disabilitare il suono emulato.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Seleziona l'uscita audio di Windows utilizzata per riprodurre il suono da questa macchina emulata.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Scegliere il dispositivo di Windows che riproduce il suono da questa macchina emulata.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Uscita audio utilizzata da GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Mostra la frequenza nominale dell'orologio del processore nella macchina Sony selezionata.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Frequenza originale dell'orologio del processore.</value></data>

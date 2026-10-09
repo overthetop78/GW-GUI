@@ -1,3 +1,4 @@
+using ExternalCoreInteropConstants = GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Ppsspp.Factories;

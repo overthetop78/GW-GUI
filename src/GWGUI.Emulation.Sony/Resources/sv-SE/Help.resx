@@ -6,7 +6,7 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Sony.Help.Audio.Enabled.Detailed"><value>Kontrollerar om GW GUI spelar ljudprover som genereras av emulatorn.</value></data>
   <data name="Emulation.Sony.Help.Audio.Enabled.Short"><value>Aktivera eller inaktivera emulerat ljud.</value></data>
-  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Väljer den Windows-ljudutgång som används för att spela ljud från denna emulerade maskin.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Output.Detailed"><value>Välj den Windows-enhet som spelar ljud från denna emulerade maskin.</value></data>
   <data name="Emulation.Sony.Help.Audio.Output.Short"><value>Ljudproduktion som används av GW GUI.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Detailed"><value>Visar processorns nominella klockfrekvens i den valda Sony-maskinen.</value></data>
   <data name="Emulation.Sony.Help.Cpu.Frequency.Short"><value>Ursprunglig processorklockfrekvens.</value></data>
@@ -17,7 +17,7 @@
   <data name="Emulation.Sony.Help.General.Emulator.Detailed"><value>Identifierar emulatorgenomförandet som används för att köra denna maskinkonfiguration.</value></data>
   <data name="Emulation.Sony.Help.General.Emulator.Short"><value>Emulator vald för denna maskin.</value></data>
   <data name="Emulation.Sony.Help.General.Model.Detailed"><value>Identifierar Sony-modellen vars hårdvarukonfiguration redigeras.</value></data>
-  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony-maskinmodellen konfigureras.</value></data>
+  <data name="Emulation.Sony.Help.General.Model.Short"><value>Sonys maskinmodell är konfigurerad.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Visar RAM som tillhandahålls av den valda Sony-maskinen.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Mängden RAM tillgänglig för den emulerade maskinen.</value></data>
 </root>

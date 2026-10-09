@@ -15,6 +15,9 @@ internal sealed class Pcsx2MachineFactory : IEmulatorAdapter
     public bool RequiresExternalFirmware => true;
     public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => FirmwareConstants.All;
     public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => [];
+    public IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) =>
+        [ControllerType.Joystick, ControllerType.Keyboard, ControllerType.Mouse,
+            ControllerType.KeyboardAndMouse, ControllerType.None];
     public IReadOnlyList<string> SupportedContentExtensions => FirmwareConstants.ContentExtensions;
     public string EmulatorId => Pcsx2Constants.Id;
     public string EmulatorKey => Pcsx2Constants.Id;

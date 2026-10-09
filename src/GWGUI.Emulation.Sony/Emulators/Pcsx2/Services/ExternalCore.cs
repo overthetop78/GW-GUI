@@ -1,8 +1,11 @@
+using ExternalCoreInteropConstants = GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ExternalCoreInteropConstants;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
+using NativeControllerFunctions = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerPortFunctions;
+using NativeControllerDevice = GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.ControllerDevice;
 
 namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;
 
@@ -15,6 +18,7 @@ internal sealed class ExternalCore : IEmulatorCore
     private ExternalCoreApi.VoidCall? _unloadGame;
     private ExternalCoreApi.VoidCall? _run;
     private ExternalCoreApi.VoidCall? _reset;
+    private ExternalCoreApi.SetControllerPortDevice? _setControllerPortDevice;
     private ExternalCoreApi.GetSerializedSize? _getSerializedSize;
     private ExternalCoreApi.Serialize? _serialize;
     private ExternalCoreApi.Serialize? _unserialize;
@@ -120,10 +124,9 @@ internal sealed class ExternalCore : IEmulatorCore
             Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroInit)();
             _initialized = true;
             _host.ValidateConfiguredOptions();
-            var setController = Export<ExternalCoreApi.SetControllerPortDevice>(
+            _setControllerPortDevice = Export<ExternalCoreApi.SetControllerPortDevice>(
                 ExternalCoreConstants.RetroSetControllerPortDevice);
-            for (var port = 0; port < ModelCatalog.Get(configuration.Model).ControllerPortCount; port++)
-                setController((uint)port, ExternalCoreConstants.JoypadDevice);
+            ApplyConfiguredControllers(requireAdvertised: false);
 
             var loadGame = Export<ExternalCoreApi.LoadGame>(ExternalCoreConstants.RetroLoadGame);
             if (contentPath is null)
@@ -134,6 +137,7 @@ internal sealed class ExternalCore : IEmulatorCore
             }
             else _gameLoaded = LoadGame(loadGame, contentPath);
             if (!_gameLoaded) throw new InvalidOperationException(Pcsx2Exceptions.ContentRefused());
+            ApplyConfiguredControllers(requireAdvertised: true);
             Export<ExternalCoreApi.GetSystemAvInfo>(ExternalCoreConstants.RetroGetSystemAvInfo)(out var av);
             _host.ApplyInitialAvInfo(av);
         }
@@ -180,6 +184,36 @@ internal sealed class ExternalCore : IEmulatorCore
     public void SetInput(EmulationInputSnapshot snapshot)
     {
         if (_host is not null) _host.Input = snapshot;
+    }
+    public void SetControllerPortDevice(int port, ControllerType type)
+    {
+        var configuration = _configuration
+            ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized());
+        var host = _host ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized());
+        var setter = _setControllerPortDevice
+            ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized());
+        ControllerFunctions.Validate(configuration, port, type);
+        var nativePorts = host.ControllerPorts.Select(devices =>
+            (IReadOnlyList<NativeControllerDevice>)devices.Select(device =>
+                new NativeControllerDevice(device.Name, device.Id)).ToArray()).ToArray();
+        var nativeId = NativeControllerFunctions.Resolve(type, port, nativePorts);
+        setter((uint)port, nativeId);
+        host.SetControllerType(port, type);
+        _configuration = ControllerFunctions.WithControllerType(configuration, port, type);
+    }
+
+    private void ApplyConfiguredControllers(bool requireAdvertised)
+    {
+        var configuration = _configuration
+            ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized());
+        for (var port = ControllerPortConstants.MinimumControllerPort;
+            port < ControllerFunctions.PortCount(configuration); port++)
+        {
+            var type = ControllerFunctions.Resolve(configuration, port);
+            if (!requireAdvertised && !_host!.ControllerPorts.Any()
+                && type is not (ControllerType.Joystick or ControllerType.None)) continue;
+            SetControllerPortDevice(port, type);
+        }
     }
     public void InsertMedia(string path) => (_host
         ?? throw new InvalidOperationException(Pcsx2Exceptions.CoreNotInitialized()))
@@ -281,6 +315,7 @@ internal sealed class ExternalCore : IEmulatorCore
                 _unloadGame = null;
                 _run = null;
                 _reset = null;
+                _setControllerPortDevice = null;
                 _getSerializedSize = null;
                 _serialize = null;
                 _unserialize = null;

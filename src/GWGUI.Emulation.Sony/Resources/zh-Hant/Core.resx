@@ -4,7 +4,14 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.pcsx2.Description"><value>模拟PlayStation 2系统.</value></data>
-  <data name="Emulation.Emulator.ppsspp.Description"><value>模拟PlayStation Portable系统.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>模拟了Sony PlayStation和PS one系统.</value></data>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>模擬PlayStation 2系統.</value></data>
+  <data name="Emulation.Emulator.ppsspp.Description"><value>模擬PlayStation Portable系統.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>模擬了Sony PlayStation和PS one系統.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>以外置BIOS和內存卡圖像來模擬SonyPocketStation手持相機.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>以Beetle PSX軟件渲染器來模擬PlayStation系統.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>用Beetle PSX硬件渲染器來模擬PlayStation系統.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>用PCSX-ReARMed來模擬PlayStation系統.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>以PCEE2和外置BIOS來模擬PlayStation 2系統.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>用 Play! 模擬 PlayStation 2 系統及其集成的系統固件仿真 。</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>用RPCS3和外部系統固件來模擬PlayStation 3系統.</value></data>
 </root>

@@ -6,5 +6,12 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.pcsx2.Description"><value>:: فرض PlayStation 2 نظاماً.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>:: فرض PlayStation Portable نظاماً.</value></data>
-  <data name="Emulation.Emulator.swanstation.Description"><value>Emulates Sony PlayStation and PS one systems.</value></data>
+  <data name="Emulation.Emulator.swanstation.Description"><value>المواد Sony PlayStation و PS one النظم.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>يُحذّرُ Sony PocketStation ممسكة يدوياً بخارجي BIOS وصور بطاقات الذاكرة.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>يُنص على PlayStation نظاماً مع برمجيات Beetle PSX.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>المواد PlayStation النظم مع Beetle PSX صانعة برامجيات صلبة.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>المواد PlayStation النظم مع PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>المواد PlayStation 2 النظم مع PCEE2 وخارجي BIOS.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>المواد PlayStation 2 النظم مع Play! وجهازه المتكامل محاكاة البرمجيات.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>المواد PlayStation 3 النظم مع RPCS3 وشركات النظام الخارجي.</value></data>
 </root>

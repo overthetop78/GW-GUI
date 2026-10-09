@@ -31,6 +31,7 @@ internal sealed partial class EmulationModuleSettingsSection
             EmulationSettingsEditor.Toggle => CreateToggle(field),
             EmulationSettingsEditor.Path => CreatePath(field),
             EmulationSettingsEditor.DirectoryPath => CreateDirectoryPath(field),
+            EmulationSettingsEditor.Slider => CreateSlider(field),
             EmulationSettingsEditor.Information => new TextBlock
             {
                 Text = field.Value,

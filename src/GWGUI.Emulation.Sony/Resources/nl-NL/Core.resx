@@ -4,7 +4,14 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.pcsx2.Description"><value>Emuleert PlayStation 2-systemen.</value></data>
+  <data name="Emulation.Emulator.pcsx2.Description"><value>Emuleert PlayStation 2 systemen.</value></data>
   <data name="Emulation.Emulator.ppsspp.Description"><value>Emuleert PlayStation Portable systemen.</value></data>
   <data name="Emulation.Emulator.swanstation.Description"><value>Emuleert Sony PlayStation en PS one systemen.</value></data>
+  <data name="Emulation.Emulator.pokketstation.Description"><value>Emuleert de Sony PocketStation handheld met een externe BIOS- en geheugenkaartbeelden.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx.Description"><value>Emuleert PlayStation systemen met de Beetle PSX softwarerenderer.</value></data>
+  <data name="Emulation.Emulator.mednafen_psx_hw.Description"><value>Emuleert PlayStation systemen met de Beetle PSX hardware render.</value></data>
+  <data name="Emulation.Emulator.pcsx_rearmed.Description"><value>Emuleert PlayStation systemen met PCSX-ReARMed.</value></data>
+  <data name="Emulation.Emulator.pcee2.Description"><value>Emuleert PlayStation 2 systemen met PCEE2 en een externe BIOS.</value></data>
+  <data name="Emulation.Emulator.play.Description"><value>Emuleert PlayStation 2 systemen met Play! en de geïntegreerde systeemfirmware emulatie.</value></data>
+  <data name="Emulation.Emulator.rpcs3.Description"><value>Emuleert PlayStation 3 systemen met RPCS3 en externe systeemfirmware.</value></data>
 </root>

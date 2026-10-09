@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Sony.Emulators.Common.Interop.Enums;
+using static GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerInputFunctions;
+using InputConstants = GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ExternalHostCallbacksConstants;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Factories;
@@ -28,7 +31,8 @@ internal sealed partial class ExternalHostCallbacks
                 Pointer = _pendingInput.Pointer with { DeltaX = 0, DeltaY = 0, Wheel = 0, HorizontalWheel = 0 }
             };
         }
-        PublishKeyboardTransitions(_polledInput.Keys);
+        PublishKeyboardTransitions(_controllerTypes.Any(type => (ControllerType)type != ControllerType.None)
+            ? _polledInput.Keys : new HashSet<EmulationKey>());
     }
 
     private void PublishKeyboardTransitions(IReadOnlySet<EmulationKey> keys)
@@ -98,23 +102,31 @@ internal sealed partial class ExternalHostCallbacks
 
     private short HandleInputState(uint port, uint device, uint index, uint id)
     {
+        if (port >= _controllerTypes.Length
+            || (ControllerType)Volatile.Read(ref _controllerTypes[(int)port]) == ControllerType.None)
+            return default;
         var input = _polledInput;
+        var controller = port < input.Controllers.Count
+            ? input.Controllers[(int)port] : EmulationControllerState.Empty;
         if (device == KeyboardDevice)
             return KeyboardMap.TryGetValue(id, out var key) && input.Keys.Contains(key) ? (short)1 : (short)0;
 
-        if (device == MouseDevice && port == 0)
-            return id switch
+        if (device == MouseDevice)
+            return (MouseInput)id switch
             {
-                0 => ClampToShort(input.Pointer.DeltaX),
-                1 => ClampToShort(input.Pointer.DeltaY),
-                2 => Bool(input.Pointer.Left),
-                3 => Bool(input.Pointer.Right),
-                4 => Bool(input.Pointer.Wheel > 0),
-                5 => Bool(input.Pointer.Wheel < 0),
-                6 => Bool(input.Pointer.Middle),
-                _ => 0
+                MouseInput.X => ClampToShort(input.Pointer.DeltaX),
+                MouseInput.Y => ClampToShort(input.Pointer.DeltaY),
+                MouseInput.Left => Bool(PortButton(controller, nameof(MouseAction.LeftButton), input.Pointer.Left)),
+                MouseInput.Right => Bool(PortButton(controller, nameof(MouseAction.RightButton), input.Pointer.Right)),
+                MouseInput.Middle => Bool(PortButton(controller, nameof(MouseAction.MiddleButton), input.Pointer.Middle)),
+                MouseInput.WheelUp => Bool(input.Pointer.Wheel > InputConstants.NeutralWheelDelta),
+                MouseInput.WheelDown => Bool(input.Pointer.Wheel < InputConstants.NeutralWheelDelta),
+                MouseInput.HorizontalWheelUp => Bool(input.Pointer.HorizontalWheel > InputConstants.NeutralWheelDelta),
+                MouseInput.HorizontalWheelDown => Bool(input.Pointer.HorizontalWheel < InputConstants.NeutralWheelDelta),
+                MouseInput.Button4 => Bool(input.Pointer.ExtendedButton1),
+                MouseInput.Button5 => Bool(input.Pointer.ExtendedButton2),
+                _ => default
             };
-
         if (device == PointerDevice && port == 0)
             return id switch
             {
@@ -125,7 +137,7 @@ internal sealed partial class ExternalHostCallbacks
             };
 
         if (port >= input.Controllers.Count) return 0;
-        var controller = input.Controllers[(int)port];
+
         if (device == JoypadDevice)
         {
             var buttons = controller.Buttons;
@@ -133,13 +145,14 @@ internal sealed partial class ExternalHostCallbacks
             return id < 32 && (buttons & (1u << (int)id)) != 0 ? (short)1 : (short)0;
         }
         if (device == AnalogDevice)
-            return (index, id) switch
+            return ((AnalogInputIndex)index, (AnalogAxis)id) switch
             {
-                (0, 0) => controller.LeftX,
-                (0, 1) => controller.LeftY,
-                (1, 0) => controller.RightX,
-                (1, 1) => controller.RightY,
-                _ => 0
+                (AnalogInputIndex.LeftStick, AnalogAxis.X) => controller.LeftX,
+                (AnalogInputIndex.LeftStick, AnalogAxis.Y) => controller.LeftY,
+                (AnalogInputIndex.RightStick, AnalogAxis.X) => controller.RightX,
+                (AnalogInputIndex.RightStick, AnalogAxis.Y) => controller.RightY,
+                (AnalogInputIndex.Button, _) => AnalogButton(controller, (JoypadInput)id),
+                _ => default
             };
         return 0;
     }

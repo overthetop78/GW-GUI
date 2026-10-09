@@ -8,7 +8,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 internal static class CoreHostConstants
 {
     internal const string Windows = "windows";
-    internal const string Value = ".";
+    internal const string LocalPipeServer = ".";
 }
 
 
