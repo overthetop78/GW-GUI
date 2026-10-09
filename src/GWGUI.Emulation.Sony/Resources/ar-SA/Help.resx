@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony آلة تم تشكيلها</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>التلاعبات RAM مقدم من المختار Sony Machine.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>كمية RAM المتاحة للآلة المحاكاة.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>تواتر الطورائ CPU بعد تطبيق النسبة المئوية للساعة المختارة.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>وتضاعف تواتر الائتمان الاسمي بنسبة مئوية مختارة. هذا يغير المعالج المحوسب وليس المجهز المضيف القيم العليا يمكن أن تقلل من التباطؤ ولكن قد تكسر توقيت اللعبة. التلقائية تستخدم التخلف عن الدفع</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>رقائق الفيديو الأصلية التي استعملت من قبل PlayStation</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>The listed Sony GPUرقائقتختلف بتنقيح اللوحة الأم. وتتحكم الخيارات الداخلية في كيفية إنتاج المرشد الجيولوجيا والبيكسلزات. GW GUI مرشّح الصور المُنجزة بعد ذلك.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>الرقائق الصوتية الأصلية التي استخدمت من قبل تنقيحات معدات PlayStation.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>The Sony SPU الأصوات الصوتية والرموز العينات المضغوطة. الرقائق المدرجة تتباين مع تنقيح اللوحة الأم. مخرج الصوت وجهاز التحكم بالطوارئ على حاسوبك</value></data>
 </root>

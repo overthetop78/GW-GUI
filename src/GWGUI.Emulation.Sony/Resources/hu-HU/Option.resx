@@ -10,11 +10,11 @@
   <data name="Emulation.Sony.Language.Spanish"><value>Spanyol</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Label"><value>Konzol régió</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Help"><value>Meghatározza, hogy melyik régió / hardver modellezhető. Az Auto- Detect a behelyezett lemez régióját fogja használni.</value></data>
-  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Auto-detect</value></data>
+  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Automatikus észlelés</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (Japán)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, Kanada)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (Európa, Ausztrália)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Fast Boot</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>A BIOS indító animáció kihagyása</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>Kihagyja a BIOS shell / intro, indítás közvetlenül a játék. Általában biztonságos engedélyezni, de néhány játék megtörik.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>Engedélyezett</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>Letiltva</value></data>
@@ -28,7 +28,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>A lemezen lévő képet a RAM-ra tölti az emuláció megkezdése előtt. Csökkentheti a stoppolás, ha fut le egy hálózati részvény, az ára egy nagyobb indítási idő. Mivel a libretro nem biztosít módot overlays rajzolására, az emulátor úgy tűnik, hogy zár, amíg a kép előre betöltve.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre- cache CHD képek RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>Előgyorsítók CHD CD-ROM képei RAM a dekompresszió nélkül. Ellentétben a preload opcióval, ez az opció támogatja az M3U fájlokat. Ez is gyorsabb, és kevesebb RAM-ot igényel, mint az előre töltött, mivel nem nyomja le a CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Néma CD Hang</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>CD- audió kikapcsolása</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>Mind CD-DA, mind XA audio a CD-ROM. Használható a háttérzene letiltására néhány játékban.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>CD-ROM Read Speedup</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>Speeds up CD-ROM reads by the specific factor. Csak a dupla sebességre vonatkozik, és figyelmen kívül hagyja, ha az audió játszik. Javíthatja a rakodási sebesség egyes játékok, az ára törés mások.</value></data>
@@ -296,7 +296,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>CD betöltési sebesség</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>A 2x-nél (individual) magasabb értékek jelentősen csökkenthetik a játékon belüli betöltési időt, de időzítési hibákat vezethetnek be. Néhány játék nem működik megfelelően egy bizonyos érték felett.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x (őshonos)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>A BIOS kihagyása</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>A BIOS indító animáció kihagyása</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>Ne mutasd meg a PlayStation BIOS animációt játék indításakor. Ez az opció problémákat okozhat néhány játék, beleértve a játékok PAL másolat védelem és Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>A BIOS felülbírálása</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>A standard régióra vonatkozó BIOS felülbírálása regionálistól mentesen, ha van ilyen. Újraindítás szükséges.</value></data>
@@ -326,7 +326,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>Megjeleníti azt a belső képsebességet, amelyen az emulált PlayStation rendszer tartalmat ad. Megjegyzés: A libretro frontend-ben lehetővé teszi a képernyőn történő értesítéseket.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>OSD üzenetek megjelenítése</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>A mag által generált OSD üzenetek megjelenítése.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Analóg szelf- kalibráció</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Adapt analog bemeneti tartomány</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>lehetővé teszi az analóg bemenetek dinamikus kalibrálását, amikor a készülék DualShock, analóg vezérlő, analóg joystick, vagy neGcon. A maximális regisztrált bemeneti értékeket valós időben ellenőrzik, és az emulátornak átadott analóg koordináták méretezésére használják. Ezt kell használni olyan játékok, mint a Mega Man Legends 2, amelyek elvárják nagyobb értékek, mint amit a modern szabályozók nyújtanak. A legjobb eredmény érdekében az analóg pálcikákat teljes mértékben el kell forgatni, hogy a kalibrációs algoritmust minden egyes betöltés után be lehessen hangolni.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock Analóg mód bekapcsolása</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>Ha a bemeneti eszköz típusa DualShock, akkor ez az opció lehetővé teszi, hogy az emulált DualShock -et DIGITAL és ANALOG üzemmódba kapcsolják, mint az eredeti hardvert. A mód a kiválasztott gombkombinációval is bekapcsolható.</value></data>
@@ -395,7 +395,7 @@
   <data name="Emulation.Option.Sony.Value.DisabledBeetleInterpreter"><value>Fogyatékos (Bogár Tolmácsoló)</value></data>
   <data name="Emulation.Option.Sony.Value.MaxPerformance"><value>Maximális teljesítmény</value></data>
   <data name="Emulation.Option.Sony.Value.LightrecInterpreter"><value>Lightrec interpreter</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Label"><value>Dynarec Kód Meghosszabbítás</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Label"><value>A Dynarec-kód validálása</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Help"><value>Egyes játékokhoz "Teljes" érvénytelenítés szükséges, néhányhoz csak "DMA" kell.</value></data>
   <data name="Emulation.Option.Sony.Value.Full"><value>Teljes</value></data>
   <data name="Emulation.Option.Sony.Value.DMAOnlySlightlyFaster"><value>Csak DMA (enyhén gyorsabb)</value></data>
@@ -459,7 +459,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>A szinkron hozzáférés reprodukálja az eredeti hardvert. Az aszinkron hozzáférés csökkentheti a lassú tárolású eszközök szüneteit. Betöltése az egész lemez kép RAM javíthatja a betöltési idő során a játék, de késleltetés indítása. Ez az üzemmód problémákat okozhat, ha a RAM korlátozott. A fizikai lemezek szinkronizált hozzáférést használnak az egész kép betöltése helyett. Az opció módosítása után újra kell indítanunk.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD betöltési sebesség</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>A 2x-nél (individual) magasabb értékek jelentősen csökkenthetik a játékon belüli betöltési időt, de időzítési hibákat vezethetnek be. Néhány játék nem működik megfelelően egy bizonyos érték felett.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>A BIOS kihagyása</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>A BIOS indító animáció kihagyása</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>Ne mutasd meg a PlayStation BIOS animációt játék indításakor. Ez az opció problémákat okozhat néhány játék, beleértve a játékok PAL másolat védelem és Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>A BIOS felülbírálása</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>A standard régióra vonatkozó BIOS felülbírálása regionálistól mentesen, ha van ilyen. Újraindítás szükséges.</value></data>
@@ -591,7 +591,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>A mag által generált OSD üzenetek megjelenítése.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>Teljes VRAM megjelenítése (hibakeresés)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>Képzelje el a teljes emulált konzol VRAM-ját. Csak az OpenGL és a Vulkan hardverkölcsönzők támogatják. Megjegyzés: Ez hibakeresési célokra szolgál, és általában ki kell kapcsolni.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Analóg szelf- kalibráció</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Adapt analog bemeneti tartomány</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>lehetővé teszi az analóg bemenetek dinamikus kalibrálását, amikor a készülék DualShock, analóg vezérlő, analóg joystick, vagy neGcon. A maximális regisztrált bemeneti értékeket valós időben ellenőrzik, és az emulátornak átadott analóg koordináták méretezésére használják. Ezt kell használni olyan játékok, mint a Mega Man Legends 2, amelyek elvárják nagyobb értékek, mint amit a modern szabályozók nyújtanak. A legjobb eredmény érdekében az analóg pálcikákat teljes mértékben el kell forgatni, hogy a kalibrációs algoritmust minden egyes betöltés után be lehessen hangolni.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock Analóg mód bekapcsolása</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>Ha a bemeneti eszköz típusa DualShock, akkor ez az opció lehetővé teszi, hogy az emulált DualShock -et DIGITAL és ANALOG üzemmódba kapcsolják, mint az eredeti hardvert. A mód a kiválasztott gombkombinációval is bekapcsolható.</value></data>
@@ -637,7 +637,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_spu_silent_voice.Help"><value>Hagyja ki a perminta feldolgozását olyan hangoknak, amelyek borítéka teljesen felszabadult. A hangkimenet azonos; az optimalizálás automatikusan letiltja önmagát, amíg az SPU IRQ működik. Megtakarítja a keretidő 5-10% -át. A teljesen pontos SPU regiszterállapot kikapcsolása.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cpu_dynarec.Label"><value>CPU Dynarec</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cpu_dynarec.Help"><value>Dinamikusan fordítsa vissza a CPU utasításokat az anyanyelvi utasításokra. Sokkal gyorsabb, mint a tolmács, de CPU időzítés kevésbé pontos, és lehet, hogy hibák.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Label"><value>Dynarec Kód Meghosszabbítás</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Label"><value>A Dynarec-kód validálása</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Help"><value>Egyes játékokhoz "Teljes" érvénytelenítés szükséges, néhányhoz csak "DMA" kell.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Label"><value>Dynarec ciklusok egy utasítás</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Help"><value>Ciklusok a dynarec díjak egy CPU utasítás. "2" gyorsabb, de az emulált CPU- úgy tűnik, félsebesség játékok, hogy gyorsítsák magukat ellene - set '1 a játékok, amelyek CD streaming standok vagy lóg alatt a dynarec (pl. Parasite Eve 2). Az '1' beállítás két ciklust vesz igénybe, és minden mást is, közel az igazi CPU-hoz.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.Sony.Value.Cross"><value>Kereszt</value></data>
   <data name="Emulation.Option.Sony.Value.Circle"><value>Kör</value></data>
   <data name="Emulation.Option.Sony.Value.Square"><value>Négyzet</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>Geometriai korrekció (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>Textúrák</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>Összeegyeztethetőség</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>A kép időzítése</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>CPU óra (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>Analóg üzemmód</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>Analóg pálcikák használata digitális irányokhoz</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>Analóg tengelyskála</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>Rezgéserősség</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>Vízszintes fegyverérzékenység</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>Függőleges fegyverérzékenység</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Kormányzati holtzóna</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Kormányzati válasz</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Méri a mért analóg tengely tartományát játékok, amelyek elvárják nagyobb bemeneti értékek. Mozgassa át a tengelyeket a teljes hatótávolságon, miután betöltötte a játékot.</value></data>
 </root>

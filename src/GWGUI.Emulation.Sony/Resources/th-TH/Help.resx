@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony เครื่องจําลองได้ถูกปรับแต่ง</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>แสดง RAM ของเครื่อง Sony ที่เลือกไว้</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>ยอดของ RAM ที่ใช้ได้กับเครื่องเลียนแบบ</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>ความถี่ของ CPU แบบย่อ หลังจากใช้หน่วยนาฬิกาที่เลือกไว้แล้ว</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>ความถี่ของคอนโซลระบุ ถูกคูณด้วยเปอร์เซ็นต์ที่เลือก นี่เป็นการเปลี่ยนตัวประมวลผลที่คัดลอกมา ไม่ใช่ตัวประมวลผลของโฮสต์ ค่าที่สูงขึ้นสามารถลดความเร็วลง แต่อาจทําลายจังหวะเกมได้ ใช้ค่าปริยายของตัวจําลองโดยอัตโนมัติ</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>ชิปวิดีโอดั้งเดิมที่ถูกใช้โดยฮาร์ดแวร์PlayStation รุ่นเพิ่มเติม</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Sony GPU ชิปรายการที่แตกต่างกันกับการปรับปรุงแผ่นแม่ ตัวเลือกในการแสดงผลควบคุมว่า ตัวจําลองสร้างเรขาคณิตและพิกเซลอย่างไร GW GUI เครื่องกรองภาพ จะประมวลผลภาพที่เสร็จสมบูรณ์หลังจากนั้น</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>ชิปเพลงดั้งเดิมที่ถูกใช้โดยฮาร์ดแวร์ของPlayStation รุ่นเพิ่มเติม</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU ผสมเสียงและถอดรหัสตัวอย่างบีบอัด รายการชิปมีความแตกต่าง กับการปรับปรุงแผ่นแม่ การเล่นเพลงและควบคุมการหน่วงเสียงบนคอมพิวเตอร์ของคุณ</value></data>
 </root>

@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>конфігуровано модель Sony Machine.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Відображає RAM, наданий вибраним Sony машиною.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Сума RAM доступна до встановленої машини.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Частота емульсії CPU після внесення обраного відсотка годинника.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Нормальна частота консолі передається вибраним відсотком. Це змінює емульований процесор, а не господарський процесор. Більші значення можуть зменшити сповільнення, але може розбити тривалість гри. Автоматичне використання емулятора за замовчуванням.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Оригінальні відео чіпси, які використовуються в апаратних версіях PlayStation.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Перераховані чіпси Sony GPU відрізняються від материнської плати. Внутрішні параметри рендерингу, як емулятор виробляє геометрію та пікселі. GW GUI фільтри обробляють завершене зображення після</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Оригінальні звукові чіпси, які використовуються в апаратних версіях PlayStation.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU змішує звукові голоси і декодує компресовані зразки. Вказані чіпси варіюватися з дошкою для материнських плат. Відтворення аудіо та затримки на вашому комп'ютері.</value></data>
 </root>

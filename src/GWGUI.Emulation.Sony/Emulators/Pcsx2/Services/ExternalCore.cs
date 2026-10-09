@@ -6,6 +6,7 @@ using GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Constants;
 using NativeControllerFunctions = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.ControllerPortFunctions;
 using NativeControllerDevice = GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts.ControllerDevice;
+using NativeMemoryCards = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.MemoryCardFunctions;
 
 namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;
 
@@ -27,6 +28,7 @@ internal sealed class ExternalCore : IEmulatorCore
     private string? _saveDirectory;
     private bool _gameLoaded;
     private bool _initialized;
+    private readonly List<(string Source, string Native)> _memoryCardFiles = [];
 
     internal ExternalCore(string corePath) => _corePath = corePath;
 
@@ -73,6 +75,7 @@ internal sealed class ExternalCore : IEmulatorCore
         saveDirectory = Path.GetFullPath(saveDirectory
             ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
         Directory.CreateDirectory(systemDirectory);
+        NativeMemoryCards.PreparePs2(configuration, systemDirectory, _memoryCardFiles);
         FirmwareConfigurationFunctions.CopySelectedFiles(configuration,
             new GWGUI.Emulation.Sony.Emulators.Pcsx2.Factories.Pcsx2MachineFactory(), systemDirectory);
         Directory.CreateDirectory(contentDirectory);
@@ -263,8 +266,14 @@ internal sealed class ExternalCore : IEmulatorCore
 
     public void Stop()
     {
-        if (_gameLoaded) _unloadGame?.Invoke();
-        _gameLoaded = false;
+        if (!_gameLoaded) return;
+        try { _unloadGame?.Invoke(); }
+        finally
+        {
+            _gameLoaded = false;
+            try { NativeMemoryCards.PersistFiles(_memoryCardFiles, StorageSettingsFunctionsConstants.Ps2MemoryCardSize); }
+            finally { _memoryCardFiles.Clear(); }
+        }
     }
 
     private void ValidateExtension(string? path)

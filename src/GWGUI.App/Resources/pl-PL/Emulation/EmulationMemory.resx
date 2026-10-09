@@ -7,8 +7,8 @@
   <data name="Emulation.Memory.Main"><value>Pamięć główna</value></data>
   <data name="Emulation.Memory.Extensions"><value>Rozszerzenia pamięci</value></data>
   <data name="Emulation.Memory.None"><value>Brak</value></data>
-  <data name="Emulation.Memory.CompatibleWithModel"><value>Konfiguracja pamięci jest zgodna z {0}.</value></data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Rozszerzenia pamięci są zgodne z {0}.</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Kompatybilna konfiguracja: {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Kompatybilne rozszerzenia pamięci: {0}.</value></data>
   <data name="Emulation.Memory.Z3UnavailableForModel"><value>Pamięć Zorro III RAM nie jest dostępna w {0}.</value></data>
   <data name="Emulation.Memory.TotalConfigured"><value>Łączna skonfigurowana pamięć: {0} {1}</value></data>
 </root>

@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony konemalli konfiguroitu.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Näyttää RAM:n, jonka tarjoaa valittu Sony kone.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Emuloidulle koneelle käytettävissä olevan RAM-muistin määrä.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Emuloidun CPU:n tiheys valitun kelloprosentin jälkeen.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Konsolin nimellistaajuus kerrotaan valitulla prosenttiosuudella. Tämä muuttaa emulgoitua prosessoria, ei isäntäprosessoria. Korkeammat arvot voivat vähentää hidastumisia, mutta voivat rikkoa pelin ajoitusta. Automaattinen käyttää emulaattorin oletus.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Alkuperäiset videopiirit PlayStation-laitteiston versioiden avulla.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Listatut Sony GPU -sirut vaihtelevat emolevyversion mukaan. Sisäiset renderointivaihtoehdot ohjaavat sitä, miten emulaattori tuottaa geometriaa ja pikseleitä. GW GUI kuvasuodattimet käsittelevät valmistunutta kuvaa jälkikäteen.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>PlayStationin laitteistoversioiden käyttämät alkuperäiset äänipiirit.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU sekoittaa ääniäänet ja purkaa koodattuja näytteitä. Listatut sirut vaihtelevat emolevyversion mukaan. Äänenlähtö ja latenssi ohjaus toisto tietokoneellasi.</value></data>
 </root>

@@ -22,11 +22,11 @@
   <data name="Emulation.Option.Sony.Value.Square"><value>Square Square</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Label"><value>Konsol Bölgesi</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Help"><value>Hangi bölgenin /hardware'in emulate olduğunu belirler. Auto-Detect disk eklenmiş bölgenin kullanımını kullanacak.</value></data>
-  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Auto-Detect</value></data>
+  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Otomatik algılama</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (Japonya)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, Kanada)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (Avrupa, Avustralya)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Hızlı Parmak</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Skip BIOS başlangıç animasyonu</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>BIOS kabuk/intro'yu takip edin, doğrudan oyuna gidin. Genellikle güvenli, ancak bazı oyunlar kırılır.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>Etkin</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>Devre dışı</value></data>
@@ -40,7 +40,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Emulation başlamadan önce disk görüntüyü RAM'a yükler. Bir ağ paylaşımını çalıştırırsanız, daha büyük bir başlangıç zamanından mal olabilir. libretro, overlays çekmenin bir yolunu sağladığı gibi, imge önceden yüklendiği zaman emülatör kilitlenecektir.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD Görüntüler To Images to Images RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>Pre-caches CHD CD-ROM görüntüleri onları baskı yapmadan RAM'a. Preload seçeneğinden farklı olarak, bu seçenek M3U dosyalarını destekler. Aynı zamanda daha hızlı ve CHD'yi de bastırmadığı için daha az RAM gerektirir.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Mute CD Audio Audio</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Yapılabilir CD audio</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>Forcibly mutes both CD-DA Ve ve XA Sesden gelen ses CD-ROM. Bazı oyunlarda arka müziği devre dışı bırakmak için kullanılabilir.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>CD-ROM Hız Oku</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>CD-ROM yukarı hızlar belirtilen faktör tarafından okunur. Sadece çift hızlı okumalar için geçerlidir ve sesin oynadığı zaman göz ardı edilir. Bazı oyunlarda yükleme hızlarını artırabilir, diğerlerini kırma pahasına.</value></data>
@@ -308,7 +308,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>CD Yükleniyor Hız</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>'2x (Native)'dan daha yüksek değerler, oyun yükleme zamanlarını büyük ölçüde azaltabilir, ancak zamanlama hatalarını tanıtabilir. Bazı oyunlar belirli bir değer üzerinde düzgün şekilde çalışmayabilir.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x (Native)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Skip Skip Skip BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Skip BIOS başlangıç animasyonu</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>Bir oyun başlatırken PlayStation BIOS animasyonunu göstermeyin. Bu seçenek, PAL kopya koruması ve Saga Frontier ile oyunlar da dahil olmak üzere bazı oyunlarda sorunlara neden olabilir.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>Override BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>Standart bölge belirli BIOS'u bir bölgeden bağımsız olarak bulursa. Yeniden başlamak gerekir.</value></data>
@@ -338,7 +338,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>Emated PlayStation sisteminin içerik oluşturacağı iç çerçeve oranını gösterir. Not: libretro frontend'de etkinleştirilen ekran bildirimlere ihtiyaç duyar.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>Ekran OSD Mesajları</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>Ana tarafından üretilen ekran OSD mesajları.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Analog Self-Calibration</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Adapt analog giriş aralığı</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>Cihazın DualShock, analog kontrolöre, analog sevinç çubuğuna veya neGcon'a ayarlandığında analog girişlerin dinamik kalibrasyonunu etkinleştirin. En fazla kayıtlı giriş değerleri gerçek zamanlı olarak takip edilir ve analog koordinatlar emülatöre geçti. Bu, Mega Man Legends 2 gibi oyunlar için kullanılmalıdır ve modern kontrolörlerin sağladığından daha büyük değerler bekler. En iyi sonuçlar için, analog çubuklar her zaman içeriği yüklenen kalibrasyon algoritmasını ayarlamak için tam olarak döndürülmelidir.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock Analog Mode Toggle</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>Giriş cihazı türü geldiğinde DualShock, Bu seçenek ematede izin verir DualShock Toggled between DIGITAL Ve ve ANALOG Orijinal donanım gibi mod. Mode ayrıca seçilmiş düğme kombinasyonunu kullanarak uçabilir.</value></data>
@@ -471,7 +471,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Senkron erişim orijinal donanımı yeniden üretir. Asynchronous access, yavaş depolama ile cihazlarda durakları azaltabilir. Tüm disk görüntüyü RAM'a yükleyerek oyun sırasında yükleme süresini artırabilir, ancak gecikmeler başlatılır. Bu mod RAM sınırlı olduğunda sorunlara neden olabilir. Fiziksel diskler tüm görüntüyü yükleme yerine senkronizasyonlu erişim kullanır. Bu seçeneği değiştirdikten sonra yeniden başlayın.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD Yükleniyor Hız</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>'2x (Native)'dan daha yüksek değerler, oyun yükleme zamanlarını büyük ölçüde azaltabilir, ancak zamanlama hatalarını tanıtabilir. Bazı oyunlar belirli bir değer üzerinde düzgün şekilde çalışmayabilir.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Skip Skip Skip BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Skip BIOS başlangıç animasyonu</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>Bir oyun başlatırken PlayStation BIOS animasyonunu göstermeyin. Bu seçenek, PAL kopya koruması ve Saga Frontier ile oyunlar da dahil olmak üzere bazı oyunlarda sorunlara neden olabilir.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>Override BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>Standart bölge belirli BIOS'u bir bölgeden bağımsız olarak bulursa. Yeniden başlamak gerekir.</value></data>
@@ -603,7 +603,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>Ana tarafından üretilen ekran OSD mesajları.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>Full VRAM (Debug)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>Tüm emilen konsolun VRAM'ı görselleştirmek. Sadece OpenGL ve Vulkan donanım değiştiricileri tarafından desteklendi. Not: Bu umutsuz amaçlar içindir ve normalde devre dışı olmalıdır.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Analog Self-Calibration</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Adapt analog giriş aralığı</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>Cihazın DualShock, analog kontrolöre, analog sevinç çubuğuna veya neGcon'a ayarlandığında analog girişlerin dinamik kalibrasyonunu etkinleştirin. En fazla kayıtlı giriş değerleri gerçek zamanlı olarak takip edilir ve analog koordinatlar emülatöre geçti. Bu, Mega Man Legends 2 gibi oyunlar için kullanılmalıdır ve modern kontrolörlerin sağladığından daha büyük değerler bekler. En iyi sonuçlar için, analog çubuklar her zaman içeriği yüklenen kalibrasyon algoritmasını ayarlamak için tam olarak döndürülmelidir.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock Analog Mode Toggle</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>Giriş cihazı türü geldiğinde DualShock, Bu seçenek ematede izin verir DualShock Toggled between DIGITAL Ve ve ANALOG Orijinal donanım gibi mod. Mode ayrıca seçilmiş düğme kombinasyonunu kullanarak uçabilir.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_ntsc.Help"><value>VBlank Frekansını NTSC hızında (59.94 Hz için 60) yuvarlak sayı yerine çalıştırın. Varsayılan olarak RPCS3'da olduğu gibi.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_hle_lwmutex.Label"><value>HLE lwmutex</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_hle_lwmutex.Help"><value>HLE uygulamasını lwmutex için kullanın.</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>Geometry düzeltme (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>Textures</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>Uyumluluk</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>Image zamanlama</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>CPU saati (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>Kuvvet analog modu</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>Dijital yönler için analog çubukları kullanın</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>Analog eksen ölçeği</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>Titreşim gücü</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>yatay silah duyarlılığı</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>Dikey silah duyarlılığı</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Ölüzon</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Yönelme yanıt</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Daha büyük giriş değerlerini bekleyen oyunlar için ölçülen analog eksen aralığına ölçekler. Bir oyun yüklemeden sonra tüm aralıkları boyunca axes hareket edin.</value></data>
 </root>

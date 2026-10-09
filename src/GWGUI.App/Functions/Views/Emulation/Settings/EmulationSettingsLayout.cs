@@ -69,13 +69,24 @@ internal static partial class EmulationSettingsLayout
         }
     }
 
-    internal static Grid CompactForm(int columns, params EmulationSettingsControlField[] fields)
+    internal static Grid CompactForm(int columns, params EmulationSettingsControlField[] fields) =>
+        Form(columns, false, fields);
+
+    internal static Grid BoundedForm(int columns, params EmulationSettingsControlField[] fields) =>
+        Form(columns, true, fields);
+
+    internal static Grid BoundedForm(int columns, params (string Label, FrameworkElement Control)[] fields) =>
+        BoundedForm(columns, fields.Select(field => new EmulationSettingsControlField(field.Label, field.Control)).ToArray());
+
+    private static Grid Form(int columns, bool bounded, EmulationSettingsControlField[] fields)
     {
         var form = new Grid { Margin = new Thickness(10) };
         for (var column = 0; column < columns; column++)
         {
-            form.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto, MinWidth = 125 });
-            form.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star), MinWidth = 150 });
+            form.ColumnDefinitions.Add(new ColumnDefinition { Width = bounded ? new GridLength(1, GridUnitType.Star) : GridLength.Auto,
+                MinWidth = bounded ? 0 : 125 });
+            form.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star),
+                MinWidth = bounded ? 0 : 150 });
         }
         var rows = (int)Math.Ceiling(fields.Length / (double)columns);
         for (var row = 0; row < rows; row++) form.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -97,6 +108,45 @@ internal static partial class EmulationSettingsLayout
             Grid.SetRow(control, row); Grid.SetColumn(control, column + 1); form.Children.Add(control);
         }
         return form;
+    }
+
+    internal static Grid CompactCards(IEnumerable<FrameworkElement> cards)
+    {
+        var page = new Grid { Margin = new Thickness(12) };
+        page.ColumnDefinitions.Add(new ColumnDefinition());
+        page.ColumnDefinitions.Add(new ColumnDefinition());
+        var columns = new[] { new StackPanel { Margin = new Thickness(0, 0, 6, 0) },
+            new StackPanel { Margin = new Thickness(6, 0, 0, 0) } };
+        page.Children.Add(columns[0]);
+        Grid.SetColumn(columns[1], 1);
+        page.Children.Add(columns[1]);
+        var items = cards.ToList();
+        var columnCount = 0;
+        void ArrangeCards()
+        {
+            var count = page.ActualWidth >= 760 ? 2 : 1;
+            if (count == columnCount) return;
+            columnCount = count;
+            foreach (var column in columns) column.Children.Clear();
+            page.ColumnDefinitions[1].Width = count == 2 ? new GridLength(1, GridUnitType.Star) : new GridLength(0);
+            columns[0].Margin = new Thickness(0, 0, count == 2 ? 6 : 0, 0);
+            columns[1].Visibility = count == 2 ? Visibility.Visible : Visibility.Collapsed;
+            for (var index = 0; index < items.Count; index++)
+            {
+                items[index].Margin = new Thickness(0, 0, 0, 12);
+                columns[index % count].Children.Add(items[index]);
+            }
+        }
+        page.Tag = (Action<FrameworkElement>)(card =>
+        {
+            items.RemoveAll(item => item.Tag is not null && ReferenceEquals(item.Tag, card.Tag));
+            items.Add(card);
+            columnCount = 0;
+            ArrangeCards();
+        });
+        page.SizeChanged += (_, _) => ArrangeCards();
+        ArrangeCards();
+        return page;
     }
 
     internal static Grid CompactForm(int columns, params (string Label, FrameworkElement Control)[] fields) =>

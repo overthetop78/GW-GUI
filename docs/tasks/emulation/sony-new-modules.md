@@ -277,3 +277,168 @@ Audit final des ressources Sony : 28 cultures, six catalogues, 37 352 entrees lo
 Validation finale Sony du 9 octobre 2026 : 55 tests permanents reussis, aucun echec ; aucune DLL native ni fenetre graphique lancee par ces tests. Dix adaptateurs Sony integres ; PocketStation ajoutee aux sept modeles existants. Les 28 langues passent l'audit (six catalogues, 37 352 entrees). Build Debug --modules=A termine avec code 0 ; gwgui.exe et les huit DLL de modules verifies sous build/Debug/GW GUI. Les controles natifs de rendu et fermeture deja consignes ne sont pas repetes. Commit Sony prepare avec les modifications App/SDK necessaires aux curseurs et au protocole video.
 
 Sony termine et commit realise : Complete Sony emulator integration and configuration. Les quinze modules suivants restent a realiser dans l'ordre prevu.
+
+## Corrections Sony demandées après contrôle de l’interface
+
+- [x] Corriger les réglages PlayStation des 17 captures (les autres nouveaux modules restent suspendus)
+  - [x] Organisation et contrôles
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs` et ses constantes : cases à cocher pour les valeurs binaires natives, déplacement des options système dans CPU, exclusion des journaux de l’interface utilisateur.
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.cs` et `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs` : conserver les blocs d’options et afficher leurs réglages CPU supplémentaires.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/EmulationModuleSettingsSection.Layout.cs` et les fonctions/constantes de blocs Sony : présenter les réglages vidéo par blocs repliables de rendu, géométrie et textures tout en conservant les traitements d’image de l’application.
+  - [x] Mémoire
+    - [x] Modifier `src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsValuePresentationFunctions.cs` et `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.cs` : fournir et calculer les capacités mémoire réelles, y compris les champs fixes des modules et l’extension Sony.
+  - [x] ROM PlayStation
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/FirmwareConfigurationFunctions.cs`, les constantes firmware PlayStation, les adaptateurs PS1 et `Emulators/Common/Interop/Services/ExternalCore.cs` : exposer un BIOS choisi et raccorder sa copie et les chemins natifs dans le dossier de session pour éviter une ancienne ROM résiduelle.
+  - [x] Stockage
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/StorageFunctions.cs`, ses constantes, `src/GWGUI.Emulation/HardDisks/HardDiskImageFormat.cs`, `HardDiskImageCreation.cs`, et créer `src/GWGUI.Emulation.Sony/Common/Machines/PlayStation/Functions/MemoryCardFunctions.cs` : ajouter les deux emplacements avec choix de fichier et création de carte vierge formatée ; nommer le lecteur CD.
+    - [x] Créer `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/MemoryCardFunctions.cs` et ses constantes, modifier `CoreSettingsFunctions.cs`, `ExternalCore.cs` et `ExternalCore.SaveMemory.cs` : raccorder les deux cartes choisies aux fichiers natifs de chaque cœur PS1 et rapatrier leur contenu après déchargement.
+  - [x] Périphériques
+    - [x] Créer `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/ControllerOptionFunctions.cs` et ses constantes ; modifier `CoreSettingsFunctions.cs`, `src/GWGUI.Emulation/Contracts/EmulationSettingsField.cs`, `src/GWGUI.App/Contracts/Emulation/Settings/EmulationSettingsControlField.cs`, `ModuleSettings/EmulationModuleSettingsSection.Fields.cs` et `Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs` : afficher les réglages uniquement pour le périphérique et le port choisis à l’intérieur de leur bloc.
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs`, ses constantes et `InputFunctions.Visuals.cs`, `src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs`, créer `Emulators/Common/Interop/Functions/AnalogToggleFunctions.cs`, modifier `CoreSettingsFunctions.cs` et `ExternalHostCallbacks.Input.cs` : raccorder le bouton Analog aux cœurs PS1 et aux zones du visuel.
+    - [x] Modifier les ressources Sony et App de noms, les profils/visuels PlayStation sous `src/GWGUI.App/Views/Controls/Options/ControllerVisualization`, les identifiants SDK de visuels et les PNG de `src/GWGUI.App/Assets/Controllers` : nom PlayStation DualShock, visuel de face, Dual Analog, Analog Joystick, souris, neGcon, GunCon et Justifier compatibles et visuels conformes. Créer les références temporaires sous `tmp/sony-controller-references` et `docs/reference/sony-controller-sources.md` pour documenter les photographies et adaptations utilisées.
+    - [x] Supprimer `tmp/sony-controller-references` après intégration des visuels, sans supprimer les photographies générées externes.
+  - [x] Traductions
+    - [x] Modifier `scripts/tools/translate-resx-argos.py` avec les libellés techniques français relus, les ressources sources concernées et leurs traductions dans toutes les langues via le script Argos existant : démarrage BIOS, détection automatique, audio CD, libellés techniques et compatibilité sans article devant la machine ; invariants en base seulement. Créer puis supprimer `tmp/sony-option-translation.log` pour le journal de cette exécution Argos.
+  - [x] Ajustements nécessaires au raccordement demandé
+    - [x] Modifier `CoreSettingsConstants.cs`, `ControllerOptionConstants.cs` et `ControllerOptionFunctions.cs` sous `src/GWGUI.Emulation.Sony/Emulators/Common/Interop` : retirer les choix techniques gérés par l’application et classifier les limites analogiques, vibrations et options de pistolet par type et port.
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/FirmwareConfigurationFunctions.cs`, les constantes firmware PlayStation et `Emulators/Common/Interop/Services/ExternalCore.SaveMemory.cs` : reconnaître les extensions usuelles des BIOS choisis et tenter la sauvegarde des deux cartes même si la première échoue.
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs` et `Constants/CoreSettingsConstants.cs` : imposer le BIOS externe sélectionné aux options natives et masquer les informations de débogage du cœur PCSX-ReARMed.
+  - [x] Validation
+    - [x] Créer `tests/GWGUI.Tests/Emulation/Sony/ConfigurationPresentationTests.cs` avec des tests Sony permanents autonomes : vérifier les contrôles, catégories, BIOS unique, capacités RAM, stockage et filtrage des périphériques sans chargement graphique inutile.
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Visuals.cs` et le test de présentation Sony : corriger les erreurs de compilation introduites dans les dictionnaires et utiliser les contrats existants des ports.
+    - [x] Modifier `src/GWGUI.Emulation/Contracts/EmulationSettingsBlock.cs`, `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs` et `src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/EmulationModuleSettingsSection.Layout.cs` : rendre les blocs repliables par un indicateur générique demandé par Sony, sans modifier les présentations des autres modules.
+    - [x] Modifier `src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs` : placer les seules options pertinentes avant l’affectation des commandes dans le port actif, avec un volet repliable, sans panneau ajouté sous les affectations.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/PlayStation/SonyDualAnalog.cs` et `scripts/tools/translate-resx-argos.py` : ajuster les zones à la photographie Dual Analog et corriger le libellé français du traitement audio par image, puis réappliquer la révision technique Sony dans toutes les langues.
+    - [x] Modifier `src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs` : selon la précision utilisateur, placer les réglages filtrés directement sous le choix de manette, dans sa colonne, sans volet ni panneau supplémentaire.
+    - [x] Modifier ce document avec les résultats effectifs des tests et du build Debug avec tous les modules, après exécution du script existant.
+
+Validation des corrections : 72 tests Sony permanents réussis, aucun échec. Ces tests ne chargent aucune DLL native et ne créent aucune fenêtre graphique. Build Debug avec --modules=A terminé avec code 0 ; gwgui.exe et les huit DLL de modules présents dans build/Debug/GW GUI. Les réglages du périphérique sélectionné sont directement sous le choix de manette, dans sa colonne, sans volet supplémentaire. Les nouveaux libellés et les corrections de compatibilité sont traités dans les 28 cultures. Aucun redémarrage de DWM. Le contrôle visuel dans l’application et le fonctionnement avec un jeu restent à tester par l’utilisateur.
+## Compacité et explications des réglages Sony
+
+- [x] Reprendre les cadres CPU, vidéo et audio pour une interface lisible et fluide
+  - [x] Organisation des données Sony
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs`, ses constantes et `Common/Machines/Common/Functions/SettingsFunctions.cs` : intégrer les réglages CPU et horloge dans leurs blocs matériels, séparer les autres fonctions et fournir une fréquence effective liée au pourcentage choisi.
+    - [x] Modifier les constantes de modèles Sony et les ressources communes : afficher les véritables puces PS1 et des libellés techniques compréhensibles avec leur aide.
+    - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationSettingsField.cs, EmulationMediaDevice.cs, EmulationCompactDiscDriveSettings.cs, les fonctions de stockage Sony et le dialogue CD existant : métadonnées génériques de fréquence et champs du lecteur CD, conserver ses valeurs natives et les déplacer dans sa configuration.
+  - [x] Présentation compacte
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs` et les fonctions de disposition existantes : supprimer les cadres CPU en double, intégrer les champs associés et actualiser la fréquence lors du changement de vitesse.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/EmulationModuleSettingsSection.Layout.cs` et la disposition vidéo : présenter des cadres distincts, compacts, sans textes tronqués, avec les boutons d’information existants ; distinguer le rendu interne des filtres GW GUI.
+    - [x] Modifier src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/ControllerOptionFunctions.cs, ses constantes et src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs : associer explicitement les réglages SwanStation aux bons périphériques et maintenir contrôles et affectations visibles sans largeur excessive.
+    - [x] Modifier les constantes et libellés de stockage Sony ainsi que les ressources de carte mémoire : retirer le préfixe PlayStation redondant des emplacements et du modèle affichés, traduire le nom générique et maintenir les périphériques permanents, dont CD, en tête de liste.
+    - [x] Modifier le contrat de champ, les fonctions de manettes Sony et leur disposition App : sortir le multitap des options individuelles, reconstruire les ports selon son choix et filtrer les anciens ports lors de sa désactivation.
+    - [x] Modifier `src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsLayout.cs` et la présentation CPU : adapter le nombre de colonnes à la largeur disponible, avec des cadres proportionnés au contenu plutôt que copier la disposition Atari.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVideoProcessingSettingsSection.Layout.cs` et le conteneur de cadres : conserver le bloc de traitement GW GUI lors du passage à une ou deux colonnes et lors de son actualisation.
+  - [x] Traductions et validation
+    - [x] Modifier les ressources source et toutes leurs traductions avec le script Argos existant : aides et libellés modifiés ; garder les identifiants de puces invariants dans la base.
+    - [x] Modifier les tests Sony permanents de présentation : vérifier le regroupement CPU, la fréquence et les aides sans ouvrir de fenêtre ni charger de cœur.
+    - [x] Modifier ce document avec les résultats des tests ciblés et du build `scripts/local-building.cmd --building=debug --modules=A` ; vérifier l’exécutable et les huit modules.
+
+
+Validation du 9 octobre 2026 : 79 tests Sony permanents réussis, sans fenêtre ni cœur natif. Les nouvelles ressources sont présentes dans les 28 cultures traduites et en-US. Le build Debug --modules=A a terminé avec code 0 ; gwgui.exe et les huit modules Amstrad, Atari, Commodore, Microsoft, NEC, Nintendo, Sega et Sony ont été vérifiés dans build/Debug/GW GUI. Les cadres Sony adaptent leur nombre de colonnes à la largeur disponible. Les options du CD sont dans son dialogue de configuration ; le multitap est commun aux ports et reconstruit leur nombre. Cette validation ne comprend pas un contrôle visuel de la fenêtre en fonctionnement ni un essai avec un jeu.
+
+## Aide PGXP qui déborde de l’écran
+
+- [x] Corriger l’affichage de l’infobulle d’aide
+  - [x] Limiter l’aide à une largeur lisible
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs` : borner la largeur de l’infobulle avec les constantes existantes et activer le retour à la ligne.
+  - [x] Vérifier le rendu mesuré et livrer la correction
+    - [x] Modifier `tests/GWGUI.Tests/Interface/SettingsViews/EmulationModuleSettingsNavigationScenarios.cs` : mesurer une aide longue avec WPF et vérifier sa largeur limitée et ses lignes multiples, avec l’infrastructure STA existante.
+    - [x] Modifier `docs/tasks/emulation/sony-new-modules.md` : consigner le test ciblé et la compilation Debug avec les huit modules, puis vérifier les fichiers livrés.
+
+Test WPF ciblé réussi : aide longue mesurée sur plusieurs lignes dans la largeur limitée. Build Debug --modules=A terminé avec code 0 et huit modules vérifiés. Aucun cœur natif ni fenêtre de jeu lancé par ce test.
+
+## Bouton Analog et cadre Multitap
+
+- [x] Corriger les réglages de manettes des dernières captures
+  - [x] Supprimer le doublon Analog et expliquer l’amplitude des axes
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/AnalogToggleFunctions.cs`, `CoreSettingsFunctions.cs`, leurs constantes et `ControllerOptionFunctions.cs` : masquer les choix Analog gérés par l’affectation existante et fournir une aide concise pour l’adaptation des axes, avec les types compatibles.
+    - [x] Modifier `scripts/tools/translate-resx-argos.py`, les ressources Sony et leurs traductions via Argos : renommer l’auto-calibration et expliquer son effet sur l’amplitude des axes.
+  - [x] Séparer le multitap des affectations
+    - [x] Modifier `src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs` et `src/GWGUI.App/Resources/00-Base/Emulation/EmulationController.resx` : créer un cadre Multitap indépendant au-dessus du cadre d’affectations, conserver la reconstruction des ports et le nom invariant en base commune.
+  - [x] Vérifier et livrer
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sony/ConfigurationPresentationTests.cs` : vérifier l’absence du second réglage Analog et la présence de l’aide d’amplitude pour les types compatibles.
+    - [x] Modifier `docs/tasks/emulation/sony-new-modules.md` : consigner les tests ciblés et le nouveau build Debug avec les huit modules vérifiés.
+
+
+Validation : 82 tests ciblés réussis (81 Sony et le test WPF de largeur d’aide). Build Debug --modules=A terminé avec code 0 ; gwgui.exe et les huit DLL de modules vérifiés. Les sélecteurs Analog de Beetle PSX et Beetle PSX HW sont masqués car l’affectation Analog est gérée par GW GUI. Le réglage d’amplitude reste disponible avec un intitulé explicite et une aide courte traduite dans toutes les langues. Le multitap a un cadre séparé des affectations. L’infobulle est limitée à 320 pixels avec retour à la ligne ; sa mesure WPF est vérifiée. Le rendu global dans une fenêtre réelle n’a pas été revérifié.
+
+## Identifiants invariants des Memory Card et limite avec multitap
+
+- [x] Corriger les noms et documenter la capacité réelle
+  - [x] Réserver les noms invariants à la base commune
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Resources/00-Base/Machine.resx` : conserver `Memory Card` et `MC {0}` sans traduction ; supprimer ces deux entrées dans les catalogues des cultures sous `src/GWGUI.Emulation.Sony/Resources`.
+    - [x] Modifier `scripts/tools/translate-resx-argos.py` et les constantes/fonctions de stockage Sony : déclarer ces identifiants invariants, utiliser `MC` pour les emplacements et éviter le retour des traductions.
+  - [x] Vérifier et expliquer la limite des cœurs
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/MemoryCardFunctions.cs`, `Constants/MemoryCardConstants.cs`, `Common/Machines/Common/Functions/StorageFunctions.cs` et `ExternalCore.SaveMemory.cs` : proposer et persister 2, 5 ou 8 cartes avec Beetle PSX/HW suivant le multitap ; préserver les sélections existantes et les limites des autres pilotes.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sony/ConfigurationPresentationTests.cs` : vérifier les noms invariants, les capacités avec multitap et les noms de fichiers natifs.
+    - [x] Modifier `docs/tasks/emulation/sony-new-modules.md` : consigner les sources de capacité matérielle et les limites vérifiées des cœurs.
+
+## Préserver les blocs existants et ranger les réglages natifs
+
+- [x] Corriger la disposition audio et vidéo
+  - [x] Séparer les options des blocs existants
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Emulators/Common/Interop/Functions/CoreSettingsFunctions.cs` et `Constants/CoreSettingsConstants.cs` : séparer le bloc audio natif du bloc audio commun, regrouper le cadrage vidéo et masquer les filtres de présentation redondants.
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.cs` : déplacer les informations de puce dans les options natives et préserver les contrôles audio communs.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/ModuleSettings/EmulationModuleSettingsSection.Layout.cs` : conserver le formulaire audio commun et placer les options natives à gauche ; construire les groupes vidéo natifs avec des champs lisibles et des sections repliables.
+    - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVideoProcessingSettingsSection.cs` et `.Layout.cs` : garder le traitement GW GUI en haut à droite et ajouter les options natives dans un sous-onglet utilisant le titre de rendu existant.
+  - [x] Vérifier et livrer
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sony/ConfigurationPresentationTests.cs`, `tests/GWGUI.Tests/Interface/SettingsViews/EmulationModuleSettingsNavigationScenarios.cs` et `SettingsViewsTests.cs` : vérifier la séparation des options, les groupes natifs et la position stable du traitement vidéo lors de reconstruction.
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/SettingsFunctions.Builders.cs` : restaurer le formulaire commun audio qui était encore marqué compact, défaut détecté par le test de séparation.
+    - [x] Modifier `docs/tasks/emulation/sony-new-modules.md` : consigner les vérifications et le build Debug avec les huit modules.
+
+Sources cartes : Beetle PSX/HW charge et sauvegarde huit images (https://github.com/libretro/beetle-psx-libretro/blob/master/libretro.c) ; FrontIO mappe 2, 5 ou 8 emplacements suivant les multitaps. PCSX-ReARMed utilise Mcd1Data/Mcd2Data (libpcsxcore/sio.c). Le wrapper SwanStation ne lit que Card1Type/Card2Type (src/core/settings.cpp), donc les autres cartes ne sont pas configurables par son interface actuelle. PCSX2 documente que les cartes du multitap physique PS2 sont possibles mais que son émulation ne les prend actuellement pas en charge (https://pcsx2.net/docs/configuration/controllers/). Les jeux doivent aussi prendre en charge ces emplacements. Les sélections de cartes devenues inactives sont conservées dans les options.
+
+Validation de la séparation audio/vidéo et des cartes Beetle : 91 tests ciblés réussis. Build Debug --modules=A terminé avec code 0 ; exécutable et huit DLL vérifiés. Rendu global et sauvegarde dans un jeu sur huit cartes non vérifiés.
+
+## Reprise complète PS2 / PSP et sélection Vita
+
+- [x] Reprendre les onglets PS2 et PSP et corriger le plantage Vita
+  - [x] Corriger la sélection sans adaptateur
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Modules/SonyEmulationModule.cs` et `Common/Machines/Common/Functions/InputFunctions.Settings.cs` : ne pas construire des contrôles natifs pour une machine sans adaptateur, conserver l'affichage général et les informations matérielles sans provoquer Engine.Adapter avec un identifiant vide.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sony/ConfigurationPresentationTests.cs` : vérifier la sélection et la description de Vita sans adaptateur avec le cas exact du log du 09/10.
+  - [x] Raccorder les options PS2 / PSP à la présentation commune
+    - [x] Créer `artifacts/sony-options/ppsspp-core-options.h`, `pcsx2-core-options.h` et `generate-portable-options.py` : lire les définitions officielles PCSX2/PPSSPP et produire les catalogues compatibles avec les contrats existants ; réutiliser les textes PS2 existants quand leurs clés sont identiques.
+    - [x] Créer `src/GWGUI.Emulation.Sony/Emulators/Pcsx2/Dictionaries/OptionCatalog.cs` et `Ppsspp/Dictionaries/OptionCatalog.cs`, leurs `Constants/OptionConstants.cs`, modifier leurs factories et fonctions ainsi que les constantes/fonctions communes : décrire les options natives utiles dans les onglets existants, leurs valeurs et leurs aides, sans doubler les shaders GW GUI.
+    - [x] Modifier les ressources Sony et `scripts/tools/translate-resx-argos.py` si nécessaire : traduire via Argos dans toutes les langues les nouveaux textes PSP, conserver les valeurs invariantes dans la base commune.
+    - [x] Modifier `Emulators/Pcsx2/Dictionaries/OptionCatalog.cs`, `Constants/OptionConstants.cs` et les catalogues `PortableOption.resx` : remplacer les options LRPS2 par les trois options réellement exposées par la DLL PCSX2 existante, conserver les valeurs natives exactes et supprimer les ressources inutilisées ; raccourcir et corriger les libellés français PSP après Argos.
+    - [x] Modifier `Modules/SonyEmulationModule.cs`, `Common/Machines/Common/Functions/SettingsFunctions.cs` et les fonctions communes d'options : permettre l'application des réglages communs sans adaptateur Vita, réunir le choix PSP et sa RAM, garder les fréquences dans Accélération et les options avancées dans leurs groupes.
+  - [x] Raccorder le stockage réel PS2 / PSP
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/StorageFunctions.cs`, ses constantes, les fonctions de Memory Card PS2 et `src/GWGUI.Emulation/Contracts/EmulationMediaDevice.cs` : proposer MC 1 / MC 2 avec un format PS2 valide, associer les fichiers choisis, décrire le dossier Memory Stick et préserver le CD fixe en premier.
+    - [x] Créer `Emulators/Play/Functions/MemoryCardFunctions.cs` : décrire les deux dossiers réellement utilisés par Play! en lisant sa configuration native, sans lui présenter des fichiers .ps2 qu'il n'accepte pas.
+    - [x] Modifier les services natifs PS2 et PSP, `Emulators/Common/Interop/Functions/MemoryCardFunctions.cs`, les constantes et `EmulationStorageSettingsController.cs`, créer `src/GWGUI.App/Views/Dialogs/Emulation/Storage/MemoryCardDirectoryConfigurationDialog.cs` : charger et persister les cartes PS2 sélectionnées, choisir ou retirer le dossier Memory Stick avec le mécanisme existant et une fenêtre compacte utilisant les composants communs.
+  - [x] Vérifier et livrer
+    - [x] Modifier `Emulators/Ppsspp/Dictionaries/OptionCatalog.cs`, ses ressources `PortableOption.resx` et `scripts/tools/translate-resx-argos.py` : utiliser les états communs pour afficher les booléens en cases à cocher et la fréquence automatique correctement, supprimer les textes devenus inutiles et les copies de résolutions et API invariantes.
+    - [x] Modifier les tests Sony et les scénarios WPF existants : couvrir tous les onglets PS2 / PSP, la sélection Vita, les formats et chemins de cartes, et les reconstructions des formulaires sans cœur ni processus natif.
+    - [x] Créer `tests/GWGUI.Tests/Emulation/Sony/SonyStorageTemporaryTests.cs` : vérifier les fichiers .ps2 copiés et sauvegardés, le dossier PSP, puis construire et sélectionner les onglets PS2 / PSP / Vita avec l'infrastructure STA ; fermer les surfaces et supprimer les dossiers dans finally.
+    - [x] Modifier `src/GWGUI.Emulation/Contracts/EmulationMediaDevice.cs`, les constantes/fonctions de stockage Sony et `src/GWGUI.App/Controllers/Emulation/Storage/EmulationStorageSettingsController.cs` : décrire le sous-dossier Sony/PSP/Memory Stick sous HDD, le proposer par défaut et enregistrer ce dossier sans remplacer un chemin choisi.
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sony/ConfigurationPresentationTests.cs`, `SonyStorageTemporaryTests.cs` et ce document : vérifier le chemin Memory Stick et la limite native des cartes PS2 avec deux multitaps ; consigner les sources.
+    - [x] Supprimer `tests/GWGUI.Tests/Emulation/Sony/SonyStorageTemporaryTests.cs` et ses artefacts après exécution ; conserver seulement les tests autonomes sans fichier ni application externe ajoutée.
+    - [x] Supprimer `artifacts/sony-options/ppsspp-core-options.h`, `pcsx2-core-options.h` et `artifacts/sony-options/generate-portable-options.py` après génération, ainsi que les artefacts temporaires de génération.
+    - [x] Modifier `scripts/tools/translate-resx-argos.py` et les catalogues Sony `PortableOption.resx` : conserver également les valeurs de résolution PSP de forme 1x (480x272) uniquement dans la base commune ; supprimer leurs copies culturelles.
+    - [x] Supprimer `artifacts/sony-options/argos-config` : nettoyer le dossier temporaire de configuration utilisé pour cette dernière invocation du script Argos.
+    - [x] Modifier `docs/tasks/emulation/sony-new-modules.md` : consigner les résultats des tests, les limites natives établies et le nouveau build Debug --modules=A avec les huit modules vérifiés.
+
+Capacité PS2 vérifiée : PCEE2 mappe huit manettes avec pcsx2_multitap=both, mais n'expose que pcsx2_memcard_slot1_enable/file et pcsx2_memcard_slot2_enable/file (https://github.com/WizzardSK/pcee2-libretro/blob/libretro/pcee2-libretro/Libretro.cpp, ApplyCoreOptions, MemoryCards). Le pilote PCSX2 existant ne permet pas non plus les cartes multitap ; Play! utilise ses deux dossiers natifs. Ces pilotes restent donc à deux cartes, contrairement à Beetle PSX/HW (jusqu'à huit). PSP utilise le dossier Memory Stick autorisé, proposé sous HDD/Sony/PSP/Memory Stick et transmis directement au cœur PPSSPP ; tout dossier déjà sélectionné est conservé.
+
+Validation finale : 101 tests ciblés réussis, dont les scénarios temporaires de fichiers et de fenêtres WPF PS2/PSP/Vita, fermées et libérées dans finally. Les tests temporaires et leurs artefacts sont supprimés. Les catalogues PortableOption sont des XML valides ; les résolutions PSP ne sont présentes que dans 00-Base. Build Debug --modules=A terminé avec code 0 après le dernier nettoyage ; gwgui.exe et les huit DLL vérifiés, DLL Sony postérieure aux dernières ressources. Chemin livré : F:\GW GUI\build\Debug\GW GUI\gwgui.exe. Les changements de Vita corrigent l'appel Engine.Adapter avec identifiant vide trouvé dans le log errors-20261009.log ; sélection et application des options communes vérifiées. La sauvegarde réelle dans un jeu et le rendu visuel global ne sont pas vérifiés : les scénarios couvrent la construction des onglets, les chemins natifs et la persistance des fichiers contrôlés.
+## Plantage lors du changement Vita / PS3 / PS4 / PS5
+
+- [x] Corriger le changement réel de machine et livrer
+  - [x] Corriger la capture des entrées
+    - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et le contrôleur d'entrées App si nécessaire : préserver les entrées sans adaptateur et empêcher la réutilisation des ports de la machine précédente.
+  - [x] Vérifier le parcours signalé
+    - [x] Modifier `tests/GWGUI.Tests/Emulation/Sony/ConfigurationPresentationTests.cs` : couvrir l'application d'entrées précédentes sur les quatre machines sans émulateur sélectionné.
+    - [x] Créer `tests/GWGUI.Tests/Emulation/Sony/SonySelectionTemporaryTests.cs` : changer réellement la sélection dans la liste des machines, capturer toute erreur, vérifier les quatre modèles et fermer la fenêtre et ses ressources dans finally.
+    - [x] Supprimer `tests/GWGUI.Tests/Emulation/Sony/SonySelectionTemporaryTests.cs` et ses artefacts après exécution.
+  - [x] Livrer le correctif
+    - [x] Modifier `docs/tasks/emulation/sony-new-modules.md` : consigner la cause du log, les tests et le build Debug --modules=A, vérifier gwgui.exe et les huit modules.
+
+Validation du correctif de sélection : les traces du 09/10/2026 à 21:50–21:51 montrent CaptureEditorValues -> ApplyInputSettings -> ControllerFunctions.PortCount -> Engine.Adapter avec emulatorId vide. Les ports App appartenaient encore à la précédente machine car aucun onglet d'entrée ne recharge le contrôleur sans adaptateur. Apply ignore maintenant une vue d'entrée appartenant à une autre machine ; le module Sony préserve la configuration d'entrée sans adaptateur compatible. 102 tests ciblés réussis, dont quatre cas d'application sans émulateur et un scénario WPF temporaire changeant dix fois la sélection réelle PS1/Vita/PS3/PS4/PS5/PS1, sans erreur. La fenêtre, les brouillons et les fichiers du scénario sont libérés dans finally ; le fichier de test temporaire est supprimé après exécution. Build Debug --modules=A terminé avec code 0 ; gwgui.exe et huit DLL de modules vérifiés dans F:\GW GUI\build\Debug\GW GUI. Cette validation concerne les paramètres et le changement de sélection, pas l'exécution des jeux sur ces consoles.
+
+## Commit Sony demandé avant de poursuivre Acorn
+
+- [x] Enregistrer les corrections Sony en attente
+  - [x] Modifier `docs/tasks/emulation/sony-new-modules.md` : consigner la vérification du diff et les tests Sony et des vues de paramètres avant le commit ; conserver les limites de validation indiquées ci-dessus.
+  - [x] Modifier `.git/index` et la référence Git de la branche courante par les commandes Git : indexer le module Sony, ses adaptations App/SDK, ressources, images, outil Argos, documentation et tests ; enregistrer le commit Sony sans les fichiers Acorn en cours.
+
+Contrôle avant commit : `dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --filter "FullyQualifiedName~GWGUI.Tests.Emulation.Sony|FullyQualifiedName~GWGUI.Tests.Interface.SettingsViews" --verbosity minimal` réussit avec 129 tests, zéro échec et zéro test ignoré. Compilation App, SDK et Sony réussie pendant cette exécution ; `git diff --check` ne signale aucune erreur. Aucun nouveau test temporaire ajouté. Ce commit enregistre les corrections de paramètres, stockage et manettes déjà réalisées ; il ne prétend pas valider l'exécution des jeux ni achever le stockage PS3/Vita.

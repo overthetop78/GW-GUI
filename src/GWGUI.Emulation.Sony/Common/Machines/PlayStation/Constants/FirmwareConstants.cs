@@ -2,6 +2,12 @@ namespace GWGUI.Emulation.Sony.Common.Machines.PlayStation.Constants;
 
 internal static class FirmwareConstants
 {
+    internal static IReadOnlySet<string> BiosExtensions { get; } =
+        new HashSet<string>([".bin", ".rom"], StringComparer.OrdinalIgnoreCase);
+    internal const string SelectedField = "firmware.playstation";
+    internal const string SelectedFile = "playstation.bin";
+    internal const string SelectedLabel = "Emulation.Sony.Firmware.PlayStation.Selected";
+    internal static FirmwareSlot Selected { get; } = new(SelectedField, SelectedFile, SelectedLabel, false);
     internal const string JapanField = "firmware.japan";
     internal const string NorthAmericaField = "firmware.northamerica";
     internal const string EuropeField = "firmware.europe";

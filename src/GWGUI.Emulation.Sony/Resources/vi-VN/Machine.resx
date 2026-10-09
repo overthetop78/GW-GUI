@@ -4,4 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Cpu.EffectiveFrequency"><value>Tần số CPU hiệu quả</value></data>
+  <data name="Emulation.Sony.Video.Chip"><value>chip ảnh động</value></data>
+  <data name="Emulation.Sony.Audio.Chip"><value>chip âm thanh</value></data>
 </root>

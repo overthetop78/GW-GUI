@@ -18,6 +18,33 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private UIElement BuildCpuSettingsTab(EmulationMachineSettings settings)
     {
+        if (settings.Blocks.Any(block => block.Tab == EmulationMachineTab.Cpu && block.IsCompact))
+        {
+            var blocks = settings.Blocks.Where(block => block.Tab == EmulationMachineTab.Cpu && block.IsVisible).ToArray();
+            var cards = blocks.ToDictionary(block => block.Id, block => EmulationSettingsLayout.IconCard(
+                EmulationSettingsLayout.BoundedForm(1,
+                    block.Fields.Where(field => field.IsVisible).Select(CreateControlField).ToArray()),
+                LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? string.Empty));
+            foreach (var field in VisibleFields(settings, EmulationMachineTab.Cpu)
+                .Where(field => field.FrequencyScaleFieldId is not null))
+            {
+                if (!_fieldControls.TryGetValue(field.FrequencyScaleFieldId!, out var source)
+                    || _fieldControls[field.Id] is not TextBlock frequency) continue;
+                void UpdateFrequency()
+                {
+                    var selected = ReadValue(source);
+                    var scaled = EmulationSettingsValuePresentationFunctions.ScaledFrequency(field.NumericValue, selected);
+                    frequency.Text = scaled ?? (source is ComboBox { SelectedItem: EmulationSettingsChoiceView choice }
+                        ? choice.DisplayName : field.Value);
+                }
+                AttachValueChanged(source, UpdateFrequency);
+                if (source is Grid { Tag: Slider slider }) slider.ValueChanged += (_, _) => UpdateFrequency();
+                UpdateFrequency();
+            }
+            ApplySettingsRules(settings);
+            return EmulationSettingsLayout.ScrollPage(
+                EmulationSettingsLayout.CompactCards(blocks.Select(block => cards[block.Id])));
+        }
         var fields = VisibleFields(settings, EmulationMachineTab.Cpu);
         var cpu = FieldByLabel(fields, EmulationHardwareSettingsConstants.CpuModelResourceKey);
         if (cpu is null) return BuildGenericSettingsTab(settings, EmulationMachineTab.Cpu);
@@ -42,8 +69,21 @@ internal sealed partial class EmulationModuleSettingsSection
                     new TextBlock { Text = originalSpeed })
                 : CreateControlField(originalSpeedField),
             speed is { IsEnabled: true } ? speedControl : null));
+        var panel = new StackPanel();
+        panel.Children.Add(page);
+        var hardwareFields = new[] { cpu, speed, originalSpeedField, precision, fpu }
+            .OfType<EmulationSettingsField>().Select(field => field.Id).ToHashSet(StringComparer.Ordinal);
+        foreach (var block in settings.Blocks.Where(block => block.Tab == EmulationMachineTab.Cpu && block.IsVisible))
+        {
+            var extra = block.Fields.Where(field => field.IsVisible && !hardwareFields.Contains(field.Id))
+                .Select(CreateControlField).ToArray();
+            if (extra.Length != 0)
+                panel.Children.Add(EmulationSettingsLayout.IconCard(
+                    EmulationSettingsLayout.CompactForm(block.Columns, extra),
+                    LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? string.Empty));
+        }
         ApplySettingsRules(settings);
-        return EmulationSettingsLayout.ScrollPage(page);
+        return EmulationSettingsLayout.ScrollPage(panel);
     }
 
     private UIElement BuildMemorySettingsTab(EmulationMachineSettings settings)
@@ -170,7 +210,10 @@ internal sealed partial class EmulationModuleSettingsSection
     {
         if (_fieldControls.TryGetValue(field.Id, out var control)
             && control is ComboBox { SelectedItem: EmulationSettingsChoiceView selected })
-            return selected.Choice.NumericValue ?? 0;
+            return EmulationSettingsValuePresentationFunctions.MemoryBytes(selected.Choice.InvariantDisplayValue)
+                ?? selected.Choice.NumericValue ?? 0;
+        if (control is CheckBox toggle)
+            return toggle.IsChecked == true ? field.NumericValue ?? 0 : 0;
         return EmulationSettingsValuePresentationFunctions.DefaultNumericValue(field);
     }
 

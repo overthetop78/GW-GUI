@@ -10,11 +10,11 @@
   <data name="Emulation.Sony.Language.Spanish"><value>담당자: Ms.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Label"><value>콘솔 지역</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Help"><value>지구/하드웨어를 에뮬레이트하는 결정. Auto-Detect는 디스크 삽입의 지역을 사용합니다.</value></data>
-  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>자동 파괴자</value></data>
+  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>자동 검출</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (일본)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, 캐나다)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (유럽, 호주)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>빠른 부팅</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>BIOS 시작 애니메이션</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>BIOS 쉘 / 인트로를 건너, 게임에 직접 부팅. 일반적으로 사용할 수있는 안전한,하지만 일부 게임 휴식.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>사용</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>사용 안 함</value></data>
@@ -28,7 +28,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>에뮬레이션을 시작하기 전에 RAM에 디스크 이미지를로드합니다. 네트워크 공유를 실행하는 경우 hitching을 줄일 수 있습니다, 더 큰 시작 시간의 비용. libretro는 오버레이를 그리기 위한 방법이 없기 때문에, 에뮬레이터는 이미지가 preloaded 동안 잠금에 나타납니다.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>사전 캐시 CHD 이미지로 RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>Pre-caches CHD CD-ROM 이미지를 RAM에 압축하지 않고. 사전 로드 옵션과는 달리, 이 옵션은 M3U 파일을 지원합니다. 또한 더 빠르며 RAM가 CHD를 압축하지 않기 때문에 사전 로드에 비해 덜 필요 합니다.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Mute CD 오디오</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>CD 오디오 사용</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>CD-ROM에서 CD-DA 및 XA 오디오 모두 허용. 일부 게임에서 배경 음악을 비활성화 할 수 있습니다.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>CD-ROM 읽기 Speedup</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>CD-ROM 속도를 지정한 요인에 의해 읽습니다. 이중 속도 읽기에만 적용되며 오디오가 재생될 때 무시됩니다. 다른 사람을 끊는 비용에서 몇몇 게임에 있는 적재 속도를 개량할 수 있습니다.</value></data>
@@ -296,7 +296,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>CD 로딩 속도</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>'2x (Native)'보다 더 높은 값은 게임 로딩 시간을 크게 줄일 수 있지만 타이밍 오류를 소개 할 수 있습니다. 일부 게임은 특정 값 위에 제대로 작동하지 않을 수 있습니다.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x (기본)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>BIOS를 건너</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>BIOS 시작 애니메이션</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>게임을 시작할 때 PlayStation BIOS 애니메이션을 보여주지 마십시오. 이 옵션은 PAL 사본 보호 및 Saga Frontier와 게임을 포함하여 일부 게임에서 문제를 일으킬 수 있습니다.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>오버라이드 BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>찾을 경우 지역없는 특정 BIOS를 무시합니다. 자주 묻는 질문</value></data>
@@ -326,7 +326,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>emulated PlayStation 시스템가 콘텐츠를 렌더링하는 내부 프레임 속도를 표시합니다. 참고 : libretro frontend에서 활성화하려면 onscreen 알림이 필요합니다.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>표시 OSD 메시지</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>core에 의해 생성 된 OSD 메시지를 표시합니다.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>아날로그 Self-Calibration</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Adapt 아날로그 입력 범위</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>장치가 DualShock, 아날로그 컨트롤러, Analog Joystick 또는 neGcon로 설정될 때 아날로그 입력의 동적 보정을 가능하게 합니다. 최대 등록 입력 값은 실시간으로 모니터링되며 emulator에 전달된 아날로그 좌표를 스케일링하는 데 사용됩니다. 이것은 Mega Man Legends 2와 같은 게임에 사용되어야하며 현대 컨트롤러가 제공하는 것보다 더 큰 가치를 기대합니다. 최고의 결과를 위해 아날로그 스틱은 캘리브레이션 알고리즘을 조정하는 전체 범위에서 회전해야합니다. 각 시간 내용이로드됩니다.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock 아날로그 모드 토글</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>입력 장치 유형이 DualShock일 때, 이 선택권은 emulated DualShock가 본래 기계설비 같이 DIGITAL와 ANALOG 형태 사이에서 견인될 수 있다는 것을 허용합니다. 모드는 선택된 버튼 조합을 사용하여 견인할 수 있습니다.</value></data>
@@ -459,7 +459,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Synchronous 접근은 본래 기계설비를 reproduces. 비동기 접근은 느린 저장 장치를 가진 장치에 pauses를 감소시킬 수 있습니다. RAM으로 전체 디스크 이미지를로드하면 게임에서 로딩 시간을 향상시킬 수 있지만 시작을 지연시킵니다. 이 모드는 RAM이 제한될 때 문제가 발생할 수 있습니다. 물리적 디스크는 전체 이미지를로드하는 대신 동시 액세스를 사용합니다. 이 옵션을 변경 한 후 나머지.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD 로딩 속도</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>'2x (Native)'보다 더 높은 값은 게임 로딩 시간을 크게 줄일 수 있지만 타이밍 오류를 소개 할 수 있습니다. 일부 게임은 특정 값 위에 제대로 작동하지 않을 수 있습니다.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>BIOS를 건너</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>BIOS 시작 애니메이션</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>게임을 시작할 때 PlayStation BIOS 애니메이션을 보여주지 마십시오. 이 옵션은 PAL 사본 보호 및 Saga Frontier와 게임을 포함하여 일부 게임에서 문제를 일으킬 수 있습니다.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>오버라이드 BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>찾을 경우 지역없는 특정 BIOS를 무시합니다. 자주 묻는 질문</value></data>
@@ -591,7 +591,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>core에 의해 생성 된 OSD 메시지를 표시합니다.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>디스플레이 전체 VRAM (Debug)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>전체 에뮬레이션 콘솔의 VRAM을 시각화합니다. OpenGL 및 Vulkan 하드웨어 렌더링에 의해서만 지원됩니다. 참고 : 이것은 디버깅 목적으로이며 일반적으로 비활성화되어야합니다.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>아날로그 Self-Calibration</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Adapt 아날로그 입력 범위</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>장치가 DualShock, 아날로그 컨트롤러, Analog Joystick 또는 neGcon로 설정될 때 아날로그 입력의 동적 보정을 가능하게 합니다. 최대 등록 입력 값은 실시간으로 모니터링되며 emulator에 전달된 아날로그 좌표를 스케일링하는 데 사용됩니다. 이것은 Mega Man Legends 2와 같은 게임에 사용되어야하며 현대 컨트롤러가 제공하는 것보다 더 큰 가치를 기대합니다. 최고의 결과를 위해 아날로그 스틱은 캘리브레이션 알고리즘을 조정하는 전체 범위에서 회전해야합니다. 각 시간 내용이로드됩니다.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock 아날로그 모드 토글</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>입력 장치 유형이 DualShock일 때, 이 선택권은 emulated DualShock가 본래 기계설비 같이 DIGITAL와 ANALOG 형태 사이에서 견인될 수 있다는 것을 허용합니다. 모드는 선택된 버튼 조합을 사용하여 견인할 수 있습니다.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.Sony.Value.Cross"><value>스트레칭</value></data>
   <data name="Emulation.Option.Sony.Value.Circle"><value>팟캐스트</value></data>
   <data name="Emulation.Option.Sony.Value.Square"><value>팟캐스트</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>기하학 보정 (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>팟캐스트</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>지원하다</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>이미지 타이밍</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>CPU 시계 (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>힘 아날로그 형태</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>디지털 방향에 대한 아날로그 스틱 사용</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>아날로그 축선 가늠자</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>진동 힘</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>수평한 총 감도</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>수직 총 감도</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>스티어링 deadzone</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>스티칭 응답</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>더 큰 입력값을 기대하는 게임의 측정된 아날로그 축선 범위. 게임 로딩 후 전체 범위를 통해 axes를 이동합니다.</value></data>
 </root>

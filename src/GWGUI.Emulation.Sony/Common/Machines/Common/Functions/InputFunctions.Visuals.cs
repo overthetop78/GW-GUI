@@ -3,7 +3,18 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 internal static partial class InputSettingsFunctions
 {
     private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type,
-        Model model) => type is not (ControllerType.Joystick or ControllerType.DualShock)
+        Model model) => model.Id == ModelConstants.PlayStation ? type switch
+        {
+            ControllerType.Joystick => [EmulationControllerVisualIds.SonyPlayStationController],
+            ControllerType.DualShock => [EmulationControllerVisualIds.SonyDualShock1],
+            ControllerType.AnalogController => [EmulationControllerVisualIds.SonyDualAnalog],
+            ControllerType.AnalogJoystick => [EmulationControllerVisualIds.SonyAnalogJoystick],
+            ControllerType.Mouse => [EmulationControllerVisualIds.SonyPlayStationMouse],
+            ControllerType.NeGcon or ControllerType.NeGconRumble => [EmulationControllerVisualIds.SonyNeGcon],
+            ControllerType.GunCon => [EmulationControllerVisualIds.SonyGunCon],
+            ControllerType.Justifier => [EmulationControllerVisualIds.SonyJustifier],
+            _ => null
+        } : type is not (ControllerType.Joystick or ControllerType.DualShock)
             ? null : model.Id switch
         {
             ModelConstants.PlayStation => type == ControllerType.DualShock
@@ -22,7 +33,32 @@ internal static partial class InputSettingsFunctions
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
         VisualCommandIds(ControllerType type, Model model) =>
-            type is not (ControllerType.Joystick or ControllerType.DualShock)
+            type == ControllerType.Mouse ? new Dictionary<EmulationControllerVisualControl, string>
+            {
+                [EmulationControllerVisualControl.MouseLeftButton] = nameof(MouseAction.LeftButton),
+                [EmulationControllerVisualControl.MouseRightButton] = nameof(MouseAction.RightButton)
+            } : type is ControllerType.GunCon or ControllerType.Justifier ? new Dictionary<EmulationControllerVisualControl, string>
+            {
+                [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
+                [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A,
+                [EmulationControllerVisualControl.TertiaryAction] = EmulationControllerCommandIds.X,
+                [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start
+            } : type is ControllerType.NeGcon or ControllerType.NeGconRumble ? new Dictionary<EmulationControllerVisualControl, string>
+            {
+                [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
+                [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
+                [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
+                [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
+                [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.A,
+                [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.X,
+                [EmulationControllerVisualControl.TertiaryAction] = EmulationControllerCommandIds.R2,
+                [EmulationControllerVisualControl.QuaternaryAction] = EmulationControllerCommandIds.L2,
+                [EmulationControllerVisualControl.LeftShoulder] = EmulationControllerCommandIds.L,
+                [EmulationControllerVisualControl.RightShoulder] = EmulationControllerCommandIds.R,
+                [EmulationControllerVisualControl.Steering] = InputSettingsFunctionsConstants.LeftStickLeft,
+                [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start
+            } : type is not (ControllerType.Joystick or ControllerType.DualShock
+                or ControllerType.AnalogController or ControllerType.AnalogJoystick)
             ? null : model.Id == ModelConstants.PocketStation ? null
             : model.Id == ModelConstants.Psp
             ? new Dictionary<EmulationControllerVisualControl, string>
@@ -63,7 +99,16 @@ internal static partial class InputSettingsFunctions
                 [EmulationControllerVisualControl.LeftTrigger] = EmulationControllerCommandIds.L2,
                 [EmulationControllerVisualControl.RightTrigger] = EmulationControllerCommandIds.R2,
                 [EmulationControllerVisualControl.LeftStick] = EmulationControllerCommandIds.L3,
-                [EmulationControllerVisualControl.RightStick] = EmulationControllerCommandIds.R3
+                [EmulationControllerVisualControl.RightStick] = EmulationControllerCommandIds.R3,
+                [EmulationControllerVisualControl.AnalogMode] = InputSettingsFunctionsConstants.Analog,
+                [EmulationControllerVisualControl.StickUp] = InputSettingsFunctionsConstants.LeftStickUp,
+                [EmulationControllerVisualControl.StickDown] = InputSettingsFunctionsConstants.LeftStickDown,
+                [EmulationControllerVisualControl.StickLeft] = InputSettingsFunctionsConstants.LeftStickLeft,
+                [EmulationControllerVisualControl.StickRight] = InputSettingsFunctionsConstants.LeftStickRight,
+                [EmulationControllerVisualControl.RightStickUp] = InputSettingsFunctionsConstants.RightStickUp,
+                [EmulationControllerVisualControl.RightStickDown] = InputSettingsFunctionsConstants.RightStickDown,
+                [EmulationControllerVisualControl.RightStickLeft] = InputSettingsFunctionsConstants.RightStickLeft,
+                [EmulationControllerVisualControl.RightStickRight] = InputSettingsFunctionsConstants.RightStickRight
             }
         : new Dictionary<EmulationControllerVisualControl, string>
         {

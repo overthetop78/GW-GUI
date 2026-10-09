@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony makine modeli yapılandırılıyor.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Seçilen Sony makinesi tarafından sağlanan RAM'ı gösterir.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Emated makineye mevcut RAM miktarı.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Seçilen saat yüzdesini uygulamadan sonra emated CPU'nun frekansı.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>nominal konsol frekansı seçilmiş yüzde ile çarpılır. Bu, emated işlemciyi değiştirir, ev sahibi işlemci değil. Daha yüksek değerler yavaşları azaltabilir, ancak oyun zamanlamasını kırabilir. Otomatik olarak emülatör varsayılan kullanır.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>PlayStation donanım revizyonları tarafından kullanılan orijinal video fişleri.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Listelenen Sony GPU cipsi, anneboard revizyonuna göre değişir. İç uygulama seçenekleri, emülatörin geometri ve piksel nasıl ürettiğini kontrol eder. GW GUI görüntü filtreleri daha sonra tamamlanmış resmi süreçtir.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>PlayStation donanım revizyonları tarafından kullanılan orijinal ses fişleri.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU ses sesleri ve decodes sıkıştırılmış örnekleri karıştırır. Listelenen çip, anneboard revizyonuna göre değişir. Ses çıktısı ve geçncy kontrolü bilgisayarınızı geri döndürür.</value></data>
 </root>

@@ -46,13 +46,15 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         var current = configuration as MachineConfiguration
             ?? (MachineConfiguration)CreateConfiguration(machineId);
         var model = ModelCatalog.Get(current.Model);
+        var hasAdapter = EmulatorCatalog.GetAll(model.Id).Any(adapter => adapter.Id == current.EmulatorId);
         var blocks = SettingsDescriptionFunctions.Create(current);
         var populatedTabs = blocks.Where(block => block.Fields.Count > 0).Select(block => block.Tab).ToHashSet();
         var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
         {
             EmulationMachineTab.Rom => populatedTabs.Contains(EmulationMachineTab.Rom),
-            EmulationMachineTab.Keyboard => model.HasKeyboard,
-            EmulationMachineTab.Mouse => model.MouseButtonCount > 0,
+            EmulationMachineTab.Keyboard => hasAdapter && model.HasKeyboard,
+            EmulationMachineTab.Mouse => hasAdapter && model.MouseButtonCount > 0,
+            EmulationMachineTab.Controllers => hasAdapter,
             EmulationMachineTab.Storage => model.MaximumFloppyDriveCount > 0
                 || model.SupportsCassetteDrive || model.SupportsCartridgeSlot
                 || model.SupportsCompactDiscDrive,
@@ -90,8 +92,8 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         IReadOnlyDictionary<string, string?> values)
     {
         var sony = RequireConfiguration(configuration);
-        var adapter = _engine.Adapter(sony);
-        var firmwareFields = adapter.GetFirmwareSlots(sony).Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
+        var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == sony.EmulatorId);
+        var firmwareFields = (adapter?.GetFirmwareSlots(sony) ?? []).Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
         var options = new Dictionary<string, string>(sony.Options
             ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         foreach (var item in values)
@@ -104,7 +106,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
             else options[item.Key] = item.Value;
         }
         var audio = sony.Audio ?? new AudioConfiguration();
-        return FirmwareConfigurationFunctions.Apply(sony, values, adapter) with
+        return (adapter is null ? sony : FirmwareConfigurationFunctions.Apply(sony, values, adapter)) with
         {
             Options = options,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled)

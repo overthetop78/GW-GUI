@@ -7,8 +7,8 @@
   <data name="Emulation.Memory.Main"><value>Memorie principală</value></data>
   <data name="Emulation.Memory.Extensions"><value>Extensii de memorie</value></data>
   <data name="Emulation.Memory.None"><value>Niciunul</value></data>
-  <data name="Emulation.Memory.CompatibleWithModel"><value>Configurația memoriei este compatibilă cu {0}.</value></data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Extensiile de memorie sunt compatibile cu {0}.</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Configuraţie compatibilă: {0}</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Extensii de memorie compatibile: {0}.</value></data>
   <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM nu este disponibilă pe {0}.</value></data>
   <data name="Emulation.Memory.TotalConfigured"><value>Memorie totală configurată: {0} {1}</value></data>
 </root>

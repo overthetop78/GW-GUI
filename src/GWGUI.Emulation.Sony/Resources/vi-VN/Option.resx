@@ -22,11 +22,11 @@
   <data name="Emulation.Option.Sony.Value.Square"><value>Hình vuông</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Label"><value>Miền điều khiển</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Help"><value>Xác định vùng/phần cứng cần mô phỏng. Tự động kiểm tra sẽ sử dụng vùng của đĩa được chèn vào.</value></data>
-  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Tìm kiếm tự động</value></data>
+  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Phát hiện tự động</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (Japan)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, Canada)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (Europe, Úc)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Khởi động nhanh</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Bỏ qua hoạt hình khởi chạy BIOS</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>Bỏ qua đạn BIOS, đang lao thẳng vào cuộc chơi. Thường thì an toàn để kích hoạt, nhưng một số trò chơi bị phá vỡ.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>Đã bật</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>Đã tắt</value></data>
@@ -40,7 +40,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Nạp ảnh đĩa vào RAM trước khi bắt đầu mô phỏng. Có thể giảm bớt việc đi lại nếu bạn đang chạy khỏi phần chia sẻ mạng lưới, với giá phải trả là một thời gian bắt đầu lớn hơn. Vì thư viện không cung cấp cách nào để phủ, trình giả lập sẽ xuất hiện để khóa trong khi ảnh được nạp trước.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD hình ảnh đến RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>Tiền phân CHD CD-ROM Ảnh tới RAM Mà không cần giải nén chúng. Khác với tùy chọn nạp trước, tùy chọn này hỗ trợ tập tin M3U. Nó cũng nhanh hơn và đòi hỏi ít RAM hơn so với nạp trước khi nó không làm giảm tốc độ CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Âm thanh CD Mute</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Tắt âm thanh CD</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>Những người câm cả CD-DA và XA từ CD-ROM. Có thể sử dụng để tắt nhạc nền trong một số trò chơi.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>Tốc độ đọc đĩa CD-ROM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>Tốc độ đọc CD-ROM theo yếu tố đã xác định. Chỉ áp dụng cho việc đọc tốc độ gấp đôi, và bị bỏ qua khi âm thanh đang phát. Có thể cải thiện việc nạp tải tốc độ trong một số trò chơi, với cái giá phải trả để làm tan vỡ người khác.</value></data>
@@ -308,7 +308,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>Tốc độ nạp CD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>Giá trị cao hơn '2x (mặc định) có thể giảm rất nhiều thời gian tải trong trò chơi, nhưng có thể giới thiệu lỗi thời gian. Một số trò chơi có thể không hoạt động đúng trên một giá trị nhất định.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x (mặc định)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Bỏ qua BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Bỏ qua hoạt hình khởi chạy BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>Không cho thấy PlayStation BIOS khi bắt đầu một trò chơi. Tùy chọn này có thể gây ra vấn đề trong một số trò chơi, kể cả trò chơi bảo vệ sao chép PAL và Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>Ghi đè BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>Ghi đè vùng tiêu chuẩn BIOS với khu vực không có người ở nếu tìm thấy. Yêu cầu khởi động lại.</value></data>
@@ -338,7 +338,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>Hiển thị tỷ lệ khung nội bộ nơi mà hệ thống PlayStation đang vẽ nội dung. Ghi chú : cần thiết thông báo trên màn hình cần hiệu lực trong giao diện người dùng thư mục con.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>Hiển thị OSD thông điệp</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>Hiển thị OSD tin nhắn được tạo ra bởi lõi.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Phân tích tự điều chỉnh</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Chỉnh lại phạm vi nhập tương tự</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>Bật khả năng cân chỉnh động của đầu vào tương tự khi thiết bị được đặt thành DualShock, Analog Controller, Analo Joystick, hoặc neGcon. Giá trị nhập tối đa đã đăng ký được giám sát trong thời gian thực và được dùng để co dãn các tọa độ tương tự được gửi cho trình giả lập. Điều này nên được sử dụng cho các trò chơi như là Mega Man Legends 2 mà mong đợi giá trị lớn hơn so với những gì bộ điều khiển hiện đại cung cấp. Để có kết quả tốt nhất, cần phải xoay các que tương tự ở mức độ đầy đủ để điều chỉnh thuật toán cân chỉnh mỗi lần được nạp.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>Chế độ giải mã DualShock</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>Khi kiểu thiết bị nhập là DualShock, Tùy chọn này cho phép mô phỏng DualShock để được bật lên giữa DIGITAL và ANALOG Chế độ như phần cứng ban đầu. Chế độ cũng có thể được bật lên bằng cách dùng tổ hợp nút đã chọn.</value></data>
@@ -471,7 +471,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Truy cập đồng thời tái tạo phần cứng ban đầu. Việc truy cập tiện lợi có thể làm giảm sự dừng lại trên thiết bị bằng cách lưu trữ chậm. Đang nạp toàn bộ ảnh đĩa vào RAM có thể cải thiện việc tải thời gian trong trò chơi, nhưng trì hoãn việc khởi chạy. Chế độ này có thể gây ra vấn đề khi giới hạn RAM. Các đĩa vật lý dùng quyền truy cập đồng bộ thay vì tải toàn bộ ảnh. Khởi động lại sau khi thay đổi tùy chọn này.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>Tốc độ nạp CD</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>Giá trị cao hơn '2x (mặc định) có thể giảm rất nhiều thời gian tải trong trò chơi, nhưng có thể giới thiệu lỗi thời gian. Một số trò chơi có thể không hoạt động đúng trên một giá trị nhất định.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Bỏ qua BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Bỏ qua hoạt hình khởi chạy BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>Không cho thấy PlayStation BIOS khi bắt đầu một trò chơi. Tùy chọn này có thể gây ra vấn đề trong một số trò chơi, kể cả trò chơi bảo vệ sao chép PAL và Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>Ghi đè BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>Ghi đè vùng tiêu chuẩn BIOS với khu vực không có người ở nếu tìm thấy. Yêu cầu khởi động lại.</value></data>
@@ -603,7 +603,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>Hiển thị OSD tin nhắn được tạo ra bởi lõi.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>Hiển thị đầy đủ VRAM (Debug)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>Hãy hình dung toàn bộ ô điều khiển mô phỏng là VRAM. Chỉ hỗ trợ bởi các trình phục vụ phần cứng OpenGL và Vulkan. Ghi chú: mục đích gỡ lỗi này nên bị tắt.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Phân tích tự điều chỉnh</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Chỉnh lại phạm vi nhập tương tự</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>Bật khả năng cân chỉnh động của đầu vào tương tự khi thiết bị được đặt thành DualShock, Analog Controller, Analo Joystick, hoặc neGcon. Giá trị nhập tối đa đã đăng ký được giám sát trong thời gian thực và được dùng để co dãn các tọa độ tương tự được gửi cho trình giả lập. Điều này nên được sử dụng cho các trò chơi như là Mega Man Legends 2 mà mong đợi giá trị lớn hơn so với những gì bộ điều khiển hiện đại cung cấp. Để có kết quả tốt nhất, cần phải xoay các que tương tự ở mức độ đầy đủ để điều chỉnh thuật toán cân chỉnh mỗi lần được nạp.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>Chế độ giải mã DualShock</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>Khi kiểu thiết bị nhập là DualShock, Tùy chọn này cho phép mô phỏng DualShock để được bật lên giữa DIGITAL và ANALOG Chế độ như phần cứng ban đầu. Chế độ cũng có thể được bật lên bằng cách dùng tổ hợp nút đã chọn.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_ntsc.Help"><value>Chạy VBlak Frequency với tốc độ NTSC (59.94 Hz cho 60) thay vì số vòng. Theo mặc định, như trong RPCS3.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_hle_lwmutex.Label"><value>HLE lwmutex</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_hle_lwmutex.Help"><value>Sử dụng HLE thực hiện cho lwmutex.</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>Sửa hình học (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>hoạ tiết</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>Tương thích</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>Thời gian ảnh</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>Đồng hồ CPU (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>Buộc chế độ tương tự</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>Dùng thanh tương tự cho hướng số</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>Tỷ lệ trục Analog</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>Sức mạnh tạo ra</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>Độ nhạy của súng ngang</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>Độ nhạy thẳng đứng của súng</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Chặn vùng chết.</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Phản ứng dây</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Phóng phạm vi hình trục được đo cho trò chơi mà mong đợi các giá trị nhập lớn hơn. Chuyển các trục qua phạm vi đầy đủ sau khi tải một trò chơi.</value></data>
 </root>

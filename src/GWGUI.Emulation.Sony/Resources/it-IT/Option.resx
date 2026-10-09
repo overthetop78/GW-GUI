@@ -14,7 +14,7 @@
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (Giappone)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, Canada)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (Europa, Australia)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Stivali veloci</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Salta l'animazione di avvio BIOS</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>Salta il BIOS shell/intro, avviandosi direttamente nel gioco. Di solito sicuro per attivare, ma alcuni giochi si rompono.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>Attivato</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>Disattivato</value></data>
@@ -28,7 +28,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Carica l'immagine del disco in RAM prima di iniziare l'emulazione. Può ridurre il battito se si sta esaurendo una quota di rete, a un costo di un maggiore tempo di avvio. Poiché libretro non fornisce alcun modo per disegnare sovrapposizioni, l'emulatore sembrerà bloccare mentre l'immagine è precaricata.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Immagini CHD pre-cache a RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>Pre-chiama le immagini CHD CD-ROM a RAM senza decomprimerle. A differenza dell'opzione preload, questa opzione supporta i file M3U. E 'anche più veloce e richiede meno RAM rispetto al precarico in quanto non decomprime il CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Mute CD Audio audio</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Disattivare l'audio CD</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>Muta forzatamente sia l'audio CD-DA che XA dal CD-ROM. Può essere utilizzato per disabilitare la musica di sottofondo in alcuni giochi.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>CD-ROM Leggi Speedup</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>Accelera il CD-ROM letto dal fattore specificato. Si applica solo alle letture a doppia velocità, e viene ignorato quando l'audio sta giocando. Può migliorare la velocità di carico in alcuni giochi, al costo di rompere gli altri.</value></data>
@@ -296,7 +296,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>Velocità di caricamento del CD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>I valori superiori a '2x (Native)' possono ridurre notevolmente i tempi di caricamento del gioco, ma possono introdurre errori di temporizzazione. Alcuni giochi potrebbero non funzionare correttamente sopra un certo valore.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x (Native)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Salta. BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Salta l'animazione di avvio BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>Non mostrare l'animazione PlayStation BIOS quando si avvia un gioco. Questa opzione può causare problemi in alcuni giochi, compresi i giochi con protezione della copia PAL e Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>BIOS override</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>Override il BIOS specifico regione standard con uno senza regione se trovato. Riavviare richiesto.</value></data>
@@ -326,7 +326,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>Visualizza il frame rate interno in cui il sistema PlayStation emulato sta rendendo contenuti. Nota: Richiede notifiche sullo schermo da attivare nel frontend libretro.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>Visualizza messaggi OSD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>Visualizza i messaggi OSD generati dal core.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Analog Self-Calibration</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Gamma di ingresso analogico Adapt</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>Abilita la calibrazione dinamica degli ingressi analogici quando il dispositivo viene impostato su DualShock, Analog Controller, Analogo Joystick o neGcon. I valori di input registrati massimi vengono monitorati in tempo reale e utilizzati per scalare le coordinate analogiche passate all'emulatore. Questo dovrebbe essere utilizzato per giochi come Mega Man Legends 2 che si aspettano valori più grandi di quello che i controller moderni forniscono. Per ottenere i migliori risultati, i bastoncini analogici devono essere ruotati in piena misura per sintonizzare l'algoritmo di calibrazione ogni volta che il contenuto viene caricato.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>Modalità analogico DualShock</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>Quando il tipo di dispositivo d'ingresso è DualShock, questa opzione consente all'emulato DualShock di essere attivato tra la modalità DIGITAL e ANALOG come l'hardware originale. La modalità può anche essere attivata utilizzando la combinazione del pulsante selezionato.</value></data>
@@ -459,7 +459,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>L'accesso sincronico riproduce l'hardware originale. L'accesso asincrono può ridurre le pause su dispositivi con archiviazione lenta. Caricare l'intera immagine del disco in RAM può migliorare i tempi di caricamento durante il gioco, ma ritarda l'avvio. Questa modalità può causare problemi quando la RAM è limitata. I dischi fisici usano l'accesso sincrono invece di caricare l'intera immagine. Riavviare dopo aver cambiato questa opzione.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>Velocità di caricamento del CD</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>I valori superiori a '2x (Native)' possono ridurre notevolmente i tempi di caricamento del gioco, ma possono introdurre errori di temporizzazione. Alcuni giochi potrebbero non funzionare correttamente sopra un certo valore.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Salta. BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Salta l'animazione di avvio BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>Non mostrare l'animazione PlayStation BIOS quando si avvia un gioco. Questa opzione può causare problemi in alcuni giochi, compresi i giochi con protezione della copia PAL e Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>BIOS override</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>Override il BIOS specifico regione standard con uno senza regione se trovato. Riavviare richiesto.</value></data>
@@ -591,7 +591,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>Visualizza i messaggi OSD generati dal core.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>Visualizzazione completa VRAM (Debug)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>Visualizza l'intero VRAM della console emulata. Supportato solo dai renderer hardware OpenGL e Vulkan. Nota: Questo è per scopi di debug, e dovrebbe normalmente essere disabilitato.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Analog Self-Calibration</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Gamma di ingresso analogico Adapt</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>Abilita la calibrazione dinamica degli ingressi analogici quando il dispositivo viene impostato su DualShock, Analog Controller, Analogo Joystick o neGcon. I valori di input registrati massimi vengono monitorati in tempo reale e utilizzati per scalare le coordinate analogiche passate all'emulatore. Questo dovrebbe essere utilizzato per giochi come Mega Man Legends 2 che si aspettano valori più grandi di quello che i controller moderni forniscono. Per ottenere i migliori risultati, i bastoncini analogici devono essere ruotati in piena misura per sintonizzare l'algoritmo di calibrazione ogni volta che il contenuto viene caricato.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>Modalità analogico DualShock</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>Quando il tipo di dispositivo d'ingresso è DualShock, questa opzione consente all'emulato DualShock di essere attivato tra la modalità DIGITAL e ANALOG come l'hardware originale. La modalità può anche essere attivata utilizzando la combinazione del pulsante selezionato.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.Sony.Value.Cross"><value>Croce</value></data>
   <data name="Emulation.Option.Sony.Value.Circle"><value>Circolo</value></data>
   <data name="Emulation.Option.Sony.Value.Square"><value>Piazza</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>Correzione della geometria (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>Textures</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>Compatibilità</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>Tempi di immagine</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>Orologio della CPU (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>Modalità analogica della forza</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>Utilizzare bastoncini analogici per le direzioni digitali</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>Scala dell'asse analogico</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>Forza di vibrazione</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>Sensibilità della pistola orizzontale</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>Sensibilità pistola verticale</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Sterzo zona morta</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Risposta di guida</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Scale l'intervallo di asse analogico misurato per i giochi che si aspettano valori di input più grandi. Spostare gli assi attraverso la loro gamma completa dopo il caricamento di un gioco.</value></data>
 </root>

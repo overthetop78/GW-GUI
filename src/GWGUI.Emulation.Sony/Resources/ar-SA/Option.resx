@@ -10,11 +10,11 @@
   <data name="Emulation.Sony.Language.Spanish"><value>الإسبانية</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Label"><value>منطقة كونسول</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Help"><value>يحدد المنطقة/المحيطات التي يجب أن تحاكيها. وسيستخدم الاكتشاف الآلي منطقة القرص المُدرج.</value></data>
-  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Auto-Detect</value></data>
+  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>الكشف الآلي</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (اليابان)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, كندا)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (أوروبا، أستراليا)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>بوتس</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Skip BIOS البدء في تقدير</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>يسرق الـ BIOS قذيفة/داخلية، ويدخل مباشرة إلى اللعبة. في العادة آمنة للتمكين، ولكن بعض الألعاب تكسر.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>التمكين</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>معطل</value></data>
@@ -28,7 +28,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>يوصل صورة القرص إلى RAM قبل بدء الاختناق يمكن أن تقلل من الضربة إذا كنت تشغيل قبالة حصة الشبكة، على حساب وقت بدء أكبر. وبما أن الليبريترو لا يوفر أي وسيلة لسحب النفقات، سيبدو المرشد مقفلاً في حين يتم تحميل الصورة مسبقاً.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>ما قبل الشارب CHD Images to RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>الفحوصات السابقة CHD CD-ROM الصور إلى RAM بدون اكتئابهم. وخلافاً لخيار الحمل المسبق، يدعم هذا الخيار M3U ملفاً. وهو أيضا أسرع ويتطلب أقل من حركة RAM بالمقارنة مع الحمل المسبق لأنه لا يخفف الضغط على CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Mute CD Audio</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>مسموعة صوتية من طراز CD</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>يَذْهبُ كلاهما بشكل مبهم CD-DA و XA Audio from the CD-ROM. يمكن استخدامه لتعطيل الموسيقى الخلفية في بعض الألعاب.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>CD-ROM اقرأ بسرعة</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>السرعة CD-ROM يقرأه العامل المحدد. لا ينطبق إلا على القراءة المزدوجة السرعة، ويتم تجاهله عندما يعزف الصوت. يمكن أن تحسن سرعة التحميل في بعض الألعاب، على حساب تحطيم الآخرين.</value></data>
@@ -296,7 +296,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>CD السرعة</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>القيمة أعلى من 2x (Native) يمكن أن تقلل إلى حد كبير أوقات الحمل في اللعبة، ولكن قد تستحدث أخطاء التوقيت. وقد لا تعمل بعض الألعاب على نحو سليم فوق قيمة معينة.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x (Native)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Skip BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Skip BIOS البدء في تقدير</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>لا تظهر الـ PlayStation BIOS مقياس عند بدء اللعبة. وهذا الخيار يمكن أن يسبب مشاكل في بعض الألعاب، بما في ذلك التلاعب بالألعاب PAL حماية النسخ Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>Override BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>تجاوز المنطقة المعيارية الخاصة بنظام BIOS مع نظام خال من المناطق إذا وجدت. إعادة التشغيل مطلوبة</value></data>
@@ -326,7 +326,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>عرض معدل الإطار الداخلي الذي صيغت فيه PlayStation النظام يجعل المحتوى. تتطلب الإخطارات على الشاشة أن تُمكَّن من الوصول إليها في واجهة الليبريترو.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>الرسائل OSD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>اعرض رسائل OSD التي تولدت عن النواة.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Anlog Self-Calibration</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>نطاق المدخلات المشابهة المعتمدة</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>التمكين من إجراء معايرة دينامية للمدخلات اللاهوتية عندما يكون الجهاز جاهزاً DualShock, متحكم بالآداب، حشرة الفرح الناطق أو neGcon. وتُرصد في الوقت الحقيقي قيم المدخلات القصوى المسجلة وتستخدم لقياس الإحداثيات المشابهة التي تُنقل إلى الناشر. ينبغي استخدام ذلك في ألعاب من قبيل أسطورة &amp;quot; ميغا مان &amp;apos; ٢ التي تتوقع قيما أكبر مما يوفره المتحكمون الحديثون. من أجل تحقيق أفضل النتائج، ينبغي تناوب عصا التناظر على نحو كامل لضبط خوارزمية المعايرة في كل مرة يتم فيها تحميل المحتوى.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock Analog Mode Toggle</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>وعندما يكون نوع جهاز المدخلات DualShock، يسمح هذا الخيار بأن يُنظَّم DualShock المحتوية بين DIGITAL وANALOG أسلوب مثل المعدات الأصلية. ويمكن أيضاً أن يُنظَّف الأسلوب باستخدام مزيج الزر المختار.</value></data>
@@ -459,7 +459,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>الوصول المتزامن يستنسخ المعدات الأصلية. إمكانية الوصول المتزامنة يمكن أن تقلل من التوقفات على الأجهزة مع التخزين البطيء وضع صورة الأقراص بكاملها في RAM يمكن أن يحسن أوقات التحميل أثناء المباراة، ولكن تأخير البدء. يمكن أن تسبب هذه الطريقة مشاكل عندما تكون حركة RAM محدودة. الأقراص الفيزيائية تستخدم الوصول المتزامن بدلا من تحميل الصورة بأكملها. أعيدي العمل بعد تغيير هذا الخيار.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD السرعة</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>القيمة أعلى من 2x (Native) يمكن أن تقلل إلى حد كبير أوقات الحمل في اللعبة، ولكن قد تستحدث أخطاء التوقيت. وقد لا تعمل بعض الألعاب على نحو سليم فوق قيمة معينة.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Skip BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Skip BIOS البدء في تقدير</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>لا تظهر الـ PlayStation BIOS مقياس عند بدء اللعبة. وهذا الخيار يمكن أن يسبب مشاكل في بعض الألعاب، بما في ذلك التلاعب بالألعاب PAL حماية النسخ Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>Override BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>تجاوز المنطقة المعيارية الخاصة بنظام BIOS مع نظام خال من المناطق إذا وجدت. إعادة التشغيل مطلوبة</value></data>
@@ -590,7 +590,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>اعرض رسائل OSD التي تولدت عن النواة.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>Display Full VRAM (Debug)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>تصوّر كلّ المؤامرة الـ VRAM. فقط مدعمة من قِبل المفترقين و Vulkan صانعو البرمجيات الصلبة. هذا لأغراض التشويه، وينبغي عادة أن يكون معوقا.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Anlog Self-Calibration</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>نطاق المدخلات المشابهة المعتمدة</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>التمكين من إجراء معايرة دينامية للمدخلات اللاهوتية عندما يكون الجهاز جاهزاً DualShock, متحكم بالآداب، حشرة الفرح الناطق أو neGcon. وتُرصد في الوقت الحقيقي قيم المدخلات القصوى المسجلة وتستخدم لقياس الإحداثيات المشابهة التي تُنقل إلى الناشر. ينبغي استخدام ذلك في ألعاب من قبيل أسطورة &amp;quot; ميغا مان &amp;apos; ٢ التي تتوقع قيما أكبر مما يوفره المتحكمون الحديثون. من أجل تحقيق أفضل النتائج، ينبغي تناوب عصا التناظر على نحو كامل لضبط خوارزمية المعايرة في كل مرة يتم فيها تحميل المحتوى.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock Analog Mode Toggle</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>وعندما يكون نوع جهاز المدخلات DualShock، يسمح هذا الخيار بأن يُنظَّم DualShock المحتوية بين DIGITAL وANALOG أسلوب مثل المعدات الأصلية. ويمكن أيضاً أن يُنظَّف الأسلوب باستخدام مزيج الزر المختار.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.Sony.Value.Cross"><value>الصليب الأحمر</value></data>
   <data name="Emulation.Option.Sony.Value.Circle"><value>الدائرة</value></data>
   <data name="Emulation.Option.Sony.Value.Square"><value>Square</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>تصحيح الهندسة الجيولوجية (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>النصوص</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>التوافق</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>توقيت التصوير</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>CPU ساعة (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>نمط اعتذار القوة</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>استخدام عصا التناظر للاتجاهات الرقمية</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>جدول المحور</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>القوة الافتراضية</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>حساسية الأسلحة الأفقية</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>حساسية السلاح الرأسي</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>خلية مميتة</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>الرد التوجيهي</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>يُسجّل نطاق المحور التناظري المقيس للألعاب التي تتوقّع قيماً أكبر للمدخلات. حرّكْ الفؤوسَ من خلال كامل نطاقِهم بعد تحميل a لعبة.</value></data>
 </root>

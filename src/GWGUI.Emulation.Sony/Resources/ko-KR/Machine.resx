@@ -4,4 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sony.Cpu.EffectiveFrequency"><value>효과적인 CPU 빈도</value></data>
+  <data name="Emulation.Sony.Video.Chip"><value>영상 칩</value></data>
+  <data name="Emulation.Sony.Audio.Chip"><value>오디오 칩</value></data>
 </root>

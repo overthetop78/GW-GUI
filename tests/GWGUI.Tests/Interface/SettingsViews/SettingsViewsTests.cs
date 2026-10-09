@@ -22,6 +22,8 @@ public sealed class SettingsViewsTests(StaExecutionScenarios sta)
         sta.RunAsync(EmulationModuleSettingsNavigationScenarios.EmulatorVersionsAreSelectedAndInstalledExplicitly);
     [Fact] public Task VideoFieldsKeepTheirHelpContent() =>
         sta.Run(EmulationModuleSettingsNavigationScenarios.VideoFieldsKeepTheirHelpContent);
+    [Fact] public Task NativeVideoOptionsPreserveTheProcessingPosition() =>
+        sta.Run(EmulationModuleSettingsNavigationScenarios.NativeVideoOptionsPreserveTheProcessingPosition);
     [Fact] public Task ModuleWindowReopensWithANewVisualTree() =>
         sta.RunAsync(EmulationModuleSettingsNavigationScenarios.ModuleWindowReopensWithANewVisualTree);
     [Fact] public Task AmigaModuleWindowBuildsItsVisualTree() =>

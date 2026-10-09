@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Se está configurando el modelo de máquina Sony.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Muestra la RAM proporcionada por la máquina de Sony seleccionada.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Cantidad de RAM disponible para la máquina emulada.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Frecuencia de la CPU emulada después de aplicar el porcentaje del reloj seleccionado.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>La frecuencia nominal de la consola se multiplica por el porcentaje seleccionado. Esto cambia el procesador emulado, no el procesador anfitrión. Los valores más altos pueden reducir las desaceleraciones, pero puede romper el tiempo del juego. Utiliza automáticamente el defecto del emulador.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>chips de vídeo originales utilizados por las revisiones del hardware de PlayStation.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Los chips de Sony GPU listados varían con la revisión de placa base. Las opciones de renderización interna controlan cómo el emulador produce geometría y píxeles. Los filtros de imagen GW GUI procesan la imagen completada después.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>chips de audio originales utilizados por las revisiones del hardware de PlayStation.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>El Sony SPU mezcla voces de sonido y decodifica muestras comprimidas. Los chips enumerados varían con la revisión de placa base. Reproducción de salida de audio y control de latencia en su computadora.</value></data>
 </root>

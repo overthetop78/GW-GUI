@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Модель машины Sony настраивается.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Дисплеи RAM, предоставленные выбранной машиной Sony.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Количество RAM, доступное для эмулируемой машины.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Частота эмулируемого CPU после применения выбранного процента часов.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Номинальная частота консоли умножается на выбранный процент. Это изменяет эмулируемый процессор, а не хост-процессор. Более высокие значения могут уменьшить замедление, но могут нарушить время игры. Автоматически использует эмулятор по умолчанию.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Оригинальные видеочипы, используемые аппаратными версиями PlayStation.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Перечисленные чипы Sony GPU варьируются в зависимости от версии материнской платы. Опции внутреннего рендеринга контролируют, как эмулятор создает геометрию и пиксели. GW GUI фильтры изображений обрабатывают завершенное изображение впоследствии.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Оригинальные аудиочипы, используемые аппаратными версиями PlayStation.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU смешивает звуковые голоса и декодирует сжатые образцы. Перечисленные чипы варьируются в зависимости от версии материнской платы. Аудио-выход и воспроизведение контроля задержки на вашем компьютере.</value></data>
 </root>

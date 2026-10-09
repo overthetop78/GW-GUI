@@ -3,6 +3,7 @@ using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Views.Controls.Emulation.Storage;
 using GWGUI.App.Views.Dialogs.Emulation.Storage;
 using System.Windows;
+using System.IO;
 using GWGUI.Emulation;
 using GWGUI.App.Services.Emulation;
 using GWGUI.App.Functions.Emulation.Storage;
@@ -38,12 +39,35 @@ internal sealed class EmulationStorageSettingsController
         _view.ConfigureRequested += ConfigureDevice;
         _configuration = configuration;
         _settings = _manager.DescribeStorageSettings(configuration);
+        foreach (var device in _settings.AvailableDevices.Where(device => device.UsesDirectory
+            && device.DefaultImageSubdirectory is not null))
+        {
+            var items = (_settings.DeviceSettings ?? []).ToList();
+            var current = items.FirstOrDefault(item => item.Slot == device.Slot);
+            if (!string.IsNullOrWhiteSpace(current?.MemoryCardPath)) continue;
+            items.RemoveAll(item => item.Slot == device.Slot);
+            items.Add(new EmulationStorageDeviceSettings(device.Slot, MemoryCardPath: ImageDirectory(device)));
+            _settings = _settings with { DeviceSettings = items };
+        }
         Rebuild();
         return _view;
     }
 
-    internal IEmulationConfiguration Apply(IEmulationConfiguration configuration) =>
-        _manager.ApplyStorageSettings(configuration, _settings);
+    internal IEmulationConfiguration Apply(IEmulationConfiguration configuration)
+    {
+        foreach (var device in _settings.AvailableDevices.Where(device => device.UsesDirectory
+            && device.DefaultImageSubdirectory is not null))
+        {
+            var path = _settings.DeviceSettings?.FirstOrDefault(item => item.Slot == device.Slot)?.MemoryCardPath;
+            if (!string.IsNullOrWhiteSpace(path)) Directory.CreateDirectory(path);
+        }
+        return _manager.ApplyStorageSettings(configuration, _settings);
+    }
+
+    private string ImageDirectory(EmulationMediaDevice device) => device.ImageDirectory
+        ?? (device.DefaultImageSubdirectory is { } subdirectory
+            ? Path.Combine(_defaultFolder(EmulationDefaultFolderCategory.HardDisk), subdirectory)
+            : _defaultFolder(EmulationDefaultFolderCategory.HardDisk));
 
     private void AddDevice(object? sender, EventArgs args)
     {
@@ -115,8 +139,20 @@ internal sealed class EmulationStorageSettingsController
     {
         var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item =>
             item.Slot == device.Slot)?.MemoryCardPath;
+        if (device.UsesDirectory)
+        {
+            var directoryDialog = new MemoryCardDirectoryConfigurationDialog(DeviceLabel(device), current,
+                ImageDirectory(device));
+            try
+            {
+                if (directoryDialog.ShowDialog() != true) return;
+                SetMemoryCardPath(device, directoryDialog.SupportPath);
+            }
+            finally { directoryDialog.Close(); }
+            return;
+        }
         var dialog = new HardDiskDriveConfigurationDialog(
-            device.DisplayLabel ?? device.Slot.ToString(),
+            DeviceLabel(device),
             _configuration?.MachineId ?? string.Empty, current,
             device.ImageDirectory ?? _defaultFolder(EmulationDefaultFolderCategory.HardDisk),
             device.HardDiskFormats ?? throw new InvalidOperationException(),
@@ -135,6 +171,11 @@ internal sealed class EmulationStorageSettingsController
         {
             dialog.Close();
         }
+        SetMemoryCardPath(device, selected);
+    }
+
+    private void SetMemoryCardPath(EmulationMediaDevice device, string? selected)
+    {
         _settings = _settings with
         {
             DeviceSettings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot)
@@ -154,10 +195,10 @@ internal sealed class EmulationStorageSettingsController
         var ignoreErrorsLabel = device.CompactDiscIgnoreErrorsResourceKey is { } ignoreResource
             ? LocExtension.GetForModule(_moduleId, ignoreResource) : null;
         var dialog = new CompactDiscDriveConfigurationDialog(
-            device.DisplayLabel ?? device.Slot.ToString(),
+            DeviceLabel(device),
             _configuration?.MachineId ?? string.Empty,
             DeviceModel(device, device.Slot), current,
-            device.CompactDiscSpeeds, cacheLabel, ignoreErrorsLabel);
+            device.CompactDiscSpeeds, cacheLabel, ignoreErrorsLabel, _moduleId, device.ConfigurationFields);
         EmulationCompactDiscDriveSettings selected;
         try
         {
@@ -277,7 +318,8 @@ internal sealed class EmulationStorageSettingsController
 
     private void Rebuild()
     {
-        var rows = _settings.ConfiguredSlots.Select(slot =>
+        var rows = _settings.ConfiguredSlots.OrderByDescending(slot =>
+            _settings.AvailableDevices.First(device => device.Slot == slot).IsPermanent).Select(slot =>
         {
             var device = _settings.AvailableDevices.First(candidate => candidate.Slot == slot);
             var media = _settings.MountedMedia.FirstOrDefault(item => item.Slot == slot);
@@ -285,7 +327,7 @@ internal sealed class EmulationStorageSettingsController
                 ? (_settings.DeviceSettings ?? []).FirstOrDefault(item =>
                     item.Slot == slot)?.MemoryCardPath : media?.Path;
             var model = DeviceModel(device, slot);
-            return new EmulationStorageDeviceItem(slot, device.DisplayLabel ?? slot.ToString(), device.MediaType,
+            return new EmulationStorageDeviceItem(slot, DeviceLabel(device), device.MediaType,
                 model, associatedPath, !device.IsPermanent,
                 device.ConfigurationKind != EmulationStorageConfigurationKind.None);
         }).ToArray();
@@ -305,5 +347,9 @@ internal sealed class EmulationStorageSettingsController
             ? choice.InvariantDisplayValue ?? choice.Value
             : LocExtension.GetForModule(_moduleId, choice.DisplayResourceKey);
     }
+
+    private string DeviceLabel(EmulationMediaDevice device) => device.DisplayLabelResourceKey is { } key
+        ? LocExtension.GetForModule(_moduleId, key, device.Slot.Index + 1)
+        : device.DisplayLabel ?? device.Slot.ToString();
 
 }

@@ -4,7 +4,8 @@ internal static partial class SettingsDescriptionFunctions
 {
     private static EmulationSettingsBlock Block(string id, EmulationMachineTab tab,
         string title, string icon, int columns, params EmulationSettingsField[] fields) =>
-        new(id, tab, title, fields, icon, columns);
+        new(id, tab, title, fields, icon, columns,
+            IsCompact: tab is EmulationMachineTab.Cpu or EmulationMachineTab.Video);
 
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab,
         string block, string label, string value) =>

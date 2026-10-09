@@ -9,8 +9,8 @@
   <data name="Emulation.Sony.Controller.MSXJS303T"><value>Sony JS-303T</value></data>
   <data name="Emulation.Sony.Controller.PlayStationController"><value>PlayStation</value></data>
   <data name="Emulation.Sony.Controller.PlayStationAnalogJoystick"><value>PlayStation Analog Joystick</value></data>
-  <data name="Emulation.Sony.Controller.PlayStationDualAnalog"><value>Dual Analog</value></data>
-  <data name="Emulation.Sony.Controller.PlayStationDualShock"><value>DUALSHOCK</value></data>
+  <data name="Emulation.Sony.Controller.PlayStationDualAnalog"><value>PlayStation Dual Analog</value></data>
+  <data name="Emulation.Sony.Controller.PlayStationDualShock"><value>PlayStation DualShock</value></data>
   <data name="Emulation.Sony.Controller.PlayStationMouse"><value>PlayStation Mouse</value></data>
   <data name="Emulation.Sony.Controller.PlayStationMultitap"><value>PlayStation Multitap</value></data>
   <data name="Emulation.Sony.Controller.PlayStation2DualShock2"><value>DUALSHOCK 2</value></data>

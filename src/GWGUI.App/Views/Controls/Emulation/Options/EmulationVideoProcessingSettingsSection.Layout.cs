@@ -23,6 +23,11 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         var selectors = CreateSelectors();
         if (_displaySettings is null)
             return FramedGroup(EmulationResourceKeys.VideoGwGuiProcessing, selectors);
+        if (_displayOwnsFrames)
+        {
+            return SideBySideGroups(_displaySettings,
+                FramedGroup(EmulationResourceKeys.VideoGwGuiProcessing, selectors));
+        }
         var grid = new Grid();
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });

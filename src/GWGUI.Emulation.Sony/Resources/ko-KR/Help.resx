@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>형성되는 Sony 기계 모형.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>선택된 Sony 기계에 의해 제공되는 RAM를 표시합니다.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>에뮬레이션 기계에 사용할 수있는 RAM의 금액.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>선택된 시계 비율을 적용한 후에 에뮬레이션 CPU의 빈도.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>nominal 콘솔 주파수는 선택된 비율로 곱합니다. 이 에뮬레이션 프로세서를 변경, 호스트 프로세서가 아닙니다. 더 높은 값은 느리게 감소 할 수 있지만 게임 타이밍을 깰 수있다. 자동은 emulator 기본값을 사용합니다.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>PlayStation 하드웨어 개정에 의해 사용되는 원본 비디오 칩.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>목록으로 만들어진 Sony GPU 칩은 어미판 개정에 변화합니다. 내부 렌더링 옵션은 에뮬레이터가 형상과 픽셀을 생산하는 방법을 제어합니다. GW GUI 이미지 필터는 완성된 이미지를 나중에 처리합니다.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>PlayStation 하드웨어 개정에 의해 사용되는 원본 오디오 칩.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU는 소리 음성을 섞고 압축한 표본을 삭제합니다. 나열된 칩은 마더 보드 개정과 다를 수 있습니다. 컴퓨터에 오디오 출력 및 대기 시간 제어 재생.</value></data>
 </root>

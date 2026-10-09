@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>דגם Sony מוגדר.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>מציג את ה- RAM המסופק על ידי מכונת Sony שנבחרה.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>כמות ה- RAM זמינה למכונה הנחשקת.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>תדירות ה- CPU הממוחזר לאחר יישום אחוז השעון שנבחר.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>תדירות הקונסולה נומינלית מוכפלת באחוז הנבחר. זה משנה את המעבד המוטבע, לא את מעבד המארח. ערכים גבוהים יותר יכולים להפחית את ההאטה אך עשויים לשבור את תזמון המשחק. שימושים אוטומטיים כברירת החיקוי.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>שבבים וידאו מקורי בשימוש על ידי שחזורי חומרה של PlayStation.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>שבבי ה-Sony GPU המפורטים משתנים עם תיקון לוח האם. אפשרויות לקביעת פנים שולטות כיצד החיקוי מייצר גיאומטריה ופיקסלים. תמונות GW GUI מעבדות את התמונה השלמה לאחר מכן.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>צ'יפס אודיו מקורי בשימוש על ידי קונסולות חומרה של PlayStation.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>ה-Sony SPU משלב קולות קוליים ומפענח דגימות דחוסות. השבבים המפורטים משתנים עם תיקון לוח האם. פלט אודיו ו- latency control Playback במחשב שלך.</value></data>
 </root>

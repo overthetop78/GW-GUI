@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Mô hình máy Sony đang được cấu hình.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Hiển thị RAM do máy Sony đã được chọn.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Một núi RAM sẵn sàng cho máy mô phỏng.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Tần số của CPU mô phỏng sau khi áp dụng phần trăm đồng hồ đã chọn.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Tần số bảng điều khiển trên danh nghĩa được nhân với tỷ lệ phần trăm đã chọn. Điều này thay đổi bộ xử lý mô phỏng, không phải bộ xử lí máy. Giá trị cao hơn có thể làm giảm tốc độ chậm nhưng có thể phá vỡ thời gian trò chơi. Tự động sử dụng mặc định giả lập.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Các chip video gốc được dùng bởi PlayStation phần cứng hiệu đính.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Các chip Sony GPU được liệt kê khác nhau với bản hiệu đính của trình nền KDE. Tùy chọn vẽ bên trong điều khiển việc mô phỏng tạo hình học và điểm ảnh như thế nào. GW GUI bộ lọc hình ảnh xử lý hình ảnh hoàn tất sau đó.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Các chip âm thanh gốc được dùng bởi các bản hiệu chỉnh phần cứng PlayStation.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Chiếc Sony SPU trộn âm thanh và giải mã các mẫu nén. Các chip được liệt kê khác nhau với bản hiệu đính của trình điều khiển. Phát ra âm thanh và điều khiển tần số phát lại trên máy tính của bạn.</value></data>
 </root>

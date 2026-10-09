@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony machine model fiind configurat.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Afișează RAM furnizat de mașina Sony selectată.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Cantitatea de RAM disponibilă pentru aparatul emulat.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Frecvenţa emulatei CPU după aplicarea procentajului de ceas selectat.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Frecvenţa nominală a consolei este înmulţită cu procentul selectat. Acest lucru schimbă procesorul emulat, nu procesorul gazdă. Valori mai mari pot reduce încetinirile, dar poate rupe calendarul de joc. Utilizați automat emulatorul implicit.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Fise video originale folosite de PlayStation hardware revisions.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Chipsurile Sony GPU enumerate variază cu revizuirea plăcii de bază. Opțiunile de redare internă controlează modul în care emulatorul produce geometrie și pixeli. GW GUI filtre de imagine procesează imaginea completă după aceea.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>chips-uri audio originale utilizate de revizuire hardware PlayStation.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU amestecă voci sonore şi decodează mostre comprimate. Cipurile enumerate variază cu revizuirea plăcii de bază. Redare audio de ieșire și control latență pe computer.</value></data>
 </root>

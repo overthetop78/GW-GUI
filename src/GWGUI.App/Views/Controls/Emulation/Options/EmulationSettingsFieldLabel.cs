@@ -49,10 +49,13 @@ internal sealed class EmulationSettingsFieldLabel : TextBlock
             },
             ToolTip = new ToolTip
             {
+                MaxWidth = EmulationSettingsFieldHelpConstants.MaximumWidth,
                 Content = new TextBlock
                 {
                     Text = explanation,
-                    TextWrapping = TextWrapping.NoWrap
+                    TextWrapping = TextWrapping.Wrap,
+                    MaxWidth = EmulationSettingsFieldHelpConstants.MaximumWidth
+                        - 2 * EmulationSettingsFieldHelpConstants.ContentPadding
                 }
             }
         };

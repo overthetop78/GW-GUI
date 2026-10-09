@@ -4,6 +4,7 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
 
 internal static class InputSettingsFunctionsConstants
 {
+    internal const string Analog = "Analog";
     internal const string Up = EmulationControllerCommandIds.Up;
     internal const string Down = EmulationControllerCommandIds.Down;
     internal const string Left = EmulationControllerCommandIds.Left;

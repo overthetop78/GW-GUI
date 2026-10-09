@@ -21,4 +21,8 @@ public sealed record EmulationMediaDevice(
     string? ModelResourceKey = null,
     int? FixedImageSizeBytes = null,
     string? DefaultImageFileName = null,
-    EmulationStorageDialogPresentation? DialogPresentation = null);
+    EmulationStorageDialogPresentation? DialogPresentation = null,
+    IReadOnlyList<EmulationSettingsField>? ConfigurationFields = null,
+    string? DisplayLabelResourceKey = null,
+    bool UsesDirectory = false,
+    string? DefaultImageSubdirectory = null);

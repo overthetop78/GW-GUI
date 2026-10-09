@@ -20,15 +20,64 @@ namespace GWGUI.Tests.Interface.SettingsViews;
 
 internal static class EmulationModuleSettingsNavigationScenarios
 {
+    internal static void NativeVideoOptionsPreserveTheProcessingPosition()
+    {
+        var section = new EmulationVideoProcessingSettingsSection();
+        var display = new TextBlock { Text = "Display" };
+        var renderer = new ComboBox();
+        var native = new StackPanel();
+        native.Children.Add(new Expander { Header = "PGXP", Content = new CheckBox() });
+        try
+        {
+            section.SetConfiguration(new(), display, renderer, nativeSettings: native);
+            for (var pass = 0; pass < 2; pass++)
+            {
+                var tabs = Assert.IsType<TabControl>(section.Content);
+                Assert.Equal(4, tabs.Items.Count);
+                Assert.Contains(MachineConfigurationScenarios.Controls<Expander>((DependencyObject)((TabItem)tabs.Items[3]).Content),
+                    item => Equals(item.Header, "PGXP"));
+                FrameworkElement current = renderer;
+                while (current.Parent is FrameworkElement parent)
+                {
+                    if (parent is Grid grid && grid.ColumnDefinitions.Count == 2 && current is Border)
+                    {
+                        Assert.Equal(1, Grid.GetColumn(current));
+                        break;
+                    }
+                    current = parent;
+                }
+                Assert.IsType<Grid>(current.Parent);
+                tabs.SelectedIndex = 3;
+                section.RefreshLocalizedContent();
+                Assert.Equal(3, Assert.IsType<TabControl>(section.Content).SelectedIndex);
+            }
+        }
+        finally
+        {
+            EmulationSettingsLayout.DetachReusableElement(display);
+            EmulationSettingsLayout.DetachReusableElement(renderer);
+            EmulationSettingsLayout.DetachReusableElement(native);
+            section.Content = null;
+        }
+    }
+
     internal static void VideoFieldsKeepTheirHelpContent()
     {
         var control = new ComboBox();
         var grid = EmulationSettingsLayout.VideoSettingsFields(new EmulationVideoSettingsField(
-            "Resolution", control, Explanation: "Short help", DetailedExplanation: "Detailed help"));
+            "Resolution", control, Explanation: string.Join(" ", Enumerable.Repeat("Long geometry correction help that must remain readable.", 30)),
+            DetailedExplanation: "Detailed help"));
 
         var label = Assert.Single(MachineConfigurationScenarios.Controls<EmulationSettingsFieldLabel>(grid));
         Assert.Equal(string.Empty, label.Text);
         Assert.Contains(label.Inlines, inline => inline is System.Windows.Documents.InlineUIContainer);
+        var help = Assert.Single(label.Inlines.OfType<System.Windows.Documents.InlineUIContainer>());
+        var icon = Assert.IsType<Border>(help.Child);
+        var tooltip = Assert.IsType<ToolTip>(icon.ToolTip);
+        var text = Assert.IsType<TextBlock>(tooltip.Content);
+        text.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+        Assert.InRange(text.DesiredSize.Width, 1, EmulationSettingsFieldHelpConstants.MaximumWidth);
+        Assert.True(text.DesiredSize.Height > 2 * text.FontSize);
     }
 
     internal static async Task VerticalMachinesPreserveConfigurationStateAndTabs()

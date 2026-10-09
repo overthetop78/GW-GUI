@@ -10,11 +10,11 @@
   <data name="Emulation.Sony.Language.Spanish"><value>espanja</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Label"><value>Konsolin alue</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Help"><value>Päättää, mikä alue/hardware jäljitellä. Automaattinen tunnistus käyttää asetettua levyn aluetta.</value></data>
-  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Automaattinen tunnistus</value></data>
+  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Automaattinen havaitseminen</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (Japani)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, Kanada)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (Eurooppa, Australia)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Nopea saapas</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Ohita BIOS- käynnistysanimaatio</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>Ohittaa BIOS-kuoren / intron, käynnistyy suoraan peliin. Yleensä turvallista ottaa käyttöön, mutta joitakin pelejä tauko.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>Käytössä</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>Ei käytössä</value></data>
@@ -28,7 +28,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Lataa levykuvan RAM-muistiin ennen emuloinnin aloittamista. Voi vähentää hitching jos olet käynnissä pois verkon osake, hintaan suurempi käynnistysaika. Koska libretro ei anna mahdollisuutta piirtää overlays, emulaattori näyttää lukita, kun kuva on esiladattu.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD kuvia RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>Pre-caches CHD CD-ROM kuvia RAM ilman pakkaaminen niitä. Toisin kuin preload-vaihtoehto, tämä vaihtoehto tukee M3U-tiedostoja. Se on myös nopeampi ja vaatii vähemmän RAM kuin esilataus, koska se ei pura CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Muokkaa CD-ääntä</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Poista CD-ääni käytöstä</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>Väärästi vaimentaa sekä CD-DA että XA ääntä CD-ROM. Voidaan käyttää sammuttamaan taustamusiikkia joissakin peleissä.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>CD-ROM-lukemisnopeus</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>Nopeuttaa CD-ROM lukee tietyn tekijän. Koskee vain tuplanopeus lukee, ja jätetään huomiotta, kun ääni on soi. Voi parantaa lastausnopeuksia joissakin peleissä, kustannuksella rikkoa muita.</value></data>
@@ -296,7 +296,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>CD:n latausnopeus</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>"2x (Native)" -arvoa suuremmat arvot voivat huomattavasti lyhentää pelin latausaikoja, mutta ne voivat aiheuttaa ajoitusvirheitä. Jotkut pelit eivät välttämättä toimi oikein tietyn arvon yläpuolella.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x (alkuperäinen)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Ohita BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Ohita BIOS- käynnistysanimaatio</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>Älä näytä PlayStation BIOS -animaatiota pelin alkaessa. Tämä vaihtoehto voi aiheuttaa ongelmia joissakin peleissä, kuten pelejä PAL Copy Protection ja Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>Ohita BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>Ohita standardialuekohtainen BIOS, jos sellainen löytyy. Käynnistä uudelleen.</value></data>
@@ -326,7 +326,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>Näytä sisäinen kehysnopeus, jolla emulgoitu PlayStation järjestelmä renderöi sisältöä. Huomautus: Edellyttää, että näytöllä tapahtuvat ilmoitukset ovat käytössä libretro-rintamassa.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>Näytä OSD-viestit</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>Näytä ytimen tuottamat OSD-viestit.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Analoginen itsekalibrointi</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Mukauta analogista tuloaluetta</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>Ota käyttöön analogisten syötteiden dynaaminen kalibrointi, kun laite on asetettu arvoon DualShock, Analog Controller, Analo Joystick tai neGcon. Suurinta rekisteröityä syöttöarvoa seurataan reaaliajassa, ja sitä käytetään emulaattorille siirrettyjen analogisten koordinaattien mittaukseen. Tätä tulisi käyttää peleissä kuten Mega Man Legends 2, jotka odottavat suurempia arvoja kuin mitä moderni ohjaimet tarjoavat. Parhaiden tulosten saavuttamiseksi analogisia tikkuja olisi pyöritettävä täydessä laajuudessa kalibrointialgoritmin virittämiseksi aina, kun sisältö on ladattu.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock Analoginen tila Vaihda</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>Kun tulolaitetyyppi on DualShock, tämän vaihtoehdon avulla emulgoitu DualShock voidaan vaihtaa DIGITAL ja ANALOG moodin välillä kuten alkuperäinen laitteisto. Tila voidaan myös vaihtaa käyttämällä valittua painikkeen yhdistelmää.</value></data>
@@ -395,7 +395,7 @@
   <data name="Emulation.Option.Sony.Value.DisabledBeetleInterpreter"><value>Ei käytössä (Beetle-tulkki)</value></data>
   <data name="Emulation.Option.Sony.Value.MaxPerformance"><value>Maksimiteho</value></data>
   <data name="Emulation.Option.Sony.Value.LightrecInterpreter"><value>Lightrec-tulkki</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Label"><value>Dynarec Koodin mitätöinti</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Label"><value>Dynarecin koodin mitätöinti</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Help"><value>Jotkut pelit vaativat 'täydellisen' mitätöinnin, jotkut vaativat 'DMA Vain'.</value></data>
   <data name="Emulation.Option.Sony.Value.Full"><value>Täysi</value></data>
   <data name="Emulation.Option.Sony.Value.DMAOnlySlightlyFaster"><value>Vain DMA (hieman nopeampi)</value></data>
@@ -459,7 +459,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Synkroninen pääsy kopioi alkuperäisen laitteiston. Synkroninen pääsy voi vähentää taukoja laitteiden hidas tallennus. Koko levykuvan lataaminen RAM-muistiin voi parantaa latausaikoja pelin aikana, mutta viivästyttää käynnistymistä. Tämä tila voi aiheuttaa ongelmia, kun RAM on rajoitettu. Fyysiset levyt käyttävät synkronoitua kulkua koko kuvan latauksen sijaan. Aloita uudelleen tämän vaihtoehdon muuttamisen jälkeen.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD:n latausnopeus</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>"2x (Native)" -arvoa suuremmat arvot voivat huomattavasti lyhentää pelin latausaikoja, mutta ne voivat aiheuttaa ajoitusvirheitä. Jotkut pelit eivät välttämättä toimi oikein tietyn arvon yläpuolella.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Ohita BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Ohita BIOS- käynnistysanimaatio</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>Älä näytä PlayStation BIOS -animaatiota pelin alkaessa. Tämä vaihtoehto voi aiheuttaa ongelmia joissakin peleissä, kuten pelejä PAL Copy Protection ja Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>Ohita BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>Ohita standardialuekohtainen BIOS, jos sellainen löytyy. Käynnistä uudelleen.</value></data>
@@ -590,7 +590,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>Näytä ytimen tuottamat OSD-viestit.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>Näyttö täysi VRAM (Debug)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>Visualisoi koko emulgoidun konsolin VRAM. Ainoastaan OpenGL:n ja Vulkan:n laitteistonvalmistajien tukemana. Huomautus: Tämä on vianetsintätarkoituksiin, ja se pitäisi tavallisesti poistaa käytöstä.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Analoginen itsekalibrointi</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Mukauta analogista tuloaluetta</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>Ota käyttöön analogisten syötteiden dynaaminen kalibrointi, kun laite on asetettu arvoon DualShock, Analog Controller, Analo Joystick tai neGcon. Suurinta rekisteröityä syöttöarvoa seurataan reaaliajassa, ja sitä käytetään emulaattorille siirrettyjen analogisten koordinaattien mittaukseen. Tätä tulisi käyttää peleissä kuten Mega Man Legends 2, jotka odottavat suurempia arvoja kuin mitä moderni ohjaimet tarjoavat. Parhaiden tulosten saavuttamiseksi analogisia tikkuja olisi pyöritettävä täydessä laajuudessa kalibrointialgoritmin virittämiseksi aina, kun sisältö on ladattu.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock Analoginen tila Vaihda</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>Kun tulolaitetyyppi on DualShock, tämän vaihtoehdon avulla emulgoitu DualShock voidaan vaihtaa DIGITAL ja ANALOG moodin välillä kuten alkuperäinen laitteisto. Tila voidaan myös vaihtaa käyttämällä valittua painikkeen yhdistelmää.</value></data>
@@ -636,7 +636,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_spu_silent_voice.Help"><value>Ohita näytekohtainen käsittely äänistä, joiden kirjekuori on täysin vapautettu. Ääniteho on identtinen; optimointi kytkee itsensä automaattisesti pois käytöstä SPU IRQ:n ollessa käytössä. Säästää noin 5-10% kuvaajasta. Poista käytöstä täysin tarkka SPU-rekisteritila.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cpu_dynarec.Label"><value>CPU Dynarec</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cpu_dynarec.Help"><value>Kompaktoi CPU ohjeet dynaamisesti natiivi ohjeisiin. Paljon nopeampi kuin tulkki, mutta CPU ajoitus on vähemmän tarkka, ja voi olla vikoja.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Label"><value>Dynarec Koodin mitätöinti</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Label"><value>Dynarecin koodin mitätöinti</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Help"><value>Jotkut pelit vaativat 'täydellisen' mitätöinnin, jotkut vaativat 'DMA Vain'.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Label"><value>Dynarec Ohjejaksot</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Help"><value>Pyörät dynarec maksut kohti CPU opetusta. '2 on nopeampi, mutta emulgoitu CPU näyttää puoli-nopeus pelejä, jotka tahdistavat itseään vastaan - asettaa '1' peleille, joiden CD streaming kojut tai roikkuu dynarec (esim. Loinen aatto 2. "1" asetuslataukset käyttävät kahta sykliä ja kaikkea muuta yhtä, lähellä todellista CPU:a.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.Sony.Value.Cross"><value>Risti</value></data>
   <data name="Emulation.Option.Sony.Value.Circle"><value>Ympyrä</value></data>
   <data name="Emulation.Option.Sony.Value.Square"><value>Neliö</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>Geometriakorjaus (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>Tekstuurit</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>Soveltuvuus yhteismarkkinoille</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>Kuvan ajoitus</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>CPU-kello (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>Pakota analoginen tila</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>Käytä analogisia tikkuja digitaalisiin suuntiin</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>Analogisen akselin asteikko</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>Tärinän voimakkuus</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>Vaakatason aseherkkyys</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>Pystysuorien aseiden herkkyys</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Ohjaamon kuollut vyöhyke</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Ohjausvaste</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Skaalaa mitattua analogista akselialuetta peleille, jotka odottavat suurempia syöttöarvoja. Siirrä akselit läpi niiden täyden valikoiman jälkeen lataa peli.</value></data>
 </root>

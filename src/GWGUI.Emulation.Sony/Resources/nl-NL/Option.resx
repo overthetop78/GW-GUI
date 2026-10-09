@@ -19,11 +19,11 @@
   <data name="Emulation.Option.play.Bilinear.Help"><value>Dwingt bilineaire textuurfiltering in de renderer.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Label"><value>Console-regio</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Help"><value>Bepaalt welke regio/hardware na te bootsen is. Auto-Detect zal het deel van de schijf dat wordt ingevoegd gebruiken.</value></data>
-  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Automatisch detecteren</value></data>
+  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Automatische detectie</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (Japan)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, Canada)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (Europa, Australië)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Snel opstarten</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>BIOS-startanimatie overslaan</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>Sla de BIOS shell/intro over en boot direct in het spel. Meestal veilig om in te schakelen, maar sommige games breken.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>Uitgeschakeld</value></data>
@@ -37,7 +37,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Laadt de schijfafbeelding naar RAM voordat emulatie wordt gestart. Kan het liften verminderen als u een netwerk aandeel draait, tegen een prijs van een grotere opstarttijd. Als libretro biedt geen manier om overlays te tekenen, de emulator zal lijken op slot terwijl het beeld is voorgeladen.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>CHD-afbeeldingen voor cache naar RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>Pre-caches CHD CD-ROM afbeeldingen naar RAM zonder ze te decomprimeren. In tegenstelling tot de preload optie, deze optie ondersteunt M3U-bestanden. Het is ook sneller en vereist minder RAM in vergelijking met preloaden als het niet decomprimeren van de CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>CD-audio dempen</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>CD-audio uitschakelen</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>Geforceerde moten beide CD-DA en XA audio van de CD-ROM. Kan worden gebruikt om achtergrondmuziek uit te schakelen in sommige games.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>CD-ROM leessnelheid</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>Versnelt CD-ROM leest volgens de opgegeven factor. Alleen geldt voor double-speed leest, en wordt genegeerd wanneer audio wordt afgespeeld. Kan verbeteren laadsnelheden in sommige games, ten koste van het breken anderen.</value></data>
@@ -305,7 +305,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>CD laadsnelheid</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>Waarden hoger dan '2x (Native)' kunnen in-game laadtijden aanzienlijk verminderen, maar kunnen timingfouten introduceren. Sommige games kunnen niet goed functioneren boven een bepaalde waarde.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x (Native)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>BIOS overslaan</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>BIOS-startanimatie overslaan</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>De PlayStation BIOS-animatie niet tonen bij het starten van een spel. Deze optie kan problemen veroorzaken in sommige spellen, waaronder games met PAL-kopiebeveiliging en Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>BIOS negeren</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>Override de standaard regio specifieke BIOS met een gebied-vrije als gevonden. Herstarten vereist.</value></data>
@@ -335,7 +335,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>Toon de interne framesnelheid waarmee het emulated PlayStation systeem inhoud rendering maakt. Opmerking: Vereist dat meldingen op het scherm ingeschakeld moeten worden in de libretro frontend.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>OSD-berichten weergeven</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>OSD-berichten weergeven die door de kern zijn gegenereerd.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Analoge zelfkalibratie</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Analoge invoerbereik aanpassen</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>activeer dynamische kalibratie van analoge ingangen wanneer het apparaat is ingesteld op DualShock, analoge controller, analoge joystick of neGcon. Maximale geregistreerde invoerwaarden worden in real time gecontroleerd en gebruikt om analoge coördinaten te schalen die aan de emulator zijn doorgegeven. Dit moet worden gebruikt voor games zoals Mega Man Legends 2 die grotere waarden verwachten dan wat moderne controllers bieden. Voor de beste resultaten, analoge sticks moeten worden gedraaid op volledige omvang om het kalibratiealgoritme af te stemmen elke keer dat inhoud wordt geladen.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock Analog-modus aan/uit</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>Wanneer het invoerapparaattype DualShock is, staat deze optie toe dat de nagebootste DualShock tussen DIGITAL en ANALOG-modus zoals originele hardware wordt geschakeld. De modus kan ook worden ingeschakeld met behulp van de geselecteerde knopcombinatie.</value></data>
@@ -468,7 +468,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Synchroon toegang reproduceert de originele hardware. Asynchrone toegang kan pauzes op apparaten verminderen met trage opslag. Het laden van de hele schijf image in RAM kan verbeteren laadtijden tijdens het spel, maar vertraagt opstarten. Deze modus kan problemen veroorzaken wanneer RAM beperkt is. Fysische schijven gebruiken synchrone toegang in plaats van het hele beeld te laden. Herstarten na het wijzigen van deze optie.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD laadsnelheid</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>Waarden hoger dan '2x (Native)' kunnen in-game laadtijden aanzienlijk verminderen, maar kunnen timingfouten introduceren. Sommige games kunnen niet goed functioneren boven een bepaalde waarde.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>BIOS overslaan</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>BIOS-startanimatie overslaan</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>De PlayStation BIOS-animatie niet tonen bij het starten van een spel. Deze optie kan problemen veroorzaken in sommige spellen, waaronder games met PAL-kopiebeveiliging en Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>BIOS negeren</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>Override de standaard regio specifieke BIOS met een gebied-vrije als gevonden. Herstarten vereist.</value></data>
@@ -600,7 +600,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>OSD-berichten weergeven die door de kern zijn gegenereerd.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>Volledig VRAM tonen (debug)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>Visualiseer de VRAM van het gehele emuleerde console. Alleen ondersteund door de OpenGL en Vulkan hardware renders. Opmerking: Dit is voor debug-doeleinden en moet normaal gesproken worden uitgeschakeld.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Analoge zelfkalibratie</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Analoge invoerbereik aanpassen</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>activeer dynamische kalibratie van analoge ingangen wanneer het apparaat is ingesteld op DualShock, analoge controller, analoge joystick of neGcon. Maximale geregistreerde invoerwaarden worden in real time gecontroleerd en gebruikt om analoge coördinaten te schalen die aan de emulator zijn doorgegeven. Dit moet worden gebruikt voor games zoals Mega Man Legends 2 die grotere waarden verwachten dan wat moderne controllers bieden. Voor de beste resultaten, analoge sticks moeten worden gedraaid op volledige omvang om het kalibratiealgoritme af te stemmen elke keer dat inhoud wordt geladen.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock Analog-modus aan/uit</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>Wanneer het invoerapparaattype DualShock is, staat deze optie toe dat de nagebootste DualShock tussen DIGITAL en ANALOG-modus zoals originele hardware wordt geschakeld. De modus kan ook worden ingeschakeld met behulp van de geselecteerde knopcombinatie.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.Sony.Value.Cross"><value>Kruis</value></data>
   <data name="Emulation.Option.Sony.Value.Circle"><value>Cirkel</value></data>
   <data name="Emulation.Option.Sony.Value.Square"><value>Vierkant</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>Geometriecorrectie (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>Textuur</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>Verenigbaarheid</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>Afbeeldings timing</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>CPU klok (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>Analoge modus forceren</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>Analoge sticks gebruiken voor digitale richtingen</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>Analoge asschaal</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>Trillingssterkte</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>Horizontale pistoolgevoeligheid</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>Verticale pistoolgevoeligheid</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Stuurgebied dood</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Stuurrespons</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Schaalt het gemeten analoge asbereik voor games die grotere inputwaarden verwachten. Beweeg de assen door hun volledige bereik na het laden van een spel.</value></data>
 </root>

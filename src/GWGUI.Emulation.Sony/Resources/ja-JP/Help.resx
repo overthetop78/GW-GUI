@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>構成されるSony機械モデル。</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>選択されたSony機械によって提供されるRAMを表示します。</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>エミュレートされた機械に利用できるRAMの量。</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>選択したクロックパーセンテージを適用した後、エミュレートCPUの周波数。</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>わずかなコンソール周波数は、選択したパーセンテージによって多岐に渡ります。 これは、ホストプロセッサではなくエミュレートされたプロセッサを変更します。 値が高いと減速が減りますが、ゲームのタイミングを崩す可能性があります。 エミュレータのデフォルトを自動使用して下さい。</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>PlayStationハードウェアのリビジョンで使用されるオリジナルビデオチップ。</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>リストされているSony GPU破片はマザーボードの修正と変わります。 内部レンダリングオプションは、エミュレータがジオメトリとピクセルを生成する方法を制御します。 GW GUIイメージフィルタは、完了した画像を後処理します。</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>PlayStationハードウェアのリビジョンで使用されるオリジナルオーディオチップ。</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPUは健全な声を混合し、圧縮されたサンプルを解読します。 リストされたチップはマザーボードのリビジョンにより異なります。 オーディオ出力とレイテンシーコントロールの再生をコンピュータ上で行います。</value></data>
 </root>

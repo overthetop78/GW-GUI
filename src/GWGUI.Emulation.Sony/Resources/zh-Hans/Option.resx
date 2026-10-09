@@ -26,7 +26,7 @@
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J(日本)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U(US,加拿大) 互联网档案馆的存檔,存档日期2013-12-02.</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (欧洲,澳大利亚)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>快速启动</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>跳过 BIOS 启动动画</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>跳过 BIOS  shell/ intro,直接进入游戏. 通常可以安全启用,但有些游戏中断.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>已启用</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>已禁用</value></data>
@@ -40,7 +40,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>在开始模拟前将盘片图像装入RAM。 可能减少搭载,如果您正在运行一个网络共享, 成本更大的启动时间。 由于libretro无法提供绘制叠加的方法,模拟器在图像被预装时会显得会锁定.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>预切出CHD 图像为RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>将 CHD CD-ROM 图像预切为 RAM 而无需解压缩它们. 与预装选项不同,此选项支持M3U文件. 与预装相比,它也更快,需要较少的RAM,因为它不会去压CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>静音 CD 音频</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>禁用 CD 音频</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>从CD-ROM所发的音频中,强制变音CD-DA和XA两个. 可用于一些游戏中禁用背景音乐.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>CD-ROM 读取速度</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>加速了CD-ROM 读取指定因子. 只适用于双速读取,在音频播放时被忽略. 可能在某些游戏中提高加载速度,而代价是打破其他游戏.</value></data>
@@ -308,7 +308,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>CD 装入速度</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>高于"2x (Native)"的值可以大大减少游戏中加载时间,但可能引入计时错误. 有些游戏的功能可能不能正常地高于某一个值.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x( 内在)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>跳过 BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>跳过 BIOS 启动动画</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>在开始游戏时不要显示 PlayStation BIOS 动画. 这个选项可能会在一些游戏中出问题,包括带有PAL副本保护的游戏和Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>覆盖 BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>覆盖标准区域特定BIOS,如果找到无区域区域。 需要重新开始。</value></data>
@@ -338,7 +338,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>显示模拟的 PlayStation 系统渲染内容的内部帧率 。 注意: 需要启用自带前端的屏幕通知 。</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>显示 OSD 信件</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>显示由核心生成的 OSD 消息 。</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>模拟自解</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>适应模拟输入范围</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>在设备设定为 DualShock, Analog Controller, Aanalog Joystick 或 neGcon 时启用模拟输入的动态校正. 最大已注册输入值被实时监控,并用于向模拟器传递的模拟坐标比例. 这应用于"Mega Man Legends 2"等期望值大于现代控制器提供的游戏. 为了取得最佳效果,模拟棒应被完全旋转来调谐每次装入内容时的校正算法.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock 模拟模式切换</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>当输入设备类型为DualShock时,此选项允许将被模拟的DualShock在DIGITAL和ANALOG模式之间切换出与原始硬件一样. 模式也可以通过使用所选的按钮组合来切换.</value></data>
@@ -471,7 +471,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>同步访问复制了原始硬件. 同步访问可以减少存储缓慢的设备的暂停. 将整盘图像装入RAM可以改善游戏期间的加载时间,但会延迟启动. 此模式在RAM受限时会出问题. 物理盘使用同步访问,而不是装入整个图像. 更改此选项后重新启动 。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD 装入速度</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>高于"2x (Native)"的值可以大大减少游戏中加载时间,但可能引入计时错误. 有些游戏的功能可能不能正常地高于某一个值.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>跳过 BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>跳过 BIOS 启动动画</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>在开始游戏时不要显示 PlayStation BIOS 动画. 这个选项可能会在一些游戏中出问题,包括带有PAL副本保护的游戏和Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>覆盖 BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>覆盖标准区域特定BIOS,如果找到无区域区域。 需要重新开始。</value></data>
@@ -603,7 +603,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>显示由核心生成的 OSD 消息 。</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>显示完整的 VRAM (调试)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>可视化整个模拟控制台的VRAM. 只由OpenGL和Vulkan硬件渲染器支持. 注意: 这是为调试目的, 一般应该禁用 。</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>模拟自解</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>适应模拟输入范围</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>在设备设定为 DualShock, Analog Controller, Aanalog Joystick 或 neGcon 时启用模拟输入的动态校正. 最大已注册输入值被实时监控,并用于向模拟器传递的模拟坐标比例. 这应用于"Mega Man Legends 2"等期望值大于现代控制器提供的游戏. 为了取得最佳效果,模拟棒应被完全旋转来调谐每次装入内容时的校正算法.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock 模拟模式切换</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>当输入设备类型为DualShock时,此选项允许将被模拟的DualShock在DIGITAL和ANALOG模式之间切换出与原始硬件一样. 模式也可以通过使用所选的按钮组合来切换.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_ntsc.Help"><value>以NTSC(59.94 Hz for 60)的速率运行VBlank频率,而不用圆数. 默认情况下,如RPCS3。</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_hle_lwmutex.Label"><value>HLE lwmutex (英语).</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_hle_lwmutex.Help"><value>对 lwmutex 使用 HLE 执行.</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>几何校正( PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>纹理</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>兼容性</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>图像时间</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>CPU 时钟(%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>强制模拟模式</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>数字方向使用模拟棒</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>类似轴缩放</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>震动强度</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>水平枪敏度</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>垂直枪敏度</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>引导死区</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>指导反应</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>为期望更大输入值的游戏缩放所测量的模拟轴范围。 装入游戏后将轴通过全程移动.</value></data>
 </root>

@@ -80,7 +80,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         saveDirectory = Path.GetFullPath(saveDirectory
             ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
         var coreSaveDirectory = Path.Combine(saveDirectory, _definition.Id);
-        var systemDirectory = Path.Combine(coreSaveDirectory, CoreDirectoryConstants.SystemDirectoryName);
+        var systemDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
         _saveMemoryPath = Path.Combine(coreSaveDirectory, SaveMemoryConstants.FileName);
         Directory.CreateDirectory(systemDirectory);
         FirmwareConfigurationFunctions.CopySelectedFiles(configuration,
@@ -92,7 +92,8 @@ internal sealed partial class ExternalCore : IEmulatorCore
         var isolatedCorePath = Path.Combine(isolatedCoreDirectory, _definition.LibraryFileName);
         File.Copy(sourceCorePath, isolatedCorePath, true);
         var contentPath = PrepareContentPath(media, contentDirectory);
-        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory,
+        var nativeSaveDirectory = PrepareMemoryCards(configuration, saveDirectory, systemDirectory);
+        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, nativeSaveDirectory,
             configuration.Options ?? new Dictionary<string, string>());
 
         try
@@ -274,8 +275,13 @@ internal sealed partial class ExternalCore : IEmulatorCore
             try { _unloadGame?.Invoke(); }
             finally
             {
-                _gameLoaded = false;
-                _saveMemoryReady = false;
+                try { PersistMemoryCards(); }
+                finally
+                {
+                    _gameLoaded = false;
+                    _saveMemoryReady = false;
+                    _memoryCardFiles.Clear();
+                }
             }
         }
     }

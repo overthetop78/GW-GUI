@@ -56,7 +56,7 @@ internal static partial class EmulationSettingsLayout
             field.DetailedExplanation, field.Control)
         {
             Margin = new Thickness(0, 0, 0, 7),
-            TextWrapping = TextWrapping.NoWrap
+            TextWrapping = TextWrapping.Wrap
         });
         field.Control.HorizontalAlignment = HorizontalAlignment.Stretch;
         field.Control.Margin = new Thickness(0);
@@ -66,14 +66,14 @@ internal static partial class EmulationSettingsLayout
 
     private static FrameworkElement TrailingCheckBoxTile(EmulationVideoSettingsField field, CheckBox checkBox)
     {
-        var row = new Grid { VerticalAlignment = VerticalAlignment.Bottom, MinHeight = 65 };
+        var row = new Grid { VerticalAlignment = VerticalAlignment.Center };
         row.ColumnDefinitions.Add(new ColumnDefinition());
         row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         row.Children.Add(new EmulationSettingsFieldLabel(field.Label, field.Explanation,
-            field.DetailedExplanation, checkBox) { TextWrapping = TextWrapping.NoWrap,
-            VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 22, 12, 0) });
+            field.DetailedExplanation, checkBox) { TextWrapping = TextWrapping.Wrap,
+            VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 4, 12, 4) });
         checkBox.Content = null;
-        checkBox.Margin = new Thickness(8, 22, 0, 0);
+        checkBox.Margin = new Thickness(8, 4, 0, 4);
         checkBox.VerticalAlignment = VerticalAlignment.Center;
         Grid.SetColumn(checkBox, 1);
         row.Children.Add(checkBox);

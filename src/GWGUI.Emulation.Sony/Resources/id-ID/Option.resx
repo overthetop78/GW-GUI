@@ -10,11 +10,11 @@
   <data name="Emulation.Sony.Language.Spanish"><value>Spanyol</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Label"><value>Daerah Konsol</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Help"><value>Menentukan daerah / perangkat keras mana yang akan dijilasikan. Auto- Detect akan menggunakan daerah diska yang disisipkan.</value></data>
-  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Deteksi Otomatis</value></data>
+  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Deteksi otomatis</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (Jepang)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, Kanada)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (Eropa, Australia)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Boot Cepat</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Lewati animasi awal BIOS</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>Melewati BIOS shell / intro, booting langsung ke dalam permainan. Biasanya aman untuk mengaktifkan, tapi beberapa game istirahat.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>Dinonaktifkan</value></data>
@@ -28,7 +28,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Loads image diska ke RAM sebelum memulai emulasi. Mungkin mengurangi rintangan jika Anda menjalankan suatu share jaringan, dengan biaya waktu startup yang lebih besar. Sebagai libretro tidak menyediakan cara untuk menggambar overlay, emulator akan muncul untuk mengunci sementara gambar preloaded.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre- cache CHD Gambar Untuk RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>Pre- cache CHD CD-ROM gambar ke RAM tanpa mendekompresi mereka. Tidak seperti opsi preload, opsi ini mendukung berkas M3U. Hal ini juga lebih cepat dan membutuhkan RAM lebih sedikit dibandingkan preloading karena tidak mengurangi CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Mute CD Audio</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Matikan audio CD</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>Dipaksa bergumam baik CD-DA dan XA audio dari CD-ROM. Dapat digunakan untuk menonaktifkan musik latar belakang dalam beberapa permainan.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>CD-ROM Baca Speedup</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>Sfered up CD-ROM dibaca oleh faktor yang dispesifikasikan. Hanya berlaku pada pembacaan kecepatan ganda, dan diabaikan ketika audio diputar. Mungkin meningkatkan kecepatan loading dalam beberapa permainan, pada biaya melanggar orang lain.</value></data>
@@ -296,7 +296,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>Kecepatan Memuat CD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>Nilai-nilai lebih tinggi dari '2x (native)' dapat sangat mengurangi waktu pemuatan in- game, tetapi mungkin memperkenalkan kesalahan waktu. Beberapa game mungkin tidak berfungsi dengan baik di atas nilai tertentu.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x (asli)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Lewati BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Lewati animasi awal BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>Jangan tampilkan animasi BIOS PlayStation ketika memulai suatu permainan. Pilihan ini dapat menyebabkan masalah dalam beberapa game, termasuk permainan dengan perlindungan salinan PAL dan Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>Override BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>Timpa BIOS spesifik daerah standar dengan sebuah region- bebas satu jika ditemukan. Restart diperlukan.</value></data>
@@ -326,7 +326,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>Tampilkan laju frame internal di mana sistem PlayStation yang diemulasi sedang merender konten. Catatan: Membutuhkan pemberitahuan onscreen untuk diaktifkan dalam frontend libretro.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>Tampilkan Pesan OSD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>Tampilkan pesan OSD yang dihasilkan oleh inti.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Kalibrasi Analog -</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Atur jangkauan masukan analog</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>Aktifkan kalibrasi dinamis dari masukan analog ketika perangkat diatur ke DualShock, Analog Controller, Anolog Joystick, atau neGcon. Nilai masukan terdaftarkan maksimum dipantau secara real time dan digunakan untuk skala koordinat analog diteruskan ke emulator. Hal ini harus digunakan untuk permainan seperti Mega Man Legends 2 yang mengharapkan nilai-nilai yang lebih besar daripada apa kontrol modern disediakan. Untuk hasil terbaik, batang analog harus diputar secara penuh untuk menyetel algoritma kalibrasi setiap kali isi dimuat.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>Mode Moda Analog DualShock</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>Ketika tipe perangkat masukan adalah DualShock, opsi ini memungkinkan emulasi DualShock untuk menjadi toggled antara DIGITAL dan ANALOG mode seperti hardware asli. Mode juga dapat diubah dengan menggunakan kombinasi tombol yang dipilih.</value></data>
@@ -459,7 +459,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Akses synchronous mereproduksi perangkat keras asli. Akses tidak sinkron dapat mengurangi jeda pada perangkat dengan penyimpanan lambat. Memuat seluruh image diska ke RAM dapat meningkatkan waktu pemuatan selama permainan, tapi menunda startup. Mode ini dapat menyebabkan masalah ketika RAM terbatas. Diska fisik menggunakan akses sinkron daripada memuat seluruh gambar. Mulai lagi setelah mengubah pilihan ini.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>Kecepatan Memuat CD</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>Nilai-nilai lebih tinggi dari '2x (native)' dapat sangat mengurangi waktu pemuatan in- game, tetapi mungkin memperkenalkan kesalahan waktu. Beberapa game mungkin tidak berfungsi dengan baik di atas nilai tertentu.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Lewati BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Lewati animasi awal BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>Jangan tampilkan animasi BIOS PlayStation ketika memulai suatu permainan. Pilihan ini dapat menyebabkan masalah dalam beberapa game, termasuk permainan dengan perlindungan salinan PAL dan Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>Override BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>Timpa BIOS spesifik daerah standar dengan sebuah region- bebas satu jika ditemukan. Restart diperlukan.</value></data>
@@ -591,7 +591,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>Tampilkan pesan OSD yang dihasilkan oleh inti.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>Tampilkan VRAM penuh (Debug)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>Visualisasikan seluruh emulasi konsol VRAM. Hanya didukung oleh OpenGL dan Vulkan penyewa perangkat keras. Catatan: Ini untuk tujuan debug, dan biasanya tidak aktif.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Kalibrasi Analog -</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Atur jangkauan masukan analog</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>Aktifkan kalibrasi dinamis dari masukan analog ketika perangkat diatur ke DualShock, Analog Controller, Anolog Joystick, atau neGcon. Nilai masukan terdaftarkan maksimum dipantau secara real time dan digunakan untuk skala koordinat analog diteruskan ke emulator. Hal ini harus digunakan untuk permainan seperti Mega Man Legends 2 yang mengharapkan nilai-nilai yang lebih besar daripada apa kontrol modern disediakan. Untuk hasil terbaik, batang analog harus diputar secara penuh untuk menyetel algoritma kalibrasi setiap kali isi dimuat.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>Mode Moda Analog DualShock</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>Ketika tipe perangkat masukan adalah DualShock, opsi ini memungkinkan emulasi DualShock untuk menjadi toggled antara DIGITAL dan ANALOG mode seperti hardware asli. Mode juga dapat diubah dengan menggunakan kombinasi tombol yang dipilih.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.Sony.Value.Cross"><value>Silang</value></data>
   <data name="Emulation.Option.Sony.Value.Circle"><value>Lingkaran</value></data>
   <data name="Emulation.Option.Sony.Value.Square"><value>Kotak</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>Koreksi geometri (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>Tekstur</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>Kompatibilitas</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>Waktu gambar</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>Jam CPU (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>Paksa mode analog</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>Gunakan analog stick untuk arah digital</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>Skala sumbu analog</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>Kekuatan getaran</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>Sensitivitas senjata horisontal</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>Sensitivitas pistol vertikal</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Mendorong zona mati.</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Mendorong respon</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Skala jangkauan sumbu analog yang diukur untuk game yang mengharapkan nilai masukan yang lebih besar. Pindahkan kapaknya melalui jangkauan penuh mereka setelah memuat sebuah permainan.</value></data>
 </root>

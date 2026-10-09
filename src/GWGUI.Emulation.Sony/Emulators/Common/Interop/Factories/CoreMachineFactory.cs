@@ -3,6 +3,7 @@ using System.IO;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Sony.Emulators.Common.Interop.Services;
+using PlayStationFirmware = GWGUI.Emulation.Sony.Common.Machines.PlayStation.Constants.FirmwareConstants;
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Factories;
 
@@ -15,7 +16,9 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
     protected CoreReleaseSettings ReleaseSettings => CoreDefinition.ReleaseSettings;
     public bool RequiresExternalFirmware => CoreDefinition.RequiresExternalFirmware;
     public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) =>
-        CoreDefinition.Firmware;
+        configuration.Model == ModelConstants.PlayStation
+            ? [PlayStationFirmware.Selected]
+            : CoreDefinition.Firmware;
     public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) =>
         CoreSettingsFunctions.Blocks(CoreDefinition, configuration);
     public IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) =>

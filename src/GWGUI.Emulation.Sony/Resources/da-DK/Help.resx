@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony maskine model bliver konfigureret.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Viser RAM som leveres af den valgte Sony maskine.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Mængde RAM til rådighed for den emulerede maskine.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Hyppighed af den emulerede CPU efter anvendelse af den valgte urprocentdel.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Den nominelle konsolfrekvens ganges med den valgte procentdel. Dette ændrer den emulerede processor, ikke værtsprocessoren. Højere værdier kan reducere slowdowns, men kan bryde game timing. Automatisk bruger emulator standard.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Originale videochips, der anvendes af PlayStation hardware revisioner.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>De anførte Sony GPU chips varierer med bundkortet revision. Intern rendering muligheder styre, hvordan emulatoren producerer geometri og pixels. GW GUI billedfiltre behandler det færdige billede bagefter.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Originale lydchips bruges af PlayStation hardware revisioner.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU blander lydstemmer og afkoder komprimerede prøver. De anførte chips varierer med bundkortet revision. Lyd output og latency kontrol afspilning på din computer.</value></data>
 </root>

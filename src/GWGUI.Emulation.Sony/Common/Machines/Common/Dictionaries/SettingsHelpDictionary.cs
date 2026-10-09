@@ -9,6 +9,8 @@ internal static class SettingsHelpDictionary
             [SettingsConstants.Emulator] = "Emulation.Sony.Help.General.Emulator",
             [SettingsConstants.Model + ".cpu"] = "Emulation.Sony.Help.Cpu.Model",
             [SettingsConstants.Model + ".frequency"] = "Emulation.Sony.Help.Cpu.Frequency",
+            [SettingsConstants.Model + ".video"] = "Emulation.Sony.Help.Video.Chip",
+            [SettingsConstants.Model + ".audio"] = "Emulation.Sony.Help.Audio.Chip",
             [SettingsConstants.Ram] = "Emulation.Sony.Help.Memory.Ram",
             [SettingsConstants.FirmwareIntegrated] = "Emulation.Sony.Help.Firmware.Integrated",
             [SettingsConstants.AudioEnabled] = "Emulation.Sony.Help.Audio.Enabled",

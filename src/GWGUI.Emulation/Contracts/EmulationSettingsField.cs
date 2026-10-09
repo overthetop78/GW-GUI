@@ -19,4 +19,8 @@ public sealed record EmulationSettingsField(
     EmulationSettingsChoiceSource ChoiceSource = EmulationSettingsChoiceSource.Declared,
     bool RefreshSettingsOnChange = false,
     bool RequiresRestart = false,
-    EmulationSettingsNumericRange? NumericRange = null);
+    EmulationSettingsNumericRange? NumericRange = null,
+    IReadOnlyList<string>? AppliesToControllerIds = null,
+    int? ControllerPortNumber = null,
+    string? FrequencyScaleFieldId = null,
+    bool IsGlobalControllerOption = false);

@@ -7,8 +7,8 @@
   <data name="Emulation.Memory.Main"><value>الذاكرة الرئيسية</value></data>
   <data name="Emulation.Memory.Extensions"><value>توسعات الذاكرة</value></data>
   <data name="Emulation.Memory.None"><value>بلا</value></data>
-  <data name="Emulation.Memory.CompatibleWithModel"><value>إعداد الذاكرة متوافق مع {0}.</value></data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>توسعات الذاكرة متوافقة مع {0}.</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Compatible formation: {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>تمديدات الذاكرة المتوافقة: {0}.</value></data>
   <data name="Emulation.Memory.Z3UnavailableForModel"><value>زورو III RAM غير متاحة على الموقع الشبكي: {0}.</value></data>
   <data name="Emulation.Memory.TotalConfigured"><value>إجمالي الذاكرة المعدّة: {0} {1}</value></data>
 </root>

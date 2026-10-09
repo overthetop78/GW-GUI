@@ -22,11 +22,11 @@
   <data name="Emulation.Option.Sony.Value.Square"><value>จัตุรัส</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Label"><value>ขอบเขต cosole</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Help"><value>ระบุขอบเขต/ ฮาร์ดแวร์ที่จะคัดลอก ตรวจหาอัตโนมัติ จะใช้ขอบเขตของแผ่นที่แทรกเข้าไป</value></data>
-  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>ตรวจสอบอัตโนมัติ</value></data>
+  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>ตรวจพบอัตโนมัติ</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (ญี่ปุ่น)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, แคนาดา)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (Europe, ออสเตรเลีย) พ.ศ.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>บูตแบบเร็ว</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>ข้ามการเคลื่อนไหวของ BIOS ที่เริ่มทํางาน</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>ข้ามช่อง BIOS/อินโทร เข้าสู่เกมทันที ปกติ ปลอดภัย ที่ จะ ทํา ได้ แต่ เกม บาง อย่าง หยุด.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>เปิดใช้งาน</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>ปิดการใช้งาน</value></data>
@@ -40,7 +40,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>โหลดอิมเมจแผ่นเป็น RAM ก่อนเริ่มจําลองข้อมูล อาจลดการผูกขาด หากคุณกําลังทํางานปิดหุ้นของเครือข่าย ด้วยค่าใช้จ่ายของการเริ่มต้นที่มากขึ้น ขณะที่ libretro ให้วิธีการวาดทับไม่ได้ ตัวจําลองจะปรากฏที่จะล็อคขึ้น ในขณะที่ภาพถูกโหลดล่วงหน้า</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD ภาพถึง RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>นําหน้า CHD CD-ROM รูปภาพต่าง ๆ ไปยัง RAM โดยที่ไม่ทําให้มันเสื่อมทราม. ไม่เหมือนกับตัวเลือกก่อนโหลด ตัวเลือกนี้จะรองรับแฟ้ม M3U มันเร็วกว่าและต้องการน้อยลง RAM เมื่อเทียบกับการเติมอาหารโดยไม่ได้ย่อยสลาย CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Mute CD เสียง</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>ปิดเสียง CD เพลง</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>เป็น ใบ้ ที่ เข้าใจ ง่าย ทั้ง สอง อย่าง CD-DA และ XA เสียงจาก CD-ROM. สามารถใช้ในการปิดการแสดงดนตรีพื้นหลังในบางเกมได้</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>CD-ROM อ่านสปีดอัพ</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>ความเร็วขึ้น CD-ROM อ่านโดยปัจจัยที่ระบุไว้ ใช้สําหรับการอ่านแบบดับเบิลสปีดเท่านั้น และจะไม่สนใจเมื่อมีการเล่นเพลง อาจ ทํา ให้ ความ เร็ว ใน เกม บาง ประเภท เพิ่ม ขึ้น ด้วย การ ทํา ให้ ผู้ อื่น เสีย หาย.</value></data>
@@ -308,7 +308,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>CD ความเร็วการโหลด</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>ค่าที่มากกว่า '2x (native)' สามารถลดเวลาการโหลดของเกมลงได้มาก แต่อาจจะแนะนําการจับเวลาผิดพลาดก็ได้ เกม บาง อย่าง อาจ ทํา ได้ ไม่ ดี กว่า ค่า ใด ๆ.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x (native)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>ข้าม BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>ข้ามการเคลื่อนไหวของ BIOS ที่เริ่มทํางาน</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>อย่าแสดง PlayStation BIOS ภาพเคลื่อนไหวเมื่อเริ่มเกม. ตัวเลือกนี้จะก่อให้เกิดปัญหาในบางเกม รวมถึงเกมส์ด้วย PAL คัดลอกการป้องกันและ Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>กว่า BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>ครอบคลุมพื้นที่มาตรฐาน ระบุ BIOS ด้วยพื้นที่ปลอดสารถ้าพบ ต้องเริ่มใหม่</value></data>
@@ -338,7 +338,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>แสดงอัตราเฟรมภาพภายในที่เลียนแบบ PlayStation ระบบกําลังแสดงเนื้อหา. ข้อควรจํา: ต้องเปิดใช้งานการแจ้งเตือนทางหน้าจอ ในฉากหน้าของ libretro</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>แสดงข้อความของOSD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>แสดงข้อความ OSD ที่ถูกสร้างจากแกนหลัก</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>อนาล็อกการปรับเปลี่ยนตัวเอง</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>ปรับช่วงการป้อนข้อมูลแบบย่อ</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>เปิดใช้การปรับเทียบข้อมูลแบบไม่ตายตัว เมื่ออุปกรณ์ถูกตั้งค่าเป็น DualShock, Analog Control, Annalog จอยสติ๊ก หรือ neGcon. ค่าที่ขึ้นทะเบียนสูงสุดจะถูกติดตามในเรียลไทม์ และใช้ในการปรับขนาดพิกัดแบบอนาล็อกผ่านไปยังเครื่องจําลอง ข้อ นี้ ควร ใช้ สําหรับ เกม ต่าง ๆ เช่น ตํานาน เม กา แมน 2 ซึ่ง คาด หมาย ค่า นิยม ที่ ใหญ่ กว่า สิ่ง ที่ ผู้ ควบคุม สมัย ใหม่ ให้ ไว้. เพื่อ จะ ได้ ผล ดี ที่ สุด ควร ใช้ การ หมุน แบบ แอ ส ล็อก อย่าง เต็ม ขนาด ใน การ ปรับ ความ คิด ให้ ถูก ต้อง ทุก ครั้ง ที่ บรรจุ เนื้อหา.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock เปิด/สลับโหมดอะนาล็อก</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>เมื่อชนิดของอุปกรณ์นําเข้า DualShock, ตัวเลือกนี้ จะอนุญาตให้จําลองภาพได้ DualShock ให้สลับไปมาระหว่าง DIGITAL และ ANALOG โหมดเช่น ฮาร์ดแวร์ดั้งเดิม. คุณสามารถสลับโหมดได้โดยการใช้ชุดปุ่มที่เลือกไว้</value></data>
@@ -471,7 +471,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>การเข้าถึงอย่างพร้อมเพรียงทําให้อุปกรณ์ต้นแบบเกิดขึ้นอีกครั้ง การ เข้า ไป อย่าง ไม่ รู้ จัก เหน็ด เหนื่อย อาจ ช่วย ลด การ หยุด พัก ใน อุปกรณ์ ที่ มี การ เก็บ ไว้ ช้า. การโหลดอิมเมจของแผ่นทั้งหมดลงใน RAM สามารถปรับปรุงการเรียกใช้เวลาระหว่างเกมได้ แต่จะทําให้ล่าช้าขึ้น โหมดนี้จะก่อให้เกิดปัญหา เมื่อมีข้อจํากัดของ RAM แผ่นเนื้อความจะใช้สิทธิ์ที่สัมพันธ์กันแทนการโหลดภาพทั้งหมด เริ่มการทํางานใหม่หลังจากเปลี่ยนแปลงตัวเลือกนี้แล้ว</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD ความเร็วการโหลด</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>ค่าที่มากกว่า '2x (native)' สามารถลดเวลาการโหลดของเกมลงได้มาก แต่อาจจะแนะนําการจับเวลาผิดพลาดก็ได้ เกม บาง อย่าง อาจ ทํา ได้ ไม่ ดี กว่า ค่า ใด ๆ.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>ข้าม BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>ข้ามการเคลื่อนไหวของ BIOS ที่เริ่มทํางาน</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>อย่าแสดง PlayStation BIOS ภาพเคลื่อนไหวเมื่อเริ่มเกม. ตัวเลือกนี้จะก่อให้เกิดปัญหาในบางเกม รวมถึงเกมส์ด้วย PAL คัดลอกการป้องกันและ Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>กว่า BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>ครอบคลุมพื้นที่มาตรฐาน ระบุ BIOS ด้วยพื้นที่ปลอดสารถ้าพบ ต้องเริ่มใหม่</value></data>
@@ -603,7 +603,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>แสดงข้อความ OSD ที่ถูกสร้างจากแกนหลัก</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>แสดงผลแบบเต็ม VRAM (ดีบั๊ก)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>วิชัวไลซ์แผงควบคุมทั้งหมด VRAM รองรับโดยตัวแปลฮาร์ดแวร์แบบ OpenGL และ Vulkan เท่านั้น ข้อควรจํา: นี่เป็นสําหรับวัตถุประสงค์การดีบั๊ก และปกติควรจะปิดการใช้งาน</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>อนาล็อกการปรับเปลี่ยนตัวเอง</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>ปรับช่วงการป้อนข้อมูลแบบย่อ</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>เปิดใช้การปรับเทียบข้อมูลแบบไม่ตายตัว เมื่ออุปกรณ์ถูกตั้งค่าเป็น DualShock, Analog Control, Annalog จอยสติ๊ก หรือ neGcon. ค่าที่ขึ้นทะเบียนสูงสุดจะถูกติดตามในเรียลไทม์ และใช้ในการปรับขนาดพิกัดแบบอนาล็อกผ่านไปยังเครื่องจําลอง ข้อ นี้ ควร ใช้ สําหรับ เกม ต่าง ๆ เช่น ตํานาน เม กา แมน 2 ซึ่ง คาด หมาย ค่า นิยม ที่ ใหญ่ กว่า สิ่ง ที่ ผู้ ควบคุม สมัย ใหม่ ให้ ไว้. เพื่อ จะ ได้ ผล ดี ที่ สุด ควร ใช้ การ หมุน แบบ แอ ส ล็อก อย่าง เต็ม ขนาด ใน การ ปรับ ความ คิด ให้ ถูก ต้อง ทุก ครั้ง ที่ บรรจุ เนื้อหา.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock เปิด/สลับโหมดอะนาล็อก</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>เมื่อชนิดของอุปกรณ์นําเข้า DualShock, ตัวเลือกนี้ จะอนุญาตให้จําลองภาพได้ DualShock ให้สลับไปมาระหว่าง DIGITAL และ ANALOG โหมดเช่น ฮาร์ดแวร์ดั้งเดิม. คุณสามารถสลับโหมดได้โดยการใช้ชุดปุ่มที่เลือกไว้</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_ntsc.Help"><value>เรียกใช้ VBlank Frequency ที่อัตรา NTSC (59.94 Hz สําหรับ 60) แทนที่จะเป็นเลขรอบ. เปิดใช้โดยปริยาย เช่นเดียวกับใน RPCS3</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_hle_lwmutex.Label"><value>HLE Iwmutx</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_hle_lwmutex.Help"><value>ใช้HLE สําหรับ Iwmutx.</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>แก้ไขเรขาคณิต (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>พื้นผิว</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>ความเข้ากันได้</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>การจับเวลาของภาพ</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>นาฬิกา CPU (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>บังคับให้ใช้รูปแบบแอ็คชั่น</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>ใช้แท่งอนาล็อกสําหรับทิศทางดิจิทัล</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>ปรับขนาดแกนอะนาล็อก</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>ความแข็งแรงของการกระฉับกระเฉง</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>ความไวของปืนทางแนวนอน</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>ความไวของปืนทางแนวตั้ง</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>บริเวณ ที่ ตาย แล้ว</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>การตอบสนองของการเยื้อง</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>วัดช่วงแกนความคล้ายที่วัดได้ของเกม ที่คาดหวังค่า input มากขึ้น ย้ายแกนผ่านช่วงเต็ม หลังจากที่โหลดเกม</value></data>
 </root>

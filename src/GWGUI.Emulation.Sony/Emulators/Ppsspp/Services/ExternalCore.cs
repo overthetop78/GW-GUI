@@ -55,6 +55,7 @@ internal sealed class ExternalCore : IEmulatorCore
     public void Initialize(MachineConfiguration configuration, string sessionDirectory,
         string? saveDirectory = null)
     {
+        saveDirectory = ResolveSaveDirectory(configuration, saveDirectory);
         _configuration = configuration;
         _sessionDirectory = Path.GetFullPath(sessionDirectory);
         _saveDirectory = saveDirectory is null ? null : Path.GetFullPath(saveDirectory);
@@ -145,6 +146,9 @@ internal sealed class ExternalCore : IEmulatorCore
             throw;
         }
     }
+
+    internal static string? ResolveSaveDirectory(MachineConfiguration configuration, string? fallback) =>
+        Emulators.Common.Interop.Functions.MemoryCardFunctions.SelectedPath(configuration, 0) ?? fallback;
 
     internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(
         MachineConfiguration configuration) => (configuration.Media ?? [])

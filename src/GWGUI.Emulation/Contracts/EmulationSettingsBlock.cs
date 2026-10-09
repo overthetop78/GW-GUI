@@ -7,4 +7,6 @@ public sealed record EmulationSettingsBlock(
     IReadOnlyList<EmulationSettingsField> Fields,
     string? Icon = null,
     int Columns = 1,
-    bool IsVisible = true);
+    bool IsVisible = true,
+    bool IsCollapsible = false,
+    bool IsCompact = false);

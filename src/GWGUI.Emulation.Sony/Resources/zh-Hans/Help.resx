@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony机型正在配置中.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>显示选中的Sony机器提供的RAM.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>可供模拟机器使用的金额为RAM美元。</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>应用所选时钟百分比后模拟的 CPU 的频率 。</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>标称控制台频率乘以所选百分比. 这改变了被模拟的处理器,而不是主机处理器. 更高的值可以减少减速,但可能打破游戏时间. 自动使用模拟器默认值 。</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>PlayStation硬件修订版使用的原始视频芯片.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>上市的Sony GPU芯片随母板修订而异. 内部渲染选项控制仿真器如何生成几何和像素. GW GUI 图像过滤器在完成后处理完成的图像.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>PlayStation硬件修订版使用的原始音频芯片.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU混合了声音并解码了压缩样品. 上市芯片随母板修订而变化. 音频输出和延迟控制在您的计算机上播放。</value></data>
 </root>

@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony machine model wordt geconfigureerd.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Toont het RAM-geheugen dat door de geselecteerde Sony machine wordt geleverd.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Hoeveelheid RAM beschikbaar voor de emuleerde machine.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Frequentie van de geemuleerde CPU na toepassing van het geselecteerde klokpercentage.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>De nominale consolefrequentie wordt vermenigvuldigd met het geselecteerde percentage. Dit verandert de geemuleerde processor, niet de host-processor. Hogere waarden kunnen vertragingen verminderen, maar kan breken spel timing. Automatisch gebruikt de standaard emulator.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Originele videochips gebruikt door PlayStation hardware revisies.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>De vermelde Sony GPU chips variëren met de moederbord revisie. Interne rendering opties bepalen hoe de emulator geometrie en pixels produceert. GW GUI afbeeldingsfilters verwerken achteraf de voltooide afbeelding.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Originele audiochips gebruikt door PlayStation hardware revisies.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>De Sony SPU mixt geluidstemmen en decodeert gecomprimeerde samples. De vermelde chips variëren met de moederbord revisie. Audio-uitvoer en latentie controle afspelen op uw computer.</value></data>
 </root>

@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Model mesin Sony sedang dikonfigurasi.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Tampilkan RAM yang disediakan oleh mesin Sony terpilih.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Jumlah RAM yang tersedia untuk mesin yang diemulasi.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Frekuensi CPU yang telah digandakan setelah menerapkan persentase jam yang dipilih.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Frekuensi konsol nominal dikalikan dengan persentase yang dipilih. Ini mengubah prosesor yang digandakan, bukan processor host. Nilai yang lebih tinggi dapat mengurangi slowdowns tetapi mungkin istirahat waktu permainan. Otomatis memakai emulator baku.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Rekaman video asli yang digunakan oleh Revisi perangkat keras PlayStation.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>Chip Sony GPU yang terdaftar bervariasi dengan revisi motherboard. Opsi rendering internal mengontrol bagaimana emulator menghasilkan geometri dan piksel. Filter gambar GW GUI memproses gambar yang selesai setelah itu.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Keripik audio asli yang digunakan oleh Revisi perangkat keras PlayStation.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU mencampur suara dan decode sampel terkompresi. Chip yang terdaftar bervariasi dengan revisi motherboard. Pemutaran audio output dan latensi kontrol pada komputer Anda.</value></data>
 </root>

@@ -32,6 +32,12 @@ public static class EmulationControllerVisualIds
     public const string XboxChatpad = "xbox-chatpad";
     public const string SonyPlayStationController = "sony-playstation-controller";
     public const string SonyDualShock1 = "sony-dualshock-1";
+    public const string SonyDualAnalog = "sony-dual-analog";
+    public const string SonyAnalogJoystick = "sony-analog-joystick";
+    public const string SonyPlayStationMouse = "sony-playstation-mouse";
+    public const string SonyNeGcon = "sony-negcon";
+    public const string SonyGunCon = "sony-guncon";
+    public const string SonyJustifier = "sony-justifier";
     public const string SonyDualShock2 = "sony-dualshock-2";
     public const string SonyDualShock4 = "sony-dualshock-4";
     public const string SonyDualSense = "sony-dualsense";

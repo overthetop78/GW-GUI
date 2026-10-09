@@ -22,11 +22,11 @@
   <data name="Emulation.Option.Sony.Value.Square"><value>Torget Square</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Label"><value>Konsolregionen</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Help"><value>Bestäm vilken region/hårdvara som ska efterliknas. Auto-Detect kommer att använda regionen av skivan som infogas.</value></data>
-  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Auto-Detect</value></data>
+  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Automatisk upptäckt</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (japan)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, Kanada)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (Europa, Australien)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Fast Boot</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Hoppa över BIOS start animation</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>Hoppa över BIOS skal / intro, startar direkt i spelet. Vanligtvis säkert att aktivera, men vissa spel bryts.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>Aktiverad</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>Inaktiverad</value></data>
@@ -40,7 +40,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Laddar skivbilden till RAM innan du börjar emulera. Kan minska hitching om du kör av en nätverksandel, till en kostnad för en större starttid. Eftersom libretro inte ger något sätt att dra överlag, kommer emulatorn verkar låsa upp medan bilden är förinstallerad.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD bilder till RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>Pre-caches CHD CD-ROM bilder till RAM utan att dekomprimera dem. Till skillnad från preload alternativet stöder detta alternativ M3U-filer. Det är också snabbare och kräver mindre RAM jämfört med preloading eftersom det inte dekomprimerar CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Mute CD Audio</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Inaktivera CD-ljud</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>CD-DA och XA ljud från CD-ROM. Kan användas för att inaktivera bakgrundsmusik i vissa spel.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>CD-ROM Läs Speedup</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>Snabbar upp CD-ROM läser av den angivna faktorn. Det gäller endast dubbelhastighetsläsningar och ignoreras när ljudet spelar. Kan förbättra laddningshastigheterna i vissa spel, till kostnaden för att bryta andra.</value></data>
@@ -308,7 +308,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>CD Loading Speed</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>Värden högre än "2x" kan kraftigt minska in-game laddningstider, men kan införa tidpunktfel. Vissa spel kanske inte fungerar korrekt över ett visst värde.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x (infödd)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Hoppa över BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Hoppa över BIOS start animation</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>Visa inte PlayStation BIOS-animering när du startar ett spel. Detta alternativ kan orsaka problem i vissa spel, inklusive spel med PAL-kopieringsskydd och Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>Överskridande BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>Åsidosätt standardregionen specifika BIOS med en regionfri om den finns. Restart krävs.</value></data>
@@ -338,7 +338,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>Visa den interna ramhastigheten där det emulerade PlayStation-systemet gör innehåll. Obs!: Kräver att meddelanden på skärmen ska aktiveras i libretro-fronten.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>Visa OSD-meddelanden</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>Visa OSD-meddelanden som genereras av kärnan.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Analog självkalibrering</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Anpassa analog ingångsintervall</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>möjliggör dynamisk kalibrering av analoga ingångar när enheten är inställd på DualShock, analog styrenhet, analogen joystick eller neGcon. Maximalt registrerade ingångsvärden övervakas i realtid och används för att skala analoga koordinater som överförts till emulatorn. Detta bör användas för spel som Mega Man Legends 2 som förväntar sig större värden än vad moderna styrenheter tillhandahåller. För bästa resultat bör analoga pinnar roteras i full utsträckning för att ställa in kalibreringsalgoritmen varje gång innehållet laddas.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock Analogt läge Toggle</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>När ingångsenheten typ är DualShock, gör det här alternativet att den emulerade DualShock kan växlas mellan DIGITAL och ANALOG läge som original hårdvara. Mode kan också växlas med den valda knappkombinationen.</value></data>
@@ -471,7 +471,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Synkron åtkomst reproducerar den ursprungliga hårdvaran. Asynkron åtkomst kan minska pauser på enheter med långsam lagring. Ladda hela skivbilden i RAM kan förbättra laddningstiderna under spelet, men fördröjer start. Detta läge kan orsaka problem när RAM är begränsat. Fysiska skivor använder synkron åtkomst istället för att ladda hela bilden. Starta om efter att ha ändrat detta alternativ.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>CD Loading Speed</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>Värden högre än "2x" kan kraftigt minska in-game laddningstider, men kan införa tidpunktfel. Vissa spel kanske inte fungerar korrekt över ett visst värde.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Hoppa över BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Hoppa över BIOS start animation</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>Visa inte PlayStation BIOS-animering när du startar ett spel. Detta alternativ kan orsaka problem i vissa spel, inklusive spel med PAL-kopieringsskydd och Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>Överskridande BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>Åsidosätt standardregionen specifika BIOS med en regionfri om den finns. Restart krävs.</value></data>
@@ -603,7 +603,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>Visa OSD-meddelanden som genereras av kärnan.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>Visa full VRAM (Debug)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>Visualisera hela den emulerade konsolens VRAM. Endast stöds av OpenGL och Vulkan hårdvarugivare. Obs!: Detta är för felsökningsändamål, och bör normalt vara inaktiverat.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Analog självkalibrering</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Anpassa analog ingångsintervall</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>möjliggör dynamisk kalibrering av analoga ingångar när enheten är inställd på DualShock, analog styrenhet, analogen joystick eller neGcon. Maximalt registrerade ingångsvärden övervakas i realtid och används för att skala analoga koordinater som överförts till emulatorn. Detta bör användas för spel som Mega Man Legends 2 som förväntar sig större värden än vad moderna styrenheter tillhandahåller. För bästa resultat bör analoga pinnar roteras i full utsträckning för att ställa in kalibreringsalgoritmen varje gång innehållet laddas.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock Analogt läge Toggle</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>När ingångsenheten typ är DualShock, gör det här alternativet att den emulerade DualShock kan växlas mellan DIGITAL och ANALOG läge som original hårdvara. Mode kan också växlas med den valda knappkombinationen.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_ntsc.Help"><value>Kör VBlank-frekvensen vid NTSC (59.94 Hz för 60) i stället för det runda numret. Som standard, som i RPCS3.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_hle_lwmutex.Label"><value>HLE Lwmutex</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_hle_lwmutex.Help"><value>Använd HLE implementering för lwmutex.</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>Geometrikorrigering (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>Texturer</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>Kompatibilitet</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>Image timing</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>CPU klocka (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>Force analogt läge</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>Använd analoga pinnar för digitala riktningar</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>Analog axelskala</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>Vibrationsstyrka</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>Horisontell pistolkänslighet</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>Vertikal pistolkänslighet</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Styr deadzone</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Styrrespons</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Skalar det uppmätta analoga axelområdet för spel som förväntar sig större ingångsvärden. Flytta axlarna genom hela sortimentet efter att ha laddat ett spel.</value></data>
 </root>

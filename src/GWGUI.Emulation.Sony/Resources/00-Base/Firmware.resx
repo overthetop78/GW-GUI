@@ -17,4 +17,5 @@
   <data name="Emulation.Sony.Firmware.PlayStation.Ps3"><value>PS1_ROM</value></data>
   <data name="Emulation.Sony.Firmware.PlayStation.OpenBios"><value>OpenBIOS</value></data>
   <data name="Emulation.Sony.Firmware.Rpcs3.System"><value>PS3UPDAT.PUP</value></data>
+  <data name="Emulation.Sony.Firmware.PlayStation.Selected"><value>BIOS</value></data>
 </root>

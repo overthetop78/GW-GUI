@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony machine model being configured.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Displays the RAM provided by the selected Sony machine.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Amount of RAM available to the emulated machine.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Frequency of the emulated CPU after applying the selected clock percentage.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>The nominal console frequency is multiplied by the selected percentage. This changes the emulated processor, not the host processor. Higher values can reduce slowdowns but may break game timing. Automatic uses the emulator default.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Original video chips used by PlayStation hardware revisions.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>The listed Sony GPU chips vary with the motherboard revision. Internal rendering options control how the emulator produces geometry and pixels. GW GUI image filters process the completed image afterwards.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Original audio chips used by PlayStation hardware revisions.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>The Sony SPU mixes sound voices and decodes compressed samples. The listed chips vary with the motherboard revision. Audio output and latency control playback on your computer.</value></data>
 </root>

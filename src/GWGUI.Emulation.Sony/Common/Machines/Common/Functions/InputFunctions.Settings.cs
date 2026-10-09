@@ -5,6 +5,8 @@ internal static partial class InputSettingsFunctions
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var model = ModelCatalog.Get(configuration.Model);
+        if (!EmulatorCatalog.GetAll(model.Id).Any(adapter => adapter.Id == configuration.EmulatorId))
+            return new EmulationInputSettings(null, null, []);
         var input = configuration.Input ?? new InputConfiguration();
         var types = ControllerCatalog.Types(configuration);
         var keyboard = model.HasKeyboard || types.Any(type => type is
@@ -36,6 +38,8 @@ internal static partial class InputSettingsFunctions
     internal static MachineConfiguration Apply(MachineConfiguration configuration,
         EmulationInputSettings settings)
     {
+        if (!EmulatorCatalog.GetAll(configuration.Model).Any(adapter => adapter.Id == configuration.EmulatorId))
+            return configuration;
         var current = configuration.Input ?? new InputConfiguration();
         var keyboard = settings.Keyboard?.Values ?? new Dictionary<string, string>();
         var mouse = settings.Mouse?.Values
@@ -44,7 +48,7 @@ internal static partial class InputSettingsFunctions
                 && action != MouseAction.None)
             .ToDictionary(item => item.Value, item => Enum.Parse<MouseAction>(item.Key, true),
                 StringComparer.OrdinalIgnoreCase) ?? new Dictionary<string, MouseAction>();
-        var controllers = settings.ControllerPorts.Select(port =>
+        var controllers = settings.ControllerPorts.Where(port => port.Number <= ControllerFunctions.PortCount(configuration)).Select(port =>
         {
             var index = port.Number - ControllerPortConstants.OneControllerPort;
             if (!Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type))
@@ -189,7 +193,14 @@ internal static partial class InputSettingsFunctions
         if (model.Id == ModelConstants.PlayStation && type == ControllerType.Joystick)
             return buttons.Where(definition => definition.Id is not
                 (EmulationControllerCommandIds.L3 or EmulationControllerCommandIds.R3)).ToArray();
-        return buttons.Concat(AnalogStickDefinitions()).ToArray();
+        if (type is ControllerType.AnalogController or ControllerType.AnalogJoystick)
+            buttons = buttons.Where(definition => definition.Id is not
+                (EmulationControllerCommandIds.L3 or EmulationControllerCommandIds.R3)).ToArray();
+        var analogButtons = model.Id == ModelConstants.PlayStation
+            && type is ControllerType.DualShock or ControllerType.AnalogController or ControllerType.AnalogJoystick
+            ? new[] { Definition(InputSettingsFunctionsConstants.Analog, InputSettingsFunctionsConstants.Analog, string.Empty) }
+            : [];
+        return buttons.Concat(analogButtons).Concat(AnalogStickDefinitions()).ToArray();
     }
 
     private static IReadOnlyList<InputBindingDefinition> AnalogStickDefinitions() =>

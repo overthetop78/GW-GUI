@@ -20,4 +20,10 @@
   <data name="Emulation.Sony.Help.General.Model.Short"><value>Sony maskinmodell konfigureres.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Detailed"><value>Viser RAM som leveres av den valgte Sony maskinen.</value></data>
   <data name="Emulation.Sony.Help.Memory.Ram.Short"><value>Antall RAM som er tilgjengelig for den emulerte maskinen.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Short"><value>Frekvensen til den emulerte CPU etter å ha påført det valgte klokkeprosent.</value></data>
+  <data name="Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed"><value>Den nominelle konsollfrekvensen multipliseres med den valgte prosent. Dette endrer den emulerte prosessoren, ikke vertsprosessorer. Høyere verdier kan redusere nedgangene, men kan bryte spillets timing. Automatisk bruker emulatorens standard.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Short"><value>Originale videochips som brukes av PlayStations maskinvare revisjoner.</value></data>
+  <data name="Emulation.Sony.Help.Video.Chip.Detailed"><value>De oppførte Sony GPU-chipsene varierer med moderkortets revisjon. Interne gjengivelsesalternativer styrer hvordan emulatoren produserer geometri og piksler. GW GUI bildefilter behandler det fullførte bildet etterpå.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Short"><value>Original lyd chips som brukes av PlayStation maskinvare revisjoner.</value></data>
+  <data name="Emulation.Sony.Help.Audio.Chip.Detailed"><value>Sony SPU blander lyd stemmer og dekoder komprimerte prøver. De oppførte chipsene varierer med moderkortet revisjon. Lydutgang og latenskontroll avspilling på datamaskinen.</value></data>
 </root>

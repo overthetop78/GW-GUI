@@ -7,6 +7,15 @@ internal static partial class SettingsDescriptionFunctionsConstants
     internal const string Disabled = "disabled";
     internal const string General = "general";
     internal const string Cpu = "cpu";
+    internal const string Acceleration = "acceleration";
+    internal const string ResourceAcceleration = "Emulation.Cpu.Acceleration";
+    internal const string ResourceEffectiveFrequency = "Emulation.Sony.Cpu.EffectiveFrequency";
+    internal const string ResourceVideoChip = "Emulation.Sony.Video.Chip";
+    internal const string ResourceAudioChip = "Emulation.Sony.Audio.Chip";
+    internal const string EffectiveFrequencyHelpShort = "Emulation.Sony.Help.Cpu.EffectiveFrequency.Short";
+    internal const string EffectiveFrequencyHelpDetailed = "Emulation.Sony.Help.Cpu.EffectiveFrequency.Detailed";
+    internal const string EffectiveFrequencyField = "configuration.cpu.effectiveFrequency";
+    internal const long PlayStationFrequencyHz = 33_868_800;
     internal const string Memory = "memory";
     internal const string Firmware = "firmware";
     internal const string Video = "video";

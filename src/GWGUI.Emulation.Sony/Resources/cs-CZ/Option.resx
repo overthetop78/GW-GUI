@@ -10,11 +10,11 @@
   <data name="Emulation.Sony.Language.Spanish"><value>Španělština</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Label"><value>Konzolová oblast</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Help"><value>Určuje, který region / hardware se bude napodobovat. Auto- Detect bude používat oblast vloženého disku.</value></data>
-  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Automaticky detekovat</value></data>
+  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Automatická detekce</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (Japonsko)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, Kanada)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (Evropa, Austrálie)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Rychlá bota</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Skip BIOS startup animace</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>Přeskočí BIOS shell / intro, vpluje přímo do hry. Obvykle je to bezpečné, ale některé hry se rozbijí.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>Povoleno</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>Zakázáno</value></data>
@@ -28,7 +28,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Načte obrázek disku do RAM před zahájením emulace. Může snížit stopování, pokud jste běží off sdílení sítě, za cenu většího času spuštění. Vzhledem k tomu, libretro neposkytuje žádný způsob, jak nakreslit překryvy, emulátor se objeví uzamknout, zatímco obraz je předložen.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre- cache CHD obrázky do RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>Pre- caches CHD CD-ROM obrázky na RAM bez jejich dekomprese. Na rozdíl od možnosti předložení, tato volba podporuje M3U soubory. Je také rychlejší a vyžaduje méně RAM ve srovnání s předložením, protože to není dekomprese CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Ztlumit zvuk CD</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Zakázat zvuk CD</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>Forcively mutes obou CD-DA a XA audio z CD-ROM. Lze použít k deaktivování hudby pozadí v některých hrách.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>CD-ROM Přečti si Speedup</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>Urychluje CD-ROM čtení podle specifikovaného faktoru. Platí pouze pro dvojité čtení rychlosti a je ignorován při přehrávání zvuku. Může zlepšit rychlost načítání v některých hrách, za cenu rozbití ostatní.</value></data>
@@ -296,7 +296,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>Rychlost nahrávání CD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>Hodnoty vyšší než '2x (Native)' mohou výrazně snížit dobu načítání uvnitř hry, ale mohou zavádět chyby v načasování. Některé hry nemusí správně fungovat nad určitou hodnotu.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x (původní)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Přeskočit BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Skip BIOS startup animace</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>Při zahájení hry neukazujte animaci PlayStation BIOS. Tato volba může způsobit problémy v některých hrách, včetně her s PAL ochrana kopií a Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>Překročit BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>Override standardní region specifický BIOS s region- free jeden, pokud nalezen. Restartovat nutné.</value></data>
@@ -326,7 +326,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>Zobrazení interního snímku, při kterém emulovaný systém PlayStation zobrazuje obsah. Poznámka: Vyžaduje, aby oznámení na obrazovce byla povolena v libretro frontendu.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>Zobrazit OSD zprávy</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>Zobrazit OSD zprávy generované jádrem.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Analogová Self- kalibrace</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Přizpůsobit analogový vstupní rozsah</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>Povolit dynamickou kalibraci analogových vstupů, když je zařízení nastaveno na DualShock, Analog Controller, Ananog Joystick, nebo neGcon. Maximální registrované vstupní hodnoty jsou monitorovány v reálném čase a použity pro měřítko analogových souřadnic přenesených na emulátor. To by mělo být použito pro hry, jako je Mega Man Legends 2, které očekávají větší hodnoty, než to, co moderní regulátoři poskytují. Pro nejlepší výsledky by analogové tyčinky měly být otáčeny v plném rozsahu, aby se vyladil kalibrační algoritmus při každém načtení obsahu.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>Přepnout analogový režim DualShock</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>Pokud je typ vstupního zařízení DualShock, tato volba umožňuje emulaci DualShock přepnout mezi režim DIGITAL a ANALOG jako originální hardware. Režim lze také přepnout pomocí zvolené kombinace tlačítka.</value></data>
@@ -395,7 +395,7 @@
   <data name="Emulation.Option.Sony.Value.DisabledBeetleInterpreter"><value>Zakázáno (tlumič brouků)</value></data>
   <data name="Emulation.Option.Sony.Value.MaxPerformance"><value>Maximální výkon</value></data>
   <data name="Emulation.Option.Sony.Value.LightrecInterpreter"><value>Lightrec Interpreter</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Label"><value>Dynarec Nevalidace kódu</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Label"><value>Nevalidace kódu Dynarecu</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Help"><value>Některé hry vyžadují plnou neplatnost, některé potřebují pouze DMA.</value></data>
   <data name="Emulation.Option.Sony.Value.Full"><value>Plná</value></data>
   <data name="Emulation.Option.Sony.Value.DMAOnlySlightlyFaster"><value>Pouze DMA (mírně rychlejší)</value></data>
@@ -459,7 +459,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Synchronní přístup reprodukuje původní hardware. Asynchronní přístup může snížit pauzy na zařízeních s pomalým uložením. Načtení celého obrazu disku do RAM může zlepšit časy načítání během hry, ale zpoždění spuštění. Tento režim může způsobit problémy při omezení RAM. Fyzické disky používají synchronní přístup namísto načítání celého obrazu. Restartovat po změně této volby.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>Rychlost nahrávání CD</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>Hodnoty vyšší než '2x (Native)' mohou výrazně snížit dobu načítání uvnitř hry, ale mohou zavádět chyby v načasování. Některé hry nemusí správně fungovat nad určitou hodnotu.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Přeskočit BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Skip BIOS startup animace</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>Při zahájení hry neukazujte animaci PlayStation BIOS. Tato volba může způsobit problémy v některých hrách, včetně her s PAL ochrana kopií a Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>Překročit BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>Override standardní region specifický BIOS s region- free jeden, pokud nalezen. Restartovat nutné.</value></data>
@@ -590,7 +590,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>Zobrazit OSD zprávy generované jádrem.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>Zobrazit plný VRAM (Debug)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>Vizualizujte VRAM celé emulované konzole. Pouze podporované OpenGL a Vulkan hardwarové vrahy. Poznámka: Toto je pro ladění a mělo by být běžně vypnuto.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Analogová Self- kalibrace</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Přizpůsobit analogový vstupní rozsah</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>Povolit dynamickou kalibraci analogových vstupů, když je zařízení nastaveno na DualShock, Analog Controller, Ananog Joystick, nebo neGcon. Maximální registrované vstupní hodnoty jsou monitorovány v reálném čase a použity pro měřítko analogových souřadnic přenesených na emulátor. To by mělo být použito pro hry, jako je Mega Man Legends 2, které očekávají větší hodnoty, než to, co moderní regulátoři poskytují. Pro nejlepší výsledky by analogové tyčinky měly být otáčeny v plném rozsahu, aby se vyladil kalibrační algoritmus při každém načtení obsahu.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>Přepnout analogový režim DualShock</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>Pokud je typ vstupního zařízení DualShock, tato volba umožňuje emulaci DualShock přepnout mezi režim DIGITAL a ANALOG jako originální hardware. Režim lze také přepnout pomocí zvolené kombinace tlačítka.</value></data>
@@ -636,7 +636,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_spu_silent_voice.Help"><value>Přeskočte předvzorkové zpracování hlasů, jejichž obálka se plně uvolnila. Audio výstup je identický; optimalizace se automaticky vypne, když je v provozu SPU IRQ. Šetří zhruba 5-10% času rámu. Zakázat pro zcela přesný stav registru SPU.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cpu_dynarec.Label"><value>CPU Dynarec</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cpu_dynarec.Help"><value>Dynamicky odměnitelné CPU instrukce k nativní pokyny. Mnohem rychlejší než tlumočník, ale načasování CPU je méně přesné, a může mít chyby.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Label"><value>Dynarec Nevalidace kódu</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Label"><value>Nevalidace kódu Dynarecu</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Help"><value>Některé hry vyžadují plnou neplatnost, některé potřebují pouze DMA.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Label"><value>Dynarec Cycle Per Instructions</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Help"><value>Cykly dynarecké nálože na CPU instrukce. "2" je rychlejší, ale emulovaný CPU se zdá poloviční rychlost na hry, které se proti němu tempo - nastavit "1" pro hry, jejichž CD streaming stánky nebo visí pod dynarok (např. Parasite Eve 2). "1" nastavení nabíjení paměti přistupuje dva cykly a všechno ostatní jedna, blízko skutečné CPU.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.Sony.Value.Cross"><value>Kříže</value></data>
   <data name="Emulation.Option.Sony.Value.Circle"><value>Kruh</value></data>
   <data name="Emulation.Option.Sony.Value.Square"><value>Náměstí</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>Korekce geometrie (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>Textury</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>Slučitelnost</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>Načasování obrázku</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>CPU hodiny (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>Nastavit analogový režim</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>Používejte analogové tyčinky pro digitální směry</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>Stupnice analogové osy</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>Síla vibrací</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>Vodorovná citlivost děla</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>Svislá citlivost děla</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Setrvačná zóna řízení</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Reakce na řízení</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Zvyšuje rozsah naměřených analogových os pro hry, které očekávají větší vstupní hodnoty. Přesuňte osy přes jejich plný rozsah po načítání hry.</value></data>
 </root>

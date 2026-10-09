@@ -22,11 +22,11 @@
   <data name="Emulation.Option.Sony.Value.Square"><value>Piață</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Label"><value>Regiunea Console</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Help"><value>Determină ce regiune/hardware să emuleze. Auto-Detectul va folosi regiunea discului introdus.</value></data>
-  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Detectează automat</value></data>
+  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Detectare automată</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (Japonia)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, Canada)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (Europa, Australia)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Boot rapid</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Sari peste animația de pornire BIOS</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>sare peste shell / intro BIOS, booting direct în joc. De obicei sigur pentru a activa, dar unele jocuri pauza.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>Activat</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>Dezactivat</value></data>
@@ -40,7 +40,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Încarcă imaginea discului la RAM înainte de a începe emularea. Poate reduce autostopul dacă sunteți difuzate pe o cotă de rețea, la un cost al unui timp mai mare de pornire. Deoarece libretro nu oferă nici o modalitate de a trage suprapuse, emulatorul va părea să se închidă în timp ce imaginea este preîncărcat.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD Images to RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>Pre-case CHD CD-ROM imagini la RAM fără a le decomprima. Spre deosebire de opțiunea preîncărcare, această opțiune suportă fișiere M3U. De asemenea, este mai rapid și necesită mai puțin RAM în comparație cu preîncărcarea deoarece nu decomprima CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Mută audio CD</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Dezactivează audio CD</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>Mută forțat atât CD-DA cât și XA audio de pe CD-ROM. Poate fi folosit pentru a dezactiva muzica de fundal în unele jocuri.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>Viteză de citire CD-ROM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>Viteză de până CD-ROM citește prin factorul specificat. Se aplică numai citirilor cu dublă viteză, și este ignorat atunci când audio este de redare. Poate îmbunătăți vitezele de încărcare în unele jocuri, cu costul de rupere altele.</value></data>
@@ -308,7 +308,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>Viteză de încărcare CD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>Valorile mai mari de "2x (Native)" pot reduce semnificativ timpul de încărcare în joc, dar pot introduce erori de sincronizare. Unele jocuri pot să nu funcționeze în mod corespunzător peste o anumită valoare.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x (Nativ)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Sari BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Sari peste animația de pornire BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>Nu afișa animația PlayStation BIOS la începerea unui joc. Această opțiune poate provoca probleme în unele jocuri, inclusiv jocuri cu PAL protecție copie și Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>Suprascrie BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>Suprascrie BIOS-ul specific regiunii standard cu unul fără regiune, dacă este găsit. Repornire necesară.</value></data>
@@ -338,7 +338,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>Afișează rata cadrului intern la care sistemul PlayStation emulat redă conținutul. Notă: Necesită ca notificările pe ecran să fie activate în frontend libretro.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>Afișează mesajele OSD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>Afișează mesajele OSD generate de nucleu.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Autocalibrare analogică</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Adaptează gama analogică de intrare</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>Activează calibrarea dinamică a intrărilor analogice atunci când dispozitivul este setat la DualShock, Analog Controller, Analogie Joystick sau neGcon. Valorile maxime de intrare înregistrate sunt monitorizate în timp real și utilizate pentru a scala coordonatele analogice transmise către emulator. Acest lucru ar trebui să fie utilizat pentru jocuri, cum ar fi Mega Man Legends 2 care se așteaptă la valori mai mari decât ceea ce controlorii moderne oferă. Pentru cele mai bune rezultate, stick-urile analogice trebuie rotite în proporţie maximă pentru a regla algoritmul de calibrare de fiecare dată când conţinutul este încărcat.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock Mod analogic Comută</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>Atunci când tipul de dispozitiv de intrare este DualShock, această opțiune permite ca emulat DualShock să fie comutat între DIGITAL și ANALOG modul cum ar fi hardware-ul original. Modul poate fi de asemenea comutat prin utilizarea combinaţiei butoane selectate.</value></data>
@@ -471,7 +471,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Acces sincron reproduce hardware-ul original. Acces asincronic poate reduce pauzele pe dispozitive cu stocare lentă. Încărcare întreaga imagine disc în RAM poate îmbunătăți timpii de încărcare în timpul jocului, dar întârzie pornire. Acest mod poate cauza probleme atunci când RAM este limitat. Discurile fizice folosesc acces sincron în loc să încarce întreaga imagine. Repornire după schimbarea acestei opțiuni.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>Viteză de încărcare CD</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>Valorile mai mari de "2x (Native)" pot reduce semnificativ timpul de încărcare în joc, dar pot introduce erori de sincronizare. Unele jocuri pot să nu funcționeze în mod corespunzător peste o anumită valoare.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Sari BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Sari peste animația de pornire BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>Nu afișa animația PlayStation BIOS la începerea unui joc. Această opțiune poate provoca probleme în unele jocuri, inclusiv jocuri cu PAL protecție copie și Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>Suprascrie BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>Suprascrie BIOS-ul specific regiunii standard cu unul fără regiune, dacă este găsit. Repornire necesară.</value></data>
@@ -603,7 +603,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>Afișează mesajele OSD generate de nucleu.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>Afișează VRAM complet (Depanare)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>Vizualizează VRAM-ul întregii console emulate. Doar susţinute de OpenGL şi Vulkan hardware randers. Notă: Aceasta este pentru depanare și ar trebui să fie dezactivată în mod normal.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Autocalibrare analogică</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Adaptează gama analogică de intrare</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>Activează calibrarea dinamică a intrărilor analogice atunci când dispozitivul este setat la DualShock, Analog Controller, Analogie Joystick sau neGcon. Valorile maxime de intrare înregistrate sunt monitorizate în timp real și utilizate pentru a scala coordonatele analogice transmise către emulator. Acest lucru ar trebui să fie utilizat pentru jocuri, cum ar fi Mega Man Legends 2 care se așteaptă la valori mai mari decât ceea ce controlorii moderne oferă. Pentru cele mai bune rezultate, stick-urile analogice trebuie rotite în proporţie maximă pentru a regla algoritmul de calibrare de fiecare dată când conţinutul este încărcat.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock Mod analogic Comută</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>Atunci când tipul de dispozitiv de intrare este DualShock, această opțiune permite ca emulat DualShock să fie comutat între DIGITAL și ANALOG modul cum ar fi hardware-ul original. Modul poate fi de asemenea comutat prin utilizarea combinaţiei butoane selectate.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_ntsc.Help"><value>Rulați frecvența VBlank la rata NTSC (59.94 Hz pentru 60) în loc de numărul rotund. În mod implicit, la fel ca în RPCS3.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_hle_lwmutex.Label"><value>HLE lwmutex</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_hle_lwmutex.Help"><value>Utilizați implementarea HLE pentru lwmutex.</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>Corecția geometriei (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>Texturi</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>Compatibilitate</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>Sincronizare imagine</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>CPU ceas (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>Forţează modul analog</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>Foloseste stick-uri analogice pentru directii digitale</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>Scala axei analogice</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>Concentraţia de vibraţii</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>Sensibilitatea orizontală a armei</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>Sensibilitate verticală a armei</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Deadzone directoare</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Răspunsul direcției</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Scales gama de axe analogice măsurate pentru jocuri care se așteaptă la valori mai mari de intrare. Mutați axele prin gama lor completă după încărcarea unui joc.</value></data>
 </root>

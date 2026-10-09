@@ -95,8 +95,8 @@
   <data name="Emulation.Controller.Visual.Model.xbox-dvd-movie-playback-kit"><value>Xbox DVD Movie Playback Kit</value></data>
   <data name="Emulation.Controller.Visual.Model.xbox-360-chatpad"><value>Xbox 360 Chatpad</value></data>
   <data name="Emulation.Controller.Visual.Model.xbox-chatpad"><value>Xbox Chatpad</value></data>
-  <data name="Emulation.Controller.Visual.Model.sony-playstation-controller"><value>PlayStation controller</value></data>
-  <data name="Emulation.Controller.Visual.Model.sony-dualshock-1"><value>DUALSHOCK</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-playstation-controller"><value>PlayStation</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dualshock-1"><value>PlayStation DualShock</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dualshock-2"><value>DUALSHOCK 2</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-psp-1000"><value>Sony PSP-1000</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-dualshock-4"><value>DUALSHOCK 4</value></data>
@@ -116,4 +116,11 @@
   <data name="Emulation.Controller.Visual.Model.nintendo-gamecube-wavebird"><value>Nintendo GameCube WaveBird Wireless Controller (DOL-004)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Visual</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Controller {0}</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-dual-analog"><value>PlayStation Dual Analog</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-analog-joystick"><value>PlayStation Analog Joystick</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-playstation-mouse"><value>PlayStation Mouse</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-negcon"><value>Namco neGcon</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-guncon"><value>Namco GunCon / G-Con 45</value></data>
+  <data name="Emulation.Controller.Visual.Model.sony-justifier"><value>Konami Justifier / Hyper Blaster</value></data>
+  <data name="Emulation.Controller.Multitap"><value>Multitap</value></data>
 </root>

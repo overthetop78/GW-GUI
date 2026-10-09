@@ -27,7 +27,7 @@ internal static class ModelConstants
     internal const string CpuJaguar = "AMD Jaguar";
     internal const string CpuZen2 = "AMD Zen 2";
 
-    internal const string VideoGpuPs1 = "PlayStation GPU";
+    internal const string VideoGpuPs1 = "Sony CXD8514 / CXD8561 / CXD9500";
     internal const string VideoGraphicsSynthesizer = "Graphics Synthesizer";
     internal const string VideoPspGpu = "Sony PSP GPU";
     internal const string VideoSgX543 = "PowerVR SGX543MP4+";
@@ -35,7 +35,7 @@ internal static class ModelConstants
     internal const string VideoGcn = "AMD Radeon GCN";
     internal const string VideoRdna2 = "AMD RDNA 2";
 
-    internal const string AudioSpu = "PlayStation SPU";
+    internal const string AudioSpu = "Sony CXD2922 / CXD2925 / CXD2938 / CXD2941";
     internal const string AudioSpu2 = "PlayStation SPU2";
     internal const string AudioPsp = "Sony PSP audio processor";
     internal const string AudioVita = "Sony Vita audio processor";

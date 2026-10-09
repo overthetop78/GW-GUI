@@ -7,8 +7,8 @@
   <data name="Emulation.Memory.Main"><value>Κύρια μνήμη</value></data>
   <data name="Emulation.Memory.Extensions"><value>Επεκτάσεις μνήμης</value></data>
   <data name="Emulation.Memory.None"><value>Κανένα</value></data>
-  <data name="Emulation.Memory.CompatibleWithModel"><value>Η διαμόρφωση μνήμης είναι συμβατή με το {0}.</value></data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Οι επεκτάσεις μνήμης είναι συμβατές με το {0}.</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Συμβατές ρυθμίσεις: {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Συμβατές επεκτάσεις μνήμης: {0}.</value></data>
   <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM δεν είναι διαθέσιμη στις {0}.</value></data>
   <data name="Emulation.Memory.TotalConfigured"><value>Συνολική διαμορφωμένη μνήμη: {0} {1}</value></data>
 </root>

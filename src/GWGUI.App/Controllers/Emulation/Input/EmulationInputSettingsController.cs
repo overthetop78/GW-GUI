@@ -60,6 +60,9 @@ internal sealed class EmulationInputSettingsController
 
     internal IEmulationConfiguration Apply(IEmulationConfiguration configuration)
     {
+        if (_loadedConfiguration is null || _loadedConfiguration.ModuleId != configuration.ModuleId
+            || _loadedConfiguration.MachineId != configuration.MachineId)
+            return configuration;
         var keyboard = ReadKeyboardBindings(_settings.Keyboard, _keyboard);
         var mouse = ReadBindings(_settings.Mouse, _mouse);
         var ports = _ports.Count == 0 ? _settings.ControllerPorts : _ports.Select(ReadPort).ToArray();

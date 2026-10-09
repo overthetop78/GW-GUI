@@ -22,11 +22,11 @@
   <data name="Emulation.Option.Sony.Value.Square"><value>Квадратура</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Label"><value>Консольська область</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Help"><value>Визначають, які області / тверді засоби для емуляції. Авто-Detect буде використовувати область вставки диска.</value></data>
-  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Авто-Detect</value></data>
+  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Автоматичне виявлення</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (Японія)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, Канада)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (Європа, Австралія)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Швидке завантаження</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Анімація стартапів BIOS</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>Пропустити оболонку BIOS / intro, завантажуючи безпосередньо в гру. Як правило, безпечно включити, але деякі ігри перерву.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>Увімкнено</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>Вимкнено</value></data>
@@ -40,7 +40,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Завантаження образу диска до RAM перед початком емульсії. Може зменшити удари, якщо ви працюєте з мережевої частки, за вартістю більшого часу запуску. Як libretro не дає можливості малювати накладки, емулятор з'явиться, щоб заблокувати під час перевантаження зображення.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD Зображень до RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>Pre-caches CHD CD-ROM зображень в RAM без декомпресації їх. На відміну від параметра попереднього завантаження, цей варіант підтримує файли M3U. Це ще швидше і вимагає менше RAM порівняно з перевантаженням, оскільки він не відхиляє CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Mute CD Аудіо</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Вимкнений аудіо CD</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>Forcibly mutes як CD-DA, так і XA аудіо з CD-ROM. Чи можна використовувати для відключення фонової музики в деяких іграх.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>CD-ROM Читання Speedup</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>Прискорює читання CD-ROM за вказаним фактором. Тільки стосується подвійних зчитувань, і ігнорується при програванні звуку. Може поліпшити швидкість завантаження в деяких іграх, за вартістю розбиття інших.</value></data>
@@ -308,7 +308,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>Швидкість завантаження CD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>Значення вище, ніж '2x (нативний)' може значно зменшити час завантаження ігор, але можуть ввести помилки часу. Деякі ігри не можуть функціонувати належним чином над певним значенням.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2х (нативний)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Анімація стартапів BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>Не показувати анімацію PlayStation BIOS при запуску гри. Цей варіант може викликати проблеми в деяких іграх, включаючи ігри з захистом від PAL копіювання і Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>Наречена BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>На відміну від стандартного регіону, специфічного BIOS з необережною зоною, якщо знайдено. Решта обов'язкова.</value></data>
@@ -338,7 +338,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>Відобразити внутрішню частоту кадрів, при якій використовується система PlayStation. Примітка: Вимагає на екрані повідомлення, щоб бути ввімкненими у передній частині libretro.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>Відображення повідомлень OSD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>Відображення повідомлень OSD, створених ядром.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Аналог самокалібрування</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Адаптивний аналоговий діапазон введення</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>Увімкнути динамічне калібрування аналогових входів при установці пристрою до DualShock, Аналоговий контролер, Analog Joystick або neGcon. Максимально зареєстровані значення вводу контролюються в режимі реального часу і використовуються для масштабування аналогових координат, що надходять до емулятора. Це слід використовувати для ігор, таких як Mega Man Legends 2, які очікують більших значень, ніж які сучасні контролери забезпечують. Для кращих результатів, аналогові палички повинні бути обертаються в повній мірі, щоб налаштувати алгоритм калібрування кожного вмісту часу.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock аналоговий режим Toggle</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>Коли тип вхідного пристрою DualShock, цей параметр дозволяє скомпільовуватися DualShock, щоб бути переключені між DIGITAL і режимом ANALOG як оригінальне обладнання. Режим також може бути підключений за допомогою вибраної комбінації кнопки.</value></data>
@@ -471,7 +471,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Синхронний доступ відтворює оригінальне обладнання. Асинхронний доступ може зменшити паузи на пристроях з повільним зберіганням. Завантажуючи весь дисковий зображення в RAM може поліпшити час завантаження під час гри, але затримка запуску. Цей режим може викликати проблеми, коли RAM обмежений. Фізичні диски використовують синхронний доступ замість завантаження всього зображення. Решта після зміни цього варіанту.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>Швидкість завантаження CD</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>Значення вище, ніж '2x (нативний)' може значно зменшити час завантаження ігор, але можуть ввести помилки часу. Деякі ігри не можуть функціонувати належним чином над певним значенням.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Анімація стартапів BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>Не показувати анімацію PlayStation BIOS при запуску гри. Цей варіант може викликати проблеми в деяких іграх, включаючи ігри з захистом від PAL копіювання і Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>Наречена BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>На відміну від стандартного регіону, специфічного BIOS з необережною зоною, якщо знайдено. Решта обов'язкова.</value></data>
@@ -603,7 +603,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>Відображення повідомлень OSD, створених ядром.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>Показати повну VRAM (Debug)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>Візуалізація всієї емульованої консолі VRAM. Підтримувані фурнітури OpenGL та Vulkan. Примітка: Це призначене для відключення цілей, і зазвичай повинні бути вимкнені.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Аналог самокалібрування</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Адаптивний аналоговий діапазон введення</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>Увімкнути динамічне калібрування аналогових входів при установці пристрою до DualShock, Аналоговий контролер, Analog Joystick або neGcon. Максимально зареєстровані значення вводу контролюються в режимі реального часу і використовуються для масштабування аналогових координат, що надходять до емулятора. Це слід використовувати для ігор, таких як Mega Man Legends 2, які очікують більших значень, ніж які сучасні контролери забезпечують. Для кращих результатів, аналогові палички повинні бути обертаються в повній мірі, щоб налаштувати алгоритм калібрування кожного вмісту часу.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock аналоговий режим Toggle</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>Коли тип вхідного пристрою DualShock, цей параметр дозволяє скомпільовуватися DualShock, щоб бути переключені між DIGITAL і режимом ANALOG як оригінальне обладнання. Режим також може бути підключений за допомогою вибраної комбінації кнопки.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.rpcs3.rpcs3_vblank_ntsc.Help"><value>Запуск частоти VBlank на NTSC курс (59.94 Hz за 60) замість круглого числа. За замовчуванням, як в RPCS3.</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_hle_lwmutex.Label"><value>HLE левмутекс</value></data>
   <data name="Emulation.Option.rpcs3.rpcs3_hle_lwmutex.Help"><value>Використовуйте впровадження HLE для lwmutex.</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>Геометрія корекція (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>Текстура</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>Сумісність</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>Терміни зображення</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>CPU годинник (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>Примусовий аналоговий режим</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>Використовуйте аналогові палички для цифрових напрямків</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>шкала осі аналогового</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>Виброситость</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>Горизонтальна чутливість зброї</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>Вертикальна чутливість пістолета</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Рульовий бордюр</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Відповідність керма</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Ваги вимірюваного аналогового діапазону осі для ігор, які очікують більших значень введення. Перемістіть осі через повний діапазон після завантаження гри.</value></data>
 </root>

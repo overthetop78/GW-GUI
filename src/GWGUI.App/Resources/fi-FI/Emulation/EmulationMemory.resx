@@ -7,8 +7,8 @@
   <data name="Emulation.Memory.Main"><value>Päämuisti</value></data>
   <data name="Emulation.Memory.Extensions"><value>Muistilaajennukset</value></data>
   <data name="Emulation.Memory.None"><value>Ei mitään</value></data>
-  <data name="Emulation.Memory.CompatibleWithModel"><value>Muistin asetukset ovat yhteensopivia {0}.</value></data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Muistilaajennukset ovat yhteensopivia {0}.</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Yhteensopiva asetus: {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Yhteensopivat muistilaajennukset: {0}.</value></data>
   <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III -RAM ei ole käytettävissä mallissa {0}.</value></data>
   <data name="Emulation.Memory.TotalConfigured"><value>Määritetty muisti yhteensä: {0} {1}</value></data>
 </root>

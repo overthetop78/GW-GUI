@@ -70,6 +70,12 @@ internal static class ControllerArtworkFileNames
     internal const string SegaSg1000Ii = "sega-sg1000-ii.png";
     internal const string SegaSg1000Joystick = "sega-sg1000-joystick.png";
     internal const string SonyDualshock1 = "sony-dualshock-1.png";
+    internal const string SonyDualAnalog = "sony-dual-analog.png";
+    internal const string SonyAnalogJoystick = "sony-analog-joystick.png";
+    internal const string SonyPlayStationMouse = "sony-playstation-mouse.png";
+    internal const string SonyNeGcon = "sony-negcon.png";
+    internal const string SonyGunCon = "sony-guncon.png";
+    internal const string SonyJustifier = "sony-justifier.png";
     internal const string SonyPsp1000 = "sony-psp-1000.png";
     internal const string SuncomTac2 = "suncom-tac-2.png";
     internal const string SuperNesController = "super-nes-controller.png";

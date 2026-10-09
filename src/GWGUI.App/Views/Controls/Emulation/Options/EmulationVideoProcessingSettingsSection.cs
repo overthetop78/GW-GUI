@@ -21,6 +21,8 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
     private EmulationVideoProcessingConfiguration _configuration = new();
     private FrameworkElement? _displaySettings;
     private FrameworkElement? _rendererChoice;
+    private FrameworkElement? _nativeSettings;
+    private bool _displayOwnsFrames;
     private bool _loading;
     private Slider? _activeSliderEdit;
     private bool _sliderSavePending;
@@ -53,11 +55,14 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
     }
 
     internal void SetConfiguration(EmulationVideoProcessingConfiguration? configuration,
-        FrameworkElement? displaySettings, FrameworkElement? rendererChoice)
+        FrameworkElement? displaySettings, FrameworkElement? rendererChoice, bool displayOwnsFrames = false,
+        FrameworkElement? nativeSettings = null)
     {
         _configuration = EmulationVideoProcessingConfigurationFunctions.Normalize(configuration);
         _displaySettings = displaySettings;
         _rendererChoice = rendererChoice;
+        _displayOwnsFrames = displayOwnsFrames;
+        _nativeSettings = nativeSettings;
         RebuildContent();
     }
 
@@ -77,6 +82,8 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
                 EmulationSettingsLayout.DetachReusableElement(_displaySettings);
             if (_rendererChoice is not null)
                 EmulationSettingsLayout.DetachReusableElement(_rendererChoice);
+            if (_nativeSettings is not null)
+                EmulationSettingsLayout.DetachReusableElement(_nativeSettings);
             var tabs = new TabControl { Margin = new Thickness(12) };
             tabs.Items.Add(Tab(EmulationVideoSettingsLayoutConstants.DisplayTabId,
                 EmulationResourceKeys.VideoTabDisplay,
@@ -107,6 +114,10 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
                 CreateEffectGroups(),
                 EmulationVideoSettingsLayoutConstants.DisplayTabContentMaximumWidth,
                 compactFields: false, frameContent: false));
+            if (_nativeSettings is not null)
+                tabs.Items.Add(Tab(nameof(_nativeSettings), EmulationResourceKeys.VideoRenderingSettings,
+                    _nativeSettings, EmulationVideoSettingsLayoutConstants.DisplayTabContentMaximumWidth,
+                    compactFields: false, frameContent: false));
             tabs.SelectedItem = tabs.Items.Cast<TabItem>().FirstOrDefault(item =>
                 string.Equals((string)item.Tag, _selectedSettingsTab, StringComparison.Ordinal))
                 ?? tabs.Items[0];

@@ -21,7 +21,8 @@ internal sealed partial class EmulationModuleSettingsSection
                 : LocExtension.GetForModule(_module, field.LabelResourceKey),
             CreateField(field),
             field.ExplanationResourceKey is null ? null : LocExtension.GetForModule(_module, field.ExplanationResourceKey),
-            field.DetailedExplanationResourceKey is null ? null : LocExtension.GetForModule(_module, field.DetailedExplanationResourceKey));
+            field.DetailedExplanationResourceKey is null ? null : LocExtension.GetForModule(_module, field.DetailedExplanationResourceKey),
+            field);
 
     private FrameworkElement CreateField(EmulationSettingsField field)
     {

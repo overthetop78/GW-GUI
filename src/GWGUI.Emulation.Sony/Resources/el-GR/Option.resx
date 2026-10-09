@@ -14,7 +14,7 @@
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (Ιαπωνία)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, Καναδάς)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (Ευρώπη, Αυστραλία)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Γρήγορη εκκίνηση</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>Παράλειψη κίνησης εκκίνησης BIOS</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>Παρακάμπτει το BIOS shell/intro, εκκινώντας απευθείας στο παιχνίδι. Συνήθως είναι ασφαλές να το ενεργοποιήσετε, αλλά κάποια παιχνίδια σπάνε.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>Απενεργοποίηση</value></data>
@@ -28,7 +28,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>Φορτώνει την εικόνα του δίσκου στη RAM πριν αρχίσει η εξομοίωση. Μπορεί να μειώσει το οτοστόπ αν είστε τρέχει από ένα μερίδιο του δικτύου, με κόστος ενός μεγαλύτερου χρόνου εκκίνησης. Καθώς το libretro δεν παρέχει κανένα τρόπο για τη σχεδίαση επικαλύψεων, ο εξομοιωτής θα φαίνεται να κλειδώνει ενώ η εικόνα είναι προφορτωμένη.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Προ-κάσα εικόνες CHD στη RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>Προσυνδέει τις εικόνες CD-ROM της CHD στη RAM χωρίς να τις αποσυμπιέζει. Σε αντίθεση με την επιλογή προφόρτωσης, αυτή η επιλογή υποστηρίζει αρχεία M3U. Είναι επίσης ταχύτερη και απαιτεί λιγότερη RAM σε σύγκριση με την προφόρτωση καθώς δεν αποσυμπιέζει το CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Mute ήχου CD</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>Απενεργοποίηση ήχου CD</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>Με τη βία μουγκρίζει τόσο CD-DA όσο και XA ήχου από το CD-ROM. Μπορεί να χρησιμοποιηθεί για την απενεργοποίηση της μουσικής υποβάθρου σε κάποια παιχνίδια.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>Επιτάχυνση ανάγνωσης CD-ROM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>Επιτάχυνση CD-ROM διαβάζει από τον καθορισμένο παράγοντα. Ισχύει μόνο για διπλοτάχυτες αναγνώσεις, και αγνοείται όταν παίζει ο ήχος. Μπορεί να βελτιώσει τις ταχύτητες φόρτωσης σε ορισμένα παιχνίδια, με κόστος το σπάσιμο άλλων.</value></data>
@@ -296,7 +296,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Label"><value>Ταχύτητα φόρτωσης CD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_cd_fastload.Help"><value>Οι τιμές μεγαλύτερες από το '2x (Native)' μπορούν να μειώσουν σημαντικά τους χρόνους φόρτωσης στο παιχνίδι, αλλά μπορεί να εισαγάγουν σφάλματα χρονισμού. Μερικά παιχνίδια μπορεί να μην λειτουργούν σωστά πάνω από μια ορισμένη τιμή.</value></data>
   <data name="Emulation.Option.Sony.Value.2xNative"><value>2x (Μητρική)</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Παράλειψη BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Label"><value>Παράλειψη κίνησης εκκίνησης BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_skip_bios.Help"><value>Μην επιδεικνύετε το animation του PlayStation BIOS κατά την έναρξη ενός παιχνιδιού. Αυτή η επιλογή μπορεί να προκαλέσει προβλήματα σε ορισμένα παιχνίδια, συμπεριλαμβανομένων των παιχνιδιών με προστασία αντιγραφής PAL και Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Label"><value>Παράκαμψη BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_override_bios.Help"><value>Παράκαμψη της τυπικής περιοχής συγκεκριμένης BIOS με μια περιοχή-ελεύθερη εάν βρεθεί. Απαιτείται επανεκκίνηση.</value></data>
@@ -326,7 +326,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>Εμφάνιση της ταχύτητας εσωτερικού πλαισίου με την οποία το σύστημα εικονίζεται στο PlayStation αποδίδοντας περιεχόμενο. Σημείωση: Απαιτεί την ενεργοποίηση των ειδοποιήσεων στην οθόνη στο frontend libretro.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>Εμφάνιση μηνυμάτων OSD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>Εμφάνιση μηνυμάτων OSD που δημιουργούνται από τον πυρήνα.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Αναλογική αυτοδιαβάθμιση</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>Προσαρμογή αναλογικού εύρους εισόδου</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>Ενεργοποίηση δυναμικής βαθμονόμησης των αναλογικών εισροών όταν η συσκευή είναι ρυθμισμένη σε DualShock, Analog Controller, Anaolog Joystick ή neGcon. Οι μέγιστες καταχωρημένες τιμές εισόδου παρακολουθούνται σε πραγματικό χρόνο και χρησιμοποιούνται για την κλιμάκωση των αναλογικών συντεταγμένων που περνούν στον εξομοιωτή. Αυτό θα πρέπει να χρησιμοποιείται για παιχνίδια όπως το Mega Man Legends 2 που αναμένουν μεγαλύτερες τιμές από ό, τι οι σύγχρονοι ελεγκτές παρέχουν. Για καλύτερα αποτελέσματα, τα αναλογικά ραβδιά θα πρέπει να περιστρέφονται σε πλήρη έκταση για τον συντονισμό του αλγορίθμου βαθμονόμησης κάθε φορά που το περιεχόμενο φορτώνεται.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>Εναλλαγή αναλογικής λειτουργίας DualShock</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>Όταν ο τύπος της συσκευής εισόδου είναι DualShock, η επιλογή αυτή επιτρέπει την εναλλαγή του προσομοιωμένου DualShock μεταξύ DIGITAL και ANALOG τρόπου όπως το αρχικό υλικό. Η λειτουργία μπορεί επίσης να ενεργοποιηθεί με τη χρήση του επιλεγμένου συνδυασμού κουμπιών.</value></data>
@@ -395,7 +395,7 @@
   <data name="Emulation.Option.Sony.Value.DisabledBeetleInterpreter"><value>Απενεργοποίηση (Ερμηνευτής Beetle)</value></data>
   <data name="Emulation.Option.Sony.Value.MaxPerformance"><value>Μέγιστη απόδοση</value></data>
   <data name="Emulation.Option.Sony.Value.LightrecInterpreter"><value>Ερμηνευτής Lightrec</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Label"><value>Ακύρωση κώδικα Dynarec</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Label"><value>Ακυρότητα κώδικα Dynarec</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Help"><value>Ορισμένα παιχνίδια απαιτούν 'πλήρη' ακύρωση, κάποια απαιτούν 'DMA Only'.</value></data>
   <data name="Emulation.Option.Sony.Value.Full"><value>Πλήρης</value></data>
   <data name="Emulation.Option.Sony.Value.DMAOnlySlightlyFaster"><value>Μόνο DMA (ελαφρώς πιο γρήγορα)</value></data>
@@ -459,7 +459,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_access_method.Help"><value>Η σύγχρονη πρόσβαση αναπαράγει το αρχικό υλικό. Ασύγχρονη πρόσβαση μπορεί να μειώσει τις παύσεις σε συσκευές με αργή αποθήκευση. Φόρτωση ολόκληρης της εικόνας δίσκου σε RAM μπορεί να βελτιώσει το χρόνο φόρτωσης κατά τη διάρκεια του παιχνιδιού, αλλά καθυστερήσεις εκκίνησης. Αυτή η λειτουργία μπορεί να προκαλέσει προβλήματα όταν η RAM είναι περιορισμένη. Οι φυσικοί δίσκοι χρησιμοποιούν σύγχρονη πρόσβαση αντί να φορτώνουν ολόκληρη την εικόνα. Επανεκκίνηση μετά την αλλαγή αυτής της επιλογής.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Label"><value>Ταχύτητα φόρτωσης CD</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cd_fastload.Help"><value>Οι τιμές μεγαλύτερες από το '2x (Native)' μπορούν να μειώσουν σημαντικά τους χρόνους φόρτωσης στο παιχνίδι, αλλά μπορεί να εισαγάγουν σφάλματα χρονισμού. Μερικά παιχνίδια μπορεί να μην λειτουργούν σωστά πάνω από μια ορισμένη τιμή.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Παράλειψη BIOS</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Label"><value>Παράλειψη κίνησης εκκίνησης BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_skip_bios.Help"><value>Μην επιδεικνύετε το animation του PlayStation BIOS κατά την έναρξη ενός παιχνιδιού. Αυτή η επιλογή μπορεί να προκαλέσει προβλήματα σε ορισμένα παιχνίδια, συμπεριλαμβανομένων των παιχνιδιών με προστασία αντιγραφής PAL και Saga Frontier.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Label"><value>Παράκαμψη BIOS</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_override_bios.Help"><value>Παράκαμψη της τυπικής περιοχής συγκεκριμένης BIOS με μια περιοχή-ελεύθερη εάν βρεθεί. Απαιτείται επανεκκίνηση.</value></data>
@@ -590,7 +590,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>Εμφάνιση μηνυμάτων OSD που δημιουργούνται από τον πυρήνα.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>Εμφάνιση πλήρους VRAM (αποσφαλμάτωση)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>Οραματιστείτε ολόκληρη την VRAM της κονσόλας. Υποστηρίζεται μόνο από τους αποδότες υλικού OpenGL και Vulkan. Σημείωση: Αυτό είναι για σκοπούς αποσφαλμάτωσης, και θα πρέπει κανονικά να απενεργοποιηθεί.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Αναλογική αυτοδιαβάθμιση</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>Προσαρμογή αναλογικού εύρους εισόδου</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>Ενεργοποίηση δυναμικής βαθμονόμησης των αναλογικών εισροών όταν η συσκευή είναι ρυθμισμένη σε DualShock, Analog Controller, Anaolog Joystick ή neGcon. Οι μέγιστες καταχωρημένες τιμές εισόδου παρακολουθούνται σε πραγματικό χρόνο και χρησιμοποιούνται για την κλιμάκωση των αναλογικών συντεταγμένων που περνούν στον εξομοιωτή. Αυτό θα πρέπει να χρησιμοποιείται για παιχνίδια όπως το Mega Man Legends 2 που αναμένουν μεγαλύτερες τιμές από ό, τι οι σύγχρονοι ελεγκτές παρέχουν. Για καλύτερα αποτελέσματα, τα αναλογικά ραβδιά θα πρέπει να περιστρέφονται σε πλήρη έκταση για τον συντονισμό του αλγορίθμου βαθμονόμησης κάθε φορά που το περιεχόμενο φορτώνεται.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>Εναλλαγή αναλογικής λειτουργίας DualShock</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>Όταν ο τύπος της συσκευής εισόδου είναι DualShock, η επιλογή αυτή επιτρέπει την εναλλαγή του προσομοιωμένου DualShock μεταξύ DIGITAL και ANALOG τρόπου όπως το αρχικό υλικό. Η λειτουργία μπορεί επίσης να ενεργοποιηθεί με τη χρήση του επιλεγμένου συνδυασμού κουμπιών.</value></data>
@@ -636,7 +636,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_spu_silent_voice.Help"><value>Παράκαμψη της επεξεργασίας ανά δείγμα των φωνών των οποίων ο φάκελος έχει κυκλοφορήσει πλήρως. Η έξοδος ήχου είναι πανομοιότυπη· η βελτιστοποίηση αυτόματα απενεργοποιείται ενώ το SPU IRQ είναι σε χρήση. Κερδίζει περίπου 5-10% του χρόνου καρέ. Απενεργοποίηση για πλήρως ακριβή κατάσταση μητρώου SPU.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cpu_dynarec.Label"><value>CPU Dynarec</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cpu_dynarec.Help"><value>Δυναμικά ανατροφοδοτεί CPU οδηγίες για εγγενείς οδηγίες. Πολύ πιο γρήγορα από τον διερμηνέα, αλλά CPU ο συγχρονισμός είναι λιγότερο ακριβής και μπορεί να έχει σφάλματα.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Label"><value>Ακύρωση κώδικα Dynarec</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Label"><value>Ακυρότητα κώδικα Dynarec</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Help"><value>Ορισμένα παιχνίδια απαιτούν 'πλήρη' ακύρωση, κάποια απαιτούν 'DMA Only'.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Label"><value>Dynarec Κύκλοι ανά οδηγία</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Help"><value>Κύκλοι τα τέλη dynarec ανά CPU οδηγίες. Το '2' είναι πιο γρήγορο, αλλά το εικονιζόμενο CPU εμφανίζεται ημι-ταχύτητα σε παιχνίδια που βηματίζουν τον εαυτό τους εναντίον του - ρυθμίστε '1' για τα παιχνίδια των οποίων CD streaming πάγκοι ή κρέμονται κάτω από το δυναμό (π.χ.. Παρασιτική παραμονή 2). Η μνήμη '1' που θέτει τις χρεώσεις προσπελάζει δύο κύκλους και όλα τα άλλα ένα, κοντά στην πραγματική CPU.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.Sony.Value.Cross"><value>Σταυρός</value></data>
   <data name="Emulation.Option.Sony.Value.Circle"><value>Κύκλος</value></data>
   <data name="Emulation.Option.Sony.Value.Square"><value>Πλατεία</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>Διόρθωση γεωμετρίας (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>Υφάσματα</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>Συμβατότητα</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>Χρονισμός εικόνας</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>Ρολόι CPU (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>Εξαναγκασμός αναλογικής λειτουργίας</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>Χρήση αναλογικών ράβδων για ψηφιακές κατευθύνσεις</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>Κλίμακα αναλογικού άξονα</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>Αντοχή σε κραδασμούς</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>Οριζόντια ευαισθησία όπλου</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>Ευαισθησία κάθετου όπλου</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Καθοδηγούμενη νεκρή ζώνη</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Ανταπόκριση διεύθυνσης</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Κλιμακώνει το μετρούμενο εύρος αναλογικών αξόνων για παιχνίδια που αναμένουν μεγαλύτερες τιμές εισόδου. Μετακινήστε τους άξονες μέσα από το πλήρες εύρος μετά τη φόρτωση ενός παιχνιδιού.</value></data>
 </root>

@@ -161,7 +161,7 @@ internal sealed partial class ExternalHostCallbacks
         if (port >= input.Controllers.Count) return 0;
         if (device == JoypadDevice)
         {
-            var buttons = controller.Buttons;
+            var buttons = AnalogToggleFunctions.ButtonMask(controller, (ControllerType)_controllerTypes[(int)port]);
             if (id == JoypadMask) return unchecked((short)(buttons & ushort.MaxValue));
             return id < ControllerButtonMaskWidth && (buttons & (1u << (int)id)) != EmptyButtonMask
                 ? Bool(true) : default;

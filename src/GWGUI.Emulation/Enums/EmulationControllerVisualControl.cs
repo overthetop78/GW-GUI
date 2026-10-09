@@ -57,5 +57,10 @@ public enum EmulationControllerVisualControl
     KeyStar,
     Key0,
     KeyHash,
-    Option
+    Option,
+    AnalogMode,
+    RightStickUp,
+    RightStickDown,
+    RightStickLeft,
+    RightStickRight
 }

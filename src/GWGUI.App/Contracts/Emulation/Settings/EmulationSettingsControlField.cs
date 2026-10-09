@@ -1,4 +1,5 @@
 using System.Windows;
+using GWGUI.Emulation;
 
 namespace GWGUI.App.Contracts.Emulation.Settings;
 
@@ -6,4 +7,5 @@ internal sealed record EmulationSettingsControlField(
     string Label,
     FrameworkElement Control,
     string? Explanation = null,
-    string? DetailedExplanation = null);
+    string? DetailedExplanation = null,
+    EmulationSettingsField? Definition = null);

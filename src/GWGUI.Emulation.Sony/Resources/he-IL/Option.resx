@@ -10,11 +10,11 @@
   <data name="Emulation.Sony.Language.Spanish"><value>ספרדית</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Label"><value>אזור הקונסולה</value></data>
   <data name="Emulation.Option.swanstation.swanstation_Console_Region.Help"><value>Determines אשר האזור / Hardware לחקות. Auto-Detect ישתמש באזור הדיסק שהוכנס.</value></data>
-  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>Auto-Detect</value></data>
+  <data name="Emulation.Option.Sony.Value.AutoDetect"><value>זיהוי אוטומטי</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCJJapan"><value>NTSC-J (יפן)</value></data>
   <data name="Emulation.Option.Sony.Value.NTSCUUSCanada"><value>NTSC-U (US, קנדה)</value></data>
   <data name="Emulation.Option.Sony.Value.PALEuropeAustralia"><value>PAL (אירופה, אוסטרליה)</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>מהיר Boot</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Label"><value>עקבו אחרי BIOS</value></data>
   <data name="Emulation.Option.swanstation.swanstation_BIOS_PatchFastBoot.Help"><value>דלג את הקליפה של ה-BIOS / Intro, מצורף ישירות אל המשחק. בדרך כלל בטוח לאפשר, אבל כמה משחקים נשברים.</value></data>
   <data name="Emulation.Option.Sony.Value.Enabled"><value>המונחים</value></data>
   <data name="Emulation.Option.Sony.Value.Disabled"><value>מוגבלות</value></data>
@@ -28,7 +28,7 @@
   <data name="Emulation.Option.swanstation.swanstation_CDROM_LoadImageToRAM.Help"><value>לטעון את תמונת הדיסק ל- RAM לפני שמתחילים לחקות. עשוי להפחית מכה אם אתה מפעיל נתח רשת, עלות של זמן סטארט אפ גדול יותר. כמו libretro אינו מספק דרך למשוך מעליות, החיקוי יופיע לנעול בעוד התמונה מוסגרת.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Label"><value>Pre-cache CHD תמונות RAM</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_PreCacheCHD.Help"><value>תמונות CHD CD-ROM לזיכרון RAM מבלי לדכא אותם. בניגוד לאופציה preload, אפשרות זו תומכת בקבצי M3U. זה גם מהיר יותר ודורש פחות RAM בהשוואה לעומס מכיוון שהוא לא מדכא את ה-CHD.</value></data>
-  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>צילום: Mute CD Audio</value></data>
+  <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Label"><value>אודיו CD</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_MuteCDAudio.Help"><value>במיוחד מטים הן CD-DA והן XA אודיו מן ה-CD-ROM. ניתן להשתמש בו כדי להשבית מוזיקה ברקע במשחקים מסוימים.</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Label"><value>CD-ROM קרא Speedup</value></data>
   <data name="Emulation.Option.swanstation.swanstation_CDROM_ReadSpeedup.Help"><value>Speeds up CD-ROM קורא על ידי הגורם שצוין. חל רק על קריאה מהירה כפולה, והוא מתעלם כאשר השמע משחק. עשוי לשפר את מהירות הטעינה במשחקים מסוימים, במחיר של הפרת אחרים.</value></data>
@@ -326,7 +326,7 @@
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_internal_fps.Help"><value>הצג את קצב המסגרת הפנימי שבו מערכת PlayStation מחקה תוכן. הערה: נדרש הודעות על המסך כדי להיות מופעל בחזית libretro.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Label"><value>הודעות OSD</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_display_osd.Help"><value>הצגת הודעות OSD שנוצרות על ידי הליבה.</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>המונחים: Self-Calibration</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Label"><value>טווח הקלט האנלוגי</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_calibration.Help"><value>קליברציה דינמית של קלטות אנלוגיות כאשר המכשיר מוגדר DualShock, Analog Controllerstick או neGcon. ערכי קלט רשומים מקסימליים נמצאים במעקב בזמן אמת ומשמשים לתאורדות אנלוגיות בקנה מידה עברו לחיקוי. זה צריך לשמש למשחקים כגון Mega Man Legends 2 אשר מצפים לערכים גדולים יותר ממה שהבקר המודרני מספק. עבור התוצאות הטובות ביותר, מקלות אנלוגיות צריך להיות לסובב במלואם כדי לכוון את אלגוריתם calibration בכל פעם תוכן טעון.</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Label"><value>DualShock Analog Mode toggle</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_analog_toggle.Help"><value>כאשר סוג מכשיר הקלט הוא DualShock, אפשרות זו מאפשרת חיקוי של DualShock בין DIGITAL ו-ANALOG כמו חומרה מקורית. מצב יכול גם להיות מלוטש על ידי שימוש בשילוב הלחצן שנבחר.</value></data>
@@ -395,7 +395,7 @@
   <data name="Emulation.Option.Sony.Value.DisabledBeetleInterpreter"><value>מוגבלות (Beetle Interpreter)</value></data>
   <data name="Emulation.Option.Sony.Value.MaxPerformance"><value>Max Performance</value></data>
   <data name="Emulation.Option.Sony.Value.LightrecInterpreter"><value>Lightrec Interpreter</value></data>
-  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Label"><value>Dynarec Code Invalidation</value></data>
+  <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Label"><value>המונחים: Dynarec Code Invalidation</value></data>
   <data name="Emulation.Option.mednafen_psx.beetle_psx_dynarec_invalidate.Help"><value>חלק מהמשחקים דורשים אי-התאמה מלאה, חלקם זקוקים ל"DMA בלבד".</value></data>
   <data name="Emulation.Option.Sony.Value.Full"><value>מלא</value></data>
   <data name="Emulation.Option.Sony.Value.DMAOnlySlightlyFaster"><value>DMA בלבד (Slightly Faster)</value></data>
@@ -591,7 +591,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_osd.Help"><value>הצגת הודעות OSD שנוצרות על ידי הליבה.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Label"><value>תגית: Full VRAM (Debug)</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_display_vram.Help"><value>דמיין את ה-VRAM של הקונסולה. רק נתמך על ידי OpenGL ו Vulkan חומרי גלם. הערה: זה למטרות הונאה, ובדרך כלל צריך להיות מוגבלות.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>המונחים: Self-Calibration</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Label"><value>טווח הקלט האנלוגי</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_calibration.Help"><value>קליברציה דינמית של קלטות אנלוגיות כאשר המכשיר מוגדר DualShock, Analog Controllerstick או neGcon. ערכי קלט רשומים מקסימליים נמצאים במעקב בזמן אמת ומשמשים לתאורדות אנלוגיות בקנה מידה עברו לחיקוי. זה צריך לשמש למשחקים כגון Mega Man Legends 2 אשר מצפים לערכים גדולים יותר ממה שהבקר המודרני מספק. עבור התוצאות הטובות ביותר, מקלות אנלוגיות צריך להיות לסובב במלואם כדי לכוון את אלגוריתם calibration בכל פעם תוכן טעון.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Label"><value>DualShock Analog Mode toggle</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_analog_toggle.Help"><value>כאשר סוג מכשיר הקלט הוא DualShock, אפשרות זו מאפשרת חיקוי של DualShock בין DIGITAL ו-ANALOG כמו חומרה מקורית. מצב יכול גם להיות מלוטש על ידי שימוש בשילוב הלחצן שנבחר.</value></data>
@@ -637,7 +637,7 @@
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_spu_silent_voice.Help"><value>דלג את העיבוד של הקולות שמעטפה שלהם שוחררה לחלוטין. תפוקת אודיו זהה; האופטימיזציה מתבטלת באופן אוטומטי תוך שימוש ב-SPU IRQ. לחסוך בערך 5-10% מהזמן. קטגוריה: SPU מדויק לחלוטין המדינה.</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cpu_dynarec.Label"><value>CPU Dynarec</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_cpu_dynarec.Help"><value>באופן דינמי recompile CPU הוראות להנחיות Native. הרבה יותר מהר ממתורגמן, אבל תזמון CPU הוא פחות מדויק, ואולי יש באגים.</value></data>
-  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Label"><value>Dynarec Code Invalidation</value></data>
+  <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Label"><value>המונחים: Dynarec Code Invalidation</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_invalidate.Help"><value>חלק מהמשחקים דורשים אי-התאמה מלאה, חלקם זקוקים ל"DMA בלבד".</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Label"><value>המונחים: Dynarec Cycles Per Directory</value></data>
   <data name="Emulation.Option.mednafen_psx_hw.beetle_psx_hw_dynarec_op_cycles.Help"><value>מחזורי ה-Ddynarec מטענים לפי הוראות CPU. "2" הוא מהיר יותר, אבל ה-CPU המוטבע מופיע במהירות למחצה למשחקים שמקצבים את עצמם - להגדיר '1' עבור משחקים שהזרמת CD שלהם דוכנים או נתלה מתחת לדינראק (למשל. Parasite Eve 2 ההגדרה '1' מעניקה לזיכרון גישה לשני מחזורים וכל דבר אחר, קרוב ל- CPU האמיתי.</value></data>
@@ -1172,4 +1172,18 @@
   <data name="Emulation.Option.Sony.Value.Cross"><value>צלב הצלב</value></data>
   <data name="Emulation.Option.Sony.Value.Circle"><value>מעגל Circle</value></data>
   <data name="Emulation.Option.Sony.Value.Square"><value>כיכר Square</value></data>
+  <data name="Emulation.Option.Sony.Group.Geometry"><value>תיקון גאומטריה (PGXP)</value></data>
+  <data name="Emulation.Option.Sony.Group.Textures"><value>הודעות טקסט</value></data>
+  <data name="Emulation.Option.Sony.Group.Compatibility"><value>תאימות</value></data>
+  <data name="Emulation.Option.Sony.Group.Timing"><value>תזמון תמונה</value></data>
+  <data name="Emulation.Option.Sony.Cpu.ClockScale"><value>שעון CPU (%)</value></data>
+  <data name="Emulation.Option.Sony.Controller.ForceAnalog"><value>מצב אנלוגי</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogDirections"><value>השתמש מקלות אנלוגיים לכיוונים דיגיטליים</value></data>
+  <data name="Emulation.Option.Sony.Controller.AxisScale"><value>אנליז ציר</value></data>
+  <data name="Emulation.Option.Sony.Controller.VibrationBias"><value>כוח עוצמה</value></data>
+  <data name="Emulation.Option.Sony.Controller.XScale"><value>רגישות לאקדח Horizontal</value></data>
+  <data name="Emulation.Option.Sony.Controller.YScale"><value>רגישות לאקדחים</value></data>
+  <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>בסביבה הקרובה של Deadzone</value></data>
+  <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>תגובה</value></data>
+  <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>סולק את טווח ציר האנלוגי הנמדד למשחקים המצפים לערכי קלט גדולים יותר. הזיזו את האקספרסים בטווח המלא שלהם לאחר טעינה של משחק.</value></data>
 </root>
