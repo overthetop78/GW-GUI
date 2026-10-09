@@ -11,5 +11,7 @@ public enum EmulationKey
     Backquote, CapsLock, Help, LeftAmiga, RightAmiga, Undo, Break,
     AtariOption, AtariSelect, AtariStart,
     Numpad0, Numpad1, Numpad2, Numpad3, Numpad4, Numpad5, Numpad6, Numpad7, Numpad8, Numpad9,
-    NumpadPeriod, NumpadDivide, NumpadMultiply, NumpadMinus, NumpadPlus, NumpadEnter
+    NumpadPeriod, NumpadDivide, NumpadMultiply, NumpadMinus, NumpadPlus, NumpadEnter,
+    AcornF0, AcornCopy, AcornShiftLock,
+    AcornKeypadHash, AcornKeypadDelete, AcornKeypadComma
 }

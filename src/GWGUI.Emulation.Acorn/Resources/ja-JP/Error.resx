@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>不明な環境コマンド: {0}</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound"><value>必須のAcornコアが見つかりませんでした。</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected"><value>選択されたAcorn中心は荷を積むことができませんでした。</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>必要な Acorn ファームウェアが欠落しています。</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Acornファームウェアは無効または非互換性です。</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound"><value>構成された Acorn メディアが見つかりませんでした。</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>選択したメディアに対応していません。</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Acornオプションには無効な値があります。</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>Acornホストとの通信が失敗しました。</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid"><value>Acorn保存状態が無効です。</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible"><value>Acorn保存状態は、現在のマシンと互換性がありません。</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected"><value>予期しないAcornエミュレーションエラーが発生しました。</value></data>
+  <data name="Emulation.Acorn.Error.Details"><value>詳細情報: {0}</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>Acornホスト実行可能なパスは利用できません。</value></data>
+</root>

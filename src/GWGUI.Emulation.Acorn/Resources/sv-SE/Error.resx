@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Okänd miljökommando: {0}</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound"><value>Den nödvändiga Acorn kärnan hittades inte.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected"><value>Den valda Acorn-kärnan kunde inte laddas.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>En nödvändig Acorn firmware saknas.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>En Acorn firmware är ogiltig eller oförenlig.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound"><value>De konfigurerade Acorn media hittades inte.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>Denna maskin stöder inte de utvalda medierna.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Ett Acorn-alternativ har ett ogiltigt värde.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>Kommunikation med Acorn-värden misslyckades.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid"><value>Acorn räddade staten är ogiltig.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible"><value>Acorn räddade tillståndet är oförenligt med den nuvarande maskinen.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected"><value>Ett oväntat Acorn emuleringsfel inträffade.</value></data>
+  <data name="Emulation.Acorn.Error.Details"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>Acorn värd körbar väg är otillgänglig.</value></data>
+</root>

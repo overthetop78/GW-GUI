@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>未知的環境命令 :{0}</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound"><value>未找到所需的Acorn核.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected"><value>無法裝入選中的 Acorn 核心 。</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>需要的Acorn固件不見了</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Acorn的固件無效或不相容.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound"><value>未找到配置的 Acorn 介質 。</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>此機器不支持所選的媒體 。</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Acorn 選項的值無效 。</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>與Acorn主機的通信失敗.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid"><value>Acorn 保存狀態無效 。</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible"><value>Acorn所保存的狀態與現在的機器不相容.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected"><value>發生了意外的 Acorn 仿真錯誤 。</value></data>
+  <data name="Emulation.Acorn.Error.Details"><value>細節 :{0}</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>Acorn 主機可執行路徑無法使用 。</value></data>
+</root>

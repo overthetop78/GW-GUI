@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Неизвестная команда окружения: {0}</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound"><value>Требуемое ядро Acorn найдено не было.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected"><value>Выбранное ядро Acorn не могло быть загружено.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>Необходимая прошивка Acorn отсутствует.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Прошивка Acorn является недействительной или несовместимой.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound"><value>Настроенные медиа Acorn не были найдены.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>Данная машина не поддерживает выбранные носители.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Опцион Acorn имеет недействительное значение.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>Связь с хостом Acorn не удалась.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid"><value>Acorn сохраненное состояние является недействительным.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible"><value>Сохраненное состояние Acorn несовместимо с текущей машиной.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected"><value>Произошла неожиданная ошибка эмуляции Acorn.</value></data>
+  <data name="Emulation.Acorn.Error.Details"><value>Подробности: {0}</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>Исполняемый путь Acorn host недоступен.</value></data>
+</root>

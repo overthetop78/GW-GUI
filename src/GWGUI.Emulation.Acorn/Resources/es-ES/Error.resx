@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>desconocido medio ambiente comando: {0}</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound"><value>No se encontró el núcleo Acorn requerido.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected"><value>El núcleo Acorn seleccionado no se puede cargar.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>Falta un firmware Acorn requerido.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Un firmware Acorn es inválido o incompatible.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound"><value>No se encontró el medio Acorn configurado.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>Esta máquina no admite los medios seleccionados.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Una opción Acorn tiene un valor inválido.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>La comunicación con el anfitrión de Acorn falló.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid"><value>El estado salvado de Acorn es inválido.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible"><value>El estado salvado de Acorn es incompatible con la máquina actual.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected"><value>Se produjo un error inesperado de emulación Acorn.</value></data>
+  <data name="Emulation.Acorn.Error.Details"><value>Detalles: {0}</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>El camino ejecutable de los anfitriones Acorn no está disponible.</value></data>
+</root>

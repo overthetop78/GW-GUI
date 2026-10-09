@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Άγνωστη εντολή περιβάλλοντος: {0}</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound"><value>Ο απαιτούμενος πυρήνας Acorn δεν βρέθηκε.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected"><value>Ο επιλεγμένος πυρήνας Acorn δεν μπόρεσε να φορτωθεί.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>Ένα απαιτούμενο λογισμικό Acorn λείπει.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Ένα Acorn firmware είναι άκυρο ή ασυμβίβαστο.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound"><value>Τα ρυθμισμένα μέσα Acorn δεν βρέθηκαν.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>Αυτή η μηχανή δεν υποστηρίζει τα επιλεγμένα μέσα.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Η επιλογή Acorn έχει μη έγκυρη τιμή.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>Η επικοινωνία με τον ξενιστή του Acorn απέτυχε.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid"><value>Το Acorn έσωσε την κατάσταση είναι άκυρο.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible"><value>Το Acorn έσωσε κατάσταση είναι ασύμβατη με την τρέχουσα μηχανή.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected"><value>Συνέβη ένα απροσδόκητο σφάλμα εξομοίωσης Acorn.</value></data>
+  <data name="Emulation.Acorn.Error.Details"><value>Λεπτομέρειες: {0}</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>Η εκτελέσιμη διαδρομή υποδοχής Acorn δεν είναι διαθέσιμη.</value></data>
+</root>

@@ -1,0 +1,119 @@
+# Méthode de réalisation des modules
+
+Ce fichier décrit une méthode commune à tous les modules. Le maintenir pendant le travail : remplacer les directives incorrectes, supprimer les étapes inutiles et préciser les solutions plus rapides qui respectent exactement la demande. À chaque reprise, examiner les actions réellement effectuées et les reprises évitables. Les fichiers, clés, modèles, options et preuves propres à un module appartiennent à son fichier de tâches, jamais à cette méthode. Après chaque correction de méthode, ajouter au tableau historique son numéro, une heure vérifiée et une courte note, sans ligne vide entre les lignes du tableau. Respecter les consignes explicites de l'utilisateur et ses règles de fabrication.
+
+## Reprendre l'objectif
+
+1. Relever l'heure locale réelle du PC avec Get-Date (format yyyy-MM-dd HH:mm:ss), puis l'inscrire dans le chronomètre avec le temps écoulé depuis le départ et le temps restant. Ne pas enregistrer l'heure UTC d'un outil à la place de l'heure locale demandée. Écrire uniquement la date et l'heure locales, sans suffixe UTC ni décalage de fuseau. Convertir les dates anciennes sans décaler une deuxième fois les durées écoulées ou restantes. Ne pas remettre le départ à zéro.
+2. Reprendre le premier travail inachevé du module en cours, à partir de l'état actuel du dépôt. Ne pas relire tout le projet, refaire un contrôle déjà validé ou redemander un symptôme déjà précis sans raison nouvelle. Relire les directives corrigées avant l'opération suivante : une correction inscrite mais non appliquée laisse la même perte de temps.
+3. Terminer et commiter chaque module avant le suivant. Créer un fichier de tâches distinct pour chaque nouveau module ; laisser les plans des modules terminés en l'état, sauf correction explicitement demandée.
+4. Préparer ce plan depuis la méthode actualisée, la structure de référence et les capacités réellement attestées des cœurs. Détailler les actions de réalisation dans leur ordre de dépendance. Tenir le plan à jour directement, sans tâches dont le seul résultat serait de modifier le plan.
+
+## 1. Définir le périmètre et relever les contrats natifs
+
+1. Parcourir toutes les sections de la liste demandée : des machines d'une marque peuvent se trouver sous un autre titre. Relever toutes les machines et tous les émulateurs concernés, les regroupements de marques demandés et les éventuels éléments déjà existants.
+2. Lire les sources officielles et examiner le paquet natif réellement proposé. Relever : identifiants, versions et révisions, bibliothèques, plateformes, modèles, extensions, chargement par chemin ou mémoire, démarrage sans contenu, firmware, commandes de supports, sauvegardes d'état, entrées, cadence, formats vidéo et audio.
+3. Comparer les options documentées à celles exposées par la bibliothèque : conserver leurs noms, valeurs exactes, défauts, dépendances et nécessité de redémarrage. Ne pas s'arrêter aux seuls boutons numériques si les options incluent aussi les axes analogiques.
+4. Identifier les séparateurs et échappements avant de décoder une liste de valeurs. Une valeur contenant elle-même un séparateur doit rester entière. Comparer le nombre et le contenu des choix au relevé natif.
+5. Distinguer les capacités physiques des machines et la prise en charge du cœur. Conserver l'identité d'un modèle non pris en charge ; ne pas le remplacer silencieusement par un autre. Expliquer son indisponibilité sans faire planter sa sélection.
+6. Prévoir les preuves nécessaires et la suppression des fichiers temporaires dès la préparation du travail.
+
+## 2. Créer le projet et les configurations
+
+1. Reprendre la structure et les conventions du module de référence : projet, manifeste, identité, architecture, dépendances, ressources incorporées, publication et exclusion des bibliothèques déjà fournies par l'hôte.
+2. Séparer les contrats et services communs des familles matérielles et des adaptations propres à chaque émulateur. Utiliser les mécanismes de découverte existants ; ne pas créer un registre parallèle dans l'application ou les builds.
+3. Définir des identifiants stables, enums, constantes et catalogues typés pour modèles, matériel, firmware, périphériques et supports. Séparer modèle matériel, variante native et émulateur choisi.
+4. Comparer le contrat SDK et le contrat local avant d'adapter leur consommateur : propriétés, constructeurs, types, nullabilité, constantes et unités. Ne pas reprendre des propriétés ou constantes qui existent seulement dans le module de référence.
+5. Créer les dépendances avant leurs consommateurs. Vérifier les imports et accès internes requis avant compilation, notamment les imports explicites d'entrées-sorties. Pour tout type du SDK, relever son namespace réel dans sa déclaration et importer ce namespace ; un type voisin dans un autre fichier ne prouve pas qu'il est dans le même namespace. Pour les données d'essai, choisir une valeur réellement déclarée dans l'enum, sans inventer une touche ou étendre le SDK pour faciliter un test.
+6. Reprendre la persistance existante : schéma validé, identifiant non vide, chemins portables, sauvegarde atomique et nettoyage du fichier temporaire dans tous les cas. Adapter les conversions à la configuration réellement définie.
+
+## 3. Installer et piloter les émulateurs
+
+1. Reprendre les catalogues, factories et services d'installation existants. Employer les sources officielles, architectures compatibles, versions réelles et dossiers prévus par l'application. Vérifier que l'émulateur ne soit proposé qu'aux machines compatibles.
+2. Réutiliser les interfaces, exports et callbacks du SDK. Adapter seulement les fonctions du cœur concerné ; retirer les commandes et comportements propres à la machine copiée.
+3. Respecter le chargement attendu : chemin complet ou contenu en mémoire, format accepté, présence de firmware et durée de vie des buffers. Conserver les allocations jusqu'à leur dernier usage natif.
+4. Implémenter les options et leur application, les contrôles, l'audio, la vidéo et les erreurs structurées. Ne pas décrire une fonction disponible sans la raccorder effectivement.
+5. Déterminer si le cœur doit être isolé dans un processus. Vérifier son arrêt réel, et non seulement l'existence d'une fonction de déinitialisation. Une sonde d'options ne doit pas créer inutilement une machine ou laisser un processus vivant.
+
+## 4. Garantir le cycle de vie et le nettoyage
+
+1. Identifier explicitement le propriétaire de chaque processus, thread, DLL, fenêtre, surface, transport, vue mémoire, buffer, minuteur et sortie audio. Ne pas détruire les objets empruntés à l'appelant.
+2. Nettoyer les acquisitions partielles quand un constructeur ou une initialisation échoue. Libérer les ressources possédées dans des blocs finally, en garantissant que l'échec d'une libération n'empêche pas les suivantes.
+3. Fermer les transports, arrêter les commandes et attendre la fin effective des threads et processus. Prévoir une terminaison de secours suivie de l'attente de destruction quand l'arrêt normal échoue.
+4. Détacher les callbacks et surfaces, libérer les vues et handles puis décharger la bibliothèque. Supprimer les dossiers temporaires seulement après destruction effective de leurs propriétaires.
+5. Traiter aussi annulation, fermeture pendant démarrage, arrêt après erreur et commandes en attente. Ne pas transformer une simple observation sans résultat en preuve d'arrêt ni relancer un processus encore vivant.
+
+## 5. Décrire et appliquer les paramètres
+
+1. Reprendre les contrats de description de l'application et la présentation de référence. Préserver les blocs communs existants et leur emplacement ; organiser les ajouts selon leur fonction, leur taille et la lisibilité. La référence fixe les contrats et la qualité de présentation, pas une disposition à recopier mécaniquement : choisir les colonnes selon la place disponible, éviter les déformations et conserver les blocs déjà réalisés.
+2. Afficher les valeurs fixes comme informations. Employer des contrôles modifiables seulement pour les choix réellement pris en charge ; ne pas dupliquer shaders, filtres ou traitements déjà présents.
+3. Raccorder chaque champ décrit à sa configuration et à son effet réel. Lors d'une modification partielle, préserver les valeurs absentes. Valider avant sauvegarde et lancement les valeurs, combinaisons et modèles autorisés.
+4. Fournir les informations utiles et les explications traduites. Éviter les libellés redondants, les longues infobulles incontrôlées et les cadres disproportionnés pour peu d'options.
+5. Mettre les options spécifiques d'un périphérique dans sa configuration. Conserver l'ordre des périphériques fixes et éviter les déplacements lorsque l'émulateur change.
+
+## 6. Gérer clavier, souris et contrôleurs
+
+1. Comparer d'abord les définitions, l'application, la persistance et le chemin d'entrée d'Atari, Commodore (Amiga) et Amstrad. Conserver les mêmes identifiants pour les touches communes au clavier hôte et virtuel. Créer des identifiants spécifiques uniquement pour les touches absentes du clavier hôte ; séparer touche virtuelle et affectation physique par défaut. Toute affectation proposée par défaut doit être modifiable dans l'application, enregistrée puis utilisée à l'exécution. Une constante de touche native définit la touche virtuelle, jamais une affectation physique imposée. Contrôler qu'une affectation personnalisée remplace le choix par défaut après rechargement.
+2. Exposer dans les affectations spéciales seulement les touches propres à la machine. Limiter les touches ou options particulières aux modèles et périphériques concernés.
+   Règle générale de l'application pour tous ses utilisateurs : le clavier hôte fournit les touches communes par les mécanismes existants. Garder les codes et valeurs du protocole dans l'adaptateur ; ne pas reconstruire une seconde liste de lettres, chiffres et touches usuelles, ni un second bloc d'affectations dans les paramètres sous prétexte que le cœur possède ces options. Réutiliser les identifiants et libellés communs. Seules les touches réellement spécifiques nécessitent une définition locale. Ne pas présenter cette règle d'architecture comme une préférence personnelle d'un utilisateur.
+3. Après ajout d'un identifiant partagé, examiner ses consommateurs pour éviter de le faire apparaître dans les autres modules. Préserver les identifiants persistés existants.
+4. Gérer les aliases et transitions au niveau natif pour éviter doubles pressions ou relâchements erronés. Préserver les touches ordinaires qui n'ont pas d'affectation spécifique. Faire passer les valeurs physiques par défaut et les choix personnalisés par le même mécanisme ; ne pas garder dans l'adaptateur un alias physique qui réactiverait l'ancienne touche après une réaffectation. Vérifier le parcours éditeur, configuration persistée, snapshot et touche native, ainsi que l'inactivité de l'ancien défaut.
+5. Décrire les ports, périphériques, actions et appareils physiques réellement pris en charge. Relier type choisi et visuel compatible ; ne pas imposer un second sélecteur inutile.
+6. Pour un adaptateur multiprise, présenter son réglage global et ajouter réellement ses ports. Respecter les capacités de l'émulateur, y compris les emplacements de sauvegarde associés quand ils sont pris en charge.
+7. Appliquer les zones mortes, normalisations et échelles une seule fois, dans les unités attendues. Ne pas exposer des options de pistolet, volant ou contrôleur spécial à une manette ordinaire.
+
+## 7. Gérer firmware et supports
+
+1. Pour le firmware externe, reprendre identification, sélection, scan, rôle et compatibilité existants avec les preuves propres au cœur. Pour du firmware incorporé, afficher l'information et éviter un sélecteur externe sans effet.
+2. Exposer seulement les lecteurs, types et extensions pris en charge au lancement. Distinguer capacité physique et capacité du cœur dans les catalogues et descriptions.
+3. Vérifier insertion, remplacement, éjection et sauvegarde. Si une commande native ne modifie pas réellement le support, utiliser la recréation de machine existante ou déclarer la fonction indisponible ; ne pas simuler une réussite.
+4. Isoler les médias qui peuvent être modifiés dans une copie de travail, conserver leurs noms nécessaires, respecter la protection en écriture et recopier vers l'original seulement pour une sauvegarde explicitement autorisée.
+5. Employer le type réel du stockage et le format accepté par l'émulateur. Ne pas fabriquer une image incompatible pour représenter un stockage fonctionnant sur dossier ; utiliser l'organisation et les choix de dossiers existants.
+6. Garantir nettoyage et sauvegarde lors de l'arrêt sans supprimer de données personnelles ou de médias sources. Vérifier les limites de ports, lecteurs et cartes contre les capacités natives.
+
+## 8. Préparer ressources et images
+
+1. Reprendre le découpage de catalogues et le chargement de ressources du module de référence. Ne pas créer des catalogues supplémentaires sans besoin réel. Conserver les textes génériques dans leur propriétaire commun existant.
+2. Trouver les clés de ressources réellement présentes avant utilisation ; ne pas déduire une clé de son libellé supposé. Vérifier la résolution de chaque clé propre au module.
+3. Garder les noms invariants, identifiants, unités et formats dans la base commune, sans copies dans chaque langue. Préparer l'anglais traduisible et toutes les cultures existantes ; utiliser Argos déjà installé et le script commun.
+4. Lire le comportement des options du script avant de les combiner : une opération de nettoyage qui termine immédiatement doit être lancée séparément de la traduction. Traduire, normaliser la mise en forme, réparer les passages restés en langue source puis auditer. Si une phrase précise reste non traduite après réparation, simplifier sa formulation source sans changer son sens et la retraduire avec Argos dans toutes les langues ; ne pas prétendre que la réparation seule a suffi. Contrôler les placeholders, caractères protégés, entrées manquantes et doublons.
+5. Adapter les erreurs réellement consommées et les diagnostics spécifiques avec leurs paramètres exacts. Ne pas recopier des erreurs sans rapport avec la machine.
+6. Sourcer les images réelles et leurs droits ; rechercher en priorité des photographies déjà détourées. Préparer les PNG transparents de 512 pixels maximum, avec noms et ressources conformes aux catalogues. Contrôler dimensions, transparence et couverture de toutes les machines ; comparer aussi les touches, inscriptions et détails avec la source. Rejeter un détourage qui redessine le matériel ou altère ses inscriptions. Conserver les preuves de source et licence, puis nettoyer les intermédiaires prévus. Quand plusieurs modèles ont le même aspect visible attesté, conserver une seule image commune et référencer cette ressource depuis chaque modèle ; ne pas créer des copies identiques portant des noms de modèles différents. Si la licence ou l'auteur ne sont pas indiqués, l'écrire explicitement sans inventer une attribution ou une licence libre.
+
+## 9. Intégrer, vérifier et commiter
+
+1. Ajouter le projet aux configurations de solution, accès internes SDK et références nécessaires comme le module de référence. Examiner la découverte, les builds et paquets existants ; modifier seulement les listes explicites qui l'exigent.
+2. Avant compilation, rechercher les identifiants de l'ancienne marque, imports manquants et dépendances incohérentes dans les fichiers créés. Examiner aussi les types et propriétés copiés dans les contrats : retirer ceux qui concernent un bus, un montage ou un périphérique absent du nouveau module, au lieu de recopier leurs dépendances inutiles. Corriger les adaptations récentes avant d'attribuer une erreur à un problème préexistant. Pour le contrôle des imports d'entrée-sortie, distinguer un appel d'API d'une propriété portant simplement le nom Path.
+3. Faire les contrôles autonomes utiles puis les essais temporaires nécessaires aux fonctions natives, médias et rendu. Les tests doivent prouver la demande et ne pas simplement répéter l'implémentation. Leurs propriétaires doivent aussi nettoyer dans finally et attendre la destruction. Avant d'écrire un essai, vérifier les identifiants et namespaces du SDK réellement disponibles. Pour les copies de médias en lecture seule, retirer cet attribut uniquement sur les fixtures détenues par le test avant leur suppression ; vérifier que les chemins restent sous leur répertoire temporaire autorisé.
+4. Lancer directement le build Debug avec tous les modules, hors bac à sable pour la restauration, suivant la commande imposée par la configuration utilisateur. Attendre le résultat terminal réussi du script, puis vérifier l'exécutable final et chaque module demandé. Ne pas auditer la sortie finale pendant que le script la reconstruit : son absence temporaire ne constitue pas un échec. Achever les ressources et les corrections avant ce build final. Pendant un build vivant, ne pas modifier ses entrées ni lancer un second build ; conserver le handle et attendre la fin, puis reconstruire seulement si un changement ultérieur le justifie.
+5. Vérifier changements de machine, onglets, entrées, options, ROM, stockage, chargement, arrêt et nettoyage, ainsi que toutes les langues et images. Répéter les contrôles seulement après un changement, un échec ou un doute précis.
+6. Supprimer les tests temporaires et leurs artefacts comme prévu, sans supprimer les tests préexistants. Auditer les exigences complètes contre les preuves actuelles ; ne pas conclure sur la seule présence de fichiers ou un contrôle étroit.
+7. Commiter le module terminé et ses dépendances partagées nécessaires, puis préparer immédiatement le suivant depuis cette méthode corrigée. Distinguer réalisation partielle, compilation réussie et validation complète.
+
+## Exécuter les outils sans perte de temps
+
+1. Trouver les noms réels avec rg --files avant lecture. Ne pas reconstruire un chemin de fichier à partir du nom d'une classe ou d'une convention supposée : les fichiers peuvent être regroupés ou divisés. Réutiliser le chemin retourné par la recherche. Pour une recherche filtrée sous Windows, passer le répertoire et le filtre de nom à rg, par exemple rg -n motif repertoire -g '*.cs' ; ne pas fournir un chemin contenant un glob non développé. Ne pas joindre à un appel un deuxième répertoire dont l'existence n'a pas été vérifiée. Vérifier l'existence et la branche par défaut d'un dépôt distant avant de demander son arbre ; ne pas deviner les noms de dépôts, branches ou assets.
+2. Regrouper les lectures indépendantes et examiner tous leurs résultats. Limiter chaque sortie aux contrats utiles pour éviter la troncature. Extraire les propriétés nécessaires des gros catalogues au lieu d'afficher leur contenu complet. Quand une sortie est tronquée, reprendre seulement la partie nécessaire par plage ou filtre ; ne pas considérer le texte masqué comme lu.
+3. Vérifier sur une valeur les appels de génération ou sérialisation avant une boucle. Activer l'arrêt à la première erreur. Vérifier les signatures réellement utilisables par le langage d'invocation. Pour rechercher une ligne littérale contenant des crochets en PowerShell, utiliser StartsWith ou Contains plutôt qu'un motif wildcard non échappé. Après une génération d'image, lire d'abord le chemin local fourni par l'outil et copier le fichier ; ne pas transmettre plusieurs mégaoctets de base64 dans une ligne de commande Windows.
+4. Après un échec, corriger d'abord l'invocation, puis appliquer immédiatement cette correction aux appels suivants. Pour un téléchargement bloqué par les permissions réseau, employer l'autorisation prévue dès le prochain appel, sans multiplier les outils ou recommencer la même invocation. Pour un clic web, rouvrir la page et utiliser l'identifiant de lien retourné avec sa référence ; ne pas associer à une URL un numéro provenant d'une ancienne référence. Ne pas répéter l'erreur déjà identifiée ni contourner un outil fonctionnel.
+5. Garder les opérations dépendantes et les modifications dans l'ordre du plan. Ne pas ajouter de contrôles, fichiers ou architectures hors du travail demandé.
+
+## Historique des mises à jour
+
+| Mise à jour | Date et heure locale du PC | Objet |
+|---|---|---|
+| 1 | 2026-10-09 23:14:47 | Suivi numéroté des corrections directes des directives. |
+| 2 | 2026-10-09 23:20:59 | Détail de fabrication : contrats, options, entrées, cycle de vie, ressources et intégration. |
+| 3 | 2026-10-09 23:22:32 | Généralisation complète en neuf étapes ; retrait des chemins, clés et exemples propres à un module, et précision des contrôles réutilisables. |
+| 4 | 2026-10-09 23:25:59 | Ordre de traitement des ressources : traduction, normalisation, réparation puis audit ; simplification des phrases source qui résistent à la traduction. |
+| 5 | 2026-10-09 23:28:02 | Éviter les doublons de clavier : conserver le protocole natif dans l'adaptateur et réutiliser les affectations et libellés communs avant toute génération. |
+| 6 | 2026-10-09 23:30:03 | Affirmer la règle commune de clavier pour toute l'application et tous ses utilisateurs, sans la réduire à une préférence personnelle. |
+| 7 | 2026-10-09 23:33:12 | Comparer les trois modules existants et garantir les affectations physiques modifiables, persistées et appliquées à l'exécution. |
+| 8 | 2026-10-09 23:40:39 | Retirer les propriétés étrangères des contrats copiés ; distinguer appels IO et propriétés Path ; rechercher les lignes littérales sans wildcards invalides. |
+| 9 | 2026-10-09 23:48:29 | Réaffectations sans ancien alias natif ; fidélité des photographies ; vérifier dépôts et branches ; copier les images par leur chemin local. |
+| 10 | 2026-10-10 00:02:02 | Vérifier les namespaces et identifiants SDK avant les essais ; nettoyer les attributs des seules fixtures détenues par les tests après fermeture effective. |
+| 11 | 2026-10-10 00:05:04 | Images communes référencées sans copies ; chemins réellement découverts ; recherches Windows correctes ; namespaces et enums SDK ; lisibilité sans copie mécanique ; permissions réseau ; clics web valides ; ne pas modifier les entrées d'un build vivant. |
+| 12 | 2026-10-10 00:06:52 | Heures historiques converties en heure locale du PC ; prochains relevés via Get-Date, sans suffixe de fuseau et avec durées conservées. |
+| 13 | 2026-10-10 00:08:22 | Afficher simplement l'heure locale du PC, sans suffixe de fuseau. |
+| 14 | 2026-10-10 00:09:03 | Tableau historique continu : aucune ligne vide entre ses lignes. |
+| 15 | 2026-10-10 00:10:45 | Vérifier les artefacts finaux après le résultat terminal du build, jamais pendant leur reconstruction. |

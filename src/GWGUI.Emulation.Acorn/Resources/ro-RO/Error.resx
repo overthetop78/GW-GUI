@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Comandă de mediu necunoscută: {0}</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound"><value>Miezul Acorn necesar nu a fost găsit.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected"><value>Miezul Acorn selectat nu a putut fi încărcat.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>Lipseşte un firmware Acorn necesar.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Un firmware Acorn este invalid sau incompatibil.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound"><value>Configurat Acorn mass-media nu a fost găsit.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>Această mașină nu suportă media selectată.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid"><value>O opțiune Acorn are o valoare invalidă.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>Comunicarea cu gazda lui Acorn a eşuat.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid"><value>Statul Acorn salvat este invalid.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible"><value>Starea Acorn salvată este incompatibilă cu maşina curentă.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected"><value>A apărut o eroare de emulare neaşteptată în Acorn.</value></data>
+  <data name="Emulation.Acorn.Error.Details"><value>Detalii: {0}</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>Calea executabilă a gazdei Acorn nu este disponibilă.</value></data>
+</root>

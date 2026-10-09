@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.b2.Description"><value>BBC Micro y BBC Master emulación con b2.</value></data>
+  <data name="Emulation.Acorn.Option.Model"><value>Variante de la máquina</value></data>
+  <data name="Emulation.Acorn.Option.AutoBoot"><value>Coloque el disco insertado automáticamente</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>El sistema operativo y los ROM BASIC están incluidos en el núcleo b2.</value></data>
+</root>

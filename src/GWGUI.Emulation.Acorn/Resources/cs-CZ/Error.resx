@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Příkaz neznámého prostředí: {0}</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound"><value>Požadované jádro Acornu nebylo nalezeno.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected"><value>Vybrané jádro Acornu nebylo možné načíst.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>Chybí požadovaný firmware Acorn.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Firmware Acorn je neplatný nebo nekompatibilní.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound"><value>Nakonfigurovaná média Acorn nebyla nalezena.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>Tento stroj nepodporuje vybraná média.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Možnost Acorn má neplatnou hodnotu.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>Komunikace s hostitelem Acornu selhala.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid"><value>Stát zachráněný Acornem je neplatný.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible"><value>Acorn Saved State je nekompatibilní se stávajícím strojem.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected"><value>Nastala neočekávaná chyba emulace Acornu.</value></data>
+  <data name="Emulation.Acorn.Error.Details"><value>Podrobnosti: {0}</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>Spustitelná cesta hostitele Acornu je nedostupná.</value></data>
+</root>

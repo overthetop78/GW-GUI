@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Family.Acorn"><value>Acorn</value></data>
+  <data name="Emulation.Emulator.b2.Description"><value>BBC Micro and BBC Master emulation with b2.</value></data>
+  <data name="Emulation.Acorn.Option.Model"><value>Machine variant</value></data>
+  <data name="Emulation.Acorn.Option.AutoBoot"><value>Boot the inserted disk automatically</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>The operating system and BASIC ROMs are included in the b2 core.</value></data>
+  <data name="Emulation.Acorn.Model.Unavailable"><value>This model is not supported by the b2 core.</value></data>
+</root>

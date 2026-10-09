@@ -40,6 +40,7 @@ public static class EmulationKeyMapper
             Key.Home => EmulationKey.Home, Key.End => EmulationKey.End,
             Key.PageUp => EmulationKey.PageUp, Key.PageDown => EmulationKey.PageDown,
             Key.CapsLock => EmulationKey.CapsLock, Key.Help => EmulationKey.Help,
+            Key.Pause => EmulationKey.Break,
             Key.OemComma => EmulationKey.Comma, Key.OemPeriod => EmulationKey.Period,
             Key.OemQuestion => EmulationKey.Slash, Key.OemMinus => EmulationKey.Minus,
             Key.OemPlus => EmulationKey.Equals, Key.OemSemicolon => EmulationKey.Semicolon,

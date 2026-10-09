@@ -29,6 +29,7 @@
     <PackageReference Include="LTRData.DiscUtils.HfsPlus" Version="1.0.88" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Commodore" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Atari" />
+    <InternalsVisibleTo Include="GWGUI.Emulation.Acorn" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Amstrad" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Sega" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Nintendo" />

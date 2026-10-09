@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.b2.Description"><value>BBC Micro và BBC Master mô phỏng với b2.</value></data>
+  <data name="Emulation.Acorn.Option.Model"><value>Biến thế máy</value></data>
+  <data name="Emulation.Acorn.Option.AutoBoot"><value>Tự động khởi động đĩa đã chèn</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>Hệ điều hành và BASIC ROMs được bao gồm trong các b2 lõi.</value></data>
+</root>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Nieznane polecenie środowiska: {0}</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound"><value>Nie znaleziono wymaganego rdzenia Acorn.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected"><value>Wybrany rdzeń Acorn nie mógł być załadowany.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>Brakuje wymaganego firmware Acorn.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Firmware Acorn jest nieważny lub niekompatybilny.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound"><value>Nie znaleziono skonfigurowanych mediów Acorn.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>Ta maszyna nie obsługuje wybranych mediów.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Opcja Acorn ma nieprawidłową wartość.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>Komunikacja z gospodarzem Acorn nie powiodła się.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid"><value>Stan zapisany przez Acorn jest nieważny.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible"><value>Stan zapisany przez Acorn jest niezgodny z obecną maszyną.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected"><value>Pojawił się nieoczekiwany błąd emulacji Acorn.</value></data>
+  <data name="Emulation.Acorn.Error.Details"><value>Szczegóły: {0}</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>Ścieżka wykonywalna hosta Acorn jest niedostępna.</value></data>
+</root>

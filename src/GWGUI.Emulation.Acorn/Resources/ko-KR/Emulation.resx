@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.b2.Description"><value>b2와 BBC 마이크로 및 BBC 마스터 에뮬레이션.</value></data>
+  <data name="Emulation.Acorn.Option.Model"><value>기계 변종</value></data>
+  <data name="Emulation.Acorn.Option.AutoBoot"><value>삽입된 디스크를 자동으로 부팅</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>운영 체제 및 BASIC ROM은 b2 코어에 포함되어 있습니다.</value></data>
+</root>

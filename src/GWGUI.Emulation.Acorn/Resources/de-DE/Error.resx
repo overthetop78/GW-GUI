@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Unbekannter Umgebungsbefehl: {0}</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound"><value>Der benötigte Acorn-Kern wurde nicht gefunden.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected"><value>Der ausgewählte Acorn Kern konnte nicht geladen werden.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>Eine erforderliche Acorn Firmware fehlt.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Eine Acorn Firmware ist ungültig oder inkompatibel.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound"><value>Die konfigurierten Acorn-Medien wurden nicht gefunden.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>Diese Maschine unterstützt die ausgewählten Medien nicht.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Eine Acorn-Option hat einen ungültigen Wert.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>Die Kommunikation mit dem Acorn-Host scheiterte.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid"><value>Der gerettete Zustand von Acorn ist ungültig.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible"><value>Der gespeicherte Zustand Acorn ist inkompatibel mit der aktuellen Maschine.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected"><value>Ein unerwarteter Acorn-Emulationsfehler trat auf.</value></data>
+  <data name="Emulation.Acorn.Error.Details"><value>Einzelheiten: {0}</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>Der ausführbare Pfad des Acorn-Hosts ist nicht verfügbar.</value></data>
+</root>

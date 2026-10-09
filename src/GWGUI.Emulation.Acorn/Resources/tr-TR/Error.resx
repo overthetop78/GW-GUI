@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Bilinmeyen çevre komutları: {0}</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound"><value>Gerekli Acorn çekirdeği bulunamadı.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected"><value>Seçilen Acorn çekirdeği yüklenemezdi.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>Gerekli Acorn Hardware eksik.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Bir Acornware geçersiz ya da uygunsuzdur.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound"><value>yapılandırılmış Acorn medyası bulunamadı.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>Bu makine seçilmiş medyayı desteklemiyor.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Bir Acorn seçeneğinin geçersiz bir değeri vardır.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>Acorn host ile iletişim başarısız oldu.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid"><value>Acorn kurtarılan devlet geçersizdir.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible"><value>Acorn kurtarılan devlet mevcut makine ile uyumlu değildir.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected"><value>Beklenmeyen bir Acorn emulation hatası meydana geldi.</value></data>
+  <data name="Emulation.Acorn.Error.Details"><value>Detaylar: {0}</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>Acorn host executable yolu mevcut değildir.</value></data>
+</root>
