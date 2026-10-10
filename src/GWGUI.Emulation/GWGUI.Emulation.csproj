@@ -6,6 +6,7 @@
     <AssemblyName>gwgui.emulation</AssemblyName>
     <PackageId>GWGUI.Emulation.SDK</PackageId>
     <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <Description>Versioned contracts for independent GW GUI emulation modules.</Description>
     <Authors>overthetop78</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -30,6 +31,7 @@
     <InternalsVisibleTo Include="GWGUI.Emulation.Commodore" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Atari" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Acorn" />
+    <InternalsVisibleTo Include="GWGUI.Emulation.Apple" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Amstrad" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Sega" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Nintendo" />

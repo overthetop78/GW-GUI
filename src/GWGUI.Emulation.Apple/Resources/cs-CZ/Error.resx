@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>Příkaz neznámého prostředí: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound"><value>Požadované jádro Apple nebylo nalezeno.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected"><value>Zvolené jádro Apple nebylo možné načíst.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing"><value>Chybí požadovaný firmware Apple.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>Systém ROM je neplatný nebo neslučitelný.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound"><value>Nakonfigurovaná Apple média nebyla nalezena.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported"><value>Tento stroj nepodporuje vybraná média.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid"><value>Volba Apple má neplatnou hodnotu.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>Komunikace s moderátorem Apple selhala.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid"><value>Uložený stav Apple je neplatný.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible"><value>Uložený stav Apple je neslučitelný se stávajícím strojem.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected"><value>Nastala neočekávaná chyba emulace Apple.</value></data>
+  <data name="Emulation.Apple.Error.Details"><value>Podrobnosti: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>Spustitelná cesta pro hostitele Apple je nedostupná.</value></data>
+</root>

@@ -1,0 +1,112 @@
+using GWGUI.Emulation.Apple.Common.Machines.AppleII.Dictionaries;
+using GWGUI.Emulation.Apple.Common.Machines.Macintosh.Dictionaries;
+
+namespace GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
+
+internal static class InputSettingsFunctions
+{
+    internal static IReadOnlyDictionary<EmulationKey, EmulationKey> DefaultHostKeys(MachineModel model) =>
+        model switch
+        {
+            MachineModel.AppleIIe or MachineModel.AppleIIeEnhanced => AppleIIKeyboardDictionary.DefaultHostKeys,
+            MachineModel.Macintosh128K or MachineModel.Macintosh512K or MachineModel.MacintoshPlus
+                or MachineModel.MacintoshClassic or MachineModel.MacintoshII => MacintoshKeyboardDictionary.DefaultHostKeys,
+            _ => new Dictionary<EmulationKey, EmulationKey>()
+        };
+
+    private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) =>
+        DefaultHostKeys(configuration.Model).Select(pair => new InputBindingDefinition(
+            pair.Key.ToString(), InputSettingsFunctionsConstants.ResourceKeyboardPrefix + pair.Key,
+            pair.Value.ToString())).ToArray();
+
+    internal static EmulationInputSettings Describe(MachineConfiguration configuration)
+    {
+        var input = configuration.Input;
+        var definitions = KeyboardDefinitions(configuration);
+        var keyboard = new EmulationInputBindingSet(definitions,
+            ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard);
+        var configured = input.Controllers ?? [];
+        var choices = configuration.Family == MachineFamily.AppleII
+            ? ControllerFunctions.Peripherals(configuration.Model)
+                .OrderBy(category => category).Select(Choice).ToArray()
+            : Array.Empty<EmulationControllerChoice>();
+        var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort,
+            ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(index =>
+        {
+            var current = configured.FirstOrDefault(binding => binding.Port == index);
+            var peripheral = current?.Peripheral ?? PeripheralCategory.AnalogJoystick;
+            return new EmulationControllerPort(index + BufferConstants.IndexIncrement,
+                choices, peripheral.ToString(), current?.DeviceId,
+                new EmulationInputBindingSet(ControllerDefinitions(peripheral),
+                    current?.Mappings ?? new Dictionary<string, string>(),
+                    EmulationInputSource.Keyboard | EmulationInputSource.Mouse
+                        | EmulationInputSource.Controller, true),
+                current?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent,
+                current?.VisualId);
+        }).ToArray();
+        var mouse = configuration.Family == MachineFamily.Macintosh
+            ? new EmulationInputBindingSet(
+                [new InputBindingDefinition(InputSnapshotFunctionsConstants.Left,
+                    InputSettingsFunctionsConstants.ResourceMouseButtonLeft,
+                    InputSettingsFunctionsConstants.MouseLeft)],
+                input.MouseMappings ?? new Dictionary<string, string>(),
+                EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller)
+            : null;
+        return new EmulationInputSettings(keyboard, mouse, ports);
+    }
+
+    internal static MachineConfiguration Apply(MachineConfiguration configuration,
+        EmulationInputSettings settings)
+    {
+        var allowedKeys = KeyboardDefinitions(configuration)
+            .Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
+        var keyboard = settings.Keyboard is null ? configuration.Input.KeyboardMappings
+            : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key)
+                && Enum.TryParse<EmulationKey>(item.Value, true, out var key)
+                && Enum.IsDefined(key))
+                .ToDictionary(item => item.Key,
+                    item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
+        var controllers = settings.ControllerPorts.Select(port =>
+        {
+            if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var peripheral)
+                || !Enum.IsDefined(peripheral))
+                throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(settings));
+            return new ControllerBinding(port.Number - BufferConstants.IndexIncrement,
+                peripheral, port.PhysicalDeviceId, port.Bindings.Values,
+                port.DeadZonePercent, port.VisualId);
+        }).ToArray();
+        var result = configuration with
+        {
+            Input = configuration.Input with
+            {
+                KeyboardMappings = keyboard, Controllers = controllers,
+                MouseMappings = configuration.Family == MachineFamily.Macintosh
+                    ? settings.Mouse?.Values.Where(pair => pair.Key == InputSnapshotFunctionsConstants.Left)
+                        .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal)
+                        ?? configuration.Input.MouseMappings : null
+            }
+        };
+        ConfigurationFunctions.Validate(result);
+        return result;
+    }
+
+    private static EmulationControllerChoice Choice(PeripheralCategory category) =>
+        new(category.ToString(), category switch
+        {
+            PeripheralCategory.None => InputSettingsFunctionsConstants.ResourceControllerNone,
+            PeripheralCategory.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
+            PeripheralCategory.AnalogJoystick => InputSettingsFunctionsConstants.ResourceControllerAnalogJoystick,
+            _ => throw new ArgumentOutOfRangeException(nameof(category), category, null)
+        }, BindingDefinitions: ControllerDefinitions(category));
+
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory category) =>
+        category == PeripheralCategory.None ? []
+            : InputSettingsFunctionsConstants.ControllerActions.Select(action =>
+                new InputBindingDefinition(action,
+                    InputSettingsFunctionsConstants.ResourceActionPrefix + action, string.Empty)).ToArray();
+
+    private static IReadOnlyDictionary<string, string> ToStrings(
+        IReadOnlyDictionary<string, EmulationKey>? mappings) =>
+        mappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal)
+            ?? new Dictionary<string, string>(StringComparer.Ordinal);
+}

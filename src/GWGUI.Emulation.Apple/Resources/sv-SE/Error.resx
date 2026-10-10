@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>Okänd miljökommando: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound"><value>Den nödvändiga Apple-kärnan hittades inte.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected"><value>Den valda Apple-kärnan kunde inte laddas.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing"><value>En nödvändig Apple firmware saknas.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>Systemet ROM är ogiltigt eller oförenligt.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound"><value>De konfigurerade Apple-media hittades inte.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported"><value>Denna maskin stöder inte de utvalda medierna.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid"><value>Ett Apple-alternativ har ett ogiltigt värde.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>Kommunikation med Apple-värden misslyckades.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid"><value>Apples sparade tillstånd är ogiltigt.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible"><value>Apples sparade tillstånd är oförenligt med den nuvarande maskinen.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected"><value>Ett oväntat Apple-emuleringsfel inträffade.</value></data>
+  <data name="Emulation.Apple.Error.Details"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>Apple värd körbar väg är otillgänglig.</value></data>
+</root>

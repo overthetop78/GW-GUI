@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>不明な環境コマンド: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound"><value>必須のAppleコアが見つかりませんでした。</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected"><value>選択されたAppleのコアは読み込められませんでした。</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing"><value>必要なAppleファームウェアが欠落しています。</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>システム ROM は無効または非互換です。</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound"><value>設定されたAppleメディアが見つかりませんでした。</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported"><value>選択したメディアに対応していません。</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid"><value>Apple のオプションには、無効な値があります。</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>Appleホストとの通信が失敗しました。</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid"><value>Apple保存状態が無効です。</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible"><value>保存状態Appleは現在の機械と互換性がありません。</value></data>
+  <data name="Emulation.Apple.Error.Unexpected"><value>予期しないAppleエミュレーションエラーが発生しました。</value></data>
+  <data name="Emulation.Apple.Error.Details"><value>詳細情報: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>Apple のホスト実行可能なパスは利用できません。</value></data>
+</root>

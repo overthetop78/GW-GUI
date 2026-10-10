@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Apple.Model.AppleII"><value>Apple II</value></data>
+  <data name="Emulation.Apple.Model.AppleIIPlus"><value>Apple II Plus</value></data>
+  <data name="Emulation.Apple.Model.AppleIIJPlus"><value>Apple II J-Plus</value></data>
+  <data name="Emulation.Apple.Model.AppleIIe"><value>Apple IIe</value></data>
+  <data name="Emulation.Apple.Model.AppleIIeEnhanced"><value>Apple IIe Enhanced</value></data>
+  <data name="Emulation.Apple.Model.Macintosh128K"><value>Macintosh 128K</value></data>
+  <data name="Emulation.Apple.Model.Macintosh512K"><value>Macintosh 512K</value></data>
+  <data name="Emulation.Apple.Model.MacintoshPlus"><value>Macintosh Plus</value></data>
+  <data name="Emulation.Apple.Model.MacintoshClassic"><value>Macintosh Classic</value></data>
+  <data name="Emulation.Apple.Model.MacintoshII"><value>Macintosh II</value></data>
+</root>

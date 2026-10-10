@@ -1,0 +1,33 @@
+global using GWGUI.Emulation.Constants;
+global using GWGUI.Emulation.Contracts;
+global using GWGUI.Emulation.Dictionaries;
+global using GWGUI.Emulation.Enums;
+global using GWGUI.Emulation.Exceptions;
+global using GWGUI.Emulation.Functions;
+global using GWGUI.Emulation.Interfaces;
+global using GWGUI.Emulation.Interop;
+global using GWGUI.Emulation.Services;
+
+
+global using GWGUI.Emulation;
+global using GWGUI.Emulation.Apple.Common.Constants;
+global using GWGUI.Emulation.Apple.Common.Contracts;
+global using GWGUI.Emulation.Apple.Common.Machines.Common.Contracts;
+global using GWGUI.Emulation.Apple.Common.Machines.Common.Dictionaries;
+global using GWGUI.Emulation.Apple.Common.Machines.Common.Enums;
+global using GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
+global using GWGUI.Emulation.Apple.Emulators.Common.Constants;
+global using GWGUI.Emulation.Apple.Emulators.Common.Contracts;
+global using GWGUI.Emulation.Apple.Emulators.Common.Exceptions;
+global using GWGUI.Emulation.Apple.Emulators.Common.Functions;
+global using GWGUI.Emulation.Apple.Emulators.Common.Interfaces;
+global using GWGUI.Emulation.Apple.Emulators.Common.Interop.Dictionaries;
+global using GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
+global using GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;
+global using GWGUI.Emulation.Apple.Common.Services;
+global using GWGUI.Emulation.Apple.Emulators.Common.Enums;
+global using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;
+global using GWGUI.Emulation.Apple.Emulators.Common.Interop.Contracts;
+global using GWGUI.Emulation.Apple.Common.Interfaces;
+global using GWGUI.Emulation.Apple.Emulators.Common.Interop.Factories;
+global using GWGUI.Emulation.Apple.Common.Machines.Common.Constants;

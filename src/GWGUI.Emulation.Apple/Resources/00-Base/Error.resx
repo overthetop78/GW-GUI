@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>Unknown environment command: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound"><value>The required Apple core was not found.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected"><value>The selected Apple core could not be loaded.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing"><value>A required Apple firmware is missing.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>The system ROM is invalid or incompatible.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound"><value>The configured Apple media was not found.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported"><value>This machine does not support the selected media.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid"><value>An Apple option has an invalid value.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>Communication with the Apple host failed.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid"><value>The Apple saved state is invalid.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible"><value>The Apple saved state is incompatible with the current machine.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected"><value>An unexpected Apple emulation error occurred.</value></data>
+  <data name="Emulation.Apple.Error.Details"><value>Details: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>The Apple host executable path is unavailable.</value></data>
+</root>

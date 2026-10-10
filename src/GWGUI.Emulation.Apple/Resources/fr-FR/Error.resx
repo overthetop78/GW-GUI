@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>Commande d'environnement inconnu : {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound"><value>Le noyau Apple requis n'a pas été trouvé.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected"><value>Le noyau Apple sélectionné n'a pu être chargé.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing"><value>Un firmware Apple requis est manquant.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>Le système ROM est invalide ou incompatible.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound"><value>Le support Apple configuré n'a pas été trouvé.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported"><value>Cette machine ne supporte pas les médias sélectionnés.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid"><value>Une option Apple a une valeur invalide.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>La communication avec l'hôte Apple a échoué.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid"><value>L'état de sauvegarde Apple est invalide.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible"><value>L'état de sauvegarde Apple est incompatible avec la machine actuelle.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected"><value>Une erreur inattendue d'émulation Apple s'est produite.</value></data>
+  <data name="Emulation.Apple.Error.Details"><value>Détails : {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>Le chemin exécutable de l'hôte Apple n'est pas disponible.</value></data>
+</root>

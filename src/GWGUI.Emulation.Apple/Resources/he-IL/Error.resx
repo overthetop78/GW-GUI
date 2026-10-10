@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>ארכיון תגיות: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound"><value>הליבה של Apple לא נמצאה.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected"><value>לא ניתן לטעון את הליבה של Apple.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing"><value>קושחה של Apple נדרשה חסרה.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>המערכת ROM היא בלתי חוקית או לא מתאימה.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound"><value>אמצעי Apple המוגדרים לא נמצאו.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported"><value>מכונה זו אינה תומכת בתקשורת שנבחרה.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid"><value>לאופציה של Apple יש ערך לא חוקי.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>התקשורת עם חברת Apple נכשלה.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid"><value>המדינה הנשמרת של Apple היא בלתי חוקית.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible"><value>המדינה Apple הצילה אינה תואמת למכונה הנוכחית.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected"><value>טעות חיקוי בלתי צפויה של Apple התרחשה.</value></data>
+  <data name="Emulation.Apple.Error.Details"><value>תגית: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>דרך ההפעלה של Apple אינה זמינה.</value></data>
+</root>

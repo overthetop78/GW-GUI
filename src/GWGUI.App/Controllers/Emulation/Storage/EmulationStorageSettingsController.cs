@@ -55,6 +55,9 @@ internal sealed class EmulationStorageSettingsController
 
     internal IEmulationConfiguration Apply(IEmulationConfiguration configuration)
     {
+        if (_configuration is null || _configuration.ModuleId != configuration.ModuleId
+            || _configuration.MachineId != configuration.MachineId || _configuration.Id != configuration.Id)
+            return configuration;
         foreach (var device in _settings.AvailableDevices.Where(device => device.UsesDirectory
             && device.DefaultImageSubdirectory is not null))
         {

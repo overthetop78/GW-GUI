@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>未知的环境命令 :{0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound"><value>未找到所需的 Apple 核心 。</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected"><value>无法装入选中的 Apple 核心 。</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing"><value>需要的Apple号固件不见了.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>系统ROM无效或不兼容.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound"><value>未找到配置的 Apple 媒体 。</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported"><value>此机器不支持所选的媒体 。</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid"><value>一个 Apple 选项的值无效 。</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>与Apple主机通信失败.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid"><value>Apple 保存状态无效 。</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible"><value>Apple所保存的状态与现在的机器不相容.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected"><value>发生了出乎意料的Apple模拟错误.</value></data>
+  <data name="Emulation.Apple.Error.Details"><value>细节 :{0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>Apple主机可执行路径无法使用.</value></data>
+</root>

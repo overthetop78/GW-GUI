@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>Comando de ambiente desconhecido: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound"><value>O núcleo Apple necessário não foi encontrado.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected"><value>Não foi possível carregar o núcleo Apple seleccionado.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing"><value>Falta um firmware Apple necessário.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>A ROM do sistema é inválida ou incompatível.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound"><value>A mídia Apple configurada não foi encontrada.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported"><value>Esta máquina não suporta a mídia selecionada.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid"><value>Uma opção Apple tem um valor inválido.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>A comunicação com o host Apple falhou.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid"><value>O estado salvo da Apple é inválido.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible"><value>O estado salvo da Apple é incompatível com a máquina atual.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected"><value>Ocorreu um erro de emulação inesperado da Apple.</value></data>
+  <data name="Emulation.Apple.Error.Details"><value>Detalhes: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>O caminho executável da máquina Apple não está disponível.</value></data>
+</root>

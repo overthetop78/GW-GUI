@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>Невідомі команди середовища: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound"><value>Не знайдено обов’язкове ядро Apple.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected"><value>Вибране ядро Apple не може бути завантажено.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing"><value>Необхідна прошивка Apple відсутні.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>Система ROM недійсна або несумісна.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound"><value>Не знайдено налаштований Apple медіа.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported"><value>Ця машина не підтримує вибрані медіа.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid"><value>Опція Apple має недійсне значення.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>Зв'язок з Apple не вдалося.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid"><value>Apple збережений стан недійсним.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible"><value>Apple збережений стан несумісний з поточною машиною.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected"><value>Несподівана помилка емуляції Apple сталася.</value></data>
+  <data name="Emulation.Apple.Error.Details"><value>Детальніше: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>Виконаний шлях Apple не доступний.</value></data>
+</root>

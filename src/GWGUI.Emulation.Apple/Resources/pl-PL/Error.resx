@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>Nieznane polecenie środowiska: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound"><value>Wymagany rdzeń Apple nie został znaleziony.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected"><value>Wybrany rdzeń Apple nie mógł być wczytany.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing"><value>Brakuje wymaganego firmware Apple.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>System ROM jest nieprawidłowy lub niekompatybilny.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound"><value>Nie znaleziono skonfigurowanych mediów Apple.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported"><value>Ta maszyna nie obsługuje wybranych mediów.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid"><value>Opcja Apple ma nieprawidłową wartość.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>Komunikacja z hostem Apple nie powiodła się.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid"><value>Zapisany stan Apple jest niepoprawny.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible"><value>Zapisany stan Apple jest niekompatybilny z obecną maszyną.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected"><value>Wystąpił nieoczekiwany błąd emulacji Apple 'a.</value></data>
+  <data name="Emulation.Apple.Error.Details"><value>Szczegóły: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>Ścieżka wykonywalna hosta Apple jest niedostępna.</value></data>
+</root>
