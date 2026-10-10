@@ -66,13 +66,10 @@ public sealed class CoreOptionsDialog : Window
                     ?? choices.FirstOrDefault()
             };
         }
-        if (option.RequiresRestart)
-            control.ToolTip = LocExtension.Get("Emulation.Option.RestartRequired");
         _controls[option.Key] = control;
-        var label = option.RequiresRestart
-            ? $"{option.Name} · {LocExtension.Get("Emulation.Option.RestartRequired")}"
-            : option.Name;
-        return (label, control);
+        return (System.Text.RegularExpressions.Regex.Replace(option.Name,
+            @"\s*\(restart required\)", string.Empty,
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase), control);
     }
 
     private static string ReadValue(FrameworkElement control) => control switch

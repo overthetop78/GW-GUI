@@ -6,14 +6,14 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.azahar.Description"><value>Azahar ile uyumlu Nintendo sistemleri.</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit"><value>Enable CPU JIT</value></data>
-  <data name="Emulation.Option.azahar.citra_use_cpu_jit.Help"><value>ARM CPU emulation için kullanılabilir Just-In-Time derleme. Önemli olarak performans geliştirir, ancak doğruluk azaltılabilir. Yeniden başlamak gerekir.</value></data>
+  <data name="Emulation.Option.azahar.citra_use_cpu_jit.Help"><value>ARM CPU emulation için kullanılabilir Just-In-Time derleme. Performansı geliştirir, ancak doğruluk azaltılabilir.</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit.Value.enabled"><value>Etkin</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage"><value>CPU Saat Hız</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage.Help"><value>Emated 3DS CPU saat hızını normal hız yüzdesi olarak ayarlayın. Daha yüksek değerler bazı oyunlarda performansı artırabilir, ancak sorunlara neden olabilir. Daha düşük değerler çok hızlı koşan oyunlarla yardımcı olabilir.</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage.Value.100"><value>% 100 (Default)</value></data>
   <data name="Emulation.Option.azahar.citra_is_new_3ds"><value>3DS Sistem Modelleme</value></data>
-  <data name="Emulation.Option.azahar.citra_is_new_3ds.Help"><value>Orijinal 3DS veya Yeni 3DS’yi taklit edip etmeyeceğini seçin. Yeni 3DS, bazı oyunlar için gerekli olan ek CPU gücüne ve hafızaya sahiptir. Yeniden başlamak gerekir.</value></data>
+  <data name="Emulation.Option.azahar.citra_is_new_3ds.Help"><value>Orijinal 3DS veya New 3DS'yı seçin. New 3DS'nın daha CPU gücü ve hafızası vardır.</value></data>
   <data name="Emulation.Option.azahar.citra_is_new_3ds.Value.Old 3DS"><value>Orijinal 3DS</value></data>
   <data name="Emulation.Option.azahar.citra_region_value"><value>3DS Sistem Bölgesi</value></data>
   <data name="Emulation.Option.azahar.citra_region_value.Help"><value>3DS sistemi bölgesini ayarlayın. Auto-select oyuna dayalı olarak seçecektir. Bazı oyunlar bölge kilitlidir ve eşleşen bölgeleri gerektirir.</value></data>
@@ -50,7 +50,7 @@
   <data name="Emulation.Option.azahar.citra_input_type.Value.static_noise"><value>Statik Gürültü</value></data>
   <data name="Emulation.Option.azahar.citra_input_type.Value.frontend"><value>Frontend</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api"><value>Grafik API</value></data>
-  <data name="Emulation.Option.azahar.citra_graphics_api.Help"><value>Grafikleri seçin API. Auto en iyi mevcut seçeneği seçecektir. Yeniden başlamak gerekir.</value></data>
+  <data name="Emulation.Option.azahar.citra_graphics_api.Help"><value>Grafik işleme API'sini seçin. Auto mevcut bir API seçer.</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.Auto"><value>Otomatik</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.OpenGL"><value>OpenGL</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.Software"><value>Yazılım Software Software</value></data>
@@ -509,8 +509,6 @@
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.pattern"><value>Desen</value></data>
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.random"><value>Random</value></data>
   <data name="Emulation.Firmware.desmume.Slot0"><value>NDS Firmaware</value></data>
-  
-  
   <data name="Emulation.Emulator.desmume2015.Description"><value>DeSmuME ile uyumlu Nintendo sistemleri.</value></data>
   <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>İç karar (başlangıç)</value></data>
   <data name="Emulation.Option.desmume2015.desmume_num_cores"><value>CPU çekirdeği</value></data>
@@ -597,8 +595,6 @@
   <data name="Emulation.Option.desmume2015.desmume_mic_mode.Value.random"><value>rastgele rastgele</value></data>
   <data name="Emulation.Option.desmume2015.desmume_mic_mode.Value.physical"><value>Fiziksel fiziksel fizik</value></data>
   <data name="Emulation.Firmware.desmume2015.Slot0"><value>NDS Firmaware</value></data>
-  
-  
   <data name="Emulation.Option.melonds.melonds_console_mode"><value>Konsol Modu</value></data>
   <data name="Emulation.Option.melonds.melonds_boot_directly"><value>Boot Game Doğrudanly</value></data>
   <data name="Emulation.Option.melonds.melonds_boot_directly.Help"><value>Ana oyunu doğrudan ya da DS menüsüne çizmeliyse (BIOS ve gerekli bilgisayar dosyaları) gerekir.</value></data>
@@ -696,8 +692,6 @@
   <data name="Emulation.Option.melonds.melonds_jit_fast_memory.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_fast_memory.Value.enabled"><value>Etkin</value></data>
   <data name="Emulation.Firmware.melonds.Slot0"><value>NDS Firmaware</value></data>
-  
-  
   <data name="Emulation.Firmware.melonds.Slot3"><value>DSi Firmaware</value></data>
   <data name="Emulation.Firmware.melonds.Slot4"><value>DSi ARM7 BIOS</value></data>
   <data name="Emulation.Firmware.melonds.Slot5"><value>DSi ARM9 BIOS</value></data>
@@ -705,24 +699,13 @@
   <data name="Emulation.Firmware.melonds.Slot7"><value>DSi SD kart</value></data>
   <data name="Emulation.Emulator.melondsds.Description"><value>Emulates uyumlu Nintendo sistemlerle birlikte sistemler melonDS DS.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input"><value>Microphone Giriş Modu</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mic_input.Help"><value>Emated mikrofonun alacağı sesi seçin:
-
-Sessizlik: Hiçbir ses girişi yok.
-Blow: Oluşturulmuş bir sesin içine girin.
-Gürültü: Rastgele beyaz gürültü.
-Microphone: Mevcut olsaydı gerçek mikrofonu kullanın, Sessizliğe geri dönün.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mic_input.Help"><value>Emated mikrofonun alacağı sesi seçin:&#xA;&#xA;Sessizlik: Hiçbir ses girişi yok.&#xA;Blow: Oluşturulmuş bir sesin içine girin.&#xA;Gürültü: Rastgele beyaz gürültü.&#xA;Microphone: Mevcut olsaydı gerçek mikrofonu kullanın, Sessizliğe geri dönün.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.silence"><value>Sessizlik</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.blow"><value>Blow Blow</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.noise"><value>Gürültü gürültü gürültüsü</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.microphone"><value>Microphone</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active"><value>Mikrofon Düğmesi</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mic_input_active.Help"><value>Microphone butonunun davranışını ayarlayın, hatta Mikrofon Giriş Modu sert veya gürültü için ayarlanır. Emated mikrofon, düğme tarafından devre dışı bırakılırken sessizliği alır.
-
-Hold: Düğme, tutarken mic girişi sağlar.
-Toggle: Düğme baskılandığında mic girişi sağlar, tekrar basıldığında onu devre dışı bırakır.
-Her zaman: Düğme göz ardı edilir, mic girişi her zaman etkinleştirilir.
-
-Mikrophone Giriş Modu Sessizliğe ayarlandığında görmezden gelin.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mic_input_active.Help"><value>Microphone butonunun davranışını ayarlayın, hatta Mikrofon Giriş Modu sert veya gürültü için ayarlanır. Emated mikrofon, düğme tarafından devre dışı bırakılırken sessizliği alır.&#xA;&#xA;Hold: Düğme, tutarken mic girişi sağlar.&#xA;Toggle: Düğme baskılandığında mic girişi sağlar, tekrar basıldığında onu devre dışı bırakır.&#xA;Her zaman: Düğme göz ardı edilir, mic girişi her zaman etkinleştirilir.&#xA;&#xA;Mikrophone Giriş Modu Sessizliğe ayarlandığında görmezden gelin.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.hold"><value>Keep Hold Keep</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.toggle"><value>Toggle</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.always"><value>Her zaman her zaman hep her zaman</value></data>
@@ -752,21 +735,11 @@ Mikrophone Giriş Modu Sessizliğe ayarlandığında görmezden gelin.</value></
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.enabled"><value>Etkin</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns"><value>DNS Override</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>DNS sunucusu emated erişim noktası için kullanmak ("melonAP"). Bunu, kapalı Nintendo Wi-Fi Bağlantı hizmetlerini yeniden tanımlayan özel sunucularla online oynamak için kullanın. Oyun desteği sunucuya bağlıdır. 
-Bazı internet servis sağlayıcıları bu sunuculara istekleri engelleyebilir. Bu sizin için durumsa, https://tinyurl.com/393cb755'i bir iş için görün.
-
-Listelenen sunucular libretro, Nintendo, melonDS ekibi veya bu temelin yazarına bağlı değildir. Lütfen diğer oyunculara saygı gösterin ve sunucunun kurallarını takip edin.
-
-Emin olun, Kaeru WFC.'da bırak Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>DNS sunucusu emated erişim noktası için kullanmak ("melonAP"). Bunu, kapalı Nintendo Wi-Fi Bağlantı hizmetlerini yeniden tanımlayan özel sunucularla online oynamak için kullanın. Oyun desteği sunucuya bağlıdır. &#xA;Bazı internet servis sağlayıcıları bu sunuculara istekleri engelleyebilir. Bu sizin için durumsa, https://tinyurl.com/393cb755'i bir iş için görün.&#xA;&#xA;Listelenen sunucular libretro, Nintendo, melonDS ekibi veya bu temelin yazarına bağlı değildir. Lütfen diğer oyunculara saygı gösterin ve sunucunun kurallarını takip edin.&#xA;&#xA;Emin olun, Kaeru WFC.'da bırak Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.95.217.77.181"><value>Wiimmfi (95.217.77.181)</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.default"><value>Don't Override</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language"><value>Dil</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Emated konsolun dil modu.
-
-Host kullanın: Konsol tarafından desteklenen ön dili kullanın.
-Override: Hangi dili zaten bilgisayarda ayarlandığında kullanın. Bu, emated DS (veya DSi NAND) ön dili desteklemezse geri dönüş davranışıdır.
-
-Her oyun bu ayarı onurlandırmıyor. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Emated konsolun dil modu.&#xA;&#xA;Host kullanın: Konsol tarafından desteklenen ön dili kullanın.&#xA;Override: Hangi dili zaten bilgisayarda ayarlandığında kullanın. Bu, emated DS (veya DSi NAND) ön dili desteklemezse geri dönüş davranışıdır.&#xA;&#xA;Her oyun bu ayarı onurlandırmıyor. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.auto"><value>Host Use Host</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.en"><value>İngilizce English</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.ja"><value>Japon Japonca</value></data>
@@ -776,13 +749,7 @@ Her oyun bu ayarı onurlandırmıyor. Değişiklikler bir sonraki yeniden yürü
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.es"><value>İspanyolca İspanyolca İspanyolca İspanyolca</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.default"><value>Don't Override</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username"><value>Username</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Emated konsola verilen kullanıcı adı Overrides.
-
-Override: Herhangi bir adın bilgisayarda tanımlandığını kullanın.
-Tahmin: Kullanıcınızı ön uçtan almaya çalışın. Eğer bu başarısız olursa USER, USERNAME ve LOGNAME çevre değişkenlerini deneyin.
-melonDS DS: Uses "melonDS DS". Bu, başka hiçbir şey işe yaramıyorsa varsayılandır.
-
-İsimler 10 karaktere ayrılmıştır. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Emated konsola verilen kullanıcı adı Overrides.&#xA;&#xA;Override: Herhangi bir adın bilgisayarda tanımlandığını kullanın.&#xA;Tahmin: Kullanıcınızı ön uçtan almaya çalışın. Eğer bu başarısız olursa USER, USERNAME ve LOGNAME çevre değişkenlerini deneyin.&#xA;melonDS DS: Uses "melonDS DS". Bu, başka hiçbir şey işe yaramıyorsa varsayılandır.&#xA;&#xA;İsimler 10 karaktere ayrılmıştır. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.guess_username"><value>Tahmini</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.existing_username"><value>Don't Override</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color"><value>Favorite Color</value></data>
@@ -834,12 +801,7 @@ melonDS DS: Uses "melonDS DS". Bu, başka hiçbir şey işe yaramıyorsa varsay�
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>yapılandırılmış alarmın dakikası. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Value.default"><value>Don't Override</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode"><value>Ağlama Modu</value></data>
-  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Configures howHow melonDS DS Emülatlar Nintendo WFC. Emin değilse, Indirect modunda kullanın.
-
-Indirect: DS'nin ağ yığınını taklit etmek için kütüphaneler kullanın. Basit ve yüklemeye gerek yok.
-Doğrudan: Rotalar ev sahibi ağ arayüzüne Wi-Fi paketlerini ayırdı. Daha hızlı ve daha güvenilir, ancak bir ethernet bağlantısı gerektirir ve WinPcap veya Npkap kurulur. bu kütüphanepCap kuruldu. Aksi takdirde, Indirect mode'a geri dönün.
-
-Değişiklikler bir sonraki yeniden yürürlüğe girer. Yerel multiplayer ile ilgili değil.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Configures howHow melonDS DS Emülatlar Nintendo WFC. Emin değilse, Indirect modunda kullanın.&#xA;&#xA;Indirect: DS'nin ağ yığınını taklit etmek için kütüphaneler kullanın. Basit ve yüklemeye gerek yok.&#xA;Doğrudan: Rotalar ev sahibi ağ arayüzüne Wi-Fi paketlerini ayırdı. Daha hızlı ve daha güvenilir, ancak bir ethernet bağlantısı gerektirir ve WinPcap veya Npkap kurulur. bu kütüphanepCap kuruldu. Aksi takdirde, Indirect mode'a geri dönün.&#xA;&#xA;Değişiklikler bir sonraki yeniden yürürlüğe girer. Yerel multiplayer ile ilgili değil.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.indirect"><value>Indirect</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.direct"><value>Direkt Doğrudan</value></data>
@@ -847,9 +809,7 @@ Değişiklikler bir sonraki yeniden yürürlüğe girer. Yerel multiplayer ile i
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Doğrudan Mode ile kullanmak için bir ağ arayüzü seçin. Emin olursa, otomatik olarak ayarlayın. Değişiklikler bir sonraki temel yeniden yürürlüğe girer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Value.auto"><value>Otomatik</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode"><value>Network MAC Adres Mode</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Emated konsolun MAC adresini nasıl yapılandırır. Bu seçeneği değiştirmek, kurtarma dosyalarının tamleştirilmesini önlemek için MAC adresini kullanan oyunlarda dosyalarını kurtarmak için yerel multiplayer imkansız veya blok erişim sağlayabilir (i.e. Pokémon).
-Doğrudan mod arayüzü ile ilgili değil. Değişiklikler bir sonraki yeniden yürürlüğe girer.
-Daha fazla bilgi için https://bit.ly/4fJtWKN bakınız.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Emated konsolun MAC adresini nasıl yapılandırır. Bu seçeneği değiştirmek, kurtarma dosyalarının tamleştirilmesini önlemek için MAC adresini kullanan oyunlarda dosyalarını kurtarmak için yerel multiplayer imkansız veya blok erişim sağlayabilir (i.e. Pokémon).&#xA;Doğrudan mod arayüzü ile ilgili değil. Değişiklikler bir sonraki yeniden yürürlüğe girer.&#xA;Daha fazla bilgi için https://bit.ly/4fJtWKN bakınız.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.firmware"><value>Donanımdan Set</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.from-username"><value>libretro kullanıcı adı</value></data>
   <data name="Emulation.Option.melondsds.melonds_show_unsupported_features"><value>Unsupported Özellikler Hakkında Savaşn</value></data>
@@ -902,13 +862,7 @@ Daha fazla bilgi için https://bit.ly/4fJtWKN bakınız.</value></data>
   <data name="Emulation.Option.melondsds.melonds_cursor_timeout.Value.30"><value>30 saniye</value></data>
   <data name="Emulation.Option.melondsds.melonds_cursor_timeout.Value.60"><value>60 saniye</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode"><value>Touch Mode</value></data>
-  <data name="Emulation.Option.melondsds.melonds_touch_mode.Help"><value>Konsolun dokunuş ekranının nasıl emated olduğunu belirler.
-
-Joystick: cursor'u kontrol etmek için bir sevinç çubuğu kullanın. Mevcut bir fare veya gerçek dokunuş ekranınız yoksa önerilir.
-Pointer: Patsor'u kontrol etmek için farenizi veya dokunma ekranını kullanın.
-Auto: Son dokunduğunuza bağlı olarak ya Joystick veya Pointer kullanın.
-
-Emin olursa, Auto'ya ayarlayın.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_touch_mode.Help"><value>Konsolun dokunuş ekranının nasıl emated olduğunu belirler.&#xA;&#xA;Joystick: cursor'u kontrol etmek için bir sevinç çubuğu kullanın. Mevcut bir fare veya gerçek dokunuş ekranınız yoksa önerilir.&#xA;Pointer: Patsor'u kontrol etmek için farenizi veya dokunma ekranını kullanın.&#xA;Auto: Son dokunduğunuza bağlı olarak ya Joystick veya Pointer kullanın.&#xA;&#xA;Emin olursa, Auto'ya ayarlayın.</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.joystick"><value>Oyun çubuğu</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.touch"><value>Pointer</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.auto"><value>Otomatik</value></data>
@@ -917,9 +871,7 @@ Emin olursa, Auto'ya ayarlayın.</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_maxspeed"><value>Joystick Cursor Max Hız</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_maxspeed.Help"><value>Keyif eğrileri için max hızını ayarlayın.</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response"><value>Joystick Cursor Response</value></data>
-  <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Help"><value>Anahtarlama eğrileri için yanıt eğrisini ayarlayın.
-Linear, cursor hızının 1:1'i sevinç girişiyle olduğu bir yanıt eğrisidir.
-Quadratic, iyi kontrol için sevinç merkezine yakın duyarlılığı azaltan bir yanıt eğrisidir, ancak kenarların yakınında hassasiyetleri artırır.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Help"><value>Anahtarlama eğrileri için yanıt eğrisini ayarlayın.&#xA;Linear, cursor hızının 1:1'i sevinç girişiyle olduğu bir yanıt eğrisidir.&#xA;Quadratic, iyi kontrol için sevinç merkezine yakın duyarlılığı azaltan bir yanıt eğrisidir, ancak kenarların yakınında hassasiyetleri artırır.</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Value.100"><value>Doğrusal</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Value.200"><value>Quadratic</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_speedup"><value>Joystick Cursor Multiplier</value></data>
@@ -931,11 +883,7 @@ Quadratic, iyi kontrol için sevinç merkezine yakın duyarlılığı azaltan bi
   <data name="Emulation.Option.melondsds.melonds_hybrid_small_screen.Value.one"><value>Show Opposite Ekran</value></data>
   <data name="Emulation.Option.melondsds.melonds_hybrid_small_screen.Value.both"><value>Her ikisini de göster</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering"><value>Hybrid/Largescreen Filtreleme</value></data>
-  <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Help"><value>Hibrit / ekran ekranının nasıl ölçeklendiğini etkiler.
-
-En yakın: filtreleme yok. Grafik bloklu görünüyor.
-Linear: Smooth scaling.
-</value></data>
+  <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Help"><value>Hibrit / ekran ekranının nasıl ölçeklendiğini etkiler.&#xA;&#xA;En yakın: filtreleme yok. Grafik bloklu görünüyor.&#xA;Linear: Smooth scaling.&#xA;</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Value.nearest"><value>En yakın</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Value.linear"><value>Doğrusal</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_gap"><value>Ekran Gap</value></data>
@@ -944,11 +892,7 @@ Linear: Smooth scaling.
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_scale"><value>ikincil Ekran Ölçeği</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_scale.Help"><value>İlk ekrana göre ikincil ekranın büyüklüğü. dikey düzenlere (Top/Bottom, Bottom / Top). % 100'te, her iki ekran da aynı boyutta. %50'de, ikincil ekran birincil ekranın genişliği ve yüksekliğidir.</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering"><value>Orta Ekran Filtreleme</value></data>
-  <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Help"><value>ikincil ekranın nasıl ölçeklendiğini etkiler.
-
-En yakın: filtreleme yok. Grafik bloklu görünüyor.
-Linear: Smooth scaling. Orta Ekran Ölçeği% 100'ün altında kullanırken önerilir.
-</value></data>
+  <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Help"><value>ikincil ekranın nasıl ölçeklendiğini etkiler.&#xA;&#xA;En yakın: filtreleme yok. Grafik bloklu görünüyor.&#xA;Linear: Smooth scaling. Orta Ekran Ölçeği% 100'ün altında kullanırken önerilir.&#xA;</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Value.nearest"><value>En yakın</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Value.linear"><value>Doğrusal</value></data>
   <data name="Emulation.Option.melondsds.melonds_number_of_screen_layouts"><value># of Ekran Layouts</value></data>
@@ -1098,70 +1042,25 @@ Linear: Smooth scaling. Orta Ekran Ölçeği% 100'ün altında kullanırken öne
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-right"><value>Doğru doğru yola çıktı</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-180"><value>Upside Down</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode"><value>Konsol Modu</value></data>
-  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Bir Nintendo DS veya bir Nintendo DSi taklit etmek olsun.
-
-Auto, DSi'ye ihtiyaç duyan oyunlar için DSi modu kullanır ve diğer her şey için DS mod. DS ve DSi ayarları ilgili konsolu zorlar; bu çoğunlukla evbrew gelişimi için yararlıdır.
-
-DSi modu bazı sınırları vardır:
-
-- Yerli BIOS / doğrulama/NAND dosyaları normal DS için dahil olmak üzere sunulmalıdır.
-- Bazı özellikler (örneğin kurtarma devletleri) DSi modunda mevcut değildir.
-
-DSi'nin bu kategoride daha fazla bilgi için özel seçenekleri görün. Emin olursa, Auto kullanın. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Bir Nintendo DS veya bir Nintendo DSi taklit etmek olsun.&#xA;&#xA;Auto, DSi'ye ihtiyaç duyan oyunlar için DSi modu kullanır ve diğer her şey için DS mod. DS ve DSi ayarları ilgili konsolu zorlar; bu çoğunlukla evbrew gelişimi için yararlıdır.&#xA;&#xA;DSi modu bazı sınırları vardır:&#xA;&#xA;- Yerli BIOS / doğrulama/NAND dosyaları normal DS için dahil olmak üzere sunulmalıdır.&#xA;- Bazı özellikler (örneğin kurtarma devletleri) DSi modunda mevcut değildir.&#xA;&#xA;DSi'nin bu kategoride daha fazla bilgi için özel seçenekleri görün. Emin olursa, Auto kullanın. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.auto"><value>Otomatik</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.dsi"><value>DSi (experimental)</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode"><value>BIOS/Firmware Mode (İngilizce)DS Mode)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>melonDS'nın yerli BIOS / teyit çöpleri veya kendi inşa edilmiş yedeklerini kullandığı tespit edilir. Sadece DS modunda geçerlidir, çünkü DSi modu her zaman yerel BIOS ve bilgisayar çöpleri gerektirir.
-
-Yerli mod BIOS ve Donanım dosyalarını gerçek bir DS'den kullanır. Bu çöplerinizi sistem rehberinde veya "melonDS DS" alt yönlendirmesinde yerleştirin ve bunları aşağıdaki gibi adlandırın:
-
-- DS BIOS: bios7.bin, bios9.bin
-- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin
-- Firmaware: "DS Şirketware" ve “DSi Firmware” seçeneklerine bakınız.
-- DSi NAND: "DSiNAND" seçeneğini görün.
-
-Falls back to built-In if any BIOS/firmware file isn't found.
-
-Yerleşik modda melonDS'nin yerleşik BIOS ve donanımı kullanır ve çoğu oyun için uygundur.
-
-Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>melonDS'nın yerli BIOS / teyit çöpleri veya kendi inşa edilmiş yedeklerini kullandığı tespit edilir. Sadece DS modunda geçerlidir, çünkü DSi modu her zaman yerel BIOS ve bilgisayar çöpleri gerektirir.&#xA;&#xA;Yerli mod BIOS ve Donanım dosyalarını gerçek bir DS'den kullanır. Bu çöplerinizi sistem rehberinde veya "melonDS DS" alt yönlendirmesinde yerleştirin ve bunları aşağıdaki gibi adlandırın:&#xA;&#xA;- DS BIOS: bios7.bin, bios9.bin&#xA;- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin&#xA;- Firmaware: "DS Şirketware" ve “DSi Firmware” seçeneklerine bakınız.&#xA;- DSi NAND: "DSiNAND" seçeneğini görün.&#xA;&#xA;Falls back to built-In if any BIOS/firmware file isn't found.&#xA;&#xA;Yerleşik modda melonDS'nin yerleşik BIOS ve donanımı kullanır ve çoğu oyun için uygundur.&#xA;&#xA;Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.native"><value>Yerli Yerli</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.builtin"><value>İnşa Edilmiş-In</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path"><value>DS Şirketware</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>DS modu için kullanmak için bir bilgisayar görüntüsü seçin. Dosyalar burada listeleniyorlarsa:
-
-- Önün sistem dizininde veya "melonDS DS" adı verilen bir alt yönlendirme içindesiniz.
-- tam olarak 131,072 astes (128KB), 262,144 bytes (256KB) veya 524,288 Bytes (512KB) uzun süre.
-- DSware için geçerli başlık verilerini içerir.
-
-Nintendo WFC ID'leri Yazılıma kaydedilir, bu nedenle anahtarlama sistemi görüntüleri bazı WFC verilerinin kaybıyla sonuçlanabilir. DSi modunda veya BIOS/Firmware Mode is built-In. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>DS modu için kullanmak için bir bilgisayar görüntüsü seçin. Dosyalar burada listeleniyorlarsa:&#xA;&#xA;- Önün sistem dizininde veya "melonDS DS" adı verilen bir alt yönlendirme içindesiniz.&#xA;- tam olarak 131,072 astes (128KB), 262,144 bytes (256KB) veya 524,288 Bytes (512KB) uzun süre.&#xA;- DSware için geçerli başlık verilerini içerir.&#xA;&#xA;Nintendo WFC ID'leri Yazılıma kaydedilir, bu nedenle anahtarlama sistemi görüntüleri bazı WFC verilerinin kaybıyla sonuçlanabilir. DSi modunda veya BIOS/Firmware Mode is built-In. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Value./notfound"><value>Hiçbir şey bulunamadı...</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path"><value>DSi Firmaware</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>DSi modu için kullanmak için bir bilgisayar görüntüsü seçin. Dosyalar burada listeleniyorlarsa:
-
-- Önün sistem dizininde veya "melonDS DS" adı verilen bir alt yönlendirme içindesiniz.
-- tam olarak 131,072 astes (128KB), 262,144 bytes (256KB) veya 524,288 Bytes (512KB) uzun süre.
-- DSi Hardware için geçerli başlık verilerini içerir.
-
-Nintendo WFC ID'leri Yazılıma kaydedilir, bu nedenle anahtarlama sistemi görüntüleri bazı WFC verilerinin kaybıyla sonuçlanabilir. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>DSi modu için kullanmak için bir bilgisayar görüntüsü seçin. Dosyalar burada listeleniyorlarsa:&#xA;&#xA;- Önün sistem dizininde veya "melonDS DS" adı verilen bir alt yönlendirme içindesiniz.&#xA;- tam olarak 131,072 astes (128KB), 262,144 bytes (256KB) veya 524,288 Bytes (512KB) uzun süre.&#xA;- DSi Hardware için geçerli başlık verilerini içerir.&#xA;&#xA;Nintendo WFC ID'leri Yazılıma kaydedilir, bu nedenle anahtarlama sistemi görüntüleri bazı WFC verilerinin kaybıyla sonuçlanabilir. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Value./notfound"><value>Hiçbir şey bulunamadı...</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path"><value>DSi NAND Yol Yolu</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Kullanılacak bir DSi NAND görüntüsü seçin. DSi modu kullanırken gerekli. Dosyalar burada listeleniyorlarsa:
-
-- Önün sistem dizininde veya "melonDS DS" adı verilen bir alt yönlendirme içindesiniz.
-- tam olarak 251,658,304 bytes (240MB) veya 257,425,472 bytes (245.5MB), geçerli ayak verileri ile uzun süre; OR;
-- Bu uzunluklardan 64 tane daha kısadır ve dosya dengeleme 0xFF800'de eşdeğer veriler içerir.
-
-Ana seçimine izin vermek için "Auto" set to let the core pick a NAND image which region maçları the installed DSiWare ROM. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Kullanılacak bir DSi NAND görüntüsü seçin. DSi modu kullanırken gerekli. Dosyalar burada listeleniyorlarsa:&#xA;&#xA;- Önün sistem dizininde veya "melonDS DS" adı verilen bir alt yönlendirme içindesiniz.&#xA;- tam olarak 251,658,304 bytes (240MB) veya 257,425,472 bytes (245.5MB), geçerli ayak verileri ile uzun süre; OR;&#xA;- Bu uzunluklardan 64 tane daha kısadır ve dosya dengeleme 0xFF800'de eşdeğer veriler içerir.&#xA;&#xA;Ana seçimine izin vermek için "Auto" set to let the core pick a NAND image which region maçları the installed DSiWare ROM. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./auto"><value>Auto (match ROM bölgesi)</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./notfound"><value>Hiçbir şey bulunamadı...</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode"><value>Parmak Modu</value></data>
-  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>melonDS çizme oyunlarını nasıl belirler.
-
-Yerli: Sistem menüsü aracılığıyla oyunlar, gerçek DS/DSi boot sürecine benzer. Sistem dizinindeki yerel BIOS ve bilgisayar dosyaları gerekir.
-Doğrudan: Sistem menüsüne girin ve doğrudan oyuna gidin. Ana DSiWare için yerel DSi sistemi dosyaları mevcutsa desteklendi.
-
-Bir oyun (Native zorlanır) olmadan yüklenmekten veya Yerleşik-In BIOS/Firmware'i kullanıyorsanız (Direct zorlanılır). Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>melonDS çizme oyunlarını nasıl belirler.&#xA;&#xA;Yerli: Sistem menüsü aracılığıyla oyunlar, gerçek DS/DSi boot sürecine benzer. Sistem dizinindeki yerel BIOS ve bilgisayar dosyaları gerekir.&#xA;Doğrudan: Sistem menüsüne girin ve doğrudan oyuna gidin. Ana DSiWare için yerel DSi sistemi dosyaları mevcutsa desteklendi.&#xA;&#xA;Bir oyun (Native zorlanır) olmadan yüklenmekten veya Yerleşik-In BIOS/Firmware'i kullanıyorsanız (Direct zorlanılır). Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.direct"><value>Direkt Doğrudan</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.native"><value>Yerli Yerli</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard"><value>Sanal Sanal Sanal SD Kart (Kariyer)DSi)</value></data>
@@ -1204,8 +1103,7 @@ Bir oyun (Native zorlanır) olmadan yüklenmekten veya Yerleşik-In BIOS/Firmwar
   <data name="Emulation.Option.melondsds.melonds_ds_battery_ok_threshold.Value.0"><value>Her zaman OK</value></data>
   <data name="Emulation.Option.melondsds.melonds_ds_battery_ok_threshold.Value.100"><value>Her zaman Low Always Low</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device"><value>Slot-2 Device</value></data>
-  <data name="Emulation.Option.melondsds.melonds_slot2_device.Help"><value>Emated konsol'un Slot-2’sine eklenecek periferi. DSi modunda veya bir GBA ROM açıkça yükleniyorsa. Boktai’deki herhangi bir oyun için bir GBA ROM ekleniyorsa, ilgili Solar Sensör ayarı zorlanacaktır. NDS oyunlarını desteklediklerinde, her Boktai arabası farklı etkilere sahip olacak. Hareket Pakları cihazınızın başarılı birometresini okuyor (ve gyroskopi, evbrew pak) eğer ön uç onları destekliyorsa; aksi takdirde konsol düz ve hala yalan söylüyor gibi davranıyorlar. 
-Değişiklikler bir sonraki temel başlangıçta etki alır.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_slot2_device.Help"><value>Emated konsol'un Slot-2’sine eklenecek periferi. DSi modunda veya bir GBA ROM açıkça yükleniyorsa. Boktai’deki herhangi bir oyun için bir GBA ROM ekleniyorsa, ilgili Solar Sensör ayarı zorlanacaktır. NDS oyunlarını desteklediklerinde, her Boktai arabası farklı etkilere sahip olacak. Hareket Pakları cihazınızın başarılı birometresini okuyor (ve gyroskopi, evbrew pak) eğer ön uç onları destekliyorsa; aksi takdirde konsol düz ve hala yalan söylüyor gibi davranıyorlar. &#xA;Değişiklikler bir sonraki temel başlangıçta etki alır.</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.auto"><value>Otomatik</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.rumble-pak"><value>Rumble Pak</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.expansion-pak"><value>bellek Genişleme Paktı</value></data>
@@ -1215,36 +1113,19 @@ Değişiklikler bir sonraki temel başlangıçta etki alır.</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.motion-pak-homebrew"><value>Hareket Pak (Evbrew)</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.motion-pak-retail"><value>Hareket Paketi (Retail)</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_intensity"><value>Rumble Intensity</value></data>
-  <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Help"><value>Rumble Pak kontrol motorlarınızı ne kadar zorlaştırıyor. Emated Rumble Pak'ın kendi başına bir hacim kontrolü yoktur, bu yüzden oyun ne isterse.
-
-"Slot-2 Device" Rumble Pak'a ayarlandığında görmezden gelin.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Help"><value>Rumble Pak kontrol motorlarınızı ne kadar zorlaştırıyor. Emated Rumble Pak'ın kendi başına bir hacim kontrolü yoktur, bu yüzden oyun ne isterse.&#xA;&#xA;"Slot-2 Device" Rumble Pak'a ayarlandığında görmezden gelin.</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Value.0"><value>Devre dışı</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type"><value>Rumble Motors</value></data>
-  <data name="Emulation.Option.melondsds.melonds_rumble_type.Help"><value>Kontrolünüzün motorlarından hangisi Rumble Pak sürücüleri. Çoğu kontrolör, hafif bir motorla ağır bir motora sahiptir; bu gerçek bir Rumble Pak'e daha yakın hissediyor.
-
-"Slot-2 Device" Rumble Pak'a ayarlandığında görmezden gelin.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_rumble_type.Help"><value>Kontrolünüzün motorlarından hangisi Rumble Pak sürücüleri. Çoğu kontrolör, hafif bir motorla ağır bir motora sahiptir; bu gerçek bir Rumble Pak'e daha yakın hissediyor.&#xA;&#xA;"Slot-2 Device" Rumble Pak'a ayarlandığında görmezden gelin.</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.both"><value>Her ikisi de her iki</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.strong"><value>Güçlü Sadece Güçlü</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.weak"><value>Weak Only</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor"><value>Host Light Sensör Kullanımı</value></data>
-  <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Help"><value>Eğer etkinleştirilirse, emated solar sensörün ışık girişi, mevcutsa cihazınızın gerçek aydınlatma sensöründen gelecektir. Engelliler veya sensör mevcut değilse, emated sensörü aşağıdaki düğme pencereleri ile manuel olarak kontrol edilebilir:
-
-L+A+Up veya L+A +Down
-- +Up veya seçin+Down
-- Your fare tekerleği
-
-"Slot-2 Device" Solar Sensöre ayarlandığında veya Boktai'deki herhangi bir oyun için ROM (herhangi bir bölge) emated konsolun Slot-2’sinde yer alıyorsa. Emin olun, etkinleştirin.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Help"><value>Eğer etkinleştirilirse, emated solar sensörün ışık girişi, mevcutsa cihazınızın gerçek aydınlatma sensöründen gelecektir. Engelliler veya sensör mevcut değilse, emated sensörü aşağıdaki düğme pencereleri ile manuel olarak kontrol edilebilir:&#xA;&#xA;L+A+Up veya L+A +Down&#xA;- +Up veya seçin+Down&#xA;- Your fare tekerleği&#xA;&#xA;"Slot-2 Device" Solar Sensöre ayarlandığında veya Boktai'deki herhangi bir oyun için ROM (herhangi bir bölge) emated konsolun Slot-2’sinde yer alıyorsa. Emin olun, etkinleştirin.</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.enabled"><value>Etkin</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode"><value>Zaman Modu</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Emated konsolun iç saatinin ilk zamanı.
-
-Gerçek: Cihazınızın saati ile senkronize başlayın.
-- Senkronized: Cihazınızın saatine amplit saatini senkronize edin. Rewinding veya hızlı ileri gittiğinde bazı oyunlarda beklenmedik davranışlara neden olabilir.
-- Relative: Cihazınızın saati ile senkronize başlayın, artı veya eksi belirtilen bir dengeleme. DS'nin temsil edebileceği tarihlerle kısıtlanacaktır.
-- Mutlak: Belirli bir tarihte başlayın ve zaman, cihazınızın saatine bakılmaksızın.
-
-Tüm tarihler ve zamanlarınız yerel zamanınız bölgesindedir. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Emated konsolun iç saatinin ilk zamanı.&#xA;&#xA;Gerçek: Cihazınızın saati ile senkronize başlayın.&#xA;- Senkronized: Cihazınızın saatine amplit saatini senkronize edin. Rewinding veya hızlı ileri gittiğinde bazı oyunlarda beklenmedik davranışlara neden olabilir.&#xA;- Relative: Cihazınızın saati ile senkronize başlayın, artı veya eksi belirtilen bir dengeleme. DS'nin temsil edebileceği tarihlerle kısıtlanacaktır.&#xA;- Mutlak: Belirli bir tarihte başlayın ve zaman, cihazınızın saatine bakılmaksızın.&#xA;&#xA;Tüm tarihler ve zamanlarınız yerel zamanınız bölgesindedir. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.real"><value>Gerçek Gerçek Gerçek</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.sync"><value>Synchronized</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.relative"><value>Relative</value></data>
@@ -1532,10 +1413,7 @@ Tüm tarihler ve zamanlarınız yerel zamanınız bölgesindedir. Değişiklikle
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second"><value>İkincil Başlangıç</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>Başlangıç Zaman Modu Mutlak olduğunda ilk saniye. Değişiklikler bir sonraki yeniden yürürlüğe girer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode"><value>Render Modu</value></data>
-  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Yazılım en hızlı ve en doğru. OpenGL (Classic) 3D grafiklere ölçeklenebilir, ancak bazı oyunlar doğru şekilde oluşturmaz.
-OpenGL (Compute) doğru ve genişleticidir, ancak bazı eski cihazlarda çalışmayacaktır. Onun gölgelerini derlemek için birkaç saniye gerekir.
-
-Falls back to software display if OpenGL can't be used. Değişiklikler hemen etki alır, ancak frontend'in video sürücüsünün yeniden başlatılması gerekebilir.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Yazılım en hızlı ve en doğru. OpenGL (Classic) 3D grafiklere ölçeklenebilir, ancak bazı oyunlar doğru şekilde oluşturmaz.&#xA;OpenGL (Compute) doğru ve genişleticidir, ancak bazı eski cihazlarda çalışmayacaktır. Onun gölgelerini derlemek için birkaç saniye gerekir.&#xA;&#xA;Falls back to software display if OpenGL can't be used. Değişiklikler hemen etki alır, ancak frontend'in video sürücüsünün yeniden başlatılması gerekebilir.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.software"><value>Yazılım Software Software</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.opengl"><value>OpenGL (Classic)</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.compute"><value>OpenGL (Compute)</value></data>
@@ -1562,8 +1440,6 @@ Falls back to software display if OpenGL can't be used. Değişiklikler hemen et
   <data name="Emulation.Option.melondsds.melonds_threaded_renderer.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.melondsds.melonds_threaded_renderer.Value.enabled"><value>Etkin</value></data>
   <data name="Emulation.Firmware.melondsds.Slot0"><value>NDS Firmaware</value></data>
-  
-  
   <data name="Emulation.Firmware.melondsds.Slot3"><value>DSi Firmaware</value></data>
   <data name="Emulation.Firmware.melondsds.Slot4"><value>DSi ARM7 BIOS</value></data>
   <data name="Emulation.Firmware.melondsds.Slot5"><value>DSi ARM9 BIOS</value></data>
@@ -1664,8 +1540,6 @@ Falls back to software display if OpenGL can't be used. Değişiklikler hemen et
   <data name="Emulation.Option.noods.noods_micButtonMode.Value.Hold"><value>Keep Hold Keep</value></data>
   <data name="Emulation.Option.noods.noods_micButtonMode.Value.Always"><value>Her zaman her zaman hep her zaman</value></data>
   <data name="Emulation.Firmware.noods.Slot0"><value>NDS Firmaware</value></data>
-  
-  
   <data name="Emulation.Firmware.noods.Slot3"><value>Game Boy Advance BIOS</value></data>
   <data name="Emulation.Firmware.noods.Slot4"><value>NDS SD kart</value></data>
   <data name="Emulation.Emulator.skyemu.Description"><value>SkyEmu ile uyumlu Nintendo sistemleri.</value></data>
@@ -1678,21 +1552,13 @@ Falls back to software display if OpenGL can't be used. Değişiklikler hemen et
   <data name="Emulation.Option.skyemu.system_gba_bios_enable.Help"><value>Game Boy Advance Firmaware Enabled</value></data>
   <data name="Emulation.Option.skyemu.system_nds_bios_enable"><value>Nintendo DS Şirketware</value></data>
   <data name="Emulation.Option.skyemu.system_nds_bios_enable.Help"><value>Nintendo DS Firmaware Enabled</value></data>
-  
-  
-  
-  
-  
-  
   <data name="Emulation.Firmware.skyemu.Slot6"><value>GBA BIOS</value></data>
-  
-  
   <data name="Emulation.Firmware.skyemu.Slot9"><value>NDS FIRMWARE</value></data>
   <data name="Emulation.Emulator.fceumm.Description"><value>FCEUmm ile uyumlu Nintendo sistemleri.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region"><value>Bölge Bölgesi</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region.Help"><value>NTSC, PAL veya Dendy bölge zamanlamalarını kullanmak için güç çekirdeği.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region.Value.Auto"><value>Otomatik</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_game_genie"><value>Game Genie Add-On (Restart Required)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_game_genie"><value>Game Genie Add-On</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Help"><value>Bir Oyun Genie add-on kartuşunun enable emülasyonu, oyun başlatıldığında hile kodlarının girilmesine izin verir. Game Genie ROM dosyasını 'gamegenie.nes' ön sistem rehberinde sunulmalıdır. FDS veya arcade içeriğine uygulanmaz.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Value.enabled"><value>Etkin</value></data>
@@ -1894,7 +1760,7 @@ Falls back to software display if OpenGL can't be used. Değişiklikler hemen et
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.2x-Postrender"><value>2x-Postrender</value></data>
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.2x-VBlank"><value>2x-VBlank</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_ramstate"><value>RAM Power-On Fill (Restart Required)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_ramstate"><value>RAM Power-On Fill</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ramstate.Help"><value>Güç üzerinde RAM değerleri. Bazı oyunlar rastgele sayı nesli için bir örnek olarak ilk RAM değerlerine güveniyor.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ramstate.Value.random"><value>Random</value></data>
   <data name="Emulation.Firmware.fceumm.Slot0"><value>Aile Bilgisayar Disk Sistemi BIOS</value></data>
@@ -2092,9 +1958,7 @@ Falls back to software display if OpenGL can't be used. Değişiklikler hemen et
   <data name="Emulation.Option.mesen2.mesen_snes_high_res_blend_mode.Value.Blend Even/Odd"><value>Hatta / Odd</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode"><value>Video - Video – SNES Deinterlace Mode</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Help"><value>SNES deinterlace modu seçin</value></data>
-  <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Weave"><value>Weave</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Bob Blend"><value>Bob Mix</value></data>
-  <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Bob"><value>Bob</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Current Field"><value>Current Field</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_hide_bg_layer_1"><value>Gelişler - SNES Hide BG Katman 1</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_hide_bg_layer_1.Help"><value>Hide SNES arka katmanı 1</value></data>
@@ -2150,125 +2014,6 @@ Falls back to software display if OpenGL can't be used. Değişiklikler hemen et
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders"><value>Video - Video – Game Boy Hide Gizle SGB Sınırlar</value></data>
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders.Help"><value>Gizle Super Game Boy sınırları</value></data>
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders.Value.disabled"><value>Devre dışı</value></data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed"><value>Giriş - Controller Turbo Hız</value></data>
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed.Help"><value>Turbo düğme hızı</value></data>
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed.Value.Fast"><value>Hızlı hızlı</value></data>
@@ -2499,14 +2244,7 @@ Falls back to software display if OpenGL can't be used. Değişiklikler hemen et
   <data name="Emulation.Firmware.rustynes.Slot0"><value>Aile Bilgisayar Disk Sistemi BIOS</value></data>
   <data name="Emulation.Emulator.doublecherrygb.Description"><value>DoubleCherryGB ile uyumlu Nintendo sistemleri.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA"><value>Game Boy Advance</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Help"><value>Bazı Game Boy Color oyunları, bir Game Boy Advance'de oynarken gelişmiş özellikler sunar.
-
-Bilinen GBA-enhanced oyunları:
-   Shantae
-   Wendy: Every Witch Way
-   - Zelda: Age / Seasons Oracle
-   - Medarot 5
-   - Mega Man Extreme 2</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Help"><value>Bazı Game Boy Color oyunları, bir Game Boy Advance'de oynarken gelişmiş özellikler sunar.&#xA;&#xA;Bilinen GBA-enhanced oyunları:&#xA;   Shantae&#xA;   Wendy: Every Witch Way&#xA;   - Zelda: Age / Seasons Oracle&#xA;   - Medarot 5&#xA;   - Mega Man Extreme 2</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Value.0"><value>Devre dışı</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_rtc_use_system_clock"><value>Gerçek Zaman Saati Modu</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_rtc_use_system_clock.Help"><value>Oyundaki Gerçek Zaman Saati (RTC) işaretlerini kontrol eder. 'Real-Time' ev sahibi cihazınızın sistem saatini kullanır (resistler hızlı ileri; zaman dönüştürücü kapalıyken geçer). ‘Emated CPU döngülerine dayanan zamanı hesaplar.</value></data>
@@ -2571,11 +2309,7 @@ Bilinen GBA-enhanced oyunları:
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss"><value>GBC LCD Etkileşimli</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss.Help"><value>Interlacing etkisinin yoğunluğunu ayarlayın. Bu değeri gölgeleri kullanırken düşük tut. Daha yüksek değerler, görünürlüğü yapmak için bir gölgeleyici ile birleştirildiği zaman önerilir.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation"><value>GBC LCD RGB Subcrypt Scale Factor</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Fiziksel GBC alt klasörleri genişleterek ve gelen RGB bileşenleri ile her renkli pikseli değiştirir.
-
-En iyi sonuçlar için:
-- Enable 'Integer Scaling' in RetroArch (Settings -&gt; Video -&gt; Skaling).
-- Bir temel yeniden başlatma, bu ayarı değiştirmeden sonra gerekli olabilir.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Fiziksel GBC alt klasörleri genişleterek ve gelen RGB bileşenleri ile her renkli pikseli değiştirir.&#xA;&#xA;En iyi sonuçlar için:&#xA;- Enable 'Integer Scaling' in RetroArch (Settings -&gt; Video -&gt; Skaling).&#xA;- Bir temel yeniden başlatma, bu ayarı değiştirmeden sonra gerekli olabilir.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Value.1"><value>Devre dışı</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur"><value>GBC LCD Blur</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur.Help"><value>Bir ekran bulanık etkisini uygular. Bu ayar oldukça CPU yoğun. Daha zayıf donanıma kapat veya gölgeleri kullanmak yerine.</value></data>
@@ -2681,20 +2415,10 @@ En iyi sonuçlar için:
   <data name="Emulation.Option.doublecherrygb.dcgb_cocktailtable_mode.Value.1"><value>dikey dikey</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_cocktailtable_mode.Value.2"><value>yatay yatay</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled"><value>Mobile Adaptör GB Emulation</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Help"><value>Japon Mobile Adaptör GB periferisinin enables emulation of the Japanese Mobile adaptörü.
-
-Desteklenen Başlıklar:
-   Pokemon Crystal (Japonya veya mobil adaptör)
-   Game Boy Wars 3
-   - Hello Kitty Happy House
-   - Mobile Golf Golf
-   - Mobile Trainer
-   - Net de Get</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Help"><value>Japon Mobile Adaptör GB periferisinin enables emulation of the Japanese Mobile adaptörü.&#xA;&#xA;Desteklenen Başlıklar:&#xA;   Pokemon Crystal (Japonya veya mobil adaptör)&#xA;   Game Boy Wars 3&#xA;   - Hello Kitty Happy House&#xA;   - Mobile Golf Golf&#xA;   - Mobile Trainer&#xA;   - Net de Get</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Value.0"><value>Devre dışı</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber"><value>Telefon numaranızı başlangıçta göster</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Help"><value>P2P telefon numarasını başlangıçta gösterir. 
-
-Uyarı: Bir röle sunucusu olmadan, bu sizin kamu IP adresinizi ortaya çıkarır. Sadece bunu güvenilir kullanıcılarla paylaşın.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Help"><value>P2P telefon numarasını başlangıçta gösterir. &#xA;&#xA;Uyarı: Bir röle sunucusu olmadan, bu sizin kamu IP adresinizi ortaya çıkarır. Sadece bunu güvenilir kullanıcılarla paylaşın.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Value.0"><value>Devre dışı</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color"><value>Mobile Adaptör GB Device Color</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Help"><value>Emated Mobile Adaptör cihazının kozmetik kabuk rengini ayarlar.</value></data>
@@ -2703,34 +2427,24 @@ Uyarı: Bir röle sunucusu olmadan, bu sizin kamu IP adresinizi ortaya çıkarı
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Value.10"><value>Yeşil Yeşil</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Value.11"><value>Red Red Red</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip"><value>DNS Server Server IP</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Help"><value>Resmi Nintendo sunucuları çevrimdışı. Kendi kendine altyapı yedekleri ev sahipliği yapabilirsiniz, özel yığınları REON gibi kullanarak: https://github.com/REONTeam /reon.
-
-Özel yapılandırma için mobile_adapter_gb_custom_server_config.ini'yı retroarch sistemleri klasörünüzde düzenler.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Help"><value>Resmi Nintendo sunucuları çevrimdışı. Kendi kendine altyapı yedekleri ev sahipliği yapabilirsiniz, özel yığınları REON gibi kullanarak: https://github.com/REONTeam /reon.&#xA;&#xA;Özel yapılandırma için mobile_adapter_gb_custom_server_config.ini'yı retroarch sistemleri klasörünüzde düzenler.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.127.0.0.1"><value>127.0.0.1 (Localhost)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.172.18.0.1"><value>172.18.0.1 (Local Docker)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.99"><value>Özel özel özelleştirme</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port"><value>DNS Server Port</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Help"><value>Özel ağ altyapısı için hedef liman bağlantısını belirtin.
-
-Özel yapılandırma için mobile_adapter_gb_custom_server_config.ini'yı retroarch sistemleri klasörünüzde düzenler.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Help"><value>Özel ağ altyapısı için hedef liman bağlantısını belirtin.&#xA;&#xA;Özel yapılandırma için mobile_adapter_gb_custom_server_config.ini'yı retroarch sistemleri klasörünüzde düzenler.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Value.1"><value>53 (Default)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Value.99"><value>Özel özel özelleştirme</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server"><value>P2P Relay Server kullanın</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Help"><value>P2P Calls için özel bir röle sunucusu kullanın.
-
-Özel yapılandırma için mobile_adapter_gb_custom_server_config.ini'yı retroarch sistemleri klasörünüzde düzenler.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Help"><value>P2P Calls için özel bir röle sunucusu kullanın.&#xA;&#xA;Özel yapılandırma için mobile_adapter_gb_custom_server_config.ini'yı retroarch sistemleri klasörünüzde düzenler.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Value.0"><value>Devre dışı</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip"><value>P2P Relay Server IP</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Help"><value>Özel ağ altyapısı için hedef liman bağlantısını belirtin.
-
-Özel yapılandırma için mobile_adapter_gb_custom_server_config.ini'yı retroarch sistemleri klasörünüzde düzenler.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Help"><value>Özel ağ altyapısı için hedef liman bağlantısını belirtin.&#xA;&#xA;Özel yapılandırma için mobile_adapter_gb_custom_server_config.ini'yı retroarch sistemleri klasörünüzde düzenler.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.127.0.0.1"><value>127.0.0.1 (Localhost)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.172.18.0.1"><value>172.18.0.1 (Local Docker)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.99"><value>Özel özel özelleştirme</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port"><value>P2P Relay Server port</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Help"><value>Özel P2P röle için hedef liman bağlantısını belirtin.
-
-Özel yapılandırma için mobile_adapter_gb_custom_server_config.ini'yı retroarch sistemleri klasörünüzde düzenler.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Help"><value>Özel P2P röle için hedef liman bağlantısını belirtin.&#xA;&#xA;Özel yapılandırma için mobile_adapter_gb_custom_server_config.ini'yı retroarch sistemleri klasörünüzde düzenler.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Value.1"><value>31227 (Default)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Value.99"><value>Özel özel özelleştirme</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_dev_log_linkcable_to_file"><value>Log Link Cable Transfers to File</value></data>
@@ -2801,10 +2515,10 @@ Uyarı: Bir röle sunucusu olmadan, bu sizin kamu IP adresinizi ortaya çıkarı
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler"><value>Soundampler</value></data>
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler.Help"><value>Resampling üretilen sesin ( Game Boy audio oranı sadece CPU yaz hızıyla sınırlıyken, örneğin modern ses cihazları üzerinde pratik değildir ve altüst edilmelidir. ”Cosine'nun performansı düşük uç donanımda artırır.</value></data>
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler.Value.cc"><value>Cosine</value></data>
-  <data name="Emulation.Option.gambatte.gambatte_gb_hwmode"><value>Emated Hardware (Restart Required)</value></data>
+  <data name="Emulation.Option.gambatte.gambatte_gb_hwmode"><value>Emated Hardware</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_hwmode.Help"><value>Hangi tür bir donanımı taklit etmek için. 'Auto' tavsiye edilir. 'GBA'nın belirli bir ‘GBA’ Game Boy Color oyunlarında ekstra özellikler ortaya çıkıyor (Shantae, Wendy - Every Witch Way, Legend of Zelda: Seasons/Ages...).</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_hwmode.Value.Auto"><value>Otomatik</value></data>
-  <data name="Emulation.Option.gambatte.gambatte_gb_bootloader"><value>Resmi Bootloader (Restart Required) kullanın</value></data>
+  <data name="Emulation.Option.gambatte.gambatte_gb_bootloader"><value>Resmi Bootloader kullanın</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Help"><value>Resmi Game Boy ve Game Boy Color bootloaders için enable destek, ilgili başlangıç logo animasyonları ile.</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Value.enabled"><value>Etkin</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Value.disabled"><value>Devre dışı</value></data>
@@ -3047,8 +2761,6 @@ Uyarı: Bir röle sunucusu olmadan, bu sizin kamu IP adresinizi ortaya çıkarı
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg"><value>DMG oyunlarının renklileştirilmesi (yalnızca CGB BIOS ile uygulanabilir)</value></data>
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg.Value.enabled"><value>Etkin</value></data>
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg.Value.disabled"><value>Devre dışı</value></data>
-  
-  
   <data name="Emulation.Emulator.mesen_s.Description"><value>Emulates uyumlu Nintendo Mesen-S.</value></data>
   <data name="Emulation.Option.mesen_s.mesen-s_ntsc_filter"><value>NTSC filtre</value></data>
   <data name="Emulation.Option.mesen_s.mesen-s_ntsc_filter.Value.Disabled"><value>Devre dışı</value></data>
@@ -3111,8 +2823,6 @@ Uyarı: Bir röle sunucusu olmadan, bu sizin kamu IP adresinizi ortaya çıkarı
   <data name="Emulation.Firmware.mesen_s.Slot15"><value>GBC Boot Image</value></data>
   <data name="Emulation.Firmware.mesen_s.Slot16"><value>SGB Boot Image</value></data>
   <data name="Emulation.Firmware.mesen_s.Slot17"><value>SGB2 Boot Image</value></data>
-  
-  
   <data name="Emulation.Firmware.mesen_s.Slot20"><value>Satellaview Boot ROM</value></data>
   <data name="Emulation.Emulator.nside_sfc_balanced.Description"><value>nSide ile uyumlu Nintendo sistemleri.</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_internal_resolution"><value>İç karar</value></data>
@@ -4300,8 +4010,6 @@ Uyarı: Bir röle sunucusu olmadan, bu sizin kamu IP adresinizi ortaya çıkarı
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-native-tex-rect.Value.False"><value>Devre dışı</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method"><value>(ParaLLEl-RDP) Deinterlacing yöntemi</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Help"><value>Weave sadece 1x ölçeklendirme faktörü ve özel CRT gölgeleri ile kullanılmalıdır.</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Value.Bob"><value>Bob</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Value.Weave"><value>Weave</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay"><value>VI Overlay</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay.Help"><value>(AL) Select VI Overlay filtreleme. 'Filtered' orijinal sistem oluşturmadır.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay.Value.Filtered"><value>Filtrelenmiş filtre</value></data>
@@ -4394,7 +4102,6 @@ Uyarı: Bir röle sunucusu olmadan, bu sizin kamu IP adresinizi ortaya çıkarı
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.memory"><value>hafıza bellek</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.rumble"><value>rumble</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.transfer"><value>Transfer transfer transferi</value></data>
-  
   <data name="Emulation.Emulator.parallel_n64.Description"><value>ParaLLEl N64. ile uyumlu Nintendo sistemleri</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Upscaling faktör (restart)</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling.Help"><value>Konsolun kararının birden çokında baskı yapın. ParaLLEl-RDP her faktörü onurlandırır; Angrylion 4x'e kadar verir ve 8x’i 4x olarak davranır.</value></data>
@@ -4576,7 +4283,7 @@ Uyarı: Bir röle sunucusu olmadan, bu sizin kamu IP adresinizi ortaya çıkarı
   <data name="Emulation.Option.parallel_n64.parallel-n64-disable_expmem.Value.enabled"><value>Etkin</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-disable_expmem.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy"><value>GFX Hassasiyet</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Help"><value>GFX Hassasiyeti, gerekli yeniden başlatma</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Help"><value>Grafik doğruluğu.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.low"><value>Düşük düşük düşük</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.medium"><value>Orta orta orta orta</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.high"><value>Yüksek yüksek yüksek</value></data>
@@ -4872,7 +4579,6 @@ Uyarı: Bir röle sunucusu olmadan, bu sizin kamu IP adresinizi ortaya çıkarı
   <data name="Emulation.Option.parallel_n64.parallel-n64-sdcard.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate"><value>Rollback N64 sistem saatini kurtarmak için</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate.Value.enabled"><value>Evet</value></data>
-  
   <data name="Emulation.Emulator.pokemini.Description"><value>PokeMini ile uyumlu Nintendo sistemleri.</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Video Scale (Restart)</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale.Help"><value>İç video ölçek faktörü ayarlayın. Ölçek faktörü, iç 'Dot Matrix' LCD filtrenin görünümünü geliştirir.</value></data>
@@ -5039,7 +4745,7 @@ Uyarı: Bir röle sunucusu olmadan, bu sizin kamu IP adresinizi ortaya çıkarı
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock"><value>Saatler içinde - SuperFX Coprocessor</value></data>
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock.Help"><value>Saat ya da SuperFX koprocessor'u kapat. Bu değeri% 100'ün üzerinde ayarlama, SuperFX'i destekleyen oyunlarda performans artırabilir. Uyarı ile kullanın, aynı zamanda bazı oyunların kazaya çıkmasına veya diğer sorunları göstermesine neden olabilir.</value></data>
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock.Value.100"><value>% 100 (Default)</value></data>
-  <data name="Emulation.Option.bsnes.bsnes_sgb_bios"><value>Tercih edilen Super Game Boy BIOS (Restart Required)</value></data>
+  <data name="Emulation.Option.bsnes.bsnes_sgb_bios"><value>Tercih edilen Super Game Boy BIOS</value></data>
   <data name="Emulation.Option.bsnes.bsnes_sgb_bios.Help"><value>Uyumlu başlıklarla kullanılmak için tercih edilen Super Game Boy BIOS'u seçin.</value></data>
   <data name="Emulation.Option.bsnes.bsnes_hide_sgb_border"><value>Hide Gizle SGB Sınır Sınırı</value></data>
   <data name="Emulation.Option.bsnes.bsnes_hide_sgb_border.Help"><value>Super Game Boy oyunları oynarken sınırı izleyin.</value></data>
@@ -6073,7 +5779,7 @@ Uyarı: Bir röle sunucusu olmadan, bu sizin kamu IP adresinizi ortaya çıkarı
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.fast"><value>Hızlı hızlı hızlı hızlı</value></data>
   <data name="Emulation.Emulator.cemu.Description"><value>Cemu ile uyumlu Nintendo sistemleri Emulates.</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode"><value>CPU Mode Modu</value></data>
-  <data name="Emulation.Option.cemu.cemu_cpu_mode.Help"><value>Wii U'nin PowerPC çekirdeği nasıl emilir. Auto, dört veya daha fazla fiziksel çekirdekli bir CPU'da multicore recompiler alır ve aksi takdirde tek çekirdek. tercümanlar çok daha yavaştır ve debugging için ifade edilir. (Başlangıç gereklidir)</value></data>
+  <data name="Emulation.Option.cemu.cemu_cpu_mode.Help"><value>Wii U'nin PowerPC çekirdeği nasıl emilir. Auto, dört veya daha fazla fiziksel çekirdekli bir CPU'da multicore recompiler alır ve aksi takdirde tek çekirdek. tercümanlar çok daha yavaştır ve debugging için ifade edilir.</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.auto"><value>Otomatik</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.singlecore_interpreter"><value>Singlecore Interpreter</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.singlecore_recompiler"><value>Singlecore Recompiler</value></data>
@@ -6209,12 +5915,10 @@ Uyarı: Bir röle sunucusu olmadan, bu sizin kamu IP adresinizi ortaya çıkarı
   <data name="Emulation.Option.cemu.cemu_bc1_16bit.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.cemu.cemu_bc1_16bit.Value.enabled"><value>Etkin</value></data>
   <data name="Emulation.Option.cemu.cemu_gpu_api"><value>Grafik API</value></data>
-  <data name="Emulation.Option.cemu.cemu_gpu_api.Help"><value>Grafik API Cemu ile çalışır. (Başlangıç gereklidir)</value></data>
+  <data name="Emulation.Option.cemu.cemu_gpu_api.Help"><value>Grafik API Cemu ile çalışır.</value></data>
   <data name="Emulation.Option.cemu.cemu_gpu_api.Value.OpenGL"><value>OpenGL</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game"><value>Take Games</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_game.Help"><value>Sistem/Cemu / unvanındaki her oyunu kurtarmak / Cemu/mlc01, emated konsolun depolaması olarak, konsol diskinden bir oyun kurdu. Bir oyun bir disk resmidir (.wud, .wux,  .iso) veya bir .wua ve bir swua'dan güncelleştirme ve DLC ile yüklüdür. Zaten aynı veya yeni bir sürümde kurulan bir oyun yalnız bırakılır.
-
-Bu ON olduğunda, yükleme hemen başlar ve tüm oyunların kurulduğunda OFF döndürür. Oluşturulan bir oyun, kodu klasöründe .rpx'i yükleyerek başlatılır, mlc01/usr/title/00050000; disk resmi daha gerekli değildir.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_game.Help"><value>Sistem/Cemu / unvanındaki her oyunu kurtarmak / Cemu/mlc01, emated konsolun depolaması olarak, konsol diskinden bir oyun kurdu. Bir oyun bir disk resmidir (.wud, .wux,  .iso) veya bir .wua ve bir swua'dan güncelleştirme ve DLC ile yüklüdür. Zaten aynı veya yeni bir sürümde kurulan bir oyun yalnız bırakılır.&#xA;&#xA;Bu ON olduğunda, yükleme hemen başlar ve tüm oyunların kurulduğunda OFF döndürür. Oluşturulan bir oyun, kodu klasöründe .rpx'i yükleyerek başlatılır, mlc01/usr/title/00050000; disk resmi daha gerekli değildir.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game.Value.enabled"><value>Etkin</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game"><value>Uninstall Game</value></data>
@@ -6222,11 +5926,7 @@ Bu ON olduğunda, yükleme hemen başlar ve tüm oyunların kurulduğunda OFF d�
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.enabled"><value>Etkin</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles"><value>İçerik İndirin</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Sistem / Cemu/titles içinde her güncellemeyi ve DLC'leri kurtarmak/Cemu / mlc01, emated konsolun depolamasını yükleyin. Her biri kendi orada bir klasöre gider; NUS indirme (.app dosyaları) onun title.tmd ve title.tik, onların yanında şifre anahtarına ihtiyaç duyar. Bir versiyon zaten aynı ya da yeni olan tek başına bırakılır.
-
-Bu ON olduğunda, yükleme hemen başlar, bir bildirim olarak gösterilen ilerleme ile ve OFF tekrar tüm içerik kurulduğunda ve bu menü çıktı veya başka bir seçenek değiştirildi. Başlık, yeniden başlatıldığı bir kez yüklenen içeriği kullanacak.
-
-Diğer konumlardan gelen içerikler RetroArch's Main Menu &gt; Load Content ile birlikte, title.tmd’i seçerek, yanındaki title.tik ile kurulabilir.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Sistem / Cemu/titles içinde her güncellemeyi ve DLC'leri kurtarmak/Cemu / mlc01, emated konsolun depolamasını yükleyin. Her biri kendi orada bir klasöre gider; NUS indirme (.app dosyaları) onun title.tmd ve title.tik, onların yanında şifre anahtarına ihtiyaç duyar. Bir versiyon zaten aynı ya da yeni olan tek başına bırakılır.&#xA;&#xA;Bu ON olduğunda, yükleme hemen başlar, bir bildirim olarak gösterilen ilerleme ile ve OFF tekrar tüm içerik kurulduğunda ve bu menü çıktı veya başka bir seçenek değiştirildi. Başlık, yeniden başlatıldığı bir kez yüklenen içeriği kullanacak.&#xA;&#xA;Diğer konumlardan gelen içerikler RetroArch's Main Menu &gt; Load Content ile birlikte, title.tmd’i seçerek, yanındaki title.tik ile kurulabilir.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.enabled"><value>Etkin</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles"><value>Uninstall Content</value></data>
@@ -6234,11 +5934,7 @@ Diğer konumlardan gelen içerikler RetroArch's Main Menu &gt; Load Content ile 
   <data name="Emulation.Option.cemu.cemu_uninstall_titles.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles.Value.enabled"><value>Etkin</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source"><value>İçerik kaldırıldıktan sonra</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_remove_source.Help"><value>Sistem / Cemu/titles'den gelen içerik ve başlık güncellemelerini bir kez yükleme Content onları kurdu. Load Content ile yüklenen içerik, nerede olduğu bırakılır.
-
-Koşu başlığının güncelleştirmesi veya DLC kullanımında, bu yüzden başlık kapalı ya da sıfırlandığında kaldırıldı.
-
-.wua dosyaları ve disk görüntüleri asla kaldırıldı, çünkü temel oyunu da tutabilirler.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_remove_source.Help"><value>Sistem / Cemu/titles'den gelen içerik ve başlık güncellemelerini bir kez yükleme Content onları kurdu. Load Content ile yüklenen içerik, nerede olduğu bırakılır.&#xA;&#xA;Koşu başlığının güncelleştirmesi veya DLC kullanımında, bu yüzden başlık kapalı ya da sıfırlandığında kaldırıldı.&#xA;&#xA;.wua dosyaları ve disk görüntüleri asla kaldırıldı, çünkü temel oyunu da tutabilirler.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source.Value.enabled"><value>Etkin</value></data>
   <data name="Emulation.Firmware.FamicomDiskSystem"><value>Famicom Disk System BIOS</value></data>

@@ -4,10 +4,6 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Bandai.Action.Up"><value>新着情報</value></data>
-  <data name="Emulation.Bandai.Action.Down"><value>ダウンダウン</value></data>
-  <data name="Emulation.Bandai.Action.Left"><value>ふりがな</value></data>
-  <data name="Emulation.Bandai.Action.Right"><value>ふるまい</value></data>
   <data name="Emulation.Bandai.Action.Start"><value>スタート</value></data>
   <data name="Emulation.Bandai.Action.Select"><value>選択する</value></data>
   <data name="Emulation.Bandai.Action.Rotate"><value>回転率</value></data>

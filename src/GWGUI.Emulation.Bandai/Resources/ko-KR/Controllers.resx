@@ -4,10 +4,6 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Bandai.Action.Up"><value>더 많은 정보</value></data>
-  <data name="Emulation.Bandai.Action.Down"><value>뚱 베어</value></data>
-  <data name="Emulation.Bandai.Action.Left"><value>왼손</value></data>
-  <data name="Emulation.Bandai.Action.Right"><value>지원하다</value></data>
   <data name="Emulation.Bandai.Action.Start"><value>지원하다</value></data>
   <data name="Emulation.Bandai.Action.Select"><value>제품정보</value></data>
   <data name="Emulation.Bandai.Action.Rotate"><value>제품정보</value></data>

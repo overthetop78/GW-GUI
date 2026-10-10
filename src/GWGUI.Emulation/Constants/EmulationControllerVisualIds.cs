@@ -2,6 +2,11 @@ namespace GWGUI.Emulation.Constants;
 
 public static class EmulationControllerVisualIds
 {
+    public const string BandaiWonderSwan = "bandai-wonderswan";
+    public const string BandaiWonderSwanColor = "bandai-wonderswan-color";
+    public const string BandaiSwanCrystal = "bandai-swancrystal";
+    public const string BandaiPlaydia = "bandai-playdia";
+    public const string BandaiTamagotchiP1 = "bandai-tamagotchi-p1";
     public const string NecPcEnginePad = "nec-pc-engine-pad";
     public const string NecPcEngineTurboPad = "nec-pc-engine-turbopad";
     public const string NecTurboGrafxTurboPad = "nec-turbografx-turbopad";

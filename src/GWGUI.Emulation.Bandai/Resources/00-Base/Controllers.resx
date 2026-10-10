@@ -17,10 +17,6 @@
   <data name="Emulation.Bandai.Action.Y2"><value>Y2</value></data>
   <data name="Emulation.Bandai.Action.Y3"><value>Y3</value></data>
   <data name="Emulation.Bandai.Action.Y4"><value>Y4</value></data>
-  <data name="Emulation.Bandai.Action.Up"><value>Up</value></data>
-  <data name="Emulation.Bandai.Action.Down"><value>Down</value></data>
-  <data name="Emulation.Bandai.Action.Left"><value>Left</value></data>
-  <data name="Emulation.Bandai.Action.Right"><value>Right</value></data>
   <data name="Emulation.Bandai.Action.Start"><value>Start</value></data>
   <data name="Emulation.Bandai.Action.Select"><value>Select</value></data>
   <data name="Emulation.Bandai.Action.Rotate"><value>Rotate</value></data>

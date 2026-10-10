@@ -16,9 +16,7 @@ internal sealed partial class EmulationModuleSettingsSection
 {
     private EmulationSettingsControlField CreateControlField(EmulationSettingsField field) =>
         new(
-            field.RequiresRestart
-                ? $"{LocExtension.GetForModule(_module, field.LabelResourceKey)} · {LocExtension.Get("Emulation.Option.RestartRequired")}"
-                : LocExtension.GetForModule(_module, field.LabelResourceKey),
+            LocExtension.GetForModule(_module, field.LabelResourceKey),
             CreateField(field),
             field.ExplanationResourceKey is null ? null : LocExtension.GetForModule(_module, field.ExplanationResourceKey),
             field.DetailedExplanationResourceKey is null ? null : LocExtension.GetForModule(_module, field.DetailedExplanationResourceKey),
@@ -35,7 +33,7 @@ internal sealed partial class EmulationModuleSettingsSection
             EmulationSettingsEditor.Slider => CreateSlider(field),
             EmulationSettingsEditor.Information => new TextBlock
             {
-                Text = field.Value,
+                Text = EmulationSettingsValuePresentationFunctions.DisplayValue(field, _module),
                 VerticalAlignment = VerticalAlignment.Center,
                 TextWrapping = TextWrapping.Wrap
             },

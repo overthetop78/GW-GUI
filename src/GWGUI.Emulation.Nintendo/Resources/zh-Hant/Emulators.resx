@@ -6,14 +6,14 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.azahar.Description"><value>將相容的Nintendo系統與Azahar相模擬.</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit"><value>啟用 CPU JIT</value></data>
-  <data name="Emulation.Option.azahar.citra_use_cpu_jit.Help"><value>為 ARM CPU 模擬啟用 Just- in- time編譯 。 顯著提高性能,但可能降低準確性。 需要重新開始。</value></data>
+  <data name="Emulation.Option.azahar.citra_use_cpu_jit.Help"><value>為 ARM CPU 模擬啟用 Just- in- time編譯 。 提高性能,但可能降低準確性。</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit.Value.enabled"><value>已啟用</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage"><value>CPU 時鐘速度</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage.Help"><value>調整模擬的3DS CPU時鐘速度作為正常速度的百分比. 更高的值可能會在一些游戲中提高性能,但會引起問題. 下限值可以幫助運行過快的游戲.</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage.Value.100"><value>100%( 過失)</value></data>
   <data name="Emulation.Option.azahar.citra_is_new_3ds"><value>3DS 系統模型</value></data>
-  <data name="Emulation.Option.azahar.citra_is_new_3ds.Help"><value>選擇是模仿原來的3DS還是新3DS。 新3DS擁有額外的CPU功率和內存,是一些游戲所需的. 需要重新開始。</value></data>
+  <data name="Emulation.Option.azahar.citra_is_new_3ds.Help"><value>選擇原有的3DS或New 3DS. New 3DS擁有多為CPU的功率和記憶.</value></data>
   <data name="Emulation.Option.azahar.citra_is_new_3ds.Value.Old 3DS"><value>原為 3DS</value></data>
   <data name="Emulation.Option.azahar.citra_region_value"><value>3DS 系統區域</value></data>
   <data name="Emulation.Option.azahar.citra_region_value.Help"><value>設置3DS系統區域. 自動選擇會根據游戲進行選擇. 一些游戲是被區域封鎖的,需要相匹配的區域.</value></data>
@@ -50,7 +50,7 @@
   <data name="Emulation.Option.azahar.citra_input_type.Value.static_noise"><value>靜態噪聲</value></data>
   <data name="Emulation.Option.azahar.citra_input_type.Value.frontend"><value>前端 :</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api"><value>圖形 API</value></data>
-  <data name="Emulation.Option.azahar.citra_graphics_api.Help"><value>選擇圖形渲染 API. Auto 將選擇最佳可用選項 。 需要重新開始。</value></data>
+  <data name="Emulation.Option.azahar.citra_graphics_api.Help"><value>選擇圖形渲染 API。 自動選擇可用的 API。</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.Auto"><value>自動的</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.OpenGL"><value>打開GL</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.Software"><value>軟件</value></data>
@@ -509,8 +509,6 @@
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.pattern"><value>圖案</value></data>
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.random"><value>隨機</value></data>
   <data name="Emulation.Firmware.desmume.Slot0"><value>NDS 固件</value></data>
-  
-  
   <data name="Emulation.Emulator.desmume2015.Description"><value>模擬兼容Nintendo系統與DeSmuME2015.</value></data>
   <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>內部分辨率( 重新開始)</value></data>
   <data name="Emulation.Option.desmume2015.desmume_num_cores"><value>CPU 核心</value></data>
@@ -597,8 +595,6 @@
   <data name="Emulation.Option.desmume2015.desmume_mic_mode.Value.random"><value>隨機</value></data>
   <data name="Emulation.Option.desmume2015.desmume_mic_mode.Value.physical"><value>物理狀態</value></data>
   <data name="Emulation.Firmware.desmume2015.Slot0"><value>NDS 固件</value></data>
-  
-  
   <data name="Emulation.Option.melonds.melonds_console_mode"><value>控制臺模式</value></data>
   <data name="Emulation.Option.melonds.melonds_boot_directly"><value>直接啟動游戲</value></data>
   <data name="Emulation.Option.melonds.melonds_boot_directly.Help"><value>選擇核心是應該直接啟動游戲還是應該啟動DS菜單(需要BIOS和固件文件).</value></data>
@@ -696,8 +692,6 @@
   <data name="Emulation.Option.melonds.melonds_jit_fast_memory.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_fast_memory.Value.enabled"><value>已啟用</value></data>
   <data name="Emulation.Firmware.melonds.Slot0"><value>NDS 固件</value></data>
-  
-  
   <data name="Emulation.Firmware.melonds.Slot3"><value>DSi 公司軟件</value></data>
   <data name="Emulation.Firmware.melonds.Slot4"><value>DSi ARM7 BIOS</value></data>
   <data name="Emulation.Firmware.melonds.Slot5"><value>DSi ARM9 BIOS</value></data>
@@ -705,24 +699,13 @@
   <data name="Emulation.Firmware.melonds.Slot7"><value>DSi SD卡</value></data>
   <data name="Emulation.Emulator.melondsds.Description"><value>模擬兼容 Nintendo 有 melonDS DS.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input"><value>麥克風輸入模式</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mic_input.Help"><value>選擇模擬麥克風將接收的聲音 :
-
-沉默:沒有音頻輸入.
-吹:放入內置的吹出聲.
-噪聲:隨機白噪.
-麥克風(Microphone):如果有的話,請使用你的真麥克風,如果沒有,請回到Silence.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mic_input.Help"><value>選擇模擬麥克風將接收的聲音 :&#xA;&#xA;沉默:沒有音頻輸入.&#xA;吹:放入內置的吹出聲.&#xA;噪聲:隨機白噪.&#xA;麥克風(Microphone):如果有的話,請使用你的真麥克風,如果沒有,請回到Silence.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.silence"><value>安靜</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.blow"><value>吹噓</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.noise"><value>噪聲</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.microphone"><value>麥克風</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active"><value>麥克風按鈕模式</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mic_input_active.Help"><value>設定麥克風按鈕的行為, 即使麥克風輸入模式被設定為吹出或噪聲. 被按鈕禁用時, 模擬的麥克風接收到沉默 。
-
-按住:按鍵允許在按住時輸入 。
-切換: 按下按鈕即可輸入 mic 輸入, 再次按下則禁用 。
-總是:按鈕被忽略,麥克輸入總是被啟用.
-
-如果將 Microphone 輸入模式設定為 Silence 則忽略了 。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mic_input_active.Help"><value>設定麥克風按鈕的行為, 即使麥克風輸入模式被設定為吹出或噪聲. 被按鈕禁用時, 模擬的麥克風接收到沉默 。&#xA;&#xA;按住:按鍵允許在按住時輸入 。&#xA;切換: 按下按鈕即可輸入 mic 輸入, 再次按下則禁用 。&#xA;總是:按鈕被忽略,麥克輸入總是被啟用.&#xA;&#xA;如果將 Microphone 輸入模式設定為 Silence 則忽略了 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.hold"><value>堅持住</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.toggle"><value>切換</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.always"><value>永遠</value></data>
@@ -752,21 +735,11 @@
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.enabled"><value>已啟用</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns"><value>DNS 覆蓋</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>DNS服務器用于模擬訪問點("melonAP"). 使用此功能在線播放重新執行已中止的Nintendo Wi-Fi Connection服務的自定義服務器. 游戲支持取決于服務器. 
-一些互聯網服務提供商可能會封殺對這些服務器的請求. 如果是這樣的話,請參看https://tinyurl.com/393cb755。
-
-上市服務器不隸屬于Libretro,Nintendo,即melonDS團隊或這個核心的作者. 請尊重其他玩家,并遵守服務器的規則.
-
-如果不確定,請離開凱魯WFC. 更改在下次重新啟動時生效 。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>DNS服務器用于模擬訪問點("melonAP"). 使用此功能在線播放重新執行已中止的Nintendo Wi-Fi Connection服務的自定義服務器. 游戲支持取決于服務器. &#xA;一些互聯網服務提供商可能會封殺對這些服務器的請求. 如果是這樣的話,請參看https://tinyurl.com/393cb755。&#xA;&#xA;上市服務器不隸屬于Libretro,Nintendo,即melonDS團隊或這個核心的作者. 請尊重其他玩家,并遵守服務器的規則.&#xA;&#xA;如果不確定,請離開凱魯WFC. 更改在下次重新啟動時生效 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.95.217.77.181"><value>維姆菲 (95.217.77.181).</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.default"><value>別凌駕于此</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language"><value>語言</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>覆蓋模擬控制臺的語言模式。
-
-使用主機:如果由控制臺支持,則使用前端語言.
-不要覆蓋:使用固件上已經設置的任意語言. 如果被模擬的DS(或DSi NAND)不支持前端的語言,這就是倒置行為.
-
-并不是每個游戲都尊重這個設定。 更改在下次重新啟動時生效 。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>覆蓋模擬控制臺的語言模式。&#xA;&#xA;使用主機:如果由控制臺支持,則使用前端語言.&#xA;不要覆蓋:使用固件上已經設置的任意語言. 如果被模擬的DS(或DSi NAND)不支持前端的語言,這就是倒置行為.&#xA;&#xA;并不是每個游戲都尊重這個設定。 更改在下次重新啟動時生效 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.auto"><value>使用主機</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.en"><value>聯合國</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.ja"><value>日本語</value></data>
@@ -776,13 +749,7 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.es"><value>西班牙語</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.default"><value>別凌駕于此</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username"><value>用戶名</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>覆蓋給模擬控制臺的用戶名。
-
-不要覆蓋:使用固件上定義的任何名稱.
-猜測: 試著從前端獲取您的用戶名 。 如果失敗,請嘗試USER,USERNAME和LOGNAME環境變量.
-melonDS DS: 用途 "melonDS DS". 如果沒有其它東西可用, 則默認為默認 。
-
-名稱被縮短為10個字符. 更改在下次重新啟動時生效 。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>覆蓋給模擬控制臺的用戶名。&#xA;&#xA;不要覆蓋:使用固件上定義的任何名稱.&#xA;猜測: 試著從前端獲取您的用戶名 。 如果失敗,請嘗試USER,USERNAME和LOGNAME環境變量.&#xA;melonDS DS: 用途 "melonDS DS". 如果沒有其它東西可用, 則默認為默認 。&#xA;&#xA;名稱被縮短為10個字符. 更改在下次重新啟動時生效 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.guess_username"><value>猜對了</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.existing_username"><value>別凌駕于此</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color"><value>最喜歡的顏色</value></data>
@@ -834,12 +801,7 @@ melonDS DS: 用途 "melonDS DS". 如果沒有其它東西可用, 則默認為默
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>配置提醒的分鐘 。 更改在下次重新啟動時生效 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Value.default"><value>別凌駕于此</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode"><value>聯網模式</value></data>
-  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>配置如何 melonDSDS 仿真 Nintendo WFC. 如果不確定,請使用間接模式。
-
-間接:使用libslirp來模擬DS的網絡堆棧. 簡單,不需要設置。
-直接:路由模擬了Wi-Fi包到主機的網絡接口. 更快,更可靠,但需要使用醚網連接,并且安裝了WinPcap或Npcap. lippcap被安裝了. 如果無法使用, 則返回間接模式 。
-
-更改在下次重新啟動時生效 。 與當地多人游戲無關.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>配置如何 melonDSDS 仿真 Nintendo WFC. 如果不確定,請使用間接模式。&#xA;&#xA;間接:使用libslirp來模擬DS的網絡堆棧. 簡單,不需要設置。&#xA;直接:路由模擬了Wi-Fi包到主機的網絡接口. 更快,更可靠,但需要使用醚網連接,并且安裝了WinPcap或Npcap. lippcap被安裝了. 如果無法使用, 則返回間接模式 。&#xA;&#xA;更改在下次重新啟動時生效 。 與當地多人游戲無關.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.indirect"><value>間接</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.direct"><value>直接</value></data>
@@ -847,9 +809,7 @@ melonDS DS: 用途 "melonDS DS". 如果沒有其它東西可用, 則默認為默
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>選擇使用 Direct Mode 的網絡接口。 如果不確定, 請設置為自動 。 更改在下次核心重啟時生效 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Value.auto"><value>自動的</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode"><value>網絡 MAC 地址模式</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>配置模擬控制臺MAC地址的設置方式. 更改此選項可能會使本地多人無法訪問,或者在使用MAC地址來防止篡改保存文件的游戲中屏蔽訪問以保存文件(即. 寶克門.
-與直接模式接口沒有關系. 更改在下次重新啟動時生效 。
-更多信息見https://bit.ly/4fJtWKN.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>配置模擬控制臺MAC地址的設置方式. 更改此選項可能會使本地多人無法訪問,或者在使用MAC地址來防止篡改保存文件的游戲中屏蔽訪問以保存文件(即. 寶克門.&#xA;與直接模式接口沒有關系. 更改在下次重新啟動時生效 。&#xA;更多信息見https://bit.ly/4fJtWKN.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.firmware"><value>從固件設定</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.from-username"><value>來自 libretro 用戶名</value></data>
   <data name="Emulation.Option.melondsds.melonds_show_unsupported_features"><value>關于不支持的特性的警告</value></data>
@@ -902,13 +862,7 @@ melonDS DS: 用途 "melonDS DS". 如果沒有其它東西可用, 則默認為默
   <data name="Emulation.Option.melondsds.melonds_cursor_timeout.Value.30"><value>30秒鐘</value></data>
   <data name="Emulation.Option.melondsds.melonds_cursor_timeout.Value.60"><value>60秒鐘</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode"><value>觸摸模式</value></data>
-  <data name="Emulation.Option.melondsds.melonds_touch_mode.Help"><value>確定控制臺的觸摸屏如何被仿真.
-
-Joystick:使用一個joystock來控制光標. 如果您沒有鼠標或真實的觸摸屏可用, 則推薦 。
-指針:使用鼠標或觸摸屏幕來控制光標.
-自動: 使用 Joystick 或 指針, 取決于您上次碰過的地方 。
-
-如果不確定, 請設置為 Auto 。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_touch_mode.Help"><value>確定控制臺的觸摸屏如何被仿真.&#xA;&#xA;Joystick:使用一個joystock來控制光標. 如果您沒有鼠標或真實的觸摸屏可用, 則推薦 。&#xA;指針:使用鼠標或觸摸屏幕來控制光標.&#xA;自動: 使用 Joystick 或 指針, 取決于您上次碰過的地方 。&#xA;&#xA;如果不確定, 請設置為 Auto 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.joystick"><value>操縱桿</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.touch"><value>指針</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.auto"><value>自動的</value></data>
@@ -917,9 +871,7 @@ Joystick:使用一個joystock來控制光標. 如果您沒有鼠標或真實的�
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_maxspeed"><value>Joystick Cursor 最大速度</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_maxspeed.Help"><value>設置游戲桿光標的最大速度 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response"><value>Joystick 光標響應</value></data>
-  <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Help"><value>為游戲桿光標設定響應曲線 。
-線性(Linear)是一種反應曲線,光標速度為1:1,并有樂桿輸入.
-四極管是一種反應曲線,它會降低樂桿中心附近的靈敏度來進行更細的控制,但能提高邊緣附近的靈通度.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Help"><value>為游戲桿光標設定響應曲線 。&#xA;線性(Linear)是一種反應曲線,光標速度為1:1,并有樂桿輸入.&#xA;四極管是一種反應曲線,它會降低樂桿中心附近的靈敏度來進行更細的控制,但能提高邊緣附近的靈通度.</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Value.100"><value>線性</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Value.200"><value>四進制</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_speedup"><value>歡樂棒光標乘數</value></data>
@@ -931,11 +883,7 @@ Joystick:使用一個joystock來控制光標. 如果您沒有鼠標或真實的�
   <data name="Emulation.Option.melondsds.melonds_hybrid_small_screen.Value.one"><value>顯示對面屏幕</value></data>
   <data name="Emulation.Option.melondsds.melonds_hybrid_small_screen.Value.both"><value>顯示兩個屏幕</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering"><value>混合/大型屏幕過濾</value></data>
-  <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Help"><value>影響混合/大屏幕屏幕的放大。
-
-最接近的:沒有過濾. 圖形看起來很結實。
-線性:平滑縮放.
-</value></data>
+  <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Help"><value>影響混合/大屏幕屏幕的放大。&#xA;&#xA;最接近的:沒有過濾. 圖形看起來很結實。&#xA;線性:平滑縮放.&#xA;</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Value.nearest"><value>離這里最近</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Value.linear"><value>線性</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_gap"><value>屏幕缺口</value></data>
@@ -944,11 +892,7 @@ Joystick:使用一個joystock來控制光標. 如果您沒有鼠標或真實的�
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_scale"><value>二級屏幕縮放</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_scale.Help"><value>二級屏幕相對于主屏幕的大小. 適用于垂直布局(Top/Bottom,下方/Top). 百分百時,兩屏相同. 50%,二級屏幕為主屏幕寬度和高度的一半.</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering"><value>二級屏幕過濾</value></data>
-  <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Help"><value>影響二級屏幕的縮放。
-
-最接近的:沒有過濾. 圖形看起來很結實。
-線性:平滑縮放. 在使用低于100%的二級屏幕比例時推薦 。
-</value></data>
+  <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Help"><value>影響二級屏幕的縮放。&#xA;&#xA;最接近的:沒有過濾. 圖形看起來很結實。&#xA;線性:平滑縮放. 在使用低于100%的二級屏幕比例時推薦 。&#xA;</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Value.nearest"><value>離這里最近</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Value.linear"><value>線性</value></data>
   <data name="Emulation.Option.melondsds.melonds_number_of_screen_layouts"><value># 屏幕布局 #</value></data>
@@ -1098,70 +1042,25 @@ Joystick:使用一個joystock來控制光標. 如果您沒有鼠標或真實的�
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-right"><value>向右旋轉</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-180"><value>向下傾斜</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode"><value>控制臺模式</value></data>
-  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>是模仿Nintendo DS還是仿照Nintendo DSi.
-
-自動對需要DSi的游戲使用DSi模式,其他游戲則使用DS模式. DS和DSi的設置強制了相應的控制臺;這對家用釀酒開發大多是有用的.
-
-DSi模式有一些限制:
-
-- 必須提供本地BIOS/公司軟件/NAND文件,包括普通DS文件。
-- 一些功能(如保存狀態)在DSi模式中不可用.
-
-更多信息請參見該類中DSi特定選項. 如果不確定,請使用 Auto 。 更改在下次重啟時生效。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>是模仿Nintendo DS還是仿照Nintendo DSi.&#xA;&#xA;自動對需要DSi的游戲使用DSi模式,其他游戲則使用DS模式. DS和DSi的設置強制了相應的控制臺;這對家用釀酒開發大多是有用的.&#xA;&#xA;DSi模式有一些限制:&#xA;&#xA;- 必須提供本地BIOS/公司軟件/NAND文件,包括普通DS文件。&#xA;- 一些功能(如保存狀態)在DSi模式中不可用.&#xA;&#xA;更多信息請參見該類中DSi特定選項. 如果不確定,請使用 Auto 。 更改在下次重啟時生效。</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.auto"><value>自動的</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.dsi"><value>DSi (實驗性)</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode"><value>BIOS/軟件模式( DS 模式)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>確定melonDS是否使用原生的BIOS型軟件堆放場或自己的內置替代. 僅適用于DS模式,因為DSi模式總是需要本土BIOS和固件堆放.
-
-原生模式使用BIOS和從真實DS得到的固件文件. 將這些垃圾堆放到系統目錄或其"melonDS DS"子目錄中,并命名如下:
-
-- DS BIOS: bios7.bin, bios9.bin
-- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin
-- 固件:見“DS固件”和“DSi固件”。
-- DSi NAND:見 "DSi NAND " 選項。
-
-如果找不到 BIOS/ wardware 文件, 則返回 Built- In 。
-
-Built-In模式使用melonDS的內置BIOS和固件,并適用于大多數游戲.
-
-更改在下次重新啟動時生效 。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>確定melonDS是否使用原生的BIOS型軟件堆放場或自己的內置替代. 僅適用于DS模式,因為DSi模式總是需要本土BIOS和固件堆放.&#xA;&#xA;原生模式使用BIOS和從真實DS得到的固件文件. 將這些垃圾堆放到系統目錄或其"melonDS DS"子目錄中,并命名如下:&#xA;&#xA;- DS BIOS: bios7.bin, bios9.bin&#xA;- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin&#xA;- 固件:見“DS固件”和“DSi固件”。&#xA;- DSi NAND:見 "DSi NAND " 選項。&#xA;&#xA;如果找不到 BIOS/ wardware 文件, 則返回 Built- In 。&#xA;&#xA;Built-In模式使用melonDS的內置BIOS和固件,并適用于大多數游戲.&#xA;&#xA;更改在下次重新啟動時生效 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.native"><value>土著</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.builtin"><value>內建</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path"><value>DS 固件軟件</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>選擇用于DS模式的固件圖像。 這里列出的文件如果:
-
-- 位于前端的系統目錄內,或名為"melonDS DS"的子目錄.
-- 準確的有131,072個字節(128KB),262,144個字分(256KB"),或524,288個字段(512KB "長").
-- 包含DS固件的有效信頭數據。
-
-Nintendo WFCID被保存到固件上,因此切換固件圖像可能導致大約WFC數據丟失. 在DSi模式中被忽略,或者如果BIOS/Firmware模式是Built-In. 更改在下次重新啟動時生效 。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>選擇用于DS模式的固件圖像。 這里列出的文件如果:&#xA;&#xA;- 位于前端的系統目錄內,或名為"melonDS DS"的子目錄.&#xA;- 準確的有131,072個字節(128KB),262,144個字分(256KB"),或524,288個字段(512KB "長").&#xA;- 包含DS固件的有效信頭數據。&#xA;&#xA;Nintendo WFCID被保存到固件上,因此切換固件圖像可能導致大約WFC數據丟失. 在DSi模式中被忽略,或者如果BIOS/Firmware模式是Built-In. 更改在下次重新啟動時生效 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Value./notfound"><value>沒有找到...</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path"><value>DSi 公司軟件</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>選擇用于DSi模式的固件圖像。 這里列出的文件如果:
-
-- 位于前端的系統目錄內,或名為"melonDS DS"的子目錄.
-- 準確的有131,072個字節(128KB),262,144個字分(256KB"),或524,288個字段(512KB "長").
-- 包含DSi固件的有效頭部數據。
-
-Nintendo WFCID被保存到固件上,因此切換固件圖像可能導致大約WFC數據丟失. 更改在下次重新啟動時生效 。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>選擇用于DSi模式的固件圖像。 這里列出的文件如果:&#xA;&#xA;- 位于前端的系統目錄內,或名為"melonDS DS"的子目錄.&#xA;- 準確的有131,072個字節(128KB),262,144個字分(256KB"),或524,288個字段(512KB "長").&#xA;- 包含DSi固件的有效頭部數據。&#xA;&#xA;Nintendo WFCID被保存到固件上,因此切換固件圖像可能導致大約WFC數據丟失. 更改在下次重新啟動時生效 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Value./notfound"><value>沒有找到...</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path"><value>DSi NAND路徑</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>選擇要使用的 DSi NAND 圖像。 使用 DSi 模式時需要 。 這里列出的文件如果:
-
-- 位于前端的系統目錄內,或名為"melonDS DS"的子目錄.
-- 完全為251 658 304字節(240MB)或257 425 472字節 (245.5MB;有有效腳印數據OR);
-- 是否比這些長度短64個字節,并包含在文件所抵消0xFF800的等同數據。
-
-設定為"Auto",讓核心選擇一個NAND圖像,其區域與裝入的DSiWare ROM.相匹配 更改在下次重新啟動時生效 。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>選擇要使用的 DSi NAND 圖像。 使用 DSi 模式時需要 。 這里列出的文件如果:&#xA;&#xA;- 位于前端的系統目錄內,或名為"melonDS DS"的子目錄.&#xA;- 完全為251 658 304字節(240MB)或257 425 472字節 (245.5MB;有有效腳印數據OR);&#xA;- 是否比這些長度短64個字節,并包含在文件所抵消0xFF800的等同數據。&#xA;&#xA;設定為"Auto",讓核心選擇一個NAND圖像,其區域與裝入的DSiWare ROM.相匹配 更改在下次重新啟動時生效 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./auto"><value>自動( 匹配 ROM 區域)</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./notfound"><value>沒有找到...</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode"><value>啟動模式</value></data>
-  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>確定melonDS靴子游戲如何進行.
-
-原生:通過系統菜單來裝入游戲,與真正的DS/DSi啟動過程相類似. 在系統目錄中需要本地的BIOS和固件文件.
-直接:跳過系統菜單并直接進入游戲. 如果有本地的DSi系統文件,則支持DSiWare.
-
-在沒有游戲的情況下加載(Native被強制)或者使用Built-In BIOS/Firmware(Direct被強制進行)時被忽略. 更改在下次重新啟動時生效 。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>確定melonDS靴子游戲如何進行.&#xA;&#xA;原生:通過系統菜單來裝入游戲,與真正的DS/DSi啟動過程相類似. 在系統目錄中需要本地的BIOS和固件文件.&#xA;直接:跳過系統菜單并直接進入游戲. 如果有本地的DSi系統文件,則支持DSiWare.&#xA;&#xA;在沒有游戲的情況下加載(Native被強制)或者使用Built-In BIOS/Firmware(Direct被強制進行)時被忽略. 更改在下次重新啟動時生效 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.direct"><value>直接</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.native"><value>土著</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard"><value>虛擬SD卡( DSi)</value></data>
@@ -1204,8 +1103,7 @@ Nintendo WFCID被保存到固件上,因此切換固件圖像可能導致大約WF
   <data name="Emulation.Option.melondsds.melonds_ds_battery_ok_threshold.Value.0"><value>總是OK</value></data>
   <data name="Emulation.Option.melondsds.melonds_ds_battery_ok_threshold.Value.100"><value>總是低</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device"><value>Slot-2 設備</value></data>
-  <data name="Emulation.Option.melondsds.melonds_slot2_device.Help"><value>將插入到模擬控制臺的 Slot-2 的外圍 。 在DSi模式中被忽略,或者一個GBA ROM被明確加載. 如果插入了博克泰三部曲中任何游戲的GBA ROM,則將強制使用相應的"太陽感應器"設定. 在被支持的NDS游戲中,每個Boktai手推車會有不同的效果. Motion Paks讀取了您的設備的加速計(以及它的陀螺儀,為家居pak),如果前端支持它們;否則,它們表現得好像控制臺平地躺著并靜止. 
-變化在下一個核心啟動時生效。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_slot2_device.Help"><value>將插入到模擬控制臺的 Slot-2 的外圍 。 在DSi模式中被忽略,或者一個GBA ROM被明確加載. 如果插入了博克泰三部曲中任何游戲的GBA ROM,則將強制使用相應的"太陽感應器"設定. 在被支持的NDS游戲中,每個Boktai手推車會有不同的效果. Motion Paks讀取了您的設備的加速計(以及它的陀螺儀,為家居pak),如果前端支持它們;否則,它們表現得好像控制臺平地躺著并靜止. &#xA;變化在下一個核心啟動時生效。</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.auto"><value>自動的</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.rumble-pak"><value>魯姆伯克</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.expansion-pak"><value>內存擴展 Pak</value></data>
@@ -1215,36 +1113,19 @@ Nintendo WFCID被保存到固件上,因此切換固件圖像可能導致大約WF
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.motion-pak-homebrew"><value>Motion Pak( 家產)</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.motion-pak-retail"><value>運動包( 零售)</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_intensity"><value>Rumble 強度</value></data>
-  <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Help"><value>朗普帕克駕駛控制器的馬達有多難 被模仿的"Rumble Pak"沒有自己的量控制,所以這個尺度無論游戲要求什么.
-
-除非將“ Slot-2 設備” 設置為 Rumble Pak , 否則被忽略 。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Help"><value>朗普帕克駕駛控制器的馬達有多難 被模仿的"Rumble Pak"沒有自己的量控制,所以這個尺度無論游戲要求什么.&#xA;&#xA;除非將“ Slot-2 設備” 設置為 Rumble Pak , 否則被忽略 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Value.0"><value>已停用</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type"><value>跑車</value></data>
-  <data name="Emulation.Option.melondsds.melonds_rumble_type.Help"><value>你的哪個控制器的馬達的Rumble Pak驅動器。 多數控制器將重馬達與更輕的馬達相配;這感覺更接近于真正的Rumble Pak取決于控制器.
-
-除非將“ Slot-2 設備” 設置為 Rumble Pak , 否則被忽略 。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_rumble_type.Help"><value>你的哪個控制器的馬達的Rumble Pak驅動器。 多數控制器將重馬達與更輕的馬達相配;這感覺更接近于真正的Rumble Pak取決于控制器.&#xA;&#xA;除非將“ Slot-2 設備” 設置為 Rumble Pak , 否則被忽略 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.both"><value>兩者</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.strong"><value>僅強</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.weak"><value>僅弱</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor"><value>使用主機光感應器</value></data>
-  <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Help"><value>如果啟用, 模擬的太陽傳感器的光輸入將來自您設備的真正亮度傳感器( 如果有的話) 。 如果已禁用或沒有傳感器,可使用下列按鈕組合對模擬傳感器進行手動控制:
-
-- L+A+上調或L+A后下調
-- 選擇+上或選擇+下
-- 你的滑鼠輪
-
-除非“ Slot-2 設備” 設置為 Solar Sensor, 或者如果在模擬控制臺的Slot-2中插入用于 Boktai 三部曲( 任何區域) 的任何游戲的 ROM , 否則被忽略了 。 如果不確定,請假啟用 。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Help"><value>如果啟用, 模擬的太陽傳感器的光輸入將來自您設備的真正亮度傳感器( 如果有的話) 。 如果已禁用或沒有傳感器,可使用下列按鈕組合對模擬傳感器進行手動控制:&#xA;&#xA;- L+A+上調或L+A后下調&#xA;- 選擇+上或選擇+下&#xA;- 你的滑鼠輪&#xA;&#xA;除非“ Slot-2 設備” 設置為 Solar Sensor, 或者如果在模擬控制臺的Slot-2中插入用于 Boktai 三部曲( 任何區域) 的任何游戲的 ROM , 否則被忽略了 。 如果不確定,請假啟用 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.enabled"><value>已啟用</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode"><value>時間模式</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>模擬控制臺內部時鐘的初始時間.
-
-- 真實:從設備的時鐘同步開始。
-- 同步:將模擬時鐘同步到設備的時鐘上. 當倒行或快前行時,可能會在一些游戲中引起出人意料的行為.
-- 相對:與設備的時鐘同步開始,加減指定的偏移。 將受限于DS能夠代表的日期.
-- 絕對:從特定的日期和時間開始,而不論設備的時鐘如何。
-
-所有日期和時間都在你的本地時區. 更改在下次重新啟動時生效 。</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>模擬控制臺內部時鐘的初始時間.&#xA;&#xA;- 真實:從設備的時鐘同步開始。&#xA;- 同步:將模擬時鐘同步到設備的時鐘上. 當倒行或快前行時,可能會在一些游戲中引起出人意料的行為.&#xA;- 相對:與設備的時鐘同步開始,加減指定的偏移。 將受限于DS能夠代表的日期.&#xA;- 絕對:從特定的日期和時間開始,而不論設備的時鐘如何。&#xA;&#xA;所有日期和時間都在你的本地時區. 更改在下次重新啟動時生效 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.real"><value>真實</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.sync"><value>同步</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.relative"><value>相對</value></data>
@@ -1532,10 +1413,7 @@ Nintendo WFCID被保存到固件上,因此切換固件圖像可能導致大約WF
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second"><value>開始第二</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>當開始時間模式為絕對時使用的初始秒 。 更改在下次重新啟動時生效 。</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode"><value>渲染模式</value></data>
-  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>軟件速度快,最準確. OpenGL (Classic) 可以放大3D圖形,但有些游戲不正確渲染.
-OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備上起作用. 切換到它需要幾秒鐘來編譯它的陰影.
-
-如果無法使用 OpenGL ,則返回到軟件渲染. 更改立即生效,但可能要求前端的視頻驅動程序重新啟動.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>軟件速度快,最準確. OpenGL (Classic) 可以放大3D圖形,但有些游戲不正確渲染.&#xA;OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備上起作用. 切換到它需要幾秒鐘來編譯它的陰影.&#xA;&#xA;如果無法使用 OpenGL ,則返回到軟件渲染. 更改立即生效,但可能要求前端的視頻驅動程序重新啟動.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.software"><value>軟件</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.opengl"><value>打開GL( Classic)</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.compute"><value>OpenGL (計算)</value></data>
@@ -1562,8 +1440,6 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.melondsds.melonds_threaded_renderer.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.melondsds.melonds_threaded_renderer.Value.enabled"><value>已啟用</value></data>
   <data name="Emulation.Firmware.melondsds.Slot0"><value>NDS 固件</value></data>
-  
-  
   <data name="Emulation.Firmware.melondsds.Slot3"><value>DSi 公司軟件</value></data>
   <data name="Emulation.Firmware.melondsds.Slot4"><value>DSi ARM7 BIOS</value></data>
   <data name="Emulation.Firmware.melondsds.Slot5"><value>DSi ARM9 BIOS</value></data>
@@ -1664,8 +1540,6 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.noods.noods_micButtonMode.Value.Hold"><value>堅持住</value></data>
   <data name="Emulation.Option.noods.noods_micButtonMode.Value.Always"><value>永遠</value></data>
   <data name="Emulation.Firmware.noods.Slot0"><value>NDS 固件</value></data>
-  
-  
   <data name="Emulation.Firmware.noods.Slot3"><value>Game Boy Advance BIOS</value></data>
   <data name="Emulation.Firmware.noods.Slot4"><value>NDS SD 卡片</value></data>
   <data name="Emulation.Emulator.skyemu.Description"><value>將相容的Nintendo系統與SkyEmu相模擬.</value></data>
@@ -1678,21 +1552,13 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.skyemu.system_gba_bios_enable.Help"><value>Game Boy Advance 固件已啟用</value></data>
   <data name="Emulation.Option.skyemu.system_nds_bios_enable"><value>Nintendo DS 固件</value></data>
   <data name="Emulation.Option.skyemu.system_nds_bios_enable.Help"><value>Nintendo DS 固件已啟用</value></data>
-  
-  
-  
-  
-  
-  
   <data name="Emulation.Firmware.skyemu.Slot6"><value>GBA BIOS</value></data>
-  
-  
   <data name="Emulation.Firmware.skyemu.Slot9"><value>NDS FIRMWARE</value></data>
   <data name="Emulation.Emulator.fceumm.Description"><value>將相容的Nintendo系統與FCEUmm相模擬.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region"><value>地區</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region.Help"><value>強制核心使用NTSC,PAL或丹地地區計時.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region.Value.Auto"><value>自動的</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_game_genie"><value>游戲Genie Add- On( 需要重新啟動)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_game_genie"><value>游戲Genie Add- On</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Help"><value>啟用仿真 Game Genie 加載彈匣,允許在啟動游戲時輸入作弊代碼. Game Genie ROM 文件"gamegenie.nes"必須在前端的系統目錄中出現. 不適用于FDS或街機內容.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Value.enabled"><value>已啟用</value></data>
@@ -1894,7 +1760,7 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.2x-Postrender"><value>2x- 超強器</value></data>
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.2x-VBlank"><value>2x- V Blank 常規</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_ramstate"><value>RAM 充電( 需要重新啟動)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_ramstate"><value>RAM 充電</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ramstate.Help"><value>電源上的RAM值。 一些游戲以隨機數生成的初始RAM值為例.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ramstate.Value.random"><value>隨機</value></data>
   <data name="Emulation.Firmware.fceumm.Slot0"><value>家庭電腦磁盤系統 BIOS</value></data>
@@ -2092,9 +1958,7 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.mesen2.mesen_snes_high_res_blend_mode.Value.Blend Even/Odd"><value>組合 Even/Odd</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode"><value>視頻 - SNES 解密模式</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Help"><value>選擇 SNES 脫接模式</value></data>
-  <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Weave"><value>編織</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Bob Blend"><value>Bob 組合</value></data>
-  <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Bob"><value>鮑勃</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Current Field"><value>當前字段</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_hide_bg_layer_1"><value>增強 - SNES 隱藏 BG 第1層</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_hide_bg_layer_1.Help"><value>隱藏 SNES 背景層 1</value></data>
@@ -2150,125 +2014,6 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders"><value>視頻 - Game Boy 隱藏了SGB邊境</value></data>
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders.Help"><value>隱藏 Super Game Boy 邊界</value></data>
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders.Value.disabled"><value>已停用</value></data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed"><value>輸入 - 控制器渦輪速度</value></data>
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed.Help"><value>渦輪按鈕速度</value></data>
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed.Value.Fast"><value>快點</value></data>
@@ -2499,14 +2244,7 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Firmware.rustynes.Slot0"><value>家庭電腦磁盤系統 BIOS</value></data>
   <data name="Emulation.Emulator.doublecherrygb.Description"><value>將相容的Nintendo系統與DoubleCherryGB相模擬.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA"><value>檢測為在Game Boy Advance上播放</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Help"><value>大約Game Boy Color游戲在Game Boy Advance上播放時提供增強功能.
-
-已知的GBA強化游戲:
-   - 山泰,你好嗎?
-   - Wendy:每條巫婆道
-   - 塞爾達:古代神諭/季節
-   - 梅達羅特5號
-   - 超人2號</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Help"><value>大約Game Boy Color游戲在Game Boy Advance上播放時提供增強功能.&#xA;&#xA;已知的GBA強化游戲:&#xA;   - 山泰,你好嗎?&#xA;   - Wendy:每條巫婆道&#xA;   - 塞爾達:古代神諭/季節&#xA;   - 梅達羅特5號&#xA;   - 超人2號</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Value.0"><value>已停用</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_rtc_use_system_clock"><value>實時時鐘模式</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_rtc_use_system_clock.Help"><value>控制游戲中實時時鐘 (RTC) 的勾選方式。 “ real- Time” 使用您的主機設備的系統時鐘( 恢復快速前進; 在模擬器關閉時通過時間) 。 “ 模擬” 嚴格根據模擬的 CPU 周期計算時間 。</value></data>
@@ -2571,11 +2309,7 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss"><value>GBC LCD相接亮度</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss.Help"><value>調整相接效應的強度。 不使用陰影時保持此值低 。 將高值與遮蔽器相組合,以顯出效果,則推薦高值.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation"><value>GBC LCD RGB 子像素縮放系數</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>通過升級并用相應的RGB組件來替換每個顏色像素來模擬物理GBC子像素.
-
-最佳結果:
-- 在 RetroArch (Settings - &gt; Video - &gt; 縮放) 中啟用“ 整數縮放” 。
-- 更改此設置后可能需要重新啟動核心 。</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>通過升級并用相應的RGB組件來替換每個顏色像素來模擬物理GBC子像素.&#xA;&#xA;最佳結果:&#xA;- 在 RetroArch (Settings - &gt; Video - &gt; 縮放) 中啟用“ 整數縮放” 。&#xA;- 更改此設置后可能需要重新啟動核心 。</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Value.1"><value>已停用</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur"><value>GBC LCD 模糊</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur.Help"><value>應用顯示模糊效果。 此設置具有高度的CPU密集型. 把它關閉在更弱的硬件上 或者用遮蔭器代替。</value></data>
@@ -2681,20 +2415,10 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.doublecherrygb.dcgb_cocktailtable_mode.Value.1"><value>垂直</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_cocktailtable_mode.Value.2"><value>水平</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled"><value>移動適配器 GB 模擬</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Help"><value>啟用模擬日本移動適配器GB外圍.
-
-支持的標題 :
-   - Pokemon Crystal(日本或移動適配器補丁)
-   - Game Boy 戰爭3
-   - 你好,凱蒂快樂之家
-   - 移動高爾夫
-   - 流動教練員
-   - 凈取出</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Help"><value>啟用模擬日本移動適配器GB外圍.&#xA;&#xA;支持的標題 :&#xA;   - Pokemon Crystal(日本或移動適配器補丁)&#xA;   - Game Boy 戰爭3&#xA;   - 你好,凱蒂快樂之家&#xA;   - 移動高爾夫&#xA;   - 流動教練員&#xA;   - 凈取出</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Value.0"><value>已停用</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber"><value>啟動時顯示您的電話號碼</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Help"><value>在啟動時顯示您的 P2P 電話號碼 。 
-
-警告:沒有中繼服務器,這暴露出您的公開IP地址. 只與信任的用戶共享此功能 。</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Help"><value>在啟動時顯示您的 P2P 電話號碼 。 &#xA;&#xA;警告:沒有中繼服務器,這暴露出您的公開IP地址. 只與信任的用戶共享此功能 。</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Value.0"><value>已停用</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color"><value>移動適配器 GB 設備顏色</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Help"><value>設置模擬移動適配器設備的化妝外殼顏色.</value></data>
@@ -2703,34 +2427,24 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Value.10"><value>綠色</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Value.11"><value>紅色</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip"><value>DNS 服務器 IP</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Help"><value>官方Nintendo服務器下線. 您可以使用 REON 這樣的自定義堆棧來托管基礎設施 : https://github.com/REONTeam/reon 。
-
-對于自定義配置, 請編輯您追溯系統文件夾中的 mobile_adapter_gb_custom_server_config.ini 。</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Help"><value>官方Nintendo服務器下線. 您可以使用 REON 這樣的自定義堆棧來托管基礎設施 : https://github.com/REONTeam/reon 。&#xA;&#xA;對于自定義配置, 請編輯您追溯系統文件夾中的 mobile_adapter_gb_custom_server_config.ini 。</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.127.0.0.1"><value>127.0.0.1 (當地東道主)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.172.18.0.1"><value>1721.8.0.1 (當地碼頭)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.99"><value>自定義</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port"><value>DNS 服務器端口</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Help"><value>指定自定義網絡基礎設施的目標端口連接。
-
-對于自定義配置, 請編輯您追溯系統文件夾中的 mobile_adapter_gb_custom_server_config.ini 。</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Help"><value>指定自定義網絡基礎設施的目標端口連接。&#xA;&#xA;對于自定義配置, 請編輯您追溯系統文件夾中的 mobile_adapter_gb_custom_server_config.ini 。</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Value.1"><value>53 (過失)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Value.99"><value>自定義</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server"><value>使用 P2P 中繼服務器</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Help"><value>為 P2P 呼叫使用自定義的中繼服務器.
-
-對于自定義配置, 請編輯您追溯系統文件夾中的 mobile_adapter_gb_custom_server_config.ini 。</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Help"><value>為 P2P 呼叫使用自定義的中繼服務器.&#xA;&#xA;對于自定義配置, 請編輯您追溯系統文件夾中的 mobile_adapter_gb_custom_server_config.ini 。</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Value.0"><value>已停用</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip"><value>P2P 中繼服務器 IP</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Help"><value>指定自定義網絡基礎設施的目標端口連接。
-
-對于自定義配置, 請編輯您追溯系統文件夾中的 mobile_adapter_gb_custom_server_config.ini 。</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Help"><value>指定自定義網絡基礎設施的目標端口連接。&#xA;&#xA;對于自定義配置, 請編輯您追溯系統文件夾中的 mobile_adapter_gb_custom_server_config.ini 。</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.127.0.0.1"><value>127.0.0.1 (當地東道主)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.172.18.0.1"><value>1721.8.0.1 (當地碼頭)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.99"><value>自定義</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port"><value>P2P 中繼服務器端口</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Help"><value>指定自定義 P2P 中繼 serber 的目標端口連接。
-
-對于自定義配置, 請編輯您追溯系統文件夾中的 mobile_adapter_gb_custom_server_config.ini 。</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Help"><value>指定自定義 P2P 中繼 serber 的目標端口連接。&#xA;&#xA;對于自定義配置, 請編輯您追溯系統文件夾中的 mobile_adapter_gb_custom_server_config.ini 。</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Value.1"><value>31227(過失)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Value.99"><value>自定義</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_dev_log_linkcable_to_file"><value>日志鏈接電纜傳輸到文件</value></data>
@@ -2801,10 +2515,10 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler"><value>音頻響應器</value></data>
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler.Help"><value>指定在復制生成的音頻時使用的算法( Game Boy 音頻速率僅受到其CPU寫入速度的限制, 因此在現代音效設備上“ native” 頻率不切實際, 必須被下取樣) 。 “ sinc” 產生最高的質量 。“ Cosine” 提高了低端硬件的性能 。</value></data>
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler.Value.cc"><value>余弦</value></data>
-  <data name="Emulation.Option.gambatte.gambatte_gb_hwmode"><value>模擬硬件( 需要重新啟動)</value></data>
+  <data name="Emulation.Option.gambatte.gambatte_gb_hwmode"><value>模擬硬件</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_hwmode.Help"><value>指定要模擬的硬件類型。 建議“ Auto” 。 在某些"GBA增強"游戲中選擇了'GBA'解鎖額外的功能"Game Boy Color game (Shantae, Wendy - Every Witch Way, Legend of Zelda: Oracle of Seasons/Ages...).</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_hwmode.Value.Auto"><value>自動的</value></data>
-  <data name="Emulation.Option.gambatte.gambatte_gb_bootloader"><value>使用 Official Bootloader( 需要重新啟動)</value></data>
+  <data name="Emulation.Option.gambatte.gambatte_gb_bootloader"><value>使用 Official Bootloader</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Help"><value>啟用對正版Game Boy和Game Boy Color裝車機的支持,并配有相應的起動標志動畫.</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Value.enabled"><value>已啟用</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Value.disabled"><value>已停用</value></data>
@@ -3047,8 +2761,6 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg"><value>禁用 DMG 游戲的再彩色( 僅適用于 CGB BIOS)</value></data>
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg.Value.enabled"><value>已啟用</value></data>
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg.Value.disabled"><value>已停用</value></data>
-  
-  
   <data name="Emulation.Emulator.mesen_s.Description"><value>模擬兼容 Nintendo 與梅森的系統S.</value></data>
   <data name="Emulation.Option.mesen_s.mesen-s_ntsc_filter"><value>NTSC 過濾器</value></data>
   <data name="Emulation.Option.mesen_s.mesen-s_ntsc_filter.Value.Disabled"><value>已停用</value></data>
@@ -3111,8 +2823,6 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Firmware.mesen_s.Slot15"><value>GBC 靴子圖像</value></data>
   <data name="Emulation.Firmware.mesen_s.Slot16"><value>SGB 靴子圖像</value></data>
   <data name="Emulation.Firmware.mesen_s.Slot17"><value>SGB2 靴子圖像</value></data>
-  
-  
   <data name="Emulation.Firmware.mesen_s.Slot20"><value>薩特拉維·布特ROM</value></data>
   <data name="Emulation.Emulator.nside_sfc_balanced.Description"><value>模擬與nSide相容的Nintendo系統.</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_internal_resolution"><value>內部解決</value></data>
@@ -4300,8 +4010,6 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-native-tex-rect.Value.False"><value>已停用</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method"><value>(ParaLLEl-RDP) 解接方法</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Help"><value>編織只應使用1x縮放因子和特殊的CRT遮蔽.</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Value.Bob"><value>鮑勃</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Value.Weave"><value>編織</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay"><value>VI 重疊數</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay.Help"><value>(AL) Select VI 重疊過濾. "Filtered"是原始的系統渲染.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay.Value.Filtered"><value>過濾</value></data>
@@ -4394,7 +4102,6 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.memory"><value>內存</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.rumble"><value>朗布爾</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.transfer"><value>轉讓</value></data>
-  
   <data name="Emulation.Emulator.parallel_n64.Description"><value>模擬與ParaLLEl N64.相容的Nintendo系統</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>升級因子( 重新開始)</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling.Help"><value>在控制臺的多段分辨率上顯示 Parallel-RDP 尊重每個因子; Angrylion 使最高為4x并視8x為4×.</value></data>
@@ -4576,7 +4283,7 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.parallel_n64.parallel-n64-disable_expmem.Value.enabled"><value>已啟用</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-disable_expmem.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy"><value>GFX 準確度</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Help"><value>GFX 精確度, 需要重新啟動</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Help"><value>圖形精度.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.low"><value>低級</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.medium"><value>介質</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.high"><value>高檔</value></data>
@@ -4872,7 +4579,6 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.parallel_n64.parallel-n64-sdcard.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate"><value>在保存狀態負載上回滾 N64 系統時鐘</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate.Value.enabled"><value>是</value></data>
-  
   <data name="Emulation.Emulator.pokemini.Description"><value>將相容的Nintendo系統與PokeMini相模擬.</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>視頻縮放( 重新開始)</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale.Help"><value>設置內部視頻縮放因子. 增加比例系數可以改善內部"點矩陣"LCD濾波器的外觀.</value></data>
@@ -5039,7 +4745,7 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock"><value>超時鐘 - SuperFX 處理器</value></data>
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock.Help"><value>超時或下鐘的SuperFX同處理器. 設定此值高于100%可能會改善支持SuperFX的游戲中的性能. 謹慎使用,因為它還可能導致一些游戲崩潰或展示出其他問題.</value></data>
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock.Value.100"><value>100%( 過失)</value></data>
-  <data name="Emulation.Option.bsnes.bsnes_sgb_bios"><value>首選Super Game Boy BIOS(需要重新啟動)</value></data>
+  <data name="Emulation.Option.bsnes.bsnes_sgb_bios"><value>首選Super Game Boy BIOS</value></data>
   <data name="Emulation.Option.bsnes.bsnes_sgb_bios.Help"><value>選擇首選的 Super Game Boy BIOS 用于兼容標題.</value></data>
   <data name="Emulation.Option.bsnes.bsnes_hide_sgb_border"><value>隱藏 SGB 邊框</value></data>
   <data name="Emulation.Option.bsnes.bsnes_hide_sgb_border.Help"><value>玩"超級Game Boy"游戲時隱藏邊框.</value></data>
@@ -6073,7 +5779,7 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.fast"><value>快速</value></data>
   <data name="Emulation.Emulator.cemu.Description"><value>將相容的Nintendo系統與Cemu相模擬.</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode"><value>CPU 模式</value></data>
-  <data name="Emulation.Option.cemu.cemu_cpu_mode.Help"><value>Wii U的PowerPC核心如何被模仿. 自動取取多核再編譯器在有4個或更多物理核心的CPU上,以其他方式取出單核. 口譯速度要慢得多,用于調試。 (需要重新啟動)</value></data>
+  <data name="Emulation.Option.cemu.cemu_cpu_mode.Help"><value>Wii U的PowerPC核心如何被模仿. 自動取取多核再編譯器在有4個或更多物理核心的CPU上,以其他方式取出單核. 口譯速度要慢得多,用于調試。</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.auto"><value>自動的</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.singlecore_interpreter"><value>單一核心口譯員</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.singlecore_recompiler"><value>單核重編器</value></data>
@@ -6209,12 +5915,10 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.cemu.cemu_bc1_16bit.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.cemu.cemu_bc1_16bit.Value.enabled"><value>已啟用</value></data>
   <data name="Emulation.Option.cemu.cemu_gpu_api"><value>圖形 API</value></data>
-  <data name="Emulation.Option.cemu.cemu_gpu_api.Help"><value>API Cemu 繪制的圖形 。 (需要重新啟動)</value></data>
+  <data name="Emulation.Option.cemu.cemu_gpu_api.Help"><value>API Cemu 繪制的圖形 。</value></data>
   <data name="Emulation.Option.cemu.cemu_gpu_api.Value.OpenGL"><value>打開GL</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game"><value>安裝游戲</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_game.Help"><value>將系統/Cemu/title中的每款游戲安裝為保存/Cemu/mlc01,即被模擬的控制臺存儲,因為控制臺從它的盤中安裝了一款游戲. 游戲是一盤圖像(.wud,.wux,.iso)或一盤活字,從一盤"活字"中,它所持有的更新和DLC被安裝在其中. 已經安裝在同一版本或更新版本的游戲被單獨放出.
-
-當這里是ON時,即刻開始安裝,其進度顯示為通知;當所有游戲安裝完畢后,它再次轉出OFF. 已安裝的游戲開始于將.rpx裝入其代碼文件夾中,在mlc01/usr/title/00050000下;其光碟圖像不再需要了.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_game.Help"><value>將系統/Cemu/title中的每款游戲安裝為保存/Cemu/mlc01,即被模擬的控制臺存儲,因為控制臺從它的盤中安裝了一款游戲. 游戲是一盤圖像(.wud,.wux,.iso)或一盤活字,從一盤"活字"中,它所持有的更新和DLC被安裝在其中. 已經安裝在同一版本或更新版本的游戲被單獨放出.&#xA;&#xA;當這里是ON時,即刻開始安裝,其進度顯示為通知;當所有游戲安裝完畢后,它再次轉出OFF. 已安裝的游戲開始于將.rpx裝入其代碼文件夾中,在mlc01/usr/title/00050000下;其光碟圖像不再需要了.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game.Value.enabled"><value>已啟用</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game"><value>卸載游戲</value></data>
@@ -6222,11 +5926,7 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.enabled"><value>已啟用</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles"><value>安裝內容</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>在系統/Cemu/title中安裝每個更新和DLC以保存/Cemu/mlc01,被模擬的控制臺存儲. 每一個都放進自己的文件夾里;NUS的下載(.app文件)需要它的title.tmd和它的title.tik,解密密鑰,放在它們旁邊. 已經安裝的版本是相同的或更新的,則單獨存在.
-
-當這里是ON時,立即開始安裝,其進度顯示為通知;當所有內容被安裝,這個菜單被退出或改變另一個選項時,它再次轉彎OFF. 標題一旦重新啟動, 將使用已安裝的內容 。
-
-來自其他地點的內容可以通過RetroArch's Main Menu &gt; Load Contents安裝,通過選擇相應的title.tmd,其旁邊有title.tik.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>在系統/Cemu/title中安裝每個更新和DLC以保存/Cemu/mlc01,被模擬的控制臺存儲. 每一個都放進自己的文件夾里;NUS的下載(.app文件)需要它的title.tmd和它的title.tik,解密密鑰,放在它們旁邊. 已經安裝的版本是相同的或更新的,則單獨存在.&#xA;&#xA;當這里是ON時,立即開始安裝,其進度顯示為通知;當所有內容被安裝,這個菜單被退出或改變另一個選項時,它再次轉彎OFF. 標題一旦重新啟動, 將使用已安裝的內容 。&#xA;&#xA;來自其他地點的內容可以通過RetroArch's Main Menu &gt; Load Contents安裝,通過選擇相應的title.tmd,其旁邊有title.tik.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.enabled"><value>已啟用</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles"><value>卸載內容</value></data>
@@ -6234,11 +5934,7 @@ OpenGL (Compute) 是準確的,并支持升級,但不會在一些更老的設備�
   <data name="Emulation.Option.cemu.cemu_uninstall_titles.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles.Value.enabled"><value>已啟用</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source"><value>安裝后刪除內容</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_remove_source.Help"><value>安裝內容安裝后, 從系統/ Cemu/ title 中刪除可下載內容和標題更新 。 通過裝入內容加載的內容留在原地 。
-
-運行中標題的更新或DLC正在被使用,所以在標題被關閉或重置時會被刪除.
-
-.wua文件和盤片圖像永遠不會被移除,因為它們也可以持有基礎游戲.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_remove_source.Help"><value>安裝內容安裝后, 從系統/ Cemu/ title 中刪除可下載內容和標題更新 。 通過裝入內容加載的內容留在原地 。&#xA;&#xA;運行中標題的更新或DLC正在被使用,所以在標題被關閉或重置時會被刪除.&#xA;&#xA;.wua文件和盤片圖像永遠不會被移除,因為它們也可以持有基礎游戲.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source.Value.enabled"><value>已啟用</value></data>
   <data name="Emulation.Firmware.FamicomDiskSystem"><value>Famicom Disk System BIOS</value></data>

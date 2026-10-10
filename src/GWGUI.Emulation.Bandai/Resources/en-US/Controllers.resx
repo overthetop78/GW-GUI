@@ -4,10 +4,6 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Bandai.Action.Up"><value>Up</value></data>
-  <data name="Emulation.Bandai.Action.Down"><value>Down</value></data>
-  <data name="Emulation.Bandai.Action.Left"><value>Left</value></data>
-  <data name="Emulation.Bandai.Action.Right"><value>Right</value></data>
   <data name="Emulation.Bandai.Action.Start"><value>Start</value></data>
   <data name="Emulation.Bandai.Action.Select"><value>Select</value></data>
   <data name="Emulation.Bandai.Action.Rotate"><value>Rotate</value></data>

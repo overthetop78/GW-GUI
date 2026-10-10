@@ -10,30 +10,16 @@ internal static class SettingsDescriptionFunctions
 {
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
     {
-        var blocks = new List<EmulationSettingsBlock>
-        {
-            Audio(configuration),
-            Block(EmulationMachineTab.General, SettingsConstants.ResourceFolders,
-                Folder(SettingsConstants.SharedFolder, SettingsConstants.ResourceSharedFolder, configuration.Folders.Shared),
-                Folder(SettingsConstants.SaveFolder, SettingsConstants.ResourceSaveFolder, configuration.Folders.Saves),
-                Folder(SettingsConstants.StateFolder, SettingsConstants.ResourceStateFolder, configuration.Folders.States,
-                    EmulationDefaultFolderCategory.State),
-                Folder(SettingsConstants.CaptureFolder, SettingsConstants.ResourceCaptureFolder, configuration.Folders.Captures,
-                    EmulationDefaultFolderCategory.Capture))
-        };
+        var blocks = new List<EmulationSettingsBlock> { Audio(configuration) };
         AddHardware(blocks, configuration);
         if (configuration.Family == MachineFamily.WonderSwan)
         {
-            blocks.Add(Block(EmulationMachineTab.General, SettingsConstants.ResourceCartridgeFolder,
-                Folder(SettingsConstants.CartridgeFolder, SettingsConstants.ResourceCartridgeFolder,
-                    configuration.Folders.Cartridges, EmulationDefaultFolderCategory.Cartridge)));
-            AddNative(blocks, configuration, BeetleWonderSwanOptionCatalog.All);
+            AddNative(blocks, configuration, BeetleWonderSwanOptionCatalog.All.Where(option =>
+                option.Key is not (WS.OptionLanguage or WS.OptionNameSource or WS.OptionBirthYear
+                    or WS.OptionBirthMonth or WS.OptionBirthDay or WS.OptionSex or WS.OptionBlood)));
         }
         else if (configuration.Family == MachineFamily.Playdia)
         {
-            blocks.Add(Block(EmulationMachineTab.General, SettingsConstants.ResourceCompactDiscFolder,
-                Folder(SettingsConstants.CompactDiscFolder, SettingsConstants.ResourceCompactDiscFolder,
-                    configuration.Folders.CompactDiscs, EmulationDefaultFolderCategory.CompactDisc)));
             AddNative(blocks, configuration, PlaydiaEmuOptionCatalog.All.Where(option => option.Key == PD.OptionSwapAb));
         }
         else
@@ -60,7 +46,9 @@ internal static class SettingsDescriptionFunctions
                 [new(hardware.CpuResourceKey, hardware.CpuResourceKey)]),
             Information(SettingsConstants.CpuFrequency, EmulationMachineTab.Cpu,
                 SettingsConstants.ResourceCpuProcessor, SettingsConstants.ResourceCpuSpeedOriginal,
-                $"{hardware.CpuFrequencyHz.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.HertzUnit}")));
+                hardware.CpuFrequencyHz >= SettingsConstants.HertzPerMegahertz
+                    ? $"{(hardware.CpuFrequencyHz / SettingsConstants.HertzPerMegahertz).ToString("0.######", CultureInfo.CurrentCulture)} {SettingsConstants.MegahertzUnit}"
+                    : $"{(hardware.CpuFrequencyHz / SettingsConstants.HertzPerKilohertz).ToString("0.###", CultureInfo.CurrentCulture)} {SettingsConstants.KilohertzUnit}")));
         var memoryFields = new List<EmulationSettingsField>
         {
             Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram,
@@ -104,7 +92,8 @@ internal static class SettingsDescriptionFunctions
                 EmulationMachineTab.Controllers => SettingsConstants.ResourceNativeControls,
                 _ => SettingsConstants.ResourceOwner
             };
-            blocks.Add(Block(group.Key, resource, group.Select(option => Native(configuration, option, group.Key, resource)).ToArray()));
+            blocks.Add(Block(group.Key, resource, group.Select(option => Native(configuration, option, group.Key, resource)).ToArray())
+                with { IsCompact = group.Key == EmulationMachineTab.Audio });
         }
     }
 
@@ -113,7 +102,16 @@ internal static class SettingsDescriptionFunctions
     {
         var resource = SettingsConstants.NativeOptionResourcePrefix + option.Key;
         var choices = option.Values.Select((choice, index) => new EmulationSettingsChoice(choice.Value,
-            string.Format(CultureInfo.InvariantCulture, SettingsConstants.NativeChoiceResourceFormat, resource, index))).ToArray();
+            string.Format(CultureInfo.InvariantCulture, SettingsConstants.NativeChoiceResourceFormat, resource, index),
+            option.Key == WS.OptionGfxColors ? choice.Value switch
+            {
+                "16bit" => "16 bits",
+                "24bit" => "24 bits",
+                _ => choice.Value
+            } : option.Key == WS.OptionSoundSampleRate
+                && double.TryParse(choice.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out var hertz)
+                ? $"{(hertz / SettingsConstants.HertzPerKilohertz).ToString("0.###", CultureInfo.CurrentCulture)} {SettingsConstants.KilohertzUnit}"
+                : option.Key == WS.OptionMonoPalette && index > 0 ? choice.Label : null)).ToArray();
         return new(option.Key, tab, blockId, resource, EmulationSettingsEditor.Selection,
             configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), choices,
             ExplanationResourceKey: resource + SettingsConstants.HelpResourceSuffix,
@@ -142,11 +140,6 @@ internal static class SettingsDescriptionFunctions
                 fallback.ToString(CultureInfo.InvariantCulture)),
             values.Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture),
                 string.Empty, $"{value.ToString(CultureInfo.InvariantCulture)} {unit}")).ToArray());
-
-    private static EmulationSettingsField Folder(string id, string resource, string? value,
-        EmulationDefaultFolderCategory? category = null) =>
-        new(id, EmulationMachineTab.General, SettingsConstants.ResourceFolders, resource,
-            EmulationSettingsEditor.DirectoryPath, value, DefaultFolderCategory: category);
 
     private static EmulationSettingsBlock Block(EmulationMachineTab tab, string resource,
         params EmulationSettingsField[] fields) => new(resource, tab, resource, fields);

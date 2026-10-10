@@ -6,14 +6,14 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.azahar.Description"><value>Προσομοιάζει συμβατά συστήματα Nintendo με το Azahar.</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit"><value>Ενεργοποίηση JIT CPU</value></data>
-  <data name="Emulation.Option.azahar.citra_use_cpu_jit.Help"><value>Ενεργοποίηση Just-In-Time συλλογής για την προσομοίωση ARM CPU. Σημαντικά βελτιώνει την απόδοση αλλά μπορεί να μειώσει την ακρίβεια. Απαιτείται επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.azahar.citra_use_cpu_jit.Help"><value>Ενεργοποίηση Just-In-Time συλλογής για την προσομοίωση ARM CPU. Βελτιώνει την απόδοση αλλά μπορεί να μειώσει την ακρίβεια.</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit.Value.enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage"><value>CPU Ταχύτητα ⁇ ολογιού</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage.Help"><value>Ρυθμίστε την ταχύτητα του ⁇ ολογιού 3DS CPU ως ποσοστό της κανονικής ταχύτητας. Υψηλότερες τιμές μπορεί να βελτιώσουν την απόδοση σε ορισμένα παιχνίδια αλλά μπορούν να προκαλέσουν προβλήματα. Οι χαμηλότερες τιμές μπορούν να βοηθήσουν με παιχνίδια που τρέχουν πολύ γρήγορα.</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage.Value.100"><value>100% (Προκαθορισμένο)</value></data>
   <data name="Emulation.Option.azahar.citra_is_new_3ds"><value>Μοντέλο συστήματος 3DS</value></data>
-  <data name="Emulation.Option.azahar.citra_is_new_3ds.Help"><value>Επιλέξτε αν θα μιμηθεί το αρχικό 3DS ή το νέο 3DS. Το νέο 3DS έχει πρόσθετη ισχύ CPU και μνήμη, που απαιτείται για ορισμένα παιχνίδια. Απαιτείται επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.azahar.citra_is_new_3ds.Help"><value>Επιλέξτε το αρχικό 3DS ή New 3DS. Το New 3DS έχει περισσότερη δύναμη και μνήμη CPU.</value></data>
   <data name="Emulation.Option.azahar.citra_is_new_3ds.Value.Old 3DS"><value>Αρχικό 3DS</value></data>
   <data name="Emulation.Option.azahar.citra_region_value"><value>Περιοχή συστήματος 3DS</value></data>
   <data name="Emulation.Option.azahar.citra_region_value.Help"><value>Ορισμός της περιοχής του συστήματος 3DS. Αυτόματη επιλογή θα επιλέξει με βάση το παιχνίδι. Ορισμένα παιχνίδια είναι περιοχή-κλειδωμένη και απαιτούν ταίριασμα περιοχές.</value></data>
@@ -50,7 +50,7 @@
   <data name="Emulation.Option.azahar.citra_input_type.Value.static_noise"><value>Στατικός θόρυβος</value></data>
   <data name="Emulation.Option.azahar.citra_input_type.Value.frontend"><value>Γραφικό περιβάλλον</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api"><value>Γραφικά API</value></data>
-  <data name="Emulation.Option.azahar.citra_graphics_api.Help"><value>Επιλέξτε την απόδοση γραφικών API. Αυτόματο θα επιλέξει την καλύτερη διαθέσιμη επιλογή. Απαιτείται επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.azahar.citra_graphics_api.Help"><value>Επιλέξτε την απόδοση γραφικών API. Αυτόματο επιλέγει ένα διαθέσιμο API.</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.Auto"><value>Αυτόματο</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.OpenGL"><value>ΑνοικτόGL</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.Software"><value>Λογισμικό</value></data>
@@ -509,8 +509,6 @@
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.pattern"><value>Μοτίβο</value></data>
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.random"><value>Τυχαίο</value></data>
   <data name="Emulation.Firmware.desmume.Slot0"><value>Firmware NDS</value></data>
-  
-  
   <data name="Emulation.Emulator.desmume2015.Description"><value>Προσομοιάζει συμβατά συστήματα Nintendo με το DeSmuME 2015.</value></data>
   <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Εσωτερική ανάλυση (επανεκκίνηση)</value></data>
   <data name="Emulation.Option.desmume2015.desmume_num_cores"><value>CPU πυρήνες</value></data>
@@ -597,8 +595,6 @@
   <data name="Emulation.Option.desmume2015.desmume_mic_mode.Value.random"><value>τυχαίο</value></data>
   <data name="Emulation.Option.desmume2015.desmume_mic_mode.Value.physical"><value>φυσικό</value></data>
   <data name="Emulation.Firmware.desmume2015.Slot0"><value>Firmware NDS</value></data>
-  
-  
   <data name="Emulation.Option.melonds.melonds_console_mode"><value>Λειτουργία κονσόλας</value></data>
   <data name="Emulation.Option.melonds.melonds_boot_directly"><value>Παιχνίδι εκκίνησης άμεσα</value></data>
   <data name="Emulation.Option.melonds.melonds_boot_directly.Help"><value>Επιλέξτε αν ο πυρήνας πρέπει να εκκινήσει το παιχνίδι απευθείας ή εάν θα πρέπει να ξεκινήσει στο μενού DS αντ 'αυτού (BIOS και αρχεία firmware που απαιτούνται).</value></data>
@@ -696,8 +692,6 @@
   <data name="Emulation.Option.melonds.melonds_jit_fast_memory.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_fast_memory.Value.enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Firmware.melonds.Slot0"><value>Firmware NDS</value></data>
-  
-  
   <data name="Emulation.Firmware.melonds.Slot3"><value>Firmware DSi</value></data>
   <data name="Emulation.Firmware.melonds.Slot4"><value>DSi ARM7 BIOS</value></data>
   <data name="Emulation.Firmware.melonds.Slot5"><value>DSi ARM9 BIOS</value></data>
@@ -705,24 +699,13 @@
   <data name="Emulation.Firmware.melonds.Slot7"><value>Κάρτα DSi SD</value></data>
   <data name="Emulation.Emulator.melondsds.Description"><value>Προσομοιάζει συμβατά Nintendo συστήματα με melonDS DS.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input"><value>Λειτουργία εισόδου μικροφώνου</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mic_input.Help"><value>Επιλέξτε τον ήχο που θα λάβει το μιμούμενο μικρόφωνο:
-
-Σιωπή: Δεν υπάρχει εισαγωγή ήχου.
-Ανατίναξε έναν ενσωματωμένο ήχο που φυσάει.
-Θόρυβος: τυχαίος λευκός θόρυβος.
-Μικρόφωνο: Χρησιμοποιήστε το πραγματικό σας μικρόφωνο εάν είναι διαθέσιμο, πίσω στη Σιωπή αν όχι.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mic_input.Help"><value>Επιλέξτε τον ήχο που θα λάβει το μιμούμενο μικρόφωνο:&#xA;&#xA;Σιωπή: Δεν υπάρχει εισαγωγή ήχου.&#xA;Ανατίναξε έναν ενσωματωμένο ήχο που φυσάει.&#xA;Θόρυβος: τυχαίος λευκός θόρυβος.&#xA;Μικρόφωνο: Χρησιμοποιήστε το πραγματικό σας μικρόφωνο εάν είναι διαθέσιμο, πίσω στη Σιωπή αν όχι.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.silence"><value>Σιωπή.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.blow"><value>Φύσα.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.noise"><value>Θόρυβος</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.microphone"><value>Μικρόφωνο</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active"><value>Λειτουργία κουμπιού μικροφώνου</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mic_input_active.Help"><value>Ρυθμίστε τη συμπεριφορά του κουμπιού Microphone, ακόμη και αν η λειτουργία εισόδου μικροφώνου είναι ρυθμισμένη για να φυσήξει ή θόρυβο. Το μιμούμενο μικρόφωνο δέχεται σιγή όταν απενεργοποιείται από το κουμπί.
-
-Διατήρηση: Το κουμπί επιτρέπει την είσοδο του μικροφώνου κατά τη διάρκεια της κράτησης.
-Εναλλαγή: Το κουμπί επιτρέπει την είσοδο του μικροφώνου όταν πατηθεί, το απενεργοποιεί όταν πιέζεται ξανά.
-Πάντα: Το κουμπί αγνοείται, η είσοδος του μικροφώνου είναι πάντα ενεργοποιημένη.
-
-Αγνοείται αν η λειτουργία εισόδου μικροφώνου είναι ρυθμισμένη για σιωπή.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mic_input_active.Help"><value>Ρυθμίστε τη συμπεριφορά του κουμπιού Microphone, ακόμη και αν η λειτουργία εισόδου μικροφώνου είναι ρυθμισμένη για να φυσήξει ή θόρυβο. Το μιμούμενο μικρόφωνο δέχεται σιγή όταν απενεργοποιείται από το κουμπί.&#xA;&#xA;Διατήρηση: Το κουμπί επιτρέπει την είσοδο του μικροφώνου κατά τη διάρκεια της κράτησης.&#xA;Εναλλαγή: Το κουμπί επιτρέπει την είσοδο του μικροφώνου όταν πατηθεί, το απενεργοποιεί όταν πιέζεται ξανά.&#xA;Πάντα: Το κουμπί αγνοείται, η είσοδος του μικροφώνου είναι πάντα ενεργοποιημένη.&#xA;&#xA;Αγνοείται αν η λειτουργία εισόδου μικροφώνου είναι ρυθμισμένη για σιωπή.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.hold"><value>Περίμενε.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.toggle"><value>Εναλλαγή</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.always"><value>Πάντα.</value></data>
@@ -752,21 +735,11 @@
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns"><value>Αντικατάσταση DNS</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>Ο εξυπηρετητής DNS που θα χρησιμοποιηθεί για το σημείο προσπέλασης-melonAP ⁇ Χρησιμοποιήστε αυτό για να παίξετε online με προσαρμοσμένους διακομιστές που υλοποιούν τις διακοπείσες υπηρεσίες σύνδεσης Nintendo Wi-Fi. Η υποστήριξη του παιχνιδιού εξαρτάται από τον εξυπηρετητή. 
-Ορισμένοι πάροχοι υπηρεσιών διαδικτύου ενδέχεται να μπλοκάρουν τα αιτήματα προς αυτούς τους διακομιστές. Εάν αυτό ισχύει για εσάς, δείτε το https://tinyurl.com/393cb755 για μια αναζήτηση εργασίας.
-
-Οι καταχωρημένοι servers δεν συνδέονται με libretro, Nintendo, η ομάδα melonDS ή ο συγγραφέας αυτού του πυρήνα. Παρακαλώ σεβαστείτε τους άλλους παίκτες και ακολουθήστε τους κανόνες του διακομιστή.
-
-Εάν δεν είστε σίγουροι, αναχωρήστε για Kaeru WFC. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>Ο εξυπηρετητής DNS που θα χρησιμοποιηθεί για το σημείο προσπέλασης-melonAP ⁇ Χρησιμοποιήστε αυτό για να παίξετε online με προσαρμοσμένους διακομιστές που υλοποιούν τις διακοπείσες υπηρεσίες σύνδεσης Nintendo Wi-Fi. Η υποστήριξη του παιχνιδιού εξαρτάται από τον εξυπηρετητή. &#xA;Ορισμένοι πάροχοι υπηρεσιών διαδικτύου ενδέχεται να μπλοκάρουν τα αιτήματα προς αυτούς τους διακομιστές. Εάν αυτό ισχύει για εσάς, δείτε το https://tinyurl.com/393cb755 για μια αναζήτηση εργασίας.&#xA;&#xA;Οι καταχωρημένοι servers δεν συνδέονται με libretro, Nintendo, η ομάδα melonDS ή ο συγγραφέας αυτού του πυρήνα. Παρακαλώ σεβαστείτε τους άλλους παίκτες και ακολουθήστε τους κανόνες του διακομιστή.&#xA;&#xA;Εάν δεν είστε σίγουροι, αναχωρήστε για Kaeru WFC. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.95.217.77.181"><value>Wiimmfi (95.217.77.181)</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.default"><value>Μην παρακάμπτετε</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language"><value>Γλώσσα</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Υπερισχύει του γλωσσικού τρόπου της εικονιζόμενης κονσόλας.
-
-Χρήση υπολογιστή: Χρησιμοποιεί τη γλώσσα του περιβάλλοντος αν υποστηρίζεται από την κονσόλα.
-Μην παρακάμπτετε: Χρησιμοποιήστε οποιαδήποτε γλώσσα είναι ήδη ρυθμισμένη στο firmware. Αυτή είναι η εφεδρική συμπεριφορά αν το DS (ή DSi NAND) δεν υποστηρίζει τη γλώσσα του frontend.
-
-Κάθε παιχνίδι δεν τιμά αυτό το σκηνικό. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Υπερισχύει του γλωσσικού τρόπου της εικονιζόμενης κονσόλας.&#xA;&#xA;Χρήση υπολογιστή: Χρησιμοποιεί τη γλώσσα του περιβάλλοντος αν υποστηρίζεται από την κονσόλα.&#xA;Μην παρακάμπτετε: Χρησιμοποιήστε οποιαδήποτε γλώσσα είναι ήδη ρυθμισμένη στο firmware. Αυτή είναι η εφεδρική συμπεριφορά αν το DS (ή DSi NAND) δεν υποστηρίζει τη γλώσσα του frontend.&#xA;&#xA;Κάθε παιχνίδι δεν τιμά αυτό το σκηνικό. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.auto"><value>Χρήση υπολογιστή</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.en"><value>Αγγλικά</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.ja"><value>Ιαπωνικά</value></data>
@@ -776,13 +749,7 @@
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.es"><value>Ισπανικά</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.default"><value>Μην παρακάμπτετε</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username"><value>Όνομα χρήστη</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Υπερισχύει το όνομα χρήστη που δίνεται στην εικονιζόμενη κονσόλα.
-
-Μην παρακάμπτετε: Χρησιμοποιεί οποιοδήποτε όνομα ορίζεται στο firmware.
-Μαντέψτε: Προσπαθήστε να πάρετε το όνομα χρήστη σας από το frontend. Εάν αυτό αποτύχει, δοκιμάστε τις μεταβλητές περιβάλλοντος USER, USERNAME και LOGNAME.
-melonDS DS: Χρήσεις ⁇ melonDS DS ⁇ Αυτό είναι το προεπιλεγμένο αν τίποτα άλλο δεν λειτουργεί.
-
-Τα ονόματα κατατέμνονται σε 10 χαρακτήρες. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Υπερισχύει το όνομα χρήστη που δίνεται στην εικονιζόμενη κονσόλα.&#xA;&#xA;Μην παρακάμπτετε: Χρησιμοποιεί οποιοδήποτε όνομα ορίζεται στο firmware.&#xA;Μαντέψτε: Προσπαθήστε να πάρετε το όνομα χρήστη σας από το frontend. Εάν αυτό αποτύχει, δοκιμάστε τις μεταβλητές περιβάλλοντος USER, USERNAME και LOGNAME.&#xA;melonDS DS: Χρήσεις ⁇ melonDS DS ⁇ Αυτό είναι το προεπιλεγμένο αν τίποτα άλλο δεν λειτουργεί.&#xA;&#xA;Τα ονόματα κατατέμνονται σε 10 χαρακτήρες. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.guess_username"><value>Μάντεψε.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.existing_username"><value>Μην παρακάμπτετε</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color"><value>Αγαπημένο χρώμα</value></data>
@@ -834,12 +801,7 @@ melonDS DS: Χρήσεις ⁇ melonDS DS ⁇ Αυτό είναι το προε�
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>Το λεπτό της ρυθμισμένης ειδοποίησης. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Value.default"><value>Μην παρακάμπτετε</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode"><value>Λειτουργία δικτύωσης</value></data>
-  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Ρυθμίζει πώς melonDS DS μιμείται Nintendo WFC. Εάν δεν είστε σίγουροι, χρησιμοποιήστε το Indirect mode.
-
-Indirect: Χρησιμοποιήστε το libslirp για να μιμηθείτε τη στοίβα δικτύου του DS. Απλό και δεν χρειάζεται στήσιμο.
-Direct: Διαδρομές που μιμούνται πακέτα Wi-Fi στη διασύνδεση δικτύου του υπολογιστή. Πιο γρήγορη και πιο αξιόπιστη, αλλά απαιτεί μια σύνδεση ethernet και ότι WinPcap ή Npcap είναι εγκατεστημένη. Αν δεν είναι διαθέσιμο, επιστρέφει στην έμμεση λειτουργία.
-
-Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση. Δεν σχετίζεται με τοπικό multiplayer.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Ρυθμίζει πώς melonDS DS μιμείται Nintendo WFC. Εάν δεν είστε σίγουροι, χρησιμοποιήστε το Indirect mode.&#xA;&#xA;Indirect: Χρησιμοποιήστε το libslirp για να μιμηθείτε τη στοίβα δικτύου του DS. Απλό και δεν χρειάζεται στήσιμο.&#xA;Direct: Διαδρομές που μιμούνται πακέτα Wi-Fi στη διασύνδεση δικτύου του υπολογιστή. Πιο γρήγορη και πιο αξιόπιστη, αλλά απαιτεί μια σύνδεση ethernet και ότι WinPcap ή Npcap είναι εγκατεστημένη. Αν δεν είναι διαθέσιμο, επιστρέφει στην έμμεση λειτουργία.&#xA;&#xA;Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση. Δεν σχετίζεται με τοπικό multiplayer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.indirect"><value>Έμμεσο</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.direct"><value>Άμεση</value></data>
@@ -847,9 +809,7 @@ Direct: Διαδρομές που μιμούνται πακέτα Wi-Fi στη �
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Επιλέξτε μια διασύνδεση δικτύου για χρήση με την Άμεση Λειτουργία. Αν δεν είστε σίγουροι, ρυθμίστε το αυτόματο. Οι αλλαγές ενεργοποιούνται κατά την επόμενη επανεκκίνηση του πυρήνα.</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Value.auto"><value>Αυτόματο</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode"><value>Λειτουργία διεύθυνσης δικτύου MAC</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Ρυθμίζει πώς έχει οριστεί η διεύθυνση MAC της κονσόλας. Η αλλαγή αυτής της επιλογής μπορεί να κάνει την τοπική multiplayer αδύνατη ή να μπλοκάρει την πρόσβαση για αποθήκευση αρχείων σε παιχνίδια που χρησιμοποιούν τη διεύθυνση MAC για να αποτρέψουν την παραποίηση των αρχείων αποθήκευσης (δηλαδή. Πόκεμον).
-Καμία σχέση με τη διεπαφή άμεσης λειτουργίας. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.
-Βλέπε https://bit.ly/4fJtWKN για περισσότερες πληροφορίες.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Ρυθμίζει πώς έχει οριστεί η διεύθυνση MAC της κονσόλας. Η αλλαγή αυτής της επιλογής μπορεί να κάνει την τοπική multiplayer αδύνατη ή να μπλοκάρει την πρόσβαση για αποθήκευση αρχείων σε παιχνίδια που χρησιμοποιούν τη διεύθυνση MAC για να αποτρέψουν την παραποίηση των αρχείων αποθήκευσης (δηλαδή. Πόκεμον).&#xA;Καμία σχέση με τη διεπαφή άμεσης λειτουργίας. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.&#xA;Βλέπε https://bit.ly/4fJtWKN για περισσότερες πληροφορίες.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.firmware"><value>Σετ από firmware</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.from-username"><value>Παράγωγα από το όνομα χρήστη libretro</value></data>
   <data name="Emulation.Option.melondsds.melonds_show_unsupported_features"><value>Προειδοποίηση σχετικά με τα μη υποστηριζόμενα χαρακτηριστικά</value></data>
@@ -902,13 +862,7 @@ Direct: Διαδρομές που μιμούνται πακέτα Wi-Fi στη �
   <data name="Emulation.Option.melondsds.melonds_cursor_timeout.Value.30"><value>30 δευτερόλεπτα.</value></data>
   <data name="Emulation.Option.melondsds.melonds_cursor_timeout.Value.60"><value>60 δευτερόλεπτα</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode"><value>Λειτουργία αφής</value></data>
-  <data name="Emulation.Option.melondsds.melonds_touch_mode.Help"><value>Καθορίζει πώς μιμείται την οθόνη αφής της κονσόλας.
-
-Joystick: Χρησιμοποιήστε ένα χειριστήριο για τον έλεγχο του δρομέα. Συνιστάται αν δεν έχετε ένα ποντίκι ή μια πραγματική οθόνη αφής διαθέσιμη.
-Pointer: Χρησιμοποιήστε το ποντίκι ή την οθόνη αφής σας για τον έλεγχο του δρομέα.
-Auto: Χρησιμοποιήστε είτε Joystick ή Pointer, ανάλογα με το οποίο αγγίξατε τελευταία φορά.
-
-Αν δεν είστε σίγουροι, ρυθμίστε το αυτόματο.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_touch_mode.Help"><value>Καθορίζει πώς μιμείται την οθόνη αφής της κονσόλας.&#xA;&#xA;Joystick: Χρησιμοποιήστε ένα χειριστήριο για τον έλεγχο του δρομέα. Συνιστάται αν δεν έχετε ένα ποντίκι ή μια πραγματική οθόνη αφής διαθέσιμη.&#xA;Pointer: Χρησιμοποιήστε το ποντίκι ή την οθόνη αφής σας για τον έλεγχο του δρομέα.&#xA;Auto: Χρησιμοποιήστε είτε Joystick ή Pointer, ανάλογα με το οποίο αγγίξατε τελευταία φορά.&#xA;&#xA;Αν δεν είστε σίγουροι, ρυθμίστε το αυτόματο.</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.joystick"><value>Μοχλός</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.touch"><value>Δείκτης</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.auto"><value>Αυτόματο</value></data>
@@ -917,9 +871,7 @@ Auto: Χρησιμοποιήστε είτε Joystick ή Pointer, ανάλογα 
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_maxspeed"><value>Μέγιστη ταχύτητα δρομέα joystick</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_maxspeed.Help"><value>Ρυθμίστε τη μέγιστη ταχύτητα για τον δρομέα joystick.</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response"><value>Joystick Cursor Ανταπόκριση</value></data>
-  <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Help"><value>Ρυθμίστε την καμπύλη απόκρισης για τον δρομέα joystick.
-Γραμμική είναι μια καμπύλη απόκρισης όπου η ταχύτητα του δρομέα είναι 1:1 με την είσοδο joystick.
-Quadratic είναι μια καμπύλη απόκρισης που μειώνει την ευαισθησία κοντά στο κέντρο joystick για λεπτότερο έλεγχο, αλλά αυξάνει την ευαισθησία γύρω από τις άκρες</value></data>
+  <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Help"><value>Ρυθμίστε την καμπύλη απόκρισης για τον δρομέα joystick.&#xA;Γραμμική είναι μια καμπύλη απόκρισης όπου η ταχύτητα του δρομέα είναι 1:1 με την είσοδο joystick.&#xA;Quadratic είναι μια καμπύλη απόκρισης που μειώνει την ευαισθησία κοντά στο κέντρο joystick για λεπτότερο έλεγχο, αλλά αυξάνει την ευαισθησία γύρω από τις άκρες</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Value.100"><value>Γραμμικό</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Value.200"><value>Τετραγωνική</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_speedup"><value>Πολλαπλασιαστής δρομέα Joystick</value></data>
@@ -931,11 +883,7 @@ Quadratic είναι μια καμπύλη απόκρισης που μειών�
   <data name="Emulation.Option.melondsds.melonds_hybrid_small_screen.Value.one"><value>Εμφάνιση αντίθετης οθόνης</value></data>
   <data name="Emulation.Option.melondsds.melonds_hybrid_small_screen.Value.both"><value>Εμφάνιση και των δύο οθονών</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering"><value>Φιλτράρισμα υβριδικών/μεγάλων οθονών</value></data>
-  <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Help"><value>Επηρεάζει τον τρόπο με τον οποίο η υβριδική/μεγάλη οθόνη κλιμακώνεται.
-
-Κοντινότερο: Χωρίς φιλτράρισμα. Τα γραφικά φαίνονται μπλοκαρισμένα.
-Γραμμική: ομαλή κλιμάκωση.
-</value></data>
+  <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Help"><value>Επηρεάζει τον τρόπο με τον οποίο η υβριδική/μεγάλη οθόνη κλιμακώνεται.&#xA;&#xA;Κοντινότερο: Χωρίς φιλτράρισμα. Τα γραφικά φαίνονται μπλοκαρισμένα.&#xA;Γραμμική: ομαλή κλιμάκωση.&#xA;</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Value.nearest"><value>Πλησιέστερο</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Value.linear"><value>Γραμμικό</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_gap"><value>Κενό οθόνηςName</value></data>
@@ -944,11 +892,7 @@ Quadratic είναι μια καμπύλη απόκρισης που μειών�
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_scale"><value>Δευτεροβάθμια κλίμακα οθόνης</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_scale.Help"><value>Το μέγεθος της δευτερεύουσας οθόνης σε σχέση με την κύρια οθόνη. Ισχύει για κάθετες διατάξεις (Top/Bottom, Bottom/Top). Στο 100%, και οι δύο οθόνες έχουν το ίδιο μέγεθος. Στο 50%, η δευτερεύουσα οθόνη είναι το μισό πλάτος και ύψος της κύριας οθόνης.</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering"><value>Δευτεροβάθμια φιλτράρισμα οθόνης</value></data>
-  <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Help"><value>Επηρεάζει το πώς η δευτερεύουσα οθόνη κλιμακώνεται προς τα κάτω.
-
-Κοντινότερο: Χωρίς φιλτράρισμα. Τα γραφικά φαίνονται μπλοκαρισμένα.
-Γραμμική: ομαλή κλιμάκωση. Συνιστάται κατά τη χρήση Δευτεροβάθμιας Κλίμακας Οθόνης κάτω από 100%.
-</value></data>
+  <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Help"><value>Επηρεάζει το πώς η δευτερεύουσα οθόνη κλιμακώνεται προς τα κάτω.&#xA;&#xA;Κοντινότερο: Χωρίς φιλτράρισμα. Τα γραφικά φαίνονται μπλοκαρισμένα.&#xA;Γραμμική: ομαλή κλιμάκωση. Συνιστάται κατά τη χρήση Δευτεροβάθμιας Κλίμακας Οθόνης κάτω από 100%.&#xA;</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Value.nearest"><value>Πλησιέστερο</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Value.linear"><value>Γραμμικό</value></data>
   <data name="Emulation.Option.melondsds.melonds_number_of_screen_layouts"><value># των διατάξεων οθόνης</value></data>
@@ -1098,70 +1042,25 @@ Quadratic είναι μια καμπύλη απόκρισης που μειών�
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-right"><value>Περιστρεφόμενη δεξιά</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-180"><value>Πάνω προς τα κάτω</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode"><value>Λειτουργία κονσόλας</value></data>
-  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Αν θα μιμηθεί ένα Nintendo DS ή ένα Nintendo DSi.
-
-Auto χρησιμοποιεί DSi λειτουργία για τα παιχνίδια που χρειάζονται ένα DSi, και DS mode για όλα τα άλλα. Οι ρυθμίσεις DS και DSi αναγκάζουν την αντίστοιχη κονσόλα, αυτό είναι κυρίως χρήσιμο για την ανάπτυξη του homebrew.
-
-Η λειτουργία DSi έχει κάποια όρια:
-
-- Τα αρχεία Native BIOS/firmware/NAND πρέπει να παρέχονται, συμπεριλαμβανομένου του κανονικού DS.
-- Ορισμένα χαρακτηριστικά (όπως savestates) δεν είναι διαθέσιμα σε λειτουργία DSi.
-
-Δείτε τις ειδικές επιλογές DSi σε αυτή την κατηγορία για περισσότερες πληροφορίες. Εάν δεν είστε σίγουροι, χρησιμοποιήστε το Auto. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Αν θα μιμηθεί ένα Nintendo DS ή ένα Nintendo DSi.&#xA;&#xA;Auto χρησιμοποιεί DSi λειτουργία για τα παιχνίδια που χρειάζονται ένα DSi, και DS mode για όλα τα άλλα. Οι ρυθμίσεις DS και DSi αναγκάζουν την αντίστοιχη κονσόλα, αυτό είναι κυρίως χρήσιμο για την ανάπτυξη του homebrew.&#xA;&#xA;Η λειτουργία DSi έχει κάποια όρια:&#xA;&#xA;- Τα αρχεία Native BIOS/firmware/NAND πρέπει να παρέχονται, συμπεριλαμβανομένου του κανονικού DS.&#xA;- Ορισμένα χαρακτηριστικά (όπως savestates) δεν είναι διαθέσιμα σε λειτουργία DSi.&#xA;&#xA;Δείτε τις ειδικές επιλογές DSi σε αυτή την κατηγορία για περισσότερες πληροφορίες. Εάν δεν είστε σίγουροι, χρησιμοποιήστε το Auto. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.auto"><value>Αυτόματο</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.dsi"><value>DSi (πειραματικό)</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode"><value>Λειτουργία BIOS/Firmware (λειτουργία DS)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Καθορίζει αν το melonDS χρησιμοποιεί αυτόχθονες χωματερές BIOS/firmware ή τις δικές του ενσωματωμένες αντικαταστάσεις. Ισχύει μόνο για τη λειτουργία DS, δεδομένου ότι η κατάσταση DSi απαιτεί πάντα εγγενείς αποθήκες BIOS και firmware.
-
-Η Native mode χρησιμοποιεί BIOS και firmware αρχεία από ένα πραγματικό DS. Τοποθετήστε τις χωματερές σας από αυτές στον κατάλογο του συστήματος ή στο ⁇ melonDS DS ⁇  subdirectory και ονομάστε τες ως εξής:
-
-- DS BIOS: bios7.bin, bios9.bin
-- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin
-- Firmware: Δείτε το ⁇ DS Firmsware ⁇  και ⁇  DSi firm ware ⁇  επιλογές.
-- DSi NAND: Δείτε το -DSi NAND ⁇  επιλογή.
-
-Αν δεν βρεθεί κανένα αρχείο BIOS/firmware.
-
-Ενσωματωμένη λειτουργία χρησιμοποιεί melonDS ενσωματωμένο BIOS και firmware, και είναι κατάλληλο για τα περισσότερα παιχνίδια.
-
-Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Καθορίζει αν το melonDS χρησιμοποιεί αυτόχθονες χωματερές BIOS/firmware ή τις δικές του ενσωματωμένες αντικαταστάσεις. Ισχύει μόνο για τη λειτουργία DS, δεδομένου ότι η κατάσταση DSi απαιτεί πάντα εγγενείς αποθήκες BIOS και firmware.&#xA;&#xA;Η Native mode χρησιμοποιεί BIOS και firmware αρχεία από ένα πραγματικό DS. Τοποθετήστε τις χωματερές σας από αυτές στον κατάλογο του συστήματος ή στο ⁇ melonDS DS ⁇  subdirectory και ονομάστε τες ως εξής:&#xA;&#xA;- DS BIOS: bios7.bin, bios9.bin&#xA;- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin&#xA;- Firmware: Δείτε το ⁇ DS Firmsware ⁇  και ⁇  DSi firm ware ⁇  επιλογές.&#xA;- DSi NAND: Δείτε το -DSi NAND ⁇  επιλογή.&#xA;&#xA;Αν δεν βρεθεί κανένα αρχείο BIOS/firmware.&#xA;&#xA;Ενσωματωμένη λειτουργία χρησιμοποιεί melonDS ενσωματωμένο BIOS και firmware, και είναι κατάλληλο για τα περισσότερα παιχνίδια.&#xA;&#xA;Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.native"><value>Ιθαγενής</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.builtin"><value>Ενσωματωμένο</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path"><value>Firmware DS</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Επιλέξτε μια εικόνα firmware που θα χρησιμοποιηθεί για τη λειτουργία DS. Τα αρχεία παρατίθενται εδώ εάν:
-
-- Είναι μέσα στον κατάλογο του συστήματος, ή ένας υποκατάλογος που ονομάζεται ⁇ melonDS DS.
-- Είναι ακριβώς 131.072 bytes (128KB), 262.144 bytes (256KB) ή 524,288 bytes (512KB).
-- Περιέχουν έγκυρα δεδομένα κεφαλίδας για το λογισμικό DS.
-
-Τα Nintendo WFC IDs αποθηκεύονται σε firmware, έτσι η αλλαγή των εικόνων firmedware μπορεί να οδηγήσει στην απώλεια ορισμένων δεδομένων WFC. Αγνοείται σε λειτουργία DSi ή αν η λειτουργία BIOS/Firmware είναι ενσωματωμένη. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Επιλέξτε μια εικόνα firmware που θα χρησιμοποιηθεί για τη λειτουργία DS. Τα αρχεία παρατίθενται εδώ εάν:&#xA;&#xA;- Είναι μέσα στον κατάλογο του συστήματος, ή ένας υποκατάλογος που ονομάζεται ⁇ melonDS DS.&#xA;- Είναι ακριβώς 131.072 bytes (128KB), 262.144 bytes (256KB) ή 524,288 bytes (512KB).&#xA;- Περιέχουν έγκυρα δεδομένα κεφαλίδας για το λογισμικό DS.&#xA;&#xA;Τα Nintendo WFC IDs αποθηκεύονται σε firmware, έτσι η αλλαγή των εικόνων firmedware μπορεί να οδηγήσει στην απώλεια ορισμένων δεδομένων WFC. Αγνοείται σε λειτουργία DSi ή αν η λειτουργία BIOS/Firmware είναι ενσωματωμένη. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Value./notfound"><value>Δεν βρέθηκε τίποτα...</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path"><value>Firmware DSi</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Επιλέξτε μια εικόνα firmware που θα χρησιμοποιηθεί για τη λειτουργία DSi. Τα αρχεία παρατίθενται εδώ εάν:
-
-- Είναι μέσα στον κατάλογο του συστήματος, ή ένας υποκατάλογος που ονομάζεται ⁇ melonDS DS.
-- Είναι ακριβώς 131.072 bytes (128KB), 262.144 bytes (256KB) ή 524,288 bytes (512KB).
-- Περιέχουν έγκυρα δεδομένα κεφαλίδας για το λογισμικό DSi.
-
-Τα Nintendo WFC IDs αποθηκεύονται σε firmware, έτσι η αλλαγή των εικόνων firmedware μπορεί να οδηγήσει στην απώλεια ορισμένων δεδομένων WFC. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Επιλέξτε μια εικόνα firmware που θα χρησιμοποιηθεί για τη λειτουργία DSi. Τα αρχεία παρατίθενται εδώ εάν:&#xA;&#xA;- Είναι μέσα στον κατάλογο του συστήματος, ή ένας υποκατάλογος που ονομάζεται ⁇ melonDS DS.&#xA;- Είναι ακριβώς 131.072 bytes (128KB), 262.144 bytes (256KB) ή 524,288 bytes (512KB).&#xA;- Περιέχουν έγκυρα δεδομένα κεφαλίδας για το λογισμικό DSi.&#xA;&#xA;Τα Nintendo WFC IDs αποθηκεύονται σε firmware, έτσι η αλλαγή των εικόνων firmedware μπορεί να οδηγήσει στην απώλεια ορισμένων δεδομένων WFC. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Value./notfound"><value>Δεν βρέθηκε τίποτα...</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path"><value>Διαδρομή DSi NAND</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Επιλέξτε μια εικόνα DSi NAND που θα χρησιμοποιηθεί. Απαιτούνται όταν χρησιμοποιείται η λειτουργία DSi. Τα αρχεία παρατίθενται εδώ εάν:
-
-- Είναι μέσα στον κατάλογο του συστήματος, ή ένας υποκατάλογος που ονομάζεται ⁇ melonDS DS.
-- Είναι ακριβώς 251.658,304 bytes (240MB) ή 257.425,472 bytes (245.5MB), με έγκυρα δεδομένα υποσέλιδος, OR;
-- Είναι 64 bytes μικρότερη από αυτά τα μήκη και περιέχουν ισοδύναμα δεδομένα σε αρχείο offset 0xFF800.
-
-Ορισμός στο ⁇ Auto ⁇  για να αφήσετε τον πυρήνα να επιλέξει μια εικόνα NAND της οποίας η περιοχή ταιριάζει με το φορτωμένο DSiWare ROM. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Επιλέξτε μια εικόνα DSi NAND που θα χρησιμοποιηθεί. Απαιτούνται όταν χρησιμοποιείται η λειτουργία DSi. Τα αρχεία παρατίθενται εδώ εάν:&#xA;&#xA;- Είναι μέσα στον κατάλογο του συστήματος, ή ένας υποκατάλογος που ονομάζεται ⁇ melonDS DS.&#xA;- Είναι ακριβώς 251.658,304 bytes (240MB) ή 257.425,472 bytes (245.5MB), με έγκυρα δεδομένα υποσέλιδος, OR;&#xA;- Είναι 64 bytes μικρότερη από αυτά τα μήκη και περιέχουν ισοδύναμα δεδομένα σε αρχείο offset 0xFF800.&#xA;&#xA;Ορισμός στο ⁇ Auto ⁇  για να αφήσετε τον πυρήνα να επιλέξει μια εικόνα NAND της οποίας η περιοχή ταιριάζει με το φορτωμένο DSiWare ROM. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./auto"><value>Auto (περιφέρεια ROM)</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./notfound"><value>Δεν βρέθηκε τίποτα...</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode"><value>Λειτουργία εκκίνησης</value></data>
-  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Καθορίζει πώς melonDS μπότες παιχνίδια.
-
-Ιθαγενής: Φόρτωση παιχνιδιών μέσω του μενού συστήματος, παρόμοια με την πραγματική διαδικασία εκκίνησης DS/DSi. Απαιτεί εγγενή αρχεία BIOS και firmware στον κατάλογο του συστήματος.
-Άμεση: Παράκαμψε το μενού του συστήματος και πήγαινε κατευθείαν στο παιχνίδι. Υποστηριζόμενη για το DSiWare αν τα εγγενή αρχεία συστήματος DSi είναι διαθέσιμα.
-
-Αγνοείται αν φορτωθεί χωρίς παιχνίδι (αναγκάζεται η Native) ή εάν χρησιμοποιηθεί το Ενσωματωμένο BIOS/Firmware (αναγκαστική). Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Καθορίζει πώς melonDS μπότες παιχνίδια.&#xA;&#xA;Ιθαγενής: Φόρτωση παιχνιδιών μέσω του μενού συστήματος, παρόμοια με την πραγματική διαδικασία εκκίνησης DS/DSi. Απαιτεί εγγενή αρχεία BIOS και firmware στον κατάλογο του συστήματος.&#xA;Άμεση: Παράκαμψε το μενού του συστήματος και πήγαινε κατευθείαν στο παιχνίδι. Υποστηριζόμενη για το DSiWare αν τα εγγενή αρχεία συστήματος DSi είναι διαθέσιμα.&#xA;&#xA;Αγνοείται αν φορτωθεί χωρίς παιχνίδι (αναγκάζεται η Native) ή εάν χρησιμοποιηθεί το Ενσωματωμένο BIOS/Firmware (αναγκαστική). Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.direct"><value>Άμεση</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.native"><value>Ιθαγενής</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard"><value>Εικονική κάρτα SD (DSi)</value></data>
@@ -1204,8 +1103,7 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.melondsds.melonds_ds_battery_ok_threshold.Value.0"><value>Πάντα OK</value></data>
   <data name="Emulation.Option.melondsds.melonds_ds_battery_ok_threshold.Value.100"><value>Πάντα χαμηλή</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device"><value>Συσκευή Slot-2</value></data>
-  <data name="Emulation.Option.melondsds.melonds_slot2_device.Help"><value>Το περιφερειακό που θα εισαχθεί στην εικονιζόμενη κονσόλα Slot-2. Αγνοείται σε λειτουργία DSi, ή εάν ένα GBA ROM φορτώνεται ρητά. Αν εισαχθεί ένα GBA ROM για οποιοδήποτε παιχνίδι στην τριλογία Boktai, η αντίστοιχη ρύθμιση Ηλιακών Αισθητήρων θα αναγκαστεί. Σε υποστηριζόμενα παιχνίδια NDS, κάθε καλάθι Boktai θα έχει διαφορετικά αποτελέσματα. Οι Motion Paks διαβάζουν το επιταχυνσιόμετρο της συσκευής σας (και το γυροσκόπιο του, για το homebrew pak) αν το frontend τους υποστηρίζει· διαφορετικά, ενεργούν σαν η κονσόλα να είναι επίπεδη και ακίνητη. 
-Οι αλλαγές αρχίζουν να ισχύουν στην επόμενη βασική αρχή.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_slot2_device.Help"><value>Το περιφερειακό που θα εισαχθεί στην εικονιζόμενη κονσόλα Slot-2. Αγνοείται σε λειτουργία DSi, ή εάν ένα GBA ROM φορτώνεται ρητά. Αν εισαχθεί ένα GBA ROM για οποιοδήποτε παιχνίδι στην τριλογία Boktai, η αντίστοιχη ρύθμιση Ηλιακών Αισθητήρων θα αναγκαστεί. Σε υποστηριζόμενα παιχνίδια NDS, κάθε καλάθι Boktai θα έχει διαφορετικά αποτελέσματα. Οι Motion Paks διαβάζουν το επιταχυνσιόμετρο της συσκευής σας (και το γυροσκόπιο του, για το homebrew pak) αν το frontend τους υποστηρίζει· διαφορετικά, ενεργούν σαν η κονσόλα να είναι επίπεδη και ακίνητη. &#xA;Οι αλλαγές αρχίζουν να ισχύουν στην επόμενη βασική αρχή.</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.auto"><value>Αυτόματο</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.rumble-pak"><value>Ραμπλ Πακ.</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.expansion-pak"><value>Επέκταση μνήμης Pak</value></data>
@@ -1215,36 +1113,19 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.motion-pak-homebrew"><value>Κίνηση Πακ (Homebrew)</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.motion-pak-retail"><value>Πακέτο κίνησης (λεπτομέρεια)</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_intensity"><value>Εντασιμότητα Rumble</value></data>
-  <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Help"><value>Πόσο σκληρά οδηγεί το Rumble Pak τις μηχανές του ελεγκτή σας. Το εικονιζόμενο Rumble Pak δεν έχει δικό του έλεγχο όγκου, οπότε αυτό ζυγίζει ό,τι ζητήσει το παιχνίδι.
-
-Αγνοείται εκτός εάν η συσκευή ⁇ Slot-2 ⁇  είναι ρυθμισμένη στο Rumble Pak.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Help"><value>Πόσο σκληρά οδηγεί το Rumble Pak τις μηχανές του ελεγκτή σας. Το εικονιζόμενο Rumble Pak δεν έχει δικό του έλεγχο όγκου, οπότε αυτό ζυγίζει ό,τι ζητήσει το παιχνίδι.&#xA;&#xA;Αγνοείται εκτός εάν η συσκευή ⁇ Slot-2 ⁇  είναι ρυθμισμένη στο Rumble Pak.</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Value.0"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type"><value>Κινητήρες Rumble</value></data>
-  <data name="Emulation.Option.melondsds.melonds_rumble_type.Help"><value>Ποιος από τους κινητήρες του χειριστή σας οδηγεί το Rumble Pak. Οι περισσότεροι ελεγκτές συνδέουν ένα βαρύ κινητήρα με ένα ελαφρύτερο; η οποία αισθάνεται πιο κοντά σε μια πραγματική Rumble Pak εξαρτάται από το χειριστήριο.
-
-Αγνοείται εκτός εάν η συσκευή ⁇ Slot-2 ⁇  είναι ρυθμισμένη στο Rumble Pak.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_rumble_type.Help"><value>Ποιος από τους κινητήρες του χειριστή σας οδηγεί το Rumble Pak. Οι περισσότεροι ελεγκτές συνδέουν ένα βαρύ κινητήρα με ένα ελαφρύτερο; η οποία αισθάνεται πιο κοντά σε μια πραγματική Rumble Pak εξαρτάται από το χειριστήριο.&#xA;&#xA;Αγνοείται εκτός εάν η συσκευή ⁇ Slot-2 ⁇  είναι ρυθμισμένη στο Rumble Pak.</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.both"><value>Και τα δύο</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.strong"><value>Δυνατή μόνο</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.weak"><value>Αδύναμο μόνο</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor"><value>Χρήση αισθητήρα φωτός υπολογιστή</value></data>
-  <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Help"><value>Αν ενεργοποιηθεί, η φωτεινή είσοδος του ηλιακού αισθητήρα θα προέρχεται από τον πραγματικό αισθητήρα φωτεινότητας της συσκευής σας αν είναι διαθέσιμος. Αν απενεργοποιηθεί ή δεν υπάρχει αισθητήρας, ο εξομοιούμενος αισθητήρας μπορεί να ελεγχθεί χειροκίνητα με τις ακόλουθες συνδυασμοί κουμπιών:
-
-- L+A+Up ή L+A + Κάτω
-- Επιλέξτε+Up ή Select+Down
-- Ο τροχός του ποντικιού σου.
-
-Αγνοείται εκτός εάν η συσκευή ⁇ Slot-2 ⁇  είναι ρυθμισμένη στον ηλιακό αισθητήρα, ή αν ένα ROM για οποιοδήποτε παιχνίδι στην τριλογία Boktai (κάθε περιοχή) εισάγεται στο Slot-2 της κονσόλας που μιμείται. Αν δεν είστε σίγουροι, αφήστε ενεργοποιημένο.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Help"><value>Αν ενεργοποιηθεί, η φωτεινή είσοδος του ηλιακού αισθητήρα θα προέρχεται από τον πραγματικό αισθητήρα φωτεινότητας της συσκευής σας αν είναι διαθέσιμος. Αν απενεργοποιηθεί ή δεν υπάρχει αισθητήρας, ο εξομοιούμενος αισθητήρας μπορεί να ελεγχθεί χειροκίνητα με τις ακόλουθες συνδυασμοί κουμπιών:&#xA;&#xA;- L+A+Up ή L+A + Κάτω&#xA;- Επιλέξτε+Up ή Select+Down&#xA;- Ο τροχός του ποντικιού σου.&#xA;&#xA;Αγνοείται εκτός εάν η συσκευή ⁇ Slot-2 ⁇  είναι ρυθμισμένη στον ηλιακό αισθητήρα, ή αν ένα ROM για οποιοδήποτε παιχνίδι στην τριλογία Boktai (κάθε περιοχή) εισάγεται στο Slot-2 της κονσόλας που μιμείται. Αν δεν είστε σίγουροι, αφήστε ενεργοποιημένο.</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode"><value>Λειτουργία ώρας</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Ο αρχικός χρόνος του εσωτερικού ⁇ ολογιού της κονσόλας.
-
-- Αρχίστε σε συγχρονισμό με το ρολόι της συσκευής σας.
-Συγχρονίστε το εικονιζόμενο ρολόι με το ρολόι της συσκευής σας. Μπορεί να προκαλέσει απροσδόκητη συμπεριφορά σε ορισμένα παιχνίδια κατά την επιστροφή ή γρήγορη προώθηση.
-- Σχετικό: Ξεκινήστε σε συγχρονισμό με το ρολόι της συσκευής σας, συν ή μείον μια καθορισμένη μετατόπιση. Θα περιοριστούν σε ημερομηνίες που το DS μπορεί να αντιπροσωπεύει.
-- Απόλυτη: Ξεκινήστε σε μια συγκεκριμένη ημερομηνία και ώρα, ανεξάρτητα από το ρολόι της συσκευής σας.
-
-Όλες οι ημερομηνίες και ώρες είναι στην τοπική ζώνη ώρας σας. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Ο αρχικός χρόνος του εσωτερικού ⁇ ολογιού της κονσόλας.&#xA;&#xA;- Αρχίστε σε συγχρονισμό με το ρολόι της συσκευής σας.&#xA;Συγχρονίστε το εικονιζόμενο ρολόι με το ρολόι της συσκευής σας. Μπορεί να προκαλέσει απροσδόκητη συμπεριφορά σε ορισμένα παιχνίδια κατά την επιστροφή ή γρήγορη προώθηση.&#xA;- Σχετικό: Ξεκινήστε σε συγχρονισμό με το ρολόι της συσκευής σας, συν ή μείον μια καθορισμένη μετατόπιση. Θα περιοριστούν σε ημερομηνίες που το DS μπορεί να αντιπροσωπεύει.&#xA;- Απόλυτη: Ξεκινήστε σε μια συγκεκριμένη ημερομηνία και ώρα, ανεξάρτητα από το ρολόι της συσκευής σας.&#xA;&#xA;Όλες οι ημερομηνίες και ώρες είναι στην τοπική ζώνη ώρας σας. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.real"><value>Πραγματικό</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.sync"><value>Συγχρονισμένη</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.relative"><value>Σχετικό</value></data>
@@ -1532,10 +1413,7 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second"><value>Εκκίνηση δεύτερη</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>Το αρχικό δευτερόλεπτο που θα χρησιμοποιηθεί όταν ξεκινήσει η λειτουργία χρόνου είναι Απόλυτο. Οι αλλαγές αρχίζουν να ισχύουν κατά την επόμενη επανεκκίνηση.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode"><value>Λειτουργία αποτύπωσης</value></data>
-  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Το λογισμικό είναι πιο γρήγορο και ακριβές. Το OpenGL (Classic) μπορεί να κλιμακώσει τα 3D γραφικά, αλλά κάποια παιχνίδια δεν αποδίδουν σωστά.
-Το OpenGL (Compute) είναι ακριβές και υποστηρίζει ανοδικά, αλλά δεν θα λειτουργήσει σε κάποιες παλαιότερες συσκευές. Η αλλαγή σε αυτό παίρνει μερικά δευτερόλεπτα για να συντάξει τα σκιάστρα του.
-
-Επιστρέφουμε στην απόδοση λογισμικού αν δεν μπορεί να χρησιμοποιηθεί το OpenGL. Οι αλλαγές τίθενται σε ισχύ αμέσως, αλλά μπορεί να απαιτήσουν την επανεκκίνηση του οδηγού βίντεο από το περιβάλλον.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Το λογισμικό είναι πιο γρήγορο και ακριβές. Το OpenGL (Classic) μπορεί να κλιμακώσει τα 3D γραφικά, αλλά κάποια παιχνίδια δεν αποδίδουν σωστά.&#xA;Το OpenGL (Compute) είναι ακριβές και υποστηρίζει ανοδικά, αλλά δεν θα λειτουργήσει σε κάποιες παλαιότερες συσκευές. Η αλλαγή σε αυτό παίρνει μερικά δευτερόλεπτα για να συντάξει τα σκιάστρα του.&#xA;&#xA;Επιστρέφουμε στην απόδοση λογισμικού αν δεν μπορεί να χρησιμοποιηθεί το OpenGL. Οι αλλαγές τίθενται σε ισχύ αμέσως, αλλά μπορεί να απαιτήσουν την επανεκκίνηση του οδηγού βίντεο από το περιβάλλον.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.software"><value>Λογισμικό</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.opengl"><value>OpenGL (κλασικό)</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.compute"><value>OpenGL (υπολογίζω)</value></data>
@@ -1562,8 +1440,6 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.melondsds.melonds_threaded_renderer.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.melondsds.melonds_threaded_renderer.Value.enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Firmware.melondsds.Slot0"><value>Firmware NDS</value></data>
-  
-  
   <data name="Emulation.Firmware.melondsds.Slot3"><value>Firmware DSi</value></data>
   <data name="Emulation.Firmware.melondsds.Slot4"><value>DSi ARM7 BIOS</value></data>
   <data name="Emulation.Firmware.melondsds.Slot5"><value>DSi ARM9 BIOS</value></data>
@@ -1664,8 +1540,6 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.noods.noods_micButtonMode.Value.Hold"><value>Περίμενε.</value></data>
   <data name="Emulation.Option.noods.noods_micButtonMode.Value.Always"><value>Πάντα.</value></data>
   <data name="Emulation.Firmware.noods.Slot0"><value>Firmware NDS</value></data>
-  
-  
   <data name="Emulation.Firmware.noods.Slot3"><value>Game Boy Advance BIOS</value></data>
   <data name="Emulation.Firmware.noods.Slot4"><value>Κάρτα NDS SD</value></data>
   <data name="Emulation.Emulator.skyemu.Description"><value>Προσομοιάζει συμβατά συστήματα Nintendo με το SkyEmu.</value></data>
@@ -1678,21 +1552,13 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.skyemu.system_gba_bios_enable.Help"><value>Ενεργοποίηση firmware Game Boy Advance</value></data>
   <data name="Emulation.Option.skyemu.system_nds_bios_enable"><value>Firmware Nintendo DS</value></data>
   <data name="Emulation.Option.skyemu.system_nds_bios_enable.Help"><value>Ενεργοποίηση firmware Nintendo DS</value></data>
-  
-  
-  
-  
-  
-  
   <data name="Emulation.Firmware.skyemu.Slot6"><value>GBA BIOS</value></data>
-  
-  
   <data name="Emulation.Firmware.skyemu.Slot9"><value>NDS FIRMWARE</value></data>
   <data name="Emulation.Emulator.fceumm.Description"><value>Προσομοιάζει συμβατά συστήματα Nintendo με FCEUmm.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region"><value>Περιφέρεια</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region.Help"><value>Δύναμη πυρήνα για τη χρήση NTSC, PAL ή Dendy χρονισμούς περιοχή.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region.Value.Auto"><value>Αυτόματο</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_game_genie"><value>Παιχνίδι Genie Add-On (Απαιτείται επανεκκίνηση)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_game_genie"><value>Παιχνίδι Genie Add-On</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Help"><value>Ενεργοποίηση εξομοίωσης ενός πρόσθετου φυσιγγίου Genie παιχνιδιού, επιτρέποντας την εισαγωγή κωδικών εξαπατήσεως κατά την έναρξη των παιχνιδιών. Το αρχείο Game Genie ROM 'gamegenie.nes' πρέπει να είναι παρόν στον κατάλογο συστημάτων του frontend. Δεν ισχύει για το περιεχόμενο FDS ή arcade.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Value.enabled"><value>Ενεργοποιημένο</value></data>
@@ -1894,7 +1760,7 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.2x-Postrender"><value>2x- Μεταρροή</value></data>
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.2x-VBlank"><value>2x-Βλάνκ</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_ramstate"><value>RAM Power-On Fill (απαιτείται επανεκκίνηση)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_ramstate"><value>RAM Power-On Fill</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ramstate.Help"><value>Οι τιμές RAM είναι ενεργοποιημένες. Μερικά παιχνίδια βασίζονται στις αρχικές τιμές RAM για την τυχαία παραγωγή αριθμού ως παράδειγμα.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ramstate.Value.random"><value>Τυχαίο</value></data>
   <data name="Emulation.Firmware.fceumm.Slot0"><value>Οικογενειακό σύστημα δίσκων υπολογιστών BIOS</value></data>
@@ -2092,9 +1958,7 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.mesen2.mesen_snes_high_res_blend_mode.Value.Blend Even/Odd"><value>Μείγμα ίσα/όδη</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode"><value>Βίντεο - SNES Deinterlace Mode</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Help"><value>Επιλέξτε τη λειτουργία αποσύνδεσης SNES</value></data>
-  <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Weave"><value>Ύφανση</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Bob Blend"><value>Μπομπ Μπλέντ</value></data>
-  <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Bob"><value>Μπομπ.</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Current Field"><value>Τρέχον πεδίο</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_hide_bg_layer_1"><value>Βελτιώσεις - SNES Απόκρυψη στρώμα BG 1</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_hide_bg_layer_1.Help"><value>Απόκρυψη στρώμα φόντου SNES 1</value></data>
@@ -2150,125 +2014,6 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders"><value>Βίντεο - Game Boy Απόκρυψη SGB Σύνορα</value></data>
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders.Help"><value>Απόκρυψη ορίων Super Game Boy</value></data>
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders.Value.disabled"><value>Απενεργοποίηση</value></data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed"><value>Εισαγωγή - Controller Turbo Speed</value></data>
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed.Help"><value>Ταχύτητα κουμπιού Turbo</value></data>
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed.Value.Fast"><value>Γρήγορα.</value></data>
@@ -2499,14 +2244,7 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Firmware.rustynes.Slot0"><value>Οικογενειακό σύστημα δίσκων υπολογιστών BIOS</value></data>
   <data name="Emulation.Emulator.doublecherrygb.Description"><value>Προσομοιάζει συμβατά συστήματα Nintendo με το DoubleCherryGB.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA"><value>Ανίχνευση όπως παίχτηκε στο Game Boy Advance</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Help"><value>Περίπου Game Boy Color παιχνίδια προσφέρουν βελτιωμένα χαρακτηριστικά όταν παίζεται σε ένα Game Boy Advance.
-
-Γνωστά GBA-ενισχυμένα παιχνίδια:
-   - Σαντάε.
-   - Κάθε Μάγισσα.
-   - Ζέλντα: Μαντείο των Αιώνων / Εποχές
-   - Medarot 5
-   - Μέγκα Μαν Extreme 2</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Help"><value>Περίπου Game Boy Color παιχνίδια προσφέρουν βελτιωμένα χαρακτηριστικά όταν παίζεται σε ένα Game Boy Advance.&#xA;&#xA;Γνωστά GBA-ενισχυμένα παιχνίδια:&#xA;   - Σαντάε.&#xA;   - Κάθε Μάγισσα.&#xA;   - Ζέλντα: Μαντείο των Αιώνων / Εποχές&#xA;   - Medarot 5&#xA;   - Μέγκα Μαν Extreme 2</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Value.0"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_rtc_use_system_clock"><value>Λειτουργία ⁇ ολογιού πραγματικού χρόνου</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_rtc_use_system_clock.Help"><value>Ελέγχει πώς το πραγματικό ρολόι του παιχνιδιού (RTC) τικ. Το 'Real-Time' χρησιμοποιεί το ρολόι συστήματος της συσκευής υπολογιστή σας (αποτελεί γρήγορη προώθηση; ο χρόνος περνά ενώ ο εξομοιωτής είναι κλειστός). CPU κύκλοι.</value></data>
@@ -2571,11 +2309,7 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss"><value>GBC LCD παρεμβαλλόμενη φωτεινότητα</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss.Help"><value>Ρυθμίζει την ένταση του παρεμβαλλόμενου αποτελέσματος. Κρατήστε αυτή την τιμή χαμηλή όταν δεν χρησιμοποιείτε σκίαση. Οι υψηλότερες τιμές συνιστώνται όταν συνδυάζονται με σκίαση για να γίνει το αποτέλεσμα ορατό.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation"><value>GBC LCD RGB Συντελεστής κλίμακας υποpixel</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Προσομοιώνει τα φυσικά υποpixels GBC με την ανόρθωση και την αντικατάσταση κάθε εικονοστοιχείου χρώματος με αντίστοιχα εξαρτήματα RGB.
-
-Για καλύτερα αποτελέσματα:
-- Ενεργοποίηση ' Ακέραια κλιμάκωση' στο RetroArch ( ⁇ υθμίσεις -&gt; Βίντεο -&gt; Σκάλιση).
-- Μπορεί να απαιτηθεί επανεκκίνηση του πυρήνα μετά την αλλαγή αυτής της ρύθμισης.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Προσομοιώνει τα φυσικά υποpixels GBC με την ανόρθωση και την αντικατάσταση κάθε εικονοστοιχείου χρώματος με αντίστοιχα εξαρτήματα RGB.&#xA;&#xA;Για καλύτερα αποτελέσματα:&#xA;- Ενεργοποίηση ' Ακέραια κλιμάκωση' στο RetroArch ( ⁇ υθμίσεις -&gt; Βίντεο -&gt; Σκάλιση).&#xA;- Μπορεί να απαιτηθεί επανεκκίνηση του πυρήνα μετά την αλλαγή αυτής της ρύθμισης.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Value.1"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur"><value>Θολούρα LCD GBC</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur.Help"><value>Εφαρμόζει ένα φαινόμενο θολώματος οθόνης. Αυτή η ρύθμιση είναι πολύ CPU-εντατική. Κλείστε το σε ασθενέστερο υλικό ή χρησιμοποιήστε σκίαση αντ 'αυτού.</value></data>
@@ -2681,20 +2415,10 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.doublecherrygb.dcgb_cocktailtable_mode.Value.1"><value>κάθετα</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_cocktailtable_mode.Value.2"><value>οριζόντια</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled"><value>Κινητός προσαρμοστής GB εξομοίωση</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Help"><value>Ενεργοποιεί την εξομοίωση του ιαπωνικού κινητού προσαρμογέα GB περιφερειακά.
-
-Υποστηριγμένοι τίτλοι:
-   - Pokemon Crystal (ιαπωνικός ή κινητός προσαρμοστής)
-   - Game Boy Πόλεμοι 3
-   - Γεια σου Kitty Happy House
-   - Κινητό γκολφ
-   - Κινητός Εκπαιδευτής
-   - Καθαρό de Get</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Help"><value>Ενεργοποιεί την εξομοίωση του ιαπωνικού κινητού προσαρμογέα GB περιφερειακά.&#xA;&#xA;Υποστηριγμένοι τίτλοι:&#xA;   - Pokemon Crystal (ιαπωνικός ή κινητός προσαρμοστής)&#xA;   - Game Boy Πόλεμοι 3&#xA;   - Γεια σου Kitty Happy House&#xA;   - Κινητό γκολφ&#xA;   - Κινητός Εκπαιδευτής&#xA;   - Καθαρό de Get</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Value.0"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber"><value>Εμφάνιση του αριθμού τηλεφώνου σας κατά την έναρξη</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Help"><value>Εμφανίζει τον αριθμό του τηλεφώνου σας P2P κατά την εκκίνηση. 
-
-Προειδοποίηση: Χωρίς έναν εξυπηρετητή ρελέ, αυτό εκθέτει τη δημόσια διεύθυνση IP σας. Μόνο να το μοιραστείτε αυτό με έμπιστους χρήστες.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Help"><value>Εμφανίζει τον αριθμό του τηλεφώνου σας P2P κατά την εκκίνηση. &#xA;&#xA;Προειδοποίηση: Χωρίς έναν εξυπηρετητή ρελέ, αυτό εκθέτει τη δημόσια διεύθυνση IP σας. Μόνο να το μοιραστείτε αυτό με έμπιστους χρήστες.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Value.0"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color"><value>Χρώμα συσκευής προσαρμογέα GB για κινητά</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Help"><value>Ρυθμίζει το χρώμα του καλλυντικού κελύφους της συσκευής προσομοίωσης Mobile Adapter.</value></data>
@@ -2703,34 +2427,24 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Value.10"><value>Πράσινο</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Value.11"><value>Κόκκινο</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip"><value>IP εξυπηρετητή DNS</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Help"><value>Οι επίσημοι διακομιστές της Nintendo είναι εκτός σύνδεσης. Μπορείτε να φιλοξενήσετε αντικαταστάτες υποδομής, χρησιμοποιώντας προσαρμοσμένες στοίβες όπως το REON: https://github.com/REONTeam/reon.
-
-Για προσαρμοσμένες ρυθμίσεις επεξεργαστείτε το mobile_adapter_gb_custom_server_config.ini στο φάκελο συστημάτων retroarch σας.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Help"><value>Οι επίσημοι διακομιστές της Nintendo είναι εκτός σύνδεσης. Μπορείτε να φιλοξενήσετε αντικαταστάτες υποδομής, χρησιμοποιώντας προσαρμοσμένες στοίβες όπως το REON: https://github.com/REONTeam/reon.&#xA;&#xA;Για προσαρμοσμένες ρυθμίσεις επεξεργαστείτε το mobile_adapter_gb_custom_server_config.ini στο φάκελο συστημάτων retroarch σας.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.127.0.0.1"><value>127.0.1 (Τοπικός οικοδεσπότης)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.172.18.0.1"><value>172.18.0.1 (Τοπικός Docker)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.99"><value>Προσαρμοσμένο</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port"><value>Θύρα εξυπηρετητή DNS</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Help"><value>Προσδιορίστε τη σύνδεση θύρας-στόχου για την προσαρμοσμένη υποδομή δικτύου.
-
-Για προσαρμοσμένες ρυθμίσεις επεξεργαστείτε το mobile_adapter_gb_custom_server_config.ini στο φάκελο συστημάτων retroarch σας.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Help"><value>Προσδιορίστε τη σύνδεση θύρας-στόχου για την προσαρμοσμένη υποδομή δικτύου.&#xA;&#xA;Για προσαρμοσμένες ρυθμίσεις επεξεργαστείτε το mobile_adapter_gb_custom_server_config.ini στο φάκελο συστημάτων retroarch σας.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Value.1"><value>53 (Προκαθορισμένο)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Value.99"><value>Προσαρμοσμένο</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server"><value>Χρήση εξυπηρετητή αναμετάδοσης P2P</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Help"><value>Χρησιμοποιήστε έναν προσαρμοσμένο εξυπηρετητή ρελέ για κλήσεις P2P.
-
-Για προσαρμοσμένες ρυθμίσεις επεξεργαστείτε το mobile_adapter_gb_custom_server_config.ini στο φάκελο συστημάτων retroarch σας.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Help"><value>Χρησιμοποιήστε έναν προσαρμοσμένο εξυπηρετητή ρελέ για κλήσεις P2P.&#xA;&#xA;Για προσαρμοσμένες ρυθμίσεις επεξεργαστείτε το mobile_adapter_gb_custom_server_config.ini στο φάκελο συστημάτων retroarch σας.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Value.0"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip"><value>IP εξυπηρετητή αναμετάδοσης P2P</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Help"><value>Προσδιορίστε τη σύνδεση θύρας-στόχου για την προσαρμοσμένη υποδομή δικτύου.
-
-Για προσαρμοσμένες ρυθμίσεις επεξεργαστείτε το mobile_adapter_gb_custom_server_config.ini στο φάκελο συστημάτων retroarch σας.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Help"><value>Προσδιορίστε τη σύνδεση θύρας-στόχου για την προσαρμοσμένη υποδομή δικτύου.&#xA;&#xA;Για προσαρμοσμένες ρυθμίσεις επεξεργαστείτε το mobile_adapter_gb_custom_server_config.ini στο φάκελο συστημάτων retroarch σας.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.127.0.0.1"><value>127.0.1 (Τοπικός οικοδεσπότης)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.172.18.0.1"><value>172.18.0.1 (Τοπικός Docker)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.99"><value>Προσαρμοσμένο</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port"><value>Θύρα εξυπηρετητή αναμετάδοσης P2P</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Help"><value>Καθορίστε τη σύνδεση θύρας-στόχου για τον προσαρμοσμένο εξυπηρετητή ρελέ P2P.
-
-Για προσαρμοσμένες ρυθμίσεις επεξεργαστείτε το mobile_adapter_gb_custom_server_config.ini στο φάκελο συστημάτων retroarch σας.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Help"><value>Καθορίστε τη σύνδεση θύρας-στόχου για τον προσαρμοσμένο εξυπηρετητή ρελέ P2P.&#xA;&#xA;Για προσαρμοσμένες ρυθμίσεις επεξεργαστείτε το mobile_adapter_gb_custom_server_config.ini στο φάκελο συστημάτων retroarch σας.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Value.1"><value>31227 (Προκαθορισμένο)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Value.99"><value>Προσαρμοσμένο</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_dev_log_linkcable_to_file"><value>Μεταφορά καλωδίων σύνδεσης σε αρχείο</value></data>
@@ -2801,10 +2515,10 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler"><value>Αναδιαμορφωτής ήχου</value></data>
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler.Help"><value>Προσδιορίστε τον αλγόριθμο που θα χρησιμοποιηθεί κατά την επαναδειγματοποίηση του παραγόμενου ήχου (ο ρυθμός ήχου Game Boy περιορίζεται μόνο από την CPU ταχύτητα εγγραφής, έτσι ώστε οι 'native' συχνότητες δεν είναι πρακτικές σε σύγχρονες συσκευές ήχου και πρέπει να υποτιμηθεί). \"Sinc\" παράγει την υψηλότερη ποιότητα.</value></data>
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler.Value.cc"><value>Συνημίτονο</value></data>
-  <data name="Emulation.Option.gambatte.gambatte_gb_hwmode"><value>Εξομοίωση υλικού (απαιτείται επανεκκίνηση)</value></data>
+  <data name="Emulation.Option.gambatte.gambatte_gb_hwmode"><value>Εξομοίωση υλικού</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_hwmode.Help"><value>Προσδιορίστε τον τύπο του υλικού που θα μιμηθεί. Συνιστάται το 'αυτόματο'. Επιλέγοντας το 'GBA' ξεκλειδώνει επιπλέον χαρακτηριστικά σε ορισμένα παιχνίδια 'GBA Enhanced' Game Boy Color (Shantae, Wendy - Every Way, Legend of Zelda: Oracle of Seasons/Ages...).</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_hwmode.Value.Auto"><value>Αυτόματο</value></data>
-  <data name="Emulation.Option.gambatte.gambatte_gb_bootloader"><value>Χρήση επίσημου φορτωτή εκκίνησης (απαιτείται επανεκκίνηση)</value></data>
+  <data name="Emulation.Option.gambatte.gambatte_gb_bootloader"><value>Χρήση επίσημου φορτωτή εκκίνησης</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Help"><value>Ενεργοποίηση υποστήριξης για τους επίσημους Game Boy και Game Boy Color bootloaders, με αντίστοιχες animations του λογότυπου εκκίνησης.</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Value.enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Value.disabled"><value>Απενεργοποίηση</value></data>
@@ -3047,8 +2761,6 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg"><value>Απενεργοποίηση επαναχρώσης των παιχνιδιών DMG (ισχύει μόνο με CGB BIOS)</value></data>
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg.Value.enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg.Value.disabled"><value>Απενεργοποίηση</value></data>
-  
-  
   <data name="Emulation.Emulator.mesen_s.Description"><value>Προσομοιάζει συμβατά συστήματα Nintendo με Mesen-S.</value></data>
   <data name="Emulation.Option.mesen_s.mesen-s_ntsc_filter"><value>Φίλτρο NTSC</value></data>
   <data name="Emulation.Option.mesen_s.mesen-s_ntsc_filter.Value.Disabled"><value>Απενεργοποίηση</value></data>
@@ -3111,8 +2823,6 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Firmware.mesen_s.Slot15"><value>Εικόνα εκκίνησης GBC</value></data>
   <data name="Emulation.Firmware.mesen_s.Slot16"><value>Εικόνα εκκίνησης SGB</value></data>
   <data name="Emulation.Firmware.mesen_s.Slot17"><value>Εικόνα εκκίνησης SGB2</value></data>
-  
-  
   <data name="Emulation.Firmware.mesen_s.Slot20"><value>Εκκίνηση Satellaview ROM</value></data>
   <data name="Emulation.Emulator.nside_sfc_balanced.Description"><value>Προσομοιάζει συμβατά συστήματα Nintendo με nSide.</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_internal_resolution"><value>Εσωτερική ανάλυση</value></data>
@@ -4300,8 +4010,6 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-native-tex-rect.Value.False"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method"><value>(Parallel-RDP) Μέθοδος αποπλήρωσης</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Help"><value>Το Weave θα πρέπει να χρησιμοποιείται μόνο με 1x συντελεστή κλιμάκωσης και ειδικούς CRT σκίασης.</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Value.Bob"><value>Μπομπ.</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Value.Weave"><value>Ύφανση</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay"><value>VI Επικάλυψη</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay.Help"><value>(AL) Select VI Φίλτρα επικάλυψης. 'Filtered' είναι η αρχική απόδοση του συστήματος.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay.Value.Filtered"><value>Φιλτραρισμένο</value></data>
@@ -4394,7 +4102,6 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.memory"><value>μνήμη</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.rumble"><value>βουητό</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.transfer"><value>μεταφορά</value></data>
-  
   <data name="Emulation.Emulator.parallel_n64.Description"><value>Προσομοιάζει συμβατά συστήματα Nintendo με το ParaLLEl N64.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Συντελεστής ανόδου (επανεκκίνηση)</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling.Help"><value>Αποθήκευση σε πολλαπλάσιο της ανάλυσης της κονσόλας. Το ParaLLEl-RDP τιμά κάθε παράγοντα· το Angrylion αποδίδει μέχρι 4x και αντιμετωπίζει το 8x ως 4x.</value></data>
@@ -4576,7 +4283,7 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.parallel_n64.parallel-n64-disable_expmem.Value.enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-disable_expmem.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy"><value>Ακρίβεια GFX</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Help"><value>Ακρίβεια GFX, απαιτείται επανεκκίνηση</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Help"><value>Ακρίβεια γραφικών.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.low"><value>χαμηλή</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.medium"><value>μέσο</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.high"><value>υψηλή</value></data>
@@ -4872,7 +4579,6 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.parallel_n64.parallel-n64-sdcard.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate"><value>Ρολόι συστήματος rollback N64 στο φορτίο savestate</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate.Value.enabled"><value>Ναι</value></data>
-  
   <data name="Emulation.Emulator.pokemini.Description"><value>Προσομοιάζει συμβατά συστήματα Nintendo με PokeMini.</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Κλίμακα βίντεο (Επανεκκίνηση)</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale.Help"><value>Ορισμός συντελεστή εσωτερικής κλίμακας βίντεο. Η αύξηση του συντελεστή κλίμακας βελτιώνει την εμφάνιση του εσωτερικού φίλτρου «Dot Matrix» LCD.</value></data>
@@ -5039,7 +4745,7 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock"><value>Overclocking - Συνεπεξεργαστής SuperFX</value></data>
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock.Help"><value>Πάνω από την ώρα ή κάτω το SuperFX συνεπεξεργαστή. Ο καθορισμός αυτής της τιμής πάνω από το 100% μπορεί να βελτιώσει την απόδοση στα παιχνίδια που υποστηρίζουν το SuperFX. Χρησιμοποιήστε με προσοχή, καθώς μπορεί επίσης να προκαλέσει κάποια παιχνίδια να συντριβούν ή να εκθέσουν άλλα ζητήματα.</value></data>
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock.Value.100"><value>100% (Προκαθορισμένο)</value></data>
-  <data name="Emulation.Option.bsnes.bsnes_sgb_bios"><value>Προτεινόμενο Super Game Boy BIOS (Restart Required)</value></data>
+  <data name="Emulation.Option.bsnes.bsnes_sgb_bios"><value>Προτεινόμενο Super Game Boy BIOS</value></data>
   <data name="Emulation.Option.bsnes.bsnes_sgb_bios.Help"><value>Επιλέξτε το προτιμώμενο Super Game Boy BIOS που θα χρησιμοποιηθεί με συμβατούς τίτλους.</value></data>
   <data name="Emulation.Option.bsnes.bsnes_hide_sgb_border"><value>Απόκρυψη περιγράμματος SGB</value></data>
   <data name="Emulation.Option.bsnes.bsnes_hide_sgb_border.Help"><value>Απόκρυψη των συνόρων κατά την αναπαραγωγή Super Game Boy παιχνίδια.</value></data>
@@ -6209,12 +5915,10 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.cemu.cemu_bc1_16bit.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.cemu.cemu_bc1_16bit.Value.enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Option.cemu.cemu_gpu_api"><value>Γραφικά API</value></data>
-  <data name="Emulation.Option.cemu.cemu_gpu_api.Help"><value>Τα γραφικά API Cemu αποδίδει με. (Restart required)</value></data>
+  <data name="Emulation.Option.cemu.cemu_gpu_api.Help"><value>Τα γραφικά API Cemu αποδίδει με.</value></data>
   <data name="Emulation.Option.cemu.cemu_gpu_api.Value.OpenGL"><value>ΑνοικτόGL</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game"><value>Εγκατάσταση παιχνιδιών</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_game.Help"><value>Εγκαθιστά κάθε παιχνίδι στο σύστημα/Cemu/titles σε saves/Cemu/mlc01, την αποθήκευση της εικονιζόμενης κονσόλας, καθώς η κονσόλα εγκαθιστά ένα παιχνίδι από το δίσκο της. Ένα παιχνίδι είναι μια εικόνα δίσκου (.wud, .wux,  ⁇ iso) ή ένα .Wua, και από το . wua η ενημέρωση και DLC που κατέχει είναι εγκατεστημένα με αυτό. Ένα παιχνίδι εγκατεστημένο ήδη στην ίδια ή μια νεότερη έκδοση αφήνεται μόνο του.
-
-Όταν πρόκειται για το ON, η εγκατάσταση ξεκινά αμέσως, με την πρόοδό του να φαίνεται ως ειδοποίηση, και γίνεται πάλι OFF όταν όλα τα παιχνίδια είναι εγκατεστημένα. Ένα εγκατεστημένο παιχνίδι ξεκινά με τη φόρτωση του .rpx στο φάκελο κώδικα του, κάτω από mlc01/usr/title/00050000· η εικόνα δίσκου του δεν χρειάζεται πλέον.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_game.Help"><value>Εγκαθιστά κάθε παιχνίδι στο σύστημα/Cemu/titles σε saves/Cemu/mlc01, την αποθήκευση της εικονιζόμενης κονσόλας, καθώς η κονσόλα εγκαθιστά ένα παιχνίδι από το δίσκο της. Ένα παιχνίδι είναι μια εικόνα δίσκου (.wud, .wux,  ⁇ iso) ή ένα .Wua, και από το . wua η ενημέρωση και DLC που κατέχει είναι εγκατεστημένα με αυτό. Ένα παιχνίδι εγκατεστημένο ήδη στην ίδια ή μια νεότερη έκδοση αφήνεται μόνο του.&#xA;&#xA;Όταν πρόκειται για το ON, η εγκατάσταση ξεκινά αμέσως, με την πρόοδό του να φαίνεται ως ειδοποίηση, και γίνεται πάλι OFF όταν όλα τα παιχνίδια είναι εγκατεστημένα. Ένα εγκατεστημένο παιχνίδι ξεκινά με τη φόρτωση του .rpx στο φάκελο κώδικα του, κάτω από mlc01/usr/title/00050000· η εικόνα δίσκου του δεν χρειάζεται πλέον.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game.Value.enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game"><value>Απεγκατάσταση παιχνιδιού</value></data>
@@ -6222,11 +5926,7 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles"><value>Εγκατάσταση περιεχομένου</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Εγκαθιστά κάθε ενημέρωση και DLC στο σύστημα / Cemu/titles σε saves / Cemu/mlc01, την αποθήκευση της κονσόλας που μιμείται. Ο καθένας μπαίνει σε έναν δικό του φάκελο εκεί · ένα NUS κατέβασμα (. αρχεία εφαρμογών) χρειάζεται τα title.tmd και το title.tik κλειδί αποκρυπτογράφησης, δίπλα τους. Μια έκδοση ήδη εγκατεστημένη που είναι η ίδια ή νεότερη αφήνεται μόνη της.
-
-Όταν αυτό είναι ON, η εγκατάσταση αρχίζει αμέσως, με την πρόοδό του να εμφανίζεται ως ειδοποίηση, και γίνεται πάλι OFF όταν όλο το περιεχόμενο είναι εγκατεστημένο και το μενού αυτό εξέρχεται ή άλλη επιλογή αλλάζει. Ο τίτλος θα χρησιμοποιήσει το εγκατεστημένο περιεχόμενο μόλις επανεκκινηθεί.
-
-Περιεχόμενο από άλλες τοποθεσίες μπορεί να εγκατασταθεί με RetroArch's Main Menu &gt; Περιεχόμενο φόρτωσης, επιλέγοντας το αντίστοιχο title.tmd, με το title.tik δίπλα του.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Εγκαθιστά κάθε ενημέρωση και DLC στο σύστημα / Cemu/titles σε saves / Cemu/mlc01, την αποθήκευση της κονσόλας που μιμείται. Ο καθένας μπαίνει σε έναν δικό του φάκελο εκεί · ένα NUS κατέβασμα (. αρχεία εφαρμογών) χρειάζεται τα title.tmd και το title.tik κλειδί αποκρυπτογράφησης, δίπλα τους. Μια έκδοση ήδη εγκατεστημένη που είναι η ίδια ή νεότερη αφήνεται μόνη της.&#xA;&#xA;Όταν αυτό είναι ON, η εγκατάσταση αρχίζει αμέσως, με την πρόοδό του να εμφανίζεται ως ειδοποίηση, και γίνεται πάλι OFF όταν όλο το περιεχόμενο είναι εγκατεστημένο και το μενού αυτό εξέρχεται ή άλλη επιλογή αλλάζει. Ο τίτλος θα χρησιμοποιήσει το εγκατεστημένο περιεχόμενο μόλις επανεκκινηθεί.&#xA;&#xA;Περιεχόμενο από άλλες τοποθεσίες μπορεί να εγκατασταθεί με RetroArch's Main Menu &gt; Περιεχόμενο φόρτωσης, επιλέγοντας το αντίστοιχο title.tmd, με το title.tik δίπλα του.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles"><value>Απεγκατάσταση περιεχομένου</value></data>
@@ -6234,11 +5934,7 @@ Auto χρησιμοποιεί DSi λειτουργία για τα παιχνί�
   <data name="Emulation.Option.cemu.cemu_uninstall_titles.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles.Value.enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source"><value>Αφαίρεση περιεχομένου μετά την εγκατάσταση</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_remove_source.Help"><value>Αφαιρεί το downloadable περιεχόμενο και τις ενημερώσεις τίτλου από το σύστημα/Cemu/titles μόλις τα έχει εγκαταστήσει η Εγκατάσταση Περιεχομένου. Το περιεχόμενο που φορτώνεται μέσω του Περιεχομένου Φόρτωσης αφήνεται εκεί όπου βρίσκεται.
-
-Η ενημέρωση του τρέχοντα τίτλου ή DLC είναι σε χρήση, οπότε αφαιρείται όταν ο τίτλος κλείσει ή επαναρυθμιστεί.
-
-Τα αρχεία .wua και οι εικόνες δίσκου δεν αφαιρούνται ποτέ, καθώς μπορούν να κρατήσουν το βασικό παιχνίδι επίσης.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_remove_source.Help"><value>Αφαιρεί το downloadable περιεχόμενο και τις ενημερώσεις τίτλου από το σύστημα/Cemu/titles μόλις τα έχει εγκαταστήσει η Εγκατάσταση Περιεχομένου. Το περιεχόμενο που φορτώνεται μέσω του Περιεχομένου Φόρτωσης αφήνεται εκεί όπου βρίσκεται.&#xA;&#xA;Η ενημέρωση του τρέχοντα τίτλου ή DLC είναι σε χρήση, οπότε αφαιρείται όταν ο τίτλος κλείσει ή επαναρυθμιστεί.&#xA;&#xA;Τα αρχεία .wua και οι εικόνες δίσκου δεν αφαιρούνται ποτέ, καθώς μπορούν να κρατήσουν το βασικό παιχνίδι επίσης.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source.Value.enabled"><value>Ενεργοποιημένο</value></data>
   <data name="Emulation.Firmware.FamicomDiskSystem"><value>Famicom Disk System BIOS</value></data>

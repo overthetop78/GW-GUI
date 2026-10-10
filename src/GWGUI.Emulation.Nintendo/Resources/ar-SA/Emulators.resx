@@ -6,14 +6,14 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.azahar.Description"><value>:: فرض نظم متوافقة قوامها Nintendo مع Azahar.</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit"><value>التمكين CPU JIT</value></data>
-  <data name="Emulation.Option.azahar.citra_use_cpu_jit.Help"><value>تجميع الوقت المتاح للتو ARM CPU محاكاة. ويحسن الأداء بشكل كبير، ولكنه قد يقلل من الدقة. إعادة التشغيل مطلوبة</value></data>
+  <data name="Emulation.Option.azahar.citra_use_cpu_jit.Help"><value>تجميع الوقت المتاح للتو ARM CPU المحاكاة. تحسّن الأداء ولكنها قد تقلل من الدقة.</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit.Value.enabled"><value>التمكين</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage"><value>CPU قفل السرعة</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage.Help"><value>عدل سرعة 3DS CPU كنسبة مئوية من السرعة العادية. وقد يؤدي ارتفاع القيم إلى تحسين الأداء في بعض الألعاب ولكن يمكن أن يسبب قضايا. القيم المنخفضة يمكن أن تساعد في الألعاب التي تركض بسرعة كبيرة.</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage.Value.100"><value>100 في المائة (Default)</value></data>
   <data name="Emulation.Option.azahar.citra_is_new_3ds"><value>نموذج النظام 3DS</value></data>
-  <data name="Emulation.Option.azahar.citra_is_new_3ds.Help"><value>Select whether to emulate the original 3DS or New 3DS. New 3DS has additional CPU power and memory, required for some games. إعادة التشغيل مطلوبة</value></data>
+  <data name="Emulation.Option.azahar.citra_is_new_3ds.Help"><value>إختار الأصلي 3DS أو New 3DS. New 3DS لديه طاقة وذاكرة أكثر من CPU.</value></data>
   <data name="Emulation.Option.azahar.citra_is_new_3ds.Value.Old 3DS"><value>Original: ENGLISH 3DS</value></data>
   <data name="Emulation.Option.azahar.citra_region_value"><value>3DS المنطقة</value></data>
   <data name="Emulation.Option.azahar.citra_region_value.Help"><value>حدد منطقة نظام 3DS. الإختيار الآلي سيختار بناءً على اللعبة وبعض الالعاب غير موجودة في المنطقة وتتطلب مناطق متطابقة.</value></data>
@@ -50,7 +50,7 @@
   <data name="Emulation.Option.azahar.citra_input_type.Value.static_noise"><value>النواة الثابتة</value></data>
   <data name="Emulation.Option.azahar.citra_input_type.Value.frontend"><value>الجبهة</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api"><value>الرسم البياني API</value></data>
-  <data name="Emulation.Option.azahar.citra_graphics_api.Help"><value>Select the graphics rendering API. (أوتو) سيختار أفضل خيار متاح إعادة التشغيل مطلوبة</value></data>
+  <data name="Emulation.Option.azahar.citra_graphics_api.Help"><value>اختاروا الرسوم البيانية التي تصدر API. (أوتو) يختار ما هو متاح من API.</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.Auto"><value>تلقائي</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.OpenGL"><value>OpenGL</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.Software"><value>البرمجيات</value></data>
@@ -509,8 +509,6 @@
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.pattern"><value>باترن</value></data>
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.random"><value>الرشوة</value></data>
   <data name="Emulation.Firmware.desmume.Slot0"><value>NDS البرمجيات</value></data>
-  
-  
   <data name="Emulation.Emulator.desmume2015.Description"><value>الفرضيات المتوافقة Nintendo النظم مع DeSmuME 2015-2015 2015.</value></data>
   <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>القرار الداخلي (الاستعراض)</value></data>
   <data name="Emulation.Option.desmume2015.desmume_num_cores"><value>CPU</value></data>
@@ -597,8 +595,6 @@
   <data name="Emulation.Option.desmume2015.desmume_mic_mode.Value.random"><value>عشوائي</value></data>
   <data name="Emulation.Option.desmume2015.desmume_mic_mode.Value.physical"><value>جسدياً</value></data>
   <data name="Emulation.Firmware.desmume2015.Slot0"><value>NDS البرمجيات</value></data>
-  
-  
   <data name="Emulation.Option.melonds.melonds_console_mode"><value>كونسول مودي</value></data>
   <data name="Emulation.Option.melonds.melonds_boot_directly"><value>لعبة الخنزير مباشرة</value></data>
   <data name="Emulation.Option.melonds.melonds_boot_directly.Help"><value>اختر ما إذا كان ينبغي أن يقوم النواة بتأهيل اللعبة مباشرة أو إذا كان يجب أن يُعاد إلى قائمة DS بدلا من ذلك (BIOS) وملفات البرمجيات المطلوبة.</value></data>
@@ -696,8 +692,6 @@
   <data name="Emulation.Option.melonds.melonds_jit_fast_memory.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_fast_memory.Value.enabled"><value>التمكين</value></data>
   <data name="Emulation.Firmware.melonds.Slot0"><value>NDS البرمجيات</value></data>
-  
-  
   <data name="Emulation.Firmware.melonds.Slot3"><value>DSi البرمجيات</value></data>
   <data name="Emulation.Firmware.melonds.Slot4"><value>DSi ARM7 BIOS</value></data>
   <data name="Emulation.Firmware.melonds.Slot5"><value>DSi ARM9 BIOS</value></data>
@@ -705,24 +699,13 @@
   <data name="Emulation.Firmware.melonds.Slot7"><value>DSi SD بطاقة</value></data>
   <data name="Emulation.Emulator.melondsds.Description"><value>Emulates compatible Nintendo systems with melonDS DS.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input"><value>مدخل الميكروفونات</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mic_input.Help"><value>اختر الصوت الذي سيحصل عليه الميكروفون
-
-الصمت: لا مدخلات صوتية.
-اضغطي على صوت تفجير مبني
-الضوضاء البيضاء العشوائية
-استخدم ميكروفونك الحقيقي إذا كان متاحاً، تراجع إلى الصمت إن لم يكن.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mic_input.Help"><value>اختر الصوت الذي سيحصل عليه الميكروفون&#xA;&#xA;الصمت: لا مدخلات صوتية.&#xA;اضغطي على صوت تفجير مبني&#xA;الضوضاء البيضاء العشوائية&#xA;استخدم ميكروفونك الحقيقي إذا كان متاحاً، تراجع إلى الصمت إن لم يكن.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.silence"><value>الصمت</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.blow"><value>متفجر</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.noise"><value>الضجة</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.microphone"><value>مايكروفون</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active"><value>مايكروفون بوتون مودي</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mic_input_active.Help"><value>اضبطوا سلوك الزر الميكروفون حتى لو كان مدخل الصوت الصغير جاهزاً للهبوط أو النواة ويتلقى الميكروفون المحوسب صمتاً عندما يُعاقه الزر.
-
-مهلاً، (بوتون) يُمكّن مدخل المايك بينما يُحتفظ به.
-Toggle: Button enables mic input when pressed, disables it when Pressed again.
-دائماً: (بوتون) يُتجاهل، والمدخلات المايكية مُتاحة دوماً.
-
-أُلغيت إذا كان مدخل الميكروفون جاهزاً للصمت</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mic_input_active.Help"><value>اضبطوا سلوك الزر الميكروفون حتى لو كان مدخل الصوت الصغير جاهزاً للهبوط أو النواة ويتلقى الميكروفون المحوسب صمتاً عندما يُعاقه الزر.&#xA;&#xA;مهلاً، (بوتون) يُمكّن مدخل المايك بينما يُحتفظ به.&#xA;Toggle: Button enables mic input when pressed, disables it when Pressed again.&#xA;دائماً: (بوتون) يُتجاهل، والمدخلات المايكية مُتاحة دوماً.&#xA;&#xA;أُلغيت إذا كان مدخل الميكروفون جاهزاً للصمت</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.hold"><value>عقد</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.toggle"><value>الضحك</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.always"><value>دائماً</value></data>
@@ -752,21 +735,11 @@ Toggle: Button enables mic input when pressed, disables it when Pressed again.
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.enabled"><value>التمكين</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns"><value>تخطي نظام DNS</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>The DNS server to use for the emulated access point ( "melonAP" Use this to play online with custom servers that reimplement the discontinued Nintendo Wi-Fi Connection services. دعم اللعبة يعتمد على الخادم 
-وقد يحجب بعض مقدمي خدمات الإنترنت الطلبات المقدمة إلى هذه الخواديم. إذا كان هذا هو الحال بالنسبة لك، انظر https://tinyurl.com/393cb755 للاطلاع على العمل.
-
-الخواديم المدرجة في القائمة ليست منتسبة إلى (ليبريترو) Nintendo.... melonDS فريق، أو كاتب هذا النواة. من فضلك احترم اللاعبين الآخرين و اتبع قواعد الخادم
-
-إذا لم يكن هناك مانع، ارحلوا من كيرو WFC. التغييرات ستبدأ في المرحلة التالية.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>The DNS server to use for the emulated access point ( "melonAP" Use this to play online with custom servers that reimplement the discontinued Nintendo Wi-Fi Connection services. دعم اللعبة يعتمد على الخادم &#xA;وقد يحجب بعض مقدمي خدمات الإنترنت الطلبات المقدمة إلى هذه الخواديم. إذا كان هذا هو الحال بالنسبة لك، انظر https://tinyurl.com/393cb755 للاطلاع على العمل.&#xA;&#xA;الخواديم المدرجة في القائمة ليست منتسبة إلى (ليبريترو) Nintendo.... melonDS فريق، أو كاتب هذا النواة. من فضلك احترم اللاعبين الآخرين و اتبع قواعد الخادم&#xA;&#xA;إذا لم يكن هناك مانع، ارحلوا من كيرو WFC. التغييرات ستبدأ في المرحلة التالية.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.95.217.77.181"><value>ويمفي (95.217.77.181)</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.default"><value>لا تتخطى</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language"><value>اللغة</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>يتعدى على طريقة اللغة في الضمادات
-
-يستعمل لغة الواجهة إذا كان مدعوماً من قِبل القنصل
-لا تتخطّط، استعمل أي لغة قد وضعت بالفعل على البرمجيات هذا هو السلوك التراجعي إذا كان المحاكاة DS (أو DSi NAND) لا يدعم لغة الجبهة.
-
-ليس كل لعبة تشرف هذا المكان التغييرات ستبدأ في المرحلة التالية.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>يتعدى على طريقة اللغة في الضمادات&#xA;&#xA;يستعمل لغة الواجهة إذا كان مدعوماً من قِبل القنصل&#xA;لا تتخطّط، استعمل أي لغة قد وضعت بالفعل على البرمجيات هذا هو السلوك التراجعي إذا كان المحاكاة DS (أو DSi NAND) لا يدعم لغة الجبهة.&#xA;&#xA;ليس كل لعبة تشرف هذا المكان التغييرات ستبدأ في المرحلة التالية.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.auto"><value>الاستخدام المضيف</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.en"><value>الإنكليزية</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.ja"><value>اليابان</value></data>
@@ -776,13 +749,7 @@ Toggle: Button enables mic input when pressed, disables it when Pressed again.
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.es"><value>الإسبانية</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.default"><value>لا تتخطى</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username"><value>المستعمل</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>يبطل اسم المستخدم المعطى للقنصل المعزوم.
-
-لا تتخطّط، تستخدم أي اسم يُعرّف على البرمجيات.
-حاول الحصول على اسم مستعارك من المقدمة إذا فشل ذلك، جرب المتغيرات البيئية في نظام USER, USERNAME وLOGNAME.
-melonDS DS: Uses "melonDS DS. هذا هو التقصير إذا لم يعمل شيء آخر.
-
-الاسماء تحطمت لعشرة شخصيات التغييرات ستبدأ في المرحلة التالية.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>يبطل اسم المستخدم المعطى للقنصل المعزوم.&#xA;&#xA;لا تتخطّط، تستخدم أي اسم يُعرّف على البرمجيات.&#xA;حاول الحصول على اسم مستعارك من المقدمة إذا فشل ذلك، جرب المتغيرات البيئية في نظام USER, USERNAME وLOGNAME.&#xA;melonDS DS: Uses "melonDS DS. هذا هو التقصير إذا لم يعمل شيء آخر.&#xA;&#xA;الاسماء تحطمت لعشرة شخصيات التغييرات ستبدأ في المرحلة التالية.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.guess_username"><value>خمن</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.existing_username"><value>لا تتخطى</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color"><value>الكولور المفضل</value></data>
@@ -834,12 +801,7 @@ melonDS DS: Uses "melonDS DS. هذا هو التقصير إذا لم يعمل ش
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>دقيقة الانذار المكسور التغييرات ستبدأ في المرحلة التالية.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Value.default"><value>لا تتخطى</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode"><value>طريقة الربط الشبكي</value></data>
-  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>يُقنّدُ كَمْ melonDS DS emulates Nintendo WFC. إذا لم يكن آمناً، استخدم أسلوب غير مباشر.
-
-غير مباشر، استخدمي العيار لتحفيز كومة شبكة DS بسيطة ولا تحتاج إلى تجهيز.
-حوّلت حزمة (واي فاي) إلى واجهة شبكة المستضيف أسرع وأكثر موثوقية، ولكن يتطلب اتصالاً بشبكة الإثيرات وتركيب (وينبكاب) أو (نباك) إذا لم يكن متاحاً، يتراجع إلى أسلوب غير مباشر.
-
-التغييرات ستبدأ في المرحلة التالية. ليس متصلاً باللاعبين المحليين</value></data>
+  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>يُقنّدُ كَمْ melonDS DS emulates Nintendo WFC. إذا لم يكن آمناً، استخدم أسلوب غير مباشر.&#xA;&#xA;غير مباشر، استخدمي العيار لتحفيز كومة شبكة DS بسيطة ولا تحتاج إلى تجهيز.&#xA;حوّلت حزمة (واي فاي) إلى واجهة شبكة المستضيف أسرع وأكثر موثوقية، ولكن يتطلب اتصالاً بشبكة الإثيرات وتركيب (وينبكاب) أو (نباك) إذا لم يكن متاحاً، يتراجع إلى أسلوب غير مباشر.&#xA;&#xA;التغييرات ستبدأ في المرحلة التالية. ليس متصلاً باللاعبين المحليين</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.indirect"><value>غير مباشر</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.direct"><value>مباشرة</value></data>
@@ -847,9 +809,7 @@ melonDS DS: Uses "melonDS DS. هذا هو التقصير إذا لم يعمل ش
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>اختيار واجهة شبكية لاستخدامها مع أسلوب مباشر. إن لم يكن آمناً، إتجهوا إلى (أوتوماتيك) التغييرات تُصبحُ نافذةَ في المرحلةِ الأساسيةِ القادمةِ.</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Value.auto"><value>تلقائي</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode"><value>الشبكة MAC Address Mode</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>يُقنعُ كَمْ a عنوان مؤهّلِ Conole MAC حُدِّدَ. ومن شأن تغيير هذا الخيار أن يجعل من المستحيل على اللاعبين المتعددي الأطراف المحليين أو يحول دون الوصول إلى الملفات في الألعاب التي تستخدم عنوان MAC لمنع تلاعب ملفات الادخار (أي. Pokémon.
-لا علاقة للوصلة البينية المباشرة التغييرات ستبدأ في المرحلة التالية.
-See https://bit.ly/4fJtWKN للمزيد من المعلومات.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>يُقنعُ كَمْ a عنوان مؤهّلِ Conole MAC حُدِّدَ. ومن شأن تغيير هذا الخيار أن يجعل من المستحيل على اللاعبين المتعددي الأطراف المحليين أو يحول دون الوصول إلى الملفات في الألعاب التي تستخدم عنوان MAC لمنع تلاعب ملفات الادخار (أي. Pokémon.&#xA;لا علاقة للوصلة البينية المباشرة التغييرات ستبدأ في المرحلة التالية.&#xA;See https://bit.ly/4fJtWKN للمزيد من المعلومات.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.firmware"><value>مجموعة من البرمجيات</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.from-username"><value>Derive from libretroname</value></data>
   <data name="Emulation.Option.melondsds.melonds_show_unsupported_features"><value>تحذير بشأن المعالم غير المدعومة</value></data>
@@ -902,13 +862,7 @@ See https://bit.ly/4fJtWKN للمزيد من المعلومات.</value></data>
   <data name="Emulation.Option.melondsds.melonds_cursor_timeout.Value.30"><value>30 ثانية</value></data>
   <data name="Emulation.Option.melondsds.melonds_cursor_timeout.Value.60"><value>60 ثانية</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode"><value>مس مود</value></data>
-  <data name="Emulation.Option.melondsds.melonds_touch_mode.Help"><value>يحدد كيف أن الشاشة اللمسية للكونسول محاكاة.
-
-إستخدمي مقياس الفرح للسيطرة على الستار موصى به إذا لم يكن لديك فأر أو شاشة اللمس الحقيقية متاحة.
-إستخدمي شاشتكِ الفأرية أو اللمسة للسيطرة على الضمادات
-استعمل إما (جويستيك) أو (بوينتر)، اعتماداً على آخر ما لمسته.
-
-إذا لم يكن آمناً، إتجهوا إلى (أوت).</value></data>
+  <data name="Emulation.Option.melondsds.melonds_touch_mode.Help"><value>يحدد كيف أن الشاشة اللمسية للكونسول محاكاة.&#xA;&#xA;إستخدمي مقياس الفرح للسيطرة على الستار موصى به إذا لم يكن لديك فأر أو شاشة اللمس الحقيقية متاحة.&#xA;إستخدمي شاشتكِ الفأرية أو اللمسة للسيطرة على الضمادات&#xA;استعمل إما (جويستيك) أو (بوينتر)، اعتماداً على آخر ما لمسته.&#xA;&#xA;إذا لم يكن آمناً، إتجهوا إلى (أوت).</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.joystick"><value>مرحى</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.touch"><value>بوينتر</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.auto"><value>تلقائي</value></data>
@@ -917,9 +871,7 @@ See https://bit.ly/4fJtWKN للمزيد من المعلومات.</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_maxspeed"><value>جوستيك كورسور ماكس سبيد</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_maxspeed.Help"><value>جهز السرعة القصوى من أجل موكب المتعة</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response"><value>الاستجابة للكورات الفارغة</value></data>
-  <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Help"><value>جهزي منحنى الإستجابة من أجل موكب الفرح
-الخط هو منحنى استجابة حيث سرعة الضمادات هي 1:1 مع مدخل البهجة.
-(كودراتيك) هو منحنى للرد يقلل من الحساسية بالقرب من مركز حشرة الفرح للسيطرة على أفضل، لكن يزيد الحساسيه قرب الحواف</value></data>
+  <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Help"><value>جهزي منحنى الإستجابة من أجل موكب الفرح&#xA;الخط هو منحنى استجابة حيث سرعة الضمادات هي 1:1 مع مدخل البهجة.&#xA;(كودراتيك) هو منحنى للرد يقلل من الحساسية بالقرب من مركز حشرة الفرح للسيطرة على أفضل، لكن يزيد الحساسيه قرب الحواف</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Value.100"><value>Linear</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Value.200"><value>Quadratic</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_speedup"><value>مضاعفات جوستيك كورس</value></data>
@@ -931,11 +883,7 @@ See https://bit.ly/4fJtWKN للمزيد من المعلومات.</value></data>
   <data name="Emulation.Option.melondsds.melonds_hybrid_small_screen.Value.one"><value>نعرض فيلم "أوبوز" للخمر</value></data>
   <data name="Emulation.Option.melondsds.melonds_hybrid_small_screen.Value.both"><value>اظهروا كلا الـ"سكرينس"</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering"><value>التصوير الهجين/المتفجرات</value></data>
-  <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Help"><value>ويؤثر على كيفية توسيع نطاق الشاشة الهجينية/الرقيقة.
-
-أقرب: لا تصفية الجرافات تبدو مكتظة
-تصعيد نسل.
-</value></data>
+  <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Help"><value>ويؤثر على كيفية توسيع نطاق الشاشة الهجينية/الرقيقة.&#xA;&#xA;أقرب: لا تصفية الجرافات تبدو مكتظة&#xA;تصعيد نسل.&#xA;</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Value.nearest"><value>أقرب</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Value.linear"><value>Linear</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_gap"><value>غابة سكرين</value></data>
@@ -944,11 +892,7 @@ See https://bit.ly/4fJtWKN للمزيد من المعلومات.</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_scale"><value>سكالين ثانوي</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_scale.Help"><value>حجم الشاشة الثانوية مقارنة بالشاشة الأولية. ينطبق على المخططات العمودية (Top/Bottom, Bottom/Top). بنسبة 100%، الشاشتان هما نفس الحجم بنسبة 50%، الشاشة الثانوية هي نصف عرض وطول الشاشات الأولية.</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering"><value>التصوير الثانوي</value></data>
-  <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Help"><value>يؤثر على كيفية تخفيض الشاشة الثانوية.
-
-أقرب: لا تصفية الجرافات تبدو مكتظة
-تصعيد نسل. موصى به عند استخدام سكرين ثانوي أقل من 100٪.
-</value></data>
+  <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Help"><value>يؤثر على كيفية تخفيض الشاشة الثانوية.&#xA;&#xA;أقرب: لا تصفية الجرافات تبدو مكتظة&#xA;تصعيد نسل. موصى به عند استخدام سكرين ثانوي أقل من 100٪.&#xA;</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Value.nearest"><value>أقرب</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Value.linear"><value>Linear</value></data>
   <data name="Emulation.Option.melondsds.melonds_number_of_screen_layouts"><value># من العيون السترين</value></data>
@@ -1098,70 +1042,25 @@ See https://bit.ly/4fJtWKN للمزيد من المعلومات.</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-right"><value>الحق المتناوب</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-180"><value>في الأعلى</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode"><value>كونسول مودي</value></data>
-  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>(ب) ما إذا كان ينبغي فرض مبلغ Nintendo DS أو Nintendo DSi.
-
-تستخدم السيارات DSi طريقة للألعاب التي تحتاج إلى DSi، و DS نمط لكل شيء آخر. The DS and DSi settings force the corresponding console; this is mostly useful for homebrew development.
-
-DSi نمط له بعض الحدود:
-
-- لا بد من توفير ملفات للملفات الأصلية رقم BIOS/firmware/NAND، بما في ذلك الملفات الخاصة بالرقم العادي DS.
-- بعض الملامح (مثل الادخار) غير متاحة في نمط DSi.
-
-انظر الخيارات الخاصة بـ دي سي في هذه الفئة للحصول على مزيد من المعلومات. إذا لم يكن آمناً، إستعمل "أوتو". التغييرات ستبدأ في الراحه القادمه</value></data>
+  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>(ب) ما إذا كان ينبغي فرض مبلغ Nintendo DS أو Nintendo DSi.&#xA;&#xA;تستخدم السيارات DSi طريقة للألعاب التي تحتاج إلى DSi، و DS نمط لكل شيء آخر. The DS and DSi settings force the corresponding console; this is mostly useful for homebrew development.&#xA;&#xA;DSi نمط له بعض الحدود:&#xA;&#xA;- لا بد من توفير ملفات للملفات الأصلية رقم BIOS/firmware/NAND، بما في ذلك الملفات الخاصة بالرقم العادي DS.&#xA;- بعض الملامح (مثل الادخار) غير متاحة في نمط DSi.&#xA;&#xA;انظر الخيارات الخاصة بـ دي سي في هذه الفئة للحصول على مزيد من المعلومات. إذا لم يكن آمناً، إستعمل "أوتو". التغييرات ستبدأ في الراحه القادمه</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.auto"><value>تلقائي</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.dsi"><value>DSi (experperimental)</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode"><value>BIOS/Firmware Mode (DS Mode)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>يقرر ما إذا كان melonDS يستخدم مدافن النفايات المنزلية التي تستخدمها شركة BIOS/firmware، أو استبدالها. Only applies to DS mode, as DSi method always requires native BIOS and firmware dumps.
-
-Native mode uses BIOS and firmware files from a real DS. ضعوا مدافنكم من هذه في دليل النظام أو توجيهها الفرعي "melonDS DS" واسميوها كما يلي:
-
-- DS BIOS: bios7.bin, bios9.bin
-- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin
-انظر خيارات "DS Firmware" و (DSi Firmoware)
-- DSi NAND: See the "DSi NAND "خيار.
-
-تتراجع إلى البناء إن لم يعثر على أي ملف من ملفات العلاج رقم BIOS/
-
-طريقة البناء تستخدم melonDS بنيت في BIOS
-
-التغييرات ستبدأ في المرحلة التالية.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>يقرر ما إذا كان melonDS يستخدم مدافن النفايات المنزلية التي تستخدمها شركة BIOS/firmware، أو استبدالها. Only applies to DS mode, as DSi method always requires native BIOS and firmware dumps.&#xA;&#xA;Native mode uses BIOS and firmware files from a real DS. ضعوا مدافنكم من هذه في دليل النظام أو توجيهها الفرعي "melonDS DS" واسميوها كما يلي:&#xA;&#xA;- DS BIOS: bios7.bin, bios9.bin&#xA;- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin&#xA;انظر خيارات "DS Firmware" و (DSi Firmoware)&#xA;- DSi NAND: See the "DSi NAND "خيار.&#xA;&#xA;تتراجع إلى البناء إن لم يعثر على أي ملف من ملفات العلاج رقم BIOS/&#xA;&#xA;طريقة البناء تستخدم melonDS بنيت في BIOS&#xA;&#xA;التغييرات ستبدأ في المرحلة التالية.</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.native"><value>Native</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.builtin"><value>Built-In</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path"><value>DS البرمجيات</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>اختيار صورة برمجية ثابتة لاستخدامها في DS. الملفات مدرجة هنا إذا كانت:
-
-- هل داخل دليل نظام الجبهة، أو توجيه فرعي اسمه "melonDS DS".
-- يبلغ بالضبط 072 131 بوصة (128KB)، و144 262 بوصة (256KB) أو 288 524 بوصات طويلة (19512KB).
-- يحتوي على بيانات صحيحة عن رئيس شركة DS.
-
-Nintendo WFC IDs are Save to firmware, so shifting firmwaer images may result in the loss of some WFC data. Ignored in DSi mode or if BIOS/Firmware Mode is Built-In. التغييرات ستبدأ في المرحلة التالية.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>اختيار صورة برمجية ثابتة لاستخدامها في DS. الملفات مدرجة هنا إذا كانت:&#xA;&#xA;- هل داخل دليل نظام الجبهة، أو توجيه فرعي اسمه "melonDS DS".&#xA;- يبلغ بالضبط 072 131 بوصة (128KB)، و144 262 بوصة (256KB) أو 288 524 بوصات طويلة (19512KB).&#xA;- يحتوي على بيانات صحيحة عن رئيس شركة DS.&#xA;&#xA;Nintendo WFC IDs are Save to firmware, so shifting firmwaer images may result in the loss of some WFC data. Ignored in DSi mode or if BIOS/Firmware Mode is Built-In. التغييرات ستبدأ في المرحلة التالية.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Value./notfound"><value>لم يعثر على أحد...</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path"><value>DSi البرمجيات</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>اختيار صورة برمجية ثابتة لاستخدامها في DSi. الملفات مدرجة هنا إذا كانت:
-
-- هل داخل دليل نظام الجبهة، أو توجيه فرعي اسمه "melonDS DS".
-- يبلغ بالضبط 072 131 بوصة (128KB)، و144 262 بوصة (256KB) أو 288 524 بوصات طويلة (19512KB).
-- احتواء البيانات الصحيحة لـ DSi شركة.
-
-Nintendo WFC IDs are Save to firmware, so shifting firmwaer images may result in the loss of some WFC data. التغييرات ستبدأ في المرحلة التالية.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>اختيار صورة برمجية ثابتة لاستخدامها في DSi. الملفات مدرجة هنا إذا كانت:&#xA;&#xA;- هل داخل دليل نظام الجبهة، أو توجيه فرعي اسمه "melonDS DS".&#xA;- يبلغ بالضبط 072 131 بوصة (128KB)، و144 262 بوصة (256KB) أو 288 524 بوصات طويلة (19512KB).&#xA;- احتواء البيانات الصحيحة لـ DSi شركة.&#xA;&#xA;Nintendo WFC IDs are Save to firmware, so shifting firmwaer images may result in the loss of some WFC data. التغييرات ستبدأ في المرحلة التالية.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Value./notfound"><value>لم يعثر على أحد...</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path"><value>DSi NAND Path</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Select a DSi NAND image to use. مطلوب عند استخدام DSi. الملفات مدرجة هنا إذا كانت:
-
-- هل داخل دليل نظام الجبهة، أو توجيه فرعي اسمه "melonDS DS".
-- هل يوجد بالضبط 304 658 251 بوصة (240MB) أو 472 425 257 بوصة (245.5MB)، لمدة طويلة مع بيانات أقدام صالحة، OR؛
-- هل 64 بوصة أقصر من هذه الطول وتحتوي على بيانات معادلة في ملف مقابل 0xFF800.
-
-إستعدْ إلى "أوتو" لتَرْك النواةِ a NAND صورة التي منطقتُ مطابقاً DSiWare المحمل ROM. التغييرات ستبدأ في المرحلة التالية.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Select a DSi NAND image to use. مطلوب عند استخدام DSi. الملفات مدرجة هنا إذا كانت:&#xA;&#xA;- هل داخل دليل نظام الجبهة، أو توجيه فرعي اسمه "melonDS DS".&#xA;- هل يوجد بالضبط 304 658 251 بوصة (240MB) أو 472 425 257 بوصة (245.5MB)، لمدة طويلة مع بيانات أقدام صالحة، OR؛&#xA;- هل 64 بوصة أقصر من هذه الطول وتحتوي على بيانات معادلة في ملف مقابل 0xFF800.&#xA;&#xA;إستعدْ إلى "أوتو" لتَرْك النواةِ a NAND صورة التي منطقتُ مطابقاً DSiWare المحمل ROM. التغييرات ستبدأ في المرحلة التالية.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./auto"><value>أوتوماتيكي (منطقة ماتش ROM)</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./notfound"><value>لم يعثر على أحد...</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode"><value>Pot Mode</value></data>
-  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>يحدد كيف ألعاب الأحذية melonDS.
-
-Native: Load games through the system menu, similar to the real DS/DSi عملية الأحذية. (ب) يتطلب ملفات محلية من طراز BIOS وملفات برمجيات في دليل النظام.
-اربط قائمة النظام واذهب مباشرة للمباراة Supported for DSiWare if native DSi system files are available.
-
-إغفال إذا كان محشواً بدون لعبة (إكراه السكان الأصليين) أو إذا ما استخدموا البناية في BIOS/Firmware (Direct is forced). التغييرات ستبدأ في المرحلة التالية.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>يحدد كيف ألعاب الأحذية melonDS.&#xA;&#xA;Native: Load games through the system menu, similar to the real DS/DSi عملية الأحذية. (ب) يتطلب ملفات محلية من طراز BIOS وملفات برمجيات في دليل النظام.&#xA;اربط قائمة النظام واذهب مباشرة للمباراة Supported for DSiWare if native DSi system files are available.&#xA;&#xA;إغفال إذا كان محشواً بدون لعبة (إكراه السكان الأصليين) أو إذا ما استخدموا البناية في BIOS/Firmware (Direct is forced). التغييرات ستبدأ في المرحلة التالية.</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.direct"><value>مباشرة</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.native"><value>Native</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard"><value>Virtual SD Card (DSi)</value></data>
@@ -1204,8 +1103,7 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.melondsds.melonds_ds_battery_ok_threshold.Value.0"><value>دائما OK</value></data>
   <data name="Emulation.Option.melondsds.melonds_ds_battery_ok_threshold.Value.100"><value>دائماً</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device"><value>جهاز Slot-2</value></data>
-  <data name="Emulation.Option.melondsds.melonds_slot2_device.Help"><value>الميزان الذي سيدخل في سلة المؤامرة الثانية Ignored in DSi mode, or if a GBA ROM is explicitly loaded. If a GBA ROM for any game in the Boktai trilogy is inserted, the corresponding Solar Sensor setting will be forced. مدعمة NDS ألعاب، كل عربة بوكتاي ستكون لها آثار مختلفة. الـ(موريس باكس) قرأ جهازك (و جروسكوبه من أجل الصخرة المنوية) إذا كانت الجبهة تدعمهم، وإلا فإنهم يتصرفون كما لو أن القنصل يرقد مسطحاً ولا يزال. 
-التغييرات ستبدأ في البداية الرئيسية القادمة</value></data>
+  <data name="Emulation.Option.melondsds.melonds_slot2_device.Help"><value>الميزان الذي سيدخل في سلة المؤامرة الثانية Ignored in DSi mode, or if a GBA ROM is explicitly loaded. If a GBA ROM for any game in the Boktai trilogy is inserted, the corresponding Solar Sensor setting will be forced. مدعمة NDS ألعاب، كل عربة بوكتاي ستكون لها آثار مختلفة. الـ(موريس باكس) قرأ جهازك (و جروسكوبه من أجل الصخرة المنوية) إذا كانت الجبهة تدعمهم، وإلا فإنهم يتصرفون كما لو أن القنصل يرقد مسطحاً ولا يزال. &#xA;التغييرات ستبدأ في البداية الرئيسية القادمة</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.auto"><value>تلقائي</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.rumble-pak"><value>Rimp Pak</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.expansion-pak"><value>توسيع الذاكرة</value></data>
@@ -1215,36 +1113,19 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.motion-pak-homebrew"><value>Motion Pak (Homebrew)</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.motion-pak-retail"><value>حزمة الحركة (التجزئة)</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_intensity"><value>الكثافة العائمة</value></data>
-  <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Help"><value>ما مدى صعوبة (رامبل باك) في قيادة محركات المتحكمين (رامبل باك) المُخنث ليس لديه سيطرة على حجمه لذا هذا يُقيس ما تطلبه اللعبة
-
-تم إشعالها مالم تُعدّ (سلوت-2 ديفس) لـ(رامبل باك).</value></data>
+  <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Help"><value>ما مدى صعوبة (رامبل باك) في قيادة محركات المتحكمين (رامبل باك) المُخنث ليس لديه سيطرة على حجمه لذا هذا يُقيس ما تطلبه اللعبة&#xA;&#xA;تم إشعالها مالم تُعدّ (سلوت-2 ديفس) لـ(رامبل باك).</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Value.0"><value>المعوقين</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type"><value>المروحية</value></data>
-  <data name="Emulation.Option.melondsds.melonds_rumble_type.Help"><value>الذي من محركات جهاز التحكم الخاص بك "رامبل باك" معظم المتحكمين يرتدون محرك ثقيل مع أخف واحد، الذي يشعر أنه أقرب إلى (رامبل باك) الحقيقي يعتمد على المسيطر.
-
-تم إشعالها مالم تُعدّ (سلوت-2 ديفس) لـ(رامبل باك).</value></data>
+  <data name="Emulation.Option.melondsds.melonds_rumble_type.Help"><value>الذي من محركات جهاز التحكم الخاص بك "رامبل باك" معظم المتحكمين يرتدون محرك ثقيل مع أخف واحد، الذي يشعر أنه أقرب إلى (رامبل باك) الحقيقي يعتمد على المسيطر.&#xA;&#xA;تم إشعالها مالم تُعدّ (سلوت-2 ديفس) لـ(رامبل باك).</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.both"><value>كلاهما</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.strong"><value>قوي فقط</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.weak"><value>ضعيف فقط</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor"><value>استخدام جهاز الاستشعار الخفيف المضيف</value></data>
-  <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Help"><value>إذا مُكّنت، مدخلات جهاز الإستشعار الشمسي المحتوية سوف تأتي من جهاز الاستشعار الحقيقي لو سمحت. وإذا توافرت أجهزة استشعار معاقة أو غير مجهزة، يمكن السيطرة يدويا على جهاز الاستشعار المحتوي بالزرار التالي:
-
-- L+A+Up or L+A +Down
-- اختيار ما بعد الاستخدام أو الاختيار + الدون
-- عجلة الفأر الخاصة بك
-
-تم إشعالها ما لم يتم تعيين (سلوت-2 ديفس) لـ(سولار سينور)، أو إذا كان ROM لأي لعبة في ثلاثية بوكتاي (أي منطقة) إذا لم يكن آمناً، إرحلوا مُمكن.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Help"><value>إذا مُكّنت، مدخلات جهاز الإستشعار الشمسي المحتوية سوف تأتي من جهاز الاستشعار الحقيقي لو سمحت. وإذا توافرت أجهزة استشعار معاقة أو غير مجهزة، يمكن السيطرة يدويا على جهاز الاستشعار المحتوي بالزرار التالي:&#xA;&#xA;- L+A+Up or L+A +Down&#xA;- اختيار ما بعد الاستخدام أو الاختيار + الدون&#xA;- عجلة الفأر الخاصة بك&#xA;&#xA;تم إشعالها ما لم يتم تعيين (سلوت-2 ديفس) لـ(سولار سينور)، أو إذا كان ROM لأي لعبة في ثلاثية بوكتاي (أي منطقة) إذا لم يكن آمناً، إرحلوا مُمكن.</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.enabled"><value>التمكين</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode"><value>أسلوب الزمن</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>الوقت الأوّلي لساعة (كونول) الداخلية
-
-ابدأ بمزامنة ساعة جهازك
-تزامن الساعة مع ساعة جهازك قد يسبب سلوكاً غير متوقع في بعض الألعاب عندما تعود أو تسرع
-ابدأ بمزامنة ساعة جهازك زائداً أو أقل من معادلة محددة سيتم تقييدها لتواريخ يمكن أن يمثلها DS.
-ابدأ في موعد و وقت محدد بغض النظر عن ساعة جهازك
-
-كل التواريخ والزمن في زمانك المحلي التغييرات ستبدأ في المرحلة التالية.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>الوقت الأوّلي لساعة (كونول) الداخلية&#xA;&#xA;ابدأ بمزامنة ساعة جهازك&#xA;تزامن الساعة مع ساعة جهازك قد يسبب سلوكاً غير متوقع في بعض الألعاب عندما تعود أو تسرع&#xA;ابدأ بمزامنة ساعة جهازك زائداً أو أقل من معادلة محددة سيتم تقييدها لتواريخ يمكن أن يمثلها DS.&#xA;ابدأ في موعد و وقت محدد بغض النظر عن ساعة جهازك&#xA;&#xA;كل التواريخ والزمن في زمانك المحلي التغييرات ستبدأ في المرحلة التالية.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.real"><value>حقيقية</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.sync"><value>متزامنة</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.relative"><value>النسبي</value></data>
@@ -1532,10 +1413,7 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second"><value>البداية الثانية</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>الثانية الأولى التي ستستخدمها عندما تكون طريقة بدء الزمن غير مقصودة التغييرات ستبدأ في المرحلة التالية.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode"><value>أسلوب الرند</value></data>
-  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>البرمجيات أسرع وأكثر دقة. يمكن لـ (إف بي جي إل) أن يضخم رسومات ثلاثية الأبعاد، لكن بعض الألعاب لا تصحح.
-الـ "إف بي جي إل" دقيق و يدعم التصعيد، لكن لن يعمل على بعض الأجهزة القديمة. التحول إلى ذلك يستغرق بضع ثوان لتجميع مظلاتها.
-
-يتراجع إلى البرمجيات التي تصدر إذا لم يكن من الممكن استخدام "إف بي جي إل" التغييرات تُنفذ على الفور لكن قد تتطلب إعادة تشغيل سائق الفيديو الخاص بالواجهة</value></data>
+  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>البرمجيات أسرع وأكثر دقة. يمكن لـ (إف بي جي إل) أن يضخم رسومات ثلاثية الأبعاد، لكن بعض الألعاب لا تصحح.&#xA;الـ "إف بي جي إل" دقيق و يدعم التصعيد، لكن لن يعمل على بعض الأجهزة القديمة. التحول إلى ذلك يستغرق بضع ثوان لتجميع مظلاتها.&#xA;&#xA;يتراجع إلى البرمجيات التي تصدر إذا لم يكن من الممكن استخدام "إف بي جي إل" التغييرات تُنفذ على الفور لكن قد تتطلب إعادة تشغيل سائق الفيديو الخاص بالواجهة</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.software"><value>البرمجيات</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.opengl"><value>OpenGL (Clasic)</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.compute"><value>OpenGL (Comput)</value></data>
@@ -1562,8 +1440,6 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.melondsds.melonds_threaded_renderer.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.melondsds.melonds_threaded_renderer.Value.enabled"><value>التمكين</value></data>
   <data name="Emulation.Firmware.melondsds.Slot0"><value>NDS البرمجيات</value></data>
-  
-  
   <data name="Emulation.Firmware.melondsds.Slot3"><value>DSi البرمجيات</value></data>
   <data name="Emulation.Firmware.melondsds.Slot4"><value>DSi ARM7 BIOS</value></data>
   <data name="Emulation.Firmware.melondsds.Slot5"><value>DSi ARM9 BIOS</value></data>
@@ -1664,8 +1540,6 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.noods.noods_micButtonMode.Value.Hold"><value>عقد</value></data>
   <data name="Emulation.Option.noods.noods_micButtonMode.Value.Always"><value>دائماً</value></data>
   <data name="Emulation.Firmware.noods.Slot0"><value>NDS البرمجيات</value></data>
-  
-  
   <data name="Emulation.Firmware.noods.Slot3"><value>Game Boy Advance BIOS</value></data>
   <data name="Emulation.Firmware.noods.Slot4"><value>NDS بطاقة SD</value></data>
   <data name="Emulation.Emulator.skyemu.Description"><value>:: فرض نظم متوافقة قوامها Nintendo مع SkyEmu.</value></data>
@@ -1678,21 +1552,13 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.skyemu.system_gba_bios_enable.Help"><value>Game Boy Advance Firmware Enabled</value></data>
   <data name="Emulation.Option.skyemu.system_nds_bios_enable"><value>Nintendo DS</value></data>
   <data name="Emulation.Option.skyemu.system_nds_bios_enable.Help"><value>Nintendo DS Firmware Enabled</value></data>
-  
-  
-  
-  
-  
-  
   <data name="Emulation.Firmware.skyemu.Slot6"><value>GBA BIOS</value></data>
-  
-  
   <data name="Emulation.Firmware.skyemu.Slot9"><value>NDS FIRMWARE</value></data>
   <data name="Emulation.Emulator.fceumm.Description"><value>:: فرض نظم متوافقة قوامها Nintendo مع FCEUmm.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region"><value>المنطقة</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region.Help"><value>Force core to use NTSC, PAL or Dendy region timings.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region.Value.Auto"><value>تلقائي</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_game_genie"><value>(المطلوب ريستارت)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_game_genie"><value></value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Help"><value>محاكاة مُمكنة لخراطيش لعبة جينى إضافية تسمح بدخول رموز غش عند إطلاق الالعاب ملف "اللعبة جينى ROM" gamegenie.nes يجب أن يكون حاضراً في دليل نظام الواجهة لا ينطبق على FDS أو محتوى العقد.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Value.enabled"><value>التمكين</value></data>
@@ -1894,7 +1760,7 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.2x-Postrender"><value>2x-Postrender</value></data>
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.2x-VBlank"><value>2x-VBlank</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_ramstate"><value>RAM Power-On Fill (Restart Required)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_ramstate"><value>RAM Power-On Fill</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ramstate.Help"><value>RAM قيم على الطاقة وتعتمد بعض المباريات على القيم الأولية البالغة RAM لتوليد عدد عشوائي كمثال.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ramstate.Value.random"><value>الرشوة</value></data>
   <data name="Emulation.Firmware.fceumm.Slot0"><value>نظام القرص الحاسوبي للأسرة BIOS</value></data>
@@ -2092,9 +1958,7 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.mesen2.mesen_snes_high_res_blend_mode.Value.Blend Even/Odd"><value>Blend Even/O</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode"><value>(فيديو) SNES Deinterlace Mode</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Help"><value>Select the SNES deinterlace mode</value></data>
-  <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Weave"><value>Weave</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Bob Blend"><value>بوب بليند</value></data>
-  <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Bob"><value>بوب</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Current Field"><value>الميدان الحالي</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_hide_bg_layer_1"><value>التحسينات - SNES Hide BG Layer 1</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_hide_bg_layer_1.Help"><value>اخفاء طبقة خلفية من SNES</value></data>
@@ -2150,125 +2014,6 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders"><value>(فيديو) Game Boy اختبئ SGB الحدود</value></data>
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders.Help"><value>Hide Super Game Boy borders</value></data>
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders.Value.disabled"><value>المعوقين</value></data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed"><value>Input - observer Turbo Speed</value></data>
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed.Help"><value>سرعة زر توربو</value></data>
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed.Value.Fast"><value>بسرعة</value></data>
@@ -2499,14 +2244,7 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Firmware.rustynes.Slot0"><value>نظام القرص الحاسوبي للأسرة BIOS</value></data>
   <data name="Emulation.Emulator.doublecherrygb.Description"><value>:: فرض نظم متوافقة قوامها Nintendo مع DoubleCherryGB.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA"><value>Detect as Played on Game Boy Advance</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Help"><value>وتوفر زهاء Game Boy Color ملامح معزّزة عندما تُلعب على متن Game Boy Advance.
-
-ألعاب محسنة معروفة من نوع GBA:
-   - شانتي
-   -كل ساحرة
-   - زيلدا: أوراكل العصور/البحارة
-   - Medarot 5
-   - Mega Man Extreme 2</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Help"><value>وتوفر زهاء Game Boy Color ملامح معزّزة عندما تُلعب على متن Game Boy Advance.&#xA;&#xA;ألعاب محسنة معروفة من نوع GBA:&#xA;   - شانتي&#xA;   -كل ساحرة&#xA;   - زيلدا: أوراكل العصور/البحارة&#xA;   - Medarot 5&#xA;   - Mega Man Extreme 2</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Value.0"><value>المعوقين</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_rtc_use_system_clock"><value>التوقيت الحقيقي موك</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_rtc_use_system_clock.Help"><value>يتحكم في كيفية قطيع الزمن الحقيقيRTC"التوقيت الحقيقي" يستخدم ساعة جهازك المضيف (المقاومة بسرعة، الوقت يمر بينما الموصل مغلق." CPU دورات.</value></data>
@@ -2571,11 +2309,7 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss"><value>GBC LCD</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss.Help"><value>يُعدل كثافة التأثير المتقاطع. أبقي هذه القيمة منخفضة عندما لا تستخدم الظل. ويوصى بقيم أعلى عندما يقترن ذلك بمظلة تجعل الأثر واضحا.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation"><value>GBC LCD RGB Subpixel Scale Factor</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>يُقَيّزُ الضماداتَ الفيزيائيةِ GBC عن طريق التصعيد واستبدال كل لون بيكسيل بمكوّنات RGB المناظرة.
-
-لأفضل النتائج:
--مُمكنة ''إنتيجر سكينينغ' في ريترو آرتش (سيتينجز)
-- قد يتطلب الأمر إعادة تشغيل أساسية بعد تغيير هذا الإطار.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>يُقَيّزُ الضماداتَ الفيزيائيةِ GBC عن طريق التصعيد واستبدال كل لون بيكسيل بمكوّنات RGB المناظرة.&#xA;&#xA;لأفضل النتائج:&#xA;-مُمكنة ''إنتيجر سكينينغ' في ريترو آرتش (سيتينجز)&#xA;- قد يتطلب الأمر إعادة تشغيل أساسية بعد تغيير هذا الإطار.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Value.1"><value>المعوقين</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur"><value>GBC LCD Blur</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur.Help"><value>يُطبّقُ a تأثير ضبابي عرضِ. This setting is highly CPU- intensive. أطفأه على الأجهزة الأضعف أو أستخدم الظل بدلاً من ذلك</value></data>
@@ -2681,20 +2415,10 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.doublecherrygb.dcgb_cocktailtable_mode.Value.1"><value>العمود الفقري</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_cocktailtable_mode.Value.2"><value>أفقية</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled"><value>محاكاة متحركة من طراز GB</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Help"><value>محاكاة المحركات اليابانية للمبارزة GB.
-
-العناوين المؤيدة:
-   - Pokemon Crystal (اليابان أو أجهزة تكييف متنقلة)
-   - Game Boy حروب 3
-   -مرحباً (كيتي هاوس )
-   - غولف متنقل
-   - مدرب متنقلة
-   - Net de get</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Help"><value>محاكاة المحركات اليابانية للمبارزة GB.&#xA;&#xA;العناوين المؤيدة:&#xA;   - Pokemon Crystal (اليابان أو أجهزة تكييف متنقلة)&#xA;   - Game Boy حروب 3&#xA;   -مرحباً (كيتي هاوس )&#xA;   - غولف متنقل&#xA;   - مدرب متنقلة&#xA;   - Net de get</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Value.0"><value>المعوقين</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber"><value>اظهر رقم هاتفك في البداية</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Help"><value>يظهر رقم هاتفك P2P في البداية 
-
-بدون خادم نقل هذا يكشف عنوانك العام IP فقط نتشارك هذا مع مستعملين موثوق بهم</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Help"><value>يظهر رقم هاتفك P2P في البداية &#xA;&#xA;بدون خادم نقل هذا يكشف عنوانك العام IP فقط نتشارك هذا مع مستعملين موثوق بهم</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Value.0"><value>المعوقين</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color"><value>موبايل أباكتر GB Device Color</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Help"><value>يُعدّ لون قذيفة التجميل لأداة (موبيل) المحاكاة.</value></data>
@@ -2703,34 +2427,24 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Value.10"><value>الأخضر</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Value.11"><value>أحمر</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip"><value>DNS سيرفر IP</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Help"><value>الخوادم الرسمية Nintendo خارج الشبكة. يمكنك أن تستضيف بديلاً للبنية التحتية بنفسك، مستخدماً أكياس تقليدية مثل REON: https://github.com/REONTeam/reon.
-
-لتشكيل العادم حرر mobile_adapter_gb_custom_server_config.ini في ملف نظم إعادة البحث الخاصة بك.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Help"><value>الخوادم الرسمية Nintendo خارج الشبكة. يمكنك أن تستضيف بديلاً للبنية التحتية بنفسك، مستخدماً أكياس تقليدية مثل REON: https://github.com/REONTeam/reon.&#xA;&#xA;لتشكيل العادم حرر mobile_adapter_gb_custom_server_config.ini في ملف نظم إعادة البحث الخاصة بك.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.127.0.0.1"><value>127.0.0.1 (Localhost)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.172.18.0.1"><value>172.18.0.1 (Local Docker)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.99"><value>العرف</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port"><value>مرفأ DNS</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Help"><value>تحديد وصلة الموانئ المستهدفة بالهياكل الأساسية للشبكة الجمركية.
-
-لتشكيل العادم حرر mobile_adapter_gb_custom_server_config.ini في ملف نظم إعادة البحث الخاصة بك.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Help"><value>تحديد وصلة الموانئ المستهدفة بالهياكل الأساسية للشبكة الجمركية.&#xA;&#xA;لتشكيل العادم حرر mobile_adapter_gb_custom_server_config.ini في ملف نظم إعادة البحث الخاصة بك.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Value.1"><value>53 (Default)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Value.99"><value>العرف</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server"><value>استخدام جهاز إرسال P2P</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Help"><value>استخدموا خادم نقل تقليدي لمكالمات P2P.
-
-لتشكيل العادم حرر mobile_adapter_gb_custom_server_config.ini في ملف نظم إعادة البحث الخاصة بك.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Help"><value>استخدموا خادم نقل تقليدي لمكالمات P2P.&#xA;&#xA;لتشكيل العادم حرر mobile_adapter_gb_custom_server_config.ini في ملف نظم إعادة البحث الخاصة بك.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Value.0"><value>المعوقين</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip"><value>P2P Relay Server IP</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Help"><value>تحديد وصلة الموانئ المستهدفة بالهياكل الأساسية للشبكة الجمركية.
-
-لتشكيل العادم حرر mobile_adapter_gb_custom_server_config.ini في ملف نظم إعادة البحث الخاصة بك.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Help"><value>تحديد وصلة الموانئ المستهدفة بالهياكل الأساسية للشبكة الجمركية.&#xA;&#xA;لتشكيل العادم حرر mobile_adapter_gb_custom_server_config.ini في ملف نظم إعادة البحث الخاصة بك.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.127.0.0.1"><value>127.0.0.1 (Localhost)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.172.18.0.1"><value>172.18.0.1 (Local Docker)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.99"><value>العرف</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port"><value>P2P مرفأ نفق</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Help"><value>تحديد وصلة المرفأ المستهدفة للطوابق العادية P2P.
-
-لتشكيل العادم حرر mobile_adapter_gb_custom_server_config.ini في ملف نظم إعادة البحث الخاصة بك.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Help"><value>تحديد وصلة المرفأ المستهدفة للطوابق العادية P2P.&#xA;&#xA;لتشكيل العادم حرر mobile_adapter_gb_custom_server_config.ini في ملف نظم إعادة البحث الخاصة بك.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Value.1"><value>31227 (Default)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Value.99"><value>العرف</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_dev_log_linkcable_to_file"><value>تحويلات من طراز Log Link Cable إلى ملف</value></data>
@@ -2801,10 +2515,10 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler"><value>أوديو ريساملر</value></data>
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler.Help"><value>تحديد أي خوارزمية تستخدم عند إعادة أخذ العينات تولد صوتياً ( Game Boy المعدل الصوتي محدود فقط CPU كُتب السرعة، مثل ترددات السكان الأصليين غير عمليّة على الأجهزة الصوتية الحديثة ويجب أن تُخفَّض</value></data>
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler.Value.cc"><value>Cosine</value></data>
-  <data name="Emulation.Option.gambatte.gambatte_gb_hwmode"><value>مجهزة بـ "هاردواير" (مطلب ريستارت)</value></data>
+  <data name="Emulation.Option.gambatte.gambatte_gb_hwmode"><value>مجهزة بـ "هاردواير"</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_hwmode.Help"><value>حددي أي نوع من المعدات لتخمينها اختيارGBA'يفتح الملامح الاضافية في بعض'GBA معزّزة Game Boy Color ألعاب (شانتي، ويندي - كل طريق ساحرة، أسطورة زيلدا: أوراكل سيسونز/أغس... ).</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_hwmode.Value.Auto"><value>تلقائي</value></data>
-  <data name="Emulation.Option.gambatte.gambatte_gb_bootloader"><value>مستخدم رسمي (مطلوب ريستارت)</value></data>
+  <data name="Emulation.Option.gambatte.gambatte_gb_bootloader"><value>مستخدم رسمي</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Help"><value>ويمكن الحصول على الدعم للمسؤولين Game Boy و Game Boy Color من حاملي الأحذية، مع ما يقابل ذلك من تقديرات لوجستيات بدء التشغيل.</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Value.enabled"><value>التمكين</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Value.disabled"><value>المعوقين</value></data>
@@ -3047,8 +2761,6 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg"><value>إعادة تعيين الموظفين DMG الألعاب (المطبقة فقط) CGB BIOS)</value></data>
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg.Value.enabled"><value>التمكين</value></data>
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg.Value.disabled"><value>المعوقين</value></data>
-  
-  
   <data name="Emulation.Emulator.mesen_s.Description"><value>الفرضيات المتوافقة Nintendo نُظم مع (ميسن)S.</value></data>
   <data name="Emulation.Option.mesen_s.mesen-s_ntsc_filter"><value>مرشح NTSC</value></data>
   <data name="Emulation.Option.mesen_s.mesen-s_ntsc_filter.Value.Disabled"><value>المعوقين</value></data>
@@ -3111,8 +2823,6 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Firmware.mesen_s.Slot15"><value>GBC الخنزير</value></data>
   <data name="Emulation.Firmware.mesen_s.Slot16"><value>SGB الخنزير</value></data>
   <data name="Emulation.Firmware.mesen_s.Slot17"><value>SGB2 الخنزير</value></data>
-  
-  
   <data name="Emulation.Firmware.mesen_s.Slot20"><value>Stellaview Boot ROM</value></data>
   <data name="Emulation.Emulator.nside_sfc_balanced.Description"><value>ترجمات متوافقة لـ Nintendo نظاماً مع (إنسايد)</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_internal_resolution"><value>القرار الداخلي</value></data>
@@ -4300,8 +4010,6 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-native-tex-rect.Value.False"><value>المعوقين</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method"><value>(ParaLLEl-RDP)</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Help"><value>وينبغي ألا يُستخدَم هذا النوع إلا بمعامل التصعيد الأول، وبواسطة الظل الخاصة CRT.</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Value.Bob"><value>بوب</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Value.Weave"><value>Weave</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay"><value>VI</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay.Help"><value>AL) Select VI تصفية زائدة</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay.Value.Filtered"><value>مطلية</value></data>
@@ -4394,7 +4102,6 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.memory"><value>الذاكرة</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.rumble"><value>تعثرت</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.transfer"><value>النقل</value></data>
-  
   <data name="Emulation.Emulator.parallel_n64.Description"><value>Emulates compatible Nintendo systems with ParaLLEl N64.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>عامل التصعيد (الاستعراض)</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling.Help"><value>اضرب في عدة من قرارات الائتمان وتكرِّس الفقرة 1 من القانون رقم RDP كل عامل؛ وتصدر الأندريليون ما يصل إلى 4x ويعامل الـ 8 x 4x.</value></data>
@@ -4576,7 +4283,7 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.parallel_n64.parallel-n64-disable_expmem.Value.enabled"><value>التمكين</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-disable_expmem.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy"><value>GFX</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Help"><value>الجائزة العالمية للمنتجات الفضائية (GFX Accuracy)</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Help"><value>دقة الرسم البياني.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.low"><value>منخفضة</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.medium"><value>متوسطة</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.high"><value>عالية</value></data>
@@ -4872,7 +4579,6 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.parallel_n64.parallel-n64-sdcard.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate"><value>تشغيل نظام N64 على مدار الساعة من أجل توفير الحمولة</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate.Value.enabled"><value>نعم</value></data>
-  
   <data name="Emulation.Emulator.pokemini.Description"><value>:: فرض نظم متوافقة قوامها Nintendo مع PokeMini.</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>فيديو سكال (رستارت)</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale.Help"><value>وضع عامل مقياس الفيديو الداخلي. زيادة عامل المقياس يُحسّن مظهر "المصفوف الداخلي" LCD تصفية.</value></data>
@@ -5039,7 +4745,7 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock"><value>على مدار الساعة - شركة سوبر فاكس</value></data>
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock.Help"><value>على مدار الساعة أو في آخر الساعة السوبر إف إكس وقد يؤدي تحديد هذه القيمة بأكثر من 100 في المائة إلى تحسين الأداء في الألعاب التي تدعم الـ (سوبر إف إكس). استخدامه بحذر، لأنه قد يسبب أيضا بعض الالعاب لتحطم أو إظهار مسائل أخرى.</value></data>
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock.Value.100"><value>100 في المائة (Default)</value></data>
-  <data name="Emulation.Option.bsnes.bsnes_sgb_bios"><value>Preferred Super Game Boy BIOS (Restart Required)</value></data>
+  <data name="Emulation.Option.bsnes.bsnes_sgb_bios"><value>Preferred Super Game Boy BIOS</value></data>
   <data name="Emulation.Option.bsnes.bsnes_sgb_bios.Help"><value>اختر السوبر Game Boy BIOS لاستخدامه بألقاب متوافقة.</value></data>
   <data name="Emulation.Option.bsnes.bsnes_hide_sgb_border"><value>Hide SGB Border</value></data>
   <data name="Emulation.Option.bsnes.bsnes_hide_sgb_border.Help"><value>إخفاء الحدود عند لعب ألعاب سوبر Game Boy.</value></data>
@@ -6073,7 +5779,7 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.fast"><value>بسرعة</value></data>
   <data name="Emulation.Emulator.cemu.Description"><value>:: فرض نظم متوافقة قوامها Nintendo مع Cemu.</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode"><value>CPU Mode</value></data>
-  <data name="Emulation.Option.cemu.cemu_cpu_mode.Help"><value>كَمْ نواة الـ Wii U مُخدّرةِ. ويأخذ نظام التشغيل الآلي عملية إعادة التجميع المتعددة العناصر على أساس CPU، بأربعة أو أكثر من النواحي الفيزيائية والأساس الوحيد خلاف ذلك. إن المترجمين الشفويين أبطأ بكثير ويقصد بهم التشويه. (الاستعراض المطلوب)</value></data>
+  <data name="Emulation.Option.cemu.cemu_cpu_mode.Help"><value>كَمْ نواة الـ Wii U مُخدّرةِ. ويأخذ نظام التشغيل الآلي عملية إعادة التجميع المتعددة العناصر على أساس CPU، بأربعة أو أكثر من النواحي الفيزيائية والأساس الوحيد خلاف ذلك. إن المترجمين الشفويين أبطأ بكثير ويقصد بهم التشويه.</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.auto"><value>تلقائي</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.singlecore_interpreter"><value>مترجم شفوي وحيد</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.singlecore_recompiler"><value>مجمّع وحيد</value></data>
@@ -6209,12 +5915,10 @@ Native: Load games through the system menu, similar to the real DS/DSi عملي�
   <data name="Emulation.Option.cemu.cemu_bc1_16bit.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.cemu.cemu_bc1_16bit.Value.enabled"><value>التمكين</value></data>
   <data name="Emulation.Option.cemu.cemu_gpu_api"><value>الرسم البياني API</value></data>
-  <data name="Emulation.Option.cemu.cemu_gpu_api.Help"><value>The graphics API Cemu renders with. (Restart required)</value></data>
+  <data name="Emulation.Option.cemu.cemu_gpu_api.Help"><value>The graphics API Cemu renders with.</value></data>
   <data name="Emulation.Option.cemu.cemu_gpu_api.Value.OpenGL"><value>OpenGL</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game"><value>الألعاب الأوليمبية</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_game.Help"><value>يُركّزُ كُلّ لعبة في النظامِ/Cemu/يَصْدرُ إلى الادخار /Cemu/mlc01، المخزن المؤمّنِ، لعبة هي صورة قرصية (ممتازة، أو أيسو) أو (واووا)، ومن "واواوا" التحديث و DLC الذي يحمله يتم تركيبها بها. لعبة تم تركيبها بالفعل في نفس الوقت أو نسخة جديدة تترك وحدها.
-
-When this is ON, installing begins immediately, with its progress shown as a notification, and it turn OFF again when all games are installed. وتبدأ لعبة رُكبت بتحميل العجلات في ملفها الرمزي، تحت العنوان التالي: mlc01/usr/title/00050000؛ ولم تعد هناك حاجة إلى صورتها القرصية.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_game.Help"><value>يُركّزُ كُلّ لعبة في النظامِ/Cemu/يَصْدرُ إلى الادخار /Cemu/mlc01، المخزن المؤمّنِ، لعبة هي صورة قرصية (ممتازة، أو أيسو) أو (واووا)، ومن "واواوا" التحديث و DLC الذي يحمله يتم تركيبها بها. لعبة تم تركيبها بالفعل في نفس الوقت أو نسخة جديدة تترك وحدها.&#xA;&#xA;When this is ON, installing begins immediately, with its progress shown as a notification, and it turn OFF again when all games are installed. وتبدأ لعبة رُكبت بتحميل العجلات في ملفها الرمزي، تحت العنوان التالي: mlc01/usr/title/00050000؛ ولم تعد هناك حاجة إلى صورتها القرصية.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game.Value.enabled"><value>التمكين</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game"><value>الألعاب غير المستقرة</value></data>
@@ -6222,11 +5926,7 @@ When this is ON, installing begins immediately, with its progress shown as a not
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.enabled"><value>التمكين</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles"><value>التركيب</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>يضع كل تحديث و DLC في النظام/Cemu / الحق في الادخار / Cemu/mlc01، ويدخل كل واحد في ملف خاص به هناك؛ ويحتاج حمولة NUS (ملفات الطلبات) إلى title.tmd وtitle.tik، مفتاح التشفير، بجانبهم. والنسخة التي تم تركيبها بالفعل هي نفسها أو الأحدث تترك وحدها.
-
-وعندما يبلغ هذا الرقم ON، يبدأ المجاميع على الفور، ويظهر التقدم الذي أحرزه كإخطار، ثم يتحول إلى OFF مرة أخرى عندما يتم تركيب جميع المحتويات ويتم الخروج من هذه القائمة أو تغيير خيار آخر. وسيستخدم العنوان المحتوى المركب بمجرد إعادة تشغيله.
-
-وحدة من مواقع أخرى يمكن تركيبها بمحتوى (ريترو آرتش) الرئيسي title.tmdمع title.tik بجانبه</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>يضع كل تحديث و DLC في النظام/Cemu / الحق في الادخار / Cemu/mlc01، ويدخل كل واحد في ملف خاص به هناك؛ ويحتاج حمولة NUS (ملفات الطلبات) إلى title.tmd وtitle.tik، مفتاح التشفير، بجانبهم. والنسخة التي تم تركيبها بالفعل هي نفسها أو الأحدث تترك وحدها.&#xA;&#xA;وعندما يبلغ هذا الرقم ON، يبدأ المجاميع على الفور، ويظهر التقدم الذي أحرزه كإخطار، ثم يتحول إلى OFF مرة أخرى عندما يتم تركيب جميع المحتويات ويتم الخروج من هذه القائمة أو تغيير خيار آخر. وسيستخدم العنوان المحتوى المركب بمجرد إعادة تشغيله.&#xA;&#xA;وحدة من مواقع أخرى يمكن تركيبها بمحتوى (ريترو آرتش) الرئيسي title.tmdمع title.tik بجانبه</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.enabled"><value>التمكين</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles"><value>الوحدة غير الثابتة</value></data>
@@ -6234,11 +5934,7 @@ When this is ON, installing begins immediately, with its progress shown as a not
   <data name="Emulation.Option.cemu.cemu_uninstall_titles.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles.Value.enabled"><value>التمكين</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source"><value>Remove Content after Installing</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_remove_source.Help"><value>Removes downloadable content and title updates from system/Cemu/titles once Install Content has installed them. الوحدة المحملة من خلال (لواد كونت) تُركت حيث هي.
-
-تحديث اللقب الجاهز أو DLC هو في الاستخدام، لذلك فإنه يتم إزالتها عندما يكون العنوان مغلقاً أو يعاد ترتيبه.
-
-الملفات والصور المقرمشة لا تُزال أبداً، كما أنها يمكن أن تحمل لعبة القاعدة كذلك.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_remove_source.Help"><value>Removes downloadable content and title updates from system/Cemu/titles once Install Content has installed them. الوحدة المحملة من خلال (لواد كونت) تُركت حيث هي.&#xA;&#xA;تحديث اللقب الجاهز أو DLC هو في الاستخدام، لذلك فإنه يتم إزالتها عندما يكون العنوان مغلقاً أو يعاد ترتيبه.&#xA;&#xA;الملفات والصور المقرمشة لا تُزال أبداً، كما أنها يمكن أن تحمل لعبة القاعدة كذلك.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source.Value.enabled"><value>التمكين</value></data>
   <data name="Emulation.Configuration.EmulatorOptions"><value>خيارات الانطلاق</value></data>

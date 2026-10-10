@@ -182,28 +182,32 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private void AddBlocks(Panel panel, EmulationMachineSettings settings, EmulationMachineTab tab)
     {
+        bool IsDisplayed(EmulationSettingsField field) => field.IsVisible
+            && !(tab == EmulationMachineTab.General && field.Editor == EmulationSettingsEditor.DirectoryPath);
         if (settings.Blocks.Any(block => block.Tab == tab && block.IsCompact))
         {
             panel.Children.Add(EmulationSettingsLayout.CompactCards(settings.Blocks
-                .Where(block => block.Tab == tab && block.IsVisible && block.Fields.Any(field => field.IsVisible))
+                .Where(block => block.Tab == tab && block.IsVisible && block.Fields.Any(IsDisplayed))
                 .OrderBy(block => tab == EmulationMachineTab.Audio && !block.IsCompact ? 1 : 0)
                 .Select(block => EmulationSettingsLayout.IconCard(
                     tab == EmulationMachineTab.Audio && !block.IsCompact
-                        ? EmulationSettingsLayout.CompactForm(1, block.Fields.Where(field => field.IsVisible)
+                        ? EmulationSettingsLayout.CompactForm(1, block.Fields.Where(IsDisplayed)
                             .Select(CreateControlField).ToArray())
-                        : EmulationSettingsLayout.BoundedForm(1, block.Fields.Where(field => field.IsVisible)
+                        : EmulationSettingsLayout.BoundedForm(1, block.Fields.Where(IsDisplayed)
                             .Select(CreateControlField).ToArray()),
-                    LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? IconGlyphs.Settings))));
+                    LocExtension.GetForModule(_module, block.TitleResourceKey),
+                    block.Icon ?? (tab == EmulationMachineTab.Audio ? IconGlyphs.Audio : IconGlyphs.Settings)))));
             return;
         }
         foreach (var block in settings.Blocks.Where(block => block.Tab == tab && block.IsVisible))
         {
-            var fields = block.Fields.Where(field => field.IsVisible).Select(CreateControlField).ToArray();
+            var fields = block.Fields.Where(IsDisplayed).Select(CreateControlField).ToArray();
             if (fields.Length == 0) continue;
             var columns = tab == EmulationMachineTab.Rom ? 1 : Math.Max(1, block.Columns);
             var form = EmulationSettingsLayout.CompactForm(columns, fields);
             panel.Children.Add(EmulationSettingsLayout.IconCard(form,
-                LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? IconGlyphs.Settings));
+                LocExtension.GetForModule(_module, block.TitleResourceKey),
+                block.Icon ?? (tab == EmulationMachineTab.Audio ? IconGlyphs.Audio : IconGlyphs.Settings)));
         }
     }
 }

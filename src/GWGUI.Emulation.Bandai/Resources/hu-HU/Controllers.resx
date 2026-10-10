@@ -4,10 +4,6 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Bandai.Action.Up"><value>Fel</value></data>
-  <data name="Emulation.Bandai.Action.Down"><value>Le</value></data>
-  <data name="Emulation.Bandai.Action.Left"><value>Bal</value></data>
-  <data name="Emulation.Bandai.Action.Right"><value>Rendben.</value></data>
   <data name="Emulation.Bandai.Action.Start"><value>Kezdés</value></data>
   <data name="Emulation.Bandai.Action.Select"><value>Válassza ki</value></data>
   <data name="Emulation.Bandai.Action.Rotate"><value>Forgatás</value></data>

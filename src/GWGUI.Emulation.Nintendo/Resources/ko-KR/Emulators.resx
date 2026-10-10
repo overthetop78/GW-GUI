@@ -6,14 +6,14 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.azahar.Description"><value>Azahar를 가진 호환성 Nintendo 체계를 격리하십시오.</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit"><value>사용 가능한 CPU JIT</value></data>
-  <data name="Emulation.Option.azahar.citra_use_cpu_jit.Help"><value>ARM CPU 에뮬레이션에 대한 Just-In-Time 컴파일을 가능하게 합니다. Significantly 성능 향상 하지만 정확도를 줄일 수 있습니다. 자주 묻는 질문</value></data>
+  <data name="Emulation.Option.azahar.citra_use_cpu_jit.Help"><value>ARM CPU 에뮬레이션에 대한 Just-In-Time 컴파일을 가능하게 합니다. 성능 향상은 물론 정확도를 줄일 수 있습니다.</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit.Value.enabled"><value>사용</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage"><value>CPU 클럭 속도</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage.Help"><value>정상적인 속도의 비율로 emulated 3DS CPU 시계 속도를 조정하십시오. 더 높은 값은 일부 게임에서 성능을 향상하지만 문제를 일으킬 수 있습니다. 낮은 가치는 너무 빨리 달리는 게임에 도울 수 있습니다.</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage.Value.100"><value>100% (과태)</value></data>
   <data name="Emulation.Option.azahar.citra_is_new_3ds"><value>3DS 시스템 모델</value></data>
-  <data name="Emulation.Option.azahar.citra_is_new_3ds.Help"><value>원본 3DS 또는 새로운 3DS를 에뮬레이트 여부를 선택하십시오. 새로운 3DS에는 일부 게임에 필요한 추가 CPU 전력 및 메모리가 있습니다. 자주 묻는 질문</value></data>
+  <data name="Emulation.Option.azahar.citra_is_new_3ds.Help"><value>고유의 선택 3DS 또는 New 3DS. New 3DS에는 더 많은 CPU 힘 및 기억이 있습니다.</value></data>
   <data name="Emulation.Option.azahar.citra_is_new_3ds.Value.Old 3DS"><value>본래 3DS</value></data>
   <data name="Emulation.Option.azahar.citra_region_value"><value>3DS 시스템 영역</value></data>
   <data name="Emulation.Option.azahar.citra_region_value.Help"><value>3DS 시스템 영역을 설정합니다. Auto-select는 게임에 따라 선택할 것입니다. 일부 게임은 지역 잠금 및 일치하는 지역을 요구합니다.</value></data>
@@ -50,7 +50,7 @@
   <data name="Emulation.Option.azahar.citra_input_type.Value.static_noise"><value>정체되는 소음</value></data>
   <data name="Emulation.Option.azahar.citra_input_type.Value.frontend"><value>팟캐스트</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api"><value>그래픽 API</value></data>
-  <data name="Emulation.Option.azahar.citra_graphics_api.Help"><value>그래픽 렌더링 선택 API. 자동은 제일 유효한 선택권을 선택합니다. 자주 묻는 질문</value></data>
+  <data name="Emulation.Option.azahar.citra_graphics_api.Help"><value>그래픽 렌더링 API를 선택하십시오. Auto는 유효한 API를 선택합니다.</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.Auto"><value>오토매틱</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.OpenGL"><value>OpenGL을</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.Software"><value>(주)</value></data>
@@ -509,8 +509,6 @@
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.pattern"><value>제품 정보</value></data>
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.random"><value>뚱 베어</value></data>
   <data name="Emulation.Firmware.desmume.Slot0"><value>NDS 기업</value></data>
-  
-  
   <data name="Emulation.Emulator.desmume2015.Description"><value>호환 Nintendo 시스템 DeSmuME 2015.</value></data>
   <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>내부 해결책 (restart)</value></data>
   <data name="Emulation.Option.desmume2015.desmume_num_cores"><value>CPU 코어</value></data>
@@ -597,8 +595,6 @@
   <data name="Emulation.Option.desmume2015.desmume_mic_mode.Value.random"><value>뚱 베어</value></data>
   <data name="Emulation.Option.desmume2015.desmume_mic_mode.Value.physical"><value>뚱 베어</value></data>
   <data name="Emulation.Firmware.desmume2015.Slot0"><value>NDS 기업</value></data>
-  
-  
   <data name="Emulation.Option.melonds.melonds_console_mode"><value>콘솔 모드</value></data>
   <data name="Emulation.Option.melonds.melonds_boot_directly"><value>직접 부팅 Game</value></data>
   <data name="Emulation.Option.melonds.melonds_boot_directly.Help"><value>코어가 직접 게임을 부팅하거나 대신 DS 메뉴에 부팅해야하는 경우 선택 (BIOS 및 펌웨어 파일 필요).</value></data>
@@ -696,8 +692,6 @@
   <data name="Emulation.Option.melonds.melonds_jit_fast_memory.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_fast_memory.Value.enabled"><value>사용</value></data>
   <data name="Emulation.Firmware.melonds.Slot0"><value>NDS 기업</value></data>
-  
-  
   <data name="Emulation.Firmware.melonds.Slot3"><value>DSi 펌웨어</value></data>
   <data name="Emulation.Firmware.melonds.Slot4"><value>DSi ARM7 BIOS</value></data>
   <data name="Emulation.Firmware.melonds.Slot5"><value>DSi ARM9 BIOS</value></data>
@@ -705,24 +699,13 @@
   <data name="Emulation.Firmware.melonds.Slot7"><value>DSi SD 카드</value></data>
   <data name="Emulation.Emulator.melondsds.Description"><value>melonDS DS를 가진 호환이 되는 Nintendo 체계를 격리하십시오.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input"><value>마이크 입력 모드</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mic_input.Help"><value>emulated 마이크가 수신되는 소리를 선택하십시오.
-
-소음: 오디오 입력 없음.
-타격: 내장 부는 소리를 반복합니다.
-소음: 무작위 백색 소음.
-마이크: 사용할 수 있는 경우 실제 마이크를 사용하여 Silence로 돌아갑니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mic_input.Help"><value>emulated 마이크가 수신되는 소리를 선택하십시오.&#xA;&#xA;소음: 오디오 입력 없음.&#xA;타격: 내장 부는 소리를 반복합니다.&#xA;소음: 무작위 백색 소음.&#xA;마이크: 사용할 수 있는 경우 실제 마이크를 사용하여 Silence로 돌아갑니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.silence"><value>의약</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.blow"><value>뚱 베어</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.noise"><value>지원하다</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.microphone"><value>마이크로폰</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active"><value>마이크 버튼 모드</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mic_input_active.Help"><value>마이크 입력 모드가 타격 또는 소음으로 설정되는 경우에도 마이크로폰 버튼의 동작을 설정합니다. emulated 마이크는 버튼에 의해 비활성화 될 때 침묵을받습니다.
-
-잡아당기기: 단추는 mic 입력을 붙드는 동안 가능하게 합니다.
-토글: 단추는 눌러질 때 mic 입력을, 다시 눌러질 수 있습니다 활성화합니다.
-항상: 단추는 무시되고, mic 입력은 항상 활성화됩니다.
-
-마이크 입력 모드가 Silence로 설정되면 무시했습니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mic_input_active.Help"><value>마이크 입력 모드가 타격 또는 소음으로 설정되는 경우에도 마이크로폰 버튼의 동작을 설정합니다. emulated 마이크는 버튼에 의해 비활성화 될 때 침묵을받습니다.&#xA;&#xA;잡아당기기: 단추는 mic 입력을 붙드는 동안 가능하게 합니다.&#xA;토글: 단추는 눌러질 때 mic 입력을, 다시 눌러질 수 있습니다 활성화합니다.&#xA;항상: 단추는 무시되고, mic 입력은 항상 활성화됩니다.&#xA;&#xA;마이크 입력 모드가 Silence로 설정되면 무시했습니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.hold"><value>(주)</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.toggle"><value>(주)삼성</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.always"><value>지원하다</value></data>
@@ -752,21 +735,11 @@
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.enabled"><value>사용</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns"><value>DNS 오버라이드</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>DNS 서버는 격리된 액세스 포인트 ("melonAP"). 이 작업을 사용하여 중단 Nintendo Wi-Fi 연결 서비스를 단순화하는 사용자 정의 서버로 온라인으로 재생합니다. 게임 지원은 서버에 달려 있습니다. 
-일부 인터넷 서비스 제공 업체는 이러한 서버에 요청을 차단할 수 있습니다. 이 경우, https://tinyurl.com/393cb755 를 참조하십시오.
-
-나열된 서버는 libretro, Nintendo, melonDS 팀과 제휴되지 않습니다. 또는 이 핵심 저자. 다른 플레이어를 존중하고 서버의 규칙을 따르십시오.
-
-불확실한 경우, Kaeru WFC.로 떠나십시오 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>DNS 서버는 격리된 액세스 포인트 ("melonAP"). 이 작업을 사용하여 중단 Nintendo Wi-Fi 연결 서비스를 단순화하는 사용자 정의 서버로 온라인으로 재생합니다. 게임 지원은 서버에 달려 있습니다. &#xA;일부 인터넷 서비스 제공 업체는 이러한 서버에 요청을 차단할 수 있습니다. 이 경우, https://tinyurl.com/393cb755 를 참조하십시오.&#xA;&#xA;나열된 서버는 libretro, Nintendo, melonDS 팀과 제휴되지 않습니다. 또는 이 핵심 저자. 다른 플레이어를 존중하고 서버의 규칙을 따르십시오.&#xA;&#xA;불확실한 경우, Kaeru WFC.로 떠나십시오 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.95.217.77.181"><value>Wiimmfi (95.217.77.181)</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.default"><value>기부하지 마세요.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language"><value>언어</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>에뮬레이션 콘솔의 언어 모드를 부여합니다.
-
-호스트를 사용: 콘솔에 의해 지원되는 frontend의 언어를 사용합니다.
-Don't Override: 언어가 이미 펌웨어에 설정된 것을 사용하세요. 이것은 에뮬레이션 DS (또는 DSi NAND)가 프론트엔드의 언어를 지원하지 않는 경우 fallback 동작입니다.
-
-모든 게임은이 설정을 존중하지 않습니다. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>에뮬레이션 콘솔의 언어 모드를 부여합니다.&#xA;&#xA;호스트를 사용: 콘솔에 의해 지원되는 frontend의 언어를 사용합니다.&#xA;Don't Override: 언어가 이미 펌웨어에 설정된 것을 사용하세요. 이것은 에뮬레이션 DS (또는 DSi NAND)가 프론트엔드의 언어를 지원하지 않는 경우 fallback 동작입니다.&#xA;&#xA;모든 게임은이 설정을 존중하지 않습니다. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.auto"><value>이용 호스트</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.en"><value>한국어</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.ja"><value>한국어 (Korean)</value></data>
@@ -776,13 +749,7 @@ Don't Override: 언어가 이미 펌웨어에 설정된 것을 사용하세요. 
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.es"><value>담당자: Mr. s.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.default"><value>기부하지 마세요.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username"><value>사용자 이름</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>에뮬레이션 콘솔에 주어진 사용자를 무시합니다.
-
-Don't Override: 펌웨어에 정의된 모든 이름을 사용합니다.
-Guess: 프론트엔드에서 사용자 이름을 얻는 것을 시도하십시오. 실패하면 USER, USERNAME 및 LOGNAME 환경 변수를 시도하십시오.
-melonDS DS: "melonDS DS"를 사용합니다. 그렇지 않으면 기본값입니다.
-
-이름은 10 자에 truncated. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>에뮬레이션 콘솔에 주어진 사용자를 무시합니다.&#xA;&#xA;Don't Override: 펌웨어에 정의된 모든 이름을 사용합니다.&#xA;Guess: 프론트엔드에서 사용자 이름을 얻는 것을 시도하십시오. 실패하면 USER, USERNAME 및 LOGNAME 환경 변수를 시도하십시오.&#xA;melonDS DS: "melonDS DS"를 사용합니다. 그렇지 않으면 기본값입니다.&#xA;&#xA;이름은 10 자에 truncated. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.guess_username"><value>뚱 베어</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.existing_username"><value>기부하지 마세요.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color"><value>좋아하는 색깔</value></data>
@@ -834,12 +801,7 @@ melonDS DS: "melonDS DS"를 사용합니다. 그렇지 않으면 기본값입니
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>형성된 경보의 분. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Value.default"><value>기부하지 마세요.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode"><value>Networking 모드</value></data>
-  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>형성 방법 melonDS DS는 Nintendo를 격리합니다 WFC. unsure 경우에, Indirect 형태를 사용하십시오.
-
-Indirect: libslirp를 사용하여 DS의 네트워크 스택을 에뮬레이션합니다. 간단하고 설치가 필요없습니다.
-Direct: Wi-Fi 패킷을 호스트의 네트워크 인터페이스로 에뮬레이션했습니다. 더 빠르고 신뢰할 수 있지만, ethernet 연결이 필요하며 WinPcap 또는 Npcap은 설치됩니다. libpcap가 설치되어 있습니다. 사용할 수 없는 경우, Indirect 모드로 돌아갑니다.
-
-변경은 다음 재시작에서 효력을 발생합니다. 로컬 멀티플레이어와 관련이 없습니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>형성 방법 melonDS DS는 Nintendo를 격리합니다 WFC. unsure 경우에, Indirect 형태를 사용하십시오.&#xA;&#xA;Indirect: libslirp를 사용하여 DS의 네트워크 스택을 에뮬레이션합니다. 간단하고 설치가 필요없습니다.&#xA;Direct: Wi-Fi 패킷을 호스트의 네트워크 인터페이스로 에뮬레이션했습니다. 더 빠르고 신뢰할 수 있지만, ethernet 연결이 필요하며 WinPcap 또는 Npcap은 설치됩니다. libpcap가 설치되어 있습니다. 사용할 수 없는 경우, Indirect 모드로 돌아갑니다.&#xA;&#xA;변경은 다음 재시작에서 효력을 발생합니다. 로컬 멀티플레이어와 관련이 없습니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.indirect"><value>(주)인디</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.direct"><value>제품정보</value></data>
@@ -847,9 +809,7 @@ Direct: Wi-Fi 패킷을 호스트의 네트워크 인터페이스로 에뮬레�
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>직접 모드를 사용하여 네트워크 인터페이스를 선택합니다. unsure가 없는 경우에, 자동으로 놓으십시오. 변화는 다음 핵심 재시작에 영향을 미칩니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Value.auto"><value>오토매틱</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode"><value>네트워크 MAC 주소 모드</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>에뮬레이션 콘솔의 MAC 주소가 설정되는 방법을 구성합니다. 이 옵션을 변경하면 로컬 멀티 플레이어가 불가능하거나 MAC 주소를 사용하는 게임에서 파일을 저장할 수있는 액세스를 차단할 수 있습니다 저장 파일 (즉. Pokémon).
-직접 모드 인터페이스와 관련이 없습니다. 변경은 다음 재시작에서 효력을 발생합니다.
-자세한 내용은 https://bit.ly/4fJtWKN을 참조하십시오.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>에뮬레이션 콘솔의 MAC 주소가 설정되는 방법을 구성합니다. 이 옵션을 변경하면 로컬 멀티 플레이어가 불가능하거나 MAC 주소를 사용하는 게임에서 파일을 저장할 수있는 액세스를 차단할 수 있습니다 저장 파일 (즉. Pokémon).&#xA;직접 모드 인터페이스와 관련이 없습니다. 변경은 다음 재시작에서 효력을 발생합니다.&#xA;자세한 내용은 https://bit.ly/4fJtWKN을 참조하십시오.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.firmware"><value>펌웨어에서 설정</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.from-username"><value>libretro 사용자 이름</value></data>
   <data name="Emulation.Option.melondsds.melonds_show_unsupported_features"><value>Warn 소개 지원되지 않은 기능</value></data>
@@ -902,13 +862,7 @@ Direct: Wi-Fi 패킷을 호스트의 네트워크 인터페이스로 에뮬레�
   <data name="Emulation.Option.melondsds.melonds_cursor_timeout.Value.30"><value>30 초</value></data>
   <data name="Emulation.Option.melondsds.melonds_cursor_timeout.Value.60"><value>60 초</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode"><value>접촉 형태</value></data>
-  <data name="Emulation.Option.melondsds.melonds_touch_mode.Help"><value>콘솔의 터치 스크린이 에뮬레이션하는 방법을 결정합니다.
-
-Joystick: 커서를 제어하는 조이스틱을 사용합니다. 마우스 또는 실제 터치 스크린이 없는 경우 권장됩니다.
-Pointer: 마우스 또는 터치 스크린을 사용하여 커서를 제어합니다.
-자동차: 당신이 마지막에 따라서 조이스틱 또는 포인터를, 사용하십시오.
-
-불확실한 경우에, 자동차에 놓으십시오.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_touch_mode.Help"><value>콘솔의 터치 스크린이 에뮬레이션하는 방법을 결정합니다.&#xA;&#xA;Joystick: 커서를 제어하는 조이스틱을 사용합니다. 마우스 또는 실제 터치 스크린이 없는 경우 권장됩니다.&#xA;Pointer: 마우스 또는 터치 스크린을 사용하여 커서를 제어합니다.&#xA;자동차: 당신이 마지막에 따라서 조이스틱 또는 포인터를, 사용하십시오.&#xA;&#xA;불확실한 경우에, 자동차에 놓으십시오.</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.joystick"><value>조이스틱</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.touch"><value>팟캐스트</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.auto"><value>오토매틱</value></data>
@@ -917,9 +871,7 @@ Pointer: 마우스 또는 터치 스크린을 사용하여 커서를 제어합�
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_maxspeed"><value>Joystick 커서 최대 속도</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_maxspeed.Help"><value>조이스틱 커서의 최대 속도를 설정합니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response"><value>Joystick 커서 응답</value></data>
-  <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Help"><value>조이스틱 커서에 대한 응답 곡선을 설정합니다.
-선형은 cursor 속도가 1:1이며, 조이스틱 입력으로 응답 곡선입니다.
-Quadratic는 더 정밀한 통제를 위한 조이스틱 센터의 감도를 감소시키는 응답 곡선입니다, 그러나 가장자리의 가까이에 감도를 증가합니다</value></data>
+  <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Help"><value>조이스틱 커서에 대한 응답 곡선을 설정합니다.&#xA;선형은 cursor 속도가 1:1이며, 조이스틱 입력으로 응답 곡선입니다.&#xA;Quadratic는 더 정밀한 통제를 위한 조이스틱 센터의 감도를 감소시키는 응답 곡선입니다, 그러나 가장자리의 가까이에 감도를 증가합니다</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Value.100"><value>선형</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Value.200"><value>언어: English</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_speedup"><value>조이스틱 커서 Multiplier</value></data>
@@ -931,11 +883,7 @@ Quadratic는 더 정밀한 통제를 위한 조이스틱 센터의 감도를 감
   <data name="Emulation.Option.melondsds.melonds_hybrid_small_screen.Value.one"><value>반대 화면 표시</value></data>
   <data name="Emulation.Option.melondsds.melonds_hybrid_small_screen.Value.both"><value>두 화면 모두보기</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering"><value>Hybrid/Largescreen 필터링</value></data>
-  <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Help"><value>Hybrid/largescreen 스크린이 확장되는 방법의 영향을 미칩니다.
-
-가장 가까운: 필터링 없음. 그래픽 보기 blocky.
-선형: 매끄러운 스케일링.
-</value></data>
+  <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Help"><value>Hybrid/largescreen 스크린이 확장되는 방법의 영향을 미칩니다.&#xA;&#xA;가장 가까운: 필터링 없음. 그래픽 보기 blocky.&#xA;선형: 매끄러운 스케일링.&#xA;</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Value.nearest"><value>가장 핫한</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Value.linear"><value>선형</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_gap"><value>스크린 갭</value></data>
@@ -944,11 +892,7 @@ Quadratic는 더 정밀한 통제를 위한 조이스틱 센터의 감도를 감
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_scale"><value>두 번째 화면 가늠자</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_scale.Help"><value>1 차적인 스크린에 관계되는 이차 스크린의 크기. 수직 레이아웃에 적용 (Top/Bottom, Bottom/Top). 100%년에, 둘 다 스크린은 동일한 크기입니다. 50%에, 이차 스크린은 1 차적인 스크린의 폭 그리고 고도 반입니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering"><value>Secondary Screen 필터링</value></data>
-  <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Help"><value>이차 화면이 어떻게 축소되는지 설명합니다.
-
-가장 가까운: 필터링 없음. 그래픽 보기 blocky.
-선형: 매끄러운 스케일링. 100 % 이하의 두 번째 스크린 스케일을 사용할 때 권장됩니다.
-</value></data>
+  <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Help"><value>이차 화면이 어떻게 축소되는지 설명합니다.&#xA;&#xA;가장 가까운: 필터링 없음. 그래픽 보기 blocky.&#xA;선형: 매끄러운 스케일링. 100 % 이하의 두 번째 스크린 스케일을 사용할 때 권장됩니다.&#xA;</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Value.nearest"><value>가장 핫한</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Value.linear"><value>선형</value></data>
   <data name="Emulation.Option.melondsds.melonds_number_of_screen_layouts"><value># 화면 레이아웃</value></data>
@@ -1098,70 +1042,25 @@ Quadratic는 더 정밀한 통제를 위한 조이스틱 센터의 감도를 감
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-right"><value>연락처</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-180"><value>맨 위로</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode"><value>콘솔 모드</value></data>
-  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Nintendo DS 또는 Nintendo DSi를 에뮬레이트 여부.
-
-자동차는 DSi를 필요로하는 게임을 위한 DSi 형태, 그리고 다른 모두를 위한 DS 형태를 이용합니다. DS 및 DSi 설정은 해당 콘솔을 강제합니다. 이것은 주로 homebrew 개발에 유용합니다.
-
-DSi 형태에는 몇몇 한계가 있습니다:
-
-- Native BIOS/firmware/NAND 파일은 일반 DS를 포함하여 제공해야 합니다.
-- 일부 기능 (예 : savestates)은 DSi 모드에서 사용할 수 없습니다.
-
-이 카테고리의 DSi-specific 옵션을 더 많은 정보를 참조하십시오. 불확실한 경우에, 사용 자동차. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Nintendo DS 또는 Nintendo DSi를 에뮬레이트 여부.&#xA;&#xA;자동차는 DSi를 필요로하는 게임을 위한 DSi 형태, 그리고 다른 모두를 위한 DS 형태를 이용합니다. DS 및 DSi 설정은 해당 콘솔을 강제합니다. 이것은 주로 homebrew 개발에 유용합니다.&#xA;&#xA;DSi 형태에는 몇몇 한계가 있습니다:&#xA;&#xA;- Native BIOS/firmware/NAND 파일은 일반 DS를 포함하여 제공해야 합니다.&#xA;- 일부 기능 (예 : savestates)은 DSi 모드에서 사용할 수 없습니다.&#xA;&#xA;이 카테고리의 DSi-specific 옵션을 더 많은 정보를 참조하십시오. 불확실한 경우에, 사용 자동차. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.auto"><value>오토매틱</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.dsi"><value>DSi (실험)</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode"><value>BIOS/Firmware 형태 (DS 형태)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>melonDS가 기본 BIOS/firmware 덤프 또는 자체 내장 교체를 사용하는지 결정합니다. DSi 모드가 항상 기본 BIOS 및 펌웨어 덤프를 필요로하는 DS 모드에만 적용됩니다.
-
-네이티브 모드는 실제 DS에서 BIOS 및 펌웨어 파일을 사용합니다. 시스템 디렉토리 또는 "melonDS DS" 하위 디렉토리에 이러한 덤프를 배치하고 다음과 같이 이름을 지정하십시오.
-
-- DS BIOS: bios7.bin, bios9.bin
-- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin
-- 펌웨어: "DS Firmware"와 "DSi Firmware” 옵션을 참조하십시오.
-- DSi NAND : "DSi NAND "옵션을 참조하십시오.
-
-BIOS/firmware 파일이 발견되지 않은 경우 내장으로 돌아가십시오.
-
-내장 모드는 melonDS의 내장 BIOS 및 펌웨어를 사용하고 대부분의 게임에 적합합니다.
-
-변경은 다음 재시작에서 효력을 발생합니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>melonDS가 기본 BIOS/firmware 덤프 또는 자체 내장 교체를 사용하는지 결정합니다. DSi 모드가 항상 기본 BIOS 및 펌웨어 덤프를 필요로하는 DS 모드에만 적용됩니다.&#xA;&#xA;네이티브 모드는 실제 DS에서 BIOS 및 펌웨어 파일을 사용합니다. 시스템 디렉토리 또는 "melonDS DS" 하위 디렉토리에 이러한 덤프를 배치하고 다음과 같이 이름을 지정하십시오.&#xA;&#xA;- DS BIOS: bios7.bin, bios9.bin&#xA;- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin&#xA;- 펌웨어: "DS Firmware"와 "DSi Firmware” 옵션을 참조하십시오.&#xA;- DSi NAND : "DSi NAND "옵션을 참조하십시오.&#xA;&#xA;BIOS/firmware 파일이 발견되지 않은 경우 내장으로 돌아가십시오.&#xA;&#xA;내장 모드는 melonDS의 내장 BIOS 및 펌웨어를 사용하고 대부분의 게임에 적합합니다.&#xA;&#xA;변경은 다음 재시작에서 효력을 발생합니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.native"><value>이름 *</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.builtin"><value>내장-In</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path"><value>DS 펌웨어</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>DS 모드를 사용하려면 펌웨어 이미지를 선택합니다. 파일이 여기에 나열되어 있다면:
-
-- frontend의 시스템 디렉토리 안에, 또는 "melonDS DS"라는 하위디렉토리가 있습니다.
-- 정확히 131,072 바이트 (128KB), 262,144 바이트 (256KB) 또는 524,288 바이트 (512KB) 긴.
-- DS 펌웨어에 대한 유효한 헤더 데이터를 포함합니다.
-
-Nintendo WFC ID는 펌웨어에 저장되므로, 굳힌모 이미지가 일부 WFC 데이터의 손실을 초래할 수 있습니다. DSi 모드 또는 BIOS/Firmware 모드가 내장된 경우 무시됩니다. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>DS 모드를 사용하려면 펌웨어 이미지를 선택합니다. 파일이 여기에 나열되어 있다면:&#xA;&#xA;- frontend의 시스템 디렉토리 안에, 또는 "melonDS DS"라는 하위디렉토리가 있습니다.&#xA;- 정확히 131,072 바이트 (128KB), 262,144 바이트 (256KB) 또는 524,288 바이트 (512KB) 긴.&#xA;- DS 펌웨어에 대한 유효한 헤더 데이터를 포함합니다.&#xA;&#xA;Nintendo WFC ID는 펌웨어에 저장되므로, 굳힌모 이미지가 일부 WFC 데이터의 손실을 초래할 수 있습니다. DSi 모드 또는 BIOS/Firmware 모드가 내장된 경우 무시됩니다. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Value./notfound"><value>없음 발견 ...</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path"><value>DSi 펌웨어</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>DSi 모드를 사용하려면 펌웨어 이미지를 선택합니다. 파일이 여기에 나열되어 있다면:
-
-- frontend의 시스템 디렉토리 안에, 또는 "melonDS DS"라는 하위디렉토리가 있습니다.
-- 정확히 131,072 바이트 (128KB), 262,144 바이트 (256KB) 또는 524,288 바이트 (512KB) 긴.
-- DSi 펌웨어에 대한 유효한 헤더 데이터를 포함합니다.
-
-Nintendo WFC ID는 펌웨어에 저장되므로, 굳힌모 이미지가 일부 WFC 데이터의 손실을 초래할 수 있습니다. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>DSi 모드를 사용하려면 펌웨어 이미지를 선택합니다. 파일이 여기에 나열되어 있다면:&#xA;&#xA;- frontend의 시스템 디렉토리 안에, 또는 "melonDS DS"라는 하위디렉토리가 있습니다.&#xA;- 정확히 131,072 바이트 (128KB), 262,144 바이트 (256KB) 또는 524,288 바이트 (512KB) 긴.&#xA;- DSi 펌웨어에 대한 유효한 헤더 데이터를 포함합니다.&#xA;&#xA;Nintendo WFC ID는 펌웨어에 저장되므로, 굳힌모 이미지가 일부 WFC 데이터의 손실을 초래할 수 있습니다. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Value./notfound"><value>없음 발견 ...</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path"><value>DSi NAND 경로</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>DSi NAND 이미지 선택하기 DSi 모드를 사용할 때 필수. 파일이 여기에 나열되어 있다면:
-
-- frontend의 시스템 디렉토리 안에, 또는 "melonDS DS"라는 하위디렉토리가 있습니다.
-- 정확히 251,658,304바이트 (240MB) 또는 257,425,472 바이트 (245.5MB) 유효한 footer 자료로 긴, OR;
-- 이 길이보다 64 바이트 단축이며 파일 오프셋 0xFF800에 해당 데이터를 포함합니다.
-
-코어가로드 DSiWare ROM.에 해당 지역을 일치하는 NAND 이미지를 선택하도록 "자동"으로 설정하십시오. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>DSi NAND 이미지 선택하기 DSi 모드를 사용할 때 필수. 파일이 여기에 나열되어 있다면:&#xA;&#xA;- frontend의 시스템 디렉토리 안에, 또는 "melonDS DS"라는 하위디렉토리가 있습니다.&#xA;- 정확히 251,658,304바이트 (240MB) 또는 257,425,472 바이트 (245.5MB) 유효한 footer 자료로 긴, OR;&#xA;- 이 길이보다 64 바이트 단축이며 파일 오프셋 0xFF800에 해당 데이터를 포함합니다.&#xA;&#xA;코어가로드 DSiWare ROM.에 해당 지역을 일치하는 NAND 이미지를 선택하도록 "자동"으로 설정하십시오. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./auto"><value>자동차 (Match ROM 지역)</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./notfound"><value>없음 발견 ...</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode"><value>부트 모드</value></data>
-  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>의 방법을 결정 melonDS 부츠 게임.
-
-Native: 실제 DS/DSi 부팅 프로세스와 유사한 시스템 메뉴를 통해 로드 게임. 시스템 디렉토리의 기본 BIOS 및 펌웨어 파일이 필요합니다.
-직접 : 시스템 메뉴를 건너 게임을 똑바로 이동합니다. DSiWare에서 기본 DSi 시스템 파일이 사용할 수 있는 경우 지원됩니다.
-
-게임(Native is forced) 없이 로드되었거나 내장된 BIOS/Firmware (Direct는 강제적이다)를 사용하는 경우 Ignored. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>의 방법을 결정 melonDS 부츠 게임.&#xA;&#xA;Native: 실제 DS/DSi 부팅 프로세스와 유사한 시스템 메뉴를 통해 로드 게임. 시스템 디렉토리의 기본 BIOS 및 펌웨어 파일이 필요합니다.&#xA;직접 : 시스템 메뉴를 건너 게임을 똑바로 이동합니다. DSiWare에서 기본 DSi 시스템 파일이 사용할 수 있는 경우 지원됩니다.&#xA;&#xA;게임(Native is forced) 없이 로드되었거나 내장된 BIOS/Firmware (Direct는 강제적이다)를 사용하는 경우 Ignored. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.direct"><value>제품정보</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.native"><value>이름 *</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard"><value>가상 SD 카드 (DSi)</value></data>
@@ -1204,8 +1103,7 @@ Native: 실제 DS/DSi 부팅 프로세스와 유사한 시스템 메뉴를 통�
   <data name="Emulation.Option.melondsds.melonds_ds_battery_ok_threshold.Value.0"><value>항상 OK</value></data>
   <data name="Emulation.Option.melondsds.melonds_ds_battery_ok_threshold.Value.100"><value>항상 낮은</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device"><value>Slot-2 장치</value></data>
-  <data name="Emulation.Option.melondsds.melonds_slot2_device.Help"><value>에뮬레이션 콘솔의 Slot-2에 삽입되는 주변 장치. DSi 모드에서 무시, 또는 GBA ROM이 명시적으로 로드되는 경우. Boktai trilogy의 모든 게임에 GBA ROM이 삽입되면 해당 태양 센서 설정은 강제됩니다. 지원된 NDS 게임에서, 각 Boktai 손수레는 다른 효력이 있을 것입니다. 모션 파크는 장치의 가속도계를 읽습니다 (그리고 그것의 자이로스코프, homebrew pak에 대한) frontend가 그들을 지원하는 경우; 그렇지 않으면 콘솔이 평평하고 여전히 작동. 
-변화는 다음 핵심 시작에 효력을 가지고 갑니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_slot2_device.Help"><value>에뮬레이션 콘솔의 Slot-2에 삽입되는 주변 장치. DSi 모드에서 무시, 또는 GBA ROM이 명시적으로 로드되는 경우. Boktai trilogy의 모든 게임에 GBA ROM이 삽입되면 해당 태양 센서 설정은 강제됩니다. 지원된 NDS 게임에서, 각 Boktai 손수레는 다른 효력이 있을 것입니다. 모션 파크는 장치의 가속도계를 읽습니다 (그리고 그것의 자이로스코프, homebrew pak에 대한) frontend가 그들을 지원하는 경우; 그렇지 않으면 콘솔이 평평하고 여전히 작동. &#xA;변화는 다음 핵심 시작에 효력을 가지고 갑니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.auto"><value>오토매틱</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.rumble-pak"><value>럼블 Pak</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.expansion-pak"><value>메모리 확장 Pak</value></data>
@@ -1215,36 +1113,19 @@ Native: 실제 DS/DSi 부팅 프로세스와 유사한 시스템 메뉴를 통�
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.motion-pak-homebrew"><value>모션 팍 (Homebrew)</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.motion-pak-retail"><value>모션팩(Retail)</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_intensity"><value>럼블 인텐츠</value></data>
-  <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Help"><value>Rumble Pak이 컨트롤러의 모터를 구동하는 방법. 에뮬레이션 럼블 Pak은 자신의 볼륨 컨트롤이 없습니다, 그래서 게임의 모든 스케일을 묻습니다.
-
-"Slot-2 Device"가 럼블 Pak에 설정되지 않는 한 무시했습니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Help"><value>Rumble Pak이 컨트롤러의 모터를 구동하는 방법. 에뮬레이션 럼블 Pak은 자신의 볼륨 컨트롤이 없습니다, 그래서 게임의 모든 스케일을 묻습니다.&#xA;&#xA;"Slot-2 Device"가 럼블 Pak에 설정되지 않는 한 무시했습니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Value.0"><value>사용 안 함</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type"><value>럼블 모터</value></data>
-  <data name="Emulation.Option.melondsds.melonds_rumble_type.Help"><value>컨트롤러의 모터 중 어느 Rumble Pak 드라이브. 대부분의 관제사는 점화기를 가진 무거운 모터를 한 쌍합니다; 진짜 럼블 Pak에 더 가까운 느낌은 관제사에 달려 있습니다.
-
-"Slot-2 Device"가 럼블 Pak에 설정되지 않는 한 무시했습니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_rumble_type.Help"><value>컨트롤러의 모터 중 어느 Rumble Pak 드라이브. 대부분의 관제사는 점화기를 가진 무거운 모터를 한 쌍합니다; 진짜 럼블 Pak에 더 가까운 느낌은 관제사에 달려 있습니다.&#xA;&#xA;"Slot-2 Device"가 럼블 Pak에 설정되지 않는 한 무시했습니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.both"><value>둘 다</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.strong"><value>강한 만</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.weak"><value>Weak 만</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor"><value>호스트 라이트 센서 사용</value></data>
-  <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Help"><value>활성화된 경우, emulated 태양 감지기의 가벼운 입력은 당신의 장치의 진짜 발광성 감지기에서 유효한 경우에 옵니다. 장애가 없거나 센서를 사용할 수 없다면, 에뮬레이션 센서는 다음과 같은 버튼 콤보로 수동으로 제어 할 수 있습니다.
-
-- L+A+Up 또는 L+A +Down
-- 선택 + 위 또는 Select+Down
-- 마우스 휠
-
-"Slot-2 Device"가 솔라 센서로 설정되거나, Boktai trilogy (모든 지역)의 모든 게임에 ROM이 에뮬레이션 콘솔 슬롯 2에 삽입됩니다. 불확실한 경우, 휴가가 활성화됩니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Help"><value>활성화된 경우, emulated 태양 감지기의 가벼운 입력은 당신의 장치의 진짜 발광성 감지기에서 유효한 경우에 옵니다. 장애가 없거나 센서를 사용할 수 없다면, 에뮬레이션 센서는 다음과 같은 버튼 콤보로 수동으로 제어 할 수 있습니다.&#xA;&#xA;- L+A+Up 또는 L+A +Down&#xA;- 선택 + 위 또는 Select+Down&#xA;- 마우스 휠&#xA;&#xA;"Slot-2 Device"가 솔라 센서로 설정되거나, Boktai trilogy (모든 지역)의 모든 게임에 ROM이 에뮬레이션 콘솔 슬롯 2에 삽입됩니다. 불확실한 경우, 휴가가 활성화됩니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.enabled"><value>사용</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode"><value>시간 형태</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>에뮬레이션 콘솔 내부 시계의 초기 시간.
-
-- Real: 기기의 시계와 동기화를 시작합니다.
-- 동기화 : 기기의 시계에 emulated Clock을 동기화합니다. 다시 감기 또는 빠르면 일부 게임에서 예상치 못한 행동을 일으킬 수 있습니다.
-- 관계되는: 장치의 시계, 더하기 또는 지정된 상쇄와 동기화에서 시작하십시오. DS가 대표할 수 있는 날짜에 제약이 있을 것입니다.
-- 절대: 당신의 장치의 시계에 관계 없이 특정한 날짜 그리고 시간에 시작하십시오.
-
-모든 날짜와 시간은 현지 시간대에 있습니다. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>에뮬레이션 콘솔 내부 시계의 초기 시간.&#xA;&#xA;- Real: 기기의 시계와 동기화를 시작합니다.&#xA;- 동기화 : 기기의 시계에 emulated Clock을 동기화합니다. 다시 감기 또는 빠르면 일부 게임에서 예상치 못한 행동을 일으킬 수 있습니다.&#xA;- 관계되는: 장치의 시계, 더하기 또는 지정된 상쇄와 동기화에서 시작하십시오. DS가 대표할 수 있는 날짜에 제약이 있을 것입니다.&#xA;- 절대: 당신의 장치의 시계에 관계 없이 특정한 날짜 그리고 시간에 시작하십시오.&#xA;&#xA;모든 날짜와 시간은 현지 시간대에 있습니다. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.real"><value>뚱 베어</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.sync"><value>동기화된</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.relative"><value>힌디어</value></data>
@@ -1532,10 +1413,7 @@ Native: 실제 DS/DSi 부팅 프로세스와 유사한 시스템 메뉴를 통�
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second"><value>두 번째 시작</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>타임 모드를 시작하면 처음 두 번째는 절대입니다. 변경은 다음 재시작에서 효력을 발생합니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode"><value>형태를 렌더링</value></data>
-  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>소프트웨어는 빠르고 가장 정확합니다. OpenGL (Classic)은 3D 그래픽을 확장 할 수 있지만 일부 게임은 올바르게 렌더링하지 않습니다.
-OpenGL (Compute)은 정확하고 확장을 지원하지만, 이전 장치에서 작동하지 않습니다. 몇 초만에 전환하여 쉐이더를 컴파일합니다.
-
-OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가십시오. 변화는 즉시 효력을 가지고 갑니다 그러나 frontend의 영상 운전사가 재시작될 것을 요구할지도 모릅니다.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>소프트웨어는 빠르고 가장 정확합니다. OpenGL (Classic)은 3D 그래픽을 확장 할 수 있지만 일부 게임은 올바르게 렌더링하지 않습니다.&#xA;OpenGL (Compute)은 정확하고 확장을 지원하지만, 이전 장치에서 작동하지 않습니다. 몇 초만에 전환하여 쉐이더를 컴파일합니다.&#xA;&#xA;OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가십시오. 변화는 즉시 효력을 가지고 갑니다 그러나 frontend의 영상 운전사가 재시작될 것을 요구할지도 모릅니다.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.software"><value>(주)</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.opengl"><value>OpenGL (클래식)</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.compute"><value>OpenGL (컴퓨터)</value></data>
@@ -1562,8 +1440,6 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.melondsds.melonds_threaded_renderer.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.melondsds.melonds_threaded_renderer.Value.enabled"><value>사용</value></data>
   <data name="Emulation.Firmware.melondsds.Slot0"><value>NDS 기업</value></data>
-  
-  
   <data name="Emulation.Firmware.melondsds.Slot3"><value>DSi 펌웨어</value></data>
   <data name="Emulation.Firmware.melondsds.Slot4"><value>DSi ARM7 BIOS</value></data>
   <data name="Emulation.Firmware.melondsds.Slot5"><value>DSi ARM9 BIOS</value></data>
@@ -1664,8 +1540,6 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.noods.noods_micButtonMode.Value.Hold"><value>(주)</value></data>
   <data name="Emulation.Option.noods.noods_micButtonMode.Value.Always"><value>지원하다</value></data>
   <data name="Emulation.Firmware.noods.Slot0"><value>NDS 기업</value></data>
-  
-  
   <data name="Emulation.Firmware.noods.Slot3"><value>Game Boy Advance BIOS</value></data>
   <data name="Emulation.Firmware.noods.Slot4"><value>NDS SD 카드</value></data>
   <data name="Emulation.Emulator.skyemu.Description"><value>SkyEmu를 가진 호환성 Nintendo 체계를 격리하십시오.</value></data>
@@ -1678,21 +1552,13 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.skyemu.system_gba_bios_enable.Help"><value>Game Boy Advance 펌웨어 사용 가능</value></data>
   <data name="Emulation.Option.skyemu.system_nds_bios_enable"><value>Nintendo DS 펌웨어</value></data>
   <data name="Emulation.Option.skyemu.system_nds_bios_enable.Help"><value>Nintendo DS 펌웨어 사용 가능</value></data>
-  
-  
-  
-  
-  
-  
   <data name="Emulation.Firmware.skyemu.Slot6"><value>GBA BIOS</value></data>
-  
-  
   <data name="Emulation.Firmware.skyemu.Slot9"><value>NDS FIRMWARE</value></data>
   <data name="Emulation.Emulator.fceumm.Description"><value>FCEUmm를 가진 호환성 Nintendo 체계를 격리하십시오.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region"><value>(주)</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region.Help"><value>NTSC, PAL 또는 Dendy 지역 타이밍을 사용하는 힘 핵심.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region.Value.Auto"><value>오토매틱</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_game_genie"><value>Game Genie 부가 기능 (Restart Required)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_game_genie"><value>Game Genie 부가 기능</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Help"><value>게임 Genie add-on 카트리지의 에뮬레이션을 활성화하여 게임을 시작할 때 입력되는 속임수 코드를 허용하십시오. Game Genie ROM 파일 'gamegenie.nes'는 frontend의 시스템 디렉토리에 제시해야합니다. FDS 또는 arcade 내용에 적용되지 않습니다.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Value.enabled"><value>사용</value></data>
@@ -1894,7 +1760,7 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.2x-Postrender"><value>2x-포스터</value></data>
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.2x-VBlank"><value>2x-VBlank의 특징</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_ramstate"><value>RAM 전원 입력 (Restart Required)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_ramstate"><value>RAM 전원 입력</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ramstate.Help"><value>힘에 RAM 가치. 일부 게임은 임의 번호 생성을 위한 초기 RAM 값에 의존합니다.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ramstate.Value.random"><value>뚱 베어</value></data>
   <data name="Emulation.Firmware.fceumm.Slot0"><value>가족 컴퓨터 디스크 시스템 BIOS</value></data>
@@ -2092,9 +1958,7 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.mesen2.mesen_snes_high_res_blend_mode.Value.Blend Even/Odd"><value>블렌드 Even/Odd</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode"><value>비디오 - SNES Deinterlace 모드</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Help"><value>SNES deinterlace 모드 선택</value></data>
-  <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Weave"><value>뚱 베어</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Bob Blend"><value>밥 혼합</value></data>
-  <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Bob"><value>뚱 베어</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Current Field"><value>현재 분야</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_hide_bg_layer_1"><value>향상 - SNES 숨기기 BG 층 1</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_hide_bg_layer_1.Help"><value>숨기기 SNES 배경 층 1</value></data>
@@ -2150,125 +2014,6 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders"><value>비디오 - Game Boy 숨기기 SGB 국경</value></data>
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders.Help"><value>슈퍼 숨기기 Game Boy 국경</value></data>
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders.Value.disabled"><value>사용 안 함</value></data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed"><value>입력 - 관제사 터보 속도</value></data>
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed.Help"><value>터보 단추 속도</value></data>
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed.Value.Fast"><value>빠른 속도</value></data>
@@ -2499,14 +2244,7 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Firmware.rustynes.Slot0"><value>가족 컴퓨터 디스크 시스템 BIOS</value></data>
   <data name="Emulation.Emulator.doublecherrygb.Description"><value>DoubleCherryGB를 가진 호환성 Nintendo 체계를 격리하십시오.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA"><value>Game Boy Advance에서 연주하는 행위</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Help"><value>일부 Game Boy Color 게임에서 재생할 때 향상된 기능을 제공합니다 Game Boy Advance.
-
-알려진 GBA-enhanced 게임:
-   - 샨타
-   - Wendy: 각 마녀 방법
-   - Zelda: 오라클 오브 나이스 / 시즌
-   - 메드로트 5
-   - 메가 맨 극단적인 2</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Help"><value>일부 Game Boy Color 게임에서 재생할 때 향상된 기능을 제공합니다 Game Boy Advance.&#xA;&#xA;알려진 GBA-enhanced 게임:&#xA;   - 샨타&#xA;   - Wendy: 각 마녀 방법&#xA;   - Zelda: 오라클 오브 나이스 / 시즌&#xA;   - 메드로트 5&#xA;   - 메가 맨 극단적인 2</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Value.0"><value>사용 안 함</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_rtc_use_system_clock"><value>실시간 시계 모드</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_rtc_use_system_clock.Help"><value>In-game Real-Time Clock (RTC) ticks 는 방법을 제어합니다. 'Real-Time'은 호스트 장치의 시스템 클럭을 사용하며, 타이머가 닫혀있는 동안 시간이 패스됩니다. 'Emulated'는 표준 CPU 사이클에 따라 시간을 엄격히 계산합니다.</value></data>
@@ -2571,11 +2309,7 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss"><value>GBC LCD Interlacing 광도</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss.Help"><value>interlacing 효과의 강도를 조정합니다. 그늘을 사용하지 않을 때이 값을 낮게 유지하십시오. 더 높은 값은 음영과 결합하여 효과를 볼 수 있습니다.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation"><value>GBC LCD RGB Subpixel 가늠자 요인</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>대응 RGB 구성 요소로 각 색상 픽셀을 확장하고 교체함으로써 물리적 GBC subpixels를 시뮬레이션합니다.
-
-제일 결과를 위해:
-- RetroArch (Settings -&gt; Video -&gt; Scaling)에서 'Integer Scaling'을 활성화하십시오.
-- 핵심 재시작은 이 설정을 변경한 후 필수일 수 있습니다.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>대응 RGB 구성 요소로 각 색상 픽셀을 확장하고 교체함으로써 물리적 GBC subpixels를 시뮬레이션합니다.&#xA;&#xA;제일 결과를 위해:&#xA;- RetroArch (Settings -&gt; Video -&gt; Scaling)에서 'Integer Scaling'을 활성화하십시오.&#xA;- 핵심 재시작은 이 설정을 변경한 후 필수일 수 있습니다.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Value.1"><value>사용 안 함</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur"><value>GBC LCD 블러</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur.Help"><value>디스플레이 흐림 효과를 적용합니다. 이 조정은 높게 CPU 집중합니다. 더 약한 하드웨어를 켜거나 대신 그늘을 사용합니다.</value></data>
@@ -2681,20 +2415,10 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.doublecherrygb.dcgb_cocktailtable_mode.Value.1"><value>제품정보</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_cocktailtable_mode.Value.2"><value>(주)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled"><value>모바일 어댑터 GB 에뮬레이션</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Help"><value>일본 모바일 어댑터 GB 주변 기기의 에뮬레이션을 가능하게 합니다.
-
-지원된 제목:
-   - Pokemon Crystal (일본 또는 모바일 어댑터 패치)
-   - Game Boy 전쟁 3
-   - 헬로 키티 해피 하우스(Hello Kitty Happy House)
-   - 모바일 골프
-   - 모바일 트레이너
-   - 넷 드 겟</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Help"><value>일본 모바일 어댑터 GB 주변 기기의 에뮬레이션을 가능하게 합니다.&#xA;&#xA;지원된 제목:&#xA;   - Pokemon Crystal (일본 또는 모바일 어댑터 패치)&#xA;   - Game Boy 전쟁 3&#xA;   - 헬로 키티 해피 하우스(Hello Kitty Happy House)&#xA;   - 모바일 골프&#xA;   - 모바일 트레이너&#xA;   - 넷 드 겟</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Value.0"><value>사용 안 함</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber"><value>휴대폰 번호를 시작</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Help"><value>P2P 전화 번호를 시작으로 표시합니다. 
-
-경고: 릴레이 서버 없이, 이것은 당신의 공중 IP 주소를 노출합니다. 신뢰할 수있는 사용자와 함께 이것을 공유합니다.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Help"><value>P2P 전화 번호를 시작으로 표시합니다. &#xA;&#xA;경고: 릴레이 서버 없이, 이것은 당신의 공중 IP 주소를 노출합니다. 신뢰할 수있는 사용자와 함께 이것을 공유합니다.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Value.0"><value>사용 안 함</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color"><value>이동할 수 있는 접합기 GB 장치 색깔</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Help"><value>에뮬레이션 모바일 어댑터 장치의 화장품 쉘 색상을 설정합니다.</value></data>
@@ -2703,34 +2427,24 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Value.10"><value>담당자: Ms.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Value.11"><value>담당자: Mr. Li</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip"><value>DNS 서버 IP</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Help"><value>공식 Nintendo 서버는 오프라인입니다. REON과 같은 사용자 정의 스택을 사용하여 인프라 교체를 호스팅 할 수 있습니다. https://github.com/REONTeam/reon.
-
-사용자 지정 구성에 대 한 편집 mobile_adapter_gb_custom_server_config.ini 당신의 retroarch 시스템 폴더.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Help"><value>공식 Nintendo 서버는 오프라인입니다. REON과 같은 사용자 정의 스택을 사용하여 인프라 교체를 호스팅 할 수 있습니다. https://github.com/REONTeam/reon.&#xA;&#xA;사용자 지정 구성에 대 한 편집 mobile_adapter_gb_custom_server_config.ini 당신의 retroarch 시스템 폴더.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.127.0.0.1"><value>127.0.0.1 (Localhost)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.172.18.0.1"><value>172.18.0.1 (로컬 도커)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.99"><value>제품 정보</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port"><value>DNS 서버 포트</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Help"><value>사용자 정의 네트워크 인프라의 대상 포트 연결을 지정합니다.
-
-사용자 지정 구성에 대 한 편집 mobile_adapter_gb_custom_server_config.ini 당신의 retroarch 시스템 폴더.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Help"><value>사용자 정의 네트워크 인프라의 대상 포트 연결을 지정합니다.&#xA;&#xA;사용자 지정 구성에 대 한 편집 mobile_adapter_gb_custom_server_config.ini 당신의 retroarch 시스템 폴더.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Value.1"><value>53 (기본값)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Value.99"><value>제품 정보</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server"><value>P2P 릴레이 서버 사용</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Help"><value>P2P 통화에 대한 사용자 정의 릴레이 서버를 사용합니다.
-
-사용자 지정 구성에 대 한 편집 mobile_adapter_gb_custom_server_config.ini 당신의 retroarch 시스템 폴더.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Help"><value>P2P 통화에 대한 사용자 정의 릴레이 서버를 사용합니다.&#xA;&#xA;사용자 지정 구성에 대 한 편집 mobile_adapter_gb_custom_server_config.ini 당신의 retroarch 시스템 폴더.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Value.0"><value>사용 안 함</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip"><value>P2P 릴레이 서버 IP</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Help"><value>사용자 정의 네트워크 인프라의 대상 포트 연결을 지정합니다.
-
-사용자 지정 구성에 대 한 편집 mobile_adapter_gb_custom_server_config.ini 당신의 retroarch 시스템 폴더.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Help"><value>사용자 정의 네트워크 인프라의 대상 포트 연결을 지정합니다.&#xA;&#xA;사용자 지정 구성에 대 한 편집 mobile_adapter_gb_custom_server_config.ini 당신의 retroarch 시스템 폴더.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.127.0.0.1"><value>127.0.0.1 (Localhost)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.172.18.0.1"><value>172.18.0.1 (로컬 도커)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.99"><value>제품 정보</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port"><value>P2P 릴레이 서버 포트</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Help"><value>P2P 릴레이 serber를 위한 표적 항구 연결을 지정하십시오.
-
-사용자 지정 구성에 대 한 편집 mobile_adapter_gb_custom_server_config.ini 당신의 retroarch 시스템 폴더.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Help"><value>P2P 릴레이 serber를 위한 표적 항구 연결을 지정하십시오.&#xA;&#xA;사용자 지정 구성에 대 한 편집 mobile_adapter_gb_custom_server_config.ini 당신의 retroarch 시스템 폴더.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Value.1"><value>31227 (기본값)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Value.99"><value>제품 정보</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_dev_log_linkcable_to_file"><value>Log Link Cable은 파일로 이동</value></data>
@@ -2801,10 +2515,10 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler"><value>오디오 Resampler</value></data>
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler.Help"><value>생성 된 오디오를 재 샘플링 할 때 사용하는 알고리즘을 지정하십시오 (Game Boy 오디오 비율은 CPU 쓰기 속도에 의해서만 제한됩니다. 그런 다음 'native' 주파수는 현대 사운드 장치에서 실제화되고 downsampled이어야합니다). 'Sinc'는 최고 품질을 생산합니다. 'Cosine'은 저엔드 하드웨어의 성능을 향상시킵니다.</value></data>
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler.Value.cc"><value>(주)코신</value></data>
-  <data name="Emulation.Option.gambatte.gambatte_gb_hwmode"><value>에뮬레이션 하드웨어 (Restart Required)</value></data>
+  <data name="Emulation.Option.gambatte.gambatte_gb_hwmode"><value>에뮬레이션 하드웨어</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_hwmode.Help"><value>어떤 유형의 하드웨어를 에뮬레이트합니다. 'Auto'는 권장됩니다. 선택 'GBA' 특정에서 추가 기능을 잠금 해제 'GBA 향상된' Game Boy Color 게임 (Shantae, Wendy - 모든 Witch Way, Zelda의 전설 : 시즌 / 게이지 ...).</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_hwmode.Value.Auto"><value>오토매틱</value></data>
-  <data name="Emulation.Option.gambatte.gambatte_gb_bootloader"><value>공식 Bootloader 사용 (Restart Required)</value></data>
+  <data name="Emulation.Option.gambatte.gambatte_gb_bootloader"><value>공식 Bootloader 사용</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Help"><value>해당 시작 로고 애니메이션과 함께 공식 Game Boy 및 Game Boy Color bootloaders에 대한 지원.</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Value.enabled"><value>사용</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Value.disabled"><value>사용 안 함</value></data>
@@ -3047,8 +2761,6 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg"><value>DMG 게임의 변색 (CGB BIOS에서만 적용 가능)</value></data>
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg.Value.enabled"><value>사용</value></data>
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg.Value.disabled"><value>사용 안 함</value></data>
-  
-  
   <data name="Emulation.Emulator.mesen_s.Description"><value>Mesen-S.를 가진 호환성 Nintendo 체계를 격리하십시오</value></data>
   <data name="Emulation.Option.mesen_s.mesen-s_ntsc_filter"><value>NTSC 필터</value></data>
   <data name="Emulation.Option.mesen_s.mesen-s_ntsc_filter.Value.Disabled"><value>사용 안 함</value></data>
@@ -3111,8 +2823,6 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Firmware.mesen_s.Slot15"><value>GBC 시동 이미지</value></data>
   <data name="Emulation.Firmware.mesen_s.Slot16"><value>SGB 부팅 이미지</value></data>
   <data name="Emulation.Firmware.mesen_s.Slot17"><value>SGB2 부트 이미지</value></data>
-  
-  
   <data name="Emulation.Firmware.mesen_s.Slot20"><value>Satellaview 부트 ROM</value></data>
   <data name="Emulation.Emulator.nside_sfc_balanced.Description"><value>nSide와 호환 Nintendo 시스템.</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_internal_resolution"><value>내부 해결책</value></data>
@@ -4300,8 +4010,6 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-native-tex-rect.Value.False"><value>사용 안 함</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method"><value>(ParaLLEl-RDP) 분리 방법</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Help"><value>직물은 1x 스케일링 요소 및 특수 CRT 쉐이너와 함께 사용해야합니다.</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Value.Bob"><value>뚱 베어</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Value.Weave"><value>뚱 베어</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay"><value>VI 오버레이</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay.Help"><value>(AL) Select VI 오버레이 필터링. '필터'는 원래 시스템 렌더링입니다.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay.Value.Filtered"><value>필터링</value></data>
@@ -4394,7 +4102,6 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.memory"><value>이름 *</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.rumble"><value>팟캐스트</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.transfer"><value>(주)</value></data>
-  
   <data name="Emulation.Emulator.parallel_n64.Description"><value>ParaLLEl N64.를 가진 호환이 되는 Nintendo 체계</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>확장 인자 (restart)</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling.Help"><value>콘솔의 해상도를 여러 곳에서 렌더링합니다. ParaLLEl-RDP는 각 인자를 수여합니다; Angrylion는 4x까지이고 8x를 4x로 대우합니다.</value></data>
@@ -4576,7 +4283,7 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.parallel_n64.parallel-n64-disable_expmem.Value.enabled"><value>사용</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-disable_expmem.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy"><value>GFX 정확도</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Help"><value>GFX 정확도, 필수 재시작</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Help"><value>그래픽 정확도.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.low"><value>이름 *</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.medium"><value>(주)삼성</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.high"><value>뚱 베어</value></data>
@@ -4872,7 +4579,6 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.parallel_n64.parallel-n64-sdcard.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate"><value>savestate 짐에 Rollback N64 체계 시계</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate.Value.enabled"><value>예</value></data>
-  
   <data name="Emulation.Emulator.pokemini.Description"><value>PokeMini를 가진 호환성 Nintendo 체계를 격리하십시오.</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>비디오 스케일 (Restart)</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale.Help"><value>내부 영상 가늠자 요인을 놓으십시오. 스케일 요소를 증가하는 것은 내부 'Dot Matrix'LCD 필터의 외관을 향상시킵니다.</value></data>
@@ -5039,7 +4745,7 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock"><value>오버 클럭 - SuperFX Coprocessor</value></data>
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock.Help"><value>오버 클럭 또는 다운시 슈퍼 FX coprocessor. 이 값을 100 % 이상 설정하면 SuperFX를 지원하는 게임에서 성능을 향상시킬 수 있습니다. caution와 함께 사용, 그것은 또한 충돌하거나 다른 문제를 전시 할 수있는 일부 게임을 일으킬 수 있습니다.</value></data>
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock.Value.100"><value>100% (과태)</value></data>
-  <data name="Emulation.Option.bsnes.bsnes_sgb_bios"><value>선호 슈퍼 Game Boy BIOS (필수)</value></data>
+  <data name="Emulation.Option.bsnes.bsnes_sgb_bios"><value>선호 슈퍼 Game Boy BIOS</value></data>
   <data name="Emulation.Option.bsnes.bsnes_sgb_bios.Help"><value>Super Game Boy BIOS를 사용하여 호환 된 타이틀과 함께 사용할 수 있습니다.</value></data>
   <data name="Emulation.Option.bsnes.bsnes_hide_sgb_border"><value>숨기기 SGB 국경</value></data>
   <data name="Emulation.Option.bsnes.bsnes_hide_sgb_border.Help"><value>Super Game Boy 게임을 할 때 경계를 숨깁니다.</value></data>
@@ -6073,7 +5779,7 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.fast"><value>빠른 속도</value></data>
   <data name="Emulation.Emulator.cemu.Description"><value>Cemu를 가진 호환성 Nintendo 체계를 격리하십시오.</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode"><value>CPU 형태</value></data>
-  <data name="Emulation.Option.cemu.cemu_cpu_mode.Help"><value>Wii U의 PowerPC 코어가 에뮬레이션하는 방법. 자동차는 4개 이상 육체적인 핵심 및 단 하나 핵심을 가진 CPU에 다핵 recompiler를 그렇지 않으면 가지고 갑니다. 해석기는 훨씬 느리며 디버깅을 의미한다. (Restart required)</value></data>
+  <data name="Emulation.Option.cemu.cemu_cpu_mode.Help"><value>Wii U의 PowerPC 코어가 에뮬레이션하는 방법. 자동차는 4개 이상 육체적인 핵심 및 단 하나 핵심을 가진 CPU에 다핵 recompiler를 그렇지 않으면 가지고 갑니다. 해석기는 훨씬 느리며 디버깅을 의미한다.</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.auto"><value>오토매틱</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.singlecore_interpreter"><value>Singlecore 인터프리터</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.singlecore_recompiler"><value>싱글 코어 Recompiler</value></data>
@@ -6209,12 +5915,10 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.cemu.cemu_bc1_16bit.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.cemu.cemu_bc1_16bit.Value.enabled"><value>사용</value></data>
   <data name="Emulation.Option.cemu.cemu_gpu_api"><value>그래픽 API</value></data>
-  <data name="Emulation.Option.cemu.cemu_gpu_api.Help"><value>그래픽 API Cemu와 렌더링. (Restart required)</value></data>
+  <data name="Emulation.Option.cemu.cemu_gpu_api.Help"><value>그래픽 API Cemu와 렌더링.</value></data>
   <data name="Emulation.Option.cemu.cemu_gpu_api.Value.OpenGL"><value>OpenGL을</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game"><value>게임 설치</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_game.Help"><value>시스템 / Cemu / 제목의 모든 게임을 저장할 수 있습니다/Cemu/mlc01, 에뮬레이션 콘솔의 저장 장치로 디스크에서 게임을 설치합니다. 게임은 디스크 이미지입니다 (.wud, .wux, 니다.iso) 또는 .Wua, 그리고 에서 .와에서 업데이트 및 DLC 그것은 함께 설치됩니다. 같은 게임이 이미 설치되어 있거나 새로운 버전은 혼자 남아 있습니다.
-
-이 경우 ON, 설치 즉시 시작, 그것의 진행으로 표시된 알림, 그리고 그것은 다시 모든 게임이 설치 될 때 OFF을 회전. 설치된 게임은 mlc01/usr/title/00050000의 밑에 그것의 부호 폴더에 있는 .rpx를 적재해서 시작됩니다; 그것의 원판 이미지는 더 많은 것을 필요로 하지 않습니다.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_game.Help"><value>시스템 / Cemu / 제목의 모든 게임을 저장할 수 있습니다/Cemu/mlc01, 에뮬레이션 콘솔의 저장 장치로 디스크에서 게임을 설치합니다. 게임은 디스크 이미지입니다 (.wud, .wux, 니다.iso) 또는 .Wua, 그리고 에서 .와에서 업데이트 및 DLC 그것은 함께 설치됩니다. 같은 게임이 이미 설치되어 있거나 새로운 버전은 혼자 남아 있습니다.&#xA;&#xA;이 경우 ON, 설치 즉시 시작, 그것의 진행으로 표시된 알림, 그리고 그것은 다시 모든 게임이 설치 될 때 OFF을 회전. 설치된 게임은 mlc01/usr/title/00050000의 밑에 그것의 부호 폴더에 있는 .rpx를 적재해서 시작됩니다; 그것의 원판 이미지는 더 많은 것을 필요로 하지 않습니다.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game.Value.enabled"><value>사용</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game"><value>Uninstall 게임</value></data>
@@ -6222,11 +5926,7 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.enabled"><value>사용</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles"><value>설치 내용</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>모든 업데이트 및 DLC 시스템을 설치 / Cemu/제목 저장 /Cemu / mlc01, 에뮬레이션 콘솔의 저장소. 각 하나는 그 자체의 폴더에 간다; NUS 다운로드 (.app 파일)는 title.tmd 및 그것의 title.tik, 암호 해독 키가 필요합니다. 같은 버전이 이미 설치되었거나 새로운 것은 혼자 남아있다.
-
-이 경우 ON, 설치 즉시 시작, 그것의 진행으로 표시된 알림, 그리고 그것은 다시 모든 내용이 설치되어있을 때 OFF 및이 메뉴가 종료되거나 다른 옵션 변경됩니다. 제목은 한 번 설치 된 내용을 다시 시작합니다.
-
-다른 지역의 내용은 RetroArch의 Main Menu &gt; Load Content로 설치 될 수 있으며, 해당 title.tmd을 선택하여 title.tik 로 설정할 수 있습니다.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>모든 업데이트 및 DLC 시스템을 설치 / Cemu/제목 저장 /Cemu / mlc01, 에뮬레이션 콘솔의 저장소. 각 하나는 그 자체의 폴더에 간다; NUS 다운로드 (.app 파일)는 title.tmd 및 그것의 title.tik, 암호 해독 키가 필요합니다. 같은 버전이 이미 설치되었거나 새로운 것은 혼자 남아있다.&#xA;&#xA;이 경우 ON, 설치 즉시 시작, 그것의 진행으로 표시된 알림, 그리고 그것은 다시 모든 내용이 설치되어있을 때 OFF 및이 메뉴가 종료되거나 다른 옵션 변경됩니다. 제목은 한 번 설치 된 내용을 다시 시작합니다.&#xA;&#xA;다른 지역의 내용은 RetroArch의 Main Menu &gt; Load Content로 설치 될 수 있으며, 해당 title.tmd을 선택하여 title.tik 로 설정할 수 있습니다.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.enabled"><value>사용</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles"><value>Uninstall 내용</value></data>
@@ -6234,11 +5934,7 @@ OpenGL이 사용할 수없는 경우 소프트웨어 렌더링으로 돌아가�
   <data name="Emulation.Option.cemu.cemu_uninstall_titles.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles.Value.enabled"><value>사용</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source"><value>Installing 후에 내용 제거</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_remove_source.Help"><value>시스템/Cemu/titles에서 다운로드 가능한 콘텐츠 및 제목 업데이트를 한 번 설치한 내용을 제거하십시오. Load Content를 통해로드 된 내용이 어디에 남아있다.
-
-운영하는 제목의 갱신 또는 DLC는 사용중인, 그래서 제목이 닫히거나 다시 놓을 때 제거됩니다.
-
-.wua 파일 및 디스크 이미지는 결코 제거되지 않습니다, 그들은 기본적인 게임을 붙들 수 있습니다 뿐 아니라.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_remove_source.Help"><value>시스템/Cemu/titles에서 다운로드 가능한 콘텐츠 및 제목 업데이트를 한 번 설치한 내용을 제거하십시오. Load Content를 통해로드 된 내용이 어디에 남아있다.&#xA;&#xA;운영하는 제목의 갱신 또는 DLC는 사용중인, 그래서 제목이 닫히거나 다시 놓을 때 제거됩니다.&#xA;&#xA;.wua 파일 및 디스크 이미지는 결코 제거되지 않습니다, 그들은 기본적인 게임을 붙들 수 있습니다 뿐 아니라.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source.Value.disabled"><value>사용 안 함</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source.Value.enabled"><value>사용</value></data>
   <data name="Emulation.Firmware.FamicomDiskSystem"><value>Famicom Disk System BIOS</value></data>

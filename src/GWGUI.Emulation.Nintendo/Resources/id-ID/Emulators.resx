@@ -6,14 +6,14 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.azahar.Description"><value>Emulasi kompatibel sistem Nintendo dengan Azahar.</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit"><value>Aktifkan JIT CPU</value></data>
-  <data name="Emulation.Option.azahar.citra_use_cpu_jit.Help"><value>Aktifkan Kompilasi In- Time untuk emulasi CPU ARM. Secara signifikan meningkatkan kinerja tetapi dapat mengurangi akurasi. Restart diperlukan.</value></data>
+  <data name="Emulation.Option.azahar.citra_use_cpu_jit.Help"><value>Aktifkan Kompilasi In- Time untuk emulasi CPU ARM. Meningkatkan kinerja tetapi dapat mengurangi akurasi.</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit.Value.enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage"><value>Kecepatan Jam CPU</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage.Help"><value>Sesuaikan kecepatan waktu CPU 3DS yang digandakan sebagai persentase kecepatan normal. Nilai yang lebih tinggi dapat meningkatkan kinerja dalam beberapa game tetapi dapat menyebabkan masalah. Nilai yang lebih rendah dapat membantu permainan yang berjalan terlalu cepat.</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage.Value.100"><value>100% (Baku)</value></data>
   <data name="Emulation.Option.azahar.citra_is_new_3ds"><value>Model Sistem 3DS</value></data>
-  <data name="Emulation.Option.azahar.citra_is_new_3ds.Help"><value>Pilih apakah akan menirunya 3DS asli atau New 3DS. 3DS Baru memiliki daya CPU tambahan dan memori, dibutuhkan untuk beberapa permainan. Restart diperlukan.</value></data>
+  <data name="Emulation.Option.azahar.citra_is_new_3ds.Help"><value>Pilih 3DS asli atau New 3DS. New 3DS memiliki lebih CPU kekuatan dan memori.</value></data>
   <data name="Emulation.Option.azahar.citra_is_new_3ds.Value.Old 3DS"><value>3DS Asli</value></data>
   <data name="Emulation.Option.azahar.citra_region_value"><value>Daerah Sistem 3DS</value></data>
   <data name="Emulation.Option.azahar.citra_region_value.Help"><value>Set area sistem 3DS. Auto- select akan memilih berdasarkan permainan. Beberapa game terkunci dan membutuhkan daerah yang cocok.</value></data>
@@ -50,7 +50,7 @@
   <data name="Emulation.Option.azahar.citra_input_type.Value.static_noise"><value>Suara Statik</value></data>
   <data name="Emulation.Option.azahar.citra_input_type.Value.frontend"><value>Frontend</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api"><value>API Grafik</value></data>
-  <data name="Emulation.Option.azahar.citra_graphics_api.Help"><value>Pilih grafik rendering API. Otomatis akan memilih opsi terbaik yang tersedia. Restart diperlukan.</value></data>
+  <data name="Emulation.Option.azahar.citra_graphics_api.Help"><value>Pilih grafik rendering API. Otomatis memilih API yang tersedia.</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.Auto"><value>Otomatis</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.OpenGL"><value>OpenGL</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.Software"><value>Perangkat Lunak</value></data>
@@ -509,8 +509,6 @@
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.pattern"><value>Pola</value></data>
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.random"><value>Acak</value></data>
   <data name="Emulation.Firmware.desmume.Slot0"><value>NDS Firmware</value></data>
-  
-  
   <data name="Emulation.Emulator.desmume2015.Description"><value>Emulasi kompatibel sistem Nintendo dengan DeSmuME 2015.</value></data>
   <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Resolusi internal (restart)</value></data>
   <data name="Emulation.Option.desmume2015.desmume_num_cores"><value>Core CPU</value></data>
@@ -597,8 +595,6 @@
   <data name="Emulation.Option.desmume2015.desmume_mic_mode.Value.random"><value>acak</value></data>
   <data name="Emulation.Option.desmume2015.desmume_mic_mode.Value.physical"><value>fisik</value></data>
   <data name="Emulation.Firmware.desmume2015.Slot0"><value>NDS Firmware</value></data>
-  
-  
   <data name="Emulation.Option.melonds.melonds_console_mode"><value>Moda Konsol</value></data>
   <data name="Emulation.Option.melonds.melonds_boot_directly"><value>Boot Game Langsung</value></data>
   <data name="Emulation.Option.melonds.melonds_boot_directly.Help"><value>Pilih apakah inti mesti boot permainan secara langsung atau lebih baik boot ke menu DS (BIOS dan berkas firmware dibutuhkan).</value></data>
@@ -696,8 +692,6 @@
   <data name="Emulation.Option.melonds.melonds_jit_fast_memory.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_fast_memory.Value.enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Firmware.melonds.Slot0"><value>NDS Firmware</value></data>
-  
-  
   <data name="Emulation.Firmware.melonds.Slot3"><value>DSi Firmware</value></data>
   <data name="Emulation.Firmware.melonds.Slot4"><value>DSi ARM7 BIOS</value></data>
   <data name="Emulation.Firmware.melonds.Slot5"><value>DSi ARM9 BIOS</value></data>
@@ -705,24 +699,13 @@
   <data name="Emulation.Firmware.melonds.Slot7"><value>DSi SD kartu</value></data>
   <data name="Emulation.Emulator.melondsds.Description"><value>Emulasi kompatibel Nintendo sistem dengan melonDS DS.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input"><value>Moda Masukan Mikrofon</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mic_input.Help"><value>Pilih suara yang akan diterima mikrofon:
-
-Diam: Tidak ada masukan audio.
-Meniup sebuah built-in blowing sound.
-Suara gaduh.
-Gunakan mikrofon asli jika tersedia, kembali ke Silence jika tidak.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mic_input.Help"><value>Pilih suara yang akan diterima mikrofon:&#xA;&#xA;Diam: Tidak ada masukan audio.&#xA;Meniup sebuah built-in blowing sound.&#xA;Suara gaduh.&#xA;Gunakan mikrofon asli jika tersedia, kembali ke Silence jika tidak.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.silence"><value>Diam</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.blow"><value>Blow</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.noise"><value>Bising</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.microphone"><value>Mikrofon</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active"><value>Mode Tombol Mikrofon</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mic_input_active.Help"><value>Tata perilaku tombol Mikrofon, bahkan jika Moda Masukan Mikrophone diatur ke Blow atau Noise. Mikrofon yang beremulasi menerima keheningan ketika dinonaktifkan oleh tombol.
-
-Tahan: Tombol memfungsikan masukan mic saat ditahan.
-Jungkitkan: Tombol memfungsikan input mic ketika ditekan, mematikan saat ditekan lagi.
-Selalu: Tombol diabaikan, masukan mic selalu diaktifkan.
-
-Diabaikan bila Mode Masukan Mikrofon ditata ke Silence.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mic_input_active.Help"><value>Tata perilaku tombol Mikrofon, bahkan jika Moda Masukan Mikrophone diatur ke Blow atau Noise. Mikrofon yang beremulasi menerima keheningan ketika dinonaktifkan oleh tombol.&#xA;&#xA;Tahan: Tombol memfungsikan masukan mic saat ditahan.&#xA;Jungkitkan: Tombol memfungsikan input mic ketika ditekan, mematikan saat ditekan lagi.&#xA;Selalu: Tombol diabaikan, masukan mic selalu diaktifkan.&#xA;&#xA;Diabaikan bila Mode Masukan Mikrofon ditata ke Silence.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.hold"><value>Tahan</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.toggle"><value>Jungkitkan</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.always"><value>Selalu</value></data>
@@ -752,21 +735,11 @@ Diabaikan bila Mode Masukan Mikrofon ditata ke Silence.</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns"><value>DNS Override</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>Server DNS yang digunakan untuk me-emulasi titik akses ("melonAP"). Gunakan ini untuk bermain online dengan server gubahan yang mengimplementasi ulang layanan koneksi Nintendo Wi- Fi yang tidak dilanjutkan. Dukungan permainan tergantung pada server. 
-Beberapa penyedia layanan internet dapat memblokir permintaan ke server ini. Jika ini adalah kasus bagi Anda, lihat https: / / tinyurl.com / 393cb755 untuk solusi.
-
-Server terdaftar tidak berafiliasi dengan libretro, Nintendo, tim melonDS, atau penulis inti ini. Harap hormati pemain lain dan ikuti aturan server.
-
-Jika tidak yakin, tinggalkan Kaeru WFC. Perubahan mengambil efek pada restart berikutnya.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>Server DNS yang digunakan untuk me-emulasi titik akses ("melonAP"). Gunakan ini untuk bermain online dengan server gubahan yang mengimplementasi ulang layanan koneksi Nintendo Wi- Fi yang tidak dilanjutkan. Dukungan permainan tergantung pada server. &#xA;Beberapa penyedia layanan internet dapat memblokir permintaan ke server ini. Jika ini adalah kasus bagi Anda, lihat https: / / tinyurl.com / 393cb755 untuk solusi.&#xA;&#xA;Server terdaftar tidak berafiliasi dengan libretro, Nintendo, tim melonDS, atau penulis inti ini. Harap hormati pemain lain dan ikuti aturan server.&#xA;&#xA;Jika tidak yakin, tinggalkan Kaeru WFC. Perubahan mengambil efek pada restart berikutnya.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.95.217.77.181"><value>Wiimmfi (95.217.77.181)</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.default"><value>Jangan Override</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language"><value>Bahasa</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Menimpa mode bahasa dari konsol yang terukur.
-
-Gunakan Host: Menggunakan bahasa antarmuka jika didukung oleh konsol.
-Jangan Timpa: Gunakan bahasa apapun yang sudah ditetapkan pada firmware. Ini adalah perilaku mundur jika ditiru DS (atau DSi NAND) tidak mendukung bahasa antarmuka.
-
-Tidak setiap pertandingan menghormati pengaturan ini. Perubahan mengambil efek pada restart berikutnya.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Menimpa mode bahasa dari konsol yang terukur.&#xA;&#xA;Gunakan Host: Menggunakan bahasa antarmuka jika didukung oleh konsol.&#xA;Jangan Timpa: Gunakan bahasa apapun yang sudah ditetapkan pada firmware. Ini adalah perilaku mundur jika ditiru DS (atau DSi NAND) tidak mendukung bahasa antarmuka.&#xA;&#xA;Tidak setiap pertandingan menghormati pengaturan ini. Perubahan mengambil efek pada restart berikutnya.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.auto"><value>Gunakan Host</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.en"><value>Inggris</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.ja"><value>Jepang</value></data>
@@ -776,13 +749,7 @@ Tidak setiap pertandingan menghormati pengaturan ini. Perubahan mengambil efek p
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.es"><value>Spanyol</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.default"><value>Jangan Override</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username"><value>Nama pengguna</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Menimpa nama pengguna yang diberikan ke konsol terukur.
-
-Jangan Timpa: Uses nama apapun didefinisikan pada firmware.
-Coba cari nama pengguna dari frontend. Jika gagal, coba variabel lingkungan USER, USERNAME, dan LOGNAME.
-melonDS DS: Uses "melonDS DS". Ini adalah default jika tidak ada yang lain bekerja.
-
-Nama dipotong menjadi 10 karakter. Perubahan mengambil efek pada restart berikutnya.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Menimpa nama pengguna yang diberikan ke konsol terukur.&#xA;&#xA;Jangan Timpa: Uses nama apapun didefinisikan pada firmware.&#xA;Coba cari nama pengguna dari frontend. Jika gagal, coba variabel lingkungan USER, USERNAME, dan LOGNAME.&#xA;melonDS DS: Uses "melonDS DS". Ini adalah default jika tidak ada yang lain bekerja.&#xA;&#xA;Nama dipotong menjadi 10 karakter. Perubahan mengambil efek pada restart berikutnya.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.guess_username"><value>Tebak</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.existing_username"><value>Jangan Override</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color"><value>Warna Favorit</value></data>
@@ -834,12 +801,7 @@ Nama dipotong menjadi 10 karakter. Perubahan mengambil efek pada restart berikut
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>Saat alarm dikonfigurasi. Perubahan mengambil efek pada restart berikutnya.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Value.default"><value>Jangan Override</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode"><value>Mode Jaringan</value></data>
-  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Mengakui bagaimana melonDS DS emulasi Nintendo WFC. Jika tidak yakin, gunakan mode Indirect.
-
-Tidak langsung: Gunakan libslirp untuk menirakan stack jaringan DS. Sederhana dan tidak perlu diatur.
-Langsung: Routes emulasi paket Wi- Fi ke antarmuka jaringan host. Lebih cepat dan lebih dapat diandalkan, tapi memerlukan koneksi ethernet dan WinPcap atau Npcap dipasang. libpcap telah terpasang. Jika tidak tersedia, kembali ke mode Indirect.
-
-Perubahan mengambil efek pada restart berikutnya. Tidak ada hubungannya dengan multiplayer lokal.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Mengakui bagaimana melonDS DS emulasi Nintendo WFC. Jika tidak yakin, gunakan mode Indirect.&#xA;&#xA;Tidak langsung: Gunakan libslirp untuk menirakan stack jaringan DS. Sederhana dan tidak perlu diatur.&#xA;Langsung: Routes emulasi paket Wi- Fi ke antarmuka jaringan host. Lebih cepat dan lebih dapat diandalkan, tapi memerlukan koneksi ethernet dan WinPcap atau Npcap dipasang. libpcap telah terpasang. Jika tidak tersedia, kembali ke mode Indirect.&#xA;&#xA;Perubahan mengambil efek pada restart berikutnya. Tidak ada hubungannya dengan multiplayer lokal.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.indirect"><value>Tidak langsung</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.direct"><value>Langsung</value></data>
@@ -847,9 +809,7 @@ Perubahan mengambil efek pada restart berikutnya. Tidak ada hubungannya dengan m
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Pilih sebuah antar muka jaringan untuk digunakan dengan Mode Langsung. Jika tidak yakin, atur ke Otomatis. Perubahan mengambil efek di inti berikutnya restart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Value.auto"><value>Otomatis</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode"><value>Mode Alamat MAC Jaringan</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Konfigurasikan bagaimana alamat MAC yang tertimulasi diatur. Mengubah opsi ini mungkin membuat multiplayer lokal tidak memungkinkan atau memblokir akses untuk menyimpan berkas dalam game yang menggunakan alamat MAC untuk mencegah gangguan dari berkas simpan (demikian). Pokemon.
-Tidak ada hubungan dengan antarmuka mode langsung. Perubahan mengambil efek pada restart berikutnya.
-Lihat https: / / bit.ly / 4f JtWKN untuk informasi lebih lanjut.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Konfigurasikan bagaimana alamat MAC yang tertimulasi diatur. Mengubah opsi ini mungkin membuat multiplayer lokal tidak memungkinkan atau memblokir akses untuk menyimpan berkas dalam game yang menggunakan alamat MAC untuk mencegah gangguan dari berkas simpan (demikian). Pokemon.&#xA;Tidak ada hubungan dengan antarmuka mode langsung. Perubahan mengambil efek pada restart berikutnya.&#xA;Lihat https: / / bit.ly / 4f JtWKN untuk informasi lebih lanjut.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.firmware"><value>Set dari firmware</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.from-username"><value>Derif dari nama pengguna libretro</value></data>
   <data name="Emulation.Option.melondsds.melonds_show_unsupported_features"><value>Peringatkan Tentang Fitur Tidak Didukung</value></data>
@@ -902,13 +862,7 @@ Lihat https: / / bit.ly / 4f JtWKN untuk informasi lebih lanjut.</value></data>
   <data name="Emulation.Option.melondsds.melonds_cursor_timeout.Value.30"><value>30 detik</value></data>
   <data name="Emulation.Option.melondsds.melonds_cursor_timeout.Value.60"><value>60 detik</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode"><value>Moda Sentuh</value></data>
-  <data name="Emulation.Option.melondsds.melonds_touch_mode.Help"><value>Menentukan bagaimana layar sentuh konsol digandakan.
-
-Joystick: Gunakan joystick untuk mengendalikan kursor. Disarankan jika Anda tidak memiliki mouse atau layar sentuh nyata tersedia.
-Penunjuk: Gunakan tetikus atau layar sentuh untuk mengendalikan kursor.
-Otomatis: Gunakan baik Joystick atau Pointer, tergantung pada yang terakhir Anda menyentuh.
-
-Jika tidak yakin, atur ke Auto.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_touch_mode.Help"><value>Menentukan bagaimana layar sentuh konsol digandakan.&#xA;&#xA;Joystick: Gunakan joystick untuk mengendalikan kursor. Disarankan jika Anda tidak memiliki mouse atau layar sentuh nyata tersedia.&#xA;Penunjuk: Gunakan tetikus atau layar sentuh untuk mengendalikan kursor.&#xA;Otomatis: Gunakan baik Joystick atau Pointer, tergantung pada yang terakhir Anda menyentuh.&#xA;&#xA;Jika tidak yakin, atur ke Auto.</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.joystick"><value>Joystick</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.touch"><value>Penunjuk</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.auto"><value>Otomatis</value></data>
@@ -917,9 +871,7 @@ Jika tidak yakin, atur ke Auto.</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_maxspeed"><value>Kecepatan maksimum Kursor Joystick</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_maxspeed.Help"><value>Atur kecepatan maksimal untuk kursor joystick.</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response"><value>Respon Kursor Joystick</value></data>
-  <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Help"><value>Atur kurva respon bagi kursor joystick.
-Linear adalah kurva respon dimana kecepatan kursor adalah 1: 1 dengan masukan joystick.
-Quadact adalah kurva respon yang mengurangi sensitivitas di dekat pusat joystick untuk kontrol lebih baik, tetapi meningkatkan sensitifitas di dekat tepi</value></data>
+  <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Help"><value>Atur kurva respon bagi kursor joystick.&#xA;Linear adalah kurva respon dimana kecepatan kursor adalah 1: 1 dengan masukan joystick.&#xA;Quadact adalah kurva respon yang mengurangi sensitivitas di dekat pusat joystick untuk kontrol lebih baik, tetapi meningkatkan sensitifitas di dekat tepi</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Value.100"><value>Linear</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Value.200"><value>Quadnocable</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_speedup"><value>Cursor Multiplier Joystick</value></data>
@@ -931,11 +883,7 @@ Quadact adalah kurva respon yang mengurangi sensitivitas di dekat pusat joystick
   <data name="Emulation.Option.melondsds.melonds_hybrid_small_screen.Value.one"><value>Tampilkan Layar Berlawanan</value></data>
   <data name="Emulation.Option.melondsds.melonds_hybrid_small_screen.Value.both"><value>Tampilkan Kedua Layar</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering"><value>Hybrid / Largescreen Filtering</value></data>
-  <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Help"><value>Mempengaruhi bagaimana hibrida / largescreen layar skala up.
-
-Tidak ada penyaringan. Grafis terlihat blocky.
-Linear: skala halus.
-</value></data>
+  <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Help"><value>Mempengaruhi bagaimana hibrida / largescreen layar skala up.&#xA;&#xA;Tidak ada penyaringan. Grafis terlihat blocky.&#xA;Linear: skala halus.&#xA;</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Value.nearest"><value>Terdekat</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Value.linear"><value>Linear</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_gap"><value>Celah Layar</value></data>
@@ -944,11 +892,7 @@ Linear: skala halus.
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_scale"><value>Skala Layar Second</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_scale.Help"><value>Ukuran layar sekunder relatif terhadap layar primer. Aplikasi ke tata letak vertikal (Atas / Bawah, Bawah / Atas). Pada 100%, kedua layar ukuran yang sama. Pada 50%, layar sekunder adalah setengah lebar dan tinggi dari layar utama.</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering"><value>Penyaringan Layar Second</value></data>
-  <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Help"><value>Mempengaruhi bagaimana layar sekunder diperkecil.
-
-Tidak ada penyaringan. Grafis terlihat blocky.
-Linear: skala halus. Disarankan ketika menggunakan Skala Layar Second di bawah 100%.
-</value></data>
+  <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Help"><value>Mempengaruhi bagaimana layar sekunder diperkecil.&#xA;&#xA;Tidak ada penyaringan. Grafis terlihat blocky.&#xA;Linear: skala halus. Disarankan ketika menggunakan Skala Layar Second di bawah 100%.&#xA;</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Value.nearest"><value>Terdekat</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Value.linear"><value>Linear</value></data>
   <data name="Emulation.Option.melondsds.melonds_number_of_screen_layouts"><value># of Screen Layouts</value></data>
@@ -1098,70 +1042,25 @@ Linear: skala halus. Disarankan ketika menggunakan Skala Layar Second di bawah 1
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-right"><value>Putar Kanan</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-180"><value>Atas Turun</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode"><value>Moda Konsol</value></data>
-  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Apakah akan meniru Nintendo DS atau Nintendo DSi.
-
-Otomatis menggunakan mode DSi untuk game yang memerlukan mode DSi, dan DS untuk segala sesuatu yang lain. Pengaturan DS dan DSi memaksa konsol yang berhubungan; ini sebagian besar berguna untuk pengembangan homebrew.
-
-DSi mode memiliki beberapa batas:
-
-- Berkas BIOS / firmware / NAND asli harus disediakan, termasuk untuk DS biasa.
-- Beberapa fitur (seperti savestates) tidak tersedia dalam mode DSi.
-
-Lihat pilihan DS-spesifik dalam kategori ini untuk informasi lebih lanjut. Jika tidak yakin, gunakan Auto. Perubahan mengambil efek pada restart berikutnya.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Apakah akan meniru Nintendo DS atau Nintendo DSi.&#xA;&#xA;Otomatis menggunakan mode DSi untuk game yang memerlukan mode DSi, dan DS untuk segala sesuatu yang lain. Pengaturan DS dan DSi memaksa konsol yang berhubungan; ini sebagian besar berguna untuk pengembangan homebrew.&#xA;&#xA;DSi mode memiliki beberapa batas:&#xA;&#xA;- Berkas BIOS / firmware / NAND asli harus disediakan, termasuk untuk DS biasa.&#xA;- Beberapa fitur (seperti savestates) tidak tersedia dalam mode DSi.&#xA;&#xA;Lihat pilihan DS-spesifik dalam kategori ini untuk informasi lebih lanjut. Jika tidak yakin, gunakan Auto. Perubahan mengambil efek pada restart berikutnya.</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.auto"><value>Otomatis</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.dsi"><value>DSi (eksperimental)</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode"><value>BIOS / Firmware Mode (DS Mode)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Menentukan apakah melonDS menggunakan dump BIOS / firmware asli atau built-nya sendiri di pengganti. Hanya berlaku untuk mode DS, sebagai mode DSi selalu membutuhkan BIOS asli dan dump firmware.
-
-Mode asli memakai BIOS dan berkas firmware dari DS nyata. Tempatkan tempat pembuangan Anda di direktori sistem atau "melonDS nya DS" subdirektori dan nama mereka sebagai berikut:
-
-- DS BIOS: bios7.bin, bios9.bin
-- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin
-Lihat pilihan "DS Firmware" dan "DSi Firmwarts".
-- DSi NAND: pilihan Melihat "DSi NAND".
-
-Jatuh kembali ke BuiltIn jika ada berkas BIOS / firmware tidak ditemukan.
-
-Mode BuiltIn menggunakan melonDS 's built -in BIOS dan firmware, dan cocok untuk kebanyakan game.
-
-Perubahan mengambil efek pada restart berikutnya.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Menentukan apakah melonDS menggunakan dump BIOS / firmware asli atau built-nya sendiri di pengganti. Hanya berlaku untuk mode DS, sebagai mode DSi selalu membutuhkan BIOS asli dan dump firmware.&#xA;&#xA;Mode asli memakai BIOS dan berkas firmware dari DS nyata. Tempatkan tempat pembuangan Anda di direktori sistem atau "melonDS nya DS" subdirektori dan nama mereka sebagai berikut:&#xA;&#xA;- DS BIOS: bios7.bin, bios9.bin&#xA;- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin&#xA;Lihat pilihan "DS Firmware" dan "DSi Firmwarts".&#xA;- DSi NAND: pilihan Melihat "DSi NAND".&#xA;&#xA;Jatuh kembali ke BuiltIn jika ada berkas BIOS / firmware tidak ditemukan.&#xA;&#xA;Mode BuiltIn menggunakan melonDS 's built -in BIOS dan firmware, dan cocok untuk kebanyakan game.&#xA;&#xA;Perubahan mengambil efek pada restart berikutnya.</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.native"><value>Asli</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.builtin"><value>- Bangun.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path"><value>DS Firmware</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Pilih sebuah gambar firmware yang akan digunakan untuk mode DS. Berkas-berkas yang tercantum di sini jika mereka:
-
-- Apakah di dalam direktori sistem frontend, atau subdirectory bernama "melonDS DS".
-- Apakah tepat 13.072 bytes (128KB), 262.144 byte (256KB], atau 524.288 bytes (512KB = panjang.
-- Berisi data header valid untuk DS firmware.
-
-Nintendo WFC ID disimpan ke firmware, jadi beralih gambar firmwareI dapat mengakibatkan hilangnya beberapa data WFC. Diabaikan dalam mode DSi atau jika BIOS / Firmware Mode adalah BuiltIn. Perubahan mengambil efek pada restart berikutnya.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Pilih sebuah gambar firmware yang akan digunakan untuk mode DS. Berkas-berkas yang tercantum di sini jika mereka:&#xA;&#xA;- Apakah di dalam direktori sistem frontend, atau subdirectory bernama "melonDS DS".&#xA;- Apakah tepat 13.072 bytes (128KB), 262.144 byte (256KB], atau 524.288 bytes (512KB = panjang.&#xA;- Berisi data header valid untuk DS firmware.&#xA;&#xA;Nintendo WFC ID disimpan ke firmware, jadi beralih gambar firmwareI dapat mengakibatkan hilangnya beberapa data WFC. Diabaikan dalam mode DSi atau jika BIOS / Firmware Mode adalah BuiltIn. Perubahan mengambil efek pada restart berikutnya.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Value./notfound"><value>Tidak ada yang ditemukan...</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path"><value>DSi Firmware</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Pilih sebuah gambar firmware yang akan digunakan untuk mode DSi. Berkas-berkas yang tercantum di sini jika mereka:
-
-- Apakah di dalam direktori sistem frontend, atau subdirectory bernama "melonDS DS".
-- Apakah tepat 13.072 bytes (128KB), 262.144 byte (256KB], atau 524.288 bytes (512KB = panjang.
-- Berisi data header yang valid untuk firmware DSi.
-
-Nintendo WFC ID disimpan ke firmware, jadi beralih gambar firmwareI dapat mengakibatkan hilangnya beberapa data WFC. Perubahan mengambil efek pada restart berikutnya.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Pilih sebuah gambar firmware yang akan digunakan untuk mode DSi. Berkas-berkas yang tercantum di sini jika mereka:&#xA;&#xA;- Apakah di dalam direktori sistem frontend, atau subdirectory bernama "melonDS DS".&#xA;- Apakah tepat 13.072 bytes (128KB), 262.144 byte (256KB], atau 524.288 bytes (512KB = panjang.&#xA;- Berisi data header yang valid untuk firmware DSi.&#xA;&#xA;Nintendo WFC ID disimpan ke firmware, jadi beralih gambar firmwareI dapat mengakibatkan hilangnya beberapa data WFC. Perubahan mengambil efek pada restart berikutnya.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Value./notfound"><value>Tidak ada yang ditemukan...</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path"><value>DSi NAND Jalan</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Pilih gambar DSi NAND untuk digunakan. Diperlukan ketika menggunakan mode DSi. Berkas-berkas yang tercantum di sini jika mereka:
-
-- Apakah di dalam direktori sistem frontend, atau subdirectory bernama "melonDS DS".
-- Apakah tepat 251,658.304 bytes (240MB) atau 257.425.472 byte (245.5MB) panjang dengan data footer yang valid, OR;
-- Apakah 64 bytes lebih pendek dari panjang ini dan berisi data ekuivalen pada ofset berkas 0xFF800.
-
-Set ke "Auto" untuk membiarkan inti memilih gambar NAND yang wilayahnya cocok dengan DSiWare yang dimuat ROM. Perubahan mengambil efek pada restart berikutnya.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Pilih gambar DSi NAND untuk digunakan. Diperlukan ketika menggunakan mode DSi. Berkas-berkas yang tercantum di sini jika mereka:&#xA;&#xA;- Apakah di dalam direktori sistem frontend, atau subdirectory bernama "melonDS DS".&#xA;- Apakah tepat 251,658.304 bytes (240MB) atau 257.425.472 byte (245.5MB) panjang dengan data footer yang valid, OR;&#xA;- Apakah 64 bytes lebih pendek dari panjang ini dan berisi data ekuivalen pada ofset berkas 0xFF800.&#xA;&#xA;Set ke "Auto" untuk membiarkan inti memilih gambar NAND yang wilayahnya cocok dengan DSiWare yang dimuat ROM. Perubahan mengambil efek pada restart berikutnya.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./auto"><value>Otomatis (wilayah ROM cocok)</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./notfound"><value>Tidak ada yang ditemukan...</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode"><value>Mode Boot</value></data>
-  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Menentukan bagaimana melonDS permainan sepatu bot.
-
-Native: Muat game melalui menu sistem, mirip dengan proses boot DS / DSi yang sebenarnya. Butuh BIOS asli dan berkas firmware dalam direktori sistem.
-Langsung: Lewati menu sistem dan langsung ke permainan. Didukung untuk DSiWare jika asli DSi berkas sistem tersedia.
-
-Diabaikan jika dimuat tanpa suatu permainan (Native dipaksa) atau bila memakai BIOS / Firmware BuiltIn (Direct dipaksa). Perubahan mengambil efek pada restart berikutnya.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Menentukan bagaimana melonDS permainan sepatu bot.&#xA;&#xA;Native: Muat game melalui menu sistem, mirip dengan proses boot DS / DSi yang sebenarnya. Butuh BIOS asli dan berkas firmware dalam direktori sistem.&#xA;Langsung: Lewati menu sistem dan langsung ke permainan. Didukung untuk DSiWare jika asli DSi berkas sistem tersedia.&#xA;&#xA;Diabaikan jika dimuat tanpa suatu permainan (Native dipaksa) atau bila memakai BIOS / Firmware BuiltIn (Direct dipaksa). Perubahan mengambil efek pada restart berikutnya.</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.direct"><value>Langsung</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.native"><value>Asli</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard"><value>Kartu SD virtual (DSi)</value></data>
@@ -1204,8 +1103,7 @@ Diabaikan jika dimuat tanpa suatu permainan (Native dipaksa) atau bila memakai B
   <data name="Emulation.Option.melondsds.melonds_ds_battery_ok_threshold.Value.0"><value>Selalu OK</value></data>
   <data name="Emulation.Option.melondsds.melonds_ds_battery_ok_threshold.Value.100"><value>Selalu Rendah</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device"><value>Perangkat Slot-2</value></data>
-  <data name="Emulation.Option.melondsds.melonds_slot2_device.Help"><value>Perifer yang akan dimasukkan ke dalam emulasi konsol 's Slot-2. Diabaikan dalam mode DSi, atau jika GBA ROM secara eksplisit dimuat. Jika ROM GBA untuk game apapun dalam trilogi Boktai dimasukkan, pengaturan sensor Solar yang sesuai akan dipaksa. Dalam game NDS yang didukung, setiap gerobak Boktai akan memiliki efek yang berbeda. Motion Paks membaca akselerometer perangkat Anda (dan gyroscope, untuk pak) jika frontend mendukung mereka; sebaliknya, mereka bertindak seolah-olah konsol berbaring datar dan masih. 
-Perubahan mengambil efek pada awal inti berikutnya.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_slot2_device.Help"><value>Perifer yang akan dimasukkan ke dalam emulasi konsol 's Slot-2. Diabaikan dalam mode DSi, atau jika GBA ROM secara eksplisit dimuat. Jika ROM GBA untuk game apapun dalam trilogi Boktai dimasukkan, pengaturan sensor Solar yang sesuai akan dipaksa. Dalam game NDS yang didukung, setiap gerobak Boktai akan memiliki efek yang berbeda. Motion Paks membaca akselerometer perangkat Anda (dan gyroscope, untuk pak) jika frontend mendukung mereka; sebaliknya, mereka bertindak seolah-olah konsol berbaring datar dan masih. &#xA;Perubahan mengambil efek pada awal inti berikutnya.</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.auto"><value>Otomatis</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.rumble-pak"><value>Rumble Pak</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.expansion-pak"><value>Ekspansi Memori Pak</value></data>
@@ -1215,36 +1113,19 @@ Perubahan mengambil efek pada awal inti berikutnya.</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.motion-pak-homebrew"><value>Motion Pak (Homebrew)</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.motion-pak-retail"><value>Gerak Kemas (Retail)</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_intensity"><value>Intensitas Rumble</value></data>
-  <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Help"><value>Seberapa keras Rumble Pak mengendarai motor kontrolmu. Rumble Pak tidak memiliki kontrol volume sendiri, jadi ini skala apa pun permainan meminta.
-
-Diabaikan kecuali "Slot-2 Perangkat" diatur ke Rumble Pak.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Help"><value>Seberapa keras Rumble Pak mengendarai motor kontrolmu. Rumble Pak tidak memiliki kontrol volume sendiri, jadi ini skala apa pun permainan meminta.&#xA;&#xA;Diabaikan kecuali "Slot-2 Perangkat" diatur ke Rumble Pak.</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Value.0"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type"><value>Rumble Motors</value></data>
-  <data name="Emulation.Option.melondsds.melonds_rumble_type.Help"><value>Yang mana motor pengendalianmu, The Rumble Pak drive. Kebanyakan controller pasangan motor berat dengan yang lebih ringan, yang terasa lebih dekat ke Rumble nyata Pak tergantung pada pengontrol.
-
-Diabaikan kecuali "Slot-2 Perangkat" diatur ke Rumble Pak.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_rumble_type.Help"><value>Yang mana motor pengendalianmu, The Rumble Pak drive. Kebanyakan controller pasangan motor berat dengan yang lebih ringan, yang terasa lebih dekat ke Rumble nyata Pak tergantung pada pengontrol.&#xA;&#xA;Diabaikan kecuali "Slot-2 Perangkat" diatur ke Rumble Pak.</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.both"><value>Keduanya</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.strong"><value>Hanya Kuat</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.weak"><value>Hanya Lemah</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor"><value>Gunakan Sensor Cahaya Host</value></data>
-  <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Help"><value>Jika diaktifkan, yang diemulasi sensor cahaya matahari 's input akan datang dari perangkat Anda real luminance sensor jika tersedia. Jika sensor dinonaktifkan atau tidak ada yang tersedia, sensor emulasi dapat dikendalikan secara manual dengan kombos tombol berikut:
-
-- L+A + Up atau L+A + Down
-- Pilih + Up atau Seleksi + Down
-- Roda tetikus Anda
-
-Diabaikan kecuali "Slot-2 Device" diset ke Sensor Solar, atau bila ROM untuk setiap game dalam trilogi Boktai (wilayah) dimasukan dalam emulasi konsol 's Slot- 2. Jika tidak yakin, tinggalkan diaktifkan.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Help"><value>Jika diaktifkan, yang diemulasi sensor cahaya matahari 's input akan datang dari perangkat Anda real luminance sensor jika tersedia. Jika sensor dinonaktifkan atau tidak ada yang tersedia, sensor emulasi dapat dikendalikan secara manual dengan kombos tombol berikut:&#xA;&#xA;- L+A + Up atau L+A + Down&#xA;- Pilih + Up atau Seleksi + Down&#xA;- Roda tetikus Anda&#xA;&#xA;Diabaikan kecuali "Slot-2 Device" diset ke Sensor Solar, atau bila ROM untuk setiap game dalam trilogi Boktai (wilayah) dimasukan dalam emulasi konsol 's Slot- 2. Jika tidak yakin, tinggalkan diaktifkan.</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode"><value>Mode Waktu</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Waktu awal dari waktu internal konsol yang telah digandakan.
-
-Mulailah sinkron dengan jam perangkat Anda.
-- Synchronized: menyelaraskan waktu yang telah digandakan ke jam perangkat Anda. Mungkin menyebabkan perilaku tak terduga dalam beberapa permainan ketika memutar ulang atau cepat meneruskan.
-- Relatif: mulai sinkron dengan jam perangkat Anda, plus atau minus ofset yang dispesifikasikan. Akan dibatasi pada tanggal yang dapat diwakili DS.
-- Absolute: mulai pada tanggal dan waktu tertentu, terlepas dari jam perangkat Anda.
-
-Semua tanggal dan waktu berada di zona waktu lokal Anda. Perubahan mengambil efek pada restart berikutnya.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>Waktu awal dari waktu internal konsol yang telah digandakan.&#xA;&#xA;Mulailah sinkron dengan jam perangkat Anda.&#xA;- Synchronized: menyelaraskan waktu yang telah digandakan ke jam perangkat Anda. Mungkin menyebabkan perilaku tak terduga dalam beberapa permainan ketika memutar ulang atau cepat meneruskan.&#xA;- Relatif: mulai sinkron dengan jam perangkat Anda, plus atau minus ofset yang dispesifikasikan. Akan dibatasi pada tanggal yang dapat diwakili DS.&#xA;- Absolute: mulai pada tanggal dan waktu tertentu, terlepas dari jam perangkat Anda.&#xA;&#xA;Semua tanggal dan waktu berada di zona waktu lokal Anda. Perubahan mengambil efek pada restart berikutnya.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.real"><value>Nyata</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.sync"><value>Disinkronkan</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.relative"><value>Relatif</value></data>
@@ -1532,10 +1413,7 @@ Semua tanggal dan waktu berada di zona waktu lokal Anda. Perubahan mengambil efe
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second"><value>Mulai Kedua</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>Awal detik untuk digunakan ketika Mode Waktu Memulai Adalah Absolute. Perubahan mengambil efek pada restart berikutnya.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode"><value>Mode Render</value></data>
-  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Perangkat lunak adalah tercepat dan paling akurat. OpenGL (Classic) dapat memperbesar grafis 3D, tapi beberapa game tidak membuatnya dengan benar.
-OpenGL (Komputer) akurat dan mendukung peningkatan, tapi tidak akan bekerja pada beberapa perangkat yang lebih tua. Beralih ke itu membutuhkan beberapa detik untuk mengkompilasi shader nya.
-
-Kembali ke rendering perangkat lunak jika OpenGL tidak dapat digunakan. Perubahan mengambil efek segera tapi mungkin memerlukan antar-muka 's video driver untuk memulai kembali.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Perangkat lunak adalah tercepat dan paling akurat. OpenGL (Classic) dapat memperbesar grafis 3D, tapi beberapa game tidak membuatnya dengan benar.&#xA;OpenGL (Komputer) akurat dan mendukung peningkatan, tapi tidak akan bekerja pada beberapa perangkat yang lebih tua. Beralih ke itu membutuhkan beberapa detik untuk mengkompilasi shader nya.&#xA;&#xA;Kembali ke rendering perangkat lunak jika OpenGL tidak dapat digunakan. Perubahan mengambil efek segera tapi mungkin memerlukan antar-muka 's video driver untuk memulai kembali.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.software"><value>Perangkat Lunak</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.opengl"><value>OpenGL (Klasik)</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.compute"><value>OpenGL (Komputer)</value></data>
@@ -1562,8 +1440,6 @@ Kembali ke rendering perangkat lunak jika OpenGL tidak dapat digunakan. Perubaha
   <data name="Emulation.Option.melondsds.melonds_threaded_renderer.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.melondsds.melonds_threaded_renderer.Value.enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Firmware.melondsds.Slot0"><value>NDS Firmware</value></data>
-  
-  
   <data name="Emulation.Firmware.melondsds.Slot3"><value>DSi Firmware</value></data>
   <data name="Emulation.Firmware.melondsds.Slot4"><value>DSi ARM7 BIOS</value></data>
   <data name="Emulation.Firmware.melondsds.Slot5"><value>DSi ARM9 BIOS</value></data>
@@ -1664,8 +1540,6 @@ Kembali ke rendering perangkat lunak jika OpenGL tidak dapat digunakan. Perubaha
   <data name="Emulation.Option.noods.noods_micButtonMode.Value.Hold"><value>Tahan</value></data>
   <data name="Emulation.Option.noods.noods_micButtonMode.Value.Always"><value>Selalu</value></data>
   <data name="Emulation.Firmware.noods.Slot0"><value>NDS Firmware</value></data>
-  
-  
   <data name="Emulation.Firmware.noods.Slot3"><value>Game Boy Advance BIOS</value></data>
   <data name="Emulation.Firmware.noods.Slot4"><value>NDS kartu SD</value></data>
   <data name="Emulation.Emulator.skyemu.Description"><value>Emulasi kompatibel sistem Nintendo dengan SkyEmu.</value></data>
@@ -1678,21 +1552,13 @@ Kembali ke rendering perangkat lunak jika OpenGL tidak dapat digunakan. Perubaha
   <data name="Emulation.Option.skyemu.system_gba_bios_enable.Help"><value>Game Boy Advance Firmware Diaktifkan</value></data>
   <data name="Emulation.Option.skyemu.system_nds_bios_enable"><value>Nintendo DS Firmware</value></data>
   <data name="Emulation.Option.skyemu.system_nds_bios_enable.Help"><value>Nintendo DS Firmware Diaktifkan</value></data>
-  
-  
-  
-  
-  
-  
   <data name="Emulation.Firmware.skyemu.Slot6"><value>GBA BIOS</value></data>
-  
-  
   <data name="Emulation.Firmware.skyemu.Slot9"><value>NDS FIRMWARE</value></data>
   <data name="Emulation.Emulator.fceumm.Description"><value>Emulasi kompatibel sistem Nintendo dengan FCEUmm.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region"><value>Daerah</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region.Help"><value>Paksa inti untuk menggunakan NTSC, PAL atau Dendy region timings.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region.Value.Auto"><value>Otomatis</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_game_genie"><value>Alamat Genie-On (Diperlukan Ulang Awal)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_game_genie"><value>Alamat Genie-On</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Help"><value>Aktifkan emulasi dari lampiran Game Genie pada kartrid, yang memungkinkan kode cheat untuk dimasukkan ketika meluncurkan game. Berkas Game Genie ROM 'gamegenie.nes' harus hadir dalam direktori sistem frontend. Tidak berlaku untuk FDS atau isi arcade.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Value.enabled"><value>Diaktifkan</value></data>
@@ -1894,7 +1760,7 @@ Kembali ke rendering perangkat lunak jika OpenGL tidak dapat digunakan. Perubaha
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.2x-Postrender"><value>2x- Postrender</value></data>
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.2x-VBlank"><value>2x-VBlank</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_ramstate"><value>RAM Power- Pada Isi (Diperlukan Ulang)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_ramstate"><value>RAM Power- Pada Isi</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ramstate.Help"><value>Nilai RAM pada daya up. Beberapa game bergantung pada nilai RAM awal untuk generasi nomor acak sebagai contoh.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ramstate.Value.random"><value>Acak</value></data>
   <data name="Emulation.Firmware.fceumm.Slot0"><value>BIOS Sistem Disk Komputer Keluarga</value></data>
@@ -2092,9 +1958,7 @@ Kembali ke rendering perangkat lunak jika OpenGL tidak dapat digunakan. Perubaha
   <data name="Emulation.Option.mesen2.mesen_snes_high_res_blend_mode.Value.Blend Even/Odd"><value>Campuran Bahkan / Aneh</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode"><value>Video - Mode Deinterlace SNES</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Help"><value>Pilih mode deinterlace SNES</value></data>
-  <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Weave"><value>Lemah.</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Bob Blend"><value>Bob Blend</value></data>
-  <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Bob"><value>Bob</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Current Field"><value>Ruas Kini</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_hide_bg_layer_1"><value>Perbaikan - SNES Sembunyikan BG Lapis 1</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_hide_bg_layer_1.Help"><value>Sembunyikan lapis latar belakang SNES 1</value></data>
@@ -2150,125 +2014,6 @@ Kembali ke rendering perangkat lunak jika OpenGL tidak dapat digunakan. Perubaha
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders"><value>Video - Game Boy Sembunyikan Batas SGB</value></data>
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders.Help"><value>Sembunyikan batas Super Game Boy</value></data>
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders.Value.disabled"><value>Dinonaktifkan</value></data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed"><value>Masukan - Kontrol Kecepatan Turbo</value></data>
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed.Help"><value>Kecepatan tombol Turbo</value></data>
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed.Value.Fast"><value>Cepat</value></data>
@@ -2499,14 +2244,7 @@ Kembali ke rendering perangkat lunak jika OpenGL tidak dapat digunakan. Perubaha
   <data name="Emulation.Firmware.rustynes.Slot0"><value>BIOS Sistem Disk Komputer Keluarga</value></data>
   <data name="Emulation.Emulator.doublecherrygb.Description"><value>Emulasi kompatibel sistem Nintendo dengan DoubleCherryGB.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA"><value>Deteksi sebagai Diputar di Game Boy Advance</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Help"><value>Beberapa Game Boy Color game menawarkan fitur yang ditingkatkan ketika dimainkan pada Game Boy Advance.
-
-Permainan GBA- yang dikenal:
-   - Shantae
-   - Wendy: setiap penyihir
-   Oracle of Ages / Seasons
-   - Megarot 5
-   - Mega Man Extreme 2</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Help"><value>Beberapa Game Boy Color game menawarkan fitur yang ditingkatkan ketika dimainkan pada Game Boy Advance.&#xA;&#xA;Permainan GBA- yang dikenal:&#xA;   - Shantae&#xA;   - Wendy: setiap penyihir&#xA;   Oracle of Ages / Seasons&#xA;   - Megarot 5&#xA;   - Mega Man Extreme 2</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Value.0"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_rtc_use_system_clock"><value>Mode Jam Real- Waktu</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_rtc_use_system_clock.Help"><value>Mengendalikan bagaimana in- game Real- Time Clock (RTC) ticks. 'Real-Time' menggunakan host sistem clock Anda (sebaliknya fast forwarding; waktu lewat saat emulator ditutup). 'Emulasi' kalkulates waktu secara ketat berdasarkan siklus CPU yang diemulasi.</value></data>
@@ -2571,11 +2309,7 @@ Permainan GBA- yang dikenal:
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss"><value>Kecerahan Interlacing GBC LCD</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss.Help"><value>Atur intensitas efek interlacing. Simpan nilai ini rendah ketika tidak menggunakan shaders. Nilai yang lebih tinggi direkomendasikan ketika dikombinasikan dengan shader untuk membuat efek terlihat.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation"><value>Faktor Skala Subpiksel GBC LCD RGB</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Simulasikan fisik GBC subpiksel dengan meng-upscaling dan mengganti pixel warna dengan komponen RGB yang sesuai.
-
-Untuk hasil terbaik:
-- Aktifkan 'Skala Integer' dalam RetroArch (Pengaturan - &gt; Video - &gt; Scaling).
-- Sebuah restart core mungkin diperlukan setelah mengubah pengaturan ini.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Simulasikan fisik GBC subpiksel dengan meng-upscaling dan mengganti pixel warna dengan komponen RGB yang sesuai.&#xA;&#xA;Untuk hasil terbaik:&#xA;- Aktifkan 'Skala Integer' dalam RetroArch (Pengaturan - &gt; Video - &gt; Scaling).&#xA;- Sebuah restart core mungkin diperlukan setelah mengubah pengaturan ini.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Value.1"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur"><value>GBC LCD Pengaburan</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur.Help"><value>Applies a display blur effek. Pengaturan ini sangat CPU-intensive. Matikan pada perangkat lunak yang lebih lemah atau manfaatkan shader sebagai gantinya.</value></data>
@@ -2681,20 +2415,10 @@ Untuk hasil terbaik:
   <data name="Emulation.Option.doublecherrygb.dcgb_cocktailtable_mode.Value.1"><value>vertikal</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_cocktailtable_mode.Value.2"><value>horisontal</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled"><value>Emulasi Adapter Mobile GB</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Help"><value>Mengaktifkan emulasi dari periferal GB Mobile Adapter Jepang.
-
-Judul Yang Didukung:
-   - Pokemon Crystal (Japan atau mobile adaptor ditambal)
-   - Game Boy Wars 3
-   - Hello Kitty Happy House
-   - Ponsel Golf
-   - Pelaut Mobile
-   - Net de Get</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Help"><value>Mengaktifkan emulasi dari periferal GB Mobile Adapter Jepang.&#xA;&#xA;Judul Yang Didukung:&#xA;   - Pokemon Crystal (Japan atau mobile adaptor ditambal)&#xA;   - Game Boy Wars 3&#xA;   - Hello Kitty Happy House&#xA;   - Ponsel Golf&#xA;   - Pelaut Mobile&#xA;   - Net de Get</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Value.0"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber"><value>Tampilkan Nomor Telepon Anda di awal</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Help"><value>Tampilkan nomor P2P Anda di startup. 
-
-Peringatan: Tanpa server relay, ini mengekspos alamat IP publik Anda. Hanya berbagi ini dengan pengguna terpercaya.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Help"><value>Tampilkan nomor P2P Anda di startup. &#xA;&#xA;Peringatan: Tanpa server relay, ini mengekspos alamat IP publik Anda. Hanya berbagi ini dengan pengguna terpercaya.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Value.0"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color"><value>Warna Perangkat Adapter GB Seluler</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Help"><value>Tata warna shell kosmetik dari perangkat Adapter Mobile yang digandakan.</value></data>
@@ -2703,34 +2427,24 @@ Peringatan: Tanpa server relay, ini mengekspos alamat IP publik Anda. Hanya berb
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Value.10"><value>Hijau</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Value.11"><value>Merah</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip"><value>IP Server DNS</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Help"><value>Server resmi Nintendo offline. Anda dapat host pengganti infrastruktur sendiri, menggunakan tumpukan kustom seperti REON: https: / / github.com / REONTeam / reon.
-
-Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini dalam folder sistem retroarch Anda.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Help"><value>Server resmi Nintendo offline. Anda dapat host pengganti infrastruktur sendiri, menggunakan tumpukan kustom seperti REON: https: / / github.com / REONTeam / reon.&#xA;&#xA;Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini dalam folder sistem retroarch Anda.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.127.0.0.1"><value>127.0.1 (Localhost)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.172.18.0.1"><value>172.18.0.1 (Local Docker)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.99"><value>Gubahan</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port"><value>Port Server DNS</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Help"><value>Nyatakan koneksi port target bagi infrastruktur jaringan gubahan.
-
-Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini dalam folder sistem retroarch Anda.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Help"><value>Nyatakan koneksi port target bagi infrastruktur jaringan gubahan.&#xA;&#xA;Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini dalam folder sistem retroarch Anda.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Value.1"><value>53 (Baku)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Value.99"><value>Gubahan</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server"><value>Gunakan Server Relay P2P</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Help"><value>Gunakan server relay khusus untuk P2P Calls.
-
-Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini dalam folder sistem retroarch Anda.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Help"><value>Gunakan server relay khusus untuk P2P Calls.&#xA;&#xA;Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini dalam folder sistem retroarch Anda.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Value.0"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip"><value>IP Server P2P Relay</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Help"><value>Nyatakan koneksi port target bagi infrastruktur jaringan gubahan.
-
-Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini dalam folder sistem retroarch Anda.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Help"><value>Nyatakan koneksi port target bagi infrastruktur jaringan gubahan.&#xA;&#xA;Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini dalam folder sistem retroarch Anda.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.127.0.0.1"><value>127.0.1 (Localhost)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.172.18.0.1"><value>172.18.0.1 (Local Docker)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.99"><value>Gubahan</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port"><value>Port Server P2P Relay</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Help"><value>Nyatakan koneksi port target bagi serber relay P2P gubahan.
-
-Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini dalam folder sistem retroarch Anda.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Help"><value>Nyatakan koneksi port target bagi serber relay P2P gubahan.&#xA;&#xA;Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini dalam folder sistem retroarch Anda.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Value.1"><value>31227 (Baku)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Value.99"><value>Gubahan</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_dev_log_linkcable_to_file"><value>Log Transfer Tautan Kable ke Berkas</value></data>
@@ -2801,10 +2515,10 @@ Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini 
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler"><value>Audio Resampler</value></data>
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler.Help"><value>Spesifikasikan algoritma mana yang digunakan ketika meresampling audio yang dihasilkan (rate audio Game Boy terbatas hanya dengan kecepatan menulis CPU nya, sehingga frekuensi 'native' tidak praktis pada perangkat suara modern dan harus downsample). 'Sinc' menghasilkan kualitas tertinggi. 'Cosine' meningkatkan kinerja pada hardware lowend.</value></data>
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler.Value.cc"><value>Cosinus</value></data>
-  <data name="Emulation.Option.gambatte.gambatte_gb_hwmode"><value>Perangkat Keras Tertimulasi (Diperlukan Ulang)</value></data>
+  <data name="Emulation.Option.gambatte.gambatte_gb_hwmode"><value>Perangkat Keras Tertimulasi</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_hwmode.Help"><value>Tentukan jenis perangkat keras mana yang akan diemulasi. 'Otomatis' direkomendasikan. Memilih 'GBA' membuka fitur tambahan dalam beberapa game 'GBA Enhanced' Game Boy Color (Shantae, Wendy - Setiap Witch Way, Legend of Zelda: Oracle of Seasons / Ages...)</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_hwmode.Value.Auto"><value>Otomatis</value></data>
-  <data name="Emulation.Option.gambatte.gambatte_gb_bootloader"><value>Gunakan Bootloader Resmi (Diperlukan Ulang)</value></data>
+  <data name="Emulation.Option.gambatte.gambatte_gb_bootloader"><value>Gunakan Bootloader Resmi</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Help"><value>Aktifkan dukungan untuk boot resmi Game Boy dan Game Boy Color, dengan animasi logo starter-up yang sesuai.</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Value.enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Value.disabled"><value>Dinonaktifkan</value></data>
@@ -3047,8 +2761,6 @@ Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini 
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg"><value>Nonaktifkan warna ulang dari game DMG (hanya dapat diterapkan dengan BIOS CGB)</value></data>
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg.Value.enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg.Value.disabled"><value>Dinonaktifkan</value></data>
-  
-  
   <data name="Emulation.Emulator.mesen_s.Description"><value>Emulasi kompatibel sistem Nintendo dengan Mesen-S.</value></data>
   <data name="Emulation.Option.mesen_s.mesen-s_ntsc_filter"><value>Filter NTSC</value></data>
   <data name="Emulation.Option.mesen_s.mesen-s_ntsc_filter.Value.Disabled"><value>Dinonaktifkan</value></data>
@@ -3111,8 +2823,6 @@ Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini 
   <data name="Emulation.Firmware.mesen_s.Slot15"><value>Gambar GBC Boot</value></data>
   <data name="Emulation.Firmware.mesen_s.Slot16"><value>Gambar Boot SGB</value></data>
   <data name="Emulation.Firmware.mesen_s.Slot17"><value>Citra Boot SGB2</value></data>
-  
-  
   <data name="Emulation.Firmware.mesen_s.Slot20"><value>Boot ROM Satellaview</value></data>
   <data name="Emulation.Emulator.nside_sfc_balanced.Description"><value>Emulasi kompatibel sistem Nintendo dengan nSide.</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_internal_resolution"><value>Resolusi internal</value></data>
@@ -4300,8 +4010,6 @@ Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini 
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-native-tex-rect.Value.False"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method"><value>(ParaLLEL-RDP) Metode deinterlacing</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Help"><value>Weave seharusnya hanya digunakan dengan 1x scaling faktor dan khusus CRT shaders.</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Value.Bob"><value>Bob</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Value.Weave"><value>Lemah.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay"><value>VI Overlay</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay.Help"><value>(AL) Select VI Penyaringan overlay. 'Disaring' adalah render sistem asli.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay.Value.Filtered"><value>Disaring</value></data>
@@ -4394,7 +4102,6 @@ Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini 
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.memory"><value>memori</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.rumble"><value>gemuruh</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.transfer"><value>Transfer</value></data>
-  
   <data name="Emulation.Emulator.parallel_n64.Description"><value>Emulasi kompatibel sistem Nintendo dengan ParaLLEl N64.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Faktor peningkatan (restart)</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling.Help"><value>Penyewa pada beberapa resolusi konsol. ParaLLEL-RDP menghormati setiap faktor; Angrylion menghasilkan hingga 4x dan memperlakukan 8x sebagai 4x.</value></data>
@@ -4576,7 +4283,7 @@ Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini 
   <data name="Emulation.Option.parallel_n64.parallel-n64-disable_expmem.Value.enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-disable_expmem.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy"><value>Akrasi GFX</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Help"><value>Accuracy GFX, perlu dijalankan ulang</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Help"><value>Akurasi grafis.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.low"><value>rendah</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.medium"><value>sedang</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.high"><value>tinggi</value></data>
@@ -4872,7 +4579,6 @@ Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini 
   <data name="Emulation.Option.parallel_n64.parallel-n64-sdcard.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate"><value>Rollback N64 sistem clock di savestate load</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate.Value.enabled"><value>Ya</value></data>
-  
   <data name="Emulation.Emulator.pokemini.Description"><value>Emulasi yang kompatibel dengan sistem Nintendo dengan PokeMini.</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Skala Video (Ulang)</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale.Help"><value>Atur faktor skala video internal. Meningkatkan faktor skala meningkatkan penampilan dari filter LCD 'Dot Matrix' internal.</value></data>
@@ -5039,7 +4745,7 @@ Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini 
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock"><value>Overclocking - SuperFX Koprocessor</value></data>
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock.Help"><value>Overclock atau downclock yang superFX coprocessor. Menata nilai ini di atas 100% mungkin meningkatkan kinerja dalam game yang mendukung SuperFX. Gunakan dengan hati-hati, karena mungkin juga menyebabkan beberapa permainan untuk kecelakaan atau menunjukkan masalah lain.</value></data>
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock.Value.100"><value>100% (Baku)</value></data>
-  <data name="Emulation.Option.bsnes.bsnes_sgb_bios"><value>BIOS Super Game Boy (Diperlukan Ulang)</value></data>
+  <data name="Emulation.Option.bsnes.bsnes_sgb_bios"><value>BIOS Super Game Boy</value></data>
   <data name="Emulation.Option.bsnes.bsnes_sgb_bios.Help"><value>Pilih BIOS Super Game Boy yang disukai untuk dipakai dengan judul yang kompatibel.</value></data>
   <data name="Emulation.Option.bsnes.bsnes_hide_sgb_border"><value>Sembunyikan Batas SGB</value></data>
   <data name="Emulation.Option.bsnes.bsnes_hide_sgb_border.Help"><value>Sembunyikan perbatasan saat bermain game Super Game Boy.</value></data>
@@ -6073,7 +5779,7 @@ Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini 
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.fast"><value>cepat</value></data>
   <data name="Emulation.Emulator.cemu.Description"><value>Emulasi yang kompatibel dengan sistem Nintendo dengan Cemu.</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode"><value>Mode CPU</value></data>
-  <data name="Emulation.Option.cemu.cemu_cpu_mode.Help"><value>Bagaimana inti PowerPC Wii U digandakan. Auto mengambil multicore recompiiler pada CPU dengan empat atau lebih inti fisik dan single-core satu sebaliknya. interpretasi jauh lebih lambat dan dimaksudkan untuk debug. (Diperlukan ulang)</value></data>
+  <data name="Emulation.Option.cemu.cemu_cpu_mode.Help"><value>Bagaimana inti PowerPC Wii U digandakan. Auto mengambil multicore recompiiler pada CPU dengan empat atau lebih inti fisik dan single-core satu sebaliknya. interpretasi jauh lebih lambat dan dimaksudkan untuk debug.</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.auto"><value>Otomatis</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.singlecore_interpreter"><value>Interpreter Singlecore</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.singlecore_recompiler"><value>Saringan Singlecore</value></data>
@@ -6209,12 +5915,10 @@ Untuk konfigurasi gubahan menyunting mobile_adapter_gb_custom_server_config.ini 
   <data name="Emulation.Option.cemu.cemu_bc1_16bit.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.cemu.cemu_bc1_16bit.Value.enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Option.cemu.cemu_gpu_api"><value>API Grafik</value></data>
-  <data name="Emulation.Option.cemu.cemu_gpu_api.Help"><value>Grafis API Cemu render dengan. (Perlu start ulang)</value></data>
+  <data name="Emulation.Option.cemu.cemu_gpu_api.Help"><value>Grafis API Cemu render dengan.</value></data>
   <data name="Emulation.Option.cemu.cemu_gpu_api.Value.OpenGL"><value>OpenGL</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game"><value>Pasang Permainan</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_game.Help"><value>Instal setiap permainan dalam sistem / Cemu / judul ke simpan / Cemu / mlc01, penyimpanan konsol yang diemulasi, sebagai konsol menginstal sebuah game dari disc nya. Sebuah permainan adalah image cakram (.wud, .wux, .iso) atau sebuah .wua, dan dari .wua pembaruan dan DLC yang ditahan akan terpasang dengannya. Sebuah permainan yang telah terpasang dalam versi yang sama atau lebih baru dibiarkan sendiri.
-
-Ketika ini ON, memasang dimulai segera, dengan kemajuan yang ditampilkan sebagai pemberitahuan, dan ternyata OFF lagi ketika semua game diinstal. Sebuah permainan yang terpasang dimulai dengan memuat .rpx dalam folder kode, di bawah mlc01 / usr / title / 00050000; image cakram tidak diperlukan lagi.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_game.Help"><value>Instal setiap permainan dalam sistem / Cemu / judul ke simpan / Cemu / mlc01, penyimpanan konsol yang diemulasi, sebagai konsol menginstal sebuah game dari disc nya. Sebuah permainan adalah image cakram (.wud, .wux, .iso) atau sebuah .wua, dan dari .wua pembaruan dan DLC yang ditahan akan terpasang dengannya. Sebuah permainan yang telah terpasang dalam versi yang sama atau lebih baru dibiarkan sendiri.&#xA;&#xA;Ketika ini ON, memasang dimulai segera, dengan kemajuan yang ditampilkan sebagai pemberitahuan, dan ternyata OFF lagi ketika semua game diinstal. Sebuah permainan yang terpasang dimulai dengan memuat .rpx dalam folder kode, di bawah mlc01 / usr / title / 00050000; image cakram tidak diperlukan lagi.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game.Value.enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game"><value>Batalkan Permainan</value></data>
@@ -6222,11 +5926,7 @@ Ketika ini ON, memasang dimulai segera, dengan kemajuan yang ditampilkan sebagai
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles"><value>Pasang Isi</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Instal setiap update dan DLC dalam sistem / Cemu judul ke safety / Cemu / mlc01, penyimpanan konsol yang digandakan. Masing-masing masuk dalam folder sendiri di sana; NUS download (.app file) membutuhkan title.tmd nya dan title.tik, kunci dekripsi, di sebelah mereka. Versi yang telah diinstal yang sama atau baru dibiarkan sendiri.
-
-Ketika ini ON, memasang dimulai segera, dengan kemajuan yang ditampilkan sebagai pemberitahuan, dan ternyata OFF lagi ketika semua isi diinstal dan menu ini keluar atau pilihan lain berubah. Judul akan memakai konten yang terpasang setelah dijalankan ulang.
-
-Isi dari lokasi lain dapat dipasang dengan Menu Utama RetroArch &gt; Muat Konten, dengan memilih title.tmd yang sesuai, dengan title.tik di sampingnya.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Instal setiap update dan DLC dalam sistem / Cemu judul ke safety / Cemu / mlc01, penyimpanan konsol yang digandakan. Masing-masing masuk dalam folder sendiri di sana; NUS download (.app file) membutuhkan title.tmd nya dan title.tik, kunci dekripsi, di sebelah mereka. Versi yang telah diinstal yang sama atau baru dibiarkan sendiri.&#xA;&#xA;Ketika ini ON, memasang dimulai segera, dengan kemajuan yang ditampilkan sebagai pemberitahuan, dan ternyata OFF lagi ketika semua isi diinstal dan menu ini keluar atau pilihan lain berubah. Judul akan memakai konten yang terpasang setelah dijalankan ulang.&#xA;&#xA;Isi dari lokasi lain dapat dipasang dengan Menu Utama RetroArch &gt; Muat Konten, dengan memilih title.tmd yang sesuai, dengan title.tik di sampingnya.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles"><value>Batalkan Isi</value></data>
@@ -6234,11 +5934,7 @@ Isi dari lokasi lain dapat dipasang dengan Menu Utama RetroArch &gt; Muat Konten
   <data name="Emulation.Option.cemu.cemu_uninstall_titles.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles.Value.enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source"><value>Hapus Isi setelah Memasang</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_remove_source.Help"><value>Hapus isi yang dapat diunduh dan pemutakhiran judul dari sistem / Cemu / judul sekali Pasang Konten telah menginstal mereka. Konten dimuat melalui Isi Beban yang tersisa di mana itu.
-
-Pemutakhiran judul yang berjalan atau DLC sedang digunakan, sehingga dihapus ketika judul ditutup atau direset.
-
-.wua berkas dan disc image tidak pernah dihapus, karena mereka dapat mengadakan permainan dasar juga.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_remove_source.Help"><value>Hapus isi yang dapat diunduh dan pemutakhiran judul dari sistem / Cemu / judul sekali Pasang Konten telah menginstal mereka. Konten dimuat melalui Isi Beban yang tersisa di mana itu.&#xA;&#xA;Pemutakhiran judul yang berjalan atau DLC sedang digunakan, sehingga dihapus ketika judul ditutup atau direset.&#xA;&#xA;.wua berkas dan disc image tidak pernah dihapus, karena mereka dapat mengadakan permainan dasar juga.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source.Value.enabled"><value>Diaktifkan</value></data>
   <data name="Emulation.Firmware.FamicomDiskSystem"><value>Famicom Disk System BIOS</value></data>

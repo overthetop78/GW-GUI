@@ -51,3 +51,10 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-10 11:22:41 | 04:26:57 | 03:33:01 | Reprise. Blocage de 02:01:19 à 09:52:09 exclu ; décompte repris avec 05:03:34 restantes. |
 | 2026-10-10 11:24:01 | 04:28:17 | 03:31:41 | Reprise. Bandai : audit Argos réussi ; retrait des invariants dupliqués avant informations matérielles. |
 | 2026-10-10 11:49:50 | 04:54:06 | 03:05:52 | Bandai : build complet, 13 tests et essais natifs réussis ; fermeture des DLL, processus et cartes vidéo vérifiée ; préparation du commit. |
+| 2026-10-10 11:53:51 | 04:58:07 | 03:01:51 | Bandai commité (1499a40f7). Coleco : trois DLL et métadonnées officielles récupérées ; vérifier les contrats natifs et ADAM. |
+| 2026-10-10 11:56:40 | 05:00:56 | 02:59:02 | Reprise. Décompte conservé depuis 09:52:09 avec 05:03:34 restantes ; période de blocage exclue. Coleco : contrats natifs à poursuivre. |
+| 2026-10-10 12:07:35 | 05:11:51 | 02:48:07 | Bandai corrigé et vérifié dans la fenêtre réelle ; commit 4a0a5c185. Acorn : présentation corrigée, build en cours. |
+| 2026-10-10 12:12:24 | 05:16:40 | 02:43:18 | Bandai et Acorn corrigés et commités ; fenêtres réelles vérifiées. Reprendre Coleco au projet et aux contrats. |
+| 2026-10-10 12:13:13 | 05:17:29 | 02:42:29 | Reprise. Coleco : projet et manifeste créés ; contrats ColecoVision et ADAM en cours. |
+| 2026-10-10 12:34:36 | 05:38:52 | 02:21:06 | Reprise. Révision des captures Bandai ; suppression globale des dossiers de Général et des mentions de redémarrage. |
+| 2026-10-10 13:02:45 | 06:07:01 | 01:52:57 | Reprise. Suppression des choix de dossiers dans tous les modules, y compris Atari et Commodore ; validation finale. |

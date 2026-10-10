@@ -80,7 +80,6 @@
   <data name="Emulation.Nintendo.Controller.GameWatchBallClubNintendo"><value>Nintendo Game &amp; Watch Ball (Club Nintendo)</value></data>
   <data name="Emulation.Nintendo.Controller.GameWatchSuperMarioBros2020"><value>Nintendo Game &amp; Watch: Super Mario Bros.</value></data>
   <data name="Emulation.Nintendo.Controller.GameWatchZelda2021"><value>Nintendo Game &amp; Watch: The Legend of Zelda</value></data>
-
   <!-- Nintendo Entertainment System / Famicom -->
   <data name="Emulation.Nintendo.Controller.NesPad"><value>Nintendo NES Controller (NES-004)</value></data>
   <data name="Emulation.Nintendo.Controller.NesDogbonePad"><value>Nintendo NES Controller (NES-039)</value></data>
@@ -108,7 +107,6 @@
   <!-- Famicom Disk System uses the Famicom controllers listed above. -->
   <data name="Emulation.Nintendo.Controller.FamicomDiskDrive"><value>Nintendo Famicom Disk System Disk Drive (HVC-022)</value></data>
   <data name="Emulation.Nintendo.Controller.FamicomDiskRamAdapter"><value>Nintendo Famicom Disk System RAM Adapter (HVC-023)</value></data>
-
   <!-- Super Nintendo / Super Famicom -->
   <data name="Emulation.Nintendo.Controller.SuperNesPad"><value>Nintendo Super NES Controller (SNS-005)</value></data>
   <data name="Emulation.Nintendo.Controller.SuperFamicomPad"><value>Nintendo Super Famicom Controller (SHVC-005)</value></data>
@@ -120,12 +118,10 @@
   <data name="Emulation.Nintendo.Controller.SuperGameBoy2"><value>Nintendo Super Game Boy 2</value></data>
   <data name="Emulation.Nintendo.Controller.Satellaview"><value>Nintendo Satellaview</value></data>
   <data name="Emulation.Nintendo.Controller.SatellaviewMemoryPack"><value>Nintendo Satellaview 8M Memory Pack</value></data>
-
   <!-- Virtual Boy -->
   <data name="Emulation.Nintendo.Controller.VirtualBoyPad"><value>Nintendo Virtual Boy Controller</value></data>
   <data name="Emulation.Nintendo.Controller.VirtualBoyBatteryBox"><value>Nintendo Virtual Boy Battery Box</value></data>
   <data name="Emulation.Nintendo.Controller.VirtualBoyAcAdapterTap"><value>Nintendo Virtual Boy AC Adapter Tap</value></data>
-
   <!-- Nintendo 64 -->
   <data name="Emulation.Nintendo.Controller.Nintendo64Pad"><value>Nintendo 64 Controller (NUS-005)</value></data>
   <data name="Emulation.Nintendo.Controller.Nintendo64ControllerPak"><value>Nintendo 64 Controller Pak (NUS-004)</value></data>
@@ -139,7 +135,6 @@
   <data name="Emulation.Nintendo.Controller.Nintendo64DiskDrive"><value>Nintendo 64DD (NUS-010)</value></data>
   <data name="Emulation.Nintendo.Controller.Nintendo64CaptureCassette"><value>Nintendo 64 Capture Cassette (NUS-028)</value></data>
   <data name="Emulation.Nintendo.Controller.Nintendo64Modem"><value>Nintendo 64 Modem (NUS-029)</value></data>
-
   <!-- Game Boy and Game Boy Color: handheld units include their own controls. -->
   <data name="Emulation.Nintendo.Controller.GameBoy"><value>Nintendo Game Boy (DMG-01)</value></data>
   <data name="Emulation.Nintendo.Controller.GameBoyPocket"><value>Nintendo Game Boy pocket (MGB-001)</value></data>
@@ -155,7 +150,6 @@
   <data name="Emulation.Nintendo.Controller.GameBoyCamera"><value>Nintendo Game Boy Camera / Pocket Camera (MGB-006)</value></data>
   <data name="Emulation.Nintendo.Controller.GameBoyPrinter"><value>Nintendo Game Boy Printer / Pocket Printer (MGB-007)</value></data>
   <data name="Emulation.Nintendo.Controller.GameBoyMobileAdapter"><value>Nintendo Mobile Adapter GB</value></data>
-
   <!-- Game Boy Advance: handheld units include their own controls. -->
   <data name="Emulation.Nintendo.Controller.GameBoyAdvance"><value>Nintendo Game Boy Advance (AGB-001)</value></data>
   <data name="Emulation.Nintendo.Controller.GameBoyAdvanceSp"><value>Nintendo Game Boy Advance SP (AGS-001)</value></data>
@@ -172,7 +166,6 @@
   <data name="Emulation.Nintendo.Controller.PlayYan"><value>Nintendo PLAY-YAN</value></data>
   <data name="Emulation.Nintendo.Controller.PlayYanMicro"><value>Nintendo PLAY-YAN micro</value></data>
   <data name="Emulation.Nintendo.Controller.NintendoMp3Player"><value>Nintendo MP3 Player</value></data>
-
   <!-- Nintendo DS / DSi: handheld units include their own controls. -->
   <data name="Emulation.Nintendo.Controller.NintendoDs"><value>Nintendo DS (NTR-001)</value></data>
   <data name="Emulation.Nintendo.Controller.NintendoDsLite"><value>Nintendo DS Lite (USG-001)</value></data>
@@ -199,7 +192,6 @@
   <data name="Emulation.Nintendo.Controller.NintendoWirelessKeyboard"><value>Nintendo Wireless Keyboard (NTR-034)</value></data>
   <data name="Emulation.Nintendo.Controller.NintendoDsActivityMeter"><value>Nintendo DS Activity Meter</value></data>
   <data name="Emulation.Nintendo.Controller.Pokewalker"><value>Nintendo Pokéwalker (NTR-032)</value></data>
-
   <!-- Nintendo 3DS: handheld units include their own controls. -->
   <data name="Emulation.Nintendo.Controller.Nintendo3ds"><value>Nintendo 3DS (CTR-001)</value></data>
   <data name="Emulation.Nintendo.Controller.Nintendo3dsXl"><value>Nintendo 3DS XL / 3DS LL (SPR-001)</value></data>
@@ -216,7 +208,6 @@
   <data name="Emulation.Nintendo.Controller.NewNintendo3dsStylus"><value>New Nintendo 3DS Stylus</value></data>
   <data name="Emulation.Nintendo.Controller.NewNintendo3dsXlStylus"><value>New Nintendo 3DS XL Stylus</value></data>
   <data name="Emulation.Nintendo.Controller.NewNintendo2dsXlStylus"><value>New Nintendo 2DS XL Stylus</value></data>
-
   <!-- Nintendo GameCube; the GBA cable also lets a handheld act as a controller. -->
   <data name="Emulation.Nintendo.Controller.GameCubePad"><value>Nintendo GameCube Controller (DOL-003)</value></data>
   <data name="Emulation.Nintendo.Controller.GameCubeWaveBird"><value>Nintendo GameCube WaveBird Wireless Controller (DOL-004)</value></data>
@@ -232,7 +223,6 @@
   <data name="Emulation.Nintendo.Controller.GameCubeSdCardAdapter"><value>Nintendo GameCube SD Card Adapter (DOL-019)</value></data>
   <data name="Emulation.Nintendo.Controller.GameCubeModemAdapter"><value>Nintendo GameCube Modem Adapter (DOL-012)</value></data>
   <data name="Emulation.Nintendo.Controller.GameCubeBroadbandAdapter"><value>Nintendo GameCube Broadband Adapter (DOL-015)</value></data>
-
   <!-- Wii; compatible Nintendo input accessories can also be used on Wii U. -->
   <data name="Emulation.Nintendo.Controller.WiiRemote"><value>Nintendo Wii Remote</value></data>
   <data name="Emulation.Nintendo.Controller.WiiRemotePlus"><value>Nintendo Wii Remote Plus</value></data>
@@ -247,7 +237,6 @@
   <data name="Emulation.Nintendo.Controller.WiiSpeak"><value>Nintendo Wii Speak</value></data>
   <data name="Emulation.Nintendo.Controller.WiiSensorBar"><value>Nintendo Wii Sensor Bar</value></data>
   <data name="Emulation.Nintendo.Controller.WiiLanAdapter"><value>Nintendo Wii LAN Adapter</value></data>
-
   <!-- Wii U; Wii controllers and GameCube controllers are listed in their own sections. -->
   <data name="Emulation.Nintendo.Controller.WiiUGamePad"><value>Nintendo Wii U GamePad</value></data>
   <data name="Emulation.Nintendo.Controller.WiiUProController"><value>Nintendo Wii U Pro Controller</value></data>
@@ -257,7 +246,6 @@
   <data name="Emulation.Nintendo.Controller.WiiUFitMeter"><value>Nintendo Wii U Fit Meter</value></data>
   <data name="Emulation.Nintendo.Controller.WiiUGamePadStylus"><value>Nintendo Wii U GamePad Stylus</value></data>
   <data name="Emulation.Nintendo.Controller.WiiUGamePadLargeStylus"><value>Nintendo Wii U GamePad Stylus (Large)</value></data>
-
   <!-- Nintendo Switch: handheld units and integrated controls are included. -->
   <data name="Emulation.Nintendo.Controller.Switch"><value>Nintendo Switch</value></data>
   <data name="Emulation.Nintendo.Controller.SwitchLite"><value>Nintendo Switch Lite</value></data>
@@ -303,7 +291,6 @@
   <data name="Emulation.Nintendo.Controller.LaboElephant"><value>Nintendo Labo Toy-Con Elephant</value></data>
   <data name="Emulation.Nintendo.Controller.SwitchVirtualBoy"><value>Nintendo Virtual Boy for Nintendo Switch 2 / Nintendo Switch</value></data>
   <data name="Emulation.Nintendo.Controller.SwitchVirtualBoyCardboard"><value>Nintendo Virtual Boy (Cardboard Model)</value></data>
-
   <!-- Nintendo NFC peripherals shared by Nintendo 3DS, Wii U and Nintendo Switch. -->
   <data name="Emulation.Nintendo.Controller.AmiiboFigure"><value>Nintendo amiibo Figure</value></data>
   <data name="Emulation.Nintendo.Controller.AmiiboCard"><value>Nintendo amiibo Card</value></data>

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+  <data name="Emulation.Controller.Visual.Model.bandai-wonderswan"><value>WonderSwan</value></data>
+  <data name="Emulation.Controller.Visual.Model.bandai-wonderswan-color"><value>WonderSwan Color</value></data>
+  <data name="Emulation.Controller.Visual.Model.bandai-swancrystal"><value>SwanCrystal</value></data>
+  <data name="Emulation.Controller.Visual.Model.bandai-playdia"><value>Playdia</value></data>
+  <data name="Emulation.Controller.Visual.Model.bandai-tamagotchi-p1"><value>Tamagotchi P1</value></data>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>

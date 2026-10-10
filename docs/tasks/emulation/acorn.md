@@ -125,3 +125,9 @@ Correction de ressource : une seule image BbcMicro.png référencée par les Mod
   - [x] Créer puis supprimer `tests/GWGUI.Tests/Interface/SettingsViews/AcornWindowValidationTests.cs` et ses seules fixtures : vérifier la vraie fenêtre sur les trois modèles, sans message incompatible ni dossiers superflus ; fermer et vérifier le handle dans finally.
   - [x] Modifier `.git/index` et la référence de branche par un commit de correction Acorn après le build et les vérifications.
 Correction de présentation : retrait du message incompatible et des quatre champs de dossiers, valeurs persistées conservées. Build complet réussi, exécutable et onze modules vérifiés. Trente contrôles réussis : contrats Acorn/Bandai et vraie fenêtre Acorn sur trois modèles et leurs onglets ; fermeture, contenu détaché et handle nul vérifiés. Sonde temporaire supprimée.
+# Révision commune après les captures Bandai
+
+- [x] Contrôler la présentation et les entrées Acorn
+  - [x] Modifier `docs/tasks/emulation/acorn.md` avec les résultats précis du contrôle des champs : CPU en MHz, matériel fixe, seules touches spéciales modifiables, aucun dossier de Général ni message d'incompatibilité ; identifier les modifications nécessaires dans leurs fichiers de code avant réalisation.
+
+Contrôle de révision : les champs CPU utilisent déjà MHz ; les dossiers de Général et le bloc incompatible ont été supprimés par la correction précédente. Le clavier expose uniquement les touches spéciales via BbcMicroInputSettingsFunctions, avec affectations modifiables et persistées ; les contrôleurs externes restent des périphériques distincts. La nouvelle sonde réelle vérifie aussi les trois modèles Acorn.

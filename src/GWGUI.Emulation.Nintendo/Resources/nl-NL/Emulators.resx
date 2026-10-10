@@ -6,14 +6,14 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Emulator.azahar.Description"><value>Emuleert compatibele Nintendo systemen met Azahar.</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit"><value>CPU JIT inschakelen</value></data>
-  <data name="Emulation.Option.azahar.citra_use_cpu_jit.Help"><value>Schakel Just-In-Time compilatie in voor ARM CPU emulatie. Significant verbetert de prestaties, maar kan verminderen nauwkeurigheid. Herstarten vereist.</value></data>
+  <data name="Emulation.Option.azahar.citra_use_cpu_jit.Help"><value>Schakel Just-In-Time compilatie in voor ARM CPU emulatie. Verbetert de prestaties, maar kan de nauwkeurigheid verminderen.</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit.Value.enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Option.azahar.citra_use_cpu_jit.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage"><value>CPU kloksnelheid</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage.Help"><value>Pas de geemuleerde 3DS CPU kloksnelheid aan als een percentage van normale snelheid. Hogere waarden kunnen verbeteren prestaties in sommige games, maar kan problemen veroorzaken. Lagere waarden kunnen helpen met games die te snel lopen.</value></data>
   <data name="Emulation.Option.azahar.citra_cpu_clock_percentage.Value.100"><value>100% (Standaard)</value></data>
   <data name="Emulation.Option.azahar.citra_is_new_3ds"><value>3DS-systeemmodel</value></data>
-  <data name="Emulation.Option.azahar.citra_is_new_3ds.Help"><value>Selecteer of de originele 3DS of Nieuwe 3DS wordt nagebootst. Nieuwe 3DS heeft extra CPU vermogen en geheugen, vereist voor sommige games. Herstarten vereist.</value></data>
+  <data name="Emulation.Option.azahar.citra_is_new_3ds.Help"><value>Selecteer het origineel 3DS of New 3DS. New 3DS heeft meer vermogen en geheugen van CPU.</value></data>
   <data name="Emulation.Option.azahar.citra_is_new_3ds.Value.Old 3DS"><value>Originele 3DS</value></data>
   <data name="Emulation.Option.azahar.citra_region_value"><value>3DS-systeemregio</value></data>
   <data name="Emulation.Option.azahar.citra_region_value.Help"><value>Stel de 3DS-systeemregio in. Auto-select zal kiezen op basis van het spel. Sommige games zijn regio-gesloten en vereisen bijpassende regio's.</value></data>
@@ -50,7 +50,7 @@
   <data name="Emulation.Option.azahar.citra_input_type.Value.static_noise"><value>Statisch geluid</value></data>
   <data name="Emulation.Option.azahar.citra_input_type.Value.frontend"><value>Frontend</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api"><value>Grafieken API</value></data>
-  <data name="Emulation.Option.azahar.citra_graphics_api.Help"><value>Selecteer de grafische weergave API. Auto zal de beste beschikbare optie kiezen. Herstarten vereist.</value></data>
+  <data name="Emulation.Option.azahar.citra_graphics_api.Help"><value>Selecteer de grafische weergave API. Auto kiest een beschikbare API.</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.Auto"><value>Automatisch</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.OpenGL"><value>OpenGL</value></data>
   <data name="Emulation.Option.azahar.citra_graphics_api.Value.Software"><value>Software</value></data>
@@ -509,8 +509,6 @@
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.pattern"><value>Patroon</value></data>
   <data name="Emulation.Option.desmume.desmume_mic_mode.Value.random"><value>Willekeurig</value></data>
   <data name="Emulation.Firmware.desmume.Slot0"><value>NDS Firmware</value></data>
-  
-  
   <data name="Emulation.Emulator.desmume2015.Description"><value>Emuleert compatibele Nintendo systemen met DeSmuME 2015.</value></data>
   <data name="Emulation.Option.desmume2015.desmume_internal_resolution"><value>Interne resolutie (herstart)</value></data>
   <data name="Emulation.Option.desmume2015.desmume_num_cores"><value>CPU-kernen</value></data>
@@ -597,8 +595,6 @@
   <data name="Emulation.Option.desmume2015.desmume_mic_mode.Value.random"><value>willekeurig</value></data>
   <data name="Emulation.Option.desmume2015.desmume_mic_mode.Value.physical"><value>lichamelijk</value></data>
   <data name="Emulation.Firmware.desmume2015.Slot0"><value>NDS Firmware</value></data>
-  
-  
   <data name="Emulation.Option.melonds.melonds_console_mode"><value>Console-modus</value></data>
   <data name="Emulation.Option.melonds.melonds_boot_directly"><value>Spel direct opstarten</value></data>
   <data name="Emulation.Option.melonds.melonds_boot_directly.Help"><value>Kies of de kern het spel direct moet opstarten of dat het in plaats daarvan naar het DS-menu moet booten (BIOS en firmware bestanden vereist).</value></data>
@@ -696,8 +692,6 @@
   <data name="Emulation.Option.melonds.melonds_jit_fast_memory.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.melonds.melonds_jit_fast_memory.Value.enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Firmware.melonds.Slot0"><value>NDS Firmware</value></data>
-  
-  
   <data name="Emulation.Firmware.melonds.Slot3"><value>DSi Firmware</value></data>
   <data name="Emulation.Firmware.melonds.Slot4"><value>DSi ARM7 BIOS</value></data>
   <data name="Emulation.Firmware.melonds.Slot5"><value>DSi ARM9 BIOS</value></data>
@@ -705,24 +699,13 @@
   <data name="Emulation.Firmware.melonds.Slot7"><value>DSi SD-kaart</value></data>
   <data name="Emulation.Emulator.melondsds.Description"><value>Emuleert compatibele Nintendo systemen met melonDS DS.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input"><value>Microfooninvoermodus</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mic_input.Help"><value>Kies het geluid dat de emuleerde microfoon zal ontvangen:
-
-Stilte: Geen audio-ingang.
-Blaas: Loop een ingebouwd blaasgeluid.
-Geluid: Willekeurig wit geluid.
-Microfoon: Gebruik uw echte microfoon indien beschikbaar, terugvallen op Stilte zo niet.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mic_input.Help"><value>Kies het geluid dat de emuleerde microfoon zal ontvangen:&#xA;&#xA;Stilte: Geen audio-ingang.&#xA;Blaas: Loop een ingebouwd blaasgeluid.&#xA;Geluid: Willekeurig wit geluid.&#xA;Microfoon: Gebruik uw echte microfoon indien beschikbaar, terugvallen op Stilte zo niet.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.silence"><value>Stilte</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.blow"><value>Blaas.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.noise"><value>Geluid</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input.Value.microphone"><value>Microfoon</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active"><value>Microfoonknopmodus</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mic_input_active.Help"><value>Stel het gedrag van de Microfoonknop in, zelfs als de microfooninvoermodus is ingesteld op Blow of Noise. De geëmuleerde microfoon krijgt stilte als hij uitgeschakeld is door de knop.
-
-Houden: Knop maakt microfooninvoer mogelijk tijdens het vasthouden.
-Toggle: Knop maakt microfooninvoer mogelijk bij indrukken, schakelt deze uit als u weer indrukt.
-Altijd: Knop wordt genegeerd, microfooninvoer is altijd ingeschakeld.
-
-Negeren als de invoermodus van Microfoon is ingesteld op Stilte.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mic_input_active.Help"><value>Stel het gedrag van de Microfoonknop in, zelfs als de microfooninvoermodus is ingesteld op Blow of Noise. De geëmuleerde microfoon krijgt stilte als hij uitgeschakeld is door de knop.&#xA;&#xA;Houden: Knop maakt microfooninvoer mogelijk tijdens het vasthouden.&#xA;Toggle: Knop maakt microfooninvoer mogelijk bij indrukken, schakelt deze uit als u weer indrukt.&#xA;Altijd: Knop wordt genegeerd, microfooninvoer is altijd ingeschakeld.&#xA;&#xA;Negeren als de invoermodus van Microfoon is ingesteld op Stilte.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.hold"><value>Wacht.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.toggle"><value>Schakelen</value></data>
   <data name="Emulation.Option.melondsds.melonds_mic_input_active.Value.always"><value>Altijd</value></data>
@@ -752,21 +735,11 @@ Negeren als de invoermodus van Microfoon is ingesteld op Stilte.</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.melondsds.melonds_jit_fast_memory.Value.enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns"><value>DNS Overschrijven</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>De DNS-server die gebruikt wordt voor het emuleerde toegangspunt ("melonAP"). Gebruik dit om online te spelen met aangepaste servers die de gestopte Nintendo Wi-Fi Connection diensten opnieuw implementeren. Spelondersteuning hangt af van de server. 
-Sommige internetproviders kunnen verzoeken naar deze servers blokkeren. Als dit voor u het geval is, zie https://tinyurl.com/393cb755 voor een oplossing.
-
-De genoemde servers zijn niet aangesloten bij libretro, Nintendo, het melonDS-team of de auteur van deze kern. Respecteer andere spelers en volg de regels van de server.
-
-Als het niet zeker is, vertrek dan naar Kaeru WFC. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Help"><value>De DNS-server die gebruikt wordt voor het emuleerde toegangspunt ("melonAP"). Gebruik dit om online te spelen met aangepaste servers die de gestopte Nintendo Wi-Fi Connection diensten opnieuw implementeren. Spelondersteuning hangt af van de server. &#xA;Sommige internetproviders kunnen verzoeken naar deze servers blokkeren. Als dit voor u het geval is, zie https://tinyurl.com/393cb755 voor een oplossing.&#xA;&#xA;De genoemde servers zijn niet aangesloten bij libretro, Nintendo, het melonDS-team of de auteur van deze kern. Respecteer andere spelers en volg de regels van de server.&#xA;&#xA;Als het niet zeker is, vertrek dan naar Kaeru WFC. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.95.217.77.181"><value>Wiimmfi (95.217.77.181)</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_wfc_dns.Value.default"><value>Niet overschrijven</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language"><value>Taal</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Overschrijft de taalmodus van het emuleerde console.
-
-Host gebruiken: gebruikt de taal van de frontend als deze door de console wordt ondersteund.
-Override niet: Gebruik welke taal dan ook die al op de firmware staat. Dit is het terugvalgedrag als de geemuleerde DS (of DSi NAND) niet de taal van de frontend ondersteunt.
-
-Niet elk spel eert deze setting. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_language.Help"><value>Overschrijft de taalmodus van het emuleerde console.&#xA;&#xA;Host gebruiken: gebruikt de taal van de frontend als deze door de console wordt ondersteund.&#xA;Override niet: Gebruik welke taal dan ook die al op de firmware staat. Dit is het terugvalgedrag als de geemuleerde DS (of DSi NAND) niet de taal van de frontend ondersteunt.&#xA;&#xA;Niet elk spel eert deze setting. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.auto"><value>Host gebruiken</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.en"><value>Engels</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.ja"><value>Japans</value></data>
@@ -776,13 +749,7 @@ Niet elk spel eert deze setting. Wijzigingen worden van kracht bij de volgende h
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.es"><value>Spaans</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_language.Value.default"><value>Niet overschrijven</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username"><value>Gebruikersnaam</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Overschrijft de gebruikersnaam die is gegeven aan de emuleerde console.
-
-Override niet: gebruikt welke naam ook op de firmware wordt gedefinieerd.
-Raad eens: Probeer je gebruikersnaam van de frontend te krijgen. Als dat niet lukt, probeer dan de USER, USERNAME en LOGNAME omgevingsvariabelen.
-melonDS DS: Gebruikt "melonDS DS". Dit is de standaard als niets anders werkt.
-
-Namen zijn afgekort tot 10 tekens. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_username.Help"><value>Overschrijft de gebruikersnaam die is gegeven aan de emuleerde console.&#xA;&#xA;Override niet: gebruikt welke naam ook op de firmware wordt gedefinieerd.&#xA;Raad eens: Probeer je gebruikersnaam van de frontend te krijgen. Als dat niet lukt, probeer dan de USER, USERNAME en LOGNAME omgevingsvariabelen.&#xA;melonDS DS: Gebruikt "melonDS DS". Dit is de standaard als niets anders werkt.&#xA;&#xA;Namen zijn afgekort tot 10 tekens. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.guess_username"><value>Raad eens.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_username.Value.existing_username"><value>Niet overschrijven</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_favorite_color"><value>Favoriete kleur</value></data>
@@ -834,12 +801,7 @@ Namen zijn afgekort tot 10 tekens. Wijzigingen worden van kracht bij de volgende
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Help"><value>De minuut van het geconfigureerde alarm. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_alarm_minute.Value.default"><value>Niet overschrijven</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode"><value>Netwerkmodus</value></data>
-  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Stelt in hoe melonDS DS emuleert Nintendo WFC. Als het niet zeker is, gebruik dan Indirecte modus.
-
-Indirect: Gebruik libslirp om de netwerkstapel van DS na te bootsen. Eenvoudig en heeft geen installatie nodig.
-Direct: Routes emuleerde Wi-Fi pakketten naar de netwerkinterface van de host. Sneller en betrouwbaarder, maar vereist een ethernet verbinding en dat WinPcap of Npcap is geïnstalleerd. die libpcap wordt geïnstalleerd. Indien niet beschikbaar, valt terug naar Indirecte modus.
-
-Wijzigingen worden van kracht bij de volgende herstart. Niet gerelateerd aan lokale multiplayer.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_network_mode.Help"><value>Stelt in hoe melonDS DS emuleert Nintendo WFC. Als het niet zeker is, gebruik dan Indirecte modus.&#xA;&#xA;Indirect: Gebruik libslirp om de netwerkstapel van DS na te bootsen. Eenvoudig en heeft geen installatie nodig.&#xA;Direct: Routes emuleerde Wi-Fi pakketten naar de netwerkinterface van de host. Sneller en betrouwbaarder, maar vereist een ethernet verbinding en dat WinPcap of Npcap is geïnstalleerd. die libpcap wordt geïnstalleerd. Indien niet beschikbaar, valt terug naar Indirecte modus.&#xA;&#xA;Wijzigingen worden van kracht bij de volgende herstart. Niet gerelateerd aan lokale multiplayer.</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.indirect"><value>Indirect</value></data>
   <data name="Emulation.Option.melondsds.melonds_network_mode.Value.direct"><value>Rechtstreeks</value></data>
@@ -847,9 +809,7 @@ Wijzigingen worden van kracht bij de volgende herstart. Niet gerelateerd aan lok
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Help"><value>Selecteer een te gebruiken netwerkinterface met directe modus. Indien onzeker, ingesteld op Automatisch. Wijzigingen worden van kracht bij de volgende kernherstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_direct_network_interface.Value.auto"><value>Automatisch</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode"><value>Netwerk MAC-adresmodus</value></data>
-  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Stelt in hoe het MAC-adres van de emuleerde console is ingesteld. Het veranderen van deze optie kan lokale multiplayer onmogelijk maken of de toegang blokkeren om bestanden op te slaan in games die het MAC-adres gebruiken om savebestanden te voorkomen (d.w.z. Pokémon).
-Geen verband met de directe modus-interface. Wijzigingen worden van kracht bij de volgende herstart.
-Zie https://bit.ly/4fJtWKN voor meer informatie.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Help"><value>Stelt in hoe het MAC-adres van de emuleerde console is ingesteld. Het veranderen van deze optie kan lokale multiplayer onmogelijk maken of de toegang blokkeren om bestanden op te slaan in games die het MAC-adres gebruiken om savebestanden te voorkomen (d.w.z. Pokémon).&#xA;Geen verband met de directe modus-interface. Wijzigingen worden van kracht bij de volgende herstart.&#xA;Zie https://bit.ly/4fJtWKN voor meer informatie.</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.firmware"><value>Instellen van firmware</value></data>
   <data name="Emulation.Option.melondsds.melonds_mac_address_mode.Value.from-username"><value>Afgeleid van libretro gebruikersnaam</value></data>
   <data name="Emulation.Option.melondsds.melonds_show_unsupported_features"><value>Waarschuwen over niet-ondersteunde functies</value></data>
@@ -902,13 +862,7 @@ Zie https://bit.ly/4fJtWKN voor meer informatie.</value></data>
   <data name="Emulation.Option.melondsds.melonds_cursor_timeout.Value.30"><value>30 seconden</value></data>
   <data name="Emulation.Option.melondsds.melonds_cursor_timeout.Value.60"><value>60 seconden</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode"><value>Aanraakmodus</value></data>
-  <data name="Emulation.Option.melondsds.melonds_touch_mode.Help"><value>Bepaalt hoe het touchscreen van de console wordt nagebootst.
-
-Joystick: Gebruik een joystick om de cursor te bedienen. Aanbevolen als je geen muis of een echt touchscreen beschikbaar hebt.
-Pointer: Gebruik je muis of touchscreen om de cursor te bedienen.
-Auto: Gebruik ofwel Joystick of Pointer, afhankelijk van welke u voor het laatst aangeraakt.
-
-Als het niet zeker is, ga dan naar Automatisch.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_touch_mode.Help"><value>Bepaalt hoe het touchscreen van de console wordt nagebootst.&#xA;&#xA;Joystick: Gebruik een joystick om de cursor te bedienen. Aanbevolen als je geen muis of een echt touchscreen beschikbaar hebt.&#xA;Pointer: Gebruik je muis of touchscreen om de cursor te bedienen.&#xA;Auto: Gebruik ofwel Joystick of Pointer, afhankelijk van welke u voor het laatst aangeraakt.&#xA;&#xA;Als het niet zeker is, ga dan naar Automatisch.</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.joystick"><value>Joystick</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.touch"><value>Aanwijzer</value></data>
   <data name="Emulation.Option.melondsds.melonds_touch_mode.Value.auto"><value>Automatisch</value></data>
@@ -917,9 +871,7 @@ Als het niet zeker is, ga dan naar Automatisch.</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_maxspeed"><value>Joystick Cursor Max Speed</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_maxspeed.Help"><value>Stel de maximale snelheid in voor de joystick-cursor.</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response"><value>Joystick Cursor Response</value></data>
-  <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Help"><value>Stel de responscurve in voor de joystick-cursor.
-Lineair is een responscurve waarbij de cursorsnelheid 1:1 is met de joystick input.
-Quadratic is een response curve die de gevoeligheid bij het joystick centrum voor fijnere controle vermindert, maar verhoogt de gevoeligheid aan de randen</value></data>
+  <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Help"><value>Stel de responscurve in voor de joystick-cursor.&#xA;Lineair is een responscurve waarbij de cursorsnelheid 1:1 is met de joystick input.&#xA;Quadratic is een response curve die de gevoeligheid bij het joystick centrum voor fijnere controle vermindert, maar verhoogt de gevoeligheid aan de randen</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Value.100"><value>Lineair</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_response.Value.200"><value>Quadratisch</value></data>
   <data name="Emulation.Option.melondsds.melonds_joystick_cursor_speedup"><value>Joystick Cursor Multiplier</value></data>
@@ -931,11 +883,7 @@ Quadratic is een response curve die de gevoeligheid bij het joystick centrum voo
   <data name="Emulation.Option.melondsds.melonds_hybrid_small_screen.Value.one"><value>Tegenovergestelde scherm tonen</value></data>
   <data name="Emulation.Option.melondsds.melonds_hybrid_small_screen.Value.both"><value>Beide schermen tonen</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering"><value>Hybride/grootbeeldfiltering</value></data>
-  <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Help"><value>Het beïnvloedt hoe het hybrid/largescreen scherm wordt opgeschaald.
-
-Dichtstbijzijnde: Geen filtering. Graphics zien er geblokkeerd uit.
-Lineair: Glad schalen.
-</value></data>
+  <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Help"><value>Het beïnvloedt hoe het hybrid/largescreen scherm wordt opgeschaald.&#xA;&#xA;Dichtstbijzijnde: Geen filtering. Graphics zien er geblokkeerd uit.&#xA;Lineair: Glad schalen.&#xA;</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Value.nearest"><value>Dichtstbijzijnde</value></data>
   <data name="Emulation.Option.melondsds.melonds_opengl_filtering.Value.linear"><value>Lineair</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_gap"><value>Schermgap</value></data>
@@ -944,11 +892,7 @@ Lineair: Glad schalen.
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_scale"><value>Secundaire schermschaal</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_scale.Help"><value>De grootte van het secundaire scherm ten opzichte van het primaire scherm. Geldt voor verticale indelingen (boven/onder, onder/boven). Bij 100% zijn beide schermen even groot. Bij 50% is het secundaire scherm de helft van de breedte en hoogte van het primaire scherm.</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering"><value>Secundaire schermfiltering</value></data>
-  <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Help"><value>Dit beïnvloedt de schaal van het secundaire scherm.
-
-Dichtstbijzijnde: Geen filtering. Graphics zien er geblokkeerd uit.
-Lineair: Glad schalen. Aanbevolen bij gebruik van Secundaire Schermschaal onder 100%.
-</value></data>
+  <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Help"><value>Dit beïnvloedt de schaal van het secundaire scherm.&#xA;&#xA;Dichtstbijzijnde: Geen filtering. Graphics zien er geblokkeerd uit.&#xA;Lineair: Glad schalen. Aanbevolen bij gebruik van Secundaire Schermschaal onder 100%.&#xA;</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Value.nearest"><value>Dichtstbijzijnde</value></data>
   <data name="Emulation.Option.melondsds.melonds_secondary_screen_filtering.Value.linear"><value>Lineair</value></data>
   <data name="Emulation.Option.melondsds.melonds_number_of_screen_layouts"><value># van schermindelingen</value></data>
@@ -1098,70 +1042,25 @@ Lineair: Glad schalen. Aanbevolen bij gebruik van Secundaire Schermschaal onder 
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-right"><value>Rechts gedraaid</value></data>
   <data name="Emulation.Option.melondsds.melonds_screen_layout8.Value.rotate-180"><value>Omlaag naar beneden</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode"><value>Console-modus</value></data>
-  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Of het nu gaat om een Nintendo DS of een Nintendo DSi.
-
-Auto maakt gebruik van DSi-modus voor games die een DSi nodig hebben, en DS modus voor al het andere. De instellingen DS en DSi dwingen de bijbehorende console; dit is vooral nuttig voor het ontwikkelen van huisbrouwers.
-
-DSi-modus heeft een aantal limieten:
-
-- Native BIOS/firmware/NAND bestanden moeten worden verstrekt, inclusief voor de reguliere DS.
-- Sommige functies (zoals savestates) zijn niet beschikbaar in de DSi-modus.
-
-Zie de DSi-specifieke opties in deze categorie voor meer informatie. Als het niet zeker is, gebruik Auto. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_console_mode.Help"><value>Of het nu gaat om een Nintendo DS of een Nintendo DSi.&#xA;&#xA;Auto maakt gebruik van DSi-modus voor games die een DSi nodig hebben, en DS modus voor al het andere. De instellingen DS en DSi dwingen de bijbehorende console; dit is vooral nuttig voor het ontwikkelen van huisbrouwers.&#xA;&#xA;DSi-modus heeft een aantal limieten:&#xA;&#xA;- Native BIOS/firmware/NAND bestanden moeten worden verstrekt, inclusief voor de reguliere DS.&#xA;- Sommige functies (zoals savestates) zijn niet beschikbaar in de DSi-modus.&#xA;&#xA;Zie de DSi-specifieke opties in deze categorie voor meer informatie. Als het niet zeker is, gebruik Auto. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.auto"><value>Automatisch</value></data>
   <data name="Emulation.Option.melondsds.melonds_console_mode.Value.dsi"><value>DSi (experimenteel)</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode"><value>BIOS/Firmwaremodus (DS-modus)</value></data>
-  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Bepaalt of melonDS native BIOS/firmware dumps gebruikt dan wel haar eigen ingebouwde vervangingen. Alleen van toepassing op DS-modus, omdat de DSi modus altijd native BIOS en firmware dumps vereist.
-
-Native mode maakt gebruik van BIOS en firmware bestanden uit een echte DS. Plaats uw dumps van deze in de systeem directory of zijn "melonDS DS" subdirectory en noem ze als volgt:
-
-- DS BIOS: bios7.bin, bios9.bin
-- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin
-- Firmware: Zie de opties "DS Firmaware" en "DSi Firm hardware."
-- DSi NAND: Zie de "DSi NAND " optie.
-
-Terugvallen naar Ingebouwd als er geen BIOS/firmware-bestand is gevonden.
-
-Ingebouwde modus maakt gebruik van melonDS ingebouwde BIOS en firmware, en is geschikt voor de meeste games.
-
-Wijzigingen worden van kracht bij de volgende herstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Help"><value>Bepaalt of melonDS native BIOS/firmware dumps gebruikt dan wel haar eigen ingebouwde vervangingen. Alleen van toepassing op DS-modus, omdat de DSi modus altijd native BIOS en firmware dumps vereist.&#xA;&#xA;Native mode maakt gebruik van BIOS en firmware bestanden uit een echte DS. Plaats uw dumps van deze in de systeem directory of zijn "melonDS DS" subdirectory en noem ze als volgt:&#xA;&#xA;- DS BIOS: bios7.bin, bios9.bin&#xA;- DSi BIOS: dsi_bios7.bin, dsi_bios9.bin&#xA;- Firmware: Zie de opties "DS Firmaware" en "DSi Firm hardware."&#xA;- DSi NAND: Zie de "DSi NAND " optie.&#xA;&#xA;Terugvallen naar Ingebouwd als er geen BIOS/firmware-bestand is gevonden.&#xA;&#xA;Ingebouwde modus maakt gebruik van melonDS ingebouwde BIOS en firmware, en is geschikt voor de meeste games.&#xA;&#xA;Wijzigingen worden van kracht bij de volgende herstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.native"><value>Inheems</value></data>
   <data name="Emulation.Option.melondsds.melonds_sysfile_mode.Value.builtin"><value>Ingebouwd</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path"><value>DS Firmware</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Selecteer een te gebruiken firmware-afbeelding voor DS-modus. Bestanden worden hier vermeld als ze:
-
-- Zijn in de systeemdirectory van de frontend, of een submap genaamd "melonDS DS."
-- Zijn precies 131,072 bytes (128KB), 262,144 bytes (256KB) of 524.288 bytes (512KB).
-- Bevat geldige header gegevens voor DS firmware.
-
-Nintendo WFC ID's worden opgeslagen op firmware, zodat het schakelen van firmhardware beelden kan resulteren in het verlies van sommige WFC-gegevens. In de DSi-modus genegeerd of als BIOS/Firmware modus is ingebouwd. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Help"><value>Selecteer een te gebruiken firmware-afbeelding voor DS-modus. Bestanden worden hier vermeld als ze:&#xA;&#xA;- Zijn in de systeemdirectory van de frontend, of een submap genaamd "melonDS DS."&#xA;- Zijn precies 131,072 bytes (128KB), 262,144 bytes (256KB) of 524.288 bytes (512KB).&#xA;- Bevat geldige header gegevens voor DS firmware.&#xA;&#xA;Nintendo WFC ID's worden opgeslagen op firmware, zodat het schakelen van firmhardware beelden kan resulteren in het verlies van sommige WFC-gegevens. In de DSi-modus genegeerd of als BIOS/Firmware modus is ingebouwd. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_nds_path.Value./notfound"><value>Geen gevonden.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path"><value>DSi Firmware</value></data>
-  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Selecteer een firmware-afbeelding die gebruikt moet worden voor de DSi modus. Bestanden worden hier vermeld als ze:
-
-- Zijn in de systeemdirectory van de frontend, of een submap genaamd "melonDS DS."
-- Zijn precies 131,072 bytes (128KB), 262,144 bytes (256KB) of 524.288 bytes (512KB).
-- Bevat geldige header gegevens voor DSi firmware.
-
-Nintendo WFC ID's worden opgeslagen op firmware, zodat het schakelen van firmhardware beelden kan resulteren in het verlies van sommige WFC-gegevens. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Help"><value>Selecteer een firmware-afbeelding die gebruikt moet worden voor de DSi modus. Bestanden worden hier vermeld als ze:&#xA;&#xA;- Zijn in de systeemdirectory van de frontend, of een submap genaamd "melonDS DS."&#xA;- Zijn precies 131,072 bytes (128KB), 262,144 bytes (256KB) of 524.288 bytes (512KB).&#xA;- Bevat geldige header gegevens voor DSi firmware.&#xA;&#xA;Nintendo WFC ID's worden opgeslagen op firmware, zodat het schakelen van firmhardware beelden kan resulteren in het verlies van sommige WFC-gegevens. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_firmware_dsi_path.Value./notfound"><value>Geen gevonden.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path"><value>DSi NAND-pad</value></data>
-  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Selecteer een te gebruiken DSi NAND-afbeelding. Vereist bij gebruik van DSi-modus. Bestanden worden hier vermeld als ze:
-
-- Zijn in de systeemdirectory van de frontend, of een submap genaamd "melonDS DS."
-- Zijn precies 251,658,304 bytes (240MB) of 257,425,472 bytes 245.5MB) lang met geldige voetgegevens, OR;
-- Zijn 64 bytes korter dan deze lengtes en bevatten gelijkwaardige gegevens op bestand offset 0xFF800.
-
-Instellen op "Auto" om de kern een NAND-afbeelding te laten kiezen waarvan het gebied overeenkomt met de geladen DSiWare ROM. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Help"><value>Selecteer een te gebruiken DSi NAND-afbeelding. Vereist bij gebruik van DSi-modus. Bestanden worden hier vermeld als ze:&#xA;&#xA;- Zijn in de systeemdirectory van de frontend, of een submap genaamd "melonDS DS."&#xA;- Zijn precies 251,658,304 bytes (240MB) of 257,425,472 bytes 245.5MB) lang met geldige voetgegevens, OR;&#xA;- Zijn 64 bytes korter dan deze lengtes en bevatten gelijkwaardige gegevens op bestand offset 0xFF800.&#xA;&#xA;Instellen op "Auto" om de kern een NAND-afbeelding te laten kiezen waarvan het gebied overeenkomt met de geladen DSiWare ROM. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./auto"><value>Automatisch (match ROM-regio)</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_nand_path.Value./notfound"><value>Geen gevonden.</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode"><value>Opstartmodus</value></data>
-  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Bepaalt hoe melonDS laarzen games.
-
-Native: Load games via het systeemmenu, vergelijkbaar met de echte DS/DSi boot proces. Vereist native BIOS en firmware bestanden in de systeemmap.
-Direct: Sla het systeemmenu over en ga direct naar de wedstrijd. Ondersteund voor DSiWare als native DSi systeembestanden beschikbaar zijn.
-
-Negeren indien geladen zonder een spel (Native wordt gedwongen) of als het gebruik van Ingebouwde BIOS/Firmware (Direct is geforceerd). Wijzigingen worden van kracht bij de volgende herstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_boot_mode.Help"><value>Bepaalt hoe melonDS laarzen games.&#xA;&#xA;Native: Load games via het systeemmenu, vergelijkbaar met de echte DS/DSi boot proces. Vereist native BIOS en firmware bestanden in de systeemmap.&#xA;Direct: Sla het systeemmenu over en ga direct naar de wedstrijd. Ondersteund voor DSiWare als native DSi systeembestanden beschikbaar zijn.&#xA;&#xA;Negeren indien geladen zonder een spel (Native wordt gedwongen) of als het gebruik van Ingebouwde BIOS/Firmware (Direct is geforceerd). Wijzigingen worden van kracht bij de volgende herstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.direct"><value>Rechtstreeks</value></data>
   <data name="Emulation.Option.melondsds.melonds_boot_mode.Value.native"><value>Inheems</value></data>
   <data name="Emulation.Option.melondsds.melonds_dsi_sdcard"><value>Virtuele SD-kaart (DSi)</value></data>
@@ -1204,8 +1103,7 @@ Negeren indien geladen zonder een spel (Native wordt gedwongen) of als het gebru
   <data name="Emulation.Option.melondsds.melonds_ds_battery_ok_threshold.Value.0"><value>Altijd OK</value></data>
   <data name="Emulation.Option.melondsds.melonds_ds_battery_ok_threshold.Value.100"><value>Altijd laag</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device"><value>Slot-2 Apparaat</value></data>
-  <data name="Emulation.Option.melondsds.melonds_slot2_device.Help"><value>De randapparatuur die zal worden ingevoegd in de emuleerde console Slot-2. Negeren in DSi-modus, of als een GBA ROM expliciet wordt geladen. Als een GBA ROM voor elk spel in de Boktai trilogie wordt ingevoegd, zal de corresponderende Solar Sensor instelling worden gedwongen. In ondersteunde NDS games, zal elke Boktai winkelwagen verschillende effecten hebben. De Motion Paks lezen de accelerometer van uw apparaat (en zijn gyroscoop, voor het huisbrew pak) als de frontend hen ondersteunt; anders doen ze alsof de console plat en stil ligt. 
-Wijzigingen worden van kracht bij de volgende kernstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_slot2_device.Help"><value>De randapparatuur die zal worden ingevoegd in de emuleerde console Slot-2. Negeren in DSi-modus, of als een GBA ROM expliciet wordt geladen. Als een GBA ROM voor elk spel in de Boktai trilogie wordt ingevoegd, zal de corresponderende Solar Sensor instelling worden gedwongen. In ondersteunde NDS games, zal elke Boktai winkelwagen verschillende effecten hebben. De Motion Paks lezen de accelerometer van uw apparaat (en zijn gyroscoop, voor het huisbrew pak) als de frontend hen ondersteunt; anders doen ze alsof de console plat en stil ligt. &#xA;Wijzigingen worden van kracht bij de volgende kernstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.auto"><value>Automatisch</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.rumble-pak"><value>Rumble Pak</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.expansion-pak"><value>Geheugenuitbreiding Pak</value></data>
@@ -1215,36 +1113,19 @@ Wijzigingen worden van kracht bij de volgende kernstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.motion-pak-homebrew"><value>Motion Pak (Homebrew)</value></data>
   <data name="Emulation.Option.melondsds.melonds_slot2_device.Value.motion-pak-retail"><value>Motion Pack (Retail)</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_intensity"><value>Rumble Intensity</value></data>
-  <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Help"><value>Hoe hard de Rumble Pak de motoren van uw controller aandrijft. De emuleerde Rumble Pak heeft geen eigen volumeregeling, dus dit schalen waar het spel om vraagt.
-
-Negeren tenzij "Slot-2 Device" is ingesteld op Rumble Pak.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Help"><value>Hoe hard de Rumble Pak de motoren van uw controller aandrijft. De emuleerde Rumble Pak heeft geen eigen volumeregeling, dus dit schalen waar het spel om vraagt.&#xA;&#xA;Negeren tenzij "Slot-2 Device" is ingesteld op Rumble Pak.</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_intensity.Value.0"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type"><value>Rumble Motors</value></data>
-  <data name="Emulation.Option.melondsds.melonds_rumble_type.Help"><value>Welke van je controllers motoren de Rumble Pak aandrijft. De meeste controllers koppelen een zware motor met een lichtere; die voelt dichter bij een echte Rumble Pak hangt af van de controller.
-
-Negeren tenzij "Slot-2 Device" is ingesteld op Rumble Pak.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_rumble_type.Help"><value>Welke van je controllers motoren de Rumble Pak aandrijft. De meeste controllers koppelen een zware motor met een lichtere; die voelt dichter bij een echte Rumble Pak hangt af van de controller.&#xA;&#xA;Negeren tenzij "Slot-2 Device" is ingesteld op Rumble Pak.</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.both"><value>Beide</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.strong"><value>Alleen sterk</value></data>
   <data name="Emulation.Option.melondsds.melonds_rumble_type.Value.weak"><value>Alleen zwak</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor"><value>Hostlichtsensor gebruiken</value></data>
-  <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Help"><value>Indien ingeschakeld, zal de lichtingang van de emuleerde zonnesensor afkomstig zijn van uw apparaat's echte luminantie sensor indien beschikbaar. Indien er geen of een sensor beschikbaar is, kan de geëmuleerde sensor handmatig worden bediend met behulp van de volgende knopcombinatie:
-
-- L+A+Omhoog of L+A +Domlaag
-- Selecteer+Up of Select+Down
-- Je muiswiel.
-
-Wordt genegeerd tenzij "Slot-2 Device" is ingesteld op Solar Sensor, of als een ROM voor elk spel in de Boktai trilogie (een regio) wordt ingevoegd in de emuleerde console van Slot-2. Als het niet zeker is, vertrek dan ingeschakeld.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Help"><value>Indien ingeschakeld, zal de lichtingang van de emuleerde zonnesensor afkomstig zijn van uw apparaat's echte luminantie sensor indien beschikbaar. Indien er geen of een sensor beschikbaar is, kan de geëmuleerde sensor handmatig worden bediend met behulp van de volgende knopcombinatie:&#xA;&#xA;- L+A+Omhoog of L+A +Domlaag&#xA;- Selecteer+Up of Select+Down&#xA;- Je muiswiel.&#xA;&#xA;Wordt genegeerd tenzij "Slot-2 Device" is ingesteld op Solar Sensor, of als een ROM voor elk spel in de Boktai trilogie (een regio) wordt ingevoegd in de emuleerde console van Slot-2. Als het niet zeker is, vertrek dan ingeschakeld.</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.melondsds.melonds_solar_sensor_host_sensor.Value.enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode"><value>Tijdmodus</value></data>
-  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>De begintijd van de interne klok van het emuleerde console.
-
-- Real: Start in sync met de klok van uw apparaat.
-- Gesynchroniseerd: Synchroniseer de geemuleerde klok op uw apparaat's klok. Kan onverwacht gedrag veroorzaken in sommige games bij het terugspoelen of fast-forwarden.
-- Relatief: Start synchroon met de klok van uw apparaat, plus of min een opgegeven offset. Wordt beperkt tot data die de DS kan vertegenwoordigen.
-- Absoluut: Start op een bepaalde datum en tijd, ongeacht de klok van uw apparaat.
-
-Alle data en tijden bevinden zich in uw lokale tijdzone. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_start_time_mode.Help"><value>De begintijd van de interne klok van het emuleerde console.&#xA;&#xA;- Real: Start in sync met de klok van uw apparaat.&#xA;- Gesynchroniseerd: Synchroniseer de geemuleerde klok op uw apparaat's klok. Kan onverwacht gedrag veroorzaken in sommige games bij het terugspoelen of fast-forwarden.&#xA;- Relatief: Start synchroon met de klok van uw apparaat, plus of min een opgegeven offset. Wordt beperkt tot data die de DS kan vertegenwoordigen.&#xA;- Absoluut: Start op een bepaalde datum en tijd, ongeacht de klok van uw apparaat.&#xA;&#xA;Alle data en tijden bevinden zich in uw lokale tijdzone. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.real"><value>Echt</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.sync"><value>Gesynchroniseerd</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_mode.Value.relative"><value>Relatief</value></data>
@@ -1532,10 +1413,7 @@ Alle data en tijden bevinden zich in uw lokale tijdzone. Wijzigingen worden van 
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second"><value>Tweede start</value></data>
   <data name="Emulation.Option.melondsds.melonds_start_time_absolute_second.Help"><value>De eerste seconde die gebruikt moet worden wanneer de starttijdmodus absoluut is. Wijzigingen worden van kracht bij de volgende herstart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode"><value>Rendermodus</value></data>
-  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Software is snelste en meest accurate. OpenGL (Classic) kan 3D-graphics opschalen, maar sommige games worden niet correct weergegeven.
-OpenGL (Compute) is nauwkeurig en ondersteunt upscaling, maar werkt niet op sommige oudere apparaten. Schakelen naar het duurt een paar seconden om de shaders compileren.
-
-Terugvallen naar software rendering als OpenGL niet kan worden gebruikt. Wijzigingen worden onmiddellijk van kracht, maar kunnen vereisen dat het videostuurprogramma voor frontend opnieuw wordt gestart.</value></data>
+  <data name="Emulation.Option.melondsds.melonds_render_mode.Help"><value>Software is snelste en meest accurate. OpenGL (Classic) kan 3D-graphics opschalen, maar sommige games worden niet correct weergegeven.&#xA;OpenGL (Compute) is nauwkeurig en ondersteunt upscaling, maar werkt niet op sommige oudere apparaten. Schakelen naar het duurt een paar seconden om de shaders compileren.&#xA;&#xA;Terugvallen naar software rendering als OpenGL niet kan worden gebruikt. Wijzigingen worden onmiddellijk van kracht, maar kunnen vereisen dat het videostuurprogramma voor frontend opnieuw wordt gestart.</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.software"><value>Software</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.opengl"><value>OpenGL (Classic)</value></data>
   <data name="Emulation.Option.melondsds.melonds_render_mode.Value.compute"><value>OpenGL (Compute)</value></data>
@@ -1562,8 +1440,6 @@ Terugvallen naar software rendering als OpenGL niet kan worden gebruikt. Wijzigi
   <data name="Emulation.Option.melondsds.melonds_threaded_renderer.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.melondsds.melonds_threaded_renderer.Value.enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Firmware.melondsds.Slot0"><value>NDS Firmware</value></data>
-  
-  
   <data name="Emulation.Firmware.melondsds.Slot3"><value>DSi Firmware</value></data>
   <data name="Emulation.Firmware.melondsds.Slot4"><value>DSi ARM7 BIOS</value></data>
   <data name="Emulation.Firmware.melondsds.Slot5"><value>DSi ARM9 BIOS</value></data>
@@ -1664,8 +1540,6 @@ Terugvallen naar software rendering als OpenGL niet kan worden gebruikt. Wijzigi
   <data name="Emulation.Option.noods.noods_micButtonMode.Value.Hold"><value>Wacht.</value></data>
   <data name="Emulation.Option.noods.noods_micButtonMode.Value.Always"><value>Altijd</value></data>
   <data name="Emulation.Firmware.noods.Slot0"><value>NDS Firmware</value></data>
-  
-  
   <data name="Emulation.Firmware.noods.Slot3"><value>Game Boy Advance BIOS</value></data>
   <data name="Emulation.Firmware.noods.Slot4"><value>NDS SD-kaart</value></data>
   <data name="Emulation.Emulator.skyemu.Description"><value>Emuleert compatibele Nintendo-systemen met SkyEmu.</value></data>
@@ -1678,21 +1552,13 @@ Terugvallen naar software rendering als OpenGL niet kan worden gebruikt. Wijzigi
   <data name="Emulation.Option.skyemu.system_gba_bios_enable.Help"><value>Game Boy Advance Firmware ingeschakeld</value></data>
   <data name="Emulation.Option.skyemu.system_nds_bios_enable"><value>Nintendo DS Firmware</value></data>
   <data name="Emulation.Option.skyemu.system_nds_bios_enable.Help"><value>Nintendo DS Firmware ingeschakeld</value></data>
-  
-  
-  
-  
-  
-  
   <data name="Emulation.Firmware.skyemu.Slot6"><value>GBA BIOS</value></data>
-  
-  
   <data name="Emulation.Firmware.skyemu.Slot9"><value>NDS FIRMWARE</value></data>
   <data name="Emulation.Emulator.fceumm.Description"><value>Emuleert compatibele Nintendo-systemen met FCEUmm.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region"><value>Gebieden</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region.Help"><value>Dwing kern te gebruiken NTSC, PAL of Dendy regio timings.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_region.Value.Auto"><value>Automatisch</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_game_genie"><value>Game Genie Add-On (Restart Required)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_game_genie"><value>Game Genie Add-On</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Help"><value>Schakel emulatie van een Game Genie add-on cartridge, waardoor cheat codes worden ingevoerd bij het lanceren van games. Het Game Genie ROM-bestand 'gamegenie.nes' moet aanwezig zijn in de systeemmap van de frontend. Niet van toepassing op FDS of arcade-inhoud.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.fceumm.fceumm_game_genie.Value.enabled"><value>Ingeschakeld</value></data>
@@ -1894,7 +1760,7 @@ Terugvallen naar software rendering als OpenGL niet kan worden gebruikt. Wijzigi
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.2x-Postrender"><value>2x-Postrender</value></data>
   <data name="Emulation.Option.fceumm.fceumm_overclocking.Value.2x-VBlank"><value>2x-VBlank</value></data>
-  <data name="Emulation.Option.fceumm.fceumm_ramstate"><value>RAM Power-on Fill (Restart Required)</value></data>
+  <data name="Emulation.Option.fceumm.fceumm_ramstate"><value>RAM Power-on Fill</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ramstate.Help"><value>RAM-waarden op stroom. Sommige games vertrouwen op de initiële RAM-waarden voor willekeurige nummergeneratie als voorbeeld.</value></data>
   <data name="Emulation.Option.fceumm.fceumm_ramstate.Value.random"><value>Willekeurig</value></data>
   <data name="Emulation.Firmware.fceumm.Slot0"><value>Familie Computer Schijf Systeem BIOS</value></data>
@@ -2092,9 +1958,7 @@ Terugvallen naar software rendering als OpenGL niet kan worden gebruikt. Wijzigi
   <data name="Emulation.Option.mesen2.mesen_snes_high_res_blend_mode.Value.Blend Even/Odd"><value>Even/Odd mengen</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode"><value>Video - SNES Deinterlace-modus</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Help"><value>Selecteer de SNES-deinterlace modus</value></data>
-  <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Weave"><value>Weven</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Bob Blend"><value>Bob Blend</value></data>
-  <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Bob"><value>Bob</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_deinterlace_mode.Value.Current Field"><value>Huidig veld</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_hide_bg_layer_1"><value>Verbeteringen - SNES BG laag verbergen 1</value></data>
   <data name="Emulation.Option.mesen2.mesen_snes_hide_bg_layer_1.Help"><value>SNES-achtergrondlaag 1 verbergen</value></data>
@@ -2150,125 +2014,6 @@ Terugvallen naar software rendering als OpenGL niet kan worden gebruikt. Wijzigi
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders"><value>Video - Game Boy Verbergen SGB Grenzen</value></data>
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders.Help"><value>Super Game Boy grenzen verbergen</value></data>
   <data name="Emulation.Option.mesen2.mesen_gameboy_hide_sgb_borders.Value.disabled"><value>Uitgeschakeld</value></data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed"><value>Invoer - Controller Turbo Speed</value></data>
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed.Help"><value>Snelheid van de Turboknop</value></data>
   <data name="Emulation.Option.mesen2.mesen_controllerturbospeed.Value.Fast"><value>Snel</value></data>
@@ -2499,14 +2244,7 @@ Terugvallen naar software rendering als OpenGL niet kan worden gebruikt. Wijzigi
   <data name="Emulation.Firmware.rustynes.Slot0"><value>Familie Computer Schijf Systeem BIOS</value></data>
   <data name="Emulation.Emulator.doublecherrygb.Description"><value>Emuleert compatibele Nintendo systemen met DoubleCherryGB.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA"><value>Detecteren als gespeeld op Game Boy Advance</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Help"><value>Sommige Game Boy Color spellen bieden verbeterde functies wanneer gespeeld op een Game Boy Advance.
-
-Bekende GBA-verbeterde spellen:
-   - Shantae.
-   Elke heksenroute.
-   - Zelda: Orakel der Tijden / Seizoenen
-   - Medarot 5
-   Mega Man Extreme 2</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Help"><value>Sommige Game Boy Color spellen bieden verbeterde functies wanneer gespeeld op een Game Boy Advance.&#xA;&#xA;Bekende GBA-verbeterde spellen:&#xA;   - Shantae.&#xA;   Elke heksenroute.&#xA;   - Zelda: Orakel der Tijden / Seizoenen&#xA;   - Medarot 5&#xA;   Mega Man Extreme 2</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_detect_as_GBA.Value.0"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_rtc_use_system_clock"><value>Real-time klokmodus</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_rtc_use_system_clock.Help"><value>Bepaalt hoe de in-game Real-Time Clock (RTC) tikt. 'Real-Tijd' gebruikt de systeemklok van uw hostapparaat (resist fastforwarding; time pass while the emulator is close). 'Emulated' berekent tijd strikt gebaseerd op emuleerde CPU cycli.</value></data>
@@ -2571,11 +2309,7 @@ Bekende GBA-verbeterde spellen:
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss"><value>GBC LCD-interlacing Helderheid</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_lcd_interlacing_brightnesss.Help"><value>Past de intensiteit van het interlacing effect aan. Houd deze waarde laag als u geen shaders gebruikt. Hogere waarden worden aanbevolen in combinatie met een shader om het effect zichtbaar te maken.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation"><value>GBC LCD RGB Subpixel schaalfactor</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Simuleert fysieke GBC-subpixels door elke kleurenpixel te upscalen en te vervangen door overeenkomstige RGB-componenten.
-
-Voor de beste resultaten:
-- Schakel 'Integer Scaleling' in in RetroArch (Settings -&gt; Video -&gt; Scaling).
-- Een kernherstart kan nodig zijn na het wijzigen van deze instelling.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Help"><value>Simuleert fysieke GBC-subpixels door elke kleurenpixel te upscalen en te vervangen door overeenkomstige RGB-componenten.&#xA;&#xA;Voor de beste resultaten:&#xA;- Schakel 'Integer Scaleling' in in RetroArch (Settings -&gt; Video -&gt; Scaling).&#xA;- Een kernherstart kan nodig zijn na het wijzigen van deze instelling.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_RGB_SubPixel_Simulation.Value.1"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur"><value>GBC LCD-vervaging</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_gbc_LCD_blur.Help"><value>Past een vervagingseffect toe. Deze instelling is zeer CPU-intensief. Zet het uit op zwakkere hardware of gebruik shaders in plaats daarvan.</value></data>
@@ -2681,20 +2415,10 @@ Voor de beste resultaten:
   <data name="Emulation.Option.doublecherrygb.dcgb_cocktailtable_mode.Value.1"><value>verticaal</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_cocktailtable_mode.Value.2"><value>horizontaal</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled"><value>Mobiele adapter GB emulatie</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Help"><value>Inschakelt emulatie van de Japanse mobiele adapter GB randapparatuur.
-
-Ondersteunde titels:
-   - Pokemon Crystal (Japan of mobiele adapter gepatcht)
-   - Game Boy Oorlogen 3
-   - Hallo Kitty Happy House
-   - Mobiele Golf
-   - Mobiele trainer
-   - Net de Get</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Help"><value>Inschakelt emulatie van de Japanse mobiele adapter GB randapparatuur.&#xA;&#xA;Ondersteunde titels:&#xA;   - Pokemon Crystal (Japan of mobiele adapter gepatcht)&#xA;   - Game Boy Oorlogen 3&#xA;   - Hallo Kitty Happy House&#xA;   - Mobiele Golf&#xA;   - Mobiele trainer&#xA;   - Net de Get</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_enabled.Value.0"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber"><value>Uw telefoonnummer aan het begin tonen</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Help"><value>Toont uw P2P telefoonnummer bij het opstarten. 
-
-Waarschuwing: Zonder een relaisserver stelt dit uw publieke IP-adres bloot. Deel dit alleen met vertrouwde gebruikers.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Help"><value>Toont uw P2P telefoonnummer bij het opstarten. &#xA;&#xA;Waarschuwing: Zonder een relaisserver stelt dit uw publieke IP-adres bloot. Deel dit alleen met vertrouwde gebruikers.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adapter_show_p2p_phonenumber.Value.0"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color"><value>Mobiele adapter GB-apparaatkleur</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Help"><value>Stelt de cosmetische shell kleur van het emuleerde mobiele adapter apparaat in.</value></data>
@@ -2703,34 +2427,24 @@ Waarschuwing: Zonder een relaisserver stelt dit uw publieke IP-adres bloot. Deel
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Value.10"><value>Groen</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_device_color.Value.11"><value>Rood</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip"><value>DNS-server IP</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Help"><value>Officiële Nintendo servers zijn offline. U kunt zelf infrastructuurvervangingen hosten, met behulp van aangepaste stapels zoals REON: https://github.com/REONTeam/reon.
-
-Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.ini in uw retroarch-systeemmap.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Help"><value>Officiële Nintendo servers zijn offline. U kunt zelf infrastructuurvervangingen hosten, met behulp van aangepaste stapels zoals REON: https://github.com/REONTeam/reon.&#xA;&#xA;Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.ini in uw retroarch-systeemmap.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.127.0.0.1"><value>127,0.0,1 (Localhost)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.172.18.0.1"><value>172,18,0.1 (Lokale Docker)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_ip.Value.99"><value>Aangepast</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port"><value>DNS-serverpoort</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Help"><value>Specificeer de doelpoortverbinding voor de aangepaste netwerkinfrastructuur.
-
-Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.ini in uw retroarch-systeemmap.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Help"><value>Specificeer de doelpoortverbinding voor de aangepaste netwerkinfrastructuur.&#xA;&#xA;Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.ini in uw retroarch-systeemmap.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Value.1"><value>53 (Standaard)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_dns_port.Value.99"><value>Aangepast</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server"><value>Gebruik P2P Relay Server</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Help"><value>Gebruik een aangepaste relaisserver voor P2P Calls.
-
-Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.ini in uw retroarch-systeemmap.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Help"><value>Gebruik een aangepaste relaisserver voor P2P Calls.&#xA;&#xA;Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.ini in uw retroarch-systeemmap.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_use_relay_server.Value.0"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip"><value>P2P Relaisserver IP</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Help"><value>Specificeer de doelpoortverbinding voor de aangepaste netwerkinfrastructuur.
-
-Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.ini in uw retroarch-systeemmap.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Help"><value>Specificeer de doelpoortverbinding voor de aangepaste netwerkinfrastructuur.&#xA;&#xA;Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.ini in uw retroarch-systeemmap.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.127.0.0.1"><value>127,0.0,1 (Localhost)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.172.18.0.1"><value>172,18,0.1 (Lokale Docker)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_ip.Value.99"><value>Aangepast</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port"><value>P2P Relay Server poort</value></data>
-  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Help"><value>Specificeer de doelpoortverbinding voor de aangepaste P2P relaisserver.
-
-Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.ini in uw retroarch-systeemmap.</value></data>
+  <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Help"><value>Specificeer de doelpoortverbinding voor de aangepaste P2P relaisserver.&#xA;&#xA;Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.ini in uw retroarch-systeemmap.</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Value.1"><value>31127 (Standaard)</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_mobile_adatper_relay_port.Value.99"><value>Aangepast</value></data>
   <data name="Emulation.Option.doublecherrygb.dcgb_dev_log_linkcable_to_file"><value>Link-kabeloverdracht naar bestand loggen</value></data>
@@ -2801,10 +2515,10 @@ Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.in
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler"><value>Audio resampler</value></data>
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler.Help"><value>Geef aan welk algoritme te gebruiken is bij het opnieuw samenstellen van gegenereerde audio (de Game Boy-audiosnelheid wordt alleen beperkt door de CPU schrijfsnelheid, zodat 'native' frequenties onpraktisch zijn op moderne geluidsapparaten en in plaats daarvan moeten worden opgenomen). 'Sinc' produceert de hoogste kwaliteit. 'Cosine' verbetert de prestaties op lage hardware.</value></data>
   <data name="Emulation.Option.gambatte.gambatte_audio_resampler.Value.cc"><value>Cosinus</value></data>
-  <data name="Emulation.Option.gambatte.gambatte_gb_hwmode"><value>Emulated Hardware (Restart Required)</value></data>
+  <data name="Emulation.Option.gambatte.gambatte_gb_hwmode"><value>Emulated Hardware</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_hwmode.Help"><value>Geef aan welk type hardware moet worden nagebootst. 'Auto' wordt aanbevolen. Het selecteren van 'GBA' opent extra functies in bepaalde 'GBA Enhanced' Game Boy Color spellen (Shantae, Wendy - Every Witch Way, Legend of Zelda: Oracle of Seasons/Ages...).</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_hwmode.Value.Auto"><value>Automatisch</value></data>
-  <data name="Emulation.Option.gambatte.gambatte_gb_bootloader"><value>Officiële bootloader gebruiken (Restart Required)</value></data>
+  <data name="Emulation.Option.gambatte.gambatte_gb_bootloader"><value>Officiële bootloader gebruiken</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Help"><value>Schakel ondersteuning in voor officiële Game Boy en Game Boy Color bootloaders, met bijbehorende opstartlogo animaties.</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Value.enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Option.gambatte.gambatte_gb_bootloader.Value.disabled"><value>Uitgeschakeld</value></data>
@@ -3047,8 +2761,6 @@ Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.in
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg"><value>Schakel herkleuren van DMG-games uit (alleen toepasbaar met CGB BIOS)</value></data>
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg.Value.enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Option.irogb.irogb_monochrome_dmg.Value.disabled"><value>Uitgeschakeld</value></data>
-  
-  
   <data name="Emulation.Emulator.mesen_s.Description"><value>Emuleert compatibele Nintendo systemen met Mesen-S.</value></data>
   <data name="Emulation.Option.mesen_s.mesen-s_ntsc_filter"><value>NTSC filter</value></data>
   <data name="Emulation.Option.mesen_s.mesen-s_ntsc_filter.Value.Disabled"><value>Uitgeschakeld</value></data>
@@ -3111,8 +2823,6 @@ Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.in
   <data name="Emulation.Firmware.mesen_s.Slot15"><value>GBC-opstartafbeelding</value></data>
   <data name="Emulation.Firmware.mesen_s.Slot16"><value>SGB-opstartafbeelding</value></data>
   <data name="Emulation.Firmware.mesen_s.Slot17"><value>SGB2-opstartafbeelding</value></data>
-  
-  
   <data name="Emulation.Firmware.mesen_s.Slot20"><value>Satellaview Boot ROM</value></data>
   <data name="Emulation.Emulator.nside_sfc_balanced.Description"><value>Emuleert compatibele Nintendo systemen met nSide.</value></data>
   <data name="Emulation.Option.nside_sfc_balanced.higan_sfc_internal_resolution"><value>Interne resolutie</value></data>
@@ -4300,8 +4010,6 @@ Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.in
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-native-tex-rect.Value.False"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method"><value>(ParaLLEl-RDP) Deinterlacing methode</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Help"><value>Weave mag alleen worden gebruikt met 1x scaling factor en speciale CRT shaders.</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Value.Bob"><value>Bob</value></data>
-  <data name="Emulation.Option.mupen64plus-next.mupen64plus-parallel-rdp-deinterlace-method.Value.Weave"><value>Weven</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay"><value>VI Overlay</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay.Help"><value>(AL) Select VI Overlay filtering. 'Filtered' is de originele systeem rendering.</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-angrylion-vioverlay.Value.Filtered"><value>Gefilterd</value></data>
@@ -4394,7 +4102,6 @@ Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.in
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.memory"><value>geheugen</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.rumble"><value>Rumple</value></data>
   <data name="Emulation.Option.mupen64plus-next.mupen64plus-pak4.Value.transfer"><value>overdracht</value></data>
-  
   <data name="Emulation.Emulator.parallel_n64.Description"><value>Emuleert compatibele Nintendo systemen met ParaLLEl N64.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling"><value>Opschalingsfactor (herstart)</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-upscaling.Help"><value>Render naar een veelvoud van de resolutie van de console. ParaLLEl-RDP eert elke factor; Angrylion geeft tot 4x en behandelt 8x als 4x.</value></data>
@@ -4576,7 +4283,7 @@ Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.in
   <data name="Emulation.Option.parallel_n64.parallel-n64-disable_expmem.Value.enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-disable_expmem.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy"><value>Nauwkeurigheid van GFX</value></data>
-  <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Help"><value>GFX Nauwkeurigheid, vereist herstart</value></data>
+  <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Help"><value>Grafische nauwkeurigheid.</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.low"><value>laag</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.medium"><value>medium</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-gfxplugin-accuracy.Value.high"><value>hoog</value></data>
@@ -4872,7 +4579,6 @@ Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.in
   <data name="Emulation.Option.parallel_n64.parallel-n64-sdcard.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate"><value>Terugrollen N64 systeemklok op savestate belasting</value></data>
   <data name="Emulation.Option.parallel_n64.parallel-n64-rtc-savestate.Value.enabled"><value>Ja</value></data>
-  
   <data name="Emulation.Emulator.pokemini.Description"><value>Emuleert compatibele Nintendo systemen met PokeMini.</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale"><value>Videoschaal (herstarten)</value></data>
   <data name="Emulation.Option.pokemini.pokemini_video_scale.Help"><value>Stel interne videoschaalfactor in. De vergroting van de schaalfactor verbetert het uiterlijk van het interne 'Dot Matrix' LCD-filter.</value></data>
@@ -5039,7 +4745,7 @@ Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.in
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock"><value>Overklokken - SuperFX Coprocessor</value></data>
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock.Help"><value>Overklok of beneden klok de SuperFX coprocessor. Het instellen van deze waarde boven 100% kan de prestaties in games die de SuperFX ondersteunen verbeteren. Gebruik met voorzichtigheid, omdat het kan ook veroorzaken sommige games te crashen of vertonen andere problemen.</value></data>
   <data name="Emulation.Option.bsnes.bsnes_cpu_sfx_overclock.Value.100"><value>100% (Standaard)</value></data>
-  <data name="Emulation.Option.bsnes.bsnes_sgb_bios"><value>Voorkeur Super Game Boy BIOS (Restart Required)</value></data>
+  <data name="Emulation.Option.bsnes.bsnes_sgb_bios"><value>Voorkeur Super Game Boy BIOS</value></data>
   <data name="Emulation.Option.bsnes.bsnes_sgb_bios.Help"><value>Kies de voorkeur Super Game Boy BIOS te gebruiken met compatibele titels.</value></data>
   <data name="Emulation.Option.bsnes.bsnes_hide_sgb_border"><value>SGB-rand verbergen</value></data>
   <data name="Emulation.Option.bsnes.bsnes_hide_sgb_border.Help"><value>Verberg de grens bij het spelen van Super Game Boy spelletjes.</value></data>
@@ -6073,7 +5779,7 @@ Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.in
   <data name="Emulation.Option.beetle_vb.vb_cpu_emulation.Value.fast"><value>snel</value></data>
   <data name="Emulation.Emulator.cemu.Description"><value>Emuleert compatibele Nintendo systemen met Cemu.</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode"><value>CPU-modus</value></data>
-  <data name="Emulation.Option.cemu.cemu_cpu_mode.Help"><value>Hoe de Wii U's PowerPC-kernen worden nagebootst. Auto neemt de multicore recompiler op een CPU met vier of meer fysieke kernen en de single-core anders. De tolken zijn veel langzamer en bedoeld voor debuggen. (Herstart vereist)</value></data>
+  <data name="Emulation.Option.cemu.cemu_cpu_mode.Help"><value>Hoe de Wii U's PowerPC-kernen worden nagebootst. Auto neemt de multicore recompiler op een CPU met vier of meer fysieke kernen en de single-core anders. De tolken zijn veel langzamer en bedoeld voor debuggen.</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.auto"><value>Automatisch</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.singlecore_interpreter"><value>Singlecore-interpreter</value></data>
   <data name="Emulation.Option.cemu.cemu_cpu_mode.Value.singlecore_recompiler"><value>Singlecore-recompiler</value></data>
@@ -6209,12 +5915,10 @@ Voor aangepaste configuratie bewerk de mobile_adapter_gb_custom_server_config.in
   <data name="Emulation.Option.cemu.cemu_bc1_16bit.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.cemu.cemu_bc1_16bit.Value.enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Option.cemu.cemu_gpu_api"><value>Grafieken API</value></data>
-  <data name="Emulation.Option.cemu.cemu_gpu_api.Help"><value>De afbeeldingen API Cemu rendert met. (Herstart vereist)</value></data>
+  <data name="Emulation.Option.cemu.cemu_gpu_api.Help"><value>De afbeeldingen API Cemu rendert met.</value></data>
   <data name="Emulation.Option.cemu.cemu_gpu_api.Value.OpenGL"><value>OpenGL</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game"><value>Spelletjes installeren</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_game.Help"><value>Installeer elk spel in systeem/Cemu/titels tot opgeslagen / Cemu / mlc01, de opslag van de emuleerde console, als de consoles een game installeert vanaf zijn schijf. Een spel is een disk image (.wud, .wux,.iso) of een .woa, en vanuit een wua worden de update en DLC die het bevat ermee geïnstalleerd. Een spel dat al in dezelfde of een nieuwere versie is geïnstalleerd, wordt met rust gelaten.
-
-Wanneer dit is ON, de installatie begint onmiddellijk, met zijn vooruitgang getoond als een kennisgeving, en het wordt OFF weer wanneer alle spellen worden geïnstalleerd. Een geïnstalleerd spel wordt gestart door het laden van de .rpx in zijn code map, onder mlc01/usr/title/00050000; de schijf image is niet meer nodig.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_game.Help"><value>Installeer elk spel in systeem/Cemu/titels tot opgeslagen / Cemu / mlc01, de opslag van de emuleerde console, als de consoles een game installeert vanaf zijn schijf. Een spel is een disk image (.wud, .wux,.iso) of een .woa, en vanuit een wua worden de update en DLC die het bevat ermee geïnstalleerd. Een spel dat al in dezelfde of een nieuwere versie is geïnstalleerd, wordt met rust gelaten.&#xA;&#xA;Wanneer dit is ON, de installatie begint onmiddellijk, met zijn vooruitgang getoond als een kennisgeving, en het wordt OFF weer wanneer alle spellen worden geïnstalleerd. Een geïnstalleerd spel wordt gestart door het laden van de .rpx in zijn code map, onder mlc01/usr/title/00050000; de schijf image is niet meer nodig.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.cemu.cemu_install_game.Value.enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game"><value>Spel verwijderen</value></data>
@@ -6222,11 +5926,7 @@ Wanneer dit is ON, de installatie begint onmiddellijk, met zijn vooruitgang geto
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_game.Value.enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles"><value>Inhoud installeren</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Installeer elke update en DLC in systeem/Cemu/titels tot opslaan / Cemu / mlc01, de opgeslagen console. Elk gaat in een map van zijn eigen daar; een NUS download (.app bestanden) heeft zijn title.tmd en zijn title.tik, de decryptie sleutel, naast hen nodig. Een reeds geïnstalleerde versie die hetzelfde is of nieuwer wordt met rust gelaten.
-
-Wanneer dit ON is begint de installatie onmiddellijk, met zijn voortgang getoond als een melding, en het wordt weer OFF wanneer alle inhoud is geïnstalleerd en dit menu wordt afgesloten of er een andere optie wordt gewijzigd. De titel zal de geïnstalleerde inhoud gebruiken zodra deze is herstart.
-
-Inhoud van andere locaties kan worden geïnstalleerd met RetroArch's Main Menu &gt; Load Content, door de bijbehorende title.tmd te selecteren met zijn title.tik ernaast.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_titles.Help"><value>Installeer elke update en DLC in systeem/Cemu/titels tot opslaan / Cemu / mlc01, de opgeslagen console. Elk gaat in een map van zijn eigen daar; een NUS download (.app bestanden) heeft zijn title.tmd en zijn title.tik, de decryptie sleutel, naast hen nodig. Een reeds geïnstalleerde versie die hetzelfde is of nieuwer wordt met rust gelaten.&#xA;&#xA;Wanneer dit ON is begint de installatie onmiddellijk, met zijn voortgang getoond als een melding, en het wordt weer OFF wanneer alle inhoud is geïnstalleerd en dit menu wordt afgesloten of er een andere optie wordt gewijzigd. De titel zal de geïnstalleerde inhoud gebruiken zodra deze is herstart.&#xA;&#xA;Inhoud van andere locaties kan worden geïnstalleerd met RetroArch's Main Menu &gt; Load Content, door de bijbehorende title.tmd te selecteren met zijn title.tik ernaast.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.cemu.cemu_install_titles.Value.enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles"><value>Inhoud verwijderen</value></data>
@@ -6234,11 +5934,7 @@ Inhoud van andere locaties kan worden geïnstalleerd met RetroArch's Main Menu &
   <data name="Emulation.Option.cemu.cemu_uninstall_titles.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.cemu.cemu_uninstall_titles.Value.enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source"><value>Inhoud verwijderen na installeren</value></data>
-  <data name="Emulation.Option.cemu.cemu_install_remove_source.Help"><value>Verwijdert downloadbare inhoud en titel updates van systeem/Cemu / titels zodra Install Content heeft geïnstalleerd. Inhoud geladen door Load Content wordt achtergelaten waar het is.
-
-De update van de draaiende titel of DLC is in gebruik, dus het wordt verwijderd wanneer de titel gesloten of opnieuw ingesteld.
-
-.wua-bestanden en schijfafbeeldingen worden nooit verwijderd, omdat ze ook het basisspel kunnen houden.</value></data>
+  <data name="Emulation.Option.cemu.cemu_install_remove_source.Help"><value>Verwijdert downloadbare inhoud en titel updates van systeem/Cemu / titels zodra Install Content heeft geïnstalleerd. Inhoud geladen door Load Content wordt achtergelaten waar het is.&#xA;&#xA;De update van de draaiende titel of DLC is in gebruik, dus het wordt verwijderd wanneer de titel gesloten of opnieuw ingesteld.&#xA;&#xA;.wua-bestanden en schijfafbeeldingen worden nooit verwijderd, omdat ze ook het basisspel kunnen houden.</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.cemu.cemu_install_remove_source.Value.enabled"><value>Ingeschakeld</value></data>
   <data name="Emulation.Firmware.FamicomDiskSystem"><value>Famicom Disk System BIOS</value></data>

@@ -39,6 +39,10 @@ internal static class SettingsConstants
     internal const string PlaydiaHle = "bandai_playdia_hle";
     internal const int BytesPerKibibyte = 1024;
     internal const string HertzUnit = "Hz";
+    internal const double HertzPerMegahertz = 1_000_000;
+    internal const double HertzPerKilohertz = 1_000;
+    internal const string MegahertzUnit = "MHz";
+    internal const string KilohertzUnit = "kHz";
     internal const string ByteUnit = "B";
     internal const string KibibyteUnit = "KiB";
     internal const string ResourceFirmware = "Emulation.Firmware.Rom.System";

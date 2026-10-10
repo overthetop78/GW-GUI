@@ -61,10 +61,17 @@ public sealed class BandaiModuleTests
         Assert.Equal(storage, settings.Visibility.Tabs[EmulationMachineTab.Storage]);
         Assert.False(settings.Visibility.Tabs[EmulationMachineTab.Keyboard]);
         Assert.False(settings.Visibility.Tabs[EmulationMachineTab.Mouse]);
+        Assert.DoesNotContain(settings.Blocks.SelectMany(block => block.Fields),
+            field => field.Editor == EmulationSettingsEditor.DirectoryPath);
+        Assert.DoesNotContain(settings.Blocks.SelectMany(block => block.Fields),
+            field => field.Tab == EmulationMachineTab.General && field.Id.StartsWith("wswan_", StringComparison.Ordinal));
         var input = InputSettingsFunctions.Describe(configuration);
         Assert.Null(input.Keyboard);
         Assert.Null(input.Mouse);
         Assert.Equal(buttons, Assert.Single(input.ControllerPorts).Bindings.Definitions.Count);
+        var controller = Assert.Single(Assert.Single(input.ControllerPorts).ControllerChoices);
+        Assert.NotEqual(PeripheralCategory.None.ToString(), controller.Id);
+        Assert.Single(controller.CompatibleVisualIds!);
         Assert.Contains(model.ToString(), module.Machines.Select(machine => machine.Id));
     }
 
