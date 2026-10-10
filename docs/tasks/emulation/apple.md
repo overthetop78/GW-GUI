@@ -128,3 +128,10 @@ Les huit photographies restantes ont été détourées par masques polygonaux sa
 Contrôle complet : 20 contrôles Apple réussis, aucun échec ni contrôle ignoré. Dix PNG transparents contrôlés, grand côté au plus 512 pixels ; les huit nouveaux assets mesurent exactement 512 pixels sur leur grand côté. Nettoyage des sources et résultats temporaires différé : le contrôle automatique refuse la suppression des dossiers contenant les photographies et leurs crédits sans autorisation explicite. Ces dossiers restent hors des fichiers de livraison et du commit.
 
 Build final terminé avec succès : application et dix modules (acorn, amstrad, apple, atari, commodore, microsoft, nec, nintendo, sega, sony). Exécutable et dix DLL contrôlés après la fin du script. SDK livré : identité 1.0.0.0. Chemin de test : build/Debug/GW GUI/gwgui.exe.
+# Révision de présentation demandée après les captures Bandai
+
+- [x] Corriger les champs sans utilité dans Général
+  - [x] Modifier `src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/SettingsFunctions.cs` : retirer les cinq sélecteurs de dossiers et leur helper ; conserver les chemins persistés et les fonctions de supports.
+  - [x] Modifier `src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/SettingsFunctions.Macintosh.cs` : retirer le bloc d'indisponibilité redondant pour les modèles sans émulateur ; conserver leurs informations matérielles.
+  - [x] Modifier les tests Apple existants si nécessaire : vérifier l'absence de champs de dossiers et de message redondant, avec les configurations des modèles catalogués.
+  - [x] Produire `build/Debug/GW GUI/gwgui.exe` et les modules réalisés : valider puis commiter cette correction Apple.

@@ -4,6 +4,7 @@ using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Apple.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Apple.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Apple.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Apple.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
@@ -28,6 +29,10 @@ public sealed class AppleModuleTests
         MachineModel model, bool executable, int keys, int ports)
     {
         var configuration = new MachineConfiguration(model);
+        var blocks = SettingsDescriptionFunctions.Create(configuration);
+        Assert.DoesNotContain(blocks.SelectMany(block => block.Fields),
+            field => field.Editor == EmulationSettingsEditor.DirectoryPath
+                || field.Id == SettingsConstants.ResourceUnavailableModel);
         var settings = InputSettingsFunctions.Describe(configuration);
         Assert.Equal(executable, ConfigurationFunctions.SupportsRuntime(model));
         Assert.Equal(executable, CoreCatalog.GetAll(model).Count > 0);

@@ -17,17 +17,7 @@ internal static partial class SettingsDescriptionFunctions
             Block(EmulationMachineTab.Ram, SettingsConstants.ResourceMemory,
                 Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemory,
                     $"{hardware.MainMemoryBytes / SettingsConstants.Kibibyte} KiB")),
-            Audio(configuration),
-            Block(EmulationMachineTab.General, SettingsConstants.ResourceGeneral,
-                Folder(SettingsConstants.SharedFolder, SettingsConstants.ResourceSharedFolder, configuration.Folders.Shared),
-                Folder(SettingsConstants.FloppyFolder, SettingsConstants.ResourceFloppyFolder, configuration.Folders.Floppies,
-                    EmulationDefaultFolderCategory.Floppy),
-                Folder(SettingsConstants.HardDiskFolder, SettingsConstants.ResourceHardDiskFolder, configuration.Folders.HardDisks,
-                    EmulationDefaultFolderCategory.HardDisk),
-                Folder(SettingsConstants.StateFolder, SettingsConstants.ResourceStateFolder, configuration.Folders.States,
-                    EmulationDefaultFolderCategory.State),
-                Folder(SettingsConstants.CaptureFolder, SettingsConstants.ResourceCaptureFolder, configuration.Folders.Captures,
-                    EmulationDefaultFolderCategory.Capture))
+            Audio(configuration)
         };
         if (configuration.Family == MachineFamily.AppleII) AddAppleII(blocks, configuration);
         else AddMacintosh(blocks, configuration);
@@ -70,11 +60,6 @@ internal static partial class SettingsDescriptionFunctions
         return new(option.Key, tab, tab.ToString(), resource, EmulationSettingsEditor.Selection, value, choices,
             RequiresRestart: RuntimeOptionFunctions.RequiresRestart(configuration.Core, option.Key));
     }
-
-    private static EmulationSettingsField Folder(string id, string resource, string? value,
-        EmulationDefaultFolderCategory? category = null) =>
-        new(id, EmulationMachineTab.General, EmulationMachineTab.General.ToString(), resource,
-            EmulationSettingsEditor.DirectoryPath, value, DefaultFolderCategory: category);
 
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string resource, string value) =>
         new(id, tab, tab.ToString(), resource, EmulationSettingsEditor.Information, value, IsEnabled: false);

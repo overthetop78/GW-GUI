@@ -9,12 +9,7 @@ internal static partial class SettingsDescriptionFunctions
     private static void AddMacintosh(List<EmulationSettingsBlock> blocks, MachineConfiguration configuration)
     {
         if (!ConfigurationFunctions.SupportsRuntime(configuration.Model))
-        {
-            blocks.Add(Block(EmulationMachineTab.General, SettingsConstants.ResourceGeneral,
-                Information(SettingsConstants.ResourceUnavailableModel, EmulationMachineTab.General,
-                    SettingsConstants.ResourceUnavailableModel, string.Empty)));
             return;
-        }
         blocks.Add(Block(EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware,
             new EmulationSettingsField(SettingsConstants.Firmware, EmulationMachineTab.Rom,
                 EmulationMachineTab.Rom.ToString(), SettingsConstants.ResourceFirmware, EmulationSettingsEditor.Path,
