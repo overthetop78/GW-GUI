@@ -2,6 +2,7 @@ namespace GWGUI.Emulation.Constants;
 
 public static class EmulationControllerVisualIds
 {
+    public const string FairchildChannelFController = "fairchild-channel-f-controller";
     public const string EpochSuperCassetteVisionController = "epoch-super-cassette-vision-controller";
     public const string ColecoController = "coleco-controller";
     public const string BandaiWonderSwan = "bandai-wonderswan";

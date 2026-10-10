@@ -1,0 +1,77 @@
+[
+  {
+    "Model": "ChannelF",
+    "Frames": 25,
+    "FramesPerSecond": 60,
+    "SampleRate": 44100,
+    "StateBytes": 75397,
+    "Geometry": {
+      "Width": 306,
+      "Height": 192,
+      "Pitch": 1224,
+      "AspectRatio": 1.59375
+    },
+    "FirstProcess": 76952,
+    "ReplacementProcess": 84056,
+    "CartridgeReplacementReleasedProcess": true,
+    "Synthetic": true,
+    "Bios": "Experimental native HLE; no commercial BIOS supplied"
+  },
+  {
+    "Model": "ChannelF",
+    "AllOwnedProcessesExited": true,
+    "SessionDeleted": true
+  },
+  {
+    "Model": "ChannelFSystemII",
+    "Frames": 25,
+    "FramesPerSecond": 60,
+    "SampleRate": 44100,
+    "StateBytes": 75397,
+    "Geometry": {
+      "Width": 306,
+      "Height": 192,
+      "Pitch": 1224,
+      "AspectRatio": 1.59375
+    },
+    "FirstProcess": 82060,
+    "ReplacementProcess": 40316,
+    "CartridgeReplacementReleasedProcess": true,
+    "Synthetic": true,
+    "Bios": "Experimental native HLE; no commercial BIOS supplied"
+  },
+  {
+    "Model": "ChannelFSystemII",
+    "AllOwnedProcessesExited": true,
+    "SessionDeleted": true
+  },
+  {
+    "FirmwareModel": "ChannelF",
+    "SyntheticBiosRolesLoaded": 2,
+    "UnknownFingerprintRejected": true
+  },
+  {
+    "FirmwareModel": "ChannelFSystemII",
+    "SyntheticBiosRolesLoaded": 2,
+    "UnknownFingerprintRejected": true
+  },
+  {
+    "EmptyBiosRejected": true,
+    "FailedInitializationProcessExited": true
+  },
+  {
+    "WindowModelIndex": 0,
+    "EnabledTabsRendered": 8,
+    "NoUiErrors": true
+  },
+  {
+    "WindowModelIndex": 1,
+    "EnabledTabsRendered": 8,
+    "NoUiErrors": true
+  },
+  {
+    "DiscoveredModules": 14,
+    "FairchildDiscovered": true,
+    "DiscoveryErrors": 0
+  }
+]

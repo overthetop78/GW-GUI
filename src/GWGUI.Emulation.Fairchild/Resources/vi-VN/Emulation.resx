@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.freechaf.Description"><value>Tốc độ Channel F và Channel F System II bảng điều khiển.</value></data>
+  <data name="Emulation.Fairchild.Memory.Display"><value>Bộ nhớ phim</value></data>
+  <data name="Emulation.Fairchild.Video.Native"><value>video bàn điều khiển</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr"><value>Xoá hiển thị trong cùng khung</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Help"><value>Màn hình tăng tốc được xoá bằng cách hoàn thành nó trong một khung.</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value0"><value>Đã tắt</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value1"><value>Đã bật</value></data>
+</root>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Input.RotateLeft"><value>좌측에 손잡이를 자전하십시오</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight"><value>적당한에 손잡이를 자전하십시오</value></data>
+  <data name="Emulation.Fairchild.Input.Push"><value>손잡이를 아래로 미십시오</value></data>
+  <data name="Emulation.Fairchild.Input.Pull"><value>손잡이를 위로 당기십시오</value></data>
+  <data name="Emulation.Fairchild.Input.ConsoleOverlay"><value>콘솔 단추를 보여주십시오</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers"><value>2개의 관제사를 교환하십시오</value></data>
+</root>

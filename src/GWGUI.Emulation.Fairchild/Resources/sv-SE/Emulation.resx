@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.freechaf.Description"><value>Emulerar Channel F och Channel F System II konsoler.</value></data>
+  <data name="Emulation.Fairchild.Memory.Display"><value>Videominne</value></data>
+  <data name="Emulation.Fairchild.Video.Native"><value>Console video</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr"><value>Rensa skärmen i en ram</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Help"><value>Accelerera skärmrensning genom att fylla i den i en ram.</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value0"><value>Inaktiverad</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value1"><value>Aktiverad</value></data>
+</root>

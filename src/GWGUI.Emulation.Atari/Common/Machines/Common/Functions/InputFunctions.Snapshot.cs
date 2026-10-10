@@ -12,7 +12,7 @@ internal static class InputSnapshotFunctions
             Keys = EmulationInputMappingFunctions.MapKeyboard(snapshot.Keys, configuration?.KeyboardMappings)
         };
         var withDeadZones = ControllerFunctions.ApplyDeadZones(mappedKeyboard, configuration?.Controllers);
-        if (configuration?.Controllers is not { Count: > 0 }) return withDeadZones;
+        if (configuration?.Controllers is not { Count: > 0 }) return withDeadZones with { Controllers = [] };
         var count = Math.Max(withDeadZones.Controllers.Count,
             configuration.Controllers.Max(binding => binding.Port) + 1);
         var controllers = Enumerable.Repeat(EmulationControllerState.Empty, count).ToArray();
@@ -23,7 +23,7 @@ internal static class InputSnapshotFunctions
                 withDeadZones.Controllers, binding.Port);
             if (binding.Mappings is not { Count: > 0 })
             {
-                controllers[binding.Port] = source;
+                controllers[binding.Port] = EmulationControllerState.Empty;
                 continue;
             }
             uint buttons = 0;

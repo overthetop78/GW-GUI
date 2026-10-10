@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Error.StateIncompatible"><value>Stan zapisany przez Fairchilda jest niezgodny z obecną maszyną.</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected"><value>Wystąpił nieoczekiwany błąd emulacji Fairchilda.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing"><value>Brakuje wymaganego oprogramowania firmowego Fairchild.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid"><value>System ROM jest nieprawidłowy lub niekompatybilny.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound"><value>Konfigurowane media Fairchild nie zostały znalezione.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported"><value>Ta maszyna nie obsługuje wybranych mediów.</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid"><value>Opcja Fairchild ma niepoprawną wartość.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound"><value>Nie znaleziono wymaganego rdzenia Fairchilda.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected"><value>Wybrany rdzeń Fairchilda nie mógł być wczytany.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid"><value>Stan zapisany przez Fairchilda jest niepoprawny.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing"><value>Ścieżka wykonywalna hosta Fairchild jest niedostępna.</value></data>
+  <data name="Emulation.Fairchild.Error.Details"><value>Szczegóły: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure"><value>Komunikacja z hostem Fairchilda nie powiodła się.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand"><value>Nieznane polecenie środowiska: {0}</value></data>
+</root>

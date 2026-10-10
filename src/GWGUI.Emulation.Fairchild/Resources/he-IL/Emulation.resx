@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.freechaf.Description"><value>קונסולות Channel F ו-Channel F System II.</value></data>
+  <data name="Emulation.Fairchild.Memory.Display"><value>Video memory</value></data>
+  <data name="Emulation.Fairchild.Video.Native"><value>Console video</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr"><value>Clear The Screen in One Frame</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Help"><value>מסך Accelerate מנקה על ידי השלמתו בתוך מסגרת אחת.</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value0"><value>מוגבלות</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value1"><value>המונחים</value></data>
+</root>

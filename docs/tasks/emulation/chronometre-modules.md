@@ -84,3 +84,6 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-10 16:48:24 | 09:52:40 | -01:52:41 | Reprise. Epoch : rendu vérifié, ressources et nettoyage avant commit. |
 | 2026-10-10 16:55:35 | 09:59:51 | -01:59:52 | Reprise. Epoch : validation des traductions affichées et nettoyage des essais temporaires. |
 | 2026-10-10 16:58:54 | 10:03:10 | -02:03:11 | Reprise. Epoch : vrai logo de marque et build final. |
+| 2026-10-10 17:08:07 | 10:12:23 | -02:12:24 | Reprise. Fairchild : carte des fichiers génériques et projet créés. |
+| 2026-10-10 17:20:55 | 10:25:11 | -02:25:12 | Reprise. Fairchild : services de machine et processus isolé, aux emplacements de référence. |
+| 2026-10-10 17:43:21 | 10:47:37 | -02:47:38 | Reprise. Fairchild : récupération du build et validation native. |

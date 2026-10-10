@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Error.StateIncompatible"><value>Starea salvată de Fairchild este incompatibilă cu maşina curentă.</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected"><value>A apărut o eroare neaşteptată de emulare a Fairchild-ului.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing"><value>Lipseşte un firmware Fairchild necesar.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid"><value>Sistemul ROM este invalid sau incompatibil.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound"><value>Media Fairchild configurată nu a fost găsită.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported"><value>Această mașină nu suportă media selectată.</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid"><value>O opțiune Fairchild are o valoare invalidă.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound"><value>Miezul Fairchild necesar nu a fost găsit.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected"><value>Miezul Fairchild selectat nu a putut fi încărcat.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid"><value>Starea salvată de Fairchild este invalidă.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing"><value>Calea executabilă a gazdei Fairchild nu este disponibilă.</value></data>
+  <data name="Emulation.Fairchild.Error.Details"><value>Detalii: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure"><value>Comunicarea cu gazda Fairchild a eşuat.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand"><value>Comandă de mediu necunoscută: {0}</value></data>
+</root>

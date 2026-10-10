@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Error.StateIncompatible"><value>Uložený stav Fairchild je neslučitelný se stávajícím strojem.</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected"><value>Nastala neočekávaná chyba emulace Fairchildu.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing"><value>Chybí požadovaný firmware Fairchild.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid"><value>Systém ROM je neplatný nebo neslučitelný.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound"><value>Nakonfigurovaná média Fairchild nebyla nalezena.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported"><value>Tento stroj nepodporuje vybraná média.</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid"><value>Volba Fairchild má neplatnou hodnotu.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound"><value>Požadované jádro Fairchild nebylo nalezeno.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected"><value>Zvolené jádro Fairchild nebylo možné načíst.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid"><value>Uložený stav Fairchild je neplatný.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing"><value>Spustitelná stezka Fairchild je nedostupná.</value></data>
+  <data name="Emulation.Fairchild.Error.Details"><value>Podrobnosti: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure"><value>Komunikace s hostitelem Fairchildu selhala.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand"><value>Příkaz neznámého prostředí: {0}</value></data>
+</root>

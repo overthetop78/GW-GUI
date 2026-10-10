@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.freechaf.Description"><value>Emulaty konsol Channel F i Channel F System II.</value></data>
+  <data name="Emulation.Fairchild.Memory.Display"><value>Pamięć wideo</value></data>
+  <data name="Emulation.Fairchild.Video.Native"><value>Konsola wideo</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr"><value>Wyczyść ekran w jednej ramce</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Help"><value>Przyspiesz czyszczenie ekranu poprzez wypełnienie go w jednej ramce.</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value0"><value>Wyłączone</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value1"><value>Włączone</value></data>
+</root>

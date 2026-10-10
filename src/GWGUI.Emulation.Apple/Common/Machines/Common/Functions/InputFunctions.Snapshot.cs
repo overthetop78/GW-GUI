@@ -32,7 +32,7 @@ internal static class InputSnapshotFunctions
                 Pointer = mapped.Pointer with { Left = IsPressed(mouseSource, controller, snapshot) }
             };
         }
-        if (configuration?.Controllers is not { Count: > 0 }) return mapped;
+        if (configuration?.Controllers is not { Count: > 0 }) return mapped with { Controllers = [] };
         var controllers = Enumerable.Repeat(EmulationControllerState.Empty,
             ControllerPortConstants.MaximumControllerPortCount).ToArray();
         foreach (var binding in configuration.Controllers)
@@ -43,7 +43,7 @@ internal static class InputSnapshotFunctions
                 snapshot.Controllers, binding.Port);
             if (binding.Mappings is not { Count: > 0 })
             {
-                controllers[binding.Port] = source;
+                controllers[binding.Port] = EmulationControllerState.Empty;
                 continue;
             }
             uint buttons = 0;

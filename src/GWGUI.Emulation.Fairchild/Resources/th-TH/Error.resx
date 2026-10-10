@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Error.StateIncompatible"><value>Fairchild ที่บันทึกไว้รัฐไม่ เข้ากันได้กับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected"><value>เกิดข้อผิดพลาดในการปั๊ม Fairchild ที่ไม่คาดคิดขึ้น</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing"><value>มาตรา Fairchild ยูนิแวร์หายไป</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid"><value>ระบบ ROM ใช้งานไม่ได้หรือเข้ากันไม่ได้</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound"><value>ไม่พบสื่อที่ปรับแต่งค่า Fairchild</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported"><value>เครื่องนี้ไม่รองรับสื่อที่เลือก</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid"><value>ตัวเลือก Fairchild มีค่าที่ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound"><value>ไม่พบแกน Fairchild ที่ต้องการ</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected"><value>ไม่สามารถเรียกใช้แกน Fairchild ที่เลือกไว้ได้</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid"><value>Fairchild บันทึกสถานะไม่ถูกต้อง</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing"><value>ไม่สามารถประมวลผลพาธของโฮสต์ Fairchild ได้</value></data>
+  <data name="Emulation.Fairchild.Error.Details"><value>รายละเอียด: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure"><value>การสื่อสารกับโฮสต์ Fairchild ล้มเหลว</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand"><value>ไม่รู้จักคําสั่งสภาพแวดล้อม: {0}</value></data>
+</root>

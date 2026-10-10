@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Input.RotateLeft"><value>將控點旋轉到左側</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight"><value>將控件旋轉到右側</value></data>
+  <data name="Emulation.Fairchild.Input.Push"><value>按下手柄</value></data>
+  <data name="Emulation.Fairchild.Input.Pull"><value>將控件拉起</value></data>
+  <data name="Emulation.Fairchild.Input.ConsoleOverlay"><value>顯示控制臺按鈕</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers"><value>交換兩個控制器</value></data>
+</root>

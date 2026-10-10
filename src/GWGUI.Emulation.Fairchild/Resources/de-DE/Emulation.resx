@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.freechaf.Description"><value>Emuliert Channel F und Channel F System II Konsolen.</value></data>
+  <data name="Emulation.Fairchild.Memory.Display"><value>Videospeicher</value></data>
+  <data name="Emulation.Fairchild.Video.Native"><value>Konsolenvideo</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr"><value>Den Bildschirm in einem Frame löschen</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Help"><value>Beschleunigen Sie die Bildschirmbereinigung, indem Sie sie in einem Frame abschließen.</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value0"><value>Deaktiviert</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value1"><value>Aktiviert</value></data>
+</root>

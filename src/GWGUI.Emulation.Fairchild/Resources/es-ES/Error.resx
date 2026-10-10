@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Error.StateIncompatible"><value>El estado salvado Fairchild es incompatible con la máquina actual.</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected"><value>Se produjo un error inesperado de emulación Fairchild.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing"><value>Falta un firmware de Fairchild requerido.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid"><value>El sistema ROM es inválido o incompatible.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound"><value>No se encontró el medio Fairchild configurado.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported"><value>Esta máquina no admite los medios seleccionados.</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid"><value>Una opción Fairchild tiene un valor inválido.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound"><value>No se encontró el núcleo necesario Fairchild.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected"><value>El núcleo Fairchild seleccionado no se puede cargar.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid"><value>El estado salvado Fairchild es inválido.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing"><value>El camino ejecutable Fairchild host es indisponible.</value></data>
+  <data name="Emulation.Fairchild.Error.Details"><value>Detalles: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure"><value>La comunicación con el anfitrión Fairchild falló.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand"><value>desconocido medio ambiente comando: {0}</value></data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Error.StateIncompatible"><value>The Fairchild الدولة المنقذة لا تتوافق مع الآلة الحالية.</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected"><value>وحدث خطأ غير متوقع في الاختراع قدره Fairchild.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing"><value>a مطلوب Fairchild firmware مفقود.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid"><value>نظام ROM غير صحيح أو متعارض.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound"><value>تم تشكيله Fairchild لم يعثر على وسائل الإعلام.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported"><value>هذه الآلة لا تدعم وسائل الإعلام المختارة</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid"><value>ألف Fairchild الخيار له قيمة غير صحيحة.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound"><value>لم يتم العثور على النواة المطلوبة من Fairchild.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected"><value>لا يمكن تحميل نواة Fairchild المختارة.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid"><value>The Fairchild save state is invalid.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing"><value>إن الطريق الذي يمكن تنفيذه هو مضيف Fairchild غير متاح.</value></data>
+  <data name="Emulation.Fairchild.Error.Details"><value>التفاصيل: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure"><value>وفشلت الاتصالات مع المضيف البالغ Fairchild.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand"><value>{0}</value></data>
+</root>

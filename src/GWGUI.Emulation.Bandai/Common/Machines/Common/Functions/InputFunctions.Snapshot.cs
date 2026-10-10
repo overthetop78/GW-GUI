@@ -5,7 +5,7 @@ internal static class InputSnapshotFunctions
     internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot,
         InputConfiguration? configuration, MachineModel model)
     {
-        if (configuration?.Controllers is not { Count: > 0 }) return InputFunctions.Freeze(snapshot);
+        if (configuration?.Controllers is not { Count: > 0 }) return InputFunctions.Freeze(snapshot with { Controllers = [] });
         var controllers = Enumerable.Repeat(EmulationControllerState.Empty, ControllerConstants.PortCount).ToArray();
         var targets = InputSnapshotDictionary.ForModel(model);
         foreach (var binding in configuration.Controllers)
@@ -15,7 +15,7 @@ internal static class InputSnapshotFunctions
                 snapshot.Controllers, binding.Port);
             if (binding.Mappings is not { Count: > 0 })
             {
-                controllers[binding.Port] = source;
+                controllers[binding.Port] = EmulationControllerState.Empty;
                 continue;
             }
             uint buttons = 0;

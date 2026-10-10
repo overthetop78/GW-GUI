@@ -61,7 +61,7 @@ internal static class InputSnapshotFunctions
             var source = EmulationInputMappingFunctions.ResolveController(binding?.DeviceId, physical, port);
             if (binding?.ButtonMappings is not { Count: > BufferConstants.EmptyCollectionCount })
             {
-                result[port] = source;
+                result[port] = EmulationControllerState.Empty;
                 continue;
             }
             uint buttons = InputSnapshotFunctionsConstants.NoPressedButtons;

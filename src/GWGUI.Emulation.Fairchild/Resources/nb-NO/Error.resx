@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Fairchild.Error.StateIncompatible"><value>Fairchild-lagringstilstanden er ikke kompatibel med den aktuelle maskinen.</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected"><value>En uventet Fairchild- emuleringsfeil oppstod.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing"><value>En nødvendig Fairchild firmware mangler.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid"><value>Systemets ROM er ugyldig eller uforenlig.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound"><value>De konfigurerte Fairchild-mediene ble ikke funnet.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported"><value>Denne maskinen støtter ikke det valgte mediet.</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid"><value>Et Fairchild-alternativ har en ugyldig verdi.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound"><value>Den nødvendige Fairchild kjernen ble ikke funnet.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected"><value>Den valgte Fairchild-kjernen kunne ikke lastes.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid"><value>Fairchild lagret tilstand er ugyldig.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing"><value>Fairchild-vertens kjørbare sti er utilgjengelig.</value></data>
+  <data name="Emulation.Fairchild.Error.Details"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure"><value>Kommunikasjon med Fairchild-verten mislyktes.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand"><value>Ukjent miljøkommando: {0}</value></data>
+</root>

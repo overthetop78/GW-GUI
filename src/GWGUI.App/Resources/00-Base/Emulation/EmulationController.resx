@@ -130,4 +130,5 @@
   <data name="Emulation.Controller.Multitap"><value>Multitap</value></data>
   <data name="Emulation.Controller.Visual.Model.coleco-controller"><value>ColecoVision Controller</value></data>
   <data name="Emulation.Controller.Visual.Model.epoch-super-cassette-vision-controller"><value>Super Cassette Vision · CONTROLLER</value></data>
+  <data name="Emulation.Controller.Visual.Model.fairchild-channel-f-controller"><value>Channel F Controller</value></data>
 </root>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.freechaf.Description"><value>Emulasi konsol Channel F dan Channel F System II.</value></data>
+  <data name="Emulation.Fairchild.Memory.Display"><value>Memori video</value></data>
+  <data name="Emulation.Fairchild.Video.Native"><value>video konsol</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr"><value>Bersihkan layar dalam satu bingkai</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Help"><value>Mempercepat pembersihan layar dengan menyelesaikannya dalam satu frame.</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value0"><value>Dinonaktifkan</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value1"><value>Diaktifkan</value></data>
+</root>

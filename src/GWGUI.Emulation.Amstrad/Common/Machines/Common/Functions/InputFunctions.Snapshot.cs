@@ -65,7 +65,7 @@ internal static class InputSnapshotFunctions
                     !string.IsNullOrWhiteSpace(mapping.Key)
                     && !string.IsNullOrWhiteSpace(mapping.Value)))
             {
-                result[port] = source;
+                result[port] = EmulationControllerState.Empty;
                 continue;
             }
             uint buttons = InputSnapshotFunctionsConstants.EmptyControllerButtons;

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.freechaf.Description"><value>에뮬레이트 Channel F 및 Channel F System II 콘솔.</value></data>
+  <data name="Emulation.Fairchild.Memory.Display"><value>영상 기억</value></data>
+  <data name="Emulation.Fairchild.Video.Native"><value>콘솔 영상</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr"><value>1개의 구조에 있는 스크린을 지우십시오</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Help"><value>1개의 구조에서 그것을 완료해서 명확한 스크린을 가속하십시오.</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value0"><value>사용 안 함</value></data>
+  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value1"><value>사용</value></data>
+</root>

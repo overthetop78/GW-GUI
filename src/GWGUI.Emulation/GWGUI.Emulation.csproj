@@ -35,6 +35,7 @@
     <InternalsVisibleTo Include="GWGUI.Emulation.Bandai" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Coleco" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Epoch" />
+    <InternalsVisibleTo Include="GWGUI.Emulation.Fairchild" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Amstrad" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Sega" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Nintendo" />
