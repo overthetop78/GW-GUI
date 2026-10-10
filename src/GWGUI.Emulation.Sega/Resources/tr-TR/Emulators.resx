@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>Titreşim Paketi</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>Yok</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Per-Game Visual Memory Birimleri / Sistemler (In-Game Görsel Bellek Birimleri/Sistemler)VMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Engelli olduğunda, tüm oyunlar 8'e kadar paylaşıyor VMU Kaydet dosyaları (The save files)A1/A2/B1/B2/C1/C2/D1/D2RetroArch'in sistem klasöründe yer almaktadır.
-"The" (İngilizce).VMU A1" ayarı eşsiz bir yaratır VMU 'A1RetroArch's save klasörü her oyun için başlatılan dosya.
-"All VMUs" ayarı 8 eşsiz VMU dosyaları ( dosyalar)A1/A2/B1/B2/C1/C2/D1/D2) başlatılan her oyun için.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Engelli olduğunda, tüm oyunlar 8'e kadar paylaşıyor VMU Kaydet dosyaları (The save files)A1/A2/B1/B2/C1/C2/D1/D2RetroArch'in sistem klasöründe yer almaktadır.&#xA;"The" (İngilizce).VMU A1" ayarı eşsiz bir yaratır VMU 'A1RetroArch's save klasörü her oyun için başlatılan dosya.&#xA;"All VMUs" ayarı 8 eşsiz VMU dosyaları ( dosyalar)A1/A2/B1/B2/C1/C2/D1/D2) başlatılan her oyun için.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>Devre dışı</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>Tüm VMU'lar</value></data>

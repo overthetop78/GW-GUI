@@ -90,7 +90,7 @@
   <data name="Explorer.Type.Configuration"><value>Archivo de configuración</value></data>
   <data name="Explorer.Type.Library"><value>Biblioteca</value></data>
   <data name="Explorer.Type.Media"><value>Archivo de medios</value></data>
-  <data name="Explorer.Type.Font"><value>Font color = &quot;# 8040&quot;</value></data>
+  <data name="Explorer.Type.Font"><value>Font color = "# 8040"</value></data>
   <data name="Explorer.Execution"><value>Ejecución</value></data>
   <data name="Explorer.Execution.NativeExecutable"><value>Archivo executable nativo</value></data>
   <data name="Explorer.Execution.InterpretedProgram"><value>Archivo ejecutable interpretada</value></data>
@@ -119,7 +119,7 @@
   <data name="Explorer.Category.Archive"><value>Archivo</value></data>
   <data name="Explorer.Category.DiskImage"><value>Imagen de disco</value></data>
   <data name="Explorer.Category.Link"><value>Enlace</value></data>
-  <data name="Explorer.Category.Font"><value>Font color = &quot;# 8040&quot;</value></data>
+  <data name="Explorer.Category.Font"><value>Font color = "# 8040"</value></data>
   <data name="Explorer.ContentFormat.Unknown"><value>Desconocido</value></data>
   <data name="Explorer.ContentFormat.PlainText"><value>Texto de la traducción</value></data>
   <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC programa</value></data>
@@ -134,7 +134,7 @@
   <data name="Explorer.ContentFormat.Audio"><value>Audio</value></data>
   <data name="Explorer.ContentFormat.Archive"><value>Archivo</value></data>
   <data name="Explorer.ContentFormat.DiskImage"><value>Imagen de disco</value></data>
-  <data name="Explorer.ContentFormat.Font"><value>Font color = &quot;# 8040&quot;</value></data>
+  <data name="Explorer.ContentFormat.Font"><value>Font color = "# 8040"</value></data>
   <data name="Explorer.Preview.None"><value>Ninguno</value></data>
   <data name="Explorer.Preview.Text"><value>Texto</value></data>
   <data name="Explorer.Preview.BasicListing"><value>BASIC Lista</value></data>

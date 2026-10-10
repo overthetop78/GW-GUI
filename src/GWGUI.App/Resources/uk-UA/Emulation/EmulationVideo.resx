@@ -239,7 +239,7 @@
   <data name="Emulation.Video.Parameter.InterlacingVisibility"><value>видимість поля</value></data>
   <data name="Emulation.Video.Temporal.CadenceAutomatic"><value>Автоматичний вихідний корпус (50/60 Гц)</value></data>
   <data name="Emulation.Video.Parameter.SignalConnection"><value>Якість підключення</value></data>
-  <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Зняття з&apos;єднання</value></data>
+  <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Зняття з'єднання</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Колір стандарт</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Частота дії</value></data>
   <data name="Emulation.Video.Signal.Standard.Automatic"><value>Автоматичний</value></data>
@@ -290,7 +290,7 @@
   <data name="Emulation.Video.Parameter.EPaperPaperWarmth"><value>Папір тепло</value></data>
   <data name="Emulation.Video.Parameter.EPaperColorSaturation"><value>Колірна насиченість</value></data>
   <data name="Emulation.Video.Parameter.EPaperSurfaceTexture"><value>текстура паперу</value></data>
-  <data name="Emulation.Video.Parameter.EPaperEdgeSoftness"><value>М&apos;якість краю чорнила</value></data>
+  <data name="Emulation.Video.Parameter.EPaperEdgeSoftness"><value>М'якість краю чорнила</value></data>
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Фарби і фарби</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Поверхня паперу</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Рефреш і залишковий образ</value></data>

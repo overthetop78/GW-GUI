@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>Pacchetto di vibrazione</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>Nessuno</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Per-Game Unità di Memoria Visiva/Sistemi (VMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Quando disattivato, tutti i giochi condividono fino a 8 VMU salvare i file (A1/A2/B1/B2/C1/C2/D1/D2) situato nella cartella di sistema RetroArch.
-The 'VMU A1' l'impostazione crea un unico VMU 'A1' file nella cartella di salvataggio di RetroArch per ogni gioco che viene lanciato.
-L'impostazione 'All VMUs' crea fino a 8 unici VMU file (A1/A2/B1/B2/C1/C2/D1/D2) per ogni gioco che viene lanciato.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Quando disattivato, tutti i giochi condividono fino a 8 VMU salvare i file (A1/A2/B1/B2/C1/C2/D1/D2) situato nella cartella di sistema RetroArch.&#xA;The 'VMU A1' l'impostazione crea un unico VMU 'A1' file nella cartella di salvataggio di RetroArch per ogni gioco che viene lanciato.&#xA;L'impostazione 'All VMUs' crea fino a 8 unici VMU file (A1/A2/B1/B2/C1/C2/D1/D2) per ogni gioco che viene lanciato.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>Disattivato</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>Tutte le VMU</value></data>

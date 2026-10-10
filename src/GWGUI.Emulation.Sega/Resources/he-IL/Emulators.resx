@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>תגית: Pack</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>ללא</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Per-Game Visual Memory Units/SystemsVMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>עם מוגבלויות, כל המשחקים חולקים עד 8 VMU לשמור קבצים (A1/A2/B1/B2/C1/C2/D1/D2) ממוקם בתיקיית המערכת של RetroArch.
-"The"VMU A1"ההגדרה יוצרת ייחודית VMU 'A1קובץ ב-RetroArch's Save תיקיה עבור כל משחק שהושק.
-ההגדרה "All VMUs" יוצרת עד 8 ייחודית. VMU קבצים (A1/A2/B1/B2/C1/C2/D1/D2עבור כל משחק שהושק.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>עם מוגבלויות, כל המשחקים חולקים עד 8 VMU לשמור קבצים (A1/A2/B1/B2/C1/C2/D1/D2) ממוקם בתיקיית המערכת של RetroArch.&#xA;"The"VMU A1"ההגדרה יוצרת ייחודית VMU 'A1קובץ ב-RetroArch's Save תיקיה עבור כל משחק שהושק.&#xA;ההגדרה "All VMUs" יוצרת עד 8 ייחודית. VMU קבצים (A1/A2/B1/B2/C1/C2/D1/D2עבור כל משחק שהושק.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>מוגבלות</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>כל VMUs</value></data>

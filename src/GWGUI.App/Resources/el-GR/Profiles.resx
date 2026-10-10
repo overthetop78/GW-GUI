@@ -18,5 +18,5 @@
   <data name="Profile.SystemDelete"><value>Το Προεπιλεγμένο προφίλ είναι μόνιμο και δεν μπορεί να διαγραφεί.</value></data>
   <data name="Profile.DuplicateName"><value>Ένα προφίλ σε αυτήν την καρτέλα έχει ήδη αυτό το όνομα.</value></data>
   <data name="Profile.Replace"><value>Αυτό το προφίλ υπάρχει ήδη. Αντικατάσταση;</value></data>
-  <data name="Profile.DeleteConfirm"><value>Διαγραφή προφίλ &quot;{0}&quot;;</value></data>
+  <data name="Profile.DeleteConfirm"><value>Διαγραφή προφίλ "{0}";</value></data>
 </root>

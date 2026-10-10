@@ -1955,7 +1955,6 @@
   <data name="Emulation.Sega.Model.StV"><value>ST-V</value></data>
   <data name="Emulation.Sega.Model.Model3"><value>Model 3</value></data>
   <data name="Emulation.Sega.Model.DreamcastVmu"><value>Dreamcast VMU</value></data>
-  
   <data name="Emulation.Option.genesisplusgx.genesis_plus_gx_cd_precache.Description"><value>Load CD image to memory on startup. CHD supported only.</value></data>
   <data name="Emulation.Option.genesis_plus_gx_wide.genesis_plus_gx_wide_cd_precache.Description"><value>Load CD image to memory on startup. CHD supported only.</value></data>
   <data name="Emulation.Option.mednafen_saturn.beetle_saturn_mpeg_card.Description"><value>Emulate the Saturn Video CD Card, a Japan/Europe-only expansion adding hardware MPEG-1 decoding. Requires the card firmware (mpeg_card.bin) in the system directory.</value></data>

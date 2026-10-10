@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>Rezgéscsomag</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>Nincs</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Per- Game Visual Memory Unit / Systems (VMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Ha letiltották, minden játék megosztja akár 8 VMU fájlok mentése (A1/A2/B1/B2/C1/C2/D1/D2) található RetroArch rendszermappájában.
-A...VMU A1'a beállítás egyedi VMU 'A1'file in RetroArch' s save map for each game that is indított.
-Az "All VMU" beállítás 8 egyedi VMU fájlok (A1/A2/B1/B2/C1/C2/D1/D2) minden elindított játékra.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Ha letiltották, minden játék megosztja akár 8 VMU fájlok mentése (A1/A2/B1/B2/C1/C2/D1/D2) található RetroArch rendszermappájában.&#xA;A...VMU A1'a beállítás egyedi VMU 'A1'file in RetroArch' s save map for each game that is indított.&#xA;Az "All VMU" beállítás 8 egyedi VMU fájlok (A1/A2/B1/B2/C1/C2/D1/D2) minden elindított játékra.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>Letiltva</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>Minden VMU</value></data>

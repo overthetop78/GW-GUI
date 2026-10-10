@@ -49,13 +49,13 @@
   <data name="Emulation.Help.Mouse.AnalogDeadzone.Short" xml:space="preserve"><value>Настроювання аналогової мишки мертвої зони</value></data>
   <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed" xml:space="preserve"><value>Ігнорує невеликі аналогові рухи по центру під час контролінгу миші. Підвищіть значення, якщо точилка рухається, поки палиця вивільняється.</value></data>
   <data name="Emulation.Help.Memory.AxlonShadow.Short" xml:space="preserve"><value>Увімкнути Axlon $0F тінейський банк</value></data>
-  <data name="Emulation.Help.Memory.AxlonShadow.Detailed" xml:space="preserve"><value>Дзеркала Axlon контрольний банк за адресою $0F. Увімкнути його тільки для розширення програмного забезпечення або пам&apos;яті, які використовують цю додаткову адресу.</value></data>
-  <data name="Emulation.Help.Memory.Axlon.Short" xml:space="preserve"><value>Комплекти Axlon розширення пам&apos;яті</value></data>
-  <data name="Emulation.Help.Memory.Axlon.Detailed" xml:space="preserve"><value>Налаштовує суму банківського відчуження Axlon пам&apos;ять. Вимкнено видаляє розширення. Інші вибірки забезпечують вибрану пам&apos;ять.</value></data>
-  <data name="Emulation.Help.Memory.Mosaic.Short" xml:space="preserve"><value>Комплекти Mosaic розширення пам&apos;яті</value></data>
-  <data name="Emulation.Help.Memory.Mosaic.Detailed" xml:space="preserve"><value>Налаштовує суму банківського відчуження Mosaic пам&apos;ять. Вимкнено видаляє розширення. Інші вибірки забезпечують вибрану пам&apos;ять.</value></data>
-  <data name="Emulation.Help.Memory.Extensions.Short" xml:space="preserve"><value>Встановити додаткову пам&apos;ять розширення</value></data>
-  <data name="Emulation.Help.Memory.Extensions.Detailed" xml:space="preserve"><value>Налаштовує кількість додаткової пам&apos;яті розширення, що підтримується вибраною машиною. Виберіть Ні, щоб використовувати тільки налаштовану основну пам&apos;ять.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed" xml:space="preserve"><value>Дзеркала Axlon контрольний банк за адресою $0F. Увімкнути його тільки для розширення програмного забезпечення або пам'яті, які використовують цю додаткову адресу.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short" xml:space="preserve"><value>Комплекти Axlon розширення пам'яті</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed" xml:space="preserve"><value>Налаштовує суму банківського відчуження Axlon пам'ять. Вимкнено видаляє розширення. Інші вибірки забезпечують вибрану пам'ять.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short" xml:space="preserve"><value>Комплекти Mosaic розширення пам'яті</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed" xml:space="preserve"><value>Налаштовує суму банківського відчуження Mosaic пам'ять. Вимкнено видаляє розширення. Інші вибірки забезпечують вибрану пам'ять.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short" xml:space="preserve"><value>Встановити додаткову пам'ять розширення</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed" xml:space="preserve"><value>Налаштовує кількість додаткової пам'яті розширення, що підтримується вибраною машиною. Виберіть Ні, щоб використовувати тільки налаштовану основну пам'ять.</value></data>
   <data name="Emulation.Help.Memory.Fast.Short" xml:space="preserve"><value>Комплекти Fast RAM розмір</value></data>
   <data name="Emulation.Help.Memory.Fast.Detailed" xml:space="preserve"><value>встановлює кількість швидко RAM доступний безпосередньо до CPU. Додаткова швидка RAM може допомогти сумісному програмному забезпеченню, але змінює конфігурацію емульгованої апаратної конфігурації.</value></data>
   <data name="Emulation.Help.Memory.MapRam.Short" xml:space="preserve"><value>Увімкнути MapRAM</value></data>
@@ -63,7 +63,7 @@
   <data name="Emulation.Help.Memory.Z3.Short" xml:space="preserve"><value>Комплекти Zorro III RAM розмір</value></data>
   <data name="Emulation.Help.Memory.Z3.Detailed" xml:space="preserve"><value>Встановлює кількість 32-бітних Fast RAM підключений через Zorro III автобус. Використовуйте його тільки з сумісними 32-розрядними машинами та програмним забезпеченням.</value></data>
   <data name="Emulation.Help.Memory.Slow.Short" xml:space="preserve"><value>Комплекти Slow RAM розмір</value></data>
-  <data name="Emulation.Help.Memory.Slow.Detailed" xml:space="preserve"><value>Настроювання кількості Slow RAM в зоні розширення трапези. Ця пам&apos;ять сповільнюється, ніж Fast RAM і використовує різні діапазони апаратних адрес.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed" xml:space="preserve"><value>Настроювання кількості Slow RAM в зоні розширення трапези. Ця пам'ять сповільнюється, ніж Fast RAM і використовує різні діапазони апаратних адрес.</value></data>
   <data name="Emulation.Help.Firmware.RomKey.Short" xml:space="preserve"><value>Виберіть ROM ключ розшифрування</value></data>
   <data name="Emulation.Help.Firmware.RomKey.Detailed" xml:space="preserve"><value>Виберіть файл, який використовується для розшифрування ліцензійного зашифрованого ROM зображення. Залишити це поле порожній, коли вибраний ROM не зашифрований.</value></data>
   <data name="Emulation.Help.Firmware.FastBoot.Short" xml:space="preserve"><value>Увімкнути швидкий стартап</value></data>

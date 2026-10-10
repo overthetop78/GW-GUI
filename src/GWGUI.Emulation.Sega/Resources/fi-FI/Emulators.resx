@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>Tärinäpakkaus</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>Ei mitään</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Per-Game visuaaliset muistiyksiköt / järjestelmät (VMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Kun käytöstä, kaikki pelit jakaa jopa 8 VMU Tallenna tiedostoja (A1/A2/B1/B2/C1/C2/D1/D2) sijaitsee RetroArchin järjestelmäkansion.
-The 'VMU A1' asetus luo ainutlaatuisen VMU 'A1' tiedosto RetroArchin tallennekansiossa jokaista peliä varten, joka käynnistetään.
-"Kaikki VMUt" -asetus luo jopa 8 ainutlaatuista VMU tiedostot (A1/A2/B1/B2/C1/C2/D1/D2) kunkin pelin, joka on käynnistetty.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Kun käytöstä, kaikki pelit jakaa jopa 8 VMU Tallenna tiedostoja (A1/A2/B1/B2/C1/C2/D1/D2) sijaitsee RetroArchin järjestelmäkansion.&#xA;The 'VMU A1' asetus luo ainutlaatuisen VMU 'A1' tiedosto RetroArchin tallennekansiossa jokaista peliä varten, joka käynnistetään.&#xA;"Kaikki VMUt" -asetus luo jopa 8 ainutlaatuista VMU tiedostot (A1/A2/B1/B2/C1/C2/D1/D2) kunkin pelin, joka on käynnistetty.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>Ei käytössä</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>Kaikki VMU:t</value></data>

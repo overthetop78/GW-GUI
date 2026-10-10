@@ -861,7 +861,7 @@ def format_resx_data_entries(path: Path) -> int:
         value_node = node.find("value")
         value = "" if value_node is None or value_node.text is None else value_node.text
         serialized_attributes: list[str] = []
-        for name, attribute_value in node.attrib.items():
+        for name, attribute_value in sorted(node.attrib.items(), key=lambda item: item[0] != "name"):
             if name == "{http://www.w3.org/XML/1998/namespace}space":
                 name = "xml:space"
             serialized_attributes.append(f"{name}={quoteattr(attribute_value)}")

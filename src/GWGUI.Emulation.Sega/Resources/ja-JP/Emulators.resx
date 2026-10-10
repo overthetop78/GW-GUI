@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>振動パック</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>なし</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Per-Game の視覚記憶装置/システム(VMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>無効にすると、すべてのゲームが最大8台まで共有されます。 VMU 保存ファイル ()A1/A2/B1/B2/C1/C2/D1/D2) RetroArchのシステムフォルダにあります。
-ザ・ 'VMU A1'設定はユニークです VMU 'A1「RetroArchの保存フォルダ内のファイルを起動する各ゲーム。
-'All VMUs'の設定は最大8つのユニークです。 VMU ファイル (ファイル)A1/A2/B1/B2/C1/C2/D1/D2)開始される各ゲームのための。</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>無効にすると、すべてのゲームが最大8台まで共有されます。 VMU 保存ファイル ()A1/A2/B1/B2/C1/C2/D1/D2) RetroArchのシステムフォルダにあります。&#xA;ザ・ 'VMU A1'設定はユニークです VMU 'A1「RetroArchの保存フォルダ内のファイルを起動する各ゲーム。&#xA;'All VMUs'の設定は最大8つのユニークです。 VMU ファイル (ファイル)A1/A2/B1/B2/C1/C2/D1/D2)開始される各ゲームのための。</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>無効</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>すべてのVMUs</value></data>

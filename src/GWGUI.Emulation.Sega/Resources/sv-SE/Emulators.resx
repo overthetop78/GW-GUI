@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>Vibrationspaket</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>Ingen</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Per-Game Visual Memory Units/SystemsVMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>När funktionshindrade delar alla spel upp till 8 VMU Spara filer (från)A1/A2/B1/B2/C1/C2/D1/D2) ligger i RetroArchs systemmapp.
-"Den"VMU A1Inställning skapar en unik VMU 'A1filen i RetroArchs spara mapp för varje spel som lanseras.
-Inställningen "Alla VMU" skapar upp till 8 unika VMU filer (filer)A1/A2/B1/B2/C1/C2/D1/D2) för varje spel som lanseras.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>När funktionshindrade delar alla spel upp till 8 VMU Spara filer (från)A1/A2/B1/B2/C1/C2/D1/D2) ligger i RetroArchs systemmapp.&#xA;"Den"VMU A1Inställning skapar en unik VMU 'A1filen i RetroArchs spara mapp för varje spel som lanseras.&#xA;Inställningen "Alla VMU" skapar upp till 8 unika VMU filer (filer)A1/A2/B1/B2/C1/C2/D1/D2) för varje spel som lanseras.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>Inaktiverad</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>Alla VMU</value></data>

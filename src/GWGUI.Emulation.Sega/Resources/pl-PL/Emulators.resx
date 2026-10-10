@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>Zestaw wibracyjny</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>Brak</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Per- Game Visual jednostek pamięci / systemów (VMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Po wyłączeniu wszystkie gry dzielą się do 8 VMU zapisywanie plików (A1/A2/B1/B2/C1/C2/D1/D2) znajduje się w folderze systemowym RetroArch.
-"VMU A1'ustawienie tworzy unikalny VMU 'A1'Plik w folderze RetroArch dla każdej uruchomionej gry.
-Ustawienie 'All VMU' tworzy do 8 unikalnych VMU pliki (A1/A2/B1/B2/C1/C2/D1/D2) dla każdej gry, która jest uruchomiona.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Po wyłączeniu wszystkie gry dzielą się do 8 VMU zapisywanie plików (A1/A2/B1/B2/C1/C2/D1/D2) znajduje się w folderze systemowym RetroArch.&#xA;"VMU A1'ustawienie tworzy unikalny VMU 'A1'Plik w folderze RetroArch dla każdej uruchomionej gry.&#xA;Ustawienie 'All VMU' tworzy do 8 unikalnych VMU pliki (A1/A2/B1/B2/C1/C2/D1/D2) dla każdej gry, która jest uruchomiona.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>Wyłączone</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>Wszystkie VMU</value></data>

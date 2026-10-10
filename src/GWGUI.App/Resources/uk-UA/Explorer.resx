@@ -29,7 +29,7 @@
   <data name="Explorer.SelectedFormatUnsupported"><value>Не вдалося інтерпретувати «{1}» у форматі «{0}».&#xA;Виберіть інший формат, щоб продовжити.</value></data>
   <data name="Explorer.Loading"><value>Читання образу диска…</value></data>
   <data name="Explorer.ReadDisk"><value>Прочитати дискету</value></data>
-  <data name="Explorer.Name"><value>Ім&apos;я</value></data>
+  <data name="Explorer.Name"><value>Ім'я</value></data>
   <data name="Explorer.Type"><value>Тип</value></data>
   <data name="Explorer.ReadDiskConfirmTitle"><value>Прочитати дискету</value></data>
   <data name="Explorer.ReadDiskConfirm"><value>Дискету вставлено у вибраний зараз дисковод ({0}) і вона готова до читання?</value></data>
@@ -83,9 +83,9 @@
   <data name="Explorer.Type.BasicProgram"><value>BASIC файл програми</value></data>
   <data name="Explorer.Type.BootProgram"><value>Програма для завантаження</value></data>
   <data name="Explorer.Type.Executable"><value>Виконаний</value></data>
-  <data name="Explorer.Type.Command"><value>Ім&apos;я користувача</value></data>
+  <data name="Explorer.Type.Command"><value>Ім'я користувача</value></data>
   <data name="Explorer.Type.SystemFile"><value>Файл системи</value></data>
-  <data name="Explorer.Type.ObjectCode"><value>Код об&apos;єкта</value></data>
+  <data name="Explorer.Type.ObjectCode"><value>Код об'єкта</value></data>
   <data name="Explorer.Type.Data"><value>Файл даних</value></data>
   <data name="Explorer.Type.Configuration"><value>Файл конфігурації</value></data>
   <data name="Explorer.Type.Library"><value>Інформаційна підтримка</value></data>
@@ -109,7 +109,7 @@
   <data name="Explorer.Category.Executable"><value>Виконаний</value></data>
   <data name="Explorer.Category.Command"><value>КОМПЛЕКС</value></data>
   <data name="Explorer.Category.System"><value>Системы</value></data>
-  <data name="Explorer.Category.ObjectCode"><value>Код об&apos;єкта</value></data>
+  <data name="Explorer.Category.ObjectCode"><value>Код об'єкта</value></data>
   <data name="Explorer.Category.Data"><value>Дані</value></data>
   <data name="Explorer.Category.Configuration"><value>Конфігурація</value></data>
   <data name="Explorer.Category.Library"><value>Інформаційна підтримка</value></data>
@@ -125,7 +125,7 @@
   <data name="Explorer.ContentFormat.BasicProgram"><value>BASIC Програма</value></data>
   <data name="Explorer.ContentFormat.NativeExecutable"><value>Нативний виконуваний</value></data>
   <data name="Explorer.ContentFormat.CommandScript"><value>Команди або скрипти</value></data>
-  <data name="Explorer.ContentFormat.ObjectCode"><value>Код об&apos;єкта</value></data>
+  <data name="Explorer.ContentFormat.ObjectCode"><value>Код об'єкта</value></data>
   <data name="Explorer.ContentFormat.SystemBinary"><value>Система бінарних</value></data>
   <data name="Explorer.ContentFormat.StructuredData"><value>Структура даних</value></data>
   <data name="Explorer.ContentFormat.Configuration"><value>Конфігурація</value></data>

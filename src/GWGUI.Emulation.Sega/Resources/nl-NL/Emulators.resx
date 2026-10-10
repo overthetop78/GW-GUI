@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>Trillingsverpakking</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>Geen</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Visuele geheugeneenheden/systemen per spel (VMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Wanneer uitgeschakeld, delen alle spellen tot 8 VMU bestanden opslaan (A1/A2/B1/B2/C1/C2/D1/D2) bevindt zich in de systeemmap van RetroArch.
-DeVMU A1' instelling creëert een unieke VMU 'A1' bestand in RetroArch's opslag map voor elk spel dat wordt gestart.
-De 'All VMU' setting creëert tot 8 unieke VMU bestanden (A1/A2/B1/B2/C1/C2/D1/D2) voor elk spel dat wordt gelanceerd.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Wanneer uitgeschakeld, delen alle spellen tot 8 VMU bestanden opslaan (A1/A2/B1/B2/C1/C2/D1/D2) bevindt zich in de systeemmap van RetroArch.&#xA;DeVMU A1' instelling creëert een unieke VMU 'A1' bestand in RetroArch's opslag map voor elk spel dat wordt gestart.&#xA;De 'All VMU' setting creëert tot 8 unieke VMU bestanden (A1/A2/B1/B2/C1/C2/D1/D2) voor elk spel dat wordt gelanceerd.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>Uitgeschakeld</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>Alle VME's</value></data>

@@ -7,7 +7,7 @@
   <data name="Emulation.Sega.Help.Memory.Ram.Short"><value>Amount of RAM available to the emulated machine.</value></data>
   <data name="Emulation.Sega.Help.Memory.Ram.Detailed"><value>Selects the RAM expansion exposed by the emulation core. The machine must restart before the new amount is used.</value></data>
   <data name="Emulation.Sega.Help.Firmware.Integrated.Short"><value>The system ROM is built into the emulation core.</value></data>
-  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>The emulation core provides the system ROM internally and does not expose a ROM file selector.</value></data><data name="Emulation.Sega.Help.General.Model.Short"><value>Sega machine model being configured.</value></data>
+  <data name="Emulation.Sega.Help.Firmware.Integrated.Detailed"><value>The emulation core provides the system ROM internally and does not expose a ROM file selector.</value></data>None<data name="Emulation.Sega.Help.General.Model.Short"><value>Sega machine model being configured.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Short"><value>Emulator selected for this machine.</value></data>
   <data name="Emulation.Sega.Help.General.Emulator.Detailed"><value>Identifies the emulator implementation used to run this machine configuration.</value></data>
   <data name="Emulation.Sega.Help.MasterSystem.Variant.Short"><value>Master System hardware model.</value></data>

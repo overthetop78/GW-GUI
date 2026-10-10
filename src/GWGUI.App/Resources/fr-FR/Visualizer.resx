@@ -40,7 +40,7 @@
   <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar secteur dur MFM</value></data>
   <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit secteur dur FM</value></data>
   <data name="Visual.DecoderName.micraln.fm"><value>Micral N secteur dur FM</value></data>
-  <data name="Visual.DecoderName.arburg"><value>Système/données d &apos; Arburg</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Système/données d ' Arburg</value></data>
   <data name="Visual.DecoderName.raw"><value>Flux brut</value></data>
   <data name="Visual.StructureKind.Sync"><value>Synchronisation</value></data>
   <data name="Visual.StructureKind.IdAddressMark"><value>En-tête de secteur</value></data>

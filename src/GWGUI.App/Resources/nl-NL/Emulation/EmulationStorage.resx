@@ -43,10 +43,10 @@
   <data name="Emulation.Storage.HardDisk.Device"><value>Harde schijf</value></data>
   <data name="Emulation.Storage.Device.Interface"><value>interface</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Bestand vooraf toewijzen</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Diskettes en cd&apos;s worden vanuit de actieve machine geplaatst of vervangen.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Diskettes en cd's worden vanuit de actieve machine geplaatst of vervangen.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Medium verwijderen</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>De schijfkopie bestaat al: {0}\nWilt u deze vervangen?</value></data>
-  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>De beschikbare typen, modellen en id&apos;s hangen af van de geselecteerde machine.</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>De beschikbare typen, modellen en id's hangen af van de geselecteerde machine.</value></data>
   <data name="Emulation.Storage.Tape.Device"><value>Bandstation</value></data>
   <data name="Emulation.Storage.Disk.Use"><value>Schijf gebruiken</value></data>
   <data name="Emulation.Storage.Disk.UseExisting"><value>Bestaande schijf gebruiken</value></data>

@@ -18,5 +18,5 @@
   <data name="Profile.SystemDelete"><value>Il profilo predefinito è permanente e non può essere eliminato.</value></data>
   <data name="Profile.DuplicateName"><value>Un profilo in questa scheda ha già questo nome.</value></data>
   <data name="Profile.Replace"><value>Questo profilo esiste già. Sostituirlo?</value></data>
-  <data name="Profile.DeleteConfirm"><value>Eliminare il profilo &quot;{0}&quot;?</value></data>
+  <data name="Profile.DeleteConfirm"><value>Eliminare il profilo "{0}"?</value></data>
 </root>

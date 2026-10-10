@@ -56,7 +56,7 @@
   <data name="Visual.StructureKind.TimingAnomaly"><value>Timingafwijking</value></data>
   <data name="Visual.Side"><value>Zijkant {0}</value></data>
   <data name="Visual.AnalysingTrack"><value>Track {0}/{1}… analyseren</value></data>
-  <data name="Visual.AnalysingRevolution"><value>Analyse van revolutie {0}&apos;{1}…</value></data>
+  <data name="Visual.AnalysingRevolution"><value>Analyse van revolutie {0}'{1}…</value></data>
   <data name="Visual.SideLabel"><value>Kant</value></data>
   <data name="Visual.TrackLabel"><value>Spoor</value></data>
   <data name="Visual.ScpEntryLabel"><value>SCP invoer</value></data>

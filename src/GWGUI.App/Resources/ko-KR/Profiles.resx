@@ -18,5 +18,5 @@
   <data name="Profile.SystemDelete"><value>기본 프로필은 영구적이며 삭제할 수 없습니다.</value></data>
   <data name="Profile.DuplicateName"><value>이 탭의 프로필에는 이미 이 이름이 있습니다.</value></data>
   <data name="Profile.Replace"><value>이 프로필은 이미 존재합니다. 교체하시겠습니까?</value></data>
-  <data name="Profile.DeleteConfirm"><value>&apos;{0}&apos; 프로필을 삭제하시겠습니까?</value></data>
+  <data name="Profile.DeleteConfirm"><value>'{0}' 프로필을 삭제하시겠습니까?</value></data>
 </root>

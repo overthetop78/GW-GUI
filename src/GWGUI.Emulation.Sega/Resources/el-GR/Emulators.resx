@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>Συσκευασία δόνησης</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>Κανένα</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Μονάδες/συστήματα οπτικής μνήμης ανά παιχνίδι (VMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Όταν απενεργοποιηθεί, όλα τα παιχνίδια μοιράζονται μέχρι 8 VMU αποθήκευση αρχείων (A1/A2/B1/B2/C1/C2/D1/D2) βρίσκεται στο φάκελο του συστήματος RetroArch.
-Το 'VMU A1Η ρύθμιση δημιουργεί ένα μοναδικό VMU 'A1' αρχείο στο φάκελο αποθήκευσης RetroArch για κάθε παιχνίδι που έχει ξεκινήσει.
-Η ρύθμιση 'Όλα τα VMU' δημιουργεί έως και 8 μοναδικά VMU αρχεία (A1/A2/B1/B2/C1/C2/D1/D2) για κάθε παιχνίδι που έχει ξεκινήσει.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Όταν απενεργοποιηθεί, όλα τα παιχνίδια μοιράζονται μέχρι 8 VMU αποθήκευση αρχείων (A1/A2/B1/B2/C1/C2/D1/D2) βρίσκεται στο φάκελο του συστήματος RetroArch.&#xA;Το 'VMU A1Η ρύθμιση δημιουργεί ένα μοναδικό VMU 'A1' αρχείο στο φάκελο αποθήκευσης RetroArch για κάθε παιχνίδι που έχει ξεκινήσει.&#xA;Η ρύθμιση 'Όλα τα VMU' δημιουργεί έως και 8 μοναδικά VMU αρχεία (A1/A2/B1/B2/C1/C2/D1/D2) για κάθε παιχνίδι που έχει ξεκινήσει.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>Απενεργοποίηση</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>Όλες οι VMU</value></data>

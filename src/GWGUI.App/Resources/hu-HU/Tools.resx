@@ -44,7 +44,7 @@
   <data name="Tool.Title.Pin"><value>Hardvercsapok</value></data>
   <data name="Tool.Title.Reset"><value>Vezérlő visszaállítása</value></data>
   <data name="Tool.Title.Delays"><value>Késések</value></data>
-  <data name="Tool.Title.Update"><value>A &quot;Sor&quot; kifejezés a &quot;Típus&quot; vagy &quot;Típus&quot; jelölést jelenti.</value></data>
+  <data name="Tool.Title.Update"><value>A "Sor" kifejezés a "Típus" vagy "Típus" jelölést jelenti.</value></data>
   <data name="Tool.InvalidParameters"><value>Érvénytelen paraméterek</value></data>
   <data name="Tool.InvalidParametersHelp"><value>A végrehajtás előtt ellenőrizze a kiemelt parancsparamétereket.</value></data>
   <data name="Tool.BootloaderTitle"><value>Bootloader mód</value></data>

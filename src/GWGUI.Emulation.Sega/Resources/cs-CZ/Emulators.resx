@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>Vibrační balíček</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>Žádné</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Per-Game Visual Paměťové jednotky / systémy (VMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Když je vypnuto, všechny hry sdílet až 8 VMU uložit soubory (A1/A2/B1/B2/C1/C2/D1/D2) se nachází v systémové složce RetroArch.
-The 'VMU A1'nastavení vytváří unikátní VMU 'A1'soubor v záložním adresáři RetroArch pro každou spuštěnou hru.
-Nastavení všech VMU vytváří až 8 unikátních VMU soubory (A1/A2/B1/B2/C1/C2/D1/D2) pro každou hru, která je spuštěna.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Když je vypnuto, všechny hry sdílet až 8 VMU uložit soubory (A1/A2/B1/B2/C1/C2/D1/D2) se nachází v systémové složce RetroArch.&#xA;The 'VMU A1'nastavení vytváří unikátní VMU 'A1'soubor v záložním adresáři RetroArch pro každou spuštěnou hru.&#xA;Nastavení všech VMU vytváří až 8 unikátních VMU soubory (A1/A2/B1/B2/C1/C2/D1/D2) pro každou hru, která je spuštěna.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>Zakázáno</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>Všechny VMU</value></data>

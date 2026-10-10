@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>Ambalajul pentru vibraţii</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>Niciunul</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Unităţi/Sisteme de memorie vizuală per joc (VMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Când sunt dezactivate, toate jocurile împart până la 8 VMU salvează fișierele (A1/A2/B1/B2/C1/C2/D1/D2) situat în dosarul sistemului RetroArch.
-The 'VMU A1' setarea creează un unic VMU 'A1' fișier în RetroArch's salvează dosarul pentru fiecare joc care este lansat.
-Setarea "Toate VMU-urile" creează până la 8 unic VMU fișiere (A1/A2/B1/B2/C1/C2/D1/D2) pentru fiecare joc lansat.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Când sunt dezactivate, toate jocurile împart până la 8 VMU salvează fișierele (A1/A2/B1/B2/C1/C2/D1/D2) situat în dosarul sistemului RetroArch.&#xA;The 'VMU A1' setarea creează un unic VMU 'A1' fișier în RetroArch's salvează dosarul pentru fiecare joc care este lansat.&#xA;Setarea "Toate VMU-urile" creează până la 8 unic VMU fișiere (A1/A2/B1/B2/C1/C2/D1/D2) pentru fiecare joc lansat.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>Dezactivat</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>Toate MV</value></data>

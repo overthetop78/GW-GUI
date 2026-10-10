@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Common.Unknown" xml:space="preserve"><value>Невідомий</value></data>
-  <data name="Common.Eject"><value>В&apos;язання</value></data>
+  <data name="Common.Eject"><value>В'язання</value></data>
   <data name="Common.MediaKind.Unknown"><value>Невідомі ЗМІ</value></data>
   <data name="Common.MediaKind.Floppy"><value>Дискета</value></data>
   <data name="Common.MediaKind.HardDisk"><value>Жорсткий диск</value></data>

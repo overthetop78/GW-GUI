@@ -18,5 +18,5 @@
   <data name="Profile.SystemDelete"><value>ملف التعريف الافتراضي دائم ولا يمكن حذفه.</value></data>
   <data name="Profile.DuplicateName"><value>الملف الشخصي الموجود في علامة التبويب هذه يحمل هذا الاسم بالفعل.</value></data>
   <data name="Profile.Replace"><value>هذا الملف الشخصي موجود بالفعل. استبداله؟</value></data>
-  <data name="Profile.DeleteConfirm"><value>هل تريد حذف الملف الشخصي &quot;{0}&quot;؟</value></data>
+  <data name="Profile.DeleteConfirm"><value>هل تريد حذف الملف الشخصي "{0}"؟</value></data>
 </root>

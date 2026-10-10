@@ -37,7 +37,7 @@
   <data name="Emulation.Help.Controller.PaddleSpeed.Short" xml:space="preserve"><value>Régler la vitesse des paddles</value></data>
   <data name="Emulation.Help.Controller.PaddleSpeed.Detailed" xml:space="preserve"><value>Règle la vitesse à laquelle une entrée numérique déplace un paddle émulé. Une valeur faible le déplace plus lentement. Une valeur élevée le déplace plus rapidement.</value></data>
   <data name="Emulation.Help.Cpu.FpuModel.Short" xml:space="preserve"><value>Choisir le FPU</value></data>
-  <data name="Emulation.Help.Cpu.FpuModel.Detailed" xml:space="preserve"><value>sélectionne l&apos;unité de point flottant utilisée pour les instructions de point flottant. FPU. Les modèles disponibles dépendent de la sélection CPU.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed" xml:space="preserve"><value>sélectionne l'unité de point flottant utilisée pour les instructions de point flottant. FPU. Les modèles disponibles dépendent de la sélection CPU.</value></data>
   <data name="Emulation.Help.Cpu.Precision.Short" xml:space="preserve"><value>Choisir la précision d’émulation du CPU</value></data>
   <data name="Emulation.Help.Cpu.Precision.Detailed" xml:space="preserve"><value>Détermine avec quelle fidélité la temporisation du CPU reproduit le matériel d’origine. Les modes plus précis peuvent améliorer la compatibilité, mais demandent davantage de calculs.</value></data>
   <data name="Emulation.Help.Cpu.Speed.Short" xml:space="preserve"><value>Régler la vitesse du CPU émulé</value></data>
@@ -69,9 +69,9 @@
   <data name="Emulation.Help.Firmware.FastBoot.Short" xml:space="preserve"><value>Activer le démarrage rapide</value></data>
   <data name="Emulation.Help.Firmware.FastBoot.Detailed" xml:space="preserve"><value>Ignore certains délais d’initialisation du matériel afin de raccourcir le démarrage. Désactive cette option lorsqu’un logiciel nécessite la séquence de démarrage d’origine.</value></data>
   <data name="Emulation.Help.Firmware.ExtendedRom.Short" xml:space="preserve"><value>Choisir une ROM étendue</value></data>
-  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed" xml:space="preserve"><value>sélectionne le firmware secondaire ROM requise par certains modèles de machine. Laisser ce champ vide lorsque le modèle sélectionné n&apos;utilise pas de modèle étendu ROM.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed" xml:space="preserve"><value>sélectionne le firmware secondaire ROM requise par certains modèles de machine. Laisser ce champ vide lorsque le modèle sélectionné n'utilise pas de modèle étendu ROM.</value></data>
   <data name="Emulation.Help.Storage.SioAcceleration.Short" xml:space="preserve"><value>Accélérer les transferts SIO</value></data>
-  <data name="Emulation.Help.Storage.SioAcceleration.Detailed" xml:space="preserve"><value>accélère les transferts compatibles via le bus d&apos;entrée/sortie série. Désactive cette option lorsque le logiciel dépend du moment du transfert initial.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed" xml:space="preserve"><value>accélère les transferts compatibles via le bus d'entrée/sortie série. Désactive cette option lorsque le logiciel dépend du moment du transfert initial.</value></data>
   <data name="Emulation.Help.Storage.CassetteBoot.Short" xml:space="preserve"><value>Démarrer depuis la cassette</value></data>
   <data name="Emulation.Help.Storage.CassetteBoot.Detailed" xml:space="preserve"><value>Demande à la machine émulée de tenter un démarrage depuis l’image de cassette attachée. Désactive cette option pour démarrer depuis un autre périphérique.</value></data>
   <data name="Emulation.Help.Storage.RealTimeClock.Short" xml:space="preserve"><value>Activer l’horloge R-Time 8</value></data>

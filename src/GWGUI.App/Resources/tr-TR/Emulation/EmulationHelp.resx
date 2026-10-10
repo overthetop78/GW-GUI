@@ -21,7 +21,7 @@
   <data name="Emulation.Help.Audio.Floppy.SoundType.Short" xml:space="preserve"><value>Jumppy sürücüsü ses setini seçin</value></data>
   <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed" xml:space="preserve"><value>Emated floppy sürücülerinin mekanik sesleri için kullanılan örneği seçin. Sürücü davranışını veya disk verilerini değiştirmez.</value></data>
   <data name="Emulation.Help.Audio.FilterType.Short" xml:space="preserve"><value>Ses filtre modelini seçin</value></data>
-  <data name="Emulation.Help.Audio.FilterType.Detailed" xml:space="preserve"><value>Donanım filtre yanıtını emulate&apos;ye seçin. Auto, seçilmiş makine modelini takip eder. Belirli bir seçim her zaman bu filtre yanıtını kullanır.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed" xml:space="preserve"><value>Donanım filtre yanıtını emulate'ye seçin. Auto, seçilmiş makine modelini takip eder. Belirli bir seçim her zaman bu filtre yanıtını kullanır.</value></data>
   <data name="Emulation.Help.Controller.ParallelAdapter.Short" xml:space="preserve"><value>Enable iki ek sevinç portu</value></data>
   <data name="Emulation.Help.Controller.ParallelAdapter.Detailed" xml:space="preserve"><value>İki joystick portu ekliyor paralel bir bağlantı adaptörüne sahip olun. Dört eşzamanlı oyuncuyu destekleyen yazılım için kullanılabilir.</value></data>
   <data name="Emulation.Help.Controller.TurboPulse.Short" xml:space="preserve"><value>turbo pul aralığı ayarla</value></data>
@@ -42,7 +42,7 @@
   <data name="Emulation.Help.Cpu.Precision.Detailed" xml:space="preserve"><value>Nasıl yakından seçilir CPU zamanlama orijinal donanımı takip eder. Daha doğru modlar uyumluluk geliştirebilir ancak daha fazla işlem gerektirebilir.</value></data>
   <data name="Emulation.Help.Cpu.Speed.Short" xml:space="preserve"><value>Emated the emated CPU Hız hızı hız hızı</value></data>
   <data name="Emulation.Help.Cpu.Speed.Detailed" xml:space="preserve"><value>Emated makine tarafından kullanılan işlemci frekansı ayarlar. Orijinal hız donanım zamanlamasını korur. Yüksek değerler hızlar donanım zamanlamasını hızlandırır. CPU- sınırlı yazılım.</value></data>
-  <data name="Emulation.Help.Mouse.Analog.Short" xml:space="preserve"><value>Mouse&apos;ı kontrol etmek için analog çubuğu kullanın</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short" xml:space="preserve"><value>Mouse'ı kontrol etmek için analog çubuğu kullanın</value></data>
   <data name="Emulation.Help.Mouse.Analog.Detailed" xml:space="preserve"><value>Emated fare noktası taşımak için analog sevinçleri izin verin. Fiziksel bir analog çubuğun noktası kontrol etmesi gerektiğinde kullanılabilir.</value></data>
   <data name="Emulation.Help.Mouse.AnalogSpeed.Short" xml:space="preserve"><value>Analog fare hızı</value></data>
   <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed" xml:space="preserve"><value>Bir analog çubuğun sahte fareyi kontrol ettiği zaman kümeler hız. Daha yüksek bir değer aynı sopa hareketi için işaretleyiciyi hareket eder.</value></data>
@@ -79,7 +79,7 @@
   <data name="Emulation.Help.Storage.PrinterDevice.Short" xml:space="preserve"><value>Enable the Enable the P: yazıcı cihazı</value></data>
   <data name="Emulation.Help.Storage.PrinterDevice.Detailed" xml:space="preserve"><value>Öfkeyi yapar P: Yazılım için mevcut yazıcı cihazı. Bu seçeneği yazıcı-device amülasyonu gerekli değildir.</value></data>
   <data name="Emulation.Help.Storage.SerialDevice.Short" xml:space="preserve"><value>Enable the Enable the R: seri cihazı</value></data>
-  <data name="Emulation.Help.Storage.SerialDevice.Detailed" xml:space="preserve"><value>Öfkeyi yapar R: Yazılım için mevcut seri cihaz. Pro-device emulation&apos;ın gerekli olmadığı bu seçeneği ayırt edemez.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed" xml:space="preserve"><value>Öfkeyi yapar R: Yazılım için mevcut seri cihaz. Pro-device emulation'ın gerekli olmadığı bu seçeneği ayırt edemez.</value></data>
   <data name="Emulation.Help.Video.Artifacting.Short" xml:space="preserve"><value>Yüksek çözünürlüklü renk sanatını seçin</value></data>
   <data name="Emulation.Help.Video.Artifacting.Detailed" xml:space="preserve"><value>Yüksek çözünürlüklü desenlerin kompozit-video renkleri nasıl ürettiğini seçin. Hiçbir şey sanatsal renkleri devre dışı bırakmaz. Diğer modlar farklı paletleri veya çip davranışını yeniden üretir.</value></data>
   <data name="Emulation.Help.Video.ImmediateBlits.Short" xml:space="preserve"><value>blitter zamanlamasını seçin</value></data>

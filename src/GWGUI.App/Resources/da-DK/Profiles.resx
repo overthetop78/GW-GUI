@@ -18,5 +18,5 @@
   <data name="Profile.SystemDelete"><value>Standardprofilen er permanent og kan ikke slettes.</value></data>
   <data name="Profile.DuplicateName"><value>En profil på denne fane har allerede dette navn.</value></data>
   <data name="Profile.Replace"><value>Denne profil findes allerede. Vil du udskifte det?</value></data>
-  <data name="Profile.DeleteConfirm"><value>Slet profil &quot;{0}&quot;?</value></data>
+  <data name="Profile.DeleteConfirm"><value>Slet profil "{0}"?</value></data>
 </root>

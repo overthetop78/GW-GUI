@@ -133,7 +133,7 @@
   <data name="Visual.TrackKindLabel"><value>Тип треку</value></data>
   <data name="Visual.OpticalTrackTitle"><value>Вибрані треки</value></data>
   <data name="Visual.VolumeOriginLabel"><value>Походження обсягу</value></data>
-  <data name="Visual.VolumeTitle"><value>Об&apos;єм</value></data>
+  <data name="Visual.VolumeTitle"><value>Об'єм</value></data>
   <data name="Visual.AssociatedFilesTitle"><value>Асоційовані файли</value></data>
   <data name="Visual.OpticalTrackKind.Unknown"><value>Невідомо</value></data>
   <data name="Visual.OpticalTrackKind.Data"><value>Дані</value></data>

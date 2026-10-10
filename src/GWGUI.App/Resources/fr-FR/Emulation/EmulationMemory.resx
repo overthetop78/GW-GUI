@@ -9,6 +9,6 @@
   <data name="Emulation.Memory.None"><value>Aucun</value></data>
   <data name="Emulation.Memory.CompatibleWithModel"><value>Configuration compatible : {0}.</value></data>
   <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Extensions mémoire compatibles : {0}.</value></data>
-  <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM n&apos;est pas disponible sur {0}.</value></data>
+  <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM n'est pas disponible sur {0}.</value></data>
   <data name="Emulation.Memory.TotalConfigured"><value>Mémoire totale configurée : {0} {1}</value></data>
 </root>

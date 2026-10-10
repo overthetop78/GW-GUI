@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>Gói tính năng</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>Không</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Đơn vị bộ nhớ trực quan/ SiystemsVMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Khi bị tắt, mọi trò chơi chia sẻ đến 8 VMU lưu tập tin (A1/A2/B1/B2/C1/C2/D1/D2) nằm trong thư mục hệ thống RtroArch.
-Chữ 'VMU A1Thiết lập tạo độc nhất VMU 'A1Tập tin trong tập tin lưu của RtroArch cho mỗi trò chơi đã được khởi chạy.
-Thiết lập 'All VMUs' tạo ra đến 8 độc nhất VMU Tập tin (A1/A2/B1/B2/C1/C2/D1/D2) cho mỗi trò chơi được khởi động.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Khi bị tắt, mọi trò chơi chia sẻ đến 8 VMU lưu tập tin (A1/A2/B1/B2/C1/C2/D1/D2) nằm trong thư mục hệ thống RtroArch.&#xA;Chữ 'VMU A1Thiết lập tạo độc nhất VMU 'A1Tập tin trong tập tin lưu của RtroArch cho mỗi trò chơi đã được khởi chạy.&#xA;Thiết lập 'All VMUs' tạo ra đến 8 độc nhất VMU Tập tin (A1/A2/B1/B2/C1/C2/D1/D2) cho mỗi trò chơi được khởi động.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>Đã tắt</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>Tất cả các VMUs</value></data>

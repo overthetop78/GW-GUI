@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>ชุด รอด ชีวิต</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>ไม่มี</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>หน่วยหน่วยความจําแบบกราฟิกต่อGame/Systems (November)VMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>เมื่อ ไม่ มี การ ควบคุม เกม ทั้ง หมด มี ถึง 8 เกม VMU บันทึกแฟ้ม (A1/A2/B1/B2/C1/C2/D1/D2ที่อยู่ในแฟ้มระบบของเรโทรอาช
-เดอะVMU A1'การตั้งค่าสร้างเอกลักษณ์ VMU 'A1'แฟ้มใน retroArch' สําหรับแต่ละเกมที่ถูกเรียกใช้
-การตั้งค่า 'all VMUs' จะสร้างความแตกต่างได้ถึง 8 VMU แฟ้ม (A1/A2/B1/B2/C1/C2/D1/D2สําหรับแต่ละเกมที่จะเปิดตัว</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>เมื่อ ไม่ มี การ ควบคุม เกม ทั้ง หมด มี ถึง 8 เกม VMU บันทึกแฟ้ม (A1/A2/B1/B2/C1/C2/D1/D2ที่อยู่ในแฟ้มระบบของเรโทรอาช&#xA;เดอะVMU A1'การตั้งค่าสร้างเอกลักษณ์ VMU 'A1'แฟ้มใน retroArch' สําหรับแต่ละเกมที่ถูกเรียกใช้&#xA;การตั้งค่า 'all VMUs' จะสร้างความแตกต่างได้ถึง 8 VMU แฟ้ม (A1/A2/B1/B2/C1/C2/D1/D2สําหรับแต่ละเกมที่จะเปิดตัว</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>ปิดการใช้งาน</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>โปรแกรม VMUs ทั้งหมด</value></data>

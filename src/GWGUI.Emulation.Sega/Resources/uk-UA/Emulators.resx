@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>Вібрація пакет</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>Немає</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Системи візуальної пам'яті Per-GameVMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Коли вимкнено, всі ігри діляться до 8 VMU зберегти файли (збереження файлів)A1/A2/B1/B2/C1/C2/D1/D2) знаходиться в папці системи RetroArch.
-’НазвиVMU A1«Налаштування створює унікальний VMU 'A1' файл в папці RetroArch для кожної гри, яка запущена.
-Налаштування «Все ВМУС» створює до 8 унікальних VMU ФайлиA1/A2/B1/B2/C1/C2/D1/D2) за кожну гру, яка запущена.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Коли вимкнено, всі ігри діляться до 8 VMU зберегти файли (збереження файлів)A1/A2/B1/B2/C1/C2/D1/D2) знаходиться в папці системи RetroArch.&#xA;’НазвиVMU A1«Налаштування створює унікальний VMU 'A1' файл в папці RetroArch для кожної гри, яка запущена.&#xA;Налаштування «Все ВМУС» створює до 8 унікальних VMU ФайлиA1/A2/B1/B2/C1/C2/D1/D2) за кожну гру, яка запущена.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>Вимкнено</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>Всі ВМУ</value></data>

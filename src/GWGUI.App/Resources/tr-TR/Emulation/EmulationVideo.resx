@@ -23,7 +23,7 @@
   <data name="Emulation.Video.Collision.Level"><value>Çarpışma algılama</value></data>
   <data name="Emulation.Video.LineMode.Single"><value>Tek tarama</value></data>
   <data name="Emulation.Video.LineMode.Double"><value>Çift tarama</value></data>
-  <data name="Emulation.Video.Collision.Sprites"><value>Sprite&apos;lar</value></data>
+  <data name="Emulation.Video.Collision.Sprites"><value>Sprite'lar</value></data>
   <data name="Emulation.Video.Collision.Playfields"><value>Oyun alanları</value></data>
   <data name="Emulation.Video.Collision.Full"><value>Tam</value></data>
   <data name="Emulation.Video.Settings.Display"><value>Görüntü</value></data>

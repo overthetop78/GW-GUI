@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>振動包</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>無</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Per-Game 視覺記憶單元/系統VMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>禁用時, 所有游戲共享最多 8 個 VMU 保存文件( E)A1/A2/B1/B2/C1/C2/D1/D2)位于RetroArch的系統文件夾中.
-那個...VMU A1' 設置創建了獨有 VMU 'A1'在 RetroArch 保存的文件夾中的文件,用于發布的每一款游戲.
-"所有VMU"的設置創造了8個獨特的 VMU 文檔( E)A1/A2/B1/B2/C1/C2/D1/D2),用于所推出的每款游戲.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>禁用時, 所有游戲共享最多 8 個 VMU 保存文件( E)A1/A2/B1/B2/C1/C2/D1/D2)位于RetroArch的系統文件夾中.&#xA;那個...VMU A1' 設置創建了獨有 VMU 'A1'在 RetroArch 保存的文件夾中的文件,用于發布的每一款游戲.&#xA;"所有VMU"的設置創造了8個獨特的 VMU 文檔( E)A1/A2/B1/B2/C1/C2/D1/D2),用于所推出的每款游戲.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>已停用</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>全部 VMU 設備</value></data>

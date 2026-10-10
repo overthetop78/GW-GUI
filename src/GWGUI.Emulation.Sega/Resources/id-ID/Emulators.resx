@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>Paket Getaran</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>Tidak ada</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>Satuan Memori Visual Per- Game (VMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Ketika dinonaktifkan, semua game dibagi hingga 8 VMU simpan berkas (A1/A2/B1/B2/C1/C2/D1/D2) terletak di folder sistem RetroArch.
-The 'VMU A1'Pengaturan menciptakan unik VMU 'A1'berkas dalam folder simpan RetroArch untuk setiap game yang diluncurkan.
-The 'All VMU' setting up to 8 unique VMU berkas (A1/A2/B1/B2/C1/C2/D1/D2) untuk setiap game yang diluncurkan.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>Ketika dinonaktifkan, semua game dibagi hingga 8 VMU simpan berkas (A1/A2/B1/B2/C1/C2/D1/D2) terletak di folder sistem RetroArch.&#xA;The 'VMU A1'Pengaturan menciptakan unik VMU 'A1'berkas dalam folder simpan RetroArch untuk setiap game yang diluncurkan.&#xA;The 'All VMU' setting up to 8 unique VMU berkas (A1/A2/B1/B2/C1/C2/D1/D2) untuk setiap game yang diluncurkan.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>Dinonaktifkan</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>Semua VMU</value></data>

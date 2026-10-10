@@ -11,9 +11,9 @@
   <data name="Detection.AtariUnknownSize"><value>La dimensione non corrisponde a un profilo Atari ST noto.</value></data>
   <data name="Detection.AtariSize"><value>Geometria Atari ST riconosciuta dalla dimensione del file.</value></data>
   <data name="Detection.MsaInferred"><value>Contenitore Atari MSA riconosciuto; confermare la geometria se necessario.</value></data>
-  <data name="Detection.IbmAmbiguous"><value>L&apos;estensione da solo non può determinare IBM PC geometria.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>L'estensione da solo non può determinare IBM PC geometria.</value></data>
   <data name="Detection.IbmSize"><value>Geometria IBM PC riconosciuta dalla dimensione del file.</value></data>
-  <data name="Detection.ExtensionInferred"><value>Formato dedotto dall&apos;estensione.</value></data>
+  <data name="Detection.ExtensionInferred"><value>Formato dedotto dall'estensione.</value></data>
   <data name="Detection.Multiple"><value>Sono possibili diversi formati; sceglierne uno esplicitamente.</value></data>
   <data name="Detection.AppleDosOrder"><value>Formato Apple II DOS identificato in base all ordine dei settori.</value></data>
   <data name="Detection.AppleProDosOrder"><value>Formato Apple II ProDOS identificato in base all ordine dei settori.</value></data>

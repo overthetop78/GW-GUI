@@ -19,7 +19,7 @@
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Número de discos rígidos</value></data>
   <data name="Emulation.Storage.Floppy.Speed"><value>Velocidade de condução por disquete</value></data>
   <data name="Emulation.Storage.Floppy.WriteProtection"><value>Imagens de disquetes de proteção de gravação</value></data>
-  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Redireccionar as gravações do &apos;sloppy&apos;</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Redireccionar as gravações do 'sloppy'</value></data>
   <data name="Emulation.Storage.Cd.Speed"><value>Velocidade do CD</value></data>
   <data name="Emulation.Storage.HardDisk.Add"><value>Adicionar um disco rígido existente</value></data>
   <data name="Emulation.Storage.HardDisk.List"><value>Discos rígidos</value></data>

@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Firmware.Rom.Extended"><value>Udvidet ROM</value></data>
-  <data name="Emulation.Firmware.Rom.Detected"><value>Detekterede ROM &apos;er</value></data>
+  <data name="Emulation.Firmware.Rom.Detected"><value>Detekterede ROM 'er</value></data>
   <data name="Emulation.Firmware.Use"><value>Brug</value></data>
   <data name="Emulation.Firmware.Rom.OpenFolder"><value>Åbn ROM-mappe</value></data>
   <data name="Emulation.Firmware.PartiallyCompatible"><value>Delvist kompatibel</value></data>

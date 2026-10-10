@@ -11,7 +11,7 @@
   <data name="Detection.AtariUnknownSize"><value>La taille ne correspond à aucun profil Atari ST connu.</value></data>
   <data name="Detection.AtariSize"><value>Géométrie Atari ST reconnue par la taille.</value></data>
   <data name="Detection.MsaInferred"><value>Conteneur Atari MSA reconnu ; confirmez la géométrie si nécessaire.</value></data>
-  <data name="Detection.IbmAmbiguous"><value>L&apos;extension seule ne peut pas déterminer la IBM PC géométrie.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>L'extension seule ne peut pas déterminer la IBM PC géométrie.</value></data>
   <data name="Detection.IbmSize"><value>Géométrie IBM PC reconnue par la taille.</value></data>
   <data name="Detection.ExtensionInferred"><value>Format déduit de l’extension.</value></data>
   <data name="Detection.Multiple"><value>Plusieurs formats sont possibles ; choisissez explicitement le format.</value></data>

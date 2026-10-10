@@ -56,7 +56,7 @@
   <data name="Explorer.Warning.FatNesting"><value>De nestlimiet voor de FAT-directory is bereikt.</value></data>
   <data name="Explorer.Warning.FatChain"><value>{0}: ongeldige of cyclische FAT-keten in cluster {1}.</value></data>
   <data name="Explorer.Warning.SectorMissing"><value>Sector {0} ontbreekt.</value></data>
-  <data name="Explorer.Warning.LisaCatalog"><value>De Lisa-cataloguspagina&apos;s ontbreken; bestandsnamen werden alleen hersteld van paginatags.</value></data>
+  <data name="Explorer.Warning.LisaCatalog"><value>De Lisa-cataloguspagina's ontbreken; bestandsnamen werden alleen hersteld van paginatags.</value></data>
   <data name="Explorer.Warning.AtariDirectory"><value>Directorysector {0} ontbreekt.</value></data>
   <data name="Explorer.Warning.AtariData"><value>{0}: ongeldige of ontbrekende Atari DOS-gegevenssector.</value></data>
   <data name="Explorer.Warning.AtariOwner"><value>Sector {0} hoort bij bestand {1}, verwacht {2}.</value></data>

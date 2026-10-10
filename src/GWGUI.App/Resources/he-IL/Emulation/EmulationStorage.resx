@@ -50,7 +50,7 @@
   <data name="Emulation.Storage.Tape.Device"><value>כונן קלטת</value></data>
   <data name="Emulation.Storage.Disk.Use"><value>שימוש בדיסק</value></data>
   <data name="Emulation.Storage.Disk.UseExisting"><value>שימוש בדיסק קיים</value></data>
-  <data name="Emulation.Storage.ModifyInGeneral"><value>שינוי ב&apos;כללי&apos;</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>שינוי ב'כללי'</value></data>
   <data name="Emulation.Storage.Device.NoneAvailable"><value>אין התקן אחסון נוסף זמין למכונה זו.</value></data>
   <data name="Emulation.Storage.Device.List"><value>התקני אחסון</value></data>
   <data name="Emulation.Storage.Geometry.Allocation"><value>הקצאה</value></data>

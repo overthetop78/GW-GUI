@@ -583,9 +583,7 @@
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.Purupuru"><value>مجموعة التصويبات</value></data>
   <data name="Emulation.Option.flycast.reicast_device_port4_slot2.Value.None"><value>بلا</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus"><value>وحدات الذاكرة البصرية/السايستمVMU)</value></data>
-  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>عندما يكون معاقاً، كل الألعاب تتقاسم ما يصل إلى 8 VMU حفظ الملفاتA1/A2/B1/B2/C1/C2/D1/D2موقعه في ملف نظام ريترو آرتش
-"VMU A1"الوضع يخلق فريداً" VMU 'A1ملف (ريترو آرتش) يحفظ الملفات لكل لعبة تم إطلاقها
-"كلّ نظام (VMU) يخلق 8 فريدات" VMU الملفاتA1/A2/B1/B2/C1/C2/D1/D2لكل لعبة تُطلق.</value></data>
+  <data name="Emulation.Option.flycast.reicast_per_content_vmus.Description"><value>عندما يكون معاقاً، كل الألعاب تتقاسم ما يصل إلى 8 VMU حفظ الملفاتA1/A2/B1/B2/C1/C2/D1/D2موقعه في ملف نظام ريترو آرتش&#xA;"VMU A1"الوضع يخلق فريداً" VMU 'A1ملف (ريترو آرتش) يحفظ الملفات لكل لعبة تم إطلاقها&#xA;"كلّ نظام (VMU) يخلق 8 فريدات" VMU الملفاتA1/A2/B1/B2/C1/C2/D1/D2لكل لعبة تُطلق.</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.disabled"><value>المعوقين</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.VMU A1"><value>VMU A1</value></data>
   <data name="Emulation.Option.flycast.reicast_per_content_vmus.Value.All VMUs"><value>All VMUs</value></data>
