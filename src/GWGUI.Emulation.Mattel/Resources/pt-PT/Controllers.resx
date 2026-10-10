@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mattel.Input.Top" xml:space="preserve"><value>Botão lateral superior</value></data>
+  <data name="Emulation.Mattel.Input.BottomLeft" xml:space="preserve"><value>Botão inferior esquerdo</value></data>
+  <data name="Emulation.Mattel.Input.BottomRight" xml:space="preserve"><value>Botão inferior direito</value></data>
+  <data name="Emulation.Mattel.Input.Clear" xml:space="preserve"><value>Limpar</value></data>
+  <data name="Emulation.Mattel.Input.Enter" xml:space="preserve"><value>Enter</value></data>
+</root>

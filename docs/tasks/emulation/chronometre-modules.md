@@ -103,3 +103,10 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-10 22:02:42 | 15:06:58 | -07:06:59 | Reprise. Philips : reconstruction native et installation réelle du binaire. |
 | 2026-10-10 22:03:56 | 15:08:12 | -07:08:13 | Reprise. Philips : vérification du blocage compilateur natif. |
 | 2026-10-10 22:43:40 | 15:47:56 | -07:47:57 | Reprise. Philips : retrait demandé de cdi2015 ; poursuite avec SAME CDi. |
+| 2026-10-10 22:55:34 | 15:59:50 | -07:59:51 | Reprise. Mattel : contrats du binaire FreeIntv et reprise structurée des services. |
+| 2026-10-10 23:05:09 | 00.16:09:25 | -08:09:26 | Reprise. Mattel : configuration, BIOS EXEC/GROM et cartouche. |
+| 2026-10-10 23:13:38 | 00.16:17:54 | -08:17:55 | Reprise. Mattel : services communs et adaptation FreeIntv. |
+| 2026-10-10 23:19:20 | 16:23:36 | -08:23:37 | Reprise. Mattel : services communs puis adaptateur FreeIntv. |
+| 2026-10-10 23:28:14 | 16:32:30 | -08:32:31 | Reprise. Mattel : ressources, visuels et intégration. |
+| 2026-10-10 23:39:46 | 16:44:02 | -08:44:03 | Reprise. Mattel : profil physique de manette, intégration puis build des modules. |
+| 2026-10-10 23:50:42 | 16:54:58 | -08:54:59 | Reprise. Mattel : chemins d'erreur, libération native et recherche bornée des firmwares locaux. |

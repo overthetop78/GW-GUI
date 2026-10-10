@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>Mattel ที่บันทึกไว้รัฐไม่ เข้ากันได้กับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>เกิดข้อผิดพลาดในการปั๊ม Mattel ที่ไม่คาดคิดขึ้น</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>มาตรา Mattel ยูนิแวร์หายไป</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>ระบบ ROM ใช้งานไม่ได้หรือเข้ากันไม่ได้</value></data>
+  <data name="Emulation.Mattel.Error.ContentNotFound" xml:space="preserve"><value>ไม่พบสื่อที่ปรับแต่งค่า Mattel</value></data>
+  <data name="Emulation.Mattel.Error.ContentUnsupported" xml:space="preserve"><value>เครื่องนี้ไม่รองรับสื่อที่เลือก</value></data>
+  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>ตัวเลือก Mattel มีค่าที่ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Mattel.Error.CoreNotFound" xml:space="preserve"><value>ไม่พบแกน Mattel ที่ต้องการ</value></data>
+  <data name="Emulation.Mattel.Error.CoreRejected" xml:space="preserve"><value>ไม่สามารถเรียกใช้แกน Mattel ที่เลือกไว้ได้</value></data>
+  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>Mattel บันทึกสถานะไม่ถูกต้อง</value></data>
+  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>ไม่สามารถประมวลผลพาธของโฮสต์ Mattel ได้</value></data>
+  <data name="Emulation.Mattel.Error.Details" xml:space="preserve"><value>รายละเอียด: {0}</value></data>
+  <data name="Emulation.Mattel.Error.HostProtocolFailure" xml:space="preserve"><value>การสื่อสารกับโฮสต์ Mattel ล้มเหลว</value></data>
+  <data name="Emulation.Mattel.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>ไม่รู้จักคําสั่งสภาพแวดล้อม: {0}</value></data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>The Mattel الدولة المنقذة لا تتوافق مع الآلة الحالية.</value></data>
+  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>وحدث خطأ غير متوقع في الاختراع قدره Mattel.</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>a مطلوب Mattel firmware مفقود.</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>نظام ROM غير صحيح أو متعارض.</value></data>
+  <data name="Emulation.Mattel.Error.ContentNotFound" xml:space="preserve"><value>تم تشكيله Mattel لم يعثر على وسائل الإعلام.</value></data>
+  <data name="Emulation.Mattel.Error.ContentUnsupported" xml:space="preserve"><value>هذه الآلة لا تدعم وسائل الإعلام المختارة</value></data>
+  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>ألف Mattel الخيار له قيمة غير صحيحة.</value></data>
+  <data name="Emulation.Mattel.Error.CoreNotFound" xml:space="preserve"><value>لم يتم العثور على النواة المطلوبة من Mattel.</value></data>
+  <data name="Emulation.Mattel.Error.CoreRejected" xml:space="preserve"><value>لا يمكن تحميل نواة Mattel المختارة.</value></data>
+  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>The Mattel save state is invalid.</value></data>
+  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>إن الطريق الذي يمكن تنفيذه هو مضيف Mattel غير متاح.</value></data>
+  <data name="Emulation.Mattel.Error.Details" xml:space="preserve"><value>التفاصيل: {0}</value></data>
+  <data name="Emulation.Mattel.Error.HostProtocolFailure" xml:space="preserve"><value>وفشلت الاتصالات مع المضيف البالغ Mattel.</value></data>
+  <data name="Emulation.Mattel.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>{0}</value></data>
+</root>

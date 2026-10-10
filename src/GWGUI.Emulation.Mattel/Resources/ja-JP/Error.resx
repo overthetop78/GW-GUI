@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>Mattel 保存状態は、現在のマシンと互換性がありません。</value></data>
+  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>予期しないMattelエミュレーションエラーが発生しました。</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>必要なMattelファームウェアが不足しています。</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>システム ROM は無効または非互換です。</value></data>
+  <data name="Emulation.Mattel.Error.ContentNotFound" xml:space="preserve"><value>設定されたMattelメディアが見つかりませんでした。</value></data>
+  <data name="Emulation.Mattel.Error.ContentUnsupported" xml:space="preserve"><value>選択したメディアに対応していません。</value></data>
+  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>Mattel オプションには無効な値があります。</value></data>
+  <data name="Emulation.Mattel.Error.CoreNotFound" xml:space="preserve"><value>必須のMattelコアが見つかりませんでした。</value></data>
+  <data name="Emulation.Mattel.Error.CoreRejected" xml:space="preserve"><value>選択したMattelコアがロードできませんでした。</value></data>
+  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>Mattel保存状態が無効です。</value></data>
+  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>Mattel ホスト実行可能なパスは利用できません。</value></data>
+  <data name="Emulation.Mattel.Error.Details" xml:space="preserve"><value>詳細情報: {0}</value></data>
+  <data name="Emulation.Mattel.Error.HostProtocolFailure" xml:space="preserve"><value>Mattel ホストとの通信が失敗しました。</value></data>
+  <data name="Emulation.Mattel.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>不明な環境コマンド: {0}</value></data>
+</root>

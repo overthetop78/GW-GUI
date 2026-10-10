@@ -1,0 +1,533 @@
+{
+  "BuildExitCode": 0,
+  "LocalTime": "2026-10-10 23:45:06",
+  "Application": "F:\\GW GUI\\build\\Debug\\GW GUI\\gwgui.exe",
+  "Modules": [
+    {
+      "Id": "acorn",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\acorn\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\acorn\\gwgui.emulation.acorn.dll",
+      "Bytes": 588800
+    },
+    {
+      "Id": "amstrad",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\amstrad\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\amstrad\\gwgui.emulation.amstrad.dll",
+      "Bytes": 1777664
+    },
+    {
+      "Id": "apple",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\apple\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\apple\\gwgui.emulation.apple.dll",
+      "Bytes": 3066368
+    },
+    {
+      "Id": "atari",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\atari\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\atari\\gwgui.emulation.atari.dll",
+      "Bytes": 4690432
+    },
+    {
+      "Id": "bandai",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\bandai\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\bandai\\gwgui.emulation.bandai.dll",
+      "Bytes": 2122240
+    },
+    {
+      "Id": "coleco",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\coleco\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\coleco\\gwgui.emulation.coleco.dll",
+      "Bytes": 1173504
+    },
+    {
+      "Id": "commodore",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\commodore\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\commodore\\gwgui.emulation.commodore.dll",
+      "Bytes": 6924288
+    },
+    {
+      "Id": "epoch",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\epoch\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\epoch\\gwgui.emulation.epoch.dll",
+      "Bytes": 2034688
+    },
+    {
+      "Id": "fairchild",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\fairchild\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\fairchild\\gwgui.emulation.fairchild.dll",
+      "Bytes": 837632
+    },
+    {
+      "Id": "mattel",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\mattel\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\mattel\\gwgui.emulation.mattel.dll",
+      "Bytes": 723968
+    },
+    {
+      "Id": "microsoft",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\microsoft\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\microsoft\\gwgui.emulation.microsoft.dll",
+      "Bytes": 753152
+    },
+    {
+      "Id": "nec",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\nec\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\nec\\gwgui.emulation.nec.dll",
+      "Bytes": 6123520
+    },
+    {
+      "Id": "nintendo",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\nintendo\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\nintendo\\gwgui.emulation.nintendo.dll",
+      "Bytes": 38403072
+    },
+    {
+      "Id": "philips",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\philips\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\philips\\gwgui.emulation.philips.dll",
+      "Bytes": 1789440
+    },
+    {
+      "Id": "sega",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sega\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sega\\gwgui.emulation.sega.dll",
+      "Bytes": 24237056
+    },
+    {
+      "Id": "sony",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sony\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sony\\gwgui.emulation.sony.dll",
+      "Bytes": 11572224
+    }
+  ],
+  "ResourceAudit": "artifacts/mattel-source/resource-audit.json",
+  "ResourceFormattingAudit": "artifacts/mattel-source/resx-format-audit.json",
+  "AssetAudit": "artifacts/mattel-source/images/asset-verification.json",
+  "RuntimeVerified": true,
+  "ManagedAndUiChecks": [
+    {
+      "Check": "SettingsAndResources",
+      "Cultures": 29,
+      "Keys": 25,
+      "Fields": 12,
+      "EmptyBindings": true,
+      "FirmwareRoles": 2
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Up",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": -32767,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Down",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 32767,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Left",
+      "NativeMask": 0,
+      "LeftX": -32767,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Right",
+      "NativeMask": 0,
+      "LeftX": 32767,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Top",
+      "NativeMask": 2,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "BottomLeft",
+      "NativeMask": 256,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "BottomRight",
+      "NativeMask": 1,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Key1",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": -24576,
+      "RightY": -24576
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Key2",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": -16384,
+      "RightY": -24576
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Key3",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 8192,
+      "RightY": -24576
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Key4",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": -24576,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Key5",
+      "NativeMask": -32768,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Key6",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 8192,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Key7",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": -24576,
+      "RightY": 8192
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Key8",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": -16384,
+      "RightY": 24576
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Key9",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 8192,
+      "RightY": 8192
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Clear",
+      "NativeMask": 4096,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Key0",
+      "NativeMask": 16384,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 0,
+      "Command": "Enter",
+      "NativeMask": 8192,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Up",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": -32767,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Down",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 32767,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Left",
+      "NativeMask": 0,
+      "LeftX": -32767,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Right",
+      "NativeMask": 0,
+      "LeftX": 32767,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Top",
+      "NativeMask": 2,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "BottomLeft",
+      "NativeMask": 256,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "BottomRight",
+      "NativeMask": 1,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Key1",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": -24576,
+      "RightY": -24576
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Key2",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": -16384,
+      "RightY": -24576
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Key3",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 8192,
+      "RightY": -24576
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Key4",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": -24576,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Key5",
+      "NativeMask": -32768,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Key6",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 8192,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Key7",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": -24576,
+      "RightY": 8192
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Key8",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": -16384,
+      "RightY": 24576
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Key9",
+      "NativeMask": 0,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 8192,
+      "RightY": 8192
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Clear",
+      "NativeMask": 4096,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Key0",
+      "NativeMask": 16384,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "ReassignedCommand",
+      "Port": 1,
+      "Command": "Enter",
+      "NativeMask": 8192,
+      "LeftX": 0,
+      "LeftY": 0,
+      "RightX": 0,
+      "RightY": 0
+    },
+    {
+      "Check": "FirmwareAndNativeProbe",
+      "InvalidFirmwareRejected": true,
+      "OfficialBinaryProbeAndReleaseCycles": 3,
+      "InitializedRuntime": false
+    },
+    {
+      "Check": "RealAppViews",
+      "Tabs": 8,
+      "ProfileLoaded": true,
+      "WindowReleased": true
+    }
+  ],
+  "NativeChecks": [
+    {
+      "Check": "DeliveredNativeRuntime",
+      "InstalledPath": "C:\\Users\\overt\\AppData\\Local\\Temp\\GWGUI-Mattel-Native-f90dc9e39fde4f2988c97dd1fc694303\\cores\\freeintv\\20261010-083928\\freeintv_libretro.dll",
+      "SyntheticCartridge": "Generated CP1610 NOP words; BIOS rendering and lifecycle, not commercial game validation",
+      "Width": 352,
+      "Height": 224,
+      "StateFileBytes": 604988,
+      "PauseResume": true,
+      "States": true,
+      "Resets": true,
+      "EjectInsert": true,
+      "HostStopped": true,
+      "ReplacementHostStopped": true,
+      "AudioFrames": true,
+      "SessionsReleased": true
+    },
+    {
+      "Check": "NativeInitializationFailure",
+      "MalformedCartridgeRejected": true,
+      "SessionsReleased": true
+    }
+  ],
+  "NativeCartridgeScope": "Cartouche de diagnostic générée, BIOS EXEC/GROM locaux valides ; rendu et cycle natif vérifiés, aucun jeu commercial essayé."
+}

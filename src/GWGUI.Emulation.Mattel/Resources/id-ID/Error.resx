@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>Mattel negara yang disimpan tidak kompatibel dengan mesin saat ini.</value></data>
+  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>Kesalahan emulasi Mattel yang tak terduga terjadi.</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>Sebuah firmware Mattel yang diperlukan hilang.</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>Sistem ROM tidak valid atau tidak kompatibel.</value></data>
+  <data name="Emulation.Mattel.Error.ContentNotFound" xml:space="preserve"><value>Media Mattel yang dikonfigurasi tidak ditemukan.</value></data>
+  <data name="Emulation.Mattel.Error.ContentUnsupported" xml:space="preserve"><value>Mesin ini tidak mendukung media yang dipilih.</value></data>
+  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>Sebuah opsi Mattel memiliki nilai yang tidak valid.</value></data>
+  <data name="Emulation.Mattel.Error.CoreNotFound" xml:space="preserve"><value>Inti Mattel yang diperlukan tidak ditemukan.</value></data>
+  <data name="Emulation.Mattel.Error.CoreRejected" xml:space="preserve"><value>Inti Mattel yang dipilih tidak dapat dimuat.</value></data>
+  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>Mattel negara yang disimpan tidak valid.</value></data>
+  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>Path executable Mattel host tidak tersedia.</value></data>
+  <data name="Emulation.Mattel.Error.Details" xml:space="preserve"><value>Rincian: {0}</value></data>
+  <data name="Emulation.Mattel.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikasi dengan tuan rumah Mattel gagal.</value></data>
+  <data name="Emulation.Mattel.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Perintah lingkungan tak dikenal: {0}</value></data>
+</root>

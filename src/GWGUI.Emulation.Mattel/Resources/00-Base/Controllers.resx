@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Mattel.Controller.Intellivision" xml:space="preserve"><value>Intellivision</value></data>
+  <data name="Emulation.Mattel.Input.Top" xml:space="preserve"><value>Upper side button</value></data>
+  <data name="Emulation.Mattel.Input.BottomLeft" xml:space="preserve"><value>Lower left side button</value></data>
+  <data name="Emulation.Mattel.Input.BottomRight" xml:space="preserve"><value>Lower right side button</value></data>
+  <data name="Emulation.Mattel.Input.Clear" xml:space="preserve"><value>Clear</value></data>
+  <data name="Emulation.Mattel.Input.Enter" xml:space="preserve"><value>Enter</value></data>
+  <data name="Emulation.Mattel.Input.Key0" xml:space="preserve"><value>0</value></data>
+  <data name="Emulation.Mattel.Input.Key1" xml:space="preserve"><value>1</value></data>
+  <data name="Emulation.Mattel.Input.Key2" xml:space="preserve"><value>2</value></data>
+  <data name="Emulation.Mattel.Input.Key3" xml:space="preserve"><value>3</value></data>
+  <data name="Emulation.Mattel.Input.Key4" xml:space="preserve"><value>4</value></data>
+  <data name="Emulation.Mattel.Input.Key5" xml:space="preserve"><value>5</value></data>
+  <data name="Emulation.Mattel.Input.Key6" xml:space="preserve"><value>6</value></data>
+  <data name="Emulation.Mattel.Input.Key7" xml:space="preserve"><value>7</value></data>
+  <data name="Emulation.Mattel.Input.Key8" xml:space="preserve"><value>8</value></data>
+  <data name="Emulation.Mattel.Input.Key9" xml:space="preserve"><value>9</value></data>
+</root>

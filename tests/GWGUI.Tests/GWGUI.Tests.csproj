@@ -38,6 +38,7 @@
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Epoch\GWGUI.Emulation.Epoch.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Fairchild\GWGUI.Emulation.Fairchild.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Philips\GWGUI.Emulation.Philips.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation.Mattel\GWGUI.Emulation.Mattel.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Sega\GWGUI.Emulation.Sega.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Nintendo\GWGUI.Emulation.Nintendo.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Sony\GWGUI.Emulation.Sony.csproj" />

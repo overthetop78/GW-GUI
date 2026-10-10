@@ -2,6 +2,7 @@ namespace GWGUI.App.Views.Controls.Options.ControllerVisualization;
 
 internal static class ControllerArtworkFileNames
 {
+    internal const string MattelIntellivisionController = "mattel-intellivision-controller.png";
     internal const string PhilipsVideopacJoystick = "magnavox-odyssey2-videopac-joystick.png";
     internal const string PhilipsCdiGamepad = "philips-cdi-gamepad.png";
     internal const string PhilipsCdiMouse = "philips-cdi-mouse.png";
