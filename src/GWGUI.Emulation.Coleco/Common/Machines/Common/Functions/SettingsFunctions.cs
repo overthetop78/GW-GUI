@@ -56,7 +56,8 @@ internal static class SettingsDescriptionFunctions
         CoreOptionValidationFunctions.ForCore(configuration.Core).Where(option => configuration.Core switch
         {
             Emulator.GearColeco => option.Key is not ("gearcoleco_cartridge_hardware" or "gearcoleco_adam_disk_drive"
-                or "gearcoleco_adam_writable_media" or "gearcoleco_spinners" or "gearcoleco_adam_computer_reset"),
+                or "gearcoleco_adam_writable_media" or "gearcoleco_spinners" or "gearcoleco_adam_computer_reset"
+                or GWGUI.Emulation.Coleco.Emulators.GearColeco.Constants.OptionConstants.OptionMapper),
             Emulator.JollyCV => option.Key != "jollycv_autoreset",
             Emulator.BlueMSX => option.Key is "bluemsx_overscan" or "bluemsx_vdp_synctype"
                 or "bluemsx_nospritelimits" or "patch_coleco_rom",
@@ -67,7 +68,7 @@ internal static class SettingsDescriptionFunctions
         IEnumerable<CoreOption> options)
     {
         foreach (var group in options.GroupBy(option => option.Category == "input" ? EmulationMachineTab.Controllers
-                     : option.Key == "gearcoleco_mapper" ? EmulationMachineTab.Storage : EmulationMachineTab.Video))
+                     : EmulationMachineTab.Video))
         {
             var resource = group.Key switch
             {
@@ -79,7 +80,7 @@ internal static class SettingsDescriptionFunctions
         }
     }
 
-    private static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option,
+    internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option,
         EmulationMachineTab tab, string blockId)
     {
         var resource = SettingsConstants.NativeOptionResourcePrefix + option.Key;

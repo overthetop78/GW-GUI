@@ -15,6 +15,32 @@ namespace GWGUI.Tests.Emulation.Coleco;
 public sealed class ColecoModuleTests
 {
     [Fact]
+    public void CartridgeMapperIsConfiguredAndPersistedThroughItsDevice()
+    {
+        var configuration = new MachineConfiguration(MachineModel.ColecoVision);
+        var storage = StorageSettingsFunctions.Describe(configuration);
+        var cartridge = storage.AvailableDevices.Single(device => device.Slot == EmulationMediaSlot.Cartridge0);
+        Assert.Equal(EmulationStorageConfigurationKind.CartridgeSlot, cartridge.ConfigurationKind);
+        var field = Assert.Single(cartridge.ConfigurationFields!);
+        Assert.Equal("gearcoleco_mapper", field.Id);
+        var value = field.Choices!.Last().Id;
+        var changed = storage with { DeviceSettings = [new(EmulationMediaSlot.Cartridge0,
+            Cartridge: new CartridgeSlotSettings(Options: new Dictionary<string, string> { [field.Id] = value }))] };
+        var applied = StorageSettingsFunctions.Apply(configuration, changed);
+        var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(applied))!;
+        Assert.Equal(value, restored.Options[field.Id]);
+        Assert.Equal(value, StorageSettingsFunctions.Describe(restored).AvailableDevices
+            .Single(device => device.Slot == EmulationMediaSlot.Cartridge0).ConfigurationFields!.Single().Value);
+        Assert.Throws<ArgumentException>(() => StorageSettingsFunctions.Apply(configuration, changed with
+        {
+            DeviceSettings = [new(EmulationMediaSlot.Cartridge0,
+                Cartridge: new CartridgeSlotSettings(Options: new Dictionary<string, string> { [field.Id] = "invalid" }))]
+        }));
+        Assert.Equal(EmulationStorageConfigurationKind.None, StorageSettingsFunctions.Describe(
+            new MachineConfiguration(MachineModel.ColecoVision, core: Emulator.JollyCV))
+            .AvailableDevices.Single(device => device.Slot == EmulationMediaSlot.Cartridge0).ConfigurationKind);
+    }
+    [Fact]
     public async Task SelectedCoreRemainsSelectedInTheManagerAndFieldsUseTheirActualTab()
     {
         using var http = new HttpClient();
@@ -32,7 +58,7 @@ public sealed class ColecoModuleTests
         Assert.DoesNotContain(fields, field => field.Tab == EmulationMachineTab.General);
         Assert.Equal(EmulationMachineTab.Video, fields.Single(field => field.Id == "gearcoleco_timing").Tab);
         Assert.Equal(EmulationMachineTab.Video, fields.Single(field => field.Id == "gearcoleco_video_chip").Tab);
-        Assert.Equal(EmulationMachineTab.Storage, fields.Single(field => field.Id == "gearcoleco_mapper").Tab);
+        Assert.DoesNotContain(fields, field => field.Id == "gearcoleco_mapper");
     }
     [Theory]
     [InlineData(MachineModel.ColecoVision)]

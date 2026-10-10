@@ -4,6 +4,35 @@ namespace GWGUI.Tests.Interface.SettingsViews;
 public sealed class SettingsViewsTests(StaExecutionScenarios sta)
 {
     [Fact]
+    public Task ColecoCartridgeDialogReturnsSelectedMapper() => sta.Run(() =>
+    {
+        using var http = new System.Net.Http.HttpClient();
+        var directory = System.IO.Path.GetTempPath();
+        var module = new GWGUI.Emulation.Coleco.Modules.ColecoEmulationModule(directory, directory, http, directory);
+        var configuration = module.CreateConfiguration("ColecoVision");
+        var storage = module.DescribeStorageSettings(configuration);
+        var device = storage.AvailableDevices.Single(item => item.Slot == GWGUI.Emulation.Contracts.EmulationMediaSlot.Cartridge0);
+        var current = storage.DeviceSettings!.Single().Cartridge!;
+        var dialog = new GWGUI.App.Views.Dialogs.Emulation.Storage.CartridgeSlotConfigurationDialog(
+            device.Slot.ToString(), configuration.MachineId, current, string.Empty, null, module.Id, device.ConfigurationFields);
+        try
+        {
+            var expected = device.ConfigurationFields!.Single().Choices!.Last().Id;
+            var controls = new List<System.Windows.Controls.ComboBox>();
+            void Visit(System.Windows.DependencyObject parent)
+            {
+                if (parent is System.Windows.Controls.ComboBox combo) controls.Add(combo);
+                foreach (var child in System.Windows.LogicalTreeHelper.GetChildren(parent).OfType<System.Windows.DependencyObject>())
+                    Visit(child);
+            }
+            Visit(dialog);
+            var editor = Assert.Single(controls);
+            editor.SelectedIndex = editor.Items.Count - 1;
+            Assert.Equal(expected, dialog.Settings.Options!["gearcoleco_mapper"]);
+        }
+        finally { dialog.Close(); }
+    });
+    [Fact]
     public Task ColecoSelectorRetainsEachSelectedEmulator() => sta.RunAsync(async () =>
     {
         using var http = new System.Net.Http.HttpClient();

@@ -68,3 +68,6 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-10 13:53:45 | 06:58:01 | 01:01:57 | Reprise. Coleco : hôte commun et commandes des deux ports ; poursuite dans la liste ordonnée. |
 | 2026-10-10 14:10:14 | 07:14:30 | 00:45:28 | Reprise. Coleco : ressources contextualisées et valeurs invariantes retirées des langues. |
 | 2026-10-10 14:35:24 | 07:39:40 | 00:20:18 | Reprise. Coleco : essais natifs réussis, changement de cœur et rangement corrigés ; validation finale. |
+| 2026-10-10 14:52:24 | 07:56:40 | 00:03:18 | Coleco commité et sélecteur vérifié ; Epoch : sources et contrats, projet et configurations créés ; adaptateurs restants. |
+| 2026-10-10 14:53:32 | 07:57:48 | 00:02:10 | Reprise. Epoch : adaptateurs natifs après contrats attestés ; objectif complet conservé. |
+| 2026-10-10 15:04:34 | 08:08:50 | -00:08:51 | Reprise. Epoch : moteur cartouche, firmware SCV et libération native ; sélection Coleco revérifiée. |

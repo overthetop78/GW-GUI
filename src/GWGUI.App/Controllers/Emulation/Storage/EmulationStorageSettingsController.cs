@@ -233,7 +233,7 @@ internal sealed class EmulationStorageSettingsController
             ? null
             : LocExtension.GetForModule(_moduleId, device.ConfigurationOptionDetailedResourceKey);
         var dialog = new CartridgeSlotConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(),
-            _configuration?.MachineId ?? string.Empty, current, label, hint);
+            _configuration?.MachineId ?? string.Empty, current, label, hint, _moduleId, device.ConfigurationFields);
         CartridgeSlotSettings selected;
         try
         {
