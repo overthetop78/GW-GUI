@@ -54,3 +54,13 @@ Build Debug de l'application et des onze modules réussi le 10 octobre 2026 ; ex
 Essais natifs synthétiques : rejet du contenu absent et déchargement des trois DLL sur deux cycles chacun ; WonderSwan et Tamagotchi exécutent les frames, sauvegardent et restaurent les états, puis déchargent leur bibliothèque. SRAM WonderSwan 8 KiB écrite et restaurée après recréation. Les mêmes deux cœurs fonctionnent via le processus hôte réel ; après Dispose, leurs processus sont détruits et leurs cartes vidéo partagées ne peuvent plus être ouvertes.
 
 Limites de validation : aucun jeu commercial ni ROM système propriétaire utilisé. La lecture complète d'un disque Playdia n'a pas été testée ; l'initialisation et la fermeture après contenu absent le sont. Le détourage polygonal Tamagotchi reste provisoire à revoir.
+
+## Correction après ouverture réelle des paramètres
+
+- [x] Corriger et vérifier le défaut d'ouverture Bandai signalé dans les logs du 10 octobre
+  - [x] Modifier `src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/ConfigurationFunctions.cs` : accepter les affectations connues laissées vides par l'éditeur commun, conserver le rejet des actions inconnues.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Bandai/BandaiModuleTests.cs` : reproduire les lignes complètes de l'éditeur avec affectations vides pour chaque modèle et vérifier le cycle appliquer/sérialiser/restaurer.
+  - [x] Produire `build/Debug/GW GUI/gwgui.exe` et les onze modules par le build Debug modules=A ; vérifier les tests et le résultat terminal.
+  - [x] Créer puis supprimer `tests/GWGUI.Tests/Interface/SettingsViews/BandaiWindowValidationTests.cs` et ses seules fixtures : ouvrir et fermer la vraie fenêtre de paramètres pour les cinq modèles sur un thread STA, vérifier la libération dans finally ; supprimer l'outil et ses artefacts après utilisation.
+  - [x] Modifier `.git/index` et la référence de branche par un commit de correction Bandai après vérification de l'ouverture des paramètres.
+Correction d'ouverture : les affectations vides connues sont acceptées ; les actions inconnues restent rejetées. Build complet réussi et onze DLL présentes. Dix-huit tests autonomes et un essai temporaire de la vraie fenêtre sur cinq modèles/onglets réussis ; fermeture, contenu détaché et handle nul vérifiés. Essai temporaire supprimé.

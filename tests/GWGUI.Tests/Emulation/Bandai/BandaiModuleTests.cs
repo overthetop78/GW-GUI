@@ -15,6 +15,33 @@ namespace GWGUI.Tests.Emulation.Bandai;
 public sealed class BandaiModuleTests
 {
     [Theory]
+    [InlineData(MachineModel.WonderSwan)]
+    [InlineData(MachineModel.WonderSwanColor)]
+    [InlineData(MachineModel.SwanCrystal)]
+    [InlineData(MachineModel.Playdia)]
+    [InlineData(MachineModel.TamagotchiP1)]
+    public void UnassignedEditorRowsSurviveApplyAndPersistence(MachineModel model)
+    {
+        var configuration = new MachineConfiguration(model);
+        var settings = InputSettingsFunctions.Describe(configuration);
+        var port = Assert.Single(settings.ControllerPorts);
+        var values = port.Bindings.Definitions.ToDictionary(definition => definition.Id, _ => string.Empty);
+        var applied = InputSettingsFunctions.Apply(configuration, settings with
+        {
+            ControllerPorts = [port with { Bindings = port.Bindings with { Values = values } }]
+        });
+        var restored = RoundTrip(applied);
+        Assert.Equal(values.Count, Assert.Single(restored.Input.Controllers!).Mappings!.Count);
+        Assert.All(restored.Input.Controllers![0].Mappings!, mapping => Assert.Equal(string.Empty, mapping.Value));
+        Assert.Equal(0u, Assert.Single(InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty, restored.Input, model).Controllers).Buttons);
+        Assert.Throws<ArgumentException>(() => InputSettingsFunctions.Apply(configuration, settings with
+        {
+            ControllerPorts = [port with { Bindings = port.Bindings with
+                { Values = new Dictionary<string, string> { ["UnknownAction"] = string.Empty } } }]
+        }));
+    }
+
+    [Theory]
     [InlineData(MachineModel.WonderSwan, 12, true, false, true)]
     [InlineData(MachineModel.WonderSwanColor, 12, true, false, true)]
     [InlineData(MachineModel.SwanCrystal, 12, true, false, true)]

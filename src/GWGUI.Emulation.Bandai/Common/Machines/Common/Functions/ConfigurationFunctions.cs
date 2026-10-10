@@ -93,8 +93,7 @@ internal static class ConfigurationFunctions
                     && controller.Peripheral != DefaultPeripheral(configuration.Model))
                 throw new ArgumentException(nameof(configuration.Input));
             if (controller.Mappings?.Any(mapping =>
-                    !InputSnapshotDictionary.ForModel(configuration.Model).ContainsKey(mapping.Key)
-                    || string.IsNullOrWhiteSpace(mapping.Value)) == true)
+                    !InputSnapshotDictionary.ForModel(configuration.Model).ContainsKey(mapping.Key)) == true)
                 throw new ArgumentException(nameof(configuration.Input));
         }
     }
