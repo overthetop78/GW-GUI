@@ -128,4 +128,5 @@
   <data name="Emulation.Controller.Visual.Model.sony-guncon"><value>Namco GunCon / G-Con 45</value></data>
   <data name="Emulation.Controller.Visual.Model.sony-justifier"><value>Konami Justifier / Hyper Blaster</value></data>
   <data name="Emulation.Controller.Multitap"><value>Multitap</value></data>
+  <data name="Emulation.Controller.Visual.Model.coleco-controller"><value>ColecoVision Controller</value></data>
 </root>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Error.StateIncompatible"><value>Coleco保存的状态与目前的机器不相容.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected"><value>发生了意外的 Coleco 仿真错误 。</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing"><value>需要的Coleco固件不见了</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid"><value>系统ROM无效或不兼容.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound"><value>未找到配置的 Coleco 媒体 。</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported"><value>此机器不支持所选的媒体 。</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid"><value>Coleco 选项的值无效 。</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound"><value>未找到所需的 Coleco 核心 。</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected"><value>无法装入选中的 Coleco 核心 。</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid"><value>Coleco 保存状态无效 。</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing"><value>Coleco 主机可执行路径不可用 。</value></data>
+  <data name="Emulation.Coleco.Error.Details"><value>细节 :{0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure"><value>与Coleco主机的通信失败.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand"><value>未知的环境命令 :{0}</value></data>
+</root>

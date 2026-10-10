@@ -58,3 +58,13 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-10 12:13:13 | 05:17:29 | 02:42:29 | Reprise. Coleco : projet et manifeste créés ; contrats ColecoVision et ADAM en cours. |
 | 2026-10-10 12:34:36 | 05:38:52 | 02:21:06 | Reprise. Révision des captures Bandai ; suppression globale des dossiers de Général et des mentions de redémarrage. |
 | 2026-10-10 13:02:45 | 06:07:01 | 01:52:57 | Reprise. Suppression des choix de dossiers dans tous les modules, y compris Atari et Commodore ; validation finale. |
+| 2026-10-10 13:11:11 | 06:15:27 | 01:44:31 | Reprise. Coleco : fichiers système blueMSX et adaptateurs natifs. |
+| 2026-10-10 13:15:24 | 06:19:40 | 01:40:18 | Reprise. Coleco : callbacks natifs, entrées et supports ADAM. |
+| 2026-10-10 13:22:47 | 06:27:03 | 01:32:55 | Reprise. Coleco : chargement du cœur, BIOS, médias ADAM et états. |
+| 2026-10-10 13:31:05 | 06:35:21 | 01:24:37 | Reprise. Coleco : export ADAM, buffers multiples, sondes, états et mémoire de sauvegarde. |
+| 2026-10-10 13:34:30 | 06:38:46 | 01:21:12 | Reprise. Coleco : base de jeux retirée des ressources et de la préparation du cœur. |
+| 2026-10-10 13:39:47 | 06:44:03 | 01:15:55 | Revue demandée : erreurs recoupées dans les commits et directives corrigées avant reprise Coleco. |
+| 2026-10-10 13:45:09 | 06:49:25 | 01:10:33 | Reprise. Coleco : moteur natif, BIOS, cinq supports ADAM, ports et arrêt raccordés ; intégration restante. |
+| 2026-10-10 13:53:45 | 06:58:01 | 01:01:57 | Reprise. Coleco : hôte commun et commandes des deux ports ; poursuite dans la liste ordonnée. |
+| 2026-10-10 14:10:14 | 07:14:30 | 00:45:28 | Reprise. Coleco : ressources contextualisées et valeurs invariantes retirées des langues. |
+| 2026-10-10 14:35:24 | 07:39:40 | 00:20:18 | Reprise. Coleco : essais natifs réussis, changement de cœur et rangement corrigés ; validation finale. |

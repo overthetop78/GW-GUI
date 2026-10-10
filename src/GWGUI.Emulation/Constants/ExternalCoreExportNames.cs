@@ -17,6 +17,7 @@ internal static class ExternalCoreExportNames
     internal const string Reset = "retro_reset";
     internal const string Run = "retro_run";
     internal const string LoadGame = "retro_load_game";
+    internal const string LoadGameSpecial = "retro_load_game_special";
     internal const string UnloadGame = "retro_unload_game";
     internal const string GetRegion = "retro_get_region";
     internal const string GetMemoryData = "retro_get_memory_data";

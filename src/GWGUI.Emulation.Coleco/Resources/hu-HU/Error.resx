@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Error.StateIncompatible"><value>A Coleco mentett állam összeegyeztethetetlen az aktuális géppel.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected"><value>Váratlan Coleco emulációs hiba történt.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing"><value>Egy szükséges Coleco firmware hiányzik.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid"><value>A ROM rendszer érvénytelen vagy összeegyeztethetetlen.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound"><value>A konfigurált Coleco média nem található.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported"><value>Ez a gép nem támogatja a kiválasztott médiát.</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid"><value>A Coleco opció érvénytelen.</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound"><value>A szükséges Coleco magot nem találták meg.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected"><value>A kiválasztott Coleco magot nem sikerült betölteni.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid"><value>A Coleco mentett állam érvénytelen.</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing"><value>A Coleco host futtatható elérési útja nem érhető el.</value></data>
+  <data name="Emulation.Coleco.Error.Details"><value>Részletek: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure"><value>A kommunikáció a Coleco host nem sikerült.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand"><value>Ismeretlen környezet parancs: {0}</value></data>
+</root>

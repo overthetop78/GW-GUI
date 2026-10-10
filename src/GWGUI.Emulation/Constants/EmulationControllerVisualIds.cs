@@ -2,6 +2,7 @@ namespace GWGUI.Emulation.Constants;
 
 public static class EmulationControllerVisualIds
 {
+    public const string ColecoController = "coleco-controller";
     public const string BandaiWonderSwan = "bandai-wonderswan";
     public const string BandaiWonderSwanColor = "bandai-wonderswan-color";
     public const string BandaiSwanCrystal = "bandai-swancrystal";

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Error.StateIncompatible"><value>Stav uložený Coleco je neslučitelný se stávajícím strojem.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected"><value>Nastala neočekávaná chyba v emulaciColeco.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing"><value>Chybí požadovaný firmware Coleco.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid"><value>Systém ROM je neplatný nebo neslučitelný.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound"><value>Nakonfigurovaná média Coleco nebyla nalezena.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported"><value>Tento stroj nepodporuje vybraná média.</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid"><value>Možnost Coleco má neplatnou hodnotu.</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound"><value>Požadované jádro Coleco nebylo nalezeno.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected"><value>Zvolené Coleco jádro nebylo možné načíst.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid"><value>Stav uložený Coleco je neplatný.</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing"><value>Spustitelná cesta Coleco hostitele je nedostupná.</value></data>
+  <data name="Emulation.Coleco.Error.Details"><value>Podrobnosti: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure"><value>Komunikace s moderátorem Coleco selhala.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand"><value>Příkaz neznámého prostředí: {0}</value></data>
+</root>

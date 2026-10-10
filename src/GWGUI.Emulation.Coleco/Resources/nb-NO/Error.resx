@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Error.StateIncompatible"><value>Coleco-lagringsstaten er ikke kompatibel med den aktuelle maskinen.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected"><value>En uventet Coleco emuleringsfeil oppstod.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing"><value>En nødvendig Coleco firmware mangler.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid"><value>Systemets ROM er ugyldig eller uforenlig.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound"><value>Det konfigurerte Coleco-mediet ble ikke funnet.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported"><value>Denne maskinen støtter ikke det valgte mediet.</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid"><value>Et Coleco-alternativ har en ugyldig verdi.</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound"><value>Den nødvendige Coleco kjernen ble ikke funnet.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected"><value>Den valgte Coleco-kjernen kunne ikke lastes.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid"><value>Coleco lagret staten er ugyldig.</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing"><value>Coleco-vertens kjørbare sti er utilgjengelig.</value></data>
+  <data name="Emulation.Coleco.Error.Details"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure"><value>Kommunikasjon med Coleco-verten mislyktes.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand"><value>Ukjent miljøkommando: {0}</value></data>
+</root>

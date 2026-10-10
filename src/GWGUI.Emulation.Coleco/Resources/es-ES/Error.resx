@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Error.StateIncompatible"><value>El estado salvado de Coleco es incompatible con la máquina actual.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected"><value>Se produjo un error inesperado de emulación Coleco.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing"><value>Falta un firmware de Coleco necesario.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid"><value>El sistema ROM es inválido o incompatible.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound"><value>No se encontró el medio de Coleco configurado.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported"><value>Esta máquina no admite los medios seleccionados.</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid"><value>Una opción Coleco tiene un valor inválido.</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound"><value>No se encontró el núcleo necesario de Coleco.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected"><value>El núcleo seleccionado de Coleco no se puede cargar.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid"><value>El estado salvado de Coleco es inválido.</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing"><value>El camino ejecutable del anfitrión Coleco no está disponible.</value></data>
+  <data name="Emulation.Coleco.Error.Details"><value>Detalles: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure"><value>La comunicación con el anfitrión Coleco falló.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand"><value>desconocido medio ambiente comando: {0}</value></data>
+</root>

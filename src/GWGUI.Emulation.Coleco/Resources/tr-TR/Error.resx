@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Error.StateIncompatible"><value>Coleco kurtarılan devlet mevcut makine ile uyumlu değildir.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected"><value>Beklenmeyen bir Coleco emulation hatası meydana geldi.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing"><value>Gerekli Coleco Hardware eksik.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid"><value>Sistem ROM geçersiz veya uyumsuzdur.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound"><value>yapılandırılmış Coleco medyası bulunamadı.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported"><value>Bu makine seçilmiş medyayı desteklemiyor.</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid"><value>Coleco seçeneğinin geçersiz bir değeri vardır.</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound"><value>Gerekli Coleco çekirdeği bulunamadı.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected"><value>Seçilen Coleco çekirdeği yüklenemezdi.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid"><value>Coleco kurtarılan devlet geçersizdir.</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing"><value>Coleco ev sahibi executable yol mevcut değildir.</value></data>
+  <data name="Emulation.Coleco.Error.Details"><value>Detaylar: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure"><value>Coleco ev sahibi ile iletişim başarısız oldu.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand"><value>Bilinmeyen çevre komutları: {0}</value></data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Error.StateIncompatible"><value>De opgeslagen toestand van Coleco is onverenigbaar met de huidige machine.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected"><value>Er is een onverwachte Coleco emulatiefout opgetreden.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing"><value>Een vereiste Coleco firmware ontbreekt.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid"><value>Het systeem ROM is ongeldig of onverenigbaar.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound"><value>De geconfigureerde Coleco media werden niet gevonden.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported"><value>Deze machine ondersteunt de geselecteerde media niet.</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid"><value>Een Coleco optie heeft een ongeldige waarde.</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound"><value>De vereiste Coleco kern werd niet gevonden.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected"><value>De geselecteerde Coleco-kern kon niet geladen worden.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid"><value>De opgeslagen status van Coleco is ongeldig.</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing"><value>Het uitvoerbare pad van de Coleco-host is niet beschikbaar.</value></data>
+  <data name="Emulation.Coleco.Error.Details"><value>Gegevens: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure"><value>Communicatie met de Coleco host is mislukt.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand"><value>Onbekend omgevingscommando: {0}</value></data>
+</root>

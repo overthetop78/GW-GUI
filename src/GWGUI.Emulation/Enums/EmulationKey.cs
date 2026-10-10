@@ -14,5 +14,7 @@ public enum EmulationKey
     NumpadPeriod, NumpadDivide, NumpadMultiply, NumpadMinus, NumpadPlus, NumpadEnter,
     AcornF0, AcornCopy, AcornShiftLock,
     AcornKeypadHash, AcornKeypadDelete, AcornKeypadComma,
-    AppleOpenApple, AppleSolidApple, MacintoshCommand, MacintoshKeypadClear, MacintoshKeypadEquals
+    AppleOpenApple, AppleSolidApple, MacintoshCommand, MacintoshKeypadClear, MacintoshKeypadEquals,
+    AdamSmart1, AdamSmart2, AdamSmart3, AdamSmart4, AdamSmart5, AdamSmart6,
+    AdamUndo, AdamWildCard, AdamMove, AdamStore, AdamClear, AdamPrint
 }

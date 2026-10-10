@@ -83,6 +83,9 @@ internal static class ExternalCoreApi
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     [return: MarshalAs(UnmanagedType.I1)]
     internal delegate bool LoadGame(nint gameInfo);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    [return: MarshalAs(UnmanagedType.I1)]
+    internal delegate bool LoadGameSpecial(uint subsystemId, nint gameInfos, nuint count);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nuint GetSerializedSize();
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
     internal delegate bool Serialize(nint data, nuint size);

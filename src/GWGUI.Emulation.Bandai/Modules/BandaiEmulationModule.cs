@@ -139,6 +139,19 @@ public sealed class BandaiEmulationModule : IEmulationModule, IEmulationEmulator
     public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId,
         CancellationToken cancellationToken = default) => Adapter(machineId)
         .GetInstallationAsync(_managementContext, cancellationToken);
+    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(
+        IEmulationConfiguration configuration, CancellationToken cancellationToken = default) =>
+        _engine.Adapter(Require(configuration)).GetInstallationAsync(_managementContext, cancellationToken);
+
+    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
+        IEmulationConfiguration configuration, CancellationToken cancellationToken = default) =>
+        _engine.Adapter(Require(configuration)).FindReleasesAsync(_managementContext, cancellationToken);
+
+    public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration,
+        EmulationEmulatorRelease release, IProgress<double>? progress = null,
+        CancellationToken cancellationToken = default) =>
+        _engine.Adapter(Require(configuration)).InstallAsync(_managementContext, release, progress, cancellationToken);
+
     public async ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(
         IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {

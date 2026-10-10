@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Error.StateIncompatible"><value>המדינה Coleco הצילה אינה תואמת למכונה הנוכחית.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected"><value>טעות חיקוי בלתי צפויה של Coleco התרחשה.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing"><value>קושחה Coleco הנדרשת נעדר.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid"><value>המערכת ROM היא בלתי חוקית או לא מתאימה.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound"><value>התקשורת של Coleco לא נמצאה.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported"><value>מכונה זו אינה תומכת בתקשורת שנבחרה.</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid"><value>אפשרות Coleco יש ערך לא חוקי.</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound"><value>הליבה Coleco הנדרשת לא נמצאה.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected"><value>הליבה Coleco הנבחר לא יכול להיות טעון.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid"><value>המדינה Coleco הצילה היא בלתי נסבלת.</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing"><value>מסלול Coleco אינו זמין.</value></data>
+  <data name="Emulation.Coleco.Error.Details"><value>תגית: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure"><value>התקשורת עם מארח Coleco נכשלה.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand"><value>ארכיון תגיות: {0}</value></data>
+</root>
