@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Error.StateIncompatible"><value>המדינה Philips הצילה אינה תואמת למכונה הנוכחית.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected"><value>טעות חיקוי בלתי צפויה של Philips התרחשה.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing"><value>קושחה Philips הנדרשת נעדר.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>המערכת ROM היא בלתי חוקית או לא מתאימה.</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound"><value>התקשורת של Philips לא נמצאה.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported"><value>מכונה זו אינה תומכת בתקשורת שנבחרה.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid"><value>אפשרות Philips יש ערך לא חוקי.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound"><value>הליבה Philips הנדרשת לא נמצאה.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected"><value>הליבה Philips הנבחר לא יכול להיות טעון.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid"><value>המדינה Philips הצילה היא בלתי נסבלת.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>הנתיב המתואם של חברת Philips אינו זמין.</value></data>
+  <data name="Emulation.Philips.Error.Details"><value>תגית: {0}</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>התקשורת עם מארח Philips נכשלה.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>ארכיון תגיות: {0}</value></data>
+</root>

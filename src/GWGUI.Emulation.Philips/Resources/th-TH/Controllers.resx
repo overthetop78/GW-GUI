@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Controller.Joystick"><value>แท่งควบคุม</value></data>
+  <data name="Emulation.Philips.Controller.CdiGamepad"><value>CD-i เกมเกม พ.ศ.</value></data>
+  <data name="Emulation.Philips.Controller.Mouse"><value>เมาส์</value></data>
+  <data name="Emulation.Philips.Controller.LightGun"><value>ปืนเบา</value></data>
+  <data name="Emulation.Philips.Controller.None"><value>ไม่มี</value></data>
+  <data name="Emulation.Philips.Input.Fire"><value>ปุ่มยิง</value></data>
+  <data name="Emulation.Philips.Input.Action1"><value>ปุ่ม 1</value></data>
+  <data name="Emulation.Philips.Input.Action2"><value>ปุ่ม 2</value></data>
+  <data name="Emulation.Philips.Input.Action3"><value>ปุ่ม 3</value></data>
+  <data name="Emulation.Philips.Input.Trigger"><value>ตัวกระตุ้น</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary"><value>ปุ่มขยายสัญญาณ</value></data>
+  <data name="Emulation.Philips.Input.Reload"><value>เรียกใหม่</value></data>
+</root>

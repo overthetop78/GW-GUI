@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Error.StateIncompatible"><value>Philips-lagringstilstanden er ikke kompatibel med den aktuelle maskinen.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected"><value>En uventet Philips- emuleringsfeil oppstod.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing"><value>En nødvendig Philips firmware mangler.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>Systemets ROM er ugyldig eller uforenlig.</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound"><value>De konfigurerte Philips-mediene ble ikke funnet.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported"><value>Denne maskinen støtter ikke det valgte mediet.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid"><value>Et Philips-alternativ har en ugyldig verdi.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound"><value>Den nødvendige Philips kjernen ble ikke funnet.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected"><value>Den valgte Philips-kjernen kunne ikke lastes.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid"><value>Philips lagret tilstand er ugyldig.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>Philips-vertens kjørbare sti er utilgjengelig.</value></data>
+  <data name="Emulation.Philips.Error.Details"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>Kommunikasjon med Philips-verten mislyktes.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>Ukjent miljøkommando: {0}</value></data>
+</root>

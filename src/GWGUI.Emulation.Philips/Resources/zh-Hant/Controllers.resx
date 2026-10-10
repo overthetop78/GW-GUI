@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Controller.Joystick"><value>Joystick</value></data>
+  <data name="Emulation.Philips.Controller.CdiGamepad"><value>CD-i 游戲板</value></data>
+  <data name="Emulation.Philips.Controller.Mouse"><value>鼠標</value></data>
+  <data name="Emulation.Philips.Controller.LightGun"><value>輕炮</value></data>
+  <data name="Emulation.Philips.Controller.None"><value>無</value></data>
+  <data name="Emulation.Philips.Input.Fire"><value>點火按鈕</value></data>
+  <data name="Emulation.Philips.Input.Action1"><value>按鈕 1</value></data>
+  <data name="Emulation.Philips.Input.Action2"><value>按鈕 2</value></data>
+  <data name="Emulation.Philips.Input.Action3"><value>按鈕 3</value></data>
+  <data name="Emulation.Philips.Input.Trigger"><value>觸發器</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary"><value>輔助按鈕</value></data>
+  <data name="Emulation.Philips.Input.Reload"><value>重新裝入</value></data>
+</root>

@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Controller.Joystick"><value>cần điều khiển</value></data>
+  <data name="Emulation.Philips.Controller.CdiGamepad"><value>CD-i Gamepad</value></data>
+  <data name="Emulation.Philips.Controller.Mouse"><value>Chuột</value></data>
+  <data name="Emulation.Philips.Controller.LightGun"><value>Súng ánh sáng</value></data>
+  <data name="Emulation.Philips.Controller.None"><value>Không</value></data>
+  <data name="Emulation.Philips.Input.Fire"><value>nút chữa cháy</value></data>
+  <data name="Emulation.Philips.Input.Action1"><value>Nút 1</value></data>
+  <data name="Emulation.Philips.Input.Action2"><value>Nút 2</value></data>
+  <data name="Emulation.Philips.Input.Action3"><value>Nút 3</value></data>
+  <data name="Emulation.Philips.Input.Trigger"><value>gây nên</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary"><value>nút phụ</value></data>
+  <data name="Emulation.Philips.Input.Reload"><value>Nạp lại</value></data>
+</root>

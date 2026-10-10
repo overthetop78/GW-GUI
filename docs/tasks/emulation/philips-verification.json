@@ -1,0 +1,3539 @@
+[
+  {
+    "Check": "Settings",
+    "Model": "PhilipsCdi",
+    "Core": "cdi2015",
+    "Cultures": 29,
+    "Fields": 15,
+    "Ports": 1,
+    "EmptyControllerAssignments": true,
+    "EmulatorSelection": true
+  },
+  {
+    "Check": "Settings",
+    "Model": "PhilipsCdi",
+    "Core": "same_cdi",
+    "Cultures": 29,
+    "Fields": 17,
+    "Ports": 1,
+    "EmptyControllerAssignments": true,
+    "EmulatorSelection": true
+  },
+  {
+    "Check": "Settings",
+    "Model": "P2000T",
+    "Core": "m2000",
+    "Cultures": 29,
+    "Fields": 10,
+    "Ports": 0,
+    "EmptyControllerAssignments": true,
+    "EmulatorSelection": true
+  },
+  {
+    "Check": "Settings",
+    "Model": "Odyssey2",
+    "Core": "o2em",
+    "Cultures": 29,
+    "Fields": 16,
+    "Ports": 2,
+    "EmptyControllerAssignments": true,
+    "EmulatorSelection": true
+  },
+  {
+    "Check": "Settings",
+    "Model": "VideopacG7000",
+    "Core": "o2em",
+    "Cultures": 29,
+    "Fields": 16,
+    "Ports": 2,
+    "EmptyControllerAssignments": true,
+    "EmulatorSelection": true
+  },
+  {
+    "Check": "ButtonIII",
+    "NativeMask": 257,
+    "UnassignedInputIgnored": true
+  },
+  {
+    "Check": "Native",
+    "Model": "P2000T",
+    "Core": "m2000",
+    "Frames": 30,
+    "FramesPerSecond": 50,
+    "SampleRate": 30000,
+    "Width": 480,
+    "Height": 480,
+    "StateBytes": 36940,
+    "Process": 56052,
+    "SyntheticCartridge": false
+  },
+  {
+    "Check": "NativeCleanup",
+    "Model": "P2000T",
+    "Process": 56052,
+    "Exited": true
+  },
+  {
+    "Check": "Native",
+    "Model": "Odyssey2",
+    "Core": "o2em",
+    "Frames": 30,
+    "FramesPerSecond": 60,
+    "SampleRate": 42240,
+    "Width": 340,
+    "Height": 250,
+    "StateBytes": 8754,
+    "Process": 59972,
+    "SyntheticCartridge": true
+  },
+  {
+    "Check": "NativeCleanup",
+    "Model": "Odyssey2",
+    "Process": 59972,
+    "Exited": true
+  },
+  {
+    "Check": "Native",
+    "Model": "VideopacG7000",
+    "Core": "o2em",
+    "Frames": 30,
+    "FramesPerSecond": 50,
+    "SampleRate": 35200,
+    "Width": 340,
+    "Height": 250,
+    "StateBytes": 8754,
+    "Process": 45760,
+    "SyntheticCartridge": true
+  },
+  {
+    "Check": "NativeCleanup",
+    "Model": "VideopacG7000",
+    "Process": 45760,
+    "Exited": true
+  },
+  {
+    "Check": "CdiBios",
+    "Core": "Cdi2015",
+    "Compatibility": 1,
+    "NativeBoot": "Not tested: suitable disc not yet supplied to this verification"
+  },
+  {
+    "Check": "CdiBios",
+    "Core": "SameCdi",
+    "Compatibility": 1,
+    "NativeBoot": "Not tested: suitable disc not yet supplied to this verification"
+  },
+  {
+    "Check": "Status",
+    "Passed": true,
+    "Remaining": [
+      "CD-i native boot/media/states",
+      "WPF settings rendering",
+      "Machine lifecycle/media replacement"
+    ]
+  },
+  {
+    "Check": "DebugBuild",
+    "ExitCode": 0,
+    "Executable": "F:\\GW GUI\\build\\Debug\\GW GUI\\gwgui.exe",
+    "Modules": [
+      {
+        "Id": "acorn",
+        "Manifest": true,
+        "Assembly": true
+      },
+      {
+        "Id": "amstrad",
+        "Manifest": true,
+        "Assembly": true
+      },
+      {
+        "Id": "apple",
+        "Manifest": true,
+        "Assembly": true
+      },
+      {
+        "Id": "atari",
+        "Manifest": true,
+        "Assembly": true
+      },
+      {
+        "Id": "bandai",
+        "Manifest": true,
+        "Assembly": true
+      },
+      {
+        "Id": "coleco",
+        "Manifest": true,
+        "Assembly": true
+      },
+      {
+        "Id": "commodore",
+        "Manifest": true,
+        "Assembly": true
+      },
+      {
+        "Id": "epoch",
+        "Manifest": true,
+        "Assembly": true
+      },
+      {
+        "Id": "fairchild",
+        "Manifest": true,
+        "Assembly": true
+      },
+      {
+        "Id": "microsoft",
+        "Manifest": true,
+        "Assembly": true
+      },
+      {
+        "Id": "nec",
+        "Manifest": true,
+        "Assembly": true
+      },
+      {
+        "Id": "nintendo",
+        "Manifest": true,
+        "Assembly": true
+      },
+      {
+        "Id": "philips",
+        "Manifest": true,
+        "Assembly": true
+      },
+      {
+        "Id": "sega",
+        "Manifest": true,
+        "Assembly": true
+      },
+      {
+        "Id": "sony",
+        "Manifest": true,
+        "Assembly": true
+      }
+    ],
+    "Date": "2026-10-10 20:14:19"
+  },
+  {
+    "Check": "WpfErrors",
+    "Count": 1,
+    "Errors": [
+      "System.ArgumentException: An item with the same key has already been added. Key: Emulation.Cpu.Processor\r\n   at System.Collections.Generic.Dictionary`2.TryInsert(TKey key, TValue value, InsertionBehavior behavior)\r\n   at System.Collections.Generic.Dictionary`2.Add(TKey key, TValue value)\r\n   at System.Linq.Enumerable.SpanToDictionary[TSource,TKey,TElement](ReadOnlySpan`1 source, Func`2 keySelector, Func`2 elementSelector, IEqualityComparer`1 comparer)\r\n   at System.Linq.Enumerable.ToDictionary[TSource,TKey,TElement](IEnumerable`1 source, Func`2 keySelector, Func`2 elementSelector, IEqualityComparer`1 comparer)\r\n   at System.Linq.Enumerable.ToDictionary[TSource,TKey,TElement](IEnumerable`1 source, Func`2 keySelector, Func`2 elementSelector)\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection.BuildCpuSettingsTab(EmulationMachineSettings settings) in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\EmulationModuleHardwareSettingsSection.cs:line 24\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection.BuildTab(EmulationMachineSettings settings, EmulationMachineTab tab) in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\ModuleSettings\\EmulationModuleSettingsSection.Layout.cs:line 62\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection.<>c__DisplayClass65_0.<BuildMachineTabs>b__0(EmulationMachineTab tab) in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\ModuleSettings\\EmulationModuleSettingsSection.Layout.cs:line 53\r\n   at GWGUI.App.Functions.Views.Emulation.Machine.EmulationMachineTabs.Create(Func`2 contentProvider, String automationName, Func`2 tabActivated, Nullable`1 selectedTab) in F:\\GW GUI\\src\\GWGUI.App\\Functions\\Views\\Emulation\\Machine\\EmulationMachineTabs.cs:line 27\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection.BuildMachineTabs() in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\ModuleSettings\\EmulationModuleSettingsSection.Layout.cs:line 53\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection.BuildEditor() in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\ModuleSettings\\EmulationModuleSettingsSection.Layout.cs:line 28\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection..ctor(IEmulationModule module, VideoPresentationProfileStore profiles, Action`1 showError) in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\EmulationModuleSettingsSection.cs:line 111\r\n   at Program.CheckViews(PhilipsEmulationModule module) in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 70\r\n   at Program.<>c__DisplayClass5_0.<<Main>b__1>d.MoveNext() in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 48"
+    ]
+  },
+  {
+    "Check": "WpfErrors",
+    "Count": 1,
+    "Errors": [
+      "System.IO.FileNotFoundException: Could not load file or assembly 'NAudio.Wasapi, Version=2.3.0.0, Culture=neutral, PublicKeyToken=e279aa5131008a41'. Le fichier spécifié est introuvable.\r\nFile name: 'NAudio.Wasapi, Version=2.3.0.0, Culture=neutral, PublicKeyToken=e279aa5131008a41'\r\n   at GWGUI.App.Services.Audio.WasapiAudioOutput.GetOutputDevices() in F:\\GW GUI\\src\\GWGUI.App\\Services\\Audio\\WasapiAudioOutput.cs:line 30\r\n   at GWGUI.App.Services.Audio.WasapiAudioOutput.GetOutputDevices() in F:\\GW GUI\\src\\GWGUI.App\\Services\\Audio\\WasapiAudioOutput.cs:line 30\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection.SelectionChoices(EmulationSettingsField field) in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\ModuleSettings\\EmulationModuleSettingsSection.Fields.cs:line 75\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection.CreateSelection(EmulationSettingsField field) in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\ModuleSettings\\EmulationModuleSettingsSection.Fields.cs:line 52\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection.CreateField(EmulationSettingsField field) in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\ModuleSettings\\EmulationModuleSettingsSection.Fields.cs:line 29\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection.CreateControlField(EmulationSettingsField field) in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\ModuleSettings\\EmulationModuleSettingsSection.Fields.cs:line 18\r\n   at System.Linq.Enumerable.ArrayWhereSelectIterator`2.ToArray(ReadOnlySpan`1 source, Func`2 predicate, Func`2 selector)\r\n   at System.Linq.Enumerable.ArrayWhereSelectIterator`2.ToArray()\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection.AddBlocks(Panel panel, EmulationMachineSettings settings, EmulationMachineTab tab) in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\ModuleSettings\\EmulationModuleSettingsSection.Layout.cs:line 204\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection.BuildTab(EmulationMachineSettings settings, EmulationMachineTab tab) in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\ModuleSettings\\EmulationModuleSettingsSection.Layout.cs:line 81\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection.<>c__DisplayClass65_0.<BuildMachineTabs>b__0(EmulationMachineTab tab) in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\ModuleSettings\\EmulationModuleSettingsSection.Layout.cs:line 53\r\n   at GWGUI.App.Functions.Views.Emulation.Machine.EmulationMachineTabs.Create(Func`2 contentProvider, String automationName, Func`2 tabActivated, Nullable`1 selectedTab) in F:\\GW GUI\\src\\GWGUI.App\\Functions\\Views\\Emulation\\Machine\\EmulationMachineTabs.cs:line 27\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection.BuildMachineTabs() in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\ModuleSettings\\EmulationModuleSettingsSection.Layout.cs:line 53\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection.BuildEditor() in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\ModuleSettings\\EmulationModuleSettingsSection.Layout.cs:line 28\r\n   at GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection..ctor(IEmulationModule module, VideoPresentationProfileStore profiles, Action`1 showError) in F:\\GW GUI\\src\\GWGUI.App\\Views\\Controls\\Emulation\\Options\\EmulationModuleSettingsSection.cs:line 111\r\n   at Program.CheckViews(PhilipsEmulationModule module) in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 70\r\n   at Program.<>c__DisplayClass5_0.<<Main>b__1>d.MoveNext() in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 48"
+    ]
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfEmulatorSwitch",
+    "Before": "SameCdi",
+    "After": "Cdi2015"
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfErrors",
+    "Count": 0,
+    "Errors": []
+  },
+  {
+    "Check": "BackendBoundary",
+    "Date": "2026-10-10 20:34:20",
+    "GenericCoreContract": "IEmulatorCore",
+    "GenericFactory": "MachineFactory",
+    "NativeInputConversion": "Emulators/Common/Interop/Functions/NativeInputFunctions.cs",
+    "NativeReferencesOutsideInterop": 0,
+    "BuildErrors": 0,
+    "BuildWarnings": 0,
+    "FutureNonLibretroEngineTested": false
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfEmulatorSwitch",
+    "Before": "SameCdi",
+    "After": "Cdi2015"
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfErrors",
+    "Count": 0,
+    "Errors": []
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfEmulatorSwitch",
+    "Before": "SameCdi",
+    "After": "Cdi2015"
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "P2000T",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 37367
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 77600,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 45916,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 81080,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 65504,
+    "Exited": true
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "Odyssey2",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 9186
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 51244,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 53484,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 59388,
+    "Exited": true
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "VideopacG7000",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 9186
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 68964,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 80448,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 83340,
+    "Exited": true
+  },
+  {
+    "Check": "WpfErrors",
+    "Count": 0,
+    "Errors": []
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfEmulatorSwitch",
+    "Before": "SameCdi",
+    "After": "Cdi2015"
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "P2000T",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 37367
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 61936,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 61792,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 85012,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 88504,
+    "Exited": true
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "Odyssey2",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 9186
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 34156,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 25248,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 38620,
+    "Exited": true
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "VideopacG7000",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 9186
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 48200,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 54740,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 86848,
+    "Exited": true
+  },
+  {
+    "Check": "CdiProcessReleased",
+    "Emulator": "Cdi2015",
+    "ProcessId": 78000,
+    "Exited": true
+  },
+  {
+    "Check": "WpfErrors",
+    "Count": 1,
+    "Errors": [
+      "GWGUI.Emulation.Exceptions.EmulationMessageException: Exception of type 'GWGUI.Emulation.Exceptions.EmulationMessageException' was thrown.\r\n ---> System.InvalidOperationException: La communication avec l'hôte Philips a échoué.Détails : -1073741819\r\n ---> System.IO.EndOfStreamException: Unable to read beyond the end of the stream.\r\n   at System.IO.Stream.ReadAtLeastAsyncCore(Memory`1 buffer, Int32 minimumBytes, Boolean throwOnEndOfStream, CancellationToken cancellationToken)\r\n   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)\r\n   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)\r\n--- End of stack trace from previous location ---\r\n   at GWGUI.Emulation.Philips.Common.Services.ProcessCore.ReadResponse() in F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Common\\Services\\ProcessCore.Protocol.cs:line 59\r\n   at GWGUI.Emulation.Philips.Common.Services.ProcessCore.Request(HostCommand command, Action`1 write, Action`1 read, Boolean allowUninitialized) in F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Common\\Services\\ProcessCore.Protocol.cs:line 35\r\n   --- End of inner exception stack trace ---\r\n   at GWGUI.Emulation.Philips.Common.Services.ProcessCore.FailConnection(Exception error) in F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Common\\Services\\ProcessCore.Protocol.cs:line 92\r\n   at GWGUI.Emulation.Philips.Common.Services.ProcessCore.Request(HostCommand command, Action`1 write, Action`1 read, Boolean allowUninitialized) in F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Common\\Services\\ProcessCore.Protocol.cs:line 46\r\n   at GWGUI.Emulation.Philips.Common.Services.ProcessCore.Initialize(MachineConfiguration configuration, String sessionDirectory, String saveDirectory) in F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Common\\Services\\ProcessCore.cs:line 120\r\n   at GWGUI.Emulation.Philips.Common.Services.Machine.Run(CancellationToken cancellationToken) in F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Common\\Services\\Machine.Commands.cs:line 37\r\n   --- End of inner exception stack trace ---\r\n   at GWGUI.Emulation.Philips.Common.Services.Machine.StartAsync(CancellationToken cancellationToken) in F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Common\\Services\\Machine.Lifecycle.cs:line 48\r\n   at GWGUI.Emulation.Philips.Common.Services.Machine.StartAsync(CancellationToken cancellationToken) in F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Common\\Services\\Machine.Lifecycle.cs:line 51\r\n   at Program.CheckCdi() in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 227\r\n   at Program.CheckCdi() in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 256\r\n   at Program.<>c__DisplayClass5_0.<<Main>b__2>d.MoveNext() in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 64"
+    ]
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfEmulatorSwitch",
+    "Before": "SameCdi",
+    "After": "Cdi2015"
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "P2000T",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 37367
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 82712,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 48116,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 67364,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 18680,
+    "Exited": true
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "Odyssey2",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 9186
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 24236,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 14704,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 23580,
+    "Exited": true
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "VideopacG7000",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 9186
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 52620,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 86412,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 49072,
+    "Exited": true
+  },
+  {
+    "Check": "CdiProcessReleased",
+    "Emulator": "Cdi2015",
+    "ProcessId": 52284,
+    "Exited": true
+  },
+  {
+    "Check": "WpfErrors",
+    "Count": 1,
+    "Errors": [
+      "System.InvalidOperationException: CD-i frame or state unavailable: Cdi2015:Faulted\r\n   at Program.CheckCdi() in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 233\r\n   at Program.CheckCdi() in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 256\r\n   at Program.<>c__DisplayClass5_0.<<Main>b__2>d.MoveNext() in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 64"
+    ]
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfEmulatorSwitch",
+    "Before": "SameCdi",
+    "After": "Cdi2015"
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "P2000T",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 37367
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 88976,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 4692,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 62264,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 79844,
+    "Exited": true
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "Odyssey2",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 9186
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 61664,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 71936,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 68100,
+    "Exited": true
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "VideopacG7000",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 9186
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 34200,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 72016,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 48944,
+    "Exited": true
+  },
+  {
+    "Check": "CdiFailure",
+    "Emulator": "Cdi2015",
+    "Error": "System.InvalidOperationException: CD-i frame or state unavailable: Cdi2015:Faulted\r\n   at Program.CheckCdi() in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 234",
+    "Diagnostics": [
+      "SYSTEM_DIRECTORY: <native-argument>",
+      "CONTENT_DIRECTORY: <native-argument>",
+      "SAVE_DIRECTORY: <native-argument>",
+      "AV_INFO: width=<native-argument> height=<native-argument>",
+      "AV_INFO: max_width=<native-argument> max_height=<native-argument>",
+      "AV_INFO: aspect_ratio = <native-argument>",
+      "AV_INFO: fps = <native-argument> sample_rate = <native-argument>"
+    ]
+  },
+  {
+    "Check": "CdiProcessReleased",
+    "Emulator": "Cdi2015",
+    "ProcessId": 87236,
+    "Exited": true
+  },
+  {
+    "Check": "CdiNativeMachine",
+    "Emulator": "SameCdi",
+    "FrameWidth": 768,
+    "FrameHeight": 280,
+    "FrameSequence": 51,
+    "SaveLoad": true,
+    "StateBytes": 5578692,
+    "Media": "Synthetic blank CHD v5 MODE1; BIOS boot and runtime only, not a commercial game"
+  },
+  {
+    "Check": "CdiProcessReleased",
+    "Emulator": "SameCdi",
+    "ProcessId": 43908,
+    "Exited": true
+  },
+  {
+    "Check": "WpfErrors",
+    "Count": 1,
+    "Errors": [
+      "System.InvalidOperationException: CD-i frame or state unavailable: Cdi2015:Faulted\r\n   at Program.CheckCdi() in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 234"
+    ]
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfEmulatorSwitch",
+    "Before": "SameCdi",
+    "After": "Cdi2015"
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "P2000T",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 37367
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 41732,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 79920,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 83612,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 66172,
+    "Exited": true
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "Odyssey2",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 9186
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 88000,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 74284,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 51080,
+    "Exited": true
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "VideopacG7000",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 9186
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 24124,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 2644,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 66476,
+    "Exited": true
+  },
+  {
+    "Check": "CdiFailure",
+    "Emulator": "Cdi2015",
+    "Error": "System.InvalidOperationException: CD-i frame or state unavailable: Cdi2015:Faulted\r\n   at Program.CheckCdi() in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 234",
+    "Diagnostics": [
+      "SYSTEM_DIRECTORY: <native-argument>",
+      "CONTENT_DIRECTORY: <native-argument>",
+      "SAVE_DIRECTORY: <native-argument>",
+      "AV_INFO: width=<native-argument> height=<native-argument>",
+      "AV_INFO: max_width=<native-argument> max_height=<native-argument>",
+      "AV_INFO: aspect_ratio = <native-argument>",
+      "AV_INFO: fps = <native-argument> sample_rate = <native-argument>"
+    ]
+  },
+  {
+    "Check": "CdiDirectFailure",
+    "Phase": "RunFrame",
+    "Error": "System.InvalidOperationException: La communication avec l'hôte Philips a échoué.Détails : -1073741819\r\n ---> System.IO.EndOfStreamException: Unable to read beyond the end of the stream.\r\n   at System.IO.Stream.ReadAtLeastAsyncCore(Memory`1 buffer, Int32 minimumBytes, Boolean throwOnEndOfStream, CancellationToken cancellationToken)\r\n   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)\r\n   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)\r\n--- End of stack trace from previous location ---\r\n   at GWGUI.Emulation.Philips.Common.Services.ProcessCore.ReadResponse() in F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Common\\Services\\ProcessCore.Protocol.cs:line 59\r\n   at GWGUI.Emulation.Philips.Common.Services.ProcessCore.Request(HostCommand command, Action`1 write, Action`1 read, Boolean allowUninitialized) in F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Common\\Services\\ProcessCore.Protocol.cs:line 35\r\n   --- End of inner exception stack trace ---\r\n   at GWGUI.Emulation.Philips.Common.Services.ProcessCore.FailConnection(Exception error) in F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Common\\Services\\ProcessCore.Protocol.cs:line 92\r\n   at GWGUI.Emulation.Philips.Common.Services.ProcessCore.Request(HostCommand command, Action`1 write, Action`1 read, Boolean allowUninitialized) in F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Common\\Services\\ProcessCore.Protocol.cs:line 46\r\n   at GWGUI.Emulation.Philips.Common.Services.ProcessCore.RunFrame() in F:\\GW GUI\\src\\GWGUI.Emulation.Philips\\Common\\Services\\ProcessCore.cs:line 138\r\n   at Program.CheckCdi() in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 261",
+    "Diagnostics": [
+      "SYSTEM_DIRECTORY: <native-argument>",
+      "CONTENT_DIRECTORY: <native-argument>",
+      "SAVE_DIRECTORY: <native-argument>",
+      "AV_INFO: width=<native-argument> height=<native-argument>",
+      "AV_INFO: max_width=<native-argument> max_height=<native-argument>",
+      "AV_INFO: aspect_ratio = <native-argument>",
+      "AV_INFO: fps = <native-argument> sample_rate = <native-argument>"
+    ]
+  },
+  {
+    "Check": "CdiProbeReleased",
+    "ProcessId": 58184,
+    "Exited": true
+  },
+  {
+    "Check": "CdiProcessReleased",
+    "Emulator": "Cdi2015",
+    "ProcessId": 76772,
+    "Exited": true
+  },
+  {
+    "Check": "CdiNativeMachine",
+    "Emulator": "SameCdi",
+    "FrameWidth": 768,
+    "FrameHeight": 280,
+    "FrameSequence": 51,
+    "SaveLoad": true,
+    "StateBytes": 5578692,
+    "Media": "Synthetic blank CHD v5 MODE1; BIOS boot and runtime only, not a commercial game"
+  },
+  {
+    "Check": "CdiProcessReleased",
+    "Emulator": "SameCdi",
+    "ProcessId": 76776,
+    "Exited": true
+  },
+  {
+    "Check": "WpfErrors",
+    "Count": 1,
+    "Errors": [
+      "System.InvalidOperationException: CD-i frame or state unavailable: Cdi2015:Faulted\r\n   at Program.CheckCdi() in F:\\GW GUI\\artifacts\\philips-ui-test\\Program.cs:line 234"
+    ]
+  },
+  {
+    "Check": "CurrentStatus",
+    "Date": "2026-10-10 20:53:44",
+    "BackendBoundary": "SDK snapshots and factories independent of Libretro; native input decoding in Interop",
+    "WpfErrors": 0,
+    "EmulatorSwitchValidated": true,
+    "P2000AndVideopacMachineLifecycle": true,
+    "SameCdiBiosFramesSaveLoad": true,
+    "Cdi2015": "Initialization succeeds; first retro_run still exits C0000005 after OSD initialization",
+    "PhilipsComplete": false
+  },
+  {
+    "Check": "DebugBuildAfterBackendBoundaryCorrection",
+    "Date": "2026-10-10 20:59:33",
+    "ExitCode": 0,
+    "Executable": "F:\\GW GUI\\build\\Debug\\GW GUI\\gwgui.exe",
+    "Modules": [
+      {
+        "Id": "acorn",
+        "Assembly": "gwgui.emulation.acorn.dll",
+        "Sha256": "A5285E6BDD6599377D8C828F340E29C40190498CDB7063DAD9F6EBECD2013414"
+      },
+      {
+        "Id": "amstrad",
+        "Assembly": "gwgui.emulation.amstrad.dll",
+        "Sha256": "D15B6EA35B356AC50AB704C2F61F9515995357580816FD3D5A10A74AF946C3CA"
+      },
+      {
+        "Id": "apple",
+        "Assembly": "gwgui.emulation.apple.dll",
+        "Sha256": "B45D2ECB4E53CB4F5EBE91CB6C55CF30339515284AB0292B65CF2AA033589D60"
+      },
+      {
+        "Id": "atari",
+        "Assembly": "gwgui.emulation.atari.dll",
+        "Sha256": "14E50C9E7C8CFB0FD3FA374EB792CCFCB32C6CFB8D392DD391D1F060655FC0D0"
+      },
+      {
+        "Id": "bandai",
+        "Assembly": "gwgui.emulation.bandai.dll",
+        "Sha256": "D2344E6AEC6DB7FBF24B0D74CA7F63856A40BE5222F0DECFE56CAB4EE972B255"
+      },
+      {
+        "Id": "coleco",
+        "Assembly": "gwgui.emulation.coleco.dll",
+        "Sha256": "4D6F8444FA930F5EF5583CDFC528294FA25EC7C16D32AE0E39995B874F01133F"
+      },
+      {
+        "Id": "commodore",
+        "Assembly": "gwgui.emulation.commodore.dll",
+        "Sha256": "14060B255783F8D2E2ACEBDB912E04243B0979790CB47E1A6FA215CFCFC761DC"
+      },
+      {
+        "Id": "epoch",
+        "Assembly": "gwgui.emulation.epoch.dll",
+        "Sha256": "25EFA98263F9B3B3B53A449EDD4D433BE9718A589F27DD3659BAECAECA61E3F4"
+      },
+      {
+        "Id": "fairchild",
+        "Assembly": "gwgui.emulation.fairchild.dll",
+        "Sha256": "AFD5E125907E6A65F8D2D9CD5CC2BA7E63624D87AECDA718D3940F67D66A445C"
+      },
+      {
+        "Id": "microsoft",
+        "Assembly": "gwgui.emulation.microsoft.dll",
+        "Sha256": "A7FC1FAE3FB1E46585C76F4914850EDD8282431F1A5E34BCE5A0B2DAA69011BF"
+      },
+      {
+        "Id": "nec",
+        "Assembly": "gwgui.emulation.nec.dll",
+        "Sha256": "7AC5065597FDEC762EB68DBFE98F9020F926A3BC174638240DAC8EBD61DF2A0F"
+      },
+      {
+        "Id": "nintendo",
+        "Assembly": "gwgui.emulation.nintendo.dll",
+        "Sha256": "736F23C16D2641F2E02D3FDEC36F1576FA20E98194013E0B5C473891BE196055"
+      },
+      {
+        "Id": "philips",
+        "Assembly": "gwgui.emulation.philips.dll",
+        "Sha256": "6166FD768A8D69FC787EDDB3F5171F39B4EE6B2754E06399498175F431EC5753"
+      },
+      {
+        "Id": "sega",
+        "Assembly": "gwgui.emulation.sega.dll",
+        "Sha256": "A8CE070250184180349E64163F16AB38F5425EEA2AF9EF50A1AA9AC255BB7E78"
+      },
+      {
+        "Id": "sony",
+        "Assembly": "gwgui.emulation.sony.dll",
+        "Sha256": "89123FE5E2CA9914E0841F7D8D35B2DE71D0F5E9154C2CB4A6C0B71CCFF4E901"
+      }
+    ],
+    "ModuleCount": 15,
+    "NativeCdi2015RemainingFailure": true
+  },
+  {
+    "Check": "Cdi2015NativeExceptionContext",
+    "Timestamp": "2026-10-10 21:23:33",
+    "LibrarySha256": "1AD5674EFA5932577209D09FDD45A26DECD2160DAC004A1F07D63F47ED41D203",
+    "ExceptionCode": "C0000005",
+    "Access": "Execute",
+    "Target": "0x73B54E00",
+    "InternalCallback": "0x0000000073B54E00",
+    "LibraryBase": "0x7FFF73A80000",
+    "ReturnOffset": "0x11E317",
+    "ExpectedFunctionAddress": "0x7FFF73B54E00",
+    "Logs": [
+      "artifacts/philips-source/cdi-exception.log",
+      "artifacts/philips-source/cdi-disassembly.log"
+    ],
+    "NativeRebuildRequired": true,
+    "Passed": false,
+    "OwnedDiagnosticProcessesRemaining": 0
+  },
+  {
+    "Check": "P2000SpecialKeysAndPhysicalKeypad",
+    "EditableSpecialKeys": 6,
+    "ReassignedKeysUseNewSourceOnly": true,
+    "PhysicalKeypadTransport": true,
+    "Timestamp": "2026-10-10 21:32:15"
+  },
+  {
+    "Check": "P2000SpecialKeysAndPhysicalKeypad",
+    "EditableSpecialKeys": 6,
+    "ReassignedKeysUseNewSourceOnly": true,
+    "PhysicalKeypadTransport": true,
+    "Timestamp": "2026-10-10 21:32:49"
+  },
+  {
+    "Check": "DebugBuildAfterP2000KeyboardCorrection",
+    "Timestamp": "2026-10-10 21:39:35",
+    "ExitCode": 0,
+    "Executable": "F:\\GW GUI\\build\\Debug\\GW GUI\\gwgui.exe",
+    "Modules": [
+      {
+        "Id": "acorn",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\acorn\\gwgui.emulation.acorn.dll",
+        "Sha256": "B5B1CEF47534BF7C31E076605BD9CC7A4BF3C580CF3A24E8B854F38E590355C5"
+      },
+      {
+        "Id": "amstrad",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\amstrad\\gwgui.emulation.amstrad.dll",
+        "Sha256": "1431CDAA36C756D0B8EF8F553905AC9905C1563A57C26B71F53B944B2DA9862B"
+      },
+      {
+        "Id": "apple",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\apple\\gwgui.emulation.apple.dll",
+        "Sha256": "B6D41AFA5AA91B135EF8EAC0555A7CEED4BAEC01BED098B36C04F6F47C77A8AD"
+      },
+      {
+        "Id": "atari",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\atari\\gwgui.emulation.atari.dll",
+        "Sha256": "08969C9E6C2F9310307608BF877ACBAB9AE0E42B8EEC54D024D7121E807C8879"
+      },
+      {
+        "Id": "bandai",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\bandai\\gwgui.emulation.bandai.dll",
+        "Sha256": "2E55F9FD319D41EF465F96ED96399C9CE188BE4B35E0C918B2FF9CAB7E066C46"
+      },
+      {
+        "Id": "coleco",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\coleco\\gwgui.emulation.coleco.dll",
+        "Sha256": "3AF90E2456B38700EB608F6032336AC6CA93CBDC6647B3CE145B7EB1E4BB9FA5"
+      },
+      {
+        "Id": "commodore",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\commodore\\gwgui.emulation.commodore.dll",
+        "Sha256": "CE140A4217B180867487962164D6C88EDE287537192FA644AD673B5C5E0ECA3B"
+      },
+      {
+        "Id": "epoch",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\epoch\\gwgui.emulation.epoch.dll",
+        "Sha256": "32D11947541D4AA4B1F930910113AC2B54C7F12BAD92532D6FDAFEDE22247B89"
+      },
+      {
+        "Id": "fairchild",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\fairchild\\gwgui.emulation.fairchild.dll",
+        "Sha256": "359DE6E6107FCEAE1BD51110B2FD8EB4A23D9C3EBE68CF28FB9DE31672CEF478"
+      },
+      {
+        "Id": "microsoft",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\microsoft\\gwgui.emulation.microsoft.dll",
+        "Sha256": "C3E6752F66E3798FFC55EBD17864BD5A992C6A25BFA2D42B68CC944C2941D49E"
+      },
+      {
+        "Id": "nec",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\nec\\gwgui.emulation.nec.dll",
+        "Sha256": "10AFB4C9937F171056A3EEFD0DD4B0F1B25A13D478EA560EB944C4585F28DFE7"
+      },
+      {
+        "Id": "nintendo",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\nintendo\\gwgui.emulation.nintendo.dll",
+        "Sha256": "42AAB752F652F516F728079FF35DF840723C4BE0BD01E5C3B1E334206012BE2E"
+      },
+      {
+        "Id": "philips",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\philips\\gwgui.emulation.philips.dll",
+        "Sha256": "97E921D0073C84977D69805048A5ACB8A72A3A020365C29D947DA3129B3CE08B"
+      },
+      {
+        "Id": "sega",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sega\\gwgui.emulation.sega.dll",
+        "Sha256": "56B5D52990771A8C8304C4BC753AFAB3A1EF2E35F548E4EAC0B7E7CD74BE5EB0"
+      },
+      {
+        "Id": "sony",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sony\\gwgui.emulation.sony.dll",
+        "Sha256": "D96E42671203B7FBDA5EF299F528FAAB260CD491E45BF6C38BAC876FBA2D134E"
+      }
+    ],
+    "NewKeyboardInvariantsInBaseOnly": true,
+    "LocalizedCultures": 29,
+    "Log": "artifacts/philips-source/p2000-debug-build.log",
+    "PhilipsComplete": false
+  },
+  {
+    "Check": "TheVoiceSamples",
+    "OptionalSelection": true,
+    "Persistence": true,
+    "NativeFileNames": true,
+    "InvalidWaveRejected": true,
+    "O2emFrame": true,
+    "HostExited": true,
+    "Timestamp": "2026-10-10 21:45:37"
+  },
+  {
+    "Check": "TheVoiceSamples",
+    "OptionalSelection": true,
+    "Persistence": true,
+    "NativeFileNames": true,
+    "InvalidWaveRejected": true,
+    "O2emFrame": true,
+    "HostExited": true,
+    "Timestamp": "2026-10-10 21:47:16"
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfErrors",
+    "Count": 0,
+    "Errors": []
+  },
+  {
+    "Check": "DebugBuildAfterTheVoiceIntegration",
+    "Timestamp": "2026-10-10 21:54:20",
+    "ExitCode": 0,
+    "Executable": "F:\\GW GUI\\build\\Debug\\GW GUI\\gwgui.exe",
+    "Modules": [
+      {
+        "Id": "acorn",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\acorn\\gwgui.emulation.acorn.dll",
+        "Sha256": "B5B1CEF47534BF7C31E076605BD9CC7A4BF3C580CF3A24E8B854F38E590355C5"
+      },
+      {
+        "Id": "amstrad",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\amstrad\\gwgui.emulation.amstrad.dll",
+        "Sha256": "1431CDAA36C756D0B8EF8F553905AC9905C1563A57C26B71F53B944B2DA9862B"
+      },
+      {
+        "Id": "apple",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\apple\\gwgui.emulation.apple.dll",
+        "Sha256": "B6D41AFA5AA91B135EF8EAC0555A7CEED4BAEC01BED098B36C04F6F47C77A8AD"
+      },
+      {
+        "Id": "atari",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\atari\\gwgui.emulation.atari.dll",
+        "Sha256": "08969C9E6C2F9310307608BF877ACBAB9AE0E42B8EEC54D024D7121E807C8879"
+      },
+      {
+        "Id": "bandai",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\bandai\\gwgui.emulation.bandai.dll",
+        "Sha256": "2E55F9FD319D41EF465F96ED96399C9CE188BE4B35E0C918B2FF9CAB7E066C46"
+      },
+      {
+        "Id": "coleco",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\coleco\\gwgui.emulation.coleco.dll",
+        "Sha256": "3AF90E2456B38700EB608F6032336AC6CA93CBDC6647B3CE145B7EB1E4BB9FA5"
+      },
+      {
+        "Id": "commodore",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\commodore\\gwgui.emulation.commodore.dll",
+        "Sha256": "CE140A4217B180867487962164D6C88EDE287537192FA644AD673B5C5E0ECA3B"
+      },
+      {
+        "Id": "epoch",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\epoch\\gwgui.emulation.epoch.dll",
+        "Sha256": "32D11947541D4AA4B1F930910113AC2B54C7F12BAD92532D6FDAFEDE22247B89"
+      },
+      {
+        "Id": "fairchild",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\fairchild\\gwgui.emulation.fairchild.dll",
+        "Sha256": "359DE6E6107FCEAE1BD51110B2FD8EB4A23D9C3EBE68CF28FB9DE31672CEF478"
+      },
+      {
+        "Id": "microsoft",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\microsoft\\gwgui.emulation.microsoft.dll",
+        "Sha256": "C3E6752F66E3798FFC55EBD17864BD5A992C6A25BFA2D42B68CC944C2941D49E"
+      },
+      {
+        "Id": "nec",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\nec\\gwgui.emulation.nec.dll",
+        "Sha256": "10AFB4C9937F171056A3EEFD0DD4B0F1B25A13D478EA560EB944C4585F28DFE7"
+      },
+      {
+        "Id": "nintendo",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\nintendo\\gwgui.emulation.nintendo.dll",
+        "Sha256": "42AAB752F652F516F728079FF35DF840723C4BE0BD01E5C3B1E334206012BE2E"
+      },
+      {
+        "Id": "philips",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\philips\\gwgui.emulation.philips.dll",
+        "Sha256": "7EE6B870FC5B86C7A02E221E7AD380E397E62A1BC978BC8E3F8F9B4E4F696A1C"
+      },
+      {
+        "Id": "sega",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sega\\gwgui.emulation.sega.dll",
+        "Sha256": "56B5D52990771A8C8304C4BC753AFAB3A1EF2E35F548E4EAC0B7E7CD74BE5EB0"
+      },
+      {
+        "Id": "sony",
+        "Path": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sony\\gwgui.emulation.sony.dll",
+        "Sha256": "D96E42671203B7FBDA5EF299F528FAAB260CD491E45BF6C38BAC876FBA2D134E"
+      }
+    ],
+    "InvariantInBaseOnly": true,
+    "LocalizedCultures": 29,
+    "Log": "artifacts/philips-source/voice-debug-build.log",
+    "PhilipsComplete": false
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "PhilipsCdi",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfCdiSingleEmulator",
+    "Core": "SameCdi",
+    "Choices": 1
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "P2000T",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "Odyssey2",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "General",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Cpu",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Ram",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Rom",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Video",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Audio",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Storage",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Keyboard",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "WpfTab",
+    "Model": "VideopacG7000",
+    "Tab": "Controllers",
+    "Width": 1646.6666666666667,
+    "Height": 1006.6666666666666,
+    "Images": 4
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "P2000T",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 37367
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 55020,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 16876,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 53980,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "P2000T",
+    "ProcessId": 53284,
+    "Exited": true
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "Odyssey2",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 9186
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 86520,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 77356,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "Odyssey2",
+    "ProcessId": 83148,
+    "Exited": true
+  },
+  {
+    "Check": "MachineLifecycle",
+    "Model": "VideopacG7000",
+    "Frames": true,
+    "SaveLoad": true,
+    "Replacement": true,
+    "Ejection": true,
+    "Reset": true,
+    "StateBytes": 9186
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 17036,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 83252,
+    "Exited": true
+  },
+  {
+    "Check": "MachineProcessReleased",
+    "Model": "VideopacG7000",
+    "ProcessId": 65080,
+    "Exited": true
+  },
+  {
+    "Check": "CdiNativeMachine",
+    "Emulator": "SameCdi",
+    "FrameWidth": 768,
+    "FrameHeight": 280,
+    "FrameSequence": 51,
+    "SaveLoad": true,
+    "StateBytes": 5578692,
+    "Media": "Synthetic blank CHD v5 MODE1; BIOS boot and runtime only, not a commercial game"
+  },
+  {
+    "Check": "CdiProcessReleased",
+    "Emulator": "SameCdi",
+    "ProcessId": 53240,
+    "Exited": true
+  },
+  {
+    "Check": "WpfErrors",
+    "Count": 0,
+    "Errors": []
+  },
+  {
+    "Check": "DebugBuildAfterCdi2015Removal",
+    "Timestamp": "2026-10-10 22:50:25",
+    "ExitCode": 0,
+    "Modules": [
+      {
+        "Id": "acorn",
+        "EntryAssembly": "gwgui.emulation.acorn.dll",
+        "Present": true
+      },
+      {
+        "Id": "amstrad",
+        "EntryAssembly": "gwgui.emulation.amstrad.dll",
+        "Present": true
+      },
+      {
+        "Id": "apple",
+        "EntryAssembly": "gwgui.emulation.apple.dll",
+        "Present": true
+      },
+      {
+        "Id": "atari",
+        "EntryAssembly": "gwgui.emulation.atari.dll",
+        "Present": true
+      },
+      {
+        "Id": "bandai",
+        "EntryAssembly": "gwgui.emulation.bandai.dll",
+        "Present": true
+      },
+      {
+        "Id": "coleco",
+        "EntryAssembly": "gwgui.emulation.coleco.dll",
+        "Present": true
+      },
+      {
+        "Id": "commodore",
+        "EntryAssembly": "gwgui.emulation.commodore.dll",
+        "Present": true
+      },
+      {
+        "Id": "epoch",
+        "EntryAssembly": "gwgui.emulation.epoch.dll",
+        "Present": true
+      },
+      {
+        "Id": "fairchild",
+        "EntryAssembly": "gwgui.emulation.fairchild.dll",
+        "Present": true
+      },
+      {
+        "Id": "microsoft",
+        "EntryAssembly": "gwgui.emulation.microsoft.dll",
+        "Present": true
+      },
+      {
+        "Id": "nec",
+        "EntryAssembly": "gwgui.emulation.nec.dll",
+        "Present": true
+      },
+      {
+        "Id": "nintendo",
+        "EntryAssembly": "gwgui.emulation.nintendo.dll",
+        "Present": true
+      },
+      {
+        "Id": "philips",
+        "EntryAssembly": "gwgui.emulation.philips.dll",
+        "Present": true
+      },
+      {
+        "Id": "sega",
+        "EntryAssembly": "gwgui.emulation.sega.dll",
+        "Present": true
+      },
+      {
+        "Id": "sony",
+        "EntryAssembly": "gwgui.emulation.sony.dll",
+        "Present": true
+      }
+    ],
+    "Cdi2015Removed": true,
+    "VerificationExitCode": 0,
+    "CommercialGameTested": false
+  }
+]

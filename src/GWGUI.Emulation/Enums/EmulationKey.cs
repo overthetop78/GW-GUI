@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Enums;
+﻿namespace GWGUI.Emulation.Enums;
 
 public enum EmulationKey
 {
@@ -17,5 +17,7 @@ public enum EmulationKey
     AppleOpenApple, AppleSolidApple, MacintoshCommand, MacintoshKeypadClear, MacintoshKeypadEquals,
     AdamSmart1, AdamSmart2, AdamSmart3, AdamSmart4, AdamSmart5, AdamSmart6,
     AdamUndo, AdamWildCard, AdamMove, AdamStore, AdamClear, AdamPrint,
-    EpochPower, EpochReset
+    EpochPower, EpochReset,
+    PhilipsP2000Start, PhilipsP2000Stop, PhilipsP2000Zoek,
+    PhilipsP2000Code, PhilipsP2000DoubleZero, PhilipsP2000ClearLine
 }

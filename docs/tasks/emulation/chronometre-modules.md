@@ -87,3 +87,19 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-10 17:08:07 | 10:12:23 | -02:12:24 | Reprise. Fairchild : carte des fichiers génériques et projet créés. |
 | 2026-10-10 17:20:55 | 10:25:11 | -02:25:12 | Reprise. Fairchild : services de machine et processus isolé, aux emplacements de référence. |
 | 2026-10-10 17:43:21 | 10:47:37 | -02:47:38 | Reprise. Fairchild : récupération du build et validation native. |
+| 2026-10-10 18:26:07 | 11:30:23 | -03:30:24 | Reprise. Philips et Magnavox : contrats des quatre coeurs, depuis Fairchild commite. |
+| 2026-10-10 18:42:07 | 11:46:23 | -03:46:24 | Reprise. Philips : configuration par famille et services des quatre coeurs. |
+| 2026-10-10 19:01:50 | 12:06:06 | -04:06:07 | Reprise. Philips : contrat indépendant du backend et options des quatre adaptateurs. |
+| 2026-10-10 19:07:01 | 12:11:17 | -04:11:18 | Reprise. Philips : paramètres des supports, identification des BIOS et persistance portable. |
+| 2026-10-10 19:14:50 | 12:19:06 | -04:19:07 | Reprise. Philips : clavier et manettes raccordes aux commandes natives. |
+| 2026-10-10 19:24:09 | 12:28:25 | -04:28:26 | Reprise. Philips : séparation des commandes communes et des protocoles natifs. |
+| 2026-10-10 19:29:27 | 12:33:43 | -04:33:44 | Reprise. Philips : ressources communes et traductions contextualisées des options. |
+| 2026-10-10 19:46:35 | 12:50:51 | -04:50:52 | Reprise. Philips : profils des périphériques et raccordement du module. |
+| 2026-10-10 20:15:13 | 13:19:29 | -05:19:30 | Reprise. Philips : vues App, cycle de vie et essais CD-i. |
+| 2026-10-10 21:01:17 | 14:05:33 | -06:05:34 | Reprise. Philips : diagnostic de la première frame cdi2015, après build Debug complet. |
+| 2026-10-10 21:13:24 | 14:17:40.1797506 | -06:17:41.1797506 | Reprise. Philips : diagnostic natif ciblé de cdi2015. |
+| 2026-10-10 21:40:16 | 14:44:32.6615673 | -06:44:33.6615673 | Reprise. Philips : échantillons The Voice. |
+| 2026-10-10 21:54:59 | 14:59:15.3257329 | -06:59:16.3257329 | Reprise. Philips : disponibilité du compilateur cdi2015 et état des validations. |
+| 2026-10-10 22:02:42 | 15:06:58 | -07:06:59 | Reprise. Philips : reconstruction native et installation réelle du binaire. |
+| 2026-10-10 22:03:56 | 15:08:12 | -07:08:13 | Reprise. Philips : vérification du blocage compilateur natif. |
+| 2026-10-10 22:43:40 | 15:47:56 | -07:47:57 | Reprise. Philips : retrait demandé de cdi2015 ; poursuite avec SAME CDi. |

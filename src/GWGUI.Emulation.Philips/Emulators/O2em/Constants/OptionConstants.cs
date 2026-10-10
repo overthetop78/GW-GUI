@@ -1,0 +1,50 @@
+namespace GWGUI.Emulation.Philips.Emulators.O2em.Constants;
+
+internal static class OptionConstants
+{
+    internal const string Bios = "o2em_bios";
+    internal const string Region = "o2em_region";
+    internal const string SwapGamepads = "o2em_swap_gamepads";
+    internal const string VkbdTransparency = "o2em_vkbd_transparency";
+    internal const string CropOverscan = "o2em_crop_overscan";
+    internal const string MixFrames = "o2em_mix_frames";
+    internal const string AudioVolume = "o2em_audio_volume";
+    internal const string VoiceVolume = "o2em_voice_volume";
+    internal const string LowPassFilter = "o2em_low_pass_filter";
+    internal const string LowPassRange = "o2em_low_pass_range";
+    internal const string O2romBin = "o2rom.bin";
+    internal const string C52Bin = "c52.bin";
+    internal const string G7400Bin = "g7400.bin";
+    internal const string JopacBin = "jopac.bin";
+    internal const string Auto = "auto";
+    internal const string NTSC = "NTSC";
+    internal const string PAL = "PAL";
+    internal const string Disabled = "disabled";
+    internal const string Enabled = "enabled";
+    internal const string Value0 = "0";
+    internal const string Value25 = "25";
+    internal const string Value50 = "50";
+    internal const string Value75 = "75";
+    internal const string Mix = "mix";
+    internal const string Ghost65 = "ghost_65";
+    internal const string Ghost75 = "ghost_75";
+    internal const string Ghost85 = "ghost_85";
+    internal const string Ghost95 = "ghost_95";
+    internal const string Value5 = "5";
+    internal const string Value10 = "10";
+    internal const string Value15 = "15";
+    internal const string Value20 = "20";
+    internal const string Value30 = "30";
+    internal const string Value35 = "35";
+    internal const string Value40 = "40";
+    internal const string Value45 = "45";
+    internal const string Value55 = "55";
+    internal const string Value60 = "60";
+    internal const string Value65 = "65";
+    internal const string Value70 = "70";
+    internal const string Value80 = "80";
+    internal const string Value85 = "85";
+    internal const string Value90 = "90";
+    internal const string Value95 = "95";
+    internal const string Value100 = "100";
+}

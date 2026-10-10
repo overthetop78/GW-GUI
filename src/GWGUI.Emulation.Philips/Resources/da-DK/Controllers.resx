@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Controller.Joystick"><value>Joystick</value></data>
+  <data name="Emulation.Philips.Controller.CdiGamepad"><value>CD-i gamepad</value></data>
+  <data name="Emulation.Philips.Controller.Mouse"><value>mus</value></data>
+  <data name="Emulation.Philips.Controller.LightGun"><value>Let pistol</value></data>
+  <data name="Emulation.Philips.Controller.None"><value>Ingen</value></data>
+  <data name="Emulation.Philips.Input.Fire"><value>Brand knap</value></data>
+  <data name="Emulation.Philips.Input.Action1"><value>Knap 1</value></data>
+  <data name="Emulation.Philips.Input.Action2"><value>Knap 2</value></data>
+  <data name="Emulation.Philips.Input.Action3"><value>Knap 3</value></data>
+  <data name="Emulation.Philips.Input.Trigger"><value>Trigger</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary"><value>Hjælpeknap</value></data>
+  <data name="Emulation.Philips.Input.Reload"><value>Genindlæs</value></data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Error.StateIncompatible"><value>Сохраненное состояние Philips несовместимо с текущей машиной.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected"><value>Неожиданная ошибка эмуляции Philips.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing"><value>Требуемая прошивка Philips отсутствует.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>Система ROM является недействительной или несовместимой.</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound"><value>Настроенных носителей Philips обнаружено не было.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported"><value>Данная машина не поддерживает выбранные носители.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid"><value>Опцион Philips имеет недействительное значение.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound"><value>Требуемое ядро Philips найдено не было.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected"><value>Выбранное ядро Philips не могло быть загружено.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid"><value>Philips сохраненное состояние является недействительным.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>Исполняемый путь хоста Philips недоступен.</value></data>
+  <data name="Emulation.Philips.Error.Details"><value>Подробности: {0}</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>Связь с хостом Philips не удалось.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>Неизвестная команда окружения: {0}</value></data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Error.StateIncompatible"><value>El estado salvado Philips es incompatible con la máquina actual.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected"><value>Se produjo un error inesperado de emulación Philips.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing"><value>Falta un firmware de Philips requerido.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>El sistema ROM es inválido o incompatible.</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound"><value>No se encontró el medio Philips configurado.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported"><value>Esta máquina no admite los medios seleccionados.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid"><value>Una opción Philips tiene un valor inválido.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound"><value>No se encontró el núcleo necesario Philips.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected"><value>El núcleo Philips seleccionado no se puede cargar.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid"><value>El estado salvado Philips es inválido.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>El camino ejecutable Philips host es indisponible.</value></data>
+  <data name="Emulation.Philips.Error.Details"><value>Detalles: {0}</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>La comunicación con el anfitrión Philips falló.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>desconocido medio ambiente comando: {0}</value></data>
+</root>

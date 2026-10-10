@@ -131,4 +131,7 @@
   <data name="Emulation.Controller.Visual.Model.coleco-controller"><value>ColecoVision Controller</value></data>
   <data name="Emulation.Controller.Visual.Model.epoch-super-cassette-vision-controller"><value>Super Cassette Vision · CONTROLLER</value></data>
   <data name="Emulation.Controller.Visual.Model.fairchild-channel-f-controller"><value>Channel F Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.philips-videopac-joystick"><value>Odyssey² / Videopac</value></data>
+  <data name="Emulation.Controller.Visual.Model.philips-cdi-gamepad"><value>Philips CD-i Gamepad</value></data>
+  <data name="Emulation.Controller.Visual.Model.philips-cdi-mouse"><value>Philips CD-i Mouse</value></data>
 </root>

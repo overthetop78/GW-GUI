@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Controller.Joystick"><value>Joystick</value></data>
+  <data name="Emulation.Philips.Controller.CdiGamepad"><value>Manette CD-i</value></data>
+  <data name="Emulation.Philips.Controller.Mouse"><value>Souris</value></data>
+  <data name="Emulation.Philips.Controller.LightGun"><value>Pistolet optique</value></data>
+  <data name="Emulation.Philips.Controller.None"><value>Aucun</value></data>
+  <data name="Emulation.Philips.Input.Fire"><value>Bouton de tir</value></data>
+  <data name="Emulation.Philips.Input.Action1"><value>Bouton 1</value></data>
+  <data name="Emulation.Philips.Input.Action2"><value>Bouton 2</value></data>
+  <data name="Emulation.Philips.Input.Action3"><value>Bouton 3</value></data>
+  <data name="Emulation.Philips.Input.Trigger"><value>Gâchette</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary"><value>Bouton auxiliaire</value></data>
+  <data name="Emulation.Philips.Input.Reload"><value>Recharger</value></data>
+</root>

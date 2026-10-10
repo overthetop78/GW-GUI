@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Error.StateIncompatible"><value>Der Philips-Speicherzustand ist mit der aktuellen Maschine nicht kompatibel.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected"><value>Ein unerwarteter Philips-Emulationsfehler trat auf.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing"><value>Eine erforderliche Philips-Firmware fehlt.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>Das System-ROM ist ungültig oder inkompatibel.</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound"><value>Die konfigurierten Philips-Medien wurden nicht gefunden.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported"><value>Diese Maschine unterstützt die ausgewählten Medien nicht.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid"><value>Eine Philips Option hat einen ungültigen Wert.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound"><value>Der benötigte Philips-Kern wurde nicht gefunden.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected"><value>Der ausgewählte Philips-Kern konnte nicht geladen werden.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid"><value>Der Philips Save State ist ungültig.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>Der ausführbare Pfad des Philips-Hosts ist nicht verfügbar.</value></data>
+  <data name="Emulation.Philips.Error.Details"><value>Einzelheiten: {0}</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>Die Kommunikation mit dem Philips-Host ist fehlgeschlagen.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>Unbekannter Umgebungsbefehl: {0}</value></data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Error.StateIncompatible"><value>Το Philips σωζόμενο κράτος είναι ασυμβίβαστο με την τρέχουσα μηχανή.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected"><value>Συνέβη ένα απροσδόκητο σφάλμα εξομοίωσης Philips.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing"><value>Ένα απαιτούμενο λογισμικό Philips λείπει.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>Το σύστημα ROM δεν είναι έγκυρο ή ασυμβίβαστο.</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound"><value>Τα ρυθμισμένα μέσα Philips δε βρέθηκαν.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported"><value>Αυτή η μηχανή δεν υποστηρίζει τα επιλεγμένα μέσα.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid"><value>Μια επιλογή Philips έχει μια μη έγκυρη τιμή.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound"><value>Ο απαιτούμενος πυρήνας Philips δεν βρέθηκε.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected"><value>Ο επιλεγμένος πυρήνας Philips δεν ήταν δυνατό να φορτωθεί.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid"><value>Το Philips σωζόμενο κράτος είναι άκυρο.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>Η εκτελέσιμη διαδρομή του υπολογιστή Philips δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Philips.Error.Details"><value>Λεπτομέρειες: {0}</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>Η επικοινωνία με τον ξενιστή Philips απέτυχε.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>Άγνωστη εντολή περιβάλλοντος: {0}</value></data>
+</root>

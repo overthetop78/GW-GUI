@@ -2,6 +2,9 @@ namespace GWGUI.App.Views.Controls.Options.ControllerVisualization;
 
 internal static class ControllerArtworkFileNames
 {
+    internal const string PhilipsVideopacJoystick = "magnavox-odyssey2-videopac-joystick.png";
+    internal const string PhilipsCdiGamepad = "philips-cdi-gamepad.png";
+    internal const string PhilipsCdiMouse = "philips-cdi-mouse.png";
     internal const string FairchildChannelFController = "fairchild-channel-f-controller.png";
     internal const string EpochSuperCassetteVisionController = "epoch-super-cassette-vision-controller.png";
     internal const string ColecoController = "coleco-controller.png";

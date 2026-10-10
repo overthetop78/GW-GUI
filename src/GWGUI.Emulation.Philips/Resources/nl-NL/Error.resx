@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Error.StateIncompatible"><value>De opgeslagen status van Philips is onverenigbaar met de huidige machine.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected"><value>Er is een onverwachte Philips emulatiefout opgetreden.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing"><value>Een vereiste Philips firmware ontbreekt.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>Het systeem ROM is ongeldig of onverenigbaar.</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound"><value>De geconfigureerde Philips media is niet gevonden.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported"><value>Deze machine ondersteunt de geselecteerde media niet.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid"><value>Een Philips-optie heeft een ongeldige waarde.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound"><value>De vereiste Philips kern werd niet gevonden.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected"><value>De geselecteerde Philips-kern kon niet geladen worden.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid"><value>De opgeslagen status van Philips is ongeldig.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>Het uitvoerbare pad van Philips-host is niet beschikbaar.</value></data>
+  <data name="Emulation.Philips.Error.Details"><value>Gegevens: {0}</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>Communicatie met de Philips-host is mislukt.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>Onbekend omgevingscommando: {0}</value></data>
+</root>

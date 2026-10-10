@@ -2,6 +2,9 @@ namespace GWGUI.Emulation.Constants;
 
 public static class EmulationControllerVisualIds
 {
+    public const string PhilipsVideopacJoystick = "philips-videopac-joystick";
+    public const string PhilipsCdiGamepad = "philips-cdi-gamepad";
+    public const string PhilipsCdiMouse = "philips-cdi-mouse";
     public const string FairchildChannelFController = "fairchild-channel-f-controller";
     public const string EpochSuperCassetteVisionController = "epoch-super-cassette-vision-controller";
     public const string ColecoController = "coleco-controller";

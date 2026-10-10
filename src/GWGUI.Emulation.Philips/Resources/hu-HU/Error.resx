@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Error.StateIncompatible"><value>Az Philips mentett állam összeegyeztethetetlen a jelenlegi gép.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected"><value>Váratlan Philips emulációs hiba történt.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing"><value>Hiányzik egy szükséges Philips firmware.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>A ROM rendszer érvénytelen vagy összeegyeztethetetlen.</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound"><value>A konfigurált Philips média nem található.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported"><value>Ez a gép nem támogatja a kiválasztott médiát.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid"><value>Az Philips opciónak érvénytelen értéke van.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound"><value>A szükséges Philips magot nem találták meg.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected"><value>A kiválasztott Philips magot nem sikerült betölteni.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid"><value>Az Philips mentett állam érvénytelen.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>Az Philips host programozó elérési útja nem érhető el.</value></data>
+  <data name="Emulation.Philips.Error.Details"><value>Részletek: {0}</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>A kommunikáció az Philips host nem sikerült.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>Ismeretlen környezet parancs: {0}</value></data>
+</root>
