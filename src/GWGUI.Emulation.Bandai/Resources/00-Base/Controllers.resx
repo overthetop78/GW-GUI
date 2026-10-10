@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Controller.WonderSwan"><value>WonderSwan</value></data>
+  <data name="Emulation.Bandai.Controller.Playdia"><value>Playdia</value></data>
+  <data name="Emulation.Bandai.Controller.Tamagotchi"><value>Tamagotchi</value></data>
+  <data name="Emulation.Bandai.Action.A"><value>A</value></data>
+  <data name="Emulation.Bandai.Action.B"><value>B</value></data>
+  <data name="Emulation.Bandai.Action.X1"><value>X1</value></data>
+  <data name="Emulation.Bandai.Action.X2"><value>X2</value></data>
+  <data name="Emulation.Bandai.Action.X3"><value>X3</value></data>
+  <data name="Emulation.Bandai.Action.X4"><value>X4</value></data>
+  <data name="Emulation.Bandai.Action.Y1"><value>Y1</value></data>
+  <data name="Emulation.Bandai.Action.Y2"><value>Y2</value></data>
+  <data name="Emulation.Bandai.Action.Y3"><value>Y3</value></data>
+  <data name="Emulation.Bandai.Action.Y4"><value>Y4</value></data>
+  <data name="Emulation.Bandai.Action.Up"><value>Up</value></data>
+  <data name="Emulation.Bandai.Action.Down"><value>Down</value></data>
+  <data name="Emulation.Bandai.Action.Left"><value>Left</value></data>
+  <data name="Emulation.Bandai.Action.Right"><value>Right</value></data>
+  <data name="Emulation.Bandai.Action.Start"><value>Start</value></data>
+  <data name="Emulation.Bandai.Action.Select"><value>Select</value></data>
+  <data name="Emulation.Bandai.Action.Rotate"><value>Rotate</value></data>
+  <data name="Emulation.Bandai.Action.Execute"><value>Execute</value></data>
+  <data name="Emulation.Bandai.Action.Cancel"><value>Cancel</value></data>
+</root>

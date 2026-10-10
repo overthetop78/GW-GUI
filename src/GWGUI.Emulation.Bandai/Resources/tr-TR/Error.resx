@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Bandai kurtarılan devlet mevcut makine ile uyumlu değildir.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected"><value>Beklenmeyen bir Bandai emulation hatası meydana geldi.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>Gerekli Bandai Donanımı eksik.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>Sistem ROM geçersiz veya uyumsuzdur.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound"><value>yapılandırılmış Bandai medyası bulunamadı.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Bu makine seçilmiş medyayı desteklemiyor.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid"><value>Bir Bandai seçeneğinin geçersiz bir değeri vardır.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound"><value>Gerekli Bandai çekirdeği bulunamadı.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected"><value>Seçilen Bandai çekirdeği yüklenemezdi.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid"><value>Bandai kurtarılan devlet geçersizdir.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Bandai ev sahibi executable yol mevcut değildir.</value></data>
+  <data name="Emulation.Bandai.Error.Details"><value>Detaylar: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Bandai ile iletişim başarısız oldu.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Bilinmeyen çevre komutları: {0}</value></data>
+</root>

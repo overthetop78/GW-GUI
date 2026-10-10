@@ -33,6 +33,7 @@
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Atari\GWGUI.Emulation.Atari.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Acorn\GWGUI.Emulation.Acorn.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Apple\GWGUI.Emulation.Apple.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation.Bandai\GWGUI.Emulation.Bandai.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Sega\GWGUI.Emulation.Sega.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Nintendo\GWGUI.Emulation.Nintendo.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Sony\GWGUI.Emulation.Sony.csproj" />

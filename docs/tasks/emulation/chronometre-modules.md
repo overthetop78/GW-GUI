@@ -3,9 +3,10 @@
 Objectif : terminer les quinze modules du point 2, avec validation et commit de chacun. Référence : `sony-new-modules.md` et `liste-emulateur-libretro.md`.
 
 Départ (heure locale du PC) : **2026-10-09 23:04:54**.
-Échéance demandée : **2026-10-10 07:04:54**, soit huit heures après le départ.
+Budget demandé : **huit heures de travail**. Échéance initiale : **2026-10-10 07:04:54**.
+Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09:52:09**, soit **07:50:50**. Reprise avec **05:03:34** restantes ; échéance recalculée : **2026-10-10 14:55:43**.
 
-À chaque reprise de conversation pour cet objectif : récupérer l'heure réelle, ajouter une ligne à la suite du journal, calculer le temps depuis le départ et le temps restant, puis poursuivre les actions en attente. Ne pas remettre le chronomètre à zéro. Le délai demandé ne constitue pas une preuve de réalisation ; cocher seulement le travail effectivement réalisé et vérifié.
+À chaque reprise de conversation pour cet objectif : récupérer l'heure locale réelle du PC, ajouter une ligne à la suite du journal et calculer le temps de travail écoulé et le temps restant en excluant les interruptions identifiées et autorisées par l'utilisateur. Conserver les timestamps réels ; ne pas remettre le chronomètre à zéro. Depuis la reprise à 09:52:09, ajouter la durée écoulée à 02:56:25 et la retrancher des 05:03:34 restantes. Le délai demandé ne constitue pas une preuve de réalisation ; cocher seulement le travail effectivement réalisé et vérifié.
 
 | Heure locale du PC | Temps écoulé | Temps restant | État et prochaine action |
 |---|---|---|---|
@@ -39,4 +40,14 @@ Départ (heure locale du PC) : **2026-10-09 23:04:54**.
 | 2026-10-10 01:56:44 | 02:51:50 | 05:08:09 | Reprise. Apple : icône et ressources incorporées. |
 | 2026-10-10 01:59:36 | 02:54:42 | 05:05:17 | Reprise. Apple : source photographique complète du J-Plus. |
 | 2026-10-10 02:01:19 | 02:56:25 | 05:03:34 | Reprise. Huit PNG Apple absents ; choix de détourage déterministe toujours en attente. |
-| 2026-10-10 09:52:09 | 00.10:47:15 | Échéance dépassée | Reprise. Détourage classique pris en charge ; PNG provisoires à revoir si nécessaire. |
+| 2026-10-10 09:52:09 | 02:56:25 | 05:03:34 | Reprise. Détourage classique pris en charge ; PNG provisoires à revoir si nécessaire. |
+| 2026-10-10 10:01:57 | 03:06:13 | 04:53:46 | Reprise. Bandai : contrats des trois cœurs natifs. |
+| 2026-10-10 10:16:40 | 03:20:56 | 04:39:03 | Bandai : projet, modèles, contrats et persistance portable créés ; poursuite des adaptateurs natifs. |
+| 2026-10-10 10:23:36 | 03:27:52 | 04:32:07 | Reprise. Bandai : hôte natif, supports, sauvegardes et arrêt. |
+| 2026-10-10 10:36:59 | 03:41:15 | 04:18:44 | Reprise. Bandai : machines, affectations et états. |
+| 2026-10-10 10:51:37 | 03:55:53 | 04:04:06 | Reprise. Bandai : raccordement du module ; PNG provisoires sans attente. |
+| 2026-10-10 10:58:30 | 04:02:46 | 03:57:13 | Reprise. Bandai : informations machine et ressources. |
+| 2026-10-10 11:07:40 | 04:11:56 | 03:48:03 | Reprise. Bandai : fin des traductions, informations machine et PNG. |
+| 2026-10-10 11:22:41 | 04:26:57 | 03:33:01 | Reprise. Blocage de 02:01:19 à 09:52:09 exclu ; décompte repris avec 05:03:34 restantes. |
+| 2026-10-10 11:24:01 | 04:28:17 | 03:31:41 | Reprise. Bandai : audit Argos réussi ; retrait des invariants dupliqués avant informations matérielles. |
+| 2026-10-10 11:49:50 | 04:54:06 | 03:05:52 | Bandai : build complet, 13 tests et essais natifs réussis ; fermeture des DLL, processus et cartes vidéo vérifiée ; préparation du commit. |

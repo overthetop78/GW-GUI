@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Bandai räddade tillståndet är oförenligt med den nuvarande maskinen.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected"><value>Ett oväntat Bandai-emuleringsfel inträffade.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>En nödvändig Bandai firmware saknas.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>Systemet ROM är ogiltigt eller oförenligt.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound"><value>De konfigurerade Bandai-medierna hittades inte.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Denna maskin stöder inte de utvalda medierna.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid"><value>Ett Bandai-alternativ har ett ogiltigt värde.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound"><value>Den nödvändiga Bandai-kärnan hittades inte.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected"><value>Den valda Bandai-kärnan kunde inte laddas.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid"><value>Bandai räddade staten är ogiltig.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Bandai värd körbar väg är otillgänglig.</value></data>
+  <data name="Emulation.Bandai.Error.Details"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Kommunikation med Bandai-värden misslyckades.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Okänd miljökommando: {0}</value></data>
+</root>

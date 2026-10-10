@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible"><value>A Bandai mentett állam összeegyeztethetetlen az aktuális géppel.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected"><value>Váratlan Bandai emulációs hiba történt.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>Egy szükséges Bandai firmware hiányzik.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>A ROM rendszer érvénytelen vagy összeegyeztethetetlen.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound"><value>A konfigurált Bandai médiát nem találták meg.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Ez a gép nem támogatja a kiválasztott médiát.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid"><value>A Bandai opció érvénytelen.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound"><value>A szükséges Bandai magot nem találták meg.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected"><value>A kiválasztott Bandai magot nem sikerült betölteni.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid"><value>A Bandai mentett állam érvénytelen.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>A Bandai host programozó elérési útja nem elérhető.</value></data>
+  <data name="Emulation.Bandai.Error.Details"><value>Részletek: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>A kommunikáció a Bandai házigazdával nem sikerült.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Ismeretlen környezet parancs: {0}</value></data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible"><value>The Bandai saved state is incompatible with the current machine.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected"><value>An unexpected Bandai emulation error occurred.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>A required Bandai firmware is missing.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>The system ROM is invalid or incompatible.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound"><value>The configured Bandai media was not found.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>This machine does not support the selected media.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid"><value>A Bandai option has an invalid value.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound"><value>The required Bandai core was not found.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected"><value>The selected Bandai core could not be loaded.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid"><value>The Bandai saved state is invalid.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>The Bandai host executable path is unavailable.</value></data>
+  <data name="Emulation.Bandai.Error.Details"><value>Details: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Communication with the Bandai host failed.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Unknown environment command: {0}</value></data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Bang Bandai tiết kiệm không tương thích với cỗ máy hiện tại.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected"><value>Một lỗi không mong đợi của Bandai đã xảy ra.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>Một phần mềm mà Bandai yêu cầu bị mất.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>ROM hệ thống không hợp lệ hay không tương thích.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound"><value>Không tìm thấy phương tiện truyền thông được cấu hình của Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Máy này không hỗ trợ phương tiện được chọn.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid"><value>Lựa chọn Bandai có giá trị không hợp lệ.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound"><value>Không tìm thấy lõi của Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected"><value>Không thể tải lõi của Bandai đã chọn.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid"><value>Bang Bandai không có hiệu lực.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Đường dẫn đến máy Bandai không sẵn sàng.</value></data>
+  <data name="Emulation.Bandai.Error.Details"><value>Chi tiết:{0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Liên lạc với tổ chức của Bandai thất bại.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Lệnh môi trường không rõ:{0}</value></data>
+</root>

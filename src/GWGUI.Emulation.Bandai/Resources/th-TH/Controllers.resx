@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Action.Up"><value>ขึ้น</value></data>
+  <data name="Emulation.Bandai.Action.Down"><value>ลง</value></data>
+  <data name="Emulation.Bandai.Action.Left"><value>ซ้าย</value></data>
+  <data name="Emulation.Bandai.Action.Right"><value>ขวา</value></data>
+  <data name="Emulation.Bandai.Action.Start"><value>เริ่ม</value></data>
+  <data name="Emulation.Bandai.Action.Select"><value>เลือก</value></data>
+  <data name="Emulation.Bandai.Action.Rotate"><value>หมุน</value></data>
+  <data name="Emulation.Bandai.Action.Execute"><value>ประมวลผล</value></data>
+  <data name="Emulation.Bandai.Action.Cancel"><value>ยกเลิก</value></data>
+</root>

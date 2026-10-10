@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Lo stato salvato da Bandai è incompatibile con la macchina corrente.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected"><value>Si è verificato un errore di emulazione Bandai inaspettato.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>Manca un firmware Bandai richiesto.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>Il sistema ROM è invalido o incompatibile.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound"><value>I supporti Bandai configurati non sono stati trovati.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Questa macchina non supporta i supporti selezionati.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid"><value>Un'opzione Bandai ha un valore non valido.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound"><value>Il nucleo Bandai richiesto non è stato trovato.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected"><value>Il core Bandai selezionato non poteva essere caricato.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid"><value>Lo stato salvato da Bandai non è valido.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Il percorso eseguibile di Bandai non è disponibile.</value></data>
+  <data name="Emulation.Bandai.Error.Details"><value>Dettagli: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>La comunicazione con l'host Bandai è fallita.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Comando dell'ambiente sconosciuto: {0}</value></data>
+</root>

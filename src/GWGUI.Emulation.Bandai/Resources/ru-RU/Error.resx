@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Сохраненное состояние Bandai несовместимо с текущей машиной.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected"><value>Произошла неожиданная ошибка эмуляции Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>Необходимая прошивка Bandai отсутствует.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>Система ROM является недействительной или несовместимой.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound"><value>Настроенные средства массовой информации Bandai не были найдены.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Данная машина не поддерживает выбранные носители.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid"><value>Опцион Bandai имеет недействительное значение.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound"><value>Требуемое ядро Bandai найдено не было.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected"><value>Выбранное ядро Bandai не могло быть загружено.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid"><value>Bandai сохраненное состояние является недействительным.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Исполняемый путь хоста Bandai недоступен.</value></data>
+  <data name="Emulation.Bandai.Error.Details"><value>Подробности: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Связь с хостом Bandai не удалось.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Неизвестная команда окружения: {0}</value></data>
+</root>

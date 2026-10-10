@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Bandai lagret tilstand er uforenlig med den gjeldende maskinen.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected"><value>En uventet Bandai emuleringsfeil oppstod.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>En nødvendig Bandai firmware mangler.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>Systemets ROM er ugyldig eller uforenlig.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound"><value>Den konfigurerte Bandai-mediet ble ikke funnet.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Denne maskinen støtter ikke det valgte mediet.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid"><value>Et Bandai-alternativ har en ugyldig verdi.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound"><value>Den nødvendige Bandai kjernen ble ikke funnet.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected"><value>Den valgte Bandai kjernen kunne ikke lastes.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid"><value>Bandai lagret tilstand er ugyldig.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Bandai-vertens kjørbare sti er utilgjengelig.</value></data>
+  <data name="Emulation.Bandai.Error.Details"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Kommunikasjon med Bandai-verten mislyktes.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Ukjent miljøkommando: {0}</value></data>
+</root>

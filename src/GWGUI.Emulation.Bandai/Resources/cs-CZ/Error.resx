@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Bandai zachráněný stát je neslučitelný se stávajícím strojem.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected"><value>Nastala neočekávaná chyba emulace Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>Chybí požadovaný firmware Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>Systém ROM je neplatný nebo neslučitelný.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound"><value>Nakonfigurovaná Bandai média nebyla nalezena.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Tento stroj nepodporuje vybraná média.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid"><value>Možnost Bandai má neplatnou hodnotu.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound"><value>Požadované jádro Bandai nebylo nalezeno.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected"><value>Vybrané jádro Bandai nebylo možné načíst.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid"><value>Bandai zachráněný stát je neplatný.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Bandai hostující vykonatelná cesta je nedostupná.</value></data>
+  <data name="Emulation.Bandai.Error.Details"><value>Podrobnosti: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Komunikace s hostitelem Bandai selhala.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Příkaz neznámého prostředí: {0}</value></data>
+</root>

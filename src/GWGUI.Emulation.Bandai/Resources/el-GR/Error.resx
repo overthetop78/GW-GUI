@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Το Bandai σωζόμενο κράτος είναι ασυμβίβαστο με την τρέχουσα μηχανή.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected"><value>Συνέβη ένα απροσδόκητο σφάλμα εξομοίωσης Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>Λείπει ένα απαιτούμενο firmware Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>Το σύστημα ROM δεν είναι έγκυρο ή ασυμβίβαστο.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound"><value>Τα ρυθμισμένα μέσα Bandai δε βρέθηκαν.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Αυτή η μηχανή δεν υποστηρίζει τα επιλεγμένα μέσα.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid"><value>Μια επιλογή Bandai έχει μη έγκυρη τιμή.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound"><value>Ο απαιτούμενος πυρήνας Bandai δεν βρέθηκε.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected"><value>Ο επιλεγμένος πυρήνας Bandai δεν ήταν δυνατό να φορτωθεί.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid"><value>Το Bandai σωζόμενο κράτος είναι άκυρο.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Η εκτελέσιμη διαδρομή υποδοχής Bandai δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Bandai.Error.Details"><value>Λεπτομέρειες: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Η επικοινωνία με τον οικοδεσπότη Bandai απέτυχε.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Άγνωστη εντολή περιβάλλοντος: {0}</value></data>
+</root>

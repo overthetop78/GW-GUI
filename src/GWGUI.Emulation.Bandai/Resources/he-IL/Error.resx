@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible"><value>המדינה Bandai הצילה אינה תואמת למכונה הנוכחית.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected"><value>טעות חיקוי בלתי צפויה של Bandai התרחשה.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>קושחה Bandai הנדרשת נעדר.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>המערכת ROM היא בלתי חוקית או לא מתאימה.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound"><value>התקשורת של Bandai לא נמצאה.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>מכונה זו אינה תומכת בתקשורת שנבחרה.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid"><value>אפשרות של Bandai יש ערך לא חוקי.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound"><value>הליבה Bandai הנדרשת לא נמצאה.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected"><value>הליבה Bandai הנבחר לא יכול להיות טעון.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid"><value>המדינה Bandai הצילה היא בלתי נסבלת.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>הנתיב המתואם של Bandai אינו זמין.</value></data>
+  <data name="Emulation.Bandai.Error.Details"><value>תגית: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>התקשורת עם מארח Bandai נכשלה.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>ארכיון תגיות: {0}</value></data>
+</root>

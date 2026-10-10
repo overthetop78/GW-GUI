@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Bandai збережений стан несумісний з поточною машиною.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected"><value>Несподівана помилка емуляції Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>Необхідна прошивка Bandai відсутні.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>Система ROM недійсна або несумісна.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound"><value>Настроювання Bandai не знайдено.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Ця машина не підтримує вибрані медіа.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid"><value>A Bandai має недійсне значення.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound"><value>Не знайдено обов’язкове ядро Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected"><value>Вибране ядро Bandai не може бути завантажено.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid"><value>Bandai збережений стан недійсним.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Виконаний шлях Bandai не доступний.</value></data>
+  <data name="Emulation.Bandai.Error.Details"><value>Детальніше: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Зв'язок з Bandai не вдалося.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Невідомі команди середовища: {0}</value></data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Der gespeicherte Zustand von Bandai ist mit der aktuellen Maschine nicht kompatibel.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected"><value>Ein unerwarteter Bandai-Emulationsfehler trat auf.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>Eine erforderliche Bandai-Firmware fehlt.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>Das System-ROM ist ungültig oder inkompatibel.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound"><value>Die konfigurierten Bandai-Medien wurden nicht gefunden.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Diese Maschine unterstützt die ausgewählten Medien nicht.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid"><value>Eine Bandai-Option hat einen ungültigen Wert.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound"><value>Der benötigte Bandai-Kern wurde nicht gefunden.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected"><value>Der ausgewählte Bandai-Kern konnte nicht geladen werden.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid"><value>Der von Bandai gerettete Staat ist ungültig.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Der ausführbare Pfad des Bandai-Hosts ist nicht verfügbar.</value></data>
+  <data name="Emulation.Bandai.Error.Details"><value>Einzelheiten: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Die Kommunikation mit dem Bandai-Host ist fehlgeschlagen.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Unbekannter Umgebungsbefehl: {0}</value></data>
+</root>

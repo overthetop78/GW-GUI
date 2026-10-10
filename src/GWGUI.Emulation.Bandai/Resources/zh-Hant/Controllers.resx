@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Action.Up"><value>上邊</value></data>
+  <data name="Emulation.Bandai.Action.Down"><value>下調</value></data>
+  <data name="Emulation.Bandai.Action.Left"><value>左邊</value></data>
+  <data name="Emulation.Bandai.Action.Right"><value>對</value></data>
+  <data name="Emulation.Bandai.Action.Start"><value>開始</value></data>
+  <data name="Emulation.Bandai.Action.Select"><value>選擇</value></data>
+  <data name="Emulation.Bandai.Action.Rotate"><value>旋轉</value></data>
+  <data name="Emulation.Bandai.Action.Execute"><value>執行</value></data>
+  <data name="Emulation.Bandai.Action.Cancel"><value>取消( E)</value></data>
+</root>

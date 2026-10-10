@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Error.StateIncompatible"><value>The Bandai الدولة المنقذة لا تتوافق مع الآلة الحالية.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected"><value>وحدث خطأ غير متوقع في الاختراع قدره Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>ألف - الاحتياجات Bandai البرمجيات المفقودة.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>نظام ROM غير صحيح أو متعارض.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound"><value>تم تشكيله Bandai لم يتم العثور على وسائط الإعلام.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>هذه الآلة لا تدعم وسائل الإعلام المختارة</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid"><value>ألف Bandai الخيار له قيمة غير صحيحة.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound"><value>المطلوب Bandai لم يعثر على السبب.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected"><value>المختارون Bandai لا يمكن تحميلها.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid"><value>The Bandai save state is invalid.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>The Bandai الطريق المنفذ المضيف غير متاح.</value></data>
+  <data name="Emulation.Bandai.Error.Details"><value>التفاصيل: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>وفشلت الاتصالات مع المضيف البالغ Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>{0}</value></data>
+</root>

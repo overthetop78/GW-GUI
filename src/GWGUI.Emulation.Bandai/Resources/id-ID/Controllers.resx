@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Action.Up"><value>Naik</value></data>
+  <data name="Emulation.Bandai.Action.Down"><value>Turun</value></data>
+  <data name="Emulation.Bandai.Action.Left"><value>Kiri</value></data>
+  <data name="Emulation.Bandai.Action.Right"><value>Kanan</value></data>
+  <data name="Emulation.Bandai.Action.Start"><value>Mulai</value></data>
+  <data name="Emulation.Bandai.Action.Select"><value>Pilih</value></data>
+  <data name="Emulation.Bandai.Action.Rotate"><value>Putar</value></data>
+  <data name="Emulation.Bandai.Action.Execute"><value>Jalankan</value></data>
+  <data name="Emulation.Bandai.Action.Cancel"><value>Batal</value></data>
+</root>

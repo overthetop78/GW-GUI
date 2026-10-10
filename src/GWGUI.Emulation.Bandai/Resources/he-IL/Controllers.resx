@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Action.Up"><value>Up Up</value></data>
+  <data name="Emulation.Bandai.Action.Down"><value>למטה</value></data>
+  <data name="Emulation.Bandai.Action.Left"><value>השמאל</value></data>
+  <data name="Emulation.Bandai.Action.Right"><value>ימין צודק</value></data>
+  <data name="Emulation.Bandai.Action.Start"><value>התחל להתחיל</value></data>
+  <data name="Emulation.Bandai.Action.Select"><value>בחירת בחר</value></data>
+  <data name="Emulation.Bandai.Action.Rotate"><value>רוטט</value></data>
+  <data name="Emulation.Bandai.Action.Execute"><value>הוצאה להורג</value></data>
+  <data name="Emulation.Bandai.Action.Cancel"><value>ביטול</value></data>
+</root>

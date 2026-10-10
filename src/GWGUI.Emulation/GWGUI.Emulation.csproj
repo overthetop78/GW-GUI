@@ -32,6 +32,7 @@
     <InternalsVisibleTo Include="GWGUI.Emulation.Atari" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Acorn" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Apple" />
+    <InternalsVisibleTo Include="GWGUI.Emulation.Bandai" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Amstrad" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Sega" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Nintendo" />
