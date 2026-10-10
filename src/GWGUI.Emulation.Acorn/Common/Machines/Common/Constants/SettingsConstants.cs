@@ -18,7 +18,6 @@ internal static class SettingsConstants
     internal const string ResourceNativeModel = "Emulation.Acorn.Option.Model";
     internal const string ResourceAutoBoot = "Emulation.Acorn.Option.AutoBoot";
     internal const string ResourceEmbeddedFirmware = "Emulation.Acorn.Firmware.Embedded";
-    internal const string ResourceUnavailableModel = "Emulation.Acorn.Model.Unavailable";
     internal const string ResourceCpu = "Emulation.Cpu.Model";
     internal const string ResourceFrequency = "Emulation.Cpu.Speed.Original";
     internal const string ResourceMemory = "Emulation.Memory.Main";
@@ -31,10 +30,6 @@ internal static class SettingsConstants
     internal const string ResourceAudioLatency = "Emulation.Audio.Latency";
     internal const string ResourceAudioVolume = "Explorer.Volume";
     internal const string ResourceDefaultOutput = "Emulation.Audio.DefaultOutput";
-    internal const string ResourceSharedFolder = "Emulation.Folder.Common";
-    internal const string ResourceFloppyFolder = "Emulation.Storage.Floppy.List";
-    internal const string ResourceStateFolder = "Emulation.Folder.State";
-    internal const string ResourceCaptureFolder = "Emulation.Folder.Capture";
     internal const int DefaultLatency = 50;
     internal const int DefaultVolume = 100;
     internal const int Kibibyte = 1024;

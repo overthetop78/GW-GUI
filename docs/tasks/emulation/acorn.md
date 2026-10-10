@@ -113,3 +113,15 @@ Image BBC Micro B : photographie détourée téléchargée sans retouche depuis 
 Model A et Model B utilisent la même photographie de leur boîtier et clavier communs, explicitement attestés au chapitre Introduction de A Hardware Guide for the BBC Microcomputer : https://ftp.nvg.ntnu.no/pub/bbc/doc/A%20Hardware%20Guide%20for%20the%20BBC%20Microcomputer/bbc_hw_01.htm. Aucun changement d'inscription ni invention de modèle photographique. La ressource commune BbcMicro.png fait 500 × 348 avec fond transparent ; les deux copies par modèle ont été supprimées.
 
 Correction de ressource : une seule image BbcMicro.png référencée par les Model A et B ; Master distinct. Onze tests autonomes réussis après cette correction. Build final complet réussi ; exécutable et neuf DLL vérifiés, essais temporaires et artefacts supprimés.
+
+## Correction de présentation demandée après essai utilisateur
+
+- [x] Aligner Général sur le fonctionnement Atari
+  - [x] Modifier `src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/SettingsFunctions.cs` : supprimer le bloc incompatible b2 pour un modèle sans émulateur et les quatre champs de dossiers génériques que la référence Atari ne présente pas ; préserver les valeurs persistées et les dossiers communs gérés par l'application.
+  - [x] Modifier `src/GWGUI.Emulation.Acorn/Common/Machines/Common/Constants/SettingsConstants.cs` : supprimer les constantes de libellés devenues inutilisées après retrait des champs, conserver les identifiants utilisés dans la persistance.
+  - [x] Modifier les ressources Acorn : supprimer la phrase d'incompatibilité devenue inutilisée dans la base et toutes les cultures, conserver les autres ressources réellement utilisées.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Acorn/AcornModuleTests.cs` si les assertions portent sur ces champs : contrôler la sélection Model A sans bloc d'incompatibilité ni dossier superflu.
+  - [x] Produire `build/Debug/GW GUI/gwgui.exe` et les onze modules par le build Debug modules=A ; vérifier les tests de contrats Acorn et Bandai après retrait de la sonde temporaire Bandai.
+  - [x] Créer puis supprimer `tests/GWGUI.Tests/Interface/SettingsViews/AcornWindowValidationTests.cs` et ses seules fixtures : vérifier la vraie fenêtre sur les trois modèles, sans message incompatible ni dossiers superflus ; fermer et vérifier le handle dans finally.
+  - [x] Modifier `.git/index` et la référence de branche par un commit de correction Acorn après le build et les vérifications.
+Correction de présentation : retrait du message incompatible et des quatre champs de dossiers, valeurs persistées conservées. Build complet réussi, exécutable et onze modules vérifiés. Trente contrôles réussis : contrats Acorn/Bandai et vraie fenêtre Acorn sur trois modèles et leurs onglets ; fermeture, contenu détaché et handle nul vérifiés. Sonde temporaire supprimée.

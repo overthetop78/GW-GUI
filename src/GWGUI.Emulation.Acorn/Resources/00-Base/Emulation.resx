@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -9,5 +9,4 @@
   <data name="Emulation.Acorn.Option.Model"><value>Machine variant</value></data>
   <data name="Emulation.Acorn.Option.AutoBoot"><value>Boot the inserted disk automatically</value></data>
   <data name="Emulation.Acorn.Firmware.Embedded"><value>The operating system and BASIC ROMs are included in the b2 core.</value></data>
-  <data name="Emulation.Acorn.Model.Unavailable"><value>This model is not supported by the b2 core.</value></data>
 </root>

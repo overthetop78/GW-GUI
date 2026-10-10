@@ -28,15 +28,7 @@ internal static class SettingsDescriptionFunctions
             Block(EmulationMachineTab.Video, SettingsConstants.ResourceVideo,
                 Information(SettingsConstants.Video, EmulationMachineTab.Video, SettingsConstants.ResourceVideo,
                     string.Join(" / ", hardware.Video))),
-            Audio(configuration),
-            Block(EmulationMachineTab.General, SettingsConstants.ResourceGeneral,
-                Folder(SettingsConstants.SharedFolder, SettingsConstants.ResourceSharedFolder, configuration.Folders.Shared),
-                Folder(SettingsConstants.FloppyFolder, SettingsConstants.ResourceFloppyFolder, configuration.Folders.Floppies,
-                    EmulationDefaultFolderCategory.Floppy),
-                Folder(SettingsConstants.StateFolder, SettingsConstants.ResourceStateFolder, configuration.Folders.States,
-                    EmulationDefaultFolderCategory.State),
-                Folder(SettingsConstants.CaptureFolder, SettingsConstants.ResourceCaptureFolder, configuration.Folders.Captures,
-                    EmulationDefaultFolderCategory.Capture))
+            Audio(configuration)
         };
         if (variants.Count > BufferConstants.EmptyCollectionCount)
             blocks.Insert(BufferConstants.FirstCollectionIndex,
@@ -51,12 +43,6 @@ internal static class SettingsDescriptionFunctions
                         EmulationSettingsEditor.Toggle, configuration.Options.GetValueOrDefault(OptionConstants.AutoBoot),
                         EnabledValue: OptionConstants.Enabled, DisabledValue: OptionConstants.Disabled,
                         RequiresRestart: true)));
-        else
-            blocks.Insert(BufferConstants.FirstCollectionIndex,
-                Block(EmulationMachineTab.General, SettingsConstants.ResourceGeneral,
-                    new EmulationSettingsField(OptionConstants.Model, EmulationMachineTab.General,
-                        EmulationMachineTab.General.ToString(), SettingsConstants.ResourceUnavailableModel,
-                        EmulationSettingsEditor.Information, null)));
         return blocks;
     }
 
@@ -85,10 +71,6 @@ internal static class SettingsDescriptionFunctions
             values.Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture),
                 string.Empty, $"{value} {unit}")).ToArray());
 
-    private static EmulationSettingsField Folder(string id, string resource, string? value,
-        EmulationDefaultFolderCategory? category = null) =>
-        new(id, EmulationMachineTab.General, EmulationMachineTab.General.ToString(), resource,
-            EmulationSettingsEditor.DirectoryPath, value, DefaultFolderCategory: category);
 
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab,
         string resource, string value) =>

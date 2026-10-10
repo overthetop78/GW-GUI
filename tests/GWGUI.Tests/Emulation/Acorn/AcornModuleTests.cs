@@ -37,6 +37,11 @@ public sealed class AcornModuleTests
         Assert.False(ConfigurationFunctions.SupportsRuntime(modelA.Model));
         Assert.Empty(CoreCatalog.GetAll(modelA.Model));
         Assert.Empty(B2ModelFunctions.GetModels(modelA.Model));
+        Assert.DoesNotContain(SettingsDescriptionFunctions.Create(modelA).SelectMany(block => block.Fields),
+            field => field.Tab == EmulationMachineTab.General);
+        foreach (var model in Enum.GetValues<MachineModel>())
+            Assert.DoesNotContain(SettingsDescriptionFunctions.Create(new MachineConfiguration(model)).SelectMany(block => block.Fields),
+                field => field.Editor == EmulationSettingsEditor.DirectoryPath);
         Assert.True(ConfigurationFunctions.SupportsRuntime(MachineModel.BbcMicroModelB));
         Assert.True(ConfigurationFunctions.SupportsRuntime(MachineModel.BbcMaster128));
     }
