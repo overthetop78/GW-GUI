@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Error.StateIncompatible"><value>Uložený stav Epoch je neslučitelný se stávajícím strojem.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected"><value>Nastala neočekávaná chyba emulace Epochu.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>Chybí požadovaný firmware Epoch.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>Systém ROM je neplatný nebo neslučitelný.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound"><value>Nakonfigurovaná média Epoch nebyla nalezena.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>Tento stroj nepodporuje vybraná média.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid"><value>Volba Epoch má neplatnou hodnotu.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound"><value>Požadované jádro Epoch nebylo nalezeno.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected"><value>Zvolené jádro Epoch nebylo možné načíst.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid"><value>Uložený stav Epoch je neplatný.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>Spustitelná stezka Epoch je nedostupná.</value></data>
+  <data name="Emulation.Epoch.Error.Details"><value>Podrobnosti: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>Komunikace s hostitelem Epochu selhala.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>Příkaz neznámého prostředí: {0}</value></data>
+</root>

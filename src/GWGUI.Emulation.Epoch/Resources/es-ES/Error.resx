@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Error.StateIncompatible"><value>El estado salvado Epoch es incompatible con la máquina actual.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected"><value>Se produjo un error inesperado de emulación Epoch.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>Falta un firmware de Epoch requerido.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>El sistema ROM es inválido o incompatible.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound"><value>No se encontró el medio Epoch configurado.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>Esta máquina no admite los medios seleccionados.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid"><value>Una opción Epoch tiene un valor inválido.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound"><value>No se encontró el núcleo necesario Epoch.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected"><value>El núcleo Epoch seleccionado no se puede cargar.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid"><value>El estado salvado Epoch es inválido.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>El camino ejecutable Epoch host es indisponible.</value></data>
+  <data name="Emulation.Epoch.Error.Details"><value>Detalles: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>La comunicación con el anfitrión Epoch falló.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>desconocido medio ambiente comando: {0}</value></data>
+</root>

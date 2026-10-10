@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Error.StateIncompatible"><value>Stan zapisany przez Epocha jest niezgodny z obecną maszyną.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected"><value>Wystąpił nieoczekiwany błąd emulacji Epocha.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>Brakuje wymaganego oprogramowania firmowego Epoch.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>System ROM jest nieprawidłowy lub niekompatybilny.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound"><value>Konfigurowane media Epoch nie zostały znalezione.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>Ta maszyna nie obsługuje wybranych mediów.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid"><value>Opcja Epoch ma niepoprawną wartość.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound"><value>Nie znaleziono wymaganego rdzenia Epocha.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected"><value>Wybrany rdzeń Epocha nie mógł być wczytany.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid"><value>Stan zapisany przez Epocha jest niepoprawny.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>Ścieżka wykonywalna hosta Epoch jest niedostępna.</value></data>
+  <data name="Emulation.Epoch.Error.Details"><value>Szczegóły: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>Komunikacja z hostem Epocha nie powiodła się.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>Nieznane polecenie środowiska: {0}</value></data>
+</root>

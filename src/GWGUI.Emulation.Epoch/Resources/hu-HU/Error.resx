@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Error.StateIncompatible"><value>Az Epoch mentett állam összeegyeztethetetlen a jelenlegi gép.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected"><value>Váratlan Epoch emulációs hiba történt.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>Hiányzik egy szükséges Epoch firmware.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>A ROM rendszer érvénytelen vagy összeegyeztethetetlen.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound"><value>A konfigurált Epoch média nem található.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>Ez a gép nem támogatja a kiválasztott médiát.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid"><value>Az Epoch opciónak érvénytelen értéke van.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound"><value>A szükséges Epoch magot nem találták meg.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected"><value>A kiválasztott Epoch magot nem sikerült betölteni.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid"><value>Az Epoch mentett állam érvénytelen.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>Az Epoch host programozó elérési útja nem érhető el.</value></data>
+  <data name="Emulation.Epoch.Error.Details"><value>Részletek: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>A kommunikáció az Epoch host nem sikerült.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>Ismeretlen környezet parancs: {0}</value></data>
+</root>

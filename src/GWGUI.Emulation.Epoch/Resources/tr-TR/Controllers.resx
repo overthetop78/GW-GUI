@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft"><value>Sol ateş düğmesine</value></data>
+  <data name="Emulation.Epoch.Input.FireRight"><value>Doğru ateş düğmesi</value></data>
+  <data name="Emulation.Epoch.Input.Enter"><value>Onaylandı</value></data>
+  <data name="Emulation.Epoch.Input.Clear"><value>Clear Clear Clear</value></data>
+  <data name="Emulation.Epoch.Input.Power"><value>Power düğmesi</value></data>
+  <data name="Emulation.Epoch.Input.Reset"><value>Sıfır düğme</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft"><value>Solcuyu sol tarafa taşıyın</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight"><value>Yaralayıcıyı doğruya taşıyın</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease"><value>Bir sonraki oyun kursu seçin</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease"><value>Önceki oyun kursunu seçin</value></data>
+  <data name="Emulation.Epoch.Input.GunFire"><value>Işık tabancası tetikleyici</value></data>
+  <data name="Emulation.Epoch.Input.GunReload"><value>Işık tabanca reload</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease"><value>Işık tabancası ile soluna Aim</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease"><value>Işık tabancası ile doğruya Aim</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease"><value>Işık tabancası ile Aim ups</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease"><value>Aim downs with the light gun</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease"><value>Paddle 1: saat yönünden</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase"><value>Paddle 1: saatif</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease"><value>Paddle 2: saatif</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase"><value>Paddle 2: saatif</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease"><value>Paddle 3: saatif</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase"><value>Paddle 3: saatif</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease"><value>Paddle 4: saat yönünden</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase"><value>Paddle 4: dönüş saatif</value></data>
+</root>

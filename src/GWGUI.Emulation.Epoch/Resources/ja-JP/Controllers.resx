@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft"><value>左消防ボタン</value></data>
+  <data name="Emulation.Epoch.Input.FireRight"><value>直火ボタン</value></data>
+  <data name="Emulation.Epoch.Input.Enter"><value>確認する</value></data>
+  <data name="Emulation.Epoch.Input.Clear"><value>クリア</value></data>
+  <data name="Emulation.Epoch.Input.Power"><value>電源ボタン</value></data>
+  <data name="Emulation.Epoch.Input.Reset"><value>リセットボタン</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft"><value>レバーを左に動かして下さい</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight"><value>レバーを右に移動</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease"><value>次のゲームコースを選択します。</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease"><value>前回のゲームコースを選択</value></data>
+  <data name="Emulation.Epoch.Input.GunFire"><value>軽銃トリガー</value></data>
+  <data name="Emulation.Epoch.Input.GunReload"><value>軽い銃のreload</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease"><value>ライトガンで左に似ています</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease"><value>軽い銃と右に似て下さい</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease"><value>ライト銃と上向き</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease"><value>ライト銃と下方に向けて下さい</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease"><value>パドル1:反時計を回して下さい</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase"><value>パドル1:時計回りを回して下さい</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease"><value>パドル2:反時計を回して下さい</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase"><value>パドル2:時計回りを回す</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease"><value>パドル3:反時計回りを回して下さい</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase"><value>パドル3:時計回りを回して下さい</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease"><value>パドル4:反時計回りを回して下さい</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase"><value>パドル4:時計回りを回して下さい</value></data>
+</root>

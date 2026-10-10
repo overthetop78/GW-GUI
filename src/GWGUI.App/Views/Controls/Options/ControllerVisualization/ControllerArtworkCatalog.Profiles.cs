@@ -7,6 +7,7 @@ internal static partial class ControllerArtworkCatalog
     private static readonly Lazy<IReadOnlyDictionary<string, ProfileDefinition>> ProfileDefinitions =
         new(() => new Dictionary<string, ProfileDefinition>(StringComparer.Ordinal)
         {
+            [EmulationControllerVisualIds.EpochSuperCassetteVisionController] = CreateEpochSuperCassetteVisionController(),
             [EmulationControllerVisualIds.ColecoController] = CreateColecoController(),
             [EmulationControllerVisualIds.BandaiWonderSwan] = CreateBandaiWonderSwan(ControllerArtworkFileNames.BandaiWonderSwan),
             [EmulationControllerVisualIds.BandaiWonderSwanColor] = CreateBandaiWonderSwan(ControllerArtworkFileNames.BandaiWonderSwanColor),

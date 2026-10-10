@@ -1,0 +1,87 @@
+[
+  {
+    "Model": "CassetteVision",
+    "Core": "pd777",
+    "Frames": 20,
+    "Fps": 60.09880065917969,
+    "StateBytes": 0,
+    "Synthetic": true
+  },
+  {
+    "Model": "CassetteVision",
+    "Released": true
+  },
+  {
+    "Model": "CassetteVisionJr",
+    "Core": "pd777",
+    "Frames": 20,
+    "Fps": 60.09880065917969,
+    "StateBytes": 0,
+    "Synthetic": true
+  },
+  {
+    "Model": "CassetteVisionJr",
+    "Released": true
+  },
+  {
+    "Model": "SuperCassetteVision",
+    "Core": "emuscv",
+    "Frames": 20,
+    "Fps": 60,
+    "StateBytes": 81775,
+    "Synthetic": true
+  },
+  {
+    "Model": "SuperCassetteVision",
+    "Released": true
+  },
+  {
+    "Model": "SuperCassetteVisionYeno",
+    "Core": "emuscv",
+    "Frames": 20,
+    "Fps": 50,
+    "StateBytes": 81775,
+    "Synthetic": true
+  },
+  {
+    "Model": "SuperCassetteVisionYeno",
+    "Released": true
+  },
+  {
+    "Model": "SuperCassetteVisionLady",
+    "Core": "emuscv",
+    "Frames": 20,
+    "Fps": 60,
+    "StateBytes": 81775,
+    "Synthetic": true
+  },
+  {
+    "Model": "SuperCassetteVisionLady",
+    "Released": true
+  },
+  {
+    "Model": "CassetteVision",
+    "Window": true,
+    "Errors": 0
+  },
+  {
+    "Model": "CassetteVisionJr",
+    "Window": true,
+    "Errors": 0
+  },
+  {
+    "Model": "SuperCassetteVision",
+    "Window": true,
+    "Errors": 0
+  },
+  {
+    "Model": "SuperCassetteVisionYeno",
+    "Window": true,
+    "Errors": 0
+  },
+  {
+    "Model": "SuperCassetteVisionLady",
+    "Window": true,
+    "Errors": 0
+  }
+]

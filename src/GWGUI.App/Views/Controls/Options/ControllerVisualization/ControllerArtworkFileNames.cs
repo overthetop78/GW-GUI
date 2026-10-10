@@ -2,6 +2,7 @@ namespace GWGUI.App.Views.Controls.Options.ControllerVisualization;
 
 internal static class ControllerArtworkFileNames
 {
+    internal const string EpochSuperCassetteVisionController = "epoch-super-cassette-vision-controller.png";
     internal const string ColecoController = "coleco-controller.png";
     internal const string BandaiWonderSwan = "bandai-wonderswan.png";
     internal const string BandaiWonderSwanColor = "bandai-wonderswan-color.png";

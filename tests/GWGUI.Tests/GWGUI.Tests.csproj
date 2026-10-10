@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
@@ -35,6 +35,7 @@
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Apple\GWGUI.Emulation.Apple.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Bandai\GWGUI.Emulation.Bandai.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Coleco\GWGUI.Emulation.Coleco.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation.Epoch\GWGUI.Emulation.Epoch.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Sega\GWGUI.Emulation.Sega.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Nintendo\GWGUI.Emulation.Nintendo.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Sony\GWGUI.Emulation.Sony.csproj" />

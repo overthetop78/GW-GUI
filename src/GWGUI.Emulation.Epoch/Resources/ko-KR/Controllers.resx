@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft"><value>왼쪽 화재 버튼</value></data>
+  <data name="Emulation.Epoch.Input.FireRight"><value>오른쪽 불 단추</value></data>
+  <data name="Emulation.Epoch.Input.Enter"><value>제품정보</value></data>
+  <data name="Emulation.Epoch.Input.Clear"><value>뚱 베어</value></data>
+  <data name="Emulation.Epoch.Input.Power"><value>힘 단추</value></data>
+  <data name="Emulation.Epoch.Input.Reset"><value>재설정 버튼</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft"><value>레버를 왼쪽으로 이동하십시오</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight"><value>레버를 오른쪽으로 이동하십시오</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease"><value>다음 게임 과정을 선정하십시오</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease"><value>이전 게임 과정을 선정하십시오</value></data>
+  <data name="Emulation.Epoch.Input.GunFire"><value>빛 총 방아쇠</value></data>
+  <data name="Emulation.Epoch.Input.GunReload"><value>빛 총 reload</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease"><value>빛 총을 가진 왼쪽에 Aim</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease"><value>빛 총에 권리</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease"><value>빛 총으로 상승</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease"><value>빛 총으로 아래로 Aim</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease"><value>패들 1 : 우회전</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase"><value>패들 1: 시계 방향으로 회전</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease"><value>패들 2: 우회전</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase"><value>패들 2: 시계 방향으로 회전</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease"><value>패들 3 : 우회전</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase"><value>패들 3 : 시계 방향으로 회전</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease"><value>패들 4 : 반대 우회전</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase"><value>패들 4: 시계 방향으로 회전</value></data>
+</root>

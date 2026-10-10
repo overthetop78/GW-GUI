@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft"><value>Pulsante di fuoco sinistro</value></data>
+  <data name="Emulation.Epoch.Input.FireRight"><value>Pulsante di fuoco destro</value></data>
+  <data name="Emulation.Epoch.Input.Enter"><value>Conferma</value></data>
+  <data name="Emulation.Epoch.Input.Clear"><value>Cancellazione</value></data>
+  <data name="Emulation.Epoch.Input.Power"><value>Pulsante di alimentazione</value></data>
+  <data name="Emulation.Epoch.Input.Reset"><value>Pulsante di reset</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft"><value>Spostare la leva a sinistra</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight"><value>Spostare la leva a destra</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease"><value>selezionare il prossimo corso di gioco</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease"><value>selezionare il corso di gioco precedente</value></data>
+  <data name="Emulation.Epoch.Input.GunFire"><value>Innesto pistola leggera</value></data>
+  <data name="Emulation.Epoch.Input.GunReload"><value>Ricarica pistola leggera</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease"><value>Punta a sinistra con la pistola leggera</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease"><value>Punta a destra con la pistola leggera</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease"><value>Punta verso l'alto con la pistola leggera</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease"><value>Punta verso il basso con la pistola leggera</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease"><value>Paddle 1: girare in senso antiorario</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase"><value>Paddle 1: girare in senso orario</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease"><value>Paddle 2: girare in senso antiorario</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase"><value>Paddle 2: girare in senso orario</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease"><value>Paddle 3: girare in senso antiorario</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase"><value>Paddle 3: girare in senso orario</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease"><value>Paddle 4: girare in senso antiorario</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase"><value>Paddle 4: girare in senso orario</value></data>
+</root>

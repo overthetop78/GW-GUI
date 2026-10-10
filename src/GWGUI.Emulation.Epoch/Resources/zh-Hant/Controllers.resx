@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft"><value>左鍵射擊</value></data>
+  <data name="Emulation.Epoch.Input.FireRight"><value>右鍵射擊</value></data>
+  <data name="Emulation.Epoch.Input.Enter"><value>確認</value></data>
+  <data name="Emulation.Epoch.Input.Clear"><value>清除</value></data>
+  <data name="Emulation.Epoch.Input.Power"><value>電源按鈕</value></data>
+  <data name="Emulation.Epoch.Input.Reset"><value>重置按鈕</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft"><value>將杠桿移到左邊</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight"><value>將杠桿移到右邊</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease"><value>選擇下一個游戲課程</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease"><value>選擇上一個游戲課程</value></data>
+  <data name="Emulation.Epoch.Input.GunFire"><value>輕炮觸發器</value></data>
+  <data name="Emulation.Epoch.Input.GunReload"><value>輕炮重裝</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease"><value>用輕炮瞄準左邊</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease"><value>用輕炮瞄準右邊</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease"><value>向上瞄準輕炮</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease"><value>向下瞄準輕炮</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease"><value>劃道1:逆時針轉彎</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase"><value>劃道1:順時針轉彎</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease"><value>第2行:逆時針轉彎</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase"><value>劃板2:順時針轉彎</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease"><value>3:逆時針轉彎</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase"><value>3:順時針轉彎</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease"><value>劃道4:逆時針轉彎</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase"><value>平面 4: 順時針轉彎</value></data>
+</root>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft"><value>Levé požární tlačítko</value></data>
+  <data name="Emulation.Epoch.Input.FireRight"><value>Pravé požární tlačítko</value></data>
+  <data name="Emulation.Epoch.Input.Enter"><value>Potvrdit</value></data>
+  <data name="Emulation.Epoch.Input.Clear"><value>Vyčistit</value></data>
+  <data name="Emulation.Epoch.Input.Power"><value>Napájecí tlačítko</value></data>
+  <data name="Emulation.Epoch.Input.Reset"><value>Resetovat tlačítko</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft"><value>posuňte páčku doleva</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight"><value>posuňte páčku doprava</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease"><value>Vyberte další herní kurz</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease"><value>Vyberte předchozí herní kurz</value></data>
+  <data name="Emulation.Epoch.Input.GunFire"><value>Spouštěč lehké pistole</value></data>
+  <data name="Emulation.Epoch.Input.GunReload"><value>Nabití lehké zbraně</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease"><value>Zamiřte vlevo s lehkou pistolí</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease"><value>Zamiřte vpravo s lehkou pistolí</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease"><value>Zamiřte nahoru s lehkou pistolí</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease"><value>Miřte dolů s lehkou pistolí</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease"><value>Paddle 1: otočte proti směru hodinových ručiček</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase"><value>Paddle 1: otočte ve směru hodinových ručiček</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease"><value>Pádlo 2: otočte proti směru hodinových ručiček</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase"><value>Pádlo 2: otočte ve směru hodinových ručiček</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease"><value>Pádlo 3: otočte proti směru hodinových ručiček</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase"><value>Pádlo 3: otočte ve směru hodinových ručiček</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease"><value>Pádlo 4: otočte proti směru hodinových ručiček</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase"><value>Pádlo 4: otočte ve směru hodinových ručiček</value></data>
+</root>

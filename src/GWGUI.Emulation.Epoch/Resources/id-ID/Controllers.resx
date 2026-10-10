@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft"><value>Tombol tembakan kiri</value></data>
+  <data name="Emulation.Epoch.Input.FireRight"><value>Tombol kanan</value></data>
+  <data name="Emulation.Epoch.Input.Enter"><value>Konfirmasi</value></data>
+  <data name="Emulation.Epoch.Input.Clear"><value>Hapus</value></data>
+  <data name="Emulation.Epoch.Input.Power"><value>Tombol daya</value></data>
+  <data name="Emulation.Epoch.Input.Reset"><value>Tombol Reset</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft"><value>Pindahkan tuasnya ke kiri</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight"><value>Pindahkan tuasnya ke kanan</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease"><value>Pilih kursus game berikutnya</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease"><value>Pilih kursus permainan sebelumnya</value></data>
+  <data name="Emulation.Epoch.Input.GunFire"><value>Pemicu pistol ringan</value></data>
+  <data name="Emulation.Epoch.Input.GunReload"><value>Reload pistol ringan</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease"><value>Arahkan ke kiri dengan pistol cahaya</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease"><value>Arahkan ke kanan dengan pistol cahaya</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease"><value>Arahkan ke atas dengan pistol cahaya</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease"><value>Arahkan ke bawah dengan pistol cahaya</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease"><value>Kayuh 1: putar berlawanan arah jarum jam</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase"><value>Kayuh 1: putar searah jarum jam</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease"><value>Kayuh 2: putar berlawanan arah jarum jam</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase"><value>Kayuh 2: putar searah jarum jam</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease"><value>Kayuh 3: putar berlawanan arah jarum jam</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase"><value>Kayuh 3: putar searah jarum jam</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease"><value>Kayuh 4: putar berlawanan arah jarum jam</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase"><value>Kayuh 4: putar searah jarum jam</value></data>
+</root>

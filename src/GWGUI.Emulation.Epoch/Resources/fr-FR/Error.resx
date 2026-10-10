@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Error.StateIncompatible"><value>L'état de sauvegarde Epoch est incompatible avec la machine actuelle.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected"><value>Une erreur inattendue d'émulation Epoch s'est produite.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>Il manque un firmware Epoch requis.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>Le système ROM est invalide ou incompatible.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound"><value>Le support Epoch configuré n'a pas été trouvé.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>Cette machine ne supporte pas les médias sélectionnés.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid"><value>Une option Epoch a une valeur non valide.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound"><value>Le noyau Epoch requis n'a pas été trouvé.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected"><value>Le noyau Epoch sélectionné n'a pas pu être chargé.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid"><value>L'état de sauvegarde Epoch est invalide.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>Le chemin exécutable de l'hôte Epoch n'est pas disponible.</value></data>
+  <data name="Emulation.Epoch.Error.Details"><value>Détails : {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>La communication avec l'hôte Epoch a échoué.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>Commande d'environnement inconnu : {0}</value></data>
+</root>

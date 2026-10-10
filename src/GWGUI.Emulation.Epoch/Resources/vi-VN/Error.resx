@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Error.StateIncompatible"><value>Số Epoch quốc gia được cứu không tương thích với máy hiện tại.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected"><value>Một lỗi không mong đợi Epoch đã xảy ra.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>Yêu cầu thiếu Epoch phần cứng.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>ROM hệ thống không hợp lệ hay không tương thích.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound"><value>Không tìm thấy các phương tiện truyền thông được cấu hình Epoch.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>Máy này không hỗ trợ phương tiện được chọn.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid"><value>Một tùy chọn Epoch có giá trị không hợp lệ.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound"><value>Không tìm thấy lõi Epoch.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected"><value>Không thể tải được Epoch lõi đã chọn.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid"><value>Số Epoch là không hợp lệ.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>Đường dẫn đến máy Epoch không sẵn sàng.</value></data>
+  <data name="Emulation.Epoch.Error.Details"><value>Chi tiết:{0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>Liên lạc với máy Epoch đã thất bại.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>Lệnh môi trường không rõ:{0}</value></data>
+</root>

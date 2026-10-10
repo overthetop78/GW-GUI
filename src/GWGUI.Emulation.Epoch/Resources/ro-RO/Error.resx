@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Error.StateIncompatible"><value>Starea salvată de Epoch este incompatibilă cu maşina curentă.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected"><value>A apărut o eroare neaşteptată de emulare a Epoch-ului.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>Lipseşte un firmware Epoch necesar.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>Sistemul ROM este invalid sau incompatibil.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound"><value>Media Epoch configurată nu a fost găsită.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>Această mașină nu suportă media selectată.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid"><value>O opțiune Epoch are o valoare invalidă.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound"><value>Miezul Epoch necesar nu a fost găsit.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected"><value>Miezul Epoch selectat nu a putut fi încărcat.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid"><value>Starea salvată de Epoch este invalidă.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>Calea executabilă a gazdei Epoch nu este disponibilă.</value></data>
+  <data name="Emulation.Epoch.Error.Details"><value>Detalii: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>Comunicarea cu gazda Epoch a eşuat.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>Comandă de mediu necunoscută: {0}</value></data>
+</root>

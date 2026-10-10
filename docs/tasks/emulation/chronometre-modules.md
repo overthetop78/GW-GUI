@@ -71,3 +71,16 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-10 14:52:24 | 07:56:40 | 00:03:18 | Coleco commité et sélecteur vérifié ; Epoch : sources et contrats, projet et configurations créés ; adaptateurs restants. |
 | 2026-10-10 14:53:32 | 07:57:48 | 00:02:10 | Reprise. Epoch : adaptateurs natifs après contrats attestés ; objectif complet conservé. |
 | 2026-10-10 15:04:34 | 08:08:50 | -00:08:51 | Reprise. Epoch : moteur cartouche, firmware SCV et libération native ; sélection Coleco revérifiée. |
+| 2026-10-10 15:24:14 | 08:28:30 | -00:28:31 | Reprise. Epoch : entrées natives SCV et Cassette Vision après livraison de la correction cartouche Coleco. |
+| 2026-10-10 15:34:24 | 08:38:40 | -00:38:41 | Reprise. Epoch : mapping des commandes physiques vers les deux protocoles natifs. |
+| 2026-10-10 15:44:31 | 08:48:47 | -00:48:48 | Reprise. Epoch : callbacks contrôlés, persistance et hôte commun en cours de raccordement. |
+| 2026-10-10 16:03:50 | 09:08:06 | -01:08:07 | Reprise. Epoch : ressources communes et traductions des commandes natives. |
+| 2026-10-10 16:11:37 | 09:15:53 | -01:15:54 | Reprise. Epoch : photographies des cinq modèles et commandes assignables. |
+| 2026-10-10 16:19:49 | 09:24:05 | -01:24:06 | Reprise. Epoch : profils visuels et raccordement des commandes physiques. |
+| 2026-10-10 16:31:06 | 09:35:22 | -01:35:23 | Reprise. Epoch : affectations des photographies corrigées et intégration. |
+| 2026-10-10 16:34:38 | 09:38:54 | -01:38:55 | Reprise. Epoch : tests des contrats et préparation de la vérification native. |
+| 2026-10-10 16:36:50 | 09:41:06 | -01:41:07 | Reprise. Epoch : vérification SDK et compilation de tous les modules. |
+| 2026-10-10 16:43:49 | 09:48:05 | -01:48:06 | Reprise. Epoch : essais natifs et fenêtre réelle. |
+| 2026-10-10 16:48:24 | 09:52:40 | -01:52:41 | Reprise. Epoch : rendu vérifié, ressources et nettoyage avant commit. |
+| 2026-10-10 16:55:35 | 09:59:51 | -01:59:52 | Reprise. Epoch : validation des traductions affichées et nettoyage des essais temporaires. |
+| 2026-10-10 16:58:54 | 10:03:10 | -02:03:11 | Reprise. Epoch : vrai logo de marque et build final. |

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Input.FireLeft"><value>Venstre brannknapp</value></data>
+  <data name="Emulation.Epoch.Input.FireRight"><value>Høyre brannknapp</value></data>
+  <data name="Emulation.Epoch.Input.Enter"><value>Bekreft</value></data>
+  <data name="Emulation.Epoch.Input.Clear"><value>Tøm</value></data>
+  <data name="Emulation.Epoch.Input.Power"><value>Strømknapp</value></data>
+  <data name="Emulation.Epoch.Input.Reset"><value>Tilbakestill knapp</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft"><value>Flytt spaken til venstre</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight"><value>Flytt spaken til høyre</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease"><value>Velg neste spillkurs</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease"><value>Velg forrige spill kurs</value></data>
+  <data name="Emulation.Epoch.Input.GunFire"><value>Lyspistol utløser</value></data>
+  <data name="Emulation.Epoch.Input.GunReload"><value>Let pistol reload</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease"><value>Målet til venstre med lyspistolen</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease"><value>Forsøk til høyre med lyspistolen</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease"><value>sikt oppover med lyspistolen</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease"><value>Sikre nedover med lyspistolen</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease"><value>Paddle 1: vri mot klokken</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase"><value>Paddle 1: vri med klokka</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease"><value>Paddle 2: vri mot klokken</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase"><value>Paddle 2: vri med klokka</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease"><value>Paddle 3: vri mot klokken</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase"><value>Paddle 3: vri med klokka</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease"><value>Paddle 4: vri mot klokken</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase"><value>Paddle 4: vri med klokka</value></data>
+</root>
