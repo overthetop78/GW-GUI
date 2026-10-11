@@ -15,6 +15,28 @@ namespace GWGUI.Tests.Emulation.Apple;
 public sealed class AppleModuleTests
 {
     [Theory]
+    [InlineData(MachineModel.AppleIIe, EmulationKey.AppleOpenApple, EmulationKey.LeftAlt)]
+    [InlineData(MachineModel.AppleIIe, EmulationKey.AppleSolidApple, EmulationKey.RightAlt)]
+    [InlineData(MachineModel.MacintoshII, EmulationKey.MacintoshCommand, EmulationKey.LeftAlt)]
+    [InlineData(MachineModel.MacintoshII, EmulationKey.MacintoshKeypadClear, EmulationKey.Delete)]
+    [InlineData(MachineModel.MacintoshII, EmulationKey.MacintoshKeypadEquals, EmulationKey.Insert)]
+    public void ErasedSpecialKeyRemainsErasedAfterPersistenceAndDoesNotRestoreItsDefault(MachineModel model, EmulationKey target, EmulationKey previous)
+    {
+        var configuration = new MachineConfiguration(model);
+        var settings = InputSettingsFunctions.Describe(configuration);
+        var applied = InputSettingsFunctions.Apply(configuration, settings with { Keyboard = settings.Keyboard! with { Values = settings.Keyboard.Definitions.ToDictionary(item => item.Id, item => item.Id == target.ToString() ? string.Empty : item.DefaultBinding, StringComparer.Ordinal) } });
+        var document = ConfigurationStoreFunctions.ToDocument(applied, Path.GetTempPath());
+        var json = JsonSerializer.SerializeToElement(document, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+        var restored = ConfigurationStoreFunctions.FromDocument(ConfigurationStoreFunctions.Deserialize(json), Path.GetTempPath());
+        Assert.Equal(string.Empty, InputSettingsFunctions.Describe(restored).Keyboard!.Values[target.ToString()]);
+        var snapshot = InputSnapshotFunctions.Apply(Pressed(previous, EmulationKey.A, EmulationKey.Numpad1), restored.Input, model);
+        Assert.DoesNotContain(target, snapshot.Keys);
+        Assert.Contains(EmulationKey.A, snapshot.Keys);
+        Assert.Contains(EmulationKey.Numpad1, snapshot.Keys);
+        var native = KeyboardFunctions.CreateKeyMap();
+        Assert.DoesNotContain(snapshot.Keys.Where(native.ContainsKey).Select(key => native[key]), code => code == native[target]);
+    }
+    [Theory]
     [InlineData(MachineModel.AppleII, true, 0, 1)]
     [InlineData(MachineModel.AppleIIPlus, true, 0, 1)]
     [InlineData(MachineModel.AppleIIJPlus, true, 0, 1)]

@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>Tuntematon ympäristökomento: {0}</value></data>
-  <data name="Emulation.Apple.Error.CoreNotFound"><value>Tarvittavaa Applen ydintä ei löytynyt.</value></data>
-  <data name="Emulation.Apple.Error.CoreRejected"><value>Valittua Applen ydintä ei voitu ladata.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareMissing"><value>Tarvittava Apple-ohjelmisto puuttuu.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>Järjestelmä ROM on virheellinen tai yhteensopimaton.</value></data>
-  <data name="Emulation.Apple.Error.ContentNotFound"><value>Asetettua Apple-mediaa ei löytynyt.</value></data>
-  <data name="Emulation.Apple.Error.ContentUnsupported"><value>Tämä laite ei tue valittua mediaa.</value></data>
-  <data name="Emulation.Apple.Error.OptionInvalid"><value>Apple-valinnalla on virheellinen arvo.</value></data>
-  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>Yhteydet Applen isäntään epäonnistuivat.</value></data>
-  <data name="Emulation.Apple.Error.StateInvalid"><value>Applen tallentama tila on virheellinen.</value></data>
-  <data name="Emulation.Apple.Error.StateIncompatible"><value>Apple tallennettu tila on yhteensopimaton nykyisen koneen kanssa.</value></data>
-  <data name="Emulation.Apple.Error.Unexpected"><value>Tapahtui odottamaton Apple-emulointivirhe.</value></data>
-  <data name="Emulation.Apple.Error.Details"><value>Yksityiskohdat: {0}</value></data>
-  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>Applen isännän suoritettava polku ei ole käytettävissä.</value></data>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Tuntematon ympäristökomento: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound" xml:space="preserve"><value>Tarvittavaa Applen ydintä ei löytynyt.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected" xml:space="preserve"><value>Valittua Applen ydintä ei voitu ladata.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing" xml:space="preserve"><value>Tarvittava Apple-ohjelmisto puuttuu.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid" xml:space="preserve"><value>Järjestelmä ROM on virheellinen tai yhteensopimaton.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound" xml:space="preserve"><value>Asetettua Apple-mediaa ei löytynyt.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported" xml:space="preserve"><value>Tämä laite ei tue valittua mediaa.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid" xml:space="preserve"><value>Apple-valinnalla on virheellinen arvo.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure" xml:space="preserve"><value>Yhteydet Applen isäntään epäonnistuivat.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid" xml:space="preserve"><value>Applen tallentama tila on virheellinen.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible" xml:space="preserve"><value>Apple tallennettu tila on yhteensopimaton nykyisen koneen kanssa.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected" xml:space="preserve"><value>Tapahtui odottamaton Apple-emulointivirhe.</value></data>
+  <data name="Emulation.Apple.Error.Details" xml:space="preserve"><value>Yksityiskohdat: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing" xml:space="preserve"><value>Applen isännän suoritettava polku ei ole käytettävissä.</value></data>
 </root>

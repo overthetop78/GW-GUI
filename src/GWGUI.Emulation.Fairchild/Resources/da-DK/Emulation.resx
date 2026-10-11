@@ -4,11 +4,9 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.freechaf.Description"><value>Emulater Channel F og Channel F System II konsoller.</value></data>
-  <data name="Emulation.Fairchild.Memory.Display"><value>Video hukommelse</value></data>
-  <data name="Emulation.Fairchild.Video.Native"><value>Konsol video</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr"><value>Ryd skærmen i én ramme</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Help"><value>Accelerere skærm clearing ved at udfylde det i én ramme.</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value0"><value>Deaktiveret</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value1"><value>Aktiveret</value></data>
+  <data name="Emulation.Emulator.freechaf.Description" xml:space="preserve"><value>Emulater Channel F og Channel F System II konsoller.</value></data>
+  <data name="Emulation.Fairchild.Memory.Display" xml:space="preserve"><value>Video hukommelse</value></data>
+  <data name="Emulation.Fairchild.Video.Native" xml:space="preserve"><value>Konsol video</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear" xml:space="preserve"><value>Ryd skærmen i én ramme</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear.Help" xml:space="preserve"><value>Accelerér skærmrydning ved at udfylde den i én ramme.</value></data>
 </root>

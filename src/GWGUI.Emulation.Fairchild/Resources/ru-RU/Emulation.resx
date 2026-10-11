@@ -4,11 +4,9 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.freechaf.Description"><value>Имитирует консоли Channel F и Channel F System II.</value></data>
-  <data name="Emulation.Fairchild.Memory.Display"><value>Видеопамять</value></data>
-  <data name="Emulation.Fairchild.Video.Native"><value>Консольное видео</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr"><value>Очистите экран в одном кадре</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Help"><value>Ускорьте очистку экрана, заполнив его в одном кадре.</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value0"><value>Отключено</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value1"><value>Включено</value></data>
+  <data name="Emulation.Emulator.freechaf.Description" xml:space="preserve"><value>Имитирует консоли Channel F и Channel F System II.</value></data>
+  <data name="Emulation.Fairchild.Memory.Display" xml:space="preserve"><value>Видеопамять</value></data>
+  <data name="Emulation.Fairchild.Video.Native" xml:space="preserve"><value>Консольное видео</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear" xml:space="preserve"><value>Очистить экран в одном кадре</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear.Help" xml:space="preserve"><value>Ускорьте очистку экрана, заполнив его в одном кадре.</value></data>
 </root>

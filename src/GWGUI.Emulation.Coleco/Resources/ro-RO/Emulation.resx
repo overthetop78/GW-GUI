@@ -4,80 +4,47 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description"><value>Emulează ColecoVision și ADAM.</value></data>
-  <data name="Emulation.Emulator.jollycv.Description"><value>Emulează ColecoVision.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description"><value>Emulează ColecoVision.</value></data>
-  <data name="Emulation.Coleco.Memory.Display"><value>Memorie video</value></data>
-  <data name="Emulation.Coleco.Video.Native"><value>Video</value></data>
-  <data name="Emulation.Coleco.Controls.Native"><value>Opțiuni controlor</value></data>
-  <data name="Emulation.Coleco.System.Native"><value>Sistem</value></data>
-  <data name="Emulation.Coleco.Storage.Disk"><value>Drive disk ADAM</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack"><value>Pachet de date ADAM</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value0"><value>Idle</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value1"><value>Reinițializează</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Value0"><value>Automat</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value0"><value>Automat</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value1"><value>Standard</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Value0"><value>Automat</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value0"><value>Dezactivat</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value1"><value>Sus+jos</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value2"><value>Full (284 lățime)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value3"><value>Lăţime completă (320)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value0"><value>Dezactivat</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value1"><value>Activat</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value0"><value>Dezactivat</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value1"><value>Activat</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value0"><value>Raportul Aspect Pixel bazat pe regiune</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value1"><value>Pixeli perfect pătrat (1:1 PAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value2"><value>Raportul Aspectului NTSC foarte tradițional (4:3 DAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value3"><value>Raportul Aspectului PAL foarte precis</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value0"><value>Dezactivat</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value1"><value>Activat</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Value0"><value>Automat</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value0"><value>Activat</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value1"><value>Dezactivat</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset"><value>Repornire ADAM</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Help"><value>Reporniți ADAM de la mass-media montat.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing"><value>Rata de actualizare</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Help"><value>Selectați sincronizarea automată, NTSC sau PAL.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip"><value>Cip video</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Help"><value>Selectați cipul video emulat.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio"><value>Raportul de aspect al imaginii</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio.Help"><value>Selectaţi raportul de aspect imagine.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan"><value>Limitele ecranului</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Help"><value>Selectaţi graniţele vizibile ale ecranului.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit"><value>Elimină limita sprite</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Help"><value>Eliminați limita pe sprite per linie de ecran.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed"><value>Permite direcții opuse</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Help"><value>Permiteţi ca direcţiile opuse să fie presate împreună.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity"><value>Sensibilitate la controlul rotativ</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity.Help"><value>Reglați sensibilitatea regulatorului rotativ.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette"><value>Paleta de culori</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette.Help"><value>Alege paleta de culori.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect"><value>Raportul de aspect al imaginii</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Help"><value>Selectaţi raportul de aspect imagine.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t"><value>Granița superioară a culturilor</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t.Help"><value>Ascundeţi limita de sus a ecranului.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b"><value>Granița de fund a culturilor</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b.Help"><value>Ascunde marginea de jos a ecranului.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l"><value>Cultivați frontiera stângă</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l.Help"><value>Ascundeţi graniţa ecranului din stânga.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r"><value>Granița din dreapta a culturilor</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r.Help"><value>Ascundeţi marginea din dreapta a ecranului.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit"><value>Elimină limita sprite</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Help"><value>Eliminați limita pe sprite per linie de ecran.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan"><value>Granițele ecranului de cultură</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Help"><value>Cultivaţi graniţele ecranului.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype"><value>Rata de actualizare</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Help"><value>Selectaţi rata de reîmprospătare video.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits"><value>Elimină limita sprite</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Help"><value>Eliminați limita pe sprite per linie de ecran.</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom"><value>Bocanci rapizi</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Help"><value>Sări peste întârziere.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper"><value>Tipul cartușului</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Help"><value>Selectaţi tipul de cartuş.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value0"><value>Dezactivat</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value1"><value>Activat</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value0"><value>Dezactivat</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value1"><value>Activat</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Emulează ColecoVision și ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>Emulează ColecoVision.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>Emulează ColecoVision.</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>Memorie video</value></data>
+  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>Video</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>Opțiuni controlor</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>Sistem</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>Drive disk ADAM</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>Pachet de date ADAM</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>Rata de reîmprospătare a videourilor</value></data>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Selectaţi sincronizarea automată sau standardul video.</value></data>
+  <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>Tipul cartuşului</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Selectaţi controlerul de memorie al cartuşului.</value></data>
+  <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>Cip video</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Selectaţi cipul video emulat.</value></data>
+  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>Raportul aspectului imaginii</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Selectaţi raportul de aspect imagine. Selecţie automată utilizează regiunea de joc.</value></data>
+  <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>Limitele ecranului</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Selectaţi graniţele vizibile ale ecranului.</value></data>
+  <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>Elimină limita sprite</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Eliminați limita de pe sprite pe linie de ecran. Acest lucru poate provoca erori grafice.</value></data>
+  <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>Permite direcții opuse</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Permiteţi ca direcţiile opuse să fie presate împreună.</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>Sensibilitate la controlul rotativ</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Reglați sensibilitatea dispozitivului de comandă rotativ.</value></data>
+  <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>Paleta de culori</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Alege paleta de culori.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Ascundeţi graniţa de sus.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Ascundeţi graniţa de jos a ecranului.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Ascundeţi graniţa ecranului din stânga.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Ascundeţi graniţa cu ecranul din dreapta.</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Bocanc rapid</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Sări peste întârziere.</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Cartuş standard</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Frontierele de sus și de jos</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>Toate frontierele (284 pixeli lati)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>Toate marginile (320 pixeli lati)</value></data>
+  <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>Ascunde frontiera ecranului superior</value></data>
+  <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>Ascunde frontiera ecranului inferior</value></data>
+  <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>Ascunde frontiera ecranului din stânga</value></data>
+  <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>Ascunde marginea ecranului din dreapta</value></data>
+  <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>Ascunde frontierele ecranului</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Ascunde pixeli la marginile imaginii afișate.</value></data>
 </root>

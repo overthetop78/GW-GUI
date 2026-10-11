@@ -4,49 +4,36 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description"><value>Emulación de Apple II con AppleWin.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description"><value>Emulación Macintosh II con Mini vMac.</value></data>
-  <data name="Emulation.Apple.Option.Model"><value>Variante de la máquina</value></data>
-  <data name="Emulation.Apple.Video.Native"><value>Producción de vídeo nativa</value></data>
-  <data name="Emulation.Apple.Expansion"><value>Tarjetas de expansión</value></data>
-  <data name="Emulation.Apple.Memory.Runtime"><value>Memoria utilizada por el núcleo</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded"><value>Los ROMs del sistema están incluidos en el núcleo de AppleWin.</value></data>
-  <data name="Emulation.Apple.Storage.Playlist"><value>Listas de reproducción</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3"><value>Tarjeta en Ranura 3</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3.Value0"><value>Vacío</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3.Value1"><value>Video HD</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4"><value>Tarjeta en Ranura 4</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4.Value0"><value>Vacío</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4.Value2"><value>Tarjeta Mouse</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5"><value>Tarjeta en Ranura 5</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value0"><value>Vacío</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value1"><value>Z80 SoftCard</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value4"><value>SAM</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7"><value>Tarjeta en Ranura 7</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7.Value0"><value>Vacío</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7.Value1"><value>Controlador de disco duro</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode"><value>Modo de vídeo</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value0"><value>Color (RGB Tarjeta/Monitor)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value1"><value>Color (Composite Idealizado)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value2"><value>color (vigilancia compuesta)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value3"><value>Color TV</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value4"><value>BENTW TV</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value5"><value>Monocromo (Amber)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value6"><value>Monocromo (Green)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value7"><value>Monocromo (White)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_style"><value>Estilo de vídeo</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_style.Value0"><value>Medios escaneos</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate"><value>Tasa de reducción del vídeo</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate.Value0"><value>60Hz</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate.Value1"><value>50Hz</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start"><value>Playlist Start Disk</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start.Value0"><value>Primera</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start.Value1"><value>Anterior</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive"><value>Utilice ambas unidades floppy</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive.Value0"><value>Desactivado</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive.Value1"><value>Activado</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar"><value>Status Bar</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar.Value0"><value>Desactivado</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar.Value1"><value>Activado</value></data>
-  <data name="Emulation.Apple.Runtime.Unavailable"><value>El núcleo disponible no admite este modelo de máquina.</value></data>
+  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Apple II emulación con AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>Macintosh II emulación con Mini vMac.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Variante de la máquina</value></data>
+  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Salida de vídeo nativa</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Tarjetas de expansión</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Memoria utilizada por el núcleo</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>Los ROMs del sistema están incluidos en el núcleo AppleWin.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>El núcleo disponible no admite este modelo de máquina.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Lista de reproducción de discos</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Vacío</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Tarjeta en Ranura 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>Tarjeta de ratón</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Tarjeta en Ranura 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Tarjeta en Ranura 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>Controlador de disco duro</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Tarjeta en Ranura 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>Color (color)RGB Tarjeta/Monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>Color (Composite Idealizado)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>Color (Vigilancia Composite)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>Color TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>Monocromo (Amber)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>Monocromo (Green)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>Monocromo (White)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>Modo de vídeo</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>Media escanografías</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>Estilo de vídeo</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Tasa de reducción de vídeo</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>Primera</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>Anterior</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Playlist Start Disk</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>Usa ambas unidades floppy</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>Status Bar</value></data>
 </root>

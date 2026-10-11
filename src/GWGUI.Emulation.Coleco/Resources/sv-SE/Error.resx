@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Error.StateIncompatible"><value>Colecos sparade tillstånd är oförenligt med den nuvarande maskinen.</value></data>
-  <data name="Emulation.Coleco.Error.Unexpected"><value>Ett oväntat Coleco-emuleringsfel inträffade.</value></data>
-  <data name="Emulation.Coleco.Error.FirmwareMissing"><value>En nödvändig Coleco firmware saknas.</value></data>
-  <data name="Emulation.Coleco.Error.FirmwareInvalid"><value>Systemet ROM är ogiltigt eller oförenligt.</value></data>
-  <data name="Emulation.Coleco.Error.ContentNotFound"><value>De konfigurerade Coleco-media hittades inte.</value></data>
-  <data name="Emulation.Coleco.Error.ContentUnsupported"><value>Denna maskin stöder inte de utvalda medierna.</value></data>
-  <data name="Emulation.Coleco.Error.OptionInvalid"><value>Ett Coleco-alternativ har ett ogiltigt värde.</value></data>
-  <data name="Emulation.Coleco.Error.CoreNotFound"><value>Den nödvändiga Coleco kärnan hittades inte.</value></data>
-  <data name="Emulation.Coleco.Error.CoreRejected"><value>Den valda Coleco-kärnan kunde inte laddas.</value></data>
-  <data name="Emulation.Coleco.Error.StateInvalid"><value>Coleco räddade staten är ogiltig.</value></data>
-  <data name="Emulation.Coleco.Error.HostExecutableMissing"><value>Coleco värd körbar väg är otillgänglig.</value></data>
-  <data name="Emulation.Coleco.Error.Details"><value>Detaljer: {0}</value></data>
-  <data name="Emulation.Coleco.Error.HostProtocolFailure"><value>Kommunikation med Coleco-värden misslyckades.</value></data>
-  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand"><value>Okänd miljökommando: {0}</value></data>
+  <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>Colecos sparade tillstånd är oförenligt med den nuvarande maskinen.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>Ett oväntat Coleco-emuleringsfel inträffade.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing" xml:space="preserve"><value>En nödvändig Coleco firmware saknas.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>Systemet ROM är ogiltigt eller oförenligt.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>De konfigurerade Coleco-media hittades inte.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported" xml:space="preserve"><value>Denna maskin stöder inte de utvalda medierna.</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid" xml:space="preserve"><value>Ett Coleco-alternativ har ett ogiltigt värde.</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound" xml:space="preserve"><value>Den nödvändiga Coleco kärnan hittades inte.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>Den valda Coleco-kärnan kunde inte laddas.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>Coleco räddade staten är ogiltig.</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>Coleco värd körbar väg är otillgänglig.</value></data>
+  <data name="Emulation.Coleco.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>Kommunikation med Coleco-värden misslyckades.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Okänd miljökommando: {0}</value></data>
 </root>

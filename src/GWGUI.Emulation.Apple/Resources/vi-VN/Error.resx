@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>Lệnh môi trường không rõ:{0}</value></data>
-  <data name="Emulation.Apple.Error.CoreNotFound"><value>Không tìm thấy lõi Apple yêu cầu.</value></data>
-  <data name="Emulation.Apple.Error.CoreRejected"><value>Không thể tải lõi Apple đã chọn.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareMissing"><value>Một phần mềm Apple yêu cầu bị mất.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>ROM hệ thống không hợp lệ hay không tương thích.</value></data>
-  <data name="Emulation.Apple.Error.ContentNotFound"><value>Không tìm thấy các phương tiện truyền thông Apple được cấu hình.</value></data>
-  <data name="Emulation.Apple.Error.ContentUnsupported"><value>Máy này không hỗ trợ phương tiện được chọn.</value></data>
-  <data name="Emulation.Apple.Error.OptionInvalid"><value>Một tùy chọn Apple có giá trị không hợp lệ.</value></data>
-  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>Liên lạc với máy Apple thất bại.</value></data>
-  <data name="Emulation.Apple.Error.StateInvalid"><value>Số Apple là không hợp lệ.</value></data>
-  <data name="Emulation.Apple.Error.StateIncompatible"><value>Số Apple quốc gia được cứu không tương thích với máy hiện tại.</value></data>
-  <data name="Emulation.Apple.Error.Unexpected"><value>Một lỗi mô phỏng Apple bất ngờ đã xảy ra.</value></data>
-  <data name="Emulation.Apple.Error.Details"><value>Chi tiết:{0}</value></data>
-  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>Đường dẫn đến máy Apple không sẵn sàng.</value></data>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Lệnh môi trường không rõ:{0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound" xml:space="preserve"><value>Không tìm thấy lõi Apple yêu cầu.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected" xml:space="preserve"><value>Không thể tải lõi Apple đã chọn.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing" xml:space="preserve"><value>Một phần mềm Apple yêu cầu bị mất.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid" xml:space="preserve"><value>ROM hệ thống không hợp lệ hay không tương thích.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound" xml:space="preserve"><value>Không tìm thấy các phương tiện truyền thông Apple được cấu hình.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported" xml:space="preserve"><value>Máy này không hỗ trợ phương tiện được chọn.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid" xml:space="preserve"><value>Một tùy chọn Apple có giá trị không hợp lệ.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure" xml:space="preserve"><value>Liên lạc với máy Apple thất bại.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid" xml:space="preserve"><value>Số Apple là không hợp lệ.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible" xml:space="preserve"><value>Số Apple quốc gia được cứu không tương thích với máy hiện tại.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected" xml:space="preserve"><value>Một lỗi mô phỏng Apple bất ngờ đã xảy ra.</value></data>
+  <data name="Emulation.Apple.Error.Details" xml:space="preserve"><value>Chi tiết:{0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing" xml:space="preserve"><value>Đường dẫn đến máy Apple không sẵn sàng.</value></data>
 </root>

@@ -70,13 +70,13 @@ internal static class SettingsDescriptionFunctions
 
     private static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
     {
-        var resource = SettingsConstants.NativeOptionResourcePrefix + option.Key;
+        var resource = option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}.");
         var choices = option.Values.Select((choice, index) => new EmulationSettingsChoice(choice.Value,
-            string.Format(CultureInfo.InvariantCulture, SettingsConstants.NativeChoiceResourceFormat, resource, index))).ToArray();
+            choice.ResourceKey ?? throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}."))).ToArray();
         var toggle = option.Values.Count == 2 && option.Values.All(choice => choice.Value is "enabled" or "disabled");
         return new(option.Key, tab, block, resource, toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection,
             configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), choices,
-            ExplanationResourceKey: resource + SettingsConstants.HelpResourceSuffix,
+            ExplanationResourceKey: option.ExplanationResourceKey,
             EnabledValue: toggle ? "enabled" : EmulationSettingConstants.Enabled,
             DisabledValue: toggle ? "disabled" : EmulationSettingConstants.Disabled,
             RequiresRestart: RuntimeOptionFunctions.RequiresRestart(configuration.Core, option.Key));

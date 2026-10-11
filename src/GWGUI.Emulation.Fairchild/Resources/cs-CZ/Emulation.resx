@@ -4,11 +4,9 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.freechaf.Description"><value>Emuláty Channel F a konzoly Channel F System II.</value></data>
-  <data name="Emulation.Fairchild.Memory.Display"><value>Video paměť</value></data>
-  <data name="Emulation.Fairchild.Video.Native"><value>Konzolové video</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr"><value>Vymazat obrazovku v jednom rámečku</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Help"><value>Zrychlit čištění obrazovky jeho vyplněním v jednom rámečku.</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value0"><value>Zakázáno</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value1"><value>Povoleno</value></data>
+  <data name="Emulation.Emulator.freechaf.Description" xml:space="preserve"><value>Emuláty Channel F a konzoly Channel F System II.</value></data>
+  <data name="Emulation.Fairchild.Memory.Display" xml:space="preserve"><value>Video paměť</value></data>
+  <data name="Emulation.Fairchild.Video.Native" xml:space="preserve"><value>Konzolové video</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear" xml:space="preserve"><value>Vyčistit obrazovku v jednom rámečku</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear.Help" xml:space="preserve"><value>Zrychlit čištění obrazovky tím, že jej vyplníte v jednom rámu.</value></data>
 </root>

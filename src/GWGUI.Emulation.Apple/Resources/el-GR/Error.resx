@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>Άγνωστη εντολή περιβάλλοντος: {0}</value></data>
-  <data name="Emulation.Apple.Error.CoreNotFound"><value>Ο απαιτούμενος πυρήνας Apple δεν βρέθηκε.</value></data>
-  <data name="Emulation.Apple.Error.CoreRejected"><value>Δεν ήταν δυνατή η φόρτωση του επιλεγμένου πυρήνα Apple.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareMissing"><value>Λείπει ένα απαιτούμενο firmware Apple.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>Το σύστημα ROM δεν είναι έγκυρο ή ασυμβίβαστο.</value></data>
-  <data name="Emulation.Apple.Error.ContentNotFound"><value>Τα ρυθμισμένα μέσα της Apple δε βρέθηκαν.</value></data>
-  <data name="Emulation.Apple.Error.ContentUnsupported"><value>Αυτή η μηχανή δεν υποστηρίζει τα επιλεγμένα μέσα.</value></data>
-  <data name="Emulation.Apple.Error.OptionInvalid"><value>Μια επιλογή Apple έχει μη έγκυρη τιμή.</value></data>
-  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>Η επικοινωνία με τον υπολογιστή Apple απέτυχε.</value></data>
-  <data name="Emulation.Apple.Error.StateInvalid"><value>Η αποθηκευμένη κατάσταση της Apple είναι άκυρη.</value></data>
-  <data name="Emulation.Apple.Error.StateIncompatible"><value>Η αποθηκευμένη κατάσταση της Apple είναι ασύμβατη με την τρέχουσα μηχανή.</value></data>
-  <data name="Emulation.Apple.Error.Unexpected"><value>Συνέβη ένα μη αναμενόμενο σφάλμα εξομοίωσης της Apple.</value></data>
-  <data name="Emulation.Apple.Error.Details"><value>Λεπτομέρειες: {0}</value></data>
-  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>Η εκτελέσιμη διαδρομή του υπολογιστή της Apple δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Άγνωστη εντολή περιβάλλοντος: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound" xml:space="preserve"><value>Ο απαιτούμενος πυρήνας Apple δεν βρέθηκε.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected" xml:space="preserve"><value>Δεν ήταν δυνατή η φόρτωση του επιλεγμένου πυρήνα Apple.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing" xml:space="preserve"><value>Λείπει ένα απαιτούμενο firmware Apple.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid" xml:space="preserve"><value>Το σύστημα ROM δεν είναι έγκυρο ή ασυμβίβαστο.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound" xml:space="preserve"><value>Τα ρυθμισμένα μέσα της Apple δε βρέθηκαν.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported" xml:space="preserve"><value>Αυτή η μηχανή δεν υποστηρίζει τα επιλεγμένα μέσα.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid" xml:space="preserve"><value>Μια επιλογή Apple έχει μη έγκυρη τιμή.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure" xml:space="preserve"><value>Η επικοινωνία με τον υπολογιστή Apple απέτυχε.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid" xml:space="preserve"><value>Η αποθηκευμένη κατάσταση της Apple είναι άκυρη.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible" xml:space="preserve"><value>Η αποθηκευμένη κατάσταση της Apple είναι ασύμβατη με την τρέχουσα μηχανή.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected" xml:space="preserve"><value>Συνέβη ένα μη αναμενόμενο σφάλμα εξομοίωσης της Apple.</value></data>
+  <data name="Emulation.Apple.Error.Details" xml:space="preserve"><value>Λεπτομέρειες: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing" xml:space="preserve"><value>Η εκτελέσιμη διαδρομή του υπολογιστή της Apple δεν είναι διαθέσιμη.</value></data>
 </root>

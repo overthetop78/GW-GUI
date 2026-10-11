@@ -52,10 +52,10 @@ internal static partial class SettingsDescriptionFunctions
     private static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option,
         EmulationMachineTab tab)
     {
-        var resource = SettingsConstants.NativeOptionResourcePrefix + option.Key;
+        var resource = option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}.");
         var value = configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue);
         var choices = option.Values.Select((choice, index) => new EmulationSettingsChoice(choice.Value,
-            string.Format(CultureInfo.InvariantCulture, SettingsConstants.NativeChoiceResourceFormat, resource, index)))
+            choice.ResourceKey ?? throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}.")))
             .ToArray();
         return new(option.Key, tab, tab.ToString(), resource, EmulationSettingsEditor.Selection, value, choices,
             RequiresRestart: RuntimeOptionFunctions.RequiresRestart(configuration.Core, option.Key));

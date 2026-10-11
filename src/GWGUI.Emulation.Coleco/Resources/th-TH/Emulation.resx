@@ -4,80 +4,47 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description"><value>จําลอง ColecoVision และ ADAM</value></data>
-  <data name="Emulation.Emulator.jollycv.Description"><value>จําลอง ColecoVision.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description"><value>จําลอง ColecoVision.</value></data>
-  <data name="Emulation.Coleco.Memory.Display"><value>หน่วยความจําของภาพวิดีโอ</value></data>
-  <data name="Emulation.Coleco.Video.Native"><value>วิดีโอ</value></data>
-  <data name="Emulation.Coleco.Controls.Native"><value>ตัวเลือกของตัวควบคุม</value></data>
-  <data name="Emulation.Coleco.System.Native"><value>ระบบ</value></data>
-  <data name="Emulation.Coleco.Storage.Disk"><value>ADAM ดิสก์ไดรฟ์</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack"><value>ชุดข้อมูล ADAM</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value0"><value>ว่าง</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value1"><value>ตั้งค่าใหม่</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value1"><value>มาตรฐาน</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value0"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value1"><value>ด้านบน+Bottom</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value2"><value>ขนาดเต็ม (284)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value3"><value>พิมพ์เต็ม (320 ง)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value0"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value1"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value0"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value1"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value0"><value>สัดส่วนภาพตามขอบเขต</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value1"><value>สี่เหลี่ยมแบบสมบูรณ์ (1: 1 PAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value2"><value>ค่าสัดส่วนของ NTSC แบบดั้งเดิมมาก (4: 3 DAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value3"><value>สัดส่วนภาพ PAL ที่ถูกต้องที่สุด</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value0"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value1"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value0"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value1"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset"><value>เริ่ม ADAM ใหม่</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Help"><value>เริ่ม ADAM จากสื่อที่ติดตั้งอยู่</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing"><value>อัตราการรีเฟรช</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Help"><value>เลือกเวลาอัตโนมัติ, NTSC หรือ PAL</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip"><value>ชิปวิดีโอ</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Help"><value>เลือกชิพวิดีโอแบบย่อ</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio"><value>สัดส่วนภาพ</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio.Help"><value>เลือกสัดส่วนภาพ</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan"><value>กรอบจอ</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Help"><value>เลือกขอบเขตจอที่มองเห็น</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit"><value>ลบค่าจํากัดของ spite</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Help"><value>ลบค่าลิมิตบนspirts ต่อบรรทัดหน้าจอ</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed"><value>อนุญาตให้แสดงทิศทางตรงข้าม</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Help"><value>เปิด โอกาส ให้ มี การ กด ทิศ ทาง ตรง ข้าม กัน.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity"><value>การ รู้ จัก บังคับ ตน</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity.Help"><value>ปรับความไวของตัวควบคุม rotary</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette"><value>จานสี</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette.Help"><value>เลือกจานสี</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect"><value>สัดส่วนภาพ</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Help"><value>เลือกสัดส่วนภาพ</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t"><value>เส้นขอบด้านบน</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t.Help"><value>ซ่อนขอบจอด้านบน</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b"><value>เส้นขอบด้านล่าง</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b.Help"><value>ซ่อนขอบจอด้านล่าง</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l"><value>ตัดกับกรอบด้านซ้าย</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l.Help"><value>ซ่อนขอบจอด้านซ้าย</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r"><value>ตัดกับกรอบด้านขวา</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r.Help"><value>ซ่อนขอบจอด้านขวา</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit"><value>ลบค่าจํากัดของ spite</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Help"><value>ลบค่าลิมิตบนspirts ต่อบรรทัดหน้าจอ</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan"><value>ตัดขอบจอ</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Help"><value>ตัดขอบจอออก</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype"><value>อัตราการรีเฟรช</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Help"><value>เลือกอัตราการรีเฟรชวิดีโอ</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits"><value>ลบค่าจํากัดของ spite</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Help"><value>ลบค่าลิมิตบนspirts ต่อบรรทัดหน้าจอ</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom"><value>บูตแบบเร็ว</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Help"><value>ข้ามการบูตที่ล่าช้า</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper"><value>ตลับหมึก</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Help"><value>เลือกประเภทของตลับหมึก</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value0"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value1"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value0"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value1"><value>เปิดใช้งาน</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>จําลอง ColecoVision และ ADAM</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>จําลอง ColecoVision.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>จําลอง ColecoVision.</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>หน่วยความจําของภาพวิดีโอ</value></data>
+  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>วิดีโอ</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>ตัวเลือกของตัวควบคุม</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>ระบบ</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAM ดิสก์ไดรฟ์</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ชุดข้อมูล ADAM</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>อัตราการรีเฟรชวิดีโอ</value></data>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>เลือกเวลาอัตโนมัติหรือมาตรฐานวิดีโอ</value></data>
+  <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>ตลับหมึก</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>เลือกตัวควบคุมหน่วยความจําของตลับหมึก</value></data>
+  <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>ชิปวิดีโอ</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>เลือกชิพวิดีโอที่คัดลอก</value></data>
+  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>สัดส่วนภาพ</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>เลือกขอบเขตสัดส่วนภาพ การเลือกอัตโนมัติจะใช้ขอบเขตเกม</value></data>
+  <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>กรอบจอ</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>เลือกขอบเขตจอที่มองเห็น</value></data>
+  <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>ลบค่าจํากัดของ spirn</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>ลบค่าลิมิตของช่วงบนกราฟต่อบรรทัดหน้าจอ ซึ่งจะทําให้ภาพผิดพลาดได้</value></data>
+  <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>อนุญาตให้ทําตรงกันข้าม</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>ให้ พยายาม ทํา ให้ มี การ สื่อ ความ กัน ใน ทิศ ทาง ที่ ตรง ข้าม กัน.</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>ความ ไว ต่อ การ ควบคุม ของ ผู้ ป่วย</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>ปรับความไวของตัวควบคุมการหมุน</value></data>
+  <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>จานสี</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>เลือกจานสี</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>ซ่อนขอบจอด้านบน</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>ซ่อนขอบจอด้านล่าง</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>ซ่อนขอบจอด้านซ้าย</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>ซ่อนขอบจอด้านขวา</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>บูตแบบเร็ว</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>ข้ามการบูตล่าช้า</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>ตลับหมึกมาตรฐาน</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>กรอบบนและด้านล่าง</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>ขอบเขตทั้งหมด (284 พิกเซล)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>เส้นขอบทั้งหมด (กว้าง 320 พิกเซล)</value></data>
+  <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>ซ่อนกรอบของหน้าจอด้านบน</value></data>
+  <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>ซ่อนกรอบของหน้าจอล่าง</value></data>
+  <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>ซ่อนกรอบจอด้านซ้าย</value></data>
+  <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>ซ่อนกรอบจอด้านขวา</value></data>
+  <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>ซ่อนกรอบจอ</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>ซ่อนพิกเซลที่ขอบของภาพที่แสดงผล</value></data>
 </root>

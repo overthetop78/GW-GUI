@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Error.StateIncompatible"><value>Fairchild räddade tillståndet är oförenligt med den nuvarande maskinen.</value></data>
-  <data name="Emulation.Fairchild.Error.Unexpected"><value>Ett oväntat Fairchild-emuleringsfel inträffade.</value></data>
-  <data name="Emulation.Fairchild.Error.FirmwareMissing"><value>En nödvändig Fairchild firmware saknas.</value></data>
-  <data name="Emulation.Fairchild.Error.FirmwareInvalid"><value>Systemet ROM är ogiltigt eller oförenligt.</value></data>
-  <data name="Emulation.Fairchild.Error.ContentNotFound"><value>De konfigurerade Fairchild-media hittades inte.</value></data>
-  <data name="Emulation.Fairchild.Error.ContentUnsupported"><value>Denna maskin stöder inte de utvalda medierna.</value></data>
-  <data name="Emulation.Fairchild.Error.OptionInvalid"><value>Ett Fairchild-alternativ har ett ogiltigt värde.</value></data>
-  <data name="Emulation.Fairchild.Error.CoreNotFound"><value>Den nödvändiga Fairchild kärnan hittades inte.</value></data>
-  <data name="Emulation.Fairchild.Error.CoreRejected"><value>Den valda Fairchild-kärnan kunde inte laddas.</value></data>
-  <data name="Emulation.Fairchild.Error.StateInvalid"><value>Fairchild räddade tillståndet är ogiltigt.</value></data>
-  <data name="Emulation.Fairchild.Error.HostExecutableMissing"><value>Fairchild värd körbar väg är otillgänglig.</value></data>
-  <data name="Emulation.Fairchild.Error.Details"><value>Detaljer: {0}</value></data>
-  <data name="Emulation.Fairchild.Error.HostProtocolFailure"><value>Kommunikation med Fairchild-värden misslyckades.</value></data>
-  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand"><value>Okänd miljökommando: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>Fairchild räddade tillståndet är oförenligt med den nuvarande maskinen.</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>Ett oväntat Fairchild-emuleringsfel inträffade.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>En nödvändig Fairchild firmware saknas.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>Systemet ROM är ogiltigt eller oförenligt.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>De konfigurerade Fairchild-media hittades inte.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported" xml:space="preserve"><value>Denna maskin stöder inte de utvalda medierna.</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>Ett Fairchild-alternativ har ett ogiltigt värde.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>Den nödvändiga Fairchild kärnan hittades inte.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>Den valda Fairchild-kärnan kunde inte laddas.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>Fairchild räddade tillståndet är ogiltigt.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>Fairchild värd körbar väg är otillgänglig.</value></data>
+  <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>Kommunikation med Fairchild-värden misslyckades.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Okänd miljökommando: {0}</value></data>
 </root>

@@ -23,7 +23,7 @@ public sealed record RuntimeGeometry(int Width, int Height, int Pitch, float Asp
 
 public sealed record RuntimeStatus(
     MachineModel Model,
-    RuntimeRegion? Region,
+    EmulationVideoStandard? Region,
     double FramesPerSecond,
     int SampleRate,
     RuntimeGeometry? Geometry,

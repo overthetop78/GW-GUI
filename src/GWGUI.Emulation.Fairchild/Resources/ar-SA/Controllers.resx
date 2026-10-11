@@ -4,10 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Input.RotateLeft"><value>تناوب المقبض إلى اليسار</value></data>
-  <data name="Emulation.Fairchild.Input.RotateRight"><value>تناوب المقبض إلى اليمين</value></data>
-  <data name="Emulation.Fairchild.Input.Push"><value>ادفع المقبض</value></data>
-  <data name="Emulation.Fairchild.Input.Pull"><value>اسحب المقبض</value></data>
-  <data name="Emulation.Fairchild.Input.ConsoleOverlay"><value>اظهروا أزرار البنفسج</value></data>
-  <data name="Emulation.Fairchild.Input.SwapControllers"><value>امسح المتحكمين</value></data>
+  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>تناوب المقبض إلى اليسار</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>تناوب المقبض إلى اليمين</value></data>
+  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>ادفع المقبض</value></data>
+  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>اسحب المقبض</value></data>
+  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>اظهروا أزرار البنفسج</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>امسح المتحكمين</value></data>
 </root>

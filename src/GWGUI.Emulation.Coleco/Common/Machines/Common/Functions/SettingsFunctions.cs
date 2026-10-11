@@ -83,18 +83,22 @@ internal static class SettingsDescriptionFunctions
     internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option,
         EmulationMachineTab tab, string blockId)
     {
-        var resource = SettingsConstants.NativeOptionResourcePrefix + option.Key;
-        var choices = option.Values.Select((choice, index) => new EmulationSettingsChoice(choice.Value,
-            string.Format(CultureInfo.InvariantCulture, SettingsConstants.NativeChoiceResourceFormat, resource, index),
-            double.TryParse(choice.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out _) ? choice.Value : null)).ToArray();
+        var resource = option.ResourceKey ?? throw new InvalidOperationException(option.Key);
+        var choices = option.Values.Select(choice => Choice(choice, option.Key)).ToArray();
         var toggle = option.Values.Count == 2 && option.Values.All(choice => choice.Value is "Enabled" or "Disabled" or "ON" or "OFF" or "on" or "off" or "enabled" or "disabled");
         return new(option.Key, tab, blockId, resource,
             toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection,
             configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), choices,
-            ExplanationResourceKey: resource + SettingsConstants.HelpResourceSuffix,
+            ExplanationResourceKey: option.ExplanationResourceKey,
             EnabledValue: toggle ? option.Values.First(choice => choice.Value is "Enabled" or "ON" or "on" or "enabled").Value : EmulationSettingConstants.Enabled,
             DisabledValue: toggle ? option.Values.First(choice => choice.Value is "Disabled" or "OFF" or "off" or "disabled").Value : EmulationSettingConstants.Disabled,
             RequiresRestart: RuntimeOptionFunctions.RequiresRestart(configuration.Core, option.Key));
+    }
+    private static EmulationSettingsChoice Choice(CoreOptionValue choice, string optionKey)
+    {
+        if (choice.VideoStandard is { } standard && choice.FrequencyHz is { } frequencyHz) return new(choice.Value, string.Empty, EmulationVideoFunctions.FormatTiming(standard, frequencyHz));
+        if (choice.VideoStandard is not null || choice.FrequencyHz is not null) throw new InvalidOperationException(optionKey + ":" + choice.Value);
+        return new(choice.Value, choice.ResourceKey ?? throw new InvalidOperationException(optionKey + ":" + choice.Value), double.TryParse(choice.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out _) ? choice.Value : null);
     }
     private static EmulationSettingsBlock Audio(MachineConfiguration configuration) =>
         Block(EmulationMachineTab.Audio, SettingsConstants.ResourceAudio,

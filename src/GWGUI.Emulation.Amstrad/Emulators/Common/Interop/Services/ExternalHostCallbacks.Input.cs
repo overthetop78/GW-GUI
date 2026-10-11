@@ -11,8 +11,8 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalHostCallbacks
 {
-    internal static IReadOnlySet<EmulationKey> SupportedKeyboardKeys { get; } =
-        KeyboardMap.Values.ToHashSet();
+    internal IReadOnlySet<EmulationKey> SupportedKeyboardKeys =>
+        _keyboardMap.Values.ToHashSet();
 
     private void HandleInputPoll()
     {
@@ -33,7 +33,7 @@ internal sealed partial class ExternalHostCallbacks
     {
         if (_keyboardEvent is null) return;
         keys = FilterReservedKeyboardChord(keys);
-        var reverseMap = KeyboardMap.ToDictionary(pair => pair.Value, pair => pair.Key);
+        var reverseMap = _keyboardMap.ToDictionary(pair => pair.Value, pair => pair.Key);
         var modifiers = (ushort)((keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift) ? ShiftModifier : NoKeyboardModifiers)
             | (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? ControlModifier : NoKeyboardModifiers)
             | (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? AltModifier : NoKeyboardModifiers));
@@ -98,7 +98,7 @@ internal sealed partial class ExternalHostCallbacks
     {
         var input = _polledInput;
         if (device == KeyboardDevice)
-            return KeyboardMap.TryGetValue(id, out var key) && input.Keys.Contains(key) ? ExternalCoreInteropConstants.PressedInputState : ExternalCoreInteropConstants.ReleasedInputState;
+            return _keyboardMap.TryGetValue(id, out var key) && input.Keys.Contains(key) ? ExternalCoreInteropConstants.PressedInputState : ExternalCoreInteropConstants.ReleasedInputState;
 
         if (device == MouseDevice && port == ControllerPortConstants.MinimumControllerPort)
             return id switch
@@ -149,7 +149,7 @@ internal sealed partial class ExternalHostCallbacks
             PointerCoordinateMinimum, PointerCoordinateMaximum);
     private static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
 
-    private static IReadOnlyDictionary<uint, EmulationKey> CreateKeyboardMap()
+    private static IReadOnlyDictionary<uint, EmulationKey> CreateKeyboardMap(IReadOnlyDictionary<uint, EmulationKey?>? overrides)
     {
         var map = new Dictionary<uint, EmulationKey>
         {
@@ -173,6 +173,12 @@ internal sealed partial class ExternalHostCallbacks
         map[NumpadPeriodKeyCode] = EmulationKey.NumpadPeriod; map[NumpadDivideKeyCode] = EmulationKey.NumpadDivide;
         map[NumpadMultiplyKeyCode] = EmulationKey.NumpadMultiply; map[NumpadMinusKeyCode] = EmulationKey.NumpadMinus;
         map[NumpadPlusKeyCode] = EmulationKey.NumpadPlus; map[NumpadEnterKeyCode] = EmulationKey.NumpadEnter;
+        if (overrides is not null)
+        {
+            var replacedKeys = overrides.Values.OfType<EmulationKey>().ToHashSet();
+            foreach (var code in map.Where(item => replacedKeys.Contains(item.Value)).Select(item => item.Key).ToArray()) map.Remove(code);
+            foreach (var item in overrides) { if (item.Value is { } key) map[item.Key] = key; else map.Remove(item.Key); }
+        }
         return map;
     }
 

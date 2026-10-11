@@ -8,6 +8,4 @@ internal static class ToggleValueConstants
     internal const string False = "false";
     internal const string On = "on";
     internal const string Off = "off";
-    internal const string EnabledTitleCase = "Enabled";
-    internal const string DisabledTitleCase = "Disabled";
 }

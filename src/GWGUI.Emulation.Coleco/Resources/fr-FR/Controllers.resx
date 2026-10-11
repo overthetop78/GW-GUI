@@ -4,12 +4,12 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Controller.Standard"><value>Contrôleur ColecoVision</value></data>
-  <data name="Emulation.Coleco.Controller.Paddle"><value>Paddle</value></data>
-  <data name="Emulation.Coleco.Action.FireLeft"><value>Bouton de tir gauche</value></data>
-  <data name="Emulation.Coleco.Action.FireRight"><value>Bouton de tir droit</value></data>
-  <data name="Emulation.Coleco.Action.Purple"><value>Bouton violet</value></data>
-  <data name="Emulation.Coleco.Action.Blue"><value>Bouton bleu</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerLeft"><value>Rotation vers la gauche</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerRight"><value>Rotation vers la droite</value></data>
+  <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>Contrôleur ColecoVision</value></data>
+  <data name="Emulation.Coleco.Controller.Paddle" xml:space="preserve"><value>Paddle</value></data>
+  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Bouton de tir gauche</value></data>
+  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Bouton de tir droit</value></data>
+  <data name="Emulation.Coleco.Action.Purple" xml:space="preserve"><value>Bouton violet</value></data>
+  <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>Bouton bleu</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Rotation vers la gauche</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>Rotation vers la droite</value></data>
   </root>

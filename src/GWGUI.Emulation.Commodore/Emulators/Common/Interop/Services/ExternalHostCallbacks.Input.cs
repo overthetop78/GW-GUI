@@ -12,7 +12,7 @@ internal sealed partial class ExternalHostCallbacks
     {
         lock (_inputGate)
         {
-            _polledInput = _pendingInput;
+            _polledInput = _pendingInput with { Keys = GWGUI.Emulation.Commodore.Common.Machines.Common.Functions.KeyboardBindingFunctions.Expand(_pendingInput.Keys, _keyboardExpansions, _keyboardToggleExpansions, _activeKeyboardToggles, _previousKeyboardToggleSources) };
             _pendingInput = _pendingInput with
             {
                 Pointer = _pendingInput.Pointer with { DeltaX = InputSnapshotFunctionsConstants.NoPointerMovement, DeltaY = InputSnapshotFunctionsConstants.NoPointerMovement, Wheel = InputSnapshotFunctionsConstants.NoWheelMovement, HorizontalWheel = InputSnapshotFunctionsConstants.NoWheelMovement }
@@ -21,10 +21,18 @@ internal sealed partial class ExternalHostCallbacks
         PublishKeyboardTransitions(_polledInput.Keys);
     }
 
+    internal static IReadOnlySet<EmulationKey> ExpandKeyboardKeys(IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> expansions)
+    {
+        var expanded = new HashSet<EmulationKey>(keys.Where(key => !expansions.ContainsKey(key)));
+        foreach (var key in keys)
+            if (expansions.TryGetValue(key, out var chord)) expanded.UnionWith(chord);
+        return expanded;
+    }
+
     private void PublishKeyboardTransitions(IReadOnlySet<EmulationKey> keys)
     {
         if (_keyboardEvent is null) return;
-        var reverseMap = KeyboardMap.ToDictionary(pair => pair.Value, pair => pair.Key);
+        var reverseMap = _keyboardMap.ToDictionary(pair => pair.Value, pair => pair.Key);
         var modifiers = (ushort)((keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift) ? NativeKeyboardModifier.Shift : NativeKeyboardModifier.None)
             | (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? NativeKeyboardModifier.Control : NativeKeyboardModifier.None)
             | (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? NativeKeyboardModifier.Alt : NativeKeyboardModifier.None));
@@ -53,7 +61,7 @@ internal sealed partial class ExternalHostCallbacks
 
     private static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift
         or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt
-        or EmulationKey.LeftAmiga or EmulationKey.RightAmiga;
+        or EmulationKey.LeftAmiga or EmulationKey.RightAmiga or EmulationKey.CommodoreKey or EmulationKey.CommodoreShiftLock;
 
     private void HandleLog(int level, nint format)
     {
@@ -79,7 +87,7 @@ internal sealed partial class ExternalHostCallbacks
     {
         var input = _polledInput;
         if (device == KeyboardDevice)
-            return KeyboardMap.TryGetValue(id, out var key) && input.Keys.Contains(key) ? PressedInput : ReleasedInput;
+            return _keyboardMap.TryGetValue(id, out var key) && input.Keys.Contains(key) ? PressedInput : ReleasedInput;
 
         if (device == MouseDevice && port == ControllerPortConstants.MinimumControllerPort)
             return id switch
@@ -117,7 +125,7 @@ internal sealed partial class ExternalHostCallbacks
     private static short ClampToShort(int value) => (short)Math.Clamp(value, short.MinValue, short.MaxValue);
     private static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
 
-    private static IReadOnlyDictionary<uint, EmulationKey> CreateKeyboardMap()
+    private static IReadOnlyDictionary<uint, EmulationKey> CreateKeyboardMap(IReadOnlyDictionary<uint, EmulationKey?>? overrides)
     {
         var map = new Dictionary<uint, EmulationKey>
         {
@@ -142,6 +150,13 @@ internal sealed partial class ExternalHostCallbacks
         map[(uint)NativeKeyboardKey.NumpadPeriod] = EmulationKey.NumpadPeriod; map[(uint)NativeKeyboardKey.NumpadDivide] = EmulationKey.NumpadDivide;
         map[(uint)NativeKeyboardKey.NumpadMultiply] = EmulationKey.NumpadMultiply; map[(uint)NativeKeyboardKey.NumpadMinus] = EmulationKey.NumpadMinus;
         map[(uint)NativeKeyboardKey.NumpadPlus] = EmulationKey.NumpadPlus; map[(uint)NativeKeyboardKey.NumpadEnter] = EmulationKey.NumpadEnter;
+        if (overrides is not null)
+            foreach (var item in overrides)
+            {
+                if (item.Value is not { } target) { map.Remove(item.Key); continue; }
+                foreach (var alias in map.Where(pair => pair.Value == target).Select(pair => pair.Key).ToArray()) map.Remove(alias);
+                map[item.Key] = target;
+            }
         return map;
     }
 

@@ -39,5 +39,4 @@ internal static class ControllerOptionConstants
     internal const string SwanPortPrefix = "swanstation_Controller";
     internal const string PlayerOne = "crosshair1";
     internal const string PlayerTwo = "crosshair2";
-    internal const string EmptyController = "None";
 }

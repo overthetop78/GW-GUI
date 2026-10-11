@@ -4,49 +4,36 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description"><value>Apple II -emulointi AppleWinillä.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description"><value>Macintosh II -emulointi Mini vMacin kanssa.</value></data>
-  <data name="Emulation.Apple.Option.Model"><value>Koneen variantti</value></data>
-  <data name="Emulation.Apple.Video.Native"><value>Oma videon tuloste</value></data>
-  <data name="Emulation.Apple.Expansion"><value>Laajennuskortit</value></data>
-  <data name="Emulation.Apple.Memory.Runtime"><value>Ytimen käyttämä muisti</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded"><value>Järjestelmä ROM kuuluu AppleWin-ytimeen.</value></data>
-  <data name="Emulation.Apple.Storage.Playlist"><value>Levyn soittolistat</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3"><value>Kortti Slot 3</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3.Value0"><value>Tyhjä</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3.Value1"><value>Video HD</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4"><value>Kortti Slot 4</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4.Value0"><value>Tyhjä</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4.Value2"><value>Hiirikortti</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5"><value>Kortti Slot 5</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value0"><value>Tyhjä</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value1"><value>Z80 SoftCard</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value4"><value>SAM</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7"><value>Kortti Slot 7</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7.Value0"><value>Tyhjä</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7.Value1"><value>Kovan levyn ohjainName</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode"><value>Videotila</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value0"><value>Väri (RGB-kortti/monitori)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value1"><value>Väri (Composite Idealized)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value2"><value>Väri (Composite Monitor)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value3"><value>Väri-TV</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value4"><value>B &amp; W TV</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value5"><value>Yksivärinen (Amber)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value6"><value>Yksivärinen (vihreä)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value7"><value>Yksivärinen (valkoinen)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_style"><value>Videotyyli</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_style.Value0"><value>Half Scanlines</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate"><value>Videon päivitysnopeus</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate.Value0"><value>60Hz</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate.Value1"><value>50Hz</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start"><value>Soittolistan aloituslevy</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start.Value0"><value>Ensimmäinen</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start.Value1"><value>Edellinen</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive"><value>Käytä molempia levykeasemia</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive.Value0"><value>Ei käytössä</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive.Value1"><value>Käytössä</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar"><value>Tilarivi</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar.Value0"><value>Ei käytössä</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar.Value1"><value>Käytössä</value></data>
-  <data name="Emulation.Apple.Runtime.Unavailable"><value>Käytettävissä oleva ydin ei tue tätä konemallia.</value></data>
+  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Omena II Emulointi AppleWinin kanssa.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>MacintoshCity name (optional, probably does not need a translation) II Emulointi Mini vMacin kanssa.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Koneen variantti</value></data>
+  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Oma videon tuloste</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Laajennuskortit</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Ydinmuisti</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>Järjestelmäromit sisältyvät AppleWin-ytimeen.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Käytettävissä oleva ydin ei tue tätä konemallia.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Levyn soittolistat</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Tyhjä</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Kortti Slot 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>Hiirikortti</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Kortti Slot 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Kortti Slot 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>Kovan levyn ohjain</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Kortti Slot 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>Väri (RGB Kortti/Monitori)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>Väri (Composite Idealized)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>Väri (Composite Monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>Väri TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>Yksivärinen (Amber)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>Yksivärinen (vihreä)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>Yksivärinen (valkoinen)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>Videotila</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>Puolikkaat skannaukset</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>Videotyyli</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Videon päivitysnopeus</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>Ensimmäinen</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>Edellinen</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Soittolistan aloituslevy</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>Käytä molempia levykeasemia</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>Tilarivi</value></data>
 </root>

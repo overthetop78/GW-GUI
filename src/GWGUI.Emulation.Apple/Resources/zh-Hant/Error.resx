@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>未知的環境命令 :{0}</value></data>
-  <data name="Emulation.Apple.Error.CoreNotFound"><value>未找到所需的 Apple 核心 。</value></data>
-  <data name="Emulation.Apple.Error.CoreRejected"><value>無法裝入選中的 Apple 核心 。</value></data>
-  <data name="Emulation.Apple.Error.FirmwareMissing"><value>需要的Apple號固件不見了.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>系統ROM無效或不兼容.</value></data>
-  <data name="Emulation.Apple.Error.ContentNotFound"><value>未找到配置的 Apple 媒體 。</value></data>
-  <data name="Emulation.Apple.Error.ContentUnsupported"><value>此機器不支持所選的媒體 。</value></data>
-  <data name="Emulation.Apple.Error.OptionInvalid"><value>一個 Apple 選項的值無效 。</value></data>
-  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>與Apple主機通信失敗.</value></data>
-  <data name="Emulation.Apple.Error.StateInvalid"><value>Apple 保存狀態無效 。</value></data>
-  <data name="Emulation.Apple.Error.StateIncompatible"><value>Apple所保存的狀態與現在的機器不相容.</value></data>
-  <data name="Emulation.Apple.Error.Unexpected"><value>發生了出乎意料的Apple模擬錯誤.</value></data>
-  <data name="Emulation.Apple.Error.Details"><value>細節 :{0}</value></data>
-  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>Apple主機可執行路徑無法使用.</value></data>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知的環境命令 :{0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound" xml:space="preserve"><value>未找到所需的 Apple 核心 。</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected" xml:space="preserve"><value>無法裝入選中的 Apple 核心 。</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing" xml:space="preserve"><value>需要的Apple號固件不見了.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid" xml:space="preserve"><value>系統ROM無效或不兼容.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound" xml:space="preserve"><value>未找到配置的 Apple 媒體 。</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported" xml:space="preserve"><value>此機器不支持所選的媒體 。</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid" xml:space="preserve"><value>一個 Apple 選項的值無效 。</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure" xml:space="preserve"><value>與Apple主機通信失敗.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid" xml:space="preserve"><value>Apple 保存狀態無效 。</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible" xml:space="preserve"><value>Apple所保存的狀態與現在的機器不相容.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected" xml:space="preserve"><value>發生了出乎意料的Apple模擬錯誤.</value></data>
+  <data name="Emulation.Apple.Error.Details" xml:space="preserve"><value>細節 :{0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing" xml:space="preserve"><value>Apple主機可執行路徑無法使用.</value></data>
 </root>

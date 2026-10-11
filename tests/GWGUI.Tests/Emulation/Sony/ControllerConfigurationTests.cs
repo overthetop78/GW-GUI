@@ -199,13 +199,13 @@ public sealed class ControllerConfigurationTests
     }
 
     [Fact]
-    public void UsbKeyboardHasRemappableKeysWithoutPretendingTheConsoleHasABuiltInKeyboard()
+    public void UsbPcKeyboardExposesNoForeignSpecialKeysAndPreservesExistingBindings()
     {
         var settings = InputSettingsFunctions.Describe(new MachineConfiguration(
-            ModelConstants.PlayStation2, Pcsx2Core.Id));
+            ModelConstants.PlayStation2, Pcsx2Core.Id, Input: new InputConfiguration(KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.A)] = nameof(EmulationKey.F10) })));
         Assert.NotNull(settings.Keyboard);
-        Assert.Contains(settings.Keyboard.Definitions, definition => definition.Id == nameof(EmulationKey.LeftShift));
-        Assert.DoesNotContain(settings.Keyboard.Definitions, definition => definition.Id == nameof(EmulationKey.LeftAmiga));
+        Assert.Empty(settings.Keyboard.Definitions);
+        Assert.Equal(nameof(EmulationKey.F10), settings.Keyboard.Values[nameof(EmulationKey.A)]);
         Assert.All(settings.ControllerPorts, port => Assert.Contains(port.ControllerChoices,
             choice => choice.Id == ControllerType.Keyboard.ToString()));
     }

@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>Ismeretlen környezet parancs: {0}</value></data>
-  <data name="Emulation.Apple.Error.CoreNotFound"><value>A szükséges Apple mag nem található.</value></data>
-  <data name="Emulation.Apple.Error.CoreRejected"><value>A kiválasztott Apple magot nem sikerült betölteni.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareMissing"><value>Egy szükséges Apple firmware hiányzik.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>A ROM rendszer érvénytelen vagy összeegyeztethetetlen.</value></data>
-  <data name="Emulation.Apple.Error.ContentNotFound"><value>A konfigurált Apple média nem található.</value></data>
-  <data name="Emulation.Apple.Error.ContentUnsupported"><value>Ez a gép nem támogatja a kiválasztott médiát.</value></data>
-  <data name="Emulation.Apple.Error.OptionInvalid"><value>Az Apple opció érvénytelen értéket ad.</value></data>
-  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>Nem sikerült kommunikálni az Apple házigazdájával.</value></data>
-  <data name="Emulation.Apple.Error.StateInvalid"><value>Az Apple mentett állapota érvénytelen.</value></data>
-  <data name="Emulation.Apple.Error.StateIncompatible"><value>Az Apple mentett állapot összeegyeztethetetlen az aktuális gép.</value></data>
-  <data name="Emulation.Apple.Error.Unexpected"><value>Váratlan Apple emulációs hiba történt.</value></data>
-  <data name="Emulation.Apple.Error.Details"><value>Részletek: {0}</value></data>
-  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>Az Apple host programozó elérési útja nem elérhető.</value></data>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Ismeretlen környezet parancs: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound" xml:space="preserve"><value>A szükséges Apple mag nem található.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected" xml:space="preserve"><value>A kiválasztott Apple magot nem sikerült betölteni.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing" xml:space="preserve"><value>Egy szükséges Apple firmware hiányzik.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid" xml:space="preserve"><value>A ROM rendszer érvénytelen vagy összeegyeztethetetlen.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound" xml:space="preserve"><value>A konfigurált Apple média nem található.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported" xml:space="preserve"><value>Ez a gép nem támogatja a kiválasztott médiát.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid" xml:space="preserve"><value>Az Apple opció érvénytelen értéket ad.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure" xml:space="preserve"><value>Nem sikerült kommunikálni az Apple házigazdájával.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid" xml:space="preserve"><value>Az Apple mentett állapota érvénytelen.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible" xml:space="preserve"><value>Az Apple mentett állapot összeegyeztethetetlen az aktuális gép.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected" xml:space="preserve"><value>Váratlan Apple emulációs hiba történt.</value></data>
+  <data name="Emulation.Apple.Error.Details" xml:space="preserve"><value>Részletek: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing" xml:space="preserve"><value>Az Apple host programozó elérési útja nem elérhető.</value></data>
 </root>

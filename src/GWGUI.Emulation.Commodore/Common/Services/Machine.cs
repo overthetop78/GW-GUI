@@ -36,7 +36,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         Action<string>? deleteSession = null, Func<Exception, Exception>? startErrorTranslator = null)
     {
         Id = id;
-        Configuration = configuration;
+        Configuration = configuration with { Input = EmulatorCatalog.CreateAdapter(configuration.Core).ApplyInputConfiguration(configuration).Input };
         _core = core;
         _sessionDirectory = sessionDirectory;
         _saveDirectory = saveDirectory;

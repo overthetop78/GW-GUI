@@ -4,12 +4,12 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Controller.Standard"><value>Контроллер ColecoVision</value></data>
-  <data name="Emulation.Coleco.Controller.Paddle"><value>лямка</value></data>
-  <data name="Emulation.Coleco.Action.FireLeft"><value>Левая кнопка огня</value></data>
-  <data name="Emulation.Coleco.Action.FireRight"><value>Правая кнопка.</value></data>
-  <data name="Emulation.Coleco.Action.Purple"><value>Пурпурная кнопка</value></data>
-  <data name="Emulation.Coleco.Action.Blue"><value>Синяя кнопка</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerLeft"><value>Спиннер ушел</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerRight"><value>Спиннер справа</value></data>
+  <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>Контроллер ColecoVision</value></data>
+  <data name="Emulation.Coleco.Controller.Paddle" xml:space="preserve"><value>лямка</value></data>
+  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Левая кнопка огня</value></data>
+  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Правая кнопка.</value></data>
+  <data name="Emulation.Coleco.Action.Purple" xml:space="preserve"><value>Пурпурная кнопка</value></data>
+  <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>Синяя кнопка</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Спиннер ушел</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>Спиннер справа</value></data>
   </root>

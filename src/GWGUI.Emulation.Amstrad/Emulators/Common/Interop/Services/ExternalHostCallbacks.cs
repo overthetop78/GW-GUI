@@ -13,7 +13,7 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalHostCallbacks : IDisposable
 {
-    private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = CreateKeyboardMap();
+    private readonly IReadOnlyDictionary<uint, EmulationKey> _keyboardMap;
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
     private readonly HashSet<string> _configuredOptionKeys = new(StringComparer.Ordinal);
     private readonly Dictionary<string, nint> _nativeStrings = new(StringComparer.Ordinal);
@@ -37,8 +37,9 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal ExternalDiskControl DiskControl { get; } = new();
 
     internal ExternalHostCallbacks(string systemDirectory, string contentDirectory,
-        string saveDirectory, IReadOnlyDictionary<string, string>? options, bool createDirectories = true)
+        string saveDirectory, IReadOnlyDictionary<string, string>? options, bool createDirectories = true, IReadOnlyDictionary<uint, EmulationKey?>? keyboardOverrides = null)
     {
+        _keyboardMap = CreateKeyboardMap(keyboardOverrides);
         if (createDirectories)
         {
             Directory.CreateDirectory(systemDirectory);

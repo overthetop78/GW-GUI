@@ -4,80 +4,47 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description"><value>Emulates ColecoVision dan ADAM.</value></data>
-  <data name="Emulation.Emulator.jollycv.Description"><value>Emulate ColecoVision.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description"><value>Emulate ColecoVision.</value></data>
-  <data name="Emulation.Coleco.Memory.Display"><value>Memori video</value></data>
-  <data name="Emulation.Coleco.Video.Native"><value>Video</value></data>
-  <data name="Emulation.Coleco.Controls.Native"><value>Opsi pengontrol</value></data>
-  <data name="Emulation.Coleco.System.Native"><value>Sistem</value></data>
-  <data name="Emulation.Coleco.Storage.Disk"><value>ADAM disk drive</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack"><value>ADAM paket data</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value0"><value>Diam</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value1"><value>Reset</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Value0"><value>Otomatis</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value0"><value>Otomatis</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value1"><value>Standar</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Value0"><value>Otomatis</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value0"><value>Dinonaktifkan</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value1"><value>Atas + Bawah</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value2"><value>Penuh (284 lebar)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value3"><value>Lebar penuh (320)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value0"><value>Dinonaktifkan</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value1"><value>Diaktifkan</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value0"><value>Dinonaktifkan</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value1"><value>Diaktifkan</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value0"><value>Rasio Aspek Pixel Terbasis Region-</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value1"><value>Pixel Persegi (1: 1 PAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value2"><value>Rasio Aspek NTSC Sangat Tradisional (4: 3 DAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value3"><value>Secara terang-terangan Accurate Aspek PAL Rasio</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value0"><value>Dinonaktifkan</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value1"><value>Diaktifkan</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Value0"><value>Otomatis</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value0"><value>Diaktifkan</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value1"><value>Dinonaktifkan</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset"><value>Restart ADAM</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Help"><value>Start ulang ADAM dari media yang dikait.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing"><value>Laju segarkan</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Help"><value>Pilih otomatis, NTSC atau PAL waktu.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip"><value>Chip video</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Help"><value>Pilih chip video yang telah diemulasi.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio"><value>Rasio aspek gambar</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio.Help"><value>Pilih rasio aspek gambar.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan"><value>Batas layar</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Help"><value>Pilih batas layar yang terlihat.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit"><value>Hapus batas sprite</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Help"><value>Buang batas pada sprites per baris layar.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed"><value>Ijinkan arah berlawanan</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Help"><value>Memungkinkan arah berlawanan untuk ditekan bersama-sama.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity"><value>Sensitivitas kontrol rotasi</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity.Help"><value>Atur sensitivitas pengendali rotary.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette"><value>palet warna</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette.Help"><value>Pilih palet warna.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect"><value>Rasio aspek gambar</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Help"><value>Pilih rasio aspek gambar.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t"><value>Batas atas crop</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t.Help"><value>Sembunyikan layar perbatasan atas.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b"><value>Batas bawah crop</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b.Help"><value>Sembunyikan layar bawah perbatasan.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l"><value>Potong batas kiri</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l.Help"><value>Sembunyikan batas kiri layar.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r"><value>Batas kanan crop</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r.Help"><value>Sembunyikan batas layar kanan.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit"><value>Hapus batas sprite</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Help"><value>Buang batas pada sprites per baris layar.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan"><value>Batas layar crop</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Help"><value>Potong batas layar.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype"><value>Laju segarkan</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Help"><value>Pilih laju penyegaran video.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits"><value>Hapus batas sprite</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Help"><value>Buang batas pada sprites per baris layar.</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom"><value>Boot cepat</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Help"><value>Lewati delay boot-nya.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper"><value>Jenis kartrid</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Help"><value>Pilih tipe kartrid.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value0"><value>Dinonaktifkan</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value1"><value>Diaktifkan</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value0"><value>Dinonaktifkan</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value1"><value>Diaktifkan</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Emulates ColecoVision dan ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>Emulate ColecoVision.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>Emulate ColecoVision.</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>Memori video</value></data>
+  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>Video</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>Opsi pengontrol</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>Sistem</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAM disk drive</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAM paket data</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>Laju penyegaran video</value></data>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Pilih waktu otomatis atau standar video.</value></data>
+  <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>Tipe kartrid</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Pilih pengontrol bank memori cartridge.</value></data>
+  <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>Chip video</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Pilih chip video yang telah digandakan.</value></data>
+  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>Rasio aspek gambar</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Pilih rasio aspek gambar. Pilihan otomatis menggunakan daerah permainan.</value></data>
+  <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>Batas layar</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Pilih batas layar yang terlihat.</value></data>
+  <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>Hapus batas sprite</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Hapus batas pada sprites per baris layar. Ini dapat menyebabkan kesalahan grafis.</value></data>
+  <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>Ijinkan arah berlawanan</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Memungkinkan arah berlawanan untuk ditekan bersama-sama.</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>Sensitivitas kontrol rotasi</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Atur sensitivitas pengendali rotary.</value></data>
+  <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>palet warna</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Pilih palet warna.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Sembunyikan layar perbatasan atas.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Sembunyikan layar bawah perbatasan.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Sembunyikan layar kiri perbatasan.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Sembunyikan layar kanan perbatasan.</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Boot cepat</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Lewati delay boot.</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Kartrid standar</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Batas atas dan bawah</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>Semua batas (284 piksel lebar)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>Semua batas (320 piksel lebar)</value></data>
+  <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>Sembunyikan batas layar atas</value></data>
+  <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>Sembunyikan batas layar bawah</value></data>
+  <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>Sembunyikan batas kiri layar</value></data>
+  <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>Sembunyikan batas layar kanan</value></data>
+  <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>Sembunyikan batas layar</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Sembunyikan piksel di tepi gambar yang ditampilkan.</value></data>
 </root>

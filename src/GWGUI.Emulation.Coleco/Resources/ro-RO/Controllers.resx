@@ -4,12 +4,12 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Controller.Standard"><value>Controlor ColecoVision</value></data>
-  <data name="Emulation.Coleco.Controller.Paddle"><value>Vâslește</value></data>
-  <data name="Emulation.Coleco.Action.FireLeft"><value>Buton de tragere din stânga</value></data>
-  <data name="Emulation.Coleco.Action.FireRight"><value>Butonul de tragere dreapta</value></data>
-  <data name="Emulation.Coleco.Action.Purple"><value>Buton violet</value></data>
-  <data name="Emulation.Coleco.Action.Blue"><value>Buton albastru</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerLeft"><value>Învârtitor la stânga</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerRight"><value>Spinner dreapta</value></data>
+  <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>Controlor ColecoVision</value></data>
+  <data name="Emulation.Coleco.Controller.Paddle" xml:space="preserve"><value>Vâslește</value></data>
+  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Buton de tragere din stânga</value></data>
+  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Butonul de tragere dreapta</value></data>
+  <data name="Emulation.Coleco.Action.Purple" xml:space="preserve"><value>Buton violet</value></data>
+  <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>Buton albastru</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Învârtitor la stânga</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>Spinner dreapta</value></data>
   </root>

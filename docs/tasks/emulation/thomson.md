@@ -1,16 +1,21 @@
-# Travail restant : thomson
+# Réaliser le module Thomson
 
-- [ ] Réaliser, vérifier et commiter le module Thomson avec les frontières et la carte de fichiers communes.
-  - [ ] Qualifier les machines et les adaptateurs avant fabrication.
-    - [ ] Créer `docs/tasks/emulation/thomson-native-contract.json` : relever les métadonnées officielles Théodore, sa recette de dépôt/révision, les modèles, BIOS, supports, options et entrées ; distinguer les informations du cœur distribué de celles du dépôt courant.
-    - [ ] Créer `docs/tasks/emulation/thomson-file-map.json` : définir les fichiers Common, les familles matérielles, les fichiers de chaque adaptateur nommé et les raccordements SDK/App/build/registry à partir de la carte commune ; ne recopier aucune donnée Sinclair.
-  - [ ] Créer le projet et les modèles selon les contrats qualifiés.
-    - [ ] Créer `src/GWGUI.Emulation.Thomson/GWGUI.Emulation.Thomson.csproj` et `module.json` : nom d’assembly, manifeste, compatibilité et ressources conformes aux autres projets sans référence App.
-    - [ ] Créer `src/GWGUI.Emulation.Thomson/Common/Machines/Common/Enums/MachineModel.cs` : identifiants stables des modèles matériels qualifiés, sans nom de cœur dans la machine.
-    - [ ] Créer `src/GWGUI.Emulation.Thomson/Common/Machines/Common/Enums/Emulator.cs` : None et les seuls moteurs confirmés, avec identifiants persistés stables.
-  - [ ] Détailler puis réaliser les fichiers de la carte dans l’ordre des dépendances.
-    - [ ] Créer `docs/tasks/emulation/thomson-contrats.md` : contrats internes précis et correspondance des commandes communes avec les adaptateurs ; enregistrer les limites restant à qualifier avant fabrication.
-  - [ ] Livrer et vérifier le module complet.
-    - [ ] Créer `docs/tasks/emulation/thomson-verification.json` : preuves de ressources, intégration, supports, entrées modifiables et sessions livrées réellement contrôlées ; conserver les limites et ne déclarer aucun essai avant réalisation.
-    - [ ] Supprimer les contrôles temporaires et leurs fichiers détenus énumérés dans les actions avant utilisation, après arrêt et déchargement effectifs.
-    - [ ] Modifier `.git/index` et la référence de branche par le commit du module Thomson entièrement validé, sans push.
+- [ ] Créer le module et ses huit modèles matériels.
+  - [ ] Qualifier le contrat Théodore dans ses fichiers propriétaires.
+    - [ ] Créer `artifacts/temp/thomson-source/libretro.c`, `keymap.c`, `motoemulator.h` et `devices.h` depuis une même révision officielle : fichiers temporaires pour extraire options, entrées, modèles et supports ; supprimer après transcription.
+    - [ ] Créer `src/GWGUI.Emulation.Thomson/Emulators/Theodore/Constants/EmulatorConstants.cs` : identité, bibliothèque, source, révision inspectée, téléchargement officiel et clé de description ; aucune copie de ces données dans Common.
+  - [ ] Créer les fichiers de base dans la convention existante.
+    - [ ] Créer `src/GWGUI.Emulation.Thomson/GWGUI.Emulation.Thomson.csproj` : net10.0 x64, assembly, références SDK/MediaEngine, manifeste et ressources embarquées avec attributs sur une ligne.
+    - [ ] Créer `src/GWGUI.Emulation.Thomson/module.json` : identité thomson, assembly, version et compatibilité SDK ; catalogue propre au module.
+    - [ ] Créer `src/GWGUI.Emulation.Thomson/Common/Machines/Common/Enums/MachineEnums.cs` : MO5, MO6, TO7, TO7/70, TO8, TO8D, TO9, TO9+ et familles MO/TO, identifiants explicites stables.
+    - [ ] Créer `src/GWGUI.Emulation.Thomson/Common/Machines/Common/Enums/CoreEnums.cs` : None et Theodore, sans types ABI ni données de téléchargement.
+  - [ ] Raccorder la configuration et les adaptateurs.
+    - [ ] Créer les fichiers Common, familles MO/TO et adaptateur nommé indiqués par `docs/reference/emulator-adapter-file-map.md` : détailler chaque fichier concret avant création selon les contrats qualifiés, sans recopier les données Sinclair.
+  - [ ] Créer les ressources et les visuels.
+    - [ ] Créer `src/GWGUI.Emulation.Thomson/Resources/00-Base/Emulation.resx` : libellés invariants et communs seulement ; détailler les autres ressources et leurs consommateurs avant création, puis appliquer Argos en une commande depuis en-US sans invariants.
+    - [ ] Créer `src/GWGUI.Emulation.Thomson/Assets/Machines/` : huit PNG distincts des modèles réels, 512 pixels maximum et fond transparent ; détailler les chemins avant création, aucun visuel de console dans App/Controllers.
+  - [ ] Intégrer et valider la livraison.
+    - [ ] Modifier `GWGUI.sln` et créer `module-registry/thomson.json` : projet, configurations et catalogue cohérents avec le manifeste.
+    - [ ] Produire `build/Debug/GW GUI/gwgui.exe` et les DLL de tous les modules avec `scripts/local-building.cmd --building=debug --modules=A` ; vérifier le résultat terminal et la présence du module Thomson.
+    - [ ] Supprimer `artifacts/temp/thomson-source` et les autres contrôles temporaires prévus avant utilisation, après libération effective.
+    - [ ] Modifier `.git/index` et la référence de branche : commiter Thomson après vérification, sans push puis retirer le plan terminé.

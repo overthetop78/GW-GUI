@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Error.StateIncompatible"><value>Coleco รัฐที่บันทึกไว้ไม่เข้ากับเครื่องปัจจุบัน</value></data>
-  <data name="Emulation.Coleco.Error.Unexpected"><value>เกิดความผิดพลาดที่ไม่คาดคิด Coleco ที่เกิดขึ้น</value></data>
-  <data name="Emulation.Coleco.Error.FirmwareMissing"><value>มาตรา Coleco ยูนิแวร์หายไป</value></data>
-  <data name="Emulation.Coleco.Error.FirmwareInvalid"><value>ระบบ ROM ใช้งานไม่ได้หรือเข้ากันไม่ได้</value></data>
-  <data name="Emulation.Coleco.Error.ContentNotFound"><value>ไม่พบสื่อที่ปรับแต่งแล้ว Coleco สื่อ</value></data>
-  <data name="Emulation.Coleco.Error.ContentUnsupported"><value>เครื่องนี้ไม่รองรับสื่อที่เลือก</value></data>
-  <data name="Emulation.Coleco.Error.OptionInvalid"><value>ตัวเลือก Coleco มีค่าที่ไม่ถูกต้อง</value></data>
-  <data name="Emulation.Coleco.Error.CoreNotFound"><value>ไม่ พบ แกน กลาง Coleco ที่ ต้องการ.</value></data>
-  <data name="Emulation.Coleco.Error.CoreRejected"><value>ไม่สามารถโหลดแกน Coleco ได้</value></data>
-  <data name="Emulation.Coleco.Error.StateInvalid"><value>Coleco รัฐที่บันทึกไว้เป็นโมฆะ</value></data>
-  <data name="Emulation.Coleco.Error.HostExecutableMissing"><value>Coleco เส้นทางประมวลผลของโฮสต์ไม่สามารถใช้งานได้</value></data>
-  <data name="Emulation.Coleco.Error.Details"><value>รายละเอียด: {0}</value></data>
-  <data name="Emulation.Coleco.Error.HostProtocolFailure"><value>การสื่อสารกับโฮสต์ Coleco ล้มเหลว</value></data>
-  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand"><value>ไม่รู้จักคําสั่งสภาพแวดล้อม: {0}</value></data>
+  <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>Coleco รัฐที่บันทึกไว้ไม่เข้ากับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>เกิดความผิดพลาดที่ไม่คาดคิด Coleco ที่เกิดขึ้น</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing" xml:space="preserve"><value>มาตรา Coleco ยูนิแวร์หายไป</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>ระบบ ROM ใช้งานไม่ได้หรือเข้ากันไม่ได้</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>ไม่พบสื่อที่ปรับแต่งแล้ว Coleco สื่อ</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported" xml:space="preserve"><value>เครื่องนี้ไม่รองรับสื่อที่เลือก</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid" xml:space="preserve"><value>ตัวเลือก Coleco มีค่าที่ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound" xml:space="preserve"><value>ไม่ พบ แกน กลาง Coleco ที่ ต้องการ.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>ไม่สามารถโหลดแกน Coleco ได้</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>Coleco รัฐที่บันทึกไว้เป็นโมฆะ</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>Coleco เส้นทางประมวลผลของโฮสต์ไม่สามารถใช้งานได้</value></data>
+  <data name="Emulation.Coleco.Error.Details" xml:space="preserve"><value>รายละเอียด: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>การสื่อสารกับโฮสต์ Coleco ล้มเหลว</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>ไม่รู้จักคําสั่งสภาพแวดล้อม: {0}</value></data>
 </root>

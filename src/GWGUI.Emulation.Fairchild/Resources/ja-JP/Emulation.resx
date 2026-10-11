@@ -4,11 +4,9 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.freechaf.Description"><value>Channel FおよびChannel F System IIコンソールをエミュレートします。</value></data>
-  <data name="Emulation.Fairchild.Memory.Display"><value>ビデオ記憶</value></data>
-  <data name="Emulation.Fairchild.Video.Native"><value>コンソール ビデオ</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr"><value>1つのフレームでスクリーンを取り除きて下さい</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Help"><value>1つのフレームでそれを完了することによってスクリーンのクリアを加速して下さい。</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value0"><value>無効</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value1"><value>有効</value></data>
+  <data name="Emulation.Emulator.freechaf.Description" xml:space="preserve"><value>Channel FおよびChannel F System IIコンソールをエミュレートします。</value></data>
+  <data name="Emulation.Fairchild.Memory.Display" xml:space="preserve"><value>ビデオ記憶</value></data>
+  <data name="Emulation.Fairchild.Video.Native" xml:space="preserve"><value>コンソール ビデオ</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear" xml:space="preserve"><value>1フレームで画面をクリア</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear.Help" xml:space="preserve"><value>1フレームに完了することで画面クリアを加速。</value></data>
 </root>

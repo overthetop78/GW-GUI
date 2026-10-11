@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>Неизвестная команда окружения: {0}</value></data>
-  <data name="Emulation.Apple.Error.CoreNotFound"><value>Требуемое ядро Apple не было найдено.</value></data>
-  <data name="Emulation.Apple.Error.CoreRejected"><value>Выбранное ядро Apple загрузить не удалось.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareMissing"><value>Необходимая прошивка Apple отсутствует.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>Система ROM является недействительной или несовместимой.</value></data>
-  <data name="Emulation.Apple.Error.ContentNotFound"><value>Настроенных медиа Apple обнаружено не было.</value></data>
-  <data name="Emulation.Apple.Error.ContentUnsupported"><value>Данная машина не поддерживает выбранные носители.</value></data>
-  <data name="Emulation.Apple.Error.OptionInvalid"><value>Опцион Apple имеет недействительное значение.</value></data>
-  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>Связь с хостом Apple не удалась.</value></data>
-  <data name="Emulation.Apple.Error.StateInvalid"><value>Сохраненное состояние Apple является недействительным.</value></data>
-  <data name="Emulation.Apple.Error.StateIncompatible"><value>Сохранённое состояние Apple несовместимо с текущей машиной.</value></data>
-  <data name="Emulation.Apple.Error.Unexpected"><value>Неожиданная ошибка эмуляции Apple произошла.</value></data>
-  <data name="Emulation.Apple.Error.Details"><value>Подробности: {0}</value></data>
-  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>Исполняемый путь хоста Apple недоступен.</value></data>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Неизвестная команда окружения: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound" xml:space="preserve"><value>Требуемое ядро Apple не было найдено.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected" xml:space="preserve"><value>Выбранное ядро Apple загрузить не удалось.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing" xml:space="preserve"><value>Необходимая прошивка Apple отсутствует.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM является недействительной или несовместимой.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound" xml:space="preserve"><value>Настроенных медиа Apple обнаружено не было.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported" xml:space="preserve"><value>Данная машина не поддерживает выбранные носители.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid" xml:space="preserve"><value>Опцион Apple имеет недействительное значение.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure" xml:space="preserve"><value>Связь с хостом Apple не удалась.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid" xml:space="preserve"><value>Сохраненное состояние Apple является недействительным.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible" xml:space="preserve"><value>Сохранённое состояние Apple несовместимо с текущей машиной.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected" xml:space="preserve"><value>Неожиданная ошибка эмуляции Apple произошла.</value></data>
+  <data name="Emulation.Apple.Error.Details" xml:space="preserve"><value>Подробности: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing" xml:space="preserve"><value>Исполняемый путь хоста Apple недоступен.</value></data>
 </root>

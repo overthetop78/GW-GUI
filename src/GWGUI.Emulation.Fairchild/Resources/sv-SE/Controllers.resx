@@ -4,10 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Input.RotateLeft"><value>Rotera handtaget till vänster</value></data>
-  <data name="Emulation.Fairchild.Input.RotateRight"><value>Rotera handtaget till höger</value></data>
-  <data name="Emulation.Fairchild.Input.Push"><value>Tryck handtaget ner</value></data>
-  <data name="Emulation.Fairchild.Input.Pull"><value>Dra handtaget upp</value></data>
-  <data name="Emulation.Fairchild.Input.ConsoleOverlay"><value>Visa konsolknapparna</value></data>
-  <data name="Emulation.Fairchild.Input.SwapControllers"><value>Byta de två styrenheterna</value></data>
+  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>Rotera handtaget till vänster</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Rotera handtaget till höger</value></data>
+  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Tryck handtaget ner</value></data>
+  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Dra handtaget upp</value></data>
+  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>Visa konsolknapparna</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Byta de två styrenheterna</value></data>
 </root>

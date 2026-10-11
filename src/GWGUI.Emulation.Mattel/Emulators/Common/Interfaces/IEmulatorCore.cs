@@ -18,7 +18,7 @@ internal interface IEmulatorCore : IDisposable
     bool SupportsSaveStates { get; }
     double FramesPerSecond { get; }
     int SampleRate { get; }
-    RuntimeRegion? Region { get; }
+    EmulationVideoStandard? Region { get; }
     int BufferedAudioFrames { get; }
     long AudioOverrunCount { get; }
     long AudioUnderrunCount { get; }

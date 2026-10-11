@@ -186,7 +186,7 @@ public static class CoreHost
         CoreHostFunctions.WriteLedStates(writer, core.LedStates);
     }
 
-    private static void WriteRuntimeStatus(BinaryWriter writer, RuntimeRegion? region, int bufferedAudioFrames,
+    private static void WriteRuntimeStatus(BinaryWriter writer, EmulationVideoStandard? region, int bufferedAudioFrames,
         long audioOverrunCount, long audioUnderrunCount)
     {
         writer.Write(RuntimeFunctions.RegionValue(region));

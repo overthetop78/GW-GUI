@@ -4,10 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Input.RotateLeft"><value>Obróć uchwyt w lewo</value></data>
-  <data name="Emulation.Fairchild.Input.RotateRight"><value>Obrócić uchwyt w prawo</value></data>
-  <data name="Emulation.Fairchild.Input.Push"><value>wcisnąć klamkę w dół</value></data>
-  <data name="Emulation.Fairchild.Input.Pull"><value>pociągnąć uchwyt do góry</value></data>
-  <data name="Emulation.Fairchild.Input.ConsoleOverlay"><value>Pokaż przyciski konsoli</value></data>
-  <data name="Emulation.Fairchild.Input.SwapControllers"><value>Zamień dwa sterowniki</value></data>
+  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>Obróć uchwyt w lewo</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Obrócić uchwyt w prawo</value></data>
+  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>wcisnąć klamkę w dół</value></data>
+  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>pociągnąć uchwyt do góry</value></data>
+  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>Pokaż przyciski konsoli</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Zamień dwa sterowniki</value></data>
 </root>

@@ -12,7 +12,7 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter
         EmulatorConstants.LibraryName, ReleaseConstants.LibraryFile, EmulatorConstants.CoreHostCommand,
         new(ReleaseConstants.OfficialPackageUrl), ReleaseConstants.LatestReleaseDisplayName,
         ReleaseConstants.ReleaseProviderSuffix, ReleaseConstants.Architecture,
-        CoreLibraryVerifier.VerifyWindowsX64Library);
+        CoreLibraryVerifier.VerifyWindowsX64Library, GWGUI.Emulation.Amstrad.Emulators.Caprice32.Dictionaries.KeyboardDictionary.NativeKeys);
 
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
         new Dictionary<string, CoreRelease>(StringComparer.Ordinal);

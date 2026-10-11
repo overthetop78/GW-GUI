@@ -4,49 +4,36 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description"><value>Apple II emulation with AppleWin.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description"><value>Macintosh II محاكاة مع ميني ضد ماك.</value></data>
-  <data name="Emulation.Apple.Option.Model"><value>متغيرات الآلات</value></data>
-  <data name="Emulation.Apple.Video.Native"><value>ناتج الفيديو المحلي</value></data>
-  <data name="Emulation.Apple.Expansion"><value>بطاقات التوسع</value></data>
-  <data name="Emulation.Apple.Memory.Runtime"><value>الذاكرة التي يستخدمها النواة</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded"><value>وقد أُدرج النظام ROM في صلبه AppleWin.</value></data>
-  <data name="Emulation.Apple.Storage.Playlist"><value>المحارم</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3"><value>Card in Slot 3</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3.Value0"><value>فارغة</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3.Value1"><value>Video HD</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4"><value>Card in Slot 4</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4.Value0"><value>فارغة</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4.Value2"><value>بطاقة ماوس</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5"><value>Card in Slot 5</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value0"><value>فارغة</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value1"><value>Z80 البرمجيات</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value4"><value>SAM</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7"><value>Card in Slot 7</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7.Value0"><value>فارغة</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7.Value1"><value>مراقب الأقراص الصلبة</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode"><value>فيديو مودي</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value0"><value>كولور (RGB Card/Monitor)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value1"><value>كولور (معالجة الحيازة)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value2"><value>كولور (مرصد الحيازة)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value3"><value>Color TV</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value4"><value>BW TV</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value5"><value>مونوشروم (أيلول/سبتمبر)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value6"><value>مونوشروم (غرين)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value7"><value>مونوكروم (وايت)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_style"><value>فيديو ستيل</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_style.Value0"><value>نِصْف الشاشات</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate"><value>معدل التكرار فيديو</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate.Value0"><value>60Hz</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate.Value1"><value>50Hz</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start"><value>Playlist Start Disk</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start.Value0"><value>أولا</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start.Value1"><value>ما قبل</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive"><value>إستعملْ كلا القرصينِ المزروعِ</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive.Value0"><value>معطل</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive.Value1"><value>التمكين</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar"><value>نقابة المحامين</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar.Value0"><value>معطل</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar.Value1"><value>التمكين</value></data>
-  <data name="Emulation.Apple.Runtime.Unavailable"><value>النواة المتاحة لا تدعم هذا النموذج الآلة</value></data>
+  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Apple II (مُحاكاة مع (آبلوين</value></data>
+  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>ماكنتوش II "مُحاكاة مع "ميني فماك</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>متغيرات الآلات</value></data>
+  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>ناتج الفيديو المحلي</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>بطاقات التوسع</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>الذاكرة التي تستخدمها القاع</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>تُدرج أقراص ذاكرة قراءة فقط في صلب آبلوين.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>اللب المتاح لا يدعم هذا النموذج الآلة</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>الملاعب المغلقة</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>فارغ</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Card in Slot 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>بطاقة الفأر</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Card in Slot 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Card in Slot 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>المراقب المالي عن الأقراص الصلبة</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Card in Slot 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>اللون (الكولور)RGB Card/Monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>كولور (معالجة مفترضة)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>كولور (مراقبة مركبة)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>كولور TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>مونوكروم (آذار/مارس)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>مونوشروم (غرين)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>مونوكروم (وايت)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>فيديو مودي</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>نصف شبائك</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>طراز Video Style</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>معدل إعادة التأهيل</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>أولا</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>ما قبل</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>الكاتبة الكاتبة: ابدأوا</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>استخدما كلا القرصان المزروعان</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>مركز المحامين</value></data>
 </root>

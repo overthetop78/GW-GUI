@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Error.StateIncompatible"><value>Fairchild kurtarılmış devlet mevcut makine ile uyumlu değildir.</value></data>
-  <data name="Emulation.Fairchild.Error.Unexpected"><value>Beklenmeyen bir Fairchild emulation hatası meydana geldi.</value></data>
-  <data name="Emulation.Fairchild.Error.FirmwareMissing"><value>Gerekli bir Fairchild adaptörü eksik.</value></data>
-  <data name="Emulation.Fairchild.Error.FirmwareInvalid"><value>Sistem ROM geçersiz veya uyumsuzdur.</value></data>
-  <data name="Emulation.Fairchild.Error.ContentNotFound"><value>yapılandırılmış Fairchild medyası bulunamadı.</value></data>
-  <data name="Emulation.Fairchild.Error.ContentUnsupported"><value>Bu makine seçilmiş medyayı desteklemiyor.</value></data>
-  <data name="Emulation.Fairchild.Error.OptionInvalid"><value>Fairchild seçeneğinin geçersiz bir değeri vardır.</value></data>
-  <data name="Emulation.Fairchild.Error.CoreNotFound"><value>Gerekli Fairchild çekirdeği bulunamadı.</value></data>
-  <data name="Emulation.Fairchild.Error.CoreRejected"><value>Seçilen Fairchild çekirdeği yüklenemezdi.</value></data>
-  <data name="Emulation.Fairchild.Error.StateInvalid"><value>Fairchild kurtarılmış devlet geçersizdir.</value></data>
-  <data name="Emulation.Fairchild.Error.HostExecutableMissing"><value>Fairchild host executable yolu mevcut değildir.</value></data>
-  <data name="Emulation.Fairchild.Error.Details"><value>Detaylar: {0}</value></data>
-  <data name="Emulation.Fairchild.Error.HostProtocolFailure"><value>Fairchild ev sahibi ile iletişim başarısız oldu.</value></data>
-  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand"><value>Bilinmeyen çevre komutları: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>Fairchild kurtarılmış devlet mevcut makine ile uyumlu değildir.</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>Beklenmeyen bir Fairchild emulation hatası meydana geldi.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>Gerekli bir Fairchild adaptörü eksik.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>Sistem ROM geçersiz veya uyumsuzdur.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>yapılandırılmış Fairchild medyası bulunamadı.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported" xml:space="preserve"><value>Bu makine seçilmiş medyayı desteklemiyor.</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>Fairchild seçeneğinin geçersiz bir değeri vardır.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>Gerekli Fairchild çekirdeği bulunamadı.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>Seçilen Fairchild çekirdeği yüklenemezdi.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>Fairchild kurtarılmış devlet geçersizdir.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>Fairchild host executable yolu mevcut değildir.</value></data>
+  <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>Detaylar: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>Fairchild ev sahibi ile iletişim başarısız oldu.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Bilinmeyen çevre komutları: {0}</value></data>
 </root>

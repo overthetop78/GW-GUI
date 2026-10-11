@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>알려진 환경 명령: {0}</value></data>
-  <data name="Emulation.Apple.Error.CoreNotFound"><value>필수 Apple 핵심은 발견되지 않았습니다.</value></data>
-  <data name="Emulation.Apple.Error.CoreRejected"><value>선택된 Apple 핵심은 적재될 수 없습니다.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareMissing"><value>필수 Apple 펌웨어가 누락되었습니다.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>시스템 ROM은 유효하지 않거나 호환되지 않습니다.</value></data>
-  <data name="Emulation.Apple.Error.ContentNotFound"><value>구성 된 Apple 미디어가 발견되지 않았습니다.</value></data>
-  <data name="Emulation.Apple.Error.ContentUnsupported"><value>이 기계는 선택된 매체를 지원하지 않습니다.</value></data>
-  <data name="Emulation.Apple.Error.OptionInvalid"><value>Apple 옵션은 잘못된 값이 있습니다.</value></data>
-  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>Apple 호스트와의 통신이 실패했습니다.</value></data>
-  <data name="Emulation.Apple.Error.StateInvalid"><value>Apple 저장된 상태는 유효하지 않습니다.</value></data>
-  <data name="Emulation.Apple.Error.StateIncompatible"><value>Apple 저장된 국가는 현재 기계와 호환이 됩니다.</value></data>
-  <data name="Emulation.Apple.Error.Unexpected"><value>예상치 못한 Apple 에뮬레이션 오류가 발생했습니다.</value></data>
-  <data name="Emulation.Apple.Error.Details"><value>세부 사항: {0}</value></data>
-  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>Apple 호스트 실행 가능한 경로는 사용할 수 없습니다.</value></data>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>알려진 환경 명령: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound" xml:space="preserve"><value>필수 Apple 핵심은 발견되지 않았습니다.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected" xml:space="preserve"><value>선택된 Apple 핵심은 적재될 수 없습니다.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing" xml:space="preserve"><value>필수 Apple 펌웨어가 누락되었습니다.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid" xml:space="preserve"><value>시스템 ROM은 유효하지 않거나 호환되지 않습니다.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound" xml:space="preserve"><value>구성 된 Apple 미디어가 발견되지 않았습니다.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported" xml:space="preserve"><value>이 기계는 선택된 매체를 지원하지 않습니다.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid" xml:space="preserve"><value>Apple 옵션은 잘못된 값이 있습니다.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure" xml:space="preserve"><value>Apple 호스트와의 통신이 실패했습니다.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid" xml:space="preserve"><value>Apple 저장된 상태는 유효하지 않습니다.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible" xml:space="preserve"><value>Apple 저장된 국가는 현재 기계와 호환이 됩니다.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected" xml:space="preserve"><value>예상치 못한 Apple 에뮬레이션 오류가 발생했습니다.</value></data>
+  <data name="Emulation.Apple.Error.Details" xml:space="preserve"><value>세부 사항: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing" xml:space="preserve"><value>Apple 호스트 실행 가능한 경로는 사용할 수 없습니다.</value></data>
 </root>

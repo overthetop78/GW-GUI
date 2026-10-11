@@ -67,6 +67,9 @@ internal abstract class MachineFactory : IEmulatorAdapter
         InputSettingsFunctions.GenericKeyboardDefinitions();
     public int GetControllerPortCount(MachineConfiguration configuration) => ControllerPortCount(configuration);
     public virtual MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration) => configuration;
+    internal virtual IReadOnlyDictionary<uint, EmulationKey?> KeyboardOverrides(MachineConfiguration configuration) => new Dictionary<uint, EmulationKey?>();
+    internal virtual IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> KeyboardExpansions(MachineConfiguration configuration) => new Dictionary<EmulationKey, IReadOnlyList<EmulationKey>>();
+    internal virtual IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> KeyboardToggleExpansions(MachineConfiguration configuration) => new Dictionary<EmulationKey, IReadOnlyList<EmulationKey>>();
     public virtual IReadOnlySet<EmulationKey> SoftResetKeys { get; } = new HashSet<EmulationKey>();
     public Emulator Emulator => CatalogEntry.Emulator;
     public string EmulatorId => CatalogEntry.Definition.Id;

@@ -4,80 +4,47 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description"><value>模擬 ColecoVision 和 ADAM.</value></data>
-  <data name="Emulation.Emulator.jollycv.Description"><value>相模為ColecoVision.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description"><value>相模為ColecoVision.</value></data>
-  <data name="Emulation.Coleco.Memory.Display"><value>視頻內存</value></data>
-  <data name="Emulation.Coleco.Video.Native"><value>視頻</value></data>
-  <data name="Emulation.Coleco.Controls.Native"><value>控制器選項</value></data>
-  <data name="Emulation.Coleco.System.Native"><value>系統</value></data>
-  <data name="Emulation.Coleco.Storage.Disk"><value>ADAM 磁盤驅動器</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack"><value>ADAM 數據包</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value0"><value>閑置</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value1"><value>重設</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Value0"><value>自動的</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value0"><value>自動的</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value1"><value>標準</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Value0"><value>自動的</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value0"><value>已停用</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value1"><value>頂部+上部</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value2"><value>全長( 284 寬)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value3"><value>全長( 320 寬)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value0"><value>已停用</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value1"><value>已啟用</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value0"><value>已停用</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value1"><value>已啟用</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value0"><value>基于區域的像素外觀比</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value1"><value>完全平方像素(1:1 PAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value2"><value>非常傳統的NTSC外觀比(4:3 DAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value3"><value>直徑精確 PAL 外觀比</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value0"><value>已停用</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value1"><value>已啟用</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Value0"><value>自動的</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value0"><value>已啟用</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value1"><value>已停用</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset"><value>重新開始 ADAM</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Help"><value>恢復ADAM從它的掛載媒體。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing"><value>刷新率</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Help"><value>選擇自動,NTSC或PAL計時.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip"><value>視頻芯片</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Help"><value>選擇模擬視頻芯片 。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio"><value>圖像寬度比</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio.Help"><value>選擇圖像寬比。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan"><value>屏幕邊框</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Help"><value>選擇可見的屏幕邊框。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit"><value>刪除圖示限制</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Help"><value>刪除每條屏幕線的圖示限制 。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed"><value>允許相反方向</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Help"><value>允許將相反的方向按在一起 。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity"><value>扶輪控制敏感性</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity.Help"><value>調整旋轉控制器的靈敏度。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette"><value>彩色調色板</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette.Help"><value>選擇顏色調色板。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect"><value>圖像寬度比</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Help"><value>選擇圖像寬比。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t"><value>裁剪頂端邊框</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t.Help"><value>隱藏上屏幕邊框 。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b"><value>裁剪底邊框</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b.Help"><value>隱藏底屏邊框 。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l"><value>裁剪左側邊框</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l.Help"><value>隱藏左屏幕邊框 。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r"><value>裁剪右邊框</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r.Help"><value>隱藏右屏幕邊框 。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit"><value>刪除圖示限制</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Help"><value>刪除每條屏幕線的圖示限制 。</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan"><value>裁剪屏幕邊框</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Help"><value>裁剪屏幕邊框。</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype"><value>刷新率</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Help"><value>選擇視頻刷新率 。</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits"><value>刪除圖示限制</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Help"><value>刪除每條屏幕線的圖示限制 。</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom"><value>快速啟動</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Help"><value>跳過靴子延遲。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper"><value>墨水匣類型</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Help"><value>選擇彈匣類型。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value0"><value>已停用</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value1"><value>已啟用</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value0"><value>已停用</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value1"><value>已啟用</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>模擬 ColecoVision 和 ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>相模為ColecoVision.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>相模為ColecoVision.</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>視頻內存</value></data>
+  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>視頻</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>控制器選項</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>系統</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAM 磁盤驅動器</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAM 數據包</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>视频刷新率</value></data>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>选择自动计时或视频标准。</value></data>
+  <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>纸箱类型</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>选择弹匣内存库控制器 。</value></data>
+  <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>视频芯片</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>选择模拟视频芯片 。</value></data>
+  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>图像全相比</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>选择图像相像相像相像比例。自动选择使用游戏区域。</value></data>
+  <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>屏幕边框</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>选择可见屏幕边框。</value></data>
+  <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>删除图示限制</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>删除每条屏幕线上的图示限制。 这可能造成图形错误 。</value></data>
+  <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>允许相反方向</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>允许将相反的方向按在一起 。</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>扶轮控制敏感性</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>调整旋转控制器的灵敏度。</value></data>
+  <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>彩色调色板</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>选择颜色调色板。</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>隐藏上屏幕边框 。</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>隐藏下方屏幕边框 。</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>隐藏左屏边框 。</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>隐藏右屏边框 。</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>快速启动</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>跳过拖后腿。</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>标准墨盒</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>上下边框</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>所有边界( 284 像素宽度)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>所有边界( 320 像素宽)</value></data>
+  <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>隐藏上屏幕边框</value></data>
+  <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>隐藏下屏幕边框</value></data>
+  <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>隐藏左侧屏幕边框</value></data>
+  <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>隐藏右屏幕边框</value></data>
+  <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>隐藏屏幕边框</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>将像素隐藏在显示图像的边缘。</value></data>
 </root>
