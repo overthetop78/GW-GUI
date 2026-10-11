@@ -65,8 +65,12 @@ def protected_token_pattern(root: Path) -> re.Pattern[str]:
         "DualSense", "DualSense Edge", "Dual Analog", "Emotion Engine",
         "Weave", "Bob", "Bob (Offset)"})
     for path in base.rglob("*.resx"):
+        translated_source_path = root / "en-US" / path.name
+        translated_source_keys = set(read_entries(translated_source_path)) if translated_source_path.exists() else set()
         for key, value in read_entries(path).items():
             values.append(value)
+            if key not in translated_source_keys and value:
+                names.add(value)
             if key.startswith("Emulation.Family.") and value:
                 family_names.add(value)
             if key.startswith("Emulation.Emulator."):
@@ -80,6 +84,9 @@ def protected_token_pattern(root: Path) -> re.Pattern[str]:
                     name = part.strip()
                     if name:
                         names.add(name)
+                        family_prefix = re.match(r"^(.+?)\s+\+?\d", name)
+                        if family_prefix:
+                            names.add(family_prefix.group(1))
     for emulator_id in emulator_ids:
         pattern = re.compile(r"(?<![\w-])" + re.escape(emulator_id) + r"(?![\w-])", re.IGNORECASE)
         names.update(match.group(0) for value in values for match in pattern.finditer(value))

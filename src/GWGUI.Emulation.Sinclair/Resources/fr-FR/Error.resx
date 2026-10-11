@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>L'état de Sinclair est incompatible avec la machine actuelle.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected"><value>Une erreur inattendue d'émulation de Sinclair s'est produite.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>Il manque un firmware Sinclair requis.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>Le système ROM est invalide ou incompatible.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>Le support Sinclair configuré n'a pas été trouvé.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>Cette machine ne supporte pas les médias sélectionnés.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>Une option Sinclair a une valeur invalide.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>Le noyau de Sinclair requis n'a pas été trouvé.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected"><value>Le noyau Sinclair sélectionné n'a pu être chargé.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid"><value>L'état de Sinclair est invalide.</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>Le chemin exécutable Sinclair hôte n'est pas disponible.</value></data>
+  <data name="Emulation.Sinclair.Error.Details"><value>Détails : {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>La communication avec l'hôte Sinclair a échoué.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>Commande d'environnement inconnu : {0}</value></data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>Sinclair lagret tilstand er ikke kompatibel med den aktuelle maskinen.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected"><value>En uventet Sinclair-emuleringsfeil oppstod.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>En nødvendig Sinclair fastvare mangler.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>Systemets ROM er ugyldig eller uforenlig.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>De konfigurerte Sinclair-mediene ble ikke funnet.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>Denne maskinen støtter ikke det valgte mediet.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>Et Sinclair-alternativ har en ugyldig verdi.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>Den nødvendige Sinclair kjernen ble ikke funnet.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected"><value>Den valgte Sinclair-kjernen kunne ikke lastes.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid"><value>Den lagrede staten Sinclair er ugyldig.</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>Sinclair-vertens kjørbare bane er utilgjengelig.</value></data>
+  <data name="Emulation.Sinclair.Error.Details"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>Kommunikasjon med Sinclair-verten mislyktes.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>Ukjent miljøkommando: {0}</value></data>
+</root>

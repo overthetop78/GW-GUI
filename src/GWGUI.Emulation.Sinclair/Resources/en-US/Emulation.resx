@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>Emulates the Sinclair ZX81.</value></data>
+  <data name="Emulation.Emulator.fuse.Description"><value>Emulates ZX Spectrum and compatible computers.</value></data>
+  <data name="Emulation.Sinclair.Memory.Display"><value>Video memory</value></data>
+  <data name="Emulation.Sinclair.Audio.Native"><value>Audio hardware</value></data>
+  <data name="Emulation.Sinclair.Keyboard.Native" xml:space="preserve"><value>Machine keyboard</value></data>
+  <data name="Emulation.Sinclair.Video.Native"><value>Video display</value></data>
+  <data name="Emulation.Sinclair.Controls.Native" xml:space="preserve"><value>Controller options</value></data>
+  <data name="Emulation.Sinclair.System.Native" xml:space="preserve"><value>Machine options</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Initial content</value></data>
+  <data name="Emulation.Sinclair.Option.81_fast_load" xml:space="preserve"><value>Fast tape loading</value></data>
+  <data name="Emulation.Sinclair.Option.81_fast_load.Help" xml:space="preserve"><value>Loads tapes faster than the original machine.</value></data>
+  <data name="Emulation.Sinclair.Option.81_8_16_contents" xml:space="preserve"><value>Memory between 8 and 16 KiB</value></data>
+  <data name="Emulation.Sinclair.Option.81_8_16_contents.Help" xml:space="preserve"><value>Selects the contents of the memory area between 8 and 16 KiB.</value></data>
+  <data name="Emulation.Sinclair.Option.81_8_16_contents.Value1" xml:space="preserve"><value>ROM mirror</value></data>
+  <data name="Emulation.Sinclair.Option.81_border_size" xml:space="preserve"><value>Display border</value></data>
+  <data name="Emulation.Sinclair.Option.81_border_size.Help" xml:space="preserve"><value>Selects the amount of border shown around the display.</value></data>
+  <data name="Emulation.Sinclair.Option.81_border_size.Value0" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Sinclair.Option.81_border_size.Value1"><value>Small border</value></data>
+  <data name="Emulation.Sinclair.Option.81_highres" xml:space="preserve"><value>High resolution</value></data>
+  <data name="Emulation.Sinclair.Option.81_highres.Help" xml:space="preserve"><value>Selects high resolution graphics support.</value></data>
+  <data name="Emulation.Sinclair.Option.81_chroma_81.Help"><value>Enables the Chroma 81 colour expansion.</value></data>
+  <data name="Emulation.Sinclair.Option.81_video_presets" xml:space="preserve"><value>Video appearance</value></data>
+  <data name="Emulation.Sinclair.Option.81_video_presets.Help" xml:space="preserve"><value>Selects the appearance of the emulated video signal.</value></data>
+  <data name="Emulation.Sinclair.Option.81_video_presets.Value0"><value>Image without visual effects</value></data>
+  <data name="Emulation.Sinclair.Option.81_video_presets.Value1" xml:space="preserve"><value>Television</value></data>
+  <data name="Emulation.Sinclair.Option.81_video_presets.Value2"><value>Video noise</value></data>
+  <data name="Emulation.Sinclair.Option.81_sound"><value>Audio expansion device</value></data>
+  <data name="Emulation.Sinclair.Option.81_sound.Help" xml:space="preserve"><value>Selects the emulated sound expansion.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_emulation_speed" xml:space="preserve"><value>Emulation speed</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_emulation_speed.Help" xml:space="preserve"><value>Sets emulation speed as a percentage of the original speed.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_issue2"><value>Keyboard hardware revision 2</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_issue2.Help" xml:space="preserve"><value>Emulates the keyboard behaviour of Issue 2 hardware.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_size_border" xml:space="preserve"><value>Display border</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_size_border.Help" xml:space="preserve"><value>Selects the amount of border shown around the display.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_size_border.Value0" xml:space="preserve"><value>Full</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_size_border.Value1" xml:space="preserve"><value>Medium</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_size_border.Value2"><value>Small border</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_size_border.Value3"><value>Minimal border</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_palette" xml:space="preserve"><value>Colour palette</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_palette.Help" xml:space="preserve"><value>Selects the colours used to display the image.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_palette.Value2" xml:space="preserve"><value>Black and white television</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_palette.Value3" xml:space="preserve"><value>Green monochrome</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_palette.Value4" xml:space="preserve"><value>Amber monochrome</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_palette.Value6" xml:space="preserve"><value>CGA: 4 colours</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_palette.Value7" xml:space="preserve"><value>CGA: 8 colours</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_palette.Value8" xml:space="preserve"><value>CGA: 16 colours</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_palette.Value9" xml:space="preserve"><value>Inverted colours</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_auto_load" xml:space="preserve"><value>Automatic tape loading</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_auto_load.Help" xml:space="preserve"><value>Starts loading a tape automatically.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_fast_load" xml:space="preserve"><value>Fast tape loading</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_fast_load.Help" xml:space="preserve"><value>Loads tapes faster than the original machine.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_load_sound" xml:space="preserve"><value>Tape loading sound</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_load_sound.Help" xml:space="preserve"><value>Plays the sound of tape loading.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_speaker_type" xml:space="preserve"><value>Speaker type</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Help" xml:space="preserve"><value>Selects the filtering used for the original speaker sound.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value0" xml:space="preserve"><value>Television speaker</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value2" xml:space="preserve"><value>Unfiltered</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation"><value>Stereo channel configuration</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation.Help" xml:space="preserve"><value>Selects the stereo arrangement of the AY sound channels.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_turbosound.Help"><value>Enables the TurboSound expansion with two AY sound chips.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_fuller_box.Help"><value>Enables the Fuller Box sound expansion.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_uspeech.Help"><value>Enables the Currah uSpeech speech synthesizer when its firmware is available.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_melodik.Help"><value>Enables the Melodik sound expansion.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_volume_ay"><value>AY sound chip volume</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_volume_ay.Help" xml:space="preserve"><value>Sets the volume of the AY sound channels.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_volume_beeper" xml:space="preserve"><value>Built-in speaker volume</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_volume_beeper.Help" xml:space="preserve"><value>Sets the volume of the built-in speaker.</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons" xml:space="preserve"><value>Reverse mouse buttons</value></data>
+  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons.Help"><value>Reverses the left and right buttons of the Kempston mouse.</value></data>
+</root>

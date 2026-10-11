@@ -40,6 +40,7 @@
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Philips\GWGUI.Emulation.Philips.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Mattel\GWGUI.Emulation.Mattel.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Sharp\GWGUI.Emulation.Sharp.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation.Sinclair\GWGUI.Emulation.Sinclair.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Sega\GWGUI.Emulation.Sega.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Nintendo\GWGUI.Emulation.Nintendo.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Sony\GWGUI.Emulation.Sony.csproj" />

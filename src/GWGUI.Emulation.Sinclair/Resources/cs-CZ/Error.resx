@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>Sinclair zachráněný stát je neslučitelný se současným strojem.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected"><value>Nastala neočekávaná chyba v emulaci Sinclaira.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>Chybí požadovaný firmware Sinclair.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>Systém ROM je neplatný nebo neslučitelný.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>Nakonfigurovaná Sinclairova média nebyla nalezena.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>Tento stroj nepodporuje vybraná média.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>Volba Sinclair má neplatnou hodnotu.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>Požadované Sinclair jádro nebylo nalezeno.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected"><value>Vybrané Sinclair jádro nebylo možné načíst.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid"><value>Sinclair zachránil stát je neplatný.</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>Sinclair hostitel vykonatelná cesta je nedostupná.</value></data>
+  <data name="Emulation.Sinclair.Error.Details"><value>Podrobnosti: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>Komunikace s hostitelem Sinclair selhala.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>Příkaz neznámého prostředí: {0}</value></data>
+</root>

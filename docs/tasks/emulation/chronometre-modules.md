@@ -132,3 +132,29 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-11 02:59:24 | 20:03:40.6699175 | -12:03:41 | Reprise. Sharp : validation du callback VFS et de la fermeture native. |
 | 2026-10-11 03:05:38 | 20:09:54.9042249 | -12:09:55 | Reprise. Sharp : réglages, supports et clôture des vérifications. |
 | 2026-10-11 03:13:07 | 20:17:23.1958180 | -12:17:24 | Reprise. Sharp : contrôle des modèles compatibles et du livrable final. |
+| 2026-10-11 03:17:05 | 20:21:21.6507564 | -12:21:22 | Reprise. Sinclair : contrats des deux moteurs officiels. |
+| 2026-10-11 03:19:52 | 20:24:08.7243365 | -12:24:09 | Reprise. Sinclair : métadonnées natives et carte de fabrication. |
+| 2026-10-11 03:23:15 | 20:27:31.4912096 | -12:27:32 | Reprise. Sinclair : fin des contrats et création du projet. |
+| 2026-10-11 03:31:22 | 20:35:38.6751494 | -12:35:39 | Reprise. Sinclair : contrats typés et services communs. |
+| 2026-10-11 03:34:35 | 20:38:51.1223195 | -12:38:52 | Reprise. Sinclair : contrats typés et services communs. |
+| 2026-10-11 03:39:24 | 20:43:40.2831050 | -12:43:41 | Reprise. Sinclair : compatibilités, supports et entrées. |
+| 2026-10-11 03:46:56 | 20:51:12.1475026 | -12:51:13 | Reprise. Sinclair : ROM et supports configurés. |
+| 2026-10-11 03:55:14 | 20:59:30.9994660 | -12:59:31 | Reprise. Sinclair : services des adaptateurs et hôte. |
+| 2026-10-11 04:01:10 | 21:05:26.0049916 | -13:05:27 | Reprise. Sinclair : raccordement natif des moteurs. |
+| 2026-10-11 04:08:03 | 21:12:19.8084601 | -13:12:20 | Reprise. Sinclair : hôte natif et supports. |
+| 2026-10-11 04:18:07 | 21:22:23.8406660 | -13:22:24 | Reprise. Sinclair : fabriques, supports et firmware. |
+| 2026-10-11 04:29:58 | 21:34:14.1054764 | -13:34:15 | Reprise. Sinclair : contenus initiaux et dépendances des états. |
+| 2026-10-11 04:44:44 | 21:49:00.1981989 | -13:49:01 | Reprise. Sinclair : visuels et intégration. |
+| 2026-10-11 05:00:50 | 22:05:06.9988634 | -14:05:07 | Reprise. Sinclair : mémoire physique et photographies restantes. |
+| 2026-10-11 05:04:30 | 22:08:46.0461563 | -14:08:47 | Reprise. Sinclair : photographies des clones et références du catalogue. |
+| 2026-10-11 05:17:51 | 22:22:07.7265789 | -14:22:08 | Reprise. Sinclair : essais des moteurs et cycle de vie. |
+| 2026-10-11 05:29:24 | 22:33:40.7042795 | -14:33:41 | Reprise. Portée générale de la présentation des fichiers. |
+| 2026-10-11 05:29:42 | 22:33:58.3056450 | -14:33:59 | Reprise. Sinclair : parcours livré, entrées et supports. |
+| 2026-10-11 05:36:31 | 22:40:47.1773474 | -14:40:48 | Reprise. Sinclair : supports et entrées en exécution. |
+| 2026-10-11 05:42:38 | 22:46:54.0397722 | -14:46:55 | Reprise. Sinclair : transmission des entrées et supports natifs. |
+| 2026-10-11 05:59:03 | 23:03:19.3871282 | -15:03:20 | Reprise. Sinclair : correction des cartes CPU et audio après rendu des vues. |
+| 2026-10-11 06:05:17 | 23:09:33.3949887 | -15:09:34 | Reprise. Sinclair : capacités de sauvegarde des supports livrés. |
+| 2026-10-11 06:09:56 | 23:14:12.1900518 | -15:14:13 | Reprise. Sinclair : révision des libellés natifs. |
+| 2026-10-11 06:12:52 | 23:17:08.0165520 | -15:17:09 | Reprise. Sinclair : livraison des libellés et contrôles TR-DOS. |
+| 2026-10-11 06:17:53 | 23:22:09.8386158 | -15:22:10 | Reprise. Sinclair : audit des exigences et capacités livrées. |
+| 2026-10-11 06:24:31 | 23:28:47.9952953 | -15:28:48 | Reprise. Sinclair : audit de livraison et exigences finales. |

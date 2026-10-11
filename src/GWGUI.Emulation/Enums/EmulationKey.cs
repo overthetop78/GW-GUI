@@ -23,5 +23,6 @@ public enum EmulationKey
     SharpXf1, SharpXf2, SharpXf3, SharpXf4, SharpXf5,
     SharpOption1, SharpOption2, SharpSymbol, SharpRegister,
     SharpKana, SharpRoman, SharpCode, SharpHiragana, SharpFullWidth,
-    SharpGraph, SharpCopy, SharpKeypadEquals
+    SharpGraph, SharpCopy, SharpKeypadEquals,
+    SinclairSymbolShift
 }

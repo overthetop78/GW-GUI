@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>Sinclair所保存的状态与现在的机器不相容.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected"><value>发生了意外的 Sinclair 模拟错误 。</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>需要的Sinclair号固件不见了.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>系统ROM无效或不兼容.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>未找到已配置的 Sinclair 介质 。</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>此机器不支持所选的媒体 。</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>Sinclair 选项的值无效 。</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>未找到所需的Sinclair核.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected"><value>无法装入选定的 Sinclair 核心 。</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid"><value>Sinclair的保存状态无效.</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>无法使用 Sinclair 主机可执行路径 。</value></data>
+  <data name="Emulation.Sinclair.Error.Details"><value>细节 :{0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>与Sinclair主机通信失败.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>未知的环境命令 :{0}</value></data>
+</root>

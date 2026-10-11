@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>Trạng thái được lưu của Sinclair không tương thích với cỗ máy hiện tại.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected"><value>Một sai lầm không mong đợi của Sinclair đã xảy ra.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>Còn thiếu một phần mềm của Sinclair.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>ROM hệ thống không hợp lệ hay không tương thích.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>Không tìm thấy các phương tiện truyền thông Sinclair được cấu hình.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>Máy này không hỗ trợ phương tiện được chọn.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>Tùy chọn Sinclair có giá trị không hợp lệ.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>Không tìm thấy lõi Sinclair cần thiết.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected"><value>Không thể tải lõi Sinclair đã chọn.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid"><value>Trạng thái được lưu của Sinclair là không hợp lệ.</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>Không có đường dẫn đến máy điện tử Sinclair.</value></data>
+  <data name="Emulation.Sinclair.Error.Details"><value>Chi tiết:{0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>Việc liên lạc với vật chủ Sinclair đã thất bại.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>Lệnh môi trường không rõ:{0}</value></data>
+</root>

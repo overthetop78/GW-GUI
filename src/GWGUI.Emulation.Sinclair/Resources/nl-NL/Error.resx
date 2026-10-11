@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>De opgeslagen Sinclair staat is niet compatibel met de huidige machine.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected"><value>Er is een onverwachte Sinclair emulatiefout opgetreden.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>Een vereiste Sinclair firmware ontbreekt.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>Het systeem ROM is ongeldig of onverenigbaar.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>De geconfigureerde Sinclair media werden niet gevonden.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>Deze machine ondersteunt de geselecteerde media niet.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>Een Sinclair optie heeft een ongeldige waarde.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>De vereiste Sinclair kern werd niet gevonden.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected"><value>De geselecteerde Sinclair-kern kon niet geladen worden.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid"><value>De opgeslagen status van Sinclair is ongeldig.</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>Het uitvoerbare pad van de Sinclair-host is niet beschikbaar.</value></data>
+  <data name="Emulation.Sinclair.Error.Details"><value>Gegevens: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>Communicatie met de Sinclair host is mislukt.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>Onbekend omgevingscommando: {0}</value></data>
+</root>

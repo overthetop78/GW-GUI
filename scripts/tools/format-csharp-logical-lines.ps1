@@ -36,10 +36,11 @@ public static class LogicalCSharpLines
     {
         var next = trivia.Token.GetNextToken();
         if (next.IsKind(SyntaxKind.OpenBraceToken) || next.IsKind(SyntaxKind.CloseBraceToken)) return false;
+        if (next.IsKind(SyntaxKind.ColonToken) && (next.Parent is ConstructorInitializerSyntax || next.Parent is BaseListSyntax)) return true;
         foreach (var node in trivia.Token.Parent.AncestorsAndSelf())
         {
             if (node is BlockSyntax || node is InitializerExpressionSyntax) return false;
-            if (node is StatementSyntax || node is ParameterListSyntax || node is ArgumentListSyntax || node is BracketedArgumentListSyntax || node is ArrowExpressionClauseSyntax || node is FieldDeclarationSyntax || node is BaseListSyntax || node is TypeParameterListSyntax || node is BinaryExpressionSyntax || node is ConditionalExpressionSyntax) { if (trivia.SpanStart >= node.SpanStart && trivia.SpanStart < node.Span.End) return true; }
+            if (node is StatementSyntax || node is ParameterListSyntax || node is ArgumentListSyntax || node is BracketedArgumentListSyntax || node is ArrowExpressionClauseSyntax || node is FieldDeclarationSyntax || node is EqualsValueClauseSyntax || node is BaseListSyntax || node is TypeParameterListSyntax || node is BinaryExpressionSyntax || node is ConditionalExpressionSyntax) { if (trivia.SpanStart >= node.SpanStart && trivia.SpanStart < node.Span.End) return true; }
         }
         return false;
     }

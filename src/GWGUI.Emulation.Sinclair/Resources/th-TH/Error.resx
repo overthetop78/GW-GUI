@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>Sinclair รัฐที่บันทึกไว้ไม่เข้ากับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected"><value>เกิดความผิดพลาดที่ไม่คาดคิด Sinclair ที่เกิดขึ้น</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>มาตรา Sinclair ยูนิแวร์หายไป</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>ระบบ ROM ใช้งานไม่ได้หรือเข้ากันไม่ได้</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>ไม่พบสื่อที่ปรับแต่งแล้ว Sinclair สื่อ</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>เครื่องนี้ไม่รองรับสื่อที่เลือก</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>ตัวเลือก Sinclair มีค่าที่ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>ไม่ พบ แกน กลาง Sinclair ที่ ต้องการ.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected"><value>ไม่สามารถโหลดแกน Sinclair ได้</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid"><value>Sinclair รัฐที่บันทึกไว้เป็นโมฆะ</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>Sinclair เส้นทางประมวลผลของโฮสต์ไม่สามารถใช้งานได้</value></data>
+  <data name="Emulation.Sinclair.Error.Details"><value>รายละเอียด: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>การสื่อสารกับโฮสต์ Sinclair ล้มเหลว</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>ไม่รู้จักคําสั่งสภาพแวดล้อม: {0}</value></data>
+</root>
