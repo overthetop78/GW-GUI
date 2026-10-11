@@ -83,7 +83,7 @@ internal sealed class ExternalCore : IEmulatorCore
         adapter.PrepareFirmware(configuration, systemDirectory);
 
         var options = adapter.NativeOptions(configuration, media);
-        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, options, adapter.FirmwareOverrideOption);
+        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, options, adapter.FirmwareOverrideOption, adapter.KeyboardOverrides(configuration), adapter.KeyboardExpansions(configuration), adapter.KeyboardToggleExpansions(configuration));
 
         try
         {

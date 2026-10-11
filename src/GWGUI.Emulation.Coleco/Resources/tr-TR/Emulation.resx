@@ -4,80 +4,47 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description"><value>ColecoVision ve ADAM'yı bağışlayın.</value></data>
-  <data name="Emulation.Emulator.jollycv.Description"><value>ColecoVision'ı tebrik edin.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description"><value>ColecoVision'ı tebrik edin.</value></data>
-  <data name="Emulation.Coleco.Memory.Display"><value>Video hafıza</value></data>
-  <data name="Emulation.Coleco.Video.Native"><value>Video video</value></data>
-  <data name="Emulation.Coleco.Controls.Native"><value>Kontrollü seçenekler</value></data>
-  <data name="Emulation.Coleco.System.Native"><value>Sistem Sistemi</value></data>
-  <data name="Emulation.Coleco.Storage.Disk"><value>ADAM disk sürücüsü</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack"><value>ADAM veri paketi</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value0"><value>Idle</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value1"><value>reset</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Value0"><value>Otomatik</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value0"><value>Otomatik</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value1"><value>Standart standart</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Value0"><value>Otomatik</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value0"><value>Devre dışı</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value1"><value>Top+Bottom</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value2"><value>Full (284 genişlik)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value3"><value>Full (320 genişlik)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value0"><value>Devre dışı</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value1"><value>Etkin</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value0"><value>Devre dışı</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value1"><value>Etkin</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value0"><value>Bölge tabanlı Pixel Aspect Oran</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value1"><value>Mükemmel Square Pixels (1:1 PAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value2"><value>Çok Geleneksel NTSC Aspect Oran (4:3 DAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value3"><value>Ostensibly True PAL Aspect Oranı</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value0"><value>Devre dışı</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value1"><value>Etkin</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Value0"><value>Otomatik</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value0"><value>Etkin</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value1"><value>Devre dışı</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset"><value>Yeniden Başlayın ADAM</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Help"><value>ADAM'yı monte edilen medyadan yeniden başlatın.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing"><value>Yenileme oranı</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Help"><value>Otomatik, NTSC veya PAL zamanlamasını seçin.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip"><value>Video çip</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Help"><value>Emated video çipini seçin.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio"><value>Görüntü yönü oranı oranı oranı yüzdesi</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio.Help"><value>Görüntü yönü oranını seçin.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan"><value>Ekran sınırları</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Help"><value>görünür ekran sınırlarını seçin.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit"><value>Take sprite limit</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Help"><value>Ekran çizgisinde sprites limitini çıkarın.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed"><value>Aksine yollara izin ver</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Help"><value>Birlikte baskı yapmak için ters yönlere izin verin.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity"><value>Rotary kontrol duyarlılığı</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity.Help"><value>Döndürme kontrolörünün hassasiyetini ayarlayın.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette"><value>Renk paleti</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette.Help"><value>Renk paletini seçin.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect"><value>Görüntü yönü oranı oranı oranı yüzdesi</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Help"><value>Görüntü yönü oranını seçin.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t"><value>Ekin üst sınır</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t.Help"><value>En üst ekran sınırının üzerinde.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b"><value>Alt sınır sınırı</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b.Help"><value>Alt ekran sınırının üzerinde Gizlen.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l"><value>Ekin sol sınır</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l.Help"><value>Sol ekran sınırını dinleyin.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r"><value>Doğru sınır sınırı</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r.Help"><value>Doğru ekran sınırını gizleyin.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit"><value>Take sprite limit</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Help"><value>Ekran çizgisinde sprites limitini çıkarın.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan"><value>Ek ekran sınırları</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Help"><value>Ekran sınırları ekin.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype"><value>Yenileme oranı</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Help"><value>Video yenileme oranını seçin.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits"><value>Take sprite limit</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Help"><value>Ekran çizgisinde sprites limitini çıkarın.</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom"><value>Hızlı çizme</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Help"><value>Önyükleme gecikmesini girin.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper"><value>Jeneratör türü</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Help"><value>kartuş tipini seçin.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value0"><value>Devre dışı</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value1"><value>Etkin</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value0"><value>Devre dışı</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value1"><value>Etkin</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>ColecoVision ve ADAM'yı bağışlayın.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>ColecoVision'ı tebrik edin.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>ColecoVision'ı tebrik edin.</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>Video hafıza</value></data>
+  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>Video video</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>Kontrollü seçenekler</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>Sistem Sistemi</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAM disk sürücüsü</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAM veri paketi</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>Video yenileme oranı</value></data>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Otomatik zamanlama veya video standardı seçin.</value></data>
+  <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>Jeneratör türü</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>kartuş hafıza banka kontrolörü seçin.</value></data>
+  <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>Video çip</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Örtülmüş video çipini seçin.</value></data>
+  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>Görüntü yönü oranı oranı oranı oranı oranı</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Görüntü yönü oranını seçin. Otomatik seçim oyun bölgesini kullanır.</value></data>
+  <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>Ekran sınırları</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>görünür ekran sınırlarını seçin.</value></data>
+  <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>Kaldırım limiti</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Ekran çizgisinde sprites limitini kaldırın. Bu grafik hatalarına neden olabilir.</value></data>
+  <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>Aksine yollara izin ver</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Birlikte baskı yapmak için tam tersi yollara izin verin.</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>Rotary kontrol duyarlılığı</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>İndüktör kontrolörünün hassasiyetini ayarlayın.</value></data>
+  <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>Renk paleti</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Renk paletini seçin.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>En üst ekran sınırının üzerinde.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Alt ekran sınırının üzerinde Gizlen.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Sol ekran sınırının üzerinde Gizlen.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Doğru ekran sınırının üzerinde Gizlen.</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Hızlı çizme Hızlı</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Önyükleme gecikmesine izin verin.</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Standart kartuş</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Top ve alt sınırlar</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>Tüm sınırlar (284 piksel geniş)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>Tüm sınırları (320 piksel geniş)</value></data>
+  <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>Gizle üst ekran sınırı</value></data>
+  <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>Gizle daha düşük ekran sınırı</value></data>
+  <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>Gizle sol ekran sınır sınırı</value></data>
+  <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>Gizle doğru ekran sınırı</value></data>
+  <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>Gizle ekran sınırları</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Ekran görüntüsü kenarlarında Hide piksel.</value></data>
 </root>

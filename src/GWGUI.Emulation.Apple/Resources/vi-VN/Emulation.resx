@@ -4,49 +4,36 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description"><value>Apple II đang giao hợp với AppleWin.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description"><value>Macintosh II đô-la với Mini vMac.</value></data>
-  <data name="Emulation.Apple.Option.Model"><value>Biến thế máy</value></data>
-  <data name="Emulation.Apple.Video.Native"><value>Đầu ra phim bản địa</value></data>
-  <data name="Emulation.Apple.Expansion"><value>Bài mở rộng</value></data>
-  <data name="Emulation.Apple.Memory.Runtime"><value>Bộ nhớ được dùng bởi lõi</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded"><value>Hệ thống ROM nằm trong lõi AppleWin.</value></data>
-  <data name="Emulation.Apple.Storage.Playlist"><value>Danh sách nhạc đĩa</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3"><value>Bài trong tiếng Tây Ban Nha 3</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3.Value0"><value>Trống</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3.Value1"><value>Video HD</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4"><value>Bài in 4</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4.Value0"><value>Trống</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4.Value2"><value>Thẻ chuột</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5"><value>Bài trong tiếng Tây Ban Nha 5</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value0"><value>Trống</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value1"><value>Bộ lọc mềm Z80</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value4"><value>SAM</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7"><value>Bài in 7</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7.Value0"><value>Trống</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7.Value1"><value>Bộ điều khiển đĩa cứng</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode"><value>Chế độ ảnh động</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value0"><value>Màu (RGB Card/Monritor)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value1"><value>Màu (mặc định chung)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value2"><value>Màu (bộ theo dõi chung)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value3"><value>TV màu</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value4"><value>B&amp;W TV</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value5"><value>Đơn sắc (Amber)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value6"><value>Đơn sắc (xanh lá cây)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value7"><value>Đơn sắc (đen)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_style"><value>Kiểu dáng ảnh động</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_style.Value0"><value>Nửa đường</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate"><value>Tốc độ cập nhật ảnh động</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate.Value0"><value>60Hz</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate.Value1"><value>50Hz</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start"><value>Đĩa khởi động danh sách chơi</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start.Value0"><value>Đầu</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start.Value1"><value>Lùi</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive"><value>Dùng cả hai ổ đĩa mềm</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive.Value0"><value>Đã tắt</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive.Value1"><value>Đã bật</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar"><value>Thanh trạng thái</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar.Value0"><value>Đã tắt</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar.Value1"><value>Đã bật</value></data>
-  <data name="Emulation.Apple.Runtime.Unavailable"><value>Các lõi sẵn sàng không hỗ trợ mô hình máy tính này.</value></data>
+  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Táo II Kết hợp với AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>Mactosh II Kết hợp với máy vi VMac.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Biến thế máy</value></data>
+  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Xuất ra phim bản địa</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Bài mở rộng</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Bộ nhớ được dùng bởi lõi</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>Hệ thống ROM được bao gồm trong lõi AppleWin.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Các lõi sẵn sàng không hỗ trợ mô hình máy tính này.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Danh sách nhạc đĩa</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Trống</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Bài trong Slot 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>Thẻ chuột</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Bài trong Snot 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Bài trong Snot 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>Bộ điều khiển đĩa cứng</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Bài trong Snot 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>MàuRGB Thư/ Thư mục)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>Màu (Chuyến đi)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>Màu (bộ theo dõi chung)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>Màu TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>Đơn sắc (Amm)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>Đơn sắc (xanh lá cây)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>Đơn sắc (đen)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>Chế độ ảnh động</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>Nửa đường</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>Kiểu dáng ảnh động</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Tốc độ cập nhật ảnh động</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>Đầu</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>Lùi</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Đĩa khởi động danh sách chơi</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>Dùng cả hai ổ đĩa mềm</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>Thanh trạng thái</value></data>
 </root>

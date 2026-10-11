@@ -4,12 +4,12 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Controller.Standard"><value>ColecoVision điều khiển</value></data>
-  <data name="Emulation.Coleco.Controller.Paddle"><value>Chèo</value></data>
-  <data name="Emulation.Coleco.Action.FireLeft"><value>Nút phóng hỏa trái</value></data>
-  <data name="Emulation.Coleco.Action.FireRight"><value>Nút đỏ</value></data>
-  <data name="Emulation.Coleco.Action.Purple"><value>Nút tím</value></data>
-  <data name="Emulation.Coleco.Action.Blue"><value>Nút xanh</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerLeft"><value>Quay trái</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerRight"><value>Quay phải</value></data>
+  <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>ColecoVision điều khiển</value></data>
+  <data name="Emulation.Coleco.Controller.Paddle" xml:space="preserve"><value>Chèo</value></data>
+  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Nút phóng hỏa trái</value></data>
+  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Nút đỏ</value></data>
+  <data name="Emulation.Coleco.Action.Purple" xml:space="preserve"><value>Nút tím</value></data>
+  <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>Nút xanh</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Quay trái</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>Quay phải</value></data>
   </root>

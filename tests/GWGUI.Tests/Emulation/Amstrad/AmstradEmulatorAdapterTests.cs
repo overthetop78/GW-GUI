@@ -422,6 +422,57 @@ public sealed class AmstradEmulatorAdapterTests
     }
 
     [Fact]
+    public void SpecialKeyboardBindingsPersistReassignmentAndExplicitClearing()
+    {
+        var original = new InputConfiguration(KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.AmstradCopy)] = nameof(EmulationKey.F10), [nameof(EmulationKey.AmstradF0)] = string.Empty });
+        var restored = JsonSerializer.Deserialize<InputConfiguration>(JsonSerializer.Serialize(original))!;
+        var keys = KeyboardBindingFunctions.Apply(new HashSet<EmulationKey> { EmulationKey.F10, EmulationKey.RightAlt, EmulationKey.Numpad0, EmulationKey.A, EmulationKey.F1 }, restored);
+        Assert.Contains(EmulationKey.AmstradCopy, keys);
+        Assert.DoesNotContain(EmulationKey.F10, keys);
+        Assert.DoesNotContain(EmulationKey.AmstradF0, keys);
+        Assert.Contains(EmulationKey.RightAlt, keys);
+        Assert.Contains(EmulationKey.A, keys);
+        Assert.Contains(EmulationKey.F1, keys);
+        Assert.Equal(string.Empty, KeyboardBindingFunctions.Normalize(restored)[nameof(EmulationKey.AmstradF0)]);
+    }
+
+    [Fact]
+    public void LegacyKeyboardBindingsPreserveUserValuesAndExplicitSemanticOverrides()
+    {
+        var input = new InputConfiguration(KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.RightAlt)] = nameof(EmulationKey.B), [nameof(EmulationKey.AmstradCopy)] = nameof(EmulationKey.C), [nameof(EmulationKey.Numpad0)] = string.Empty, [nameof(EmulationKey.Numpad1)] = nameof(EmulationKey.A) });
+        var values = KeyboardBindingFunctions.Normalize(input);
+        Assert.Equal(nameof(EmulationKey.C), values[nameof(EmulationKey.AmstradCopy)]);
+        Assert.Equal(string.Empty, values[nameof(EmulationKey.AmstradF0)]);
+        Assert.Equal(nameof(EmulationKey.A), values[nameof(EmulationKey.F1)]);
+        Assert.DoesNotContain(nameof(EmulationKey.RightAlt), values.Keys);
+        Assert.DoesNotContain(nameof(EmulationKey.Numpad1), values.Keys);
+    }
+    [Theory]
+    [InlineData(true, 307u)]
+    [InlineData(false, 308u)]
+    public void NativeKeyboardRoutingPreservesFunctionsAndSuppressesOldPhysicalAliases(bool caprice, uint copyCode)
+    {
+        var nativeKeys = caprice ? GWGUI.Emulation.Amstrad.Emulators.Caprice32.Dictionaries.KeyboardDictionary.NativeKeys : GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Dictionaries.KeyboardDictionary.NativeKeys;
+        ExternalHostCallbacks? callbacks = null;
+        try
+        {
+            callbacks = new ExternalHostCallbacks(AppContext.BaseDirectory, AppContext.BaseDirectory, AppContext.BaseDirectory, null, createDirectories: false, keyboardOverrides: nativeKeys);
+            var configuration = new InputConfiguration(KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.AmstradCopy)] = nameof(EmulationKey.F10), [nameof(EmulationKey.AmstradClear)] = string.Empty });
+            callbacks.Input = EmulationInputSnapshot.Empty with { Keys = KeyboardBindingFunctions.Apply(new HashSet<EmulationKey> { EmulationKey.F1, EmulationKey.F10, EmulationKey.Delete }, configuration) };
+            callbacks.InputPoll();
+            Assert.Equal((short)1, callbacks.InputState(0, ExternalHostCallbacksConstants.KeyboardDevice, 0, 257));
+            Assert.Equal((short)1, callbacks.InputState(0, ExternalHostCallbacksConstants.KeyboardDevice, 0, copyCode));
+            Assert.Equal((short)0, callbacks.InputState(0, ExternalHostCallbacksConstants.KeyboardDevice, 0, 127));
+            callbacks.Input = EmulationInputSnapshot.Empty with { Keys = KeyboardBindingFunctions.Apply(new HashSet<EmulationKey> { EmulationKey.RightAlt }, configuration) };
+            callbacks.InputPoll();
+            Assert.Equal((short)0, callbacks.InputState(0, ExternalHostCallbacksConstants.KeyboardDevice, 0, copyCode));
+        }
+        finally
+        {
+            callbacks?.Dispose();
+        }
+    }
+    [Fact]
     public void EmptyControllerMappingsRelayThePhysicalController()
     {
         const uint buttons = (1u << 4) | (1u << 0);
@@ -458,27 +509,9 @@ public sealed class AmstradEmulatorAdapterTests
         var keyboard = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(
             module.CreateConfiguration("cpc-6128")).Keyboard);
 
-        Assert.Contains(keyboard.Definitions, key => key.Id == nameof(EmulationKey.Backspace)
-            && key.InvariantDisplayValue == "DEL");
-        Assert.Contains(keyboard.Definitions, key => key.Id == nameof(EmulationKey.Delete)
-            && key.InvariantDisplayValue == "CLR");
-        Assert.Contains(keyboard.Definitions, key => key.Id == nameof(EmulationKey.RightAlt)
-            && key.InvariantDisplayValue == "COPY");
-        Assert.Contains(keyboard.Definitions, key => key.Id == nameof(EmulationKey.Numpad0)
-            && key.InvariantDisplayValue == "F0");
-        Assert.Contains(keyboard.Definitions, key => key.Id == nameof(EmulationKey.Numpad9)
-            && key.InvariantDisplayValue == "F9");
-        Assert.DoesNotContain(keyboard.Definitions, key => key.Id == nameof(EmulationKey.F1));
-        Assert.DoesNotContain(keyboard.Definitions, key => key.Id == nameof(EmulationKey.A));
-        Assert.DoesNotContain(keyboard.Definitions, key => key.Id == nameof(EmulationKey.D1));
-        Assert.DoesNotContain(keyboard.Definitions, key => key.Id == nameof(EmulationKey.Return));
-        Assert.DoesNotContain(keyboard.Definitions, key => key.Id == nameof(EmulationKey.LeftAlt));
-        Assert.All(keyboard.Definitions, definition =>
-        {
-            Assert.True(Enum.TryParse<EmulationKey>(definition.Id, out var machineKey));
-            Assert.Contains(machineKey, ExternalHostCallbacks.SupportedKeyboardKeys);
-            Assert.True(Enum.TryParse<EmulationKey>(definition.DefaultBinding, out _));
-        });
+        Assert.Equal(new[] { nameof(EmulationKey.AmstradCopy), nameof(EmulationKey.AmstradClear), nameof(EmulationKey.AmstradF0), nameof(EmulationKey.AmstradFPeriod) }, keyboard.Definitions.Select(key => key.Id));
+        Assert.Equal(new[] { "COPY", "CLR", "F0", "F." }, keyboard.Definitions.Select(key => key.InvariantDisplayValue));
+        Assert.All(keyboard.Definitions, definition => Assert.True(Enum.TryParse<EmulationKey>(definition.DefaultBinding, out _)));
         var plusKeyboard = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(
             module.CreateConfiguration("cpc-6128-plus")).Keyboard);
         Assert.Equal(keyboard.Definitions.Select(key => key.Id),

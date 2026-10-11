@@ -4,80 +4,47 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description"><value>Emulates ColecoVision og ADAM.</value></data>
-  <data name="Emulation.Emulator.jollycv.Description"><value>Emulerer ColecoVision.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description"><value>Emulerer ColecoVision.</value></data>
-  <data name="Emulation.Coleco.Memory.Display"><value>Videohukommelse</value></data>
-  <data name="Emulation.Coleco.Video.Native"><value>Video</value></data>
-  <data name="Emulation.Coleco.Controls.Native"><value>Indstillinger for kontrollør</value></data>
-  <data name="Emulation.Coleco.System.Native"><value>System</value></data>
-  <data name="Emulation.Coleco.Storage.Disk"><value>ADAM diskdrev</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack"><value>ADAM datapakke</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value0"><value>tomgang</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value1"><value>Nulstil</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Value0"><value>Automatisk</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value0"><value>Automatisk</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value1"><value>Standard</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Value0"><value>Automatisk</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value0"><value>Deaktiveret</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value1"><value>Top + bund</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value2"><value>Fuld (284 bredde)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value3"><value>Fuld (320 bredde)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value0"><value>Deaktiveret</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value1"><value>Aktiveret</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value0"><value>Deaktiveret</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value1"><value>Aktiveret</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value0"><value>Region- baseret Pixel Orientering Ratio</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value1"><value>Perfekt firkantede pixel (1: 1 PAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value2"><value>Meget traditionel NTSC Orientering Ratio (4: 3 DAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value3"><value>Angiveligt Nøjagtig PAL Orientering Ratio</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value0"><value>Deaktiveret</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value1"><value>Aktiveret</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Value0"><value>Automatisk</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value0"><value>Aktiveret</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value1"><value>Deaktiveret</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset"><value>Genstart ADAM</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Help"><value>Genstart ADAM fra dens monterede medier.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing"><value>Genopfrisk sats</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Help"><value>Vælg automatisk, NTSC eller PAL timing.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip"><value>Videochip</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Help"><value>Vælg den emulerede videochip.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio"><value>Billedaspektforhold</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio.Help"><value>Vælg billeddimensionsforholdet.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan"><value>Skærmkanter</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Help"><value>Vælg de synlige skærmkanter.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit"><value>Fjern spritgrænse</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Help"><value>Fjern grænsen for spritter pr. skærmlinje.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed"><value>Tillad modsat retninger</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Help"><value>Lad de modsatte retninger trykkes sammen.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity"><value>Følsomhed ved rotationskontrol</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity.Help"><value>Juster følsomheden af roterende controller.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette"><value>Farvepalet</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette.Help"><value>Vælg farvepaletten.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect"><value>Billedaspektforhold</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Help"><value>Vælg billeddimensionsforholdet.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t"><value>Afgrødetop grænse</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t.Help"><value>Skjul den øverste skærmkant.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b"><value>Afgrødebund grænse</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b.Help"><value>Skjul den nederste skærmkant.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l"><value>Afgrødevenstre grænse</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l.Help"><value>Skjul venstre skærmkant.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r"><value>Crop højre grænse</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r.Help"><value>Skjul den højre skærmkant.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit"><value>Fjern spritgrænse</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Help"><value>Fjern grænsen for spritter pr. skærmlinje.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan"><value>Afgrødeskærmens grænser</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Help"><value>Afskær skærmens kanter.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype"><value>Genopfrisk sats</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Help"><value>Vælg videoens opdateringshastighed.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits"><value>Fjern spritgrænse</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Help"><value>Fjern grænsen for spritter pr. skærmlinje.</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom"><value>Hurtig opstart</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Help"><value>Spring støvleforsinkelsen over.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper"><value>Cylindertype</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Help"><value>Vælg cylinderampullens type.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value0"><value>Deaktiveret</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value1"><value>Aktiveret</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value0"><value>Deaktiveret</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value1"><value>Aktiveret</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Emulates ColecoVision og ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>Emulerer ColecoVision.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>Emulerer ColecoVision.</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>Videohukommelse</value></data>
+  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>Video</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>Indstillinger for kontrollør</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>System</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAM diskdrev</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAM datapakke</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>Videoopdateringssats</value></data>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Vælg automatisk timing eller videostandarden.</value></data>
+  <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>Cylindertype</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Vælg patronens hukommelse bank controller.</value></data>
+  <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>Videochip</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Vælg den emulerede videochip.</value></data>
+  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>Billedaspektforhold</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Vælg billedaspektforholdet. Automatisk markering bruger spilregionen.</value></data>
+  <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>Skærmkanter</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Vælg de synlige skærmkanter.</value></data>
+  <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>Fjern spritgrænse</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Fjern grænsen for spritter per skærmlinje. Dette kan forårsage grafiske fejl.</value></data>
+  <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>Tillad modsat retninger</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Lad modsat retninger trykkes sammen.</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>Rotationsstyrefølsomhed</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Juster følsomheden af rotationscontrolleren.</value></data>
+  <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>Farvepalet</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Vælg farvepalet.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Skjul den øverste skærmkant.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Skjul den nederste skærmkant.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Skjul venstre skærmkant.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Skjul den højre skærmkant.</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Hurtig opstart</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Spring støvleforsinkelsen over.</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Standard cylinderampul</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Top og bund grænser</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>Alle grænser (284 pixels bred)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>Alle grænser (320 pixels bred)</value></data>
+  <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>Skjul øverste skærmkant</value></data>
+  <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>Skjul nederste skærmkant</value></data>
+  <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>Skjul venstre skærmkant</value></data>
+  <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>Skjul højre skærmkant</value></data>
+  <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>Skjul skærmkanter</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Skjul pixels i kanterne af det viste billede.</value></data>
 </root>

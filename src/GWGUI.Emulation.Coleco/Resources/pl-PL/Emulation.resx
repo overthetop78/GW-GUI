@@ -4,80 +4,47 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description"><value>Emulates ColecoVision i ADAM.</value></data>
-  <data name="Emulation.Emulator.jollycv.Description"><value>Emulaty ColecoVision.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description"><value>Emulaty ColecoVision.</value></data>
-  <data name="Emulation.Coleco.Memory.Display"><value>Pamięć wideo</value></data>
-  <data name="Emulation.Coleco.Video.Native"><value>Wideo</value></data>
-  <data name="Emulation.Coleco.Controls.Native"><value>Opcje sterowania</value></data>
-  <data name="Emulation.Coleco.System.Native"><value>System</value></data>
-  <data name="Emulation.Coleco.Storage.Disk"><value>Napęd dysków ADAM</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack"><value>Pakiet danych ADAM</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value0"><value>Bezczynny</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value1"><value>Reset</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Value0"><value>Automatyczny</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value0"><value>Automatyczny</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value1"><value>Standardowy</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Value0"><value>Automatyczny</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value0"><value>Wyłączone</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value1"><value>Góra + dół</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value2"><value>Pełna (szerokość 284)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value3"><value>Pełna (320 szerokości)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value0"><value>Wyłączone</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value1"><value>Włączone</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value0"><value>Wyłączone</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value1"><value>Włączone</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value0"><value>Stosunek Aspektu Pikseli do regionu</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value1"><value>Perfekcyjnie kwadratowe piksele (1: 1 PAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value2"><value>Bardzo tradycyjny współczynnik Aspektu NTSC (4: 3 DAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value3"><value>Rzeczywista dokładność wskaźnika Aspect PAL</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value0"><value>Wyłączone</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value1"><value>Włączone</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Value0"><value>Automatyczny</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value0"><value>Włączone</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value1"><value>Wyłączone</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset"><value>Przywróć ADAM</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Help"><value>Przywróć ADAM z zamontowanych nośników.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing"><value>Stawka za odświeżenie</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Help"><value>Wybierz automatyczny, NTSC lub PAL.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip"><value>Chip wideo</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Help"><value>Wybierz emulowany chip wideo.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio"><value>Stosunek aspektu obrazu</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio.Help"><value>Wybierz proporcje obrazu.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan"><value>Granice ekranów</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Help"><value>Wybierz widoczne granice ekranu.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit"><value>Usuń limit sprite</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Help"><value>Usuń limit na szprychy dla każdej linii ekranu.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed"><value>Dopuść przeciwne kierunki</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Help"><value>Pozwolić, aby przeciwne kierunki były uciskane razem.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity"><value>Wrażliwość kontroli rotacyjnej</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity.Help"><value>Dostosować czułość sterownika obrotowego.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette"><value>Paleta kolorów</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette.Help"><value>Wybierz paletę kolorów.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect"><value>Stosunek aspektu obrazu</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Help"><value>Wybierz proporcje obrazu.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t"><value>Górna granica upraw</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t.Help"><value>Ukryj górną granicę ekranu.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b"><value>Granica dolna upraw</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b.Help"><value>Ukryj dolną granicę ekranu.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l"><value>Uprawa lewa granica</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l.Help"><value>Ukryj lewy ekran.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r"><value>Granica prawa zbożowego</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r.Help"><value>Ukryj właściwą granicę ekranu.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit"><value>Usuń limit sprite</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Help"><value>Usuń limit na szprychy dla każdej linii ekranu.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan"><value>Granice ekranu zbożowego</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Help"><value>Wyrwij granice ekranu.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype"><value>Stawka za odświeżenie</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Help"><value>Wybierz częstotliwość odświeżania wideo.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits"><value>Usuń limit sprite</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Help"><value>Usuń limit na szprychy dla każdej linii ekranu.</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom"><value>Szybki start</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Help"><value>Pomiń opóźnienie bagażnika.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper"><value>Typ wkładu</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Help"><value>Należy wybrać typ wkładu.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value0"><value>Wyłączone</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value1"><value>Włączone</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value0"><value>Wyłączone</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value1"><value>Włączone</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Emulates ColecoVision i ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>Emulaty ColecoVision.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>Emulaty ColecoVision.</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>Pamięć wideo</value></data>
+  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>Wideo</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>Opcje sterowania</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>System</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>Napęd dysków ADAM</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>Pakiet danych ADAM</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>Szybkość odświeżania wideo</value></data>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Wybierz automatyczne wyczucie czasu lub standard wideo.</value></data>
+  <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>Typ wkładu</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Wybierz kontroler pamięci wkładu.</value></data>
+  <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>Chip wideo</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Wybierz emulowany chip wideo.</value></data>
+  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>Stosunek aspektu obrazu</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Wybierz proporcję obrazu. Automatyczny wybór wykorzystuje region gry.</value></data>
+  <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>Granice ekranów</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Wybierz widoczne granice ekranu.</value></data>
+  <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>Usuń limit sprite</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Usuń limit na spritions na linię ekranu. Może to spowodować błędy graficzne.</value></data>
+  <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>Zezwalaj na przeciwne kierunki</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Pozwól, aby przeciwne kierunki były ściśnięte razem.</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>Wrażliwość na regulację obrotów</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Dostosować czułość sterownika obrotowego.</value></data>
+  <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>Paleta kolorów</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Wybierz paletę kolorów.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Ukryj górną granicę ekranu.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Ukryj dolną granicę ekranu.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Ukryj lewy ekran.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Ukryj właściwą granicę ekranu.</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Szybki start</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Pomiń opóźnienie w bucie.</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Standardowe wkłady</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Granice górne i dolne</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>Wszystkie granice (284 pikseli)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>Wszystkie granice (320 pikseli)</value></data>
+  <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>Ukryj górną granicę ekranu</value></data>
+  <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>Ukryj granicę dolnego ekranu</value></data>
+  <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>Ukryj lewy ekran</value></data>
+  <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>Ukryj granicę prawego ekranu</value></data>
+  <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>Ukryj granice ekranu</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Ukryj piksele na krawędziach wyświetlanego obrazu.</value></data>
 </root>

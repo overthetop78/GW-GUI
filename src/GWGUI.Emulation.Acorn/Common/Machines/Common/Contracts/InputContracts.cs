@@ -7,5 +7,6 @@ public sealed record InputConfiguration(
     IReadOnlyList<ControllerBinding>? Controllers = null,
     string? MouseDeviceId = null,
     bool CaptureMouse = false,
-    EmulationKey ReleaseMouseKey = EmulationKey.Escape);
+    EmulationKey ReleaseMouseKey = EmulationKey.Escape,
+    IReadOnlyDictionary<string, string>? KeyboardBindings = null);
 

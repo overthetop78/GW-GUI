@@ -7,9 +7,11 @@ internal static class InputSnapshotFunctions
     {
         var keyboardMappings = BbcMicroKeyboardDictionary.DefaultHostKeys
             .ToDictionary(item => item.Key.ToString(), item => item.Value, StringComparer.Ordinal);
-        foreach (var mapping in configuration?.KeyboardMappings
-            ?? new Dictionary<string, EmulationKey>())
-            keyboardMappings[mapping.Key] = mapping.Value;
+        var bindings = configuration?.KeyboardBindings ?? configuration?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal);
+        if (bindings is not null)
+            foreach (var mapping in bindings)
+                if (Enum.TryParse<EmulationKey>(mapping.Value, true, out var physical)) keyboardMappings[mapping.Key] = physical;
+                else keyboardMappings.Remove(mapping.Key);
         var mapped = snapshot with
         {
             Keys = EmulationInputMappingFunctions.MapKeyboard(snapshot.Keys, keyboardMappings)

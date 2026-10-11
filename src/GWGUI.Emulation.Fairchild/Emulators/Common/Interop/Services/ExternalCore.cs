@@ -39,7 +39,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     public bool SupportsSaveStates => _supportsSaveStates;
     public double FramesPerSecond => _callbacks?.FramesPerSecond ?? default;
     public int SampleRate => _callbacks?.SampleRate ?? default;
-    public RuntimeRegion? Region { get; private set; }
+    public EmulationVideoStandard? Region { get; private set; }
     public int BufferedAudioFrames => _callbacks?.BufferedAudioFrames ?? default;
     public long AudioOverrunCount => _callbacks?.AudioOverrunCount ?? default;
     public long AudioUnderrunCount => _callbacks?.AudioUnderrunCount ?? default;
@@ -93,7 +93,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _exports.GetSystemAvInfo(out var avInfo);
             _callbacks.ApplySystemAvInfo(avInfo);
             Region = _exports.GetRegion() == ExternalCoreInteropConstants.NativeBooleanTrue
-                ? RuntimeRegion.Pal : RuntimeRegion.Ntsc;
+                ? EmulationVideoStandard.Pal : EmulationVideoStandard.Ntsc;
             completed = true;
         }
         finally

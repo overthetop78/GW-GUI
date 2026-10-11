@@ -2,11 +2,17 @@ using System.IO;
 using System.Globalization;
 using System.Text;
 using GWGUI.Emulation.Commodore.Emulators.VICE.Common.Constants;
+using ViceKeyboard = GWGUI.Emulation.Commodore.Emulators.VICE.Common.Dictionaries.KeyboardDictionary;
 
 namespace GWGUI.Emulation.Commodore.Emulators.VICE.Common.Factories;
 
 internal abstract class ViceMachineFactory : GWGUI.Emulation.Commodore.Emulators.Common.Interop.Factories.MachineFactory
 {
+    public override IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration) => ViceKeyboard.Supports(configuration) ? ViceKeyboard.Definitions(configuration) : base.GetKeyboardDefinitions(configuration);
+    public override MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration) => ViceKeyboard.Supports(configuration) ? configuration with { Input = KeyboardBindingFunctions.Normalize(configuration.Input, ViceKeyboard.Defaults(configuration), ViceKeyboard.LegacyTargets(configuration)) } : base.ApplyInputConfiguration(configuration);
+    internal override IReadOnlyDictionary<uint, EmulationKey?> KeyboardOverrides(MachineConfiguration configuration) => ViceKeyboard.Supports(configuration) ? ViceKeyboard.Overrides(configuration) : base.KeyboardOverrides(configuration);
+    internal override IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> KeyboardExpansions(MachineConfiguration configuration) => ViceKeyboard.Supports(configuration) ? ViceKeyboard.Expansions(configuration) : base.KeyboardExpansions(configuration);
+    internal override IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> KeyboardToggleExpansions(MachineConfiguration configuration) => ViceKeyboard.Supports(configuration) ? ViceKeyboard.ToggleExpansions(configuration) : base.KeyboardToggleExpansions(configuration);
     public override IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(MachineConfiguration configuration, IReadOnlyDictionary<int, bool> ledStates) =>
         new Dictionary<EmulationMediaSlot, bool>
         {

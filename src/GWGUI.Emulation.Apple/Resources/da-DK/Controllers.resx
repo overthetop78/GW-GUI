@@ -4,6 +4,4 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Apple.Keyboard.MacintoshKeypadClear"><value>Keypad Clear</value></data>
-  <data name="Emulation.Apple.Keyboard.MacintoshKeypadEquals"><value>Keypad er lig</value></data>
 </root>

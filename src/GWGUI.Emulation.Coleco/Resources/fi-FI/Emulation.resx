@@ -4,80 +4,47 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description"><value>Emuloidaan ColecoVision ja ADAM.</value></data>
-  <data name="Emulation.Emulator.jollycv.Description"><value>Emuloi ColecoVisionia.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description"><value>Emuloi ColecoVisionia.</value></data>
-  <data name="Emulation.Coleco.Memory.Display"><value>Videomuisti</value></data>
-  <data name="Emulation.Coleco.Video.Native"><value>Video</value></data>
-  <data name="Emulation.Coleco.Controls.Native"><value>Ohjaimen valinnat</value></data>
-  <data name="Emulation.Coleco.System.Native"><value>Järjestelmä</value></data>
-  <data name="Emulation.Coleco.Storage.Disk"><value>ADAM-levyasema</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack"><value>ADAM-tietopaketti</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value0"><value>Joutokäynti</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value1"><value>Nollaa</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Value0"><value>Automaattinen</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value0"><value>Automaattinen</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value1"><value>Standardi</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Value0"><value>Automaattinen</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value0"><value>Ei käytössä</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value1"><value>Ylä- pohja</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value2"><value>Täysi (284 leveys)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value3"><value>Täysi (320 leveys)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value0"><value>Ei käytössä</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value1"><value>Käytössä</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value0"><value>Ei käytössä</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value1"><value>Käytössä</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value0"><value>Aluekohtainen Pixel Aspect -suhde</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value1"><value>Täydellisesti neliöpikselit (1:1 PAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value2"><value>Hyvin perinteinen NTSC Aspect Ratio (4:3 DAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value3"><value>Näennäisesti tarkka PAL Aspect Ratio</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value0"><value>Ei käytössä</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value1"><value>Käytössä</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Value0"><value>Automaattinen</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value0"><value>Käytössä</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value1"><value>Ei käytössä</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset"><value>Aloita ADAM uudelleen</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Help"><value>Aloita ADAM uudelleen asennetusta mediasta.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing"><value>Päivitysnopeus</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Help"><value>Valitse automaattinen, NTSC tai PAL ajoitus.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip"><value>Videosiru</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Help"><value>Valitse emuloitu videosiru.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio"><value>Kuvan kuvasuhde</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio.Help"><value>Valitse kuvakuvasuhde.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan"><value>Näytön rajat</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Help"><value>Valitse näkyvät näytön rajat.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit"><value>Poista sprite- raja</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Help"><value>Poista sprite-raja näyttöriviä kohti.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed"><value>Salli vastakkaiset suunnat</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Help"><value>Sallitaan vastakkaisten suuntien painaminen yhteen.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity"><value>Pyörivän hallinnan herkkyys</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity.Help"><value>Säädä pyörivän ohjaimen herkkyys.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette"><value>Väripaletti</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette.Help"><value>Valitse väripaletti.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect"><value>Kuvan kuvasuhde</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Help"><value>Valitse kuvakuvasuhde.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t"><value>Kasvien yläraja</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t.Help"><value>Piilota yläruudun raja.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b"><value>Viljan pohjaraja</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b.Help"><value>Piilota alaruudun raja.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l"><value>Crop vasen raja</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l.Help"><value>Piilota vasemman näytön raja.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r"><value>Viljelijän oikea raja</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r.Help"><value>Piilota oikea näyttöraja.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit"><value>Poista sprite- raja</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Help"><value>Poista sprite-raja näyttöriviä kohti.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan"><value>Crop screen reunat</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Help"><value>Crop näytön rajoja.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype"><value>Päivitysnopeus</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Help"><value>Valitse videon päivitysnopeus.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits"><value>Poista sprite- raja</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Help"><value>Poista sprite-raja näyttöriviä kohti.</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom"><value>Nopea käynnistys</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Help"><value>Jätä saappaan viive väliin.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper"><value>Sylinteriampullityyppi</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Help"><value>Valitse sylinteriampullityyppi.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value0"><value>Ei käytössä</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value1"><value>Käytössä</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value0"><value>Ei käytössä</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value1"><value>Käytössä</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Emuloidaan ColecoVision ja ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>Emuloi ColecoVisionia.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>Emuloi ColecoVisionia.</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>Videomuisti</value></data>
+  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>Video</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>Ohjaimen valinnat</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>Järjestelmä</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAM-levyasema</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAM-tietopaketti</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>Videon päivitysnopeus</value></data>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Valitse automaattinen ajoitus tai videostandardi.</value></data>
+  <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>Sylinteriampullityyppi</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Valitse patruunan muistinohjain.</value></data>
+  <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>Videosiru</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Valitse emuloitu videosiru.</value></data>
+  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>Kuvan kuvasuhde</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Valitse kuva-suhde. Automaattinen valinta käyttää pelialuetta.</value></data>
+  <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>Näytön rajat</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Valitse näkyvät näytön rajat.</value></data>
+  <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>Poista sprite- raja</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Poista sprite-raja näytön riviä kohti. Tämä voi aiheuttaa graafisia virheitä.</value></data>
+  <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>Salli vastakkaiset suunnat</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Sallitaan vastakkaisten ohjeiden painaminen yhteen.</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>Pyörivän hallintalaitteen herkkyys</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Säädä pyörivän ohjaimen herkkyys.</value></data>
+  <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>Väripaletti</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Valitse väripaletista.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Piilota yläruudun raja.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Piilota alaruudun raja.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Piilota vasemman näytön raja.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Piilota oikea näyttöraja.</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Nopea käynnistys</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Jätä saappaan viive väliin.</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Vakiosäiliö</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Ylä- ja alarajat</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>Kaikki rajat (284 pikseliä leveä)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>Kaikki rajat (320 pikseliä leveä)</value></data>
+  <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>Piilota yläruudun raja</value></data>
+  <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>Piilota alaruudun raja</value></data>
+  <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>Piilota vasemman näytön raja</value></data>
+  <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>Piilota oikean näytön raja</value></data>
+  <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>Piilota näytön rajat</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Piilota pikselit näytöllä olevan kuvan reunoille.</value></data>
 </root>

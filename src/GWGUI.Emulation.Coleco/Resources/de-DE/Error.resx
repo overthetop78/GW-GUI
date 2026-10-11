@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Error.StateIncompatible"><value>Der gespeicherte Zustand von Coleco ist inkompatibel mit der aktuellen Maschine.</value></data>
-  <data name="Emulation.Coleco.Error.Unexpected"><value>Ein unerwarteter Coleco-Emulationsfehler trat auf.</value></data>
-  <data name="Emulation.Coleco.Error.FirmwareMissing"><value>Eine erforderliche Coleco-Firmware fehlt.</value></data>
-  <data name="Emulation.Coleco.Error.FirmwareInvalid"><value>Das System-ROM ist ungültig oder inkompatibel.</value></data>
-  <data name="Emulation.Coleco.Error.ContentNotFound"><value>Die konfigurierten Coleco-Medien wurden nicht gefunden.</value></data>
-  <data name="Emulation.Coleco.Error.ContentUnsupported"><value>Diese Maschine unterstützt die ausgewählten Medien nicht.</value></data>
-  <data name="Emulation.Coleco.Error.OptionInvalid"><value>Eine Coleco Option hat einen ungültigen Wert.</value></data>
-  <data name="Emulation.Coleco.Error.CoreNotFound"><value>Der benötigte Coleco-Kern wurde nicht gefunden.</value></data>
-  <data name="Emulation.Coleco.Error.CoreRejected"><value>Der ausgewählte Coleco-Kern konnte nicht geladen werden.</value></data>
-  <data name="Emulation.Coleco.Error.StateInvalid"><value>Der gespeicherte Zustand von Coleco ist ungültig.</value></data>
-  <data name="Emulation.Coleco.Error.HostExecutableMissing"><value>Der ausführbare Pfad des Coleco-Hosts ist nicht verfügbar.</value></data>
-  <data name="Emulation.Coleco.Error.Details"><value>Einzelheiten: {0}</value></data>
-  <data name="Emulation.Coleco.Error.HostProtocolFailure"><value>Die Kommunikation mit dem Coleco-Host ist fehlgeschlagen.</value></data>
-  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand"><value>Unbekannter Umgebungsbefehl: {0}</value></data>
+  <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>Der gespeicherte Zustand von Coleco ist inkompatibel mit der aktuellen Maschine.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>Ein unerwarteter Coleco-Emulationsfehler trat auf.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing" xml:space="preserve"><value>Eine erforderliche Coleco-Firmware fehlt.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>Das System-ROM ist ungültig oder inkompatibel.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>Die konfigurierten Coleco-Medien wurden nicht gefunden.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported" xml:space="preserve"><value>Diese Maschine unterstützt die ausgewählten Medien nicht.</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid" xml:space="preserve"><value>Eine Coleco Option hat einen ungültigen Wert.</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound" xml:space="preserve"><value>Der benötigte Coleco-Kern wurde nicht gefunden.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>Der ausgewählte Coleco-Kern konnte nicht geladen werden.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>Der gespeicherte Zustand von Coleco ist ungültig.</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>Der ausführbare Pfad des Coleco-Hosts ist nicht verfügbar.</value></data>
+  <data name="Emulation.Coleco.Error.Details" xml:space="preserve"><value>Einzelheiten: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>Die Kommunikation mit dem Coleco-Host ist fehlgeschlagen.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Unbekannter Umgebungsbefehl: {0}</value></data>
 </root>

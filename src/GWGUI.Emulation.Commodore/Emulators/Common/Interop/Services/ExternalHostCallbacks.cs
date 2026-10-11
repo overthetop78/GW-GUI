@@ -9,7 +9,11 @@ namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalHostCallbacks : IDisposable
 {
-    private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = CreateKeyboardMap();
+    private readonly IReadOnlyDictionary<uint, EmulationKey> _keyboardMap;
+    private readonly IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> _keyboardExpansions;
+    private readonly IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> _keyboardToggleExpansions;
+    private readonly HashSet<EmulationKey> _activeKeyboardToggles = new();
+    private readonly HashSet<EmulationKey> _previousKeyboardToggleSources = new();
     private readonly string? _pathOption;
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
     private readonly HashSet<string> _configuredOptionKeys = new(StringComparer.Ordinal);
@@ -31,8 +35,11 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal ExternalDiskControl DiskControl { get; } = new();
 
     internal ExternalHostCallbacks(string systemDirectory, string contentDirectory,
-        string saveDirectory, IReadOnlyDictionary<string, string>? options, string? pathOption = null)
+        string saveDirectory, IReadOnlyDictionary<string, string>? options, string? pathOption = null, IReadOnlyDictionary<uint, EmulationKey?>? keyboardOverrides = null, IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>>? keyboardExpansions = null, IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>>? keyboardToggleExpansions = null)
     {
+        _keyboardMap = CreateKeyboardMap(keyboardOverrides);
+        _keyboardExpansions = keyboardExpansions ?? new Dictionary<EmulationKey, IReadOnlyList<EmulationKey>>();
+        _keyboardToggleExpansions = keyboardToggleExpansions ?? new Dictionary<EmulationKey, IReadOnlyList<EmulationKey>>();
         _pathOption = pathOption;
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
@@ -130,6 +137,12 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         if (_disposed) return;
         foreach (var pointer in _nativeStrings.Values) Marshal.FreeCoTaskMem(pointer);
         _nativeStrings.Clear();
+        lock (_inputGate)
+        {
+            _activeKeyboardToggles.Clear();
+            _previousKeyboardToggleSources.Clear();
+            _previousKeys = new HashSet<EmulationKey>();
+        }
         _disposed = true;
     }
 }

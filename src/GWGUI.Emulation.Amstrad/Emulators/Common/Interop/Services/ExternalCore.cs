@@ -83,7 +83,7 @@ internal sealed class ExternalCore : IEmulatorCore
         File.Copy(sourceCorePath, isolatedCorePath, true);
         var contentPath = PrepareContentPath(media, contentDirectory);
         _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory,
-            configuration.Options ?? new Dictionary<string, string>());
+            configuration.Options ?? new Dictionary<string, string>(), keyboardOverrides: _definition.KeyboardOverrides);
 
         try
         {

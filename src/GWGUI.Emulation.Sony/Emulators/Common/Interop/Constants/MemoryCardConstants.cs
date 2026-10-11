@@ -6,8 +6,6 @@ internal static class MemoryCardConstants
     internal const string SwanSecondFile = "duckstation_shared_card_2.mcd";
     internal const string RearmedFirstFile = "pcsx-card1.mcd";
     internal const string RearmedSecondFile = "pcsx-card2.mcd";
-    internal const string BeetleFirstFile = "mednafen_psx_libretro_shared.0.mcr";
-    internal const string BeetleSecondFile = "mednafen_psx_libretro_shared.1.mcr";
     internal const string BeetleFilePrefix = "mednafen_psx_libretro_shared.";
     internal const int MaximumCards = 8;
     internal const string Directory = "memory-cards";

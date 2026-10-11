@@ -4,80 +4,47 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description"><value>ColecoVision と ADAM をエミュレートします。</value></data>
-  <data name="Emulation.Emulator.jollycv.Description"><value>ColecoVision をエミュレートします。</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description"><value>ColecoVision をエミュレートします。</value></data>
-  <data name="Emulation.Coleco.Memory.Display"><value>ビデオメモリ</value></data>
-  <data name="Emulation.Coleco.Video.Native"><value>ビデオビデオ</value></data>
-  <data name="Emulation.Coleco.Controls.Native"><value>コントローラーのオプション</value></data>
-  <data name="Emulation.Coleco.System.Native"><value>システム</value></data>
-  <data name="Emulation.Coleco.Storage.Disk"><value>ADAMディスクドライブ</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack"><value>ADAMデータパック</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value0"><value>アイドル</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value1"><value>リセット</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Value0"><value>自動</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value0"><value>自動</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value1"><value>スタンダード</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Value0"><value>自動</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value0"><value>無効</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value1"><value>トップ+ボトム</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value2"><value>フル(1984幅)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value3"><value>フル(320幅)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value0"><value>無効</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value1"><value>有効</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value0"><value>無効</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value1"><value>有効</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value0"><value>地域ベースのピクセルアスペクト比</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value1"><value>完全に正方形ピクセル(1:1のPAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value2"><value>非常に従来のNTSCアスペクト比(4:3 DAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value3"><value>非常に正確なPALアスペクト比</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value0"><value>無効</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value1"><value>有効</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Value0"><value>自動</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value0"><value>有効</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value1"><value>無効</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset"><value>ADAMを再起動する</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Help"><value>マウントされたメディアからADAMを再起動します。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing"><value>リフレッシュレート</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Help"><value>自動、NTSCまたはPALのタイミングを選択します。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip"><value>ビデオ チップ</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Help"><value>エミュレートされたビデオチップを選択します。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio"><value>画像アスペクト比</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio.Help"><value>画像アスペクト比を選択します。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan"><value>スクリーンの境界</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Help"><value>目に見える画面の境界を選択します。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit"><value>スプライトの限界を取除いて下さい</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Help"><value>画面行ごとのスプライトの制限を削除します。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed"><value>反対の方向を許可する</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Help"><value>反対方向を一緒に押せるようにします。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity"><value>回転式制御の感受性</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity.Help"><value>ロータリーコントローラーの感度を調整します。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette"><value>カラーパレット</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette.Help"><value>カラーパレットを選択します。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect"><value>画像アスペクト比</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Help"><value>画像アスペクト比を選択します。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t"><value>クロップトップボーダー</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t.Help"><value>トップ画面の境界線を非表示にします。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b"><value>下部の境界をクロップします</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b.Help"><value>一番下の画面の境界線を非表示にします。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l"><value>左の境界をクロップ</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l.Help"><value>左画面の境界線を非表示にします。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r"><value>右の境界をクロップ</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r.Help"><value>右画面の境界線を非表示にします。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit"><value>スプライトの限界を取除いて下さい</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Help"><value>画面行ごとのスプライトの制限を削除します。</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan"><value>トリミング画面境界線</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Help"><value>画面の境界線をクロップします。</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype"><value>リフレッシュレート</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Help"><value>ビデオリフレッシュレートを選択します。</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits"><value>スプライトの限界を取除いて下さい</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Help"><value>画面行ごとのスプライトの制限を削除します。</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom"><value>速いブーツ</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Help"><value>起動遅延をスキップします。</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper"><value>カートリッジ タイプ</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Help"><value>カートリッジの種類を選択します。</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value0"><value>無効</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value1"><value>有効</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value0"><value>無効</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value1"><value>有効</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>ColecoVision と ADAM をエミュレートします。</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>ColecoVision をエミュレートします。</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>ColecoVision をエミュレートします。</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>ビデオメモリ</value></data>
+  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>ビデオビデオ</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>コントローラーのオプション</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>システム</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAMディスクドライブ</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAMデータパック</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>ビデオリフレッシュレート</value></data>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>自動タイミングかビデオ標準を選んで下さい。</value></data>
+  <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>カートリッジ タイプ</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>カートリッジメモリバンクコントローラーを選択します。</value></data>
+  <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>ビデオ チップ</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>埋め込みビデオチップを選択します。</value></data>
+  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>画像アスペクト比</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>画像アスペクト比を選択します。自動選択はゲーム領域を使用します。</value></data>
+  <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>スクリーンの境界</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>表示される画面の境界を選択します。</value></data>
+  <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>spriteの限界を取除いて下さい</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>画面ラインごとにスプライトの制限を削除します。これにより、グラフィカルなエラーが発生する可能性があります。</value></data>
+  <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>反対方向を許す</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>逆方向に押し合わせるようにします。</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>回転式制御の感受性</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>ロータリーコントローラーの感度を調整します。</value></data>
+  <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>カラーパレット</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>カラーパレットを選択します。</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>画面の境界を隠す。</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>一番下の画面の境界線を隠します。</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>左画面の境界線を非表示にします。</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>画面の境界線を非表示にします。</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>速いブーツ</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>起動遅延をスキップします。</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>標準的なカートリッジ</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>トップとボトムの境界</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>全境界線(幅284ピクセル)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>あらゆる境界線(幅320ピクセル)</value></data>
+  <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>画面上の境界を隠す</value></data>
+  <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>画面の境界を下げる</value></data>
+  <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>左画面の境界を隠す</value></data>
+  <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>右画面の境界を隠す</value></data>
+  <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>画面の境界を隠す</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>表示される画像のエッジでピクセルを非表示にします。</value></data>
 </root>

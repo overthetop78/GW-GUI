@@ -4,80 +4,47 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description"><value>Емулятори ColecoVision і ADAM.</value></data>
-  <data name="Emulation.Emulator.jollycv.Description"><value>Емулятори ColecoVision.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description"><value>Емулятори ColecoVision.</value></data>
-  <data name="Emulation.Coleco.Memory.Display"><value>Відео пам'яті</value></data>
-  <data name="Emulation.Coleco.Video.Native"><value>Відео</value></data>
-  <data name="Emulation.Coleco.Controls.Native"><value>Параметри контролера</value></data>
-  <data name="Emulation.Coleco.System.Native"><value>Система</value></data>
-  <data name="Emulation.Coleco.Storage.Disk"><value>Дисковий диск ADAM</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack"><value>Пакет даних ADAM</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value0"><value>Сонце</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value1"><value>Зареєструватися</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Value0"><value>Автоматичний</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value0"><value>Автоматичний</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value1"><value>Стандарти</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Value0"><value>Автоматичний</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value0"><value>Вимкнено</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value1"><value>Топ+Ботом</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value2"><value>Повний (284 ширина)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value3"><value>Повна (320 ширина)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value0"><value>Вимкнено</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value1"><value>Увімкнено</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value0"><value>Вимкнено</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value1"><value>Увімкнено</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value0"><value>Регіон на основі Піксель Aspect Ratio</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value1"><value>Ідеально Квадратні Пікселі (1:1 PAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value2"><value>Дуже Традиційний NTSC Aspect Ratio (4:3 DAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value3"><value>ostensibly точний PAL співвідношення сторін</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value0"><value>Вимкнено</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value1"><value>Увімкнено</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Value0"><value>Автоматичний</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value0"><value>Увімкнено</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value1"><value>Вимкнено</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset"><value>Резюме ADAM</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Help"><value>Перезапустіть ADAM з встановлених медіа.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing"><value>Refresh курс</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Help"><value>Виберіть автоматичний, NTSC або PAL timing.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip"><value>Відеосхема</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Help"><value>Виберіть емульований відео чіп.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio"><value>Співвідношення параметрів зображення</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio.Help"><value>Виберіть співвідношення сторін зображення.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan"><value>Скріншоти</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Help"><value>Виберіть видимі екранні кордони.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit"><value>Видалити обмеження спрайт</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Help"><value>Видаліть ліміт на спрайти в рядок екрана.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed"><value>Поза «Ложки»</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Help"><value>Дозволити протилежні напрямки, які можна натиснути разом.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity"><value>Чутливість роторного контролю</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity.Help"><value>Налаштуйте чутливість поворотного контролера.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette"><value>Колірна палітра</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette.Help"><value>Виберіть колірну палітру.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect"><value>Співвідношення параметрів зображення</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Help"><value>Виберіть співвідношення сторін зображення.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t"><value>Crop верхня межа</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t.Help"><value>Прихильники верхнього екрана.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b"><value>Обрізка нижньої кордону</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b.Help"><value>Приховати нижній екран кордону.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l"><value>Вирощування лівої кордону</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l.Help"><value>Приховати лівий екран кордону.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r"><value>Вирощування правого кордону</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r.Help"><value>Прихильник правого екрану.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit"><value>Видалити обмеження спрайт</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Help"><value>Видаліть ліміт на спрайти в рядок екрана.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan"><value>Випадковий екран кордонів</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Help"><value>Розгорніть межі екрана.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype"><value>Refresh курс</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Help"><value>Виберіть частоту оновлення відео.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits"><value>Видалити обмеження спрайт</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Help"><value>Видаліть ліміт на спрайти в рядок екрана.</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom"><value>Швидке завантаження</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Help"><value>Пропустити затримку завантаження.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper"><value>Тип картриджа</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Help"><value>Виберіть тип картриджа.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value0"><value>Вимкнено</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value1"><value>Увімкнено</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value0"><value>Вимкнено</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value1"><value>Увімкнено</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Емулятори ColecoVision і ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>Емулятори ColecoVision.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>Емулятори ColecoVision.</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>Відео пам'яті</value></data>
+  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>Відео</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>Параметри контролера</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>Система</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>Дисковий диск ADAM</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>Пакет даних ADAM</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>Відео частота оновлення</value></data>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Виберіть автоматичний час або відео стандарт.</value></data>
+  <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>Тип картриджа</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Виберіть контролер пам'яті картриджа.</value></data>
+  <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>Відео чіп</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Виберіть емульований відео чіп.</value></data>
+  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>Співвідношення параметрів зображення</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Виберіть співвідношення сторін зображення. Автоматичний вибір використовує область ігор.</value></data>
+  <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>Скріншоти</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Виберіть видимі екранні кордони.</value></data>
+  <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>Видалити обмеження спрайт</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Видаліть ліміт на спрайти на екрані лінії. Це може викликати графічні помилки.</value></data>
+  <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>Поза «Ложки»</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Дозволити протилежні напрямки, які можна натиснути разом.</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>Обертова чутливість управління</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Регулювати чутливість роторного контролера.</value></data>
+  <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>Колірна палітра</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Виберіть колірну палітру.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Прихильники з екраном.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Прихильники нижнього екрану.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Прихильники лівого екрана.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Прихильники екрана на екрані праворуч.</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Швидкий завантаження</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Пропустити затримку завантаження.</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Стандартний картридж</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Топ і нижні кордони</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>Всі кордони (284 пікселів широка)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>Всі кордони (320 пікселів широка)</value></data>
+  <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>Прихильники верхнього екрану</value></data>
+  <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>Прихильники нижнього екрана</value></data>
+  <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>Прихильники лівого екрана</value></data>
+  <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>Прихильники екрана</value></data>
+  <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>Приховати бордюри екрана</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Приховувати пікселі на краях зображення, що відображається.</value></data>
 </root>

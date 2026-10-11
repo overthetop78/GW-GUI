@@ -4,12 +4,12 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Controller.Standard"><value>ColecoVision Controller</value></data>
-  <data name="Emulation.Coleco.Controller.Paddle"><value>Paddle</value></data>
-  <data name="Emulation.Coleco.Action.FireLeft"><value>Vänster brandknapp</value></data>
-  <data name="Emulation.Coleco.Action.FireRight"><value>Rätt brandknapp</value></data>
-  <data name="Emulation.Coleco.Action.Purple"><value>Lila knappen</value></data>
-  <data name="Emulation.Coleco.Action.Blue"><value>Blå knapp</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerLeft"><value>Spinner vänster</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerRight"><value>Spinner höger</value></data>
+  <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>ColecoVision Controller</value></data>
+  <data name="Emulation.Coleco.Controller.Paddle" xml:space="preserve"><value>Paddle</value></data>
+  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Vänster brandknapp</value></data>
+  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Rätt brandknapp</value></data>
+  <data name="Emulation.Coleco.Action.Purple" xml:space="preserve"><value>Lila knappen</value></data>
+  <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>Blå knapp</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Spinner vänster</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>Spinner höger</value></data>
   </root>

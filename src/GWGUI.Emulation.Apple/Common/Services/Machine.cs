@@ -54,7 +54,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     bool IEmulationInput.SupportsPointerCapture => Configuration.Family == MachineFamily.Macintosh;
     bool IEmulationInput.CapturePointerOnClick => Configuration.Family == MachineFamily.Macintosh && Configuration.Input.CaptureMouse;
     IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings =>
-        Configuration.Input?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(),
+        Configuration.Input?.KeyboardBindings ?? Configuration.Input?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(),
             StringComparer.Ordinal) ?? new Dictionary<string, string>();
     bool IEmulationInput.SupportsControllerPointerSwitch => false;
     bool IEmulationInput.ControllerPointerMode => false;

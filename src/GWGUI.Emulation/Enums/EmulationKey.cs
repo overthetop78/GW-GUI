@@ -1,4 +1,4 @@
-﻿namespace GWGUI.Emulation.Enums;
+namespace GWGUI.Emulation.Enums;
 
 public enum EmulationKey
 {
@@ -24,5 +24,11 @@ public enum EmulationKey
     SharpOption1, SharpOption2, SharpSymbol, SharpRegister,
     SharpKana, SharpRoman, SharpCode, SharpHiragana, SharpFullWidth,
     SharpGraph, SharpCopy, SharpKeypadEquals,
-    SinclairSymbolShift
+    SinclairSymbolShift,
+    AmstradCopy, AmstradClear, AmstradF0, AmstradFPeriod,
+    CommodoreKey, CommodoreRunStop, CommodoreShiftLock, CommodoreClearHome,
+    CommodoreRestore, CommodorePound, CommodoreArrowLeft, CommodoreArrowUp,
+    CommodoreLineFeed, Commodore40_80Display, CommodoreNoScroll, CommodoreAsciiDinCaps,
+    CommodoreOffReverse, CommodoreNormalGraphic, CommodoreKeypadClearEntry,
+    CommodoreRepeat
 }

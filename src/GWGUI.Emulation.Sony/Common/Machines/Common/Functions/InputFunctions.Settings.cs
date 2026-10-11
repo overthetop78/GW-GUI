@@ -11,7 +11,7 @@ internal static partial class InputSettingsFunctions
         var types = ControllerCatalog.Types(configuration);
         var keyboard = model.HasKeyboard || types.Any(type => type is
             ControllerType.Keyboard or ControllerType.KeyboardAndMouse) ? new EmulationInputBindingSet(
-            KeyboardDefinitions(), input.KeyboardBindings ?? ToStrings(input.KeyboardMappings),
+            [], input.KeyboardBindings ?? ToStrings(input.KeyboardMappings),
             EmulationInputSource.Keyboard) : null;
         var mouse = model.MouseButtonCount > 0 ? new EmulationInputBindingSet(
             MouseDefinitions(), MouseValues(input), EmulationInputSource.Mouse

@@ -7,6 +7,7 @@ internal static partial class InputSettingsFunctions
 {
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
+        configuration = EmulatorCatalog.CreateAdapter(configuration.Core).ApplyInputConfiguration(configuration);
         var input = configuration.Input ?? new InputConfiguration();
         var model = ModelCatalog.Get(configuration.Model);
         var keyboard = model.HasKeyboard
@@ -64,13 +65,7 @@ internal static partial class InputSettingsFunctions
         return EmulatorCatalog.CreateAdapter(configuration.Core).ApplyInputConfiguration(configuration with { Input = input });
     }
 
-    internal static IReadOnlyList<InputBindingDefinition> GenericKeyboardDefinitions() =>
-        Enum.GetValues<EmulationKey>()
-            .Where(key => key is not (EmulationKey.Unknown or EmulationKey.LeftAmiga or EmulationKey.RightAmiga
-                or EmulationKey.AtariOption or EmulationKey.AtariSelect or EmulationKey.AtariStart
-                or EmulationKey.AcornF0 or EmulationKey.AcornCopy or EmulationKey.AcornShiftLock
-                or EmulationKey.AcornKeypadHash or EmulationKey.AcornKeypadDelete or EmulationKey.AcornKeypadComma))
-            .Select(key => Definition(key.ToString(), KeyResource(key), key.ToString())).ToArray();
+    internal static IReadOnlyList<InputBindingDefinition> GenericKeyboardDefinitions() => [];
 
     private static IReadOnlyList<InputBindingDefinition> MouseDefinitions(Model model)
     {

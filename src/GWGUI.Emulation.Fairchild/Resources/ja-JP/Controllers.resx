@@ -4,10 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Input.RotateLeft"><value>ハンドルを左に回して下さい</value></data>
-  <data name="Emulation.Fairchild.Input.RotateRight"><value>ハンドルを右に回して下さい</value></data>
-  <data name="Emulation.Fairchild.Input.Push"><value>ハンドルを下に押して下さい</value></data>
-  <data name="Emulation.Fairchild.Input.Pull"><value>ハンドルを引っ張って下さい</value></data>
-  <data name="Emulation.Fairchild.Input.ConsoleOverlay"><value>コンソールボタンを表示する</value></data>
-  <data name="Emulation.Fairchild.Input.SwapControllers"><value>2 つのコントローラーをスワップして下さい</value></data>
+  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>ハンドルを左に回して下さい</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>ハンドルを右に回して下さい</value></data>
+  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>ハンドルを下に押して下さい</value></data>
+  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>ハンドルを引っ張って下さい</value></data>
+  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>コンソールボタンを表示する</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>2 つのコントローラーをスワップして下さい</value></data>
 </root>

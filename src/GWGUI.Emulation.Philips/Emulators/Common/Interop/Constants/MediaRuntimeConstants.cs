@@ -1,4 +1,4 @@
-﻿namespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;
+namespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;
 
 internal static class MediaRuntimeConstants
 {
@@ -11,7 +11,6 @@ internal static class MediaRuntimeConstants
     internal const string CdiBiosFileName = "cdimono1.zip";
     internal const string SameCdiDirectoryName = "same_cdi";
     internal const string CdiBiosDirectoryName = "bios";
-    internal const string M2000DefaultCassetteFileName = "Default.cas";
     internal const string Cdi200Sha1 = "d961de803c89b3d1902d656ceb9ce7c02dccb40a";
     internal const string Cdi220Sha1 = "53360a1f21ddac952e95306ced64186a3fc0b93e";
     internal const string CdiServoSha1 = "fdf8d78d6a0df4a56b5b963d72eabd39fcec163f";

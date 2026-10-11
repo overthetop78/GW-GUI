@@ -4,49 +4,36 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description"><value>Apple II emulace s AppleWin.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description"><value>Macintosh II emulace s Mini vMac.</value></data>
-  <data name="Emulation.Apple.Option.Model"><value>Varianta stroje</value></data>
-  <data name="Emulation.Apple.Video.Native"><value>Nativní video výstup</value></data>
-  <data name="Emulation.Apple.Expansion"><value>Rozšiřovací karty</value></data>
-  <data name="Emulation.Apple.Memory.Runtime"><value>Paměť použitá jádrem</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded"><value>Systém ROM jsou zahrnuty v jádru AppleWin.</value></data>
-  <data name="Emulation.Apple.Storage.Playlist"><value>Seznamy skladeb disků</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3"><value>Karta ve Slot 3</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3.Value0"><value>Prázdný</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3.Value1"><value>Video HD</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4"><value>Karta ve Slot 4</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4.Value0"><value>Prázdný</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4.Value2"><value>Karta myši</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5"><value>Karta ve Slot 5</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value0"><value>Prázdný</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value1"><value>Z80 SoftCard</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value4"><value>SAM</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7"><value>Karta ve slotu 7</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7.Value0"><value>Prázdný</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7.Value1"><value>regulátor pevného disku</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode"><value>Video režim</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value0"><value>Barva (RGB karta / monitor)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value1"><value>Barva (Composite Idealized)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value2"><value>Barva (Kompozitní monitor)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value3"><value>Barevná TV</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value4"><value>B &amp; W TV</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value5"><value>Monochromní (jantar)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value6"><value>Monochromní (zelené)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value7"><value>Monochromní (bílý)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_style"><value>Styl videa</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_style.Value0"><value>Poloviční skenery</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate"><value>Obnovení rychlosti videa</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate.Value0"><value>60Hz</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate.Value1"><value>50Hz</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start"><value>Disk pro spuštění seznamu skladeb</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start.Value0"><value>První</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start.Value1"><value>Předchozí</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive"><value>Použít obě diskety</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive.Value0"><value>Zakázáno</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive.Value1"><value>Povoleno</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar"><value>Status Bar</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar.Value0"><value>Zakázáno</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar.Value1"><value>Povoleno</value></data>
-  <data name="Emulation.Apple.Runtime.Unavailable"><value>Dostupné jádro tento model stroje nepodporuje.</value></data>
+  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Jablečné II emulace s AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>MacintoshCity in New York USA II emulace s Mini vMac.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Varianta stroje</value></data>
+  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Původní video výstup</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Rozšiřovací karty</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Paměť použitá jádrem</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>Systém ROM jsou zahrnuty v jádru AppleWin.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Dostupné jádro tento model stroje nepodporuje.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Seznamy skladeb disků</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Prázdný</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Karta v položce 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>Karta myši</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Karta ve Slot 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Karta v Slot 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>Pevný disk controller</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Karta v Slot 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>Barva (RGB Karta / monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>Barva (Kompozitní idealizováno)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>Barva (Kompozitní monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>Barva TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>Monochromní (jantar)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>Monochromní (zelené)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>Monochromní (bílý)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>Video režim</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>Poloskeneriny</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>Styl videa</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Obnovení rychlosti videa</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>První</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>Předchozí</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Disk pro spuštění seznamu skladeb</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>Použít obě diskety</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>Status Bar</value></data>
 </root>

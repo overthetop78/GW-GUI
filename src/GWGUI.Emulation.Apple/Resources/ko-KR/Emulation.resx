@@ -4,49 +4,36 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description"><value>Apple II 에뮬레이션 AppleWin.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description"><value>Macintosh II 에뮬레이션 Mini vMac.</value></data>
-  <data name="Emulation.Apple.Option.Model"><value>기계 변종</value></data>
-  <data name="Emulation.Apple.Video.Native"><value>Native 비디오 출력</value></data>
-  <data name="Emulation.Apple.Expansion"><value>확장 카드</value></data>
-  <data name="Emulation.Apple.Memory.Runtime"><value>핵심에 의해 사용되는 기억</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded"><value>시스템 ROM은 AppleWin 코어에 포함되어 있습니다.</value></data>
-  <data name="Emulation.Apple.Storage.Playlist"><value>디스크 재생 목록</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3"><value>Slot 3의 카드</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3.Value0"><value>뚱 베어</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3.Value1"><value>비디오 HD</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4"><value>슬롯의 카드 4</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4.Value0"><value>뚱 베어</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4.Value2"><value>마우스 카드</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5"><value>슬롯의 카드 5</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value0"><value>뚱 베어</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value1"><value>Z80 소프트 카드</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value4"><value>SAM</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7"><value>슬롯의 카드 7</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7.Value0"><value>뚱 베어</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7.Value1"><value>하드 디스크 컨트롤러</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode"><value>영상 형태</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value0"><value>색깔 (RGB 카드/모니터)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value1"><value>색깔 (유관 이상)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value2"><value>색깔 (Composite 감시자)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value3"><value>색상 TV</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value4"><value>B&amp;W TV'실제 이름입 니다.</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value5"><value>모노크롬 (Amber)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value6"><value>Monochrome (녹색)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value7"><value>Monochrome (화이트)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_style"><value>영상 작풍</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_style.Value0"><value>절반 검사</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate"><value>Video 새로 고침 빈도</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate.Value0"><value>60Hz</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate.Value1"><value>50Hz</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start"><value>Playlist 시작 디스크</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start.Value0"><value>1 년 전</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start.Value1"><value>이름 </value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive"><value>floppy 드라이브 모두 사용</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive.Value0"><value>사용 안 함</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive.Value1"><value>사용</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar"><value>상태 바</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar.Value0"><value>사용 안 함</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar.Value1"><value>사용</value></data>
-  <data name="Emulation.Apple.Runtime.Unavailable"><value>유효한 핵심은 이 기계 모형을 지원하지 않습니다.</value></data>
+  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 II AppleWin과의 에뮬레이션.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>맥린토시 II Mini vMac과의 에뮬레이션.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>기계 변종</value></data>
+  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>출력되는 Native video</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>확장 카드</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>핵심에 의해 사용되는 기억</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>시스템 ROM은 AppleWin 코어에 포함되어 있습니다.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>유효한 핵심은 이 기계 모형을 지원하지 않습니다.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>디스크 재생 목록</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>뚱 베어</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Slot 3의 카드</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>마우스 카드</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>슬롯의 카드 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>슬롯 5의 카드</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>하드 디스크 컨트롤러</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>슬롯의 카드 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>색깔 (RGB 카드/모니터)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>색깔 (유관 이상)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>색상 (컴포터 모니터)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>색깔: 백색 TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>모노크롬 (Amber)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>Monochrome (녹색)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>모노크롬 (흰색)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>영상 형태</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>절반 검사</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>영상 작풍</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Video 새로 고침 빈도</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Playlist 시작 디스크</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>floppy 드라이브 모두 사용</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>상태 바</value></data>
 </root>

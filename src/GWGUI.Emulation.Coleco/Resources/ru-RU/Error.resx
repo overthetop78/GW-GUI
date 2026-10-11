@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Error.StateIncompatible"><value>Сохранённое состояние Coleco несовместимо с текущей машиной.</value></data>
-  <data name="Emulation.Coleco.Error.Unexpected"><value>Неожиданная ошибка эмуляции Coleco.</value></data>
-  <data name="Emulation.Coleco.Error.FirmwareMissing"><value>Требуемая прошивка Coleco отсутствует.</value></data>
-  <data name="Emulation.Coleco.Error.FirmwareInvalid"><value>Система ROM является недействительной или несовместимой.</value></data>
-  <data name="Emulation.Coleco.Error.ContentNotFound"><value>Настроенные СМИ Coleco не были найдены.</value></data>
-  <data name="Emulation.Coleco.Error.ContentUnsupported"><value>Данная машина не поддерживает выбранные носители.</value></data>
-  <data name="Emulation.Coleco.Error.OptionInvalid"><value>Опцион Coleco имеет недействительное значение.</value></data>
-  <data name="Emulation.Coleco.Error.CoreNotFound"><value>Требуемое ядро Coleco не было найдено.</value></data>
-  <data name="Emulation.Coleco.Error.CoreRejected"><value>Выбранное ядро Coleco не могло быть загружено.</value></data>
-  <data name="Emulation.Coleco.Error.StateInvalid"><value>Coleco сохраненное состояние является недействительным.</value></data>
-  <data name="Emulation.Coleco.Error.HostExecutableMissing"><value>Исполняемый путь хоста Coleco недоступен.</value></data>
-  <data name="Emulation.Coleco.Error.Details"><value>Подробности: {0}</value></data>
-  <data name="Emulation.Coleco.Error.HostProtocolFailure"><value>Связь с хостом Coleco не удалась.</value></data>
-  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand"><value>Неизвестная команда окружения: {0}</value></data>
+  <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>Сохранённое состояние Coleco несовместимо с текущей машиной.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>Неожиданная ошибка эмуляции Coleco.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing" xml:space="preserve"><value>Требуемая прошивка Coleco отсутствует.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM является недействительной или несовместимой.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>Настроенные СМИ Coleco не были найдены.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported" xml:space="preserve"><value>Данная машина не поддерживает выбранные носители.</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid" xml:space="preserve"><value>Опцион Coleco имеет недействительное значение.</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound" xml:space="preserve"><value>Требуемое ядро Coleco не было найдено.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>Выбранное ядро Coleco не могло быть загружено.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>Coleco сохраненное состояние является недействительным.</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>Исполняемый путь хоста Coleco недоступен.</value></data>
+  <data name="Emulation.Coleco.Error.Details" xml:space="preserve"><value>Подробности: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>Связь с хостом Coleco не удалась.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Неизвестная команда окружения: {0}</value></data>
 </root>

@@ -4,11 +4,9 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.freechaf.Description"><value>المواد Channel F و Channel F System II المعونات.</value></data>
-  <data name="Emulation.Fairchild.Memory.Display"><value>ذاكرة الفيديو</value></data>
-  <data name="Emulation.Fairchild.Video.Native"><value>فيديو كونسول</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr"><value>نظف الشاشة في إطار واحد</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Help"><value>التعجيل بإزالة الشاشة بإكمالها في إطار واحد.</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value0"><value>معطل</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value1"><value>التمكين</value></data>
+  <data name="Emulation.Emulator.freechaf.Description" xml:space="preserve"><value>المواد Channel F و Channel F System II المعونات.</value></data>
+  <data name="Emulation.Fairchild.Memory.Display" xml:space="preserve"><value>ذاكرة الفيديو</value></data>
+  <data name="Emulation.Fairchild.Video.Native" xml:space="preserve"><value>فيديو كونسول</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear" xml:space="preserve"><value>أخلوا الشاشة في إطار واحد</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear.Help" xml:space="preserve"><value>تسريع عملية التصفية بإكمالها في إطار واحد</value></data>
 </root>

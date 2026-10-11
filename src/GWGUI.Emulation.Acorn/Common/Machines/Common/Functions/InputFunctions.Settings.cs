@@ -9,7 +9,7 @@ internal static class InputSettingsFunctions
         var input = configuration.Input;
         var definitions = BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration);
         var keyboard = new EmulationInputBindingSet(definitions,
-            ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard);
+            input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard);
         var configured = input.Controllers ?? [];
         var choices = ControllerFunctions.Peripherals(configuration.Model)
             .OrderBy(category => category).Select(Choice).ToArray();
@@ -35,12 +35,9 @@ internal static class InputSettingsFunctions
     {
         var allowedKeys = BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration)
             .Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
-        var keyboard = settings.Keyboard is null ? configuration.Input.KeyboardMappings
-            : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key)
-                && Enum.TryParse<EmulationKey>(item.Value, true, out var key)
-                && Enum.IsDefined(key))
-                .ToDictionary(item => item.Key,
-                    item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
+        var keyboardBindings = settings.Keyboard is null ? configuration.Input.KeyboardBindings ?? ToStrings(configuration.Input.KeyboardMappings)
+            : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key) && (string.IsNullOrWhiteSpace(item.Value) || Enum.TryParse<EmulationKey>(item.Value, true, out var key) && Enum.IsDefined(key))).ToDictionary(item => item.Key, item => string.IsNullOrWhiteSpace(item.Value) ? string.Empty : item.Value, StringComparer.Ordinal);
+        var keyboard = keyboardBindings.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
         var controllers = settings.ControllerPorts.Select(port =>
         {
             if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var peripheral)
@@ -52,7 +49,7 @@ internal static class InputSettingsFunctions
         }).ToArray();
         var result = configuration with
         {
-            Input = configuration.Input with { KeyboardMappings = keyboard, Controllers = controllers }
+            Input = configuration.Input with { KeyboardMappings = keyboard, KeyboardBindings = keyboardBindings, Controllers = controllers }
         };
         ConfigurationFunctions.Validate(result);
         return result;

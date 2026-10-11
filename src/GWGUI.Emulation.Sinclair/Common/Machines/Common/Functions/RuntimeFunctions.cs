@@ -4,9 +4,9 @@ namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions;
 
 internal static class RuntimeFunctions
 {
-    internal static int RegionValue(RuntimeRegion? region) => region is null ? RuntimeConstants.MissingRegionValue : (int)region.Value;
+    internal static int RegionValue(EmulationVideoStandard? region) => region is null ? RuntimeConstants.MissingRegionValue : (int)region.Value;
 
-    internal static RuntimeRegion? ReadRegion(int value) => value == RuntimeConstants.MissingRegionValue || !Enum.IsDefined(typeof(RuntimeRegion), value) ? null : (RuntimeRegion)value;
+    internal static EmulationVideoStandard? ReadRegion(int value) => value == RuntimeConstants.MissingRegionValue || value is not ((int)EmulationVideoStandard.Ntsc) and not ((int)EmulationVideoStandard.Pal) ? null : (EmulationVideoStandard)value;
 
     internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed)
     {

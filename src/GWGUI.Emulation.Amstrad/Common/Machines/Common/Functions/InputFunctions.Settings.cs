@@ -1,8 +1,3 @@
-using ClassicKeyboard = GWGUI.Emulation.Amstrad.Common.Machines.CpcClassic.Constants.KeyboardConstants;
-using ClassicKeyboardDictionary = GWGUI.Emulation.Amstrad.Common.Machines.CpcClassic.Dictionaries.KeyboardDictionary;
-using ClassicModelConstants = GWGUI.Emulation.Amstrad.Common.Machines.CpcClassic.Constants.ModelConstants;
-using PlusKeyboard = GWGUI.Emulation.Amstrad.Common.Machines.CpcPlus.Constants.KeyboardConstants;
-using PlusKeyboardDictionary = GWGUI.Emulation.Amstrad.Common.Machines.CpcPlus.Dictionaries.KeyboardDictionary;
 
 namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
 
@@ -13,7 +8,7 @@ internal static partial class InputSettingsFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var input = configuration.Input ?? new InputConfiguration();
         var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(
-            KeyboardDefinitions(model), input.KeyboardBindings ?? ToStrings(input.KeyboardMappings),
+            KeyboardDefinitions(), KeyboardBindingFunctions.Normalize(input),
             EmulationInputSource.Keyboard) : null;
         var mouse = model.MouseButtonCount > BufferConstants.EmptyCollectionCount ? new EmulationInputBindingSet(
             MouseDefinitions(), MouseValues(input), EmulationInputSource.Mouse
@@ -39,7 +34,7 @@ internal static partial class InputSettingsFunctions
         EmulationInputSettings settings)
     {
         var current = configuration.Input ?? new InputConfiguration();
-        var keyboard = settings.Keyboard?.Values ?? new Dictionary<string, string>();
+        var keyboard = KeyboardBindingFunctions.Normalize(current with { KeyboardBindings = settings.Keyboard?.Values ?? new Dictionary<string, string>() });
         var mouse = settings.Mouse?.Values
             .Where(item => !string.IsNullOrWhiteSpace(item.Value)
                 && Enum.TryParse<MouseAction>(item.Key, true, out var action)
@@ -68,16 +63,7 @@ internal static partial class InputSettingsFunctions
         };
     }
 
-    private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(Model model)
-    {
-        var classic = model.Id is ClassicModelConstants.Cpc464 or ClassicModelConstants.Cpc664
-            or ClassicModelConstants.Cpc6128;
-        var keys = classic ? ClassicKeyboard.SpecialKeys : PlusKeyboard.SpecialKeys;
-        var labels = classic ? ClassicKeyboardDictionary.Labels : PlusKeyboardDictionary.Labels;
-        return keys.Select(key => Definition(key.ToString(), key.ToString(), key.ToString(),
-            labels[key])).ToArray();
-    }
-
+    private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions() => KeyboardConstants.SpecialKeys.Select(key => Definition(key.ToString(), key.ToString(), KeyboardDictionary.DefaultHostKeys[key].ToString(), KeyboardDictionary.Labels[key])).ToArray();
     private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() =>
     [
         Definition(nameof(MouseAction.LeftButton),

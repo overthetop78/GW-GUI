@@ -14,6 +14,37 @@ namespace GWGUI.Tests.Emulation.Acorn;
 
 public sealed class AcornModuleTests
 {
+    [Theory]
+    [InlineData(EmulationKey.AcornF0)]
+    [InlineData(EmulationKey.AcornCopy)]
+    [InlineData(EmulationKey.AcornShiftLock)]
+    [InlineData(EmulationKey.AcornKeypadHash)]
+    [InlineData(EmulationKey.AcornKeypadDelete)]
+    [InlineData(EmulationKey.AcornKeypadComma)]
+    public void ErasedAssociationSurvivesPersistenceWithoutRestoringTheDefault(EmulationKey target)
+    {
+        var configuration = new MachineConfiguration(MachineModel.BbcMaster128);
+        var settings = InputSettingsFunctions.Describe(configuration);
+        var values = settings.Keyboard!.Definitions.ToDictionary(item => item.Id, item => item.DefaultBinding, StringComparer.Ordinal);
+        values[target.ToString()] = nameof(EmulationKey.Z);
+        var assigned = InputSettingsFunctions.Apply(configuration, settings with { Keyboard = settings.Keyboard with { Values = values } });
+        var assignedSettings = InputSettingsFunctions.Describe(assigned);
+        values = new Dictionary<string, string>(assignedSettings.Keyboard!.Values) { [target.ToString()] = string.Empty };
+        var erased = InputSettingsFunctions.Apply(assigned, assignedSettings with { Keyboard = assignedSettings.Keyboard with { Values = values } });
+        var document = ConfigurationStoreFunctions.ToDocument(erased, Path.GetTempPath());
+        var json = JsonSerializer.SerializeToElement(document, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+        var restored = ConfigurationStoreFunctions.FromDocument(ConfigurationStoreFunctions.Deserialize(json), Path.GetTempPath());
+        Assert.Equal(string.Empty, InputSettingsFunctions.Describe(restored).Keyboard!.Values[target.ToString()]);
+        var previous = settings.Keyboard.Definitions.Single(item => item.Id == target.ToString()).DefaultBinding;
+        var keys = new HashSet<EmulationKey> { EmulationKey.Z, EmulationKey.A, EmulationKey.Numpad1 };
+        if (Enum.TryParse<EmulationKey>(previous, out var old)) keys.Add(old);
+        var mapped = InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty with { Keys = keys }, restored.Input);
+        Assert.DoesNotContain(target, mapped.Keys);
+        Assert.Contains(EmulationKey.A, mapped.Keys);
+        Assert.Contains(EmulationKey.Numpad1, mapped.Keys);
+        var native = KeyboardFunctions.CreateKeyMap();
+        Assert.DoesNotContain(mapped.Keys.Where(native.ContainsKey).Select(key => native[key]), code => code == native[target]);
+    }
     [Fact]
     public void MachineArtworkUsesExistingSharedResources()
     {

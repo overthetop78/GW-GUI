@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand"><value>desconocido medio ambiente comando: {0}</value></data>
-  <data name="Emulation.Apple.Error.CoreNotFound"><value>No se encontró el núcleo necesario de Apple.</value></data>
-  <data name="Emulation.Apple.Error.CoreRejected"><value>El núcleo seleccionado de Apple no se puede cargar.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareMissing"><value>Falta un firmware de Apple necesario.</value></data>
-  <data name="Emulation.Apple.Error.FirmwareInvalid"><value>El sistema ROM es inválido o incompatible.</value></data>
-  <data name="Emulation.Apple.Error.ContentNotFound"><value>No se encontraron los medios de Apple configurados.</value></data>
-  <data name="Emulation.Apple.Error.ContentUnsupported"><value>Esta máquina no admite los medios seleccionados.</value></data>
-  <data name="Emulation.Apple.Error.OptionInvalid"><value>Una opción Apple tiene un valor inválido.</value></data>
-  <data name="Emulation.Apple.Error.HostProtocolFailure"><value>La comunicación con el anfitrión de Apple falló.</value></data>
-  <data name="Emulation.Apple.Error.StateInvalid"><value>El estado guardado de Apple es inválido.</value></data>
-  <data name="Emulation.Apple.Error.StateIncompatible"><value>El estado guardado de Apple es incompatible con la máquina actual.</value></data>
-  <data name="Emulation.Apple.Error.Unexpected"><value>Se produjo un error inesperado de emulación de Apple.</value></data>
-  <data name="Emulation.Apple.Error.Details"><value>Detalles: {0}</value></data>
-  <data name="Emulation.Apple.Error.HostExecutableMissing"><value>El camino ejecutable de Apple host no está disponible.</value></data>
+  <data name="Emulation.Apple.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>desconocido medio ambiente comando: {0}</value></data>
+  <data name="Emulation.Apple.Error.CoreNotFound" xml:space="preserve"><value>No se encontró el núcleo necesario de Apple.</value></data>
+  <data name="Emulation.Apple.Error.CoreRejected" xml:space="preserve"><value>El núcleo seleccionado de Apple no se puede cargar.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareMissing" xml:space="preserve"><value>Falta un firmware de Apple necesario.</value></data>
+  <data name="Emulation.Apple.Error.FirmwareInvalid" xml:space="preserve"><value>El sistema ROM es inválido o incompatible.</value></data>
+  <data name="Emulation.Apple.Error.ContentNotFound" xml:space="preserve"><value>No se encontraron los medios de Apple configurados.</value></data>
+  <data name="Emulation.Apple.Error.ContentUnsupported" xml:space="preserve"><value>Esta máquina no admite los medios seleccionados.</value></data>
+  <data name="Emulation.Apple.Error.OptionInvalid" xml:space="preserve"><value>Una opción Apple tiene un valor inválido.</value></data>
+  <data name="Emulation.Apple.Error.HostProtocolFailure" xml:space="preserve"><value>La comunicación con el anfitrión de Apple falló.</value></data>
+  <data name="Emulation.Apple.Error.StateInvalid" xml:space="preserve"><value>El estado guardado de Apple es inválido.</value></data>
+  <data name="Emulation.Apple.Error.StateIncompatible" xml:space="preserve"><value>El estado guardado de Apple es incompatible con la máquina actual.</value></data>
+  <data name="Emulation.Apple.Error.Unexpected" xml:space="preserve"><value>Se produjo un error inesperado de emulación de Apple.</value></data>
+  <data name="Emulation.Apple.Error.Details" xml:space="preserve"><value>Detalles: {0}</value></data>
+  <data name="Emulation.Apple.Error.HostExecutableMissing" xml:space="preserve"><value>El camino ejecutable de Apple host no está disponible.</value></data>
 </root>

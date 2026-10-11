@@ -4,39 +4,39 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Controller.Standard"><value>ColecoVision controller</value></data>
-  <data name="Emulation.Coleco.Controller.SuperAction"><value>Super Action Controller</value></data>
-  <data name="Emulation.Coleco.Controller.Roller"><value>Roller Controller</value></data>
-  <data name="Emulation.Coleco.Controller.Driving"><value>Driving Controller</value></data>
-  <data name="Emulation.Coleco.Controller.Paddle"><value>Paddle</value></data>
-  <data name="Emulation.Coleco.Action.FireLeft"><value>Left fire button</value></data>
-  <data name="Emulation.Coleco.Action.FireRight"><value>Right fire button</value></data>
-  <data name="Emulation.Coleco.Action.Purple"><value>Purple button</value></data>
-  <data name="Emulation.Coleco.Action.Blue"><value>Blue button</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerLeft"><value>Spinner left</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerRight"><value>Spinner right</value></data>
-  <data name="Emulation.Coleco.Action.Keypad0"><value>0</value></data>
-  <data name="Emulation.Coleco.Action.Keypad1"><value>1</value></data>
-  <data name="Emulation.Coleco.Action.Keypad2"><value>2</value></data>
-  <data name="Emulation.Coleco.Action.Keypad3"><value>3</value></data>
-  <data name="Emulation.Coleco.Action.Keypad4"><value>4</value></data>
-  <data name="Emulation.Coleco.Action.Keypad5"><value>5</value></data>
-  <data name="Emulation.Coleco.Action.Keypad6"><value>6</value></data>
-  <data name="Emulation.Coleco.Action.Keypad7"><value>7</value></data>
-  <data name="Emulation.Coleco.Action.Keypad8"><value>8</value></data>
-  <data name="Emulation.Coleco.Action.Keypad9"><value>9</value></data>
-  <data name="Emulation.Coleco.Action.Star"><value>*</value></data>
-  <data name="Emulation.Coleco.Action.Pound"><value>#</value></data>
-  <data name="Emulation.Coleco.Key.Smart1"><value>Smart 1</value></data>
-  <data name="Emulation.Coleco.Key.Smart2"><value>Smart 2</value></data>
-  <data name="Emulation.Coleco.Key.Smart3"><value>Smart 3</value></data>
-  <data name="Emulation.Coleco.Key.Smart4"><value>Smart 4</value></data>
-  <data name="Emulation.Coleco.Key.Smart5"><value>Smart 5</value></data>
-  <data name="Emulation.Coleco.Key.Smart6"><value>Smart 6</value></data>
-  <data name="Emulation.Coleco.Key.Undo"><value>Undo</value></data>
-  <data name="Emulation.Coleco.Key.WildCard"><value>Wild Card</value></data>
-  <data name="Emulation.Coleco.Key.Move"><value>Move</value></data>
-  <data name="Emulation.Coleco.Key.Store"><value>Store</value></data>
-  <data name="Emulation.Coleco.Key.Clear"><value>Clear</value></data>
-  <data name="Emulation.Coleco.Key.Print"><value>Print</value></data>
+  <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>ColecoVision controller</value></data>
+  <data name="Emulation.Coleco.Controller.SuperAction" xml:space="preserve"><value>Super Action Controller</value></data>
+  <data name="Emulation.Coleco.Controller.Roller" xml:space="preserve"><value>Roller Controller</value></data>
+  <data name="Emulation.Coleco.Controller.Driving" xml:space="preserve"><value>Driving Controller</value></data>
+  <data name="Emulation.Coleco.Controller.Paddle" xml:space="preserve"><value>Paddle</value></data>
+  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Left fire button</value></data>
+  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Right fire button</value></data>
+  <data name="Emulation.Coleco.Action.Purple" xml:space="preserve"><value>Purple button</value></data>
+  <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>Blue button</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Spinner left</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>Spinner right</value></data>
+  <data name="Emulation.Coleco.Action.Keypad0" xml:space="preserve"><value>0</value></data>
+  <data name="Emulation.Coleco.Action.Keypad1" xml:space="preserve"><value>1</value></data>
+  <data name="Emulation.Coleco.Action.Keypad2" xml:space="preserve"><value>2</value></data>
+  <data name="Emulation.Coleco.Action.Keypad3" xml:space="preserve"><value>3</value></data>
+  <data name="Emulation.Coleco.Action.Keypad4" xml:space="preserve"><value>4</value></data>
+  <data name="Emulation.Coleco.Action.Keypad5" xml:space="preserve"><value>5</value></data>
+  <data name="Emulation.Coleco.Action.Keypad6" xml:space="preserve"><value>6</value></data>
+  <data name="Emulation.Coleco.Action.Keypad7" xml:space="preserve"><value>7</value></data>
+  <data name="Emulation.Coleco.Action.Keypad8" xml:space="preserve"><value>8</value></data>
+  <data name="Emulation.Coleco.Action.Keypad9" xml:space="preserve"><value>9</value></data>
+  <data name="Emulation.Coleco.Action.Star" xml:space="preserve"><value>*</value></data>
+  <data name="Emulation.Coleco.Action.Pound" xml:space="preserve"><value>#</value></data>
+  <data name="Emulation.Coleco.Key.Smart1" xml:space="preserve"><value>Smart 1</value></data>
+  <data name="Emulation.Coleco.Key.Smart2" xml:space="preserve"><value>Smart 2</value></data>
+  <data name="Emulation.Coleco.Key.Smart3" xml:space="preserve"><value>Smart 3</value></data>
+  <data name="Emulation.Coleco.Key.Smart4" xml:space="preserve"><value>Smart 4</value></data>
+  <data name="Emulation.Coleco.Key.Smart5" xml:space="preserve"><value>Smart 5</value></data>
+  <data name="Emulation.Coleco.Key.Smart6" xml:space="preserve"><value>Smart 6</value></data>
+  <data name="Emulation.Coleco.Key.Undo" xml:space="preserve"><value>Undo</value></data>
+  <data name="Emulation.Coleco.Key.WildCard" xml:space="preserve"><value>Wild Card</value></data>
+  <data name="Emulation.Coleco.Key.Move" xml:space="preserve"><value>Move</value></data>
+  <data name="Emulation.Coleco.Key.Store" xml:space="preserve"><value>Store</value></data>
+  <data name="Emulation.Coleco.Key.Clear" xml:space="preserve"><value>Clear</value></data>
+  <data name="Emulation.Coleco.Key.Print" xml:space="preserve"><value>Print</value></data>
 </root>

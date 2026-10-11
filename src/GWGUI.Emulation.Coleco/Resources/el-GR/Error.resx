@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Error.StateIncompatible"><value>Η κατάσταση που έσωσε η Coleco είναι ασύμβατη με την τρέχουσα μηχανή.</value></data>
-  <data name="Emulation.Coleco.Error.Unexpected"><value>Συνέβη ένα απροσδόκητο σφάλμα εξομοίωσης της Coleco.</value></data>
-  <data name="Emulation.Coleco.Error.FirmwareMissing"><value>Ένα απαιτούμενο λογισμικό Coleco λείπει.</value></data>
-  <data name="Emulation.Coleco.Error.FirmwareInvalid"><value>Το σύστημα ROM δεν είναι έγκυρο ή ασυμβίβαστο.</value></data>
-  <data name="Emulation.Coleco.Error.ContentNotFound"><value>Τα ρυθμισμένα μέσα Coleco δε βρέθηκαν.</value></data>
-  <data name="Emulation.Coleco.Error.ContentUnsupported"><value>Αυτή η μηχανή δεν υποστηρίζει τα επιλεγμένα μέσα.</value></data>
-  <data name="Emulation.Coleco.Error.OptionInvalid"><value>Μια επιλογή Coleco έχει μη έγκυρη τιμή.</value></data>
-  <data name="Emulation.Coleco.Error.CoreNotFound"><value>Ο απαιτούμενος πυρήνας Coleco δεν βρέθηκε.</value></data>
-  <data name="Emulation.Coleco.Error.CoreRejected"><value>Ο επιλεγμένος πυρήνας Coleco δεν ήταν δυνατό να φορτωθεί.</value></data>
-  <data name="Emulation.Coleco.Error.StateInvalid"><value>Η κατάσταση που έσωσε η Coleco είναι άκυρη.</value></data>
-  <data name="Emulation.Coleco.Error.HostExecutableMissing"><value>Η εκτελέσιμη διαδρομή του Coleco ξενιστή δεν είναι διαθέσιμη.</value></data>
-  <data name="Emulation.Coleco.Error.Details"><value>Λεπτομέρειες: {0}</value></data>
-  <data name="Emulation.Coleco.Error.HostProtocolFailure"><value>Η επικοινωνία με τον ξενιστή της Coleco απέτυχε.</value></data>
-  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand"><value>Άγνωστη εντολή περιβάλλοντος: {0}</value></data>
+  <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>Η κατάσταση που έσωσε η Coleco είναι ασύμβατη με την τρέχουσα μηχανή.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>Συνέβη ένα απροσδόκητο σφάλμα εξομοίωσης της Coleco.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareMissing" xml:space="preserve"><value>Ένα απαιτούμενο λογισμικό Coleco λείπει.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>Το σύστημα ROM δεν είναι έγκυρο ή ασυμβίβαστο.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>Τα ρυθμισμένα μέσα Coleco δε βρέθηκαν.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported" xml:space="preserve"><value>Αυτή η μηχανή δεν υποστηρίζει τα επιλεγμένα μέσα.</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid" xml:space="preserve"><value>Μια επιλογή Coleco έχει μη έγκυρη τιμή.</value></data>
+  <data name="Emulation.Coleco.Error.CoreNotFound" xml:space="preserve"><value>Ο απαιτούμενος πυρήνας Coleco δεν βρέθηκε.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>Ο επιλεγμένος πυρήνας Coleco δεν ήταν δυνατό να φορτωθεί.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>Η κατάσταση που έσωσε η Coleco είναι άκυρη.</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>Η εκτελέσιμη διαδρομή του Coleco ξενιστή δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Coleco.Error.Details" xml:space="preserve"><value>Λεπτομέρειες: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>Η επικοινωνία με τον ξενιστή της Coleco απέτυχε.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Άγνωστη εντολή περιβάλλοντος: {0}</value></data>
 </root>

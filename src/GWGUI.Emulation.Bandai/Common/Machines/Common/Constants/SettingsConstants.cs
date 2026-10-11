@@ -16,13 +16,6 @@ internal static class SettingsConstants
     internal const string ResourceControllerNone = "Emulation.Controller.None";
     internal const string ResourceControllerPrefix = "Emulation.Bandai.Controller.";
     internal const string ResourceActionPrefix = "Emulation.Bandai.Action.";
-    internal const string ResourceFolders = "Emulation.Folder.Common";
-    internal const string ResourceSharedFolder = "Emulation.Folder.Common";
-    internal const string ResourceSaveFolder = "Emulation.Bandai.Folder.Save";
-    internal const string ResourceStateFolder = "Emulation.Folder.State";
-    internal const string ResourceCaptureFolder = "Emulation.Folder.Capture";
-    internal const string ResourceCartridgeFolder = "Emulation.Bandai.Folder.Cartridge";
-    internal const string ResourceCompactDiscFolder = "Emulation.Bandai.Folder.CompactDisc";
     internal const string ResourceCpuProcessor = "Emulation.Cpu.Processor";
     internal const string ResourceCpuModel = "Emulation.Cpu.Model";
     internal const string ResourceCpuSpeedOriginal = "Emulation.Cpu.SpeedOriginal";
@@ -38,7 +31,6 @@ internal static class SettingsConstants
     internal const string DisplayResolution = "bandai_display_resolution";
     internal const string PlaydiaHle = "bandai_playdia_hle";
     internal const int BytesPerKibibyte = 1024;
-    internal const string HertzUnit = "Hz";
     internal const double HertzPerMegahertz = 1_000_000;
     internal const double HertzPerKilohertz = 1_000;
     internal const string MegahertzUnit = "MHz";

@@ -91,7 +91,7 @@ private static string Value(IReadOnlyDictionary<string, string> values, string k
         var nominal = NominalCpuFrequencyMhz(model, ntsc);
         if (compatibility is CpuCompatibility.MemoryExact or CpuCompatibility.Exact)
         {
-            var halfA500Clock = ntsc ? ToMhz(ClockFrequency.NtscHalfBase) : ToMhz(ClockFrequency.PalHalfBase);
+            var halfA500Clock = ntsc ? ToMhz(ClockConstants.NtscHalfBaseFrequencyHz) : ToMhz(ClockConstants.PalHalfBaseFrequencyHz);
             var choices = ClockConstants.CycleExactMultipliers.Select(multiplier =>
             {
                 var frequency = halfA500Clock * (int)multiplier;
@@ -131,12 +131,12 @@ private static string Value(IReadOnlyDictionary<string, string> values, string k
 
     private static double NominalCpuFrequencyMhz(AmigaModel model, bool ntsc) => model.Id switch
     {
-        GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A1200 or GWGUI.Emulation.Commodore.Common.Machines.AmigaCD32.Constants.ModelConstants.CD32 => ntsc ? ToMhz(ClockFrequency.Ntsc68EC020) : ToMhz(ClockFrequency.Pal68EC020),
-        GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A3000 or GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A4000 => ToMhz(ClockFrequency.Workstation),
-        _ => ntsc ? ToMhz(ClockFrequency.NtscBase) : ToMhz(ClockFrequency.PalBase)
+        GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A1200 or GWGUI.Emulation.Commodore.Common.Machines.AmigaCD32.Constants.ModelConstants.CD32 => ntsc ? ToMhz(ClockConstants.Ntsc68EC020FrequencyHz) : ToMhz(ClockConstants.Pal68EC020FrequencyHz),
+        GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A3000 or GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A4000 => ToMhz(ClockConstants.WorkstationFrequencyHz),
+        _ => ntsc ? ToMhz(ClockConstants.NtscBaseFrequencyHz) : ToMhz(ClockConstants.PalBaseFrequencyHz)
     };
 
-    private static double ToMhz(ClockFrequency frequency) => (double)frequency / ClockConstants.HertzPerMegahertz;
+    private static double ToMhz(double frequencyHz) => frequencyHz / ClockConstants.HertzPerMegahertz;
 
     private static string FormatMhz(double frequency) => string.Format(SettingsValueConstants.MegahertzLabelFormat, frequency);
     private static bool Approximately(double left, double right) => Math.Abs(left - right) < ClockConstants.ComparisonToleranceMhz;

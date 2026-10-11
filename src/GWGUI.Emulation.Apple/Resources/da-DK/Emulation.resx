@@ -4,49 +4,36 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.applewin.Description"><value>Apple II emulering med AppleWin.</value></data>
-  <data name="Emulation.Emulator.minivmac.Description"><value>Macintosh II emulering med Mini vMac.</value></data>
-  <data name="Emulation.Apple.Option.Model"><value>Maskinvariant</value></data>
-  <data name="Emulation.Apple.Video.Native"><value>Indfødt videoudgang</value></data>
-  <data name="Emulation.Apple.Expansion"><value>Ekspansionskort</value></data>
-  <data name="Emulation.Apple.Memory.Runtime"><value>Hukommelse brugt af kernen</value></data>
-  <data name="Emulation.Apple.Firmware.Embedded"><value>Systemet ROM er inkluderet i AppleWin kernen.</value></data>
-  <data name="Emulation.Apple.Storage.Playlist"><value>Disk- spillelister</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3"><value>Kort i Slot 3</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3.Value0"><value>Tomt</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot3.Value1"><value>Video HD</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4"><value>Kort i Slot 4</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4.Value0"><value>Tomt</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot4.Value2"><value>Mouse Card</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5"><value>Kort i Slot 5</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value0"><value>Tomt</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value1"><value>Z80 SoftCard</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot5.Value4"><value>SAM</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7"><value>Kort i Slot 7</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7.Value0"><value>Tomt</value></data>
-  <data name="Emulation.Apple.Option.applewin_slot7.Value1"><value>Harddisk controller</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode"><value>Videotilstand</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value0"><value>Farve (RGB-kort / monitor)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value1"><value>Farve (Composite Idealized)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value2"><value>Farve (kompositemonitor)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value3"><value>Farve TV</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value4"><value>B &amp; W TV</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value5"><value>Monokrom (Amber)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value6"><value>Monokrom (grøn)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_mode.Value7"><value>Monokrom (hvid)</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_style"><value>Videostil</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_style.Value0"><value>Half Scanlines</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate"><value>Videogenopfrisk sats</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate.Value0"><value>60Hz</value></data>
-  <data name="Emulation.Apple.Option.applewin_video_refresh_rate.Value1"><value>50Hz</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start"><value>Spilleliste startdisk</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start.Value0"><value>Første</value></data>
-  <data name="Emulation.Apple.Option.applewin_playlist_start.Value1"><value>Forrige</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive"><value>Brug begge floppy-drev</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive.Value0"><value>Deaktiveret</value></data>
-  <data name="Emulation.Apple.Option.applewin_floppy_multidrive.Value1"><value>Aktiveret</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar"><value>Statuslinje</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar.Value0"><value>Deaktiveret</value></data>
-  <data name="Emulation.Apple.Option.minivmac_Statusbar.Value1"><value>Aktiveret</value></data>
-  <data name="Emulation.Apple.Runtime.Unavailable"><value>Den tilgængelige kerne understøtter ikke denne maskinmodel.</value></data>
+  <data name="Emulation.Emulator.applewin.Description" xml:space="preserve"><value>Apple II emulering med AppleWin.</value></data>
+  <data name="Emulation.Emulator.minivmac.Description" xml:space="preserve"><value>Macintosh II emulering med Mini vMac.</value></data>
+  <data name="Emulation.Apple.Option.Model" xml:space="preserve"><value>Maskinvariant</value></data>
+  <data name="Emulation.Apple.Video.Native" xml:space="preserve"><value>Indfødt videoudgang</value></data>
+  <data name="Emulation.Apple.Expansion" xml:space="preserve"><value>Udvidelseskort</value></data>
+  <data name="Emulation.Apple.Memory.Runtime" xml:space="preserve"><value>Hukommelse brugt af kernen</value></data>
+  <data name="Emulation.Apple.Firmware.Embedded" xml:space="preserve"><value>Systemet ROM er inkluderet i AppleWin kernen.</value></data>
+  <data name="Emulation.Apple.Runtime.Unavailable" xml:space="preserve"><value>Den tilgængelige kerne understøtter ikke denne maskinmodel.</value></data>
+  <data name="Emulation.Apple.Storage.Playlist" xml:space="preserve"><value>Disk- spillelister</value></data>
+  <data name="Emulation.Apple.Value.Empty" xml:space="preserve"><value>Tom</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot3" xml:space="preserve"><value>Kort i Slot 3</value></data>
+  <data name="Emulation.Apple.Value.MouseCard" xml:space="preserve"><value>Mouse Card</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot4" xml:space="preserve"><value>Kort i Slot 4</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot5" xml:space="preserve"><value>Kort i Slot 5</value></data>
+  <data name="Emulation.Apple.Value.HardDiskController" xml:space="preserve"><value>Harddisk controller</value></data>
+  <data name="Emulation.Apple.Setting.CardInSlot7" xml:space="preserve"><value>Kort i Slot 7</value></data>
+  <data name="Emulation.Apple.Value.ColorRGBCardMonitor" xml:space="preserve"><value>Farve (RGB Kort / monitor)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeIdealized" xml:space="preserve"><value>Farve (kompositidoteret)</value></data>
+  <data name="Emulation.Apple.Value.ColorCompositeMonitor" xml:space="preserve"><value>Farve (kompositskærm)</value></data>
+  <data name="Emulation.Apple.Value.ColorTV" xml:space="preserve"><value>Farve TV</value></data>
+  <data name="Emulation.Apple.Value.MonochromeAmber" xml:space="preserve"><value>Monokrom (Amber)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeGreen" xml:space="preserve"><value>Monokrom (grøn)</value></data>
+  <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>Monokrom (hvid)</value></data>
+  <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>Videotilstand</value></data>
+  <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>Halvscannede linjer</value></data>
+  <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>Videostil</value></data>
+  <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Videogenopfrisk sats</value></data>
+  <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>Første</value></data>
+  <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>Forrige</value></data>
+  <data name="Emulation.Apple.Setting.PlaylistStartDisk" xml:space="preserve"><value>Spillelist- start- disk</value></data>
+  <data name="Emulation.Apple.Setting.UseBothFloppyDrives" xml:space="preserve"><value>Brug begge diskettedrev</value></data>
+  <data name="Emulation.Apple.Setting.StatusBar" xml:space="preserve"><value>Statuslinje</value></data>
 </root>

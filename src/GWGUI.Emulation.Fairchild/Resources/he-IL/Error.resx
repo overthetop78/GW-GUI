@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Error.StateIncompatible"><value>המדינה Fairchild הצילה אינה תואמת למכונה הנוכחית.</value></data>
-  <data name="Emulation.Fairchild.Error.Unexpected"><value>טעות חיקוי בלתי צפויה של Fairchild התרחשה.</value></data>
-  <data name="Emulation.Fairchild.Error.FirmwareMissing"><value>קושחה Fairchild הנדרשת נעדר.</value></data>
-  <data name="Emulation.Fairchild.Error.FirmwareInvalid"><value>המערכת ROM היא בלתי חוקית או לא מתאימה.</value></data>
-  <data name="Emulation.Fairchild.Error.ContentNotFound"><value>התקשורת של Fairchild לא נמצאה.</value></data>
-  <data name="Emulation.Fairchild.Error.ContentUnsupported"><value>מכונה זו אינה תומכת בתקשורת שנבחרה.</value></data>
-  <data name="Emulation.Fairchild.Error.OptionInvalid"><value>אפשרות Fairchild יש ערך לא חוקי.</value></data>
-  <data name="Emulation.Fairchild.Error.CoreNotFound"><value>הליבה Fairchild הנדרשת לא נמצאה.</value></data>
-  <data name="Emulation.Fairchild.Error.CoreRejected"><value>הליבה Fairchild הנבחר לא יכול להיות טעון.</value></data>
-  <data name="Emulation.Fairchild.Error.StateInvalid"><value>המדינה Fairchild הצילה היא בלתי נסבלת.</value></data>
-  <data name="Emulation.Fairchild.Error.HostExecutableMissing"><value>הנתיב המתואם של חברת Fairchild אינו זמין.</value></data>
-  <data name="Emulation.Fairchild.Error.Details"><value>תגית: {0}</value></data>
-  <data name="Emulation.Fairchild.Error.HostProtocolFailure"><value>התקשורת עם מארח Fairchild נכשלה.</value></data>
-  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand"><value>ארכיון תגיות: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>המדינה Fairchild הצילה אינה תואמת למכונה הנוכחית.</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>טעות חיקוי בלתי צפויה של Fairchild התרחשה.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>קושחה Fairchild הנדרשת נעדר.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>המערכת ROM היא בלתי חוקית או לא מתאימה.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>התקשורת של Fairchild לא נמצאה.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported" xml:space="preserve"><value>מכונה זו אינה תומכת בתקשורת שנבחרה.</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>אפשרות Fairchild יש ערך לא חוקי.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>הליבה Fairchild הנדרשת לא נמצאה.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>הליבה Fairchild הנבחר לא יכול להיות טעון.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>המדינה Fairchild הצילה היא בלתי נסבלת.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>הנתיב המתואם של חברת Fairchild אינו זמין.</value></data>
+  <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>תגית: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>התקשורת עם מארח Fairchild נכשלה.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>ארכיון תגיות: {0}</value></data>
 </root>

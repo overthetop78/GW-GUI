@@ -4,80 +4,47 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description"><value>Tốc độ ColecoVision và ADAM.</value></data>
-  <data name="Emulation.Emulator.jollycv.Description"><value>Tốc độ ColecoVision.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description"><value>Tốc độ ColecoVision.</value></data>
-  <data name="Emulation.Coleco.Memory.Display"><value>Bộ nhớ phim</value></data>
-  <data name="Emulation.Coleco.Video.Native"><value>Ảnh động</value></data>
-  <data name="Emulation.Coleco.Controls.Native"><value>Tùy chọn Controller</value></data>
-  <data name="Emulation.Coleco.System.Native"><value>Hệ thống</value></data>
-  <data name="Emulation.Coleco.Storage.Disk"><value>ADAM ổ đĩa</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack"><value>Bộ dữ liệu ADAM</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value0"><value>Nghỉ</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value1"><value>Đặt lại</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value1"><value>Chuẩn</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value0"><value>Đã tắt</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value1"><value>Trên+Bottom</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value2"><value>Đầy (284 chiều rộng)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value3"><value>Đầy (420 chiều rộng)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value0"><value>Đã tắt</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value1"><value>Đã bật</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value0"><value>Đã tắt</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value1"><value>Đã bật</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value0"><value>Tỷ lệ điểm ảnh dựa trên vùng</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value1"><value>Điểm ảnh vuông hoàn toàn (1:1 PAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value2"><value>Tỷ lệ hình thể &amp; NTSC rất truyền thống (4:3 DAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value3"><value>Tỷ lệ hình thể PAL</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value0"><value>Đã tắt</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value1"><value>Đã bật</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value0"><value>Đã bật</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value1"><value>Đã tắt</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset"><value>Khởi động lại ADAM</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Help"><value>Khởi động lại ADAM từ phương tiện truyền thông.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing"><value>Tốc độ cập nhật</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Help"><value>Chọn tự động, NTSC hay PAL time.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip"><value>chip ảnh động</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Help"><value>Chọn chip video đã mô phỏng.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio"><value>Tỷ lệ hình thể ảnh</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio.Help"><value>Chọn tỷ lệ hình thể của ảnh.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan"><value>Biên giới màn hình</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Help"><value>Chọn viền màn hình nhìn thấy được.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit"><value>Gỡ bỏ giới hạn spite</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Help"><value>Gỡ bỏ giới hạn trên mỗi đường màn hình.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed"><value>Cho phép hướng đối diện</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Help"><value>Cho phép hướng đối diện được ép lại với nhau.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity"><value>Độ nhạy điều khiển động vật</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity.Help"><value>Điều chỉnh độ nhạy của bộ điều khiển quay.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette"><value>Bảng màu</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette.Help"><value>Chọn bảng màu.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect"><value>Tỷ lệ hình thể ảnh</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Help"><value>Chọn tỷ lệ hình thể của ảnh.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t"><value>Cắt viền trên</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t.Help"><value>Ẩn biên giới màn hình trên cùng.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b"><value>Cắt viền dưới</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b.Help"><value>Ẩn biên giới màn hình dưới.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l"><value>Cắt viền trái</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l.Help"><value>Ẩn biên giới màn hình trái.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r"><value>Cắt viền phải</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r.Help"><value>Ẩn biên giới màn hình bên phải.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit"><value>Gỡ bỏ giới hạn spite</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Help"><value>Gỡ bỏ giới hạn trên mỗi đường màn hình.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan"><value>Cắt viền màn hình</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Help"><value>Thay đổi biên giới màn hình.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype"><value>Tốc độ cập nhật</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Help"><value>Chọn tốc độ cập nhật phim.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits"><value>Gỡ bỏ giới hạn spite</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Help"><value>Gỡ bỏ giới hạn trên mỗi đường màn hình.</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom"><value>Mau khởi động</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Help"><value>Bỏ qua việc trì hoãn khởi động.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper"><value>Kiểu hộp mực</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Help"><value>Chọn kiểu hộp mực.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value0"><value>Đã tắt</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value1"><value>Đã bật</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value0"><value>Đã tắt</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value1"><value>Đã bật</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Tốc độ ColecoVision và ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>Tốc độ ColecoVision.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>Tốc độ ColecoVision.</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>Bộ nhớ phim</value></data>
+  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>Ảnh động</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>Tùy chọn Controller</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>Hệ thống</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAM ổ đĩa</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>Bộ dữ liệu ADAM</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>Tốc độ cập nhật ảnh động</value></data>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Chọn thời gian tự động hoặc tiêu chuẩn video.</value></data>
+  <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>Kiểu hộp mực</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Chọn bộ nhớ đạn.</value></data>
+  <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>chip ảnh động</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Chọn chip video đã mô phỏng.</value></data>
+  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>Tỷ lệ hình thể ảnh</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Chọn tỷ lệ hình thể của ảnh. Chọn tự động dùng vùng trò chơi.</value></data>
+  <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>Biên giới màn hình</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Chọn viền màn hình nhìn thấy được.</value></data>
+  <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>Gỡ bỏ giới hạn hạt</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Gỡ bỏ giới hạn trên mỗi dòng màn hình. Nó có thể gây ra lỗi đồ hoạ.</value></data>
+  <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>Cho phép chỉ thị đối diện</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Cho phép các chỉ dẫn đối diện được ép lại với nhau.</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>Độ nhạy điều khiển động vật</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Điều chỉnh độ nhạy của bộ điều khiển quay.</value></data>
+  <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>Bảng màu</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Chọn bảng màu.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Ẩn biên giới màn hình trên cùng.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Ẩn biên giới màn hình dưới cùng.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Ẩn biên giới màn hình trái.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Ẩn biên giới màn hình bên phải.</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Nhanh lên</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Bỏ qua việc trì hoãn khởi động.</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Hộp chuẩn</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Viền trên và dưới</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>Mọi viền (284 điểm ảnh)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>Mọi viền (20 điểm ảnh)</value></data>
+  <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>Ẩn viền màn hình trên</value></data>
+  <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>Ẩn viền màn hình thấp hơn</value></data>
+  <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>Ẩn viền màn hình bên trái</value></data>
+  <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>Ẩn viền màn hình</value></data>
+  <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>Ẩn viền màn hình</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Ẩn điểm ảnh ở cạnh của ảnh đã hiển thị.</value></data>
 </root>

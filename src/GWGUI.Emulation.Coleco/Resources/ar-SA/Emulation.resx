@@ -4,80 +4,47 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description"><value>Emulates ColecoVision and ADAM.</value></data>
-  <data name="Emulation.Emulator.jollycv.Description"><value>Emulates ColecoVision.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description"><value>Emulates ColecoVision.</value></data>
-  <data name="Emulation.Coleco.Memory.Display"><value>ذاكرة الفيديو</value></data>
-  <data name="Emulation.Coleco.Video.Native"><value>فيديو</value></data>
-  <data name="Emulation.Coleco.Controls.Native"><value>خيارات المراقب المالي</value></data>
-  <data name="Emulation.Coleco.System.Native"><value>النظام</value></data>
-  <data name="Emulation.Coleco.Storage.Disk"><value>قرص ADAM</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack"><value>ADAM Datapack</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value0"><value>Idle</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Value1"><value>إعادة التوطين</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Value0"><value>تلقائي</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value0"><value>تلقائي</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Value1"><value>المعيار</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Value0"><value>تلقائي</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value0"><value>معطل</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value1"><value>القمة + القطر</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value2"><value>كاملة (284 ريالا)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Value3"><value>كاملة (320 ريالا)</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value0"><value>معطل</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Value1"><value>التمكين</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value0"><value>معطل</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Value1"><value>التمكين</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value0"><value>نسبة المشتبه فيهم على أساس المنطقة</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value1"><value>تماما Square Pixels (1:1 PAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value2"><value>تقليدي جدا NTSC Aspectio (4:3 DAR)</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Value3"><value>Ostensibly Accurate PAL Aspectio</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value0"><value>معطل</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Value1"><value>التمكين</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Value0"><value>تلقائي</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value0"><value>التمكين</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Value1"><value>معطل</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset"><value>Restart ADAM</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_adam_computer_reset.Help"><value>Restart ADAM من وسائل الإعلام المتحركة.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing"><value>معدل التجديد</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_timing.Help"><value>اختيار التلقائي، وتوقيت NTSC أو PAL.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip"><value>رقاقة فيديو</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_video_chip.Help"><value>إختار رقاقة الفيديو المُحتسبة</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio"><value>نسبة جانب الصورة</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_aspect_ratio.Help"><value>اختيار نسبة جانب الصورة.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan"><value>الحدود الحرام</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_overscan.Help"><value>اختيار حدود الشاشة الظاهرة.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit"><value>الحد الأقصى لطرد الأرواح</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_no_sprite_limit.Help"><value>أزيل الحد على الشاشات لكل خط</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed"><value>السماح بالاتجاهات المقابلة</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_up_down_allowed.Help"><value>واسمحوا للضغط على الاتجاهات المعاكسة معا.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity"><value>حساسية الرقابة على الروتات</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_spinner_sensitivity.Help"><value>عدل حساسية المتحكم الدوار</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette"><value>شاحبة كولور</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_tmspalette.Help"><value>إختاري الألوان.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect"><value>نسبة جانب الصورة</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_aspect.Help"><value>اختيار نسبة جانب الصورة.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t"><value>الحدود العليا</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_t.Help"><value>أخفي الحدود القصوى للشاشة</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b"><value>الحدود السفلية</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_b.Help"><value>أخفي الحدود الدنيا للشاشة.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l"><value>المنطقة المتروكة</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_l.Help"><value>اخفي الحدود اليسرى</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r"><value>الحدود اليمنى</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_overscan_r.Help"><value>اخفي الحدود اليمنى</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit"><value>الحد الأقصى لطرد الأرواح</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Help"><value>أزيل الحد على الشاشات لكل خط</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan"><value>حدود شاشات المحاصيل</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_overscan.Help"><value>حاصروا حدود الشاشة</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype"><value>معدل التجديد</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_vdp_synctype.Help"><value>إختار معدل تجديد الفيديو.</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits"><value>الحد الأقصى لطرد الأرواح</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Help"><value>أزيل الحد على الشاشات لكل خط</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom"><value>الأحذية السريعة</value></data>
-  <data name="Emulation.Coleco.Option.patch_coleco_rom.Help"><value>اضغط على التأخير في الأحذية.</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper"><value>نوع Cartridge</value></data>
-  <data name="Emulation.Coleco.Option.gearcoleco_mapper.Help"><value>إختار نوع الخراطيش.</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value0"><value>معطل</value></data>
-  <data name="Emulation.Coleco.Option.jollycv_nosprlimit.Value1"><value>التمكين</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value0"><value>معطل</value></data>
-  <data name="Emulation.Coleco.Option.bluemsx_nospritelimits.Value1"><value>التمكين</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Emulates ColecoVision and ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>يُمَنِعُ كولكو فيش.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>يُمَنِعُ كولكو فيش.</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>ذاكرة الفيديو</value></data>
+  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>فيديو</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>خيارات المراقب المالي</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>النظام</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>قرص ADAM</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAM Datapack</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>معدل إعادة تغذية الفيديو</value></data>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>اختيار التوقيت التلقائي أو معيار الفيديو.</value></data>
+  <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>نوع كارتريدج</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>إختاروا متحكمة مصرف ذاكرة الخراطيش</value></data>
+  <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>رقاقة الفيديو</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>إختار رقاقة الفيديو المُحتَزَمة.</value></data>
+  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>نسبة الجانب المتعلق بالصور</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>اختيار الجانب من الصورة، والاختيار الآلي يستخدم منطقة اللعبة</value></data>
+  <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>الحدود الحرام</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>إختار الحدود الشاشة المرئية</value></data>
+  <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>الحد الأقصى لطرد الأرواح</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>ازيل الحد على كل خط من الشاشات هذا قد يسبب أخطاء بيانية</value></data>
+  <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>السماح بالاتجاهات المعاكسة</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>واسمحوا لضغط الاتجاهات المعاكسة معا.</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>حساسية الرقابة على الروتات</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>عدل حساسية المتحكم الدوار</value></data>
+  <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>شاحبة اللون</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>إختاروا اللوّن</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>اختبئوا على الحدود</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>اخفي الحدود الخفية</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>اختبئوا الحدود اليسرى</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>اخفي الحدود اليمنى</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>حذو سريع</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>اضغط على التأخير في الأحذية</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>خراطيش قياسي</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>الحدود العليا والقاعية</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>جميع الحدود (284 بيكسل)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>جميع الحدود (320 بيكسل)</value></data>
+  <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>خط الحدود الأعلى</value></data>
+  <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>خبأ الحدود الدنيا</value></data>
+  <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>خط الحدود الأيسر</value></data>
+  <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>خط الحدود اليمنى</value></data>
+  <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>حدود الشاشة</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>اخفي البكسل على حواف الصورة المُعرضة</value></data>
 </root>

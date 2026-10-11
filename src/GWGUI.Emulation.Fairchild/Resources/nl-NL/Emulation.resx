@@ -4,11 +4,9 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.freechaf.Description"><value>Emuleert Channel F en Channel F System II consoles.</value></data>
-  <data name="Emulation.Fairchild.Memory.Display"><value>Videogeheugen</value></data>
-  <data name="Emulation.Fairchild.Video.Native"><value>Console video</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr"><value>Het scherm in één frame wissen</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Help"><value>Versnel schermclearing door het in één frame aan te vullen.</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value0"><value>Uitgeschakeld</value></data>
-  <data name="Emulation.Fairchild.Option.freechaf_fast_scrclr.Value1"><value>Ingeschakeld</value></data>
+  <data name="Emulation.Emulator.freechaf.Description" xml:space="preserve"><value>Emuleert de spelcomputers Channel F en Channel F System II.</value></data>
+  <data name="Emulation.Fairchild.Memory.Display" xml:space="preserve"><value>Videogeheugen</value></data>
+  <data name="Emulation.Fairchild.Video.Native" xml:space="preserve"><value>Console video</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear" xml:space="preserve"><value>Het scherm in één frame wissen</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear.Help" xml:space="preserve"><value>Versnel scherm clearing door het invullen in een frame.</value></data>
 </root>

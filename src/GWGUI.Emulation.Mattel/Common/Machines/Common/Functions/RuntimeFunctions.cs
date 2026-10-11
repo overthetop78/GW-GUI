@@ -4,19 +4,19 @@ namespace GWGUI.Emulation.Mattel.Common.Machines.Common.Functions;
 
 internal static class RuntimeFunctions
 {
-    internal static RuntimeRegion? Region(uint nativeRegion) => nativeRegion switch
+    internal static EmulationVideoStandard? Region(uint nativeRegion) => nativeRegion switch
     {
-        RuntimeConstants.NativeNtscRegion => RuntimeRegion.Ntsc,
-        RuntimeConstants.NativePalRegion => RuntimeRegion.Pal,
+        RuntimeConstants.NativeNtscRegion => EmulationVideoStandard.Ntsc,
+        RuntimeConstants.NativePalRegion => EmulationVideoStandard.Pal,
         _ => null
     };
 
-    internal static int RegionValue(RuntimeRegion? region) =>
+    internal static int RegionValue(EmulationVideoStandard? region) =>
         region is null ? RuntimeConstants.MissingRegionValue : (int)region.Value;
 
-    internal static RuntimeRegion? ReadRegion(int value) =>
-        value == RuntimeConstants.MissingRegionValue || !Enum.IsDefined(typeof(RuntimeRegion), value)
-            ? null : (RuntimeRegion)value;
+    internal static EmulationVideoStandard? ReadRegion(int value) =>
+        value == RuntimeConstants.MissingRegionValue || value is not ((int)EmulationVideoStandard.Ntsc) and not ((int)EmulationVideoStandard.Pal)
+            ? null : (EmulationVideoStandard)value;
 
     internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed)
     {

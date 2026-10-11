@@ -25,9 +25,6 @@ internal static class SettingsConstants
     internal const string ResourceNativeVideo = "Emulation.Coleco.Video.Native";
     internal const string ResourceNativeControls = "Emulation.Coleco.Controls.Native";
     internal const string ResourceNativeSystem = "Emulation.Coleco.System.Native";
-    internal const string NativeOptionResourcePrefix = "Emulation.Coleco.Option.";
-    internal const string NativeChoiceResourceFormat = "{0}.Value{1}";
-    internal const string HelpResourceSuffix = ".Help";
     internal const string ResourceAudio = "Emulation.Audio";
     internal const string ResourceAudioEnabled = "Emulation.Audio.Enabled";
     internal const string ResourceAudioOutput = "Emulation.Audio.Output";

@@ -4,10 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Input.RotateLeft"><value>Forgassa balra a fogantyút</value></data>
-  <data name="Emulation.Fairchild.Input.RotateRight"><value>Forgassa jobbra a fogantyút</value></data>
-  <data name="Emulation.Fairchild.Input.Push"><value>Nyomja le a fogantyút</value></data>
-  <data name="Emulation.Fairchild.Input.Pull"><value>Húzza fel a fogantyút</value></data>
-  <data name="Emulation.Fairchild.Input.ConsoleOverlay"><value>A konzol gombjainak megjelenítése</value></data>
-  <data name="Emulation.Fairchild.Input.SwapControllers"><value>Cserélje ki a két vezérlőt</value></data>
+  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>Forgassa balra a fogantyút</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Forgassa jobbra a fogantyút</value></data>
+  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Nyomja le a fogantyút</value></data>
+  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Húzza fel a fogantyút</value></data>
+  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>A konzol gombjainak megjelenítése</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Cserélje ki a két vezérlőt</value></data>
 </root>
