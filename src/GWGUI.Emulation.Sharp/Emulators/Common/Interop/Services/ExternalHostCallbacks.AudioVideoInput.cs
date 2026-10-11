@@ -1,0 +1,82 @@
+using System.IO;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using GWGUI.Emulation;
+using GWGUI.Emulation.Services;
+
+namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;
+
+internal sealed partial class ExternalHostCallbacks : IDisposable
+{
+private void OnVideo(nint data, uint width, uint height, nuint pitch)
+    {
+        if (data == nint.Zero)
+        {
+            if (LatestVideoFrame is { } previous) LatestVideoFrame = previous with
+                {
+                    Sequence = ++_videoSequence,
+                    Timestamp = VideoFunctions.Timestamp(_videoStartTimestamp)
+                };
+            return;
+        }
+        if (width == ExternalCoreInteropConstants.EmptyFrameDimension || height == ExternalCoreInteropConstants.EmptyFrameDimension || pitch == ExternalCoreInteropConstants.EmptyNativeSize) return;
+        var length = VideoFunctions.FrameLength(height, pitch);
+        if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;
+        var pixels = _videoBuffers.Rent(length);
+        VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));
+        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));
+    }
+
+    private void OnAudioSample(short left, short right)
+    {
+        AddAudio(AudioFunctions.SingleFrame(left, right), AudioConstants.SingleFrameCount);
+    }
+
+    private nuint OnAudioBatch(nint data, nuint frames)
+    {
+        if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize || frames > AudioConstants.MaximumFramesPerBatch) return ExternalCoreInteropConstants.EmptyNativeSize;
+        var frameCount = checked((int)frames);
+        var samples = NativeAudioFunctions.CopyBatch(data, frameCount);
+        AddAudio(samples, frameCount);
+        return frames;
+    }
+
+    private void AddAudio(ReadOnlyMemory<short> samples, int frameCount)
+    {
+        var chunk = new AudioChunk(samples, SampleRate, frameCount, ++_audioSequence, TimeSpan.Zero);
+        LatestAudioChunk = chunk;
+        _audio.Enqueue(chunk);
+    }
+
+    private void OnInputPoll()
+    {
+        _input.Poll();
+        BeginFrame();
+    }
+    private short OnInputState(uint port, uint device, uint index, uint id) => NativeInputFunctions.State(_input.Polled, _keyboard.Codes, port, device, index, id, _emulator);
+    private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;
+    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;
+    private bool OnSetSensorState(uint port, uint action, uint rate) => false;
+    private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;
+
+    private void OnLog(int level, nint format)
+    {
+        var text = EnvironmentFunctions.CopyNativeLogTemplate(format);
+        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);
+    }
+
+    public void Dispose()
+    {
+        if (_disposed) return;
+        _disposed = true;
+        try
+        {
+            using (_systemDirectory) using (_contentDirectory) using (_saveDirectory) using (_assetsDirectory) using (_virtualFileSystem) using (_videoBuffers) _optionHost.Dispose();
+        }
+        finally
+        {
+            KeyboardCallbackPointer = nint.Zero;
+            _diskControl.Clear();
+        }
+    }
+}

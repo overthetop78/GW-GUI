@@ -7,6 +7,7 @@ internal static partial class ControllerArtworkCatalog
     private static readonly Lazy<IReadOnlyDictionary<string, ProfileDefinition>> ProfileDefinitions =
         new(() => new Dictionary<string, ProfileDefinition>(StringComparer.Ordinal)
         {
+            [EmulationControllerVisualIds.SharpCyberstick] = CreateSharpCyberstick(),
             [EmulationControllerVisualIds.MattelIntellivisionController] = CreateMattelIntellivisionController(),
             [EmulationControllerVisualIds.PhilipsVideopacJoystick] = CreatePhilipsVideopacJoystick(),
             [EmulationControllerVisualIds.PhilipsCdiGamepad] = CreatePhilipsCdiGamepad(),

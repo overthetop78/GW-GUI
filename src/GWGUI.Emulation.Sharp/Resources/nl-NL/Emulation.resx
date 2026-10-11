@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emuleert Sharp X68000 computers.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emuleert Sharp X1 computers.</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Teken ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Toon geheugen</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Machine audio</value></data>
+  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>Machinetoetsenbord</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Machinedisplay</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Controlleropties</value></data>
+  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>Machineopties</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>Volledige breedte</value></data>
+  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>CPU frequentie</value></data>
+  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>Stelt de frequentie van de geemuleerde CPU in.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>Hoofdgeheugen</value></data>
+  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>Stelt de hoeveelheid hoofdgeheugen in op de emuleerde computer.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>ADPCM-volume</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>Stelt het volume van het ADPCM-geluidskanaal in.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>FM-volume</value></data>
+  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>Stelt het volume van de FM geluidskanalen in.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>Omgekeerde brandknoppen</value></data>
+  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>Verandert de volgorde van de twee hoofdbrandknoppen.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>Onbeperkte snelheid</value></data>
+  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>Runs zonder te wachten op de normale emulatie snelheid.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>Frame overslaan</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>Stelt in hoe vaak de emulator een videoframe weergeeft.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>Elk frame</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>Eén frame in 2</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>Eén frame in 3</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>Eén frame in 4</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>Eén frame in 5</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>Eén frame in 6</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>Eén frame in 8</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>Eén frame in 16</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>Eén frame in 32</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>Eén frame in 60</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>Automatisch</value></data>
+  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>Video voor audio</value></data>
+  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>Stuurt elk videoframe voor zijn audio samples.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>frame timing aanpassen</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>Past de geemuleerde frame timing voor het display herhalingssnelheid aan.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>Audio timing aanpassing</value></data>
+  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>Past de audio timing aan wanneer geluid en video synchronisatie verliezen.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>Tekstlaag verbergen</value></data>
+  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>Schakel weergave van de tekstlaag uit.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>Afbeeldingslaag verbergen</value></data>
+  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>Schakel weergave van de grafische laag uit.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>Sprites en achtergrond verbergen</value></data>
+  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>Schakel weergave van sprites en de achtergrondlaag uit.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>Beeldresolutie</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>Selecteer de uitvoer van de emulator met lage of hoge resolutie.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>Laag</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>Hoog</value></data>
+  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>Framesnelheid</value></data>
+  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>Selecteer hoeveel videoframes de emulator per seconde weergeeft.</value></data>
+  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>Scherm synchroniseren</value></data>
+  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>Synchroniseert weergave met het emuleerde display.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>Rastereffecten</value></data>
+  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>Schakel weergave van effecten die tijdens de schermscan worden geproduceerd in.</value></data>
+  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>Onbeperkte snelheid</value></data>
+  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>Runs zonder te wachten op de normale emulatie snelheid.</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>Omgekeerde brandknoppen</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>Verandert de volgorde van de primaire brandknoppen.</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>Snelle brand</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>Activeert herhaaldelijk afvuren terwijl er een brandknop wordt vastgehouden.</value></data>
+  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>Geluidsbemonsteringssnelheid</value></data>
+  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>Selecteer de bemonsteringssnelheid van het geluid dat door de emulator wordt geproduceerd.</value></data>
+  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>Drive seek-geluid</value></data>
+  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>Speelt een geluid af wanneer de disk drive zijn hoofd beweegt.</value></data>
+  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>FM geluidsuitbreiding</value></data>
+  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>Schakel het optionele FM-geluidsbord in.</value></data>
+  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>CPU frequentie</value></data>
+  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>Stelt de frequentie van de geemuleerde CPU in.</value></data>
+</root>

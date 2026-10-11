@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Нагріває Sharp X68000 комп'ютерів.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Налаштовує Sharp X1 комп'ютери.</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Характеристика ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Дисплей пам'яті</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Машинний аудіо</value></data>
+  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>Машинна клавіатура</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Машинний дисплей</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Параметри контролера</value></data>
+  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>Параметри машини</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>Повна пропускна здатність</value></data>
+  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>Частота CPU</value></data>
+  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>Налаштовує частоту емульсійного CPU.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>Головна пам'ять</value></data>
+  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>Налаштовує кількість головної пам'яті в емуляційному комп'ютері.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>Об'єм ADPCM</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>Налаштовує гучність звукового каналу ADPCM.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>FM об'єм</value></data>
+  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>Налаштовує гучність звукових каналів FM.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>Зворотні клавіші з вогнем</value></data>
+  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>Зміна порядку двох первинних пожежної кнопки.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>Необмежена швидкість</value></data>
+  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>Виконується без очікування нормальної швидкості емульсії.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>Каркасні стрибки</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>Налаштовує, як часто емулятор надає відеорамку.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>Кожен каркас</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>Один каркас в 2</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>Один каркас в 3</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>Один каркас в 4</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>Один каркас в 5</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>Один каркас в 6</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>Один каркас в 8</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>Один каркас в 16</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>Один каркас в 32</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>Один каркас в 60</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>Автоматичний</value></data>
+  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>Відео перед аудіо</value></data>
+  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>Відправляє кожну відеорамку перед звуковими зразками.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>Регулювання термінів рамки</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>Налаштовує термін дії емульованої рамки для швидкості освіження дисплея.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>Налаштування термінів аудіо</value></data>
+  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>Налаштування синхронізації аудіо при синхронізації звуку та відео втрати.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>Приховати текстовий шар</value></data>
+  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>Вимкнено відображення текстового шару.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>Приховати графічний шар</value></data>
+  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>Відключення рендерингу графіки шару.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>Приховати спрайти і фон</value></data>
+  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>Відключення рендерингу спрайтів і фонового шару.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>Розширення екрану</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>Вибирає низьку або високу роздільну здатність емулятора.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>Низькі</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>Висока якість</value></data>
+  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>Нормативна ставка</value></data>
+  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>Вибирає, скільки відеорамок емулятора рендериться на другий.</value></data>
+  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>Синхронізація дисплей</value></data>
+  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>Синхронізує рендеринг з ізольованим дисплеєм.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>Растрові ефекти</value></data>
+  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>Увімкнути відтворення ефектів, що виробляються під час сканування екрану.</value></data>
+  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>Необмежена швидкість</value></data>
+  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>Виконується без очікування нормальної швидкості емульсії.</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>Зворотні клавіші з вогнем</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>Змінює порядок первинних пожежної кнопки.</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>Швидкий вогонь</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>Увімкнути повторне стрільбу, в той час як кнопка пожежі.</value></data>
+  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>Швидкість відбору аудіо</value></data>
+  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>Вибір швидкості відбору звуку, виробленого емулятором.</value></data>
+  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>Привід для звуку</value></data>
+  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>Грає звук, коли диск пересуває голову.</value></data>
+  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>Розширення звуку FM</value></data>
+  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>Увімкнено додаткову звукову дошку FM.</value></data>
+  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>Частота CPU</value></data>
+  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>Налаштовує частоту емульсійного CPU.</value></data>
+</root>

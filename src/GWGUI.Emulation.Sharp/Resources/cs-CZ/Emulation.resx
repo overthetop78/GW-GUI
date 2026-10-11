@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emuluje Sharp X68000 počítačů.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emuluje počítače Sharp X1.</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Znak ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Zobrazit paměť</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Audio stroje</value></data>
+  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>Klávesnice stroje</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Displej stroje</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Možnosti ovládání</value></data>
+  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>Možnosti stroje</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>Úplná šířka</value></data>
+  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>Frekvence CPU</value></data>
+  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>Nastaví frekvenci emulovaného CPU.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>Hlavní paměť</value></data>
+  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>Nastaví množství hlavní paměti v emulovaném počítači.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>Objem ADPCM</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>Nastaví hlasitost zvukového kanálu ADPCM.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>Objem FM</value></data>
+  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>Nastaví hlasitost zvukových kanálů FM.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>Zpětná ohnisková tlačítka</value></data>
+  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>Mění pořadí dvou základních požárních tlačítek.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>Neomezené otáčky</value></data>
+  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>Běží bez čekání na normální rychlost emulace.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>Přeskakování rámů</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>Nastaví, jak často emulátor zobrazuje video rámeček.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>Každý rám</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>Jeden snímek ve dvou.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>Jeden snímek ve3.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>Jeden snímek ve4.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>Jeden snímek v5.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>Jeden snímek v6.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>Jeden snímek v8.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>Jeden snímek v16.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>Jeden snímek na32.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>Jeden snímek v60.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>Automatický</value></data>
+  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>Video před zvukem</value></data>
+  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>Posílá každý video snímek před jeho audio vzorky.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>Nastavit načasování rámečku</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>Upravuje čas emulovaného rámu pro obnovovací rychlost displeje.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>Nastavení času zvuku</value></data>
+  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>Upravuje načasování zvuku, když zvuk a video ztratí synchronizaci.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>Skrýt textovou vrstvu</value></data>
+  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>Vyřazuje vykreslování textové vrstvy.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>Skrýt grafické vrstvy</value></data>
+  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>Zakáže vykreslování grafické vrstvy.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>Skrýt sprites a pozadí</value></data>
+  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>Vypnout vykreslování sprites a pozadí vrstvy.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>Rozlišení displeje</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>Vybere výstup emulátoru s nízkým nebo vysokým rozlišením.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>Nízká</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>Vysoká</value></data>
+  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>Rychlost rámečku</value></data>
+  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>Vybere, kolik video rámů emulátor dává za sekundu.</value></data>
+  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>Synchronizovat displej</value></data>
+  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>Synchronizuje vykreslování s emulovaným displejem.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>Rastrové efekty</value></data>
+  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>Umožňuje vykreslování efektů vyvolaných při skenování obrazovky.</value></data>
+  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>Neomezené otáčky</value></data>
+  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>Běží bez čekání na normální rychlost emulace.</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>Zpětná ohnisková tlačítka</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>Mění pořadí primárních požárních tlačítek.</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>Rychlá palba</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>Umožňuje opakované střílení, zatímco je podrženo požární tlačítko.</value></data>
+  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>Rychlost odběru zvukových vzorků</value></data>
+  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>Vybere rychlost odběru vzorků zvuku emulátoru.</value></data>
+  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>Pohon hledat zvuk</value></data>
+  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>Hraje zvuk, když disk pohne hlavou.</value></data>
+  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>Rozšíření zvuku FM</value></data>
+  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>Umožňuje volitelnou FM zvukovou desku.</value></data>
+  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>Frekvence CPU</value></data>
+  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>Nastaví frekvenci emulovaného CPU.</value></data>
+</root>

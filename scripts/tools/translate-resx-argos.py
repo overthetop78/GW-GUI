@@ -868,7 +868,7 @@ def format_resx_data_entries(path: Path) -> int:
         attributes = " " + " ".join(serialized_attributes) if serialized_attributes else ""
         replacement = (
             f"{match.group('indent')}<{tag}{attributes}><value>{encode_element_text(value)}</value>"
-            f"</{tag}>{match.group('newline')}"
+            f"</{tag}>{match.group('newline') or chr(10)}"
         )
         if replacement != match.group(0):
             changed += 1

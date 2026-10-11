@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulálja a Sharp X68000 számítógépet.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulálja a Sharp X1 számítógépeket.</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Karakter ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Memória megjelenítése</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Gépi audió</value></data>
+  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>Gépi billentyűzet</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Gépkijelző</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Vezérlőbeállítások</value></data>
+  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>Gépi beállítások</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>Teljes szélesség</value></data>
+  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>CPU-frekvencia</value></data>
+  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>Beállítja az emulált CPU frekvenciáját.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>Fő memória</value></data>
+  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>Beállítja a fő memória mennyiségét az emulált számítógépen.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>ADPCM térfogat</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>Beállítja az ADPCM hangcsatorna mennyiségét.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>FM-térfogat</value></data>
+  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>Beállítja az FM hangcsatornák mennyiségét.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>Fordított tűzoltó gomb</value></data>
+  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>Megváltoztatja a két elsõdleges tűzgomb sorrendjét.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>Korlátlan sebesség</value></data>
+  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>Úgy fut, hogy nem várja meg a normál emulációs sebességet.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>A keret kihagyása</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>Beállítja, hogy az emulátor milyen gyakran csinál videó keretet.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>Minden képkocka</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>Egy képkocka 2-ben</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>Egy képkocka 3-ban</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>Egy képkocka 4-ből.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>Egy képkocka 5-ben.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>Egy kép a 6-ból</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>Egy képkocka 8-ban</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>Egy képkocka 16-ból</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>Egy kép 32-ből</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>Egy képkocka 60-ból</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>Automatikus</value></data>
+  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>Videó az audió előtt</value></data>
+  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>Minden képkockát elküld az audió minták előtt.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>A képkeret időzítésének módosítása</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>Beállítja az emulált keret időzítését a kijelző frissítési sebességéhez.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>Hangidőzítő beállítás</value></data>
+  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>Beállítja az audió időzítését, amikor a hang és a videó elveszti szinkronizálását.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>Szövegréteg elrejtése</value></data>
+  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>A szövegréteg kiírásának letiltása.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>Grafikus réteg elrejtése</value></data>
+  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>Letiltja a grafikus réteg megjelenítését.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>A spritek és a háttér elrejtése</value></data>
+  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>A spritek és a háttérréteg letiltása.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>Felbontás megjelenítése</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>Kiválasztja az emulátor alacsony vagy nagy felbontású teljesítményét.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>Alacsony</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>Magas</value></data>
+  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>Keretkamatláb</value></data>
+  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>Megválasztja, hány képkockát ad ki az emulátor másodpercenként.</value></data>
+  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>Kijelző szinkronizálása</value></data>
+  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>Szinkronizálja a renderelést az emulált kijelzővel.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>Raszter hatások</value></data>
+  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>Lehetővé teszi a képernyővizsgálat során kiváltott hatások megjelenítését.</value></data>
+  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>Korlátlan sebesség</value></data>
+  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>Úgy fut, hogy nem várja meg a normál emulációs sebességet.</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>Fordított tűzoltó gomb</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>Megváltoztatja az elsődleges tűzoltó gombok sorrendjét.</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>Gyors tűz</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>Lehetővé teszi az ismétlődő tüzelést, miközben a gyújtógombot tartja.</value></data>
+  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>Hang-mintavételi arány</value></data>
+  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>Kiválasztja az emulátor által keltett hang mintavételi sebességét.</value></data>
+  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>Drive Search sound</value></data>
+  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>Hangot játszik, amikor a lemez meghajtó mozgatja a fejét.</value></data>
+  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>FM hangterjedés</value></data>
+  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>Engedélyezi az opcionális FM hangfalat.</value></data>
+  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>CPU-frekvencia</value></data>
+  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>Beállítja az emulált CPU frekvenciáját.</value></data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>Sharpin tallennettu tila on yhteensopimaton nykyisen koneen kanssa.</value></data>
+  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>Tapahtui odottamaton Sharp emulointivirhe.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Tarvittava Sharp-ohjelmisto puuttuu.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>Järjestelmä ROM on virheellinen tai yhteensopimaton.</value></data>
+  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>Määriteltyä Sharpin mediaa ei löytynyt.</value></data>
+  <data name="Emulation.Sharp.Error.ContentUnsupported" xml:space="preserve"><value>Tämä laite ei tue valittua mediaa.</value></data>
+  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>Sharp-valinnalla on virheellinen arvo.</value></data>
+  <data name="Emulation.Sharp.Error.CoreNotFound" xml:space="preserve"><value>Tarvittavaa Sharp-ydintä ei löytynyt.</value></data>
+  <data name="Emulation.Sharp.Error.CoreRejected" xml:space="preserve"><value>Valittua Sharpin ydintä ei voitu ladata.</value></data>
+  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>Sharpin tallennettu tila on virheellinen.</value></data>
+  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>Sharp-isännän suoritettava polku ei ole käytettävissä.</value></data>
+  <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>Yksityiskohdat: {0}</value></data>
+  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>Yhteydet Sharpin isäntään epäonnistuivat.</value></data>
+  <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Tuntematon ympäristökomento: {0}</value></data>
+</root>

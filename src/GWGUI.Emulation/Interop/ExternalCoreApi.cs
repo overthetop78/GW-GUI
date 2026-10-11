@@ -36,6 +36,7 @@ internal static class ExternalCoreApi
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsFlush(nint stream);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsRemove(nint path);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsRename(nint oldPath, nint newPath);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsStat(nint path, nint size);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
     internal delegate bool SetEjectState([MarshalAs(UnmanagedType.I1)] bool ejected);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]

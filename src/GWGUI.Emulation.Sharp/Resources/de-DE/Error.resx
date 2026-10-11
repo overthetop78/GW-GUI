@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>Der gespeicherte Zustand Sharp ist inkompatibel mit der aktuellen Maschine.</value></data>
+  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>Ein unerwarteter Sharp-Emulationsfehler trat auf.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Eine erforderliche Sharp-Firmware fehlt.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>Das System-ROM ist ungültig oder inkompatibel.</value></data>
+  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>Die konfigurierten Sharp-Medien wurden nicht gefunden.</value></data>
+  <data name="Emulation.Sharp.Error.ContentUnsupported" xml:space="preserve"><value>Diese Maschine unterstützt die ausgewählten Medien nicht.</value></data>
+  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>Eine Sharp-Option hat einen ungültigen Wert.</value></data>
+  <data name="Emulation.Sharp.Error.CoreNotFound" xml:space="preserve"><value>Der benötigte Sharp-Kern wurde nicht gefunden.</value></data>
+  <data name="Emulation.Sharp.Error.CoreRejected" xml:space="preserve"><value>Der ausgewählte Sharp-Kern konnte nicht geladen werden.</value></data>
+  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>Der Sharp Save State ist ungültig.</value></data>
+  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>Der ausführbare Sharp-Hostpfad ist nicht verfügbar.</value></data>
+  <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>Einzelheiten: {0}</value></data>
+  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>Die Kommunikation mit dem Sharp-Host scheiterte.</value></data>
+  <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Unbekannter Umgebungsbefehl: {0}</value></data>
+</root>

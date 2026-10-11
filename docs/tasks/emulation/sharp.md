@@ -1,0 +1,283 @@
+# Sharp
+
+- [x] Réaliser, vérifier et commiter le module Sharp.
+  - [x] Fixer les contrats et adaptations natives avant génération.
+    - [x] Créer `artifacts/sharp-source/fetch.ps1`, `catalogue.json`, `px68k/` et `x1/` : récupérer les deux DLL officielles x64, leurs métadonnées et sources à révision identifiée ; conserver SHA256 et libérer HttpClient dans finally.
+    - [x] Créer puis supprimer `artifacts/sharp-probe/` et produire `artifacts/sharp-source/binary-options.json` : relever les exports SDK, identité, options et formats sans créer une machine ; fermer les bibliothèques avant nettoyage. Relever géométrie et états dans leurs phases natives appropriées lors des contrats et essais runtime.
+    - [x] Modifier `artifacts/sharp-source/fetch.ps1` et `catalogue.json` : utiliser le dépôt de la recette officielle pour X1 et récupérer cette révision dans `x1/source/` ; comparer ses clés aux 16 options réellement publiées par la DLL.
+    - [x] Modifier `docs/tasks/emulation/methode-modules.md` : prendre le dépôt de source depuis la recette officielle de distribution et comparer les clés source/binaire avant adaptation pour éviter de travailler sur un ancien fork.
+    - [x] Créer `docs/tasks/emulation/sharp-contrats.md` : machines demandées et compatibilités réellement attestées, firmware, supports, ports, touches spéciales, options utiles et cycle de vie.
+    - [x] Créer `artifacts/sharp-source/generic-file-map.json` : réutiliser la carte de fabrication corrigée, préciser les destinations et adaptations des deux moteurs sans réinventer le contrat commun.
+  - [x] Créer le module et ses adaptateurs.
+    - [x] Créer les fichiers racine et la fabrique Sharp selon la recette.
+      - [x] Créer `src/GWGUI.Emulation.Sharp/GWGUI.Emulation.Sharp.csproj` : assembly x64, références SDK et MediaEngine, ressources embarquées et isolation des assemblies fournies par l'hôte ; attributs sur une ligne.
+      - [x] Créer `src/GWGUI.Emulation.Sharp/module.json` : identité Sharp, version et catalogue de mise à jour indépendant.
+      - [x] Créer `src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs` : namespaces SDK et namespaces du module selon les rôles conservés dans la carte.
+      - [x] Créer `src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModuleFactory.cs` : fabrique SDK utilisant les répertoires du contexte et les constantes du module.
+      - [x] Créer `src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs` : description des familles et contrats SDK, catalogue des deux moteurs, réglages et firmware Sharp sans duplication des fonctions App.
+    - [x] Corriger les adaptations avant de créer les services communs.
+      - [x] Modifier `docs/tasks/emulation/sharp-contrats.md` : distinguer les fonctions internes de souris X1 de l'entrée souris réellement raccordée au frontend.
+      - [x] Modifier `src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs` : limiter l'onglet souris et la capture au moteur ayant un chemin natif attesté, sans déduire une capacité de la seule présence d'un fichier source.
+      - [x] Modifier `docs/tasks/emulation/methode-modules.md` : contrôler le chemin d'appel effectif des capacités natives et préserver les instructions et blocs lors du regroupement des lignes copiées.
+    - [x] Créer les composants `Common` selon la carte, sans association de manette initiale ni dossier par défaut affiché.
+      - [x] Créer les identités et catalogues typés.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Constants/EmulationModuleConstants.cs` : identité, ressources et noms de répertoires contractuels Sharp.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Constants/ControllerConstants.cs` : limites génériques, ports distincts PX68k/X1 et zone morte ; aucune touche physique initiale.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Enums/MachineEnums.cs` : X68000, XVI, X68030, X1, Turbo et Turbo Z ; familles distinctes.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Enums/CoreEnums.cs` : identités des deux moteurs et absence de moteur.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Enums/FirmwareEnums.cs` : rôles IPL et police.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Enums/MediaEnums.cs` : disquette et disque dur attestés.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Enums/ControllerEnums.cs` : types natifs attestés, sans copier les périphériques Mattel.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/ModelCatalog.cs` : identités et clés des six modèles, validation des identifiants.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/MachineCatalog.cs` : catalogue avec ressources des photos propres aux modèles.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Constants/HardwareConstants.cs` et `Dictionaries/HardwareModelCatalog.cs` : CPU, mémoire physique et affichage attestés ; constantes nommées, fréquences présentées en MHz par les réglages.
+      - [x] Créer les contrats et la persistance.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Contracts/{ConfigurationContracts,InputContracts,ControllerContracts,FirmwareContracts,MediaContracts,HardwareContracts}.cs` : données Sharp, clavier commun et supports FDD/HDD ; aucun type ABI dans ces contrats.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Constants/ConfigurationStoreConstants.cs` et `Common/Machines/Common/Constants/{FirmwareConstants,InputMappingConstants}.cs` : schéma, écriture atomique, signatures firmware locales et limites des entrées ; constantes nommées avant leurs consommateurs.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/{ConfigurationFunctions,ConfigurationFunctions.Persistence,ConfigurationFunctions.Summary,FirmwareFunctions}.cs` et `Common/Services/ConfigurationStore.cs` : validation, chemins portables, sauvegarde atomique et sélection des firmwares.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs` : fournir le modèle à la sélection du firmware afin de respecter le caractère facultatif de l'IPL X1.
+      - [x] Créer les supports, entrées, réglages et services.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/{StorageFunctions.Settings,MediaFunctions.Runtime,MediaFunctions.Conversion,EmulationPeripheralConversionFunctions}.cs` : conversions SDK et capacités fournies par l'adaptateur.
+        - [x] Modifier `docs/tasks/emulation/methode-modules.md` : vérifier tous les chemins d'une lecture groupée avant son exécution et réutiliser la carte de fabrication pour trouver les noms réels des fichiers.
+        - [x] Modifier `src/GWGUI.Emulation/Enums/EmulationKey.cs` : ajouter en fin d'enum les touches propres aux claviers Sharp absentes du clavier PC, sans renuméroter les identités existantes.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/KeyboardDictionary.cs` : définitions des seules touches spéciales par famille, défauts physiques modifiables, valeurs vides pour les touches sans défaut et aucune conversion ABI.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Enums/ControllerCommand.cs` et `Dictionaries/ControllerProtocolDictionary.cs` : commandes logiques de chaque périphérique, identifiants stables et définitions sans association physique ; conversion des commandes réservée aux adaptateurs.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Constants/ControllerConstants.cs` et `Common/Machines/Common/Constants/InputMappingConstants.cs`, puis `Dictionaries/ControllerProtocolDictionary.cs` : nommer les nombres de boutons et les actions souris avant leurs consommateurs.
+        - [x] Créer les fonctions d'entrée et de réglage.
+          - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : description et persistance des touches spéciales, boutons souris modifiables et manettes sans associations initiales.
+          - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : conserver les touches communes, appliquer les affectations explicites et la sensibilité souris sans transmission implicite de manette.
+          - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Constants/InputMappingConstants.cs` et `Functions/InputFunctions.Snapshot.cs` : employer une constante de pourcentage indépendante de la zone morte ; préciser les comparaisons de familles dans `InputFunctions.Settings.cs`.
+          - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Contracts/CoreContracts.cs` et `Common/Machines/Common/Constants/{SettingsConstants,VideoAudioSettingsConstants}.cs` : contrats d'options indépendants du backend et constantes des réglages communs.
+          - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/{Px68k,X1}/Constants/OptionConstants.cs` et `Dictionaries/OptionCatalog.cs` : clés, valeurs, défauts des DLL inspectées et classement fonctionnel ; masquer les doublons et valeurs dérivées de la configuration.
+          - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/{Px68k,X1}/Constants/OptionConstants.cs` et `Dictionaries/OptionCatalog.cs` : conserver les lignes structurelles des en-têtes, sans fusionner namespaces et blocs lors de la génération.
+          - [x] Modifier `docs/tasks/emulation/methode-modules.md` : construire les lignes des générateurs explicitement et vérifier les en-têtes produits pour éviter les conversions implicites de tableaux.
+          - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs` : classer les réglages par rôle sans doublonner les blocs App.
+          - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs : valider les valeurs reconnues par chaque adaptateur.
+        - [x] Créer les autres composants communs selon les chemins relevés.
+          - [x] Créer les constantes et contrats génériques adaptés.
+            - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Enums/RuntimeEnums.cs` : conserver le contrat existant indépendant du backend, adapter les identités Sharp et les données étrangères ; déclarations complètes sur une ligne.
+            - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Contracts/EmulatorContracts.cs` : conserver le contrat existant indépendant du backend, adapter les identités Sharp et les données étrangères ; déclarations complètes sur une ligne.
+            - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Contracts/StateContracts.cs` : conserver le contrat existant indépendant du backend, adapter les identités Sharp et les données étrangères ; déclarations complètes sur une ligne.
+            - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Contracts/MachineContracts.cs` : conserver le contrat existant indépendant du backend, adapter les identités Sharp et les données étrangères ; déclarations complètes sur une ligne.
+            - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Constants/VideoConstants.cs` : conserver le contrat existant indépendant du backend, adapter les identités Sharp et les données étrangères ; déclarations complètes sur une ligne.
+            - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Constants/SavedStateConstants.cs` : conserver le contrat existant indépendant du backend, adapter les identités Sharp et les données étrangères ; déclarations complètes sur une ligne.
+            - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Constants/MediaConstants.cs` : conserver le contrat existant indépendant du backend, adapter les identités Sharp et les données étrangères ; déclarations complètes sur une ligne.
+            - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Constants/ErrorContextConstants.cs` : conserver le contrat existant indépendant du backend, adapter les identités Sharp et les données étrangères ; déclarations complètes sur une ligne.
+            - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Constants/CoreDirectoryConstants.cs` : conserver le contrat existant indépendant du backend, adapter les identités Sharp et les données étrangères ; déclarations complètes sur une ligne.
+            - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Constants/BufferConstants.cs` : conserver le contrat existant indépendant du backend, adapter les identités Sharp et les données étrangères ; déclarations complètes sur une ligne.
+            - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Constants/AudioConstants.cs` : conserver le contrat existant indépendant du backend, adapter les identités Sharp et les données étrangères ; déclarations complètes sur une ligne.
+            - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Constants/MachineConstants.cs` : conserver le contrat existant indépendant du backend, adapter les identités Sharp et les données étrangères ; déclarations complètes sur une ligne.
+            - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Constants/StateConstants.cs` : conserver le contrat existant indépendant du backend, adapter les identités Sharp et les données étrangères ; déclarations complètes sur une ligne.
+            - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Constants/RuntimeConstants.cs` : conserver le contrat existant indépendant du backend, adapter les identités Sharp et les données étrangères ; déclarations complètes sur une ligne.
+          - [x] Créer les services communs et leur cycle de vie.
+            - [x] Créer les buffers et sorties partagés sans dépendance native.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Services/VideoBufferSet.cs` : reprendre le service commun vérifié, conserver les propriétés de possession et finally, adapter le namespace Sharp et regrouper les seules instructions coupées.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Services/SharedVideoWriter.cs` : reprendre le service commun vérifié, conserver les propriétés de possession et finally, adapter le namespace Sharp et regrouper les seules instructions coupées.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Services/InputFrameStore.cs` : reprendre le service commun vérifié, conserver les propriétés de possession et finally, adapter le namespace Sharp et regrouper les seules instructions coupées.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Services/AudioOutputController.cs` : reprendre le service commun vérifié, conserver les propriétés de possession et finally, adapter le namespace Sharp et regrouper les seules instructions coupées.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Services/AudioBuffer.cs` : reprendre le service commun vérifié, conserver les propriétés de possession et finally, adapter le namespace Sharp et regrouper les seules instructions coupées.
+            - [x] Créer `scripts/tools/format-csharp-logical-lines.ps1` : utiliser le parseur C# déjà chargé par PowerShell pour regrouper uniquement les instructions coupées, préserver blocs et commentaires, et refuser toute modification de jetons ou erreur syntaxique.
+            - [x] Modifier `docs/tasks/emulation/methode-modules.md` : utiliser le regroupement syntaxique avec contrôle des jetons pour les copies C# ; réutiliser les assemblies déjà chargées par le moteur de script sans mélanger les versions.
+            - [x] Modifier `scripts/tools/format-csharp-logical-lines.ps1` : regrouper également les listes de types hérités sans fusionner les blocs.
+            - [x] Modifier `scripts/tools/format-csharp-logical-lines.ps1` : réutiliser le helper chargé pour traiter les fichiers successivement sans recompilation.
+            - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/InputFunctions.Settings.cs` : fournir la validation du périphérique pour un port au service de machine, sans accès direct aux règles natives.
+            - [x] Modifier `scripts/tools/format-csharp-logical-lines.ps1` : fermer le bloc de chargement indépendamment des fins de ligne LF/CRLF et vérifier sa syntaxe avant utilisation.
+            - [x] Modifier `docs/tasks/emulation/methode-modules.md` : effectuer les substitutions de lignes avec LF/CRLF acceptés et valider les scripts avant de cocher leur fabrication.
+            - [x] Modifier `scripts/tools/format-csharp-logical-lines.ps1` : retirer uniquement les indentations des lignes regroupées pour conserver une séparation simple entre les jetons.
+            - [x] Créer les services de machine, état et processus adaptés.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.Protocol.cs` : reprendre le service et son contrat commun, adapter les identités Sharp et conserver libération dans finally avec attente effective.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.Host.cs` : reprendre le service et son contrat commun, adapter les identités Sharp et conserver libération dans finally avec attente effective.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Services/ProcessCore.cs` : reprendre le service et son contrat commun, adapter les identités Sharp et conserver libération dans finally avec attente effective.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs` : reprendre le service et son contrat commun, adapter les identités Sharp et conserver libération dans finally avec attente effective.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Services/Machine.cs` : reprendre la machine commune, appliquer les conversions Sharp et activer la capture uniquement pour le moteur compatible.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Services/Machine.Commands.cs` : reprendre le service et son contrat commun, adapter les identités Sharp et conserver libération dans finally avec attente effective.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Services/Engine.cs` : reprendre le service et son contrat commun, adapter les identités Sharp et conserver libération dans finally avec attente effective.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Services/CoreHost.cs` : reprendre le service et son contrat commun, adapter les identités Sharp et conserver libération dans finally avec attente effective.
+              - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Contracts/CoreContracts.cs` et `Emulators/Px68k/Dictionaries/OptionCatalog.cs` : porter le besoin interne de redémarrage comme donnée d'option, sans analyser un libellé ni ajouter un avertissement visible.
+              - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Services/Machine.cs` et `Machine.Commands.cs` : recevoir la capacité générique de recréation au reset et déléguer cette décision à la fabrique ; aucun nom de moteur dans le service commun.
+              - [x] Modifier `docs/tasks/emulation/sharp-contrats.md` : relever le reset X1 vide et imposer sa recréation par l'adaptateur ; la fabrique PX68k fournit seule la capture souris.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StateFunctions.Saved.cs` : conserver la validation des états et inclure les affectations souris et leur sensibilité dans les empreintes.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/RuntimeFunctions.cs` : conserver les régions et messages communs sans conversion ABI, déléguer le redémarrage des options aux adaptateurs et demander une disquette plutôt qu une cartouche.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/MachineFunctions.cs` : reprendre le service et son contrat commun, adapter les identités Sharp et conserver libération dans finally avec attente effective.
+              - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs` : reprendre le service et son contrat commun, adapter les identités Sharp et conserver libération dans finally avec attente effective.
+    - [x] Modifier `scripts/tools/format-csharp-logical-lines.ps1` : parcourir une déclaration englobante lorsque le sous-nœud se termine avant la coupure ; proposer un dossier C# pour traiter tout un module en une seule exécution et vérifier l'idempotence.
+    - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Interfaces/IEmulatorAdapter.cs` : ajouter `DescribeMediaDevices(MachineConfiguration)` au contrat existant afin que les capacités de supports viennent de l'adaptateur, sans type ABI.
+    - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/`, `Emulators/Px68k/` et `Emulators/X1/` selon la carte : contrats sans dépendance ABI, adaptations natives attestées, installation, entrées, médias et libération dans finally ; fournir les descriptions de périphériques depuis chaque factory concrète.
+      - [x] Créer les contrats et interfaces des moteurs.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Contracts/CoreContracts.cs` : données de catalogue, installation, progression, options, releases et erreurs, indépendantes des exports natifs.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Contracts/MediaContracts.cs` : états de lecteurs, contenu préparé et médias de session, sans restriction aux cartouches.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interfaces/IEmulatorCore.cs` : commandes abstraites de cycle de vie, entrées, supports, états et sorties.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interfaces/ICoreReleaseService.cs` : contrat de découverte et installation indépendant du backend.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Contracts/RuntimeContracts.cs` : descriptions des messages natifs avec leurs champs de protocole, confinées à Interop.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Contracts/ControllerContracts.cs` : descriptions des ports, périphériques et commandes natifs, confinées à Interop.
+      - [x] Créer les constantes, enums et fabriques communs.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Constants/ProcessCoreConstants.cs` : identité de plateforme du processus.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Constants/EmulatorCatalogConstants.cs` : noms des manifests et formats, sans serveur imposé.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Constants/CoreReleaseConstants.cs` : constantes de téléchargement et inspection PE.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Constants/CoreHostValues.cs` : plateforme du transport.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Constants/CoreHostFunctionsConstants.cs` : plateforme des échanges.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Constants/CoreHostConstants.cs` : identités Sharp du processus, pipes et mémoire partagée.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Enums/RuntimeEnums.cs` : catégories et codes d'erreurs indépendants du protocole.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Enums/CoreEnums.cs` : commandes du transport et état du processus.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Enums/EnvironmentLanguage.cs` : valeurs de langue du protocole natif.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Factories/MachineFactory.cs` : fabrique abstraite avec capacités fournies par les adaptateurs.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/CoreFunctions.Catalog.cs` : chemins et associations de catalogue, URL reçue du moteur.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Dictionaries/CoreCatalog.cs` : découverte des fabriques concrètes par le contrat existant.
+      - [x] Raccorder les erreurs et enums natifs.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Exceptions/ExceptionText.cs` : erreurs du rôle existant et clés de ressources Sharp.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Exceptions/ErrorMessages.cs` : erreurs du rôle existant et clés de ressources Sharp.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Exceptions/EmulatorCatalogErrors.cs` : erreurs du rôle existant et clés de ressources Sharp.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Exceptions/EmulationException.cs` : erreurs du rôle existant et clés de ressources Sharp.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Exceptions/DiskControlErrors.cs` : erreurs du rôle existant et clés de ressources Sharp.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Exceptions/CoreReleaseErrors.cs` : erreurs du rôle existant et clés de ressources Sharp.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Exceptions/CoreHostErrors.cs` : erreurs du rôle existant et clés de ressources Sharp.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/EmulationGlobalUsings.cs` : importer les enums confinés dans Interop.
+        - [x] Modifier `docs/tasks/emulation/methode-modules.md` : borner les lectures par taille réelle avant affichage afin de conserver les preuves sans troncature.
+      - [x] Créer les composants de protocole et de buffers.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Contracts/ExternalCoreContracts.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Constants/KeyboardConstants.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Constants/InputConstants.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Constants/ExternalCoreInteropConstants.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Constants/EnvironmentFunctionsConstants.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Constants/EnvironmentConstants.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Constants/DiskControlConstants.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Constants/CoreOptionProbeValues.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Constants/CoreOptionProbeConstants.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Constants/CoreOptionConstants.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Constants/CoreLifecycleConstants.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/InputFunctions.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/ControllerFunctions.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/AudioFunctions.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/RuntimeFunctions.Options.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/LoadedContent.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ContentPath.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/VideoFunctions.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/NativeAudioFunctions.cs` : reprendre le rôle existant, adapter les identités Sharp, conserver les données natives dans Interop et libérer les buffers possédés dans finally.
+      - [x] Créer le transport, les installations et les états natifs.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/StateFunctions.cs` : reprendre les échanges, installations ou états du rôle existant avec les identités Sharp et nettoyage effectif des ressources possédées.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/CoreFunctions.Release.cs` : reprendre les échanges, installations ou états du rôle existant avec les identités Sharp et nettoyage effectif des ressources possédées.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Functions/CoreFunctions.Host.cs` : reprendre les échanges, installations ou états du rôle existant avec les identités Sharp et nettoyage effectif des ressources possédées.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.Diagnostics.cs` : reprendre les échanges, installations ou états du rôle existant avec les identités Sharp et nettoyage effectif des ressources possédées.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreReleaseService.cs` : reprendre les échanges, installations ou états du rôle existant avec les identités Sharp et nettoyage effectif des ressources possédées.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreProvider.cs` : reprendre les échanges, installations ou états du rôle existant avec les identités Sharp et nettoyage effectif des ressources possédées.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.State.cs` : reprendre les échanges, installations ou états du rôle existant avec les identités Sharp et nettoyage effectif des ressources possédées.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.Content.cs` : reprendre les échanges, installations ou états du rôle existant avec les identités Sharp et nettoyage effectif des ressources possédées.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs` : reprendre les échanges, installations ou états du rôle existant avec les identités Sharp et nettoyage effectif des ressources possédées.
+      - [x] Définir les identités des adaptateurs concrets.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Px68k/Constants/EmulatorConstants.cs` : identité PX68K, DLL, source, révision et URL attestées ; modèles X68000 et XVI seulement.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/X1/Constants/EmulatorConstants.cs` : identité x1, DLL, source, révision et URL attestées ; modèles X1, Turbo et Turbo Z.
+      - [x] Créer les callbacks, options et cycle de vie natifs.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs` : reprendre les callbacks et conversions du rôle existant, adapter les ressources Sharp et conserver les allocations et exports dans Interop.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.AudioVideoInput.cs` : reprendre les callbacks et conversions du rôle existant, adapter les ressources Sharp et conserver les allocations et exports dans Interop.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.Environment.cs` : reprendre les callbacks et conversions du rôle existant, adapter les ressources Sharp et conserver les allocations et exports dans Interop.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.EnvironmentDetails.cs` : reprendre les callbacks et conversions du rôle existant, adapter les ressources Sharp et conserver les allocations et exports dans Interop.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreOptionHost.cs` : reprendre les callbacks et conversions du rôle existant, adapter les ressources Sharp et conserver les allocations et exports dans Interop.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.cs` : reprendre les callbacks et conversions du rôle existant, adapter les ressources Sharp et conserver les allocations et exports dans Interop.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.Options.cs` : reprendre les callbacks et conversions du rôle existant, adapter les ressources Sharp et conserver les allocations et exports dans Interop.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/RuntimeFunctions.Environment.cs` : reprendre les callbacks et conversions du rôle existant, adapter les ressources Sharp et conserver les allocations et exports dans Interop.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.Lifecycle.cs` : reprendre les callbacks et conversions du rôle existant, adapter les ressources Sharp et conserver les allocations et exports dans Interop.
+      - [x] Créer les sondes et accès aux contenus natifs.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.ExternalProbe.cs` : reprendre les sondes, temporisations ou contenus du rôle existant ; adapter les identités et conserver la fermeture effective dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/CoreFunctions.OptionProbe.cs` : reprendre les sondes, temporisations ou contenus du rôle existant ; adapter les identités et conserver la fermeture effective dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/FrameTimer.cs` : reprendre les sondes, temporisations ou contenus du rôle existant ; adapter les identités et conserver la fermeture effective dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/DiskControl.cs` : reprendre les sondes, temporisations ou contenus du rôle existant ; adapter les identités et conserver la fermeture effective dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Content.cs` : reprendre les sondes, temporisations ou contenus du rôle existant ; adapter les identités et conserver la fermeture effective dans finally.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/MediaFunctions.Disk.cs` : reprendre les sondes, temporisations ou contenus du rôle existant ; adapter les identités et conserver la fermeture effective dans finally.
+      - [x] Préparer les firmwares propres aux moteurs.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs` : imposer la préparation du firmware à chaque adaptateur natif concret.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/FirmwareRuntimeFunctions.cs` : déléguer la préparation et copier seulement une ROM compatible, en respectant son caractère facultatif.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Px68k/Constants/FirmwareRuntimeConstants.cs` : noms keropi, iplrom.dat et cgrom.dat attestés par les sources.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Px68k/Functions/FirmwareRuntimeFunctions.cs` : préparer la ROM IPL sélectionnée et la police dans la session PX68k.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/X1/Constants/FirmwareRuntimeConstants.cs` : noms xmil, IPLROM.X1 et IPLROM.X1T attestés par les sources.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/X1/Functions/FirmwareRuntimeFunctions.cs` : préparer uniquement la ROM facultative sélectionnée du modèle X1.
+      - [x] Raccorder les fabriques et défauts des modèles.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Px68k/Constants/MediaRuntimeConstants.cs` : formats et capacités de supports attestés, options par modèle et périphérique, firmware délégué et capacités natives de la fabrique.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Px68k/Constants/RuntimeOptionConstants.cs` : formats et capacités de supports attestés, options par modèle et périphérique, firmware délégué et capacités natives de la fabrique.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Px68k/Functions/RuntimeOptionFunctions.cs` : formats et capacités de supports attestés, options par modèle et périphérique, firmware délégué et capacités natives de la fabrique.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Px68k/Factories/Px68kMachineFactory.cs` : formats et capacités de supports attestés, options par modèle et périphérique, firmware délégué et capacités natives de la fabrique.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/X1/Constants/MediaRuntimeConstants.cs` : formats et capacités de supports attestés, options par modèle et périphérique, firmware délégué et capacités natives de la fabrique.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/X1/Constants/RuntimeOptionConstants.cs` : formats et capacités de supports attestés, options par modèle et périphérique, firmware délégué et capacités natives de la fabrique.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/X1/Functions/RuntimeOptionFunctions.cs` : formats et capacités de supports attestés, options par modèle et périphérique, firmware délégué et capacités natives de la fabrique.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/X1/Factories/X1MachineFactory.cs` : formats et capacités de supports attestés, options par modèle et périphérique, firmware délégué et capacités natives de la fabrique.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/CoreOptionValidationFunctions.cs` : fournir les défauts par modèle depuis les adaptateurs.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/SettingsFunctions.cs` : afficher les mêmes défauts par modèle que ceux envoyés au moteur.
+      - [x] Raccorder le cœur aux contenus de session.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Factories/LibretroMachineFactory.cs` : déléguer la préparation initiale du contenu aux adaptateurs natifs.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/SessionMediaFunctions.cs` : valider les formats, copier les images en lecture seule et conserver les chemins autorisés en écriture.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Px68k/Functions/MediaRuntimeFunctions.cs` : écrire la configuration native de session pour les lecteurs FDD et HDD, puis démarrer sans contenu de commande.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Px68k/Factories/Px68kMachineFactory.cs` : déléguer la préparation initiale des lecteurs à son adaptateur.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/X1/Functions/MediaRuntimeFunctions.cs` : fournir uniquement la disquette du lecteur natif accessible.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/X1/Factories/X1MachineFactory.cs` : déléguer la préparation du contenu X1 à son adaptateur.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.Media.cs` : utiliser les contenus préparés par le moteur, les statuts des lecteurs et la recréation pour les changements de supports.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.cs` : initialiser les firmwares, callbacks et supports Sharp, démarrer les DLL et garantir leur libération après échec.
+      - [x] Respecter le retrait des supports sur une machine à plusieurs lecteurs.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Services/Machine.cs` : recevoir la capacité générique de fonctionner sans contenu depuis la fabrique.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Common/Factories/MachineFactory.cs` : transmettre cette capacité générique au service machine.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Px68k/Factories/Px68kMachineFactory.cs` : déclarer le démarrage sans contenu attesté de PX68k.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs` : recréer avec les supports restants après éjection ; suspendre seulement quand le moteur exige un contenu absent.
+      - [x] Raccorder les entrées natives sans affectation physique automatique.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Constants/KeyboardConstants.cs` : ajouter les codes des touches spéciales attestés dans les tables natives.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/KeyboardFunctions.cs` : réutiliser les touches communes et distinguer les touches spéciales des deux moteurs, sans alias étranger.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/KeyboardState.cs` : préparer les codes interrogés par les cœurs et relâcher les touches avant de changer de mode Compose.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/NativeInputFunctions.cs` : traduire les commandes logiques déjà affectées vers les boutons, axes et souris natifs.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/ControllerPortFunctions.cs` : déclarer les ports natifs accessibles.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalHostCallbacks.cs` et `ExternalHostCallbacks.AudioVideoInput.cs` : partager le clavier préparé entre les callbacks et la lecture native.
+      - [x] Finaliser la présentation du clavier natif.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/KeyboardFunctions.cs` : réunir le point-virgule de la déclaration IsModifier sur sa ligne et retirer les espaces de la déclaration copiée devenus inutiles.
+      - [x] Supprimer les alias physiques des touches spéciales réaffectables.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/KeyboardFunctions.cs` : retirer les alias natifs Alt des touches Option et Graph ainsi que End pour Undo, afin que seule une affectation explicite déclenche ces touches spéciales.
+  - [x] Préparer les ressources, visuels et raccordements.
+    - [x] Fabriquer les catalogues de ressources Sharp.
+      - [x] Créer `artifacts/sharp-source/create-resources.py` : produire les catalogues selon les clés effectivement consommées, séparer les invariants et contextualiser les options natives.
+      - [x] Créer `src/GWGUI.Emulation.Sharp/Resources/00-Base/Emulation.resx`, `Model.resx`, `Controllers.resx` et `en-US/Emulation.resx`, `Error.resx`, `Controllers.resx` : noms matériels, libellés, erreurs et aides au format compact dès génération.
+      - [x] Corriger la génération et le formateur après contrôle des premiers catalogues.
+        - [x] Modifier `scripts/tools/translate-resx-argos.py` : produire un saut de ligne réel lorsque le groupe facultatif newline est absent, sans écrire le texte None.
+        - [x] Modifier `artifacts/sharp-source/create-resources.py` : indenter avant normalisation et inclure les sources anglaises dans la base de chaque catalogue, selon le contrat de localisation existant.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Resources/**/*.resx` : retirer les seuls résidus de sérialisation hors valeurs, conserver xml:space et normaliser chaque entrée sans changer les traductions.
+        - [x] Modifier `docs/tasks/emulation/methode-modules.md` : contrôler une sortie XML complète dès la première génération, y compris textes hors éléments et groupes de regex facultatifs.
+      - [x] Contextualiser les traductions techniques restantes.
+        - [x] Modifier `artifacts/sharp-source/create-resources.py` et les catalogues Sharp : simplifier la source anglaise du bruit de déplacement des têtes, conserver les corrections françaises contextuelles dans le générateur et retraduire cette aide dans toutes les cultures avec Argos.
+      - [x] Créer les catalogues traduits dans les 28 autres cultures de `src/GWGUI.Emulation.Sharp/Resources/` avec Argos : réutiliser les textes communs existants, auditer les paramètres et les invariants, puis vérifier le sens des libellés français.
+    - [x] Préparer les visuels exacts sans copies entre App et module.
+      - [x] Créer `artifacts/sharp-source/images/fetch-images.ps1` et `sources.json` : récupérer le logo de la marque et les photographies identifiées, conserver leurs URL et métadonnées, fermer HttpClient dans finally.
+      - [x] Modifier `artifacts/sharp-source/images/fetch-images.ps1` et `sources.json` : remplacer la petite photo du modèle original par une photographie nette du même modèle, identifiée avant téléchargement.
+      - [x] Modifier `docs/tasks/emulation/methode-modules.md` : inspecter les dimensions et le sujet avant de retenir une source, préserver les tableaux de contours imbriqués en PowerShell et enregistrer cette correction générique.
+      - [x] Créer `artifacts/sharp-source/images/prepare-assets.ps1` et `src/GWGUI.Emulation.Sharp/Assets/sharp.png`, `Assets/Machines/X68000.png`, `X68000Xvi.png`, `X68030.png`, `X1.png`, `X1Turbo.png`, `X1TurboZ.png` : détourer les modèles exacts, produire des PNG transparents de 512 pixels maximum, contrôler les contours et libérer les objets graphiques dans finally.
+      - [x] Modifier `docs/tasks/emulation/methode-modules.md` : limiter les masques automatiques aux fonds séparables, contrôler les parties claires du sujet après traitement et garder explicites les visuels provisoires.
+      - [x] Modifier `artifacts/sharp-source/images/fetch-images.ps1`, `prepare-assets.ps1` et `src/GWGUI.Emulation.Sharp/Assets/Machines/X68000.png` : obtenir une photographie suffisamment définie du modèle original et préserver les parties claires du boîtier lors du détourage ; le premier PNG officiel reste provisoire.
+      - [x] Raccorder les visuels de commandes Sharp sans affectations physiques.
+        - [x] Modifier `artifacts/sharp-source/images/fetch-images.ps1`, `sources.json` et `prepare-assets.ps1` et créer `src/GWGUI.App/Assets/Controllers/sharp-cyberstick.png` : conserver la source de la manette Cyberstick et détourer sa photo uniquement dans App.
+        - [x] Modifier `src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs`, `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkFileNames.cs`, `ControllerArtworkCatalog.Profiles.cs` et créer `Profiles/Sharp/SharpCyberstick.cs` : identifiant, fichier et zones des vrais boutons et leviers du Cyberstick.
+        - [x] Créer `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Dictionaries/ControllerVisualDictionary.cs` et modifier `Common/Machines/Common/Functions/InputFunctions.Settings.cs` : réutiliser les profils compatibles de manettes et relier leurs commandes au protocole Sharp sans sources physiques implicites.
+    - [x] Modifier `GWGUI.sln`, `src/GWGUI.Emulation/GWGUI.Emulation.csproj`, `tests/GWGUI.Tests/GWGUI.Tests.csproj` et les catalogues de visuels SDK/App : mêmes raccordements que les modules existants, aucun ProjectReference App vers le module.
+  - [x] Vérifier, nettoyer et commiter.
+    - [x] Produire `build/Debug/GW GUI/gwgui.exe` et tous les modules avec `scripts/local-building.cmd --building=debug --modules=A`, puis créer `docs/tasks/emulation/sharp-verification.json` : sortie réussie et assemblies livrées.
+    - [x] Vérifier les vues, entrées et moteurs avec des contrôles temporaires autonomes.
+      - [x] Créer `artifacts/sharp-verification/SharpVerification.csproj` et `Program.cs` : contrôles des six modèles, des ressources, des vraies fenêtres, de la persistance et des touches réaffectées ; fermer fenêtres et dispatcher dans finally.
+      - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Functions/StorageFunctions.Settings.cs` : retourner une description vide cohérente lorsqu’aucun moteur n’est sélectionné, sans supprimer les emplacements matériels de la configuration.
+      - [x] Modifier `artifacts/sharp-verification/Program.cs` : intercepter les erreurs du Dispatcher et signaler le modèle en cours pour garantir le nettoyage après une erreur asynchrone de la fenêtre.
+      - [x] Modifier `docs/tasks/emulation/methode-modules.md` : exiger la cohérence entre emplacements décrits et disponibles, y compris pour une machine sans moteur.
+      - [x] Compléter `docs/tasks/emulation/sharp-verification.json` : résultats effectifs des contrôles des vues et entrées, sans déclarer le runtime validé avant ses essais.
+      - [x] Modifier `artifacts/sharp-verification/Program.cs` : ajouter les essais des deux DLL réellement installées, médias, première image, états et libération native.
+      - [x] Modifier `artifacts/sharp-verification/Program.cs` : sélectionner séparément arrêt simple, restauration d’état, reset, éjection et modèle par variables de diagnostic ; afficher les étapes natives et conserver des preuves distinctes par scénario.
+      - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.Content.cs` : conserver explicitement les objets des callbacks, exports et bibliothèque vivants jusqu’à la fin de leur déinitialisation native ; vérifier l’effet sur le cas d’éjection en échec. L’essai reproduit le défaut, cette hypothèse est invalidée.
+      - [x] Modifier `artifacts/sharp-verification/Program.cs` : traiter les commandes hôte via le contrat existant du module pour essayer le code corrigé sans reconstruire les autres modules ; conserver le test du vrai hôte livré pour la validation finale.
+      - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.Content.cs` : retirer le maintien en vie expérimental sans effet afin de conserver le fonctionnement éprouvé des références.
+      - [x] Modifier `docs/tasks/emulation/sharp-verification.json` et supprimer `artifacts/sharp-source/verification-native.json` : conserver les résultats effectifs X1 et l’échec PX68k, retirer le premier rapport provisoire qui indiquait des opérations non exécutées dans les diagnostics séparés.
+      - [x] Modifier `artifacts/sharp-verification/Program.cs` et créer puis supprimer `artifacts/sharp-source/debug-continue` : publier le PID du seul hôte détenu et différer son éjection pour capturer la pile native ; terminer l’hôte de diagnostic après capture.
+      - [x] Créer `artifacts/sharp-source/native-eject-stack.txt` : pile et registres au défaut réel obtenus avec le débogueur déjà installé, sans modifier le cœur officiel.
+      - [x] Modifier `src/GWGUI.Emulation/Interop/ExternalCoreApi.cs` et `Services/ExternalCoreVirtualFileSystem.cs` : déclarer et fournir le callback natif stat consommé par le cœur, avec taille int32 et flags du protocole ; conserver la version déclarée réellement supportée.
+      - [x] Modifier `docs/tasks/emulation/methode-modules.md` : vérifier les callbacks effectivement appelés au chargement, à la sauvegarde et à la déinitialisation, même lorsqu’un moteur demande une version d’interface inférieure.
+      - [x] Produire `build/Debug/GW GUI/gwgui.exe` et les modules par `scripts/local-building.cmd --building=debug --modules=A` : intégrer les corrections du stockage et du callback VFS dans le livrable réel.
+      - [x] Modifier `docs/tasks/emulation/sharp-verification.json` : enregistrer la réussite de la reconstruction, les assemblies livrées et les résultats des deux moteurs avec le véritable hôte livré.
+      - [x] Raccorder la vitesse de souris déjà appliquée aux entrées.
+        - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Machines/Common/Constants/SettingsConstants.cs`, `Constants/InputMappingConstants.cs`, `Functions/SettingsFunctions.cs` et `src/GWGUI.Emulation.Sharp/Modules/SharpEmulationModule.cs` : exposer la vitesse dans le bloc Souris avec les ressources communes ; appliquer et persister la valeur dans InputConfiguration sans la transmettre comme option native.
+        - [x] Modifier `artifacts/sharp-verification/Program.cs` : vérifier description, modification et restauration persistée de la vitesse de souris avec le contrat existant.
+      - [x] Modifier `docs/tasks/emulation/methode-modules.md` : contrôler le raccordement des paramètres d'entrée déjà présents et les types explicites des arguments params avant compilation.
+      - [x] Modifier `docs/tasks/emulation/sharp-verification.json` : enregistrer la validation de la vitesse modifiable et signaler le besoin de reconstruire le livrable après son raccordement.
+      - [x] Modifier `artifacts/sharp-verification/Program.cs` : couvrir les cinq modèles compatibles avec leurs firmwares exacts, isoler leurs médias temporaires et contrôler leur cycle de vie sur le véritable hôte livré.
+      - [x] Produire `build/Debug/GW GUI/gwgui.exe` et les modules puis modifier `docs/tasks/emulation/sharp-verification.json` : reconstruire avec le réglage de souris et rejouer les contrôles sur le livrable final.
+      - [x] Compléter `docs/tasks/emulation/sharp-verification.json` : résultats runtime pour chacun des moteurs, erreurs et libération effective.
+      - [x] Supprimer `artifacts/sharp-verification/` et ses artefacts temporaires après arrêt effectif des processus, fenêtres et cœurs détenus ; supprimer aussi le dossier détenu par le premier contrôle interrompu `C:/Users/overt/AppData/Local/Temp/GWGUI-Sharp-387fe0875ec54b73b842a8f4a71b87ff` après validation de son chemin exact.
+    - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/ExternalCore.cs`, `Emulators/Px68k/Factories/Px68kMachineFactory.cs`, `Emulators/X1/Factories/X1MachineFactory.cs` et `Modules/SharpEmulationModule.cs` : retirer les lignes vides finales signalées par le contrôle du diff indexé.
+    - [x] Modifier `.git/index` et la référence de branche par le commit Sharp vérifié, sans push.

@@ -1,4 +1,5 @@
 using System.Buffers;
+using System.IO;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Interop;
 
@@ -11,6 +12,9 @@ internal sealed class ExternalCoreVirtualFileSystem : IDisposable
     private const uint WriteAccess = 2;
     private const uint UpdateExisting = 4;
     private const int Failure = -1;
+    private const int StatInvalid = 0;
+    private const int StatValid = 1;
+    private const int StatDirectory = 2;
     private readonly object _gate = new();
     private readonly Dictionary<nint, OpenFile> _files = [];
     private readonly Action<string, long>? _readObserver;
@@ -25,6 +29,7 @@ internal sealed class ExternalCoreVirtualFileSystem : IDisposable
     private readonly ExternalCoreApi.VfsFlush _flush;
     private readonly ExternalCoreApi.VfsRemove _remove;
     private readonly ExternalCoreApi.VfsRename _rename;
+    private readonly ExternalCoreApi.VfsStat _stat;
     private readonly nint _interface;
     private long _nextHandle;
     private bool _disposed;
@@ -43,6 +48,7 @@ internal sealed class ExternalCoreVirtualFileSystem : IDisposable
         _flush = Flush;
         _remove = Remove;
         _rename = Rename;
+        _stat = Stat;
         var descriptor = new ExternalCoreApi.VfsInterface
         {
             GetPath = Marshal.GetFunctionPointerForDelegate(_getPath),
@@ -55,7 +61,8 @@ internal sealed class ExternalCoreVirtualFileSystem : IDisposable
             Write = Marshal.GetFunctionPointerForDelegate(_write),
             Flush = Marshal.GetFunctionPointerForDelegate(_flush),
             Remove = Marshal.GetFunctionPointerForDelegate(_remove),
-            Rename = Marshal.GetFunctionPointerForDelegate(_rename)
+            Rename = Marshal.GetFunctionPointerForDelegate(_rename),
+            Stat = Marshal.GetFunctionPointerForDelegate(_stat)
         };
         _interface = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.VfsInterface>());
         Marshal.StructureToPtr(descriptor, _interface, false);
@@ -206,6 +213,22 @@ internal sealed class ExternalCoreVirtualFileSystem : IDisposable
     private bool TryGet(nint handle, out OpenFile file)
     {
         lock (_gate) return _files.TryGetValue(handle, out file!);
+    }
+
+    private static int Stat(nint pathPointer, nint sizePointer)
+    {
+        try
+        {
+            if (sizePointer != nint.Zero) Marshal.WriteInt32(sizePointer, 0);
+            var path = Marshal.PtrToStringUTF8(pathPointer);
+            if (string.IsNullOrWhiteSpace(path)) return StatInvalid;
+            if (Directory.Exists(path)) return StatValid | StatDirectory;
+            var file = new FileInfo(path);
+            if (!file.Exists) return StatInvalid;
+            if (sizePointer != nint.Zero) Marshal.WriteInt32(sizePointer, checked((int)file.Length));
+            return StatValid;
+        }
+        catch { return StatInvalid; }
     }
 
     public void Dispose()

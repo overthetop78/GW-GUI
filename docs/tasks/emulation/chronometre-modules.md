@@ -110,3 +110,25 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-10 23:28:14 | 16:32:30 | -08:32:31 | Reprise. Mattel : ressources, visuels et intégration. |
 | 2026-10-10 23:39:46 | 16:44:02 | -08:44:03 | Reprise. Mattel : profil physique de manette, intégration puis build des modules. |
 | 2026-10-10 23:50:42 | 16:54:58 | -08:54:59 | Reprise. Mattel : chemins d'erreur, libération native et recherche bornée des firmwares locaux. |
+| 2026-10-11 00:03:41 | 17:07:57 | -09:07:58 | Reprise. Sharp : contrats matériels, firmware, supports et adaptations natives. |
+| 2026-10-11 00:09:41 | 00.17:13:57 | -09:13:58 | Reprise. Sharp : contrats natifs et carte de fabrication du module. |
+| 2026-10-11 00:19:22 | 00.17:23:38 | -09:23:39 | Reprise. Sharp : données matérielles, configuration et services communs. |
+| 2026-10-11 00:32:50 | 00.17:37:06 | -09:37:07 | Reprise. Sharp : entrées et réglages communs. |
+| 2026-10-11 00:36:38 | 17:40:54.7514458 | -09:40:55 | Reprise. Sharp : affectations clavier et commandes de manettes. |
+| 2026-10-11 00:50:13 | 17:54:29.8286161 | -09:54:30 | Reprise. Sharp : services communs et cycle de vie. |
+| 2026-10-11 01:12:07 | 18:16:23.2440379 | -10:16:24 | Reprise. Sharp : contrats et adaptateurs natifs. |
+| 2026-10-11 01:15:51 | 18:20:07.6858342 | -10:20:08 | Reprise. Sharp : contrats communs et isolation des descriptions natives. |
+| 2026-10-11 01:19:35 | 18:23:51.5699250 | -10:23:52 | Reprise. Sharp : fonctions et services du chargement natif. |
+| 2026-10-11 01:24:14 | 18:28:30.5687440 | -10:28:31 | Reprise. Sharp : callbacks natifs et adaptations des moteurs. |
+| 2026-10-11 01:29:07 | 18:33:23.8725561 | -10:33:24 | Reprise. Sharp : fabriques concrètes, médias et options par modèle. |
+| 2026-10-11 01:35:17 | 18:39:33.1361503 | -10:39:34 | Reprise. Sharp : session native, médias et entrées. |
+| 2026-10-11 01:43:08 | 18:47:24.1330517 | -10:47:25 | Reprise. Sharp : raccordement des entrées natives. |
+| 2026-10-11 01:49:24 | 18:53:40.1051153 | -10:53:41 | Reprise. Sharp : ressources et traductions. |
+| 2026-10-11 01:58:02 | 19:02:18.0467194 | -11:02:19 | Reprise. Sharp : visuels des machines et manettes. |
+| 2026-10-11 02:03:24 | 19:07:40.1841100 | -11:07:41 | Reprise. Sharp : préparation des visuels exacts. |
+| 2026-10-11 02:13:22 | 19:17:38.7844043 | -11:17:39 | Reprise. Sharp : finalisation des visuels et profils. |
+| 2026-10-11 02:26:33 | 19:30:49.4686621 | -11:30:50 | Reprise. Sharp : preuve du build livré et essais des moteurs. |
+| 2026-10-11 02:48:09 | 19:52:25.1426001 | -11:52:26 | Reprise. Sharp : diagnostic natif PX68k. |
+| 2026-10-11 02:59:24 | 20:03:40.6699175 | -12:03:41 | Reprise. Sharp : validation du callback VFS et de la fermeture native. |
+| 2026-10-11 03:05:38 | 20:09:54.9042249 | -12:09:55 | Reprise. Sharp : réglages, supports et clôture des vérifications. |
+| 2026-10-11 03:13:07 | 20:17:23.1958180 | -12:17:24 | Reprise. Sharp : contrôle des modèles compatibles et du livrable final. |

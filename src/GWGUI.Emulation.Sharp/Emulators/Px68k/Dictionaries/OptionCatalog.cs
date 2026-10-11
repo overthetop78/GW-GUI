@@ -1,0 +1,35 @@
+using GWGUI.Emulation.Sharp.Emulators.Px68k.Constants;
+
+namespace GWGUI.Emulation.Sharp.Emulators.Px68k.Dictionaries;
+
+internal static class OptionCatalog
+{
+    internal static IReadOnlyList<CoreOption> Options { get; } = Array.AsReadOnly(new CoreOption[]
+    {
+        new(OptionConstants.Menufontsize, "Menu Font Size", null, null, "normal", "normal", [new("normal", "normal"), new("large", "large")], IsVisible: false),
+        new(OptionConstants.Cpuspeed, "CPU Speed", null, EmulationMachineTab.Cpu.ToString(), "10Mhz", "10Mhz", [new("10Mhz", "10Mhz"), new("16Mhz", "16Mhz"), new("25Mhz", "25Mhz"), new("33Mhz (OC)", "33Mhz (OC)"), new("66Mhz (OC)", "66Mhz (OC)"), new("100Mhz (OC)", "100Mhz (OC)")], IsVisible: true),
+        new(OptionConstants.Ramsize, "RAM Size", null, EmulationMachineTab.Ram.ToString(), "2MB", "2MB", [new("2MB", "2MB"), new("1MB", "1MB"), new("3MB", "3MB"), new("4MB", "4MB"), new("5MB", "5MB"), new("6MB", "6MB"), new("7MB", "7MB"), new("8MB", "8MB"), new("9MB", "9MB"), new("10MB", "10MB"), new("11MB", "11MB"), new("12MB", "12MB")], IsVisible: true, RequiresRestart: true),
+        new(OptionConstants.Analog, "Use Analog", null, null, "disabled", "disabled", [new("disabled", "disabled"), new("enabled", "enabled")], IsVisible: false),
+        new(OptionConstants.Joytype1, "P1 Joypad Type", null, null, "Default (2 Buttons)", "Default (2 Buttons)", [new("Default (2 Buttons)", "Default (2 Buttons)"), new("CPSF-MD (8 Buttons)", "CPSF-MD (8 Buttons)"), new("CPSF-SFC (8 Buttons)", "CPSF-SFC (8 Buttons)"), new("Cyberstick (Digital)", "Cyberstick (Digital)"), new("Cyberstick (Analog)", "Cyberstick (Analog)")], IsVisible: false),
+        new(OptionConstants.Joytype2, "P2 Joypad Type", null, null, "Default (2 Buttons)", "Default (2 Buttons)", [new("Default (2 Buttons)", "Default (2 Buttons)"), new("CPSF-MD (8 Buttons)", "CPSF-MD (8 Buttons)"), new("CPSF-SFC (8 Buttons)", "CPSF-SFC (8 Buttons)")], IsVisible: false),
+        new(OptionConstants.Joy1Select, "P1 Joystick Select Mapping", null, null, "Default", "Default", [new("Default", "Default"), new("XF1", "XF1"), new("XF2", "XF2"), new("XF3", "XF3"), new("XF4", "XF4"), new("XF5", "XF5"), new("OPT1", "OPT1"), new("OPT2", "OPT2"), new("F1", "F1"), new("F2", "F2")], IsVisible: false),
+        new(OptionConstants.MidiOutput, "MIDI Output", null, null, "enabled", "enabled", [new("enabled", "enabled"), new("disabled", "disabled")], IsVisible: false, RequiresRestart: true),
+        new(OptionConstants.MidiOutputType, "MIDI Output Type", null, null, "GM", "GM", [new("GM", "GM"), new("LA", "LA"), new("GS", "GS"), new("XG", "XG")], IsVisible: false),
+        new(OptionConstants.AdpcmVol, "ADPCM Volume", null, EmulationMachineTab.Audio.ToString(), "15", "15", [new("15", "15"), new("0", "0"), new("1", "1"), new("2", "2"), new("3", "3"), new("4", "4"), new("5", "5"), new("6", "6"), new("7", "7"), new("8", "8"), new("9", "9"), new("10", "10"), new("11", "11"), new("12", "12"), new("13", "13"), new("14", "14")], IsVisible: true),
+        new(OptionConstants.OpmVol, "OPM Volume", null, EmulationMachineTab.Audio.ToString(), "12", "12", [new("12", "12"), new("0", "0"), new("1", "1"), new("2", "2"), new("3", "3"), new("4", "4"), new("5", "5"), new("6", "6"), new("7", "7"), new("8", "8"), new("9", "9"), new("10", "10"), new("11", "11"), new("13", "13"), new("14", "14"), new("15", "15")], IsVisible: true),
+        new(OptionConstants.DiskDrive, "Swap Disks on Drive", null, null, "FDD1", "FDD1", [new("FDD1", "FDD1"), new("FDD0", "FDD0")], IsVisible: false),
+        new(OptionConstants.SaveFddPath, "Save FDD Paths", null, null, "enabled", "enabled", [new("enabled", "enabled"), new("disabled", "disabled")], IsVisible: false),
+        new(OptionConstants.SaveHddPath, "Save HDD Paths", null, null, "enabled", "enabled", [new("enabled", "enabled"), new("disabled", "disabled")], IsVisible: false),
+        new(OptionConstants.RumbleOnDiskRead, "Rumble on FDD Reads", null, null, "disabled", "disabled", [new("disabled", "disabled"), new("enabled", "enabled")], IsVisible: false),
+        new(OptionConstants.JoyMouse, "Joy/Mouse", null, null, "Mouse", "Mouse", [new("Mouse", "Mouse"), new("Joystick", "Joystick")], IsVisible: false),
+        new(OptionConstants.VbtnSwap, "VBtn Swap", null, EmulationMachineTab.Controllers.ToString(), "TRIG1 TRIG2", "TRIG1 TRIG2", [new("TRIG1 TRIG2", "TRIG1 TRIG2"), new("TRIG2 TRIG1", "TRIG2 TRIG1")], IsVisible: true),
+        new(OptionConstants.NoWaitMode, "No Wait Mode", null, EmulationMachineTab.Cpu.ToString(), "disabled", "disabled", [new("disabled", "disabled"), new("enabled", "enabled")], IsVisible: true),
+        new(OptionConstants.Frameskip, "Frames Skip", null, EmulationMachineTab.Video.ToString(), "Full Frame", "Full Frame", [new("Full Frame", "Full Frame"), new("1/2 Frame", "1/2 Frame"), new("1/3 Frame", "1/3 Frame"), new("1/4 Frame", "1/4 Frame"), new("1/5 Frame", "1/5 Frame"), new("1/6 Frame", "1/6 Frame"), new("1/8 Frame", "1/8 Frame"), new("1/16 Frame", "1/16 Frame"), new("1/32 Frame", "1/32 Frame"), new("1/60 Frame", "1/60 Frame"), new("Auto Frame Skip", "Auto Frame Skip")], IsVisible: true),
+        new(OptionConstants.PushVideoBeforeAudio, "Push Video before Audio", null, EmulationMachineTab.Audio.ToString(), "disabled", "disabled", [new("disabled", "disabled"), new("enabled", "enabled")], IsVisible: true),
+        new(OptionConstants.AdjustFrameRates, "Adjust Frame Rates", null, EmulationMachineTab.Video.ToString(), "enabled", "enabled", [new("enabled", "enabled"), new("disabled", "disabled")], IsVisible: true),
+        new(OptionConstants.AudioDesyncHack, "Audio Desync Hack", null, EmulationMachineTab.Audio.ToString(), "disabled", "disabled", [new("disabled", "disabled"), new("enabled", "enabled")], IsVisible: true),
+        new(OptionConstants.TextOff, "Text Off", null, EmulationMachineTab.Video.ToString(), "disabled", "disabled", [new("disabled", "disabled"), new("enabled", "enabled")], IsVisible: true),
+        new(OptionConstants.GrpOff, "Grp Off", null, EmulationMachineTab.Video.ToString(), "disabled", "disabled", [new("disabled", "disabled"), new("enabled", "enabled")], IsVisible: true),
+        new(OptionConstants.SpOff, "SP/BG Off", null, EmulationMachineTab.Video.ToString(), "disabled", "disabled", [new("disabled", "disabled"), new("enabled", "enabled")], IsVisible: true),
+    });
+}

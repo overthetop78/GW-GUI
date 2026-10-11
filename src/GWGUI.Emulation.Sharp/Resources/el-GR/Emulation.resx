@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Προσομοιάζει Sharp X68000 υπολογιστές.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Προσομοιάζει τους υπολογιστές Sharp X1.</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>ROM χαρακτήρων</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Εμφάνιση μνήμης</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Ήχος μηχανής</value></data>
+  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>Πληκτρολόγιο μηχανής</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Προβολή μηχανής</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Επιλογές ελεγκτή</value></data>
+  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>Επιλογές μηχανής</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>Πλήρες πλάτος</value></data>
+  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>CPU συχνότητα</value></data>
+  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>Ρυθμίζει τη συχνότητα της μιμούμενης CPU.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>Κύρια μνήμη</value></data>
+  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>Καθορίζει το ποσό της κύριας μνήμης στον υπολογιστή που προσομοιάζει.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>Όγκος ADPCM</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>Ορίζει την ένταση του καναλιού ήχου ADPCM.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>Όγκος FM</value></data>
+  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>Ορίζει την ένταση των καναλιών ήχου FM.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>Αντίστροφα κουμπιά φωτιάς</value></data>
+  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>Αλλάζει τη σειρά των δύο βασικών κουμπιών φωτιάς.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>Απεριόριστη ταχύτητα</value></data>
+  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>Τρέχει χωρίς να περιμένει την κανονική ταχύτητα εξομοίωσης.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>Παράκαμψη καρέ</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>Καθορίζει πόσο συχνά ο εξομοιωτής αποδίδει ένα πλαίσιο βίντεο.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>Κάθε πλαίσιο</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>Ένα καρέ στο 2</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>Ένα καρέ στο 3</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>Ένα καρέ στο 4</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>Ένα πλαίσιο σε 5</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>Ένα πλαίσιο σε 6</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>Ένα πλαίσιο σε 8</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>Ένα πλαίσιο σε 16</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>Ένα πλαίσιο σε 32</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>Ένα πλαίσιο σε 60</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>Αυτόματο</value></data>
+  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>Βίντεο πριν από τον ήχο</value></data>
+  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>Στέλνει κάθε πλαίσιο βίντεο πριν από τα δείγματα ήχου του.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>Ρυθμίστε το χρονοδιάγραμμα πλαισίου</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>Ρυθμίζει το συγχρονισμό του πλαισίου για τον ρυθμό ανανέωσης της οθόνης.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>Ρυθμιστική ώρας ήχου</value></data>
+  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>Ρυθμίζει συγχρονισμό ήχου όταν ο ήχος και το βίντεο χάνουν τον συγχρονισμό.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>Απόκρυψη στρώματος κειμένου</value></data>
+  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>Απενεργοποιεί την απόδοση του στρώματος κειμένου.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>Απόκρυψη στρώματος γραφικών</value></data>
+  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>Απενεργοποιεί την απόδοση του στρώματος γραφικών.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>Απόκρυψη sprites και φόντου</value></data>
+  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>Απενεργοποιεί την απόδοση των sprites και του στρώματος φόντου.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>Ανάλυση απεικόνισης</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>Επιλέγει την έξοδο χαμηλής ή υψηλής ανάλυσης του εξομοιωτή.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>Χαμηλή</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>Υψηλό</value></data>
+  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>Ρυθμός καρέ</value></data>
+  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>Επιλέγει πόσα βίντεο καρέ αποδίδει ο εξομοιωτής ανά δευτερόλεπτο.</value></data>
+  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>Συγχρονισμός εμφάνισης</value></data>
+  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>Συγχρονίζει την απόδοση με την προσομοιωμένη οθόνη.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>Συνέπειες τύμπανου</value></data>
+  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>Ενεργοποιεί την απόδοση των εφέ που παράγονται κατά τη διάρκεια της σάρωσης οθόνης.</value></data>
+  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>Απεριόριστη ταχύτητα</value></data>
+  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>Τρέχει χωρίς να περιμένει την κανονική ταχύτητα εξομοίωσης.</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>Αντίστροφα κουμπιά φωτιάς</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>Αλλάζει τη σειρά των βασικών κουμπιών της φωτιάς.</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>Ταχεία φωτιά</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>Ενεργοποιεί επαναλαμβανόμενη βολή ενώ ένα κουμπί πυρκαγιάς είναι πατημένο.</value></data>
+  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>Ρυθμός δειγματοληψίας ήχου</value></data>
+  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>Επιλέγει το ρυθμό δειγματοληψίας του ήχου που παράγεται από τον εξομοιωτή.</value></data>
+  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>Ήχος αναζήτησης κίνησης</value></data>
+  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>Παίζει έναν ήχο όταν ο δίσκος μετακινεί το κεφάλι του.</value></data>
+  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>Διαστολή ήχου FM</value></data>
+  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>Ενεργοποιεί τον προαιρετικό πίνακα ήχου FM.</value></data>
+  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>CPU συχνότητα</value></data>
+  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>Ρυθμίζει τη συχνότητα της μιμούμενης CPU.</value></data>
+</root>

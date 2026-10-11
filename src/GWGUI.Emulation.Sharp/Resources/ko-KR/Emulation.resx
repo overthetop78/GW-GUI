@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Sharp X68000 컴퓨터를 격리합니다.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Sharp X1 컴퓨터를 격리합니다.</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>캐릭터 ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>전시 기억</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>기계 오디오</value></data>
+  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>기계 키보드</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>기계 전시</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>관제사 선택권</value></data>
+  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>기계 옵션</value></data>
+  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>전체 폭</value></data>
+  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>CPU 주파수</value></data>
+  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>격리된 CPU의 빈도를 놓습니다.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>주요 기억</value></data>
+  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>에뮬레이션된 컴퓨터에서 메모리의 양을 설정합니다.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>ADPCM 볼륨</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>ADPCM 사운드 채널의 볼륨을 설정합니다.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>FM 볼륨</value></data>
+  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>FM 사운드 채널의 볼륨을 설정합니다.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>반전 불 단추</value></data>
+  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>2개의 1 차적인 불 단추의 순서를 바꾸십시오.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>무제한 속도</value></data>
+  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>정상적인 에뮬레이션 속도를 기다리지 않고 실행합니다.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>프레임 건너뛰기</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>자주 에뮬레이터가 비디오 프레임을 렌더링하는 방법을 설정합니다.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>모든 프레임</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>1개의 구조에서 2</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>3의 1개의 구조</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>4에 있는 1개의 구조</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>5에 있는 1개의 구조</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>1개의 구조 6</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>8의 1개의 구조</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>16에 있는 1개의 구조</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>32의 1개의 구조</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>60에서 1개의 구조</value></data>
+  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>오토매틱</value></data>
+  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>오디오의 앞에 영상</value></data>
+  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>오디오 샘플의 앞에 각 영상 구조를 보냅니다.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>프레임 타이밍</value></data>
+  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>디스플레이 새로 고침 속도에 대한 에뮬레이션 프레임 타이밍을 조정합니다.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>오디오 타이밍 조정</value></data>
+  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>소리와 영상이 동기화를 잃을 때 오디오 타이밍을 조정합니다.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>텍스트 층을 숨기기</value></data>
+  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>텍스트 레이어의 렌더링을 비활성화합니다.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>정밀한 도표 층</value></data>
+  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>도표 층의 렌더링을 비활성화합니다.</value></data>
+  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>스프라이트와 배경을 숨기기</value></data>
+  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>스프라이트와 배경 층의 렌더링을 비활성화합니다.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>전시 해결책</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>에뮬레이터의 낮은 또는 높은 해상도 출력을 선택합니다.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>이름 </value></data>
+  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>주요특징</value></data>
+  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>프레임 속도</value></data>
+  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>몇 가지 비디오 프레임이 에뮬레이터가 초당 렌더링하는 방법을 선택합니다.</value></data>
+  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>동기화 표시</value></data>
+  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>emulated 표시로 렌더링을 동기화합니다.</value></data>
+  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>Raster 효과</value></data>
+  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>화면 스캔 중에 생성 된 효과의 렌더링을 가능하게합니다.</value></data>
+  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>무제한 속도</value></data>
+  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>정상적인 에뮬레이션 속도를 기다리지 않고 실행합니다.</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>반전 불 단추</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>1 차적인 불 단추의 순서를 바꾸십시오.</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>급속한 불</value></data>
+  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>불 단추가 개최되는 동안 반복된 발포를 가능하게 합니다.</value></data>
+  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>오디오 샘플링 속도</value></data>
+  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>에뮬레이터에 의해 생성 된 사운드의 샘플링 속도를 선택합니다.</value></data>
+  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>드라이브는 소리를 추구</value></data>
+  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>디스크 드라이브가 머리를 이동할 때 소리를 재생합니다.</value></data>
+  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>FM 사운드 확장</value></data>
+  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>선택적인 FM 건강한 널을 가능하게 합니다.</value></data>
+  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>CPU 주파수</value></data>
+  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>격리된 CPU의 빈도를 놓습니다.</value></data>
+</root>

@@ -19,5 +19,9 @@ public enum EmulationKey
     AdamUndo, AdamWildCard, AdamMove, AdamStore, AdamClear, AdamPrint,
     EpochPower, EpochReset,
     PhilipsP2000Start, PhilipsP2000Stop, PhilipsP2000Zoek,
-    PhilipsP2000Code, PhilipsP2000DoubleZero, PhilipsP2000ClearLine
+    PhilipsP2000Code, PhilipsP2000DoubleZero, PhilipsP2000ClearLine,
+    SharpXf1, SharpXf2, SharpXf3, SharpXf4, SharpXf5,
+    SharpOption1, SharpOption2, SharpSymbol, SharpRegister,
+    SharpKana, SharpRoman, SharpCode, SharpHiragana, SharpFullWidth,
+    SharpGraph, SharpCopy, SharpKeypadEquals
 }

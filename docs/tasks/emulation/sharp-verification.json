@@ -1,0 +1,469 @@
+{
+  "BuildExitCode": 0,
+  "LocalTime": "2026-10-11 02:26:33",
+  "Application": "F:\\GW GUI\\build\\Debug\\GW GUI\\gwgui.exe",
+  "Modules": [
+    {
+      "Id": "acorn",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\acorn\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\acorn\\gwgui.emulation.acorn.dll",
+      "Bytes": 588800
+    },
+    {
+      "Id": "amstrad",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\amstrad\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\amstrad\\gwgui.emulation.amstrad.dll",
+      "Bytes": 1777664
+    },
+    {
+      "Id": "apple",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\apple\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\apple\\gwgui.emulation.apple.dll",
+      "Bytes": 3066368
+    },
+    {
+      "Id": "atari",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\atari\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\atari\\gwgui.emulation.atari.dll",
+      "Bytes": 4690432
+    },
+    {
+      "Id": "bandai",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\bandai\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\bandai\\gwgui.emulation.bandai.dll",
+      "Bytes": 2122240
+    },
+    {
+      "Id": "coleco",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\coleco\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\coleco\\gwgui.emulation.coleco.dll",
+      "Bytes": 1173504
+    },
+    {
+      "Id": "commodore",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\commodore\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\commodore\\gwgui.emulation.commodore.dll",
+      "Bytes": 6924288
+    },
+    {
+      "Id": "epoch",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\epoch\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\epoch\\gwgui.emulation.epoch.dll",
+      "Bytes": 2034688
+    },
+    {
+      "Id": "fairchild",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\fairchild\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\fairchild\\gwgui.emulation.fairchild.dll",
+      "Bytes": 837632
+    },
+    {
+      "Id": "mattel",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\mattel\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\mattel\\gwgui.emulation.mattel.dll",
+      "Bytes": 723968
+    },
+    {
+      "Id": "microsoft",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\microsoft\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\microsoft\\gwgui.emulation.microsoft.dll",
+      "Bytes": 753152
+    },
+    {
+      "Id": "nec",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\nec\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\nec\\gwgui.emulation.nec.dll",
+      "Bytes": 6123520
+    },
+    {
+      "Id": "nintendo",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\nintendo\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\nintendo\\gwgui.emulation.nintendo.dll",
+      "Bytes": 38403072
+    },
+    {
+      "Id": "philips",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\philips\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\philips\\gwgui.emulation.philips.dll",
+      "Bytes": 1789440
+    },
+    {
+      "Id": "sega",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sega\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sega\\gwgui.emulation.sega.dll",
+      "Bytes": 24237056
+    },
+    {
+      "Id": "sharp",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sharp\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sharp\\gwgui.emulation.sharp.dll",
+      "Bytes": 2131456
+    },
+    {
+      "Id": "sony",
+      "Manifest": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sony\\module.json",
+      "Assembly": "F:\\GW GUI\\build\\Debug\\GW GUI\\Modules\\sony\\gwgui.emulation.sony.dll",
+      "Bytes": 11572224
+    }
+  ],
+  "RuntimeVerified": true,
+  "SettingsChecks": [
+    {
+      "Model": "X68000",
+      "ResourceCultures": 29,
+      "PersistedReassignment": true,
+      "AppliedReassignment": true,
+      "NoImplicitControllerInput": true,
+      "WindowOpenedAndReleased": true
+    },
+    {
+      "Model": "X68000Xvi",
+      "ResourceCultures": 29,
+      "PersistedReassignment": true,
+      "AppliedReassignment": true,
+      "NoImplicitControllerInput": true,
+      "WindowOpenedAndReleased": true
+    },
+    {
+      "Model": "X68030",
+      "ResourceCultures": 29,
+      "PersistedReassignment": true,
+      "AppliedReassignment": true,
+      "NoImplicitControllerInput": true,
+      "WindowOpenedAndReleased": true
+    },
+    {
+      "Model": "X1",
+      "ResourceCultures": 29,
+      "PersistedReassignment": true,
+      "AppliedReassignment": true,
+      "NoImplicitControllerInput": true,
+      "WindowOpenedAndReleased": true
+    },
+    {
+      "Model": "X1Turbo",
+      "ResourceCultures": 29,
+      "PersistedReassignment": true,
+      "AppliedReassignment": true,
+      "NoImplicitControllerInput": true,
+      "WindowOpenedAndReleased": true
+    },
+    {
+      "Model": "X1TurboZ",
+      "ResourceCultures": 29,
+      "PersistedReassignment": true,
+      "AppliedReassignment": true,
+      "NoImplicitControllerInput": true,
+      "WindowOpenedAndReleased": true
+    }
+  ],
+  "DeliveredBuildRequiresRefresh": false,
+  "NativeDiagnosticStatus": {
+    "DownloadedOfficialCores": [
+      "px68k",
+      "x1"
+    ],
+    "StartupVideoPauseResumeStop": true,
+    "SeparateStateSaveLoadStop": true,
+    "SeparateResetStop": true,
+    "EjectInsertVerified": true,
+    "FailingModel": "X68000",
+    "FailingStage": "ProcessCore.Stop during EjectMediaAsync / RestartCore",
+    "ExitCode": "-1073741819",
+    "WindowsFaultModule": "coreclr.dll",
+    "WindowsFaultOffset": "0x3596cf",
+    "RuntimeCompletion": true,
+    "CallbackKeepAliveHypothesis": "Rejected: same crash with temporary host and explicit KeepAlive",
+    "ConfirmedCause": "Null Stat callback in SDK VFS table; official native core calls Stat during shutdown."
+  },
+  "X1MediaCheck": [
+    {
+      "Model": "X1",
+      "Diagnostic": "media",
+      "InstalledPath": "C:\\Users\\overt\\AppData\\Local\\Temp\\GWGUI-Sharp-Native-26369aa252ba46f68886bb5417c974e8\\cores\\x1\\20261010-061918\\x1_libretro.dll",
+      "SyntheticMedia": "Blank native floppy geometry; firmware rendering and lifecycle, no commercial game validation",
+      "Width": 640,
+      "Height": 400,
+      "StateBytes": 0,
+      "PauseResume": true,
+      "Reset": false,
+      "EjectInsert": true,
+      "HostProcessesReleased": true,
+      "SessionsReleased": true,
+      "AudioSamples": 7350,
+      "AudioReleased": true
+    }
+  ],
+  "TemporaryHostRuntimeChecks": [
+    {
+      "Model": "X68000",
+      "Diagnostic": "complete",
+      "InstalledPath": "C:\\Users\\overt\\AppData\\Local\\Temp\\GWGUI-Sharp-Native-8a8363e8ee5a4644a805f2233e39822a\\cores\\px68k\\20261010-051928\\px68k_libretro.dll",
+      "SyntheticMedia": "Blank native floppy geometry; firmware rendering and lifecycle, no commercial game validation",
+      "Width": 768,
+      "Height": 512,
+      "StateBytes": 15480742,
+      "PauseResume": true,
+      "Reset": true,
+      "EjectInsert": true,
+      "HostProcessesReleased": true,
+      "SessionsReleased": true,
+      "AudioSamples": 14720,
+      "AudioReleased": true
+    },
+    {
+      "Model": "X1",
+      "Diagnostic": "complete",
+      "InstalledPath": "C:\\Users\\overt\\AppData\\Local\\Temp\\GWGUI-Sharp-Native-8a8363e8ee5a4644a805f2233e39822a\\cores\\x1\\20261010-061918\\x1_libretro.dll",
+      "SyntheticMedia": "Blank native floppy geometry; firmware rendering and lifecycle, no commercial game validation",
+      "Width": 640,
+      "Height": 400,
+      "StateBytes": 265420,
+      "PauseResume": true,
+      "Reset": true,
+      "EjectInsert": true,
+      "HostProcessesReleased": true,
+      "SessionsReleased": true,
+      "AudioSamples": 16170,
+      "AudioReleased": true
+    }
+  ],
+  "RefreshedDeliveredModules": [
+    {
+      "Id": "acorn",
+      "ManifestBytes": 302,
+      "AssemblyBytes": 588800
+    },
+    {
+      "Id": "amstrad",
+      "ManifestBytes": 310,
+      "AssemblyBytes": 1777664
+    },
+    {
+      "Id": "apple",
+      "ManifestBytes": 300,
+      "AssemblyBytes": 3066368
+    },
+    {
+      "Id": "atari",
+      "ManifestBytes": 300,
+      "AssemblyBytes": 4690432
+    },
+    {
+      "Id": "bandai",
+      "ManifestBytes": 303,
+      "AssemblyBytes": 2122240
+    },
+    {
+      "Id": "coleco",
+      "ManifestBytes": 303,
+      "AssemblyBytes": 1173504
+    },
+    {
+      "Id": "commodore",
+      "ManifestBytes": 316,
+      "AssemblyBytes": 6924288
+    },
+    {
+      "Id": "epoch",
+      "ManifestBytes": 301,
+      "AssemblyBytes": 2034688
+    },
+    {
+      "Id": "fairchild",
+      "ManifestBytes": 313,
+      "AssemblyBytes": 837632
+    },
+    {
+      "Id": "mattel",
+      "ManifestBytes": 307,
+      "AssemblyBytes": 723968
+    },
+    {
+      "Id": "microsoft",
+      "ManifestBytes": 307,
+      "AssemblyBytes": 753152
+    },
+    {
+      "Id": "nec",
+      "ManifestBytes": 289,
+      "AssemblyBytes": 6123520
+    },
+    {
+      "Id": "nintendo",
+      "ManifestBytes": 304,
+      "AssemblyBytes": 38403072
+    },
+    {
+      "Id": "philips",
+      "ManifestBytes": 310,
+      "AssemblyBytes": 1789440
+    },
+    {
+      "Id": "sega",
+      "ManifestBytes": 292,
+      "AssemblyBytes": 24237056
+    },
+    {
+      "Id": "sharp",
+      "ManifestBytes": 295,
+      "AssemblyBytes": 2131456
+    },
+    {
+      "Id": "sony",
+      "ManifestBytes": 292,
+      "AssemblyBytes": 11572224
+    }
+  ],
+  "RefreshedApplicationBytes": 345088,
+  "MouseSpeedCheck": "PX68k Mouse tab: default 100, changed to 150, persisted and restored through module settings; host setting excluded from native options.",
+  "DeliveredHostRuntimeChecks": [
+    {
+      "Model": "X68000",
+      "Diagnostic": "complete",
+      "InstalledPath": "C:\\Users\\overt\\AppData\\Local\\Temp\\GWGUI-Sharp-Native-414fd92cf5284360b0d3e8fa269a4032\\cores\\px68k\\20261010-051928\\px68k_libretro.dll",
+      "SyntheticMedia": "Blank native floppy geometry; firmware rendering and lifecycle, no commercial game validation",
+      "Width": 768,
+      "Height": 512,
+      "StateBytes": 15480742,
+      "PauseResume": true,
+      "Reset": true,
+      "EjectInsert": true,
+      "HostProcessesReleased": true,
+      "SessionsReleased": true,
+      "AudioSamples": 17664,
+      "AudioReleased": true
+    },
+    {
+      "Model": "X68000Xvi",
+      "Diagnostic": "complete",
+      "InstalledPath": "C:\\Users\\overt\\AppData\\Local\\Temp\\GWGUI-Sharp-Native-414fd92cf5284360b0d3e8fa269a4032\\cores\\px68k\\20261010-051928\\px68k_libretro.dll",
+      "SyntheticMedia": "Blank native floppy geometry; firmware rendering and lifecycle, no commercial game validation",
+      "Width": 768,
+      "Height": 512,
+      "StateBytes": 15480742,
+      "PauseResume": true,
+      "Reset": true,
+      "EjectInsert": true,
+      "HostProcessesReleased": true,
+      "SessionsReleased": true,
+      "AudioSamples": 17782,
+      "AudioReleased": true
+    },
+    {
+      "Model": "X1",
+      "Diagnostic": "complete",
+      "InstalledPath": "C:\\Users\\overt\\AppData\\Local\\Temp\\GWGUI-Sharp-Native-414fd92cf5284360b0d3e8fa269a4032\\cores\\x1\\20261010-061918\\x1_libretro.dll",
+      "SyntheticMedia": "Blank native floppy geometry; firmware rendering and lifecycle, no commercial game validation",
+      "Width": 640,
+      "Height": 400,
+      "StateBytes": 265420,
+      "PauseResume": true,
+      "Reset": true,
+      "EjectInsert": true,
+      "HostProcessesReleased": true,
+      "SessionsReleased": true,
+      "AudioSamples": 14700,
+      "AudioReleased": true
+    },
+    {
+      "Model": "X1Turbo",
+      "Diagnostic": "complete",
+      "InstalledPath": "C:\\Users\\overt\\AppData\\Local\\Temp\\GWGUI-Sharp-Native-414fd92cf5284360b0d3e8fa269a4032\\cores\\x1\\20261010-061918\\x1_libretro.dll",
+      "SyntheticMedia": "Blank native floppy geometry; firmware rendering and lifecycle, no commercial game validation",
+      "Width": 640,
+      "Height": 400,
+      "StateBytes": 265420,
+      "PauseResume": true,
+      "Reset": true,
+      "EjectInsert": true,
+      "HostProcessesReleased": true,
+      "SessionsReleased": true,
+      "AudioSamples": 14700,
+      "AudioReleased": true
+    },
+    {
+      "Model": "X1TurboZ",
+      "Diagnostic": "complete",
+      "InstalledPath": "C:\\Users\\overt\\AppData\\Local\\Temp\\GWGUI-Sharp-Native-414fd92cf5284360b0d3e8fa269a4032\\cores\\x1\\20261010-061918\\x1_libretro.dll",
+      "SyntheticMedia": "Blank native floppy geometry; firmware rendering and lifecycle, no commercial game validation",
+      "Width": 640,
+      "Height": 400,
+      "StateBytes": 265420,
+      "PauseResume": true,
+      "Reset": true,
+      "EjectInsert": true,
+      "HostProcessesReleased": true,
+      "SessionsReleased": true,
+      "AudioSamples": 13230,
+      "AudioReleased": true
+    }
+  ],
+  "AssetChecks": [
+    {
+      "Model": "SharpBrand",
+      "Path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sharp\\Assets\\sharp.png",
+      "Width": 512,
+      "Height": 83,
+      "TransparentBorder": true,
+      "Method": "Original photograph with contour mask"
+    },
+    {
+      "Model": "X68000",
+      "Path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sharp\\Assets\\Machines\\X68000.png",
+      "Width": 315,
+      "Height": 512,
+      "TransparentBorder": true,
+      "Method": "Original photograph with contour mask"
+    },
+    {
+      "Model": "X68000Xvi",
+      "Path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sharp\\Assets\\Machines\\X68000Xvi.png",
+      "Width": 310,
+      "Height": 512,
+      "TransparentBorder": true,
+      "Method": "Original photograph with contour mask"
+    },
+    {
+      "Model": "X68030",
+      "Path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sharp\\Assets\\Machines\\X68030.png",
+      "Width": 317,
+      "Height": 512,
+      "TransparentBorder": true,
+      "Method": "Original photograph with contour mask"
+    },
+    {
+      "Model": "X1",
+      "Path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sharp\\Assets\\Machines\\X1.png",
+      "Width": 380,
+      "Height": 512,
+      "TransparentBorder": true,
+      "Method": "Original photograph with contour mask"
+    },
+    {
+      "Model": "X1Turbo",
+      "Path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sharp\\Assets\\Machines\\X1Turbo.png",
+      "Width": 512,
+      "Height": 310,
+      "TransparentBorder": true,
+      "Method": "Original photograph with contour mask"
+    },
+    {
+      "Model": "X1TurboZ",
+      "Path": "F:\\GW GUI\\src\\GWGUI.Emulation.Sharp\\Assets\\Machines\\X1TurboZ.png",
+      "Width": 512,
+      "Height": 140,
+      "TransparentBorder": true,
+      "Method": "Original photograph with contour mask"
+    },
+    {
+      "Model": "Cyberstick",
+      "Path": "F:\\GW GUI\\src\\GWGUI.App\\Assets\\Controllers\\sharp-cyberstick.png",
+      "Width": 512,
+      "Height": 235,
+      "TransparentBorder": true,
+      "Method": "Original photograph with contour mask"
+    }
+  ],
+  "RuntimeCoverage": "Five supported models: official downloaded cores, exact local firmware, blank native floppy geometry, frames/audio, pause/resume, save/load, reset, eject/insert, process/session/audio teardown. No commercial game validation."
+}

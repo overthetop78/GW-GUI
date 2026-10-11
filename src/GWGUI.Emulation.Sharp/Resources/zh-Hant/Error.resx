@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>Sharp所保存的狀態與現在的機器不相容.</value></data>
+  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>發生了意外的 Sharp 仿真錯誤 。</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>需要的Sharp號固件不見了.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>系統ROM無效或不兼容.</value></data>
+  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>未找到所配置的 Sharp 介質 。</value></data>
+  <data name="Emulation.Sharp.Error.ContentUnsupported" xml:space="preserve"><value>此機器不支持所選的媒體 。</value></data>
+  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>Sharp 選項的值無效 。</value></data>
+  <data name="Emulation.Sharp.Error.CoreNotFound" xml:space="preserve"><value>未找到所需的Sharp核心 。</value></data>
+  <data name="Emulation.Sharp.Error.CoreRejected" xml:space="preserve"><value>無法裝入所選的 Sharp 核心 。</value></data>
+  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>Sharp 保存狀態無效 。</value></data>
+  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>Sharp 主機可執行路徑無法使用 。</value></data>
+  <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>細節 :{0}</value></data>
+  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>與Sharp主機的通信失敗.</value></data>
+  <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知的環境命令 :{0}</value></data>
+</root>
