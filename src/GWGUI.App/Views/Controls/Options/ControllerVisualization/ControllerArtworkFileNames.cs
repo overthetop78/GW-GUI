@@ -2,6 +2,10 @@ namespace GWGUI.App.Views.Controls.Options.ControllerVisualization;
 
 internal static class ControllerArtworkFileNames
 {
+    internal const string SnkNeoGeoArcadeStick = "snk-arcade-stick.png";
+    internal const string SnkNeoGeoCdPad = "snk-cd-pad.png";
+    internal const string SnkNeoGeoPocket = "snk-pocket-controls.png";
+    internal const string SnkNeoGeoPocketColor = "snk-pocket-color-controls.png";
     internal const string SharpCyberstick = "sharp-cyberstick.png";
     internal const string MattelIntellivisionController = "mattel-intellivision-controller.png";
     internal const string PhilipsVideopacJoystick = "magnavox-odyssey2-videopac-joystick.png";

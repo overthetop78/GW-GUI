@@ -21,7 +21,7 @@ public sealed class WavePcmRandomAccessData : IMediaRandomAccessData
 
     public long Length { get; }
 
-    public static WavePcmRandomAccessData Open(string path)
+    public static WavePcmRandomAccessData Open(string path, bool requireCompleteSectors = true)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         var fullPath = Path.GetFullPath(path);
@@ -79,7 +79,8 @@ public sealed class WavePcmRandomAccessData : IMediaRandomAccessData
 
         if (!hasPcmFormat || dataLength <= 0)
             throw new InvalidDataException("The WAVE file has no supported PCM data chunk.");
-        if (dataLength % WavePcmConstants.AudioSectorSize != 0)
+        if (dataLength % WavePcmConstants.BlockAlign != 0) throw new InvalidDataException("The WAVE PCM data does not contain complete audio samples.");
+        if (requireCompleteSectors && dataLength % WavePcmConstants.AudioSectorSize != 0)
             throw new InvalidDataException("The WAVE PCM data is not aligned to complete CD audio sectors.");
         return new WavePcmRandomAccessData(fullPath, dataOffset, dataLength);
     }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Error.StateIncompatible" xml:space="preserve"><value>Η SNK Η αποθηκευμένη κατάσταση είναι ασύμβατη με την τρέχουσα μηχανή.</value></data>
+  <data name="Emulation.Snk.Error.Unexpected" xml:space="preserve"><value>Ένα απροσδόκητο SNK Συνέβη σφάλμα εξομοίωσης.</value></data>
+  <data name="Emulation.Snk.Error.FirmwareMissing" xml:space="preserve"><value>Α απαιτείται SNK Το λογισμικό λείπει.</value></data>
+  <data name="Emulation.Snk.Error.FirmwareInvalid" xml:space="preserve"><value>Το σύστημα ROM είναι άκυρη ή ασυμβίβαστη.</value></data>
+  <data name="Emulation.Snk.Error.ContentNotFound" xml:space="preserve"><value>Το ρυθμισμένο SNK Δεν βρέθηκαν μέσα ενημέρωσης.</value></data>
+  <data name="Emulation.Snk.Error.ContentUnsupported" xml:space="preserve"><value>Αυτή η μηχανή δεν υποστηρίζει τα επιλεγμένα μέσα.</value></data>
+  <data name="Emulation.Snk.Error.OptionInvalid" xml:space="preserve"><value>Α SNK η επιλογή έχει μη έγκυρη τιμή.</value></data>
+  <data name="Emulation.Snk.Error.CoreNotFound" xml:space="preserve"><value>Η απαιτούμενη SNK Ο πυρήνας δεν βρέθηκε.</value></data>
+  <data name="Emulation.Snk.Error.CoreRejected" xml:space="preserve"><value>Το επιλεγμένο SNK Ο πυρήνας δεν μπορεί να φορτωθεί.</value></data>
+  <data name="Emulation.Snk.Error.StateInvalid" xml:space="preserve"><value>Η SNK Η αποθηκευμένη κατάσταση είναι άκυρη.</value></data>
+  <data name="Emulation.Snk.Error.HostExecutableMissing" xml:space="preserve"><value>Η SNK Η εκτελέσιμη διαδρομή του υπολογιστή δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.Snk.Error.Details" xml:space="preserve"><value>Λεπτομέρειες: {0}</value></data>
+  <data name="Emulation.Snk.Error.HostProtocolFailure" xml:space="preserve"><value>Επικοινωνία με το SNK Ο ξενιστής απέτυχε.</value></data>
+  <data name="Emulation.Snk.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Άγνωστη εντολή περιβάλλοντος: {0}</value></data>
+</root>

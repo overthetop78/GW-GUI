@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Error.StateIncompatible" xml:space="preserve"><value>, SNK Starea salvată este incompatibilă cu maşina curentă.</value></data>
+  <data name="Emulation.Snk.Error.Unexpected" xml:space="preserve"><value>Un neasteptat SNK a apărut o eroare de emulare.</value></data>
+  <data name="Emulation.Snk.Error.FirmwareMissing" xml:space="preserve"><value>O nevoie SNK Firmware lipseşte.</value></data>
+  <data name="Emulation.Snk.Error.FirmwareInvalid" xml:space="preserve"><value>Sistemul ROM este invalidă sau incompatibilă.</value></data>
+  <data name="Emulation.Snk.Error.ContentNotFound" xml:space="preserve"><value>Configurat SNK Nu s-a găsit media.</value></data>
+  <data name="Emulation.Snk.Error.ContentUnsupported" xml:space="preserve"><value>Această mașină nu suportă media selectată.</value></data>
+  <data name="Emulation.Snk.Error.OptionInvalid" xml:space="preserve"><value>A SNK opțiunea are o valoare invalidă.</value></data>
+  <data name="Emulation.Snk.Error.CoreNotFound" xml:space="preserve"><value>Cerinţele SNK Miezul nu a fost găsit.</value></data>
+  <data name="Emulation.Snk.Error.CoreRejected" xml:space="preserve"><value>Alegeți SNK Miezul nu a putut fi încărcat.</value></data>
+  <data name="Emulation.Snk.Error.StateInvalid" xml:space="preserve"><value>, SNK Starea salvată nu este validă.</value></data>
+  <data name="Emulation.Snk.Error.HostExecutableMissing" xml:space="preserve"><value>, SNK Calea executabilă a gazdei nu este disponibilă.</value></data>
+  <data name="Emulation.Snk.Error.Details" xml:space="preserve"><value>Detalii: {0}</value></data>
+  <data name="Emulation.Snk.Error.HostProtocolFailure" xml:space="preserve"><value>Comunicarea cu SNK gazda a eşuat.</value></data>
+  <data name="Emulation.Snk.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comandă de mediu necunoscută: {0}</value></data>
+</root>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Error.StateIncompatible" xml:space="preserve"><value>The SNK negara bagian yang disimpan tidak kompatibel dengan mesin saat ini.</value></data>
+  <data name="Emulation.Snk.Error.Unexpected" xml:space="preserve"><value>Sebuah tak terduga SNK kesalahan emulasi terjadi.</value></data>
+  <data name="Emulation.Snk.Error.FirmwareMissing" xml:space="preserve"><value>Diperlukan SNK firmware hilang.</value></data>
+  <data name="Emulation.Snk.Error.FirmwareInvalid" xml:space="preserve"><value>Sistem ROM tidak valid atau tidak kompatibel.</value></data>
+  <data name="Emulation.Snk.Error.ContentNotFound" xml:space="preserve"><value>Dikonfigurasi SNK media tidak ditemukan.</value></data>
+  <data name="Emulation.Snk.Error.ContentUnsupported" xml:space="preserve"><value>Mesin ini tidak mendukung media yang dipilih.</value></data>
+  <data name="Emulation.Snk.Error.OptionInvalid" xml:space="preserve"><value>A SNK pilihan memiliki nilai yang tidak valid.</value></data>
+  <data name="Emulation.Snk.Error.CoreNotFound" xml:space="preserve"><value>Diperlukan SNK inti tidak ditemukan.</value></data>
+  <data name="Emulation.Snk.Error.CoreRejected" xml:space="preserve"><value>Yang dipilih SNK inti tidak dapat dimuat.</value></data>
+  <data name="Emulation.Snk.Error.StateInvalid" xml:space="preserve"><value>The SNK keadaan tersimpan tidak valid.</value></data>
+  <data name="Emulation.Snk.Error.HostExecutableMissing" xml:space="preserve"><value>The SNK jalur eksekusi host tidak tersedia.</value></data>
+  <data name="Emulation.Snk.Error.Details" xml:space="preserve"><value>Rincian: {0}</value></data>
+  <data name="Emulation.Snk.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikasi dengan SNK host gagal.</value></data>
+  <data name="Emulation.Snk.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Perintah lingkungan tidak dikenal: {0}</value></data>
+</root>

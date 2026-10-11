@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Content.Initial" xml:space="preserve"><value>Media de joc</value></data>
+  <data name="Emulation.Snk.Memory.Display" xml:space="preserve"><value>Memorie video</value></data>
+  <data name="Emulation.Snk.Audio.Native" xml:space="preserve"><value>hardware audio</value></data>
+  <data name="Emulation.Snk.Video.Native" xml:space="preserve"><value>hardware video</value></data>
+  <data name="Emulation.Snk.Controls.Native" xml:space="preserve"><value>Setări controlor</value></data>
+  <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Configurările sistemului</value></data>
+  <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Sistem BIOS</value></data>
+  <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Auxiliar BIOS</value></data>
+  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Emulează Neo Geo CD şi Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
+  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Emulează cartuşul Neo Geo şi CD sisteme.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Emulează compatibil SNK sisteme.</value></data>
+  <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Limba</value></data>
+  <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Limba japoneză</value></data>
+  <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Limba engleză</value></data>
+  <data name="Emulation.Snk.Help.DarkFilterLevel" xml:space="preserve"><value>Activați reducerea luminozității bazate pe luminozitate. Poate fi utilizat pentru a evita strălucirea / tulpina ochi atunci când se joacă jocuri cu fundaluri albe.</value></data>
+  <data name="Emulation.Snk.Value.Manual"><value>Manual</value></data>
+  <data name="Emulation.Snk.Setting.RealTimeClock" xml:space="preserve"><value>Ceasul în timp real</value></data>
+  <data name="Emulation.Snk.Help.RealTimeClock" xml:space="preserve"><value>Selectează modul în care ceasul în timp real a emulat avansează. "Determinist" numără ramele emulate dintr-o bază fixă, așa că RTC "Real Time" citește ceasul gazdă direct (un ceas live, dar non-terminist).</value></data>
+  <data name="Emulation.Snk.Value.Deterministic" xml:space="preserve"><value>Determinist</value></data>
+  <data name="Emulation.Snk.Value.RealTime" xml:space="preserve"><value>Timp real</value></data>
+  <data name="Emulation.Snk.Setting.AudioQuality" xml:space="preserve"><value>Calitate audio</value></data>
+  <data name="Emulation.Snk.Setting.AudioSampleRate" xml:space="preserve"><value>Rata de eșantionare audio</value></data>
+  <data name="Emulation.Snk.Value.Game" xml:space="preserve"><value>joc</value></data>
+  <data name="Emulation.Snk.Value.System" xml:space="preserve"><value>sistem</value></data>
+  <data name="Emulation.Snk.Setting.MainProcessorSpeed" xml:space="preserve"><value>Viteza procesorului principal (%)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderMethod" xml:space="preserve"><value>Metoda alternativă de read</value></data>
+  <data name="Emulation.Snk.Setting.VideoApproach1Enabled" xml:space="preserve"><value>Abordare video 1 Activată</value></data>
+  <data name="Emulation.Snk.Setting.HideGameInfoScreen" xml:space="preserve"><value>Ascunde ecranul cu informații despre joc</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningScreen" xml:space="preserve"><value>Ascunde ecranul de avertizare</value></data>
+  <data name="Emulation.Snk.Setting.EnableMultithreading" xml:space="preserve"><value>Activează mai multe fire</value></data>
+  <data name="Emulation.Snk.Setting.SetBrightness" xml:space="preserve"><value>Setează luminozitatea</value></data>
+  <data name="Emulation.Snk.Setting.SetContrast" xml:space="preserve"><value>Setează contrastul</value></data>
+  <data name="Emulation.Snk.Setting.SetGamma" xml:space="preserve"><value>Set gama</value></data>
+  <data name="Emulation.Snk.Setting.SkipDisclaimer" xml:space="preserve"><value>Scapă de renunțare</value></data>
+  <data name="Emulation.Snk.Setting.SkipWarnings" xml:space="preserve"><value>Săriți peste avertismente</value></data>
+  <data name="Emulation.Snk.Help.DisplayMAMEMenu" xml:space="preserve"><value>Comută vizibilitatea internă MAME meniu.</value></data>
+  <data name="Emulation.Snk.Setting.Brightness" xml:space="preserve"><value>Luminozitate</value></data>
+  <data name="Emulation.Snk.Help.Brightness" xml:space="preserve"><value>Se modifică nivelul de luminozitate utilizat.</value></data>
+  <data name="Emulation.Snk.Setting.GammaCorrection" xml:space="preserve"><value>Corecția Gamma</value></data>
+  <data name="Emulation.Snk.Help.GammaCorrection" xml:space="preserve"><value>Se modifică nivelul gamma utilizat.</value></data>
+  <data name="Emulation.Snk.Help.DisplayArtwork" xml:space="preserve"><value>Folosit pentru a afișa lucrări de artă personalizate atunci când sunt disponibile.</value></data>
+  <data name="Emulation.Snk.Help.ArtworkResolutionMultiplier" xml:space="preserve"><value>Creşte rezoluţia lucrărilor de artă cu valoarea multiplicatoare selectată.</value></data>
+  <data name="Emulation.Snk.Setting.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Specifică Neo Geo BIOS</value></data>
+  <data name="Emulation.Snk.Help.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Selectați fișiere bio alternative.</value></data>
+  <data name="Emulation.Snk.Value.Asia"><value>asia</value></data>
+  <data name="Emulation.Snk.Value.Japan" xml:space="preserve"><value>Japonia</value></data>
+  <data name="Emulation.Snk.Setting.UseSamples" xml:space="preserve"><value>Folosește eșantioane</value></data>
+  <data name="Emulation.Snk.Help.UseSamples" xml:space="preserve"><value>Permite încărcarea fișierelor de eșantionare audio atunci când sunt furnizate în dosarul de eșantioane.</value></data>
+  <data name="Emulation.Snk.Help.AutosaveHiscore" xml:space="preserve"><value>Recomandat să utilizeze implicit, care va salva hiscore atunci când se închide conținutul. Recursiv va salva în mod repetat tot timpul în timpul jocului. Dezactivat va ocoli utilizarea de joc. hiscore.dat Dosar complet.</value></data>
+  <data name="Emulation.Snk.Help.CPUClockScale" xml:space="preserve"><value>Folosit sub sau peste ceas emulat CPU cu un procent specificat.</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningsScreen" xml:space="preserve"><value>Ascunde ecranul de avertizare</value></data>
+  <data name="Emulation.Snk.Setting.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Utilizați 32-biți adâncimea culorii atunci când sunt disponibile</value></data>
+  <data name="Emulation.Snk.Help.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Schimbarea format pixel, unele jocuri necesită acest lucru pentru a face în mod corespunzător, ar putea afecta performanţele pe unele platforme</value></data>
+  <data name="Emulation.Snk.Setting.VerticalMode" xml:space="preserve"><value>Modul vertical</value></data>
+  <data name="Emulation.Snk.Help.VerticalMode" xml:space="preserve"><value>Rotește ecranul pentru ecranele verticale</value></data>
+  <data name="Emulation.Snk.Value.Alternate" xml:space="preserve"><value>alternator</value></data>
+  <data name="Emulation.Snk.Value.TATEAlternate" xml:space="preserve"><value>TATE alternator</value></data>
+  <data name="Emulation.Snk.Setting.UseA60HzRefreshRate" xml:space="preserve"><value>Utilizați o rată de reîmprospătare de 60 Hz</value></data>
+  <data name="Emulation.Snk.Help.UseA60HzRefreshRate" xml:space="preserve"><value>Utilizați 60 Hz în loc de rata originală de reîmprospătare. Acest lucru poate schimba viteza de joc și provoca animație inegală.</value></data>
+  <data name="Emulation.Snk.Setting.Resolution" xml:space="preserve"><value>Rezoluția</value></data>
+  <data name="Emulation.Snk.Help.Resolution" xml:space="preserve"><value>Stabiliţi rezoluţia în anumite jocuri (vector)</value></data>
+  <data name="Emulation.Snk.Help.FixedFrameskip" xml:space="preserve"><value>Când 'Frameskip' este setat la 'Fixed' sau dacă frontend-ul nu suportă modul alternativ 'Frameskip', săriți peste redarea la o rată fixă a ramelor X din X+1</value></data>
+  <data name="Emulation.Snk.Value.NoSkipping" xml:space="preserve"><value>Nu săriţi peste</value></data>
+  <data name="Emulation.Snk.Setting.CPUClock" xml:space="preserve"><value>CPU ceas</value></data>
+  <data name="Emulation.Snk.Help.CPUClock" xml:space="preserve"><value>Schimbarea frecvenței cpu emulate pentru diferite sisteme, prin creșterea vă poate repara încetinirile native în unele jocuri, prin scăderea vă poate ajuta performanța pe dispozitive low-end</value></data>
+  <data name="Emulation.Snk.Setting.DiagnosticInput" xml:space="preserve"><value>Introducere diagnostică</value></data>
+  <data name="Emulation.Snk.Help.DiagnosticInput" xml:space="preserve"><value>Configurează combinația butonului pentru a introduce meniul de service cabinet</value></data>
+  <data name="Emulation.Snk.Help.Hiscores" xml:space="preserve"><value>Activează suport scoruri mari, de asemenea, aveți nevoie de fișier hiscore.dat în sistemul/fbneo/ dosar</value></data>
+  <data name="Emulation.Snk.Help.AllowPatchedRomsets" xml:space="preserve"><value>Permite romsets din sistemul/fbneo/patched/ folder pentru a suprascrie romsets dvs., CRC vor fi ignorate, dar dimensiuni și nume trebuie să se potrivească în continuare, în plus acest lucru este, de asemenea, comutatorul principal pentru dacă IPS Patch și RomData sunt executate sau nu, trebuie să închideți conținutul pentru ca această setare să intre în vigoare</value></data>
+  <data name="Emulation.Snk.Setting.SampleInterpolation" xml:space="preserve"><value>Interpolarea probelor</value></data>
+  <data name="Emulation.Snk.Help.SampleInterpolation" xml:space="preserve"><value>Configurați interpolarea eșantionului, ar putea avea impact asupra performanțelor</value></data>
+  <data name="Emulation.Snk.Setting.FMInterpolation" xml:space="preserve"><value>FM Interpolarea</value></data>
+  <data name="Emulation.Snk.Help.FMInterpolation" xml:space="preserve"><value>Configurează FM interpolarea, ar putea avea impact asupra performanțelor</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilter" xml:space="preserve"><value>Filtru de Pasiune mică</value></data>
+  <data name="Emulation.Snk.Help.LowPassFilter" xml:space="preserve"><value>Activează filtrul de Pass scăzut</value></data>
+  <data name="Emulation.Snk.Setting.AnalogSpeed" xml:space="preserve"><value>Viteză analogică</value></data>
+  <data name="Emulation.Snk.Help.AnalogSpeed" xml:space="preserve"><value>Mitiţi viteza de control analogic, unele jocuri ar putea necesita valori mici pentru a fi redate</value></data>
+  <data name="Emulation.Snk.Setting.SOCDMode" xml:space="preserve"><value>SOCD Mod</value></data>
+  <data name="Emulation.Snk.Help.SOCDMode" xml:space="preserve"><value>Modificare ULDR gestionarea prioritară</value></data>
+  <data name="Emulation.Snk.Value.Disabled" xml:space="preserve"><value>dezactivat</value></data>
+  <data name="Emulation.Snk.Value.SimultaneousNeutral" xml:space="preserve"><value>Neutru simultan</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority4Way" xml:space="preserve"><value>Ultima prioritate de intrare (4 Mod)</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority8Way" xml:space="preserve"><value>Ultima prioritate de intrare (8 Way)</value></data>
+  <data name="Emulation.Snk.Value.FirstInputPriority" xml:space="preserve"><value>Prima prioritate de intrare</value></data>
+  <data name="Emulation.Snk.Setting.CrosshairEmulation" xml:space="preserve"><value>Emulare încrucişată</value></data>
+  <data name="Emulation.Snk.Value.HideWithLightgunDevice" xml:space="preserve"><value>ascunde cu dispozitiv de pușcă</value></data>
+  <data name="Emulation.Snk.Value.AlwaysHide" xml:space="preserve"><value>Întotdeauna ascunde</value></data>
+  <data name="Emulation.Snk.Value.AlwaysShow" xml:space="preserve"><value>mereu arată</value></data>
+  <data name="Emulation.Snk.Setting.NeoGeoMode" xml:space="preserve"><value>Modul Neo-Geo</value></data>
+  <data name="Emulation.Snk.Help.NeoGeoMode" xml:space="preserve"><value>Încărcaţi bio-urile adecvate în funcţie de alegerea dumneavoastră, cu condiţia ca un astfel de bios să fie compatibil cu jocul de alergare</value></data>
+  <data name="Emulation.Snk.Value.MVSEuropeAsiaEnglish" xml:space="preserve"><value>MVS Europa/Asia (engleză)</value></data>
+  <data name="Emulation.Snk.Value.MVSUSAEnglishCensored" xml:space="preserve"><value>MVS USA (English - Cenzurat)</value></data>
+  <data name="Emulation.Snk.Value.MVSJapanJapanese" xml:space="preserve"><value>MVS Japonia (Japonia)</value></data>
+  <data name="Emulation.Snk.Value.AESEuropeAsiaEnglish" xml:space="preserve"><value>AES Europa/Asia (engleză)</value></data>
+  <data name="Emulation.Snk.Value.AESJapanJapanese" xml:space="preserve"><value>AES Japonia (Japonia)</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardMode" xml:space="preserve"><value>Modul card de memorie</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardMode" xml:space="preserve"><value>Schimbă comportamentul pentru cardul de memorie</value></data>
+  <data name="Emulation.Snk.Value.Shared" xml:space="preserve"><value>Împărţit</value></data>
+  <data name="Emulation.Snk.Value.PerGame" xml:space="preserve"><value>per-joc</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip11" xml:space="preserve"><value>Depanează dip 1 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip11" xml:space="preserve"><value>Activează dip 1 1 depanare</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip12" xml:space="preserve"><value>Depanează dip 1 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip12" xml:space="preserve"><value>Activează dip 1 2 depanare</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip13" xml:space="preserve"><value>Depanează dip 1 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip13" xml:space="preserve"><value>Activează dip 1 3 depanare</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip14" xml:space="preserve"><value>Depanează dip 1 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip14" xml:space="preserve"><value>Activează dip 1 4 depanare</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip15" xml:space="preserve"><value>Depanează dip 1 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip15" xml:space="preserve"><value>Activează dip 1 5 depanare</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip16" xml:space="preserve"><value>Depanează dip 1 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip16" xml:space="preserve"><value>Activează dip 1 6 depanare</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip17" xml:space="preserve"><value>Depanează dip 1 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip17" xml:space="preserve"><value>Activează dip 1 7 depanare</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip18" xml:space="preserve"><value>Depanează dip 1 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip18" xml:space="preserve"><value>Activează dip 1 8 depanare</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip21" xml:space="preserve"><value>Depanează dip 2 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip21" xml:space="preserve"><value>Activează dip de depanare 2 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip22" xml:space="preserve"><value>Depanează dip 2 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip22" xml:space="preserve"><value>Activează dip 2 2 depanare</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip23" xml:space="preserve"><value>Depanează dip 2 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip23" xml:space="preserve"><value>Activează depanarea dip 2 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip24" xml:space="preserve"><value>Depanează dip 2 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip24" xml:space="preserve"><value>Activează dip 2 4 depanare</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip25" xml:space="preserve"><value>Depanează dip 2 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip25" xml:space="preserve"><value>Activează dip de depanare 2 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip26" xml:space="preserve"><value>Depanează dip 2 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip26" xml:space="preserve"><value>Activează dip-ul de depanare 2 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip27" xml:space="preserve"><value>Depanează dip 2 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip27" xml:space="preserve"><value>Activează dip de depanare 2 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip28" xml:space="preserve"><value>Depanează dip 2 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip28" xml:space="preserve"><value>Activează dip depanare 2 8</value></data>
+  <data name="Emulation.Snk.Setting.Layer1" xml:space="preserve"><value>Nivelul 1</value></data>
+  <data name="Emulation.Snk.Help.Layer1" xml:space="preserve"><value>Pentru depanare</value></data>
+  <data name="Emulation.Snk.Setting.Layer2" xml:space="preserve"><value>Stratul 2</value></data>
+  <data name="Emulation.Snk.Setting.Layer3" xml:space="preserve"><value>Stratul 3</value></data>
+  <data name="Emulation.Snk.Setting.Layer4" xml:space="preserve"><value>Stratul 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite1"><value>Sprite 1</value></data>
+  <data name="Emulation.Snk.Setting.Sprite2"><value>Sprite 2</value></data>
+  <data name="Emulation.Snk.Setting.Sprite3"><value>Sprite 3</value></data>
+  <data name="Emulation.Snk.Setting.Sprite4"><value>Sprite 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite5"><value>Sprite 5</value></data>
+  <data name="Emulation.Snk.Setting.Sprite6"><value>Sprite 6</value></data>
+  <data name="Emulation.Snk.Setting.Sprite7"><value>Sprite 7</value></data>
+  <data name="Emulation.Snk.Setting.Sprite8"><value>Sprite 8</value></data>
+  <data name="Emulation.Snk.Setting.ThreadMode" xml:space="preserve"><value>Mod filet</value></data>
+  <data name="Emulation.Snk.Setting.Cheats" xml:space="preserve"><value>Trucuri</value></data>
+  <data name="Emulation.Snk.Setting.Throttle" xml:space="preserve"><value>Tulburare</value></data>
+  <data name="Emulation.Snk.Setting.BootToBIOS"><value>Boot to BIOS</value></data>
+  <data name="Emulation.Snk.Setting.BootToOSD"><value>Boot to OSD</value></data>
+  <data name="Emulation.Snk.Setting.ReadConfiguration" xml:space="preserve"><value>Citește configurația</value></data>
+  <data name="Emulation.Snk.Setting.WriteConfiguration" xml:space="preserve"><value>Configurare scriere</value></data>
+  <data name="Emulation.Snk.Setting.MAMEINIPaths" xml:space="preserve"><value>MAME INI Căi</value></data>
+  <data name="Emulation.Snk.Setting.Softlists" xml:space="preserve"><value>Liste de soft</value></data>
+  <data name="Emulation.Snk.Setting.MediaType" xml:space="preserve"><value>Tip media</value></data>
+  <data name="Emulation.Snk.Value.Cart" xml:space="preserve"><value>cartuş</value></data>
+  <data name="Emulation.Snk.Value.Cass"><value>cass</value></data>
+  <data name="Emulation.Snk.Value.Cdrm"><value>cdrm</value></data>
+  <data name="Emulation.Snk.Value.Flop"><value>flop</value></data>
+  <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>tare</value></data>
+  <data name="Emulation.Snk.Value.Prin"><value>prin</value></data>
+  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>Rom</value></data>
+  <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>Serl</value></data>
+  <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS Activat</value></data>
+  <data name="Emulation.Snk.Setting.JoystickDeadzone"><value>Joystick Deadzone</value></data>
+  <data name="Emulation.Snk.Setting.JoystickSaturation" xml:space="preserve"><value>Saturaţia Joystick</value></data>
+  <data name="Emulation.Snk.Setting.JoystickThreshold" xml:space="preserve"><value>Prag Joystick</value></data>
+  <data name="Emulation.Snk.Setting.Joystick4WaySimulation" xml:space="preserve"><value>Simulare Joystick cu 4 căi</value></data>
+  <data name="Emulation.Snk.Value.4way"><value>4way</value></data>
+  <data name="Emulation.Snk.Value.Strict"><value>strict</value></data>
+  <data name="Emulation.Snk.Value.Qbert"><value>qbert</value></data>
+  <data name="Emulation.Snk.Setting.ProfileButtonsPerGame" xml:space="preserve"><value>Butoni profil per joc</value></data>
+  <data name="Emulation.Snk.Setting.Mouse"><value>Mouse</value></data>
+  <data name="Emulation.Snk.Setting.LightgunMode" xml:space="preserve"><value>Modul Lightgun</value></data>
+  <data name="Emulation.Snk.Value.Lightgun"><value>Lightgun</value></data>
+  <data name="Emulation.Snk.Value.Touchscreen" xml:space="preserve"><value>Ecran tactil</value></data>
+  <data name="Emulation.Snk.Setting.LightgunOffscreenPosition" xml:space="preserve"><value>Poziția de pe ecranul de lumină</value></data>
+  <data name="Emulation.Snk.Value.Free" xml:space="preserve"><value>Liber</value></data>
+  <data name="Emulation.Snk.Value.FixedTopLeft" xml:space="preserve"><value>Fixat (Stânga sus)</value></data>
+  <data name="Emulation.Snk.Value.FixedBottomRight" xml:space="preserve"><value>Fix (jos dreapta)</value></data>
+  <data name="Emulation.Snk.Setting.ScreenRotationMode" xml:space="preserve"><value>Modul de rotire a ecranului</value></data>
+  <data name="Emulation.Snk.Value.Internal" xml:space="preserve"><value>Intern</value></data>
+  <data name="Emulation.Snk.Setting.AudioProcessorSpeed" xml:space="preserve"><value>Viteză procesor audio (%)</value></data>
+  <data name="Emulation.Snk.Help.AutomaticLoadFastForward" xml:space="preserve"><value>Funcție experimentală pentru a accelera automat în timpul CD Acces.&#xA;Funcționează cu:&#xA;- Generic SCSI&#xA;- Sega CD şi Neo Geo CD</value></data>
+  <data name="Emulation.Snk.Setting.CoinLimit" xml:space="preserve"><value>Limita de monede</value></data>
+  <data name="Emulation.Snk.Setting.SampleRate" xml:space="preserve"><value>Rata de eșantionare</value></data>
+  <data name="Emulation.Snk.Help.SampleRate" xml:space="preserve"><value>Numărul de probe audio prelevate pe secundă. Ratele mai mari oferă audio de calitate mai bună.</value></data>
+  <data name="Emulation.Snk.Value.Threshold" xml:space="preserve"><value>prag</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipInterval" xml:space="preserve"><value>Interval Frameskip</value></data>
+  <data name="Emulation.Snk.Help.FrameskipInterval" xml:space="preserve"><value>Numărul maxim de cadre consecutive care pot fi omise. Valorile inferioare păstrează actualizările vizuale mai netede la costul mai multor picături audio atunci când gazda este supraîncărcată.</value></data>
+  <data name="Emulation.Snk.Setting.ShowGameInformation" xml:space="preserve"><value>Arată informații despre joc</value></data>
+  <data name="Emulation.Snk.Help.ShowGameInformation" xml:space="preserve"><value>Arată MAMEEcrane de informare a şoferului şi a jocului la pornire înainte de începerea jocului.</value></data>
+  <data name="Emulation.Snk.Setting.Stereo" xml:space="preserve"><value>StereoCity in California USA</value></data>
+  <data name="Emulation.Snk.Help.Stereo" xml:space="preserve"><value>Ieșire audio stereo. Dezactivați pentru ușor mai mici CPU pe jocuri care nu folosesc amestecarea stereo.</value></data>
+  <data name="Emulation.Snk.Setting.SystemType" xml:space="preserve"><value>Tip sistem</value></data>
+  <data name="Emulation.Snk.Help.SystemType" xml:space="preserve"><value>A se preciza tipul de sistem: AES, MVS, sau Univers BIOS Sistem</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoAESHomeConsole" xml:space="preserve"><value>Neo Geo AES (Consolă de casă)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoMVSArcade"><value>Neo Geo MVS (Arcade)</value></data>
+  <data name="Emulation.Snk.Value.UniverseBIOSCommunityEnhancedBIOS" xml:space="preserve"><value>Univers BIOS (îmbunătăţirea Comunităţii) BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.CDSystemType" xml:space="preserve"><value>CD Tip sistem</value></data>
+  <data name="Emulation.Snk.Help.CDSystemType" xml:space="preserve"><value>A se preciza CD Tip de sistem la încărcarea Neo Geo CD imagini disc</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDFrontLoader" xml:space="preserve"><value>Neo Geo CD (Încarcător frontal)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDTopLoader"><value>Neo Geo CD (Top Loader)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDZUniverseBIOS" xml:space="preserve"><value>Neo Geo CDZ (Univers) BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.Region" xml:space="preserve"><value>Regiune</value></data>
+  <data name="Emulation.Snk.Help.Region" xml:space="preserve"><value>A se preciza regiunea: USA, Japonia, Asia, Europa</value></data>
+  <data name="Emulation.Snk.Value.Europe" xml:space="preserve"><value>Europa</value></data>
+  <data name="Emulation.Snk.Help.MemoryCard" xml:space="preserve"><value>Activează sau dezactivează cardul de memorie</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardWriteProtect" xml:space="preserve"><value>Preveni modificările cardului de memorie.</value></data>
+  <data name="Emulation.Snk.Setting.SettingMode" xml:space="preserve"><value>Mod de configurare</value></data>
+  <data name="Emulation.Snk.Help.SettingMode" xml:space="preserve"><value>Aduceți sistemul ROM meniu la pornirea pe sisteme de arcade</value></data>
+  <data name="Emulation.Snk.Help.FourPlayerMode" xml:space="preserve"><value>Setează patru jucători (dual MVS modul cabinet) pentru Asia/Japonia MVS sisteme</value></data>
+  <data name="Emulation.Snk.Help.Freeplay" xml:space="preserve"><value>Redă MVS jocuri fără a fi nevoie să introduceți monede</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanTop" xml:space="preserve"><value>Masca de pe pixeli ascunse de un bezel sau la frontieră pe CRT originale (top)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanBottom" xml:space="preserve"><value>Masca de pe pixeli ascunse de un bezel sau frontieră pe CRT originale (jos)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanLeft" xml:space="preserve"><value>Masca de pe pixeli ascunse de un bezel sau la frontieră pe CRT originale (stânga)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanRight" xml:space="preserve"><value>Masca de pe pixeli ascunse de un bezel sau frontieră pe CRT originale (drept)</value></data>
+  <data name="Emulation.Snk.Setting.Palette" xml:space="preserve"><value>Paleta</value></data>
+  <data name="Emulation.Snk.Help.Palette" xml:space="preserve"><value>Setează Paleta</value></data>
+  <data name="Emulation.Snk.Setting.AspectRatio" xml:space="preserve"><value>Raport privind evaluarea</value></data>
+  <data name="Emulation.Snk.Help.AspectRatio" xml:space="preserve"><value>Stabiliţi raportul de aspect</value></data>
+  <data name="Emulation.Snk.Value.PerfectlySquarePixels11PAR" xml:space="preserve"><value>Perfect pătrat Pixels (1:1 PAR)</value></data>
+  <data name="Emulation.Snk.Value.OstensiblyAccurateNTSCAspectRatio4544PAR" xml:space="preserve"><value>Ostesibil de exact NTSC Raport privind evaluarea (45:44) PAR)</value></data>
+  <data name="Emulation.Snk.Value.VeryTraditionalNTSCAspectRatio43DAR" xml:space="preserve"><value>Foarte tradiţional. NTSC Raportul Aspect (4:3 DAR)</value></data>
+  <data name="Emulation.Snk.Setting.SpritesPerLineLimit" xml:space="preserve"><value>Limita de sprițe pe linie</value></data>
+  <data name="Emulation.Snk.Help.SpritesPerLineLimit" xml:space="preserve"><value>Setați limita de sprițe-per-line - creșterea cauzează erori în unele jocuri</value></data>
+  <data name="Emulation.Snk.Setting.ProcessorSpeed" xml:space="preserve"><value>Viteza procesorului</value></data>
+  <data name="Emulation.Snk.Help.ProcessorSpeed" xml:space="preserve"><value>Rulați procesorul la 24 MHz. Această viteză poate provoca erori în jocuri.</value></data>
+  <data name="Emulation.Snk.Setting.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Dezactivează ADPCM Înfăşurare acumulator</value></data>
+  <data name="Emulation.Snk.Help.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Schimbă ADPCM comportamentul acumulatorului pentru corectarea erorilor de sunet în unele jocuri. Lăsați acest setare dezactivat pentru alte jocuri.</value></data>
+  <data name="Emulation.Snk.Help.CDSpeedHack" xml:space="preserve"><value>Peticește BIOS buclele de așteptare ocupat pentru a reduce timpul de încărcare (Nu funcționează pentru Univers BIOS)</value></data>
+  <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Corectează BIOS încărcați indicii atunci când o CD tampon DMA este mai mare decât un singur sector, fixarea sunet corupt în stadiul bonus Art of Fighting lui. Acesta este un hack, și comportamentul hardware real este neconfirmat.</value></data>
+  <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Rapid-înainte prin CD ecrane de încărcare</value></data>
+  <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>interpolare de ordinul al treilea (4 puncte)</value></data>
+  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Emulează consolele cu monocrom și cu culori.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Emulează consolele cu monocrom și cu culori.</value></data>
+  <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Selectaţi limba utilizată de jocuri compatibile.</value></data>
+  <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Sare peste cadrul video</value></data>
+  <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Săriți peste unele cadre video atunci când performanța este insuficientă, pentru a reduce întreruperile în ieșire audio.</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipThreshold" xml:space="preserve"><value>Prag de tampon audio (%)</value></data>
+  <data name="Emulation.Snk.Help.FrameskipThreshold" xml:space="preserve"><value>Săriți peste cadrele video atunci când tamponul audio conține mai puține date decât acest procent din capacitatea sa.</value></data>
+  <data name="Emulation.Snk.Help.AudioQuality" xml:space="preserve"><value>Alegeți între sinteza sunetului mai rapidă și sinteza sunetului mai exactă.</value></data>
+  <data name="Emulation.Snk.Help.AudioSampleRate" xml:space="preserve"><value>Alegeți frecvența de eșantionare audio de ieșire. Frecvențe mai mari pot îmbunătăți calitatea sunetului și necesită mai multă putere de procesare.</value></data>
+  <data name="Emulation.Snk.Setting.AutoSaveLoadStates" xml:space="preserve"><value>Salvează și restabilește automat stările</value></data>
+  <data name="Emulation.Snk.Help.SkipDisclaimer" xml:space="preserve"><value>Ascunde anunţul legal când începe jocul.</value></data>
+  <data name="Emulation.Snk.Help.SkipWarnings" xml:space="preserve"><value>Ascunde avertismente despre probleme cunoscute atunci când începe un joc.</value></data>
+  <data name="Emulation.Snk.Help.SampleRateHint" xml:space="preserve"><value>Alege frecventa de prelevare audio de ieșire. Modul automat folosește frecvența de ieșire preferată.</value></data>
+  <data name="Emulation.Snk.Value.UpPriorityUpOverrideDown" xml:space="preserve"><value>Acordă prioritate direcţiei ascendente</value></data>
+  <data name="Emulation.Snk.Value.DownPriorityLeftRightLastInputPriority" xml:space="preserve"><value>Acordă prioritate direcţiei descendente; foloseşte cea mai recentă intrare orizontală</value></data>
+  <data name="Emulation.Snk.Help.CrosshairEmulation" xml:space="preserve"><value>Alegeți dacă să afișați marcatorul de țintă. Modul automat îl ascunde atunci când se folosește un pistol cu lumină sau un ecran tactil.</value></data>
+  <data name="Emulation.Snk.Value.UseBiosSetInBIOSDipswitch" xml:space="preserve"><value>Utilizaţi BIOS selectat de întrerupătoarele hardware</value></data>
+  <data name="Emulation.Snk.Setting.SoftlistAutomaticMediaType" xml:space="preserve"><value>Detectează automat tipul de suport</value></data>
+  <data name="Emulation.Snk.Help.VFSEnabled" xml:space="preserve"><value>Utilizați sistemul de fișiere virtuale furnizat de aplicație. Versiunea 4 sau mai târziu este necesară.</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkHardcodedOverlayOpacity" xml:space="preserve"><value>Opacitate suprapusă</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardWriteProtect" xml:space="preserve"><value>Protejați cardul de memorie împotriva modificărilor</value></data>
+  <data name="Emulation.Snk.Setting.DarkFilterLevel" xml:space="preserve"><value>Întunecare ecran (%)</value></data>
+  <data name="Emulation.Snk.Value.Fast" xml:space="preserve"><value>Sinteza sunetului rapid</value></data>
+  <data name="Emulation.Snk.Value.AccurateBandLimited" xml:space="preserve"><value>Sinteza acustică exactă</value></data>
+  <data name="Emulation.Snk.Setting.SaveStateNaming" xml:space="preserve"><value>Nume de fișier de stare salvat</value></data>
+  <data name="Emulation.Snk.Setting.EnableCheats" xml:space="preserve"><value>Activează coduri de trișor</value></data>
+  <data name="Emulation.Snk.Setting.HideNagScreen" xml:space="preserve"><value>Ascunde ecranul de anunţ legal</value></data>
+  <data name="Emulation.Snk.Setting.CoreProvidedAspectRatio" xml:space="preserve"><value>Raportul de aspect al ecranului furnizat de emulator</value></data>
+  <data name="Emulation.Snk.Setting.SetFrameskip" xml:space="preserve"><value>Rame video de sărit</value></data>
+  <data name="Emulation.Snk.Setting.SampleRateHint" xml:space="preserve"><value>Frecvenţa de prelevare a probelor audio preferată</value></data>
+  <data name="Emulation.Snk.Setting.UseExternalHiscoreDat" xml:space="preserve"><value>Utilizați fișierul extern de mare scor hiscore.dat</value></data>
+  <data name="Emulation.Snk.Setting.DisplayMAMEMenu" xml:space="preserve"><value>Arată MAME meniu</value></data>
+  <data name="Emulation.Snk.Setting.DisplayArtwork" xml:space="preserve"><value>Arată lucrări de artă decorativă</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkResolutionMultiplier" xml:space="preserve"><value>Multiplicator de rezoluție a operelor de artă decorative</value></data>
+  <data name="Emulation.Snk.Value.AutoAggressive" xml:space="preserve"><value>Mod automat agresiv</value></data>
+  <data name="Emulation.Snk.Value.AutoMax" xml:space="preserve"><value>Modul automat maxim</value></data>
+  <data name="Emulation.Snk.Setting.AutosaveHiscore" xml:space="preserve"><value>Salvează automat scorurile mari</value></data>
+  <data name="Emulation.Snk.Value.Recursively" xml:space="preserve"><value>Subdosare de căutare</value></data>
+  <data name="Emulation.Snk.Setting.BypassTimingSkew" xml:space="preserve"><value>Ocolește offset-ul de sincronizare</value></data>
+  <data name="Emulation.Snk.Setting.CPUClockScale" xml:space="preserve"><value>Multiplicatorul de viteză al procesorului</value></data>
+  <data name="Emulation.Snk.Setting.FixedFrameskip" xml:space="preserve"><value>Număr fix de cadre video de sărit</value></data>
+  <data name="Emulation.Snk.Value.Fixed" xml:space="preserve"><value>Număr fix</value></data>
+  <data name="Emulation.Snk.Setting.Hiscores" xml:space="preserve"><value>Scoruri mari</value></data>
+  <data name="Emulation.Snk.Setting.AllowPatchedRomsets" xml:space="preserve"><value>Permite arhivelor de jocuri modificate</value></data>
+  <data name="Emulation.Snk.Value.2Point1stOrder" xml:space="preserve"><value>interpolare de prim ordin (2 puncte)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderer" xml:space="preserve"><value>Metoda de redare alternativă</value></data>
+  <data name="Emulation.Snk.Value.Cropped" xml:space="preserve"><value>Imaginea tăiată</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRendererResolution" xml:space="preserve"><value>Soluție alternativă de redare</value></data>
+  <data name="Emulation.Snk.Setting.AutomaticLoadFastForward" xml:space="preserve"><value>Accelerarea automată a sarcinii discului</value></data>
+  <data name="Emulation.Snk.Setting.FourPlayerMode" xml:space="preserve"><value>Modul cu patru jucători</value></data>
+  <data name="Emulation.Snk.Setting.Freeplay" xml:space="preserve"><value>Joacă fără introducerea monedelor</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanTop" xml:space="preserve"><value>Ascunde pixeli de-a lungul marginii ecranului de sus</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanBottom" xml:space="preserve"><value>Ascunde pixeli de-a lungul marginii ecranului de jos</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanLeft" xml:space="preserve"><value>Ascunde pixeli de-a lungul marginii ecranului din stânga</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanRight" xml:space="preserve"><value>Ascunde pixeli de-a lungul marginii ecranului din dreapta</value></data>
+  <data name="Emulation.Snk.Value.ResistorNetwork" xml:space="preserve"><value>Simulare color a rețelei de rezistențe</value></data>
+  <data name="Emulation.Snk.Value.Raw" xml:space="preserve"><value>Culori nemodificate</value></data>
+  <data name="Emulation.Snk.Value.HardwareAccurate96" xml:space="preserve"><value>Limita de hardware originală (96)</value></data>
+  <data name="Emulation.Snk.Value.Double192" xml:space="preserve"><value>Dublaţi limita iniţială (192)</value></data>
+  <data name="Emulation.Snk.Value.Triple288" xml:space="preserve"><value>Triplează limita originală (288)</value></data>
+  <data name="Emulation.Snk.Setting.CDSpeedHack" xml:space="preserve"><value>Reducerea întârzierilor de încărcare a discului</value></data>
+  <data name="Emulation.Snk.Setting.CDDMALengthLimit" xml:space="preserve"><value>Limitarea dimensiunii transferurilor de date cu disc</value></data>
+  <data name="Emulation.Snk.Setting.SkipCDLoading" xml:space="preserve"><value>Săriți peste animația de încărcare a discului</value></data>
+  <data name="Emulation.Snk.Setting.HorizontalOverscan"><value>Ascunde pixeli de-a lungul marginilor ecranului stânga și dreapta</value></data>
+  <data name="Emulation.Snk.Setting.PerGameSaves"><value>Salvări separate pentru fiecare joc</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilterLevel"><value>Nivelul filtrului audio (%)</value></data>
+</root>

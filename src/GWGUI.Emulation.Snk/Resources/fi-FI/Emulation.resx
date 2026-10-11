@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Content.Initial" xml:space="preserve"><value>Pelivälineet</value></data>
+  <data name="Emulation.Snk.Memory.Display" xml:space="preserve"><value>Videomuisti</value></data>
+  <data name="Emulation.Snk.Audio.Native" xml:space="preserve"><value>Äänilaitteet</value></data>
+  <data name="Emulation.Snk.Video.Native" xml:space="preserve"><value>Videolaitteet</value></data>
+  <data name="Emulation.Snk.Controls.Native" xml:space="preserve"><value>Kontrollerin asetukset</value></data>
+  <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Järjestelmän asetukset</value></data>
+  <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Järjestelmä BIOS</value></data>
+  <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Apulaitteet BIOS</value></data>
+  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Emuloi Neo Geoa CD ja Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Emuloi yhteensopivat SNK Järjestelmät.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Emuloi yhteensopivat SNK Järjestelmät.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Emuloi yhteensopivat SNK Järjestelmät.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Emuloi yhteensopivat SNK Järjestelmät.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Emuloi yhteensopivat SNK Järjestelmät.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Emuloi yhteensopivat SNK Järjestelmät.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Emuloi yhteensopivat SNK Järjestelmät.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Emuloi yhteensopivat SNK Järjestelmät.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Emuloi yhteensopivat SNK Järjestelmät.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Emuloi yhteensopivat SNK Järjestelmät.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Emuloi yhteensopivat SNK Järjestelmät.</value></data>
+  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Emuloi Neo Geo -patruunan ja CD Järjestelmät.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Emuloi yhteensopivat SNK Järjestelmät.</value></data>
+  <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Kieli</value></data>
+  <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Japanin kieli</value></data>
+  <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Englannin kieli</value></data>
+  <data name="Emulation.Snk.Help.DarkFilterLevel" xml:space="preserve"><value>Käytä valovoima-pohjainen vaaleuden vähentäminen. Voidaan käyttää välttämään häikäisyä / silmän rasitusta pelatessa pelejä valkoisella taustalla.</value></data>
+  <data name="Emulation.Snk.Value.Manual" xml:space="preserve"><value>Käsikirja</value></data>
+  <data name="Emulation.Snk.Setting.RealTimeClock" xml:space="preserve"><value>Reaaliaika</value></data>
+  <data name="Emulation.Snk.Help.RealTimeClock" xml:space="preserve"><value>Valitsee, miten emulgoitu reaaliaikainen kello etenee. "Detterministinen" laskee emuloitu kehykset kiinteästä alusta, joten RTC lukemat ovat toistettavissa ja turvallisia netplay, kelata ja ajaa-counter. 'Tosiaika' lukee isäntäkello suoraan (live kello, mutta ei-määrittelevä).</value></data>
+  <data name="Emulation.Snk.Value.Deterministic" xml:space="preserve"><value>Määrityskyky</value></data>
+  <data name="Emulation.Snk.Value.RealTime" xml:space="preserve"><value>Reaaliaika</value></data>
+  <data name="Emulation.Snk.Setting.AudioQuality" xml:space="preserve"><value>Äänenlaatu</value></data>
+  <data name="Emulation.Snk.Setting.AudioSampleRate" xml:space="preserve"><value>Ääninäytteen näytteenottotaajuus</value></data>
+  <data name="Emulation.Snk.Value.Game" xml:space="preserve"><value>peli</value></data>
+  <data name="Emulation.Snk.Value.System" xml:space="preserve"><value>järjestelmä</value></data>
+  <data name="Emulation.Snk.Setting.MainProcessorSpeed" xml:space="preserve"><value>Pääprosessorin nopeus (%)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderMethod" xml:space="preserve"><value>Vaihtoehtoinen renderointimenetelmä</value></data>
+  <data name="Emulation.Snk.Setting.VideoApproach1Enabled" xml:space="preserve"><value>Videolähestyminen 1 Käytössä</value></data>
+  <data name="Emulation.Snk.Setting.HideGameInfoScreen" xml:space="preserve"><value>Piilota pelin info- näyttö</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningScreen" xml:space="preserve"><value>Piilota varoitusnäyttö</value></data>
+  <data name="Emulation.Snk.Setting.EnableMultithreading" xml:space="preserve"><value>Käytä monisäikeistä</value></data>
+  <data name="Emulation.Snk.Setting.SetBrightness" xml:space="preserve"><value>Aseta kirkkautta</value></data>
+  <data name="Emulation.Snk.Setting.SetContrast" xml:space="preserve"><value>Aseta kontrasti</value></data>
+  <data name="Emulation.Snk.Setting.SetGamma" xml:space="preserve"><value>Aseta gamma</value></data>
+  <data name="Emulation.Snk.Setting.SkipDisclaimer" xml:space="preserve"><value>Ohita vastuuvapauslauseke</value></data>
+  <data name="Emulation.Snk.Setting.SkipWarnings" xml:space="preserve"><value>Ohitusvaroitukset</value></data>
+  <data name="Emulation.Snk.Help.DisplayMAMEMenu" xml:space="preserve"><value>Vaihda sisäisen näkyvyyden MAME - Ruokalista.</value></data>
+  <data name="Emulation.Snk.Setting.Brightness" xml:space="preserve"><value>Kirkkaus</value></data>
+  <data name="Emulation.Snk.Help.Brightness" xml:space="preserve"><value>Muokkaa käytössä olevaa kirkkautta.</value></data>
+  <data name="Emulation.Snk.Setting.GammaCorrection" xml:space="preserve"><value>Gammakorjaus</value></data>
+  <data name="Emulation.Snk.Help.GammaCorrection" xml:space="preserve"><value>Muokkaa käytettävää gammatasoa.</value></data>
+  <data name="Emulation.Snk.Help.DisplayArtwork" xml:space="preserve"><value>Käytti näyttää omia taideteoksia, kun saatavilla.</value></data>
+  <data name="Emulation.Snk.Help.ArtworkResolutionMultiplier" xml:space="preserve"><value>Lisää taideteoksen resoluutiota valitulla kerroinarvolla.</value></data>
+  <data name="Emulation.Snk.Setting.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Määrittele Neo Geo BIOS</value></data>
+  <data name="Emulation.Snk.Help.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Valitse vaihtoehtoiset bios-tiedostot.</value></data>
+  <data name="Emulation.Snk.Value.Asia"><value>asia</value></data>
+  <data name="Emulation.Snk.Value.Japan"><value>japan</value></data>
+  <data name="Emulation.Snk.Setting.UseSamples" xml:space="preserve"><value>Käytä näytteitä</value></data>
+  <data name="Emulation.Snk.Help.UseSamples" xml:space="preserve"><value>Salli ääninäytetiedostojen ladata, kun näytehakemistossa on annettu.</value></data>
+  <data name="Emulation.Snk.Help.AutosaveHiscore" xml:space="preserve"><value>Suositellaan käyttämään oletus, joka tallentaa historion sulkeessaan sisältöä. Rekursiivisesti säästää toistuvasti koko ajan pelaamisen aikana. hiscore.dat tiedosto kokonaan.</value></data>
+  <data name="Emulation.Snk.Help.CPUClockScale" xml:space="preserve"><value>Emulgoitujen esineiden kellon alle tai yli CPU tietty prosenttiosuus.</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningsScreen" xml:space="preserve"><value>Piilota varoitusten näyttö</value></data>
+  <data name="Emulation.Snk.Setting.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Käytä 32-bittistä värisyvyyttä, kun se on käytettävissä</value></data>
+  <data name="Emulation.Snk.Help.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Muuta pikselimuotoa, jotkut pelit vaativat tätä tehdä oikein, se voi vaikuttaa suorituskykyä joillakin alustoilla</value></data>
+  <data name="Emulation.Snk.Setting.VerticalMode" xml:space="preserve"><value>Pystysuuntainen tila</value></data>
+  <data name="Emulation.Snk.Help.VerticalMode" xml:space="preserve"><value>Pyöritä pystynäytön näyttöjä</value></data>
+  <data name="Emulation.Snk.Value.Alternate" xml:space="preserve"><value>varajäsen</value></data>
+  <data name="Emulation.Snk.Value.TATEAlternate" xml:space="preserve"><value>TATE varajäsen</value></data>
+  <data name="Emulation.Snk.Setting.UseA60HzRefreshRate" xml:space="preserve"><value>Käytä 60 Hz:n lisänopeus</value></data>
+  <data name="Emulation.Snk.Help.UseA60HzRefreshRate" xml:space="preserve"><value>Käytä 60 Hz alkuperäisen virkistysnopeuden sijaan. Tämä voi muuttaa pelin nopeutta ja aiheuttaa epätasaista animaatiota.</value></data>
+  <data name="Emulation.Snk.Setting.Resolution" xml:space="preserve"><value>Päätöslauselma</value></data>
+  <data name="Emulation.Snk.Help.Resolution" xml:space="preserve"><value>Aseta resoluutio tiettyihin peleihin (vektori)</value></data>
+  <data name="Emulation.Snk.Help.FixedFrameskip" xml:space="preserve"><value>Kun 'Frameskip' on asetettu 'Fixed' -tilaan tai jos etuosa ei tue vaihtoehtoista 'Frameskip' -tilaa, jätä raksutus pois käytöstä kiinteällä X-raitanopeudella X+1</value></data>
+  <data name="Emulation.Snk.Value.NoSkipping" xml:space="preserve"><value>Ei hypätä</value></data>
+  <data name="Emulation.Snk.Setting.CPUClock" xml:space="preserve"><value>CPU kello</value></data>
+  <data name="Emulation.Snk.Help.CPUClock" xml:space="preserve"><value>Muuta emuloitu CPU taajuus eri järjestelmien, lisäämällä voit korjata natiivi hidastuu joissakin peleissä, vähentämällä voit auttaa suorituskykyä matalan tason laitteita</value></data>
+  <data name="Emulation.Snk.Setting.DiagnosticInput" xml:space="preserve"><value>Diagnostinen syöte</value></data>
+  <data name="Emulation.Snk.Help.DiagnosticInput" xml:space="preserve"><value>Määrittele painikkeen yhdistelmä syöttääksesi kaappipalvelun valikosta</value></data>
+  <data name="Emulation.Snk.Help.Hiscores" xml:space="preserve"><value>Käytä korkea tulostuki, tarvitset myös tiedoston hiscore.dat järjestelmässäsi/ fbneo/ kansiossa</value></data>
+  <data name="Emulation.Snk.Help.AllowPatchedRomsets" xml:space="preserve"><value>Salli romsetit järjestelmästäsi/fbneo/patched/ kansiosta ohittaaksesi rommet, crcs jätetään huomiotta, mutta koot ja nimet on silti sama, lisäksi tämä on myös pääkytkin, onko IPS Paikka ja RomData toteutetaan tai ei, sinun täytyy sulkea sisältöä tämän asetuksen tulla voimaan</value></data>
+  <data name="Emulation.Snk.Setting.SampleInterpolation" xml:space="preserve"><value>Näytteen Interpolointi</value></data>
+  <data name="Emulation.Snk.Help.SampleInterpolation" xml:space="preserve"><value>Määrittele näytteen interpolointi, se voi vaikuttaa suorituskykyä</value></data>
+  <data name="Emulation.Snk.Setting.FMInterpolation" xml:space="preserve"><value>FM Interpolointi</value></data>
+  <data name="Emulation.Snk.Help.FMInterpolation" xml:space="preserve"><value>Määrittele FM interpoloimalla se voisi vaikuttaa suorituksiin</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilter" xml:space="preserve"><value>LowPass- suodinName</value></data>
+  <data name="Emulation.Snk.Help.LowPassFilter" xml:space="preserve"><value>Ota käyttöön LowPass-suodin</value></data>
+  <data name="Emulation.Snk.Setting.AnalogSpeed" xml:space="preserve"><value>Analoginen nopeus</value></data>
+  <data name="Emulation.Snk.Help.AnalogSpeed" xml:space="preserve"><value>Mitittaa analoginen ohjausnopeus, jotkut pelit saattavat vaatia pieniä arvoja olla soitettavia</value></data>
+  <data name="Emulation.Snk.Setting.SOCDMode" xml:space="preserve"><value>SOCD Tila</value></data>
+  <data name="Emulation.Snk.Help.SOCDMode" xml:space="preserve"><value>Muutos ULDR Ensisijainen käsittely</value></data>
+  <data name="Emulation.Snk.Value.Disabled" xml:space="preserve"><value>käytöstä</value></data>
+  <data name="Emulation.Snk.Value.SimultaneousNeutral" xml:space="preserve"><value>Samanaikainen neutraali</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority4Way" xml:space="preserve"><value>Viimeinen syöteprioriteetti (4.</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority8Way" xml:space="preserve"><value>Viimeinen syöteprioriteetti (8 reittiä)</value></data>
+  <data name="Emulation.Snk.Value.FirstInputPriority" xml:space="preserve"><value>Ensimmäinen syöttöprioriteetti</value></data>
+  <data name="Emulation.Snk.Setting.CrosshairEmulation" xml:space="preserve"><value>Ristiinsulatus</value></data>
+  <data name="Emulation.Snk.Value.HideWithLightgunDevice" xml:space="preserve"><value>piilota valopistooli laite</value></data>
+  <data name="Emulation.Snk.Value.AlwaysHide" xml:space="preserve"><value>aina piilossa</value></data>
+  <data name="Emulation.Snk.Value.AlwaysShow" xml:space="preserve"><value>aina näkyvissä</value></data>
+  <data name="Emulation.Snk.Setting.NeoGeoMode" xml:space="preserve"><value>Neo-Geo-tila</value></data>
+  <data name="Emulation.Snk.Help.NeoGeoMode" xml:space="preserve"><value>Lataa sopivat biot riippuen valintasi, edellyttäen, että tällainen bios on yhteensopiva käynnissä peli</value></data>
+  <data name="Emulation.Snk.Value.MVSEuropeAsiaEnglish" xml:space="preserve"><value>MVS Eurooppa/Asia (englanti)</value></data>
+  <data name="Emulation.Snk.Value.MVSUSAEnglishCensored" xml:space="preserve"><value>MVS USA (englanti - Sensuroitu)</value></data>
+  <data name="Emulation.Snk.Value.MVSJapanJapanese" xml:space="preserve"><value>MVS Japani</value></data>
+  <data name="Emulation.Snk.Value.AESEuropeAsiaEnglish" xml:space="preserve"><value>AES Eurooppa/Asia (englanti)</value></data>
+  <data name="Emulation.Snk.Value.AESJapanJapanese" xml:space="preserve"><value>AES Japani</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardMode" xml:space="preserve"><value>Muistikorttitila</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardMode" xml:space="preserve"><value>Muuta muistikortin käytöstä</value></data>
+  <data name="Emulation.Snk.Value.Shared" xml:space="preserve"><value>jaettu</value></data>
+  <data name="Emulation.Snk.Value.PerGame" xml:space="preserve"><value>per-peli</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip11" xml:space="preserve"><value>Vianetsintä Kasta 1 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip11" xml:space="preserve"><value>Ota käyttöön vianetsintä Dip 1 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip12" xml:space="preserve"><value>Vianetsintä Kasta 1 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip12" xml:space="preserve"><value>Ota käyttöön vianetsintä Dip 1 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip13" xml:space="preserve"><value>Vianetsintä Kasta 1 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip13" xml:space="preserve"><value>Ota käyttöön vianjäljitysdip 1 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip14" xml:space="preserve"><value>Vianetsintä Kasta 1 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip14" xml:space="preserve"><value>Ota käyttöön vianjäljitys Kaista 1 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip15" xml:space="preserve"><value>Vianetsintä Kasta 1 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip15" xml:space="preserve"><value>Ota käyttöön vianetsintä Kasta 1 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip16" xml:space="preserve"><value>Vianetsintä Kasta 1 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip16" xml:space="preserve"><value>Ota käyttöön vianjäljitys Kaista 1 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip17" xml:space="preserve"><value>Vianetsintä Kasta 1 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip17" xml:space="preserve"><value>Ota käyttöön vianjäljitysdip 1 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip18" xml:space="preserve"><value>Vianetsintä Kasta 1 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip18" xml:space="preserve"><value>Ota käyttöön vianjäljitysdip 1 8</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip21" xml:space="preserve"><value>Vianetsintä Kasta 2  1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip21" xml:space="preserve"><value>Ota käyttöön vianjäljitysdip 2 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip22" xml:space="preserve"><value>Vianetsintä Kasta 2 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip22" xml:space="preserve"><value>Ota käyttöön vianjäljitysdip 2 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip23" xml:space="preserve"><value>Vianetsintä Kasta 2  3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip23" xml:space="preserve"><value>Ota käyttöön vianetsintä Dip 2 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip24" xml:space="preserve"><value>Vianetsintä Kasta 2 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip24" xml:space="preserve"><value>Ota käyttöön vianetsintä Dip 2 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip25" xml:space="preserve"><value>Vianetsintä Kasta 2 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip25" xml:space="preserve"><value>Ota käyttöön vianjäljitysdip 2 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip26" xml:space="preserve"><value>Vianetsintä Kasta 2  6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip26" xml:space="preserve"><value>Ota käyttöön vianjäljitysdip 2 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip27" xml:space="preserve"><value>Vianetsintä Kasta 2 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip27" xml:space="preserve"><value>Ota käyttöön vianjäljitysdip 2 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip28" xml:space="preserve"><value>Vianetsintä Kasta 2 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip28" xml:space="preserve"><value>Ota käyttöön vianetsintä Dip 2 8</value></data>
+  <data name="Emulation.Snk.Setting.Layer1" xml:space="preserve"><value>Taso 1</value></data>
+  <data name="Emulation.Snk.Help.Layer1" xml:space="preserve"><value>Vianetsintään</value></data>
+  <data name="Emulation.Snk.Setting.Layer2" xml:space="preserve"><value>Taso 2</value></data>
+  <data name="Emulation.Snk.Setting.Layer3" xml:space="preserve"><value>Taso 3</value></data>
+  <data name="Emulation.Snk.Setting.Layer4" xml:space="preserve"><value>Taso 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite1"><value>Sprite 1</value></data>
+  <data name="Emulation.Snk.Setting.Sprite2"><value>Sprite 2</value></data>
+  <data name="Emulation.Snk.Setting.Sprite3"><value>Sprite 3</value></data>
+  <data name="Emulation.Snk.Setting.Sprite4"><value>Sprite 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite5"><value>Sprite 5</value></data>
+  <data name="Emulation.Snk.Setting.Sprite6" xml:space="preserve"><value>Kilohaili 6</value></data>
+  <data name="Emulation.Snk.Setting.Sprite7"><value>Sprite 7</value></data>
+  <data name="Emulation.Snk.Setting.Sprite8"><value>Sprite 8</value></data>
+  <data name="Emulation.Snk.Setting.ThreadMode" xml:space="preserve"><value>Kierteen tila</value></data>
+  <data name="Emulation.Snk.Setting.Cheats" xml:space="preserve"><value>Huijarit</value></data>
+  <data name="Emulation.Snk.Setting.Throttle" xml:space="preserve"><value>Kaasu</value></data>
+  <data name="Emulation.Snk.Setting.BootToBIOS" xml:space="preserve"><value>Aloita BIOS</value></data>
+  <data name="Emulation.Snk.Setting.BootToOSD" xml:space="preserve"><value>Aloita OSD</value></data>
+  <data name="Emulation.Snk.Setting.ReadConfiguration" xml:space="preserve"><value>Lue asetukset</value></data>
+  <data name="Emulation.Snk.Setting.WriteConfiguration" xml:space="preserve"><value>Kirjoita asetukset</value></data>
+  <data name="Emulation.Snk.Setting.MAMEINIPaths" xml:space="preserve"><value>MAME INI Polut</value></data>
+  <data name="Emulation.Snk.Setting.Softlists" xml:space="preserve"><value>Softlistit</value></data>
+  <data name="Emulation.Snk.Setting.MediaType" xml:space="preserve"><value>Mediatyyppi</value></data>
+  <data name="Emulation.Snk.Value.Cart" xml:space="preserve"><value>kärryt</value></data>
+  <data name="Emulation.Snk.Value.Cass" xml:space="preserve"><value>kass</value></data>
+  <data name="Emulation.Snk.Value.Cdrm"><value>cdrm</value></data>
+  <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>floppi</value></data>
+  <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>kova</value></data>
+  <data name="Emulation.Snk.Value.Prin"><value>prin</value></data>
+  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>nt</value></data>
+  <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>serel</value></data>
+  <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS Käytössä</value></data>
+  <data name="Emulation.Snk.Setting.JoystickDeadzone"><value>Joystick Deadzone</value></data>
+  <data name="Emulation.Snk.Setting.JoystickSaturation" xml:space="preserve"><value>Joystick Tyydytys</value></data>
+  <data name="Emulation.Snk.Setting.JoystickThreshold" xml:space="preserve"><value>Joystick-kynnys</value></data>
+  <data name="Emulation.Snk.Setting.Joystick4WaySimulation" xml:space="preserve"><value>Joystick 4-suuntainen simulointi</value></data>
+  <data name="Emulation.Snk.Value.4way"><value>4way</value></data>
+  <data name="Emulation.Snk.Value.Strict" xml:space="preserve"><value>tiukka</value></data>
+  <data name="Emulation.Snk.Value.Qbert"><value>qbert</value></data>
+  <data name="Emulation.Snk.Setting.ProfileButtonsPerGame" xml:space="preserve"><value>Profiilin painikkeet per peli</value></data>
+  <data name="Emulation.Snk.Setting.Mouse" xml:space="preserve"><value>Hiiri</value></data>
+  <data name="Emulation.Snk.Setting.LightgunMode" xml:space="preserve"><value>Valoasetila</value></data>
+  <data name="Emulation.Snk.Value.Lightgun" xml:space="preserve"><value>Kevytkivääri</value></data>
+  <data name="Emulation.Snk.Value.Touchscreen" xml:space="preserve"><value>Kosketusnäyttö</value></data>
+  <data name="Emulation.Snk.Setting.LightgunOffscreenPosition" xml:space="preserve"><value>Valokilpa-aseman ulkopuolella</value></data>
+  <data name="Emulation.Snk.Value.Free" xml:space="preserve"><value>Vapaa</value></data>
+  <data name="Emulation.Snk.Value.FixedTopLeft" xml:space="preserve"><value>Kiinteä (Top Vasemmalla)</value></data>
+  <data name="Emulation.Snk.Value.FixedBottomRight" xml:space="preserve"><value>Kiinteä (alaoikea)</value></data>
+  <data name="Emulation.Snk.Setting.ScreenRotationMode" xml:space="preserve"><value>Näytön kiertotila</value></data>
+  <data name="Emulation.Snk.Value.Internal" xml:space="preserve"><value>Sisäinen</value></data>
+  <data name="Emulation.Snk.Setting.AudioProcessorSpeed" xml:space="preserve"><value>Ääniprosessorin nopeus (%)</value></data>
+  <data name="Emulation.Snk.Help.AutomaticLoadFastForward" xml:space="preserve"><value>Kokeellinen ominaisuus automaattisesti pikakelata aikana CD Pääsy.&#xA;Toimii seuraavien kanssa:&#xA;- Tavallinen SCSI&#xA;- Sega. CD ja Neo Geo CD</value></data>
+  <data name="Emulation.Snk.Setting.CoinLimit" xml:space="preserve"><value>Raharaja</value></data>
+  <data name="Emulation.Snk.Setting.SampleRate" xml:space="preserve"><value>Näytteenottotaajuus</value></data>
+  <data name="Emulation.Snk.Help.SampleRate" xml:space="preserve"><value>Ääninäytteiden määrä sekunnissa. Korkeammat hinnat tarjoavat laadukkaamman äänen.</value></data>
+  <data name="Emulation.Snk.Value.Threshold" xml:space="preserve"><value>raja-arvo</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipInterval"><value>Frameskip Interval</value></data>
+  <data name="Emulation.Snk.Help.FrameskipInterval" xml:space="preserve"><value>Suurin määrä peräkkäisiä kehyksiä, jotka voidaan ohittaa. Alemmat arvot pitävät visuaaliset päivitykset sujuvampia hintaan enemmän äänitippoja, kun isäntä on ylikuormitettu.</value></data>
+  <data name="Emulation.Snk.Setting.ShowGameInformation" xml:space="preserve"><value>Näytä pelin tiedot</value></data>
+  <data name="Emulation.Snk.Help.ShowGameInformation" xml:space="preserve"><value>Näytä MAME's kuljettaja-status ja peli-information näytöt käynnistettäessä ennen pelin käynnistymistä.</value></data>
+  <data name="Emulation.Snk.Setting.Stereo" xml:space="preserve"><value>Stereot</value></data>
+  <data name="Emulation.Snk.Help.Stereo" xml:space="preserve"><value>Ulostulostereoääni. Poista käytöstä hieman alemmas CPU pelejä, jotka eivät käytä stereoiden sekoittamista.</value></data>
+  <data name="Emulation.Snk.Setting.SystemType" xml:space="preserve"><value>Järjestelmätyyppi</value></data>
+  <data name="Emulation.Snk.Help.SystemType" xml:space="preserve"><value>Määritetään järjestelmän tyyppi: AES, MVS, tai universumi BIOS Järjestelmä</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoAESHomeConsole" xml:space="preserve"><value>Neo Geo AES (Kotikonsoli)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoMVSArcade" xml:space="preserve"><value>Neo Geo MVS (Arkajala)</value></data>
+  <data name="Emulation.Snk.Value.UniverseBIOSCommunityEnhancedBIOS" xml:space="preserve"><value>Universumi BIOS (yhteisön BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.CDSystemType" xml:space="preserve"><value>CD Järjestelmätyyppi</value></data>
+  <data name="Emulation.Snk.Help.CDSystemType" xml:space="preserve"><value>Täsmentäkää CD Järjestelmätyyppi lastattaessa Neo Geo CD levykuvat</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDFrontLoader" xml:space="preserve"><value>Neo Geo CD (Etukuormaaja)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDTopLoader"><value>Neo Geo CD (Top Loader)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDZUniverseBIOS" xml:space="preserve"><value>Neo Geo CDZ (Kaikki BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.Region" xml:space="preserve"><value>Alue</value></data>
+  <data name="Emulation.Snk.Help.Region" xml:space="preserve"><value>Alue: USA, Japani, Aasia, Eurooppa</value></data>
+  <data name="Emulation.Snk.Value.Europe" xml:space="preserve"><value>Eurooppa</value></data>
+  <data name="Emulation.Snk.Help.MemoryCard" xml:space="preserve"><value>Ota muistikortti käyttöön tai poista käytöstä</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardWriteProtect" xml:space="preserve"><value>Estä muistikortin muutokset.</value></data>
+  <data name="Emulation.Snk.Setting.SettingMode" xml:space="preserve"><value>Asetustila</value></data>
+  <data name="Emulation.Snk.Help.SettingMode" xml:space="preserve"><value>Järjestelmän käyttöönotto ROM valikko alokas pelihallijärjestelmissä</value></data>
+  <data name="Emulation.Snk.Help.FourPlayerMode" xml:space="preserve"><value>Aseta neljä pelaajaa (kaksinkertainen MVS Kaappi) tila Aasialle/Japanille MVS Järjestelmät</value></data>
+  <data name="Emulation.Snk.Help.Freeplay" xml:space="preserve"><value>Soita MVS pelit ilman tarvetta lisätä kolikoita</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanTop" xml:space="preserve"><value>Naamio pois pikseleistä, jotka on piilotettu kehys tai reuna alkuperäisille CRT (ylhäällä)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanBottom" xml:space="preserve"><value>Naamio pikseleistä, jotka on piilotettu kehys tai reuna alkuperäisille CRT (alhaalla)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanLeft" xml:space="preserve"><value>Naamio pois pikseleistä, jotka on piilotettu kehys tai reuna alkuperäisille CRT (vasen)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanRight" xml:space="preserve"><value>Naamio pois pikseleistä, jotka on piilotettu alkuperäisille CRT-laitteille (oikealla) kehysten tai raja-alueiden avulla</value></data>
+  <data name="Emulation.Snk.Setting.Palette" xml:space="preserve"><value>Paletti</value></data>
+  <data name="Emulation.Snk.Help.Palette" xml:space="preserve"><value>Aseta paletti</value></data>
+  <data name="Emulation.Snk.Setting.AspectRatio" xml:space="preserve"><value>Aspect-suhde</value></data>
+  <data name="Emulation.Snk.Help.AspectRatio" xml:space="preserve"><value>Aseta kuvasuhde</value></data>
+  <data name="Emulation.Snk.Value.PerfectlySquarePixels11PAR" xml:space="preserve"><value>Täydellisesti neliön pikseleitä (1:1 PAR)</value></data>
+  <data name="Emulation.Snk.Value.OstensiblyAccurateNTSCAspectRatio4544PAR" xml:space="preserve"><value>Näkyvä tarkka NTSC Kuvasuhde (45:44) PAR)</value></data>
+  <data name="Emulation.Snk.Value.VeryTraditionalNTSCAspectRatio43DAR" xml:space="preserve"><value>Hyvin perinteinen NTSC Aspect-suhde (4:3 DAR)</value></data>
+  <data name="Emulation.Snk.Setting.SpritesPerLineLimit" xml:space="preserve"><value>Spriitit-linjaa kohti raja</value></data>
+  <data name="Emulation.Snk.Help.SpritesPerLineLimit" xml:space="preserve"><value>Aseta sprite-per-line raja - kasvava aiheuttaa ongelmia joissakin peleissä</value></data>
+  <data name="Emulation.Snk.Setting.ProcessorSpeed" xml:space="preserve"><value>Prosessorin nopeus</value></data>
+  <data name="Emulation.Snk.Help.ProcessorSpeed" xml:space="preserve"><value>Suorita prosessori 24 MHz:n taajuudella. Tämä nopeus voi aiheuttaa virheitä peleissä.</value></data>
+  <data name="Emulation.Snk.Setting.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Poista käytöstä ADPCM Akkupakkaus</value></data>
+  <data name="Emulation.Snk.Help.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Muuta ADPCM akku käyttäytyminen korjata äänivirheitä joissakin peleissä. Jätä tämä asetus pois käytöstä muita pelejä.</value></data>
+  <data name="Emulation.Snk.Help.CDSpeedHack" xml:space="preserve"><value>Paikka BIOS kiireinen-odottaa silmukat vähentää lastausaikoja (ei toimi Universe BIOS)</value></data>
+  <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Korjaa BIOS lataa osoittimet, kun CD puskuri DMA on suurempi kuin yksi sektori, korjaamalla korruptoitunut ääni Taidetta taistelun bonus vaiheessa. Tämä on hakata, ja todellinen laitteiston käyttäytymistä ei ole vahvistettu.</value></data>
+  <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Kelaa eteenpäin CD lastausnäytöt</value></data>
+  <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Kolmannen asteen interpolointi (4 pistettä)</value></data>
+  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Emulgoi yksiväriset ja värilliset käsikonsolit.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Emulgoi yksiväriset ja värilliset käsikonsolit.</value></data>
+  <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Valitse kieli, jota käytetään yhteensopivissa peleissä.</value></data>
+  <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Videokehys ohitetaan</value></data>
+  <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Ohita joitakin videokehyksiä, kun suorituskyky on riittämätön, vähentää keskeytyksiä äänen ulostulo.</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipThreshold" xml:space="preserve"><value>Äänipuskurin kynnysarvo (%)</value></data>
+  <data name="Emulation.Snk.Help.FrameskipThreshold" xml:space="preserve"><value>Ohita videokehykset, kun äänipuskuri sisältää vähemmän tietoa kuin tämä prosenttiosuus sen kapasiteetista.</value></data>
+  <data name="Emulation.Snk.Help.AudioQuality" xml:space="preserve"><value>Valitse nopeamman äänen synteesin ja tarkemman äänen synteesin välillä.</value></data>
+  <data name="Emulation.Snk.Help.AudioSampleRate" xml:space="preserve"><value>Valitse lähtöääninäytteenottotaajuus. Suuremmat taajuudet voivat parantaa äänen laatua ja vaatia enemmän prosessointitehoa.</value></data>
+  <data name="Emulation.Snk.Setting.AutoSaveLoadStates" xml:space="preserve"><value>Tallenna ja palauta tila automaattisesti</value></data>
+  <data name="Emulation.Snk.Help.SkipDisclaimer" xml:space="preserve"><value>Piilota laillinen ilmoitus pelin alkaessa.</value></data>
+  <data name="Emulation.Snk.Help.SkipWarnings" xml:space="preserve"><value>Piilota varoitukset tunnetuista ongelmista pelin alkaessa.</value></data>
+  <data name="Emulation.Snk.Help.SampleRateHint" xml:space="preserve"><value>Valitse lähtöääninäytteenottotaajuus. Automaattinen tila käyttää haluamaasi lähtötaajuutta.</value></data>
+  <data name="Emulation.Snk.Value.UpPriorityUpOverrideDown" xml:space="preserve"><value>Aseta yläsuunta etusijalle</value></data>
+  <data name="Emulation.Snk.Value.DownPriorityLeftRightLastInputPriority" xml:space="preserve"><value>Anna etusija alaspäin suuntautuvalle; käytä viimeisintä vaakasyötettä</value></data>
+  <data name="Emulation.Snk.Help.CrosshairEmulation" xml:space="preserve"><value>Valitse näyttääkö merkki. Automaattinen tila piilottaa sen, kun käytetään kevyttä asetta tai kosketusnäyttöä.</value></data>
+  <data name="Emulation.Snk.Value.UseBiosSetInBIOSDipswitch" xml:space="preserve"><value>Käytä BIOS valittu laitteistokytkimellä</value></data>
+  <data name="Emulation.Snk.Setting.SoftlistAutomaticMediaType" xml:space="preserve"><value>Tunnista mediatyyppi automaattisesti</value></data>
+  <data name="Emulation.Snk.Help.VFSEnabled" xml:space="preserve"><value>Käytä sovelluksen toimittamaa virtuaalitiedostojärjestelmää. Versio 4 tai uudempi vaaditaan.</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkHardcodedOverlayOpacity" xml:space="preserve"><value>Sisäänrakennettu päällystys sameus</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardWriteProtect" xml:space="preserve"><value>Suojaa muistikortti muutoksilta</value></data>
+  <data name="Emulation.Snk.Setting.DarkFilterLevel" xml:space="preserve"><value>Näytön tummuminen (%)</value></data>
+  <data name="Emulation.Snk.Value.Fast" xml:space="preserve"><value>Nopea äänen synteesi</value></data>
+  <data name="Emulation.Snk.Value.AccurateBandLimited" xml:space="preserve"><value>Tarkka äänen synteesi</value></data>
+  <data name="Emulation.Snk.Setting.SaveStateNaming" xml:space="preserve"><value>Tallennetut valtion tiedostojen nimet</value></data>
+  <data name="Emulation.Snk.Setting.EnableCheats" xml:space="preserve"><value>Käytä huijauskoodeja</value></data>
+  <data name="Emulation.Snk.Setting.HideNagScreen" xml:space="preserve"><value>Piilota oikeudellinen ilmoitusnäyttö</value></data>
+  <data name="Emulation.Snk.Setting.CoreProvidedAspectRatio" xml:space="preserve"><value>Näytä kuvasuhde, jonka emulaattori on antanut</value></data>
+  <data name="Emulation.Snk.Setting.SetFrameskip" xml:space="preserve"><value>Ohitettavat videokehykset</value></data>
+  <data name="Emulation.Snk.Setting.SampleRateHint" xml:space="preserve"><value>Suosittu ääninäytteenottotaajuus</value></data>
+  <data name="Emulation.Snk.Setting.UseExternalHiscoreDat" xml:space="preserve"><value>Käytä ulkoista huipputulostiedostoa hiscore.dat</value></data>
+  <data name="Emulation.Snk.Setting.DisplayMAMEMenu" xml:space="preserve"><value>Näytä MAME valikko</value></data>
+  <data name="Emulation.Snk.Setting.DisplayArtwork" xml:space="preserve"><value>Näytä koriste- taideteokset</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkResolutionMultiplier" xml:space="preserve"><value>Koristemaalauksen resoluutiokerroin</value></data>
+  <data name="Emulation.Snk.Value.AutoAggressive" xml:space="preserve"><value>Aggressiivinen automaattinen tila</value></data>
+  <data name="Emulation.Snk.Value.AutoMax" xml:space="preserve"><value>Automaattitilan enimmäistila</value></data>
+  <data name="Emulation.Snk.Setting.AutosaveHiscore" xml:space="preserve"><value>Tallenna korkeat tulokset automaattisesti</value></data>
+  <data name="Emulation.Snk.Value.Recursively" xml:space="preserve"><value>Etsi alikansioita</value></data>
+  <data name="Emulation.Snk.Setting.BypassTimingSkew" xml:space="preserve"><value>Ohita ajoituksen siirtymä</value></data>
+  <data name="Emulation.Snk.Setting.CPUClockScale" xml:space="preserve"><value>Prosessorin nopeuskerroin</value></data>
+  <data name="Emulation.Snk.Setting.FixedFrameskip" xml:space="preserve"><value>Kiinteä määrä videokehyksiä ohitettava</value></data>
+  <data name="Emulation.Snk.Value.Fixed" xml:space="preserve"><value>Kiinteä määrä</value></data>
+  <data name="Emulation.Snk.Setting.Hiscores" xml:space="preserve"><value>Korkeat tulokset</value></data>
+  <data name="Emulation.Snk.Setting.AllowPatchedRomsets" xml:space="preserve"><value>Salli muokatut peliarkistot</value></data>
+  <data name="Emulation.Snk.Value.2Point1stOrder" xml:space="preserve"><value>Ensimmäisen tilauksen interpolointi (2 pistettä)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderer" xml:space="preserve"><value>Vaihtoehtoinen renderointimenetelmä</value></data>
+  <data name="Emulation.Snk.Value.Cropped" xml:space="preserve"><value>Rajattu kuva</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRendererResolution" xml:space="preserve"><value>Vaihtoehtoinen renderointiresoluutio</value></data>
+  <data name="Emulation.Snk.Setting.AutomaticLoadFastForward" xml:space="preserve"><value>Nopeuta levyn lataamista automaattisesti</value></data>
+  <data name="Emulation.Snk.Setting.FourPlayerMode" xml:space="preserve"><value>Neljän pelaajan tila</value></data>
+  <data name="Emulation.Snk.Setting.Freeplay" xml:space="preserve"><value>Pelaa ilman lisää kolikoita</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanTop" xml:space="preserve"><value>Piilota pikselit yläruudun reunan ympärille</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanBottom" xml:space="preserve"><value>Piilota pikselit alaruudun reunan ympärille</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanLeft" xml:space="preserve"><value>Piilota pikselit vasemman näytön reunan ympärille</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanRight" xml:space="preserve"><value>Piilota pikselit oikean näytön reunan ympärille</value></data>
+  <data name="Emulation.Snk.Value.ResistorNetwork" xml:space="preserve"><value>Resistoverkon värisimulaatio</value></data>
+  <data name="Emulation.Snk.Value.Raw" xml:space="preserve"><value>muuttamattomat värit</value></data>
+  <data name="Emulation.Snk.Value.HardwareAccurate96" xml:space="preserve"><value>Alkuperäinen laitteistoraja (96)</value></data>
+  <data name="Emulation.Snk.Value.Double192" xml:space="preserve"><value>Kaksinkertainen alkuperäinen raja (192)</value></data>
+  <data name="Emulation.Snk.Value.Triple288" xml:space="preserve"><value>Kolminkertainen alkuperäinen raja (288)</value></data>
+  <data name="Emulation.Snk.Setting.CDSpeedHack" xml:space="preserve"><value>Vähennä levyn latausviiveitä</value></data>
+  <data name="Emulation.Snk.Setting.CDDMALengthLimit" xml:space="preserve"><value>Rajoita levytietojen siirtojen kokoa</value></data>
+  <data name="Emulation.Snk.Setting.SkipCDLoading" xml:space="preserve"><value>Ohita levyn latausanimaatio</value></data>
+  <data name="Emulation.Snk.Setting.HorizontalOverscan"><value>Piilota pikselit vasemman ja oikean ruudun reunoille</value></data>
+  <data name="Emulation.Snk.Setting.PerGameSaves"><value>Erillinen tallennukset jokaiselle pelille</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilterLevel"><value>Äänisuodattimen taso (%)</value></data>
+</root>

@@ -1,6 +1,6 @@
 # Chronomètre des quinze modules
 
-Objectif : terminer les quinze modules du point 2, avec validation et commit de chacun. Référence : `sony-new-modules.md` et `liste-emulateur-libretro.md`.
+Objectif : terminer les quinze modules du point 2, avec validation et commit de chacun. Périmètre : quinze familles demandées ; plans restants propres à chaque module et suivi commun.
 
 Départ (heure locale du PC) : **2026-10-09 23:04:54**.
 Budget demandé : **huit heures de travail**. Échéance initiale : **2026-10-10 07:04:54**.
@@ -158,3 +158,91 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-11 06:12:52 | 23:17:08.0165520 | -15:17:09 | Reprise. Sinclair : livraison des libellés et contrôles TR-DOS. |
 | 2026-10-11 06:17:53 | 23:22:09.8386158 | -15:22:10 | Reprise. Sinclair : audit des exigences et capacités livrées. |
 | 2026-10-11 06:24:31 | 23:28:47.9952953 | -15:28:48 | Reprise. Sinclair : audit de livraison et exigences finales. |
+| 2026-10-11 06:35:48 | 23:40:04.9069424 | -15:40:05 | Reprise. SNK : contrats des moteurs et supports. |
+| 2026-10-11 06:42:46 | 23:47:02.3265467 | -15:47:03 | Reprise. SNK : pilotes Arcade et paquets officiels. |
+| 2026-10-11 06:59:17 | 1.00:03:33.0210617 | -16:03:34 | Reprise. SNK : carte de fabrication et projet du module. |
+| 2026-10-11 07:15:10 | 1.00:19:26.6476510 | -16:19:27 | Reprise. SNK : relevé des déclarations natives avant fabrication des adaptateurs. |
+| 2026-10-11 07:19:04 | 1.00:23:20.4846525 | -16:23:21 | Reprise. SNK : options après initialisation et exigences de firmware. |
+| 2026-10-11 07:33:41 | 1.00:37:57.7651743 | -16:37:58 | Reprise. SNK : constantes et contrats communs des machines. |
+| 2026-10-11 07:50:03 | 1.00:54:19.6195515 | -16:54:20 | Reprise. SNK : entrées, associations et snapshots communs. |
+| 2026-10-11 07:55:34 | 1.00:59:50.4744663 | -16:59:51 | Reprise. SNK : affectations manuelles des manettes et application des entrées. |
+| 2026-10-11 08:11:58 | 1.01:16:14.6917862 | -17:16:15 | Reprise. SNK : installation portable et adaptateurs natifs nommés. |
+| 2026-10-11 08:30:04 | 1.01:34:20.9731985 | -17:34:21 | Reprise. SNK : fonctions natives et callbacks. |
+| 2026-10-11 08:34:33 | 1.01:38:49.8346497 | -17:38:50 | Reprise. SNK : options et supports Geolith. |
+| 2026-10-11 08:44:39 | 1.01:48:55.5127870 | -17:48:56 | Reprise. SNK : adaptateur Beetle NeoPop. |
+| 2026-10-11 08:51:44 | 1.01:56:00.3716278 | -17:56:01 | Reprise. SNK : adaptateur RACE. |
+| 2026-10-11 08:55:20 | 1.01:59:36.3756268 | -17:59:37 | Reprise. SNK : commandes et options RACE. |
+| 2026-10-11 09:00:42 | 1.02:04:58.3912221 | -18:04:59 | Reprise. SNK : retour du tampon audio reel. |
+| 2026-10-11 09:09:20 | 1.02:13:36.0348724 | -18:13:37 | Reprise. SNK : adaptateur FB Alpha. |
+| 2026-10-11 09:16:29 | 1.02:20:45.4812222 | -18:20:46 | Reprise. SNK : chargement FB Alpha et validation differee. |
+| 2026-10-11 09:27:32 | 1.02:31:48.7466696 | -18:31:49 | Reprise. SNK : priorite des archives BIOS FB Alpha. |
+| 2026-10-11 09:33:27 | 1.02:37:43.6509905 | -18:37:44 | Reprise. Presentation des lignes dans tous les fichiers. |
+| 2026-10-11 09:35:11 | 1.02:39:27.3239669 | -18:39:28 | Reprise. SNK : isolation des archives BIOS et compagnons des supports FB Alpha. |
+| 2026-10-11 09:49:07 | 1.02:53:23.1904683 | -18:53:24 | Reprise. SNK : adaptateur FB Alpha 2012. |
+| 2026-10-11 10:06:12 | 1.03:10:28.6461590 | -19:10:29 | Reprise. SNK : contrats natifs FBNeo et supports persistants. |
+| 2026-10-11 10:13:35 | 1.03:17:51.7090686 | -19:17:52 | Reprise. SNK : capacite des chemins natifs et adaptateur FBNeo. |
+| 2026-10-11 10:20:20 | 1.03:24:36.9020426 | -19:24:37 | Reprise. SNK : reglages et supports FBNeo. |
+| 2026-10-11 10:32:44 | 1.03:37:00.4439830 | -19:37:01 | Reprise. SNK : HBMAME. |
+| 2026-10-11 10:44:52 | 1.03:49:08.6775405 | -19:49:09 | Reprise. SNK : supports HBMAME. |
+| 2026-10-11 10:51:29 | 1.03:55:45.9291623 | -19:55:46 | Reprise. SNK : contenu et carte HBMAME. |
+| 2026-10-11 10:59:00 | 1.04:03:16.8910503 | -20:03:17 | Reprise. SNK : adaptateur MAME. |
+| 2026-10-11 11:08:04 | 1.04:12:20.9298864 | -20:12:21 | Reprise. SNK : supports MAME. |
+| 2026-10-11 11:17:35 | 1.04:21:51.6607584 | -20:21:52 | Reprise. SNK : MAME 2000. |
+| 2026-10-11 11:29:45 | 1.04:34:01.9842888 | -20:34:02 | Reprise. SNK : MAME 2003. |
+| 2026-10-11 11:37:06 | 1.04:41:22.5478625 | -20:41:23 | Reprise. SNK : adaptateur MAME 2003. |
+| 2026-10-11 11:46:39 | 1.04:50:55.6311412 | -20:50:56 | Reprise. SNK : MAME 2003 Plus. |
+| 2026-10-11 11:53:42 | 1.04:57:58.3476330 | -20:57:59 | Reprise. SNK : MAME 2010. |
+| 2026-10-11 12:01:28 | 1.05:05:44.7963436 | -21:05:45 | Reprise. SNK : MAME 2015. |
+| 2026-10-11 12:12:42 | 1.05:16:58.9493461 | -21:16:59 | Reprise. SNK : MAME 2016. |
+| 2026-10-11 12:16:29 | 1.05:20:45.8633669 | -21:20:46 | Reprise. SNK : capacités et raccordement MAME 2016. |
+| 2026-10-11 12:20:47 | 1.05:25:03.2635357 | -21:25:04 | Reprise. SNK : firmware et supports MAME 2016. |
+| 2026-10-11 12:27:02 | 1.05:31:18.5233511 | -21:31:19 | Reprise. SNK : fabrique MAME 2016 et ressources. |
+| 2026-10-11 12:29:58 | 1.05:34:14.3703567 | -21:34:15 | Reprise. SNK : ressources et traductions. |
+| 2026-10-11 12:44:52 | 1.05:49:08.4249598 | -21:49:09 | Reprise. SNK : suivi de la traduction globale et ressources. |
+| 2026-10-11 12:48:25 | 1.05:52:41.0550640 | -21:52:42 | Reprise. SNK : traduction globale et controle des ressources. |
+| 2026-10-11 12:56:43 | 1.06:00:59.4687626 | -22:01:00 | Reprise. SNK : traductions, visuels et integration. |
+| 2026-10-11 13:20:42 | 1.06:24:58.5103555 | -22:24:59 | Reprise. Ressources Common : descriptions communes et liens natifs. |
+| 2026-10-11 13:42:24 | 1.06:46:40.4157137 | -22:46:41 | Reprise. Ressources communes : validation SNK et Fairchild, puis correction des modules restants. |
+| 2026-10-11 14:23:52 | 1.07:28:08.7988894 | -23:28:09 | Reprise. SNK : catalogue Common indépendant des fabriques natives. |
+| 2026-10-11 14:31:15 | 1.07:35:31.8180634 | -23:35:32 | Reprise. SNK : prises communes et capacités facultatives. |
+| 2026-10-11 14:45:02 | 1.07:49:18.6075113 | -23:49:19 | Reprise. SNK : visuels des machines et des contrôleurs. |
+| 2026-10-11 14:54:50 | 1.07:59:06.8528969 | -23:59:07 | Reprise. SNK : MVS/CDZ et profils de contrôleurs App. |
+| 2026-10-11 15:02:24 | 1.08:06:40 | -24:06:40 | Reprise. SNK : terminer les photos MVS/CDZ, puis les profils App ; revue globale types/entrées ensuite. |
+| 2026-10-11 15:13:14 | 1.08:17:30 | -24:17:30 | Reprise. Revue de tous les modules : constantes/enums et touches spéciales après visuels SNK. |
+| 2026-10-11 15:34:20 | 1.08:38:36 | -24:38:36 | Reprise. Clavier CPC : touches spéciales, affectations et correspondances natives distinctes par adaptateur. |
+| 2026-10-11 16:07:38 | 33:11:54 | -25:11:55 | Reprise. Constantes sans consommateur et mesures CPU : qualification puis corrections regroupees avant compilation. |
+| 2026-10-11 16:19:45 | 33:24:01 | -25:24:02 | Reprise. Qualification des declarations inutilisees et des listes de touches speciales, avant corrections groupees. |
+| 2026-10-11 16:25:29 | 33:29:45 | -25:29:46 | Reprise. Clavier Commodore : listes par machine et conversions VICE, sans touches PC generiques exposees. |
+| 2026-10-11 16:52:47 | 33:57:03 | -25:57:04 | Reprise. Partage clavier Commodore/VIC : memes commandes, matrices natives distinctes. |
+| 2026-10-11 17:11:03 | 34:15:19 | -26:15:20 | Reprise. Clavier C128 : commandes spécifiques et combinaisons natives sans copie du C64. |
+| 2026-10-11 17:25:28 | 34:29:44 | -26:29:45 | Reprise. Qualification des claviers Plus4, PET et CBM-II avant conversion des touches propres aux machines. |
+| 2026-10-11 17:35:05 | 34:39:21 | -26:39:22 | Reprise. PET et CBM-II : qualification de la sélection native des tables avant raccordement. |
+| 2026-10-11 17:42:47 | 34:47:03 | -26:47:04 | Reprise. Correction des correspondances VICE depuis la table compilée réellement active. |
+| 2026-10-11 17:51:52 | 34:56:08 | -26:56:09 | Reprise. Qualification PET/CBM-II et du mode clavier natif par défaut. |
+| 2026-10-11 18:02:33 | 35:06:49 | -27:06:50 | Reprise. Suppression des listes globales SDK et qualification du sélecteur PET. |
+| 2026-10-11 18:15:51 | 35:20:07 | -27:20:08 | Reprise. Contrôle PET avec téléchargement officiel isolé et déchargement vérifié. |
+| 2026-10-11 18:28:54 | 35:33:10 | -27:33:10 | Reprise. Mutualisation des types avec capacités natives préservées. |
+| 2026-10-11 18:47:19 | 35:51:35 | -27:51:35 | Reprise. Qualification des sources exactes et suppression de constantes sans consommateur. |
+| 2026-10-11 19:25:42 | 36:29:58 | -28:29:58 | Reprise. Raccordement des touches spéciales PET qualifiées. |
+| 2026-10-11 19:36:23 | 36:40:39 | -28:40:39 | Reprise. Réception native des touches spéciales PET. |
+| 2026-10-11 19:54:20 | 36:58:36 | -28:58:36 | Reprise. Effacements clavier Acorn et qualification des profils restants. |
+| 2026-10-11 20:06:01 | 37:10:17 | -29:10:17 | Reprise. Qualification des constantes sans consommateur et claviers restants. |
+| 2026-10-11 20:17:40 | 37:21:56 | -29:21:56 | Reprise. Revue des constantes et actualisation des candidats déjà corrigés. |
+| 2026-10-11 20:29:50 | 37:34:06 | -29:34:06 | Reprise. SNK : contenu natif et vérification image, audio, état et déchargement. |
+| 2026-10-11 20:44:27 | 37:48:43 | -29:48:43 | Reprise. SNK : acheminement et restitution de Memory Card, lecture seule et tailles. |
+| 2026-10-11 20:57:28 | 38:01:44 | -30:01:44 | Reprise. SNK : sélection des machines et onglets dans la vue App réelle. |
+| 2026-10-11 21:10:43 | 38:14:59 | -30:14:59 | Reprise. SNK : couverture des catalogues de tous les adaptateurs. |
+| 2026-10-11 21:32:52 | 38:37:08 | -30:37:08 | Reprise. SNK : sessions natives CD/CDZ et libération des DLL. |
+| 2026-10-11 21:42:24 | 38:46:40 | -30:46:40 | Reprise. SNK : réaffectations persistées dans le cœur natif. |
+| 2026-10-11 21:48:36 | 38:52:52 | -30:52:52 | Reprise. SNK : Memory Card écrite pendant la session native. |
+| 2026-10-11 21:53:35 | 38:57:51 | -30:57:51 | Reprise. SNK : contraintes arcade et contenu Pocket monochrome qualifié. |
+| 2026-10-11 21:59:56 | 39:04:12 | -31:04:12 | Reprise. SNK : adaptateurs arcade CDZ. |
+| 2026-10-11 22:08:59 | 39:13:15 | -31:13:15 | Reprise. Nettoyage des téléchargements et essais terminés. |
+| 2026-10-11 22:15:52 | 39:20:08 | -31:20:08 | Reprise. SNK : diagnostic ciblé du chargement FinalBurn Neo. |
+| 2026-10-11 22:23:49 | 39:28:05 | -31:28:05 | Reprise. SNK : pistes WAV préparées pour le lecteur FinalBurn Neo. |
+| 2026-10-11 22:39:40 | 39:43:56 | -31:43:56 | Reprise. SNK : contrat du lecteur CDZ FB Alpha. |
+| 2026-10-11 22:52:05 | 39:56:21 | -31:56:21 | Reprise. SNK : dépendances AES MAME et CCD FB Alpha. |
+| 2026-10-11 23:07:23 | 40:11:39 | -32:11:39 | Reprise. SNK : chemins CUE de session et contrôles gérés. |
+| 2026-10-11 23:19:57 | 40:24:13 | -32:24:13 | Reprise. SNK : bornes internes du lecteur CCD. |
+| 2026-10-11 23:31:02 | 40:35:18 | -32:35:18 | Reprise. Thomson : contrats natifs et carte de fabrication ; validations SNK encore ouvertes. |
+| 2026-10-11 23:43:37 | 40:47:53 | -32:47:53 | Reprise. Nettoyage effectué ; commit SNK puis fabrication Thomson. |

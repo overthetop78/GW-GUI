@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Content.Initial" xml:space="preserve"><value>Médias de jeux</value></data>
+  <data name="Emulation.Snk.Memory.Display" xml:space="preserve"><value>Mémoire vidéo</value></data>
+  <data name="Emulation.Snk.Audio.Native" xml:space="preserve"><value>Matériel audio</value></data>
+  <data name="Emulation.Snk.Video.Native" xml:space="preserve"><value>Matériel vidéo</value></data>
+  <data name="Emulation.Snk.Controls.Native" xml:space="preserve"><value>Paramètres du contrôleur</value></data>
+  <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Paramètres du système</value></data>
+  <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Système BIOS</value></data>
+  <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Auxiliaires BIOS</value></data>
+  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Emule Neo Geo CD et Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Émule compatible SNK systèmes.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Émule compatible SNK systèmes.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Émule compatible SNK systèmes.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Émule compatible SNK systèmes.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Émule compatible SNK systèmes.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Émule compatible SNK systèmes.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Émule compatible SNK systèmes.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Émule compatible SNK systèmes.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Émule compatible SNK systèmes.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Émule compatible SNK systèmes.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Émule compatible SNK systèmes.</value></data>
+  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Emule Neo Geo cartouche et CD systèmes.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Émule compatible SNK systèmes.</value></data>
+  <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Langue</value></data>
+  <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Japonais</value></data>
+  <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Anglais</value></data>
+  <data name="Emulation.Snk.Help.DarkFilterLevel" xml:space="preserve"><value>Activer la réduction de la luminosité basée sur la luminosité. Peut être utilisé pour éviter les éblouissements/déformations oculaires lors de jeux avec des arrière-plans blancs.</value></data>
+  <data name="Emulation.Snk.Value.Manual" xml:space="preserve"><value>Manuel</value></data>
+  <data name="Emulation.Snk.Setting.RealTimeClock" xml:space="preserve"><value>Horloge en temps réel</value></data>
+  <data name="Emulation.Snk.Help.RealTimeClock" xml:space="preserve"><value>Sélectionne comment l'horloge émulée avance en temps réel. 'Deterministic' compte les images émulées à partir d'une base fixe, donc RTC lire sont reproductibles et sûrs pour le netplay, rembobinage et run-ahead. 'Real Time' lit l'horloge hôte directement (une horloge en direct, mais non déterministe).</value></data>
+  <data name="Emulation.Snk.Value.Deterministic" xml:space="preserve"><value>Déterministe</value></data>
+  <data name="Emulation.Snk.Value.RealTime" xml:space="preserve"><value>Temps réel</value></data>
+  <data name="Emulation.Snk.Setting.AudioQuality" xml:space="preserve"><value>Qualité de l'audio</value></data>
+  <data name="Emulation.Snk.Setting.AudioSampleRate" xml:space="preserve"><value>Taux d'échantillonnage audio</value></data>
+  <data name="Emulation.Snk.Value.Game" xml:space="preserve"><value>Par jeu</value></data>
+  <data name="Emulation.Snk.Value.System" xml:space="preserve"><value>Par système</value></data>
+  <data name="Emulation.Snk.Setting.MainProcessorSpeed" xml:space="preserve"><value>Vitesse du processeur principal (%)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderMethod" xml:space="preserve"><value>Méthode de rendu alternative</value></data>
+  <data name="Emulation.Snk.Setting.VideoApproach1Enabled" xml:space="preserve"><value>Activer la méthode vidéo 1</value></data>
+  <data name="Emulation.Snk.Setting.HideGameInfoScreen" xml:space="preserve"><value>Masquer les informations du jeu</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningScreen" xml:space="preserve"><value>Masquer l'écran d'avertissement</value></data>
+  <data name="Emulation.Snk.Setting.EnableMultithreading" xml:space="preserve"><value>Activer le multithreading</value></data>
+  <data name="Emulation.Snk.Setting.SetBrightness" xml:space="preserve"><value>Régler la luminosité</value></data>
+  <data name="Emulation.Snk.Setting.SetContrast" xml:space="preserve"><value>Définit le contraste</value></data>
+  <data name="Emulation.Snk.Setting.SetGamma" xml:space="preserve"><value>Réglage gamma</value></data>
+  <data name="Emulation.Snk.Setting.SkipDisclaimer" xml:space="preserve"><value>Masquer l’avis légal</value></data>
+  <data name="Emulation.Snk.Setting.SkipWarnings" xml:space="preserve"><value>Masquer les avertissements</value></data>
+  <data name="Emulation.Snk.Help.DisplayMAMEMenu" xml:space="preserve"><value>La visibilité de l'intérieur est réduite MAME menu.</value></data>
+  <data name="Emulation.Snk.Setting.Brightness" xml:space="preserve"><value>Luminosité</value></data>
+  <data name="Emulation.Snk.Help.Brightness" xml:space="preserve"><value>Modifie le niveau de luminosité utilisé.</value></data>
+  <data name="Emulation.Snk.Setting.GammaCorrection" xml:space="preserve"><value>Correction gamma</value></data>
+  <data name="Emulation.Snk.Help.GammaCorrection" xml:space="preserve"><value>Modifie le niveau gamma utilisé.</value></data>
+  <data name="Emulation.Snk.Help.DisplayArtwork" xml:space="preserve"><value>Utilisé pour afficher des oeuvres d'art personnalisées lorsque disponibles.</value></data>
+  <data name="Emulation.Snk.Help.ArtworkResolutionMultiplier" xml:space="preserve"><value>Augmente la résolution de l'œuvre par la valeur multiplicateur sélectionnée.</value></data>
+  <data name="Emulation.Snk.Setting.SpecifyNeoGeoBIOS" xml:space="preserve"><value>BIOS Neo Geo</value></data>
+  <data name="Emulation.Snk.Help.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Sélectionnez des fichiers de bios alternatifs.</value></data>
+  <data name="Emulation.Snk.Value.Asia" xml:space="preserve"><value>Asie</value></data>
+  <data name="Emulation.Snk.Value.Japan" xml:space="preserve"><value>Japon</value></data>
+  <data name="Emulation.Snk.Setting.UseSamples" xml:space="preserve"><value>Utiliser des échantillons</value></data>
+  <data name="Emulation.Snk.Help.UseSamples" xml:space="preserve"><value>Permettre le chargement des fichiers audio d'échantillons lorsqu'ils sont fournis dans le répertoire des échantillons.</value></data>
+  <data name="Emulation.Snk.Help.AutosaveHiscore" xml:space="preserve"><value>Recommandé d'utiliser par défaut qui enregistrera le hiscore lors de la fermeture du contenu. Recursivement enregistrera plusieurs fois tout le temps pendant le gameplay. Handicapé contournera l'utilisation de la hiscore.dat fichier entièrement.</value></data>
+  <data name="Emulation.Snk.Help.CPUClockScale" xml:space="preserve"><value>Utilisé pour sous ou sur horloge l'émulé CPU d'un pourcentage déterminé.</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningsScreen" xml:space="preserve"><value>Masquer les avertissements</value></data>
+  <data name="Emulation.Snk.Setting.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Utiliser la profondeur de couleur 32 bits lorsque disponible</value></data>
+  <data name="Emulation.Snk.Help.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Changer le format de pixel, certains jeux exigent cela pour rendre correctement, il pourrait avoir un impact sur certaines plateformes</value></data>
+  <data name="Emulation.Snk.Setting.VerticalMode" xml:space="preserve"><value>Affichage vertical</value></data>
+  <data name="Emulation.Snk.Help.VerticalMode" xml:space="preserve"><value>Affichage rotatif pour les écrans verticaux</value></data>
+  <data name="Emulation.Snk.Value.Alternate" xml:space="preserve"><value>Alternatif</value></data>
+  <data name="Emulation.Snk.Value.TATEAlternate" xml:space="preserve"><value>TATE alternatif</value></data>
+  <data name="Emulation.Snk.Setting.UseA60HzRefreshRate" xml:space="preserve"><value>Utilisez un taux de rafraîchissement de 60 Hz</value></data>
+  <data name="Emulation.Snk.Help.UseA60HzRefreshRate" xml:space="preserve"><value>Utilisez 60 Hz au lieu du taux de rafraîchissement original. Cela peut changer la vitesse du jeu et causer une animation inégale.</value></data>
+  <data name="Emulation.Snk.Setting.Resolution" xml:space="preserve"><value>Résolution</value></data>
+  <data name="Emulation.Snk.Help.Resolution" xml:space="preserve"><value>Définir la résolution dans certains jeux (vecteur)</value></data>
+  <data name="Emulation.Snk.Help.FixedFrameskip" xml:space="preserve"><value>Lorsque 'Frameskip' est réglé sur 'Fixed', ou si la façade ne supporte pas l'alternative 'Frameskip', sautez le rendu à un taux fixe de X images hors de X+1</value></data>
+  <data name="Emulation.Snk.Value.NoSkipping" xml:space="preserve"><value>Aucun saut</value></data>
+  <data name="Emulation.Snk.Setting.CPUClock" xml:space="preserve"><value>Fréquence du processeur</value></data>
+  <data name="Emulation.Snk.Help.CPUClock" xml:space="preserve"><value>Changement de fréquence de cpu émulée pour différents systèmes, en augmentant vous pouvez corriger les ralentissements natifs dans certains jeux, en diminuant vous pouvez aider à la performance sur les appareils bas de gamme</value></data>
+  <data name="Emulation.Snk.Setting.DiagnosticInput" xml:space="preserve"><value>Entrée diagnostique</value></data>
+  <data name="Emulation.Snk.Help.DiagnosticInput" xml:space="preserve"><value>Configurer la combinaison de boutons pour entrer dans le menu de service de l'armoire</value></data>
+  <data name="Emulation.Snk.Help.Hiscores" xml:space="preserve"><value>Activer le support de scores élevés, vous avez également besoin du fichier hiscore.dat dans votre système/fbneo/ dossier</value></data>
+  <data name="Emulation.Snk.Help.AllowPatchedRomsets" xml:space="preserve"><value>Permettre aux romsets de votre système/fbneo/patched/ dossier de remplacer vos romsets, crcs seront ignorés mais les tailles et les noms doivent toujours correspondre, en outre, il s'agit aussi du commutateur maître pour savoir si IPS Patch et RomData sont exécutés ou non, vous devez fermer le contenu pour que ce paramètre prenne effet</value></data>
+  <data name="Emulation.Snk.Setting.SampleInterpolation" xml:space="preserve"><value>Interpolation audio</value></data>
+  <data name="Emulation.Snk.Help.SampleInterpolation" xml:space="preserve"><value>Configurer l'interpolation de l'échantillon, il pourrait avoir un impact sur les performances</value></data>
+  <data name="Emulation.Snk.Setting.FMInterpolation" xml:space="preserve"><value>Interpolation FM</value></data>
+  <data name="Emulation.Snk.Help.FMInterpolation" xml:space="preserve"><value>Configuration FM interpolation, elle pourrait avoir un impact sur les performances</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilter" xml:space="preserve"><value>Filtre passe-bas</value></data>
+  <data name="Emulation.Snk.Help.LowPassFilter" xml:space="preserve"><value>Activer le filtre LowPass</value></data>
+  <data name="Emulation.Snk.Setting.AnalogSpeed" xml:space="preserve"><value>Vitesse analogique</value></data>
+  <data name="Emulation.Snk.Help.AnalogSpeed" xml:space="preserve"><value>Mitigate analogique contrôle la vitesse, certains jeux peuvent nécessiter des valeurs faibles pour être jouables</value></data>
+  <data name="Emulation.Snk.Setting.SOCDMode" xml:space="preserve"><value>Gestion des directions opposées (SOCD)</value></data>
+  <data name="Emulation.Snk.Help.SOCDMode" xml:space="preserve"><value>Changement ULDR traitement prioritaire</value></data>
+  <data name="Emulation.Snk.Value.Disabled" xml:space="preserve"><value>handicapés</value></data>
+  <data name="Emulation.Snk.Value.SimultaneousNeutral" xml:space="preserve"><value>Neutre simultané</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority4Way" xml:space="preserve"><value>Priorité de la dernière entrée (4 voies)</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority8Way" xml:space="preserve"><value>Priorité de la dernière entrée (8 voies)</value></data>
+  <data name="Emulation.Snk.Value.FirstInputPriority" xml:space="preserve"><value>Priorité de première entrée</value></data>
+  <data name="Emulation.Snk.Setting.CrosshairEmulation" xml:space="preserve"><value>Affichage du viseur</value></data>
+  <data name="Emulation.Snk.Value.HideWithLightgunDevice" xml:space="preserve"><value>Masquer avec un pistolet optique</value></data>
+  <data name="Emulation.Snk.Value.AlwaysHide" xml:space="preserve"><value>Toujours masquer</value></data>
+  <data name="Emulation.Snk.Value.AlwaysShow" xml:space="preserve"><value>Toujours afficher</value></data>
+  <data name="Emulation.Snk.Setting.NeoGeoMode" xml:space="preserve"><value>Mode Neo Geo</value></data>
+  <data name="Emulation.Snk.Help.NeoGeoMode" xml:space="preserve"><value>Charger des bios appropriés selon votre choix, à condition qu'un tel bios soit compatible avec le jeu en cours d'exécution</value></data>
+  <data name="Emulation.Snk.Value.MVSEuropeAsiaEnglish" xml:space="preserve"><value>MVS Europe/Asie (anglais)</value></data>
+  <data name="Emulation.Snk.Value.MVSUSAEnglishCensored" xml:space="preserve"><value>MVS USA (anglais - censuré)</value></data>
+  <data name="Emulation.Snk.Value.MVSJapanJapanese" xml:space="preserve"><value>MVS Japon (Japonais)</value></data>
+  <data name="Emulation.Snk.Value.AESEuropeAsiaEnglish" xml:space="preserve"><value>AES Europe/Asie (anglais)</value></data>
+  <data name="Emulation.Snk.Value.AESJapanJapanese" xml:space="preserve"><value>AES Japon (Japonais)</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardMode" xml:space="preserve"><value>Mode carte mémoire</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardMode" xml:space="preserve"><value>Changer le comportement de la carte mémoire</value></data>
+  <data name="Emulation.Snk.Value.Shared" xml:space="preserve"><value>partagé</value></data>
+  <data name="Emulation.Snk.Value.PerGame" xml:space="preserve"><value>par jeu</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip11" xml:space="preserve"><value>Déboguer le débit 1 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip11" xml:space="preserve"><value>Activer le débogueur 1 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip12" xml:space="preserve"><value>Déboguer le débit 1 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip12" xml:space="preserve"><value>Activer le débogueur 1 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip13" xml:space="preserve"><value>Déboguer le débit 1 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip13" xml:space="preserve"><value>Activer le débogueur 1 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip14" xml:space="preserve"><value>Déboguer le débit 1 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip14" xml:space="preserve"><value>Activer le débogueur 1 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip15" xml:space="preserve"><value>Déboguer le débit 1 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip15" xml:space="preserve"><value>Activer le débogueur 1 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip16" xml:space="preserve"><value>Déboguer le débit 1 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip16" xml:space="preserve"><value>Activer le débogueur 1 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip17" xml:space="preserve"><value>Déboguer le débit 1 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip17" xml:space="preserve"><value>Activer le débogueur 1 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip18" xml:space="preserve"><value>Déboguer le débit 1 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip18" xml:space="preserve"><value>Activer le débogueur 1 8</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip21" xml:space="preserve"><value>Déboguer le débit 2 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip21" xml:space="preserve"><value>Activer le débogueur 2 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip22" xml:space="preserve"><value>Déboguer le débit 2 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip22" xml:space="preserve"><value>Activer le débogueur 2 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip23" xml:space="preserve"><value>Déboguer le débit 2 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip23" xml:space="preserve"><value>Activer le débogueur 2 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip24" xml:space="preserve"><value>Déboguer le débit 2 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip24" xml:space="preserve"><value>Activer le débogueur 2 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip25" xml:space="preserve"><value>Déboguer le débit 2 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip25" xml:space="preserve"><value>Activer le débogueur 2 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip26" xml:space="preserve"><value>Déboguer le débit 2 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip26" xml:space="preserve"><value>Activer le débogueur 2 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip27" xml:space="preserve"><value>Déboguer le débit 2 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip27" xml:space="preserve"><value>Activer le débogueur 2 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip28" xml:space="preserve"><value>Déboguer le débit 2 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip28" xml:space="preserve"><value>Activer le débogueur 2 8</value></data>
+  <data name="Emulation.Snk.Setting.Layer1" xml:space="preserve"><value>Couche 1</value></data>
+  <data name="Emulation.Snk.Help.Layer1" xml:space="preserve"><value>Pour débogage</value></data>
+  <data name="Emulation.Snk.Setting.Layer2" xml:space="preserve"><value>Calque 2</value></data>
+  <data name="Emulation.Snk.Setting.Layer3" xml:space="preserve"><value>Couche 3</value></data>
+  <data name="Emulation.Snk.Setting.Layer4" xml:space="preserve"><value>Couche 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite1"><value>Sprite 1</value></data>
+  <data name="Emulation.Snk.Setting.Sprite2"><value>Sprite 2</value></data>
+  <data name="Emulation.Snk.Setting.Sprite3"><value>Sprite 3</value></data>
+  <data name="Emulation.Snk.Setting.Sprite4"><value>Sprite 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite5"><value>Sprite 5</value></data>
+  <data name="Emulation.Snk.Setting.Sprite6"><value>Sprite 6</value></data>
+  <data name="Emulation.Snk.Setting.Sprite7"><value>Sprite 7</value></data>
+  <data name="Emulation.Snk.Setting.Sprite8"><value>Sprite 8</value></data>
+  <data name="Emulation.Snk.Setting.ThreadMode" xml:space="preserve"><value>Mode des threads</value></data>
+  <data name="Emulation.Snk.Setting.Cheats" xml:space="preserve"><value>Crêpes</value></data>
+  <data name="Emulation.Snk.Setting.Throttle" xml:space="preserve"><value>Bougie</value></data>
+  <data name="Emulation.Snk.Setting.BootToBIOS" xml:space="preserve"><value>Démarrage à BIOS</value></data>
+  <data name="Emulation.Snk.Setting.BootToOSD" xml:space="preserve"><value>Démarrage à OSD</value></data>
+  <data name="Emulation.Snk.Setting.ReadConfiguration" xml:space="preserve"><value>Lire la configuration</value></data>
+  <data name="Emulation.Snk.Setting.WriteConfiguration" xml:space="preserve"><value>Configuration d'écriture</value></data>
+  <data name="Emulation.Snk.Setting.MAMEINIPaths" xml:space="preserve"><value>MAME INI Voies</value></data>
+  <data name="Emulation.Snk.Setting.Softlists" xml:space="preserve"><value>Listes molles</value></data>
+  <data name="Emulation.Snk.Setting.MediaType" xml:space="preserve"><value>Type de média</value></data>
+  <data name="Emulation.Snk.Value.Cart" xml:space="preserve"><value>panier</value></data>
+  <data name="Emulation.Snk.Value.Cass" xml:space="preserve"><value>en cas de non-respect</value></data>
+  <data name="Emulation.Snk.Value.Cdrm"><value>cdrm</value></data>
+  <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>Flou</value></data>
+  <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>dur</value></data>
+  <data name="Emulation.Snk.Value.Prin"><value>prin</value></data>
+  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>ROM</value></data>
+  <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>SERL</value></data>
+  <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS Activé</value></data>
+  <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>Jaystick Deadzone</value></data>
+  <data name="Emulation.Snk.Setting.JoystickSaturation" xml:space="preserve"><value>Saturation du joystick</value></data>
+  <data name="Emulation.Snk.Setting.JoystickThreshold" xml:space="preserve"><value>Seuil de joystick</value></data>
+  <data name="Emulation.Snk.Setting.Joystick4WaySimulation" xml:space="preserve"><value>Simulation à 4 voies de joystick</value></data>
+  <data name="Emulation.Snk.Value.4way" xml:space="preserve"><value>4 voies</value></data>
+  <data name="Emulation.Snk.Value.Strict" xml:space="preserve"><value>stricte</value></data>
+  <data name="Emulation.Snk.Value.Qbert" xml:space="preserve"><value>La Commission a adopté une décision sur la base de l'article 3 du règlement (CE) no 796/2008.</value></data>
+  <data name="Emulation.Snk.Setting.ProfileButtonsPerGame" xml:space="preserve"><value>Boutons de profil par jeu</value></data>
+  <data name="Emulation.Snk.Setting.Mouse" xml:space="preserve"><value>Souris</value></data>
+  <data name="Emulation.Snk.Setting.LightgunMode" xml:space="preserve"><value>Mode du pistolet optique</value></data>
+  <data name="Emulation.Snk.Value.Lightgun" xml:space="preserve"><value>Pistolet optique</value></data>
+  <data name="Emulation.Snk.Value.Touchscreen" xml:space="preserve"><value>Écran tactile</value></data>
+  <data name="Emulation.Snk.Setting.LightgunOffscreenPosition" xml:space="preserve"><value>Position hors écran du pistolet optique</value></data>
+  <data name="Emulation.Snk.Value.Free" xml:space="preserve"><value>Libre</value></data>
+  <data name="Emulation.Snk.Value.FixedTopLeft" xml:space="preserve"><value>Fixe, en haut à gauche</value></data>
+  <data name="Emulation.Snk.Value.FixedBottomRight" xml:space="preserve"><value>Fixe, en bas à droite</value></data>
+  <data name="Emulation.Snk.Setting.ScreenRotationMode" xml:space="preserve"><value>Rotation de l’écran</value></data>
+  <data name="Emulation.Snk.Value.Internal" xml:space="preserve"><value>Interne</value></data>
+  <data name="Emulation.Snk.Setting.AudioProcessorSpeed" xml:space="preserve"><value>Vitesse du processeur audio (%)</value></data>
+  <data name="Emulation.Snk.Help.AutomaticLoadFastForward" xml:space="preserve"><value>Fonction expérimentale pour accélérer automatiquement l'avancement pendant CD accès.&#xA;Fonctionne avec:&#xA;- Générique SCSI&#xA;- Sega. CD et Neo Geo CD</value></data>
+  <data name="Emulation.Snk.Setting.CoinLimit" xml:space="preserve"><value>Limite de pièces</value></data>
+  <data name="Emulation.Snk.Setting.SampleRate" xml:space="preserve"><value>Taux d'échantillonnage</value></data>
+  <data name="Emulation.Snk.Help.SampleRate" xml:space="preserve"><value>Nombre d'échantillons audio prélevés par seconde. Des taux plus élevés fournissent une meilleure qualité audio.</value></data>
+  <data name="Emulation.Snk.Value.Threshold" xml:space="preserve"><value>Seuil</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipInterval" xml:space="preserve"><value>Nombre maximal d’images consécutives à sauter</value></data>
+  <data name="Emulation.Snk.Help.FrameskipInterval" xml:space="preserve"><value>Nombre maximum de cadres consécutifs qui peuvent être ignorés. Des valeurs inférieures permettent de garder les mises à jour visuelles plus lisses au prix de plus de gouttes audio lorsque l'hôte est surchargé.</value></data>
+  <data name="Emulation.Snk.Setting.ShowGameInformation" xml:space="preserve"><value>Afficher les informations du jeu</value></data>
+  <data name="Emulation.Snk.Help.ShowGameInformation" xml:space="preserve"><value>Afficher MAME'le statut pilote et les écrans d'information de jeu au démarrage avant le jeu commence à courir.</value></data>
+  <data name="Emulation.Snk.Setting.Stereo" xml:space="preserve"><value>Stéréo</value></data>
+  <data name="Emulation.Snk.Help.Stereo" xml:space="preserve"><value>Sortie audio stéréo. Désactiver pour un peu plus bas CPU sur des jeux qui n'utilisent pas de mixage stéréo.</value></data>
+  <data name="Emulation.Snk.Setting.SystemType" xml:space="preserve"><value>Type de système</value></data>
+  <data name="Emulation.Snk.Help.SystemType" xml:space="preserve"><value>Spécifiez le type de système: AES, MVS, ou Univers BIOS Système</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoAESHomeConsole" xml:space="preserve"><value>Neo Geo AES (Console d'intérieur)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoMVSArcade"><value>Neo Geo MVS (Arcade)</value></data>
+  <data name="Emulation.Snk.Value.UniverseBIOSCommunityEnhancedBIOS" xml:space="preserve"><value>Univers BIOS (Renforcement de la Communauté) BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.CDSystemType" xml:space="preserve"><value>Modèle de Neo Geo CD</value></data>
+  <data name="Emulation.Snk.Help.CDSystemType" xml:space="preserve"><value>Préciser CD Type de système lors du chargement Neo Geo CD images de disque</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDFrontLoader"><value>Neo Geo CD (Front Loader)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDTopLoader" xml:space="preserve"><value>Neo Geo CD (Loueur supérieur)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDZUniverseBIOS" xml:space="preserve"><value>Neo Geo CDZ (Universe) BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.Region" xml:space="preserve"><value>Région</value></data>
+  <data name="Emulation.Snk.Help.Region" xml:space="preserve"><value>Spécifier la région: USA, Japon, Asie, Europe</value></data>
+  <data name="Emulation.Snk.Value.Europe"><value>Europe</value></data>
+  <data name="Emulation.Snk.Help.MemoryCard" xml:space="preserve"><value>Activer ou désactiver la carte mémoire</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardWriteProtect" xml:space="preserve"><value>Prévenir les changements à la carte mémoire.</value></data>
+  <data name="Emulation.Snk.Setting.SettingMode" xml:space="preserve"><value>Mode de réglage</value></data>
+  <data name="Emulation.Snk.Help.SettingMode" xml:space="preserve"><value>Monter le système ROM menu au démarrage sur les systèmes d'arcade</value></data>
+  <data name="Emulation.Snk.Help.FourPlayerMode" xml:space="preserve"><value>Définir quatre joueurs (dual MVS mode pour l'Asie/Japon MVS systèmes</value></data>
+  <data name="Emulation.Snk.Help.Freeplay" xml:space="preserve"><value>Jouer MVS jeux sans la nécessité d'insérer des pièces</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanTop" xml:space="preserve"><value>Masque de pixels caché par une lunette ou une bordure sur les CRT d'origine (en haut)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanBottom" xml:space="preserve"><value>Masque de pixels caché par une lunette ou une bordure sur les CRT d'origine (en bas)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanLeft" xml:space="preserve"><value>Masque de pixels caché par une lunette ou une bordure sur les CRT d'origine (à gauche)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanRight" xml:space="preserve"><value>Masque de pixels caché par une lunette ou une bordure sur les CRT d'origine (à droite)</value></data>
+  <data name="Emulation.Snk.Setting.Palette"><value>Palette</value></data>
+  <data name="Emulation.Snk.Help.Palette" xml:space="preserve"><value>Régler la palette</value></data>
+  <data name="Emulation.Snk.Setting.AspectRatio" xml:space="preserve"><value>Rapport d ' aspect</value></data>
+  <data name="Emulation.Snk.Help.AspectRatio" xml:space="preserve"><value>Régler le rapport d'aspect</value></data>
+  <data name="Emulation.Snk.Value.PerfectlySquarePixels11PAR" xml:space="preserve"><value>Pixels carrés (1:1 PAR)</value></data>
+  <data name="Emulation.Snk.Value.OstensiblyAccurateNTSCAspectRatio4544PAR" xml:space="preserve"><value>Rapport de pixels NTSC (45:44 PAR)</value></data>
+  <data name="Emulation.Snk.Value.VeryTraditionalNTSCAspectRatio43DAR" xml:space="preserve"><value>Rapport d’affichage NTSC (4:3 DAR)</value></data>
+  <data name="Emulation.Snk.Setting.SpritesPerLineLimit" xml:space="preserve"><value>Limite par ligne de sprites</value></data>
+  <data name="Emulation.Snk.Help.SpritesPerLineLimit" xml:space="preserve"><value>Définir la limite sprites-par-ligne - augmentation des causes de problèmes dans certains jeux</value></data>
+  <data name="Emulation.Snk.Setting.ProcessorSpeed" xml:space="preserve"><value>Vitesse du processeur</value></data>
+  <data name="Emulation.Snk.Help.ProcessorSpeed" xml:space="preserve"><value>Exécutez le processeur à 24 MHz. Cette vitesse peut causer des erreurs dans les jeux.</value></data>
+  <data name="Emulation.Snk.Setting.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Désactiver le débordement de l’accumulateur ADPCM</value></data>
+  <data name="Emulation.Snk.Help.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Modifier le ADPCM comportement de l'accumulateur pour corriger les erreurs sonores dans certains jeux. Laisser ce paramètre désactivé pour d'autres jeux.</value></data>
+  <data name="Emulation.Snk.Help.CDSpeedHack" xml:space="preserve"><value>Lot BIOS boucles d'attente pour réduire les temps de chargement (Ne fonctionne pas pour Universe BIOS)</value></data>
+  <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Corriger le BIOS télécharger des pointeurs lorsque CD tampon DMA est plus grand qu'un secteur, la correction du son corrompu dans la phase bonus de Art of Fighting. C'est un hack, et le comportement matériel réel est non confirmé.</value></data>
+  <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Avancer rapidement CD les écrans de chargement</value></data>
+  <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Interpolation de troisième ordre (4 points)</value></data>
+  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Employe les consoles monochromes et couleur portables.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Employe les consoles monochromes et couleur portables.</value></data>
+  <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Sélectionnez la langue utilisée par les jeux compatibles.</value></data>
+  <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Saut d’images</value></data>
+  <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Sautez certaines images vidéo lorsque les performances sont insuffisantes, pour réduire les interruptions de la sortie audio.</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipThreshold" xml:space="preserve"><value>Seuil de tampon audio (%)</value></data>
+  <data name="Emulation.Snk.Help.FrameskipThreshold" xml:space="preserve"><value>Sauter les images vidéo lorsque le tampon audio contient moins de données que ce pourcentage de sa capacité.</value></data>
+  <data name="Emulation.Snk.Help.AudioQuality" xml:space="preserve"><value>Choisissez entre une synthèse sonore plus rapide et une synthèse sonore plus précise.</value></data>
+  <data name="Emulation.Snk.Help.AudioSampleRate" xml:space="preserve"><value>Choisissez la fréquence d'échantillonnage audio de sortie. Des fréquences plus élevées peuvent améliorer la qualité du son et nécessiter plus de puissance de traitement.</value></data>
+  <data name="Emulation.Snk.Setting.AutoSaveLoadStates" xml:space="preserve"><value>Enregistrer et restaurer automatiquement les états</value></data>
+  <data name="Emulation.Snk.Help.SkipDisclaimer" xml:space="preserve"><value>Cacher l'avis légal quand un jeu commence.</value></data>
+  <data name="Emulation.Snk.Help.SkipWarnings" xml:space="preserve"><value>Cacher les avertissements sur les problèmes connus quand un jeu commence.</value></data>
+  <data name="Emulation.Snk.Help.SampleRateHint" xml:space="preserve"><value>Choisissez la fréquence d'échantillonnage audio de sortie. Le mode automatique utilise la fréquence de sortie préférée.</value></data>
+  <data name="Emulation.Snk.Value.UpPriorityUpOverrideDown" xml:space="preserve"><value>Priorité à la direction Haut</value></data>
+  <data name="Emulation.Snk.Value.DownPriorityLeftRightLastInputPriority" xml:space="preserve"><value>Priorité à Bas ; dernière entrée horizontale prioritaire</value></data>
+  <data name="Emulation.Snk.Help.CrosshairEmulation" xml:space="preserve"><value>Choisissez s'il faut afficher le marqueur de visée. Le mode automatique le cache lorsqu'un pistolet ou un écran tactile est utilisé.</value></data>
+  <data name="Emulation.Snk.Value.UseBiosSetInBIOSDipswitch" xml:space="preserve"><value>Utiliser le BIOS sélectionné par les commutateurs matériels</value></data>
+  <data name="Emulation.Snk.Setting.SoftlistAutomaticMediaType" xml:space="preserve"><value>Détecter automatiquement le type de média</value></data>
+  <data name="Emulation.Snk.Help.VFSEnabled" xml:space="preserve"><value>Utilisez le système de fichiers virtuels fourni par l'application. La version 4 ou ultérieure est requise.</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkHardcodedOverlayOpacity" xml:space="preserve"><value>Opacité de recouvrement intégrée</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardWriteProtect" xml:space="preserve"><value>Protection en écriture de la Memory Card</value></data>
+  <data name="Emulation.Snk.Setting.DarkFilterLevel" xml:space="preserve"><value>Assombrissement de l’écran (%)</value></data>
+  <data name="Emulation.Snk.Value.Fast" xml:space="preserve"><value>Synthèse sonore rapide</value></data>
+  <data name="Emulation.Snk.Value.AccurateBandLimited" xml:space="preserve"><value>Synthèse sonore précise</value></data>
+  <data name="Emulation.Snk.Setting.SaveStateNaming" xml:space="preserve"><value>Noms des fichiers d’état</value></data>
+  <data name="Emulation.Snk.Setting.EnableCheats" xml:space="preserve"><value>Activer les codes de triche</value></data>
+  <data name="Emulation.Snk.Setting.HideNagScreen" xml:space="preserve"><value>Masquer l’écran d’avis légal</value></data>
+  <data name="Emulation.Snk.Setting.CoreProvidedAspectRatio" xml:space="preserve"><value>Rapport d’affichage fourni par l’émulateur</value></data>
+  <data name="Emulation.Snk.Setting.SetFrameskip" xml:space="preserve"><value>Nombre d’images à sauter</value></data>
+  <data name="Emulation.Snk.Setting.SampleRateHint" xml:space="preserve"><value>Fréquence audio souhaitée</value></data>
+  <data name="Emulation.Snk.Setting.UseExternalHiscoreDat" xml:space="preserve"><value>Utiliser le fichier externe hiscore.dat</value></data>
+  <data name="Emulation.Snk.Setting.DisplayMAMEMenu" xml:space="preserve"><value>Afficher le menu MAME</value></data>
+  <data name="Emulation.Snk.Setting.DisplayArtwork" xml:space="preserve"><value>Afficher les illustrations décoratives</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkResolutionMultiplier" xml:space="preserve"><value>Multiplicateur de résolution des illustrations</value></data>
+  <data name="Emulation.Snk.Value.AutoAggressive" xml:space="preserve"><value>Mode automatique intensif</value></data>
+  <data name="Emulation.Snk.Value.AutoMax" xml:space="preserve"><value>Mode automatique maximal</value></data>
+  <data name="Emulation.Snk.Setting.AutosaveHiscore" xml:space="preserve"><value>Enregistrer automatiquement les meilleurs scores</value></data>
+  <data name="Emulation.Snk.Value.Recursively" xml:space="preserve"><value>Rechercher dans les sous-dossiers</value></data>
+  <data name="Emulation.Snk.Setting.BypassTimingSkew" xml:space="preserve"><value>Ignorer le décalage temporel</value></data>
+  <data name="Emulation.Snk.Setting.CPUClockScale" xml:space="preserve"><value>Multiplicateur de vitesse du processeur</value></data>
+  <data name="Emulation.Snk.Setting.FixedFrameskip" xml:space="preserve"><value>Nombre fixe d’images à sauter</value></data>
+  <data name="Emulation.Snk.Value.Fixed" xml:space="preserve"><value>Nombre fixe</value></data>
+  <data name="Emulation.Snk.Setting.Hiscores" xml:space="preserve"><value>Meilleurs scores</value></data>
+  <data name="Emulation.Snk.Setting.AllowPatchedRomsets" xml:space="preserve"><value>Autoriser les archives de jeux modifiées</value></data>
+  <data name="Emulation.Snk.Value.2Point1stOrder" xml:space="preserve"><value>Interpolation du premier ordre (2 points)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderer" xml:space="preserve"><value>Méthode de rendu alternative</value></data>
+  <data name="Emulation.Snk.Value.Cropped" xml:space="preserve"><value>Image recadrée</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRendererResolution" xml:space="preserve"><value>Résolution du rendu alternatif</value></data>
+  <data name="Emulation.Snk.Setting.AutomaticLoadFastForward" xml:space="preserve"><value>Accélération automatique du chargement du disque</value></data>
+  <data name="Emulation.Snk.Setting.FourPlayerMode" xml:space="preserve"><value>Mode à quatre joueurs</value></data>
+  <data name="Emulation.Snk.Setting.Freeplay" xml:space="preserve"><value>Jouer sans insérer de pièces</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanTop" xml:space="preserve"><value>Masquer les pixels du bord supérieur</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanBottom" xml:space="preserve"><value>Masquer les pixels du bord inférieur</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanLeft" xml:space="preserve"><value>Masquer les pixels du bord gauche</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanRight" xml:space="preserve"><value>Masquer les pixels du bord droit</value></data>
+  <data name="Emulation.Snk.Value.ResistorNetwork" xml:space="preserve"><value>Simulation des couleurs par réseau de résistances</value></data>
+  <data name="Emulation.Snk.Value.Raw" xml:space="preserve"><value>Couleurs sans correction</value></data>
+  <data name="Emulation.Snk.Value.HardwareAccurate96" xml:space="preserve"><value>Limite du matériel d’origine (96)</value></data>
+  <data name="Emulation.Snk.Value.Double192" xml:space="preserve"><value>Double de la limite d’origine (192)</value></data>
+  <data name="Emulation.Snk.Value.Triple288" xml:space="preserve"><value>Triple de la limite d’origine (288)</value></data>
+  <data name="Emulation.Snk.Setting.CDSpeedHack" xml:space="preserve"><value>Réduire les délais de chargement du disque</value></data>
+  <data name="Emulation.Snk.Setting.CDDMALengthLimit" xml:space="preserve"><value>Limiter la taille des transferts de données du disque</value></data>
+  <data name="Emulation.Snk.Setting.SkipCDLoading" xml:space="preserve"><value>Ignorer l’animation de chargement du disque</value></data>
+  <data name="Emulation.Snk.Setting.HorizontalOverscan"><value>Cacher les pixels le long des bords de l'écran gauche et droit</value></data>
+  <data name="Emulation.Snk.Setting.PerGameSaves"><value>Séparer les sauvegardes pour chaque jeu</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilterLevel"><value>Niveau de filtre audio (%)</value></data>
+</root>

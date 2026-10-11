@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Content.Initial" xml:space="preserve"><value>게임 미디어</value></data>
+  <data name="Emulation.Snk.Memory.Display" xml:space="preserve"><value>영상 기억</value></data>
+  <data name="Emulation.Snk.Audio.Native" xml:space="preserve"><value>오디오 하드웨어</value></data>
+  <data name="Emulation.Snk.Video.Native" xml:space="preserve"><value>Video 하드웨어</value></data>
+  <data name="Emulation.Snk.Controls.Native" xml:space="preserve"><value>관제사 조정</value></data>
+  <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>시스템 설정</value></data>
+  <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>시스템 BIOS</value></data>
+  <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>의약 BIOS</value></data>
+  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>네오 지오를 격리 CD 네오 지오 CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
+  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Neo Geo 카트리지와 에뮬레이션 CD 시스템.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>호환 SNK 시스템.</value></data>
+  <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>일본국어</value></data>
+  <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>한국어</value></data>
+  <data name="Emulation.Snk.Help.DarkFilterLevel" xml:space="preserve"><value>밝기 기반 밝기 감소를 가능하게합니다. 흰색 배경으로 게임을 할 때 glare / 눈 스트레이닝을 방지하기 위해 사용될 수있다.</value></data>
+  <data name="Emulation.Snk.Value.Manual" xml:space="preserve"><value>의 특징</value></data>
+  <data name="Emulation.Snk.Setting.RealTimeClock" xml:space="preserve"><value>실시간 시계</value></data>
+  <data name="Emulation.Snk.Help.RealTimeClock" xml:space="preserve"><value>실시간 시계가 어떻게 전진했는지를 선택하십시오. 'Deterministic'는 고정베이스에서 에뮬레이션 된 프레임을 계산하므로 RTC 읽는 것은 netplay, rewind 및 run-ahead를 위해 재현성 그리고 안전입니다. 'Real Time'은 호스트 시계를 직접 읽습니다 (비데터미컬).</value></data>
+  <data name="Emulation.Snk.Value.Deterministic" xml:space="preserve"><value>의향상</value></data>
+  <data name="Emulation.Snk.Value.RealTime" xml:space="preserve"><value>실시간 채팅</value></data>
+  <data name="Emulation.Snk.Setting.AudioQuality" xml:space="preserve"><value>Audio 품질</value></data>
+  <data name="Emulation.Snk.Setting.AudioSampleRate" xml:space="preserve"><value>오디오 샘플 비율</value></data>
+  <data name="Emulation.Snk.Value.Game" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Snk.Value.System" xml:space="preserve"><value>시스템</value></data>
+  <data name="Emulation.Snk.Setting.MainProcessorSpeed" xml:space="preserve"><value>주요 프로세서 속도 (%)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderMethod" xml:space="preserve"><value>Alternate 렌더링 방법</value></data>
+  <data name="Emulation.Snk.Setting.VideoApproach1Enabled" xml:space="preserve"><value>비디오 접근 1 Enabled</value></data>
+  <data name="Emulation.Snk.Setting.HideGameInfoScreen" xml:space="preserve"><value>Hide 게임 정보 화면</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningScreen" xml:space="preserve"><value>경고 화면 숨기기</value></data>
+  <data name="Emulation.Snk.Setting.EnableMultithreading" xml:space="preserve"><value>다중화 가능</value></data>
+  <data name="Emulation.Snk.Setting.SetBrightness" xml:space="preserve"><value>밝기 설정</value></data>
+  <data name="Emulation.Snk.Setting.SetContrast" xml:space="preserve"><value>설정 대비</value></data>
+  <data name="Emulation.Snk.Setting.SetGamma" xml:space="preserve"><value>설정 감마</value></data>
+  <data name="Emulation.Snk.Setting.SkipDisclaimer" xml:space="preserve"><value>바카라</value></data>
+  <data name="Emulation.Snk.Setting.SkipWarnings" xml:space="preserve"><value>의정부관광청</value></data>
+  <data name="Emulation.Snk.Help.DisplayMAMEMenu" xml:space="preserve"><value>내부의 가시성을 토대로 MAME 메뉴.</value></data>
+  <data name="Emulation.Snk.Setting.Brightness" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Snk.Help.Brightness" xml:space="preserve"><value>사용중인 밝기 레벨을 수정합니다.</value></data>
+  <data name="Emulation.Snk.Setting.GammaCorrection" xml:space="preserve"><value>Gamma 수정</value></data>
+  <data name="Emulation.Snk.Help.GammaCorrection" xml:space="preserve"><value>gamma 레벨을 사용하도록 수정합니다.</value></data>
+  <data name="Emulation.Snk.Help.DisplayArtwork" xml:space="preserve"><value>사용할 때 사용자 정의 작품을 표시하는 데 사용됩니다.</value></data>
+  <data name="Emulation.Snk.Help.ArtworkResolutionMultiplier" xml:space="preserve"><value>선택한 멀티플레이어 값으로 작품 해상도를 증가시킵니다.</value></data>
+  <data name="Emulation.Snk.Setting.SpecifyNeoGeoBIOS" xml:space="preserve"><value>네오 지오(Neo Geo) BIOS</value></data>
+  <data name="Emulation.Snk.Help.SpecifyNeoGeoBIOS" xml:space="preserve"><value>대안의 생물 파일을 선택하십시오.</value></data>
+  <data name="Emulation.Snk.Value.Asia" xml:space="preserve"><value>뚱 베어</value></data>
+  <data name="Emulation.Snk.Value.Japan" xml:space="preserve"><value>일본 japan</value></data>
+  <data name="Emulation.Snk.Setting.UseSamples" xml:space="preserve"><value>사용 표본</value></data>
+  <data name="Emulation.Snk.Help.UseSamples" xml:space="preserve"><value>샘플 디렉토리에 제공 될 때 오디오 샘플 파일을로드 할 수 있습니다.</value></data>
+  <data name="Emulation.Snk.Help.AutosaveHiscore" xml:space="preserve"><value>콘텐츠가 닫을 때 자신의 코어를 저장하는 기본을 사용하는 것이 좋습니다. 반복적으로 gameplay 중 전체 시간을 절약 할 것입니다. 비활성화하면 사용량을 우회합니다. hiscore.dat 파일이 완전히.</value></data>
+  <data name="Emulation.Snk.Help.CPUClockScale" xml:space="preserve"><value>에뮬레이션을 통해 또는 시계에 사용 CPU 지정된 비율에 의해.</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningsScreen" xml:space="preserve"><value>경고 화면 숨기기</value></data>
+  <data name="Emulation.Snk.Setting.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>사용 가능 시 32비트 색상 깊이</value></data>
+  <data name="Emulation.Snk.Help.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>픽셀 형식을 변경, 일부 게임은 제대로 렌더링하기 위해이 필요, 그것은 일부 플랫폼에 성능에 영향을 미칠 수</value></data>
+  <data name="Emulation.Snk.Setting.VerticalMode" xml:space="preserve"><value>수직 모드</value></data>
+  <data name="Emulation.Snk.Help.VerticalMode" xml:space="preserve"><value>수직 스크린을 위한 자전 전시</value></data>
+  <data name="Emulation.Snk.Value.Alternate" xml:space="preserve"><value>의논하기</value></data>
+  <data name="Emulation.Snk.Value.TATEAlternate" xml:space="preserve"><value>TATE 의논하기</value></data>
+  <data name="Emulation.Snk.Setting.UseA60HzRefreshRate" xml:space="preserve"><value>60Hz의 재생율을 사용하십시오</value></data>
+  <data name="Emulation.Snk.Help.UseA60HzRefreshRate" xml:space="preserve"><value>원래 새로 고침 속도 대신 60Hz를 사용하십시오. 이것은 게임 속도를 변경하고 언트라 애니메이션을 일으킬 수 있습니다.</value></data>
+  <data name="Emulation.Snk.Setting.Resolution" xml:space="preserve"><value>해상도</value></data>
+  <data name="Emulation.Snk.Help.Resolution" xml:space="preserve"><value>특정 게임의 해상도 설정 (바이터)</value></data>
+  <data name="Emulation.Snk.Help.FixedFrameskip" xml:space="preserve"><value>'Frameskip' 는 'Fixed'로 설정되거나, frontend가 'Frameskip' 모드를 지원하지 않으면 X 프레임의 고정 속도에 뛰어 넘을 수 있습니다. X+1</value></data>
+  <data name="Emulation.Snk.Value.NoSkipping" xml:space="preserve"><value>토토사이트</value></data>
+  <data name="Emulation.Snk.Setting.CPUClock" xml:space="preserve"><value>CPU 의 시계</value></data>
+  <data name="Emulation.Snk.Help.CPUClock" xml:space="preserve"><value>다양한 시스템에 대한 정해진 CPU 주파수를 변경하여 일부 게임에서 기본 느리게 수정할 수 있습니다. 저엔드 기기에서 성능이 도움이 될 수 있습니다.</value></data>
+  <data name="Emulation.Snk.Setting.DiagnosticInput" xml:space="preserve"><value>진단 입력</value></data>
+  <data name="Emulation.Snk.Help.DiagnosticInput" xml:space="preserve"><value>캐비닛 서비스 메뉴에 버튼 조합 구성</value></data>
+  <data name="Emulation.Snk.Help.Hiscores" xml:space="preserve"><value>높은 점수 지원이 가능하므로 파일이 필요합니다. hiscore.dat 시스템/fbneo/ 폴더에</value></data>
+  <data name="Emulation.Snk.Help.AllowPatchedRomsets" xml:space="preserve"><value>시스템/fbneo/patched/ 폴더에서 romsets를 허용하여 romsets를 무시할 수 있지만 크기와 이름은 여전히 일치해야하며, 또한이 마스터 스위치는 여부를 결정합니다. IPS Patch and RomData는 실행되지 않거나, 이 설정을 닫을 필요가 있습니다.</value></data>
+  <data name="Emulation.Snk.Setting.SampleInterpolation" xml:space="preserve"><value>표본 Interpolation</value></data>
+  <data name="Emulation.Snk.Help.SampleInterpolation" xml:space="preserve"><value>표본 교환을 구성하십시오, 그것은 성과에 충격을 줄 수 있었습니다</value></data>
+  <data name="Emulation.Snk.Setting.FMInterpolation" xml:space="preserve"><value>FM 관련 링크</value></data>
+  <data name="Emulation.Snk.Help.FMInterpolation" xml:space="preserve"><value>의 특징 FM 간에, 그것은 성과에 충격을 줄 수 있었습니다</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilter" xml:space="preserve"><value>LowPass 필터</value></data>
+  <data name="Emulation.Snk.Help.LowPassFilter" xml:space="preserve"><value>LowPass 필터 사용</value></data>
+  <data name="Emulation.Snk.Setting.AnalogSpeed" xml:space="preserve"><value>아날로그 속도</value></data>
+  <data name="Emulation.Snk.Help.AnalogSpeed" xml:space="preserve"><value>Mitigate 아날로그 제어 속도, 일부 게임은 재생할 수있는 낮은 값이 필요할 수 있습니다</value></data>
+  <data name="Emulation.Snk.Setting.SOCDMode" xml:space="preserve"><value>SOCD 모드</value></data>
+  <data name="Emulation.Snk.Help.SOCDMode" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 ULDR 회사연혁</value></data>
+  <data name="Emulation.Snk.Value.Disabled" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Snk.Value.SimultaneousNeutral" xml:space="preserve"><value>동시 중립</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority4Way" xml:space="preserve"><value>최종 입력 우선순위 (4 방법)</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority8Way" xml:space="preserve"><value>최종 입력 우선 (8 방법)</value></data>
+  <data name="Emulation.Snk.Value.FirstInputPriority" xml:space="preserve"><value>첫 번째 입력 우선 순위</value></data>
+  <data name="Emulation.Snk.Setting.CrosshairEmulation" xml:space="preserve"><value>크로스헤드 에뮬레이션</value></data>
+  <data name="Emulation.Snk.Value.HideWithLightgunDevice" xml:space="preserve"><value>lightgun 장치로 숨기십시오</value></data>
+  <data name="Emulation.Snk.Value.AlwaysHide" xml:space="preserve"><value>항상 숨기다</value></data>
+  <data name="Emulation.Snk.Value.AlwaysShow" xml:space="preserve"><value>항상 쇼</value></data>
+  <data name="Emulation.Snk.Setting.NeoGeoMode" xml:space="preserve"><value>Neo-Geo 모드</value></data>
+  <data name="Emulation.Snk.Help.NeoGeoMode" xml:space="preserve"><value>선택에 따라 적합한 바이오를로드, 이러한 생물의 조건 하에서 실행 게임과 호환</value></data>
+  <data name="Emulation.Snk.Value.MVSEuropeAsiaEnglish" xml:space="preserve"><value>MVS 유럽/아시아 (한국어)</value></data>
+  <data name="Emulation.Snk.Value.MVSUSAEnglishCensored" xml:space="preserve"><value>MVS USA (English - 검열)</value></data>
+  <data name="Emulation.Snk.Value.MVSJapanJapanese" xml:space="preserve"><value>MVS 일본 (Japanese)</value></data>
+  <data name="Emulation.Snk.Value.AESEuropeAsiaEnglish" xml:space="preserve"><value>AES 유럽/아시아 (한국어)</value></data>
+  <data name="Emulation.Snk.Value.AESJapanJapanese" xml:space="preserve"><value>AES 일본 (Japanese)</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardMode" xml:space="preserve"><value>메모리 카드 모드</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardMode" xml:space="preserve"><value>메모리 카드의 행동을 변경</value></data>
+  <data name="Emulation.Snk.Value.Shared" xml:space="preserve"><value>으로</value></data>
+  <data name="Emulation.Snk.Value.PerGame" xml:space="preserve"><value>게임당</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip11" xml:space="preserve"><value>디버그 딥 1 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip11" xml:space="preserve"><value>디버그 딥 1 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip12" xml:space="preserve"><value>디버그 딥 1 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip12" xml:space="preserve"><value>디버그 딥 1 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip13" xml:space="preserve"><value>디버그 딥 1 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip13" xml:space="preserve"><value>디버그 딥 1 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip14" xml:space="preserve"><value>디버그 딥 1 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip14" xml:space="preserve"><value>디버그 딥 1 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip15" xml:space="preserve"><value>디버그 딥 1 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip15" xml:space="preserve"><value>디버그 딥 1 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip16" xml:space="preserve"><value>디버그 딥 1 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip16" xml:space="preserve"><value>디버그 딥 1 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip17" xml:space="preserve"><value>디버그 딥 1 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip17" xml:space="preserve"><value>디버그 딥 1 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip18" xml:space="preserve"><value>디버그 딥 1 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip18" xml:space="preserve"><value>디버그 딥 1 8 사용</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip21" xml:space="preserve"><value>디버그 딥 2 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip21" xml:space="preserve"><value>디버그 딥 2 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip22" xml:space="preserve"><value>디버그 딥 2 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip22" xml:space="preserve"><value>디버그 딥 2 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip23" xml:space="preserve"><value>디버그 딥 2 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip23" xml:space="preserve"><value>디버그 딥 2 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip24" xml:space="preserve"><value>디버그 딥 2 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip24" xml:space="preserve"><value>디버그 딥 2 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip25" xml:space="preserve"><value>디버그 딥 2 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip25" xml:space="preserve"><value>디버그 딥 2 5 사용</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip26" xml:space="preserve"><value>디버그 딥 2 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip26" xml:space="preserve"><value>디버그 딥 2 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip27" xml:space="preserve"><value>디버그 딥 2 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip27" xml:space="preserve"><value>디버그 딥 2 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip28" xml:space="preserve"><value>디버그 딥 2 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip28" xml:space="preserve"><value>디버그 딥 2 8 사용</value></data>
+  <data name="Emulation.Snk.Setting.Layer1" xml:space="preserve"><value>층 1</value></data>
+  <data name="Emulation.Snk.Help.Layer1" xml:space="preserve"><value>디버깅</value></data>
+  <data name="Emulation.Snk.Setting.Layer2" xml:space="preserve"><value>층 2</value></data>
+  <data name="Emulation.Snk.Setting.Layer3" xml:space="preserve"><value>층 3</value></data>
+  <data name="Emulation.Snk.Setting.Layer4" xml:space="preserve"><value>층 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite1" xml:space="preserve"><value>스프라이트 1</value></data>
+  <data name="Emulation.Snk.Setting.Sprite2" xml:space="preserve"><value>스프라이트 2</value></data>
+  <data name="Emulation.Snk.Setting.Sprite3" xml:space="preserve"><value>스프라이트 3</value></data>
+  <data name="Emulation.Snk.Setting.Sprite4" xml:space="preserve"><value>스프라이트 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite5" xml:space="preserve"><value>스프라이트 5</value></data>
+  <data name="Emulation.Snk.Setting.Sprite6" xml:space="preserve"><value>스프라이트 6</value></data>
+  <data name="Emulation.Snk.Setting.Sprite7" xml:space="preserve"><value>스프라이트 7</value></data>
+  <data name="Emulation.Snk.Setting.Sprite8" xml:space="preserve"><value>스프라이트 8</value></data>
+  <data name="Emulation.Snk.Setting.ThreadMode" xml:space="preserve"><value>실 형태</value></data>
+  <data name="Emulation.Snk.Setting.Cheats" xml:space="preserve"><value>뚱 베어</value></data>
+  <data name="Emulation.Snk.Setting.Throttle" xml:space="preserve"><value>뚱 베어</value></data>
+  <data name="Emulation.Snk.Setting.BootToBIOS" xml:space="preserve"><value>부트로 BIOS</value></data>
+  <data name="Emulation.Snk.Setting.BootToOSD" xml:space="preserve"><value>부트로 OSD</value></data>
+  <data name="Emulation.Snk.Setting.ReadConfiguration" xml:space="preserve"><value>설정 보기</value></data>
+  <data name="Emulation.Snk.Setting.WriteConfiguration" xml:space="preserve"><value>설정파일</value></data>
+  <data name="Emulation.Snk.Setting.MAMEINIPaths" xml:space="preserve"><value>MAME INI 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Snk.Setting.Softlists" xml:space="preserve"><value>의약</value></data>
+  <data name="Emulation.Snk.Setting.MediaType" xml:space="preserve"><value>미디어 유형</value></data>
+  <data name="Emulation.Snk.Value.Cart" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Snk.Value.Cass" xml:space="preserve"><value>사이트맵</value></data>
+  <data name="Emulation.Snk.Value.Cdrm" xml:space="preserve"><value>cdrm의</value></data>
+  <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>뚱 베어</value></data>
+  <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>뚱 베어</value></data>
+  <data name="Emulation.Snk.Value.Prin" xml:space="preserve"><value>뚱 베어</value></data>
+  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>롬으로</value></data>
+  <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>팟캐스트</value></data>
+  <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS 지원하다</value></data>
+  <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>조이스틱 Deadzone</value></data>
+  <data name="Emulation.Snk.Setting.JoystickSaturation" xml:space="preserve"><value>Joystick 포화</value></data>
+  <data name="Emulation.Snk.Setting.JoystickThreshold" xml:space="preserve"><value>조이스틱 임계</value></data>
+  <data name="Emulation.Snk.Setting.Joystick4WaySimulation" xml:space="preserve"><value>조이스틱 4 방법 시뮬레이션</value></data>
+  <data name="Emulation.Snk.Value.4way" xml:space="preserve"><value>4방향</value></data>
+  <data name="Emulation.Snk.Value.Strict" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Snk.Value.Qbert" xml:space="preserve"><value>의 qbert</value></data>
+  <data name="Emulation.Snk.Setting.ProfileButtonsPerGame" xml:space="preserve"><value>게임 당 프로필 버튼</value></data>
+  <data name="Emulation.Snk.Setting.Mouse" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Snk.Setting.LightgunMode" xml:space="preserve"><value>Lightgun 형태</value></data>
+  <data name="Emulation.Snk.Value.Lightgun" xml:space="preserve"><value>의 빛</value></data>
+  <data name="Emulation.Snk.Value.Touchscreen" xml:space="preserve"><value>터치 스크린</value></data>
+  <data name="Emulation.Snk.Setting.LightgunOffscreenPosition" xml:space="preserve"><value>Lightgun 스크린 위치</value></data>
+  <data name="Emulation.Snk.Value.Free" xml:space="preserve"><value>의 %</value></data>
+  <data name="Emulation.Snk.Value.FixedTopLeft" xml:space="preserve"><value>고정 (왼쪽)</value></data>
+  <data name="Emulation.Snk.Value.FixedBottomRight" xml:space="preserve"><value>고정 (Bottom 권리)</value></data>
+  <data name="Emulation.Snk.Setting.ScreenRotationMode" xml:space="preserve"><value>스크린 교체 형태</value></data>
+  <data name="Emulation.Snk.Value.Internal" xml:space="preserve"><value>내부정보</value></data>
+  <data name="Emulation.Snk.Setting.AudioProcessorSpeed" xml:space="preserve"><value>오디오 프로세서 속도 (%)</value></data>
+  <data name="Emulation.Snk.Help.AutomaticLoadFastForward" xml:space="preserve"><value>실험 기능으로, 자동적으로 빠른 속도로 CD ...&#xA;함께 일:&#xA;- 일반 SCSI&#xA;- 세이가 CD 네오 지오 CD</value></data>
+  <data name="Emulation.Snk.Setting.CoinLimit" xml:space="preserve"><value>동전 제한</value></data>
+  <data name="Emulation.Snk.Setting.SampleRate" xml:space="preserve"><value>표본 비율</value></data>
+  <data name="Emulation.Snk.Help.SampleRate" xml:space="preserve"><value>초당 찍은 오디오 샘플의 수. 더 높은 비율은 더 나은 품질 오디오를 제공합니다.</value></data>
+  <data name="Emulation.Snk.Value.Threshold" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipInterval" xml:space="preserve"><value>Frameskip 간격</value></data>
+  <data name="Emulation.Snk.Help.FrameskipInterval" xml:space="preserve"><value>최대의 연속 프레임은 건너 뛸 수 있습니다. 낮은 값은 호스트가 과부하 될 때 더 많은 오디오 드롭의 비용으로 시각적 업데이트 스무커를 유지합니다.</value></data>
+  <data name="Emulation.Snk.Setting.ShowGameInformation" xml:space="preserve"><value>Game Information을 표시</value></data>
+  <data name="Emulation.Snk.Help.ShowGameInformation" xml:space="preserve"><value>게임 시작 전에 MAME 드라이버 상태와 게임 정보를 표시합니다.</value></data>
+  <data name="Emulation.Snk.Setting.Stereo" xml:space="preserve"><value>팟캐스트</value></data>
+  <data name="Emulation.Snk.Help.Stereo" xml:space="preserve"><value>출력 스테레오 오디오. 약간 낮은 동안 비활성화 CPU 게임에서 스테레오 믹싱을 사용하지 않는.</value></data>
+  <data name="Emulation.Snk.Setting.SystemType" xml:space="preserve"><value>시스템 유형</value></data>
+  <data name="Emulation.Snk.Help.SystemType" xml:space="preserve"><value>시스템 유형 지정: AES, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , MVS, 또는 우주 BIOS 시스템</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoAESHomeConsole" xml:space="preserve"><value>네오 지오 AES (홈 콘솔)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoMVSArcade" xml:space="preserve"><value>네오 지오 MVS (아크로이드)</value></data>
+  <data name="Emulation.Snk.Value.UniverseBIOSCommunityEnhancedBIOS" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 BIOS (복사-enhanced) BIOS) )</value></data>
+  <data name="Emulation.Snk.Setting.CDSystemType" xml:space="preserve"><value>CD 시스템 유형</value></data>
+  <data name="Emulation.Snk.Help.CDSystemType" xml:space="preserve"><value>의 특징 CD 시스템 유형 네오 Geo를 로드할 때 CD 디스크 이미지</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDFrontLoader" xml:space="preserve"><value>네오 지오 CD (전면 로더)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDTopLoader" xml:space="preserve"><value>네오 지오 CD (상부부부부부)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDZUniverseBIOS" xml:space="preserve"><value>네오 지오 CDZ (우니버스) BIOS) )</value></data>
+  <data name="Emulation.Snk.Setting.Region" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Snk.Help.Region" xml:space="preserve"><value>지역 지정: USA, 일본, 아시아, 유럽</value></data>
+  <data name="Emulation.Snk.Value.Europe" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Snk.Help.MemoryCard" xml:space="preserve"><value>메모리 카드 사용 가능</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardWriteProtect" xml:space="preserve"><value>메모리 카드로 변경을 방지합니다.</value></data>
+  <data name="Emulation.Snk.Setting.SettingMode" xml:space="preserve"><value>설정 모드</value></data>
+  <data name="Emulation.Snk.Help.SettingMode" xml:space="preserve"><value>시스템 가져 오기 ROM arcade 시스템에서 부팅 메뉴</value></data>
+  <data name="Emulation.Snk.Help.FourPlayerMode" xml:space="preserve"><value>4개의 선수를 놓으십시오 (dual MVS 장) 아시아/일본을 위한 형태 MVS 시스템</value></data>
+  <data name="Emulation.Snk.Help.Freeplay" xml:space="preserve"><value>을 핥 MVS 동전을 삽입 할 필요가없는 게임</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanTop" xml:space="preserve"><value>오리지널 CRT(top)에 베젤이나 국경에 숨겨지는 픽셀 차단</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanBottom" xml:space="preserve"><value>오리지널 CRT(bottom)에 베젤이나 국경에 숨겨지는 픽셀 차단</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanLeft" xml:space="preserve"><value>오리지널 CRT(왼쪽)에 베젤이나 국경에 숨겨지는 픽셀 차단</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanRight" xml:space="preserve"><value>오리지널 CRT(right)에 베젤이나 국경에 숨겨지는 픽셀 차단</value></data>
+  <data name="Emulation.Snk.Setting.Palette" xml:space="preserve"><value>팟캐스트</value></data>
+  <data name="Emulation.Snk.Help.Palette" xml:space="preserve"><value>Palette 설정</value></data>
+  <data name="Emulation.Snk.Setting.AspectRatio" xml:space="preserve"><value>종횡비</value></data>
+  <data name="Emulation.Snk.Help.AspectRatio" xml:space="preserve"><value>종횡비 설정</value></data>
+  <data name="Emulation.Snk.Value.PerfectlySquarePixels11PAR" xml:space="preserve"><value>완벽하게 정연한 화소 (1:1 PAR) )</value></data>
+  <data name="Emulation.Snk.Value.OstensiblyAccurateNTSCAspectRatio4544PAR" xml:space="preserve"><value>Ostensibly 정확한 NTSC 종횡비 (45:44 PAR) )</value></data>
+  <data name="Emulation.Snk.Value.VeryTraditionalNTSCAspectRatio43DAR" xml:space="preserve"><value>아주 전통 NTSC 종횡비 (4:3 DAR) )</value></data>
+  <data name="Emulation.Snk.Setting.SpritesPerLineLimit" xml:space="preserve"><value>Sprites-per-line Limits(스페인트)</value></data>
+  <data name="Emulation.Snk.Help.SpritesPerLineLimit" xml:space="preserve"><value>스프라이트 - 라인 제한을 설정 - 약간의 게임에서 글리치의 원인을 증가</value></data>
+  <data name="Emulation.Snk.Setting.ProcessorSpeed" xml:space="preserve"><value>프로세서 속도</value></data>
+  <data name="Emulation.Snk.Help.ProcessorSpeed" xml:space="preserve"><value>24 MHz에서 프로세서를 실행합니다. 이 속도는 게임에서 오류를 일으킬 수 있습니다.</value></data>
+  <data name="Emulation.Snk.Setting.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>의욕 ADPCM Accumulator 랩</value></data>
+  <data name="Emulation.Snk.Help.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 ADPCM 일부 게임에서 사운드 오류를 수정하는 축적 된 행동. 다른 게임에 대한이 설정을 해제.</value></data>
+  <data name="Emulation.Snk.Help.CDSpeedHack" xml:space="preserve"><value>팟캐스트 BIOS 로딩 시간을 줄이기 위해 바쁜 루프 (우주를 위해 작동하지 않음) BIOS) )</value></data>
+  <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 BIOS 업로드 포인터 CD 퀵메뉴 DMA 한 분야보다 더 큰, 싸움의 보너스 단계의 예술에 손상된 소리를 수정. 이것은 해킹이며, 실제 하드웨어 행동은 확인되지 않습니다.</value></data>
+  <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>빠른 대면 CD 적재 화면</value></data>
+  <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>세 번째 주문 간섭 (4 점)</value></data>
+  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>단일 크롬 및 컬러 핸드 헬드 콘솔을 격리합니다.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>단일 크롬 및 컬러 핸드 헬드 콘솔을 격리합니다.</value></data>
+  <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>호환 게임에 의해 사용되는 언어를 선택하십시오.</value></data>
+  <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Video Frame 건너뛰기</value></data>
+  <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>성능이 부족할 때 일부 비디오 프레임을 건너, 오디오 출력의 중단을 감소.</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipThreshold" xml:space="preserve"><value>오디오 완충기 문턱 (%)</value></data>
+  <data name="Emulation.Snk.Help.FrameskipThreshold" xml:space="preserve"><value>오디오 버퍼가 용량의 비율보다 적은 데이터를 포함 할 때 비디오 프레임을 건너 뛰십시오.</value></data>
+  <data name="Emulation.Snk.Help.AudioQuality" xml:space="preserve"><value>더 빠른 사운드 합성과 더 정확한 사운드 합성을 선택합니다.</value></data>
+  <data name="Emulation.Snk.Help.AudioSampleRate" xml:space="preserve"><value>출력 오디오 샘플링 주파수를 선택하십시오. 높은 주파수는 사운드 품질을 향상시키고 더 많은 처리 능력을 필요로 할 수 있습니다.</value></data>
+  <data name="Emulation.Snk.Setting.AutoSaveLoadStates" xml:space="preserve"><value>저장 및 복원 상태</value></data>
+  <data name="Emulation.Snk.Help.SkipDisclaimer" xml:space="preserve"><value>게임이 시작될 때 법적 고지를 숨기기.</value></data>
+  <data name="Emulation.Snk.Help.SkipWarnings" xml:space="preserve"><value>게임이 시작될 때 알려진 문제에 대한 경고를 숨기기.</value></data>
+  <data name="Emulation.Snk.Help.SampleRateHint" xml:space="preserve"><value>출력 오디오 샘플링 주파수를 선택하십시오. 자동 모드는 선호된 출력 주파수를 사용합니다.</value></data>
+  <data name="Emulation.Snk.Value.UpPriorityUpOverrideDown" xml:space="preserve"><value>위쪽 방향에 우선 순위를 부여</value></data>
+  <data name="Emulation.Snk.Value.DownPriorityLeftRightLastInputPriority" xml:space="preserve"><value>아래 방향으로 우선하십시오; 최신 수평 입력을 사용하십시오</value></data>
+  <data name="Emulation.Snk.Help.CrosshairEmulation" xml:space="preserve"><value>객관적인 감적을 보여주기 위하여 선택하십시오. 자동 모드는 빛 총 또는 터치스크린이 사용될 때 그것을 숨깁니다.</value></data>
+  <data name="Emulation.Snk.Value.UseBiosSetInBIOSDipswitch" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 BIOS 하드웨어 스위치로 선택</value></data>
+  <data name="Emulation.Snk.Setting.SoftlistAutomaticMediaType" xml:space="preserve"><value>미디어 유형을 자동으로 감지</value></data>
+  <data name="Emulation.Snk.Help.VFSEnabled" xml:space="preserve"><value>응용 프로그램에 의해 공급되는 가상 파일 시스템을 사용하십시오. 버전 4 이상은 필요합니다.</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkHardcodedOverlayOpacity" xml:space="preserve"><value>내장 오버레이 opacity</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardWriteProtect" xml:space="preserve"><value>변경에 대한 메모리 카드를 보호</value></data>
+  <data name="Emulation.Snk.Setting.DarkFilterLevel" xml:space="preserve"><value>스크린 어둡게 하기 (%)</value></data>
+  <data name="Emulation.Snk.Value.Fast" xml:space="preserve"><value>빠른 소리 종합</value></data>
+  <data name="Emulation.Snk.Value.AccurateBandLimited" xml:space="preserve"><value>정확한 음향 종합</value></data>
+  <data name="Emulation.Snk.Setting.SaveStateNaming" xml:space="preserve"><value>Saved 상태 파일 이름</value></data>
+  <data name="Emulation.Snk.Setting.EnableCheats" xml:space="preserve"><value>Enable 속임수 부호</value></data>
+  <data name="Emulation.Snk.Setting.HideNagScreen" xml:space="preserve"><value>법적 고지 화면 숨기기</value></data>
+  <data name="Emulation.Snk.Setting.CoreProvidedAspectRatio" xml:space="preserve"><value>emulator에 의해 공급되는 전시 종횡비</value></data>
+  <data name="Emulation.Snk.Setting.SetFrameskip" xml:space="preserve"><value>Video Frames를 건너뛰기</value></data>
+  <data name="Emulation.Snk.Setting.SampleRateHint" xml:space="preserve"><value>선호하는 오디오 표본 추출 빈도</value></data>
+  <data name="Emulation.Snk.Setting.UseExternalHiscoreDat" xml:space="preserve"><value>외부 high-score 파일 사용 hiscore.dat</value></data>
+  <data name="Emulation.Snk.Setting.DisplayMAMEMenu" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 MAME ⁇</value></data>
+  <data name="Emulation.Snk.Setting.DisplayArtwork" xml:space="preserve"><value>장식 예술</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkResolutionMultiplier" xml:space="preserve"><value>장식적인 삽화 해결책 multiplier</value></data>
+  <data name="Emulation.Snk.Value.AutoAggressive" xml:space="preserve"><value>Aggressive 자동 모드</value></data>
+  <data name="Emulation.Snk.Value.AutoMax" xml:space="preserve"><value>최대 자동 모드</value></data>
+  <data name="Emulation.Snk.Setting.AutosaveHiscore" xml:space="preserve"><value>높은 점수를 자동으로 저장</value></data>
+  <data name="Emulation.Snk.Value.Recursively" xml:space="preserve"><value>검색 subfolders</value></data>
+  <data name="Emulation.Snk.Setting.BypassTimingSkew" xml:space="preserve"><value>타이밍 상쇄 우회</value></data>
+  <data name="Emulation.Snk.Setting.CPUClockScale" xml:space="preserve"><value>프로세서 속도 multiplier</value></data>
+  <data name="Emulation.Snk.Setting.FixedFrameskip" xml:space="preserve"><value>의 고정 수의 비디오 프레임 건너뛰기</value></data>
+  <data name="Emulation.Snk.Value.Fixed" xml:space="preserve"><value>고정 번호</value></data>
+  <data name="Emulation.Snk.Setting.Hiscores" xml:space="preserve"><value>높은 점수</value></data>
+  <data name="Emulation.Snk.Setting.AllowPatchedRomsets" xml:space="preserve"><value>게임 아카이브를 수정할 수 있습니다.</value></data>
+  <data name="Emulation.Snk.Value.2Point1stOrder" xml:space="preserve"><value>첫 번째 주문 간략 (2 점)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderer" xml:space="preserve"><value>Alternative 렌더링 방법</value></data>
+  <data name="Emulation.Snk.Value.Cropped" xml:space="preserve"><value>Cropped 이미지</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRendererResolution" xml:space="preserve"><value>Alternative 렌더링 해상도</value></data>
+  <data name="Emulation.Snk.Setting.AutomaticLoadFastForward" xml:space="preserve"><value>자동 디스크로드 속도</value></data>
+  <data name="Emulation.Snk.Setting.FourPlayerMode" xml:space="preserve"><value>4인 모드</value></data>
+  <data name="Emulation.Snk.Setting.Freeplay" xml:space="preserve"><value>동전 삽입없이 재생</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanTop" xml:space="preserve"><value>상단 화면 가장자리에 따라 픽셀 숨기기</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanBottom" xml:space="preserve"><value>아래 화면 가장자리에 픽셀 숨기기</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanLeft" xml:space="preserve"><value>왼쪽 화면 가장자리를 따라 픽셀 숨기기</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanRight" xml:space="preserve"><value>오른쪽 화면 가장자리를 따라 픽셀 숨기기</value></data>
+  <data name="Emulation.Snk.Value.ResistorNetwork" xml:space="preserve"><value>Resistor 네트워크 색상 시뮬레이션</value></data>
+  <data name="Emulation.Snk.Value.Raw" xml:space="preserve"><value>색상 변경</value></data>
+  <data name="Emulation.Snk.Value.HardwareAccurate96" xml:space="preserve"><value>본래 기계설비 한계 (96)</value></data>
+  <data name="Emulation.Snk.Value.Double192" xml:space="preserve"><value>두 배 본래 한계 (192)</value></data>
+  <data name="Emulation.Snk.Value.Triple288" xml:space="preserve"><value>원래의 한계를 세 배 (288)</value></data>
+  <data name="Emulation.Snk.Setting.CDSpeedHack" xml:space="preserve"><value>디스크 로딩 지연 감소</value></data>
+  <data name="Emulation.Snk.Setting.CDDMALengthLimit" xml:space="preserve"><value>디스크 데이터 전송의 크기를 제한</value></data>
+  <data name="Emulation.Snk.Setting.SkipCDLoading" xml:space="preserve"><value>디스크 로딩 애니메이션</value></data>
+  <data name="Emulation.Snk.Setting.HorizontalOverscan"><value>왼쪽과 오른쪽 화면 가장자리를 따라 픽셀 숨기기</value></data>
+  <data name="Emulation.Snk.Setting.PerGameSaves"><value>각 게임에 대한 별도의 저장</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilterLevel"><value>오디오 필터 레벨 (%)</value></data>
+</root>

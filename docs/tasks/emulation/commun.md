@@ -1,0 +1,269 @@
+# Travaux communs restants
+
+## controller-artwork
+
+- [ ] Réaliser les profils NEC
+- [ ] Réaliser les profils Microsoft
+- [ ] Réaliser les profils Sony
+- [ ] Réaliser les profils Nintendo
+- [ ] Réaliser les profils Sega
+- [ ] Raccorder les Sega Saturn Virtua Stick HSS-0104 et HSS-0136
+  - [ ] Revoir les 108 images une par une dans l'ordre alphabétique du dossier ; corriger tout écart avant la suivante.
+    - [ ] Corriger le relief des boutons rouges du CX52 d'après les deux nouvelles vues de référence
+      - [ ] Créer `artifacts/controller-sources/atari-5200-flanks-redrawn-preview.png` : composer les flancs redessinés avec la vue de dessus et vérifier visuellement la géométrie avant de remplacer l'image de l'application.
+      - [ ] Modifier `src/GWGUI.App/Assets/Controllers/atari-5200-controller.png` : utiliser l'illustration corrigée seulement après contrôle visuel côte à côte avec les photographies des flancs.
+      - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/5200/Atari5200Controller.cs` : ajuster les quatre zones d'action aux boutons saillants dessinés.
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : documenter la géométrie saillante des boutons et l'état réel de la validation.
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner la vérification du build Debug après ce dernier ajustement.
+    - [ ] Reprendre le HSS-0104 selon l'avis de l'utilisateur après le CX52
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : enregistrer sa validation ou le défaut précis restant et prévoir la correction correspondante avant de passer à une autre manette.
+    - [ ] Terminer la répartition du registre des profils par marque
+      - [ ] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Microsoft/MicrosoftProfileRegistry.cs` : enregistrer les profils Xbox dans leur propre dictionnaire.
+      - [ ] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sony/SonyProfileRegistry.cs` : enregistrer les profils Sony dans leur propre dictionnaire.
+      - [ ] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Nintendo/NintendoProfileRegistry.cs` : enregistrer les profils Nintendo dans leur propre dictionnaire.
+      - [ ] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Generic/GenericProfileRegistry.cs` : enregistrer les joysticks multiplateformes dans leur propre dictionnaire.
+      - [ ] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/AmigaProfileRegistry.cs` : enregistrer les profils Amiga dans leur propre dictionnaire.
+      - [ ] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Atari/AtariProfileRegistry.cs` : enregistrer les profils Atari dans leur propre dictionnaire.
+      - [ ] Créer `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Sega/SegaProfileRegistry.cs` : enregistrer les profils Sega dans leur propre dictionnaire.
+      - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.Profiles.cs` : garder seulement l'assemblage du dictionnaire des marques.
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : décrire la répartition vérifiée et le résultat du build de l'application.
+    - [ ] Terminer commodore-cd32.png
+      - [ ] Créer `artifacts/controller-sources/compose-amiga-cd32-controller.ps1` : composer la vue de face existante avec deux petites découpes photographiques montrant uniquement les gâchettes, en préservant leurs pixels.
+      - [ ] Modifier `src/GWGUI.App/Assets/Controllers/commodore-cd32.png` : afficher ces découpes avec le contrôleur existant sur fond transparent.
+      - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/Profiles/Amiga/Joysticks/CommodoreCd32.cs` : placer les halos des gâchettes sur les découpes réelles.
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `commodore-cd32.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] competition-pro-cd32.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `competition-pro-cd32.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] dreamcast.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `dreamcast.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] flight-stick.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `flight-stick.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] generic-gamepad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `generic-gamepad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] konix-speedking-left-hand.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `konix-speedking-left-hand.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] konix-speedking-right-hand.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `konix-speedking-right-hand.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] mattel-hyperscan-controller.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `mattel-hyperscan-controller.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] mattel-intellivision-controller.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `mattel-intellivision-controller.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] mega-drive-6.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `mega-drive-6.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-arcade-pad-6.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-arcade-pad-6.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-avenue-pad-3.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-avenue-pad-3.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-avenue-pad-6.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-avenue-pad-6.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-cordless-pad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-cordless-pad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-coregrafx-ii-turbopad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-coregrafx-ii-turbopad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-coregrafx-turbopad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-coregrafx-turbopad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-duopad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-duopad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-duor-turbopad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-duor-turbopad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-engine-lt-controls.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-engine-lt-controls.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-engine-mouse.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-engine-mouse.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-engine-pad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-engine-pad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-engine-turbopad-ii.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-engine-turbopad-ii.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-engine-turbopad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-engine-turbopad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-engine-turbostick.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-engine-turbostick.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-fx-mouse.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-fx-mouse.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-pc-fx-pad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-pc-fx-pad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-turboexpress-controls.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-turboexpress-controls.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-turbografx-turbopad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-turbografx-turbopad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nec-turbografx-turbostick.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nec-turbografx-turbostick.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-64.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-64.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-game-boy-advance.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-game-boy-advance.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-game-boy-color.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-game-boy-color.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-game-boy.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-game-boy.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-gamecube-wavebird.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-gamecube-wavebird.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-gamecube.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-gamecube.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-nes-advantage.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-nes-advantage.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-nes-dogbone.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-nes-dogbone.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] nintendo-nes-max.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `nintendo-nes-max.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] philips-cdi-gamepad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `philips-cdi-gamepad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] playstation-1.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `playstation-1.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] playstation-2.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `playstation-2.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] playstation-4.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `playstation-4.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] playstation-5.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `playstation-5.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] quickshot-deluxe.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `quickshot-deluxe.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] quickshot-ii-turbo.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `quickshot-ii-turbo.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] quickshot.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `quickshot.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] racing-wheel.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `racing-wheel.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] saturn-3d-control-pad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `saturn-3d-control-pad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] saturn.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `saturn.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sega-arcade-power-stick-3.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sega-arcade-power-stick-3.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sega-arcade-power-stick-6.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sega-arcade-power-stick-6.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sega-control-stick.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sega-control-stick.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sega-saturn-virtua-stick-hss0104.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sega-saturn-virtua-stick-hss0104.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sega-saturn-virtua-stick-hss0136.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sega-saturn-virtua-stick-hss0136.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sega-sg1000-ii.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sega-sg1000-ii.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sega-sg1000-joystick.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sega-sg1000-joystick.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sony-dualshock-1.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sony-dualshock-1.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] sony-psp-1000.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `sony-psp-1000.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] super-nes-controller.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `super-nes-controller.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] super-nintendo.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `super-nintendo.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-360-big-button-pad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-360-big-button-pad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-360-black.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-360-black.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-360-chatpad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-360-chatpad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-360-transforming-dpad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-360-transforming-dpad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-360-white.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-360-white.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-360-wireless-racing-wheel.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-360-wireless-racing-wheel.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-360-wireless-speed-wheel.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-360-wireless-speed-wheel.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-chatpad.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-chatpad.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-controller-s.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-controller-s.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-duke.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-duke.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-dvd-movie-playback-kit.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-dvd-movie-playback-kit.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-one.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-one.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-rematch-core.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-rematch-core.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+    - [ ] xbox-series.png
+      - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : consigner pour `xbox-series.png` le modèle réel, la référence visuelle, la transparence, les commandes visibles et la correspondance des halos ; si un écart est trouvé, insérer d'abord les actions concrètes qui corrigent le PNG et ses zones.
+  - [ ] Créer `artifacts/controller-sources/cutout-duke.ps1` : préparer un détourage déterministe de la photo frontale du Duke et deux petites découpes de sa photo arrière montrant les gâchettes, sans modifier les pixels du matériel.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/xbox-duke.png` : remplacer l'illustration inventée par les pixels du matériel photographié, avec seul le fond détouré de manière déterministe.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : replacer les zones de la manette Duke sur ses commandes photographiées.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer la photo Duke et consigner les contrôles effectués.
+  - [ ] Créer `artifacts/controller-sources/xbox-dvd-remote-original.jpg` : conserver une photographie de face de la télécommande DVD Xbox d'origine.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/xbox-dvd-movie-playback-kit.png` : remplacer la télécommande reconstruite par la photographie du vrai modèle, fond seulement détouré.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : replacer les halos sur les touches réelles de la télécommande.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer la photo de la télécommande et noter le contrôle des touches.
+  - [ ] Créer `artifacts/controller-sources/xbox-controller-s-original.jpg` : conserver une photographie de face du Microsoft Controller S original.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/xbox-controller-s.png` : remplacer l'illustration par la photo détourée sans changement des boutons Black/White.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : recalculer les halos du Controller S.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer et vérifier le Controller S.
+  - [ ] Créer `artifacts/controller-sources/xbox-chatpad-original.png` : conserver une photographie de face du Chatpad Microsoft pour Xbox One.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/xbox-chatpad.png` : remplacer les touches inventées par les pixels de la photographie, avec détourage du fond uniquement.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : recalculer les zones du Chatpad d'après les touches réelles.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer et vérifier le Chatpad Xbox One.
+  - [ ] Créer `artifacts/controller-sources/sony-psp-1000-original.png` : conserver la source photographique de face du modèle PSP-1000.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/sony-psp-1000.png` : remplacer toute vue oblique ou reconstruction par la vue de face photographiée, fond détouré seulement.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : replacer les halos de la PSP-1000.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer et vérifier la PSP-1000.
+  - [ ] Créer `artifacts/controller-sources/sony-dualshock-1-original.jpg` : conserver une photo de face de la DualShock d'origine.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/sony-dualshock-1.png` : remplacer l'image oblique par la photo de face du modèle exact, détourée sans reconstruire les commandes.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : replacer les halos de la DualShock d'origine.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer et vérifier la DualShock d'origine.
+  - [ ] Créer `artifacts/controller-sources/sega-sg1000-joystick-original.jpg` : conserver une photo de dessus droite du joystick Sega SG-1000 exact.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/sega-sg1000-joystick.png` : remplacer la vue fausse ou inclinée par la photo du vrai joystick, détourée uniquement.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : replacer les halos du joystick SG-1000.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer et vérifier le joystick SG-1000.
+  - [ ] Créer `artifacts/controller-sources/sega-sg1000-ii-original.jpg` : conserver une photo de face droite du contrôleur Sega SG-1000 II exact.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/sega-sg1000-ii.png` : remplacer la vue fausse ou inclinée par la photo de la vraie manette, détourée uniquement.
+  - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs` : replacer les halos SG-1000 II.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-fidelity.md` : créditer et vérifier la manette SG-1000 II.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork.md` : détailler les autres remplacements Xbox 360, NEC, Nintendo et Virtua Stick après ce lot prioritaire.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner le build Debug et la présence de l'application et des huit modules.
+- [ ] Vérifier la couverture et le fonctionnement
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-arcade-pad-6.png` : retirer les quelques pixels détachés à l'extérieur de la silhouette sans altérer les boutons.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nec-pc-engine-turbostick.png` : nettoyer les pixels résiduels du fond sur les bords du PI-PD4 sans toucher aux boutons ; les retouches génératives tentées jusqu'ici conservent ces pixels.
+  - [ ] Modifier `src/GWGUI.App/Assets/Controllers/nintendo-gamecube-wavebird.png` : retirer les franges colorées hors de la silhouette par une méthode expressément autorisée, sans altérer les commandes.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner l'état de l'alpha WaveBird après nettoyage et la vérification des halos dans l'interface.
+  - [ ] Modifier `docs/tasks/emulation/controller-artwork-inventory.md` : consigner la couverture réelle des cinq modules, les contrôles image/transparence/zones, le résultat du build Debug de l'application et des modules et les essais fonctionnels de sélection et de halos.
+
+## remaining-machines-emulators
+
+- [ ] Compléter les systèmes de liste-emulateur-libretro.md
+  - [ ] Établir la couverture et les actions par module
+  - [ ] Compléter Nintendo
+  - [ ] Compléter les autres associations, machines et familles
+    - [ ] Modifier `docs/tasks/emulation/remaining-machines-emulators.md` : détailler les prochaines intégrations vérifiées avant tout changement de leurs fichiers.
+  - [ ] Valider l’ensemble
+    - [ ] Modifier `docs/tasks/emulation/remaining-machines-emulators.md` : noter la couverture finale, les contrôles pertinents et le résultat du build Debug avec tous les modules.
+
+## remaining-validations
+
+- [ ] 1. Valider les derniers comportements Amiga
+  - [ ] 1.1 Mesurer et corriger la synchronisation audio
+    - [ ] Modifier `docs/reference/emulation-machines.md` après deux essais de dix minutes en PAL et NTSC pour consigner la cible de tampon, les underruns, les overruns et toute correction appliquée dans le moteur Amiga.
+  - [ ] 1.2 Valider la persistance des écritures ADF
+    - [ ] Modifier `docs/reference/emulation-machines.md` après une écriture dans une copie de `Boot-DD-OFS.adf`, sa réouverture et la comparaison du SHA-256 de l’original en lecture seule, afin de consigner le résultat et toute correction appliquée.
+  - [ ] 1.3 Valider les machines Amiga nécessitant leurs firmwares
+    - [ ] Modifier `docs/reference/emulation-machines.md` après les essais CDTV, CD32 et CD32FR avec leurs ROM principales et étendues pour consigner les firmwares employés et les résultats.
+  - [ ] 1.4 Effectuer les essais longs
+    - [ ] Modifier `docs/reference/emulation-machines.md` après trente minutes PAL puis NTSC avec vidéo, audio et entrées pour consigner la stabilité et les compteurs audio.
+- [ ] 2. Terminer la validation cassette Atari800
+  - [ ] 2.1 Tester les parcours encore non vérifiés
+    - [ ] Modifier `docs/reference/atari-libretro.md` après une lecture manuelle sans amorçage automatique, la modification des options moteur arrêté puis actif, l’amorçage automatique sur Atari 400 et les essais d’une cassette connue sur Atari 800XL et Atari 130XE.
+- [ ] 3. Terminer la validation GameInput
+  - [ ] 3.1 Vérifier la compatibilité des anciennes associations
+    - [ ] Modifier `docs/reference/gameinput.md` après des essais avec une configuration `xinput:*`, une manette absente, une reconnexion et un changement d’ordre pour consigner les identités conservées et toute correction appliquée.
+  - [ ] 3.2 Vérifier les distributions sans environnement de développement
+    - [ ] Modifier `docs/reference/gameinput.md` après les essais de l’installateur et du ZIP portable sur une machine sans SDK .NET, avec et sans runtime GameInput suffisant, et après ajout d’un message traduit si l’initialisation échoue.
+  - [ ] 3.3 Vérifier le matériel disponible
+    - [ ] Modifier `docs/reference/gameinput.md` après les essais des boutons, sticks, gâchettes simultanées, Guide, Share, palettes, plusieurs manettes, reconnexions, clavier, souris et autres périphériques disponibles dans Amiga et Atari.
+- [ ] 4. Analyser le CPU des machines masquées
+  - [ ] 4.1 Mesurer le coût de zéro à quatre machines
+    - [ ] Créer `docs/architecture/emulation-cpu-usage.md` avec des mesures répétées du CPU de GW GUI et des processus d’émulation pour zéro, une, deux, trois et quatre machines, visibles puis masquées, en distinguant la réception vidéo, l’audio, les entrées et les notifications encore actives.
+  - [ ] 4.2 Corriger uniquement les traitements inutiles confirmés
+    - [ ] Modifier `docs/architecture/emulation-cpu-usage.md` après les corrections de code justifiées par les mesures pour consigner le comportement final et les nouvelles valeurs comparables.
+- [ ] 5. Valider les parcours secondaires de distribution indépendante
+  - [ ] 5.1 Exécuter les quatre parcours reportés
+    - [ ] Modifier `docs/project/testing.md` après installation d’un module depuis un ZIP puis une URL directe, mise à jour d’un module sans republier GW GUI et mise à jour de GW GUI en conservant les modules installés, afin de consigner les versions et résultats réellement observés.
+
+## revision-types-entrees
+
+- [ ] Réutiliser les types communs et retirer les entrées redondantes
+  - [ ] Établir les corrections concrètes avant modification de code
+    - [ ] Inventorier puis qualifier chaque donnée concernée.
+    - [ ] Remplacer la liste générique de clavier Commodore par les seules touches propres aux machines.
+    - [ ] Modifier `docs/tasks/emulation/revision-types-entrees-inventaire.json` : qualifier les autres constantes/enums et touches spéciales de tous les modules, en distinguant protocole, données partagées et compatibilité persistée ; décisions restantes explicitement non terminées.
+    - [ ] Modifier `docs/tasks/emulation/revision-types-entrees.md` : développer dans l'ordre les actions de code identifiées par l'inventaire, avec chemins réels, contenu à remplacer et appelants à migrer ; traiter SDK puis propriétaires Common puis adaptateurs puis descriptions/persistance/session puis ressources de toutes les langues, avant la vérification finale.

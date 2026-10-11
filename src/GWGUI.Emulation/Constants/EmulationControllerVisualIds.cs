@@ -111,4 +111,8 @@ public static class EmulationControllerVisualIds
     public const string Dreamcast = "dreamcast";
     public const string FlightStick = "flight-stick";
     public const string RacingWheel = "racing-wheel";
+    public const string SnkNeoGeoArcadeStick = "snk-neo-geo-arcade-stick";
+    public const string SnkNeoGeoCdPad = "snk-neo-geo-cd-pad";
+    public const string SnkNeoGeoPocket = "snk-neo-geo-pocket";
+    public const string SnkNeoGeoPocketColor = "snk-neo-geo-pocket-color";
 }

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Content.Initial" xml:space="preserve"><value>Játék média</value></data>
+  <data name="Emulation.Snk.Memory.Display" xml:space="preserve"><value>Videómemória</value></data>
+  <data name="Emulation.Snk.Audio.Native" xml:space="preserve"><value>Hanghardver</value></data>
+  <data name="Emulation.Snk.Video.Native" xml:space="preserve"><value>Videohardver</value></data>
+  <data name="Emulation.Snk.Controls.Native" xml:space="preserve"><value>Vezérlőbeállítások</value></data>
+  <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Rendszerbeállítások</value></data>
+  <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Rendszer BIOS</value></data>
+  <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Segédanyag BIOS</value></data>
+  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Emulates Neo Geo CD és Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
+  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Emulates Neo Geo patron és CD rendszerek.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Kompatibilis emulátumok SNK rendszerek.</value></data>
+  <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Nyelv</value></data>
+  <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Japán nyelv</value></data>
+  <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Angol nyelv</value></data>
+  <data name="Emulation.Snk.Help.DarkFilterLevel" xml:space="preserve"><value>Engedélyezze luminosity- alapú fényerő csökkentése. Használható, hogy elkerülje a vakító / szem törzs, amikor játszani a fehér hátteret.</value></data>
+  <data name="Emulation.Snk.Value.Manual" xml:space="preserve"><value>Kézi</value></data>
+  <data name="Emulation.Snk.Setting.RealTimeClock" xml:space="preserve"><value>Időóra</value></data>
+  <data name="Emulation.Snk.Help.RealTimeClock" xml:space="preserve"><value>Megválasztja, hogy az emulált valós idejű óra hogyan halad előre. A 'determinista' a rögzített alapból lemulált képkockákat számolja, így RTC A real time közvetlenül a gazdatest órát (élő óra, de nem determinista) olvassa.</value></data>
+  <data name="Emulation.Snk.Value.Deterministic" xml:space="preserve"><value>Determinista</value></data>
+  <data name="Emulation.Snk.Value.RealTime" xml:space="preserve"><value>Valós idő</value></data>
+  <data name="Emulation.Snk.Setting.AudioQuality" xml:space="preserve"><value>Hangminőség</value></data>
+  <data name="Emulation.Snk.Setting.AudioSampleRate" xml:space="preserve"><value>Hangminta-arány</value></data>
+  <data name="Emulation.Snk.Value.Game" xml:space="preserve"><value>játék</value></data>
+  <data name="Emulation.Snk.Value.System" xml:space="preserve"><value>rendszer</value></data>
+  <data name="Emulation.Snk.Setting.MainProcessorSpeed" xml:space="preserve"><value>Fő processzorfordulatszám (%)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderMethod" xml:space="preserve"><value>Alternatív kimenet</value></data>
+  <data name="Emulation.Snk.Setting.VideoApproach1Enabled" xml:space="preserve"><value>Video megközelítés 1 Engedélyezett</value></data>
+  <data name="Emulation.Snk.Setting.HideGameInfoScreen" xml:space="preserve"><value>A játék info képernyőjének elrejtése</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningScreen" xml:space="preserve"><value>A figyelmeztető képernyő elrejtése</value></data>
+  <data name="Emulation.Snk.Setting.EnableMultithreading" xml:space="preserve"><value>Többsávos leolvasás engedélyezése</value></data>
+  <data name="Emulation.Snk.Setting.SetBrightness" xml:space="preserve"><value>Fényerő beállítása</value></data>
+  <data name="Emulation.Snk.Setting.SetContrast" xml:space="preserve"><value>A kontraszt beállítása</value></data>
+  <data name="Emulation.Snk.Setting.SetGamma" xml:space="preserve"><value>Gamma beállítása</value></data>
+  <data name="Emulation.Snk.Setting.SkipDisclaimer" xml:space="preserve"><value>Skip nyilatkozat</value></data>
+  <data name="Emulation.Snk.Setting.SkipWarnings" xml:space="preserve"><value>Figyelmeztetések kihagyása</value></data>
+  <data name="Emulation.Snk.Help.DisplayMAMEMenu" xml:space="preserve"><value>A belső láthatóság kiszűrése MAME menü.</value></data>
+  <data name="Emulation.Snk.Setting.Brightness" xml:space="preserve"><value>Fényerő</value></data>
+  <data name="Emulation.Snk.Help.Brightness" xml:space="preserve"><value>Módosítja a fényerő szintjét.</value></data>
+  <data name="Emulation.Snk.Setting.GammaCorrection" xml:space="preserve"><value>Gamma korrekció</value></data>
+  <data name="Emulation.Snk.Help.GammaCorrection" xml:space="preserve"><value>Módosítja a használt gamma szintet.</value></data>
+  <data name="Emulation.Snk.Help.DisplayArtwork" xml:space="preserve"><value>Egyedi műalkotások megjelenítéséhez használt, ha rendelkezésre áll.</value></data>
+  <data name="Emulation.Snk.Help.ArtworkResolutionMultiplier" xml:space="preserve"><value>A műalkotások felbontását a kiválasztott szorzó értékével növeli.</value></data>
+  <data name="Emulation.Snk.Setting.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Neo Geo megadása BIOS</value></data>
+  <data name="Emulation.Snk.Help.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Válassza ki az alternatív bios fájlokat.</value></data>
+  <data name="Emulation.Snk.Value.Asia" xml:space="preserve"><value>ázsiai</value></data>
+  <data name="Emulation.Snk.Value.Japan" xml:space="preserve"><value>japán</value></data>
+  <data name="Emulation.Snk.Setting.UseSamples" xml:space="preserve"><value>Minták használata</value></data>
+  <data name="Emulation.Snk.Help.UseSamples" xml:space="preserve"><value>Lehetővé teszi, hogy a minták könyvtárában megadott audio mintás fájlok betöltésre kerüljenek.</value></data>
+  <data name="Emulation.Snk.Help.AutosaveHiscore" xml:space="preserve"><value>Javasolt használni alapértelmezett, amely megmenti a hiscore zárásakor tartalom. Feltételesen menti újra többször az egész idő alatt játék. Fogyatékos megkerüli a használatát a hiscore.dat - Teljes egészében.</value></data>
+  <data name="Emulation.Snk.Help.CPUClockScale" xml:space="preserve"><value>Az emulált óra alatt vagy alatt használt CPU meghatározott százalékkal.</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningsScreen" xml:space="preserve"><value>A figyelmeztető képernyő elrejtése</value></data>
+  <data name="Emulation.Snk.Setting.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Használj 32 bites színmélységet, ha van</value></data>
+  <data name="Emulation.Snk.Help.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>A pixel formátuma megváltoztatása, néhány játék megköveteli, hogy ez a megfelelő, ez hatással lehet a teljesítmény egyes platformok</value></data>
+  <data name="Emulation.Snk.Setting.VerticalMode" xml:space="preserve"><value>Függőleges üzemmód</value></data>
+  <data name="Emulation.Snk.Help.VerticalMode" xml:space="preserve"><value>A függőlegesen kijelzőknek való elforgatás</value></data>
+  <data name="Emulation.Snk.Value.Alternate" xml:space="preserve"><value>alternatív</value></data>
+  <data name="Emulation.Snk.Value.TATEAlternate" xml:space="preserve"><value>TATE alternatív</value></data>
+  <data name="Emulation.Snk.Setting.UseA60HzRefreshRate" xml:space="preserve"><value>60 Hz-es frissítési sebesség</value></data>
+  <data name="Emulation.Snk.Help.UseA60HzRefreshRate" xml:space="preserve"><value>Az eredeti frissítési sebesség helyett 60 Hz-es értéket használjon. Ez megváltoztathatja a játék sebességét, és egyenetlen animációt okozhat.</value></data>
+  <data name="Emulation.Snk.Setting.Resolution" xml:space="preserve"><value>Felbontás</value></data>
+  <data name="Emulation.Snk.Help.Resolution" xml:space="preserve"><value>Felbontás beállítása bizonyos játékokban (vektor)</value></data>
+  <data name="Emulation.Snk.Help.FixedFrameskip" xml:space="preserve"><value>Ha a 'Frameskip' beállított 'Fix', vagy ha a frontend nem támogatja az alternatív 'Frameskip' módot, ugorjon a renderelés fix sebességgel X képkockák ki X+1</value></data>
+  <data name="Emulation.Snk.Value.NoSkipping" xml:space="preserve"><value>Nincs kimaradás</value></data>
+  <data name="Emulation.Snk.Setting.CPUClock" xml:space="preserve"><value>CPU óra</value></data>
+  <data name="Emulation.Snk.Help.CPUClock" xml:space="preserve"><value>Változás emulált cpu frekvencia különböző rendszerek, növelésével lehet rögzíteni az anyai lassulásokat egyes játékok, csökkenő segítségével segíthet teljesítményt alacsony végű eszközök</value></data>
+  <data name="Emulation.Snk.Setting.DiagnosticInput" xml:space="preserve"><value>Diagnosztikai bevitel</value></data>
+  <data name="Emulation.Snk.Help.DiagnosticInput" xml:space="preserve"><value>A szekrény szolgáltatás menüjének beállításához beállító gomb</value></data>
+  <data name="Emulation.Snk.Help.Hiscores" xml:space="preserve"><value>A magas pontszám támogatása, a fájl is szükséges hiscore.dat a rendszerben / fbneo / mappa</value></data>
+  <data name="Emulation.Snk.Help.AllowPatchedRomsets" xml:space="preserve"><value>A romsets a rendszeredből / fbneo / patched / mappából felülbírálja a romsets-et, a ccs-t figyelmen kívül hagyja, de a méreteknek és neveknek még egyezniük kell, és ez a főkapcsoló is, hogy IPS Patch és RomData végrehajtják vagy sem, be kell zárnia a tartalmat, hogy ez a beállítás érvénybe lépjen</value></data>
+  <data name="Emulation.Snk.Setting.SampleInterpolation" xml:space="preserve"><value>Minta interpolációja</value></data>
+  <data name="Emulation.Snk.Help.SampleInterpolation" xml:space="preserve"><value>A minta interpolációja, hatással lehet a teljesítményre</value></data>
+  <data name="Emulation.Snk.Setting.FMInterpolation" xml:space="preserve"><value>FM Interpoláció</value></data>
+  <data name="Emulation.Snk.Help.FMInterpolation" xml:space="preserve"><value>Beállítás FM interpoláció, hatással lehet a teljesítményekre</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilter" xml:space="preserve"><value>LowPass szűrő</value></data>
+  <data name="Emulation.Snk.Help.LowPassFilter" xml:space="preserve"><value>A LowPass szűrő engedélyezése</value></data>
+  <data name="Emulation.Snk.Setting.AnalogSpeed" xml:space="preserve"><value>Analóg sebesség</value></data>
+  <data name="Emulation.Snk.Help.AnalogSpeed" xml:space="preserve"><value>Mitigate analóg vezérlési sebesség, néhány játék megkövetelheti, hogy alacsony értékek lejátszható</value></data>
+  <data name="Emulation.Snk.Setting.SOCDMode" xml:space="preserve"><value>SOCD mód</value></data>
+  <data name="Emulation.Snk.Help.SOCDMode" xml:space="preserve"><value>Változás ULDR elsőbbségi kezelés</value></data>
+  <data name="Emulation.Snk.Value.Disabled" xml:space="preserve"><value>mozgáskorlátozottak</value></data>
+  <data name="Emulation.Snk.Value.SimultaneousNeutral" xml:space="preserve"><value>Egyidejű Semleges</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority4Way" xml:space="preserve"><value>Utolsó bemenet prioritás (4 út)</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority8Way" xml:space="preserve"><value>Utolsó bemenet prioritás (8 út)</value></data>
+  <data name="Emulation.Snk.Value.FirstInputPriority" xml:space="preserve"><value>Első beviteli prioritás</value></data>
+  <data name="Emulation.Snk.Setting.CrosshairEmulation" xml:space="preserve"><value>Crosshair emuláció</value></data>
+  <data name="Emulation.Snk.Value.HideWithLightgunDevice" xml:space="preserve"><value>A fényfegyver eszköz elrejtése</value></data>
+  <data name="Emulation.Snk.Value.AlwaysHide" xml:space="preserve"><value>Mindig bújj el!</value></data>
+  <data name="Emulation.Snk.Value.AlwaysShow" xml:space="preserve"><value>Mindig mutasd</value></data>
+  <data name="Emulation.Snk.Setting.NeoGeoMode" xml:space="preserve"><value>Neo- Geo- mód</value></data>
+  <data name="Emulation.Snk.Help.NeoGeoMode" xml:space="preserve"><value>A megfelelő biók betöltése a választástól függően, feltéve, hogy az ilyen biosz kompatibilis a futó játékkal</value></data>
+  <data name="Emulation.Snk.Value.MVSEuropeAsiaEnglish" xml:space="preserve"><value>MVS Európa / Ázsia (angol)</value></data>
+  <data name="Emulation.Snk.Value.MVSUSAEnglishCensored" xml:space="preserve"><value>MVS USA (angol - cenzúra)</value></data>
+  <data name="Emulation.Snk.Value.MVSJapanJapanese" xml:space="preserve"><value>MVS Japán (japán)</value></data>
+  <data name="Emulation.Snk.Value.AESEuropeAsiaEnglish" xml:space="preserve"><value>AES Európa / Ázsia (angol)</value></data>
+  <data name="Emulation.Snk.Value.AESJapanJapanese" xml:space="preserve"><value>AES Japán (japán)</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardMode" xml:space="preserve"><value>Memóriakártya üzemmód</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardMode" xml:space="preserve"><value>A memóriakártya viselkedésének megváltoztatása</value></data>
+  <data name="Emulation.Snk.Value.Shared" xml:space="preserve"><value>megosztott</value></data>
+  <data name="Emulation.Snk.Value.PerGame" xml:space="preserve"><value>per- game</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip11" xml:space="preserve"><value>Debug dip 1 _ 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip11" xml:space="preserve"><value>A hibakeresés engedélyezése 1 _ 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip12" xml:space="preserve"><value>Hibakeresés 1 _ 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip12" xml:space="preserve"><value>A hibakeresés engedélyezése 1 _ 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip13" xml:space="preserve"><value>Hibakeresés 1 _ 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip13" xml:space="preserve"><value>A hibakeresés engedélyezése 1 _ 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip14" xml:space="preserve"><value>Hibakeresés 1 _ 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip14" xml:space="preserve"><value>A hibakeresés engedélyezése 1 _ 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip15" xml:space="preserve"><value>Hibakeresés 1 _ 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip15" xml:space="preserve"><value>A hibakeresés engedélyezése 1 _ 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip16" xml:space="preserve"><value>Hibakeresés 1 _ 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip16" xml:space="preserve"><value>A hibakeresés engedélyezése 1 _ 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip17" xml:space="preserve"><value>Hibakeresés 1 _ 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip17" xml:space="preserve"><value>A hibakeresés engedélyezése 1 _ 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip18" xml:space="preserve"><value>Hibakeresés 1 _ 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip18" xml:space="preserve"><value>A hibakeresés engedélyezése 1 _ 8</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip21" xml:space="preserve"><value>Hibakeresés dip 2 _ 1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip21" xml:space="preserve"><value>A hibakeresés engedélyezése 2 _ 1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip22" xml:space="preserve"><value>Debug dip 2 _ 2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip22" xml:space="preserve"><value>A hibakeresés engedélyezése 2 _ 2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip23" xml:space="preserve"><value>Hibakeresés dip 2 _ 3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip23" xml:space="preserve"><value>A hibakeresés engedélyezése 2 _ 3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip24" xml:space="preserve"><value>Debug dip 2 _ 4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip24" xml:space="preserve"><value>A hibakeresés engedélyezése 2 _ 4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip25" xml:space="preserve"><value>Debug dip 2 _ 5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip25" xml:space="preserve"><value>A hibakeresés engedélyezése 2 _ 5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip26" xml:space="preserve"><value>Debug dip 2 _ 6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip26" xml:space="preserve"><value>A hibakeresés engedélyezése 2 _ 6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip27" xml:space="preserve"><value>Debug dip 2 _ 7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip27" xml:space="preserve"><value>A hibakeresés engedélyezése 2 _ 7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip28" xml:space="preserve"><value>Debug dip 2 _ 8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip28" xml:space="preserve"><value>A hibakeresés engedélyezése 2 _ 8</value></data>
+  <data name="Emulation.Snk.Setting.Layer1" xml:space="preserve"><value>1. réteg</value></data>
+  <data name="Emulation.Snk.Help.Layer1" xml:space="preserve"><value>Hibakereséshez</value></data>
+  <data name="Emulation.Snk.Setting.Layer2" xml:space="preserve"><value>2. réteg</value></data>
+  <data name="Emulation.Snk.Setting.Layer3" xml:space="preserve"><value>3. réteg</value></data>
+  <data name="Emulation.Snk.Setting.Layer4" xml:space="preserve"><value>4. réteg</value></data>
+  <data name="Emulation.Snk.Setting.Sprite1"><value>Sprite 1</value></data>
+  <data name="Emulation.Snk.Setting.Sprite2"><value>Sprite 2</value></data>
+  <data name="Emulation.Snk.Setting.Sprite3"><value>Sprite 3</value></data>
+  <data name="Emulation.Snk.Setting.Sprite4"><value>Sprite 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite5"><value>Sprite 5</value></data>
+  <data name="Emulation.Snk.Setting.Sprite6"><value>Sprite 6</value></data>
+  <data name="Emulation.Snk.Setting.Sprite7"><value>Sprite 7</value></data>
+  <data name="Emulation.Snk.Setting.Sprite8"><value>Sprite 8</value></data>
+  <data name="Emulation.Snk.Setting.ThreadMode" xml:space="preserve"><value>Menetmód</value></data>
+  <data name="Emulation.Snk.Setting.Cheats" xml:space="preserve"><value>Csalás</value></data>
+  <data name="Emulation.Snk.Setting.Throttle" xml:space="preserve"><value>Feszültség</value></data>
+  <data name="Emulation.Snk.Setting.BootToBIOS" xml:space="preserve"><value>A BIOS</value></data>
+  <data name="Emulation.Snk.Setting.BootToOSD" xml:space="preserve"><value>A OSD</value></data>
+  <data name="Emulation.Snk.Setting.ReadConfiguration" xml:space="preserve"><value>A beállítások olvasása</value></data>
+  <data name="Emulation.Snk.Setting.WriteConfiguration" xml:space="preserve"><value>A beállítások írása</value></data>
+  <data name="Emulation.Snk.Setting.MAMEINIPaths" xml:space="preserve"><value>MAME INI Páthák</value></data>
+  <data name="Emulation.Snk.Setting.Softlists"><value>Softlists</value></data>
+  <data name="Emulation.Snk.Setting.MediaType" xml:space="preserve"><value>Médiatípus</value></data>
+  <data name="Emulation.Snk.Value.Cart" xml:space="preserve"><value>kocsi</value></data>
+  <data name="Emulation.Snk.Value.Cass"><value>cass</value></data>
+  <data name="Emulation.Snk.Value.Cdrm" xml:space="preserve"><value>CDRM</value></data>
+  <data name="Emulation.Snk.Value.Flop"><value>flop</value></data>
+  <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>kemény</value></data>
+  <data name="Emulation.Snk.Value.Prin"><value>prin</value></data>
+  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>zű</value></data>
+  <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>SR</value></data>
+  <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS Engedélyezett</value></data>
+  <data name="Emulation.Snk.Setting.JoystickDeadzone"><value>Joystick Deadzone</value></data>
+  <data name="Emulation.Snk.Setting.JoystickSaturation" xml:space="preserve"><value>Joystick telítettség</value></data>
+  <data name="Emulation.Snk.Setting.JoystickThreshold" xml:space="preserve"><value>Joystick küszöbérték</value></data>
+  <data name="Emulation.Snk.Setting.Joystick4WaySimulation" xml:space="preserve"><value>Joystick 4- way Szimuláció</value></data>
+  <data name="Emulation.Snk.Value.4way" xml:space="preserve"><value>4 út</value></data>
+  <data name="Emulation.Snk.Value.Strict" xml:space="preserve"><value>szigorú</value></data>
+  <data name="Emulation.Snk.Value.Qbert"><value>qbert</value></data>
+  <data name="Emulation.Snk.Setting.ProfileButtonsPerGame" xml:space="preserve"><value>Profil gombok játékonként</value></data>
+  <data name="Emulation.Snk.Setting.Mouse" xml:space="preserve"><value>Egér</value></data>
+  <data name="Emulation.Snk.Setting.LightgunMode" xml:space="preserve"><value>Fénypuska mód</value></data>
+  <data name="Emulation.Snk.Value.Lightgun" xml:space="preserve"><value>Fénypuska</value></data>
+  <data name="Emulation.Snk.Value.Touchscreen"><value>Touchscreen</value></data>
+  <data name="Emulation.Snk.Setting.LightgunOffscreenPosition" xml:space="preserve"><value>Lightgun Offscreen pozíció</value></data>
+  <data name="Emulation.Snk.Value.Free" xml:space="preserve"><value>Ingyenes</value></data>
+  <data name="Emulation.Snk.Value.FixedTopLeft" xml:space="preserve"><value>Fix (bal felső)</value></data>
+  <data name="Emulation.Snk.Value.FixedBottomRight" xml:space="preserve"><value>Rögzített (alsó jobb)</value></data>
+  <data name="Emulation.Snk.Setting.ScreenRotationMode" xml:space="preserve"><value>Képernyő forgatási mód</value></data>
+  <data name="Emulation.Snk.Value.Internal" xml:space="preserve"><value>Belső</value></data>
+  <data name="Emulation.Snk.Setting.AudioProcessorSpeed" xml:space="preserve"><value>Hangprocesszoros sebesség (%)</value></data>
+  <data name="Emulation.Snk.Help.AutomaticLoadFastForward" xml:space="preserve"><value>Kísérleti funkció automatikusan előre rögzítéséhez CD hozzáférés.&#xA;A következő szervekkel működik:&#xA;- Generikus SCSI&#xA;- Sega. CD és Neo Geo CD</value></data>
+  <data name="Emulation.Snk.Setting.CoinLimit" xml:space="preserve"><value>Érmehatár</value></data>
+  <data name="Emulation.Snk.Setting.SampleRate" xml:space="preserve"><value>Mintavétel aránya</value></data>
+  <data name="Emulation.Snk.Help.SampleRate" xml:space="preserve"><value>A másodpercenként vett hangminták száma. A magasabb hangsebesség jobb minőségű audiót biztosít.</value></data>
+  <data name="Emulation.Snk.Value.Threshold" xml:space="preserve"><value>küszöbérték</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipInterval"><value>Frameskip Interval</value></data>
+  <data name="Emulation.Snk.Help.FrameskipInterval" xml:space="preserve"><value>Az alacsonyabb értékek a vizuális frissítéseket simábban tartják az ár több audió csepp, ha a fogadó túlterhelt.</value></data>
+  <data name="Emulation.Snk.Setting.ShowGameInformation" xml:space="preserve"><value>Játék információk</value></data>
+  <data name="Emulation.Snk.Help.ShowGameInformation" xml:space="preserve"><value>Megjelenítés MAMEA járművezető státusza és a játék- információs képernyők a rajtnál, mielőtt a játék elkezdődik.</value></data>
+  <data name="Emulation.Snk.Setting.Stereo"><value>Stereo</value></data>
+  <data name="Emulation.Snk.Help.Stereo" xml:space="preserve"><value>Kimeneti sztereó audio. Kikapcsolás egy kicsit alacsonyabb CPU olyan játékokon, amik nem használnak sztereó keverést.</value></data>
+  <data name="Emulation.Snk.Setting.SystemType" xml:space="preserve"><value>Rendszertípus</value></data>
+  <data name="Emulation.Snk.Help.SystemType" xml:space="preserve"><value>Adja meg a rendszer típusát: AES, MVSvagy Univerzum BIOS Rendszer</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoAESHomeConsole"><value>Neo Geo AES (Home Console)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoMVSArcade"><value>Neo Geo MVS (Arcade)</value></data>
+  <data name="Emulation.Snk.Value.UniverseBIOSCommunityEnhancedBIOS" xml:space="preserve"><value>Univerzum BIOS (A Közösség megerősítése BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.CDSystemType" xml:space="preserve"><value>CD Rendszertípus</value></data>
+  <data name="Emulation.Snk.Help.CDSystemType" xml:space="preserve"><value>Adja meg a következőket: CD Rendszertípus Neo Geo betöltésekor CD Lemezképek</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDFrontLoader"><value>Neo Geo CD (Front Loader)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDTopLoader"><value>Neo Geo CD (Top Loader)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDZUniverseBIOS" xml:space="preserve"><value>Neo Geo CDZ (Univerzum BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.Region" xml:space="preserve"><value>Régió</value></data>
+  <data name="Emulation.Snk.Help.Region" xml:space="preserve"><value>Adja meg a régiót: USAJapán, Ázsia, Európa</value></data>
+  <data name="Emulation.Snk.Value.Europe" xml:space="preserve"><value>Európa</value></data>
+  <data name="Emulation.Snk.Help.MemoryCard" xml:space="preserve"><value>Az memóriakártya engedélyezése vagy letiltása</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardWriteProtect" xml:space="preserve"><value>Megelőzze a memóriakártya változtatásait.</value></data>
+  <data name="Emulation.Snk.Setting.SettingMode" xml:space="preserve"><value>Beállítási mód</value></data>
+  <data name="Emulation.Snk.Help.SettingMode" xml:space="preserve"><value>A rendszer felhozása ROM menü indításkor arcade rendszereken</value></data>
+  <data name="Emulation.Snk.Help.FourPlayerMode" xml:space="preserve"><value>Négy játékos beállítása (kettős MVS A kormányberendezés) módja Ázsia / Japán MVS rendszerek</value></data>
+  <data name="Emulation.Snk.Help.Freeplay" xml:space="preserve"><value>Lejátszás MVS érmék behelyezése nélküli játékok</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanTop" xml:space="preserve"><value>Maszk le pixel rejtett egy bézel vagy határ az eredeti CRT (top)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanBottom" xml:space="preserve"><value>A betel vagy határ által az eredeti CRT-n rejtett pixelek maszkja (alsó rész)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanLeft" xml:space="preserve"><value>A betel vagy határ által rejtett pixelek maszkja eredeti CRT-n (balra)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanRight" xml:space="preserve"><value>Maszk le pixel rejtett egy bézel vagy határ eredeti CRT (jobb)</value></data>
+  <data name="Emulation.Snk.Setting.Palette" xml:space="preserve"><value>Paletta</value></data>
+  <data name="Emulation.Snk.Help.Palette" xml:space="preserve"><value>A paletta beállítása</value></data>
+  <data name="Emulation.Snk.Setting.AspectRatio" xml:space="preserve"><value>Szemrevételezési arány</value></data>
+  <data name="Emulation.Snk.Help.AspectRatio" xml:space="preserve"><value>A szemrevételezési arány beállítása</value></data>
+  <data name="Emulation.Snk.Value.PerfectlySquarePixels11PAR" xml:space="preserve"><value>Tökéletes tér pixelek (1: 1 PAR)</value></data>
+  <data name="Emulation.Snk.Value.OstensiblyAccurateNTSCAspectRatio4544PAR" xml:space="preserve"><value>Látszólag pontos NTSC Szemrevételezési arány (45: 44) PAR)</value></data>
+  <data name="Emulation.Snk.Value.VeryTraditionalNTSCAspectRatio43DAR" xml:space="preserve"><value>Nagyon hagyományos NTSC Szemrevételezési arány (4: 3) DAR)</value></data>
+  <data name="Emulation.Snk.Setting.SpritesPerLineLimit" xml:space="preserve"><value>Sprites- per- line limit</value></data>
+  <data name="Emulation.Snk.Help.SpritesPerLineLimit" xml:space="preserve"><value>Állítsa be a sprites- per- line limit - növekvő okok hibák egyes játékok</value></data>
+  <data name="Emulation.Snk.Setting.ProcessorSpeed" xml:space="preserve"><value>Feldolgozási sebesség</value></data>
+  <data name="Emulation.Snk.Help.ProcessorSpeed" xml:space="preserve"><value>A processzor futtatása 24 MHz-en. Ez a sebesség hibákat okozhat a játékokban.</value></data>
+  <data name="Emulation.Snk.Setting.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Kikapcsolás ADPCM Felhalmozó tekercs</value></data>
+  <data name="Emulation.Snk.Help.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>A ADPCM akkumulátor viselkedés korrigálni hang hibák néhány játék. Hagyja ezt a beállítást tiltva más játékok.</value></data>
+  <data name="Emulation.Snk.Help.CDSpeedHack" xml:space="preserve"><value>Patch BIOS busy- wait hurkok, hogy csökkentse a rakodási idő (Nem működik az Univerzum BIOS)</value></data>
+  <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Javítsa a BIOS feltöltési mutatók, ha a CD pufferelési tényező DMA nagyobb, mint egy szektor, rögzítése sérült hang Art of Fighting bónusz szakaszában. Ez egy hack, és a valódi hardver viselkedés nem erősített.</value></data>
+  <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Áthajtó CD rakodóképernyők</value></data>
+  <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>A harmadik sorrendben történő interpoláció (4 pont)</value></data>
+  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Emulálja a monokróm és színes kézi konzolokat.</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Emulálja a monokróm és színes kézi konzolokat.</value></data>
+  <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Válassza ki a kompatibilis játékok által használt nyelvet.</value></data>
+  <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Videóképkocka kihagyása</value></data>
+  <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Kihagyunk néhány videó keretet, ha a teljesítmény nem elegendő, hogy csökkentsék a megszakítások a hangkimenet.</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipThreshold" xml:space="preserve"><value>Hangpufferküszöbérték (%)</value></data>
+  <data name="Emulation.Snk.Help.FrameskipThreshold" xml:space="preserve"><value>Kihagyja a videó képkockákat, ha az audió puffer kevesebb adatot tartalmaz, mint a kapacitás ezen százaléka.</value></data>
+  <data name="Emulation.Snk.Help.AudioQuality" xml:space="preserve"><value>Válasszon a gyorsabb hangszintézis és a pontosabb hangszintézis között.</value></data>
+  <data name="Emulation.Snk.Help.AudioSampleRate" xml:space="preserve"><value>Válassza ki a kimeneti audió mintavételi frekvenciát. Magasabb frekvenciák javíthatják a hangminőséget, és több feldolgozási energiát igényelnek.</value></data>
+  <data name="Emulation.Snk.Setting.AutoSaveLoadStates" xml:space="preserve"><value>Az állapotok mentése és helyreállítása automatikusan</value></data>
+  <data name="Emulation.Snk.Help.SkipDisclaimer" xml:space="preserve"><value>Rejtsd el a jogi értesítést, amikor egy játék kezdődik.</value></data>
+  <data name="Emulation.Snk.Help.SkipWarnings" xml:space="preserve"><value>A játék kezdetekor rejtse el a figyelmeztető jelzéseket ismert problémákról.</value></data>
+  <data name="Emulation.Snk.Help.SampleRateHint" xml:space="preserve"><value>Válassza ki a kimeneti audió mintavételi frekvenciát. Automatikus mód a kívánt kimeneti frekvenciát használja.</value></data>
+  <data name="Emulation.Snk.Value.UpPriorityUpOverrideDown" xml:space="preserve"><value>A felfelé irányuló iránynak legyen elsőbbséget</value></data>
+  <data name="Emulation.Snk.Value.DownPriorityLeftRightLastInputPriority" xml:space="preserve"><value>A lefelé irányuló irány elsőbbséget élvez; használja a legújabb horizontális bemenetet</value></data>
+  <data name="Emulation.Snk.Help.CrosshairEmulation" xml:space="preserve"><value>Válassza ki, hogy a céljelző megjelenítésére. automatikus mód elrejti, ha könnyű fegyvert vagy érintőképernyőt használ.</value></data>
+  <data name="Emulation.Snk.Value.UseBiosSetInBIOSDipswitch" xml:space="preserve"><value>Használjuk a BIOS A hardverkapcsolók által kiválasztott</value></data>
+  <data name="Emulation.Snk.Setting.SoftlistAutomaticMediaType" xml:space="preserve"><value>A médiatípus automatikus kijelölése</value></data>
+  <data name="Emulation.Snk.Help.VFSEnabled" xml:space="preserve"><value>Használja a virtuális fájlrendszert, amit az alkalmazás biztosít. 4-es verzió szükséges vagy később.</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkHardcodedOverlayOpacity" xml:space="preserve"><value>Beépített fedő opacitás</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardWriteProtect" xml:space="preserve"><value>A memóriakártya védelme a változások ellen</value></data>
+  <data name="Emulation.Snk.Setting.DarkFilterLevel" xml:space="preserve"><value>A képernyő sötétedése (%)</value></data>
+  <data name="Emulation.Snk.Value.Fast" xml:space="preserve"><value>Gyors hangszintézis</value></data>
+  <data name="Emulation.Snk.Value.AccurateBandLimited" xml:space="preserve"><value>Pontos hangszintézis</value></data>
+  <data name="Emulation.Snk.Setting.SaveStateNaming" xml:space="preserve"><value>Mentett állami fájlnevek</value></data>
+  <data name="Emulation.Snk.Setting.EnableCheats" xml:space="preserve"><value>A csalási kódok engedélyezése</value></data>
+  <data name="Emulation.Snk.Setting.HideNagScreen" xml:space="preserve"><value>A jogi hirdetmény képernyőjének elrejtése</value></data>
+  <data name="Emulation.Snk.Setting.CoreProvidedAspectRatio" xml:space="preserve"><value>Az emulátor által biztosított képarány megjelenítése</value></data>
+  <data name="Emulation.Snk.Setting.SetFrameskip" xml:space="preserve"><value>Videókeretek, amelyek kiugrásához</value></data>
+  <data name="Emulation.Snk.Setting.SampleRateHint" xml:space="preserve"><value>Előnyös hangmintavétel gyakorisága</value></data>
+  <data name="Emulation.Snk.Setting.UseExternalHiscoreDat" xml:space="preserve"><value>A külső rekordfájl használata hiscore.dat</value></data>
+  <data name="Emulation.Snk.Setting.DisplayMAMEMenu" xml:space="preserve"><value>A MAME menü</value></data>
+  <data name="Emulation.Snk.Setting.DisplayArtwork" xml:space="preserve"><value>Díszítő műalkotások megjelenítése</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkResolutionMultiplier" xml:space="preserve"><value>Dekoratív műalkotások felbontásának szorzója</value></data>
+  <data name="Emulation.Snk.Value.AutoAggressive" xml:space="preserve"><value>Agresszív automatikus üzemmód</value></data>
+  <data name="Emulation.Snk.Value.AutoMax" xml:space="preserve"><value>Maximális automatikus üzemmód</value></data>
+  <data name="Emulation.Snk.Setting.AutosaveHiscore" xml:space="preserve"><value>A magas pontszámok mentése automatikusan</value></data>
+  <data name="Emulation.Snk.Value.Recursively" xml:space="preserve"><value>Almappák keresése</value></data>
+  <data name="Emulation.Snk.Setting.BypassTimingSkew" xml:space="preserve"><value>Az időeltolódás megkerülése</value></data>
+  <data name="Emulation.Snk.Setting.CPUClockScale" xml:space="preserve"><value>A processzorsebesség szorzója</value></data>
+  <data name="Emulation.Snk.Setting.FixedFrameskip" xml:space="preserve"><value>Rögzített számú videó keretek kihagyni</value></data>
+  <data name="Emulation.Snk.Value.Fixed" xml:space="preserve"><value>Rögzített szám</value></data>
+  <data name="Emulation.Snk.Setting.Hiscores" xml:space="preserve"><value>Magas pontszám</value></data>
+  <data name="Emulation.Snk.Setting.AllowPatchedRomsets" xml:space="preserve"><value>Módosított játékarchívumok engedélyezése</value></data>
+  <data name="Emulation.Snk.Value.2Point1stOrder" xml:space="preserve"><value>Első megrendelés interpoláció (2 pont)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderer" xml:space="preserve"><value>Alternatív renderelés</value></data>
+  <data name="Emulation.Snk.Value.Cropped" xml:space="preserve"><value>Zsíros kép</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRendererResolution" xml:space="preserve"><value>Alternatív renderelési felbontás</value></data>
+  <data name="Emulation.Snk.Setting.AutomaticLoadFastForward" xml:space="preserve"><value>A tárcsák automatikus feltöltése</value></data>
+  <data name="Emulation.Snk.Setting.FourPlayerMode" xml:space="preserve"><value>Négyjátékos mód</value></data>
+  <data name="Emulation.Snk.Setting.Freeplay" xml:space="preserve"><value>Érmék behelyezése nélkül játszani</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanTop" xml:space="preserve"><value>A pixelek elrejtése a felső képernyő szélén</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanBottom" xml:space="preserve"><value>A pixelek elrejtése az alsó képernyő szélén</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanLeft" xml:space="preserve"><value>A pixelek elrejtése a bal oldali képernyő szélén</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanRight" xml:space="preserve"><value>A pixelek elrejtése a jobb képernyőél mentén</value></data>
+  <data name="Emulation.Snk.Value.ResistorNetwork" xml:space="preserve"><value>Ellenállás- vagy hálózati színszimuláció</value></data>
+  <data name="Emulation.Snk.Value.Raw" xml:space="preserve"><value>Változatlan színezékek</value></data>
+  <data name="Emulation.Snk.Value.HardwareAccurate96" xml:space="preserve"><value>Eredeti hardverhatár (96)</value></data>
+  <data name="Emulation.Snk.Value.Double192" xml:space="preserve"><value>Az eredeti határérték megduplázása (192)</value></data>
+  <data name="Emulation.Snk.Value.Triple288" xml:space="preserve"><value>Háromszoros eredeti határérték (288)</value></data>
+  <data name="Emulation.Snk.Setting.CDSpeedHack" xml:space="preserve"><value>A tárcsaterhelési késleltetés csökkentése</value></data>
+  <data name="Emulation.Snk.Setting.CDDMALengthLimit" xml:space="preserve"><value>A tárcsaadatok továbbításának mértéke</value></data>
+  <data name="Emulation.Snk.Setting.SkipCDLoading" xml:space="preserve"><value>A lemezbetöltő animáció kihagyása</value></data>
+  <data name="Emulation.Snk.Setting.HorizontalOverscan"><value>A pixelek elrejtése a bal és jobb képernyőélek mentén</value></data>
+  <data name="Emulation.Snk.Setting.PerGameSaves"><value>Külön mentés minden egyes játékhoz</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilterLevel"><value>Hangszűrő szint (%)</value></data>
+</root>

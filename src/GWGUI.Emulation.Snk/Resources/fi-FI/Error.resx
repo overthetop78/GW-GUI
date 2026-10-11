@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Error.StateIncompatible" xml:space="preserve"><value>• SNK tallenne on ristiriidassa nykyisen koneen kanssa.</value></data>
+  <data name="Emulation.Snk.Error.Unexpected" xml:space="preserve"><value>Odottamaton SNK emulointivirhe.</value></data>
+  <data name="Emulation.Snk.Error.FirmwareMissing" xml:space="preserve"><value>Vaadittu SNK Firmware puuttuu.</value></data>
+  <data name="Emulation.Snk.Error.FirmwareInvalid" xml:space="preserve"><value>Järjestelmä ROM on virheellinen tai yhteensopimaton.</value></data>
+  <data name="Emulation.Snk.Error.ContentNotFound" xml:space="preserve"><value>Määritetty SNK Mediaa ei löytynyt.</value></data>
+  <data name="Emulation.Snk.Error.ContentUnsupported" xml:space="preserve"><value>Tämä laite ei tue valittuja media.</value></data>
+  <data name="Emulation.Snk.Error.OptionInvalid" xml:space="preserve"><value>A SNK optiolla on virheellinen arvo.</value></data>
+  <data name="Emulation.Snk.Error.CoreNotFound" xml:space="preserve"><value>Tarvittava SNK Ydintä ei löytynyt.</value></data>
+  <data name="Emulation.Snk.Error.CoreRejected" xml:space="preserve"><value>Valittu SNK Ydintä ei voitu ladata.</value></data>
+  <data name="Emulation.Snk.Error.StateInvalid" xml:space="preserve"><value>• SNK tallenne on virheellinen.</value></data>
+  <data name="Emulation.Snk.Error.HostExecutableMissing" xml:space="preserve"><value>• SNK isäntä suoritettava polku ei ole käytettävissä.</value></data>
+  <data name="Emulation.Snk.Error.Details" xml:space="preserve"><value>Yksityiskohdat: {0}</value></data>
+  <data name="Emulation.Snk.Error.HostProtocolFailure" xml:space="preserve"><value>Viestintä SNK Isäntä epäonnistui.</value></data>
+  <data name="Emulation.Snk.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Tuntematon ympäristökomento: {0}</value></data>
+</root>

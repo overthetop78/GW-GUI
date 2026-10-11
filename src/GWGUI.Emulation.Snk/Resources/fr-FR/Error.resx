@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Error.StateIncompatible" xml:space="preserve"><value>Les SNK état sauvegardé est incompatible avec la machine actuelle.</value></data>
+  <data name="Emulation.Snk.Error.Unexpected" xml:space="preserve"><value>Un imprévu SNK Une erreur d'émulation s'est produite.</value></data>
+  <data name="Emulation.Snk.Error.FirmwareMissing" xml:space="preserve"><value>A requis SNK Le firmware a disparu.</value></data>
+  <data name="Emulation.Snk.Error.FirmwareInvalid" xml:space="preserve"><value>Le système ROM est invalide ou incompatible.</value></data>
+  <data name="Emulation.Snk.Error.ContentNotFound" xml:space="preserve"><value>La configuration SNK Les médias n'ont pas été trouvés.</value></data>
+  <data name="Emulation.Snk.Error.ContentUnsupported" xml:space="preserve"><value>Cette machine ne supporte pas les médias sélectionnés.</value></data>
+  <data name="Emulation.Snk.Error.OptionInvalid" xml:space="preserve"><value>A SNK option a une valeur non valide.</value></data>
+  <data name="Emulation.Snk.Error.CoreNotFound" xml:space="preserve"><value>Les besoins SNK noyau n'a pas été trouvé.</value></data>
+  <data name="Emulation.Snk.Error.CoreRejected" xml:space="preserve"><value>La sélection SNK le noyau ne pouvait pas être chargé.</value></data>
+  <data name="Emulation.Snk.Error.StateInvalid" xml:space="preserve"><value>Les SNK l'état sauvé est invalide.</value></data>
+  <data name="Emulation.Snk.Error.HostExecutableMissing" xml:space="preserve"><value>Les SNK exécutable chemin hôte n'est pas disponible.</value></data>
+  <data name="Emulation.Snk.Error.Details" xml:space="preserve"><value>Détails: {0}</value></data>
+  <data name="Emulation.Snk.Error.HostProtocolFailure" xml:space="preserve"><value>Communication avec le SNK L'hôte a échoué.</value></data>
+  <data name="Emulation.Snk.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Commande d'environnement inconnu : {0}</value></data>
+</root>

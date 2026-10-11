@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Snk.Content.Initial" xml:space="preserve"><value>Truyền thông trò chơi</value></data>
+  <data name="Emulation.Snk.Memory.Display" xml:space="preserve"><value>Bộ nhớ phim</value></data>
+  <data name="Emulation.Snk.Audio.Native" xml:space="preserve"><value>Phần cứng âm thanh</value></data>
+  <data name="Emulation.Snk.Video.Native" xml:space="preserve"><value>Phần cứng phim</value></data>
+  <data name="Emulation.Snk.Controls.Native" xml:space="preserve"><value>Thiết lập Điều khiển</value></data>
+  <data name="Emulation.Snk.System.Native" xml:space="preserve"><value>Thiết lập hệ thống</value></data>
+  <data name="Emulation.Snk.Firmware.SystemBios" xml:space="preserve"><value>Hệ thống BIOS</value></data>
+  <data name="Emulation.Snk.Firmware.AuxiliaryBios" xml:space="preserve"><value>Tiện ích BIOS</value></data>
+  <data name="Emulation.Emulator.neocd.Description" xml:space="preserve"><value>Kết hợp ảnh mới CD và Neo Geo CDZ.</value></data>
+  <data name="Emulation.Emulator.mame2016.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
+  <data name="Emulation.Emulator.mame2010.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
+  <data name="Emulation.Emulator.mame2003.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
+  <data name="Emulation.Emulator.mame2015.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
+  <data name="Emulation.Emulator.fbneo.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
+  <data name="Emulation.Emulator.hbmame.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
+  <data name="Emulation.Emulator.mame2003_plus.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
+  <data name="Emulation.Emulator.mame2000.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
+  <data name="Emulation.Emulator.fbalpha.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
+  <data name="Emulation.Emulator.fbalpha2012_neogeo.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
+  <data name="Emulation.Emulator.geolith.Description" xml:space="preserve"><value>Kết hợp hộp mực địa lý Neo và CD Hệ thống.</value></data>
+  <data name="Emulation.Emulator.mame.Description" xml:space="preserve"><value>Tính chất tương thích SNK Hệ thống.</value></data>
+  <data name="Emulation.Snk.Setting.Language" xml:space="preserve"><value>Ngôn ngữ</value></data>
+  <data name="Emulation.Snk.Value.Japanese" xml:space="preserve"><value>Nhật Bản</value></data>
+  <data name="Emulation.Snk.Value.English" xml:space="preserve"><value>Tiếng Anh</value></data>
+  <data name="Emulation.Snk.Help.DarkFilterLevel" xml:space="preserve"><value>Bật khả năng giảm độ sáng dựa trên độ sáng độ sáng. Có thể dùng để tránh sự căng nháy/ nhãn khi chơi trò chơi với màu trắng.</value></data>
+  <data name="Emulation.Snk.Value.Manual" xml:space="preserve"><value>Thủ công</value></data>
+  <data name="Emulation.Snk.Setting.RealTimeClock" xml:space="preserve"><value>Đồng hồ thời gian thực</value></data>
+  <data name="Emulation.Snk.Help.RealTimeClock" xml:space="preserve"><value>Chọn cách mà đồng hồ thời giả lập tiến bộ. ' 'Rấp tiến' tính toán khung đã được tính toán từ một cơ sở cố định, vì vậy RTC đọc được tái sử dụng và an toàn cho việc phát âm, tua lại và chạy đầu. 'Thời gian thực' đọc trực tiếp đồng hồ máy (một đồng hồ sống, nhưng không xác định).</value></data>
+  <data name="Emulation.Snk.Value.Deterministic" xml:space="preserve"><value>Định nghĩa</value></data>
+  <data name="Emulation.Snk.Value.RealTime" xml:space="preserve"><value>Thời gian thực</value></data>
+  <data name="Emulation.Snk.Setting.AudioQuality" xml:space="preserve"><value>Chất lượng âm thanh</value></data>
+  <data name="Emulation.Snk.Setting.AudioSampleRate" xml:space="preserve"><value>Tốc độ mẫu âm thanh</value></data>
+  <data name="Emulation.Snk.Value.Game" xml:space="preserve"><value>Trò chơi</value></data>
+  <data name="Emulation.Snk.Value.System" xml:space="preserve"><value>Hệ thống</value></data>
+  <data name="Emulation.Snk.Setting.MainProcessorSpeed" xml:space="preserve"><value>Tốc độ xử lý chính (%)</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderMethod" xml:space="preserve"><value>Phương pháp vẽ thay đổi</value></data>
+  <data name="Emulation.Snk.Setting.VideoApproach1Enabled" xml:space="preserve"><value>Bật phương pháp tiếp cận ảnh động 1</value></data>
+  <data name="Emulation.Snk.Setting.HideGameInfoScreen" xml:space="preserve"><value>Ẩn màn hình thông tin trò chơi</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningScreen" xml:space="preserve"><value>Ẩn màn hình cảnh báo</value></data>
+  <data name="Emulation.Snk.Setting.EnableMultithreading" xml:space="preserve"><value>Bật đa luồng</value></data>
+  <data name="Emulation.Snk.Setting.SetBrightness" xml:space="preserve"><value>Đặt độ sáng</value></data>
+  <data name="Emulation.Snk.Setting.SetContrast" xml:space="preserve"><value>Đặt độ tương phản</value></data>
+  <data name="Emulation.Snk.Setting.SetGamma" xml:space="preserve"><value>Đặt gamma</value></data>
+  <data name="Emulation.Snk.Setting.SkipDisclaimer" xml:space="preserve"><value>Bỏ qua bộ nhận diện</value></data>
+  <data name="Emulation.Snk.Setting.SkipWarnings" xml:space="preserve"><value>Bỏ qua cảnh báo</value></data>
+  <data name="Emulation.Snk.Help.DisplayMAMEMenu" xml:space="preserve"><value>Chuyển khả năng nhìn nội bộ MAME thực đơn.</value></data>
+  <data name="Emulation.Snk.Setting.Brightness" xml:space="preserve"><value>Độ sáng</value></data>
+  <data name="Emulation.Snk.Help.Brightness" xml:space="preserve"><value>Nó giúp cho mức độ sáng được sử dụng.</value></data>
+  <data name="Emulation.Snk.Setting.GammaCorrection" xml:space="preserve"><value>Sửa gamma</value></data>
+  <data name="Emulation.Snk.Help.GammaCorrection" xml:space="preserve"><value>Làm tăng độ gamma lên.</value></data>
+  <data name="Emulation.Snk.Help.DisplayArtwork" xml:space="preserve"><value>Dùng để hiển thị tác phẩm nghệ thuật tùy chỉnh khi có.</value></data>
+  <data name="Emulation.Snk.Help.ArtworkResolutionMultiplier" xml:space="preserve"><value>Tăng độ phân giải nghệ thuật theo giá trị nhân rộng đã chọn.</value></data>
+  <data name="Emulation.Snk.Setting.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Chỉ định hình X BIOS</value></data>
+  <data name="Emulation.Snk.Help.SpecifyNeoGeoBIOS" xml:space="preserve"><value>Chọn tập tin sinh học thay thế.</value></data>
+  <data name="Emulation.Snk.Value.Asia"><value>asia</value></data>
+  <data name="Emulation.Snk.Value.Japan" xml:space="preserve"><value>Nhật Bản</value></data>
+  <data name="Emulation.Snk.Setting.UseSamples" xml:space="preserve"><value>Dùng mẫu</value></data>
+  <data name="Emulation.Snk.Help.UseSamples" xml:space="preserve"><value>Cho phép tải tập tin mẫu âm thanh khi được cung cấp trong thư mục mẫu.</value></data>
+  <data name="Emulation.Snk.Help.AutosaveHiscore" xml:space="preserve"><value>Khuyên dùng mặc định sẽ lưu bản vẽ khi đóng nội dung. Đệ quy sẽ lưu lại toàn bộ thời gian trong khi chơi. Tắt sẽ bỏ qua việc sử dụng hiscore.dat Hoàn toàn là hồ sơ.</value></data>
+  <data name="Emulation.Snk.Help.CPUClockScale" xml:space="preserve"><value>Dùng dưới hay trên đồng hồ người được mô phỏng CPU bởi một tỷ lệ phần trăm đã xác định.</value></data>
+  <data name="Emulation.Snk.Setting.HideWarningsScreen" xml:space="preserve"><value>Ẩn màn hình cảnh báo</value></data>
+  <data name="Emulation.Snk.Setting.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Dùng độ sâu màu 32-bit khi sẵn sàng</value></data>
+  <data name="Emulation.Snk.Help.Use32BitsColorDepthWhenAvailable" xml:space="preserve"><value>Thay đổi định dạng điểm ảnh, một số trò chơi yêu cầu điều này để thực hiện đúng, nó có thể ảnh hưởng đến hiệu suất trên một số nền tảng</value></data>
+  <data name="Emulation.Snk.Setting.VerticalMode" xml:space="preserve"><value>Chèn</value></data>
+  <data name="Emulation.Snk.Help.VerticalMode" xml:space="preserve"><value>Quay hiển thị cho màn hình dọc</value></data>
+  <data name="Emulation.Snk.Value.Alternate" xml:space="preserve"><value>thay thế</value></data>
+  <data name="Emulation.Snk.Value.TATEAlternate" xml:space="preserve"><value>TATE thay thế</value></data>
+  <data name="Emulation.Snk.Setting.UseA60HzRefreshRate" xml:space="preserve"><value>Dùng tốc độ cập nhật 60 Hz</value></data>
+  <data name="Emulation.Snk.Help.UseA60HzRefreshRate" xml:space="preserve"><value>Dùng 60 Hz thay cho tốc độ cập nhật gốc. Tính năng này có thể thay đổi tốc độ trò chơi và gây ra hoạt cảnh không đều.</value></data>
+  <data name="Emulation.Snk.Setting.Resolution" xml:space="preserve"><value>Độ phân giải</value></data>
+  <data name="Emulation.Snk.Help.Resolution" xml:space="preserve"><value>Đặt độ phân giải trong một số trò chơi (bác sĩ)</value></data>
+  <data name="Emulation.Snk.Help.FixedFrameskip" xml:space="preserve"><value>Khi 'Frameskip' được đặt thành 'Fixed', hoặc nếu giao diện điều khiển không hỗ trợ chế độ thay thế 'Frameskip', bỏ qua vẽ theo một tốc độ cố định của khung X ra khỏi X+1</value></data>
+  <data name="Emulation.Snk.Value.NoSkipping" xml:space="preserve"><value>Không bỏ qua</value></data>
+  <data name="Emulation.Snk.Setting.CPUClock" xml:space="preserve"><value>CPU đồng hồ</value></data>
+  <data name="Emulation.Snk.Help.CPUClock" xml:space="preserve"><value>Thay đổi tần số cpu đã mô phỏng cho nhiều hệ thống khác nhau, bằng cách tăng bạn có thể sửa chữa chậm bản địa trong một số trò chơi, bằng cách giảm bạn có thể giúp hiệu suất trên thiết bị thấp cấp</value></data>
+  <data name="Emulation.Snk.Setting.DiagnosticInput" xml:space="preserve"><value>Kết nhập chẩn đoán</value></data>
+  <data name="Emulation.Snk.Help.DiagnosticInput" xml:space="preserve"><value>Cấu hình tổ hợp nút để nhập trình đơn dịch vụ nội các</value></data>
+  <data name="Emulation.Snk.Help.Hiscores" xml:space="preserve"><value>Bật hỗ trợ điểm cao, bạn cũng cần tập tin hiscore.dat trong hệ thống/ thư mục của bạn</value></data>
+  <data name="Emulation.Snk.Help.AllowPatchedRomsets" xml:space="preserve"><value>Cho phép các mô- đun từ hệ thống/fbneo/pather/ folder để ghi đè lên các bộ nhớ của bạn, crc sẽ bị bỏ qua nhưng kích cỡ và tên vẫn phải khớp, thêm vào đó cũng là công tắc chính cho dù IPS Đắp vá và RomData được thực hiện hay không, bạn cần đóng nội dung để thiết lập này có hiệu lực</value></data>
+  <data name="Emulation.Snk.Setting.SampleInterpolation" xml:space="preserve"><value>Ví dụ về Nội suy</value></data>
+  <data name="Emulation.Snk.Help.SampleInterpolation" xml:space="preserve"><value>Cấu hình sự thẩm vấn mẫu, nó có thể ảnh hưởng đến hiệu suất</value></data>
+  <data name="Emulation.Snk.Setting.FMInterpolation" xml:space="preserve"><value>FM Nội suy</value></data>
+  <data name="Emulation.Snk.Help.FMInterpolation" xml:space="preserve"><value>Cấu hình FM Độ phân giải, nó có thể ảnh hưởng đến hiệu suất</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilter" xml:space="preserve"><value>Lọc điện thấp</value></data>
+  <data name="Emulation.Snk.Help.LowPassFilter" xml:space="preserve"><value>Bật Lọc Tiếng nói Nhỏ</value></data>
+  <data name="Emulation.Snk.Setting.AnalogSpeed" xml:space="preserve"><value>Tốc độ Phân tích</value></data>
+  <data name="Emulation.Snk.Help.AnalogSpeed" xml:space="preserve"><value>Một số trò chơi có thể đòi hỏi giá trị thấp để được chơi</value></data>
+  <data name="Emulation.Snk.Setting.SOCDMode" xml:space="preserve"><value>SOCD Phương thức</value></data>
+  <data name="Emulation.Snk.Help.SOCDMode" xml:space="preserve"><value>Thay đổi ULDR Xử lý ưu tiên</value></data>
+  <data name="Emulation.Snk.Value.Disabled" xml:space="preserve"><value>bị tắt</value></data>
+  <data name="Emulation.Snk.Value.SimultaneousNeutral" xml:space="preserve"><value>Sự trung lập đồng thời</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority4Way" xml:space="preserve"><value>Ưu tiên nhập cuối cùng (4 cách)</value></data>
+  <data name="Emulation.Snk.Value.LastInputPriority8Way" xml:space="preserve"><value>Ưu tiên nhập cuối cùng (8 cách)</value></data>
+  <data name="Emulation.Snk.Value.FirstInputPriority" xml:space="preserve"><value>Ưu tiên nhập đầu tiên</value></data>
+  <data name="Emulation.Snk.Setting.CrosshairEmulation" xml:space="preserve"><value>Mô phỏng chéo tóc</value></data>
+  <data name="Emulation.Snk.Value.HideWithLightgunDevice" xml:space="preserve"><value>ẩn với thiết bị bắn sáng</value></data>
+  <data name="Emulation.Snk.Value.AlwaysHide" xml:space="preserve"><value>Luôn luôn trốn</value></data>
+  <data name="Emulation.Snk.Value.AlwaysShow" xml:space="preserve"><value>luôn hiển thị</value></data>
+  <data name="Emulation.Snk.Setting.NeoGeoMode" xml:space="preserve"><value>Chế độ Neo- địa chỉ</value></data>
+  <data name="Emulation.Snk.Help.NeoGeoMode" xml:space="preserve"><value>Tải sinh học thích hợp tùy thuộc vào lựa chọn của bạn, với điều kiện sinh học như vậy tương thích với trò chơi chạy</value></data>
+  <data name="Emulation.Snk.Value.MVSEuropeAsiaEnglish" xml:space="preserve"><value>MVS Châu Âu/ Asia (tiếng Anh)</value></data>
+  <data name="Emulation.Snk.Value.MVSUSAEnglishCensored" xml:space="preserve"><value>MVS USA (Tiếng Anh - Cluged)</value></data>
+  <data name="Emulation.Snk.Value.MVSJapanJapanese" xml:space="preserve"><value>MVS Nhật Bản</value></data>
+  <data name="Emulation.Snk.Value.AESEuropeAsiaEnglish" xml:space="preserve"><value>AES Châu Âu/ Asia (tiếng Anh)</value></data>
+  <data name="Emulation.Snk.Value.AESJapanJapanese" xml:space="preserve"><value>AES Nhật Bản</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardMode" xml:space="preserve"><value>Chế độ quân bài</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardMode" xml:space="preserve"><value>Thay đổi cách ứng xử cho thẻ nhớ</value></data>
+  <data name="Emulation.Snk.Value.Shared" xml:space="preserve"><value>Chia sẻ</value></data>
+  <data name="Emulation.Snk.Value.PerGame" xml:space="preserve"><value>Mỗi trò chơi</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip11" xml:space="preserve"><value>gỡ lỗi Dip 1  1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip11" xml:space="preserve"><value>Bật gỡ lỗi Dip 1  1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip12" xml:space="preserve"><value>gỡ lỗi Dip 1  2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip12" xml:space="preserve"><value>Bật gỡ lỗi 1  2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip13" xml:space="preserve"><value>gỡ lỗi Dip 1  3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip13" xml:space="preserve"><value>Bật gỡ lỗi 1  3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip14" xml:space="preserve"><value>gỡ lỗi Dip 1  4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip14" xml:space="preserve"><value>Bật gỡ lỗi Dip 1  4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip15" xml:space="preserve"><value>gỡ lỗi Dip 1  5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip15" xml:space="preserve"><value>Bật gỡ lỗi Dip 1  5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip16" xml:space="preserve"><value>gỡ lỗi Dip 1  6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip16" xml:space="preserve"><value>Bật gỡ lỗi Dip 1  6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip17" xml:space="preserve"><value>gỡ lỗi Dip 1  7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip17" xml:space="preserve"><value>Bật gỡ lỗi Dip 1  7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip18" xml:space="preserve"><value>Gỡ lỗi Dip 1  8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip18" xml:space="preserve"><value>Bật gỡ lỗi Dip 1  8</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip21" xml:space="preserve"><value>gỡ lỗi Dip 2  1</value></data>
+  <data name="Emulation.Snk.Help.DebugDip21" xml:space="preserve"><value>Bật gỡ lỗi Dip 2  1</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip22" xml:space="preserve"><value>gỡ lỗi Dip 2  2</value></data>
+  <data name="Emulation.Snk.Help.DebugDip22" xml:space="preserve"><value>Bật gỡ lỗi Dip 2  2</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip23" xml:space="preserve"><value>gỡ lỗi Dip 2  3</value></data>
+  <data name="Emulation.Snk.Help.DebugDip23" xml:space="preserve"><value>Bật gỡ lỗi Dip 2  3</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip24" xml:space="preserve"><value>gỡ lỗi Dip 2  4</value></data>
+  <data name="Emulation.Snk.Help.DebugDip24" xml:space="preserve"><value>Bật gỡ lỗi Dip 2  4</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip25" xml:space="preserve"><value>gỡ lỗi Dip 2  5</value></data>
+  <data name="Emulation.Snk.Help.DebugDip25" xml:space="preserve"><value>Bật gỡ lỗi Dip 2  5</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip26" xml:space="preserve"><value>gỡ lỗi Dip 2  6</value></data>
+  <data name="Emulation.Snk.Help.DebugDip26" xml:space="preserve"><value>Bật gỡ lỗi Dip 2  6</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip27" xml:space="preserve"><value>gỡ lỗi Dip 2  7</value></data>
+  <data name="Emulation.Snk.Help.DebugDip27" xml:space="preserve"><value>Bật gỡ lỗi Dip 2  7</value></data>
+  <data name="Emulation.Snk.Setting.DebugDip28" xml:space="preserve"><value>gỡ lỗi Dip 2  8</value></data>
+  <data name="Emulation.Snk.Help.DebugDip28" xml:space="preserve"><value>Bật gỡ lỗi Dip 2  8</value></data>
+  <data name="Emulation.Snk.Setting.Layer1" xml:space="preserve"><value>Lớp 1</value></data>
+  <data name="Emulation.Snk.Help.Layer1" xml:space="preserve"><value>Để gỡ lỗi</value></data>
+  <data name="Emulation.Snk.Setting.Layer2" xml:space="preserve"><value>Lớp 2</value></data>
+  <data name="Emulation.Snk.Setting.Layer3" xml:space="preserve"><value>Lớp 3</value></data>
+  <data name="Emulation.Snk.Setting.Layer4" xml:space="preserve"><value>Lớp 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite1" xml:space="preserve"><value>Spite 1</value></data>
+  <data name="Emulation.Snk.Setting.Sprite2" xml:space="preserve"><value>Spite 2</value></data>
+  <data name="Emulation.Snk.Setting.Sprite3" xml:space="preserve"><value>Spite 3</value></data>
+  <data name="Emulation.Snk.Setting.Sprite4" xml:space="preserve"><value>Spite 4</value></data>
+  <data name="Emulation.Snk.Setting.Sprite5" xml:space="preserve"><value>Spite 5</value></data>
+  <data name="Emulation.Snk.Setting.Sprite6" xml:space="preserve"><value>Spite 6</value></data>
+  <data name="Emulation.Snk.Setting.Sprite7" xml:space="preserve"><value>Spite 7</value></data>
+  <data name="Emulation.Snk.Setting.Sprite8" xml:space="preserve"><value>Spite 8</value></data>
+  <data name="Emulation.Snk.Setting.ThreadMode" xml:space="preserve"><value>Chế độ mạch</value></data>
+  <data name="Emulation.Snk.Setting.Cheats" xml:space="preserve"><value>Lừa gạt</value></data>
+  <data name="Emulation.Snk.Setting.Throttle"><value>Throttle</value></data>
+  <data name="Emulation.Snk.Setting.BootToBIOS" xml:space="preserve"><value>Khởi động tới BIOS</value></data>
+  <data name="Emulation.Snk.Setting.BootToOSD" xml:space="preserve"><value>Khởi động tới OSD</value></data>
+  <data name="Emulation.Snk.Setting.ReadConfiguration" xml:space="preserve"><value>Cấu hình Đọc</value></data>
+  <data name="Emulation.Snk.Setting.WriteConfiguration" xml:space="preserve"><value>Cấu hình Ghi</value></data>
+  <data name="Emulation.Snk.Setting.MAMEINIPaths" xml:space="preserve"><value>MAME INI Đường dẫn</value></data>
+  <data name="Emulation.Snk.Setting.Softlists" xml:space="preserve"><value>Danh sách mềm</value></data>
+  <data name="Emulation.Snk.Setting.MediaType" xml:space="preserve"><value>Kiểu phương tiện</value></data>
+  <data name="Emulation.Snk.Value.Cart" xml:space="preserve"><value>xe đẩy</value></data>
+  <data name="Emulation.Snk.Value.Cass" xml:space="preserve"><value>css</value></data>
+  <data name="Emulation.Snk.Value.Cdrm"><value>cdrm</value></data>
+  <data name="Emulation.Snk.Value.Flop" xml:space="preserve"><value>Giảm dần</value></data>
+  <data name="Emulation.Snk.Value.Hard" xml:space="preserve"><value>cứng</value></data>
+  <data name="Emulation.Snk.Value.Prin"><value>prin</value></data>
+  <data name="Emulation.Snk.Value.Rom" xml:space="preserve"><value>Rem</value></data>
+  <data name="Emulation.Snk.Value.Serl" xml:space="preserve"><value>rl</value></data>
+  <data name="Emulation.Snk.Setting.VFSEnabled" xml:space="preserve"><value>VFS Bật</value></data>
+  <data name="Emulation.Snk.Setting.JoystickDeadzone" xml:space="preserve"><value>Name</value></data>
+  <data name="Emulation.Snk.Setting.JoystickSaturation" xml:space="preserve"><value>Name</value></data>
+  <data name="Emulation.Snk.Setting.JoystickThreshold" xml:space="preserve"><value>Điểm tựa Joystick</value></data>
+  <data name="Emulation.Snk.Setting.Joystick4WaySimulation" xml:space="preserve"><value>Mô phỏng đũa 4 chiều</value></data>
+  <data name="Emulation.Snk.Value.4way" xml:space="preserve"><value>4 chiều</value></data>
+  <data name="Emulation.Snk.Value.Strict" xml:space="preserve"><value>Nghiêm</value></data>
+  <data name="Emulation.Snk.Value.Qbert"><value>qbert</value></data>
+  <data name="Emulation.Snk.Setting.ProfileButtonsPerGame" xml:space="preserve"><value>Nút hồ sơ trên trò chơi</value></data>
+  <data name="Emulation.Snk.Setting.Mouse" xml:space="preserve"><value>Chuột</value></data>
+  <data name="Emulation.Snk.Setting.LightgunMode" xml:space="preserve"><value>Chế độ bắn ánh sáng</value></data>
+  <data name="Emulation.Snk.Value.Lightgun" xml:space="preserve"><value>Súng nhẹ</value></data>
+  <data name="Emulation.Snk.Value.Touchscreen" xml:space="preserve"><value>Màn hình cảm ứng</value></data>
+  <data name="Emulation.Snk.Setting.LightgunOffscreenPosition" xml:space="preserve"><value>Vị trí tắt màn hình</value></data>
+  <data name="Emulation.Snk.Value.Free" xml:space="preserve"><value>Tự do</value></data>
+  <data name="Emulation.Snk.Value.FixedTopLeft" xml:space="preserve"><value>Cố định (bên trái)</value></data>
+  <data name="Emulation.Snk.Value.FixedBottomRight" xml:space="preserve"><value>Cố định (Bottom Right)</value></data>
+  <data name="Emulation.Snk.Setting.ScreenRotationMode" xml:space="preserve"><value>Chế độ quay màn hình</value></data>
+  <data name="Emulation.Snk.Value.Internal" xml:space="preserve"><value>Nội bộ</value></data>
+  <data name="Emulation.Snk.Setting.AudioProcessorSpeed" xml:space="preserve"><value>Tốc độ xử lý âm thanh (%)</value></data>
+  <data name="Emulation.Snk.Help.AutomaticLoadFastForward" xml:space="preserve"><value>Tính năng thử nghiệm để tự động tua nhanh trong suốt CD Truy cập.&#xA;Làm việc với:&#xA;- Giống loài SCSI&#xA;- Sega CD và Neo Geo CD</value></data>
+  <data name="Emulation.Snk.Setting.CoinLimit" xml:space="preserve"><value>Giới hạn đồng tiền</value></data>
+  <data name="Emulation.Snk.Setting.SampleRate" xml:space="preserve"><value>Tốc độ mẫu</value></data>
+  <data name="Emulation.Snk.Help.SampleRate" xml:space="preserve"><value>Số lượng mẫu âm thanh được lấy mỗi giây, tốc độ cao hơn cung cấp âm thanh chất lượng cao hơn.</value></data>
+  <data name="Emulation.Snk.Value.Threshold" xml:space="preserve"><value>Ngưỡng</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipInterval" xml:space="preserve"><value>Giao thoa Khung</value></data>
+  <data name="Emulation.Snk.Help.FrameskipInterval" xml:space="preserve"><value>Số khung tối đa có thể bỏ qua. Giá trị thấp hơn giữ cho các cập nhật thị giác mịn hơn với giá của nhiều giọt âm thanh khi máy bị quá tải.</value></data>
+  <data name="Emulation.Snk.Setting.ShowGameInformation" xml:space="preserve"><value>Hiện thông tin trò chơi</value></data>
+  <data name="Emulation.Snk.Help.ShowGameInformation" xml:space="preserve"><value>Hiện MAMEBộ điều khiển-Status và màn hình định dạng trò chơi khi khởi động trước khi trò chơi bắt đầu chạy.</value></data>
+  <data name="Emulation.Snk.Setting.Stereo" xml:space="preserve"><value>Lập thể</value></data>
+  <data name="Emulation.Snk.Help.Stereo" xml:space="preserve"><value>Âm thanh âm thanh xuất. Tắt cho âm thanh nhỏ hơn một chút CPU trong các trò chơi không dùng stereo trộn lẫn.</value></data>
+  <data name="Emulation.Snk.Setting.SystemType" xml:space="preserve"><value>Kiểu hệ thống</value></data>
+  <data name="Emulation.Snk.Help.SystemType" xml:space="preserve"><value>Chỉ định kiểu hệ thống: AES. MVShay Vũ trụ BIOS Hệ thống</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoAESHomeConsole" xml:space="preserve"><value>Neo Geo AES (Tiếng bàn điều khiển nhà)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoMVSArcade"><value>Neo Geo MVS (Arcade)</value></data>
+  <data name="Emulation.Snk.Value.UniverseBIOSCommunityEnhancedBIOS" xml:space="preserve"><value>Vũ trụ BIOS (Tiếng la hét) BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.CDSystemType" xml:space="preserve"><value>CD Kiểu hệ thống</value></data>
+  <data name="Emulation.Snk.Help.CDSystemType" xml:space="preserve"><value>Chỉ định CD Name CD ảnh đĩa</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDFrontLoader" xml:space="preserve"><value>Neo Geo CD (Tiếng máy bay ném bóng)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDTopLoader" xml:space="preserve"><value>Neo Geo CD (Toploader)</value></data>
+  <data name="Emulation.Snk.Value.NeoGeoCDZUniverseBIOS" xml:space="preserve"><value>Neo Geo CDZ (Tiếng Đức) BIOS)</value></data>
+  <data name="Emulation.Snk.Setting.Region" xml:space="preserve"><value>Vùng</value></data>
+  <data name="Emulation.Snk.Help.Region" xml:space="preserve"><value>Vùng USAChâu Âu</value></data>
+  <data name="Emulation.Snk.Value.Europe" xml:space="preserve"><value>Châu Âu</value></data>
+  <data name="Emulation.Snk.Help.MemoryCard" xml:space="preserve"><value>Bật hay tắt thẻ bộ nhớ</value></data>
+  <data name="Emulation.Snk.Help.MemoryCardWriteProtect" xml:space="preserve"><value>Ngăn chặn thay đổi trong thẻ nhớ.</value></data>
+  <data name="Emulation.Snk.Setting.SettingMode" xml:space="preserve"><value>Chế độ đặt</value></data>
+  <data name="Emulation.Snk.Help.SettingMode" xml:space="preserve"><value>Mang hệ thống lên ROM trình đơn khởi động trên hệ thống trò chơi</value></data>
+  <data name="Emulation.Snk.Help.FourPlayerMode" xml:space="preserve"><value>Đặt bốn trình chơi (thường MVS Chế độ nội các cho Châu Á/Japan MVS hệ thống</value></data>
+  <data name="Emulation.Snk.Help.Freeplay" xml:space="preserve"><value>Phát MVS Trò chơi mà không cần thiết để chèn đồng xu</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanTop" xml:space="preserve"><value>Mặt nạ ra các điểm ảnh bị ẩn bởi một hạt bezel hay biên trên các đường cong gốc (trên)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanBottom" xml:space="preserve"><value>Mặt nạ ra các điểm ảnh bị ẩn bởi một hạt bezel hay biên trên các đường cong gốc (theo phụ)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanLeft" xml:space="preserve"><value>Mặt nạ ra các điểm ảnh bị ẩn bởi một hạt bezel hoặc biên trên các kênh CT gốc (trái)</value></data>
+  <data name="Emulation.Snk.Help.MaskOverscanRight" xml:space="preserve"><value>Mặt nạ ra các điểm ảnh ẩn bởi một hạt bezel hay biên trên các đường cong gốc (phải)</value></data>
+  <data name="Emulation.Snk.Setting.Palette" xml:space="preserve"><value>Bảng màu</value></data>
+  <data name="Emulation.Snk.Help.Palette" xml:space="preserve"><value>Đặt bảng màu</value></data>
+  <data name="Emulation.Snk.Setting.AspectRatio" xml:space="preserve"><value>Tỷ lệ Hình thể</value></data>
+  <data name="Emulation.Snk.Help.AspectRatio" xml:space="preserve"><value>Đặt tỷ lệ hình thể</value></data>
+  <data name="Emulation.Snk.Value.PerfectlySquarePixels11PAR" xml:space="preserve"><value>Điểm ảnh hoàn toàn vuông (1: 1 PAR)</value></data>
+  <data name="Emulation.Snk.Value.OstensiblyAccurateNTSCAspectRatio4544PAR" xml:space="preserve"><value>Chính xác theo kiểu vỏ bọc NTSC Tỷ lệ hình thể (45:44 PAR)</value></data>
+  <data name="Emulation.Snk.Value.VeryTraditionalNTSCAspectRatio43DAR" xml:space="preserve"><value>Rất truyền thống NTSC Tỷ lệ hình thể (4: 3 DAR)</value></data>
+  <data name="Emulation.Snk.Setting.SpritesPerLineLimit" xml:space="preserve"><value>Giới hạn &amp; dòng</value></data>
+  <data name="Emulation.Snk.Help.SpritesPerLineLimit" xml:space="preserve"><value>Đặt giới hạn erite-per-line - tăng nguyên nhân gây ra lỗi trong một số trò chơi</value></data>
+  <data name="Emulation.Snk.Setting.ProcessorSpeed" xml:space="preserve"><value>Tốc độ xử lý</value></data>
+  <data name="Emulation.Snk.Help.ProcessorSpeed" xml:space="preserve"><value>Chạy bộ xử lý ở tốc độ 24 giờ, tốc độ này có thể gây ra lỗi trong trò chơi.</value></data>
+  <data name="Emulation.Snk.Setting.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Tắt ADPCM Ngắt Accumular</value></data>
+  <data name="Emulation.Snk.Help.DisableADPCMAccumulatorWrap" xml:space="preserve"><value>Thay đổi ADPCM Ứng dụng cắt xén để sửa chữa lỗi âm thanh trong một số trò chơi. Để lại thiết lập này không dùng được cho trò chơi khác.</value></data>
+  <data name="Emulation.Snk.Help.CDSpeedHack" xml:space="preserve"><value>Đắp vá BIOS lặp lại bận để giảm tải lần (không làm việc cho vũ trụ BIOS)</value></data>
+  <data name="Emulation.Snk.Help.CDDMALengthLimit" xml:space="preserve"><value>Sửa lại BIOS tải lên con trỏ khi a CD đệm DMA là lớn hơn một lĩnh vực, sửa chữa âm thanh bị hỏng trong lĩnh vực bổ sung của Fighting. đây là một sự hack, và hành vi phần cứng thực sự là chưa được xác nhận.</value></data>
+  <data name="Emulation.Snk.Help.SkipCDLoading" xml:space="preserve"><value>Nhanh chóng tua qua CD Đang tải màn hình...</value></data>
+  <data name="Emulation.Snk.Value.ThirdOrderInterpolation" xml:space="preserve"><value>Thứ ba độ tuần hoàn (4 điểm)</value></data>
+  <data name="Emulation.Emulator.race.Description" xml:space="preserve"><value>Tính toán các giao diện đơn sắc và màu</value></data>
+  <data name="Emulation.Emulator.mednafen_ngp.Description" xml:space="preserve"><value>Tính toán các giao diện đơn sắc và màu</value></data>
+  <data name="Emulation.Snk.Help.Language" xml:space="preserve"><value>Chọn ngôn ngữ dùng cho trò chơi tương thích.</value></data>
+  <data name="Emulation.Snk.Setting.Frameskip" xml:space="preserve"><value>Bỏ qua khung ảnh động</value></data>
+  <data name="Emulation.Snk.Help.Frameskip" xml:space="preserve"><value>Bỏ qua một số khung phim khi hiệu suất không đủ, để giảm sự ngắt quãng trong đầu ra âm thanh.</value></data>
+  <data name="Emulation.Snk.Setting.FrameskipThreshold" xml:space="preserve"><value>Ngưỡng đệm âm thanh (%)</value></data>
+  <data name="Emulation.Snk.Help.FrameskipThreshold" xml:space="preserve"><value>Bỏ qua khung phim khi bộ đệm âm thanh chứa ít dữ liệu hơn tỷ lệ phần trăm khả năng này.</value></data>
+  <data name="Emulation.Snk.Help.AudioQuality" xml:space="preserve"><value>Chọn giữa sự tổng hợp âm thanh nhanh hơn và sự tổng hợp âm thanh chính xác hơn.</value></data>
+  <data name="Emulation.Snk.Help.AudioSampleRate" xml:space="preserve"><value>Chọn tần số lấy mẫu âm thanh. Tần số cao hơn có thể cải thiện chất lượng âm thanh và cần thêm nguồn xử lý.</value></data>
+  <data name="Emulation.Snk.Setting.AutoSaveLoadStates" xml:space="preserve"><value>Tự động lưu và phục hồi trạng thái</value></data>
+  <data name="Emulation.Snk.Help.SkipDisclaimer" xml:space="preserve"><value>Giấu thông báo pháp lý khi trò chơi bắt đầu.</value></data>
+  <data name="Emulation.Snk.Help.SkipWarnings" xml:space="preserve"><value>Ẩn cảnh báo về các vấn đề đã biết khi trò chơi bắt đầu.</value></data>
+  <data name="Emulation.Snk.Help.SampleRateHint" xml:space="preserve"><value>Chọn tần số thử ra âm thanh. Chế độ tự động dùng tần số xuất đã thích.</value></data>
+  <data name="Emulation.Snk.Value.UpPriorityUpOverrideDown" xml:space="preserve"><value>Cung cấp ưu tiên để các hướng lên trên</value></data>
+  <data name="Emulation.Snk.Value.DownPriorityLeftRightLastInputPriority" xml:space="preserve"><value>Cung cấp ưu tiên cho chiều xuống; sử dụng các đầu vào ngang mới nhất</value></data>
+  <data name="Emulation.Snk.Help.CrosshairEmulation" xml:space="preserve"><value>Chọn nếu hiển thị dấu hiệu đích. Chế độ tự động ẩn nó khi dùng một khẩu súng ánh sáng hay màn hình cảm ứng.</value></data>
+  <data name="Emulation.Snk.Value.UseBiosSetInBIOSDipswitch" xml:space="preserve"><value>Sử dụng BIOS Chọn bởi các công cụ chuyển đổi</value></data>
+  <data name="Emulation.Snk.Setting.SoftlistAutomaticMediaType" xml:space="preserve"><value>Phát hiện kiểu phương tiện tự động</value></data>
+  <data name="Emulation.Snk.Help.VFSEnabled" xml:space="preserve"><value>Dùng hệ thống tập tin ảo được cung cấp bởi ứng dụng này. Phiên bản 4 hoặc sau đó là cần thiết.</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkHardcodedOverlayOpacity" xml:space="preserve"><value>Độ mờ đục phủ được xây dựng</value></data>
+  <data name="Emulation.Snk.Setting.MemoryCardWriteProtect" xml:space="preserve"><value>Bảo vệ thẻ nhớ khỏi thay đổi</value></data>
+  <data name="Emulation.Snk.Setting.DarkFilterLevel" xml:space="preserve"><value>Màn hình tối đen tối (%)</value></data>
+  <data name="Emulation.Snk.Value.Fast" xml:space="preserve"><value>Tổng hợp âm thanh nhanh</value></data>
+  <data name="Emulation.Snk.Value.AccurateBandLimited" xml:space="preserve"><value>Tổng hợp âm thanh chính xác</value></data>
+  <data name="Emulation.Snk.Setting.SaveStateNaming" xml:space="preserve"><value>Lưu tên tập tin</value></data>
+  <data name="Emulation.Snk.Setting.EnableCheats" xml:space="preserve"><value>Bật mã gian lận</value></data>
+  <data name="Emulation.Snk.Setting.HideNagScreen" xml:space="preserve"><value>Ẩn màn hình thông báo pháp lý</value></data>
+  <data name="Emulation.Snk.Setting.CoreProvidedAspectRatio" xml:space="preserve"><value>Hiển thị tỷ lệ hình thể được cung cấp bởi trình giả lập</value></data>
+  <data name="Emulation.Snk.Setting.SetFrameskip" xml:space="preserve"><value>Comment</value></data>
+  <data name="Emulation.Snk.Setting.SampleRateHint" xml:space="preserve"><value>Tần số bắt chước âm thanh ưa thích</value></data>
+  <data name="Emulation.Snk.Setting.UseExternalHiscoreDat" xml:space="preserve"><value>Dùng tập tin cao tần bên ngoài hiscore.dat</value></data>
+  <data name="Emulation.Snk.Setting.DisplayMAMEMenu" xml:space="preserve"><value>Hiện MAME trình đơn</value></data>
+  <data name="Emulation.Snk.Setting.DisplayArtwork" xml:space="preserve"><value>Hiển thị tác phẩm trang trí</value></data>
+  <data name="Emulation.Snk.Setting.ArtworkResolutionMultiplier" xml:space="preserve"><value>Số lượng hình vẽ nhân lên để trang trí</value></data>
+  <data name="Emulation.Snk.Value.AutoAggressive" xml:space="preserve"><value>Chế độ tự động gây ra</value></data>
+  <data name="Emulation.Snk.Value.AutoMax" xml:space="preserve"><value>Chế độ tự động tối đa</value></data>
+  <data name="Emulation.Snk.Setting.AutosaveHiscore" xml:space="preserve"><value>Tự động lưu điểm cao</value></data>
+  <data name="Emulation.Snk.Value.Recursively" xml:space="preserve"><value>Tìm kiếm thư mục con</value></data>
+  <data name="Emulation.Snk.Setting.BypassTimingSkew" xml:space="preserve"><value>Bằng cách bỏ qua các bù đắp thời gian</value></data>
+  <data name="Emulation.Snk.Setting.CPUClockScale" xml:space="preserve"><value>Tốc độ xử lý nhân đôi</value></data>
+  <data name="Emulation.Snk.Setting.FixedFrameskip" xml:space="preserve"><value>Số khung hình ảnh được cố định cần bỏ qua</value></data>
+  <data name="Emulation.Snk.Value.Fixed" xml:space="preserve"><value>Số cố định</value></data>
+  <data name="Emulation.Snk.Setting.Hiscores" xml:space="preserve"><value>Điểm cao</value></data>
+  <data name="Emulation.Snk.Setting.AllowPatchedRomsets" xml:space="preserve"><value>Cho phép kho lưu trò chơi bị sửa đổi</value></data>
+  <data name="Emulation.Snk.Value.2Point1stOrder" xml:space="preserve"><value>Thứ tự tuần hoàn</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRenderer" xml:space="preserve"><value>Phương pháp vẽ khác</value></data>
+  <data name="Emulation.Snk.Value.Cropped" xml:space="preserve"><value>Ảnh đã xén</value></data>
+  <data name="Emulation.Snk.Setting.AlternateRendererResolution" xml:space="preserve"><value>Độ phân giải vẽ khác</value></data>
+  <data name="Emulation.Snk.Setting.AutomaticLoadFastForward" xml:space="preserve"><value>Tăng tốc độ tự động nạp đĩa</value></data>
+  <data name="Emulation.Snk.Setting.FourPlayerMode" xml:space="preserve"><value>Chế độ bốn người chơi</value></data>
+  <data name="Emulation.Snk.Setting.Freeplay" xml:space="preserve"><value>Chơi mà không chèn đồng xu</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanTop" xml:space="preserve"><value>Ẩn điểm ảnh dọc theo cạnh trên cùng</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanBottom" xml:space="preserve"><value>Ẩn điểm ảnh dọc theo cạnh dưới màn hình</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanLeft" xml:space="preserve"><value>Ẩn điểm ảnh dọc theo cạnh màn hình</value></data>
+  <data name="Emulation.Snk.Setting.MaskOverscanRight" xml:space="preserve"><value>Ẩn điểm ảnh dọc theo cạnh màn hình bên phải</value></data>
+  <data name="Emulation.Snk.Value.ResistorNetwork" xml:space="preserve"><value>Mô phỏng màu mạng của người chống đối</value></data>
+  <data name="Emulation.Snk.Value.Raw" xml:space="preserve"><value>Màu chưa sửa</value></data>
+  <data name="Emulation.Snk.Value.HardwareAccurate96" xml:space="preserve"><value>Giới hạn phần cứng gốc (96)</value></data>
+  <data name="Emulation.Snk.Value.Double192" xml:space="preserve"><value>Gấp đôi giới hạn ban đầu (192)</value></data>
+  <data name="Emulation.Snk.Value.Triple288" xml:space="preserve"><value>Gấp ba lần giới hạn ban đầu (88)</value></data>
+  <data name="Emulation.Snk.Setting.CDSpeedHack" xml:space="preserve"><value>Giảm sự trễ nạp đĩa</value></data>
+  <data name="Emulation.Snk.Setting.CDDMALengthLimit" xml:space="preserve"><value>Giới hạn kích cỡ của việc truyền dữ liệu đĩa</value></data>
+  <data name="Emulation.Snk.Setting.SkipCDLoading" xml:space="preserve"><value>Bỏ qua các đĩa đang nạp hoạt hình</value></data>
+  <data name="Emulation.Snk.Setting.HorizontalOverscan"><value>Ẩn điểm ảnh dọc theo cạnh trái và phải</value></data>
+  <data name="Emulation.Snk.Setting.PerGameSaves"><value>Chia sẻ ảnh chụp cho mỗi lượt chơi</value></data>
+  <data name="Emulation.Snk.Setting.LowPassFilterLevel"><value>Cấp bộ lọc âm thanh (%)</value></data>
+</root>
