@@ -14,11 +14,7 @@ namespace GWGUI.MediaAudit;
 
 internal static class MediaAuditValidator
 {
-    internal static ValidationAudit Validate(
-        MediaImageDocument document,
-        MediaRecognitionResult recognition,
-        int visualizationElementCount,
-        IReadOnlyList<VolumeAudit> volumes)
+    internal static ValidationAudit Validate(MediaImageDocument document, MediaRecognitionResult recognition, int visualizationElementCount, IReadOnlyList<VolumeAudit> volumes)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(recognition);
@@ -44,10 +40,7 @@ internal static class MediaAuditValidator
         return Result(errors, warnings);
     }
 
-    internal static ValidationAudit ValidateVolumes(
-        MediaKind mediaKind,
-        long? mediaLogicalLength,
-        IReadOnlyList<VolumeAudit> volumes)
+    internal static ValidationAudit ValidateVolumes(MediaKind mediaKind, long? mediaLogicalLength, IReadOnlyList<VolumeAudit> volumes)
     {
         var errors = new List<string>();
         var warnings = new List<string>();
@@ -55,10 +48,7 @@ internal static class MediaAuditValidator
         return Result(errors, warnings);
     }
 
-    private static void ValidateRepresentation(
-        MediaImageDocument document,
-        ICollection<string> errors,
-        ICollection<string> warnings)
+    private static void ValidateRepresentation(MediaImageDocument document, ICollection<string> errors, ICollection<string> warnings)
     {
         if (document.Representation.LogicalLength is <= 0)
             errors.Add($"Representation '{document.Representation.RepresentationKind}' has invalid logical length {document.Representation.LogicalLength}.");
@@ -104,12 +94,7 @@ internal static class MediaAuditValidator
         }
     }
 
-    private static void ValidateVolumes(
-        MediaKind mediaKind,
-        long? mediaLogicalLength,
-        IReadOnlyList<VolumeAudit> volumes,
-        ICollection<string> errors,
-        ICollection<string> warnings)
+    private static void ValidateVolumes(MediaKind mediaKind, long? mediaLogicalLength, IReadOnlyList<VolumeAudit> volumes, ICollection<string> errors, ICollection<string> warnings)
     {
         if (volumes.Count == 0)
         {
@@ -193,11 +178,7 @@ internal static class MediaAuditValidator
             errors.Add("The floppy contains volume data, but no logical file was extracted.");
     }
 
-    private static void ValidateEntry(
-        string volume,
-        FileEntryAudit entry,
-        ICollection<string> errors,
-        ICollection<string> warnings)
+    private static void ValidateEntry(string volume, FileEntryAudit entry, ICollection<string> errors, ICollection<string> warnings)
     {
         var identity = $"{volume}, entry '{entry.DisplayName}'";
         if (string.IsNullOrWhiteSpace(entry.Name)) errors.Add($"{identity} has an empty native name.");
@@ -251,6 +232,5 @@ internal static class MediaAuditValidator
         }
     }
 
-    private static string VolumeIdentity(VolumeAudit volume) =>
-        $"Volume '{volume.Name ?? "(unnamed)"}' (start={volume.Start}, length={volume.Length})";
+    private static string VolumeIdentity(VolumeAudit volume) => $"Volume '{volume.Name ?? "(unnamed)"}' (start={volume.Start}, length={volume.Length})";
 }

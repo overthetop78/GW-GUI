@@ -327,8 +327,7 @@ internal static class MediaContentClassifierSelfTests
         foreach (var imageExtension in new[] { FileTypeExtensions.Art, FileTypeExtensions.Gr8, FileTypeExtensions.V })
         {
             var cardStaxImageDefinition = classifier.Classify(imageExtension, MediaEntryKind.File, null, string.Empty, true, [0x01, 0x02, 0x03, 0x04], metadata, MediaFileSystemFamily.Atari8Bit);
-            ExpectCategory(cardStaxImageDefinition, MediaContentCategory.Image,
-                $"A CardStax {imageExtension} file must be recognized as an Atari 8-bit image.");
+            ExpectCategory(cardStaxImageDefinition, MediaContentCategory.Image, $"A CardStax {imageExtension} file must be recognized as an Atari 8-bit image.");
         }
 
         var pryzmImageDefinition = classifier.Classify(FileTypeExtensions.Pzm, MediaEntryKind.File, null, string.Empty, true, [0x01, 0x02, 0x03, 0x04], metadata, MediaFileSystemFamily.Atari8Bit);
@@ -337,8 +336,7 @@ internal static class MediaContentClassifierSelfTests
         foreach (var rgbPlaneExtension in new[] { FileTypeExtensions.B, FileTypeExtensions.G, FileTypeExtensions.R })
         {
             var rgbPlaneDefinition = classifier.Classify(rgbPlaneExtension, MediaEntryKind.File, null, string.Empty, true, [0xFF, 0xFF, 0x01, 0x02], metadata, MediaFileSystemFamily.Atari8Bit);
-            ExpectCategory(rgbPlaneDefinition, MediaContentCategory.Image,
-                $"An Atari ColorView {rgbPlaneExtension} plane must take precedence over the fallback binary-load marker.");
+            ExpectCategory(rgbPlaneDefinition, MediaContentCategory.Image, $"An Atari ColorView {rgbPlaneExtension} plane must take precedence over the fallback binary-load marker.");
         }
 
         var namedRomDefinition = classifier.Classify(FileTypeExtensions.Rom, MediaEntryKind.File, null, string.Empty, true, [0x01, 0x02, 0x03, 0x04], metadata, MediaFileSystemFamily.Unknown);
@@ -369,19 +367,14 @@ internal static class MediaContentClassifierSelfTests
             throw new InvalidOperationException("Atari cartridge fields without a supported ROM length must not classify a file as ROM.");
     }
 
-    private static void ExpectAudio(
-        GWGUI.MediaAnalysis.Contracts.MediaContentTypeDefinition? definition,
-        string message)
+    private static void ExpectAudio(GWGUI.MediaAnalysis.Contracts.MediaContentTypeDefinition? definition, string message)
     {
         if (definition?.Category != MediaContentCategory.Audio
             || definition.ContentFormat != MediaContentFormat.Audio)
             throw new InvalidOperationException(message);
     }
 
-    private static void ExpectCategory(
-        MediaContentTypeDefinition? definition,
-        MediaContentCategory expected,
-        string message)
+    private static void ExpectCategory(MediaContentTypeDefinition? definition, MediaContentCategory expected, string message)
     {
         if (definition?.Category != expected)
             throw new InvalidOperationException(message);

@@ -68,8 +68,7 @@ internal static class Program
             }
 
             var manifestPath = Path.Combine(outputDirectory, "manifest.json");
-            await File.WriteAllTextAsync(manifestPath, JsonSerializer.Serialize(manifest,
-                new JsonSerializerOptions { WriteIndented = true }));
+            await File.WriteAllTextAsync(manifestPath, JsonSerializer.Serialize(manifest, new JsonSerializerOptions { WriteIndented = true }));
             Console.WriteLine(Path.GetFullPath(manifestPath));
             return 0;
         }
@@ -90,9 +89,7 @@ internal static class Program
         }
     }
 
-    private static string RequiredArgument(IReadOnlyList<string> args, string name) =>
-        Arguments(args, name).FirstOrDefault()
-        ?? throw new ArgumentException($"{name} is required.");
+    private static string RequiredArgument(IReadOnlyList<string> args, string name) => Arguments(args, name).FirstOrDefault() ?? throw new ArgumentException($"{name} is required.");
 
     private static IReadOnlyList<string> Arguments(IReadOnlyList<string> args, string name)
     {

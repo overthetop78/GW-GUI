@@ -19,13 +19,7 @@ internal static class MediaAuditValidatorSelfTests
         ExpectPassed(MediaAuditValidator.ValidateVolumes(MediaKind.Floppy, 1024, [Volume(capacity: 1024, freeBytes: 512, entries: [File(size: 4)])]), "A coherent floppy volume must pass.");
     }
 
-    private static VolumeAudit Volume(
-        long capacity,
-        long freeBytes = 0,
-        long start = 0,
-        long? length = null,
-        IReadOnlyList<FileEntryAudit>? entries = null,
-        string fileSystemId = "self-test-fs")
+    private static VolumeAudit Volume(long capacity, long freeBytes = 0, long start = 0, long? length = null, IReadOnlyList<FileEntryAudit>? entries = null, string fileSystemId = "self-test-fs")
     {
         entries ??= [];
         var flattened = Flatten(entries).ToArray();
@@ -66,7 +60,6 @@ internal static class MediaAuditValidatorSelfTests
     private static void ExpectFailed(ValidationAudit result, string expectedFragment)
     {
         if (result.Passed || !result.Errors.Any(error => error.Contains(expectedFragment, StringComparison.OrdinalIgnoreCase)))
-            throw new InvalidOperationException(
-                $"Expected validation error containing '{expectedFragment}', got: {string.Join(" | ", result.Errors)}");
+            throw new InvalidOperationException($"Expected validation error containing '{expectedFragment}', got: {string.Join(" | ", result.Errors)}");
     }
 }

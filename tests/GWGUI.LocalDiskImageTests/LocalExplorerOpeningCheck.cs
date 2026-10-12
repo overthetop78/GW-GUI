@@ -18,11 +18,7 @@ namespace GWGUI.MediaAudit;
 /// <summary>Checks the real Explorer opening path for any image supplied on the command line.</summary>
 internal static class LocalExplorerOpeningCheck
 {
-    public static async Task RunAsync(
-        string path,
-        bool requireFiles,
-        string? expectedFormatId,
-        int minimumFormats)
+    public static async Task RunAsync(string path, bool requireFiles, string? expectedFormatId, int minimumFormats)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         var finished = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -85,8 +81,7 @@ internal static class LocalExplorerOpeningCheck
                 var mediaResult = controller.CurrentOpeningResult.MediaExploration;
                 if (expectedFormatId is not null &&
                     !mediaResult.Document.FormatId.Equals(expectedFormatId, StringComparison.OrdinalIgnoreCase))
-                    throw new InvalidOperationException(
-                        $"Explorer returned format '{mediaResult.Document.FormatId}' instead of '{expectedFormatId}'.");
+                    throw new InvalidOperationException($"Explorer returned format '{mediaResult.Document.FormatId}' instead of '{expectedFormatId}'.");
                 var volumes = mediaResult.Volumes;
                 var fileCount = volumes.SelectMany(volume => volume.FileSystem?.Entries ?? []).Sum(CountFiles);
                 if (requireFiles && fileCount == 0)
@@ -94,8 +89,7 @@ internal static class LocalExplorerOpeningCheck
                 var formatSelector = explorer.FindName("DetectedFormatSelector") as ComboBox ?? throw new InvalidOperationException("Explorer format selector was not created.");
                 if (formatSelector.Items.Count < minimumFormats ||
                     (minimumFormats > 1 && formatSelector.Visibility != Visibility.Visible))
-                    throw new InvalidOperationException(
-                        $"Explorer showed {formatSelector.Items.Count} format choice(s), expected at least {minimumFormats}.");
+                    throw new InvalidOperationException($"Explorer showed {formatSelector.Items.Count} format choice(s), expected at least {minimumFormats}.");
                 if (formatSelector.Items.Count == 1 && formatSelector.Visibility != Visibility.Collapsed)
                     throw new InvalidOperationException("Explorer showed the detected-format selector for a single recognized format.");
                 if (expectedFormatId is not null &&

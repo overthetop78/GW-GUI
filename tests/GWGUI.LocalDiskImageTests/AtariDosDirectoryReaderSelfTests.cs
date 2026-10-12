@@ -77,10 +77,7 @@ internal static class AtariDosDirectoryReaderSelfTests
         var entry = entries[0];
         if (entry.Name != $"{FileName}.{FileExtension}" || entry.Size != PayloadLength || entry.Content is null || !entry.Content.SequenceEqual(data.Take(PayloadLength)))
             throw new InvalidOperationException("The finalized Atari DOS directory entry must remain readable after its unfinished duplicate is ignored.");
-        var expectedWarning = AtariDosWarnings.OpenForOutputEntryIgnored(
-            $"{FileName}.{FileExtension}",
-            AtariDosFileSystemLayout.FirstDirectorySector,
-            OpenEntryNumber);
+        var expectedWarning = AtariDosWarnings.OpenForOutputEntryIgnored($"{FileName}.{FileExtension}", AtariDosFileSystemLayout.FirstDirectorySector, OpenEntryNumber);
         if (warnings.Count != 1 || warnings[0] != expectedWarning)
             throw new InvalidOperationException("An unfinished Atari DOS directory entry must produce one warning without traversing its data chain.");
     }
@@ -132,14 +129,7 @@ internal static class AtariDosDirectoryReaderSelfTests
             throw new InvalidOperationException("An unexplained Atari DOS sector owner mismatch must remain invalid.");
     }
 
-    private static void WriteDirectoryEntry(
-        byte[] directory,
-        int entryNumber,
-        AtariDosDirectoryFlags flags,
-        ushort sectorCount,
-        ushort firstSector,
-        string fileName = FileName,
-        string fileExtension = FileExtension)
+    private static void WriteDirectoryEntry(byte[] directory, int entryNumber, AtariDosDirectoryFlags flags, ushort sectorCount, ushort firstSector, string fileName = FileName, string fileExtension = FileExtension)
     {
         var offset = entryNumber * AtariDosFileSystemLayout.DirectoryEntrySize;
         directory[offset + AtariDosFileSystemLayout.FlagsOffset] = (byte)flags;

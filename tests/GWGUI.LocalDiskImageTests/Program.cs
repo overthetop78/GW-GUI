@@ -63,9 +63,7 @@ internal static partial class Program
                         explorerImagePath,
                         args.Contains("--require-files", StringComparer.OrdinalIgnoreCase),
                         Argument(args, "--expected-format"),
-                        Argument(args, "--minimum-formats") is { } minimumFormats
-                            ? int.Parse(minimumFormats)
-                            : 0);
+                        Argument(args, "--minimum-formats") is { } minimumFormats ? int.Parse(minimumFormats) : 0);
                     return 0;
                 }
                 catch (Exception error)
@@ -93,12 +91,8 @@ internal static partial class Program
             if (!string.IsNullOrWhiteSpace(scanRoot))
             {
                 var scanOutput = Argument(args, "--output") ?? throw new ArgumentException("--output is required.");
-                var timeoutMilliseconds = Argument(args, "--timeout-ms") is { } timeout
-                    ? int.Parse(timeout, CultureInfo.InvariantCulture)
-                    : 2_000;
-                var samplesPerExtension = Argument(args, "--samples-per-extension") is { } sampleCount
-                    ? int.Parse(sampleCount, CultureInfo.InvariantCulture)
-                    : 20;
+                var timeoutMilliseconds = Argument(args, "--timeout-ms") is { } timeout ? int.Parse(timeout, CultureInfo.InvariantCulture) : 2_000;
+                var samplesPerExtension = Argument(args, "--samples-per-extension") is { } sampleCount ? int.Parse(sampleCount, CultureInfo.InvariantCulture) : 20;
                 return await ScanCorpusAsync(engine, Path.GetFullPath(scanRoot), Path.GetFullPath(scanOutput), timeoutMilliseconds, samplesPerExtension);
             }
 
@@ -202,12 +196,7 @@ internal static partial class Program
             validation);
     }
 
-    private static async Task<int> ScanCorpusAsync(
-        MediaEngineComposition engine,
-        string root,
-        string outputDirectory,
-        int timeoutMilliseconds,
-        int samplesPerExtension)
+    private static async Task<int> ScanCorpusAsync(MediaEngineComposition engine, string root, string outputDirectory, int timeoutMilliseconds, int samplesPerExtension)
     {
         if (timeoutMilliseconds <= 0) throw new ArgumentOutOfRangeException(nameof(timeoutMilliseconds));
         if (samplesPerExtension <= 0) throw new ArgumentOutOfRangeException(nameof(samplesPerExtension));
@@ -372,9 +361,7 @@ internal static partial class Program
 
     private static void Increment(IDictionary<string, int> counts, string key) => counts[key] = counts.TryGetValue(key, out var count) ? count + 1 : 1;
 
-    private static async Task<ExploredMediaImage> ExploreFileSystemsAsync(
-        MediaEngineComposition engine,
-        MediaImageDocument document)
+    private static async Task<ExploredMediaImage> ExploreFileSystemsAsync(MediaEngineComposition engine, MediaImageDocument document)
     {
         if (document.Representation is not FluxMediaImageRepresentation)
             return await engine.Explorer.ExploreAsync(document);
@@ -435,10 +422,7 @@ internal static partial class Program
         var item = new ExplorerContentItem(entry);
         var content = entry.Content?.ToArray();
         var children = CreateEntries(entry.Children);
-        var contentHex = content is { Length: > 0 }
-            && item.Definition.ContentFormat == GWGUI.App.Enums.Explorer.ExplorerContentFormat.Unknown
-                ? Convert.ToHexString(content)
-                : null;
+        var contentHex = content is { Length: > 0 } && item.Definition.ContentFormat == GWGUI.App.Enums.Explorer.ExplorerContentFormat.Unknown ? Convert.ToHexString(content) : null;
         return new FileEntryAudit(
             entry.Name, item.Name, entry.Kind.ToString(), item.TypeText, item.Definition.Category.ToString(),
             item.Definition.ContentFormat.ToString(), item.Definition.TextEncoding.ToString(), item.Definition.ExecutionKind.ToString(),
