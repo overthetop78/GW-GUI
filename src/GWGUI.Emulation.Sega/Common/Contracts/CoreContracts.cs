@@ -15,6 +15,5 @@ public sealed record CoreOption(
     bool RequiresRestart = false,
     IReadOnlySet<string>? MachineIds = null);
 
-public sealed record CoreOptionValue(string Value, string Label,
-    IReadOnlySet<string>? MachineIds = null);
+public sealed record CoreOptionValue(string Value, string Label, IReadOnlySet<string>? MachineIds = null);
 

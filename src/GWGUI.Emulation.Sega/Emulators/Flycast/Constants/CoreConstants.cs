@@ -14,7 +14,6 @@ internal static class CoreConstants
     internal static CoreDefinition Definition { get; } = new(Id, LibraryName, LibraryFileName,
         Extensions, new(new Uri(OfficialPackageUrl), LibraryFileName, LibraryFileName, DisplayName),
         OptionConstants.All, FirmwareConstants.All,
-        new(Id, DisplayName, DescriptionResourceKey,
-            new HashSet<string>(StringComparer.Ordinal) { ModelConstants.Dreamcast, ModelConstants.Naomi, ModelConstants.Naomi2, ModelConstants.Atomiswave, ModelConstants.SystemSp }), SelectFirstInsertedMedia: true);
+        new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.Dreamcast, ModelConstants.Naomi, ModelConstants.Naomi2, ModelConstants.Atomiswave, ModelConstants.SystemSp }), SelectFirstInsertedMedia: true);
 }
 

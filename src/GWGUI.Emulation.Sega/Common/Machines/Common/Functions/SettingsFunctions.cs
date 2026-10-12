@@ -7,8 +7,7 @@ internal static partial class SettingsDescriptionFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var adapter = new Engine().Adapter(configuration);
         var options = configuration.Options ?? new Dictionary<string, string>();
-        var ram = model.RamBytes is { } bytes ? bytes.ToString(System.Globalization.CultureInfo.InvariantCulture) + ModelConstants.BytesUnit : options.GetValueOrDefault(SettingsConstants.Ram,
-            model.RamKib.ToString(System.Globalization.CultureInfo.InvariantCulture));
+        var ram = model.RamBytes is { } bytes ? bytes.ToString(System.Globalization.CultureInfo.InvariantCulture) + ModelConstants.BytesUnit : options.GetValueOrDefault(SettingsConstants.Ram, model.RamKib.ToString(System.Globalization.CultureInfo.InvariantCulture));
         var processors = string.Join(" / ", model.Processors);
         var hardwareFields = model.Id switch
         {
@@ -106,8 +105,7 @@ internal static partial class SettingsDescriptionFunctions
                     SettingsDescriptionFunctionsConstants.Audio,
                     SettingsDescriptionFunctionsConstants.ResourceAudioLatency,
                     (configuration.Audio?.LatencyMilliseconds ?? 50).ToString(),
-                    new[] { 20, 35, 50, 75, 100, 150, 250 }
-                        .Select(value => Invariant(value.ToString(), $"{value} ms", value))),
+                    new[] { 20, 35, 50, 75, 100, 150, 250 }.Select(value => Invariant(value.ToString(), $"{value} ms", value))),
                 Information(SettingsConstants.AudioChip, EmulationMachineTab.Audio,
                     SettingsDescriptionFunctionsConstants.Audio,
                     SettingsDescriptionFunctionsConstants.ResourceAudioChip,
@@ -137,8 +135,7 @@ internal static partial class SettingsDescriptionFunctions
 
     private static IEnumerable<EmulationSettingsChoice> MemoryChoices(Model model)
     {
-        var values = new[] { model.RamKib, 64, 128, 192, 576 }
-            .Where(value => value >= model.RamKib).Distinct().Order();
+        var values = new[] { model.RamKib, 64, 128, 192, 576 }.Where(value => value >= model.RamKib).Distinct().Order();
         return values.Select(value => Invariant(value.ToString(), $"{value} KiB", value));
     }
 

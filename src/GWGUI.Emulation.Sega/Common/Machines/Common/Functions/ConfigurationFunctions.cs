@@ -40,8 +40,7 @@ internal static class ConfigurationValidationFunctions
 
     internal static bool Supports(Model model, MediaCategory category) => Supports(model, category, default, null);
 
-    internal static bool IsIncompatibleMedia(Model model, MediaConfiguration media,
-        IReadOnlyDictionary<string, string>? options)
+    internal static bool IsIncompatibleMedia(Model model, MediaConfiguration media, IReadOnlyDictionary<string, string>? options)
     {
         if (model.Id != ModelConstants.MegaDrive || media.Category != MediaCategory.Cartridge)
             return false;
@@ -49,8 +48,7 @@ internal static class ConfigurationValidationFunctions
         return isThirtyTwoX && !IsEnabled(options, SettingsConstants.MegaDriveThirtyTwoX);
     }
 
-    private static bool IsMegaCdEnabled(Model model,
-        IReadOnlyDictionary<string, string>? options) => model.Id == ModelConstants.MegaDrive
+    private static bool IsMegaCdEnabled(Model model, IReadOnlyDictionary<string, string>? options) => model.Id == ModelConstants.MegaDrive
             && IsEnabled(options, SettingsConstants.MegaCdEnabled)
             && options?.GetValueOrDefault(SettingsConstants.MegaCdModel, ModelConstants.MegaCdI) is ModelConstants.MegaCdI or ModelConstants.MegaCdII;
 
@@ -64,8 +62,7 @@ internal static class ConfigurationValidationFunctions
         || model.Id == ModelConstants.MasterSystem
         && options?.GetValueOrDefault(SettingsConstants.MasterSystemVariant, ModelConstants.MasterSystemSmsI).Equals(ModelConstants.MasterSystemSmsIi, StringComparison.Ordinal) == true;
 
-    internal static bool Supports(Model model, MediaCategory category, EmulationMediaSlot slot,
-        IReadOnlyDictionary<string, string>? options = null) => category switch
+    internal static bool Supports(Model model, MediaCategory category, EmulationMediaSlot slot, IReadOnlyDictionary<string, string>? options = null) => category switch
     {
         MediaCategory.Floppy => model.MaximumFloppyDriveCount > 0,
         MediaCategory.Cassette => model.SupportsCassetteDrive,

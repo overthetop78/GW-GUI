@@ -6,8 +6,7 @@ internal static partial class SettingsDescriptionFunctions
 
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value, ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id));
 
-    private static EmulationSettingsField Toggle(string id, EmulationMachineTab tab,
-        string block, string label, bool value, bool refreshSettingsOnChange = false) =>
+    private static EmulationSettingsField Toggle(string id, EmulationMachineTab tab, string block, string label, bool value, bool refreshSettingsOnChange = false) =>
         new(id, tab, block, label, EmulationSettingsEditor.Toggle,
             value ? SettingsDescriptionFunctionsConstants.Enabled : SettingsDescriptionFunctionsConstants.Disabled,
             ExplanationResourceKey: ShortHelp(id),
@@ -16,15 +15,12 @@ internal static partial class SettingsDescriptionFunctions
 
     private static EmulationSettingsField Number(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Number, value, ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id));
 
-    private static EmulationSettingsField Path(string id, string block, string label,
-        string? value) => new(id, EmulationMachineTab.Rom, block, label,
+    private static EmulationSettingsField Path(string id, string block, string label, string? value) => new(id, EmulationMachineTab.Rom, block, label,
             EmulationSettingsEditor.Path, value,
             ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id),
             DefaultFolderCategory: EmulationDefaultFolderCategory.Firmware);
 
-    private static EmulationSettingsField Select(string id, EmulationMachineTab tab,
-        string block, string label, string value, IEnumerable<EmulationSettingsChoice> choices,
-        bool requiresRestart = false) => new(id, tab, block, label,
+    private static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block, string label, string value, IEnumerable<EmulationSettingsChoice> choices, bool requiresRestart = false) => new(id, tab, block, label,
             EmulationSettingsEditor.Selection, value, choices.ToArray(),
             ExplanationResourceKey: ShortHelp(id),
             DetailedExplanationResourceKey: DetailedHelp(id),

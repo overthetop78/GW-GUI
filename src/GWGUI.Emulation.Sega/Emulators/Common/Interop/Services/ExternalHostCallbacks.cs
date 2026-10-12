@@ -37,8 +37,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private readonly Dictionary<string, bool> _optionVisibility = new(StringComparer.Ordinal);
     internal ExternalDiskControl DiskControl { get; } = new();
 
-    internal ExternalHostCallbacks(string systemDirectory, string contentDirectory,
-        string saveDirectory, IReadOnlyDictionary<string, string>? options)
+    internal ExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory, IReadOnlyDictionary<string, string>? options)
     {
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);

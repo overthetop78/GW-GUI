@@ -50,8 +50,7 @@ internal sealed class ExternalCore : IEmulatorCore
         return false;
     }
 
-    public void Initialize(MachineConfiguration configuration, string sessionDirectory,
-        string? saveDirectory = null)
+    public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
         _configuration = configuration;
         _sessionDirectory = Path.GetFullPath(sessionDirectory);
@@ -148,8 +147,7 @@ internal sealed class ExternalCore : IEmulatorCore
         return Path.GetFullPath(media[0].Path);
     }
 
-    internal static uint ResolveControllerDevice(IReadOnlyList<ControllerDevice> devices,
-        ControllerType type)
+    internal static uint ResolveControllerDevice(IReadOnlyList<ControllerDevice> devices, ControllerType type)
     {
         if (type == ControllerType.None) return 0;
         if (devices.Count == 0) return ExternalHostCallbacksConstants.JoypadDevice;

@@ -67,8 +67,7 @@ internal static class StorageSettingsFunctions
         return new EmulationStorageSettings(devices, configured, mounted, deviceSettings);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        EmulationStorageSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
         var model = ModelCatalog.Get(configuration.Model);
         var threeDGlassesEnabled = model.SupportsThreeDGlasses && (settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == EmulationMediaSlot.Cartridge1)?.Cartridge ?.OptionEnabled == true;
