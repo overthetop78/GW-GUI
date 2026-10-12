@@ -27,8 +27,7 @@ public static class FileSystemEntryAnalyzer
             FileSystemEntryKind.Link => MediaEntryKind.Link,
             _ => MediaEntryKind.Unknown
         };
-        var type = Classifier.Classify(Path.GetExtension(entry.Name), kind, entry.NativeTypeId,
-            entry.Comment, entry.DataValid, entry.Content, entry.Metadata, family)
+        var type = Classifier.Classify(Path.GetExtension(entry.Name), kind, entry.NativeTypeId, entry.Comment, entry.DataValid, entry.Content, entry.Metadata, family)
             ?? throw new InvalidOperationException("The media content classifier did not return an entry type.");
         return entry with
         {

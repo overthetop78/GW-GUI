@@ -20,35 +20,22 @@ public static class AtariDosAllocationAnalyzer
 
             if (file.Chain.ContinuationSector != 0)
             {
-                var diagnostic = AtariDosWarnings.ContinuationAfterDeclaredExtent(
-                    entry.Name,
-                    entry.DeclaredSectorCount,
-                    file.Chain.ContinuationSector);
+                var diagnostic = AtariDosWarnings.ContinuationAfterDeclaredExtent(entry.Name, entry.DeclaredSectorCount, file.Chain.ContinuationSector);
                 warnings.Add(diagnostic);
                 diagnostics.Add(diagnostic);
                 attributes.Add(AtariDosFileSystemLayout.BoundedSectorViewAttribute);
             }
 
-            var mismatches = Enumerable.Range(0, file.Chain.SectorNumbers.Count)
-                .Where(index => file.Chain.StoredFileNumbers[index].HasValue
-                    && file.Chain.StoredFileNumbers[index] != entry.EntryNumber)
-                .ToArray();
+            var mismatches = Enumerable.Range(0, file.Chain.SectorNumbers.Count).Where(index => file.Chain.StoredFileNumbers[index].HasValue && file.Chain.StoredFileNumbers[index] != entry.EntryNumber).ToArray();
             if (mismatches.Length != 0)
             {
-                var observedOwners = mismatches
-                    .Select(index => file.Chain.StoredFileNumbers[index]!.Value)
-                    .Distinct()
-                    .ToArray();
+                var observedOwners = mismatches.Select(index => file.Chain.StoredFileNumbers[index]!.Value).Distinct().ToArray();
                 if (observedOwners.Length == 1
                     && entriesByNumber.TryGetValue(observedOwners[0], out var ownerEntry)
                     && files.TryGetValue(observedOwners[0], out var ownerFile)
                     && ContainsContiguous(ownerFile.Chain.SectorNumbers, file.Chain.SectorNumbers))
                 {
-                    var diagnostic = AtariDosWarnings.SharedSectorView(
-                        entry.Name,
-                        ownerEntry.Name,
-                        file.Chain.SectorNumbers[0],
-                        file.Chain.SectorNumbers.Count);
+                    var diagnostic = AtariDosWarnings.SharedSectorView(entry.Name, ownerEntry.Name, file.Chain.SectorNumbers[0], file.Chain.SectorNumbers.Count);
                     warnings.Add(diagnostic);
                     diagnostics.Add(diagnostic);
                     attributes.Add(AtariDosFileSystemLayout.SharedSectorViewAttribute);
@@ -57,11 +44,7 @@ public static class AtariDosAllocationAnalyzer
                 {
                     foreach (var index in mismatches)
                     {
-                        var diagnostic = AtariDosFileSystemExceptions.InconsistentOwner(
-                            entry.Name,
-                            file.Chain.SectorNumbers[index],
-                            entry.EntryNumber,
-                            file.Chain.StoredFileNumbers[index]!.Value);
+                        var diagnostic = AtariDosFileSystemExceptions.InconsistentOwner(entry.Name, file.Chain.SectorNumbers[index], entry.EntryNumber, file.Chain.StoredFileNumbers[index]!.Value);
                         warnings.Add(diagnostic);
                         diagnostics.Add(diagnostic);
                     }

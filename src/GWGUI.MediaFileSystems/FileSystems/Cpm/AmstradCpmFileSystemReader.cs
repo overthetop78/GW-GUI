@@ -69,12 +69,7 @@ public sealed class AmstradCpmFileSystemReader : IFileSystemReader
             };
             if (preferred is not null && CpmDirectoryReader.LooksLikeDirectory(logical, preferred, allowEmpty: false, rejectLowercase: false))
                 return preferred;
-            return CpmDirectoryReader.FindDirectory(
-                logical,
-                AmstradCpmLayout.CpcData,
-                AmstradCpmLayout.CpcSectorSize,
-                allowEmpty: false,
-                rejectLowercase: false);
+            return CpmDirectoryReader.FindDirectory(logical, AmstradCpmLayout.CpcData, AmstradCpmLayout.CpcSectorSize, allowEmpty: false, rejectLowercase: false);
         }
         return AmstradCpmDiskSpecification.TryParse(logical.Bytes, out var specification) ? AmstradCpmLayout.FromPcw(specification, logical.Bytes.Length) : null;
     }

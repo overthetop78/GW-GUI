@@ -59,9 +59,7 @@ public sealed class Fat12VolumeWriter
         {
             if (!_namePolicy.IsValid(entry.TargetName) || entry.Kind is not (FileSystemEntryKind.Directory or FileSystemEntryKind.File) || entry.Kind == FileSystemEntryKind.File && entry.Content is null)
                 throw Fat12VolumeWriterExceptions.InvalidEntry(entry.SourcePath);
-            var clusterCount = entry.Kind == FileSystemEntryKind.Directory 
-                ? Math.Max(1, DivideRoundUp((entry.Children.Count + 2) * FatDirectoryLayout.EntrySize, _layout.ClusterByteCount)) 
-                : DivideRoundUp(entry.Content!.Count, _layout.ClusterByteCount);
+            var clusterCount = entry.Kind == FileSystemEntryKind.Directory ? Math.Max(1, DivideRoundUp((entry.Children.Count + 2) * FatDirectoryLayout.EntrySize, _layout.ClusterByteCount)) : DivideRoundUp(entry.Content!.Count, _layout.ClusterByteCount);
             var clusters = AllocateClusters(clusterCount);
             var node = new Node(entry, parentCluster, clusters, []);
             node.Children.AddRange(entry.Children.Select(child => CreateNode(child, clusters.Count == 0 ? 0 : clusters[0])));

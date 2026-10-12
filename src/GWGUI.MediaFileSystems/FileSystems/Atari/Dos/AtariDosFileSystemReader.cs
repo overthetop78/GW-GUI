@@ -38,9 +38,7 @@ public sealed class AtariDosFileSystemReader : IFileSystemReader
         var warnings = new List<string>();
         var entries = AtariDosDirectoryReader.Read(image, directory, warnings);
         var freeSectors = AtariDosVtocReader.ReadFreeSectors(image);
-        var isMyDos = AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.VtocSector, out var vtoc)
-            && vtoc.Length > 0
-            && vtoc[0] >= AtariDosFileSystemLayout.MinimumExtendedVtocCode;
+        var isMyDos = AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.VtocSector, out var vtoc) && vtoc.Length > 0 && vtoc[0] >= AtariDosFileSystemLayout.MinimumExtendedVtocCode;
         return new(
             string.Empty,
             isMyDos ? Definitions.FileSystemIds.AtariMyDos : Definitions.FileSystemIds.AtariDos,

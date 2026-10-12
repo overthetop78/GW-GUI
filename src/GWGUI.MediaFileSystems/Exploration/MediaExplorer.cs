@@ -33,8 +33,7 @@ public sealed class MediaExplorer
             if (string.IsNullOrWhiteSpace(materialized[index].Id))
                 throw FileSystemRegistryExceptions.EmptyReaderId(index);
         }
-        var duplicate = materialized.GroupBy(reader => reader.Id, StringComparer.OrdinalIgnoreCase)
-            .FirstOrDefault(group => group.Skip(1).Any());
+        var duplicate = materialized.GroupBy(reader => reader.Id, StringComparer.OrdinalIgnoreCase).FirstOrDefault(group => group.Skip(1).Any());
         if (duplicate is not null) throw FileSystemRegistryExceptions.DuplicateReaderId(duplicate.Key);
         this.readers = Array.AsReadOnly(materialized);
         this.volumeDetectors = volumeDetectors;
@@ -53,9 +52,7 @@ public sealed class MediaExplorer
             new MbrVolumeDetector(),
             new WholeMediaVolumeDetector()
         ]);
-        var registered = FileSystemReaderCatalog.CreateDefault()
-            .Cast<IMediaFileSystemReader>()
-            .Concat(adapterReaders)
+        var registered = FileSystemReaderCatalog.CreateDefault().Cast<IMediaFileSystemReader>().Concat(adapterReaders)
             .Concat(new IMediaFileSystemReader[]
             {
                 new AmstradCartridgeFileSystemReader(),
@@ -91,15 +88,10 @@ public sealed class MediaExplorer
             }
             explored.Add(result);
         }
-        return new MediaFileSystemExplorationResult(
-            detection.Volumes, explored, detection.Diagnostics, FirstFileName(explored));
+        return new MediaFileSystemExplorationResult(detection.Volumes, explored, detection.Diagnostics, FirstFileName(explored));
     }
 
-    private static string? FirstFileName(IEnumerable<ExploredFileSystemVolume> volumes) =>
-        volumes.SelectMany(volume => volume.FileSystem?.Entries ?? [])
-            .SelectMany(EnumerateFiles)
-            .Select(entry => entry.Name)
-            .FirstOrDefault();
+    private static string? FirstFileName(IEnumerable<ExploredFileSystemVolume> volumes) => volumes.SelectMany(volume => volume.FileSystem?.Entries ?? []).SelectMany(EnumerateFiles).Select(entry => entry.Name).FirstOrDefault();
 
     private static IEnumerable<FileSystemEntry> EnumerateFiles(FileSystemEntry entry)
     {
@@ -112,10 +104,7 @@ public sealed class MediaExplorer
 
     private ExploredFileSystemVolume ExploreVolume(IMediaImageDocument document, MediaVolumeDescriptor volume)
     {
-        IEnumerable<IMediaFileSystemReader> ordered = string.IsNullOrWhiteSpace(volume.FileSystemId)
-            ? readers
-            : readers.OrderByDescending(reader =>
-                reader.Id.Equals(volume.FileSystemId, StringComparison.OrdinalIgnoreCase));
+        IEnumerable<IMediaFileSystemReader> ordered = string.IsNullOrWhiteSpace(volume.FileSystemId) ? readers : readers.OrderByDescending(reader => reader.Id.Equals(volume.FileSystemId, StringComparison.OrdinalIgnoreCase));
         var diagnostics = new List<string>();
         foreach (var reader in ordered)
         {

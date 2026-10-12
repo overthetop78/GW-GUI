@@ -35,8 +35,6 @@ public sealed class MediaVolumeDetectorRegistry
             var result = await detector.DetectAsync(document, cancellationToken).ConfigureAwait(false);
             if (result is not null) return result;
         }
-        return new MediaVolumeDetectionResult(
-            [],
-            ["No registered detector can describe the media volumes."]);
+        return new MediaVolumeDetectionResult([], ["No registered detector can describe the media volumes."]);
     }
 }

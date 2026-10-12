@@ -23,9 +23,7 @@ public sealed class OpticalTrackVolumeDetector : IMediaVolumeDetector
             return new ValueTask<MediaVolumeDetectionResult?>((MediaVolumeDetectionResult?)null);
         var dataTracks = optical.Tracks?.Where(track => !track.IsAudio).ToArray() ?? [];
         if (dataTracks.Length == 0)
-            return new ValueTask<MediaVolumeDetectionResult?>(new MediaVolumeDetectionResult(
-                [],
-                ["The optical image contains no addressable data track."]));
+            return new ValueTask<MediaVolumeDetectionResult?>(new MediaVolumeDetectionResult([], ["The optical image contains no addressable data track."]));
         var volumes = dataTracks.Select(track => new MediaVolumeDescriptor(
             checked(track.FirstSector * track.UserDataLength),
             checked(track.SectorCount * track.UserDataLength),

@@ -87,12 +87,7 @@ public sealed class GameCubeFstFileSystemReader : IMediaFileSystemReader
             || checked((ulong)entryCount * GameCubeFstFileSystemConstants.FstEntrySize) > (ulong)table.Length)
             throw new InvalidDataException("The GameCube FST entry count is invalid.");
         var stringTableOffset = checked((int)entryCount * GameCubeFstFileSystemConstants.FstEntrySize);
-        return new GameCubeFstContext(
-            track,
-            table,
-            checked((int)entryCount),
-            stringTableOffset,
-            fstOffset);
+        return new GameCubeFstContext(track, table, checked((int)entryCount), stringTableOffset, fstOffset);
     }
 
     private static IReadOnlyList<FileSystemEntry> ReadDirectory(
@@ -127,9 +122,7 @@ public sealed class GameCubeFstFileSystemReader : IMediaFileSystemReader
             }
 
             ValidateByteRange(context.Track, location, length);
-            IReadOnlyList<byte>? content = length <= GameCubeFstFileSystemConstants.MaximumFileContentLength
-                ? ReadBytes(context.Track, location, checked((int)length))
-                : null;
+            IReadOnlyList<byte>? content = length <= GameCubeFstFileSystemConstants.MaximumFileContentLength ? ReadBytes(context.Track, location, checked((int)length)) : null;
             if (content is null)
                 warnings.Add($"GameCube file '{name}' is larger than the content limit and was not loaded.");
             entries.Add(CreateEntry(name, FileSystemEntryKind.File, length, index, [], content, content is not null));
@@ -156,9 +149,7 @@ public sealed class GameCubeFstFileSystemReader : IMediaFileSystemReader
             true,
             children,
             content,
-            nativeTypeId: kind == FileSystemEntryKind.Directory
-                ? GameCubeFstFileSystemConstants.DirectoryEntryType
-                : GameCubeFstFileSystemConstants.FileEntryType,
+            nativeTypeId: kind == FileSystemEntryKind.Directory ? GameCubeFstFileSystemConstants.DirectoryEntryType : GameCubeFstFileSystemConstants.FileEntryType,
             occupiedSize: length,
             attributes: [GameCubeFstFileSystemConstants.FileAttribute],
             dataValid: dataValid,
@@ -181,8 +172,7 @@ public sealed class GameCubeFstFileSystemReader : IMediaFileSystemReader
             : name;
     }
 
-    private static uint ReadUInt32(byte[] data, int offset) =>
-        BinaryPrimitives.ReadUInt32BigEndian(data.AsSpan(offset, sizeof(uint)));
+    private static uint ReadUInt32(byte[] data, int offset) => BinaryPrimitives.ReadUInt32BigEndian(data.AsSpan(offset, sizeof(uint)));
 
     private static byte[] ReadBytes(IMediaOpticalTrack track, uint byteOffset, int length)
     {

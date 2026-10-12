@@ -31,10 +31,8 @@ public static class AtariDosDirectoryReader
             }
             if (IsRecorded(flags) && !flags.HasFlag(AtariDosDirectoryFlags.Deleted))
             {
-                var sectorCount = data[offset + AtariDosFileSystemLayout.SectorCountOffset]
-                    | data[offset + AtariDosFileSystemLayout.SectorCountOffset + 1] << 8;
-                var firstSector = data[offset + AtariDosFileSystemLayout.FirstSectorOffset]
-                    | data[offset + AtariDosFileSystemLayout.FirstSectorOffset + 1] << 8;
+                var sectorCount = data[offset + AtariDosFileSystemLayout.SectorCountOffset] | data[offset + AtariDosFileSystemLayout.SectorCountOffset + 1] << 8;
+                var firstSector = data[offset + AtariDosFileSystemLayout.FirstSectorOffset] | data[offset + AtariDosFileSystemLayout.FirstSectorOffset + 1] << 8;
                 if (nameIsBlank
                     || sectorCount == 0 && firstSector != 0 && !flags.HasFlag(AtariDosDirectoryFlags.OpenForOutput)
                     || sectorCount != 0 && firstSector == 0)
@@ -60,19 +58,13 @@ public static class AtariDosDirectoryReader
         var directoryEntries = ReadDirectoryEntries(image, location, warnings);
         var files = ReadFiles(image, directoryEntries, UsesExtendedLinks(image), warnings);
         var analyzedFiles = AtariDosAllocationAnalyzer.Analyze(directoryEntries, files, warnings);
-        return directoryEntries
-            .Select(entry => CreateFileSystemEntry(entry, analyzedFiles[entry.EntryNumber]))
-            .OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        return directoryEntries.Select(entry => CreateFileSystemEntry(entry, analyzedFiles[entry.EntryNumber])).OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
     /// <summary>Retrouve le catalogue normal ou, s'il est illisible, un catalogue déplacé validé par ses fichiers.</summary>
     public static bool TryLocate(IMediaSectorImage image, out AtariDosDirectoryLocation location)
     {
-        location = new AtariDosDirectoryLocation(
-            AtariDosFileSystemLayout.FirstDirectorySector,
-            AtariDosFileSystemLayout.DirectorySectorCount,
-            AtariDosFileSystemLayout.DirectoryEntriesPerSector);
+        location = new AtariDosDirectoryLocation(AtariDosFileSystemLayout.FirstDirectorySector, AtariDosFileSystemLayout.DirectorySectorCount, AtariDosFileSystemLayout.DirectoryEntriesPerSector);
         if (TryAnalyzeDirectory(image, location, false, out _, out _)) return true;
 
         AtariDosDirectoryLocation? best = null;
@@ -103,23 +95,15 @@ public static class AtariDosDirectoryReader
     /// <summary>Indique si le catalogue canonique contient au moins une entrée active avant sa fin.</summary>
     public static bool ContainsRecordedEntry(IMediaSectorImage image)
     {
-        var location = new AtariDosDirectoryLocation(
-            AtariDosFileSystemLayout.FirstDirectorySector,
-            AtariDosFileSystemLayout.DirectorySectorCount,
-            AtariDosFileSystemLayout.DirectoryEntriesPerSector);
-        return TryReadDirectoryEntries(image, location, false, out var entries, out _)
-            && entries.Count != 0;
+        var location = new AtariDosDirectoryLocation(AtariDosFileSystemLayout.FirstDirectorySector, AtariDosFileSystemLayout.DirectorySectorCount, AtariDosFileSystemLayout.DirectoryEntriesPerSector);
+        return TryReadDirectoryEntries(image, location, false, out var entries, out _) && entries.Count != 0;
     }
 
     /// <summary>Indique si au moins une entrée active possède une étendue déclarée entièrement lisible.</summary>
     public static bool ContainsReadableEntry(IMediaSectorImage image)
     {
-        var location = new AtariDosDirectoryLocation(
-            AtariDosFileSystemLayout.FirstDirectorySector,
-            AtariDosFileSystemLayout.DirectorySectorCount,
-            AtariDosFileSystemLayout.DirectoryEntriesPerSector);
-        return TryAnalyzeDirectory(image, location, false, out _, out var readable)
-            && readable != 0;
+        var location = new AtariDosDirectoryLocation(AtariDosFileSystemLayout.FirstDirectorySector, AtariDosFileSystemLayout.DirectorySectorCount, AtariDosFileSystemLayout.DirectoryEntriesPerSector);
+        return TryAnalyzeDirectory(image, location, false, out _, out var readable) && readable != 0;
     }
 
     private static IReadOnlyList<AtariDosDirectoryEntry> ReadDirectoryEntries(
@@ -164,15 +148,7 @@ public static class AtariDosDirectoryReader
         IReadOnlyList<AtariDosDirectoryEntry> entries,
         bool usesExtendedLinks,
         ICollection<string> warnings)
-        => entries.ToDictionary(
-            entry => entry.EntryNumber,
-            entry => AtariDosFileReader.Read(
-                image,
-                entry.FirstSector,
-                entry.DeclaredSectorCount,
-                usesExtendedLinks,
-                warnings,
-                entry.Name));
+        => entries.ToDictionary(entry => entry.EntryNumber, entry => AtariDosFileReader.Read(image, entry.FirstSector, entry.DeclaredSectorCount, usesExtendedLinks, warnings, entry.Name));
 
     private static FileSystemEntry CreateFileSystemEntry(AtariDosDirectoryEntry entry, AtariDosFileData file) =>
         new(
@@ -206,9 +182,7 @@ public static class AtariDosDirectoryReader
         var files = ReadFiles(image, entries, UsesExtendedLinks(image), warnings);
         var analyzed = AtariDosAllocationAnalyzer.Analyze(entries, files, warnings);
         readable = analyzed.Values.Count(file => file.IsValid);
-        return relocated
-            ? recorded >= 2 && readable >= 2 && readable * 2 >= recorded
-            : recorded >= 1 && readable >= 1;
+        return relocated ? recorded >= 2 && readable >= 2 && readable * 2 >= recorded : recorded >= 1 && readable >= 1;
     }
 
     private static bool TryReadDirectoryEntries(
@@ -278,26 +252,15 @@ public static class AtariDosDirectoryReader
             sector[offset + AtariDosFileSystemLayout.FirstSectorOffset]
                 | sector[offset + AtariDosFileSystemLayout.FirstSectorOffset + 1] << 8);
 
-    private static string ReadName(IReadOnlyList<byte> sector, int offset) =>
-        AtariDosNameCodec.Decode(sector
-            .Skip(offset + AtariDosFileSystemLayout.NameOffset)
-            .Take(AtariDosFileSystemLayout.NameLength + AtariDosFileSystemLayout.ExtensionLength)
-            .ToArray());
+    private static string ReadName(IReadOnlyList<byte> sector, int offset) => AtariDosNameCodec.Decode(sector.Skip(offset + AtariDosFileSystemLayout.NameOffset).Take(AtariDosFileSystemLayout.NameLength + AtariDosFileSystemLayout.ExtensionLength).ToArray());
 
-    private static bool UsesExtendedLinks(IMediaSectorImage image) =>
-        AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.VtocSector, out var vtoc)
-        && vtoc.Length > 0
-        && vtoc[0] >= AtariDosFileSystemLayout.MinimumExtendedVtocCode;
+    private static bool UsesExtendedLinks(IMediaSectorImage image) => AtariDosVtocReader.TrySector(image, AtariDosFileSystemLayout.VtocSector, out var vtoc) && vtoc.Length > 0 && vtoc[0] >= AtariDosFileSystemLayout.MinimumExtendedVtocCode;
 
     private static bool IsEndOfDirectory(AtariDosDirectoryFlags flags) => flags == AtariDosDirectoryFlags.None;
 
-    private static bool IsRecorded(AtariDosDirectoryFlags flags) =>
-        flags.HasFlag(AtariDosDirectoryFlags.InUse) || flags.HasFlag(AtariDosDirectoryFlags.OpenForOutput);
+    private static bool IsRecorded(AtariDosDirectoryFlags flags) => flags.HasFlag(AtariDosDirectoryFlags.InUse) || flags.HasFlag(AtariDosDirectoryFlags.OpenForOutput);
 
-    private static bool IsFinalized(AtariDosDirectoryFlags flags) =>
-        IsRecorded(flags)
-        && !flags.HasFlag(AtariDosDirectoryFlags.Deleted)
-        && !flags.HasFlag(AtariDosDirectoryFlags.OpenForOutput);
+    private static bool IsFinalized(AtariDosDirectoryFlags flags) => IsRecorded(flags) && !flags.HasFlag(AtariDosDirectoryFlags.Deleted) && !flags.HasFlag(AtariDosDirectoryFlags.OpenForOutput);
 
     private static bool LooksValidEntry(IReadOnlyList<byte> data, int offset, AtariDosDirectoryFlags flags)
     {
@@ -312,13 +275,9 @@ public static class AtariDosDirectoryReader
                 && value is < AtariDosFileSystemLayout.MinimumNameCharacter or > AtariDosFileSystemLayout.MaximumNameCharacter)
                 return false;
         }
-        var sectorCount = data[offset + AtariDosFileSystemLayout.SectorCountOffset]
-            | data[offset + AtariDosFileSystemLayout.SectorCountOffset + 1] << 8;
-        var firstSector = data[offset + AtariDosFileSystemLayout.FirstSectorOffset]
-            | data[offset + AtariDosFileSystemLayout.FirstSectorOffset + 1] << 8;
-        return !nameIsBlank
-            && (sectorCount != 0 || firstSector == 0 || flags.HasFlag(AtariDosDirectoryFlags.OpenForOutput))
-            && (sectorCount == 0 || firstSector != 0);
+        var sectorCount = data[offset + AtariDosFileSystemLayout.SectorCountOffset] | data[offset + AtariDosFileSystemLayout.SectorCountOffset + 1] << 8;
+        var firstSector = data[offset + AtariDosFileSystemLayout.FirstSectorOffset] | data[offset + AtariDosFileSystemLayout.FirstSectorOffset + 1] << 8;
+        return !nameIsBlank && (sectorCount != 0 || firstSector == 0 || flags.HasFlag(AtariDosDirectoryFlags.OpenForOutput)) && (sectorCount == 0 || firstSector != 0);
     }
 
     private static bool HasUnknownFlags(AtariDosDirectoryFlags flags) =>

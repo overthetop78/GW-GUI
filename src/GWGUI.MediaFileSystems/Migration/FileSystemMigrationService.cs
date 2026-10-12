@@ -14,8 +14,7 @@ namespace GWGUI.MediaFileSystems.Migration;
 /// <summary>Injecte les vrais fichiers dans une image vierge fournie par le moteur.</summary>
 public sealed class FileSystemMigrationService
 {
-    public MigrationPlan CreatePlan(FileSystemVolume source, string targetFileSystemId) =>
-        MigrationPlanner.Create(source, targetFileSystemId);
+    public MigrationPlan CreatePlan(FileSystemVolume source, string targetFileSystemId) => MigrationPlanner.Create(source, targetFileSystemId);
 
     public MigrationValidationReport Validate(MigrationPlan plan, IMediaSectorImage blankImage,
         bool acceptMetadataLoss = false)
@@ -34,8 +33,7 @@ public sealed class FileSystemMigrationService
         MigrationValidator.EnsureExecutable(report);
         RequireBlankImage(blankImage);
         var writable = MigrationMetadataReducer.Reduce(plan, capabilities);
-        var geometry = new MediaSectorGeometry(blankImage.FormatId, blankImage.BlockSize,
-            blankImage.Cylinders, blankImage.Heads, blankImage.SectorsPerTrack, blankImage.BlockCount);
+        var geometry = new MediaSectorGeometry(blankImage.FormatId, blankImage.BlockSize, blankImage.Cylinders, blankImage.Heads, blankImage.SectorsPerTrack, blankImage.BlockCount);
         var addresses = Enumerable.Range(0, blankImage.BlockCount).Select(index =>
         {
             blankImage.TryGetBlock(index, out var block);
@@ -74,12 +72,9 @@ public sealed class FileSystemMigrationService
         var injectedBlocks = filled.AvailableBlocks.Select(block =>
         {
             blankImage.TryGetBlock(block.LogicalBlock, out var blank);
-            return new MediaSectorWriteBlock(block.LogicalBlock,
-                new MediaSectorAddress(blank.Cylinder, blank.Head, blank.PhysicalSectorNumber), block.Data);
+            return new MediaSectorWriteBlock(block.LogicalBlock, new MediaSectorAddress(blank.Cylinder, blank.Head, blank.PhysicalSectorNumber), block.Data);
         });
-        var result = new MediaSectorWritePlan(blankImage.FormatId, blankImage.BlockSize,
-            blankImage.Cylinders, blankImage.Heads, blankImage.SectorsPerTrack,
-            injectedBlocks, blankImage.Capacity, blankImage.BlockCount);
+        var result = new MediaSectorWritePlan(blankImage.FormatId, blankImage.BlockSize, blankImage.Cylinders, blankImage.Heads, blankImage.SectorsPerTrack, injectedBlocks, blankImage.Capacity, blankImage.BlockCount);
         return (result, report);
     }
 

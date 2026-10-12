@@ -57,8 +57,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
         var anchor = ReadPhysicalBlock(track, anchorLocation);
         UdfDescriptorValidator.Validate(anchor, UdfConstants.AnchorDescriptorTagId, anchorLocation);
         var sequenceLength = ReadExtentLength(anchor, UdfConstants.AnchorMainVolumeDescriptorSequenceExtentOffset);
-        var sequenceLocation = BinaryPrimitives.ReadUInt32LittleEndian(
-            anchor.AsSpan(UdfConstants.AnchorMainVolumeDescriptorSequenceExtentOffset + UdfConstants.ExtentLocationOffset));
+        var sequenceLocation = BinaryPrimitives.ReadUInt32LittleEndian(anchor.AsSpan(UdfConstants.AnchorMainVolumeDescriptorSequenceExtentOffset + UdfConstants.ExtentLocationOffset));
         if (sequenceLength == 0 || sequenceLength % UdfConstants.LogicalBlockSize != 0)
             throw new InvalidDataException("The UDF main volume descriptor sequence extent is invalid.");
 
@@ -94,8 +93,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
         var blockSize = BinaryPrimitives.ReadUInt32LittleEndian(logicalVolume.AsSpan(UdfConstants.LogicalVolumeBlockSizeOffset));
         if (blockSize != UdfConstants.LogicalBlockSize)
             throw new NotSupportedException($"Unsupported UDF logical block size {blockSize}.");
-        var revision = BinaryPrimitives.ReadUInt16LittleEndian(logicalVolume.AsSpan(
-            UdfConstants.LogicalVolumeDomainIdentifierOffset + UdfConstants.EntityIdentifierSuffixOffset));
+        var revision = BinaryPrimitives.ReadUInt16LittleEndian(logicalVolume.AsSpan(UdfConstants.LogicalVolumeDomainIdentifierOffset + UdfConstants.EntityIdentifierSuffixOffset));
         if (!UdfConstants.SupportedRevisions.Contains(revision))
             throw new NotSupportedException($"Unsupported UDF revision {FormatRevision(revision)}.");
 
@@ -116,9 +114,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
         UdfDescriptorValidator.Validate(fileSet, UdfConstants.FileSetDescriptorTagId, fileSetIcb.Block);
         var rootIcb = ReadLongAllocationDescriptor(fileSet, UdfConstants.FileSetRootDirectoryIcbOffset);
         EnsurePrimaryPartitionReference(rootIcb.PartitionReference);
-        var volumeName = UdfNameDecoder.DecodeDString(logicalVolume.AsSpan(
-            UdfConstants.LogicalVolumeIdentifierOffset,
-            UdfConstants.LogicalVolumeIdentifierLength));
+        var volumeName = UdfNameDecoder.DecodeDString(logicalVolume.AsSpan(UdfConstants.LogicalVolumeIdentifierOffset, UdfConstants.LogicalVolumeIdentifierLength));
         return new VolumeContext(track, partition.Start, partition.Length, revision, volumeName, rootIcb.Block);
     }
 
@@ -143,8 +139,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
             UdfDescriptorValidator.Validate(remaining, UdfConstants.FileIdentifierDescriptorTagId, null);
             var characteristics = remaining[UdfConstants.FileIdentifierCharacteristicsOffset];
             var nameLength = remaining[UdfConstants.FileIdentifierLengthOffset];
-            var implementationLength = BinaryPrimitives.ReadUInt16LittleEndian(
-                remaining[UdfConstants.FileIdentifierImplementationUseLengthOffset..]);
+            var implementationLength = BinaryPrimitives.ReadUInt16LittleEndian(remaining[UdfConstants.FileIdentifierImplementationUseLengthOffset..]);
             var recordLength = AlignFour(checked(UdfConstants.FileIdentifierImplementationUseOffset + implementationLength + nameLength));
             if (recordLength > remaining.Length)
                 throw new InvalidDataException("A UDF file identifier exceeds its directory data.");
@@ -155,8 +150,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
                 var childAddress = ReadLongAllocationDescriptor(remaining, UdfConstants.FileIdentifierIcbOffset);
                 EnsurePrimaryPartitionReference(childAddress.PartitionReference);
                 var child = ReadIcb(context, childAddress.Block);
-                var isDirectory = child.FileType == UdfConstants.DirectoryFileType
-                    || (characteristics & UdfConstants.FileIdentifierDirectoryFlag) != 0;
+                var isDirectory = child.FileType == UdfConstants.DirectoryFileType || (characteristics & UdfConstants.FileIdentifierDirectoryFlag) != 0;
                 var children = isDirectory ? ReadDirectory(context, child, visited) : [];
                 IReadOnlyList<byte>? content = null;
                 if (!isDirectory && child.InformationLength <= int.MaxValue)
@@ -192,25 +186,16 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
             throw new InvalidDataException($"UDF ICB {block} is not a file entry.");
         UdfDescriptorValidator.Validate(descriptor, tagId, block);
         var extended = tagId == UdfConstants.ExtendedFileEntryDescriptorTagId;
-        var informationLengthOffset = extended
-            ? UdfConstants.ExtendedFileEntryInformationLengthOffset
-            : UdfConstants.FileEntryInformationLengthOffset;
-        var extendedAttributesLengthOffset = extended
-            ? UdfConstants.ExtendedFileEntryExtendedAttributesLengthOffset
-            : UdfConstants.FileEntryExtendedAttributesLengthOffset;
-        var allocationDescriptorsLengthOffset = extended
-            ? UdfConstants.ExtendedFileEntryAllocationDescriptorsLengthOffset
-            : UdfConstants.FileEntryAllocationDescriptorsLengthOffset;
-        var variableDataOffset = extended
-            ? UdfConstants.ExtendedFileEntryVariableDataOffset
-            : UdfConstants.FileEntryVariableDataOffset;
+        var informationLengthOffset = extended ? UdfConstants.ExtendedFileEntryInformationLengthOffset : UdfConstants.FileEntryInformationLengthOffset;
+        var extendedAttributesLengthOffset = extended ? UdfConstants.ExtendedFileEntryExtendedAttributesLengthOffset : UdfConstants.FileEntryExtendedAttributesLengthOffset;
+        var allocationDescriptorsLengthOffset = extended ? UdfConstants.ExtendedFileEntryAllocationDescriptorsLengthOffset : UdfConstants.FileEntryAllocationDescriptorsLengthOffset;
+        var variableDataOffset = extended ? UdfConstants.ExtendedFileEntryVariableDataOffset : UdfConstants.FileEntryVariableDataOffset;
         var extendedAttributesLength = BinaryPrimitives.ReadUInt32LittleEndian(descriptor.AsSpan(extendedAttributesLengthOffset));
         var allocationDescriptorsLength = BinaryPrimitives.ReadUInt32LittleEndian(descriptor.AsSpan(allocationDescriptorsLengthOffset));
         var descriptorsOffset = checked(variableDataOffset + (int)extendedAttributesLength);
         if (allocationDescriptorsLength > int.MaxValue || descriptorsOffset > descriptor.Length - (int)allocationDescriptorsLength)
             throw new InvalidDataException("The UDF allocation descriptors exceed their file entry.");
-        var flags = BinaryPrimitives.ReadUInt16LittleEndian(
-            descriptor.AsSpan(UdfConstants.IcbTagOffset + UdfConstants.IcbFlagsOffset));
+        var flags = BinaryPrimitives.ReadUInt16LittleEndian(descriptor.AsSpan(UdfConstants.IcbTagOffset + UdfConstants.IcbFlagsOffset));
         var informationLength = BinaryPrimitives.ReadUInt64LittleEndian(descriptor.AsSpan(informationLengthOffset));
         if (informationLength > long.MaxValue)
             throw new NotSupportedException("The UDF entry length exceeds the supported signed range.");
@@ -240,9 +225,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
         if (icb.AllocationDescriptorType == UdfConstants.ExtendedAllocationDescriptors)
             throw new NotSupportedException("Extended UDF allocation descriptors are not supported.");
 
-        var descriptorSize = icb.AllocationDescriptorType == UdfConstants.ShortAllocationDescriptors
-            ? UdfConstants.ShortAllocationDescriptorSize
-            : UdfConstants.LongAllocationDescriptorSize;
+        var descriptorSize = icb.AllocationDescriptorType == UdfConstants.ShortAllocationDescriptors ? UdfConstants.ShortAllocationDescriptorSize : UdfConstants.LongAllocationDescriptorSize;
         if (icb.AllocationDescriptorType is not (UdfConstants.ShortAllocationDescriptors or UdfConstants.LongAllocationDescriptors)
             || icb.AllocationDescriptors.Length % descriptorSize != 0)
             throw new InvalidDataException("The UDF allocation descriptor list is invalid.");
@@ -256,8 +239,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
             var block = BinaryPrimitives.ReadUInt32LittleEndian(descriptor[UdfConstants.ShortAllocationDescriptorBlockOffset..]);
             if (descriptorSize == UdfConstants.LongAllocationDescriptorSize)
             {
-                var partitionReference = BinaryPrimitives.ReadUInt16LittleEndian(
-                    descriptor[UdfConstants.LongAllocationDescriptorPartitionOffset..]);
+                var partitionReference = BinaryPrimitives.ReadUInt16LittleEndian(descriptor[UdfConstants.LongAllocationDescriptorPartitionOffset..]);
                 EnsurePrimaryPartitionReference(partitionReference);
             }
             var count = Math.Min(extentLength, result.Length - completed);
@@ -295,10 +277,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
             var block = checked((uint)(UdfConstants.FirstVolumeRecognitionSector + index));
             if (block >= track.SectorCount) break;
             var descriptor = ReadPhysicalBlock(track, block);
-            var identifier = System.Text.Encoding.ASCII.GetString(
-                descriptor,
-                UdfConstants.VolumeStructureIdentifierOffset,
-                UdfConstants.VolumeStructureIdentifierLength);
+            var identifier = System.Text.Encoding.ASCII.GetString(descriptor, UdfConstants.VolumeStructureIdentifierOffset, UdfConstants.VolumeStructureIdentifierLength);
             if (identifier is UdfConstants.Nsr02Identifier or UdfConstants.Nsr03Identifier) foundNsr = true;
             if (identifier == UdfConstants.TerminatingExtendedAreaIdentifier) break;
         }
@@ -344,16 +323,11 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
     {
         if (document.Representation is not IMediaOpticalRepresentation optical || optical.Tracks is null)
             throw new NotSupportedException("UDF requires optical track data.");
-        return optical.Tracks.FirstOrDefault(track =>
-                !track.IsAudio
-                && (volume.SessionNumber is null || track.SessionNumber == volume.SessionNumber)
-                && (volume.TrackNumber is null || track.TrackNumber == volume.TrackNumber))
+        return optical.Tracks.FirstOrDefault(track => !track.IsAudio && (volume.SessionNumber is null || track.SessionNumber == volume.SessionNumber) && (volume.TrackNumber is null || track.TrackNumber == volume.TrackNumber))
             ?? throw new InvalidDataException("No data track is available for the requested UDF volume.");
     }
 
-    private static uint ReadExtentLength(ReadOnlySpan<byte> source, int offset) =>
-        BinaryPrimitives.ReadUInt32LittleEndian(source[(offset + UdfConstants.ExtentLengthOffset)..])
-        & UdfConstants.AllocationDescriptorLengthMask;
+    private static uint ReadExtentLength(ReadOnlySpan<byte> source, int offset) => BinaryPrimitives.ReadUInt32LittleEndian(source[(offset + UdfConstants.ExtentLengthOffset)..]) & UdfConstants.AllocationDescriptorLengthMask;
 
     private static (uint Block, ushort PartitionReference) ReadLongAllocationDescriptor(ReadOnlySpan<byte> source, int offset) =>
         (BinaryPrimitives.ReadUInt32LittleEndian(source[(offset + UdfConstants.LongAllocationDescriptorBlockOffset)..]),
@@ -376,9 +350,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
             return null;
         var typeAndTimezone = BinaryPrimitives.ReadUInt16LittleEndian(value);
         var encodedTimezone = (ushort)(typeAndTimezone & UdfConstants.TimestampTimezoneMask);
-        var timezoneMinutes = encodedTimezone == UdfConstants.TimestampUnspecifiedTimezone
-            ? 0
-            : encodedTimezone >= 0x0800 ? encodedTimezone - 0x1000 : encodedTimezone;
+        var timezoneMinutes = encodedTimezone == UdfConstants.TimestampUnspecifiedTimezone ? 0 : encodedTimezone >= 0x0800 ? encodedTimezone - 0x1000 : encodedTimezone;
         try
         {
             var offsetValue = TimeSpan.FromMinutes(timezoneMinutes);
@@ -422,8 +394,6 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
         DateTimeOffset? Modified,
         DateTimeOffset? Created)
     {
-        public long OccupiedLength => AllocationDescriptorType == UdfConstants.EmbeddedAllocationDescriptors
-            ? AllocationDescriptors.Length
-            : checked((long)InformationLength);
+        public long OccupiedLength => AllocationDescriptorType == UdfConstants.EmbeddedAllocationDescriptors ? AllocationDescriptors.Length : checked((long)InformationLength);
     }
 }

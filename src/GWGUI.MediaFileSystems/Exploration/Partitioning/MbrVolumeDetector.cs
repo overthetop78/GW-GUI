@@ -54,13 +54,7 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
             }
             if (IsExtended(entry.Type))
             {
-                await ReadExtendedChainAsync(
-                    blocks,
-                    entry,
-                    partitions,
-                    diagnostics,
-                    () => ++partitionNumber,
-                    cancellationToken).ConfigureAwait(false);
+                await ReadExtendedChainAsync(blocks, entry, partitions, diagnostics, () => ++partitionNumber, cancellationToken).ConfigureAwait(false);
                 continue;
             }
             partitionNumber++;
@@ -68,8 +62,7 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
         }
 
         AddOverlapDiagnostics(partitions, diagnostics);
-        var volumes = partitions
-            .OrderBy(partition => partition.Start)
+        var volumes = partitions.OrderBy(partition => partition.Start)
             .Select(partition => new MediaVolumeDescriptor(
                 partition.Start,
                 partition.Length,
@@ -186,11 +179,7 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
         for (var index = 1; index < ordered.Length; index++)
         {
             if (ordered[index].Start < ordered[index - 1].Start + ordered[index - 1].Length)
-                diagnostics.Add(string.Format(
-                    CultureInfo.InvariantCulture,
-                    "MBR partitions {0} and {1} overlap.",
-                    ordered[index - 1].Number,
-                    ordered[index].Number));
+                diagnostics.Add(string.Format(CultureInfo.InvariantCulture, "MBR partitions {0} and {1} overlap.", ordered[index - 1].Number, ordered[index].Number));
         }
     }
 
@@ -202,15 +191,11 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
         if (lba < 0 || lba > blocks.LogicalBlockCount - 1)
             throw new InvalidDataException("The requested boot record is outside the media.");
         var buffer = new byte[BootRecordSize];
-        await blocks.ReadExactlyAsync(
-            checked(lba * blocks.LogicalBlockSize),
-            buffer,
-            cancellationToken).ConfigureAwait(false);
+        await blocks.ReadExactlyAsync(checked(lba * blocks.LogicalBlockSize), buffer, cancellationToken).ConfigureAwait(false);
         return buffer;
     }
 
-    private static bool HasSignature(ReadOnlySpan<byte> record)
-        => record[510] == 0x55 && record[511] == 0xAA;
+    private static bool HasSignature(ReadOnlySpan<byte> record) => record[510] == 0x55 && record[511] == 0xAA;
 
     private static MbrEntry[] ReadEntries(ReadOnlySpan<byte> record)
     {
@@ -218,10 +203,7 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
         for (var index = 0; index < entries.Length; index++)
         {
             var entry = record.Slice(PartitionTableOffset + index * PartitionEntrySize, PartitionEntrySize);
-            entries[index] = new MbrEntry(
-                entry[4],
-                BinaryPrimitives.ReadUInt32LittleEndian(entry[8..12]),
-                BinaryPrimitives.ReadUInt32LittleEndian(entry[12..16]));
+            entries[index] = new MbrEntry(entry[4], BinaryPrimitives.ReadUInt32LittleEndian(entry[8..12]), BinaryPrimitives.ReadUInt32LittleEndian(entry[12..16]));
         }
         return entries;
     }

@@ -34,9 +34,7 @@ public sealed class XdvdfsFileSystemReader : IMediaFileSystemReader
     {
         var context = ReadContext(document, volume);
         var warnings = new List<string>();
-        var entries = context.RootSize == 0
-            ? []
-            : ReadDirectory(context, context.RootSector, context.RootSize, warnings);
+        var entries = context.RootSize == 0 ? [] : ReadDirectory(context, context.RootSector, context.RootSize, warnings);
         return new FileSystemVolume(
             XdvdfsFileSystemConstants.FileSystemDisplayName,
             Id,
@@ -70,10 +68,8 @@ public sealed class XdvdfsFileSystemReader : IMediaFileSystemReader
         if (!descriptor.AsSpan(XdvdfsFileSystemConstants.MagicOffset, Magic.Length).SequenceEqual(Magic)
             || !descriptor.AsSpan(XdvdfsFileSystemConstants.DescriptorTrailerOffset, Magic.Length).SequenceEqual(Magic))
             throw new InvalidDataException("The Xbox XDVDFS volume descriptor is invalid.");
-        var rootSector = BinaryPrimitives.ReadUInt32LittleEndian(
-            descriptor.AsSpan(XdvdfsFileSystemConstants.RootDirectorySectorOffset, sizeof(uint)));
-        var rootSize = BinaryPrimitives.ReadUInt32LittleEndian(
-            descriptor.AsSpan(XdvdfsFileSystemConstants.RootDirectorySizeOffset, sizeof(uint)));
+        var rootSector = BinaryPrimitives.ReadUInt32LittleEndian(descriptor.AsSpan(XdvdfsFileSystemConstants.RootDirectorySectorOffset, sizeof(uint)));
+        var rootSize = BinaryPrimitives.ReadUInt32LittleEndian(descriptor.AsSpan(XdvdfsFileSystemConstants.RootDirectorySizeOffset, sizeof(uint)));
         if (rootSize % XdvdfsFileSystemConstants.SectorSize != 0)
             throw new InvalidDataException("The Xbox XDVDFS root directory size is not sector-aligned.");
         if (rootSize > int.MaxValue)

@@ -17,22 +17,10 @@ public sealed class WholeMediaVolumeDetector : IMediaVolumeDetector
     {
         ArgumentNullException.ThrowIfNull(document);
         cancellationToken.ThrowIfCancellationRequested();
-        var length = document.Representation.LogicalLength
-            ?? document.Source.KnownLength
-            ?? GetSourceLength(document.Source.PrimaryPath);
-        MediaVolumeDetectionResult? result = length is null or <= 0
-            ? new MediaVolumeDetectionResult(
-                [],
-                ["The media representation does not expose an addressable volume length."])
-            : new MediaVolumeDetectionResult(
-                [new MediaVolumeDescriptor(
-                    0,
-                    length.Value,
-                    MediaVolumeOrigins.DirectVolume)],
-                []);
+        var length = document.Representation.LogicalLength ?? document.Source.KnownLength ?? GetSourceLength(document.Source.PrimaryPath);
+        MediaVolumeDetectionResult? result = length is null or <= 0 ? new MediaVolumeDetectionResult([], ["The media representation does not expose an addressable volume length."]) : new MediaVolumeDetectionResult([new MediaVolumeDescriptor(0, length.Value, MediaVolumeOrigins.DirectVolume)], []);
         return new ValueTask<MediaVolumeDetectionResult?>(result);
     }
 
-    private static long? GetSourceLength(string path)
-        => File.Exists(path) ? new FileInfo(path).Length : null;
+    private static long? GetSourceLength(string path) => File.Exists(path) ? new FileInfo(path).Length : null;
 }

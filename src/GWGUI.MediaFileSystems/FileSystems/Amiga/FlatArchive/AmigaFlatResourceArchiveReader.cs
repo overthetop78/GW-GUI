@@ -36,8 +36,7 @@ public sealed class AmigaFlatResourceArchiveReader : IFileSystemReader
             var read = AmigaFlatResourceDataReader.Read(image, offset, descriptor.Length);
             if (read.MissingBlocks.Count > 0) warnings.Add(AmigaFlatResourceArchiveWarnings.MissingBlocks(descriptor.Name, read.MissingBlocks));
             if (read.InvalidBlocks.Count > 0) warnings.Add(AmigaFlatResourceArchiveWarnings.InvalidBlocks(descriptor.Name, read.InvalidBlocks));
-            entries.Add(new(descriptor.Name, FileSystemEntryKind.File, descriptor.Length, null,
-                AmigaFlatResourceArchiveLayout.EntryComment, 0, checked((int)(offset / image.BlockSize)), true, [], read.Bytes));
+            entries.Add(new(descriptor.Name, FileSystemEntryKind.File, descriptor.Length, null, AmigaFlatResourceArchiveLayout.EntryComment, 0, checked((int)(offset / image.BlockSize)), true, [], read.Bytes));
             offset += descriptor.Length;
         }
 

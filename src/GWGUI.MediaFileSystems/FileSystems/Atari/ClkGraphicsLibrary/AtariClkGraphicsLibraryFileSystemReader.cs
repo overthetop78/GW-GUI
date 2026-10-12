@@ -154,9 +154,6 @@ public sealed class AtariClkGraphicsLibraryFileSystemReader : IFileSystemReader
     private readonly record struct DirectoryRecord(string Name, int StartSector, byte TypeId, int Length)
     {
         public bool IsActive => TypeId is (byte)'X' or (byte)'x';
-        public bool IsValid(int blockCount) =>
-            !string.IsNullOrWhiteSpace(Name)
-            && StartSector > 0 && StartSector <= blockCount
-            && Length is > 0 and <= DefaultIconLength;
+        public bool IsValid(int blockCount) => !string.IsNullOrWhiteSpace(Name) && StartSector > 0 && StartSector <= blockCount && Length is > 0 and <= DefaultIconLength;
     }
 }

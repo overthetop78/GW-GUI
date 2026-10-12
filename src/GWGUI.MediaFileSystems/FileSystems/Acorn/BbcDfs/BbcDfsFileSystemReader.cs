@@ -30,9 +30,7 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
     {
         if (!CanRead(image))
         {
-            var count = image.TryGetBlock(BbcDfsFileSystemLayout.MetadataSector, out var block) && block.Data.Count > BbcDfsFileSystemLayout.EntryCountOffset 
-                ? block.Data[BbcDfsFileSystemLayout.EntryCountOffset] / BbcDfsFileSystemLayout.EntryPartSize 
-                : -1;
+            var count = image.TryGetBlock(BbcDfsFileSystemLayout.MetadataSector, out var block) && block.Data.Count > BbcDfsFileSystemLayout.EntryCountOffset ? block.Data[BbcDfsFileSystemLayout.EntryCountOffset] / BbcDfsFileSystemLayout.EntryPartSize : -1;
             throw BbcDfsFileSystemExceptions.InvalidCatalog(count, image.BlockCount);
         }
 

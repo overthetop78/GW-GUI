@@ -31,10 +31,7 @@ public sealed class ConsoleCartridgeFileSystemReader : IMediaFileSystemReader
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(volume);
-        return SupportedFormats.Contains(document.FormatId)
-            && document.Representation is IMediaBlockRepresentation blocks
-            && volume.Start == 0 && volume.Length == blocks.Capacity
-            && HasValidBankMetadata(document.Metadata);
+        return SupportedFormats.Contains(document.FormatId) && document.Representation is IMediaBlockRepresentation blocks && volume.Start == 0 && volume.Length == blocks.Capacity && HasValidBankMetadata(document.Metadata);
     }
 
     public FileSystemVolume Read(IMediaImageDocument document, MediaVolumeDescriptor volume)
@@ -63,8 +60,7 @@ public sealed class ConsoleCartridgeFileSystemReader : IMediaFileSystemReader
                     $"{ConsoleCartridgeMetadataConstants.BankPrefix}{bank}{ConsoleCartridgeMetadataConstants.NameSuffix}",
                     out var storedName)
                 ? storedName
-                : string.Format(CultureInfo.InvariantCulture,
-                    ConsoleCartridgeMetadataConstants.DefaultBankNameFormat, bank);
+                : string.Format(CultureInfo.InvariantCulture, ConsoleCartridgeMetadataConstants.DefaultBankNameFormat, bank);
             entries.Add(new FileSystemEntry(
                 name, FileSystemEntryKind.File, length, null, string.Empty,
                 ConsoleCartridgeMetadataConstants.FirstStorageReference,
@@ -92,8 +88,7 @@ public sealed class ConsoleCartridgeFileSystemReader : IMediaFileSystemReader
         string key, out int value)
     {
         value = ConsoleCartridgeMetadataConstants.EmptyLength;
-        return metadata.TryGetValue(key, out var text)
-            && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value);
+        return metadata.TryGetValue(key, out var text) && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value);
     }
 
     private static bool HasValidBankMetadata(IReadOnlyDictionary<string, string> metadata)

@@ -36,9 +36,7 @@ public sealed class SequentialContentFileSystemReader
             if (current.Count == 0 || currentName is null) return;
             var data = new List<byte>();
             foreach (var block in current) data.AddRange(block.Data.ToArray());
-            var integrity = current.Any(block => block.IntegrityValid == false)
-                ? false
-                : current.All(block => block.IntegrityValid == true) ? true : (bool?)null;
+            var integrity = current.Any(block => block.IntegrityValid == false) ? false : current.All(block => block.IntegrityValid == true) ? true : (bool?)null;
             var first = current[0];
             first.Metadata.TryGetValue("fileType", out var nativeTypeId);
             entries.Add(new FileSystemEntry(
@@ -71,9 +69,7 @@ public sealed class SequentialContentFileSystemReader
             }
 
             var name = storedName.Trim();
-            int? number = block.Metadata.TryGetValue(BlockNumberKey, out var rawNumber)
-                && int.TryParse(rawNumber, NumberStyles.None, CultureInfo.InvariantCulture, out var parsedNumber)
-                    ? parsedNumber : null;
+            int? number = block.Metadata.TryGetValue(BlockNumberKey, out var rawNumber) && int.TryParse(rawNumber, NumberStyles.None, CultureInfo.InvariantCulture, out var parsedNumber) ? parsedNumber : null;
             if (current.Count > 0 && (!string.Equals(currentName, name, StringComparison.Ordinal)
                 || number is null || previousNumber is null || number != previousNumber + 1))
                 Flush();

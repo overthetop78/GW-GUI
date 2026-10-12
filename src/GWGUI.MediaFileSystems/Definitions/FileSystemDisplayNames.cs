@@ -61,9 +61,7 @@ internal static class FileSystemDisplayNames
     /// <summary>Retourne le nom de la variante FAT12 correspondant au format.</summary>
     /// <param name = "formatId">Identifiant du format d'image disque.</param>
     /// <returns>Nom affiché de la variante FAT12.</returns>
-    public static string Fat12(string formatId) => formatId.StartsWith(MediaImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) 
-        ? "IBM PC FAT12" 
-        : formatId.StartsWith(MediaImageFormatIds.MsxPrefix, StringComparison.OrdinalIgnoreCase) ? "MSX-DOS FAT12" : "Atari TOS FAT12";
+    public static string Fat12(string formatId) => formatId.StartsWith(MediaImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) ? "IBM PC FAT12" : formatId.StartsWith(MediaImageFormatIds.MsxPrefix, StringComparison.OrdinalIgnoreCase) ? "MSX-DOS FAT12" : "Atari TOS FAT12";
     /// <summary>Retourne le nom de la variante Lisa correspondant à sa version de catalogue.</summary>
     /// <param name = "version">Version du catalogue Lisa.</param>
     /// <returns>Nom affiché de la variante Lisa.</returns>

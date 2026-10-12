@@ -54,8 +54,7 @@ public sealed class GptVolumeDetector : IMediaVolumeDetector
         await ValidateSecondaryHeaderAsync(blocks, primary, diagnostics, cancellationToken).ConfigureAwait(false);
         var partitions = ParsePartitions(blocks, primary, entryBytes, diagnostics);
         AddOverlapDiagnostics(partitions, diagnostics);
-        var volumes = partitions
-            .OrderBy(partition => partition.Start)
+        var volumes = partitions.OrderBy(partition => partition.Start)
             .Select(partition => new MediaVolumeDescriptor(
                 partition.Start,
                 partition.Length,
@@ -102,17 +101,7 @@ public sealed class GptVolumeDetector : IMediaVolumeDetector
             || entryArrayLba > (ulong)((blocks.Capacity - entryArrayLength) / blocks.LogicalBlockSize))
             throw new InvalidDataException($"The GPT partition entry array at LBA {entryArrayLba} exceeds the media.");
 
-        return new GptHeader(
-            revision,
-            currentLba,
-            backupLba,
-            firstUsableLba,
-            lastUsableLba,
-            new Guid(block.AsSpan(56, 16)),
-            entryArrayLba,
-            entryCount,
-            entrySize,
-            entryArrayCrc);
+        return new GptHeader(revision, currentLba, backupLba, firstUsableLba, lastUsableLba, new Guid(block.AsSpan(56, 16)), entryArrayLba, entryCount, entrySize, entryArrayCrc);
     }
 
     private static async Task ValidateSecondaryHeaderAsync(
@@ -170,16 +159,8 @@ public sealed class GptVolumeDetector : IMediaVolumeDetector
             var start = checked((long)firstLba * blocks.LogicalBlockSize);
             var length = checked(((long)(lastLba - firstLba) + 1) * blocks.LogicalBlockSize);
             var nameLength = Math.Min(72, entry.Length - 56);
-            var name = nameLength <= 0
-                ? null
-                : System.Text.Encoding.Unicode.GetString(entry.Slice(56, nameLength)).TrimEnd('\0');
-            partitions.Add(new GptPartition(
-                start,
-                length,
-                number,
-                typeId.ToString("D"),
-                partitionId.ToString("D"),
-                string.IsNullOrWhiteSpace(name) ? null : name));
+            var name = nameLength <= 0 ? null : System.Text.Encoding.Unicode.GetString(entry.Slice(56, nameLength)).TrimEnd('\0');
+            partitions.Add(new GptPartition(start, length, number, typeId.ToString("D"), partitionId.ToString("D"), string.IsNullOrWhiteSpace(name) ? null : name));
         }
         return partitions;
     }
@@ -190,11 +171,7 @@ public sealed class GptVolumeDetector : IMediaVolumeDetector
         for (var index = 1; index < ordered.Length; index++)
         {
             if (ordered[index].Start < ordered[index - 1].Start + ordered[index - 1].Length)
-                diagnostics.Add(string.Format(
-                    CultureInfo.InvariantCulture,
-                    "GPT partitions {0} and {1} overlap.",
-                    ordered[index - 1].Number,
-                    ordered[index].Number));
+                diagnostics.Add(string.Format(CultureInfo.InvariantCulture, "GPT partitions {0} and {1} overlap.", ordered[index - 1].Number, ordered[index].Number));
         }
     }
 
@@ -205,10 +182,7 @@ public sealed class GptVolumeDetector : IMediaVolumeDetector
     {
         var length = checked((int)((long)header.EntryCount * header.EntrySize));
         var data = new byte[length];
-        await blocks.ReadExactlyAsync(
-            checked((long)header.EntryArrayLba * blocks.LogicalBlockSize),
-            data,
-            cancellationToken).ConfigureAwait(false);
+        await blocks.ReadExactlyAsync(checked((long)header.EntryArrayLba * blocks.LogicalBlockSize), data, cancellationToken).ConfigureAwait(false);
         return data;
     }
 
@@ -220,10 +194,7 @@ public sealed class GptVolumeDetector : IMediaVolumeDetector
         if (lba < 0 || lba >= blocks.LogicalBlockCount)
             throw new InvalidDataException("A GPT structure lies outside the media.");
         var data = new byte[blocks.LogicalBlockSize];
-        await blocks.ReadExactlyAsync(
-            checked(lba * blocks.LogicalBlockSize),
-            data,
-            cancellationToken).ConfigureAwait(false);
+        await blocks.ReadExactlyAsync(checked(lba * blocks.LogicalBlockSize), data, cancellationToken).ConfigureAwait(false);
         return data;
     }
 

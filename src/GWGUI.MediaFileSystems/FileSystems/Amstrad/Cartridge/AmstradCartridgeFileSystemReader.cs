@@ -23,10 +23,7 @@ public sealed class AmstradCartridgeFileSystemReader : IMediaFileSystemReader
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(volume);
-        return SupportedFormats.Contains(document.FormatId)
-            && document.Representation is IMediaBlockRepresentation blocks
-            && volume.Start == 0
-            && volume.Length == blocks.Capacity;
+        return SupportedFormats.Contains(document.FormatId) && document.Representation is IMediaBlockRepresentation blocks && volume.Start == 0 && volume.Length == blocks.Capacity;
     }
 
     public FileSystemVolume Read(IMediaImageDocument document, MediaVolumeDescriptor volume)
@@ -93,8 +90,7 @@ public sealed class AmstradCartridgeFileSystemReader : IMediaFileSystemReader
     private static bool TryReadInt(IReadOnlyDictionary<string, string> metadata, string key, out int value)
     {
         value = 0;
-        return metadata.TryGetValue(key, out var text)
-            && int.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value);
+        return metadata.TryGetValue(key, out var text) && int.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value);
     }
 
 }

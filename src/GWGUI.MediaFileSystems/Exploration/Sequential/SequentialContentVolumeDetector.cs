@@ -24,23 +24,12 @@ public sealed class SequentialContentVolumeDetector : IMediaVolumeDetector
             || !document.Representation.SupportsSequentialAccess)
             return new ValueTask<MediaVolumeDetectionResult?>((MediaVolumeDetectionResult?)null);
 
-        var length = document.Representation.LogicalLength
-            ?? document.Source.KnownLength
-            ?? GetSourceLength(document.Source.PrimaryPath);
+        var length = document.Representation.LogicalLength ?? document.Source.KnownLength ?? GetSourceLength(document.Source.PrimaryPath);
         MediaVolumeDetectionResult result = length is null or <= 0
-            ? new MediaVolumeDetectionResult(
-                [],
-                ["The sequential media representation does not expose a positive content length."])
-            : new MediaVolumeDetectionResult(
-                [new MediaVolumeDescriptor(
-                    0,
-                    length.Value,
-                    MediaVolumeOrigins.SequentialContent,
-                    fileSystemId: FileSystemIds.SequentialContent)],
-                []);
+            ? new MediaVolumeDetectionResult([], ["The sequential media representation does not expose a positive content length."])
+            : new MediaVolumeDetectionResult([new MediaVolumeDescriptor(0, length.Value, MediaVolumeOrigins.SequentialContent, fileSystemId: FileSystemIds.SequentialContent)], []);
         return new ValueTask<MediaVolumeDetectionResult?>(result);
     }
 
-    private static long? GetSourceLength(string path)
-        => File.Exists(path) ? new FileInfo(path).Length : null;
+    private static long? GetSourceLength(string path) => File.Exists(path) ? new FileInfo(path).Length : null;
 }

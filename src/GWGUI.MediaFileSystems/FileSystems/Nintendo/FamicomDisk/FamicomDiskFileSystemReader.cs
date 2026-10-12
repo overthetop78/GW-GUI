@@ -12,8 +12,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Nintendo.FamicomDisk;
 /// <summary>Expose les fichiers réellement décodables des faces Famicom Disk System.</summary>
 public sealed class FamicomDiskFileSystemReader : IMediaFileSystemReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new HashSet<string>([MediaImageFormatIds.NintendoFamicomDisk], StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new HashSet<string>([MediaImageFormatIds.NintendoFamicomDisk], StringComparer.OrdinalIgnoreCase);
 
     public string Id => FamicomDiskFileSystemConstants.FileSystemId;
 
@@ -21,10 +20,7 @@ public sealed class FamicomDiskFileSystemReader : IMediaFileSystemReader
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(volume);
-        return SupportedFormats.Contains(document.FormatId)
-            && document.Representation is IMediaBlockRepresentation blocks
-            && volume.Start == 0
-            && volume.Length == blocks.Capacity;
+        return SupportedFormats.Contains(document.FormatId) && document.Representation is IMediaBlockRepresentation blocks && volume.Start == 0 && volume.Length == blocks.Capacity;
     }
 
     public FileSystemVolume Read(IMediaImageDocument document, MediaVolumeDescriptor volume)
@@ -97,19 +93,15 @@ public sealed class FamicomDiskFileSystemReader : IMediaFileSystemReader
         {
             if (offset + FamicomDiskFileSystemConstants.FileHeaderLength > side.Length
                 || side[offset] != FamicomDiskFileSystemConstants.FileHeaderBlockCode
-                || !side.Slice(offset + FamicomDiskFileSystemConstants.FileIdentifierOffset,
-                    FamicomDiskFileSystemConstants.FileIdentifierLength)
-                    .SequenceEqual(FamicomDiskFileSystemConstants.FileIdentifier))
+                || !side.Slice(offset + FamicomDiskFileSystemConstants.FileIdentifierOffset, FamicomDiskFileSystemConstants.FileIdentifierLength).SequenceEqual(FamicomDiskFileSystemConstants.FileIdentifier))
             {
                 warning = $"Famicom Disk System side {sideNumber} has an invalid file header.";
                 return false;
             }
 
             var fileNumber = side[offset + FamicomDiskFileSystemConstants.FileNumberOffset];
-            var fileAddress = side[offset + FamicomDiskFileSystemConstants.FileAddressOffset]
-                | side[offset + FamicomDiskFileSystemConstants.FileAddressOffset + 1] << 8;
-            var fileLength = side[offset + FamicomDiskFileSystemConstants.FileSizeOffset]
-                | side[offset + FamicomDiskFileSystemConstants.FileSizeOffset + 1] << 8;
+            var fileAddress = side[offset + FamicomDiskFileSystemConstants.FileAddressOffset] | side[offset + FamicomDiskFileSystemConstants.FileAddressOffset + 1] << 8;
+            var fileLength = side[offset + FamicomDiskFileSystemConstants.FileSizeOffset] | side[offset + FamicomDiskFileSystemConstants.FileSizeOffset + 1] << 8;
             var fileType = side[offset + FamicomDiskFileSystemConstants.FileTypeOffset];
             var dataHeader = offset + FamicomDiskFileSystemConstants.FileHeaderLength;
             if (dataHeader >= side.Length || side[dataHeader] != FamicomDiskFileSystemConstants.FileDataBlockCode
@@ -119,8 +111,7 @@ public sealed class FamicomDiskFileSystemReader : IMediaFileSystemReader
                 return false;
             }
 
-            var name = DecodeName(side.Slice(offset + FamicomDiskFileSystemConstants.FileNameOffset,
-                FamicomDiskFileSystemConstants.FileNameLength));
+            var name = DecodeName(side.Slice(offset + FamicomDiskFileSystemConstants.FileNameOffset, FamicomDiskFileSystemConstants.FileNameLength));
             var synthetic = string.IsNullOrWhiteSpace(name);
             if (synthetic)
                 name = string.Format(CultureInfo.InvariantCulture, FamicomDiskFileSystemConstants.DefaultFileNameFormat, fileNumber);
@@ -154,13 +145,11 @@ public sealed class FamicomDiskFileSystemReader : IMediaFileSystemReader
         return true;
     }
 
-    private static string DecodeName(ReadOnlySpan<byte> bytes)
-        => Encoding.ASCII.GetString(bytes).TrimEnd('\0', ' ');
+    private static string DecodeName(ReadOnlySpan<byte> bytes) => Encoding.ASCII.GetString(bytes).TrimEnd('\0', ' ');
 
     private static bool TryGetInt(IReadOnlyDictionary<string, string> metadata, string key, out int value)
     {
         value = 0;
-        return metadata.TryGetValue(key, out var text)
-            && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value);
+        return metadata.TryGetValue(key, out var text) && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value);
     }
 }
