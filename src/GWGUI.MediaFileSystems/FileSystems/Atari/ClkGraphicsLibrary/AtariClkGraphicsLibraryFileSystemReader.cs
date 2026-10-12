@@ -106,12 +106,7 @@ public sealed class AtariClkGraphicsLibraryFileSystemReader : IFileSystemReader
         }
     }
 
-    private static byte[] ReadFile(
-        IMediaSectorImage image,
-        DirectoryRecord record,
-        ISet<int> occupiedSectors,
-        out bool dataValid,
-        out int occupiedSectorCount)
+    private static byte[] ReadFile(IMediaSectorImage image, DirectoryRecord record, ISet<int> occupiedSectors, out bool dataValid, out int occupiedSectorCount)
     {
         var content = new byte[record.Length];
         var written = 0;

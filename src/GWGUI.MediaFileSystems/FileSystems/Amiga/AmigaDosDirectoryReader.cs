@@ -6,15 +6,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
 public static class AmigaDosDirectoryReader
 {
     /// <summary>Lit les entrées d'un répertoire dans l'ordre répertoire puis nom sans casse.</summary>
-    public static IReadOnlyList<FileSystemEntry> Read(
-        IMediaSectorImage image,
-        ReadOnlySpan<byte> directory,
-        int hashSize,
-        AmigaDosVariant variant,
-        HashSet<int> visited,
-        List<string> warnings,
-        int depth
-    )
+    public static IReadOnlyList<FileSystemEntry> Read(IMediaSectorImage image, ReadOnlySpan<byte> directory, int hashSize, AmigaDosVariant variant, HashSet<int> visited, List<string> warnings, int depth)
     {
         if (depth > AmigaDosLayout.MaximumDirectoryDepth)
         {

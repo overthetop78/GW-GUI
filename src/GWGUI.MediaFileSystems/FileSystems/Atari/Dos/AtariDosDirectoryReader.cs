@@ -50,10 +50,7 @@ public static class AtariDosDirectoryReader
     }
 
     /// <summary>Parse tout le catalogue, lit les étendues déclarées, puis analyse leurs allocations communes.</summary>
-    public static IReadOnlyList<FileSystemEntry> Read(
-        IMediaSectorImage image,
-        AtariDosDirectoryLocation location,
-        ICollection<string> warnings)
+    public static IReadOnlyList<FileSystemEntry> Read(IMediaSectorImage image, AtariDosDirectoryLocation location, ICollection<string> warnings)
     {
         var directoryEntries = ReadDirectoryEntries(image, location, warnings);
         var files = ReadFiles(image, directoryEntries, UsesExtendedLinks(image), warnings);
@@ -106,10 +103,7 @@ public static class AtariDosDirectoryReader
         return TryAnalyzeDirectory(image, location, false, out _, out var readable) && readable != 0;
     }
 
-    private static IReadOnlyList<AtariDosDirectoryEntry> ReadDirectoryEntries(
-        IMediaSectorImage image,
-        AtariDosDirectoryLocation location,
-        ICollection<string> warnings)
+    private static IReadOnlyList<AtariDosDirectoryEntry> ReadDirectoryEntries(IMediaSectorImage image, AtariDosDirectoryLocation location, ICollection<string> warnings)
     {
         var entries = new List<AtariDosDirectoryEntry>();
         for (var entryNumber = 0; entryNumber < MaximumDirectoryEntries; entryNumber++)
@@ -143,11 +137,7 @@ public static class AtariDosDirectoryReader
         return entries;
     }
 
-    private static IReadOnlyDictionary<int, AtariDosFileData> ReadFiles(
-        IMediaSectorImage image,
-        IReadOnlyList<AtariDosDirectoryEntry> entries,
-        bool usesExtendedLinks,
-        ICollection<string> warnings)
+    private static IReadOnlyDictionary<int, AtariDosFileData> ReadFiles(IMediaSectorImage image, IReadOnlyList<AtariDosDirectoryEntry> entries, bool usesExtendedLinks, ICollection<string> warnings)
         => entries.ToDictionary(entry => entry.EntryNumber, entry => AtariDosFileReader.Read(image, entry.FirstSector, entry.DeclaredSectorCount, usesExtendedLinks, warnings, entry.Name));
 
     private static FileSystemEntry CreateFileSystemEntry(AtariDosDirectoryEntry entry, AtariDosFileData file) =>
@@ -166,12 +156,7 @@ public static class AtariDosDirectoryReader
             dataValid: file.IsValid,
             diagnostics: file.Diagnostics);
 
-    private static bool TryAnalyzeDirectory(
-        IMediaSectorImage image,
-        AtariDosDirectoryLocation location,
-        bool relocated,
-        out int recorded,
-        out int readable)
+    private static bool TryAnalyzeDirectory(IMediaSectorImage image, AtariDosDirectoryLocation location, bool relocated, out int recorded, out int readable)
     {
         recorded = 0;
         readable = 0;
@@ -185,12 +170,7 @@ public static class AtariDosDirectoryReader
         return relocated ? recorded >= 2 && readable >= 2 && readable * 2 >= recorded : recorded >= 1 && readable >= 1;
     }
 
-    private static bool TryReadDirectoryEntries(
-        IMediaSectorImage image,
-        AtariDosDirectoryLocation location,
-        bool requireValidEntries,
-        out IReadOnlyList<AtariDosDirectoryEntry> entries,
-        out bool ended)
+    private static bool TryReadDirectoryEntries(IMediaSectorImage image, AtariDosDirectoryLocation location, bool requireValidEntries, out IReadOnlyList<AtariDosDirectoryEntry> entries, out bool ended)
     {
         var result = new List<AtariDosDirectoryEntry>();
         ended = false;
@@ -233,14 +213,7 @@ public static class AtariDosDirectoryReader
         return true;
     }
 
-    private static AtariDosDirectoryEntry ReadEntry(
-        int entryNumber,
-        int directorySector,
-        int directorySlot,
-        IReadOnlyList<byte> sector,
-        int offset,
-        AtariDosDirectoryFlags flags,
-        string name)
+    private static AtariDosDirectoryEntry ReadEntry(int entryNumber, int directorySector, int directorySlot, IReadOnlyList<byte> sector, int offset, AtariDosDirectoryFlags flags, string name)
         => new(
             entryNumber & 0x3f,
             directorySector,

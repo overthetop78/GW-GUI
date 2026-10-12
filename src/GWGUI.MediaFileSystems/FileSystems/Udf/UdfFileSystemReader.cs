@@ -36,17 +36,7 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
         if (root.FileType != UdfConstants.DirectoryFileType)
             throw new InvalidDataException("The UDF root ICB is not a directory.");
         var entries = ReadDirectory(context, root, visited);
-        return new FileSystemVolume(
-            context.VolumeName,
-            Id,
-            checked((long)context.PartitionLength * UdfConstants.LogicalBlockSize),
-            0,
-            null,
-            null,
-            entries,
-            [],
-            freeSpaceKnown: false,
-            attributes: [$"UDF {FormatRevision(context.Revision)}"]);
+        return new FileSystemVolume(context.VolumeName, Id, checked((long)context.PartitionLength * UdfConstants.LogicalBlockSize), 0, null, null, entries, [], freeSpaceKnown: false, attributes: [$"UDF {FormatRevision(context.Revision)}"]);
     }
 
     private VolumeContext ReadVolumeContext(IMediaImageDocument document, MediaVolumeDescriptor volume)
@@ -373,26 +363,11 @@ public sealed class UdfFileSystemReader : IMediaFileSystemReader
         }
     }
 
-    private static string FormatRevision(ushort revision) =>
-        $"{(revision >> 8):X}.{(revision & 0xFF):X2}";
+    private static string FormatRevision(ushort revision) => $"{(revision >> 8):X}.{(revision & 0xFF):X2}";
 
-    private sealed record VolumeContext(
-        IMediaOpticalTrack Track,
-        uint PartitionStart,
-        uint PartitionLength,
-        ushort Revision,
-        string VolumeName,
-        uint RootDirectoryBlock);
+    private sealed record VolumeContext(IMediaOpticalTrack Track, uint PartitionStart, uint PartitionLength, ushort Revision, string VolumeName, uint RootDirectoryBlock);
 
-    private sealed record IcbData(
-        uint Block,
-        byte FileType,
-        long InformationLength,
-        ushort AllocationDescriptorType,
-        byte[] AllocationDescriptors,
-        DateTimeOffset? Accessed,
-        DateTimeOffset? Modified,
-        DateTimeOffset? Created)
+    private sealed record IcbData(uint Block, byte FileType, long InformationLength, ushort AllocationDescriptorType, byte[] AllocationDescriptors, DateTimeOffset? Accessed, DateTimeOffset? Modified, DateTimeOffset? Created)
     {
         public long OccupiedLength => AllocationDescriptorType == UdfConstants.EmbeddedAllocationDescriptors ? AllocationDescriptors.Length : checked((long)InformationLength);
     }

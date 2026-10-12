@@ -90,12 +90,7 @@ public sealed class GameCubeFstFileSystemReader : IMediaFileSystemReader
         return new GameCubeFstContext(track, table, checked((int)entryCount), stringTableOffset, fstOffset);
     }
 
-    private static IReadOnlyList<FileSystemEntry> ReadDirectory(
-        GameCubeFstContext context,
-        int directoryIndex,
-        int endIndex,
-        int depth,
-        ICollection<string> warnings)
+    private static IReadOnlyList<FileSystemEntry> ReadDirectory(GameCubeFstContext context, int directoryIndex, int endIndex, int depth, ICollection<string> warnings)
     {
         if (depth > GameCubeFstFileSystemConstants.MaximumDirectoryDepth)
             throw new InvalidDataException("The GameCube FST directory tree is too deep.");
@@ -131,14 +126,7 @@ public sealed class GameCubeFstFileSystemReader : IMediaFileSystemReader
         return entries;
     }
 
-    private static FileSystemEntry CreateEntry(
-        string name,
-        FileSystemEntryKind kind,
-        uint length,
-        int index,
-        IReadOnlyList<FileSystemEntry> children,
-        IReadOnlyList<byte>? content,
-        bool dataValid) => new(
+    private static FileSystemEntry CreateEntry(string name, FileSystemEntryKind kind, uint length, int index, IReadOnlyList<FileSystemEntry> children, IReadOnlyList<byte>? content, bool dataValid) => new(
             name,
             kind,
             length,
@@ -167,9 +155,7 @@ public sealed class GameCubeFstFileSystemReader : IMediaFileSystemReader
         var end = Array.IndexOf(context.Table, (byte)0, start);
         if (end < 0) end = context.Table.Length;
         var name = Encoding.UTF8.GetString(context.Table, start, end - start);
-        return string.IsNullOrWhiteSpace(name)
-            ? $"entry-{(start - context.StringTableOffset):D6}"
-            : name;
+        return string.IsNullOrWhiteSpace(name) ? $"entry-{(start - context.StringTableOffset):D6}" : name;
     }
 
     private static uint ReadUInt32(byte[] data, int offset) => BinaryPrimitives.ReadUInt32BigEndian(data.AsSpan(offset, sizeof(uint)));
@@ -204,10 +190,5 @@ public sealed class GameCubeFstFileSystemReader : IMediaFileSystemReader
             throw new InvalidDataException("The GameCube FST extent is outside the optical track.");
     }
 
-    private sealed record GameCubeFstContext(
-        IMediaOpticalTrack Track,
-        byte[] Table,
-        int EntryCount,
-        int StringTableOffset,
-        uint FstOffset);
+    private sealed record GameCubeFstContext(IMediaOpticalTrack Track, byte[] Table, int EntryCount, int StringTableOffset, uint FstOffset);
 }

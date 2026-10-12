@@ -3,11 +3,7 @@ using GWGUI.MediaFileSystems;
 namespace GWGUI.MediaFileSystems.Migration;
 public static class MigrationValidator
 {
-    public static MigrationValidationReport Validate(
-        MigrationPlan plan,
-        MigrationTargetCapabilities target,
-        bool acceptMetadataLoss = false
-    )
+    public static MigrationValidationReport Validate(MigrationPlan plan, MigrationTargetCapabilities target, bool acceptMetadataLoss = false)
     {
         ArgumentNullException.ThrowIfNull(plan);
         ArgumentNullException.ThrowIfNull(target);
@@ -31,11 +27,7 @@ public static class MigrationValidator
             throw new InvalidOperationException("The migration contains unhandled incompatibilities or unaccepted metadata losses.");
     }
 
-    private static void ValidateEntries(
-        IReadOnlyList<MigrationEntry> entries,
-        MigrationTargetCapabilities target,
-        ICollection<MigrationLoss> losses
-    )
+    private static void ValidateEntries(IReadOnlyList<MigrationEntry> entries, MigrationTargetCapabilities target, ICollection<MigrationLoss> losses)
     {
         var comparer = target.IsCaseSensitive ? StringComparer.Ordinal : StringComparer.OrdinalIgnoreCase;
         foreach (var collision in entries.GroupBy(entry => entry.TargetName, comparer).Where(group => group.Skip(1).Any()))
@@ -51,11 +43,7 @@ public static class MigrationValidator
         }
     }
 
-    private static void ValidateEntry(
-        MigrationEntry entry,
-        MigrationTargetCapabilities target,
-        ICollection<MigrationLoss> losses
-    )
+    private static void ValidateEntry(MigrationEntry entry, MigrationTargetCapabilities target, ICollection<MigrationLoss> losses)
     {
         if (entry.TargetName.Length == 0 || entry.TargetName.Any(character => target.ForbiddenNameCharacters.Contains(character) || !target.AllowsControlCharacters && char.IsControl(character)) || target.NamePolicy is not null && !target.NamePolicy.IsValid(entry.TargetName))
             losses.Add(new(MigrationLossKind.InvalidName, entry.SourcePath, true, entry.TargetName));

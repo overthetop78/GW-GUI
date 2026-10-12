@@ -7,10 +7,7 @@ public static class ProDosVolumeHeaderReader
     /// <summary>Vérifie si un bloc racine déjà chargé contient un en-tête ProDOS valide.</summary>
     public static bool IsValid(ReadOnlySpan<byte> root) => TryRead(root, out _);
     /// <summary>Tente de lire l'en-tête complet du bloc racine.</summary>
-    internal static bool TryRead(
-        IMediaSectorImage image,
-        out ProDosVolumeHeaderInfo? header
-    )
+    internal static bool TryRead(IMediaSectorImage image, out ProDosVolumeHeaderInfo? header)
     {
         header = null;
         if (image.BlockSize != ProDosFileSystemLayout.BlockSize || !image.TryGetBlock(ProDosFileSystemLayout.RootBlock, out var root) || root.Data.Count != ProDosFileSystemLayout.BlockSize)
@@ -19,10 +16,7 @@ public static class ProDosVolumeHeaderReader
     }
 
     /// <summary>Tente de valider et décoder un bloc racine déjà chargé.</summary>
-    internal static bool TryRead(
-        ReadOnlySpan<byte> root,
-        out ProDosVolumeHeaderInfo? header
-    )
+    internal static bool TryRead(ReadOnlySpan<byte> root, out ProDosVolumeHeaderInfo? header)
     {
         header = null;
         if (root.Length != ProDosFileSystemLayout.BlockSize)

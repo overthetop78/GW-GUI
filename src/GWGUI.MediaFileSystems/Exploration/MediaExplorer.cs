@@ -20,9 +20,7 @@ public sealed class MediaExplorer
     private readonly IReadOnlyList<IMediaFileSystemReader> readers;
     private readonly MediaVolumeDetectorRegistry volumeDetectors;
 
-    public MediaExplorer(
-        IEnumerable<IMediaFileSystemReader> readers,
-        MediaVolumeDetectorRegistry volumeDetectors)
+    public MediaExplorer(IEnumerable<IMediaFileSystemReader> readers, MediaVolumeDetectorRegistry volumeDetectors)
     {
         ArgumentNullException.ThrowIfNull(readers);
         ArgumentNullException.ThrowIfNull(volumeDetectors);
@@ -68,9 +66,7 @@ public sealed class MediaExplorer
         return new MediaExplorer(registered, detectors);
     }
 
-    public async ValueTask<MediaFileSystemExplorationResult> ExploreAsync(
-        IMediaImageDocument document,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<MediaFileSystemExplorationResult> ExploreAsync(IMediaImageDocument document, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         var detection = await volumeDetectors.DetectAsync(document, cancellationToken).ConfigureAwait(false);

@@ -4,10 +4,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Atari.Dos;
 public static class AtariDosAllocationAnalyzer
 {
     /// <summary>Distingue les vues sectorielles partagées des propriétaires réellement incohérents.</summary>
-    public static IReadOnlyDictionary<int, AtariDosFileData> Analyze(
-        IReadOnlyList<AtariDosDirectoryEntry> entries,
-        IReadOnlyDictionary<int, AtariDosFileData> files,
-        ICollection<string> warnings)
+    public static IReadOnlyDictionary<int, AtariDosFileData> Analyze(IReadOnlyList<AtariDosDirectoryEntry> entries, IReadOnlyDictionary<int, AtariDosFileData> files, ICollection<string> warnings)
     {
         var entriesByNumber = entries.ToDictionary(entry => entry.EntryNumber);
         var result = new Dictionary<int, AtariDosFileData>();

@@ -64,12 +64,7 @@ public sealed class FamicomDiskFileSystemReader : IMediaFileSystemReader
             fileSystemDisplayName: FamicomDiskFileSystemConstants.FileSystemDisplayName);
     }
 
-    private static bool TryReadSide(
-        ReadOnlySpan<byte> side,
-        int sideNumber,
-        int sideLength,
-        ICollection<FileSystemEntry> entries,
-        out string? warning)
+    private static bool TryReadSide(ReadOnlySpan<byte> side, int sideNumber, int sideLength, ICollection<FileSystemEntry> entries, out string? warning)
     {
         warning = null;
         if (side.Length != sideLength || side.Length < FamicomDiskFileSystemConstants.DiskInfoLength

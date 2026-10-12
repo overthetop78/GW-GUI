@@ -12,9 +12,7 @@ namespace GWGUI.MediaFileSystems.Exploration.Sequential;
 /// <summary>Exposes decoded sequential media content as one explorable logical volume.</summary>
 public sealed class SequentialContentVolumeDetector : IMediaVolumeDetector
 {
-    public ValueTask<MediaVolumeDetectionResult?> DetectAsync(
-        IMediaImageDocument document,
-        CancellationToken cancellationToken = default)
+    public ValueTask<MediaVolumeDetectionResult?> DetectAsync(IMediaImageDocument document, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         cancellationToken.ThrowIfCancellationRequested();

@@ -78,11 +78,7 @@ public sealed class XdvdfsFileSystemReader : IMediaFileSystemReader
         return new XdvdfsContext(track, rootSector, rootSize);
     }
 
-    private static IReadOnlyList<FileSystemEntry> ReadDirectory(
-        XdvdfsContext context,
-        uint startSector,
-        uint length,
-        ICollection<string> warnings)
+    private static IReadOnlyList<FileSystemEntry> ReadDirectory(XdvdfsContext context, uint startSector, uint length, ICollection<string> warnings)
     {
         if (length == 0) return [];
         var table = ReadExtent(context.Track, startSector, length);
@@ -92,14 +88,7 @@ public sealed class XdvdfsFileSystemReader : IMediaFileSystemReader
         return entries;
     }
 
-    private static void VisitNode(
-        XdvdfsContext context,
-        byte[] table,
-        int entryOffset,
-        int depth,
-        ISet<int> visited,
-        ICollection<FileSystemEntry> entries,
-        ICollection<string> warnings)
+    private static void VisitNode(XdvdfsContext context, byte[] table, int entryOffset, int depth, ISet<int> visited, ICollection<FileSystemEntry> entries, ICollection<string> warnings)
     {
         if (entryOffset == 0 && entries.Count > 0 && depth == 0) return;
         if (depth > XdvdfsFileSystemConstants.MaximumDirectoryDepth)

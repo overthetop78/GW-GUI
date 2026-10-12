@@ -63,10 +63,7 @@ public sealed class MacHfsFileSystemReader : IFileSystemReader
     }
 
     /// <summary>Tente d'obtenir un MDB HFS de taille suffisante.</summary>
-    private static bool TryReadMdb(
-        IMediaSectorImage image,
-        out byte[] mdb
-    )
+    private static bool TryReadMdb(IMediaSectorImage image, out byte[] mdb)
     {
         if (image.BlockSize == MacHfsFileSystemLayout.SectorSize && image.TryGetBlock(MacHfsFileSystemLayout.MasterDirectoryBlock, out var block) && block.Data.Count >= MacHfsFileSystemLayout.MinimumMdbLength)
         {

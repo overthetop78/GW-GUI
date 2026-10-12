@@ -5,10 +5,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Dec.Rt11;
 public static class Rt11DirectoryReader
 {
     /// <summary>Lit tous les segments accessibles depuis le premier bloc.</summary>
-    public static Rt11DirectoryResult Read(
-        IMediaSectorImage image,
-        int directoryBlock
-    )
+    public static Rt11DirectoryResult Read(IMediaSectorImage image, int directoryBlock)
     {
         var entries = new List<FileSystemEntry>();
         var warnings = new List<string>();
@@ -67,16 +64,7 @@ public static class Rt11DirectoryReader
     }
 
     /// <summary>Lit les entrées complètes d'un segment et avance toujours selon leur longueur déclarée.</summary>
-    private static void ReadEntries(
-        IMediaSectorImage image,
-        ReadOnlySpan<byte> bytes,
-        int entrySize,
-        ref int dataBlock,
-        ICollection<FileSystemEntry> entries,
-        ICollection<string> warnings,
-        ref long freeBlocks,
-        ref bool valid
-    )
+    private static void ReadEntries(IMediaSectorImage image, ReadOnlySpan<byte> bytes, int entrySize, ref int dataBlock, ICollection<FileSystemEntry> entries, ICollection<string> warnings, ref long freeBlocks, ref bool valid)
     {
         for (var offset = Rt11FileSystemLayout.EntriesOffset; offset + entrySize <= bytes.Length; offset += entrySize)
         {

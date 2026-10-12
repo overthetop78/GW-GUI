@@ -13,11 +13,7 @@ public sealed class SequentialContentFileSystemReader
 
     public string Id => FileSystemIds.SequentialContent;
 
-    public FileSystemVolume Read(
-        IMediaImageDocument document,
-        MediaVolumeDescriptor volume,
-        IMediaSequentialContent content,
-        string volumeName)
+    public FileSystemVolume Read(IMediaImageDocument document, MediaVolumeDescriptor volume, IMediaSequentialContent content, string volumeName)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(volume);

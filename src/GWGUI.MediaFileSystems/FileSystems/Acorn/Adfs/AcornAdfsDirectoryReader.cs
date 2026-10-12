@@ -10,14 +10,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Acorn.Adfs;
 public static class AcornAdfsDirectoryReader
 {
     /// <summary>Lit un répertoire et ses descendants.</summary>
-    public static AcornAdfsDirectoryData Read(
-        IMediaSectorImage image,
-        int address,
-        IFileCoreAddressResolver resolver,
-        HashSet<int> visited,
-        List<string> warnings,
-        int depth
-    )
+    public static AcornAdfsDirectoryData Read(IMediaSectorImage image, int address, IFileCoreAddressResolver resolver, HashSet<int> visited, List<string> warnings, int depth)
     {
         if (depth > AcornAdfsLayout.MaximumDepth)
         {
@@ -86,12 +79,7 @@ public static class AcornAdfsDirectoryReader
     }
 
     /// <summary>Tente de lire et de valider un répertoire complet.</summary>
-    public static bool TryRead(
-        IMediaSectorImage image,
-        int address,
-        IFileCoreAddressResolver resolver,
-        out byte[] directory
-    )
+    public static bool TryRead(IMediaSectorImage image, int address, IFileCoreAddressResolver resolver, out byte[] directory)
     {
         if (!TryReadBytes(image, address, resolver, AcornAdfsLayout.DirectorySize, out directory))
             return false;
@@ -101,13 +89,7 @@ public static class AcornAdfsDirectoryReader
     }
 
     /// <summary>Tente de lire une plage d'octets à travers un résolveur FileCore.</summary>
-    public static bool TryReadBytes(
-        IMediaSectorImage image,
-        int address,
-        IFileCoreAddressResolver resolver,
-        int length,
-        out byte[] output
-    )
+    public static bool TryReadBytes(IMediaSectorImage image, int address, IFileCoreAddressResolver resolver, int length, out byte[] output)
     {
         output = new byte[length];
         var copied = 0;

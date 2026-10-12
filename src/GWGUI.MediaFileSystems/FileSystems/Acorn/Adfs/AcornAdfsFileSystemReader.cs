@@ -28,10 +28,7 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
     }
 
     /// <summary>Crée le résolveur new-map ou old-map applicable à l'image.</summary>
-    private static bool TryCreateLayout(
-        IMediaSectorImage image,
-        out IFileCoreAddressResolver layout
-    )
+    private static bool TryCreateLayout(IMediaSectorImage image, out IFileCoreAddressResolver layout)
     {
         if (AcornFileCoreNewMap.TryCreate(image, out var map) && map is not null)
         {

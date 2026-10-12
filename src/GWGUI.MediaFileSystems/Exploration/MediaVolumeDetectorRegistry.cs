@@ -21,9 +21,7 @@ public sealed class MediaVolumeDetectorRegistry
 
     public IReadOnlyList<IMediaVolumeDetector> Detectors => detectors;
 
-    public async ValueTask<MediaVolumeDetectionResult> DetectAsync(
-        IMediaImageDocument document,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<MediaVolumeDetectionResult> DetectAsync(IMediaImageDocument document, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         if (document.Volumes.Count > 0)

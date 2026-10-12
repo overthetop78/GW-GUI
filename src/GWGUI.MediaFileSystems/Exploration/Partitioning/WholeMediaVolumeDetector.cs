@@ -11,9 +11,7 @@ namespace GWGUI.MediaFileSystems.Exploration.Partitioning;
 /// <summary>Exposes the complete addressable media as one direct volume after partition detectors decline it.</summary>
 public sealed class WholeMediaVolumeDetector : IMediaVolumeDetector
 {
-    public ValueTask<MediaVolumeDetectionResult?> DetectAsync(
-        IMediaImageDocument document,
-        CancellationToken cancellationToken = default)
+    public ValueTask<MediaVolumeDetectionResult?> DetectAsync(IMediaImageDocument document, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         cancellationToken.ThrowIfCancellationRequested();

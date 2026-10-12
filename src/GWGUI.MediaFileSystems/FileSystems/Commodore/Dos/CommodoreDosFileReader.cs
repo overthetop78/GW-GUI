@@ -5,13 +5,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Commodore.Dos;
 internal static class CommodoreDosFileReader
 {
     /// <summary>Lit une chaîne et conserve un état invalide lorsque sa lecture reste partielle.</summary>
-    public static CommodoreDosFileReadResult Read(
-        IMediaSectorImage image,
-        int firstTrack,
-        int firstSector,
-        List<string> warnings,
-        string name
-    )
+    public static CommodoreDosFileReadResult Read(IMediaSectorImage image, int firstTrack, int firstSector, List<string> warnings, string name)
     {
         if (firstTrack == 0)
             return new([], true, [], [], null);

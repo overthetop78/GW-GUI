@@ -49,26 +49,19 @@ public sealed class ConsoleCartridgeFileSystemReader : IMediaFileSystemReader
         var entries = new List<FileSystemEntry>(bankCount);
         for (var bank = ConsoleCartridgeMetadataConstants.FirstBank; bank < bankCount; bank++)
         {
-            if (!TryReadInt(document.Metadata,
-                    $"{ConsoleCartridgeMetadataConstants.BankPrefix}{bank}{ConsoleCartridgeMetadataConstants.LengthSuffix}",
-                    out var length)
+            if (!TryReadInt(document.Metadata, $"{ConsoleCartridgeMetadataConstants.BankPrefix}{bank}{ConsoleCartridgeMetadataConstants.LengthSuffix}", out var length)
                 || length <= ConsoleCartridgeMetadataConstants.EmptyLength || length > bankSize)
                 throw new InvalidDataException($"Console cartridge bank {bank} has an invalid length.");
             var data = new byte[length];
             blocks.ReadExactlyAsync(bank * (long)bankSize, data).AsTask().GetAwaiter().GetResult();
-            var name = document.Metadata.TryGetValue(
-                    $"{ConsoleCartridgeMetadataConstants.BankPrefix}{bank}{ConsoleCartridgeMetadataConstants.NameSuffix}",
-                    out var storedName)
-                ? storedName
-                : string.Format(CultureInfo.InvariantCulture, ConsoleCartridgeMetadataConstants.DefaultBankNameFormat, bank);
+            var name = document.Metadata.TryGetValue($"{ConsoleCartridgeMetadataConstants.BankPrefix}{bank}{ConsoleCartridgeMetadataConstants.NameSuffix}", out var storedName) ? storedName : string.Format(CultureInfo.InvariantCulture, ConsoleCartridgeMetadataConstants.DefaultBankNameFormat, bank);
             entries.Add(new FileSystemEntry(
                 name, FileSystemEntryKind.File, length, null, string.Empty,
                 ConsoleCartridgeMetadataConstants.FirstStorageReference,
                 checked(bank * bankSize), true, [], data,
                 nativeTypeId: ConsoleCartridgeMetadataConstants.BankEntryType,
                 occupiedSize: length, attributes: [ConsoleCartridgeMetadataConstants.BankAttribute],
-                dataValid: true, syntheticName: !document.Metadata.ContainsKey(
-                    $"{ConsoleCartridgeMetadataConstants.BankPrefix}{bank}{ConsoleCartridgeMetadataConstants.NameSuffix}"),
+                dataValid: true, syntheticName: !document.Metadata.ContainsKey($"{ConsoleCartridgeMetadataConstants.BankPrefix}{bank}{ConsoleCartridgeMetadataConstants.NameSuffix}"),
                 metadata: new Dictionary<string, string>(StringComparer.Ordinal)
                 {
                     [ConsoleCartridgeMetadataConstants.BankNumberMetadata] = bank.ToString(CultureInfo.InvariantCulture),
@@ -84,8 +77,7 @@ public sealed class ConsoleCartridgeFileSystemReader : IMediaFileSystemReader
             fileSystemDisplayName: volume.Name ?? document.FormatId);
     }
 
-    private static bool TryReadInt(IReadOnlyDictionary<string, string> metadata,
-        string key, out int value)
+    private static bool TryReadInt(IReadOnlyDictionary<string, string> metadata, string key, out int value)
     {
         value = ConsoleCartridgeMetadataConstants.EmptyLength;
         return metadata.TryGetValue(key, out var text) && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value);
@@ -102,9 +94,7 @@ public sealed class ConsoleCartridgeFileSystemReader : IMediaFileSystemReader
 
         for (var bank = ConsoleCartridgeMetadataConstants.FirstBank; bank < bankCount; bank++)
         {
-            if (!TryReadInt(metadata,
-                    $"{ConsoleCartridgeMetadataConstants.BankPrefix}{bank}{ConsoleCartridgeMetadataConstants.LengthSuffix}",
-                    out var length)
+            if (!TryReadInt(metadata, $"{ConsoleCartridgeMetadataConstants.BankPrefix}{bank}{ConsoleCartridgeMetadataConstants.LengthSuffix}", out var length)
                 || length <= ConsoleCartridgeMetadataConstants.EmptyLength || length > bankSize)
                 return false;
         }

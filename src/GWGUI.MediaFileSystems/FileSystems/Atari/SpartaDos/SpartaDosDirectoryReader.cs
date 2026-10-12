@@ -6,11 +6,7 @@ internal static class SpartaDosDirectoryReader
 {
     public static IReadOnlyList<FileSystemEntry> ReadRoot(IMediaSectorImage image, SpartaDosDiskHeader header, ICollection<string> warnings) => ReadDirectory(image, header.RootDirectoryMapSector, new HashSet<int>(), warnings).Children;
 
-    private static DirectoryData ReadDirectory(
-        IMediaSectorImage image,
-        int firstMapSector,
-        ISet<int> ancestors,
-        ICollection<string> warnings)
+    private static DirectoryData ReadDirectory(IMediaSectorImage image, int firstMapSector, ISet<int> ancestors, ICollection<string> warnings)
     {
         if (!ancestors.Add(firstMapSector)) throw SpartaDosFileSystemExceptions.DirectoryLoop(firstMapSector);
         try

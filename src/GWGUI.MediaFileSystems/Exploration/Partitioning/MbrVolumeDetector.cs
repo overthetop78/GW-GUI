@@ -24,9 +24,7 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
     private const byte ProtectiveGptType = 0xEE;
     private const int MaximumEbrCount = 4_096;
 
-    public async ValueTask<MediaVolumeDetectionResult?> DetectAsync(
-        IMediaImageDocument document,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<MediaVolumeDetectionResult?> DetectAsync(IMediaImageDocument document, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         if (!document.IsHardDisk
@@ -63,24 +61,12 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
 
         AddOverlapDiagnostics(partitions, diagnostics);
         var volumes = partitions.OrderBy(partition => partition.Start)
-            .Select(partition => new MediaVolumeDescriptor(
-                partition.Start,
-                partition.Length,
-                MediaVolumeOrigins.Partition,
-                PartitionTableIds.Mbr,
-                partition.Number,
-                partitionType: $"0x{partition.Type:X2}"))
+            .Select(partition => new MediaVolumeDescriptor(partition.Start, partition.Length, MediaVolumeOrigins.Partition, PartitionTableIds.Mbr, partition.Number, partitionType: $"0x{partition.Type:X2}"))
             .ToArray();
         return new MediaVolumeDetectionResult(volumes, diagnostics);
     }
 
-    private static async Task ReadExtendedChainAsync(
-        IMediaBlockRepresentation blocks,
-        MbrEntry container,
-        List<PartitionRange> partitions,
-        List<string> diagnostics,
-        Func<int> nextPartitionNumber,
-        CancellationToken cancellationToken)
+    private static async Task ReadExtendedChainAsync(IMediaBlockRepresentation blocks, MbrEntry container, List<PartitionRange> partitions, List<string> diagnostics, Func<int> nextPartitionNumber, CancellationToken cancellationToken)
     {
         var extendedBase = (long)container.FirstLba;
         var containerEnd = checked(extendedBase + container.SectorCount);
@@ -146,14 +132,7 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
         if (currentEbr != 0) diagnostics.Add("The EBR chain exceeds the supported entry limit.");
     }
 
-    private static bool TryAddPartition(
-        IMediaBlockRepresentation blocks,
-        long firstLba,
-        long sectorCount,
-        byte type,
-        int number,
-        List<PartitionRange> partitions,
-        List<string> diagnostics)
+    private static bool TryAddPartition(IMediaBlockRepresentation blocks, long firstLba, long sectorCount, byte type, int number, List<PartitionRange> partitions, List<string> diagnostics)
     {
         if (firstLba <= 0 || sectorCount <= 0
             || firstLba > long.MaxValue / blocks.LogicalBlockSize
@@ -183,10 +162,7 @@ public sealed class MbrVolumeDetector : IMediaVolumeDetector
         }
     }
 
-    private static async Task<byte[]> ReadBootRecordAsync(
-        IMediaBlockRepresentation blocks,
-        long lba,
-        CancellationToken cancellationToken)
+    private static async Task<byte[]> ReadBootRecordAsync(IMediaBlockRepresentation blocks, long lba, CancellationToken cancellationToken)
     {
         if (lba < 0 || lba > blocks.LogicalBlockCount - 1)
             throw new InvalidDataException("The requested boot record is outside the media.");

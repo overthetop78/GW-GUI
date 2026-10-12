@@ -5,9 +5,7 @@ namespace GWGUI.MediaFileSystems.Contracts;
 /// <summary>Contains the volumes and diagnostics produced by one matching volume detector.</summary>
 public sealed class MediaVolumeDetectionResult
 {
-    public MediaVolumeDetectionResult(
-        IReadOnlyList<MediaVolumeDescriptor> volumes,
-        IReadOnlyList<string> diagnostics)
+    public MediaVolumeDetectionResult(IReadOnlyList<MediaVolumeDescriptor> volumes, IReadOnlyList<string> diagnostics)
     {
         ArgumentNullException.ThrowIfNull(volumes);
         ArgumentNullException.ThrowIfNull(diagnostics);

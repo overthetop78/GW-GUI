@@ -6,12 +6,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Fat12;
 public static class Fat12LayoutReader
 {
     /// <summary>Tente de construire la disposition calculée correspondant au secteur d'amorçage.</summary>
-    public static bool TryRead(
-        ReadOnlySpan<byte> boot,
-        int availableSectors,
-        string formatId,
-        out Fat12Layout layout
-    )
+    public static bool TryRead(ReadOnlySpan<byte> boot, int availableSectors, string formatId, out Fat12Layout layout)
     {
         layout = null!;
         if (formatId.Equals(MediaImageFormatIds.ApricotPcXi315, StringComparison.OrdinalIgnoreCase))

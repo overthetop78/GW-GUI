@@ -5,6 +5,5 @@ namespace GWGUI.MediaFileSystems.FileSystems.Amiga.FlatArchive;
 internal static class AmigaFlatResourceArchiveExceptions
 {
     public static InvalidDataException InvalidDirectory() => new("The image does not contain a valid Amiga flat-resource archive directory.");
-    public static InvalidDataException RangeOutsideImage(long offset, long length, long capacity) =>
-        new($"Flat-archive range {offset}+{length} exceeds the image capacity {capacity}.");
+    public static InvalidDataException RangeOutsideImage(long offset, long length, long capacity) => new($"Flat-archive range {offset}+{length} exceeds the image capacity {capacity}.");
 }

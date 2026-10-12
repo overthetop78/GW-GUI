@@ -13,9 +13,7 @@ namespace GWGUI.MediaFileSystems.Exploration.Partitioning;
 /// <summary>Exposes each optical data track as a distinct file-system candidate volume.</summary>
 public sealed class OpticalTrackVolumeDetector : IMediaVolumeDetector
 {
-    public ValueTask<MediaVolumeDetectionResult?> DetectAsync(
-        IMediaImageDocument document,
-        CancellationToken cancellationToken = default)
+    public ValueTask<MediaVolumeDetectionResult?> DetectAsync(IMediaImageDocument document, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         cancellationToken.ThrowIfCancellationRequested();

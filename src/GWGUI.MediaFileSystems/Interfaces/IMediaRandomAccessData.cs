@@ -5,8 +5,5 @@ public interface IMediaRandomAccessData
 {
     long Length { get; }
 
-    ValueTask ReadExactlyAsync(
-        long offset,
-        Memory<byte> destination,
-        CancellationToken cancellationToken = default);
+    ValueTask ReadExactlyAsync(long offset, Memory<byte> destination, CancellationToken cancellationToken = default);
 }

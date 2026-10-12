@@ -33,10 +33,7 @@ public sealed class AmstradCartridgeFileSystemReader : IMediaFileSystemReader
         return ReadCartridge(document, volume, blocks);
     }
 
-    private static FileSystemVolume ReadCartridge(
-        IMediaImageDocument document,
-        MediaVolumeDescriptor volume,
-        IMediaBlockRepresentation blocks)
+    private static FileSystemVolume ReadCartridge(IMediaImageDocument document, MediaVolumeDescriptor volume, IMediaBlockRepresentation blocks)
     {
         if (!TryReadInt(document.Metadata, "bankCount", out var bankCount) || bankCount is <= 0 or > 32)
             throw new InvalidDataException("The Amstrad cartridge bank count is missing or invalid.");
@@ -47,9 +44,7 @@ public sealed class AmstradCartridgeFileSystemReader : IMediaFileSystemReader
             if (length <= 0 || length > BankLength) throw new InvalidDataException($"Amstrad bank {bank} has an invalid length.");
             var data = new byte[length];
             blocks.ReadExactlyAsync(bank * (long)BankLength, data).AsTask().GetAwaiter().GetResult();
-            var storedName = document.Metadata.TryGetValue($"bank.{bank}.chunkId", out var chunkId)
-                ? chunkId
-                : $"bank{bank:D2}";
+            var storedName = document.Metadata.TryGetValue($"bank.{bank}.chunkId", out var chunkId) ? chunkId : $"bank{bank:D2}";
             entries.Add(new FileSystemEntry(
                 storedName,
                 FileSystemEntryKind.File,

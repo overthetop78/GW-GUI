@@ -7,11 +7,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Commodore.Dos;
 internal static class CommodoreDosDirectoryReader
 {
     /// <summary>Vérifie qu'une chaîne contient uniquement des entrées actives plausibles.</summary>
-    public static bool IsPlausible(
-        IMediaSectorImage image,
-        int firstTrack,
-        int firstSector
-    )
+    public static bool IsPlausible(IMediaSectorImage image, int firstTrack, int firstSector)
     {
         var track = firstTrack;
         var sector = firstSector;
@@ -49,12 +45,7 @@ internal static class CommodoreDosDirectoryReader
     }
 
     /// <summary>Lit les entrées et propage à chacune la validité de sa chaîne de données.</summary>
-    public static IReadOnlyList<FileSystemEntry> Read(
-        IMediaSectorImage image,
-        int firstTrack,
-        int firstSector,
-        List<string> warnings
-    )
+    public static IReadOnlyList<FileSystemEntry> Read(IMediaSectorImage image, int firstTrack, int firstSector, List<string> warnings)
     {
         var entries = new List<FileSystemEntry>();
         var visited = new HashSet<(int Track, int Sector)>();
@@ -89,12 +80,7 @@ internal static class CommodoreDosDirectoryReader
     }
 
     /// <summary>Lit les slots valides d'un secteur de répertoire complet.</summary>
-    private static void ReadEntries(
-        IMediaSectorImage image,
-        IReadOnlyList<byte> data,
-        List<FileSystemEntry> entries,
-        List<string> warnings
-    )
+    private static void ReadEntries(IMediaSectorImage image, IReadOnlyList<byte> data, List<FileSystemEntry> entries, List<string> warnings)
     {
         for (var slot = 0; slot < CommodoreDosLayout.DirectoryEntryCount; slot++)
         {
@@ -121,11 +107,7 @@ internal static class CommodoreDosDirectoryReader
     }
 
     /// <summary>Copie une petite plage bornée destinée à un codec ou une primitive binaire.</summary>
-    private static byte[] Copy(
-        IReadOnlyList<byte> source,
-        int offset,
-        int length
-    )
+    private static byte[] Copy(IReadOnlyList<byte> source, int offset, int length)
     {
         var result = new byte[length];
         for (var index = 0; index < length; index++)

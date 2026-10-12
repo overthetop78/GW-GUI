@@ -4,13 +4,7 @@ using MediaSectorAddress = global::GWGUI.MediaFileSystems.Contracts.MediaSectorA
 
 namespace GWGUI.MediaFileSystems.FileSystems.Commodore.Dos;
 /// <summary>Décrit les géométries standard créées par le Writer Commodore DOS.</summary>
-internal sealed record CommodoreDosWritableGeometry(
-    string FormatId,
-    int Cylinders,
-    int Heads,
-    int SectorsPerTrack,
-    int BlockCount
-)
+internal sealed record CommodoreDosWritableGeometry(string FormatId, int Cylinders, int Heads, int SectorsPerTrack, int BlockCount)
 {
     /// <summary>Résout D64, D71 ou D81 sans déduire la géométrie du contenu.</summary>
     public static CommodoreDosWritableGeometry Resolve(string formatId)
@@ -39,10 +33,7 @@ internal sealed record CommodoreDosWritableGeometry(
     }
 
     /// <summary>Convertit une adresse Commodore DOS en bloc logique.</summary>
-    public int ToLogicalBlock(
-        int track,
-        int sector
-    )
+    public int ToLogicalBlock(int track, int sector)
     {
         if (FormatId == MediaImageFormatIds.Commodore1581)
             return Commodore1581Geometry.ToLogicalBlock(track, sector);

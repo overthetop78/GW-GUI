@@ -53,14 +53,10 @@ public sealed class AtariDosFileSystemReader : IFileSystemReader
 
     private static IReadOnlyList<string> Attributes(bool isMyDos, AtariDosDirectoryLocation directory)
     {
-        var attributes = isMyDos
-            ? new List<string> { "mydos", "extended-sector-links" }
-            : ["atari-dos"];
+        var attributes = isMyDos ? new List<string> { "mydos", "extended-sector-links" } : ["atari-dos"];
         if (!directory.IsCanonical) attributes.Add("relocated-directory");
         return attributes;
     }
 
-    private bool IsSupportedFormat(string formatId) =>
-        CatalogFormatIds.Contains(formatId)
-        || formatId.StartsWith($"{MediaImageFormatIds.AtariPrefix}atr.", StringComparison.OrdinalIgnoreCase);
+    private bool IsSupportedFormat(string formatId) => CatalogFormatIds.Contains(formatId) || formatId.StartsWith($"{MediaImageFormatIds.AtariPrefix}atr.", StringComparison.OrdinalIgnoreCase);
 }

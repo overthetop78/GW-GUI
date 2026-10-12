@@ -8,13 +8,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Atari.Dos;
 public static class AtariDosFileReader
 {
     /// <summary>Lit la portion de chaîne délimitée par le nombre de secteurs de l'entrée de répertoire.</summary>
-    public static AtariDosFileData Read(
-        IMediaSectorImage image,
-        int first,
-        int expectedSectors,
-        bool usesExtendedLinks,
-        ICollection<string> warnings,
-        string name)
+    public static AtariDosFileData Read(IMediaSectorImage image, int first, int expectedSectors, bool usesExtendedLinks, ICollection<string> warnings, string name)
     {
         var result = new List<byte>();
         var sectors = new List<int>();

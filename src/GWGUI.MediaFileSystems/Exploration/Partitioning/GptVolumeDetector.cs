@@ -23,9 +23,7 @@ public sealed class GptVolumeDetector : IMediaVolumeDetector
     private const long MaximumEntryArraySize = 128L * 1_024 * 1_024;
     private static readonly byte[] Signature = "EFI PART"u8.ToArray();
 
-    public async ValueTask<MediaVolumeDetectionResult?> DetectAsync(
-        IMediaImageDocument document,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<MediaVolumeDetectionResult?> DetectAsync(IMediaImageDocument document, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         if (!document.IsHardDisk
@@ -104,11 +102,7 @@ public sealed class GptVolumeDetector : IMediaVolumeDetector
         return new GptHeader(revision, currentLba, backupLba, firstUsableLba, lastUsableLba, new Guid(block.AsSpan(56, 16)), entryArrayLba, entryCount, entrySize, entryArrayCrc);
     }
 
-    private static async Task ValidateSecondaryHeaderAsync(
-        IMediaBlockRepresentation blocks,
-        GptHeader primary,
-        List<string> diagnostics,
-        CancellationToken cancellationToken)
+    private static async Task ValidateSecondaryHeaderAsync(IMediaBlockRepresentation blocks, GptHeader primary, List<string> diagnostics, CancellationToken cancellationToken)
     {
         try
         {
@@ -132,11 +126,7 @@ public sealed class GptVolumeDetector : IMediaVolumeDetector
         }
     }
 
-    private static List<GptPartition> ParsePartitions(
-        IMediaBlockRepresentation blocks,
-        GptHeader header,
-        byte[] entries,
-        List<string> diagnostics)
+    private static List<GptPartition> ParsePartitions(IMediaBlockRepresentation blocks, GptHeader header, byte[] entries, List<string> diagnostics)
     {
         var partitions = new List<GptPartition>();
         for (var index = 0; index < header.EntryCount; index++)
@@ -175,10 +165,7 @@ public sealed class GptVolumeDetector : IMediaVolumeDetector
         }
     }
 
-    private static async Task<byte[]> ReadEntryArrayAsync(
-        IMediaBlockRepresentation blocks,
-        GptHeader header,
-        CancellationToken cancellationToken)
+    private static async Task<byte[]> ReadEntryArrayAsync(IMediaBlockRepresentation blocks, GptHeader header, CancellationToken cancellationToken)
     {
         var length = checked((int)((long)header.EntryCount * header.EntrySize));
         var data = new byte[length];
@@ -186,10 +173,7 @@ public sealed class GptVolumeDetector : IMediaVolumeDetector
         return data;
     }
 
-    private static async Task<byte[]> ReadBlockAsync(
-        IMediaBlockRepresentation blocks,
-        long lba,
-        CancellationToken cancellationToken)
+    private static async Task<byte[]> ReadBlockAsync(IMediaBlockRepresentation blocks, long lba, CancellationToken cancellationToken)
     {
         if (lba < 0 || lba >= blocks.LogicalBlockCount)
             throw new InvalidDataException("A GPT structure lies outside the media.");
@@ -198,23 +182,7 @@ public sealed class GptVolumeDetector : IMediaVolumeDetector
         return data;
     }
 
-    private sealed record GptHeader(
-        uint Revision,
-        ulong CurrentLba,
-        ulong BackupLba,
-        ulong FirstUsableLba,
-        ulong LastUsableLba,
-        Guid DiskId,
-        ulong EntryArrayLba,
-        uint EntryCount,
-        uint EntrySize,
-        uint EntryArrayCrc32);
+    private sealed record GptHeader(uint Revision, ulong CurrentLba, ulong BackupLba, ulong FirstUsableLba, ulong LastUsableLba, Guid DiskId, ulong EntryArrayLba, uint EntryCount, uint EntrySize, uint EntryArrayCrc32);
 
-    private sealed record GptPartition(
-        long Start,
-        long Length,
-        int Number,
-        string TypeId,
-        string PartitionId,
-        string? Name);
+    private sealed record GptPartition(long Start, long Length, int Number, string TypeId, string PartitionId, string? Name);
 }

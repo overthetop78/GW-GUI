@@ -6,10 +6,7 @@ namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
 public static class AmigaDosRecoveryReader
 {
     /// <summary>Tente de reconstruire un catalogue partiel uniquement à partir d'en-têtes cohérents et contrôlés.</summary>
-    public static bool TryRead(
-        IMediaSectorImage image,
-        out FileSystemVolume? volume
-    )
+    public static bool TryRead(IMediaSectorImage image, out FileSystemVolume? volume)
     {
         volume = null;
         if (!TryReadBoot(image, out var variant, out var expectedRoot) || !IsRootUnavailable(image, expectedRoot))
@@ -25,11 +22,7 @@ public static class AmigaDosRecoveryReader
         return true;
     }
 
-    private static bool TryReadBoot(
-        IMediaSectorImage image,
-        out AmigaDosVariant variant,
-        out int expectedRoot
-    )
+    private static bool TryReadBoot(IMediaSectorImage image, out AmigaDosVariant variant, out int expectedRoot)
     {
         variant = AmigaDosVariant.Ofs;
         expectedRoot = 0;
@@ -44,20 +37,14 @@ public static class AmigaDosRecoveryReader
         return expectedRoot > 0 && expectedRoot < image.BlockCount;
     }
 
-    private static bool IsRootUnavailable(
-        IMediaSectorImage image,
-        int expectedRoot
-    )
+    private static bool IsRootUnavailable(IMediaSectorImage image, int expectedRoot)
     {
         if (!image.TryGetBlock(expectedRoot, out var root) || root.IntegrityValid == false || root.Data.Count != AmigaDosLayout.BlockSize)
             return true;
         return AmigaDosUnavailableBlockDetector.IsUnavailable(root.Data.ToArray());
     }
 
-    private static Dictionary<int, RecoveredEntry> ReadCandidates(
-        IMediaSectorImage image,
-        AmigaDosVariant variant
-    )
+    private static Dictionary<int, RecoveredEntry> ReadCandidates(IMediaSectorImage image, AmigaDosVariant variant)
     {
         var candidates = new Dictionary<int, RecoveredEntry>();
         foreach (var sector in image.AvailableBlocks)
@@ -80,14 +67,7 @@ public static class AmigaDosRecoveryReader
         return candidates;
     }
 
-    private static FileSystemEntry BuildEntry(
-        IMediaSectorImage image,
-        RecoveredEntry candidate,
-        IReadOnlyDictionary<int, RecoveredEntry> candidates,
-        AmigaDosVariant variant,
-        List<string> warnings,
-        HashSet<int> ancestors
-    )
+    private static FileSystemEntry BuildEntry(IMediaSectorImage image, RecoveredEntry candidate, IReadOnlyDictionary<int, RecoveredEntry> candidates, AmigaDosVariant variant, List<string> warnings, HashSet<int> ancestors)
     {
         if (!ancestors.Add(candidate.BlockNumber))
             return CreateEntry(candidate, [], null, false);
@@ -109,12 +89,7 @@ public static class AmigaDosRecoveryReader
         }
     }
 
-    private static FileSystemEntry CreateEntry(
-        RecoveredEntry candidate,
-        IReadOnlyList<FileSystemEntry> children,
-        IReadOnlyList<byte>? content,
-        bool metadataValid
-    )
+    private static FileSystemEntry CreateEntry(RecoveredEntry candidate, IReadOnlyList<FileSystemEntry> children, IReadOnlyList<byte>? content, bool metadataValid)
     {
         var size = candidate.Kind == FileSystemEntryKind.File ? BigEndianInt32.ReadUnsigned(candidate.Data, AmigaDosLayout.FileSizeOffset) : 0;
         return new(

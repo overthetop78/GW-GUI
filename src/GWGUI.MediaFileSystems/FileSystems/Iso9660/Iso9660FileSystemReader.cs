@@ -75,12 +75,7 @@ public class Iso9660FileSystemReader : IMediaFileSystemReader
         }
     }
 
-    private IReadOnlyList<FileSystemEntry> ReadDirectory(
-        IMediaOpticalTrack track,
-        uint extent,
-        uint length,
-        HashSet<uint> visited,
-        ICollection<string> warnings)
+    private IReadOnlyList<FileSystemEntry> ReadDirectory(IMediaOpticalTrack track, uint extent, uint length, HashSet<uint> visited, ICollection<string> warnings)
     {
         if (!visited.Add(extent))
         {

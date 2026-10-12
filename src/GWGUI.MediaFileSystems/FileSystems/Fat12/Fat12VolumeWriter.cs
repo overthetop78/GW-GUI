@@ -8,10 +8,7 @@ using GWGUI.MediaFileSystems.Migration;
 namespace GWGUI.MediaFileSystems.FileSystems.Fat12;
 public sealed class Fat12VolumeWriter
 {
-    public MediaSectorWritePlan Create(
-        MigrationPlan plan,
-        Fat12TargetGeometry geometry
-    )
+    public MediaSectorWritePlan Create(MigrationPlan plan, Fat12TargetGeometry geometry)
     {
         ArgumentNullException.ThrowIfNull(plan);
         if (geometry.SectorSize != FatBootSectorLayout.SectorSize || geometry.Cylinders <= 0 || geometry.Heads <= 0 || geometry.SectorsPerTrack <= 0)
@@ -21,10 +18,7 @@ public sealed class Fat12VolumeWriter
         return new Builder(plan, geometry).Build();
     }
 
-    private sealed class Builder(
-        MigrationPlan plan,
-        Fat12TargetGeometry geometry
-    )
+    private sealed class Builder(MigrationPlan plan, Fat12TargetGeometry geometry)
     {
         private readonly Fat12ShortNamePolicy _namePolicy = new();
         private readonly byte[][] _sectors = Enumerable.Range(0, geometry.TotalSectors).Select(_ => new byte[FatBootSectorLayout.SectorSize]).ToArray();
@@ -52,10 +46,7 @@ public sealed class Fat12VolumeWriter
             return new(geometry.FormatId, geometry.SectorSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, blocks);
         }
 
-        private Node CreateNode(
-            MigrationEntry entry,
-            int parentCluster
-        )
+        private Node CreateNode(MigrationEntry entry, int parentCluster)
         {
             if (!_namePolicy.IsValid(entry.TargetName) || entry.Kind is not (FileSystemEntryKind.Directory or FileSystemEntryKind.File) || entry.Kind == FileSystemEntryKind.File && entry.Content is null)
                 throw Fat12VolumeWriterExceptions.InvalidEntry(entry.SourcePath);
@@ -66,10 +57,7 @@ public sealed class Fat12VolumeWriter
             return node;
         }
 
-        private void WriteNode(
-            Node node,
-            Span<byte> fat
-        )
+        private void WriteNode(Node node, Span<byte> fat)
         {
             WriteClusterChain(fat, node.Clusters);
             if (node.Entry.Kind == FileSystemEntryKind.File)
@@ -132,10 +120,7 @@ public sealed class Fat12VolumeWriter
             entry[FatDirectoryLayout.AttributesOffset] = (byte)FatDirectoryAttributes.VolumeLabel;
         }
 
-        private static void WriteDirectoryEntry(
-            Span<byte> target,
-            Node node
-        )
+        private static void WriteDirectoryEntry(Span<byte> target, Node node)
         {
             WriteShortName(target, node.Entry.TargetName);
             target[FatDirectoryLayout.AttributesOffset] = (byte)(node.Entry.Kind == FileSystemEntryKind.Directory ? FatDirectoryAttributes.Directory : FatDirectoryAttributes.Archive);
@@ -145,11 +130,7 @@ public sealed class Fat12VolumeWriter
                 BinaryPrimitives.WriteUInt32LittleEndian(target[FatDirectoryLayout.FileSizeOffset..], checked((uint)node.Entry.Content!.Count));
         }
 
-        private static void WriteSpecialDirectoryEntry(
-            Span<byte> target,
-            string name,
-            int cluster
-        )
+        private static void WriteSpecialDirectoryEntry(Span<byte> target, string name, int cluster)
         {
             target.Fill((byte)' ');
             System.Text.Encoding.ASCII.GetBytes(name).CopyTo(target);
@@ -157,10 +138,7 @@ public sealed class Fat12VolumeWriter
             BinaryPrimitives.WriteUInt16LittleEndian(target[FatDirectoryLayout.FirstClusterOffset..], checked((ushort)cluster));
         }
 
-        private static void WriteShortName(
-            Span<byte> target,
-            string name
-        )
+        private static void WriteShortName(Span<byte> target, string name)
         {
             target[..11].Fill((byte)' ');
             var parts = name.Split(FatDirectoryLayout.ExtensionSeparator);
@@ -169,10 +147,7 @@ public sealed class Fat12VolumeWriter
                 System.Text.Encoding.ASCII.GetBytes(parts[1]).CopyTo(target[FatDirectoryLayout.ExtensionOffset..]);
         }
 
-        private static void WriteTimestamp(
-            Span<byte> target,
-            DateTimeOffset? value
-        )
+        private static void WriteTimestamp(Span<byte> target, DateTimeOffset? value)
         {
             if (value is null)
                 return;
@@ -195,19 +170,13 @@ public sealed class Fat12VolumeWriter
             return clusters;
         }
 
-        private void WriteClusterChain(
-            Span<byte> fat,
-            IReadOnlyList<int> clusters
-        )
+        private void WriteClusterChain(Span<byte> fat, IReadOnlyList<int> clusters)
         {
             for (var index = 0; index < clusters.Count; index++)
                 WriteFatEntry(fat, clusters[index], index + 1 < clusters.Count ? clusters[index + 1] : Fat12Table.LastEndOfChain);
         }
 
-        private void WriteClusterData(
-            int cluster,
-            ReadOnlySpan<byte> data
-        )
+        private void WriteClusterData(int cluster, ReadOnlySpan<byte> data)
         {
             var firstSector = _layout.DataStart + (cluster - Fat12Table.FirstDataCluster) * _layout.SectorsPerCluster;
             for (var sector = 0; sector < _layout.SectorsPerCluster; sector++)
@@ -219,11 +188,7 @@ public sealed class Fat12VolumeWriter
             }
         }
 
-        private static void WriteFatEntry(
-            Span<byte> fat,
-            int cluster,
-            int value
-        )
+        private static void WriteFatEntry(Span<byte> fat, int cluster, int value)
         {
             var offset = cluster + cluster / 2;
             if ((cluster & 1) == 0)
@@ -256,10 +221,7 @@ public sealed class Fat12VolumeWriter
             }
         }
 
-        private static void WritePaddedAscii(
-            Span<byte> target,
-            string value
-        )
+        private static void WritePaddedAscii(Span<byte> target, string value)
         {
             target.Fill((byte)' ');
             var encoded = System.Text.Encoding.ASCII.GetBytes(value);

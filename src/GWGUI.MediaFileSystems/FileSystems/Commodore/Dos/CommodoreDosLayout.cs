@@ -82,18 +82,7 @@ public sealed class CommodoreDosLayout
     public const int DataBytesPerSector = SectorSize - DirectoryEntriesOffset;
     /// <summary>Valeur maximale de piste visitée lors du contrôle d'un répertoire.</summary>
     public const int MaximumDirectoryChainLength = 64;
-    private CommodoreDosLayout(
-        int headerTrack,
-        int headerSector,
-        int directoryTrack,
-        int directorySector,
-        int volumeNameOffset,
-        IReadOnlyList<int> bamSectors,
-        int bamEntriesOffset,
-        int bamEntrySize,
-        int bamEntryCount,
-        byte headerSignature
-    )
+    private CommodoreDosLayout(int headerTrack, int headerSector, int directoryTrack, int directorySector, int volumeNameOffset, IReadOnlyList<int> bamSectors, int bamEntriesOffset, int bamEntrySize, int bamEntryCount, byte headerSignature)
     {
         HeaderTrack = headerTrack;
         HeaderSector = headerSector;

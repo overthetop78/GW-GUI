@@ -16,15 +16,13 @@ public sealed class FileSystemMigrationService
 {
     public MigrationPlan CreatePlan(FileSystemVolume source, string targetFileSystemId) => MigrationPlanner.Create(source, targetFileSystemId);
 
-    public MigrationValidationReport Validate(MigrationPlan plan, IMediaSectorImage blankImage,
-        bool acceptMetadataLoss = false)
+    public MigrationValidationReport Validate(MigrationPlan plan, IMediaSectorImage blankImage, bool acceptMetadataLoss = false)
     {
         var capabilities = ResolveCapabilities(plan, blankImage);
         return MigrationValidator.Validate(plan, capabilities, acceptMetadataLoss);
     }
 
-    public (MediaSectorWritePlan Image, MigrationValidationReport Report) Inject(
-        MigrationPlan plan, IMediaSectorImage blankImage, bool acceptMetadataLoss = false)
+    public (MediaSectorWritePlan Image, MigrationValidationReport Report) Inject(MigrationPlan plan, IMediaSectorImage blankImage, bool acceptMetadataLoss = false)
     {
         ArgumentNullException.ThrowIfNull(plan);
         ArgumentNullException.ThrowIfNull(blankImage);
@@ -50,8 +48,7 @@ public sealed class FileSystemMigrationService
                     blankImage.FormatId.StartsWith(MediaImageFormatIds.MsxPrefix, StringComparison.OrdinalIgnoreCase))),
             FileSystemIds.AppleDos => new AppleDosVolumeWriter().Create(writable, blankImage.FormatId),
             FileSystemIds.ProDos => new ProDosVolumeWriter().Create(writable, geometry, addresses),
-            FileSystemIds.Sos => new SosVolumeWriter().Create(writable,
-                geometry with { FormatId = MediaImageFormatIds.AppleIIProDos140 }, addresses, blankImage.FormatId),
+            FileSystemIds.Sos => new SosVolumeWriter().Create(writable, geometry with { FormatId = MediaImageFormatIds.AppleIIProDos140 }, addresses, blankImage.FormatId),
             FileSystemIds.CommodoreDos => new CommodoreDosVolumeWriter().Create(writable, blankImage.FormatId),
             _ => throw new ArgumentException($"Unsupported migration file system '{plan.TargetFileSystemId}'.", nameof(plan))
         };
@@ -83,9 +80,7 @@ public sealed class FileSystemMigrationService
         ArgumentNullException.ThrowIfNull(plan);
         ArgumentNullException.ThrowIfNull(blankImage);
         var capabilities = FileSystemMigrationCapabilityCatalog.For(plan.TargetFileSystemId, blankImage);
-        return plan.SourceFileSystemId.Equals(plan.TargetFileSystemId, StringComparison.OrdinalIgnoreCase) &&
-            plan.TargetFileSystemId is FileSystemIds.AppleDos or FileSystemIds.CommodoreDos
-            ? capabilities with { SupportsRawAttributes = true } : capabilities;
+        return plan.SourceFileSystemId.Equals(plan.TargetFileSystemId, StringComparison.OrdinalIgnoreCase) && plan.TargetFileSystemId is FileSystemIds.AppleDos or FileSystemIds.CommodoreDos ? capabilities with { SupportsRawAttributes = true } : capabilities;
     }
 
     private static void RequireBlankImage(IMediaSectorImage image)
