@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Bandai.Emulators.Common.Contracts;
 namespace GWGUI.Emulation.Bandai.Emulators.Common.Interfaces;
 
 public interface ICoreReleaseService

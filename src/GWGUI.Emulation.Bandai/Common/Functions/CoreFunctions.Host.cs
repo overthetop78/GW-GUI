@@ -6,7 +6,7 @@ using System.Runtime.Versioning;
 using System.Text.Json;
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Bandai.Emulators.Common.Functions;
+namespace GWGUI.Emulation.Bandai.Common.Functions;
 
 internal static class CoreHostFunctions
 {
@@ -67,7 +67,7 @@ internal static class CoreHostFunctions
         return checked((int)BitOperations.RoundUpToPowerOf2((uint)minimum));
     }
 
-    [SupportedOSPlatform(CoreHostFunctionsConstants.Windows)]
+    [SupportedOSPlatform(CoreHostConstants.Windows)]
     internal static void WriteResizableSharedFrame(BinaryWriter writer, VideoFrame? frame, SharedVideoWriter video)
     {
         writer.Write(frame is not null);
@@ -90,7 +90,7 @@ internal static class CoreHostFunctions
         writer.Write(length);
     }
 
-    [SupportedOSPlatform(CoreHostFunctionsConstants.Windows)]
+    [SupportedOSPlatform(CoreHostConstants.Windows)]
     internal static VideoFrame? ReadResizableSharedFrame(BinaryReader reader, ref MemoryMappedFile? memory, ref MemoryMappedViewAccessor? view, ref string? activeName)
     {
         if (!reader.ReadBoolean()) return null;

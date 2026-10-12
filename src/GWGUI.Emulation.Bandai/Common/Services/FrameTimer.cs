@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 
-namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;
+namespace GWGUI.Emulation.Bandai.Common.Services;
 
 internal sealed class FrameTimer : IDisposable
 {

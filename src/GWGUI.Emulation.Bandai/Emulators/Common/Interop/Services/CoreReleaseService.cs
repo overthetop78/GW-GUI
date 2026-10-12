@@ -1,3 +1,10 @@
+using GWGUI.Emulation.Bandai.Emulators.Common.Constants;
+using GWGUI.Emulation.Bandai.Emulators.Common.Contracts;
+using GWGUI.Emulation.Bandai.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Bandai.Emulators.Common.Functions;
+using GWGUI.Emulation.Bandai.Emulators.Common.Interfaces;
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Dictionaries;
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions;
 using System.IO;
 namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;
 

@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Bandai.Emulators.Common.Contracts;
+using GWGUI.Emulation.Bandai.Emulators.Common.Functions;
 namespace GWGUI.Emulation.Bandai.Emulators.TamaLibretro.Constants;
 
 internal static class EmulatorConstants

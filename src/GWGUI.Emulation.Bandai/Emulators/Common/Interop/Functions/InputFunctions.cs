@@ -1,13 +1,8 @@
-namespace GWGUI.Emulation.Bandai.Emulators.Common.Functions;
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Constants;
+namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions;
 
-internal static class InputFunctions
+internal static class NativeInputFunctions
 {
-    internal static EmulationInputSnapshot Freeze(EmulationInputSnapshot? snapshot)
-    {
-        snapshot ??= EmulationInputSnapshot.Empty;
-        return new(new HashSet<EmulationKey>(snapshot.Keys), snapshot.Pointer with { }, snapshot.Controllers.ToArray());
-    }
-
     internal static short State(EmulationInputSnapshot snapshot, uint port, uint device, uint index, uint id)
     {
         if (device != InputConstants.JoypadDevice || index != InputConstants.LeftAnalogIndex
@@ -16,8 +11,4 @@ internal static class InputFunctions
         if (id == InputConstants.JoypadMaskId) return unchecked((short)(buttons & ushort.MaxValue));
         return id < InputConstants.MaximumJoypadButtonCount && (buttons & (1u << checked((int)id))) != 0 ? InputConstants.ActiveState : InputConstants.InactiveState;
     }
-
-    internal static EmulationInputSnapshot Accumulate(EmulationInputSnapshot current, EmulationInputSnapshot update) => Freeze(update);
-
-    internal static EmulationInputSnapshot ConsumeRelativePointer(EmulationInputSnapshot snapshot) => snapshot;
 }

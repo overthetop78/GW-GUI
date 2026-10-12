@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Bandai.Emulators.Common.Constants;
+using GWGUI.Emulation.Bandai.Emulators.Common.Contracts;
+using GWGUI.Emulation.Bandai.Emulators.Common.Exceptions;
 using System.IO;
 namespace GWGUI.Emulation.Bandai.Emulators.Common.Functions;
 

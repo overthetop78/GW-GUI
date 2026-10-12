@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Contracts;
 namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions;
 
 internal static class CoreLifecycleFunctions

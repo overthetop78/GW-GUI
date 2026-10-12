@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Bandai.Emulators.Common.Functions;
+namespace GWGUI.Emulation.Bandai.Common.Functions;
 
 internal static class ControllerFunctions
 {

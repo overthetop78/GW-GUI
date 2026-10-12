@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Bandai.Emulators.Common.Contracts;
+using GWGUI.Emulation.Bandai.Emulators.Common.Enums;
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Contracts;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;

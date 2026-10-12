@@ -1,7 +1,7 @@
 using System.Globalization;
 
 
-namespace GWGUI.Emulation.Bandai.Emulators.Common.Exceptions;
+namespace GWGUI.Emulation.Bandai.Common.Exceptions;
 
 internal static class ExceptionText
 {

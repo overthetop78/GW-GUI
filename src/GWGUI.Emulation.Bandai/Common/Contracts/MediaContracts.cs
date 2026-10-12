@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Bandai.Emulators.Common.Contracts;
+namespace GWGUI.Emulation.Bandai.Common.Contracts;
 
 internal sealed record DiskImageStatus(int Index, string? Path, string? Label);
 

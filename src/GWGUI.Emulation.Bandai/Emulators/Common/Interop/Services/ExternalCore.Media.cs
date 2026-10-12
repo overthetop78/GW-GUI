@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions;
 using System.IO;
 
 namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;

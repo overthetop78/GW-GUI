@@ -1,18 +1,8 @@
-using GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Dictionaries;
-using GWGUI.Emulation.Bandai.Emulators.PlaydiaEmu.Dictionaries;
-using GWGUI.Emulation.Bandai.Emulators.TamaLibretro.Dictionaries;
-
 namespace GWGUI.Emulation.Bandai.Common.Machines.Common.Functions;
 
 internal static class ConfigurationFunctions
 {
-    internal static Emulator DefaultEmulator(MachineModel model) => model switch
-    {
-        MachineModel.WonderSwan or MachineModel.WonderSwanColor or MachineModel.SwanCrystal => Emulator.BeetleWonderSwan,
-        MachineModel.Playdia => Emulator.PlaydiaEmu,
-        MachineModel.TamagotchiP1 => Emulator.TamaLibretro,
-        _ => throw new ArgumentOutOfRangeException(nameof(model))
-    };
+    internal static Emulator DefaultEmulator(MachineModel model) => new Engine().DefaultEmulator(model);
 
     internal static PeripheralCategory DefaultPeripheral(MachineModel model) => model switch
     {
@@ -28,15 +18,10 @@ internal static class ConfigurationFunctions
             throw new ArgumentOutOfRangeException(nameof(configuration.SchemaVersion));
         if (configuration.Id == Guid.Empty || !Enum.IsDefined(configuration.Model))
             throw new ArgumentException(nameof(configuration));
-        if (configuration.Core != DefaultEmulator(configuration.Model))
+        var adapter = new Engine().Adapter(configuration);
+        if (!adapter.Definition.MachineIds.Contains(configuration.MachineId))
             throw new ArgumentException(nameof(configuration.Core));
-        var options = configuration.Core switch
-        {
-            Emulator.BeetleWonderSwan => BeetleWonderSwanOptionCatalog.All,
-            Emulator.PlaydiaEmu => PlaydiaEmuOptionCatalog.All,
-            Emulator.TamaLibretro => TamaLibretroOptionCatalog.All,
-            _ => throw new ArgumentOutOfRangeException(nameof(configuration.Core))
-        };
+        var options = (adapter as IEmulatorSettings)?.GetSettingsOptions() ?? [];
         foreach (var option in configuration.Options)
         {
             if (option.Key == SettingsConstants.AudioOutput)

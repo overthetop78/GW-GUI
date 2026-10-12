@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Bandai.Emulators.Common.Contracts;
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Contracts;
 using System.IO;
 using System.Diagnostics;
 using System.Runtime.InteropServices;

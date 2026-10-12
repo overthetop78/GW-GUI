@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions;
 namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore

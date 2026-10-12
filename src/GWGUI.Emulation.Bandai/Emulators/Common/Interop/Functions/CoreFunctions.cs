@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Dictionaries;
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;
 using System.Globalization;
 using System.Runtime.InteropServices;
 

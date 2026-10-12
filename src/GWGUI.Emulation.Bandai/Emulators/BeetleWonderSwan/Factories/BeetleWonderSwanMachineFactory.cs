@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Factories;
 using GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Constants;
 
 namespace GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Factories;

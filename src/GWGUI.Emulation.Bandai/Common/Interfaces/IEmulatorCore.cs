@@ -1,6 +1,6 @@
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Bandai.Emulators.Common.Interfaces;
+namespace GWGUI.Emulation.Bandai.Common.Interfaces;
 
 internal interface IEmulatorCore : IDisposable
 {

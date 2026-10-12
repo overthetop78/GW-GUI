@@ -1,4 +1,29 @@
-namespace GWGUI.Emulation.Bandai.Emulators.Common.Enums;
+namespace GWGUI.Emulation.Bandai.Common.Enums;
+
+public enum ErrorCategory
+{
+    Core,
+    Firmware,
+    Content,
+    Option,
+    Host,
+    State
+}
+
+public enum ErrorCode
+{
+    CoreNotFound,
+    CoreRejected,
+    FirmwareMissing,
+    FirmwareInvalid,
+    ContentNotFound,
+    ContentRequired,
+    ContentUnsupported,
+    OptionInvalid,
+    HostProtocolFailure,
+    StateInvalid,
+    StateIncompatible
+}
 
 internal enum HostCommand : byte
 {
@@ -19,7 +44,6 @@ internal enum HostCommand : byte
     SetControllerPortDevice = CoreHostConstants.SetControllerPortDeviceCommand
 }
 
-public enum HostProcessState { InProcess, NotStarted, Running, Exited, Faulted }
 
 internal enum HostResponseStatus : byte
 {

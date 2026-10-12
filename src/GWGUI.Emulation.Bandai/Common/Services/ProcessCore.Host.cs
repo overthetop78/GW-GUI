@@ -13,7 +13,7 @@ using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Bandai.Common.Services;
 
-[SupportedOSPlatform(ProcessCoreConstants.Windows)]
+[SupportedOSPlatform(CoreHostConstants.Windows)]
 internal sealed partial class ProcessCore : IEmulatorCore
 {
     private Process StartHostProcess(string pipeName, string videoMapName)

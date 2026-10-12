@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;
 namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions;
 
 internal static class ControllerPortFunctions

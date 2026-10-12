@@ -1,9 +1,10 @@
-namespace GWGUI.Emulation.Bandai.Emulators.Common.Constants;
+namespace GWGUI.Emulation.Bandai.Common.Constants;
 
 
 // Unique to GWGUI.Emulation.Bandai.
 public static class CoreHostConstants
 {
+    internal const string Windows = "windows";
     public const string CommandLineArgument = "--bandai-core-host";
     internal const string HostName = "Bandai";
     internal const string PipePrefix = "gwgui-bandai-";
