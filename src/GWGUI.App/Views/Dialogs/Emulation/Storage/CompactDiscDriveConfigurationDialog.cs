@@ -89,8 +89,7 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
             {
                 var number = new TextBlock { VerticalAlignment = VerticalAlignment.Center,
                     Margin = new Thickness(8, 0, 0, 0) };
-                void UpdateNumber() => number.Text = slider.Value.ToString(CultureInfo.CurrentCulture)
-                    + field.NumericRange!.UnitSuffix;
+                void UpdateNumber() => number.Text = slider.Value.ToString(CultureInfo.CurrentCulture) + field.NumericRange!.UnitSuffix;
                 UpdateNumber();
                 slider.ValueChanged += (_, _) => UpdateNumber();
                 var row = new Grid();

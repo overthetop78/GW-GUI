@@ -19,8 +19,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="Surface" Background="{TemplateBinding Background}" CornerRadius="14">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
-                                              TextElement.Foreground="{TemplateBinding Foreground}"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.Foreground="{TemplateBinding Foreground}"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Surface" Property="Background" Value="#FFE7EEF3"/></Trigger>
@@ -41,19 +40,16 @@
 
             <Border x:Name="SurfaceHeader" Padding="9,6" Background="#EAF2F6F8">
                 <DockPanel LastChildFill="True">
-                    <Border DockPanel.Dock="Right" Padding="2" Background="#FAFFFFFF"
-                            BorderBrush="#FFB9C5CE" BorderThickness="1" CornerRadius="18">
+                    <Border DockPanel.Dock="Right" Padding="2" Background="#FAFFFFFF" BorderBrush="#FFB9C5CE" BorderThickness="1" CornerRadius="18">
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="ZoomOutButton" Style="{StaticResource VisualizationZoomButton}" Content="&#x2212;" Click="ZoomOutButton_Click"/>
-                            <Button x:Name="ResetZoomButton" Style="{StaticResource VisualizationZoomButton}" Width="62" FontSize="12"
-                                    Content="100 %" Click="ResetZoomButton_Click"/>
+                            <Button x:Name="ResetZoomButton" Style="{StaticResource VisualizationZoomButton}" Width="62" FontSize="12" Content="100 %" Click="ResetZoomButton_Click"/>
                             <Button x:Name="ZoomInButton" Style="{StaticResource VisualizationZoomButton}" Content="+" Click="ZoomInButton_Click"/>
                         </StackPanel>
                     </Border>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock x:Name="SurfaceLabel" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                        <TextBlock x:Name="SelectionLabel" Margin="14,0,0,0" VerticalAlignment="Center"
-                                   Foreground="{DynamicResource MutedTextBrush}"/>
+                        <TextBlock x:Name="SelectionLabel" Margin="14,0,0,0" VerticalAlignment="Center" Foreground="{DynamicResource MutedTextBrush}"/>
                     </StackPanel>
                 </DockPanel>
             </Border>

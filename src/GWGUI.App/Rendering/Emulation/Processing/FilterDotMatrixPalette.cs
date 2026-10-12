@@ -15,6 +15,7 @@ internal static class FilterDotMatrixPalette
             EmulationDotMatrixPalette.Blue => ((0f, 0f, 0f), (.32f, .72f, 1f)),
             EmulationDotMatrixPalette.Rgb => ((0f, 0f, 0f), (Math.Clamp(red / luminance, 0f, 1f), Math.Clamp(green / luminance, 0f, 1f), Math.Clamp(blue / luminance, 0f, 1f))),
             EmulationDotMatrixPalette.Red => ((0f, 0f, 0f), (1f, .06f, .025f)),
-            _ => ((0f, 0f, 0f), (1f, 1f, 1f))};
+            _ => ((0f, 0f, 0f), (1f, 1f, 1f))
+        };
     }
 }

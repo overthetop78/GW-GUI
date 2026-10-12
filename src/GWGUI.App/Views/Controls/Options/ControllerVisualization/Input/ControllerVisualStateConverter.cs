@@ -59,8 +59,7 @@ internal static class ControllerVisualStateConverter
             return source.ControlsUseNormalizedAxes ? Math.Clamp(value * NormalizedAxisScale - MaximumAxisValue, MinimumSignedAxisValue, MaximumAxisValue) : Math.Clamp(value, MinimumSignedAxisValue, MaximumAxisValue);
         }
 
-        float RawUnsigned(int index, float defaultValue = NeutralAxisValue) =>
-            rawAxes.TryGetValue(index, out var value) ? Math.Clamp(value, NeutralAxisValue, MaximumAxisValue) : defaultValue;
+        float RawUnsigned(int index, float defaultValue = NeutralAxisValue) => rawAxes.TryGetValue(index, out var value) ? Math.Clamp(value, NeutralAxisValue, MaximumAxisValue) : defaultValue;
 
         float GamepadAxis(Func<GameInputGamepadState, float> selector, GameInputGamepadButtons negative, GameInputGamepadButtons positive, int rawIndex)
         {

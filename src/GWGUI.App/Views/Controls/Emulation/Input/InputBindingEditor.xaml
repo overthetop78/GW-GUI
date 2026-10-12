@@ -42,8 +42,7 @@
    </WrapPanel>
   </Grid>
 
-  <Border Grid.Row="1" BorderBrush="#D8DEE8" BorderThickness="1" CornerRadius="7" ClipToBounds="True"
-          Background="White" VerticalAlignment="Stretch">
+  <Border Grid.Row="1" BorderBrush="#D8DEE8" BorderThickness="1" CornerRadius="7" ClipToBounds="True" Background="White" VerticalAlignment="Stretch">
    <Grid>
     <Grid.RowDefinitions><RowDefinition Height="38"/><RowDefinition Height="*"/></Grid.RowDefinitions>
     <Grid Background="#FAFBFD">

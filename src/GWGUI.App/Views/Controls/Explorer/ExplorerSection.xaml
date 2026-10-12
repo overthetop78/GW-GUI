@@ -68,8 +68,7 @@
                 <Grid Grid.Row="1" Margin="0,9,12,0">
                     <TextBox x:Name="PathText" Visibility="Collapsed" IsReadOnly="True"/>
                     <StackPanel x:Name="DetectedFormatPanel" Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock x:Name="DetectedFormatLabel" Text="{l:Loc Explorer.Format}" FontWeight="SemiBold" VerticalAlignment="Center"
-                                   Margin="0,0,9,0" Visibility="Collapsed"/>
+                        <TextBlock x:Name="DetectedFormatLabel" Text="{l:Loc Explorer.Format}" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,9,0" Visibility="Collapsed"/>
                         <ComboBox x:Name="DetectedFormatSelector" Height="34" MinWidth="260" Visibility="Collapsed" SelectionChanged="DetectedFormatSelector_SelectionChanged">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -114,8 +113,7 @@
                 <StackPanel Grid.Column="1">
                     <TextBlock x:Name="VolumeLabel" Text="{l:Loc Explorer.Volume}" Foreground="{DynamicResource MutedTextBrush}"/>
                     <TextBlock x:Name="VolumeNameText" FontSize="18" FontWeight="SemiBold" Text="&#x2014;"/>
-                    <ComboBox x:Name="VolumeSelector" Margin="0,4,10,0" MinWidth="190" DisplayMemberPath="DisplayName"
-                              Visibility="Collapsed" SelectionChanged="VolumeSelector_SelectionChanged"/>
+                    <ComboBox x:Name="VolumeSelector" Margin="0,4,10,0" MinWidth="190" DisplayMemberPath="DisplayName" Visibility="Collapsed" SelectionChanged="VolumeSelector_SelectionChanged"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2"><TextBlock Text="{l:Loc Explorer.System}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="SystemText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
                 <StackPanel Grid.Column="3"><TextBlock Text="{l:Loc Explorer.Protection}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="ProtectionText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
@@ -221,8 +219,7 @@
                 <explorer:ExplorerDetailsPanel x:Name="DetailsPanel"/>
             </common:CardSection>
 
-            <Border x:Name="ExplorerEmptyState" Grid.Row="1" Grid.ColumnSpan="5" Background="{DynamicResource CardBrush}"
-                    CornerRadius="8" Panel.ZIndex="5">
+            <Border x:Name="ExplorerEmptyState" Grid.Row="1" Grid.ColumnSpan="5" Background="{DynamicResource CardBrush}" CornerRadius="8" Panel.ZIndex="5">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Border Width="68" Height="68" CornerRadius="34" Background="#EAF2F7" HorizontalAlignment="Center">
                         <TextBlock Text="{l:Loc Icon.OpenImage}" FontFamily="{StaticResource IconFontFamily}" FontSize="30" Foreground="#34566C"
@@ -234,8 +231,7 @@
             </Border>
         </Grid>
 
-        <Border x:Name="LoadingOverlay" Grid.Row="2" Background="Transparent" Visibility="Collapsed"
-                Panel.ZIndex="10" IsHitTestVisible="False">
+        <Border x:Name="LoadingOverlay" Grid.Row="2" Background="Transparent" Visibility="Collapsed" Panel.ZIndex="10" IsHitTestVisible="False">
             <common:MediaRecognitionProgressCard x:Name="LoadingCard" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
     </Grid>

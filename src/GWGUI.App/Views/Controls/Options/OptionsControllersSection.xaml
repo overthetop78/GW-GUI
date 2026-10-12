@@ -25,15 +25,12 @@
                               DisplayMemberPath="ProductName"
                               AutomationProperties.Name="{l:Loc Controllers.Device}"/>
                 </StackPanel>
-                <TextBlock Grid.Column="1" x:Name="DetectionStatus" VerticalAlignment="Bottom"
-                           Margin="18,0,18,10" Foreground="{DynamicResource MutedTextBrush}"/>
-                <Button Grid.Column="2" x:Name="DetectButton" Content="{l:Loc Controllers.Detect}"
-                        Click="Detect_Click" VerticalAlignment="Bottom"/>
+                <TextBlock Grid.Column="1" x:Name="DetectionStatus" VerticalAlignment="Bottom" Margin="18,0,18,10" Foreground="{DynamicResource MutedTextBrush}"/>
+                <Button Grid.Column="2" x:Name="DetectButton" Content="{l:Loc Controllers.Detect}" Click="Detect_Click" VerticalAlignment="Bottom"/>
             </Grid>
         </Border>
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
-                      HorizontalScrollBarVisibility="Disabled">
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <StackPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -48,36 +45,30 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <local:ControllerVisualizer x:Name="Visualizer" Height="280"/>
-                            <TextBlock Grid.Row="1" Text="{l:Loc Controllers.LiveInputs}"
-                                       HorizontalAlignment="Center" Margin="0,8,0,0"
-                                       Foreground="{DynamicResource MutedTextBrush}"/>
+                            <TextBlock Grid.Row="1" Text="{l:Loc Controllers.LiveInputs}" HorizontalAlignment="Center" Margin="0,8,0,0" Foreground="{DynamicResource MutedTextBrush}"/>
                         </Grid>
                     </Border>
 
                     <Border Grid.Column="1" Style="{StaticResource Card}" Margin="6,0,0,0">
                         <StackPanel>
                             <TextBlock x:Name="ProductNameText" FontSize="24" FontWeight="SemiBold"/>
-                            <TextBlock x:Name="DeviceIdentityText" Margin="0,4,0,12"
-                                       Foreground="{DynamicResource MutedTextBrush}"/>
+                            <TextBlock x:Name="DeviceIdentityText" Margin="0,4,0,12" Foreground="{DynamicResource MutedTextBrush}"/>
 
                             <Grid x:Name="ModelSelectorPanel" Margin="0,0,0,14" Visibility="Collapsed">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{l:Loc Controllers.VisualModel}" VerticalAlignment="Center"
-                                           Margin="0,0,10,0"/>
+                                <TextBlock Text="{l:Loc Controllers.VisualModel}" VerticalAlignment="Center" Margin="0,0,10,0"/>
                                 <ComboBox Grid.Column="1" x:Name="ModelSelector" MinWidth="260"
                                           SelectionChanged="ModelSelector_SelectionChanged"
                                           DisplayMemberPath="DisplayName"
                                           AutomationProperties.Name="{l:Loc Controllers.VisualModel}"/>
                             </Grid>
 
-                            <Border x:Name="AnalogDeadZonePanel" Background="{DynamicResource ControlBrush}"
-                                    CornerRadius="7" Padding="12" Margin="0,0,0,12" Visibility="Collapsed">
+                            <Border x:Name="AnalogDeadZonePanel" Background="{DynamicResource ControlBrush}" CornerRadius="7" Padding="12" Margin="0,0,0,12" Visibility="Collapsed">
                                 <StackPanel>
-                                    <TextBlock Text="{l:Loc Controllers.AnalogDeadZones}" FontSize="16"
-                                               FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                    <TextBlock Text="{l:Loc Controllers.AnalogDeadZones}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,8"/>
                                     <Grid Margin="0,0,0,8">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="190"/>
@@ -92,8 +83,7 @@
                                                 PreviewMouseLeftButtonUp="AnalogDeadZoneSlider_PreviewMouseLeftButtonUp"
                                                 LostKeyboardFocus="AnalogDeadZoneSlider_LostKeyboardFocus"
                                                 AutomationProperties.Name="{l:Loc Controllers.StickDeadZone}"/>
-                                        <TextBlock Grid.Column="2" x:Name="StickDeadZoneText"
-                                                   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="2" x:Name="StickDeadZoneText" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                                     </Grid>
                                     <Grid Margin="0,0,0,8">
                                         <Grid.ColumnDefinitions>
@@ -109,8 +99,7 @@
                                                 PreviewMouseLeftButtonUp="AnalogDeadZoneSlider_PreviewMouseLeftButtonUp"
                                                 LostKeyboardFocus="AnalogDeadZoneSlider_LostKeyboardFocus"
                                                 AutomationProperties.Name="{l:Loc Controllers.TriggerDeadZone}"/>
-                                        <TextBlock Grid.Column="2" x:Name="TriggerDeadZoneText"
-                                                   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="2" x:Name="TriggerDeadZoneText" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                                     </Grid>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -126,8 +115,7 @@
                                                 PreviewMouseLeftButtonUp="AnalogDeadZoneSlider_PreviewMouseLeftButtonUp"
                                                 LostKeyboardFocus="AnalogDeadZoneSlider_LostKeyboardFocus"
                                                 AutomationProperties.Name="{l:Loc Controllers.OuterDeadZone}"/>
-                                        <TextBlock Grid.Column="2" x:Name="OuterDeadZoneText"
-                                                   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="2" x:Name="OuterDeadZoneText" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                                     </Grid>
                                 </StackPanel>
                             </Border>
@@ -138,16 +126,14 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Background="{DynamicResource ControlBrush}" CornerRadius="5"
-                                                Margin="3,2" Padding="9,6">
+                                        <Border Background="{DynamicResource ControlBrush}" CornerRadius="5" Margin="3,2" Padding="9,6">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Text="{Binding Label}"/>
-                                                <TextBlock Grid.Column="1" Text="{Binding Value}" FontFamily="Consolas"
-                                                           Margin="10,0,0,0"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding Value}" FontFamily="Consolas" Margin="10,0,0,0"/>
                                             </Grid>
                                         </Border>
                                     </DataTemplate>
@@ -156,22 +142,19 @@
 
                             <Border x:Name="RumblePanel" Background="{DynamicResource ControlBrush}" CornerRadius="7" Padding="12">
                                 <StackPanel>
-                                    <TextBlock Text="{l:Loc Controllers.Rumble}" FontSize="16"
-                                               FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                    <TextBlock Text="{l:Loc Controllers.Rumble}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,8"/>
                                     <Grid Margin="0,0,0,8">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition/>
                                             <ColumnDefinition Width="55"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{l:Loc Controllers.RumbleStrength}"
-                                                   VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                        <TextBlock Text="{l:Loc Controllers.RumbleStrength}" VerticalAlignment="Center" Margin="0,0,10,0"/>
                                         <Slider Grid.Column="1" x:Name="RumbleStrengthSlider" AutomationProperties.AutomationId="RumbleStrengthSlider"
                                                 Minimum="5" Maximum="100" Value="20" TickFrequency="5"
                                                 IsSnapToTickEnabled="True" ValueChanged="RumbleStrengthSlider_ValueChanged"
                                                 AutomationProperties.Name="{l:Loc Controllers.RumbleStrength}"/>
-                                        <TextBlock Grid.Column="2" x:Name="RumbleStrengthText"
-                                                   Text="20 %" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="2" x:Name="RumbleStrengthText" Text="20 %" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                                     </Grid>
                                     <UniformGrid Columns="2">
                                         <Button x:Name="LowFrequencyRumbleButton" AutomationProperties.AutomationId="LowFrequencyRumbleButton"
@@ -187,8 +170,7 @@
                                                 Content="{l:Loc Controllers.RightTrigger}"
                                                 Tag="RightTrigger" Click="RumbleMotor_Click" Margin="4,4,0,0"/>
                                     </UniformGrid>
-                                    <TextBlock x:Name="TestStatusText" Margin="0,8,0,0"
-                                               Foreground="{DynamicResource MutedTextBrush}"/>
+                                    <TextBlock x:Name="TestStatusText" Margin="0,8,0,0" Foreground="{DynamicResource MutedTextBrush}"/>
                                 </StackPanel>
                             </Border>
                         </StackPanel>
@@ -203,25 +185,20 @@
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Margin="0,0,14,0">
-                                <TextBlock Text="{l:Loc Controllers.LiveInputs}" FontSize="16"
-                                           FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                <TextBlock Text="{l:Loc Controllers.LiveInputs}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,8"/>
                                 <DataGrid x:Name="ControlsGrid" AutoGenerateColumns="False"
                                           IsReadOnly="True" HeadersVisibility="Column"
                                           CanUserAddRows="False" MaxHeight="300"
                                           EnableRowVirtualization="True">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="{l:Loc Controllers.Control}"
-                                                            Binding="{Binding Name}" Width="*"/>
-                                        <DataGridTextColumn Header="{l:Loc Controllers.Value}"
-                                                            Binding="{Binding Value}" Width="110"/>
-                                        <DataGridCheckBoxColumn Header="{l:Loc Controllers.Active}"
-                                                                Binding="{Binding Active, Mode=OneWay}" Width="75"/>
+                                        <DataGridTextColumn Header="{l:Loc Controllers.Control}" Binding="{Binding Name}" Width="*"/>
+                                        <DataGridTextColumn Header="{l:Loc Controllers.Value}" Binding="{Binding Value}" Width="110"/>
+                                        <DataGridCheckBoxColumn Header="{l:Loc Controllers.Active}" Binding="{Binding Active, Mode=OneWay}" Width="75"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
-                                <TextBlock Text="{l:Loc Controllers.Capabilities}" FontSize="16"
-                                           FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                <TextBlock Text="{l:Loc Controllers.Capabilities}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,8"/>
                                 <ItemsControl x:Name="CapabilitiesList">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
@@ -236,10 +213,8 @@
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
-                                <TextBlock Text="{l:Loc Controllers.Identity}" FontSize="16"
-                                           FontWeight="SemiBold" Margin="0,18,0,8"/>
-                                <TextBlock x:Name="IdentityDetailsText" TextWrapping="Wrap"
-                                           FontFamily="Consolas" FontSize="12"/>
+                                <TextBlock Text="{l:Loc Controllers.Identity}" FontSize="16" FontWeight="SemiBold" Margin="0,18,0,8"/>
+                                <TextBlock x:Name="IdentityDetailsText" TextWrapping="Wrap" FontFamily="Consolas" FontSize="12"/>
                             </StackPanel>
                         </Grid>
                     </Border>

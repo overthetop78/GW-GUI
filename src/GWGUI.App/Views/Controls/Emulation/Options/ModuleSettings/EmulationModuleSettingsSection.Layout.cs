@@ -163,8 +163,7 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private void AddBlocks(Panel panel, EmulationMachineSettings settings, EmulationMachineTab tab)
     {
-        bool IsDisplayed(EmulationSettingsField field) => field.IsVisible
-            && !(tab == EmulationMachineTab.General && field.Editor == EmulationSettingsEditor.DirectoryPath);
+        bool IsDisplayed(EmulationSettingsField field) => field.IsVisible && !(tab == EmulationMachineTab.General && field.Editor == EmulationSettingsEditor.DirectoryPath);
         if (settings.Blocks.Any(block => block.Tab == tab && block.IsCompact))
         {
             panel.Children.Add(EmulationSettingsLayout.CompactCards(settings.Blocks.Where(block => block.Tab == tab && block.IsVisible && block.Fields.Any(IsDisplayed))

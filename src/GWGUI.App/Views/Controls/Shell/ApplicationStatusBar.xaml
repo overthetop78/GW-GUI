@@ -32,8 +32,7 @@
                     <TextBlock x:Name="OperationStatusText" Text="{Binding OperationText}" TextTrimming="CharacterEllipsis"/>
                 </StackPanel>
             </StatusBarItem>
-            <StatusBarItem Grid.Column="3" x:Name="ProgressStatusItem"
-                           Visibility="{Binding ProgressVisibility}" HorizontalContentAlignment="Stretch">
+            <StatusBarItem Grid.Column="3" x:Name="ProgressStatusItem" Visibility="{Binding ProgressVisibility}" HorizontalContentAlignment="Stretch">
                 <Grid>
                     <Grid.RowDefinitions><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
                     <visualization:TrackProgressStrip x:Name="Face0TrackProgress" Visibility="{Binding Face0ProgressVisibility}"/>
