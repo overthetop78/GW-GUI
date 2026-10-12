@@ -5,13 +5,24 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 internal static partial class StorageSettingsFunctions
 {
 private static IReadOnlyList<string> Extensions(MediaCategory category) => category switch
-    {
-        MediaCategory.Floppy => [StorageSettingsFunctionsConstants.St, StorageSettingsFunctionsConstants.Msa, StorageSettingsFunctionsConstants.Stx, StorageSettingsFunctionsConstants.Dim, StorageSettingsFunctionsConstants.Ipf, StorageSettingsFunctionsConstants.Scp, StorageSettingsFunctionsConstants.Atr, StorageSettingsFunctionsConstants.Xfd, StorageSettingsFunctionsConstants.Dcm, StorageSettingsFunctionsConstants.Atx],
-        MediaCategory.HardDisk => [StorageSettingsFunctionsConstants.Img, StorageSettingsFunctionsConstants.Hdf, StorageSettingsFunctionsConstants.Vhd],
-        MediaCategory.Cassette => [StorageSettingsFunctionsConstants.Cas],
-        MediaCategory.CompactDisc => [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Chd, StorageSettingsFunctionsConstants.Iso],
-        _ => []
-    };
+{
+    MediaCategory.Floppy => [
+        StorageSettingsFunctionsConstants.St,
+        StorageSettingsFunctionsConstants.Msa,
+        StorageSettingsFunctionsConstants.Stx,
+        StorageSettingsFunctionsConstants.Dim,
+        StorageSettingsFunctionsConstants.Ipf,
+        StorageSettingsFunctionsConstants.Scp,
+        StorageSettingsFunctionsConstants.Atr,
+        StorageSettingsFunctionsConstants.Xfd,
+        StorageSettingsFunctionsConstants.Dcm,
+        StorageSettingsFunctionsConstants.Atx
+    ],
+    MediaCategory.HardDisk => [StorageSettingsFunctionsConstants.Img, StorageSettingsFunctionsConstants.Hdf, StorageSettingsFunctionsConstants.Vhd],
+    MediaCategory.Cassette => [StorageSettingsFunctionsConstants.Cas],
+    MediaCategory.CompactDisc => [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Chd, StorageSettingsFunctionsConstants.Iso],
+    _ => []
+};
 
     private static IReadOnlyList<string> CartridgeExtensions(MachineConfiguration configuration)
     {
