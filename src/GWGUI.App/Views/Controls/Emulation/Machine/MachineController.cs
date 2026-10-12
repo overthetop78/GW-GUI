@@ -102,8 +102,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         _commands.RendererStatus.Text = MachinePresentationFunctions.RendererName(_video.Renderer);
     }
 
-    internal void ApplyVideoConfiguration(EmulationVideoRenderer renderer,
-        EmulationVideoProcessingConfiguration videoProcessing)
+    internal void ApplyVideoConfiguration(EmulationVideoRenderer renderer, EmulationVideoProcessingConfiguration videoProcessing)
     {
         _video.SetVideoProcessing(videoProcessing);
         ApplyVideoRenderer(renderer);
@@ -310,9 +309,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         }), _options.ShowError, _input.RestoreFocus);
     }
 
-    private MachineViewDeviceCommand CassetteCommand(EmulationCassetteCommand command,
-        IEmulationCassetteTransport? transport, EmulationCassetteState state,
-        EmulationCassetteCommand? activeOperation)
+    private MachineViewDeviceCommand CassetteCommand(EmulationCassetteCommand command, IEmulationCassetteTransport? transport, EmulationCassetteState state, EmulationCassetteCommand? activeOperation)
     {
         var supported = transport?.AvailableCommands.Contains(command) == true;
         return new MachineViewDeviceCommand(command, CassetteCommandText(command),
@@ -363,11 +360,9 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         _view.SetCassetteTransport(key, cassette.State, cassette.ActiveOperation, cassette.AvailableCommands, _session.IsPowered);
     }
 
-    private static string CassetteStateText(EmulationCassetteState state) =>
-        LocExtension.Get($"Emulation.Cassette.State.{state}");
+    private static string CassetteStateText(EmulationCassetteState state) => LocExtension.Get($"Emulation.Cassette.State.{state}");
 
-    private static string CassetteCommandText(EmulationCassetteCommand command) =>
-        LocExtension.Get($"Emulation.Cassette.Command.{command}");
+    private static string CassetteCommandText(EmulationCassetteCommand command) => LocExtension.Get($"Emulation.Cassette.Command.{command}");
 
     private static string CassetteCommandGlyph(EmulationCassetteCommand command) => command switch
     {

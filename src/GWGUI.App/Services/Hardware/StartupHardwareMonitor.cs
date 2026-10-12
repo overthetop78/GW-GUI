@@ -6,8 +6,7 @@ using System.IO;
 
 namespace GWGUI.App.Services.Hardware;
 
-public sealed class StartupHardwareMonitor(IHardwareRegistry registry, ISettingsStore settingsStore,
-    Func<string, bool>? fileExists = null)
+public sealed class StartupHardwareMonitor(IHardwareRegistry registry, ISettingsStore settingsStore, Func<string, bool>? fileExists = null)
 {
     private readonly Func<string, bool> exists = fileExists ?? File.Exists;
     public async Task<StartupHardwareCheckResult> CheckAsync(AppSettings settings, CancellationToken cancellationToken = default)

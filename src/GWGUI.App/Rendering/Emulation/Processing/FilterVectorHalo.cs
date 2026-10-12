@@ -11,8 +11,7 @@ internal static class FilterVectorHalo
         }
         """;
 
-    internal static void Apply(float[] colors, float[] emission, int width, int height,
-        int lineIntensitySetting, int haloSetting, int radiusSetting)
+    internal static void Apply(float[] colors, float[] emission, int width, int height, int lineIntensitySetting, int haloSetting, int radiusSetting)
     {
         if (haloSetting <= 0) return;
         var strength = lineIntensitySetting / 100f * haloSetting / 100f * 0.5f;

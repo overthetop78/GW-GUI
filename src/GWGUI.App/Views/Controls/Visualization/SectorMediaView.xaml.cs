@@ -232,15 +232,9 @@ public partial class SectorMediaView : UserControl, IMediaVisualizationView
     private Button ResetButtonFor(int surface) => surface == 0 ? ResetZoom0Button : ResetZoom1Button;
     private TextBlock SelectionLabelFor(int surface) => surface == 0 ? Selection0Label : Selection1Label;
 
-    private static int SurfaceFor(object? source) => source is FrameworkElement { Tag: string text }
-        && int.TryParse(text, out var surface) ? surface : -1;
+    private static int SurfaceFor(object? source) => source is FrameworkElement { Tag: string text } && int.TryParse(text, out var surface) ? surface : -1;
 
-    internal static SKPoint MapPointerToRender(
-        Point point,
-        double actualWidth,
-        double actualHeight,
-        int renderWidth,
-        int renderHeight)
+    internal static SKPoint MapPointerToRender(Point point, double actualWidth, double actualHeight, int renderWidth, int renderHeight)
     {
         var width = renderWidth > 0 ? renderWidth : Math.Max(1, (int)Math.Round(actualWidth));
         var height = renderHeight > 0 ? renderHeight : Math.Max(1, (int)Math.Round(actualHeight));

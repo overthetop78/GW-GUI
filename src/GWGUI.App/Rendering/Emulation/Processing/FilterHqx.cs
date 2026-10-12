@@ -3,8 +3,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 // Adapted from mGBA's MIT-licensed hq2x.fs (Lior Halphon, 2015-2023).
 internal static class FilterHqx
 {
-    public static void Sample(float[] source, int width, int height,
-        float positionX, float positionY, Span<float> result)
+    public static void Sample(float[] source, int width, int height, float positionX, float positionY, Span<float> result)
     {
         var x = (int)MathF.Floor(positionX);
         var y = (int)MathF.Floor(positionY);

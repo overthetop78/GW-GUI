@@ -11,9 +11,7 @@ namespace GWGUI.App.Functions.Views.Emulation.Machine;
 
 internal static class EmulationMachineTabs
 {
-    internal static TabControl Create(Func<EmulationMachineTab, UIElement?> contentProvider,
-        string? automationName = null, Func<EmulationMachineTab, Task>? tabActivated = null,
-        EmulationMachineTab? selectedTab = null)
+    internal static TabControl Create(Func<EmulationMachineTab, UIElement?> contentProvider, string? automationName = null, Func<EmulationMachineTab, Task>? tabActivated = null, EmulationMachineTab? selectedTab = null)
     {
         var tabs = new TabControl
         {

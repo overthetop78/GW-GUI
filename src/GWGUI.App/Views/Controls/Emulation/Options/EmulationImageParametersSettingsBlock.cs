@@ -13,8 +13,7 @@ namespace GWGUI.App.Views.Controls.Emulation.Options;
 
 internal static class EmulationImageParametersSettingsBlock
 {
-    internal static FrameworkElement Create(EmulationImageAdjustments adjustments,
-        Action<Func<EmulationImageAdjustments, EmulationImageAdjustments>> changed)
+    internal static FrameworkElement Create(EmulationImageAdjustments adjustments, Action<Func<EmulationImageAdjustments, EmulationImageAdjustments>> changed)
     {
         var block = new StackPanel { Margin = new Thickness(0, 0, 0, 12) };
         block.Children.Add(new TextBlock
@@ -24,16 +23,11 @@ internal static class EmulationImageParametersSettingsBlock
             Margin = new Thickness(0, 0, 0, 12)
         });
         var sliders = new UniformGrid { Columns = 5, HorizontalAlignment = HorizontalAlignment.Stretch };
-        sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Brightness,
-            adjustments.Brightness, value => changed(current => current with { Brightness = value })));
-        sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Contrast,
-            adjustments.Contrast, value => changed(current => current with { Contrast = value })));
-        sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Gamma,
-            adjustments.Gamma, value => changed(current => current with { Gamma = value })));
-        sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Saturation,
-            adjustments.Saturation, value => changed(current => current with { Saturation = value })));
-        sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Sharpness,
-            adjustments.Sharpness, value => changed(current => current with { Sharpness = value })));
+        sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Brightness, adjustments.Brightness, value => changed(current => current with { Brightness = value })));
+        sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Contrast, adjustments.Contrast, value => changed(current => current with { Contrast = value })));
+        sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Gamma, adjustments.Gamma, value => changed(current => current with { Gamma = value })));
+        sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Saturation, adjustments.Saturation, value => changed(current => current with { Saturation = value })));
+        sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Sharpness, adjustments.Sharpness, value => changed(current => current with { Sharpness = value })));
         block.Children.Add(sliders);
         return block;
 

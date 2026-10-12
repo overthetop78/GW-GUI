@@ -4,12 +4,9 @@ using GWGUI.Emulation.Enums;
 
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal readonly record struct VectorVideoShaderParameters(
-    Vector4 Effect, Vector4 Temporal, Vector4 Display)
+internal readonly record struct VectorVideoShaderParameters(Vector4 Effect, Vector4 Temporal, Vector4 Display)
 {
-    internal static VectorVideoShaderParameters From(
-        EmulationVideoProcessingConfiguration configuration,
-        bool hasHistory = false)
+    internal static VectorVideoShaderParameters From(EmulationVideoProcessingConfiguration configuration, bool hasHistory = false)
     {
         var vector = configuration.Vector;
         return new VectorVideoShaderParameters(

@@ -7,16 +7,7 @@ namespace GWGUI.App.Rendering.Optical;
 
 public sealed class SkiaOpticalMediaRenderer
 {
-    public void Render(
-        SKCanvas canvas,
-        OpticalMediaRenderModel? model,
-        OpticalMediaTrack? selectedTrack,
-        int? face,
-        int? layer,
-        int? session,
-        int width,
-        int height,
-        float zoom = 1)
+    public void Render(SKCanvas canvas, OpticalMediaRenderModel? model, OpticalMediaTrack? selectedTrack, int? face, int? layer, int? session, int width, int height, float zoom = 1)
     {
         canvas.Clear(OpticalMediaRenderConstants.BackgroundColor);
         if (model is null) return;
@@ -31,15 +22,7 @@ public sealed class SkiaOpticalMediaRenderer
         }
     }
 
-    public OpticalMediaTrack? HitTest(
-        OpticalMediaRenderModel? model,
-        int? face,
-        int? layer,
-        int? session,
-        int width,
-        int height,
-        SKPoint point,
-        float zoom = 1)
+    public OpticalMediaTrack? HitTest(OpticalMediaRenderModel? model, int? face, int? layer, int? session, int width, int height, SKPoint point, float zoom = 1)
     {
         if (model is null) return null;
         var faces = RenderedFaces(model, face);
@@ -61,15 +44,7 @@ public sealed class SkiaOpticalMediaRenderer
         return tracks.FirstOrDefault(track => sector >= track.FirstSector && sector < track.FirstSector + track.SectorCount);
     }
 
-    private static void DrawFace(
-        SKCanvas canvas,
-        OpticalMediaRenderModel model,
-        int face,
-        int? layer,
-        int? session,
-        OpticalMediaTrack? selectedTrack,
-        SKPoint center,
-        float outer)
+    private static void DrawFace(SKCanvas canvas, OpticalMediaRenderModel model, int face, int? layer, int? session, OpticalMediaTrack? selectedTrack, SKPoint center, float outer)
     {
         var tracks = FilterTracks(model, face, layer, session);
         var logicalLength = LogicalLength(model, tracks);

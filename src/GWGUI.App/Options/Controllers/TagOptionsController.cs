@@ -21,12 +21,7 @@ internal sealed class TagOptionsController
     private int _exampleIndex;
     private bool _refreshingPresets;
 
-    public TagOptionsController(
-        OptionsGeneralSection section,
-        AppSettings settings,
-        Func<bool> isInitializing,
-        Func<Task> persistAsync,
-        Func<string, object[], string> localize)
+    public TagOptionsController(OptionsGeneralSection section, AppSettings settings, Func<bool> isInitializing, Func<Task> persistAsync, Func<string, object[], string> localize)
     {
         _section = section;
         _settings = settings;

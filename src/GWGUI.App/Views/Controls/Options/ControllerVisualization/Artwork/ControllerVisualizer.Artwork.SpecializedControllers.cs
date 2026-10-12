@@ -85,9 +85,7 @@ public sealed partial class ControllerVisualizer
 
     private void DrawRawButtonHalo(DrawingContext dc, Rect bounds, int index, double x, double y, double radius) => DrawArtworkHalo(dc, At(bounds, x, y), Radius(bounds, radius), Input.RawButton(index));
 
-    private void DrawRawButtonMarker(
-        DrawingContext dc, Rect bounds, int index,
-        double x, double y, double width, double height, double cornerRadius)
+    private void DrawRawButtonMarker(DrawingContext dc, Rect bounds, int index, double x, double y, double width, double height, double cornerRadius)
     {
         if (!Input.RawButton(index)) return;
         var center = At(bounds, x, y);
@@ -96,8 +94,7 @@ public sealed partial class ControllerVisualizer
         dc.DrawRoundedRectangle(PressedFill(), null, inset, Math.Max(1, cornerRadius - 2), Math.Max(1, cornerRadius - 2));
     }
 
-    private void DrawRawButtonBadge(
-        DrawingContext dc, Rect bounds, int index, double x, double y, string label)
+    private void DrawRawButtonBadge(DrawingContext dc, Rect bounds, int index, double x, double y, string label)
     {
         if (!Input.RawButton(index)) return;
         var center = At(bounds, x, y);
@@ -113,13 +110,7 @@ public sealed partial class ControllerVisualizer
         dc.DrawRoundedRectangle(PressedFill(), null, new Rect(center.X - Radius(bounds, .035), center.Y - Radius(bounds, .080), Radius(bounds, .070), Radius(bounds, .160)), 5, 5);
     }
 
-    private void DrawArtworkStick(
-        DrawingContext dc,
-        Point center,
-        float x,
-        float y,
-        bool pressed,
-        double radius)
+    private void DrawArtworkStick(DrawingContext dc, Point center, float x, float y, bool pressed, double radius)
     {
         var movedAxis = Math.Abs(x) > .03f || Math.Abs(y) > .03f;
         if (!pressed && !movedAxis) return;

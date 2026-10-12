@@ -207,9 +207,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         root.RowDefinitions.Add(new RowDefinition());
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
-        var header = StorageDialogUi.DialogHeader(
-            _fixedImageSizeBytes is null ? IconGlyphs.HardDisk : IconGlyphs.Memory, Title,
-            $"{LocExtension.Get(_presentation?.DeviceResourceKey ?? "Emulation.Storage.HardDisk.Device")} · {machineName}");
+        var header = StorageDialogUi.DialogHeader(_fixedImageSizeBytes is null ? IconGlyphs.HardDisk : IconGlyphs.Memory, Title, $"{LocExtension.Get(_presentation?.DeviceResourceKey ?? "Emulation.Storage.HardDisk.Device")} · {machineName}");
         root.Children.Add(header);
 
         var scroll = new ScrollViewer
@@ -326,15 +324,12 @@ public sealed class HardDiskDriveConfigurationDialog : Window
     private void SetSizeChoices()
     {
         var format = SelectedFormat;
-        _preparation.ItemsSource = format.SupportedPreparations
-            .Select(value => new { Value = value, Label = LocExtension.Get("Emulation.Hdd.Prepare." + value) }).ToArray();
+        _preparation.ItemsSource = format.SupportedPreparations.Select(value => new { Value = value, Label = LocExtension.Get("Emulation.Hdd.Prepare." + value) }).ToArray();
         _preparation.SelectedIndex = 0;
         _limits.Text = LocExtension.Get("Emulation.Hdd.Limits", StorageSizeFormatter.FormatCapacity(format.MaximumBytes));
         _preallocate.IsEnabled = format.SupportsFixedAllocation;
         if (!format.SupportsFixedAllocation) _preallocate.IsChecked = false;
-        var sizeChoices = new long[] { 20, 40, 80, 120, 250, 500, 1024, 2047 }
-            .Where(size => IsSupportedCapacity(size * 1024 * 1024, format))
-            .Select(size => new DiskSizeChoice(size, StorageSizeFormatter.FormatCapacity(size * 1024 * 1024)))
+        var sizeChoices = new long[] { 20, 40, 80, 120, 250, 500, 1024, 2047 }.Where(size => IsSupportedCapacity(size * 1024 * 1024, format)).Select(size => new DiskSizeChoice(size, StorageSizeFormatter.FormatCapacity(size * 1024 * 1024)))
             .Append(new DiskSizeChoice(null, LocExtension.Get("Emulation.Storage.Geometry.CustomSize"))).ToArray();
         _sizePreset.ItemsSource = sizeChoices;
         _sizePreset.SelectedIndex = sizeChoices.Length > 1 ? 1 : 0;

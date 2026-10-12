@@ -8,9 +8,7 @@ namespace GWGUI.App.Functions.Rendering.Emulation;
 
 internal static class EmulationVideoSnapshotFunctions
 {
-    internal static Task<BitmapSource?> CreateAsync(VideoFrame? frame,
-        EmulationVideoProcessingConfiguration configuration,
-        EmulationVideoProcessingSize outputSize)
+    internal static Task<BitmapSource?> CreateAsync(VideoFrame? frame, EmulationVideoProcessingConfiguration configuration, EmulationVideoProcessingSize outputSize)
     {
         if (frame is null) return Task.FromResult<BitmapSource?>(null);
         return Task.Run<BitmapSource?>(() =>

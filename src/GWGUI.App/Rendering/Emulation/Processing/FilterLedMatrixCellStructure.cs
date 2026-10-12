@@ -17,9 +17,7 @@ internal static class FilterLedMatrixCellStructure
         }
         """;
 
-    internal static LedMatrixCellMap Create(float[] source, int sourceWidth,
-        int sourceHeight, int outputWidth, int outputHeight, int cellSize, int cellGap,
-        EmulationLedMatrixShape shape, int haloRadius)
+    internal static LedMatrixCellMap Create(float[] source, int sourceWidth, int sourceHeight, int outputWidth, int outputHeight, int cellSize, int cellGap, EmulationLedMatrixShape shape, int haloRadius)
     {
         var pitch = 1 + (int)MathF.Round(Math.Clamp(cellSize, 0, 100) / 100f * 7f);
         var columns = (sourceWidth + pitch - 1) / pitch;

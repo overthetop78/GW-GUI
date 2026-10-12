@@ -6,8 +6,7 @@ namespace GWGUI.App.Functions.Emulation.Shortcuts;
 
 internal static class EmulationShortcutMap
 {
-    internal static IReadOnlyDictionary<EmulationKey, EmulationKey> KeyboardMap(
-        IReadOnlyDictionary<string, EmulationKey>? mappings)
+    internal static IReadOnlyDictionary<EmulationKey, EmulationKey> KeyboardMap(IReadOnlyDictionary<string, EmulationKey>? mappings)
     {
         if (mappings is null || mappings.Count == 0) return new Dictionary<EmulationKey, EmulationKey>();
         var result = new Dictionary<EmulationKey, EmulationKey>();
@@ -18,8 +17,7 @@ internal static class EmulationShortcutMap
         return result;
     }
 
-    internal static IReadOnlyList<KeyboardShortcutBinding> KeyboardShortcuts(
-        IReadOnlyDictionary<string, string>? mappings)
+    internal static IReadOnlyList<KeyboardShortcutBinding> KeyboardShortcuts(IReadOnlyDictionary<string, string>? mappings)
     {
         if (mappings is null || mappings.Count == 0) return [];
         var result = new List<KeyboardShortcutBinding>();
@@ -32,8 +30,7 @@ internal static class EmulationShortcutMap
         return result;
     }
 
-    internal static IReadOnlyList<GlobalShortcutBinding> GlobalShortcuts(
-        IReadOnlyDictionary<string, string>? mappings) => mappings is null
+    internal static IReadOnlyList<GlobalShortcutBinding> GlobalShortcuts(IReadOnlyDictionary<string, string>? mappings) => mappings is null
         ? []
         : mappings.Select(mapping => KeyboardChordFunctions.TryParse(mapping.Value, out var chord) ? new GlobalShortcutBinding(mapping.Key, chord) : null).Where(binding => binding is not null).Cast<GlobalShortcutBinding>().ToArray();
 }

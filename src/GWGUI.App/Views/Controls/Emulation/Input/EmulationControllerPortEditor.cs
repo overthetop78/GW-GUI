@@ -14,9 +14,7 @@ internal sealed class EmulationControllerPortEditor
 {
     private readonly EmulationBindingVisualizationController _visualizationController;
     private IReadOnlyDictionary<EmulationControllerVisualControl, string>? _visualCommandIds;
-    internal EmulationControllerPortEditor(int number, InputCaptureSources captureSources,
-        bool prefixKeyboardSource, string actionLabel, string searchLabel,
-        string moduleId, string machineId)
+    internal EmulationControllerPortEditor(int number, InputCaptureSources captureSources, bool prefixKeyboardSource, string actionLabel, string searchLabel, string moduleId, string machineId)
     {
         Number = number;
         ModuleId = moduleId;
@@ -56,9 +54,7 @@ internal sealed class EmulationControllerPortEditor
     internal InputBindingEditor Bindings { get; }
     internal int DeadZonePercent { get; set; }
 
-    internal void SetVisualProfile(
-        ControllerArtworkProfile? profile,
-        IReadOnlyDictionary<EmulationControllerVisualControl, string>? commandIds)
+    internal void SetVisualProfile(ControllerArtworkProfile? profile, IReadOnlyDictionary<EmulationControllerVisualControl, string>? commandIds)
     {
         _visualCommandIds = commandIds;
         Visualizer.ArtworkProfile = profile;

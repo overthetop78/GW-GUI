@@ -28,9 +28,7 @@ internal sealed class MachineCommandBar
     private bool _supportsSavedStates;
     private bool _quickStateAvailable;
 
-    internal MachineCommandBar(DockPanel host, MachineCommandActions actions,
-        IReadOnlyList<GlobalShortcutBinding> shortcuts, Action<Exception> showError,
-        Action restoreFocus)
+    internal MachineCommandBar(DockPanel host, MachineCommandActions actions, IReadOnlyList<GlobalShortcutBinding> shortcuts, Action<Exception> showError, Action restoreFocus)
     {
         _restoreFocus = restoreFocus;
         _power = Command(MachineCommandGlyphConstants.Power, EmulationResourceKeys.Power, actions.TogglePower, showError, false);
@@ -167,8 +165,7 @@ internal sealed class MachineCommandBar
         if (button.Content is TextBlock text) text.Text = glyph;
     }
 
-    private Button Command(string glyph, string tooltipResource, Func<Task> action,
-        Action<Exception> showError, bool requiresPower = true)
+    private Button Command(string glyph, string tooltipResource, Func<Task> action, Action<Exception> showError, bool requiresPower = true)
     {
         var button = MachineView.CreateCommandButton(glyph, LocExtension.Get(tooltipResource));
         button.Click += async (_, _) => await RunAsync(action, showError);

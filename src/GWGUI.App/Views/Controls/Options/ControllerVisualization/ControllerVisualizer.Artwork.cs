@@ -78,10 +78,7 @@ public sealed partial class ControllerVisualizer
         return true;
     }
 
-    private void DrawArtworkProfileOverlays(
-        DrawingContext dc,
-        ControllerArtworkProfile profile,
-        Rect artworkBounds)
+    private void DrawArtworkProfileOverlays(DrawingContext dc, ControllerArtworkProfile profile, Rect artworkBounds)
     {
         var joystickZone = profile.Zones.FirstOrDefault(zone => zone.Shape == ControllerVisualZoneShape.JoystickDirection && HasVisualCommand(zone.Control));
         if (joystickZone is not null)
@@ -136,9 +133,7 @@ public sealed partial class ControllerVisualizer
         return Math.Clamp(Math.Abs(_visualState?.EmulatedCommandValue(commandId) ?? 0f), 0f, 1f);
     }
 
-    private static Rect DirectionZoneBounds(
-        Rect bounds,
-        EmulationControllerVisualControl control)
+    private static Rect DirectionZoneBounds(Rect bounds, EmulationControllerVisualControl control)
     {
         var horizontalWidth = bounds.Width * .44d;
         var horizontalHeight = bounds.Height * .18d;

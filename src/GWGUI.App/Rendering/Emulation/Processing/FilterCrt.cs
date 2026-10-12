@@ -5,8 +5,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal static class FilterCrt
 {
-    public static void Apply(float[] colors, int width, int height, int sourceWidth, int sourceHeight,
-        EmulationCrtVideoConfiguration configuration)
+    public static void Apply(float[] colors, int width, int height, int sourceWidth, int sourceHeight, EmulationCrtVideoConfiguration configuration)
     {
         ApplyGeometry(colors, width, height, configuration.HorizontalCurvature, configuration.VerticalCurvature, configuration.Trapezoid);
         ApplyBeam(colors, width, height, configuration.BeamWidth, configuration.BeamIntensity, configuration.BeamDiffusion);
@@ -21,8 +20,7 @@ internal static class FilterCrt
         ApplyVignette(colors, width, height, configuration.Vignette);
     }
 
-    internal static void ApplyGeometry(float[] colors, int width, int height,
-        int horizontalSetting, int verticalSetting, int trapezoidSetting)
+    internal static void ApplyGeometry(float[] colors, int width, int height, int horizontalSetting, int verticalSetting, int trapezoidSetting)
     {
         if ((horizontalSetting == 0 && verticalSetting == 0 && trapezoidSetting == 0)
             || width < 2 || height < 2) return;
@@ -52,8 +50,7 @@ internal static class FilterCrt
         }
     }
 
-    internal static void ApplyBeam(float[] colors, int width, int height,
-        int widthSetting, int intensitySetting, int diffusionSetting)
+    internal static void ApplyBeam(float[] colors, int width, int height, int widthSetting, int intensitySetting, int diffusionSetting)
     {
         if (widthSetting == 0 && intensitySetting == 0 && diffusionSetting == 0) return;
         var source = colors.ToArray();
@@ -88,9 +85,7 @@ internal static class FilterCrt
         }
     }
 
-    internal static void ApplyMask(float[] colors, int width, int height,
-        int sourceWidth, int sourceHeight,
-        EmulationCrtMask mask, EmulationSubpixelLayout layout, int setting)
+    internal static void ApplyMask(float[] colors, int width, int height, int sourceWidth, int sourceHeight, EmulationCrtMask mask, EmulationSubpixelLayout layout, int setting)
     {
         if (mask == EmulationCrtMask.None || setting == 0) return;
         var strength = setting / 100f * 0.75f;
@@ -162,10 +157,7 @@ internal static class FilterCrt
         }
     }
 
-    internal static void ApplyPattern(float[] colors, int width, int height,
-        int sourceWidth, int sourceHeight, bool enabled,
-        EmulationPatternOrientation orientation, int frequencySetting, int phaseSetting,
-        int intensitySetting)
+    internal static void ApplyPattern(float[] colors, int width, int height, int sourceWidth, int sourceHeight, bool enabled, EmulationPatternOrientation orientation, int frequencySetting, int phaseSetting, int intensitySetting)
     {
         if (!enabled || intensitySetting == 0) return;
         var axisLength = orientation == EmulationPatternOrientation.Horizontal ? sourceHeight : sourceWidth;
@@ -185,8 +177,7 @@ internal static class FilterCrt
         }
     }
 
-    private static float Neighborhood(float[] colors, int width, int height,
-        int x, int y, int channel)
+    private static float Neighborhood(float[] colors, int width, int height, int x, int y, int channel)
     {
         var sum = 0f;
         for (var offsetY = -1; offsetY <= 1; offsetY++)
@@ -195,8 +186,7 @@ internal static class FilterCrt
         return sum / 9f;
     }
 
-    private static float Bilinear(float[] colors, int width, int height,
-        float x, float y, int channel)
+    private static float Bilinear(float[] colors, int width, int height, float x, float y, int channel)
     {
         var left = (int)MathF.Floor(x);
         var top = (int)MathF.Floor(y);

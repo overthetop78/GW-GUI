@@ -114,11 +114,7 @@ public partial class GwToolWindow : Window
         }
     }
 
-    private void AddField(
-        string key,
-        string label,
-        string value
-    )
+    private void AddField(string key, string label, string value)
     {
         var panel = new StackPanel
         {
@@ -137,11 +133,7 @@ public partial class GwToolWindow : Window
         _fields[key] = text;
     }
 
-    private void AddOptionalField(
-        string key,
-        string label,
-        string value
-    )
+    private void AddOptionalField(string key, string label, string value)
     {
         var panel = new StackPanel
         {
@@ -167,10 +159,7 @@ public partial class GwToolWindow : Window
         _fields[key] = text;
     }
 
-    private void AddCheck(
-        string key,
-        string label
-    )
+    private void AddCheck(string key, string label)
     {
         var check = new CheckBox
         {

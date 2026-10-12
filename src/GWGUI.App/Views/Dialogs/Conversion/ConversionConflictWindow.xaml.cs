@@ -44,10 +44,7 @@ public partial class ConversionConflictWindow : Window
         DataContext = this;
     }
 
-    private void ApplyAll_Click(
-        object sender,
-        RoutedEventArgs e
-    )
+    private void ApplyAll_Click(object sender, RoutedEventArgs e)
     {
         if (sender is Button { Tag: string value } && Enum.TryParse<ConversionConflictChoice>(value, out var choice))
             foreach (var row in Rows)

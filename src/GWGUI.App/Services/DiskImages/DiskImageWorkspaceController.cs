@@ -142,9 +142,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
 
         var disk = await _explore(path, requestedFormatId, cancellationToken);
         cancellationToken.ThrowIfCancellationRequested();
-        var representation = disk.ScpImage is { } scpImage
-            ? (GWGUI.MediaEngine.Interfaces.IMediaImageRepresentation)new FluxMediaImageRepresentation(ScpProtectedTrackImageAdapter.Create(scpImage))
-            : new SectorMediaImageRepresentation(disk.Image);
+        var representation = disk.ScpImage is { } scpImage ? (GWGUI.MediaEngine.Interfaces.IMediaImageRepresentation)new FluxMediaImageRepresentation(ScpProtectedTrackImageAdapter.Create(scpImage)) : new SectorMediaImageRepresentation(disk.Image);
         var document = MediaImageDocument.CreateUnexplored(
             new MediaSourceDescriptor(path, [], RequestedFormatId: requestedFormatId),
             disk.PrimaryFormatId,
@@ -159,9 +157,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     public string? LastCapturedPath { get; set; }
     public IImageDisquette? LastReadImage { get; private set; }
 
-    public async Task<ExploredDiskImage> AnalyzeAsync(
-        string path,
-        CancellationToken cancellationToken = default)
+    public async Task<ExploredDiskImage> AnalyzeAsync(string path, CancellationToken cancellationToken = default)
     {
         var openingResult = _mediaOpeningAnalysis is null ? null : await _mediaOpeningAnalysis.AnalyzeAsync(path, cancellationToken: cancellationToken, includeFileSystems: true);
         cancellationToken.ThrowIfCancellationRequested();
@@ -178,10 +174,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         return document;
     }
 
-    public async Task AnalyzeAsync(
-        string path,
-        bool includeFileSystems,
-        CancellationToken cancellationToken = default)
+    public async Task AnalyzeAsync(string path, bool includeFileSystems, CancellationToken cancellationToken = default)
     {
         if (includeFileSystems)
         {
@@ -268,10 +261,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         }
     }
 
-    private async Task LoadCoreAsync(
-        string path,
-        string? displayFileName,
-        CancellationToken cancellationToken)
+    private async Task LoadCoreAsync(string path, string? displayFileName, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var shownName = displayFileName ?? Path.GetFileName(path);
@@ -320,10 +310,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
 
     private string FormatName(string formatId) => new BuiltInImageFormatCatalog(key => _localize(key, [])).Formats.FirstOrDefault(format => format.Id.Equals(formatId, StringComparison.OrdinalIgnoreCase))?.DisplayName ?? formatId;
 
-    internal sealed class SelectedFormatUnsupportedException(
-        string formatName,
-        string fileName,
-        Exception innerException) : Exception(innerException.Message, innerException)
+    internal sealed class SelectedFormatUnsupportedException(string formatName, string fileName, Exception innerException) : Exception(innerException.Message, innerException)
     {
         internal string FormatName { get; } = formatName;
         internal string FileName { get; } = fileName;
@@ -377,11 +364,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
             if (string.IsNullOrWhiteSpace(formatId)) return;
             var sourcePath = VisualizerSourcePath();
             var presentedException = new SelectedFormatUnsupportedException(FormatName(formatId), Path.GetFileName(sourcePath ?? string.Empty), exception);
-            _showError(
-                presentedException,
-                $"Selecting Visualizer format {formatId} for disk image: {sourcePath}",
-                "Explorer.SelectedFormatUnsupportedTitle",
-                "Explorer.SelectedFormatUnsupported");
+            _showError(presentedException, $"Selecting Visualizer format {formatId} for disk image: {sourcePath}", "Explorer.SelectedFormatUnsupportedTitle", "Explorer.SelectedFormatUnsupported");
         }
     }
 
@@ -463,9 +446,6 @@ internal sealed class DiskImageWorkspaceController : IDisposable
 
     internal static TimeSpan RemainingSectorTrackPresentationDelay(TimeSpan elapsedSincePresentation) => MediaVisualizationController.RemainingSectorTrackPresentationDelay(elapsedSincePresentation);
 
-    private sealed record SharedLoadRequest(
-        string Path,
-        string? DisplayFileName,
-        TaskCompletionSource<bool> Completion);
+    private sealed record SharedLoadRequest(string Path, string? DisplayFileName, TaskCompletionSource<bool> Completion);
 
 }

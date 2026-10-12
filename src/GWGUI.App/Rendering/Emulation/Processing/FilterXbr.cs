@@ -5,8 +5,7 @@ internal static class FilterXbr
 {
     private const float YWeight = 48f;
 
-    public static void Sample(float[] source, int width, int height,
-        float sourcePositionX, float sourcePositionY, Span<float> result)
+    public static void Sample(float[] source, int width, int height, float sourcePositionX, float sourcePositionY, Span<float> result)
     {
         var centerX = (int)MathF.Floor(sourcePositionX);
         var centerY = (int)MathF.Floor(sourcePositionY);

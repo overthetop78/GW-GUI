@@ -127,10 +127,7 @@ internal sealed class MediaVisualizationController
         return descriptor.RepresentationKind != MediaRepresentationKind.Flux;
     }
 
-    private async Task PresentBlockImageAsync(
-        MediaImageDocument document,
-        MediaVisualizationDescriptor descriptor,
-        CancellationToken cancellationToken)
+    private async Task PresentBlockImageAsync(MediaImageDocument document, MediaVisualizationDescriptor descriptor, CancellationToken cancellationToken)
     {
         _blockRenderModel = _blockPresenter.BuildRenderModel(document);
         _selectedBlockRange = null;
@@ -157,12 +154,7 @@ internal sealed class MediaVisualizationController
         }
     }
 
-    internal async Task PresentSectorImageAsync(
-        MediaImageDocument document,
-        MediaVisualizationDescriptor descriptor,
-        SectorImage image,
-        CancellationToken cancellationToken,
-        bool showProgress = false)
+    internal async Task PresentSectorImageAsync(MediaImageDocument document, MediaVisualizationDescriptor descriptor, SectorImage image, CancellationToken cancellationToken, bool showProgress = false)
     {
         var geometry = _sectorPresenter.BuildGeometryModel(image);
         if (showProgress)

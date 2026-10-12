@@ -2,8 +2,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal static class FilterBilinear
 {
-        internal static float Sample(float[] source, int width, int height,
-        float x, float y, int channel)
+    internal static float Sample(float[] source, int width, int height, float x, float y, int channel)
     {
         var left = (int)MathF.Floor(x);
         var top = (int)MathF.Floor(y);
@@ -22,7 +21,7 @@ internal static class FilterBilinear
     }
 
     private static float Lerp(float first, float second, float amount) => first + (second - first) * amount;
-internal const string OpenGlShader = """
+    internal const string OpenGlShader = """
         vec4 linearSample(vec2 uv)
         {
             return texture2D(Source, clamp(uv, 0.5 / Processing.zw, 1.0 - 0.5 / Processing.zw));

@@ -21,8 +21,7 @@ internal sealed class EmulationStorageSettingsController
     private IEmulationConfiguration? _configuration;
     private EmulationStorageSettings _settings = new([], [], []);
 
-    internal EmulationStorageSettingsController(string moduleId, IEmulationStorageSettingsManager manager,
-        Func<EmulationDefaultFolderCategory?, string> defaultFolder)
+    internal EmulationStorageSettingsController(string moduleId, IEmulationStorageSettingsManager manager, Func<EmulationDefaultFolderCategory?, string> defaultFolder)
     {
         _moduleId = moduleId;
         _manager = manager;
@@ -65,10 +64,7 @@ internal sealed class EmulationStorageSettingsController
         return _manager.ApplyStorageSettings(configuration, _settings);
     }
 
-    private string ImageDirectory(EmulationMediaDevice device) => device.ImageDirectory
-        ?? (device.DefaultImageSubdirectory is { } subdirectory
-            ? Path.Combine(_defaultFolder(EmulationDefaultFolderCategory.HardDisk), subdirectory)
-            : _defaultFolder(EmulationDefaultFolderCategory.HardDisk));
+    private string ImageDirectory(EmulationMediaDevice device) => device.ImageDirectory ?? (device.DefaultImageSubdirectory is { } subdirectory ? Path.Combine(_defaultFolder(EmulationDefaultFolderCategory.HardDisk), subdirectory) : _defaultFolder(EmulationDefaultFolderCategory.HardDisk));
 
     private void AddDevice(object? sender, EventArgs args)
     {
@@ -183,10 +179,8 @@ internal sealed class EmulationStorageSettingsController
     private void ConfigureCompactDisc(EmulationMediaDevice device)
     {
         var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot)?.CompactDisc ?? new EmulationCompactDiscDriveSettings();
-        var cacheLabel = device.CompactDiscCacheResourceKey is { } cacheResource
-            ? LocExtension.GetForModule(_moduleId, cacheResource) : null;
-        var ignoreErrorsLabel = device.CompactDiscIgnoreErrorsResourceKey is { } ignoreResource
-            ? LocExtension.GetForModule(_moduleId, ignoreResource) : null;
+        var cacheLabel = device.CompactDiscCacheResourceKey is { } cacheResource ? LocExtension.GetForModule(_moduleId, cacheResource) : null;
+        var ignoreErrorsLabel = device.CompactDiscIgnoreErrorsResourceKey is { } ignoreResource ? LocExtension.GetForModule(_moduleId, ignoreResource) : null;
         var dialog = new CompactDiscDriveConfigurationDialog(
             DeviceLabel(device),
             _configuration?.MachineId ?? string.Empty,
@@ -255,8 +249,7 @@ internal sealed class EmulationStorageSettingsController
         var media = string.IsNullOrWhiteSpace(supportPath) ? null : new EmulationMedia(supportPath, device.Slot, device.MediaType, current?.IsReadOnly ?? false, true);
         _settings = _settings with
         {
-            MountedMedia = _settings.MountedMedia.Where(item => item.Slot != device.Slot)
-                .Concat(media is null ? [] : new[] { media }).ToArray(),
+            MountedMedia = _settings.MountedMedia.Where(item => item.Slot != device.Slot).Concat(media is null ? [] : new[] { media }).ToArray(),
             DeviceSettings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot).Append(new EmulationStorageDeviceSettings(device.Slot, InterfaceId: media is null ? null : interfaceId?.ToLowerInvariant())).ToArray()
         };
         Rebuild();
@@ -316,8 +309,6 @@ internal sealed class EmulationStorageSettingsController
         return string.IsNullOrWhiteSpace(choice.DisplayResourceKey) ? choice.InvariantDisplayValue ?? choice.Value : LocExtension.GetForModule(_moduleId, choice.DisplayResourceKey);
     }
 
-    private string DeviceLabel(EmulationMediaDevice device) => device.DisplayLabelResourceKey is { } key
-        ? LocExtension.GetForModule(_moduleId, key, device.Slot.Index + 1)
-        : device.DisplayLabel ?? device.Slot.ToString();
+    private string DeviceLabel(EmulationMediaDevice device) => device.DisplayLabelResourceKey is { } key ? LocExtension.GetForModule(_moduleId, key, device.Slot.Index + 1) : device.DisplayLabel ?? device.Slot.ToString();
 
 }

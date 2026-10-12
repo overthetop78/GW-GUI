@@ -7,9 +7,7 @@ using GWGUI.MediaEngine.Images.Creation;
 namespace GWGUI.App.Services.Conversion;
 
 /// <summary>Prépare et exécute les migrations de fichiers sans les confondre avec les conversions d'images.</summary>
-public sealed class FileMigrationCoordinator(
-    DiskImageExplorer explorer,
-    FileSystemMigrationService migrationService)
+public sealed class FileMigrationCoordinator(DiskImageExplorer explorer, FileSystemMigrationService migrationService)
 {
     public async Task<FileSystemVolume> ReadSourceAsync(string path, CancellationToken cancellationToken = default)
     {

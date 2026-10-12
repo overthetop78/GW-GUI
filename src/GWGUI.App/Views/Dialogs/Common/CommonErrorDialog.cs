@@ -54,9 +54,7 @@ internal sealed class CommonErrorDialog : Window
             Width = content.MediaIcons is { Count: > 0 } ? new GridLength(104) : GridLength.Auto
         });
         body.ColumnDefinitions.Add(new ColumnDefinition());
-        body.Children.Add(content.MediaIcons is { Count: > 0 }
-            ? MediaIconPanel(content.MediaIcons)
-            : SingleIcon(content.Icon, content.IconBrush));
+        body.Children.Add(content.MediaIcons is { Count: > 0 } ? MediaIconPanel(content.MediaIcons) : SingleIcon(content.Icon, content.IconBrush));
         Grid.SetColumn(text, 1);
         body.Children.Add(text);
 

@@ -11,19 +11,11 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 
 namespace GWGUI.App.Services.PhysicalDiskReading;
 
-public sealed class PhysicalDiskReadService(
-    FloppyFluxAcquisitionService acquisitionService,
-    IScpWriter writer,
-    FluxDecoderRegistry decoders,
-    DiskImageExplorer explorer)
+public sealed class PhysicalDiskReadService(FloppyFluxAcquisitionService acquisitionService, IScpWriter writer, FluxDecoderRegistry decoders, DiskImageExplorer explorer)
 {
     public static PhysicalDiskReadService CreateDefault() => new(new FloppyFluxAcquisitionService(), new ScpWriter(), new FluxDecoderRegistry(), DiskImageExplorer.CreateDefault());
 
-    public async Task<PhysicalDiskReadResult> ReadAsync(
-        MediaAcquisitionResult acquisition,
-        string outputPath,
-        IProgress<PhysicalDiskReadOperationProgress>? progress = null,
-        CancellationToken cancellationToken = default)
+    public async Task<PhysicalDiskReadResult> ReadAsync(MediaAcquisitionResult acquisition, string outputPath, IProgress<PhysicalDiskReadOperationProgress>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(acquisition);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
@@ -39,10 +31,7 @@ public sealed class PhysicalDiskReadService(
         return new(outputPath, acquisition, diagnostics, document);
     }
 
-    private IReadOnlyList<PhysicalDiskTrackDiagnostic> DecodeTracks(
-        ScpImage image,
-        IProgress<PhysicalDiskReadOperationProgress>? progress,
-        CancellationToken cancellationToken)
+    private IReadOnlyList<PhysicalDiskTrackDiagnostic> DecodeTracks(ScpImage image, IProgress<PhysicalDiskReadOperationProgress>? progress, CancellationToken cancellationToken)
     {
         var diagnostics = new List<PhysicalDiskTrackDiagnostic>(image.Tracks.Count);
         for (var index = 0; index < image.Tracks.Count; index++)

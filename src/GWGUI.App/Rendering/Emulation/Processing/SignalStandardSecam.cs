@@ -34,8 +34,7 @@ internal static class SignalStandardSecam
         }
     }
 
-    private static void Components(float[] source, int index, out float luminance,
-        out float redDifference, out float blueDifference)
+    private static void Components(float[] source, int index, out float luminance, out float redDifference, out float blueDifference)
     {
         var red = source[index]; var green = source[index + 1]; var blue = source[index + 2];
         luminance = red * 0.299f + green * 0.587f + blue * 0.114f;

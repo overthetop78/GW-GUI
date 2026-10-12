@@ -116,9 +116,7 @@ public partial class DiskClassificationSelector : UserControl
     private void RefreshProtections(string? selectedId = null)
     {
         var compatible = _catalog.ProtectionsFor(SelectedMachine, SelectedFormatId);
-        var protections = compatible.Count == 0
-            ? []
-            : new[] { new DiskProtection("", SelectedMachine ?? "", new HashSet<string>(), "—") }.Concat(compatible).ToArray();
+        var protections = compatible.Count == 0 ? [] : new[] { new DiskProtection("", SelectedMachine ?? "", new HashSet<string>(), "—") }.Concat(compatible).ToArray();
         Protection.ItemsSource = protections;
         Protection.SelectedItem = protections.FirstOrDefault(item => item.Id.Equals(selectedId, StringComparison.OrdinalIgnoreCase)) ?? protections.FirstOrDefault();
         ProtectionPanel.Visibility = compatible.Count == 0 ? Visibility.Collapsed : Visibility.Visible;

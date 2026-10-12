@@ -24,8 +24,7 @@ public sealed class FloppyDriveConfigurationDialog : Window
 
     public FloppyDriveSettings Settings => new((_model.SelectedItem as StorageDialogChoice)?.Value ?? "35dd", (_speed.SelectedItem as StorageDialogChoice)?.Value ?? "100", _writeProtected.IsChecked == true, _redirectWrites.IsChecked == true);
 
-    public FloppyDriveConfigurationDialog(string identifier, string machineName,
-        FloppyDriveSettings settings, FloppyDriveDialogOptions options, Guid clientGuid, string? moduleId = null)
+    public FloppyDriveConfigurationDialog(string identifier, string machineName, FloppyDriveSettings settings, FloppyDriveDialogOptions options, Guid clientGuid, string? moduleId = null)
     {
         _options = options;
         _clientGuid = clientGuid;
@@ -52,10 +51,7 @@ public sealed class FloppyDriveConfigurationDialog : Window
         _redirectWrites.Content = LocExtension.Get("Emulation.Storage.Floppy.WriteRedirect");
         _redirectWrites.IsChecked = settings.RedirectWrites;
 
-        var drive = StorageDialogUi.CompactFields(
-            (LocExtension.Get(EmulationResourceKeys.DeviceIdentifier),
-                new TextBox { Text = identifier, IsReadOnly = true }),
-            (LocExtension.Get(EmulationResourceKeys.Model), _model));
+        var drive = StorageDialogUi.CompactFields((LocExtension.Get(EmulationResourceKeys.DeviceIdentifier), new TextBox { Text = identifier, IsReadOnly = true }), (LocExtension.Get(EmulationResourceKeys.Model), _model));
         var behavior = new StackPanel();
         behavior.Children.Add(StorageDialogUi.CompactFields((LocExtension.Get("Emulation.Storage.Floppy.Speed"), _speed)));
         _writeProtected.Margin = new Thickness(0, 8, 0, 4);
@@ -82,8 +78,7 @@ public sealed class FloppyDriveConfigurationDialog : Window
         }
 
         Content = StorageDialogUi.DialogLayout(
-            StorageDialogUi.DialogHeader(IconGlyphs.Memory, Title,
-                $"{LocExtension.Get(EmulationResourceKeys.FloppyDevice)} · {machineName}"),
+            StorageDialogUi.DialogHeader(IconGlyphs.Memory, Title, $"{LocExtension.Get(EmulationResourceKeys.FloppyDevice)} · {machineName}"),
             body,
             StorageDialogUi.Footer(this, LocExtension.Get("Common.Save")));
     }

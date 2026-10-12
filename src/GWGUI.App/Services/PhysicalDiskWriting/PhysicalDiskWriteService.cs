@@ -12,11 +12,7 @@ namespace GWGUI.App.Services.PhysicalDiskWriting;
 
 public sealed class PhysicalDiskWriteService(MediaPhysicalWriterRegistry writers)
 {
-    public async Task<PhysicalDiskWriteResult> WriteAsync(
-        MediaWritePlan plan,
-        PhysicalDiskWriteOptions options,
-        IProgress<PhysicalTrackWriteProgress>? progress = null,
-        CancellationToken cancellationToken = default)
+    public async Task<PhysicalDiskWriteResult> WriteAsync(MediaWritePlan plan, PhysicalDiskWriteOptions options, IProgress<PhysicalTrackWriteProgress>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(plan);
         ArgumentNullException.ThrowIfNull(options);
@@ -41,10 +37,7 @@ public sealed class PhysicalDiskWriteService(MediaPhysicalWriterRegistry writers
             [GreaseweazleMediaOptionKeys.HardSectorTicks] = options.HardSectorTicks.ToString(CultureInfo.InvariantCulture)
         };
 
-    private static void ReportProgress(
-        MediaWritePlan plan,
-        MediaPhysicalWriteProgress value,
-        IProgress<PhysicalTrackWriteProgress>? progress)
+    private static void ReportProgress(MediaWritePlan plan, MediaPhysicalWriteProgress value, IProgress<PhysicalTrackWriteProgress>? progress)
     {
         var unit = plan.DataUnits.FirstOrDefault(item => item.Position == value.Position);
         var cylinder = unit is null ? 0 : ReadPosition(unit.Metadata, MediaPhysicalMetadataKeys.Cylinder);

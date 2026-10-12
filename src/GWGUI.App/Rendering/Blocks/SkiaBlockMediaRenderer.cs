@@ -70,13 +70,7 @@ public sealed class SkiaBlockMediaRenderer
         return model.Ranges.FirstOrDefault(range => address >= range.Start && address < range.Start + range.Length);
     }
 
-    private static void RenderCartridge(
-        SKCanvas canvas,
-        BlockMediaRenderModel model,
-        BlockMediaRange? selectedRange,
-        int width,
-        int height,
-        float zoom)
+    private static void RenderCartridge(SKCanvas canvas, BlockMediaRenderModel model, BlockMediaRange? selectedRange, int width, int height, float zoom)
     {
         var body = CartridgeBounds(width, height, zoom);
         using (var bodyPaint = new SKPaint
@@ -135,12 +129,7 @@ public sealed class SkiaBlockMediaRenderer
         }
     }
 
-    private static BlockMediaRange? HitTestCartridge(
-        BlockMediaRenderModel model,
-        int width,
-        int height,
-        SKPoint point,
-        float zoom)
+    private static BlockMediaRange? HitTestCartridge(BlockMediaRenderModel model, int width, int height, SKPoint point, float zoom)
     {
         var ranges = Aggregate(model.Ranges);
         var body = CartridgeBounds(width, height, zoom);

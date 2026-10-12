@@ -14,9 +14,7 @@ namespace GWGUI.App.Views.Controls.Emulation.Options;
 
 internal static class EmulationVfdSettingsBlock
 {
-    internal static FrameworkElement Create(EmulationVfdVideoConfiguration value,
-        Action<Func<EmulationVfdVideoConfiguration, EmulationVfdVideoConfiguration>> changed,
-        Action rebuild)
+    internal static FrameworkElement Create(EmulationVfdVideoConfiguration value, Action<Func<EmulationVfdVideoConfiguration, EmulationVfdVideoConfiguration>> changed, Action rebuild)
     {
         var groups = new Grid();
         groups.ColumnDefinitions.Add(new ColumnDefinition());
@@ -24,18 +22,10 @@ internal static class EmulationVfdSettingsBlock
         groups.ColumnDefinitions.Add(new ColumnDefinition());
 
         AddGroup(groups, EmulationResourceKeys.VideoVfdGroupPhosphorAndGlass, 0,
-            Choice(EmulationVideoProcessingCatalog.VfdColor,
-                EmulationVideoProcessingCatalog.VfdColorResourceKeys, value.Color,
-                color => changed(current => current with { Color = color })),
-            Slider(EmulationVideoProcessingCatalog.VfdPhosphorIntensity,
-                value.PhosphorIntensity, 100,
-                number => changed(current => current with { PhosphorIntensity = number })),
-            Slider(EmulationVideoProcessingCatalog.VfdEmissionThreshold,
-                value.EmissionThreshold, 100,
-                number => changed(current => current with { EmissionThreshold = number })),
-            Slider(EmulationVideoProcessingCatalog.VfdGlassDarkening,
-                value.GlassDarkening, 100,
-                number => changed(current => current with { GlassDarkening = number })));
+            Choice(EmulationVideoProcessingCatalog.VfdColor, EmulationVideoProcessingCatalog.VfdColorResourceKeys, value.Color, color => changed(current => current with { Color = color })),
+            Slider(EmulationVideoProcessingCatalog.VfdPhosphorIntensity, value.PhosphorIntensity, 100, number => changed(current => current with { PhosphorIntensity = number })),
+            Slider(EmulationVideoProcessingCatalog.VfdEmissionThreshold, value.EmissionThreshold, 100, number => changed(current => current with { EmissionThreshold = number })),
+            Slider(EmulationVideoProcessingCatalog.VfdGlassDarkening, value.GlassDarkening, 100, number => changed(current => current with { GlassDarkening = number })));
 
         AddGroup(groups, EmulationResourceKeys.VideoVfdGroupAnodes, 1,
             Choice(EmulationVideoProcessingCatalog.VfdStructure,
@@ -45,29 +35,17 @@ internal static class EmulationVfdSettingsBlock
                     changed(current => current with { Structure = structure });
                     rebuild();
                 }),
-            Slider(EmulationVideoProcessingCatalog.VfdCellSize, value.CellSize, 100,
-                number => changed(current => current with { CellSize = number }),
-                value.Structure == EmulationVfdStructure.DotMatrix),
-            Slider(EmulationVideoProcessingCatalog.VfdCellGap, value.CellGap, 100,
-                number => changed(current => current with { CellGap = number }),
-                value.Structure == EmulationVfdStructure.DotMatrix));
+            Slider(EmulationVideoProcessingCatalog.VfdCellSize, value.CellSize, 100, number => changed(current => current with { CellSize = number }), value.Structure == EmulationVfdStructure.DotMatrix),
+            Slider(EmulationVideoProcessingCatalog.VfdCellGap, value.CellGap, 100, number => changed(current => current with { CellGap = number }), value.Structure == EmulationVfdStructure.DotMatrix));
 
         AddGroup(groups, EmulationResourceKeys.VideoVfdGroupGlowAndResponse, 2,
-            Slider(EmulationVideoProcessingCatalog.VfdHaloIntensity,
-                value.HaloIntensity, 100,
-                number => changed(current => current with { HaloIntensity = number })),
-            Slider(EmulationVideoProcessingCatalog.VfdHaloRadius,
-                value.HaloRadius, 100,
-                number => changed(current => current with { HaloRadius = number })),
-            Slider(EmulationVideoProcessingCatalog.VfdPersistence,
-                value.PersistenceMilliseconds,
-                EmulationVideoProcessingLimits.DurationMaximumMilliseconds,
-                number => changed(current => current with { PersistenceMilliseconds = number })));
+            Slider(EmulationVideoProcessingCatalog.VfdHaloIntensity, value.HaloIntensity, 100, number => changed(current => current with { HaloIntensity = number })),
+            Slider(EmulationVideoProcessingCatalog.VfdHaloRadius, value.HaloRadius, 100, number => changed(current => current with { HaloRadius = number })),
+            Slider(EmulationVideoProcessingCatalog.VfdPersistence, value.PersistenceMilliseconds, EmulationVideoProcessingLimits.DurationMaximumMilliseconds, number => changed(current => current with { PersistenceMilliseconds = number })));
         return groups;
     }
 
-    private static void AddGroup(Grid groups, string titleResourceKey, int column,
-        params FrameworkElement[] fields)
+    private static void AddGroup(Grid groups, string titleResourceKey, int column, params FrameworkElement[] fields)
     {
         var content = new StackPanel();
         content.Children.Add(new TextBlock
@@ -88,8 +66,7 @@ internal static class EmulationVfdSettingsBlock
         groups.Children.Add(card);
     }
 
-    private static FrameworkElement Slider(string id, int value, int maximum,
-        Action<int> changed, bool enabled = true)
+    private static FrameworkElement Slider(string id, int value, int maximum, Action<int> changed, bool enabled = true)
     {
         var row = new Grid();
         row.ColumnDefinitions.Add(new ColumnDefinition());
@@ -125,8 +102,7 @@ internal static class EmulationVfdSettingsBlock
         return field;
     }
 
-    private static FrameworkElement Choice<T>(string id,
-        IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)
+    private static FrameworkElement Choice<T>(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)
         where T : struct, Enum
     {
         var choices = resources.Select(item => new ChoiceValue<T>(item.Key, LocExtension.Get(item.Value))).ToArray();

@@ -57,10 +57,7 @@ public sealed partial class SkiaScpRenderer
             preparedRevolutions.Any(item => item.FluxArcs.Count > 0));
     }
 
-    private static (PreparedScpRevolution Revolution, int ShortTransitions, int LongTransitions, int NormalTransitions) PrepareRevolution(
-        ScpRevolution revolution,
-        FluxDecodeResult? decoded,
-        CancellationToken cancellationToken)
+    private static (PreparedScpRevolution Revolution, int ShortTransitions, int LongTransitions, int NormalTransitions) PrepareRevolution(ScpRevolution revolution, FluxDecodeResult? decoded, CancellationToken cancellationToken)
     {
         var intervals = revolution.FluxIntervals;
         if (intervals.Count == 0) return (new PreparedScpRevolution([], 0), 0, 0, 0);
@@ -122,9 +119,7 @@ public sealed partial class SkiaScpRenderer
         return intervals.Count == 0 || median == 0 ? 0 : 1;
     }
 
-    private static List<PreparedScpRevolution> ApplyFluxAgreementQuality(
-        IReadOnlyList<ScpRevolution> source,
-        IReadOnlyList<PreparedScpRevolution> prepared)
+    private static List<PreparedScpRevolution> ApplyFluxAgreementQuality(IReadOnlyList<ScpRevolution> source, IReadOnlyList<PreparedScpRevolution> prepared)
     {
         if (source.Count != prepared.Count || source.Count == 0) return prepared.ToList();
         if (source.Count == 1)

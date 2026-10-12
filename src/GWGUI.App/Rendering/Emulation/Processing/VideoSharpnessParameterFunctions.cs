@@ -17,8 +17,7 @@ internal static class VideoSharpnessParameterFunctions
         }
     }
 
-    private static float NeighborhoodAverage(float[] colors, int width, int height,
-        int x, int y, int channel)
+    private static float NeighborhoodAverage(float[] colors, int width, int height, int x, int y, int channel)
     {
         var sum = 0f;
         for (var offsetY = -1; offsetY <= 1; offsetY++)

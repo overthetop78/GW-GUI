@@ -4,8 +4,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal static class FilterProjection
 {
-    internal static void Apply(float[] colors, int width, int height,
-        EmulationProjectionVideoConfiguration configuration)
+    internal static void Apply(float[] colors, int width, int height, EmulationProjectionVideoConfiguration configuration)
     {
         var source = colors.ToArray();
         var radius = 2;
@@ -37,8 +36,7 @@ internal static class FilterProjection
         }
     }
 
-    private static (float R, float G, float B) Neighborhood(float[] source, int width, int height,
-        int x, int y, int radius)
+    private static (float R, float G, float B) Neighborhood(float[] source, int width, int height, int x, int y, int radius)
     {
         var red = 0f;
         var green = 0f;

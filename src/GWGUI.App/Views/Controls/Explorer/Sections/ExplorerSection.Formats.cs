@@ -45,8 +45,7 @@ public partial class ExplorerSection
     {
         var catalog = new DiskClassificationCatalog(_formats);
         var choices = _detectedFormatIds.Select(id => catalog.ResolveFormat(id)).Where(format => format is not null).Cast<DiskFormat>().DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
-            .Select(format => new ExplorerFormatChoice(format.Id,
-                $"{format.Family}{ControlVisualConstants.DetailSeparator}{format.DisplayName}"))
+            .Select(format => new ExplorerFormatChoice(format.Id, $"{format.Family}{ControlVisualConstants.DetailSeparator}{format.DisplayName}"))
             .ToArray();
         _updatingDetectedFormatSelector = true;
         DetectedFormatSelector.ItemsSource = choices;

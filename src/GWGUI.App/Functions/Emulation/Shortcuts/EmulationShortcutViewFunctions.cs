@@ -13,8 +13,7 @@ namespace GWGUI.App.Functions.Emulation.Shortcuts;
 
 internal static class EmulationShortcutViewFunctions
 {
-    internal static Border CreateGroup(IReadOnlyList<GlobalShortcutBinding> configuredShortcuts,
-        params (string Action, string ResourceKey)[] shortcuts)
+    internal static Border CreateGroup(IReadOnlyList<GlobalShortcutBinding> configuredShortcuts, params (string Action, string ResourceKey)[] shortcuts)
     {
         var panel = new StackPanel
         {
@@ -40,8 +39,7 @@ internal static class EmulationShortcutViewFunctions
         return border;
     }
 
-    private static UIElement CreateHint(IReadOnlyList<GlobalShortcutBinding> configuredShortcuts,
-        (string Action, string ResourceKey) shortcut)
+    private static UIElement CreateHint(IReadOnlyList<GlobalShortcutBinding> configuredShortcuts, (string Action, string ResourceKey) shortcut)
     {
         var shortcutText = ResolveShortcutText(configuredShortcuts, shortcut.Action);
         var label = LocExtension.Get(shortcut.ResourceKey);
@@ -72,8 +70,7 @@ internal static class EmulationShortcutViewFunctions
         return panel;
     }
 
-    private static string ResolveShortcutText(IReadOnlyList<GlobalShortcutBinding> configuredShortcuts,
-        string action)
+    private static string ResolveShortcutText(IReadOnlyList<GlobalShortcutBinding> configuredShortcuts, string action)
     {
         var binding = configuredShortcuts.FirstOrDefault(item => item.Action == action)?.Chord;
         if (binding is null && EmulationShortcutDefaults.Values.TryGetValue(action, out var fallback))

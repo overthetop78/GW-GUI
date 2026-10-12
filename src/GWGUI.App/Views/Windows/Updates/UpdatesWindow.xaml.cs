@@ -25,9 +25,7 @@ public partial class UpdatesWindow : Window
     {
     }
 
-    internal UpdatesWindow(PendingModuleInstallationStore pendingInstallations,
-        Action<Exception>? reportError = null,
-        Func<MessageBoxResult>? confirmCloseWithPending = null)
+    internal UpdatesWindow(PendingModuleInstallationStore pendingInstallations, Action<Exception>? reportError = null, Func<MessageBoxResult>? confirmCloseWithPending = null)
     {
         InitializeComponent();
         _pendingInstallations = pendingInstallations;

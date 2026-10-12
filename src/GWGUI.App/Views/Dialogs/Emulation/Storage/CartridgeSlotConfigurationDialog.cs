@@ -51,8 +51,7 @@ public sealed class CartridgeSlotConfigurationDialog : Window
                 field.ExplanationResourceKey is null ? null : LocExtension.GetForModule(moduleId ?? string.Empty, field.ExplanationResourceKey))));
         }
         Content = StorageDialogUi.DialogLayout(
-            StorageDialogUi.DialogHeader(IconGlyphs.Controller, Title,
-                $"{LocExtension.Get(EmulationResourceKeys.CartridgeDevice)} · {machineName}"),
+            StorageDialogUi.DialogHeader(IconGlyphs.Controller, Title, $"{LocExtension.Get(EmulationResourceKeys.CartridgeDevice)} · {machineName}"),
             StorageDialogUi.Card(LocExtension.Get(EmulationResourceKeys.CartridgeDevice), body),
             StorageDialogUi.Footer(this, LocExtension.Get("Common.Save")));
     }

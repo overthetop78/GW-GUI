@@ -16,8 +16,7 @@ internal static class EmulationModuleRegistry
 
     internal static IEmulationModuleLocalization? FindLocalization(string? moduleId) => string.IsNullOrWhiteSpace(moduleId) ? null : Packages.FirstOrDefault(package => string.Equals(package.Module.Id, moduleId, StringComparison.OrdinalIgnoreCase))?.Module as IEmulationModuleLocalization;
 
-    internal static IReadOnlyList<LoadedEmulationModule> Discover(string directory, string dataDirectory,
-        Action<string, Exception?> diagnostic)
+    internal static IReadOnlyList<LoadedEmulationModule> Discover(string directory, string dataDirectory, Action<string, Exception?> diagnostic)
     {
         var modules = new Dictionary<string, LoadedEmulationModule>(StringComparer.OrdinalIgnoreCase);
         try
@@ -35,8 +34,7 @@ internal static class EmulationModuleRegistry
         return modules.Values.OrderBy(package => package.Module.Id, StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
-    private static void LoadModule(string directory, string dataDirectory,
-        IDictionary<string, LoadedEmulationModule> modules, Action<string, Exception?> diagnostic)
+    private static void LoadModule(string directory, string dataDirectory, IDictionary<string, LoadedEmulationModule> modules, Action<string, Exception?> diagnostic)
     {
         var context = $"Loading emulation module manifest '{Path.Combine(directory, EmulationHostApi.ManifestFileName)}'";
         try
@@ -59,8 +57,7 @@ internal static class EmulationModuleRegistry
             if (module is null || !string.Equals(module.Id, manifest.Id, StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException($"Manifest id '{manifest.Id}' does not match the created module id '{module?.Id}'.");
             modules.Add(manifest.Id, new LoadedEmulationModule(module, manifest, Path.GetFullPath(directory)));
-            diagnostic($"Loaded emulation module '{module.Id}' version {manifest.ModuleVersion} from '{path}' " +
-                $"(host API {EmulationHostApi.CurrentVersion}).", null);
+            diagnostic($"Loaded emulation module '{module.Id}' version {manifest.ModuleVersion} from '{path}' " + $"(host API {EmulationHostApi.CurrentVersion}).", null);
         }
         catch (Exception error)
         {
@@ -82,10 +79,7 @@ internal static class EmulationModuleRegistry
         }
     }
 
-    private static bool IsFactory(Type type) =>
-        type is { IsClass: true, IsAbstract: false, IsPublic: true, ContainsGenericParameters: false }
-        && typeof(IEmulationModuleFactory).IsAssignableFrom(type)
-        && type.GetConstructor(Type.EmptyTypes) is not null;
+    private static bool IsFactory(Type type) => type is { IsClass: true, IsAbstract: false, IsPublic: true, ContainsGenericParameters: false } && typeof(IEmulationModuleFactory).IsAssignableFrom(type) && type.GetConstructor(Type.EmptyTypes) is not null;
 
     private static void WriteDiagnostic(string context, Exception? error)
     {

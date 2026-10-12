@@ -3,12 +3,9 @@ using GWGUI.Emulation.Contracts;
 
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal readonly record struct DotMatrixVideoShaderParameters(
-    Vector4 Geometry, Vector4 Emission, Vector4 Temporal)
+internal readonly record struct DotMatrixVideoShaderParameters(Vector4 Geometry, Vector4 Emission, Vector4 Temporal)
 {
-    internal static DotMatrixVideoShaderParameters From(
-        EmulationVideoProcessingConfiguration configuration, bool hasHistory,
-        double elapsedMilliseconds)
+    internal static DotMatrixVideoShaderParameters From(EmulationVideoProcessingConfiguration configuration, bool hasHistory, double elapsedMilliseconds)
     {
         var value = configuration.DotMatrix;
         var response = hasHistory ? FilterDotMatrixResponse.BlendFactor(value.ResponseTimeMilliseconds, elapsedMilliseconds) : 1f;

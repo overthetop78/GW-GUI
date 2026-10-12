@@ -13,8 +13,7 @@ internal sealed class MachineTabDragAdorner : Adorner
     private Point _pointer;
     private double? _insertionX;
 
-    internal MachineTabDragAdorner(
-        UIElement adornedElement, TabItem tab, Point pointerOffset)
+    internal MachineTabDragAdorner(UIElement adornedElement, TabItem tab, Point pointerOffset)
         : base(adornedElement)
     {
         IsHitTestVisible = false;

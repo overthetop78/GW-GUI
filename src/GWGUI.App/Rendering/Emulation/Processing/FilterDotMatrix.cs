@@ -5,9 +5,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal static class FilterDotMatrix
 {
-    internal static void Apply(float[] colors, int sourceWidth, int sourceHeight,
-        int width, int height,
-        EmulationDotMatrixVideoConfiguration configuration)
+    internal static void Apply(float[] colors, int sourceWidth, int sourceHeight, int width, int height, EmulationDotMatrixVideoConfiguration configuration)
     {
         var source = colors.ToArray();
         var pitch = FilterDotMatrixCellSize.Pitch(configuration.CellSize);

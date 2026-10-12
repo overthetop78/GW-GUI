@@ -44,12 +44,7 @@ internal static class GameInputPhysicalInputReader
         return new GameInputPhysicalState(keys, pointer, controllerStates);
     }
 
-    private static unsafe void ReadKeyboard(
-        IGameInput? gameInput,
-        GameInputDeviceEntry entry,
-        HashSet<EmulationKey> keys,
-        Func<Exception, bool> isInteropFailure,
-        Action<object?> release)
+    private static unsafe void ReadKeyboard(IGameInput? gameInput, GameInputDeviceEntry entry, HashSet<EmulationKey> keys, Func<Exception, bool> isInteropFailure, Action<object?> release)
     {
         if (gameInput is null) return;
         IGameInputReading? reading = null;

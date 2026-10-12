@@ -101,8 +101,7 @@ internal static partial class EmulationSettingsLayout
             DetachForReuse(behavior.Control);
             var behaviorGrid = new Grid { Margin = new Thickness(16, 12, 16, 14) };
             behaviorGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            behaviorGrid.ColumnDefinitions.Add(new ColumnDefinition
-                { Width = new GridLength(EmulationControllerSettingsConstants.BehaviorWidth) });
+            behaviorGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationControllerSettingsConstants.BehaviorWidth) });
             behaviorGrid.Children.Add(new TextBlock
             {
                 Text = behavior.Label,
@@ -121,10 +120,7 @@ internal static partial class EmulationSettingsLayout
         return ScrollPage(root);
     }
 
-    internal static ScrollViewer ControllerSettingsPage(
-        IReadOnlyList<EmulationControllerPortSettings> ports,
-        IReadOnlyList<EmulationSettingsControlField> behaviors,
-        string? behaviorTitle = null, string? behaviorGlyph = null)
+    internal static ScrollViewer ControllerSettingsPage(IReadOnlyList<EmulationControllerPortSettings> ports, IReadOnlyList<EmulationSettingsControlField> behaviors, string? behaviorTitle = null, string? behaviorGlyph = null)
     {
         if (behaviors.Any(field => field.Definition?.AppliesToControllerIds is not null || field.Definition?.IsGlobalControllerOption == true))
             return ControllerSettingsPage(ports, deviceOptionsFactory: port => DeviceOptions(port, behaviors.Where(field => field.Definition?.IsGlobalControllerOption != true).ToArray()),
@@ -135,8 +131,7 @@ internal static partial class EmulationSettingsLayout
             DetachForReuse(behavior.Control);
             var row = new Grid { Margin = new Thickness(0, panel.Children.Count == 0 ? 0 : 10, 0, 0) };
             row.ColumnDefinitions.Add(new ColumnDefinition());
-            row.ColumnDefinitions.Add(new ColumnDefinition
-                { Width = new GridLength(EmulationControllerSettingsConstants.BehaviorWidth) });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationControllerSettingsConstants.BehaviorWidth) });
             var label = new TextBlock
             {
                 Text = behavior.Label,
@@ -157,8 +152,7 @@ internal static partial class EmulationSettingsLayout
         return ControllerSettingsPage(ports, new EmulationSettingsControlField(string.Empty, panel), behaviorTitle, behaviorGlyph);
     }
 
-    private static FrameworkElement DeviceOptions(EmulationControllerPortSettings port,
-        IReadOnlyList<EmulationSettingsControlField> fields)
+    private static FrameworkElement DeviceOptions(EmulationControllerPortSettings port, IReadOnlyList<EmulationSettingsControlField> fields)
     {
         var panel = new StackPanel { Margin = new Thickness(10) };
         void Refresh()

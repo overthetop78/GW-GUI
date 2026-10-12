@@ -2,7 +2,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal static class FilterBicubic
 {
-        internal static float Sample(float[] source, int width, int height, float x, float y, int channel)
+    internal static float Sample(float[] source, int width, int height, float x, float y, int channel)
     {
         var left = (int)MathF.Floor(x);
         var top = (int)MathF.Floor(y);
@@ -36,7 +36,7 @@ internal static class FilterBicubic
         y = Math.Clamp(y, 0, height - 1);
         return source[(y * width + x) * 3 + channel];
     }
-internal const string OpenGlShader = """
+    internal const string OpenGlShader = """
         float cubicWeight(float distance)
         {
             const float a = -0.5;

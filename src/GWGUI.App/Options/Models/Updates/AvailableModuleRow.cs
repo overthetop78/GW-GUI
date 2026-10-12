@@ -16,8 +16,7 @@ namespace GWGUI.App.Options.Models.Updates;
 
 internal sealed class AvailableModuleRow
 {
-    internal AvailableModuleRow(string id, string displayName, string catalogUrl,
-        string detailsLabel, bool isInstalled, bool isDownloaded, bool canInstall, string stateLabel)
+    internal AvailableModuleRow(string id, string displayName, string catalogUrl, string detailsLabel, bool isInstalled, bool isDownloaded, bool canInstall, string stateLabel)
     {
         Id = id;
         DisplayName = displayName;

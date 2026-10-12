@@ -4,12 +4,7 @@ using GWGUI.Emulation;
 
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal sealed record CpuVideoFrameProcessingResult(
-    VideoFrame SourceFrame,
-    VideoFrame? ProcessedFrame,
-    byte[]? Bgra32Pixels,
-    long ConfigurationVersion,
-    Exception? Error);
+internal sealed record CpuVideoFrameProcessingResult(VideoFrame SourceFrame, VideoFrame? ProcessedFrame, byte[]? Bgra32Pixels, long ConfigurationVersion, Exception? Error);
 
 internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
 {
@@ -37,9 +32,7 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
 
     internal SoftwareVideoFrameProcessingWorker(IEmulationVideoProcessingPipeline pipeline) => _pipeline = pipeline;
 
-    internal void Submit(EmulationVideoProcessingConfiguration configuration,
-        VideoFrame frame, EmulationVideoProcessingSize outputSize,
-        long configurationVersion, Action<CpuVideoFrameProcessingResult> completed)
+    internal void Submit(EmulationVideoProcessingConfiguration configuration, VideoFrame frame, EmulationVideoProcessingSize outputSize, long configurationVersion, Action<CpuVideoFrameProcessingResult> completed)
     {
         lock (_gate)
         {
@@ -107,10 +100,5 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
         }
     }
 
-    private sealed record WorkItem(
-        EmulationVideoProcessingConfiguration Configuration,
-        VideoFrame Frame,
-        EmulationVideoProcessingSize OutputSize,
-        long ConfigurationVersion,
-        Action<CpuVideoFrameProcessingResult> Completed);
+    private sealed record WorkItem(EmulationVideoProcessingConfiguration Configuration, VideoFrame Frame, EmulationVideoProcessingSize OutputSize, long ConfigurationVersion, Action<CpuVideoFrameProcessingResult> Completed);
 }

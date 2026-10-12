@@ -17,11 +17,7 @@ namespace GWGUI.App.Services.PhysicalDiskReading;
 
 public sealed class InternalPhysicalDiskReader(Func<IGreaseweazleReadDevice> deviceFactory)
 {
-    public async Task<PhysicalDiskReadResult> ReadAsync(
-        PhysicalDiskReadOptions options,
-        string outputPath,
-        IProgress<PhysicalDiskReadOperationProgress>? progress = null,
-        CancellationToken cancellationToken = default)
+    public async Task<PhysicalDiskReadResult> ReadAsync(PhysicalDiskReadOptions options, string outputPath, IProgress<PhysicalDiskReadOperationProgress>? progress = null, CancellationToken cancellationToken = default)
     {
         var fluxService = new FloppyFluxAcquisitionService();
         var registry = new MediaAcquisitionProviderRegistry([new GreaseweazleMediaAcquisitionProvider(deviceFactory)]);
@@ -38,8 +34,7 @@ public sealed class InternalPhysicalDiskReader(Func<IGreaseweazleReadDevice> dev
         {
             [GreaseweazleMediaOptionKeys.BusType] = options.BusType.ToString(),
             [GreaseweazleMediaOptionKeys.DriveUnit] = options.DriveUnit.ToString(CultureInfo.InvariantCulture),
-            [GreaseweazleMediaOptionKeys.Tracks] = string.Join(';', options.Tracks.Select(track =>
-                $"{track.Cylinder}:{track.Head}:{track.DriveCylinder}:{track.DriveHead}")),
+            [GreaseweazleMediaOptionKeys.Tracks] = string.Join(';', options.Tracks.Select(track => $"{track.Cylinder}:{track.Head}:{track.DriveCylinder}:{track.DriveHead}")),
             [GreaseweazleMediaOptionKeys.DiskType] = options.DiskType.ToString(),
             [GreaseweazleMediaOptionKeys.Revolutions] = options.Revolutions.ToString(CultureInfo.InvariantCulture),
             [GreaseweazleMediaOptionKeys.FluxOverflowRetries] = options.FluxOverflowRetries.ToString(CultureInfo.InvariantCulture),
@@ -52,20 +47,13 @@ public sealed class InternalPhysicalDiskReader(Func<IGreaseweazleReadDevice> dev
         return values;
     }
 
-    private static void AddMilliseconds(
-        IDictionary<string, string> values,
-        string key,
-        TimeSpan? duration)
+    private static void AddMilliseconds(IDictionary<string, string> values, string key, TimeSpan? duration)
     {
         if (duration is { } present)
             values[key] = present.TotalMilliseconds.ToString(CultureInfo.InvariantCulture);
     }
 
-    private static void ReportProgress(
-        MediaAcquisitionProgress value,
-        IReadOnlyList<PhysicalDiskTrackAddress> tracks,
-        FloppyFluxAcquisitionService fluxService,
-        IProgress<PhysicalDiskReadOperationProgress>? progress)
+    private static void ReportProgress(MediaAcquisitionProgress value, IReadOnlyList<PhysicalDiskTrackAddress> tracks, FloppyFluxAcquisitionService fluxService, IProgress<PhysicalDiskReadOperationProgress>? progress)
     {
         var cylinder = ReadPosition(value.Metadata, MediaPhysicalMetadataKeys.Cylinder);
         var head = ReadPosition(value.Metadata, MediaPhysicalMetadataKeys.Head);

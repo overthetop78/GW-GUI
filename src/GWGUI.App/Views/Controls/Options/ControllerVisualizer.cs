@@ -191,10 +191,7 @@ public sealed partial class ControllerVisualizer : FrameworkElement
         return dx * dx + dy * dy <= 1d;
     }
 
-    private static bool MatchesDirectionSector(
-        EmulationControllerVisualControl control,
-        Rect bounds,
-        Point point)
+    private static bool MatchesDirectionSector(EmulationControllerVisualControl control, Rect bounds, Point point)
     {
         var dx = point.X - (bounds.X + bounds.Width / 2d);
         var dy = point.Y - (bounds.Y + bounds.Height / 2d);
@@ -234,8 +231,7 @@ public sealed partial class ControllerVisualizer : FrameworkElement
             input.Direction(GameInputSwitchPosition.Down, GameInputGamepadButtons.DPadDown, 12));
     }
 
-    private void DrawDirectionalPad(
-        DrawingContext dc, double x, double y, bool left, bool right, bool up, bool down)
+    private void DrawDirectionalPad(DrawingContext dc, double x, double y, bool left, bool right, bool up, bool down)
     {
         var stroke = Stroke();
         dc.DrawRoundedRectangle(Active(left), stroke, new Rect(x - 52, y - 16, 38, 32), 6, 6);

@@ -8,8 +8,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulationVideoProcessingPipeline
 {
-    private static float[] Resample(float[] source, int sourceWidth, int sourceHeight,
-        int outputWidth, int outputHeight, EmulationVideoSampling sampling)
+    private static float[] Resample(float[] source, int sourceWidth, int sourceHeight, int outputWidth, int outputHeight, EmulationVideoSampling sampling)
     {
         if (sourceWidth == outputWidth && sourceHeight == outputHeight) return source;
         var output = new float[checked(outputWidth * outputHeight * 3)];
@@ -110,8 +109,7 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
 
 
 
-    private static float Sample(float[] source, int width, int height,
-        int x, int y, int channel)
+    private static float Sample(float[] source, int width, int height, int x, int y, int channel)
     {
         x = Math.Clamp(x, 0, width - 1);
         y = Math.Clamp(y, 0, height - 1);

@@ -16,11 +16,7 @@ internal sealed class HidReportDecoder : IDisposable
     private readonly Func<Binding, byte[], (bool Success, ushort[] Usages)> _readUsages;
     private bool _disposed;
 
-    private HidReportDecoder(
-        SafeFileHandle? handle,
-        IntPtr preparsedData,
-        HidCapabilities caps,
-        IReadOnlyList<Binding> bindings)
+    private HidReportDecoder(SafeFileHandle? handle, IntPtr preparsedData, HidCapabilities caps, IReadOnlyList<Binding> bindings)
     {
         _handle = handle;
         _preparsedData = preparsedData;
@@ -31,9 +27,7 @@ internal sealed class HidReportDecoder : IDisposable
         Controls = bindings.Select(binding => binding.Descriptor).ToArray();
     }
 
-    internal HidReportDecoder(ushort reportLength, IReadOnlyList<Binding> bindings,
-        Func<Binding, byte[], (bool Success, uint Value)> readValue,
-        Func<Binding, byte[], (bool Success, ushort[] Usages)> readUsages)
+    internal HidReportDecoder(ushort reportLength, IReadOnlyList<Binding> bindings, Func<Binding, byte[], (bool Success, uint Value)> readValue, Func<Binding, byte[], (bool Success, ushort[] Usages)> readUsages)
         : this(null, IntPtr.Zero, new HidCapabilities { InputReportByteLength = reportLength }, bindings)
     {
         _readValue = readValue;
@@ -280,14 +274,5 @@ internal sealed class HidReportDecoder : IDisposable
         _handle?.Dispose();
     }
 
-    internal sealed record Binding(
-        GameInputControlDescriptor Descriptor,
-        byte ReportId,
-        ushort UsagePage,
-        ushort Usage,
-        ushort LinkCollection,
-        ushort BitSize,
-        int LogicalMinimum,
-        int LogicalMaximum,
-        int UsageCount);
+    internal sealed record Binding(GameInputControlDescriptor Descriptor, byte ReportId, ushort UsagePage, ushort Usage, ushort LinkCollection, ushort BitSize, int LogicalMinimum, int LogicalMaximum, int UsageCount);
 }

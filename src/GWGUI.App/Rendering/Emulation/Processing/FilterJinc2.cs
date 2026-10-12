@@ -1,14 +1,7 @@
 namespace GWGUI.App.Rendering.Emulation.Processing;
 internal static class FilterJinc2
 {
-    internal static float Sample(
-        float[] source,
-        int width,
-        int height,
-        float x,
-        float y,
-        int channel
-    )
+    internal static float Sample(float[] source, int width, int height, float x, float y, int channel)
     {
         var left = (int)MathF.Floor(x);
         var top = (int)MathF.Floor(y);

@@ -38,12 +38,7 @@ internal sealed class VisualizerLoadingController(
     Action<string> clearVisualizer,
     Func<bool> operationIsRunning)
 {
-    internal async Task LoadAsync(
-        string path,
-        string? displayFileName = null,
-        ExploredDiskImage? exploredImage = null,
-        MediaOpeningAnalysisResult? openingResult = null,
-        bool fluxPresented = false)
+    internal async Task LoadAsync(string path, string? displayFileName = null, ExploredDiskImage? exploredImage = null, MediaOpeningAnalysisResult? openingResult = null, bool fluxPresented = false)
     {
         var visualization = cancellation.BeginVisualization();
         var cancellationToken = visualization.Token;
@@ -119,8 +114,7 @@ internal sealed class VisualizerLoadingController(
         bool presented;
         try
         {
-            presented = getExploredMediaImage() is { } mediaImage
-                && await mediaVisualization.PresentAsync(mediaImage.Document, cancellationToken);
+            presented = getExploredMediaImage() is { } mediaImage && await mediaVisualization.PresentAsync(mediaImage.Document, cancellationToken);
         }
         catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
         {
@@ -143,9 +137,7 @@ internal sealed class VisualizerLoadingController(
         var settings = getSettings();
         if (string.IsNullOrWhiteSpace(settings.GwExecutablePath) || !File.Exists(settings.GwExecutablePath)) return;
         var formatId = detection.Format?.Id ?? DiskImageFormatIds.RawScp;
-        var temporaryPath = Path.Combine(
-            Path.GetTempPath(),
-            $"{DiskImageTemporaryFileConstants.VisualizerFilePrefix}{Guid.NewGuid().ToString(DiskImageTemporaryFileConstants.UniqueNameFormat)}{DiskImageFileExtensions.Scp}");
+        var temporaryPath = Path.Combine(Path.GetTempPath(), $"{DiskImageTemporaryFileConstants.VisualizerFilePrefix}{Guid.NewGuid().ToString(DiskImageTemporaryFileConstants.UniqueNameFormat)}{DiskImageFileExtensions.Scp}");
         string? stagedSourcePath = null;
         var gateEntered = false;
         try
@@ -156,9 +148,7 @@ internal sealed class VisualizerLoadingController(
             var conversionSourcePath = path;
             if (Path.GetExtension(path).Equals(DiskImageFileExtensions.Atr, StringComparison.OrdinalIgnoreCase))
             {
-                stagedSourcePath = Path.Combine(
-                    Path.GetTempPath(),
-                    $"{DiskImageTemporaryFileConstants.VisualizerFilePrefix}{Guid.NewGuid().ToString(DiskImageTemporaryFileConstants.UniqueNameFormat)}{DiskImageFileExtensions.Img}");
+                stagedSourcePath = Path.Combine(Path.GetTempPath(), $"{DiskImageTemporaryFileConstants.VisualizerFilePrefix}{Guid.NewGuid().ToString(DiskImageTemporaryFileConstants.UniqueNameFormat)}{DiskImageFileExtensions.Img}");
                 await GWGUI.MediaEngine.Images.Conversion.Atari.AtrPayloadWriter.WriteRawPayloadAsync(path, stagedSourcePath, cancellationToken);
                 conversionSourcePath = stagedSourcePath;
             }

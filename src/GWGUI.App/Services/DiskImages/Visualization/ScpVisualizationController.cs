@@ -143,11 +143,7 @@ internal sealed class ScpVisualizationController
 
     internal Task PrepareViewsAsync(CancellationToken cancellationToken) => PrepareTracksAsync(cancellationToken);
 
-    private async Task LoadCoreAsync(
-        string path,
-        ScpImage? image,
-        string? displayFileName,
-        bool preserveProgress)
+    private async Task LoadCoreAsync(string path, ScpImage? image, string? displayFileName, bool preserveProgress)
     {
         var cancellation = _cancellation.BeginScp();
         var cancellationToken = cancellation.Token;
@@ -169,11 +165,7 @@ internal sealed class ScpVisualizationController
             if (!_cancellation.IsCurrentScp(cancellation) || cancellationToken.IsCancellationRequested) return;
             Image = null;
             _visualizer.Header.SummaryText.Text = _localize(DiskImageResourceKeys.VisualInvalid, []);
-            _showError(
-                exception,
-                $"Opening disk image in Visualizer: {path}",
-                DiskImageResourceKeys.VisualTitle,
-                DiskImageResourceKeys.ErrorUnexpected);
+            _showError(exception, $"Opening disk image in Visualizer: {path}", DiskImageResourceKeys.VisualTitle, DiskImageResourceKeys.ErrorUnexpected);
         }
         finally
         {
@@ -195,11 +187,7 @@ internal sealed class ScpVisualizationController
         _visualizer.ShowDocument(document, descriptor);
     }
 
-    private async Task DisplayAsync(
-        ScpImage image,
-        string fileName,
-        string summary,
-        CancellationToken cancellationToken)
+    private async Task DisplayAsync(ScpImage image, string fileName, string summary, CancellationToken cancellationToken)
     {
         if (cancellationToken.IsCancellationRequested) return;
         Image = image;

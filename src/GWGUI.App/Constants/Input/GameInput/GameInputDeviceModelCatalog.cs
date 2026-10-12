@@ -20,12 +20,7 @@ internal static class GameInputDeviceModelCatalog
         Key(0x081F, 0xE401)
     };
 
-    internal static string ResolveProductName(
-        ushort vendorId,
-        ushort productId,
-        string? windowsName,
-        string? databaseName,
-        string? gameInputName)
+    internal static string ResolveProductName(ushort vendorId, ushort productId, string? windowsName, string? databaseName, string? gameInputName)
     {
         var key = Key(vendorId, productId);
         if (AmbiguousDevices.Contains(key))
@@ -38,11 +33,7 @@ internal static class GameInputDeviceModelCatalog
         return $"Controller {vendorId:X4}:{productId:X4}";
     }
 
-    internal static (ControllerVisualModel Model, bool Exact) ResolveVisualModel(
-        ushort vendorId,
-        ushort productId,
-        string productName,
-        GameInputKind supportedInput)
+    internal static (ControllerVisualModel Model, bool Exact) ResolveVisualModel(ushort vendorId, ushort productId, string productName, GameInputKind supportedInput)
     {
         var key = Key(vendorId, productId);
         if (AmbiguousDevices.Contains(key))

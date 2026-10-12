@@ -13,10 +13,7 @@ public sealed class OperationProfileCollection
 
     public IProfileStore<OperationProfile> For(OperationKind operation) => _stores.TryGetValue(operation, out var store) ? store : throw new ArgumentOutOfRangeException(nameof(operation));
 
-    public IReadOnlyList<OperationProfile> Localized(OperationKind operation, Func<string, string> localizeDefault) =>
-        For(operation).GetAll()
-            .Select(profile => profile.IsSystem ? profile with { Name = localizeDefault("Profile.Default") } : profile)
-            .ToArray();
+    public IReadOnlyList<OperationProfile> Localized(OperationKind operation, Func<string, string> localizeDefault) => For(operation).GetAll().Select(profile => profile.IsSystem ? profile with { Name = localizeDefault("Profile.Default") } : profile).ToArray();
 
     public void Reset(IEnumerable<ProfileSettings> settings)
     {

@@ -6,10 +6,7 @@ using GWGUI.App.Views.Windows.Shell;
 
 namespace GWGUI.App.Controllers.MainWindow;
 
-internal sealed class HostToolsUpdateController(
-    IGwInstallationManager hostTools,
-    AppSettings settings,
-    MainWindowViewModel viewModel)
+internal sealed class HostToolsUpdateController(IGwInstallationManager hostTools, AppSettings settings, MainWindowViewModel viewModel)
 {
     internal async Task CheckAsync()
     {

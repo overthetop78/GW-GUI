@@ -1,7 +1,6 @@
 namespace GWGUI.App.Services.Emulation;
 
-internal sealed record EmulationVideoShaderLoadingChangedEventArgs(
-    string ModuleId, Guid ConfigurationId, bool IsLoading);
+internal sealed record EmulationVideoShaderLoadingChangedEventArgs(string ModuleId, Guid ConfigurationId, bool IsLoading);
 
 internal static class EmulationVideoShaderLoadingStatus
 {

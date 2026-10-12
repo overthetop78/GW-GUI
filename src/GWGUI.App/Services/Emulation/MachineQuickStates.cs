@@ -3,9 +3,7 @@ using GWGUI.Emulation.Interfaces;
 
 namespace GWGUI.App.Services.Emulation;
 
-internal sealed class MachineQuickStates(
-    Func<IEmulationSavedStates> states, string path,
-    Func<string, bool>? exists = null, Action<string>? createDirectory = null)
+internal sealed class MachineQuickStates(Func<IEmulationSavedStates> states, string path, Func<string, bool>? exists = null, Action<string>? createDirectory = null)
 {
     private readonly Func<string, bool> _exists = exists ?? File.Exists;
     private readonly Action<string> _createDirectory = createDirectory ?? (directory => Directory.CreateDirectory(directory));

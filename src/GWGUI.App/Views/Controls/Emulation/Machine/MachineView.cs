@@ -170,8 +170,7 @@ internal sealed class MachineView : UserControl
         _shaderLoadingOverlay.Visibility = isLoading ? Visibility.Visible : Visibility.Collapsed;
     }
 
-    internal void SetDevices(IEnumerable<MachineViewDevice> devices, Action<Exception> showError,
-        Action restoreFocus)
+    internal void SetDevices(IEnumerable<MachineViewDevice> devices, Action<Exception> showError, Action restoreFocus)
     {
         DeviceStrip.Children.Clear();
         _deviceLeds.Clear();
@@ -185,8 +184,7 @@ internal sealed class MachineView : UserControl
         UpdateCassetteBlinkTimer();
     }
 
-    private FrameworkElement DeviceItem(MachineViewDevice device, Action<Exception> showError,
-        Action restoreFocus)
+    private FrameworkElement DeviceItem(MachineViewDevice device, Action<Exception> showError, Action restoreFocus)
     {
         var root = new StackPanel
         {
@@ -365,9 +363,7 @@ internal sealed class MachineView : UserControl
         if (_deviceStatuses.TryGetValue(key, out var text)) text.Text = status;
     }
 
-    internal void SetCassetteTransport(string key, EmulationCassetteState state,
-        EmulationCassetteCommand? activeOperation,
-        IReadOnlySet<EmulationCassetteCommand> supportedCommands, bool powered)
+    internal void SetCassetteTransport(string key, EmulationCassetteState state, EmulationCassetteCommand? activeOperation, IReadOnlySet<EmulationCassetteCommand> supportedCommands, bool powered)
     {
         if (!_cassetteButtons.TryGetValue(key, out var buttons)) return;
         foreach (var (command, button) in buttons)
@@ -381,8 +377,7 @@ internal sealed class MachineView : UserControl
         UpdateCassetteBlinkTimer();
     }
 
-    private void SetCassetteButtonVisual(Button button, EmulationCassetteCommand command,
-        bool supported, bool active, bool blinking)
+    private void SetCassetteButtonVisual(Button button, EmulationCassetteCommand command, bool supported, bool active, bool blinking)
     {
         _blinkingCassetteButtons.Remove(button);
         var foreground = command switch
@@ -435,8 +430,7 @@ internal sealed class MachineView : UserControl
             button.Opacity = _cassetteBlinkVisible ? 1 : 0.25;
     }
 
-    private static async Task RunAsync(Func<Task> action, Action<Exception> showError,
-        Action restoreFocus)
+    private static async Task RunAsync(Func<Task> action, Action<Exception> showError, Action restoreFocus)
     {
         try { await action(); }
         catch (Exception error) { showError(error); }

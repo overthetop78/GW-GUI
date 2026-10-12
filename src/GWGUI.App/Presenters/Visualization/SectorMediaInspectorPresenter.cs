@@ -10,9 +10,7 @@ namespace GWGUI.App.Presenters.Visualization;
 
 public sealed class SectorMediaInspectorPresenter(Func<string, object[], string> localize)
 {
-    public SectorMediaRenderModel BuildRenderModel(
-        SectorImage image,
-        IReadOnlyDictionary<int, string>? fileSystemPaths = null)
+    public SectorMediaRenderModel BuildRenderModel(SectorImage image, IReadOnlyDictionary<int, string>? fileSystemPaths = null)
     {
         ArgumentNullException.ThrowIfNull(image);
         if (image.AddressingKind == SectorImageAddressingKind.Logical)
@@ -36,11 +34,7 @@ public sealed class SectorMediaInspectorPresenter(Func<string, object[], string>
         return new(image.FormatId, image.BlockSize, surfaces);
     }
 
-    public SectorMediaTrack AnalyzeTrack(
-        SectorImage image,
-        int surface,
-        int cylinder,
-        IReadOnlyDictionary<int, string>? fileSystemPaths = null)
+    public SectorMediaTrack AnalyzeTrack(SectorImage image, int surface, int cylinder, IReadOnlyDictionary<int, string>? fileSystemPaths = null)
     {
         ArgumentNullException.ThrowIfNull(image);
         var blocks = Enumerable.Range(0, image.SectorsPerTrack)
@@ -97,16 +91,11 @@ public sealed class SectorMediaInspectorPresenter(Func<string, object[], string>
 
         return new(
             Localize("Visual.SectorInspectorTitle"),
-            logical
-                ? $"LBA {sector.LogicalBlock}"
-                : $"{Localize("Visual.TrackLabel")} {sector.Cylinder} · {Localize("Visual.SectorLabel")} {sector.Number}",
+            logical ? $"LBA {sector.LogicalBlock}" : $"{Localize("Visual.TrackLabel")} {sector.Cylinder} · {Localize("Visual.SectorLabel")} {sector.Number}",
             [new(Localize("Visual.SummaryTab"), ControlVisualConstants.InformationGlyph, entries)]);
     }
 
-    private static SectorMediaRenderModel BuildLogicalRenderModel(
-        SectorImage image,
-        IReadOnlyDictionary<int, string>? fileSystemPaths,
-        bool withData)
+    private static SectorMediaRenderModel BuildLogicalRenderModel(SectorImage image, IReadOnlyDictionary<int, string>? fileSystemPaths, bool withData)
     {
         var elements = Enumerable.Range(0, image.BlockCount).Select(logicalBlock =>
         {
@@ -126,12 +115,7 @@ public sealed class SectorMediaInspectorPresenter(Func<string, object[], string>
 
     private static int LogicalBlock(SectorImage image, int surface, int cylinder, int slot) => checked((cylinder * image.Heads + surface) * image.SectorsPerTrack + slot);
 
-    private static SectorMediaElementState StateFor(
-        SectorBlock? block,
-        int expectedSize,
-        bool allowsVariableSize,
-        bool addressInconsistent,
-        bool addressDuplicated) => block switch
+    private static SectorMediaElementState StateFor(SectorBlock? block, int expectedSize, bool allowsVariableSize, bool addressInconsistent, bool addressDuplicated) => block switch
     {
         null => SectorMediaElementState.WithoutData,
         { IntegrityValid: false } => SectorMediaElementState.Dead,

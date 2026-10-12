@@ -8,9 +8,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulationVideoProcessingPipeline
 {
-    private static void ApplyDisplayTechnology(float[] colors, int sourceWidth, int sourceHeight,
-        int outputWidth, int outputHeight, long sequence,
-        EmulationVideoProcessingConfiguration configuration)
+    private static void ApplyDisplayTechnology(float[] colors, int sourceWidth, int sourceHeight, int outputWidth, int outputHeight, long sequence, EmulationVideoProcessingConfiguration configuration)
     {
         if (configuration.DisplayTechnology == EmulationVideoDisplayTechnology.FixedPixel)
         {
@@ -99,8 +97,7 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
         FilterCrt.Apply(colors, outputWidth, outputHeight, sourceWidth, sourceHeight, configuration.Crt);
     }
 
-    private static (float Red, float Green, float Blue) CrtTint(
-        EmulationCrtVideoConfiguration configuration)
+    private static (float Red, float Green, float Blue) CrtTint(EmulationCrtVideoConfiguration configuration)
     {
         var argb = configuration.ColorMode switch
         {

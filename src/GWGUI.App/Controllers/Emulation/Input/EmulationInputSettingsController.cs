@@ -34,8 +34,7 @@ internal sealed class EmulationInputSettingsController
 
     internal event EventHandler? SettingsChanged;
 
-    internal UIElement CreateContent(EmulationMachineTab tab, IEmulationConfiguration configuration,
-        IReadOnlyList<EmulationSettingsControlField> fields)
+    internal UIElement CreateContent(EmulationMachineTab tab, IEmulationConfiguration configuration, IReadOnlyList<EmulationSettingsControlField> fields)
     {
         if (!ReferenceEquals(_loadedConfiguration, configuration))
         {
@@ -159,10 +158,7 @@ internal sealed class EmulationInputSettingsController
         return editor;
     }
 
-    private void UpdateControllerBindings(
-        EmulationControllerPortEditor editor,
-        string? preferredVisualId = null,
-        bool preserveCurrentBindings = true)
+    private void UpdateControllerBindings(EmulationControllerPortEditor editor, string? preferredVisualId = null, bool preserveCurrentBindings = true)
     {
         if (editor.Type.SelectedItem is not EmulationControllerChoiceView selected
             || selected.Choice.BindingDefinitions is null) return;
@@ -172,9 +168,7 @@ internal sealed class EmulationInputSettingsController
         UpdateControllerVisualProfile(editor);
     }
 
-    private static void UpdateControllerVisuals(
-        EmulationControllerPortEditor editor,
-        string? preferredVisualId = null)
+    private static void UpdateControllerVisuals(EmulationControllerPortEditor editor, string? preferredVisualId = null)
     {
         var selectedChoice = (editor.Type.SelectedItem as EmulationControllerChoiceView)?.Choice;
         var profiles = ControllerArtworkCatalog.AvailableProfiles(selectedChoice?.CompatibleVisualIds);
@@ -202,14 +196,12 @@ internal sealed class EmulationInputSettingsController
         editor.SetVisualProfile(null, selectedChoice?.VisualCommandIds);
     }
 
-    private static EmulationInputBindingSet? ReadBindings(EmulationInputBindingSet? original,
-        InputBindingEditor? editor) => original is null || editor is null ? original : original with
+    private static EmulationInputBindingSet? ReadBindings(EmulationInputBindingSet? original, InputBindingEditor? editor) => original is null || editor is null ? original : original with
     {
         Values = editor.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal)
     };
 
-    private static EmulationInputBindingSet? ReadKeyboardBindings(EmulationInputBindingSet? original,
-        InputBindingEditor? editor) => original is null || editor is null ? original : original with
+    private static EmulationInputBindingSet? ReadKeyboardBindings(EmulationInputBindingSet? original, InputBindingEditor? editor) => original is null || editor is null ? original : original with
     {
         Values = editor.Rows.Select(row => (row.Id, Key: ParseKeyboardBinding(row.Binding))).Where(item => item.Key != EmulationKey.Unknown).ToDictionary(item => item.Id, item => item.Key.ToString(), StringComparer.Ordinal)
     };

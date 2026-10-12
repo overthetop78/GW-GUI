@@ -65,8 +65,7 @@ internal static partial class ControllerArtworkCatalog
         return true;
     }
 
-    internal static IReadOnlyList<ControllerArtworkProfile> AvailableProfiles(
-        IReadOnlyList<string>? compatibleVisualIds)
+    internal static IReadOnlyList<ControllerArtworkProfile> AvailableProfiles(IReadOnlyList<string>? compatibleVisualIds)
     {
         if (compatibleVisualIds is null || compatibleVisualIds.Count == 0) return [];
 
@@ -83,15 +82,11 @@ internal static partial class ControllerArtworkCatalog
         var image = new BitmapImage();
         image.BeginInit();
         image.CacheOption = BitmapCacheOption.OnLoad;
-        image.UriSource = new Uri(
-            $"pack://application:,,,/gwgui.app;component/Assets/Controllers/{fileName}",
-            UriKind.Absolute);
+        image.UriSource = new Uri($"pack://application:,,,/gwgui.app;component/Assets/Controllers/{fileName}", UriKind.Absolute);
         image.EndInit();
         image.Freeze();
         return image;
     }
 
-    private sealed record ProfileDefinition(
-        string FileName,
-        IReadOnlyList<ControllerVisualZone> Zones);
+    private sealed record ProfileDefinition(string FileName, IReadOnlyList<ControllerVisualZone> Zones);
 }

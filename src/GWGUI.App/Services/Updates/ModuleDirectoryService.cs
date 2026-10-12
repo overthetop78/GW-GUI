@@ -36,8 +36,7 @@ internal sealed class ModuleDirectoryService
         _hostApiVersion = hostApiVersion ?? (() => EmulationHostApi.CurrentVersion.ToString(2));
     }
 
-    internal async Task<IReadOnlyList<AvailableModuleDirectoryItem>> SearchAsync(
-        CancellationToken cancellationToken = default)
+    internal async Task<IReadOnlyList<AvailableModuleDirectoryItem>> SearchAsync(CancellationToken cancellationToken = default)
     {
         using var directoryResponse = await _httpClient.GetAsync(_directoryUri, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
         directoryResponse.EnsureSuccessStatusCode();
@@ -54,8 +53,7 @@ internal sealed class ModuleDirectoryService
             using var catalogResponse = await _httpClient.GetAsync(entry.CatalogUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
             catalogResponse.EnsureSuccessStatusCode();
             await using var catalogContent = await catalogResponse.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-            var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(catalogContent, JsonOptions, cancellationToken).ConfigureAwait(false)
-                ?? throw new InvalidDataException($"The update catalog for module '{entry.Id}' is empty.");
+            var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(catalogContent, JsonOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidDataException($"The update catalog for module '{entry.Id}' is empty.");
             var component = _catalogValidator.Validate(catalog, entry.Id);
             var release = component.Releases.Where(candidate => Version.Parse(candidate.HostApiMinimum!) <= hostApi && Version.Parse(candidate.HostApiMaximum!) >= hostApi).OrderByDescending(candidate => Version.Parse(candidate.Version))
                 .FirstOrDefault();
@@ -76,12 +74,7 @@ internal sealed class ModuleDirectoryService
     }
 }
 
-internal sealed record AvailableModuleDirectoryItem(
-    string Id,
-    string DisplayName,
-    string CatalogUrl,
-    string? AvailableVersion,
-    string? InstalledVersion)
+internal sealed record AvailableModuleDirectoryItem(string Id, string DisplayName, string CatalogUrl, string? AvailableVersion, string? InstalledVersion)
 {
     internal bool CanInstall => AvailableVersion is not null && InstalledVersion is null;
 }

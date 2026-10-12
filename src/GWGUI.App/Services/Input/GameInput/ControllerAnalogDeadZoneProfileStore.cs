@@ -54,8 +54,7 @@ internal static class ControllerAnalogDeadZoneProfileStore
         var directory = Path.GetDirectoryName(FilePath)!;
         Directory.CreateDirectory(directory);
         var temporary = FilePath + ".tmp";
-        File.WriteAllText(temporary, JsonSerializer.Serialize(_profiles,
-            new JsonSerializerOptions { WriteIndented = true }));
+        File.WriteAllText(temporary, JsonSerializer.Serialize(_profiles, new JsonSerializerOptions { WriteIndented = true }));
         File.Move(temporary, FilePath, true);
     }
 }

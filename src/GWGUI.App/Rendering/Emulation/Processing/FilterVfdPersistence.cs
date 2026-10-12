@@ -16,8 +16,7 @@ internal sealed class FilterVfdPersistence
     private int _height;
     private TimeSpan _timestamp;
 
-    internal void Apply(float[] colors, int width, int height, TimeSpan timestamp,
-        int durationMilliseconds)
+    internal void Apply(float[] colors, int width, int height, TimeSpan timestamp, int durationMilliseconds)
     {
         var compatible = _history is not null && _width == width && _height == height && timestamp >= _timestamp;
         if (compatible && durationMilliseconds > 0)

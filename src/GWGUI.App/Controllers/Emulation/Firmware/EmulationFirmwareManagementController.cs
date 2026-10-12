@@ -19,8 +19,7 @@ internal sealed class EmulationFirmwareManagementController
     private ListBox _firmwares = null!;
     private Button _use = null!;
 
-    internal EmulationFirmwareManagementController(IEmulationModule module, IEmulationFirmwareManager manager,
-        Func<IEmulationConfiguration> getConfiguration, Action<IEmulationConfiguration> setConfiguration)
+    internal EmulationFirmwareManagementController(IEmulationModule module, IEmulationFirmwareManager manager, Func<IEmulationConfiguration> getConfiguration, Action<IEmulationConfiguration> setConfiguration)
     {
         _module = module;
         _manager = manager;

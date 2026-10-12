@@ -147,16 +147,11 @@ public sealed class EmulationStorageDeviceList : UserControl
     private static Grid CreateColumns()
     {
         var grid = new Grid();
-        grid.ColumnDefinitions.Add(new ColumnDefinition
-            { Width = new GridLength(EmulationStorageDeviceListConstants.IdentifierColumnWidth) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition
-            { Width = new GridLength(EmulationStorageDeviceListConstants.TypeColumnWidth) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition
-            { Width = new GridLength(EmulationStorageDeviceListConstants.ModelColumnRatio, GridUnitType.Star) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition
-            { Width = new GridLength(EmulationStorageDeviceListConstants.MediaColumnRatio, GridUnitType.Star) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition
-            { Width = new GridLength(EmulationStorageDeviceListConstants.ActionsColumnWidth) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationStorageDeviceListConstants.IdentifierColumnWidth) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationStorageDeviceListConstants.TypeColumnWidth) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationStorageDeviceListConstants.ModelColumnRatio, GridUnitType.Star) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationStorageDeviceListConstants.MediaColumnRatio, GridUnitType.Star) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationStorageDeviceListConstants.ActionsColumnWidth) });
         return grid;
     }
 

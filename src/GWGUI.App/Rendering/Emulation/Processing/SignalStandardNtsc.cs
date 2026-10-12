@@ -38,8 +38,7 @@ internal static class SignalStandardNtsc
         }
     }
 
-    private static void Components(float[] source, int index, out float luminance,
-        out float inPhase, out float quadrature)
+    private static void Components(float[] source, int index, out float luminance, out float inPhase, out float quadrature)
     {
         var red = source[index];
         var green = source[index + 1];

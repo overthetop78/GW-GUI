@@ -6,10 +6,7 @@ namespace GWGUI.App.Views.Controls.Options;
 public sealed partial class ControllerVisualizer
 {
     private static readonly Geometry ClassicPlayStationBody = Geometry.Parse("M105,104 C135,68 201,62 250,83 C286,98 334,98 370,83 C419,62 485,68 515,104 C539,133 550,224 519,266 C493,301 451,281 426,242 L392,190 C372,159 347,148 310,148 C273,148 248,159 228,190 L194,242 C169,281 127,301 101,266 C70,224 81,133 105,104 Z");
-    private void DrawPlayStationClassic(
-        DrawingContext dc,
-        bool analog
-    )
+    private void DrawPlayStationClassic(DrawingContext dc, bool analog)
     {
         var input = Input;
         var shell = analog ? ColorBrush(Color.FromRgb(34, 34, 37)) : ColorBrush(Color.FromRgb(181, 181, 174));
@@ -49,10 +46,7 @@ public sealed partial class ControllerVisualizer
         DrawText(dc, "CONTROL PAD", new Point(448, 216), 10, ColorBrush(Color.FromRgb(221, 222, 224)));
     }
 
-    private void DrawMegaDrive(
-        DrawingContext dc,
-        bool sixButtons
-    )
+    private void DrawMegaDrive(DrawingContext dc, bool sixButtons)
     {
         var input = Input;
         var body = Geometry.Parse("M75,115 C92,75 143,60 222,63 L398,63 C477,60 528,75 545,115 C566,164 550,229 503,251 C466,269 431,253 406,225 C383,199 352,189 310,189 C268,189 237,199 214,225 C189,253 154,269 117,251 C70,229 54,164 75,115 Z");

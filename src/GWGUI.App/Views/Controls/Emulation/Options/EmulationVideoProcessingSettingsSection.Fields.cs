@@ -30,9 +30,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         return section;
     }
 
-    private FrameworkElement ChoiceField<T>(string labelResourceKey,
-        IReadOnlyDictionary<T, string> resourceKeys, T selected, Action<T> changed,
-        string? automationId = null) where T : struct, Enum
+    private FrameworkElement ChoiceField<T>(string labelResourceKey, IReadOnlyDictionary<T, string> resourceKeys, T selected, Action<T> changed, string? automationId = null) where T : struct, Enum
     {
         var choices = resourceKeys.Select(choice => new Choice<T>(choice.Key, LocExtension.Get(choice.Value))).ToArray();
         var selector = new ComboBox
@@ -74,8 +72,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         panel.Children.Add(row);
     }
 
-    private void AddSlider(Panel panel, string id, int value, int minimum, int maximum,
-        Action<int> changed)
+    private void AddSlider(Panel panel, string id, int value, int minimum, int maximum, Action<int> changed)
     {
         var grid = new Grid();
         grid.ColumnDefinitions.Add(new ColumnDefinition());

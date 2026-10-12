@@ -99,10 +99,7 @@ public sealed partial class ControllerVisualizer
         }
         DrawShoulderAndTriggerOverlays(dc, bounds, .220, .780, .145);
     }
-    private void DrawFaceButtons(
-        DrawingContext dc, Rect bounds,
-        (double X, double Y) a, (double X, double Y) b,
-        (double X, double Y) x, (double X, double Y) y)
+    private void DrawFaceButtons(DrawingContext dc, Rect bounds, (double X, double Y) a, (double X, double Y) b, (double X, double Y) x, (double X, double Y) y)
     {
         var radius = Radius(bounds, .045);
         DrawArtworkHalo(dc, At(bounds, a.X, a.Y), radius, Input.Button(GameInputGamepadButtons.A, 0));

@@ -122,10 +122,7 @@ public partial class ExplorerSection
         _document = null;
         _mediaDocument = document;
         PathText.Text = document.Document.Source.PrimaryPath;
-        var reportedFormatIds = new[] { document.Document.FormatId }
-            .Concat(detectedFormatIds ?? [])
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        var reportedFormatIds = new[] { document.Document.FormatId }.Concat(detectedFormatIds ?? []).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
         if (_automaticDetectedFormatId is null || AutomaticDetection.IsChecked == true)
         {
             _automaticDetectedFormatId = document.Document.FormatId;

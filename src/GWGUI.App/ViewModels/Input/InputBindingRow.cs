@@ -119,8 +119,7 @@ public sealed class InputBindingRow(string id, string label, string binding, str
         const string separator = " · ";
         var segments = source.Split(':', StringSplitOptions.RemoveEmptyEntries);
         var input = segments[^1];
-        var device = segments.Length >= 3 && segments[0].Equals("xinput", StringComparison.OrdinalIgnoreCase)
-                     && int.TryParse(segments[1], out var port) ? $"X{port + 1}" : null;
+        var device = segments.Length >= 3 && segments[0].Equals("xinput", StringComparison.OrdinalIgnoreCase) && int.TryParse(segments[1], out var port) ? $"X{port + 1}" : null;
         var inputName = input switch
         {
             "DPadUp" => $"D-pad{separator}{LocExtension.Get("Emulation.Controller.Action.Up")}",

@@ -67,10 +67,7 @@ public sealed class OpticalMediaInspectorPresenter(Func<string, object[], string
         if (model.AssociatedFiles.Count > 0)
             sections.Add(new(Localize("Visual.AssociatedFilesTitle"), ControlVisualConstants.InformationGlyph, model.AssociatedFiles.Select((path, index) => new MediaInspectorEntry((index + 1).ToString(), path)).ToArray()));
 
-        return new(
-            Localize("Visual.OpticalInspectorTitle"),
-            track is null ? null : $"{Localize("Visual.SessionLabel")} {track.SessionNumber} · {Localize("Visual.TrackLabel")} {track.TrackNumber}",
-            sections);
+        return new(Localize("Visual.OpticalInspectorTitle"), track is null ? null : $"{Localize("Visual.SessionLabel")} {track.SessionNumber} · {Localize("Visual.TrackLabel")} {track.TrackNumber}", sections);
     }
 
     private string Localize(string key, params object[] arguments) => localize(key, arguments);

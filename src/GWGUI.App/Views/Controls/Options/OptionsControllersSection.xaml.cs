@@ -33,11 +33,7 @@ public partial class OptionsControllersSection : UserControl
 
     public OptionsControllersSection() : this(GameInputControllerSource.Instance) { }
 
-    internal OptionsControllersSection(
-        IGameInputControllerSource source,
-        Action<Exception, string>? errorLogger = null,
-        IControllerProfileStore? profiles = null,
-        Func<int, Task>? delay = null)
+    internal OptionsControllersSection(IGameInputControllerSource source, Action<Exception, string>? errorLogger = null, IControllerProfileStore? profiles = null, Func<int, Task>? delay = null)
     {
         _source = source;
         _profiles = profiles ?? new ControllerProfileStore();

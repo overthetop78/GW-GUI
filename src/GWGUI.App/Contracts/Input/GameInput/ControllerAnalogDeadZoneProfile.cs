@@ -1,9 +1,6 @@
 namespace GWGUI.App.Services.Input.GameInput;
 
-internal sealed record ControllerAnalogDeadZoneProfile(
-    int StickPercent = 0,
-    int TriggerPercent = 0,
-    int OuterPercent = 0)
+internal sealed record ControllerAnalogDeadZoneProfile(int StickPercent = 0, int TriggerPercent = 0, int OuterPercent = 0)
 {
     internal static ControllerAnalogDeadZoneProfile Default { get; } = new();
 

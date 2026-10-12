@@ -191,9 +191,7 @@ public partial class OptionsControllersSection
             {
                 new ModelChoice(null, LocExtension.Get("Controllers.Model.Auto"))
             }
-            .Concat(GameInputDeviceModelCatalog.AllVisualModels
-                .Select(model => new ModelChoice((ControllerVisualModel?)model,
-                    LocExtension.Get($"Controllers.Model.{model}"))))
+            .Concat(GameInputDeviceModelCatalog.AllVisualModels.Select(model => new ModelChoice((ControllerVisualModel?)model, LocExtension.Get($"Controllers.Model.{model}"))))
             .ToArray();
         ModelSelector.SelectedItem = ModelSelector.Items.Cast<ModelChoice>().FirstOrDefault(item => item.Model == selected) ?? ModelSelector.Items[0];
         _updatingSelectors = false;

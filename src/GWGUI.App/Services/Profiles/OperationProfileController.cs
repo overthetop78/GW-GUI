@@ -5,11 +5,7 @@ using System.Windows.Controls;
 
 namespace GWGUI.App.Services.Profiles;
 
-public sealed class OperationProfileController(
-    OperationProfileCollection profiles,
-    IBusinessDialogService businessDialogs,
-    IMessageDialogService dialogs,
-    Func<string, object[], string> localize)
+public sealed class OperationProfileController(OperationProfileCollection profiles, IBusinessDialogService businessDialogs, IMessageDialogService dialogs, Func<string, object[], string> localize)
 {
     public void Refresh(ComboBox selector, OperationKind operation, string? selectedId = null)
     {
@@ -18,9 +14,7 @@ public sealed class OperationProfileController(
         selector.SelectedItem = items.FirstOrDefault(profile => profile.Id == selectedId) ?? items[0];
     }
 
-    public OperationProfile? Save(
-        OperationKind operation,
-        Func<string, OperationProfile> createProfile)
+    public OperationProfile? Save(OperationKind operation, Func<string, OperationProfile> createProfile)
     {
         var name = businessDialogs.PromptProfileName();
         if (name is null) return null;

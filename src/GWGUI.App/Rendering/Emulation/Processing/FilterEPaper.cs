@@ -87,8 +87,7 @@ internal static class FilterEPaper
         }
         """;
 
-    internal static void Apply(float[] colors, int width, int height,
-        EmulationEPaperVideoConfiguration configuration)
+    internal static void Apply(float[] colors, int width, int height, EmulationEPaperVideoConfiguration configuration)
     {
         FilterEPaperEdgeSoftness.Apply(colors, width, height, configuration.EdgeSoftness);
         var paperBrightness = FilterEPaperPaperBrightness.Apply(configuration.PaperBrightness);

@@ -24,9 +24,7 @@ internal sealed class EmulationBindingVisualizationController
     private readonly ControllerVisualizer _visualizer;
     private readonly DispatcherTimer _timer;
 
-    internal EmulationBindingVisualizationController(
-        InputBindingEditor bindings,
-        ControllerVisualizer visualizer)
+    internal EmulationBindingVisualizationController(InputBindingEditor bindings, ControllerVisualizer visualizer)
     {
         _bindings = bindings;
         _visualizer = visualizer;
@@ -56,9 +54,7 @@ internal sealed class EmulationBindingVisualizationController
         };
     }
 
-    private static float BindingValue(
-        string binding,
-        IReadOnlyList<EmulationControllerState> controllers)
+    private static float BindingValue(string binding, IReadOnlyList<EmulationControllerState> controllers)
     {
         if (InputBindingSyntax.TryRemovePrefix(binding, InputBindingSyntaxConstants.ControllerPrefix, out _))
         {

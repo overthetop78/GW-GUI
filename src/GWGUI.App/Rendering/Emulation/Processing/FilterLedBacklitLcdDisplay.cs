@@ -14,8 +14,7 @@ internal static class FilterLedBacklitLcdDisplay
         }
         """;
 
-    internal static void Apply(float[] colors, int width, int height,
-        EmulationFixedPixelVideoConfiguration configuration)
+    internal static void Apply(float[] colors, int width, int height, EmulationFixedPixelVideoConfiguration configuration)
     {
         var backlight = (configuration.BacklightIntensity ?? 80) / 100f;
         var blackDepth = (configuration.BlackDepth ?? 55) / 100f;

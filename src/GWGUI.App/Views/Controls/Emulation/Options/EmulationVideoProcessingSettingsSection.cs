@@ -53,9 +53,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         RebuildContent();
     }
 
-    internal void SetConfiguration(EmulationVideoProcessingConfiguration? configuration,
-        FrameworkElement? displaySettings, FrameworkElement? rendererChoice, bool displayOwnsFrames = false,
-        FrameworkElement? nativeSettings = null)
+    internal void SetConfiguration(EmulationVideoProcessingConfiguration? configuration, FrameworkElement? displaySettings, FrameworkElement? rendererChoice, bool displayOwnsFrames = false, FrameworkElement? nativeSettings = null)
     {
         _configuration = EmulationVideoProcessingConfigurationFunctions.Normalize(configuration);
         _displaySettings = displaySettings;

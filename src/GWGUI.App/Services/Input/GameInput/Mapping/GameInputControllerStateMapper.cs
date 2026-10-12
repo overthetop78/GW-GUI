@@ -5,10 +5,7 @@ namespace GWGUI.App.Services.Input.GameInput;
 
 internal static class GameInputControllerStateMapper
 {
-    internal static EmulationControllerState MapGamepad(
-        string deviceId,
-        GameInputGamepadState gamepad,
-        IReadOnlyDictionary<string, GameInputSystemButtons> systemButtons)
+    internal static EmulationControllerState MapGamepad(string deviceId, GameInputGamepadState gamepad, IReadOnlyDictionary<string, GameInputSystemButtons> systemButtons)
     {
         uint buttons = 0;
         buttons = Set(buttons, gamepad.Buttons, GameInputGamepadButtons.B, EmulationControllerButtonBit.B);
@@ -44,11 +41,7 @@ internal static class GameInputControllerStateMapper
             Trigger(gamepad.LeftTrigger), Trigger(gamepad.RightTrigger)) { DeviceId = deviceId };
     }
 
-    internal static unsafe EmulationControllerState MapController(
-        string deviceId,
-        IGameInputReading reading,
-        IGameInputMapper? mapper,
-        IReadOnlyDictionary<string, GameInputSystemButtons> systemButtons)
+    internal static unsafe EmulationControllerState MapController(string deviceId, IGameInputReading reading, IGameInputMapper? mapper, IReadOnlyDictionary<string, GameInputSystemButtons> systemButtons)
     {
         var buttonCount = checked((int)reading.GetControllerButtonCount());
         var buttonStates = new byte[buttonCount];
@@ -72,8 +65,7 @@ internal static class GameInputControllerStateMapper
             controls[$"{GameInputControllerMappingConstants.SwitchControlPrefix}{index}"] = switchStates[index];
 
         if (mapper is null)
-            return new EmulationControllerState(0, 0, 0, 0, 0, 0, 0)
-                { DeviceId = deviceId, Controls = new EmulationControllerControls(controls) };
+            return new EmulationControllerState(0, 0, 0, 0, 0, 0, 0) { DeviceId = deviceId, Controls = new EmulationControllerControls(controls) };
 
         var mapped = new GameInputGamepadState
         {
@@ -93,8 +85,7 @@ internal static class GameInputControllerStateMapper
         };
     }
 
-    private static float ReadMappedAxis(IGameInputMapper mapper, GameInputGamepadAxes axis,
-        float[] axes, byte[] buttons, int[] switches, float unmappedValue)
+    private static float ReadMappedAxis(IGameInputMapper mapper, GameInputGamepadAxes axis, float[] axes, byte[] buttons, int[] switches, float unmappedValue)
     {
         if (!mapper.GetGamepadAxisMappingInfo(axis, out var mapping)) return unmappedValue;
         var value = mapping.ControllerElementKind switch
@@ -128,8 +119,7 @@ internal static class GameInputControllerStateMapper
         return position == opposite ? 0f : .5f;
     }
 
-    private static bool ReadMappedButton(IGameInputMapper mapper, GameInputGamepadButtons button,
-        float[] axes, byte[] buttons, int[] switches)
+    private static bool ReadMappedButton(IGameInputMapper mapper, GameInputGamepadButtons button, float[] axes, byte[] buttons, int[] switches)
     {
         if (!mapper.GetGamepadButtonMappingInfo(button, out var mapping)) return false;
         return mapping.ControllerElementKind switch

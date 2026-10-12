@@ -32,8 +32,7 @@ internal sealed partial class EmulationModuleSettingsSection
                 {
                     var selected = ReadValue(source);
                     var scaled = EmulationSettingsValuePresentationFunctions.ScaledFrequency(field.NumericValue, selected);
-                    frequency.Text = scaled ?? (source is ComboBox { SelectedItem: EmulationSettingsChoiceView choice }
-                        ? choice.DisplayName : field.Value);
+                    frequency.Text = scaled ?? (source is ComboBox { SelectedItem: EmulationSettingsChoiceView choice } ? choice.DisplayName : field.Value);
                 }
                 AttachValueChanged(source, UpdateFrequency);
                 if (source is Grid { Tag: Slider slider }) slider.ValueChanged += (_, _) => UpdateFrequency();
@@ -56,19 +55,14 @@ internal sealed partial class EmulationModuleSettingsSection
         var originalSpeed = originalSpeedField is null ? string.Empty : EmulationSettingsValuePresentationFunctions.DisplayValue(originalSpeedField, _module);
         var page = EmulationSettingsLayout.CpuSettingsPage(new EmulationCpuSettingsContent(
             cpuControl,
-            new TextBlock { Text = string.Join(" · ", new[] { machineName, cpuName, originalSpeed }
-                .Where(value => !string.IsNullOrWhiteSpace(value))) },
+            new TextBlock { Text = string.Join(" · ", new[] { machineName, cpuName, originalSpeed }.Where(value => !string.IsNullOrWhiteSpace(value))) },
             precision is null ? null : CreateControlField(precision),
             fpu is null ? null : CreateControlField(fpu),
-            originalSpeedField is null
-                ? new EmulationSettingsControlField(LocExtension.Get("Emulation.Cpu.SpeedOriginal"),
-                    new TextBlock { Text = originalSpeed })
-                : CreateControlField(originalSpeedField),
+            originalSpeedField is null ? new EmulationSettingsControlField(LocExtension.Get("Emulation.Cpu.SpeedOriginal"), new TextBlock { Text = originalSpeed }) : CreateControlField(originalSpeedField),
             speed is { IsEnabled: true } ? speedControl : null));
         var panel = new StackPanel();
         panel.Children.Add(page);
-        var hardwareFields = new[] { cpu, speed, originalSpeedField, precision, fpu }
-            .OfType<EmulationSettingsField>().Select(field => field.Id).ToHashSet(StringComparer.Ordinal);
+        var hardwareFields = new[] { cpu, speed, originalSpeedField, precision, fpu }.OfType<EmulationSettingsField>().Select(field => field.Id).ToHashSet(StringComparer.Ordinal);
         foreach (var block in settings.Blocks.Where(block => block.Tab == EmulationMachineTab.Cpu && block.IsVisible))
         {
             var extra = block.Fields.Where(field => field.IsVisible && !hardwareFields.Contains(field.Id)).Select(CreateControlField).ToArray();
@@ -129,8 +123,7 @@ internal sealed partial class EmulationModuleSettingsSection
         }
     }
 
-    private void ApplySettingsRule(EmulationSettingsRule rule, FrameworkElement source,
-        FrameworkElement target, bool sourceChanged)
+    private void ApplySettingsRule(EmulationSettingsRule rule, FrameworkElement source, FrameworkElement target, bool sourceChanged)
     {
         var sourceValue = ReadValue(source);
         var targetValue = ReadValue(target);

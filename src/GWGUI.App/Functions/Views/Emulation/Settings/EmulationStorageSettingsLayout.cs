@@ -13,8 +13,7 @@ namespace GWGUI.App.Functions.Views.Emulation.Settings;
 /// </summary>
 internal static partial class EmulationSettingsLayout
 {
-    internal static ScrollViewer StorageSettingsPage(EmulationStorageDeviceList devices,
-        UIElement? emulatorOptions = null)
+    internal static ScrollViewer StorageSettingsPage(EmulationStorageDeviceList devices, UIElement? emulatorOptions = null)
     {
         var content = new StackPanel();
         content.Children.Add(devices);

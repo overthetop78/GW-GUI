@@ -21,13 +21,10 @@ public static class ErrorLog
 
     public static string? WriteWarning(string message, string context, string? directory = null) => WriteEntry(message, context, WarningFilePrefix, directory, true, warning: true);
 
-    private static string? WriteEntry(string detail, string context, string prefix, string? directory,
-        bool publish, bool warning = false)
+    private static string? WriteEntry(string detail, string context, string prefix, string? directory, bool publish, bool warning = false)
     {
         var assembly = Assembly.GetEntryAssembly();
-        var entry = new StringBuilder().AppendLine("================================================================================")
-            .AppendLine($"Time: {DateTimeOffset.Now:O}")
-            .AppendLine($"Context: {context}")
+        var entry = new StringBuilder().AppendLine("================================================================================").AppendLine($"Time: {DateTimeOffset.Now:O}").AppendLine($"Context: {context}")
             .AppendLine($"Application: {assembly?.GetName().Name} {assembly?.GetName().Version}")
             .AppendLine($"Runtime: {Environment.Version}")
             .AppendLine($"OS: {Environment.OSVersion}")

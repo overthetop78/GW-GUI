@@ -5,12 +5,7 @@ namespace GWGUI.App.Services.Input.GameInput;
 
 internal static class GameInputControllerStateReader
 {
-    internal static EmulationControllerState Read(
-        IGameInput? gameInput,
-        GameInputDeviceEntry entry,
-        IReadOnlyDictionary<string, GameInputSystemButtons> systemButtons,
-        Func<Exception, bool> isInteropFailure,
-        Action<object?> release)
+    internal static EmulationControllerState Read(IGameInput? gameInput, GameInputDeviceEntry entry, IReadOnlyDictionary<string, GameInputSystemButtons> systemButtons, Func<Exception, bool> isInteropFailure, Action<object?> release)
     {
         if (gameInput is null) return EmulationControllerState.Empty with { DeviceId = entry.Id };
         IGameInputReading? reading = null;
@@ -30,9 +25,7 @@ internal static class GameInputControllerStateReader
             if (!hasControllerArrays)
             {
                 GameInputDiagnostics.RecordControllerArraysUnavailable(entry.Id, readingKind, hasGamepad);
-                return hasGamepad
-                    ? GameInputControllerStateMapper.MapGamepad(entry.Id, gamepad, systemButtons)
-                    : EmulationControllerState.Empty with { DeviceId = entry.Id };
+                return hasGamepad ? GameInputControllerStateMapper.MapGamepad(entry.Id, gamepad, systemButtons) : EmulationControllerState.Empty with { DeviceId = entry.Id };
             }
             GameInputDiagnostics.RecordControllerReading(entry.Id, readingKind, hasGamepad, reading.GetControllerAxisCount(), reading.GetControllerButtonCount(), reading.GetControllerSwitchCount());
             return hasGamepad ? GameInputControllerStateMapper.MapGamepad(entry.Id, gamepad, systemButtons) : GameInputControllerStateMapper.MapController(entry.Id, reading, entry.Mapper, systemButtons);
@@ -134,10 +127,7 @@ internal static class GameInputControllerStateReader
         finally { release(reading); }
     }
 
-    internal static unsafe IReadOnlyList<byte> ReadRawReport(
-        IGameInputReading reading,
-        Func<Exception, bool> isInteropFailure,
-        Action<object?> release)
+    internal static unsafe IReadOnlyList<byte> ReadRawReport(IGameInputReading reading, Func<Exception, bool> isInteropFailure, Action<object?> release)
     {
         IGameInputRawDeviceReport? report = null;
         try

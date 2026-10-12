@@ -24,8 +24,7 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
         _generalPersistence.Reset();
     }
 
-    private void ApplyFixedPixelTemporal(EmulationVideoProcessingConfiguration configuration,
-        float[] colors, int width, int height, TimeSpan timestamp)
+    private void ApplyFixedPixelTemporal(EmulationVideoProcessingConfiguration configuration, float[] colors, int width, int height, TimeSpan timestamp)
     {
         if (configuration.DisplayTechnology != EmulationVideoDisplayTechnology.FixedPixel)
         {
@@ -59,8 +58,7 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
         _historyTimestamp = TimeSpan.Zero;
     }
 
-    private void ApplyVectorTemporal(EmulationVideoProcessingConfiguration configuration,
-        float[] colors, int width, int height, long sequence)
+    private void ApplyVectorTemporal(EmulationVideoProcessingConfiguration configuration, float[] colors, int width, int height, long sequence)
     {
         if (configuration.DisplayTechnology != EmulationVideoDisplayTechnology.Vector)
         {
@@ -84,8 +82,7 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
         _vectorHistorySequence = 0;
     }
 
-    private void ApplyDotMatrixTemporal(EmulationVideoProcessingConfiguration configuration,
-        float[] colors, int width, int height, TimeSpan timestamp)
+    private void ApplyDotMatrixTemporal(EmulationVideoProcessingConfiguration configuration, float[] colors, int width, int height, TimeSpan timestamp)
     {
         if (configuration.DisplayTechnology != EmulationVideoDisplayTechnology.DotMatrix)
         {
@@ -126,8 +123,7 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
         _dotMatrixHistoryTimestamp = TimeSpan.Zero;
     }
 
-    private void ApplySegmentDisplayTemporal(EmulationVideoProcessingConfiguration configuration,
-        float[] colors, int width, int height, TimeSpan timestamp)
+    private void ApplySegmentDisplayTemporal(EmulationVideoProcessingConfiguration configuration, float[] colors, int width, int height, TimeSpan timestamp)
     {
         if (configuration.DisplayTechnology != EmulationVideoDisplayTechnology.SegmentDisplay)
         {
@@ -161,8 +157,7 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
         _segmentDisplayHistoryTimestamp = TimeSpan.Zero;
     }
 
-    private void ApplyEPaperTemporal(EmulationVideoProcessingConfiguration configuration,
-        float[] colors, int width, int height, TimeSpan timestamp)
+    private void ApplyEPaperTemporal(EmulationVideoProcessingConfiguration configuration, float[] colors, int width, int height, TimeSpan timestamp)
     {
         if (configuration.DisplayTechnology != EmulationVideoDisplayTechnology.EPaper)
         {

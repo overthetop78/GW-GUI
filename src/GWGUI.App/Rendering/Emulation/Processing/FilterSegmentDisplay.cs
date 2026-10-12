@@ -140,8 +140,7 @@ internal static class FilterSegmentDisplay
         }
         """;
 
-    internal static void Apply(float[] colors, int sourceWidth, int sourceHeight,
-        int width, int height, EmulationSegmentDisplayVideoConfiguration configuration)
+    internal static void Apply(float[] colors, int sourceWidth, int sourceHeight, int width, int height, EmulationSegmentDisplayVideoConfiguration configuration)
     {
         var source = colors.ToArray();
         var cellWidth = FilterSegmentDisplayCellSize.Width(configuration.CellSize);

@@ -6,16 +6,11 @@ using GWGUI.MediaEngine.PhysicalMedia.Writing;
 
 namespace GWGUI.App.Services.PhysicalDiskWriting;
 
-public sealed class InternalPhysicalDiskWriter(
-    Func<IGreaseweazleWriteDevice> deviceFactory,
-    FloppyMediaWritePlanningService? planningService = null)
+public sealed class InternalPhysicalDiskWriter(Func<IGreaseweazleWriteDevice> deviceFactory, FloppyMediaWritePlanningService? planningService = null)
 {
     private readonly FloppyMediaWritePlanningService _planningService = planningService ?? new FloppyMediaWritePlanningService(DiskImageExplorer.CreateDefault());
 
-    public async Task<PhysicalDiskWriteResult> WriteAsync(
-        InternalPhysicalDiskWriteRequest request,
-        IProgress<PhysicalTrackWriteProgress>? progress = null,
-        CancellationToken cancellationToken = default)
+    public async Task<PhysicalDiskWriteResult> WriteAsync(InternalPhysicalDiskWriteRequest request, IProgress<PhysicalTrackWriteProgress>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.SourcePath);

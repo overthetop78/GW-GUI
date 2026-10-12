@@ -9,9 +9,7 @@ internal static class ControllerAnalogDeadZoneFunctions
 
     internal static GameInputLiveState ApplyConfigured(GameInputLiveState state) => Apply(state, ControllerAnalogDeadZoneProfileStore.Get(state.DeviceId));
 
-    internal static EmulationControllerState Apply(
-        EmulationControllerState state,
-        ControllerAnalogDeadZoneProfile profile)
+    internal static EmulationControllerState Apply(EmulationControllerState state, ControllerAnalogDeadZoneProfile profile)
     {
         profile = profile.Normalize();
         var left = ApplyStick(state.LeftX / (float)short.MaxValue, state.LeftY / (float)short.MaxValue, profile);
@@ -31,9 +29,7 @@ internal static class ControllerAnalogDeadZoneFunctions
         };
     }
 
-    internal static GameInputLiveState Apply(
-        GameInputLiveState state,
-        ControllerAnalogDeadZoneProfile profile)
+    internal static GameInputLiveState Apply(GameInputLiveState state, ControllerAnalogDeadZoneProfile profile)
     {
         if (state.Gamepad is not { } gamepad) return state;
         profile = profile.Normalize();
@@ -56,10 +52,7 @@ internal static class ControllerAnalogDeadZoneFunctions
         return state with { Gamepad = gamepad };
     }
 
-    private static (float X, float Y) ApplyStick(
-        float x,
-        float y,
-        ControllerAnalogDeadZoneProfile profile)
+    private static (float X, float Y) ApplyStick(float x, float y, ControllerAnalogDeadZoneProfile profile)
     {
         x = Math.Clamp(x, -1f, 1f);
         y = Math.Clamp(y, -1f, 1f);

@@ -9,12 +9,10 @@ namespace GWGUI.App.Presenters.Emulation.Configurations;
 
 internal static class EmulationConfigurationTablePresenter
 {
-    internal static IReadOnlyList<EmulationConfigurationTableRow> CreateRows(
-        IEnumerable<(IEmulationModule Module, IEmulationConfiguration Configuration)> configurations) =>
+    internal static IReadOnlyList<EmulationConfigurationTableRow> CreateRows(IEnumerable<(IEmulationModule Module, IEmulationConfiguration Configuration)> configurations) =>
         configurations.Select(item => CreateRow(item.Module, item.Configuration)).OrderBy(row => row.MachineName, StringComparer.CurrentCulture).ToArray();
 
-    private static EmulationConfigurationTableRow CreateRow(
-        IEmulationModule module, IEmulationConfiguration configuration)
+    private static EmulationConfigurationTableRow CreateRow(IEmulationModule module, IEmulationConfiguration configuration)
     {
         var machine = module.Machines.First(item => item.Id == configuration.MachineId);
         var settings = module.Describe(configuration.MachineId, configuration);
@@ -34,8 +32,7 @@ internal static class EmulationConfigurationTablePresenter
 
         return new EmulationConfigurationTableRow(module, configuration, LocExtension.GetForModule(module, machine.DisplayResourceKey), cpu, totalRam, ReaderGlyphs(module, configuration), PeripheralGlyphs(module, configuration));
     }
-    private static IReadOnlyList<string> ReaderGlyphs(
-        IEmulationModule module, IEmulationConfiguration configuration)
+    private static IReadOnlyList<string> ReaderGlyphs(IEmulationModule module, IEmulationConfiguration configuration)
     {
         if (module is not IEmulationStorageSettingsManager storageManager) return [];
         var storage = storageManager.DescribeStorageSettings(configuration);
@@ -53,8 +50,7 @@ internal static class EmulationConfigurationTablePresenter
         _ => throw new ArgumentOutOfRangeException(nameof(mediaType), mediaType, null)
     };
 
-    private static IReadOnlyList<string> PeripheralGlyphs(
-        IEmulationModule module, IEmulationConfiguration configuration)
+    private static IReadOnlyList<string> PeripheralGlyphs(IEmulationModule module, IEmulationConfiguration configuration)
     {
         if (module is not IEmulationInputSettingsManager inputManager) return [];
         var input = inputManager.DescribeInputSettings(configuration);

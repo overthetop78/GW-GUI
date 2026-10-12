@@ -34,8 +34,7 @@ public sealed class HardwareSelectionController(
             if (controller is null) return null;
             var number = currentSettings.Drives.Where(item => item.ControllerUsbId == drive.ControllerUsbId).ToList().IndexOf(drive) + 1;
             var label = localize("Hardware.DriveChoice", [number, drive.Size, drive.Density, controller.LastPort]);
-            return new HardwareChoice(drive, controller.LastPort, controller.IsAvailable,
-                label + (controller.IsAvailable ? "" : $" ({localize("Hardware.Disconnected", [])})"));
+            return new HardwareChoice(drive, controller.LastPort, controller.IsAvailable, label + (controller.IsAvailable ? "" : $" ({localize("Hardware.Disconnected", [])})"));
         }).Where(choice => choice is not null).Cast<HardwareChoice>().ToArray();
 
         selector.ItemsSource = choices;

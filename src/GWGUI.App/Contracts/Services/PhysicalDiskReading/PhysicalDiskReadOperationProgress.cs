@@ -52,12 +52,7 @@ public sealed record PhysicalDiskReadOperationProgress : IEtatLectureDisquette
     public IReadOnlyDictionary<string, string> ParametresMessage { get; }
     public string? MessageExterne { get; }
 
-    private static IReadOnlyList<IEtatPisteLecture> CreateTrackStates(
-        IReadOnlyList<PhysicalDiskTrackAddress>? tracks,
-        int completedTracks,
-        int? cylinder,
-        int? head,
-        int attempt)
+    private static IReadOnlyList<IEtatPisteLecture> CreateTrackStates(IReadOnlyList<PhysicalDiskTrackAddress>? tracks, int completedTracks, int? cylinder, int? head, int attempt)
     {
         if (tracks is null)
         {
@@ -78,9 +73,5 @@ public sealed record PhysicalDiskReadOperationProgress : IEtatLectureDisquette
         }).ToArray();
     }
 
-    private sealed record TrackReadState(
-        int Cylindre,
-        int Face,
-        string Etat,
-        int Tentatives) : IEtatPisteLecture;
+    private sealed record TrackReadState(int Cylindre, int Face, string Etat, int Tentatives) : IEtatPisteLecture;
 }

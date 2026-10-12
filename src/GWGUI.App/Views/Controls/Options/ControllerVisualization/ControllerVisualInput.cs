@@ -84,12 +84,7 @@ internal sealed class ControllerVisualInput
 
     internal bool Direction(GameInputSwitchPosition position, GameInputGamepadButtons button, int fallbackIndex) => Direction(position, button, fallbackIndex, GamepadLeftHorizontalAxisIndex, GamepadLeftVerticalAxisIndex);
 
-    internal bool Direction(
-        GameInputSwitchPosition position,
-        GameInputGamepadButtons button,
-        int fallbackIndex,
-        int horizontalAxis,
-        int verticalAxis)
+    internal bool Direction(GameInputSwitchPosition position, GameInputGamepadButtons button, int fallbackIndex, int horizontalAxis, int verticalAxis)
     {
         var control = GamepadControl(button);
         if (State.HasGamepadState)
@@ -109,10 +104,7 @@ internal sealed class ControllerVisualInput
         return control is not null && State.PrimarySwitchDirections.Contains(control.Value);
     }
 
-    private static bool MatchesAxes(
-        GameInputSwitchPosition position,
-        float horizontal,
-        float vertical) =>
+    private static bool MatchesAxes(GameInputSwitchPosition position, float horizontal, float vertical) =>
         position switch
         {
             GameInputSwitchPosition.Up => vertical < -DirectionPressedThreshold,

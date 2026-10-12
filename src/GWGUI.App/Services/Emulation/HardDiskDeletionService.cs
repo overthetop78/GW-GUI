@@ -44,8 +44,7 @@ internal static class HardDiskDeletionService
 
     private static void ShowUsers(IReadOnlyList<string> users) => MessageBox.Show(LocExtension.Get("Emulation.Hdd.InUse", string.Join(Environment.NewLine, users)), LocExtension.Get("Emulation.Hdd.Delete"), MessageBoxButton.OK, MessageBoxImage.Information);
 
-    private static async Task<IReadOnlyList<string>> FindUsersAsync(IReadOnlyList<string> paths,
-        IEmulationConfiguration current)
+    private static async Task<IReadOnlyList<string>> FindUsersAsync(IReadOnlyList<string> paths, IEmulationConfiguration current)
     {
         var users = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase);
         var dependencies = new DiskImageDependencyIndex(image => new FileStream(image, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete), HardDiskDeletionFile.ResolveReferencePath, ResolveInventoryReference);
@@ -71,9 +70,7 @@ internal static class HardDiskDeletionService
         return users.Order().ToArray();
     }
 
-    private static string? ResolveInventoryReference(
-        string childPath,
-        DiskImageDependencyReference reference)
+    private static string? ResolveInventoryReference(string childPath, DiskImageDependencyReference reference)
     {
         var extension = reference.Uuid is not null ? ".vdi" : reference.Sha1 is not null ? ".chd" : null;
         if (extension is null) return null;
@@ -117,8 +114,7 @@ internal static class HardDiskDeletionService
             if (paths.Add(Path.GetFullPath(path))) yield return path;
     }
 
-    private static Task<bool> UsesAsync(IEnumerable<EmulationMedia> media, IReadOnlyList<string> candidates,
-        DiskImageDependencyIndex dependencies)
+    private static Task<bool> UsesAsync(IEnumerable<EmulationMedia> media, IReadOnlyList<string> candidates, DiskImageDependencyIndex dependencies)
     {
         var paths = media.Where(item => item.Type == EmulationMediaType.HardDisk && !string.IsNullOrWhiteSpace(item.Path)).Select(item => item.Path).ToArray();
         return Task.Run(() => paths.Any(image => candidates.Any(candidate => dependencies.Uses(image, candidate))));

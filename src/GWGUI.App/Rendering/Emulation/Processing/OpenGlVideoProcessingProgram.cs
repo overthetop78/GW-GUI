@@ -11,8 +11,7 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
     private readonly OpenGlVideoProgramUniforms _uniforms;
     private bool _disposed;
 
-    internal OpenGlVideoProcessingProgram(EmulationVideoSampling sampling,
-        EmulationVideoDisplayTechnology displayTechnology)
+    internal OpenGlVideoProcessingProgram(EmulationVideoSampling sampling, EmulationVideoDisplayTechnology displayTechnology)
     {
         _program = _api.CreateProgram(OpenGlVideoShaderSource.VertexSource, OpenGlVideoShaderSource.Fragment(sampling, displayTechnology));
         _uniforms = new(_api, _program);

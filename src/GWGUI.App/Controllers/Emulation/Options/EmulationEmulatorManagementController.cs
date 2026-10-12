@@ -199,8 +199,7 @@ internal sealed class EmulationEmulatorManagementController : IAsyncDisposable
 
     private static bool IsInstalled(EmulationEmulatorRelease release, string? installedVersion) => !string.IsNullOrWhiteSpace(installedVersion) && (string.Equals(release.Version, installedVersion, StringComparison.Ordinal) || string.Equals(release.Id, installedVersion, StringComparison.Ordinal));
 
-    private static EmulationEmulatorRelease DisplayRelease(EmulationEmulatorRelease release,
-        string? installedVersion)
+    private static EmulationEmulatorRelease DisplayRelease(EmulationEmulatorRelease release, string? installedVersion)
     {
         var labels = new List<string>();
         if (release.IsRequired)
@@ -224,8 +223,7 @@ internal sealed class EmulationEmulatorManagementController : IAsyncDisposable
         return _operationTask;
     }
 
-    private async Task RunOperationAsync(Func<CancellationToken, Task> action,
-        CancellationTokenSource operation)
+    private async Task RunOperationAsync(Func<CancellationToken, Task> action, CancellationTokenSource operation)
     {
         SetBusy(true);
         try { await action(operation.Token); }

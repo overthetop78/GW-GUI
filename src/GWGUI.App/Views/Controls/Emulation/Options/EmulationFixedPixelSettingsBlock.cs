@@ -13,9 +13,7 @@ namespace GWGUI.App.Views.Controls.Emulation.Options;
 
 internal static class EmulationFixedPixelSettingsBlock
 {
-    internal static FrameworkElement Create(EmulationFixedPixelVideoConfiguration value,
-        Action<Func<EmulationFixedPixelVideoConfiguration,
-            EmulationFixedPixelVideoConfiguration>> changed, Action rebuild)
+    internal static FrameworkElement Create(EmulationFixedPixelVideoConfiguration value, Action<Func<EmulationFixedPixelVideoConfiguration, EmulationFixedPixelVideoConfiguration>> changed, Action rebuild)
     {
         var root = new StackPanel { Margin = new Thickness(0, 0, 0, 12) };
         var groups = new Grid();
@@ -47,12 +45,8 @@ internal static class EmulationFixedPixelSettingsBlock
         AddGroup(groups, screen, 0, 0);
 
         var structure = new StackPanel();
-        structure.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelGridIntensity,
-            value.GridIntensity, 0, 100,
-            number => changed(current => current with { GridIntensity = number })));
-        structure.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelPixelGap,
-            value.PixelGap, 0, 100,
-            number => changed(current => current with { PixelGap = number })));
+        structure.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelGridIntensity, value.GridIntensity, 0, 100, number => changed(current => current with { GridIntensity = number })));
+        structure.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelPixelGap, value.PixelGap, 0, 100, number => changed(current => current with { PixelGap = number })));
         AddGroup(groups, structure, 0, 1);
 
         var light = new StackPanel();
@@ -61,9 +55,7 @@ internal static class EmulationFixedPixelSettingsBlock
             light.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelBacklight,
                 value.BacklightIntensity ?? (value.Technology == EmulationFixedPixelTechnology.Lcd ? 65 : 80),
                 0, 100, number => changed(current => current with { BacklightIntensity = number })));
-            light.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelBacklightBleed,
-                value.BacklightBleedIntensity, 0, 100,
-                number => changed(current => current with { BacklightBleedIntensity = number })));
+            light.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelBacklightBleed, value.BacklightBleedIntensity, 0, 100, number => changed(current => current with { BacklightBleedIntensity = number })));
         }
         light.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelBlackDepth,
             value.BlackDepth ?? value.Technology switch
@@ -79,9 +71,7 @@ internal static class EmulationFixedPixelSettingsBlock
             value.ResponseTimeMilliseconds, EmulationVideoProcessingLimits.DurationMinimumMilliseconds,
             EmulationVideoProcessingLimits.DurationMaximumMilliseconds,
             number => changed(current => current with { ResponseTimeMilliseconds = number })));
-        temporal.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelPersistence,
-            value.PersistenceIntensity, 0, 100,
-            number => changed(current => current with { PersistenceIntensity = number })));
+        temporal.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelPersistence, value.PersistenceIntensity, 0, 100, number => changed(current => current with { PersistenceIntensity = number })));
         AddGroup(groups, temporal, 1, 1);
 
         root.Children.Add(groups);
@@ -102,8 +92,7 @@ internal static class EmulationFixedPixelSettingsBlock
         grid.Children.Add(card);
     }
 
-    private static FrameworkElement Choice<T>(string id, IReadOnlyDictionary<T, string> resources,
-        T selected, Action<T> changed) where T : struct, Enum
+    private static FrameworkElement Choice<T>(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed) where T : struct, Enum
     {
         var choices = resources.Select(item => new ChoiceValue<T>(item.Key, LocExtension.Get(item.Value))).ToArray();
         var selector = new ComboBox
@@ -121,8 +110,7 @@ internal static class EmulationFixedPixelSettingsBlock
         return Field(id, selector);
     }
 
-    private static FrameworkElement Slider(string id, int value, int minimum, int maximum,
-        Action<int> changed)
+    private static FrameworkElement Slider(string id, int value, int minimum, int maximum, Action<int> changed)
     {
         var grid = new Grid();
         grid.ColumnDefinitions.Add(new ColumnDefinition());

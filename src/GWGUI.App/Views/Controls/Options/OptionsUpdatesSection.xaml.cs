@@ -120,8 +120,7 @@ internal enum UpdateVisualState
 
 internal sealed class UpdateNavigationItem
 {
-    internal UpdateNavigationItem(string key, UpdateNavigationPage page, string title, string subtitle,
-        string icon, UpdateVisualState state = UpdateVisualState.Neutral, string? moduleId = null)
+    internal UpdateNavigationItem(string key, UpdateNavigationPage page, string title, string subtitle, string icon, UpdateVisualState state = UpdateVisualState.Neutral, string? moduleId = null)
     {
         Key = key;
         Page = page;

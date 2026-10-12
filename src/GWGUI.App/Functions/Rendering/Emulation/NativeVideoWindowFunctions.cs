@@ -20,19 +20,7 @@ internal static class NativeVideoWindowFunctions
     internal static IntPtr ModuleHandle => GetModuleHandle(null);
 
     [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-    private static extern IntPtr CreateWindowEx(
-        int extendedStyle,
-        string className,
-        string windowName,
-        int style,
-        int x,
-        int y,
-        int width,
-        int height,
-        IntPtr parent,
-        IntPtr menu,
-        IntPtr instance,
-        IntPtr parameter);
+    private static extern IntPtr CreateWindowEx(int extendedStyle, string className, string windowName, int style, int x, int y, int width, int height, IntPtr parent, IntPtr menu, IntPtr instance, IntPtr parameter);
 
     [DllImport("user32.dll")]
     private static extern bool DestroyWindow(IntPtr window);

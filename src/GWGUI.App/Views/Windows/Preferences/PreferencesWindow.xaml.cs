@@ -186,20 +186,14 @@ public partial class PreferencesWindow : Window
     private async void AutoSaveText_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => await SaveFromEditorAsync();
     private async void ScanHardware_Click(object sender, RoutedEventArgs e) => await _hardwareOptionsController.ScanAsync();
     private void AddDrive_Click(object sender, RoutedEventArgs e) => _hardwareOptionsController.AddDrive();
-    private async void SaveHardwareRow_Click(
-        object sender,
-        RoutedEventArgs e
-    )
+    private async void SaveHardwareRow_Click(object sender, RoutedEventArgs e)
     {
         if (sender is not FrameworkElement { DataContext: HardwareRow row })
             return;
         await _hardwareOptionsController.SaveAsync(row);
     }
 
-    private async void ForgetHardwareRow_Click(
-        object sender,
-        RoutedEventArgs e
-    )
+    private async void ForgetHardwareRow_Click(object sender, RoutedEventArgs e)
     {
         if (sender is not FrameworkElement { DataContext: HardwareRow row })
             return;
@@ -252,10 +246,7 @@ public partial class PreferencesWindow : Window
     }
 
     private void Close_Click(object sender, RoutedEventArgs e) => BeginClose();
-    private void Window_Closing(
-        object? sender,
-        CancelEventArgs e
-    )
+    private void Window_Closing(object? sender, CancelEventArgs e)
     {
         if (_initializing || _closingAfterSave)
             return;
@@ -263,12 +254,7 @@ public partial class PreferencesWindow : Window
         BeginClose();
     }
 
-    private void ShowLoggedError(
-        Exception exception,
-        string context,
-        string titleKey,
-        MessageBoxImage icon
-    )
+    private void ShowLoggedError(Exception exception, string context, string titleKey, MessageBoxImage icon)
     {
         ErrorLog.Write(exception, context);
         var detail = ExceptionDescriptionFunctions.Describe(exception);

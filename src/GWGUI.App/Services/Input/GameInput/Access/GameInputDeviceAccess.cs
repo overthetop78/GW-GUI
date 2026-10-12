@@ -151,12 +151,7 @@ internal static partial class GameInputDeviceMonitor
 
     internal static bool SetRumble(string deviceId, float lowFrequency, float highFrequency, float leftTrigger, float rightTrigger) => Worker.Invoke(() => SetRumbleCore(deviceId, lowFrequency, highFrequency, leftTrigger, rightTrigger));
 
-    private static unsafe bool SetRumbleCore(
-        string deviceId,
-        float lowFrequency,
-        float highFrequency,
-        float leftTrigger,
-        float rightTrigger)
+    private static unsafe bool SetRumbleCore(string deviceId, float lowFrequency, float highFrequency, float leftTrigger, float rightTrigger)
     {
         EnsureInitialized();
         lock (Sync)

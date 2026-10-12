@@ -3,8 +3,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 // Original MIT-compatible diagonal reconstruction; no GPL SABR source code is used.
 internal static class FilterSabr
 {
-    public static void Sample(float[] source, int width, int height,
-        float positionX, float positionY, Span<float> result)
+    public static void Sample(float[] source, int width, int height, float positionX, float positionY, Span<float> result)
     {
         var x = Math.Clamp((int)MathF.Floor(positionX), 0, width - 1);
         var y = Math.Clamp((int)MathF.Floor(positionY), 0, height - 1);

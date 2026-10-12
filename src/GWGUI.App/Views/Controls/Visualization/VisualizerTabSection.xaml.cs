@@ -103,10 +103,7 @@ public partial class VisualizerTabSection : UserControl
         view.Visibility = ActiveRepresentationKind == representationKind ? Visibility.Visible : Visibility.Collapsed;
     }
 
-    public bool ShowDocument(
-        MediaImageDocument document,
-        MediaVisualizationDescriptor descriptor,
-        MediaInspectorModel? inspectorModel = null)
+    public bool ShowDocument(MediaImageDocument document, MediaVisualizationDescriptor descriptor, MediaInspectorModel? inspectorModel = null)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(descriptor);

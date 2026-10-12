@@ -12,14 +12,10 @@ internal sealed class MachineSession : IAsyncDisposable
     private bool _disposed;
     private bool _hasLiveMachine = true;
 
-    internal MachineSession(IEmulatedMachine machine,
-        Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> machineFactory,
-        IEnumerable<EmulationMedia> mountedMedia)
+    internal MachineSession(IEmulatedMachine machine, Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> machineFactory, IEnumerable<EmulationMedia> mountedMedia)
         : this(string.Empty, Guid.Empty, string.Empty, machine, machineFactory, mountedMedia) { }
 
-    internal MachineSession(string moduleId, Guid configurationId, string displayName, IEmulatedMachine machine,
-        Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> machineFactory,
-        IEnumerable<EmulationMedia> mountedMedia)
+    internal MachineSession(string moduleId, Guid configurationId, string displayName, IEmulatedMachine machine, Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> machineFactory, IEnumerable<EmulationMedia> mountedMedia)
     {
         ModuleId = moduleId;
         ConfigurationId = configurationId;
@@ -99,8 +95,7 @@ internal sealed class MachineSession : IAsyncDisposable
         }
     }
 
-    internal async Task UpdateMachineFactoryAsync(
-        Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> machineFactory)
+    internal async Task UpdateMachineFactoryAsync(Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> machineFactory)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
         _machineFactory = machineFactory;

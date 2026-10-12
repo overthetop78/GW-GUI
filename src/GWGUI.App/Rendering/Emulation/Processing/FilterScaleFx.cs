@@ -7,8 +7,7 @@ internal static class FilterScaleFx
     private const float CandidateThreshold = 0.5f;
     private const float DifferenceThreshold = 0.06f;
 
-    public static void Sample(float[] source, int width, int height,
-        float positionX, float positionY, Span<float> result)
+    public static void Sample(float[] source, int width, int height, float positionX, float positionY, Span<float> result)
     {
         var sourceX = Math.Clamp((int)MathF.Floor(positionX), 0, width - 1);
         var sourceY = Math.Clamp((int)MathF.Floor(positionY), 0, height - 1);
@@ -61,8 +60,7 @@ internal static class FilterScaleFx
         }
     }
 
-    private static Corner Classify(Color center, Color horizontal, Color vertical,
-        Color diagonal, Color oppositeHorizontal, Color oppositeVertical)
+    private static Corner Classify(Color center, Color horizontal, Color vertical, Color diagonal, Color oppositeHorizontal, Color oppositeVertical)
     {
         var junction = Distance(horizontal, vertical);
         var centerGap = MathF.Min(Distance(center, horizontal), Distance(center, vertical));

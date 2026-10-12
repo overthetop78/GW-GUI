@@ -46,9 +46,7 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
         MaxHeight = SystemParameters.WorkArea.Height * 0.85;
         SizeToContent = SizeToContent.Height;
         ResizeMode = ResizeMode.NoResize;
-        _speed.ItemsSource = (speeds ?? []).Select(speed =>
-            new StorageDialogChoice(speed,
-                $"{speed}×")).ToArray();
+        _speed.ItemsSource = (speeds ?? []).Select(speed => new StorageDialogChoice(speed, $"{speed}×")).ToArray();
         _speed.SelectedItem = _speed.Items.OfType<StorageDialogChoice>().FirstOrDefault(choice => choice.Value == settings.Speed) ?? _speed.Items.OfType<StorageDialogChoice>().FirstOrDefault();
         _cache.IsChecked = settings.CacheImage;
         _ignoreErrors.IsChecked = settings.IgnoreErrors;
@@ -109,8 +107,7 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
         }
         body.Children.Add(StorageDialogUi.Info(LocExtension.Get(EmulationResourceKeys.StorageRuntimeHint)));
         Content = StorageDialogUi.DialogLayout(
-            StorageDialogUi.DialogHeader(IconGlyphs.OpticalDisc, Title,
-                $"{LocExtension.Get(EmulationResourceKeys.CompactDiscDevice)} · {machineName}"),
+            StorageDialogUi.DialogHeader(IconGlyphs.OpticalDisc, Title, $"{LocExtension.Get(EmulationResourceKeys.CompactDiscDevice)} · {machineName}"),
             StorageDialogUi.Card(LocExtension.Get(EmulationResourceKeys.CompactDiscDevice),
                 new ScrollViewer { Content = body, MaxHeight = SystemParameters.WorkArea.Height * 0.65, VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
                     HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled }),

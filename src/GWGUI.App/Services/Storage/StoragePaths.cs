@@ -13,8 +13,7 @@ public static class StoragePaths
     public static string LogsDirectory => Path.Combine(DataDirectory, "Logs");
     public static string EmulationDirectory => Path.Combine(DataDirectory, "Emulation");
     public static string FirmwareCatalogDirectory => Path.Combine(EmulationDirectory, "Catalogs", "Firmware");
-    public static string FirmwareCatalogPath(string platform) =>
-        Path.Combine(FirmwareCatalogDirectory, $"{platform.ToLowerInvariant()}.json");
+    public static string FirmwareCatalogPath(string platform) => Path.Combine(FirmwareCatalogDirectory, $"{platform.ToLowerInvariant()}.json");
     public static string EmulationStorageDirectory => string.IsNullOrWhiteSpace(_configuredEmulationStorageDirectory) ? Path.Combine(DataDirectory, "Emulation", "Storage") : Path.GetFullPath(_configuredEmulationStorageDirectory);
     public static string EmulationStateDirectory => ResolveConfiguredDirectory(_configuredEmulationStateDirectory, Path.Combine(EmulationStorageDirectory, StoragePathConstants.StatesDirectory));
     public static string EmulationCaptureDirectory => ResolveConfiguredDirectory(_configuredEmulationCaptureDirectory, Path.Combine(EmulationStorageDirectory, StoragePathConstants.CapturesDirectory));

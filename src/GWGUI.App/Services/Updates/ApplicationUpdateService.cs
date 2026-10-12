@@ -37,8 +37,7 @@ internal sealed class ApplicationUpdateService
         _packagePreparation = packagePreparation ?? new UpdatePackagePreparationService(_httpClient, _installedState, applicationDirectory, archiveValidator, workingRootDirectory);
     }
 
-    internal Task<PreparedUpdateLaunch> PrepareAsync(UpdatePlan plan,
-        IProgress<double>? progress = null, CancellationToken cancellationToken = default)
+    internal Task<PreparedUpdateLaunch> PrepareAsync(UpdatePlan plan, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         if (plan.Scope != UpdateSearchScope.Application || plan.Items.Count != 1
             || plan.Items[0].Kind != UpdateComponentKind.Application)
@@ -46,9 +45,7 @@ internal sealed class ApplicationUpdateService
         return _packagePreparation.PrepareAsync(plan, progress, cancellationToken);
     }
 
-    internal async Task<UpdateSearchResult> SearchAsync(
-        IReadOnlyDictionary<string, string>? selections = null,
-        CancellationToken cancellationToken = default)
+    internal async Task<UpdateSearchResult> SearchAsync(IReadOnlyDictionary<string, string>? selections = null, CancellationToken cancellationToken = default)
     {
         using var response = await _httpClient.GetAsync(_catalogUri, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();

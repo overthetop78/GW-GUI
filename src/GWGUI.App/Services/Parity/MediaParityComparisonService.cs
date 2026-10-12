@@ -63,9 +63,7 @@ public static class MediaParityComparisonService
         return true;
     }
 
-    private static bool SameFiles(
-        IReadOnlyList<FileSystemEntry> first,
-        IReadOnlyList<FileSystemEntry> second)
+    private static bool SameFiles(IReadOnlyList<FileSystemEntry> first, IReadOnlyList<FileSystemEntry> second)
     {
         if (first.Count != second.Count) return false;
         for (var index = 0; index < first.Count; index++)
@@ -100,9 +98,7 @@ public static class MediaParityComparisonService
         return SameEntryMetadata(first.Volume.Entries, second.Volume.Entries);
     }
 
-    private static bool SameEntryMetadata(
-        IReadOnlyList<FileSystemEntry> first,
-        IReadOnlyList<FileSystemEntry> second)
+    private static bool SameEntryMetadata(IReadOnlyList<FileSystemEntry> first, IReadOnlyList<FileSystemEntry> second)
     {
         if (first.Count != second.Count) return false;
         for (var index = 0; index < first.Count; index++)
@@ -123,8 +119,7 @@ public static class MediaParityComparisonService
 
     private static bool SequenceEqual(IReadOnlyList<byte>? first, IReadOnlyList<byte>? second) => first is null ? second is null : second is not null && first.SequenceEqual(second);
 
-    private static string Geometry(SectorImage image) =>
-        $"{image.Cylinders}x{image.Heads}x{image.SectorsPerTrack}x{image.BlockSize}";
+    private static string Geometry(SectorImage image) => $"{image.Cylinders}x{image.Heads}x{image.SectorsPerTrack}x{image.BlockSize}";
 
     private static ParityValidationStatus Status(bool passed) => passed ? ParityValidationStatus.Passed : ParityValidationStatus.Failed;
 

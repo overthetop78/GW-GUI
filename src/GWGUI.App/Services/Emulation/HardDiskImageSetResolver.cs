@@ -43,8 +43,7 @@ internal static class HardDiskImageSetResolver
         var bands = Path.Combine(root, "bands");
         if (!Directory.Exists(bands)) throw new InvalidDataException("The sparsebundle bands directory is missing.");
         RejectRedirect(bands);
-        var required = new[] { "Info.plist", "Info.bckup", "token" }
-            .Select(name => Path.Combine(root, name)).ToArray();
+        var required = new[] { "Info.plist", "Info.bckup", "token" }.Select(name => Path.Combine(root, name)).ToArray();
         if (required.Any(path => !File.Exists(path)) || !File.Exists(Path.Combine(bands, "0")))
             throw new InvalidDataException("The sparsebundle image set is incomplete.");
         var files = new List<string>(required);

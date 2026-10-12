@@ -124,10 +124,8 @@ internal static class GameInputDescriptorPresenter
     private static string Reports(GameInputDeviceDescriptor device)
     {
         var summary = LocExtension.Get("Controllers.ReportCounts", device.InputReports.Count, device.OutputReports.Count);
-        var details = device.InputReports.Select((report, index) =>
-                $"{LocExtension.Get("Controllers.Enum.InputReport")} #{index + 1}: ID={report.Id}, {report.Size} B")
-            .Concat(device.OutputReports.Select((report, index) =>
-                $"{LocExtension.Get("Controllers.Enum.OutputReport")} #{index + 1}: ID={report.Id}, {report.Size} B"));
+        var details = device.InputReports.Select((report, index) => $"{LocExtension.Get("Controllers.Enum.InputReport")} #{index + 1}: ID={report.Id}, {report.Size} B")
+            .Concat(device.OutputReports.Select((report, index) => $"{LocExtension.Get("Controllers.Enum.OutputReport")} #{index + 1}: ID={report.Id}, {report.Size} B"));
         var text = string.Join(" · ", details);
         return string.IsNullOrEmpty(text) ? summary : $"{summary} · {text}";
     }

@@ -4,14 +4,9 @@ using GWGUI.Emulation.Enums;
 
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal readonly record struct PlasmaVideoShaderParameters(
-    Vector4 Effect, Vector4 Temporal, Vector4 Display)
+internal readonly record struct PlasmaVideoShaderParameters(Vector4 Effect, Vector4 Temporal, Vector4 Display)
 {
-    internal static PlasmaVideoShaderParameters From(
-        EmulationVideoProcessingConfiguration configuration,
-        bool hasHistory = false,
-        long sequence = 0,
-        float averageLuminance = 0f)
+    internal static PlasmaVideoShaderParameters From(EmulationVideoProcessingConfiguration configuration, bool hasHistory = false, long sequence = 0, float averageLuminance = 0f)
     {
         var plasma = configuration.Plasma;
         return new PlasmaVideoShaderParameters(

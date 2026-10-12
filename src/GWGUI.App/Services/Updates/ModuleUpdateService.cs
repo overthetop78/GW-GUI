@@ -33,15 +33,11 @@ internal sealed class ModuleUpdateService
         _modulesDirectory = Path.GetFullPath(modulesDirectory ?? Path.Combine(AppContext.BaseDirectory, "Modules"));
     }
 
-    internal async Task<UpdateSearchResult> SearchAsync(
-        IReadOnlyDictionary<string, string>? selections = null,
-        CancellationToken cancellationToken = default)
+    internal async Task<UpdateSearchResult> SearchAsync(IReadOnlyDictionary<string, string>? selections = null, CancellationToken cancellationToken = default)
     {
         var legacyModules = FindModulesWithoutUpdateSource();
         if (legacyModules.Count > 0)
-            throw new InvalidDataException(
-                $"Installed module(s) {string.Join(", ", legacyModules)} have no update source. " +
-                "Reinstall each module from a ZIP archive or a direct module catalog URL.");
+            throw new InvalidDataException($"Installed module(s) {string.Join(", ", legacyModules)} have no update source. " + "Reinstall each module from a ZIP archive or a direct module catalog URL.");
         var packages = _installedModules();
         var installedState = new InstalledUpdateState(ReadApplicationVersion(), EmulationHostApi.CurrentVersion.ToString(2), packages.Select(ToInstalledVersion).ToArray());
         var rows = new List<AvailableComponentUpdate>();

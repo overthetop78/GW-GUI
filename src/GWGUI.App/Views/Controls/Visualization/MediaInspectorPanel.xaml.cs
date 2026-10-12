@@ -50,7 +50,5 @@ public partial class MediaInspectorPanel : UserControl
         DetailsPopup.IsOpen = !DetailsPopup.IsOpen;
     }
 
-    private sealed record SectionPresentation(
-        MediaInspectorSection Section,
-        IReadOnlyList<MediaInspectorEntry> PreviewEntries);
+    private sealed record SectionPresentation(MediaInspectorSection Section, IReadOnlyList<MediaInspectorEntry> PreviewEntries);
 }

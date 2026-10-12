@@ -14,9 +14,7 @@ namespace GWGUI.App.Views.Controls.Emulation.Options;
 
 internal static class EmulationEPaperSettingsBlock
 {
-    internal static FrameworkElement Create(EmulationEPaperVideoConfiguration value,
-        Action<Func<EmulationEPaperVideoConfiguration, EmulationEPaperVideoConfiguration>> changed,
-        Action rebuild)
+    internal static FrameworkElement Create(EmulationEPaperVideoConfiguration value, Action<Func<EmulationEPaperVideoConfiguration, EmulationEPaperVideoConfiguration>> changed, Action rebuild)
     {
         var groups = new Grid();
         groups.ColumnDefinitions.Add(new ColumnDefinition());
@@ -33,44 +31,30 @@ internal static class EmulationEPaperSettingsBlock
                     changed(current => current with { ColorMode = choice });
                     rebuild();
                 }),
-            Slider(EmulationVideoProcessingCatalog.EPaperInkDensity, value.InkDensity, 100,
-                number => changed(current => current with { InkDensity = number })),
-            Slider(EmulationVideoProcessingCatalog.EPaperContrast, value.Contrast, 100,
-                number => changed(current => current with { Contrast = number })),
-            Slider(EmulationVideoProcessingCatalog.EPaperDithering, value.Dithering, 100,
-                number => changed(current => current with { Dithering = number }))
+            Slider(EmulationVideoProcessingCatalog.EPaperInkDensity, value.InkDensity, 100, number => changed(current => current with { InkDensity = number })),
+            Slider(EmulationVideoProcessingCatalog.EPaperContrast, value.Contrast, 100, number => changed(current => current with { Contrast = number })),
+            Slider(EmulationVideoProcessingCatalog.EPaperDithering, value.Dithering, 100, number => changed(current => current with { Dithering = number }))
         };
         if (value.ColorMode == EmulationEPaperColorMode.Color4096)
-            ink.Add(Slider(EmulationVideoProcessingCatalog.EPaperColorSaturation,
-                value.ColorSaturation, 100,
-                number => changed(current => current with { ColorSaturation = number })));
+            ink.Add(Slider(EmulationVideoProcessingCatalog.EPaperColorSaturation, value.ColorSaturation, 100, number => changed(current => current with { ColorSaturation = number })));
         AddGroup(groups, EmulationResourceKeys.VideoEPaperGroupInkAndColor, 0, 0, 1, ink.ToArray());
 
         AddGroup(groups, EmulationResourceKeys.VideoEPaperGroupPaperSurface, 0, 1, 1,
-            Slider(EmulationVideoProcessingCatalog.EPaperPaperBrightness,
-                value.PaperBrightness, 100,
-                number => changed(current => current with { PaperBrightness = number })),
-            Slider(EmulationVideoProcessingCatalog.EPaperPaperWarmth, value.PaperWarmth, 100,
-                number => changed(current => current with { PaperWarmth = number })),
-            Slider(EmulationVideoProcessingCatalog.EPaperSurfaceTexture,
-                value.SurfaceTexture, 100,
-                number => changed(current => current with { SurfaceTexture = number })),
-            Slider(EmulationVideoProcessingCatalog.EPaperEdgeSoftness,
-                value.EdgeSoftness, 100,
-                number => changed(current => current with { EdgeSoftness = number })));
+            Slider(EmulationVideoProcessingCatalog.EPaperPaperBrightness, value.PaperBrightness, 100, number => changed(current => current with { PaperBrightness = number })),
+            Slider(EmulationVideoProcessingCatalog.EPaperPaperWarmth, value.PaperWarmth, 100, number => changed(current => current with { PaperWarmth = number })),
+            Slider(EmulationVideoProcessingCatalog.EPaperSurfaceTexture, value.SurfaceTexture, 100, number => changed(current => current with { SurfaceTexture = number })),
+            Slider(EmulationVideoProcessingCatalog.EPaperEdgeSoftness, value.EdgeSoftness, 100, number => changed(current => current with { EdgeSoftness = number })));
 
         AddGroup(groups, EmulationResourceKeys.VideoEPaperGroupRefresh, 1, 0, 2,
             Slider(EmulationVideoProcessingCatalog.EPaperRefreshTime,
                 value.RefreshTimeMilliseconds,
                 EmulationVideoProcessingLimits.DurationMaximumMilliseconds,
                 number => changed(current => current with { RefreshTimeMilliseconds = number })),
-            Slider(EmulationVideoProcessingCatalog.EPaperGhosting, value.Ghosting, 100,
-                number => changed(current => current with { Ghosting = number })));
+            Slider(EmulationVideoProcessingCatalog.EPaperGhosting, value.Ghosting, 100, number => changed(current => current with { Ghosting = number })));
         return groups;
     }
 
-    private static void AddGroup(Grid groups, string titleResourceKey, int row, int column,
-        int columnSpan, params FrameworkElement[] fields)
+    private static void AddGroup(Grid groups, string titleResourceKey, int row, int column, int columnSpan, params FrameworkElement[] fields)
     {
         var content = new StackPanel();
         content.Children.Add(new TextBlock
@@ -92,8 +76,7 @@ internal static class EmulationEPaperSettingsBlock
         groups.Children.Add(card);
     }
 
-    private static FrameworkElement Slider(string id, int value, int maximum,
-        Action<int> changed)
+    private static FrameworkElement Slider(string id, int value, int maximum, Action<int> changed)
     {
         var row = new Grid();
         row.ColumnDefinitions.Add(new ColumnDefinition());
@@ -122,8 +105,7 @@ internal static class EmulationEPaperSettingsBlock
         return Field(id, row);
     }
 
-    private static FrameworkElement Choice<T>(string id,
-        IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)
+    private static FrameworkElement Choice<T>(string id, IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)
         where T : struct, Enum
     {
         var choices = resources.Select(item => new ChoiceValue<T>(item.Key, LocExtension.Get(item.Value))).ToArray();

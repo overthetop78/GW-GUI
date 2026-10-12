@@ -3,8 +3,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 // Original edge-aware 3x3 implementation; no GPL xBRZ source code is used.
 internal static class FilterXbrz
 {
-    public static void Sample(float[] source, int width, int height,
-        float sourcePositionX, float sourcePositionY, Span<float> result)
+    public static void Sample(float[] source, int width, int height, float sourcePositionX, float sourcePositionY, Span<float> result)
     {
         var centerX = (int)MathF.Floor(sourcePositionX);
         var centerY = (int)MathF.Floor(sourcePositionY);

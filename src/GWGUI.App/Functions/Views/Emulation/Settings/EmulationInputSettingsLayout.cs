@@ -33,8 +33,7 @@ internal static partial class EmulationSettingsLayout
         return card;
     }
 
-    internal static Grid KeyboardSettingsPage(InputBindingEditor editor, string? hint = null,
-        Border? unavailable = null)
+    internal static Grid KeyboardSettingsPage(InputBindingEditor editor, string? hint = null, Border? unavailable = null)
     {
         var page = new Grid { Margin = new Thickness(12) };
         page.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });

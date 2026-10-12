@@ -82,8 +82,7 @@ internal static partial class GameInputDeviceMonitor
         else RawGameControllerFallback.StopMonitoring();
     }
 
-    private static void DeviceChanged(ulong token, IntPtr context, IGameInputDevice device,
-        ulong timestamp, GameInputDeviceStatus currentStatus, GameInputDeviceStatus previousStatus)
+    private static void DeviceChanged(ulong token, IntPtr context, IGameInputDevice device, ulong timestamp, GameInputDeviceStatus currentStatus, GameInputDeviceStatus previousStatus)
     {
         // A GameInput callback must never register or unregister another callback.
         // Keep the RCW alive in the queued closure and do all COM lifecycle work on
@@ -118,8 +117,7 @@ internal static partial class GameInputDeviceMonitor
         }
     }
 
-    private static void ProcessDeviceChange(ulong token, IntPtr context, IGameInputDevice device,
-        ulong timestamp, GameInputDeviceStatus currentStatus, GameInputDeviceStatus previousStatus)
+    private static void ProcessDeviceChange(ulong token, IntPtr context, IGameInputDevice device, ulong timestamp, GameInputDeviceStatus currentStatus, GameInputDeviceStatus previousStatus)
     {
         try
         {
@@ -151,8 +149,7 @@ internal static partial class GameInputDeviceMonitor
         }
     }
 
-    private static void SystemButtonsChanged(ulong token, IntPtr context, IGameInputDevice device,
-        ulong timestamp, GameInputSystemButtons currentButtons, GameInputSystemButtons previousButtons)
+    private static void SystemButtonsChanged(ulong token, IntPtr context, IGameInputDevice device, ulong timestamp, GameInputSystemButtons currentButtons, GameInputSystemButtons previousButtons)
     {
         try
         {

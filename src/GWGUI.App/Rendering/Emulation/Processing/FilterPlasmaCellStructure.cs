@@ -22,8 +22,7 @@ internal static class FilterPlasmaCellStructure
         }
         """;
 
-    internal static void Apply(float[] colors, int sourceWidth, int sourceHeight,
-        int outputWidth, int outputHeight, int setting)
+    internal static void Apply(float[] colors, int sourceWidth, int sourceHeight, int outputWidth, int outputHeight, int setting)
     {
         if (setting <= 0 || sourceWidth <= 0 || sourceHeight <= 0) return;
         var intensity = setting / 100f;

@@ -104,9 +104,7 @@ internal sealed class OpenGlVideoProgramUniforms
         int Location(string name) => api.GetUniformLocation(program, name);
     }
 
-    internal void Apply(EmulationVideoProcessingConfiguration configuration,
-        int sourceWidth, int sourceHeight, int outputWidth, int outputHeight,
-        bool hasHistory, double elapsedMilliseconds, long sequence, float averageLuminance)
+    internal void Apply(EmulationVideoProcessingConfiguration configuration, int sourceWidth, int sourceHeight, int outputWidth, int outputHeight, bool hasHistory, double elapsedMilliseconds, long sequence, float averageLuminance)
     {
         var adjustments = configuration.Adjustments;
         _api.SetUniform(_adjustments,

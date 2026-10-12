@@ -19,9 +19,7 @@ internal static class StorageSizeFormatter
         return $"{bytes / (double)BytesPerMebibyte:0.##} {MebibyteUnit}";
     }
 
-    internal static string FormatCapacity(long bytes) => bytes >= BytesPerGibibyte
-        ? $"{bytes / (double)BytesPerGibibyte:0.##} {GibibyteUnit}"
-        : $"{bytes / (double)BytesPerMebibyte:0.##} {MebibyteUnit}";
+    internal static string FormatCapacity(long bytes) => bytes >= BytesPerGibibyte ? $"{bytes / (double)BytesPerGibibyte:0.##} {GibibyteUnit}" : $"{bytes / (double)BytesPerMebibyte:0.##} {MebibyteUnit}";
 
     internal static string FormatKibibytes(int kibibytes)
     {

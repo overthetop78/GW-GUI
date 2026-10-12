@@ -8,8 +8,7 @@ internal static class EmulationImageRestorationFunctions
     private const float MinimumPatternContrast = 0.015f;
     private const float MaximumPatternContrast = 0.45f;
 
-    internal static void ApplyDeinterlacing(float[] colors, int width, int height,
-        EmulationDeinterlacingMode mode)
+    internal static void ApplyDeinterlacing(float[] colors, int width, int height, EmulationDeinterlacingMode mode)
     {
         if (mode == EmulationDeinterlacingMode.Off || height < 2) return;
         var source = colors.ToArray();

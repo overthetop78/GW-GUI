@@ -168,9 +168,7 @@ public partial class BlockMediaView : UserControl, IMediaVisualizationView
         return new SKPoint((float)((pointer.X - _pan.X) * width / Math.Max(1, canvas.ActualWidth)), (float)((pointer.Y - _pan.Y) * height / Math.Max(1, canvas.ActualHeight)));
     }
 
-    private void UpdateSelectionLabel() => SelectionLabel.Text = _selectedRange is null
-        ? string.Empty
-        : _selectedRange.Label ?? $"LBA {_selectedRange.Start:N0} · {_selectedRange.Length:N0}";
+    private void UpdateSelectionLabel() => SelectionLabel.Text = _selectedRange is null ? string.Empty : _selectedRange.Label ?? $"LBA {_selectedRange.Start:N0} · {_selectedRange.Length:N0}";
 
     private void InvalidateCanvases()
     {

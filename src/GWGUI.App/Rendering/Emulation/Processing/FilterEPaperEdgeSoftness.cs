@@ -2,12 +2,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 internal static class FilterEPaperEdgeSoftness
 {
     internal const string Shader = "vec3 filterEPaperEdgeSoftness(vec3 center,vec3 neighbors,float setting){return mix(center,neighbors,clamp(setting,0.0,1.0)*.65);}";
-    internal static void Apply(
-        float[] colors,
-        int width,
-        int height,
-        int setting
-    )
+    internal static void Apply(float[] colors, int width, int height, int setting)
     {
         if (setting <= 0 || width < 2 || height < 2)
             return;

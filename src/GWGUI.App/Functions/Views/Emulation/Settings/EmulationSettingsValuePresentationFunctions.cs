@@ -45,8 +45,6 @@ internal static class EmulationSettingsValuePresentationFunctions
         ("KiB", 1024L), ("KB", 1024L), ("B", 1L)
     ];
 
-    internal static (string Value, string Unit) FormatMemorySize(long bytes) => bytes >= 1024 * 1024
-        ? ($"{bytes / (1024d * 1024d):0.##}", "MiB")
-        : bytes >= 1024 ? ($"{bytes / 1024d:0.##}", "KiB") : (bytes.ToString(), "B");
+    internal static (string Value, string Unit) FormatMemorySize(long bytes) => bytes >= 1024 * 1024 ? ($"{bytes / (1024d * 1024d):0.##}", "MiB") : bytes >= 1024 ? ($"{bytes / 1024d:0.##}", "KiB") : (bytes.ToString(), "B");
 
 }

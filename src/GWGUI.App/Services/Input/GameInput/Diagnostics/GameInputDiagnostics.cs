@@ -53,12 +53,7 @@ internal static class GameInputDiagnostics
     internal static void RecordRawReportSize(nuint size) => LastDetailedRead += string.Format(CultureInfo.InvariantCulture, GameInputDiagnosticConstants.RawReportSizeFormat, size);
     internal static void RecordRawReportCopy(nuint size, nuint copied) => LastDetailedRead += string.Format(CultureInfo.InvariantCulture, GameInputDiagnosticConstants.RawReportCopyFormat, size, copied);
 
-    internal static void RecordDeviceCallback(
-        IntPtr context,
-        ulong token,
-        GameInputDeviceEntry entry,
-        GameInputDeviceStatus currentStatus,
-        GameInputDeviceStatus previousStatus)
+    internal static void RecordDeviceCallback(IntPtr context, ulong token, GameInputDeviceEntry entry, GameInputDeviceStatus currentStatus, GameInputDeviceStatus previousStatus)
     {
         DeviceCallbackTraceLines.Add(string.Format(CultureInfo.InvariantCulture, GameInputDiagnosticConstants.CallbackTraceFormat, context.ToInt64(), token, entry.Descriptor.VidPid, entry.Id, (uint)currentStatus, (uint)previousStatus));
         if (DeviceCallbackTraceLines.Count > GameInputConstants.MaximumDeviceCallbackTraceLineCount)
@@ -71,14 +66,7 @@ internal static class GameInputDiagnostics
         RawEnumerationDiagnostics.Remove(id);
     }
 
-    internal static void CaptureRawDevice(
-        string id,
-        IGameInputDevice device,
-        ulong token,
-        IntPtr context,
-        ulong timestamp,
-        GameInputDeviceStatus currentStatus,
-        GameInputDeviceStatus previousStatus)
+    internal static void CaptureRawDevice(string id, IGameInputDevice device, ulong token, IntPtr context, ulong timestamp, GameInputDeviceStatus currentStatus, GameInputDeviceStatus previousStatus)
     {
         if (device.GetDeviceInfo(out var infoPointer) < 0 || infoPointer == IntPtr.Zero) return;
         var info = Marshal.PtrToStructure<GameInputDeviceInfo>(infoPointer);
@@ -116,10 +104,7 @@ internal static class GameInputDiagnostics
         RawEnumerationDiagnostics[id] = string.Join(Environment.NewLine, chunks);
     }
 
-    internal static void RecordEnumeration(
-        GameInputDeviceDescriptor descriptor,
-        GameInputDeviceInfo info,
-        IGameInputMapper? mapper)
+    internal static void RecordEnumeration(GameInputDeviceDescriptor descriptor, GameInputDeviceInfo info, IGameInputMapper? mapper)
     {
         var controller = info.ControllerInfo == IntPtr.Zero ? default : Marshal.PtrToStructure<GameInputControllerInfo>(info.ControllerInfo);
         var axisLabels = ReadInt32Array(controller.AxisLabels, controller.AxisCount);

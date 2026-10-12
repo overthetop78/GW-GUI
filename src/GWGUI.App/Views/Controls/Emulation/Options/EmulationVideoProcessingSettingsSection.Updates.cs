@@ -18,53 +18,37 @@ namespace GWGUI.App.Views.Controls.Emulation.Options;
 
 internal sealed partial class EmulationVideoProcessingSettingsSection : UserControl
 {
-    private void SetAdjustments(EmulationImageAdjustments value) =>
-        Update(configuration => configuration with { Adjustments = value });
+    private void SetAdjustments(EmulationImageAdjustments value) => Update(configuration => configuration with { Adjustments = value });
 
-    private void SetRestoration(EmulationImageRestorationConfiguration value) =>
-        Update(configuration => configuration with { Restoration = value });
+    private void SetRestoration(EmulationImageRestorationConfiguration value) => Update(configuration => configuration with { Restoration = value });
 
-    private void SetTemporal(EmulationTemporalVideoConfiguration value) =>
-        Update(configuration => configuration with { Temporal = value });
+    private void SetTemporal(EmulationTemporalVideoConfiguration value) => Update(configuration => configuration with { Temporal = value });
 
-    private void SetSignalSimulation(EmulationSignalSimulationConfiguration value) =>
-        Update(configuration => configuration with { SignalSimulation = value });
+    private void SetSignalSimulation(EmulationSignalSimulationConfiguration value) => Update(configuration => configuration with { SignalSimulation = value });
 
-    private void SetStylistic(EmulationStylisticVideoConfiguration value) =>
-        Update(configuration => configuration with { Stylistic = value });
+    private void SetStylistic(EmulationStylisticVideoConfiguration value) => Update(configuration => configuration with { Stylistic = value });
 
-    private void SetCrt(EmulationCrtVideoConfiguration value) =>
-        Update(configuration => configuration with { Crt = value });
+    private void SetCrt(EmulationCrtVideoConfiguration value) => Update(configuration => configuration with { Crt = value });
 
-    private void SetFixedPixel(EmulationFixedPixelVideoConfiguration value) =>
-        Update(configuration => configuration with { FixedPixel = value });
+    private void SetFixedPixel(EmulationFixedPixelVideoConfiguration value) => Update(configuration => configuration with { FixedPixel = value });
 
-    private void SetPlasma(EmulationPlasmaVideoConfiguration value) =>
-        Update(configuration => configuration with { Plasma = value });
+    private void SetPlasma(EmulationPlasmaVideoConfiguration value) => Update(configuration => configuration with { Plasma = value });
 
-    private void SetVector(EmulationVectorVideoConfiguration value) =>
-        Update(configuration => configuration with { Vector = value });
+    private void SetVector(EmulationVectorVideoConfiguration value) => Update(configuration => configuration with { Vector = value });
 
-    private void SetVfd(EmulationVfdVideoConfiguration value) =>
-        Update(configuration => configuration with { Vfd = value });
+    private void SetVfd(EmulationVfdVideoConfiguration value) => Update(configuration => configuration with { Vfd = value });
 
-    private void SetLedMatrix(EmulationLedMatrixVideoConfiguration value) =>
-        Update(configuration => configuration with { LedMatrix = value });
+    private void SetLedMatrix(EmulationLedMatrixVideoConfiguration value) => Update(configuration => configuration with { LedMatrix = value });
 
-    private void SetDotMatrix(EmulationDotMatrixVideoConfiguration value) =>
-        Update(configuration => configuration with { DotMatrix = value });
+    private void SetDotMatrix(EmulationDotMatrixVideoConfiguration value) => Update(configuration => configuration with { DotMatrix = value });
 
-    private void SetSegmentDisplay(EmulationSegmentDisplayVideoConfiguration value) =>
-        Update(configuration => configuration with { SegmentDisplay = value });
+    private void SetSegmentDisplay(EmulationSegmentDisplayVideoConfiguration value) => Update(configuration => configuration with { SegmentDisplay = value });
 
-    private void SetEPaper(EmulationEPaperVideoConfiguration value) =>
-        Update(configuration => configuration with { EPaper = value });
+    private void SetEPaper(EmulationEPaperVideoConfiguration value) => Update(configuration => configuration with { EPaper = value });
 
-    private void SetProjection(EmulationProjectionVideoConfiguration value) =>
-        Update(configuration => configuration with { Projection = value });
+    private void SetProjection(EmulationProjectionVideoConfiguration value) => Update(configuration => configuration with { Projection = value });
 
-    private void Update(Func<EmulationVideoProcessingConfiguration,
-        EmulationVideoProcessingConfiguration> update)
+    private void Update(Func<EmulationVideoProcessingConfiguration, EmulationVideoProcessingConfiguration> update)
     {
         if (_loading) return;
         _configuration = EmulationVideoProcessingConfigurationFunctions.Normalize(update(_configuration));

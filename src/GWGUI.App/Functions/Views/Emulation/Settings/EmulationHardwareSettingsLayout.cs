@@ -20,8 +20,7 @@ internal static partial class EmulationSettingsLayout
         var grid = new Grid { Margin = new Thickness(12, 6, 12, 10) };
         for (var column = 0; column < columns; column++)
         {
-            grid.ColumnDefinitions.Add(new ColumnDefinition
-                { Width = new GridLength(EmulationHardwareSettingsConstants.FieldLabelWidth) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationHardwareSettingsConstants.FieldLabelWidth) });
             grid.ColumnDefinitions.Add(new ColumnDefinition());
         }
         var rowCount = (int)Math.Ceiling(fields.Length / (double)columns);

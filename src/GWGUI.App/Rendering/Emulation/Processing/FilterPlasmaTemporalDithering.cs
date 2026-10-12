@@ -29,8 +29,7 @@ internal static class FilterPlasmaTemporalDithering
         }
         """;
 
-    internal static void Apply(float[] colors, int width, int height,
-        long sequence, int setting)
+    internal static void Apply(float[] colors, int width, int height, long sequence, int setting)
     {
         if (setting <= 0) return;
         var intensity = setting / 100f;

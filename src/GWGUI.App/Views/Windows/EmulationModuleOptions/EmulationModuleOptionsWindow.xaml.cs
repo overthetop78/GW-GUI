@@ -18,10 +18,7 @@ public partial class EmulationModuleOptionsWindow : Window
     private bool _cleanupStarted;
     private bool _cleanupCompleted;
 
-    public EmulationModuleOptionsWindow(IEmulationModule module,
-        IEmulationConfiguration? initialConfiguration = null,
-        Action<Exception>? showError = null,
-        GWGUI.VideoPresentation.Services.VideoPresentationProfileStore? profiles = null)
+    public EmulationModuleOptionsWindow(IEmulationModule module, IEmulationConfiguration? initialConfiguration = null, Action<Exception>? showError = null, GWGUI.VideoPresentation.Services.VideoPresentationProfileStore? profiles = null)
     {
         InitializeComponent();
         _module = module;

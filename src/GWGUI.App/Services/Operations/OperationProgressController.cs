@@ -12,11 +12,7 @@ using GWGUI.MediaEngine.Interfaces;
 
 namespace GWGUI.App.Services.Operations;
 
-public sealed class OperationProgressController(
-    MainWindowViewModel viewModel,
-    TrackProgressStrip face0,
-    TrackProgressStrip face1,
-    Func<string, object[], string> localize)
+public sealed class OperationProgressController(MainWindowViewModel viewModel, TrackProgressStrip face0, TrackProgressStrip face1, Func<string, object[], string> localize)
 {
     private readonly GwProgressTracker _tracker = new();
     private readonly Dictionary<(int Cylinder, int Head), ExternalTrackReadState> _externalTrackStates = [];
@@ -265,15 +261,7 @@ public sealed class OperationProgressController(
         ReadStateChanged?.Invoke(this, state);
     }
 
-    private sealed record ExternalReadState(
-        string Etape,
-        int NombrePistesTerminees,
-        int NombrePistesTotal,
-        int? Cylindre,
-        int? Face,
-        int Tentative,
-        IReadOnlyList<IEtatPisteLecture> EtatsPistes,
-        string? MessageExterne) : IEtatLectureDisquette
+    private sealed record ExternalReadState(string Etape, int NombrePistesTerminees, int NombrePistesTotal, int? Cylindre, int? Face, int Tentative, IReadOnlyList<IEtatPisteLecture> EtatsPistes, string? MessageExterne) : IEtatLectureDisquette
     {
         public IPiste? PisteAcquise => null;
 
@@ -283,9 +271,5 @@ public sealed class OperationProgressController(
             new Dictionary<string, string>();
     }
 
-    private sealed record ExternalTrackReadState(
-        int Cylindre,
-        int Face,
-        string Etat,
-        int Tentatives) : IEtatPisteLecture;
+    private sealed record ExternalTrackReadState(int Cylindre, int Face, string Etat, int Tentatives) : IEtatPisteLecture;
 }

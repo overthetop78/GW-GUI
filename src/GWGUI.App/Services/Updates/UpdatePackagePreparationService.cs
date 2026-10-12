@@ -33,9 +33,7 @@ internal sealed class UpdatePackagePreparationService
         _workingRootDirectory = Path.GetFullPath(workingRootDirectory ?? Path.Combine(Path.GetTempPath(), "GW GUI", "Updates"));
     }
 
-    internal async Task<PreparedUpdateLaunch> PrepareAsync(UpdatePlan plan,
-        IProgress<double>? progress = null, CancellationToken cancellationToken = default,
-        IReadOnlyDictionary<string, string>? expectedModuleCatalogUrls = null)
+    internal async Task<PreparedUpdateLaunch> PrepareAsync(UpdatePlan plan, IProgress<double>? progress = null, CancellationToken cancellationToken = default, IReadOnlyDictionary<string, string>? expectedModuleCatalogUrls = null)
     {
         var preparation = await PrepareComponentsAsync(plan, progress, cancellationToken, expectedModuleCatalogUrls).ConfigureAwait(false);
         try
@@ -49,9 +47,7 @@ internal sealed class UpdatePackagePreparationService
         }
     }
 
-    internal async Task<PendingModuleInstallation> PrepareRemoteModuleAsync(UpdatePlan plan,
-        string displayName, string catalogUrl, IProgress<double>? progress = null,
-        CancellationToken cancellationToken = default)
+    internal async Task<PendingModuleInstallation> PrepareRemoteModuleAsync(UpdatePlan plan, string displayName, string catalogUrl, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         var preparation = await PrepareComponentsAsync(plan, progress, cancellationToken,
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
@@ -62,9 +58,7 @@ internal sealed class UpdatePackagePreparationService
         return new(component.ComponentId, displayName, component.Version, catalogUrl, component, preparation.WorkingDirectory);
     }
 
-    internal Task<PendingModuleInstallation> PrepareLocalModuleAsync(string archivePath,
-        string displayName,
-        CancellationToken cancellationToken = default)
+    internal Task<PendingModuleInstallation> PrepareLocalModuleAsync(string archivePath, string displayName, CancellationToken cancellationToken = default)
     {
         var sourceArchive = Path.GetFullPath(archivePath);
         if (!File.Exists(sourceArchive)) throw new FileNotFoundException("Module archive was not found.", sourceArchive);
@@ -95,9 +89,7 @@ internal sealed class UpdatePackagePreparationService
         }
     }
 
-    internal async Task<PreparedUpdateLaunch> CreateModuleLaunchAsync(
-        IReadOnlyList<PendingModuleInstallation> installations,
-        CancellationToken cancellationToken = default)
+    internal async Task<PreparedUpdateLaunch> CreateModuleLaunchAsync(IReadOnlyList<PendingModuleInstallation> installations, CancellationToken cancellationToken = default)
     {
         if (installations.Count == 0)
             throw new InvalidOperationException("No prepared module installation is available.");
@@ -123,9 +115,7 @@ internal sealed class UpdatePackagePreparationService
         }
     }
 
-    private async Task<PreparedComponents> PrepareComponentsAsync(UpdatePlan plan,
-        IProgress<double>? progress, CancellationToken cancellationToken,
-        IReadOnlyDictionary<string, string>? expectedModuleCatalogUrls)
+    private async Task<PreparedComponents> PrepareComponentsAsync(UpdatePlan plan, IProgress<double>? progress, CancellationToken cancellationToken, IReadOnlyDictionary<string, string>? expectedModuleCatalogUrls)
     {
         if (!plan.IsCompatible || plan.Items.Count == 0)
             throw new InvalidOperationException("The selected update plan is empty or incompatible.");
@@ -155,8 +145,7 @@ internal sealed class UpdatePackagePreparationService
                     && (!Uri.TryCreate(validated.ModuleManifest?.UpdateCatalogUrl, UriKind.Absolute, out var declared)
                         || !Uri.TryCreate(expectedCatalogUrl, UriKind.Absolute, out var expected)
                         || declared != expected))
-                    throw new InvalidDataException(
-                        $"Module '{item.ComponentId}' declares a different update catalog URL.");
+                    throw new InvalidDataException($"Module '{item.ComponentId}' declares a different update catalog URL.");
                 var operation = item.Kind == UpdateComponentKind.Application
                     ? UpdateComponentOperation.UpdateApplication
                     : installed.Modules.Any(module => module.Id.Equals(item.ComponentId, StringComparison.OrdinalIgnoreCase)) ? UpdateComponentOperation.UpdateModule : UpdateComponentOperation.InstallModule;
@@ -172,8 +161,7 @@ internal sealed class UpdatePackagePreparationService
         }
     }
 
-    private async Task<PreparedUpdateLaunch> CreateLaunchAsync(string transactionId, string workDirectory,
-        IReadOnlyList<PreparedUpdateComponent> prepared, CancellationToken cancellationToken)
+    private async Task<PreparedUpdateLaunch> CreateLaunchAsync(string transactionId, string workDirectory, IReadOnlyList<PreparedUpdateComponent> prepared, CancellationToken cancellationToken)
     {
         var updaterSource = Path.Combine(_applicationDirectory, "Updater");
         var updaterDirectory = Path.Combine(workDirectory, "updater");
@@ -192,8 +180,7 @@ internal sealed class UpdatePackagePreparationService
         return new(updaterExecutable, planPath, workDirectory, executionPlan.ResultPath);
     }
 
-    private async Task DownloadVerifiedAsync(UpdateCatalogRelease release, string destination,
-        CancellationToken cancellationToken)
+    private async Task DownloadVerifiedAsync(UpdateCatalogRelease release, string destination, CancellationToken cancellationToken)
     {
         using var response = await _httpClient.GetAsync(release.PackageUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
@@ -231,15 +218,13 @@ internal sealed class UpdatePackagePreparationService
         }
     }
 
-    private static void ValidateModuleHostCompatibility(
-        GWGUI.Emulation.Contracts.EmulationModuleManifest manifest, string hostApiVersion)
+    private static void ValidateModuleHostCompatibility(GWGUI.Emulation.Contracts.EmulationModuleManifest manifest, string hostApiVersion)
     {
         if (!Version.TryParse(hostApiVersion, out var hostApi)
             || !Version.TryParse(manifest.HostApiMinimum, out var minimum)
             || !Version.TryParse(manifest.HostApiMaximum, out var maximum)
             || hostApi < minimum || hostApi > maximum)
-            throw new InvalidDataException(
-                $"Module '{manifest.Id}' is incompatible with host API {hostApiVersion}.");
+            throw new InvalidDataException($"Module '{manifest.Id}' is incompatible with host API {hostApiVersion}.");
     }
 
     private void VerifyInstallationIsWritable()
@@ -302,13 +287,6 @@ internal sealed class UpdatePackagePreparationService
     }
 }
 
-internal sealed record PreparedUpdateLaunch(
-    string UpdaterExecutable,
-    string PlanPath,
-    string WorkingDirectory,
-    string ResultPath);
+internal sealed record PreparedUpdateLaunch(string UpdaterExecutable, string PlanPath, string WorkingDirectory, string ResultPath);
 
-internal sealed record PreparedComponents(
-    string TransactionId,
-    string WorkingDirectory,
-    IReadOnlyList<PreparedUpdateComponent> Components);
+internal sealed record PreparedComponents(string TransactionId, string WorkingDirectory, IReadOnlyList<PreparedUpdateComponent> Components);

@@ -12,9 +12,7 @@ namespace GWGUI.App.Views.Controls.Emulation.Options;
 
 internal static class EmulationPlasmaSettingsBlock
 {
-    internal static FrameworkElement Create(EmulationPlasmaVideoConfiguration value,
-        Action<Func<EmulationPlasmaVideoConfiguration,
-            EmulationPlasmaVideoConfiguration>> changed)
+    internal static FrameworkElement Create(EmulationPlasmaVideoConfiguration value, Action<Func<EmulationPlasmaVideoConfiguration, EmulationPlasmaVideoConfiguration>> changed)
     {
         var groups = new Grid();
         groups.ColumnDefinitions.Add(new ColumnDefinition());
@@ -23,34 +21,21 @@ internal static class EmulationPlasmaSettingsBlock
         groups.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
         AddGroup(groups, EmulationResourceKeys.VideoPlasmaGroupPanelAndCells, 0, 0,
-            Slider(EmulationVideoProcessingCatalog.PlasmaCellStructure,
-                value.CellStructure, number => changed(current => current with { CellStructure = number })),
-            Slider(EmulationVideoProcessingCatalog.PlasmaBlackDepth,
-                value.BlackDepth, number => changed(current => current with { BlackDepth = number })));
+            Slider(EmulationVideoProcessingCatalog.PlasmaCellStructure, value.CellStructure, number => changed(current => current with { CellStructure = number })),
+            Slider(EmulationVideoProcessingCatalog.PlasmaBlackDepth, value.BlackDepth, number => changed(current => current with { BlackDepth = number })));
         AddGroup(groups, EmulationResourceKeys.VideoPlasmaGroupPhosphors, 0, 1,
-            Slider(EmulationVideoProcessingCatalog.PlasmaPhosphorIntensity,
-                value.PhosphorIntensity,
-                number => changed(current => current with { PhosphorIntensity = number })),
-            Slider(EmulationVideoProcessingCatalog.PlasmaGammaResponse,
-                value.GammaResponse, number => changed(current => current with { GammaResponse = number })));
+            Slider(EmulationVideoProcessingCatalog.PlasmaPhosphorIntensity, value.PhosphorIntensity, number => changed(current => current with { PhosphorIntensity = number })),
+            Slider(EmulationVideoProcessingCatalog.PlasmaGammaResponse, value.GammaResponse, number => changed(current => current with { GammaResponse = number })));
         AddGroup(groups, EmulationResourceKeys.VideoPlasmaGroupLight, 1, 0,
-            Slider(EmulationVideoProcessingCatalog.PlasmaAutomaticBrightnessLimiter,
-                value.AutomaticBrightnessLimiter,
-                number => changed(current => current with { AutomaticBrightnessLimiter = number })),
-            Slider(EmulationVideoProcessingCatalog.PlasmaDiffusion,
-                value.Diffusion, number => changed(current => current with { Diffusion = number })));
+            Slider(EmulationVideoProcessingCatalog.PlasmaAutomaticBrightnessLimiter, value.AutomaticBrightnessLimiter, number => changed(current => current with { AutomaticBrightnessLimiter = number })),
+            Slider(EmulationVideoProcessingCatalog.PlasmaDiffusion, value.Diffusion, number => changed(current => current with { Diffusion = number })));
         AddGroup(groups, EmulationResourceKeys.VideoPlasmaGroupTemporal, 1, 1,
-            Slider(EmulationVideoProcessingCatalog.PlasmaTemporalDithering,
-                value.TemporalDithering,
-                number => changed(current => current with { TemporalDithering = number })),
-            Slider(EmulationVideoProcessingCatalog.PlasmaPersistence,
-                value.PersistenceIntensity,
-                number => changed(current => current with { PersistenceIntensity = number })));
+            Slider(EmulationVideoProcessingCatalog.PlasmaTemporalDithering, value.TemporalDithering, number => changed(current => current with { TemporalDithering = number })),
+            Slider(EmulationVideoProcessingCatalog.PlasmaPersistence, value.PersistenceIntensity, number => changed(current => current with { PersistenceIntensity = number })));
         return groups;
     }
 
-    private static void AddGroup(Grid groups, string titleResourceKey, int row, int column,
-        params FrameworkElement[] fields)
+    private static void AddGroup(Grid groups, string titleResourceKey, int row, int column, params FrameworkElement[] fields)
     {
         var content = new StackPanel();
         content.Children.Add(new TextBlock

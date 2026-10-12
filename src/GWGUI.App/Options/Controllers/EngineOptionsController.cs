@@ -11,11 +11,7 @@ internal sealed class EngineOptionsController
     private readonly Func<bool> _isInitializing;
     private readonly Func<Task> _persistSettings;
 
-    public EngineOptionsController(
-        OptionsEnginesSection section,
-        EngineSettings settings,
-        Func<bool> isInitializing,
-        Func<Task> persistSettings)
+    public EngineOptionsController(OptionsEnginesSection section, EngineSettings settings, Func<bool> isInitializing, Func<Task> persistSettings)
     {
         _section = section;
         _isInitializing = isInitializing;

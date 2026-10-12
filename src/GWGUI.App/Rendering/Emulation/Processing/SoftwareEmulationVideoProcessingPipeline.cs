@@ -38,9 +38,7 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
 
     public EmulationVideoRenderer Renderer => EmulationVideoRenderer.Wpf;
 
-    public VideoFrame Process(EmulationVideoProcessingConfiguration configuration,
-        VideoFrame frame, EmulationVideoProcessingSize sourceSize,
-        EmulationVideoProcessingSize outputSize)
+    public VideoFrame Process(EmulationVideoProcessingConfiguration configuration, VideoFrame frame, EmulationVideoProcessingSize sourceSize, EmulationVideoProcessingSize outputSize)
     {
         var normalized = EmulationVideoProcessingConfigurationFunctions.Normalize(configuration);
         Validate(frame, sourceSize, outputSize);
@@ -115,8 +113,7 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
         };
     }
 
-    private static void ApplySignalConnection(float[] colors, int width, int height, long sequence,
-        EmulationSignalSimulationConfiguration signal, EmulationSignalStandard standard)
+    private static void ApplySignalConnection(float[] colors, int width, int height, long sequence, EmulationSignalSimulationConfiguration signal, EmulationSignalStandard standard)
     {
         switch (signal.Connection)
         {
@@ -140,8 +137,7 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
         }
     }
 
-    private void ApplySignalStandard(float[] colors, int width, int height,
-        EmulationSignalSimulationConfiguration signal, EmulationSignalStandard standard)
+    private void ApplySignalStandard(float[] colors, int width, int height, EmulationSignalSimulationConfiguration signal, EmulationSignalStandard standard)
     {
         switch (standard)
         {
@@ -157,8 +153,7 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
         }
     }
 
-    private EmulationSignalStandard ResolveSignalStandard(VideoFrame frame,
-        EmulationSignalStandard standard)
+    private EmulationSignalStandard ResolveSignalStandard(VideoFrame frame, EmulationSignalStandard standard)
     {
         if (standard == EmulationSignalStandard.Automatic)
         {

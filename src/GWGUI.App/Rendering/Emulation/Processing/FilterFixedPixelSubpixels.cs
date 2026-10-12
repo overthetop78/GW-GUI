@@ -22,8 +22,7 @@ internal static class FilterFixedPixelSubpixels
     private const float GreenLuminance = 0.7152f;
     private const float BlueLuminance = 0.0722f;
 
-    internal static void Apply(float[] colors, int sourceWidth, int outputWidth, int outputHeight,
-        EmulationSubpixelLayout layout, EmulationMonochromePalette palette, int intensitySetting)
+    internal static void Apply(float[] colors, int sourceWidth, int outputWidth, int outputHeight, EmulationSubpixelLayout layout, EmulationMonochromePalette palette, int intensitySetting)
     {
         if (layout == EmulationSubpixelLayout.Monochrome)
         {

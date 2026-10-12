@@ -4,16 +4,9 @@ using GWGUI.Emulation.Enums;
 
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal readonly record struct FixedPixelVideoShaderParameters(
-    Vector4 Display,
-    Vector4 Spatial,
-    Vector4 Technology,
-    Vector4 Temporal)
+internal readonly record struct FixedPixelVideoShaderParameters(Vector4 Display, Vector4 Spatial, Vector4 Technology, Vector4 Temporal)
 {
-    internal static FixedPixelVideoShaderParameters From(
-        EmulationVideoProcessingConfiguration configuration,
-        bool hasHistory = false,
-        double elapsedMilliseconds = 0)
+    internal static FixedPixelVideoShaderParameters From(EmulationVideoProcessingConfiguration configuration, bool hasHistory = false, double elapsedMilliseconds = 0)
     {
         var fixedPixel = configuration.FixedPixel;
         var tint = FilterFixedPixelSubpixels.Tint(fixedPixel.MonochromePalette);

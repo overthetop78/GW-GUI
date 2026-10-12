@@ -19,11 +19,7 @@ public partial class MediaDocumentIdentity : UserControl
     public TextBlock SummaryText => Summary;
     public string MediaIconKind { get; private set; } = MediaIconIds.File;
 
-    public void Display(
-        string path,
-        string summary,
-        MediaKind? mediaKind,
-        DiskFormat? format = null)
+    public void Display(string path, string summary, MediaKind? mediaKind, DiskFormat? format = null)
     {
         FileName.Text = Path.GetFileName(path);
         FileName.ToolTip = path;

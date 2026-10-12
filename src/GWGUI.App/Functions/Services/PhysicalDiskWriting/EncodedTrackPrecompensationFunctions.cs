@@ -5,10 +5,7 @@ namespace GWGUI.App.Functions.Services.PhysicalDiskWriting;
 
 internal static class EncodedTrackPrecompensationFunctions
 {
-    public static IReadOnlyList<uint> Apply(
-        EncodedDiskTrack track,
-        PhysicalTrackEncoding encoding,
-        double nanoseconds)
+    public static IReadOnlyList<uint> Apply(EncodedDiskTrack track, PhysicalTrackEncoding encoding, double nanoseconds)
     {
         ArgumentNullException.ThrowIfNull(track);
         if (nanoseconds <= 0) return track.Track.Revolution.FluxIntervals;
@@ -28,12 +25,7 @@ internal static class EncodedTrackPrecompensationFunctions
         return BuildIntervals(track.Track.Bits, bitTicks);
     }
 
-    private static void ApplyPattern(
-        IReadOnlyList<bool> bits,
-        double[] bitTicks,
-        ReadOnlySpan<bool> pattern,
-        int adjustedIndex,
-        double adjustment)
+    private static void ApplyPattern(IReadOnlyList<bool> bits, double[] bitTicks, ReadOnlySpan<bool> pattern, int adjustedIndex, double adjustment)
     {
         for (var start = 0; start <= bits.Count - pattern.Length; start++)
         {

@@ -22,8 +22,7 @@ internal static class FilterSegmentDisplayEndShape
         }
         """;
 
-    internal static float Distance(float x, float y, SegmentDisplayElement line,
-        EmulationSegmentEndShape shape)
+    internal static float Distance(float x, float y, SegmentDisplayElement line, EmulationSegmentEndShape shape)
     {
         if (line.IsPoint)
         {

@@ -7,11 +7,7 @@ public sealed partial class ControllerVisualizer
 {
     private static readonly Geometry XboxBody = Geometry.Parse("M104,91 C115,62 145,43 185,40 C218,37 248,49 269,61 C292,74 328,74 351,61 C372,49 402,37 435,40 C475,43 505,62 516,91 C535,139 557,234 530,277 C516,300 492,310 472,299 C456,290 443,268 431,245 L397,181 C383,156 358,144 326,144 L294,144 C262,144 237,156 223,181 L189,245 C177,268 164,290 148,299 C128,310 104,300 90,277 C63,234 85,139 104,91 Z");
     private static readonly Geometry PlayStationBody = Geometry.Parse("M112,94 C145,54 207,52 255,73 C286,86 334,86 365,73 C413,52 475,54 508,94 C535,128 548,230 515,274 C492,304 456,290 433,252 L391,183 C374,156 349,145 310,145 C271,145 246,156 229,183 L187,252 C164,290 128,304 105,274 C72,230 85,128 112,94 Z");
-    private void DrawXbox(
-        DrawingContext dc,
-        bool series,
-        bool rematchCore = false
-    )
+    private void DrawXbox(DrawingContext dc, bool series, bool rematchCore = false)
     {
         var input = Input;
         var shell = new LinearGradientBrush(series ? Color.FromRgb(48, 50, 53) : Color.FromRgb(42, 45, 48), Color.FromRgb(10, 11, 13), 90);
@@ -94,25 +90,14 @@ public sealed partial class ControllerVisualizer
         }
     }
 
-    private void DrawXboxStick(
-        DrawingContext dc,
-        double x,
-        double y,
-        float axisX,
-        float axisY,
-        bool pressed
-    )
+    private void DrawXboxStick(DrawingContext dc, double x, double y, float axisX, float axisY, bool pressed)
     {
         dc.DrawEllipse(ColorBrush(Color.FromRgb(12, 13, 15)), new Pen(ColorBrush(Color.FromRgb(112, 116, 121)), 4), new Point(x, y), 39, 39);
         dc.DrawEllipse(pressed ? Accent() : ColorBrush(Color.FromRgb(38, 40, 43)), new Pen(ColorBrush(Color.FromRgb(178, 181, 184)), 2), new Point(x + axisX * 16, y + axisY * 16), 25, 25);
         dc.DrawEllipse(null, new Pen(ColorBrush(Color.FromArgb(90, 255, 255, 255)), 1), new Point(x + axisX * 16, y + axisY * 16), 18, 18);
     }
 
-    private void DrawXboxDiscDpad(
-        DrawingContext dc,
-        double x,
-        double y
-    )
+    private void DrawXboxDiscDpad(DrawingContext dc, double x, double y)
     {
         dc.DrawEllipse(ColorBrush(Color.FromRgb(17, 18, 20)), new Pen(ColorBrush(Color.FromRgb(112, 116, 121)), 4), new Point(x, y), 50, 50);
         var input = Input;
@@ -128,24 +113,14 @@ public sealed partial class ControllerVisualizer
         dc.DrawEllipse(ColorBrush(Color.FromRgb(61, 64, 68)), null, new Point(x, y), 15, 15);
     }
 
-    private void DrawXboxFaceButton(
-        DrawingContext dc,
-        double x,
-        double y,
-        string label,
-        bool pressed,
-        Color color
-    )
+    private void DrawXboxFaceButton(DrawingContext dc, double x, double y, string label, bool pressed, Color color)
     {
         var fill = pressed ? Accent() : ColorBrush(Color.FromRgb(27, 29, 32));
         dc.DrawEllipse(fill, new Pen(ColorBrush(Color.FromRgb(171, 174, 178)), 2), new Point(x, y), 20, 20);
         DrawText(dc, label, new Point(x, y), 15, ColorBrush(color));
     }
 
-    private void DrawPlayStation(
-        DrawingContext dc,
-        bool dualSense
-    )
+    private void DrawPlayStation(DrawingContext dc, bool dualSense)
     {
         var input = Input;
         var outer = dualSense ? ColorBrush(Color.FromRgb(232, 234, 235)) : ColorBrush(Color.FromRgb(34, 35, 39));
@@ -193,14 +168,7 @@ public sealed partial class ControllerVisualizer
         }
     }
 
-    private void DrawPlayStationFaceButton(
-        DrawingContext dc,
-        double x,
-        double y,
-        string symbol,
-        bool pressed,
-        Brush symbolBrush
-    )
+    private void DrawPlayStationFaceButton(DrawingContext dc, double x, double y, string symbol, bool pressed, Brush symbolBrush)
     {
         dc.DrawEllipse(pressed ? Accent() : ColorBrush(Color.FromRgb(29, 30, 34)), new Pen(ColorBrush(Color.FromRgb(125, 128, 134)), 2), new Point(x, y), 19, 19);
         DrawText(dc, symbol, new Point(x, y), 15, symbolBrush);

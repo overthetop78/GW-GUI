@@ -147,7 +147,5 @@ public partial class OpticalMediaView : UserControl, IMediaVisualizationView
         selector.SelectedIndex = 0;
     }
 
-    private void UpdateSelectionLabel() => SelectionLabel.Text = _selectedTrack is null
-        ? string.Empty
-        : $"{LocExtension.Get("Visual.SessionLabel")} {_selectedTrack.SessionNumber} · {LocExtension.Get("Visual.TrackLabel")} {_selectedTrack.TrackNumber}";
+    private void UpdateSelectionLabel() => SelectionLabel.Text = _selectedTrack is null ? string.Empty : $"{LocExtension.Get("Visual.SessionLabel")} {_selectedTrack.SessionNumber} · {LocExtension.Get("Visual.TrackLabel")} {_selectedTrack.TrackNumber}";
 }

@@ -32,15 +32,12 @@ public sealed class WpfWindowNavigationService : IWindowNavigationService
     private readonly Func<GwToolWindowRequest, Window> _tool;
     private readonly Func<Window, Window, bool?> _show;
 
-    public WpfWindowNavigationService(Window owner, IGwInstallationManager? hostTools = null,
-        IGreaseweazleRunner? runner = null, IGwCommandBuilder? commandBuilder = null)
+    public WpfWindowNavigationService(Window owner, IGwInstallationManager? hostTools = null, IGreaseweazleRunner? runner = null, IGwCommandBuilder? commandBuilder = null)
         : this(owner, hostTools, runner, commandBuilder, new PendingModuleInstallationStore())
     {
     }
 
-    internal WpfWindowNavigationService(Window owner, IGwInstallationManager? hostTools,
-        IGreaseweazleRunner? runner, IGwCommandBuilder? commandBuilder,
-        PendingModuleInstallationStore pendingInstallations)
+    internal WpfWindowNavigationService(Window owner, IGwInstallationManager? hostTools, IGreaseweazleRunner? runner, IGwCommandBuilder? commandBuilder, PendingModuleInstallationStore pendingInstallations)
     {
         _owner = owner;
         var commandRunner = runner ?? new GreaseweazleRunner();

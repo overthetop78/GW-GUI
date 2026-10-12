@@ -71,10 +71,7 @@ public partial class VisualizerHeaderSection : UserControl
         var catalog = new DiskClassificationCatalog(formats);
         var detectedChoices = ids.Select(catalog.ResolveFormat).Where(format => format is not null).Cast<DiskFormat>().DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
                 .Select(format => new ExplorerFormatChoice(format.Id, $"{format.Family} · {format.DisplayName}"));
-        var choices = (includeFlux
-                ? new[] { new ExplorerFormatChoice(null, "Flux") }.Concat(detectedChoices)
-                : detectedChoices)
-            .ToArray();
+        var choices = (includeFlux ? new[] { new ExplorerFormatChoice(null, "Flux") }.Concat(detectedChoices) : detectedChoices).ToArray();
         updatingRepresentationChoice = true;
         RepresentationChoice.ItemsSource = choices;
         RepresentationChoice.SelectedIndex = 0;
@@ -144,8 +141,7 @@ public partial class VisualizerHeaderSection : UserControl
             return LocExtension.Get("Explorer.DetectedFormats", "Atari 8-bit (Atari CAS)");
 
         var catalog = new DiskClassificationCatalog(formats);
-        var detected = ids.Select(catalog.ResolveFormat).Where(format => format is not null).Cast<DiskFormat>().DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
-            .Select(format => $"{format.Family} ({format.DisplayName})")
+        var detected = ids.Select(catalog.ResolveFormat).Where(format => format is not null).Cast<DiskFormat>().DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase).Select(format => $"{format.Family} ({format.DisplayName})")
             .ToArray();
         var value = detected.Length == 0 ? "\u2014" : string.Join("  \u00b7  ", detected);
         return LocExtension.Get("Explorer.DetectedFormats", value);

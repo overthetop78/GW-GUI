@@ -21,9 +21,7 @@ public partial class EmulationPreferencesWindow : Window
     private bool _initializing = true;
     private bool _closingAfterSave;
     private bool _closeInProgress;
-    public EmulationPreferencesWindow(AppSettings settings,
-        ISettingsStore? settingsStore = null, string? dataDirectory = null,
-        Action<Exception>? reportSaveError = null)
+    public EmulationPreferencesWindow(AppSettings settings, ISettingsStore? settingsStore = null, string? dataDirectory = null, Action<Exception>? reportSaveError = null)
     {
         InitializeComponent();
         _settings = settings;

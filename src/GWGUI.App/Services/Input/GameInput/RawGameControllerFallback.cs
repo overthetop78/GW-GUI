@@ -70,15 +70,13 @@ internal static class RawGameControllerFallback
         }).ToArray();
     }
 
-    internal static IReadOnlyList<GameInputDeviceDescriptor> MergeDescriptors(
-        IReadOnlyList<GameInputDeviceDescriptor> gameInput)
+    internal static IReadOnlyList<GameInputDeviceDescriptor> MergeDescriptors(IReadOnlyList<GameInputDeviceDescriptor> gameInput)
     {
         var fallback = DistinctFallback(gameInput);
         return gameInput.Concat(fallback.Select(device => device.Descriptor)).OrderBy(device => device.ProductName, StringComparer.CurrentCultureIgnoreCase).ThenBy(device => device.Id, StringComparer.Ordinal).ToArray();
     }
 
-    internal static IReadOnlyList<EmulationControllerState> ReadAll(
-        IReadOnlyList<GameInputDeviceDescriptor> gameInput)
+    internal static IReadOnlyList<EmulationControllerState> ReadAll(IReadOnlyList<GameInputDeviceDescriptor> gameInput)
     {
         return DistinctFallback(gameInput).Select(ReadState).ToArray();
     }
@@ -103,16 +101,14 @@ internal static class RawGameControllerFallback
             return _devices.FirstOrDefault(item => string.Equals(item.Descriptor.Id, deviceId, StringComparison.OrdinalIgnoreCase)) ?.Descriptor.ProductName;
     }
 
-    private static IReadOnlyList<RawDevice> DistinctFallback(
-        IReadOnlyList<GameInputDeviceDescriptor> gameInput)
+    private static IReadOnlyList<RawDevice> DistinctFallback(IReadOnlyList<GameInputDeviceDescriptor> gameInput)
     {
         RawDevice[] snapshot;
         lock (Sync) snapshot = _devices.ToArray();
         return DistinctFallback(gameInput, snapshot, device => device.Descriptor);
     }
 
-    internal static IReadOnlyList<T> DistinctFallback<T>(IReadOnlyList<GameInputDeviceDescriptor> gameInput,
-        IReadOnlyList<T> snapshot, Func<T, GameInputDeviceDescriptor> describe)
+    internal static IReadOnlyList<T> DistinctFallback<T>(IReadOnlyList<GameInputDeviceDescriptor> gameInput, IReadOnlyList<T> snapshot, Func<T, GameInputDeviceDescriptor> describe)
     {
         var remainingByVidPid = gameInput.Where(device => device.VendorId != 0 || device.ProductId != 0).GroupBy(device => (device.VendorId, device.ProductId)).ToDictionary(group => group.Key, group => group.Count());
         var remainingByName = gameInput.GroupBy(device => Normalize(device.ProductName), StringComparer.OrdinalIgnoreCase).ToDictionary(group => group.Key, group => group.Count(), StringComparer.OrdinalIgnoreCase);
@@ -240,8 +236,7 @@ internal static class RawGameControllerFallback
         return new GameInputLiveState(device.Descriptor.Id, timestamp, GameInputKind.Controller, controls, [], GameInputSystemButtons.None, null, null, null, null, true);
     }
 
-    private static bool TryRead(RawDevice device, out bool[] buttons,
-        out GameControllerSwitchPosition[] switches, out double[] axes, out ulong timestamp)
+    private static bool TryRead(RawDevice device, out bool[] buttons, out GameControllerSwitchPosition[] switches, out double[] axes, out ulong timestamp)
     {
         buttons = new bool[device.Controller.ButtonCount];
         switches = new GameControllerSwitchPosition[device.Controller.SwitchCount];
@@ -258,9 +253,7 @@ internal static class RawGameControllerFallback
         }
     }
 
-    private static void AddMappedControls(IDictionary<string, float> values,
-        GameControllerDatabaseEntry? entry, IReadOnlyList<bool> buttons,
-        IReadOnlyList<GameControllerSwitchPosition> switches, IReadOnlyList<double> axes)
+    private static void AddMappedControls(IDictionary<string, float> values, GameControllerDatabaseEntry? entry, IReadOnlyList<bool> buttons, IReadOnlyList<GameControllerSwitchPosition> switches, IReadOnlyList<double> axes)
     {
         if (entry is null) return;
         foreach (var mapping in entry.Mappings)
@@ -283,8 +276,7 @@ internal static class RawGameControllerFallback
         _ => null
     };
 
-    private static float ReadMappedValue(string source, IReadOnlyList<bool> buttons,
-        IReadOnlyList<GameControllerSwitchPosition> switches, IReadOnlyList<double> axes)
+    private static float ReadMappedValue(string source, IReadOnlyList<bool> buttons, IReadOnlyList<GameControllerSwitchPosition> switches, IReadOnlyList<double> axes)
     {
         var value = source.Trim();
         if (value.Length > 1 && value[0] == 'b' &&
@@ -307,8 +299,7 @@ internal static class RawGameControllerFallback
 
     private static bool HatMatches(GameControllerSwitchPosition position, int mask) => (mask & 1) != 0 && HasDirection(position, "Up") || (mask & 2) != 0 && HasDirection(position, "Right") || (mask & 4) != 0 && HasDirection(position, "Down") || (mask & 8) != 0 && HasDirection(position, "Left");
 
-    private static short MappedAxis(GameControllerDatabaseEntry? entry,
-        IReadOnlyList<double> axes, string name)
+    private static short MappedAxis(GameControllerDatabaseEntry? entry, IReadOnlyList<double> axes, string name)
     {
         if (entry is null || !entry.Mappings.TryGetValue(name, out var source) ||
             source.Length < 2 || source[0] != 'a' ||
@@ -317,8 +308,7 @@ internal static class RawGameControllerFallback
         return Axis(axes, index);
     }
 
-    private static byte MappedTrigger(GameControllerDatabaseEntry? entry,
-        IReadOnlyList<double> axes, IReadOnlyList<bool> buttons, string name)
+    private static byte MappedTrigger(GameControllerDatabaseEntry? entry, IReadOnlyList<double> axes, IReadOnlyList<bool> buttons, string name)
     {
         if (entry is null || !entry.Mappings.TryGetValue(name, out var source)) return 0;
         return (byte)Math.Clamp(Math.Round(ReadMappedValue(source, buttons, [], axes) * byte.MaxValue), byte.MinValue, byte.MaxValue);
@@ -330,8 +320,7 @@ internal static class RawGameControllerFallback
         return (short)Math.Clamp(Math.Round((axes[index] * 2d - 1d) * short.MaxValue), short.MinValue, short.MaxValue);
     }
 
-    private static void AddSwitches(IDictionary<string, float> values,
-        IReadOnlyList<GameControllerSwitchPosition> switches)
+    private static void AddSwitches(IDictionary<string, float> values, IReadOnlyList<GameControllerSwitchPosition> switches)
     {
         for (var index = 0; index < switches.Count; index++)
         {
@@ -374,8 +363,5 @@ internal static class RawGameControllerFallback
             _ => GameInputSwitchPosition.Center
         };
 
-    private sealed record RawDevice(
-        RawGameController Controller,
-        GameInputDeviceDescriptor Descriptor,
-        GameControllerDatabaseEntry? DatabaseEntry);
+    private sealed record RawDevice(RawGameController Controller, GameInputDeviceDescriptor Descriptor, GameControllerDatabaseEntry? DatabaseEntry);
 }

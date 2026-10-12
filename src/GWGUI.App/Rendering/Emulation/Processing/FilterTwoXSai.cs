@@ -2,16 +2,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 internal static class FilterTwoXSai
 {
     internal static void Sample(float[] source, int width, int height, float x, float y, Span<float> result) => SampleCore(source, width, height, x, y, result, .45f, 0);
-    internal static void SampleCore(
-        float[] source,
-        int width,
-        int height,
-        float x,
-        float y,
-        Span<float> result,
-        float strength,
-        int variant
-    )
+    internal static void SampleCore(float[] source, int width, int height, float x, float y, Span<float> result, float strength, int variant)
     {
         var px = Math.Clamp((int)MathF.Floor(x), 0, width - 1);
         var py = Math.Clamp((int)MathF.Floor(y), 0, height - 1);

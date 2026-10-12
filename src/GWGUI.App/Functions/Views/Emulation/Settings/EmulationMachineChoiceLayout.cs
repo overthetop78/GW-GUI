@@ -18,8 +18,7 @@ internal static class EmulationMachineChoiceLayout
         var image = new FrameworkElementFactory(typeof(Image));
         image.SetBinding(Image.SourceProperty, new Binding(nameof(EmulationMachineChoice.Image)));
         image.SetValue(FrameworkElement.MaxHeightProperty, EmulationMachineChoiceVisualConstants.MaximumImageHeight);
-        image.SetBinding(FrameworkElement.HeightProperty,
-            new Binding(nameof(FrameworkElement.ActualHeight)) { ElementName = text.Name });
+        image.SetBinding(FrameworkElement.HeightProperty, new Binding(nameof(FrameworkElement.ActualHeight)) { ElementName = text.Name });
         image.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
         image.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
         image.SetValue(Image.StretchProperty, Stretch.Uniform);

@@ -123,8 +123,7 @@ internal static class GameInputDeviceInspector
 
     private static T? ReadOptional<T>(IntPtr pointer) where T : struct => pointer == IntPtr.Zero ? null : Marshal.PtrToStructure<T>(pointer);
 
-    private static unsafe IReadOnlyList<byte> ReadExtraIndexes(
-        IGameInputDevice device, GameInputKind kind, bool axes)
+    private static unsafe IReadOnlyList<byte> ReadExtraIndexes(IGameInputDevice device, GameInputKind kind, bool axes)
     {
         try
         {
@@ -140,8 +139,7 @@ internal static class GameInputDeviceInspector
         catch (COMException) { return []; }
     }
 
-    private static IReadOnlyList<GameInputForceFeedbackMotorDescriptor> ReadForceFeedbackMotors(
-        IGameInputDevice device, GameInputDeviceInfo info)
+    private static IReadOnlyList<GameInputForceFeedbackMotorDescriptor> ReadForceFeedbackMotors(IGameInputDevice device, GameInputDeviceInfo info)
     {
         if (info.ForceFeedbackMotorInfo == IntPtr.Zero ||
             info.ForceFeedbackMotorCount == 0 || info.ForceFeedbackMotorCount > 64) return [];
@@ -170,10 +168,7 @@ internal static class GameInputDeviceInspector
         return result;
     }
 
-    private static void Add(
-        ICollection<GameInputForceFeedbackEffectKind> effects,
-        bool supported,
-        GameInputForceFeedbackEffectKind effect)
+    private static void Add(ICollection<GameInputForceFeedbackEffectKind> effects, bool supported, GameInputForceFeedbackEffectKind effect)
     {
         if (supported) effects.Add(effect);
     }

@@ -36,18 +36,14 @@ internal sealed class ModuleInstallationService
         _isPending = isPending ?? (_ => false);
     }
 
-    internal async Task<PendingModuleInstallation> PrepareFromFileAsync(string archivePath,
-        string displayName,
-        CancellationToken cancellationToken = default)
+    internal async Task<PendingModuleInstallation> PrepareFromFileAsync(string archivePath, string displayName, CancellationToken cancellationToken = default)
     {
         var prepared = await _packagePreparation.PrepareLocalModuleAsync(archivePath, displayName, cancellationToken).ConfigureAwait(false);
         EnsureNotInstalled(prepared.ModuleId);
         return prepared;
     }
 
-    internal async Task<PendingModuleInstallation> PrepareFromCatalogAsync(string catalogUrl,
-        string displayName,
-        IProgress<double>? progress = null, CancellationToken cancellationToken = default)
+    internal async Task<PendingModuleInstallation> PrepareFromCatalogAsync(string catalogUrl, string displayName, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         var catalogUri = ValidateDirectCatalogUri(catalogUrl);
         using var response = await _httpClient.GetAsync(catalogUri, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
@@ -60,8 +56,7 @@ internal sealed class ModuleInstallationService
         var hostApi = Version.Parse(_hostApiVersion());
         var release = component.Releases.Where(candidate => Version.Parse(candidate.HostApiMinimum!) <= hostApi && Version.Parse(candidate.HostApiMaximum!) >= hostApi).OrderByDescending(candidate => Version.Parse(candidate.Version))
             .FirstOrDefault()
-            ?? throw new InvalidDataException(
-                $"Module '{component.Id}' has no release compatible with host API {hostApi.ToString(2)}.");
+            ?? throw new InvalidDataException($"Module '{component.Id}' has no release compatible with host API {hostApi.ToString(2)}.");
         var plan = new UpdatePlan(UpdateSearchScope.Modules, [new UpdatePlanItem(component.Id, UpdateComponentKind.Module, "0.0.0", release)], true, []);
         return await _packagePreparation.PrepareRemoteModuleAsync(plan, displayName, catalogUri.AbsoluteUri, progress, cancellationToken).ConfigureAwait(false);
     }
@@ -71,8 +66,7 @@ internal sealed class ModuleInstallationService
         if (_isPending(moduleId))
             throw new InvalidOperationException($"Module '{moduleId}' is already downloaded.");
         if (_installedModules().Any(module => module.Manifest.Id.Equals(moduleId, StringComparison.OrdinalIgnoreCase)))
-            throw new InvalidOperationException(
-                $"Module '{moduleId}' is already installed. Use the module update action instead.");
+            throw new InvalidOperationException($"Module '{moduleId}' is already installed. Use the module update action instead.");
     }
 
     private static Uri ValidateDirectCatalogUri(string value)

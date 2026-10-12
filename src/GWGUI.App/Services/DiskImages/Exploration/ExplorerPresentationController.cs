@@ -51,11 +51,7 @@ internal sealed class ExplorerPresentationController
 
     internal Task<ExploredDiskImage?> LoadAsync(string path, bool newImage = true) => LoadAsync(path, newImage, null, null);
 
-    internal async Task<ExploredDiskImage?> LoadAsync(
-        string path,
-        bool newImage,
-        Action<string, string, double, bool>? sharedProgress,
-        Action<ScpImage>? scpImageLoaded)
+    internal async Task<ExploredDiskImage?> LoadAsync(string path, bool newImage, Action<string, string, double, bool>? sharedProgress, Action<ScpImage>? scpImageLoaded)
     {
         var cancellation = _cancellation.BeginExplorer();
         var cancellationToken = cancellation.Token;
@@ -128,12 +124,7 @@ internal sealed class ExplorerPresentationController
         };
     }
 
-    private async Task<MediaOpeningAnalysisResult> AnalyzeAsync(
-        string path,
-        string? requestedFormat,
-        CancellationToken cancellationToken,
-        Action<string, string, double, bool>? sharedProgress,
-        Action<ScpImage>? scpImageLoaded)
+    private async Task<MediaOpeningAnalysisResult> AnalyzeAsync(string path, string? requestedFormat, CancellationToken cancellationToken, Action<string, string, double, bool>? sharedProgress, Action<ScpImage>? scpImageLoaded)
     {
         var latestValue = 12d;
         var scpProgress = new Progress<ScpExplorationProgress>(item =>
@@ -177,11 +168,7 @@ internal sealed class ExplorerPresentationController
             scpImageLoaded);
     }
 
-    private void ReportProgress(
-        string stageKey,
-        string detail,
-        double value,
-        Action<string, string, double, bool>? sharedProgress)
+    private void ReportProgress(string stageKey, string detail, double value, Action<string, string, double, bool>? sharedProgress)
     {
         var stage = _localize(stageKey, []);
         _explorer.SetLoadingProgress(stage, detail, value);

@@ -18,11 +18,7 @@ internal sealed class EmulationSettingsFieldLabel : TextBlock
     private FieldHelpAdorner? _adorner;
     private bool _inputHandlerAttached;
 
-    internal EmulationSettingsFieldLabel(
-        string label,
-        string? explanation = null,
-        string? detailedExplanation = null,
-        FrameworkElement? associatedControl = null)
+    internal EmulationSettingsFieldLabel(string label, string? explanation = null, string? detailedExplanation = null, FrameworkElement? associatedControl = null)
     {
         Text = label;
         VerticalAlignment = VerticalAlignment.Center;
@@ -192,11 +188,7 @@ internal sealed class EmulationSettingsFieldLabel : TextBlock
         private readonly FrameworkElement _horizontalTarget;
         private readonly FrameworkElement _verticalTarget;
 
-        internal FieldHelpAdorner(
-            FrameworkElement adornedElement,
-            FrameworkElement content,
-            FrameworkElement horizontalTarget,
-            FrameworkElement verticalTarget)
+        internal FieldHelpAdorner(FrameworkElement adornedElement, FrameworkElement content, FrameworkElement horizontalTarget, FrameworkElement verticalTarget)
             : base(adornedElement)
         {
             _content = content;

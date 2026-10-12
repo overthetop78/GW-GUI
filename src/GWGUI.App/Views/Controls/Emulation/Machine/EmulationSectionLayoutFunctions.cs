@@ -158,8 +158,7 @@ public sealed partial class EmulationSection
         return button;
     }
 
-    private Button? CreateMachineButton(IEmulationModule module,
-        EmulationMachineDefinition definition, string displayName)
+    private Button? CreateMachineButton(IEmulationModule module, EmulationMachineDefinition definition, string displayName)
     {
         var image = EmulationAssetFunctions.Load(module, definition.ImageResourceName);
         if (image is null) return null;
@@ -179,8 +178,7 @@ public sealed partial class EmulationSection
         return button;
     }
 
-    private static Button CreateSelectorButton(string displayName, ImageSource image,
-        bool selected)
+    private static Button CreateSelectorButton(string displayName, ImageSource image, bool selected)
     {
         var button = new Button
         {
@@ -214,8 +212,7 @@ public sealed partial class EmulationSection
         return button;
     }
 
-    private static FrameworkElement CreateMachineTabHeader(
-        string title, string description, Func<Task> close)
+    private static FrameworkElement CreateMachineTabHeader(string title, string description, Func<Task> close)
     {
         var panel = new StackPanel
         {

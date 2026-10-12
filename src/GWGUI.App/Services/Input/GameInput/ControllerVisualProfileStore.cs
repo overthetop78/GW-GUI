@@ -56,10 +56,7 @@ internal static class ControllerVisualProfileStore
         try
         {
             if (!File.Exists(FilePath)) return new(StringComparer.OrdinalIgnoreCase);
-            return JsonSerializer.Deserialize<Dictionary<string, ControllerVisualProfile>>(File.ReadAllText(FilePath))
-                is { } profiles
-                ? new Dictionary<string, ControllerVisualProfile>(profiles, StringComparer.OrdinalIgnoreCase)
-                : new(StringComparer.OrdinalIgnoreCase);
+            return JsonSerializer.Deserialize<Dictionary<string, ControllerVisualProfile>>(File.ReadAllText(FilePath)) is { } profiles ? new Dictionary<string, ControllerVisualProfile>(profiles, StringComparer.OrdinalIgnoreCase) : new(StringComparer.OrdinalIgnoreCase);
         }
         catch
         {
@@ -72,8 +69,7 @@ internal static class ControllerVisualProfileStore
         var directory = Path.GetDirectoryName(FilePath)!;
         Directory.CreateDirectory(directory);
         var temporary = FilePath + ".tmp";
-        File.WriteAllText(temporary, JsonSerializer.Serialize(_profiles,
-            new JsonSerializerOptions { WriteIndented = true }));
+        File.WriteAllText(temporary, JsonSerializer.Serialize(_profiles, new JsonSerializerOptions { WriteIndented = true }));
         File.Move(temporary, FilePath, true);
     }
 }

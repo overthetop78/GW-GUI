@@ -4,17 +4,9 @@ using GWGUI.Emulation.Enums;
 
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal readonly record struct CrtVideoShaderParameters(
-    Vector4 Display,
-    Vector4 Beam,
-    Vector4 Optical,
-    Vector4 Geometry,
-    Vector4 Scanlines,
-    Vector4 Pattern,
-    Vector4 PatternIntensity)
+internal readonly record struct CrtVideoShaderParameters(Vector4 Display, Vector4 Beam, Vector4 Optical, Vector4 Geometry, Vector4 Scanlines, Vector4 Pattern, Vector4 PatternIntensity)
 {
-    internal static CrtVideoShaderParameters From(
-        EmulationVideoProcessingConfiguration configuration)
+    internal static CrtVideoShaderParameters From(EmulationVideoProcessingConfiguration configuration)
     {
         var crt = configuration.Crt;
         var tint = LinearTint(crt);

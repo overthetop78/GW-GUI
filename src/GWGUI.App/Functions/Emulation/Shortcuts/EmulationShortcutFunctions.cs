@@ -9,8 +9,7 @@ namespace GWGUI.App.Functions.Emulation.Shortcuts;
 
 internal static class EmulationShortcutFunctions
 {
-    internal static EmulationShortcutMatch ResolveGlobal(IReadOnlyList<GlobalShortcutBinding> bindings,
-        ModifierKeys modifiers, IReadOnlySet<Key> pressedKeys, Key source, IReadOnlySet<string> activeActions)
+    internal static EmulationShortcutMatch ResolveGlobal(IReadOnlyList<GlobalShortcutBinding> bindings, ModifierKeys modifiers, IReadOnlySet<Key> pressedKeys, Key source, IReadOnlySet<string> activeActions)
     {
         var exact = bindings.FirstOrDefault(binding => KeyboardChordFunctions.Matches(binding.Chord, modifiers, pressedKeys));
         if (exact is not null)
@@ -18,8 +17,7 @@ internal static class EmulationShortcutFunctions
         return bindings.Any(binding => binding.Chord.Modifiers == modifiers && KeyboardChordFunctions.Contains(binding.Chord, source)) ? new EmulationShortcutMatch(EmulationShortcutMatchCategory.ReservedForGlobal) : new EmulationShortcutMatch(EmulationShortcutMatchCategory.None);
     }
 
-    internal static void ReleaseInactive(ISet<string> activeActions,
-        IReadOnlyList<GlobalShortcutBinding> bindings, ModifierKeys modifiers, IReadOnlySet<Key> pressedKeys)
+    internal static void ReleaseInactive(ISet<string> activeActions, IReadOnlyList<GlobalShortcutBinding> bindings, ModifierKeys modifiers, IReadOnlySet<Key> pressedKeys)
     {
         activeActions.RemoveWhere(action =>
         {

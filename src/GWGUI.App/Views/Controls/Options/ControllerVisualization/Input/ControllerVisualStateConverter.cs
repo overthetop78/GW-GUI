@@ -62,11 +62,7 @@ internal static class ControllerVisualStateConverter
         float RawUnsigned(int index, float defaultValue = NeutralAxisValue) =>
             rawAxes.TryGetValue(index, out var value) ? Math.Clamp(value, NeutralAxisValue, MaximumAxisValue) : defaultValue;
 
-        float GamepadAxis(
-            Func<GameInputGamepadState, float> selector,
-            GameInputGamepadButtons negative,
-            GameInputGamepadButtons positive,
-            int rawIndex)
+        float GamepadAxis(Func<GameInputGamepadState, float> selector, GameInputGamepadButtons negative, GameInputGamepadButtons positive, int rawIndex)
         {
             if (gamepad is not { } value) return RawSigned(rawIndex);
             var analog = Math.Clamp(selector(value), MinimumSignedAxisValue, MaximumAxisValue);
@@ -95,12 +91,8 @@ internal static class ControllerVisualStateConverter
         var leftY = gamepad is null ? RawSigned(GamepadLeftVerticalAxisIndex) : -GamepadAxis(value => value.LeftThumbstickY, GameInputGamepadButtons.LeftThumbstickDown, GameInputGamepadButtons.LeftThumbstickUp, GamepadLeftVerticalAxisIndex);
         var rightX = GamepadAxis(value => value.RightThumbstickX, GameInputGamepadButtons.RightThumbstickLeft, GameInputGamepadButtons.RightThumbstickRight, GamepadRightHorizontalAxisIndex);
         var rightY = gamepad is null ? RawSigned(GamepadRightVerticalAxisIndex) : -GamepadAxis(value => value.RightThumbstickY, GameInputGamepadButtons.RightThumbstickDown, GameInputGamepadButtons.RightThumbstickUp, GamepadRightVerticalAxisIndex);
-        var arcadeX = arcade is { } currentArcade
-            ? DigitalAxis(currentArcade.Buttons.HasFlag(GameInputArcadeStickButtons.Left), currentArcade.Buttons.HasFlag(GameInputArcadeStickButtons.Right))
-            : leftX;
-        var arcadeY = arcade is { } currentArcadeY
-            ? DigitalAxis(currentArcadeY.Buttons.HasFlag(GameInputArcadeStickButtons.Up), currentArcadeY.Buttons.HasFlag(GameInputArcadeStickButtons.Down))
-            : leftY;
+        var arcadeX = arcade is { } currentArcade ? DigitalAxis(currentArcade.Buttons.HasFlag(GameInputArcadeStickButtons.Left), currentArcade.Buttons.HasFlag(GameInputArcadeStickButtons.Right)) : leftX;
+        var arcadeY = arcade is { } currentArcadeY ? DigitalAxis(currentArcadeY.Buttons.HasFlag(GameInputArcadeStickButtons.Up), currentArcadeY.Buttons.HasFlag(GameInputArcadeStickButtons.Down)) : leftY;
 
         return new ControllerVisualState
         {
@@ -135,9 +127,7 @@ internal static class ControllerVisualStateConverter
         };
     }
 
-    private static void AddGamepadControls(
-        ISet<ControllerVisualControl> target,
-        GameInputGamepadButtons buttons)
+    private static void AddGamepadControls(ISet<ControllerVisualControl> target, GameInputGamepadButtons buttons)
     {
         Add(target, buttons, GameInputGamepadButtons.A, ControllerVisualControl.GamepadA);
         Add(target, buttons, GameInputGamepadButtons.B, ControllerVisualControl.GamepadB);
@@ -163,9 +153,7 @@ internal static class ControllerVisualStateConverter
         Add(target, buttons, GameInputGamepadButtons.PaddleRight2, ControllerVisualControl.GamepadPaddleRight2);
     }
 
-    private static void AddRacingControls(
-        ISet<ControllerVisualControl> target,
-        GameInputRacingWheelButtons buttons)
+    private static void AddRacingControls(ISet<ControllerVisualControl> target, GameInputRacingWheelButtons buttons)
     {
         Add(target, buttons, GameInputRacingWheelButtons.A, ControllerVisualControl.RacingA);
         Add(target, buttons, GameInputRacingWheelButtons.B, ControllerVisualControl.RacingB);
@@ -183,9 +171,7 @@ internal static class ControllerVisualStateConverter
         Add(target, buttons, GameInputRacingWheelButtons.RightThumbstick, ControllerVisualControl.RacingRightThumbstick);
     }
 
-    private static void AddFlightControls(
-        ISet<ControllerVisualControl> target,
-        GameInputFlightStickButtons buttons)
+    private static void AddFlightControls(ISet<ControllerVisualControl> target, GameInputFlightStickButtons buttons)
     {
         Add(target, buttons, GameInputFlightStickButtons.A, ControllerVisualControl.FlightA);
         Add(target, buttons, GameInputFlightStickButtons.B, ControllerVisualControl.FlightB);
@@ -203,9 +189,7 @@ internal static class ControllerVisualStateConverter
         Add(target, buttons, GameInputFlightStickButtons.HatSwitchRight, ControllerVisualControl.FlightHatRight);
     }
 
-    private static void AddArcadeControls(
-        ISet<ControllerVisualControl> target,
-        GameInputArcadeStickButtons buttons)
+    private static void AddArcadeControls(ISet<ControllerVisualControl> target, GameInputArcadeStickButtons buttons)
     {
         Add(target, buttons, GameInputArcadeStickButtons.Action1, ControllerVisualControl.ArcadeAction1);
         Add(target, buttons, GameInputArcadeStickButtons.Action2, ControllerVisualControl.ArcadeAction2);
@@ -219,13 +203,7 @@ internal static class ControllerVisualStateConverter
         Add(target, buttons, GameInputArcadeStickButtons.Menu, ControllerVisualControl.ArcadeMenu);
     }
 
-    private static void AddDirectionControls(
-        ISet<ControllerVisualControl> target,
-        GameInputSwitchPosition position,
-        ControllerVisualControl up,
-        ControllerVisualControl down,
-        ControllerVisualControl left,
-        ControllerVisualControl right)
+    private static void AddDirectionControls(ISet<ControllerVisualControl> target, GameInputSwitchPosition position, ControllerVisualControl up, ControllerVisualControl down, ControllerVisualControl left, ControllerVisualControl right)
     {
         if (position is GameInputSwitchPosition.Up or GameInputSwitchPosition.UpLeft or GameInputSwitchPosition.UpRight)
             target.Add(up);
@@ -239,11 +217,7 @@ internal static class ControllerVisualStateConverter
 
     private static float DigitalAxis(bool negative, bool positive) => negative == positive ? NeutralAxisValue : negative ? MinimumSignedAxisValue : MaximumAxisValue;
 
-    private static void Add<TButtons>(
-        ISet<ControllerVisualControl> target,
-        TButtons buttons,
-        TButtons flag,
-        ControllerVisualControl control)
+    private static void Add<TButtons>(ISet<ControllerVisualControl> target, TButtons buttons, TButtons flag, ControllerVisualControl control)
         where TButtons : struct, Enum
     {
         var value = System.Convert.ToUInt64(buttons);

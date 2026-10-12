@@ -129,9 +129,7 @@ public partial class ScpDiskView : UserControl, IMediaVisualizationView
     private void UpdateLabels()
     {
         SurfaceLabel.Text = LocExtension.Get("Visual.Side", _head);
-        SelectionLabel.Text = SelectedTrack is null
-            ? $"{LocExtension.Get("Visual.TrackLabel")} —"
-            : $"{LocExtension.Get("Visual.TrackLabel")} {SelectedTrack.Cylinder}";
+        SelectionLabel.Text = SelectedTrack is null ? $"{LocExtension.Get("Visual.TrackLabel")} —" : $"{LocExtension.Get("Visual.TrackLabel")} {SelectedTrack.Cylinder}";
     }
 
     private void ZoomOutButton_Click(object sender, RoutedEventArgs e) => SetZoom(_zoom * .89f, true);

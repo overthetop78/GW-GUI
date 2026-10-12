@@ -19,11 +19,7 @@ public sealed class TerminalPanelController
     private readonly Func<AppSettings> settings;
     private int selectedTab;
 
-    public TerminalPanelController(
-        TerminalSection terminal,
-        RowDefinition terminalRow,
-        GridSplitter splitter,
-        Func<AppSettings> settings)
+    public TerminalPanelController(TerminalSection terminal, RowDefinition terminalRow, GridSplitter splitter, Func<AppSettings> settings)
     {
         this.terminal = terminal;
         this.terminalRow = terminalRow;

@@ -51,10 +51,7 @@ internal static class GameInputNative
         return SelectRuntime(candidates);
     }
 
-    private static void AddCandidate(
-        ICollection<GameInputRuntimeCandidate> candidates,
-        string path,
-        GameInputRuntimeSource source)
+    private static void AddCandidate(ICollection<GameInputRuntimeCandidate> candidates, string path, GameInputRuntimeSource source)
     {
         if (File.Exists(path))
             candidates.Add(new GameInputRuntimeCandidate(path, VersionOf(path), source));

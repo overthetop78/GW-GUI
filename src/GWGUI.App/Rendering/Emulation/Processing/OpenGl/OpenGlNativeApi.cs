@@ -130,15 +130,13 @@ internal sealed class OpenGlNativeApi
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
     private delegate uint CreateShaderDelegate(uint stage);
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
-    private delegate void ShaderSourceDelegate(
-        uint shader, int count, IntPtr strings, IntPtr lengths);
+    private delegate void ShaderSourceDelegate(uint shader, int count, IntPtr strings, IntPtr lengths);
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
     private delegate void CompileShaderDelegate(uint shader);
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
     private delegate void GetShaderivDelegate(uint shader, uint property, out int value);
     [UnmanagedFunctionPointer(CallingConvention.Winapi, CharSet = CharSet.Ansi)]
-    private delegate void GetShaderInfoLogDelegate(
-        uint shader, int capacity, out int length, StringBuilder log);
+    private delegate void GetShaderInfoLogDelegate(uint shader, int capacity, out int length, StringBuilder log);
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
     private delegate void DeleteShaderDelegate(uint shader);
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
@@ -150,8 +148,7 @@ internal sealed class OpenGlNativeApi
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
     private delegate void GetProgramivDelegate(uint program, uint property, out int value);
     [UnmanagedFunctionPointer(CallingConvention.Winapi, CharSet = CharSet.Ansi)]
-    private delegate void GetProgramInfoLogDelegate(
-        uint program, int capacity, out int length, StringBuilder log);
+    private delegate void GetProgramInfoLogDelegate(uint program, int capacity, out int length, StringBuilder log);
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
     private delegate void DeleteProgramDelegate(uint program);
     [UnmanagedFunctionPointer(CallingConvention.Winapi, CharSet = CharSet.Ansi)]

@@ -1,13 +1,6 @@
 namespace GWGUI.App.Contracts.ViewModels.Visualization;
 
-public sealed record ScpInspectorModel(
-    int Head,
-    int Cylinder,
-    int ScpEntry,
-    IReadOnlyList<ScpRevolutionInfo> Revolutions,
-    ScpDecodeInfo? Decode,
-    IReadOnlyList<ScpInspectorEntry> Structures,
-    IReadOnlyList<string> Sectors)
+public sealed record ScpInspectorModel(int Head, int Cylinder, int ScpEntry, IReadOnlyList<ScpRevolutionInfo> Revolutions, ScpDecodeInfo? Decode, IReadOnlyList<ScpInspectorEntry> Structures, IReadOnlyList<string> Sectors)
 {
     public int RevolutionCount => Revolutions.Count;
     public int SectorCount => Sectors.Count;

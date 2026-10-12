@@ -1,8 +1,7 @@
 using GWGUI.App.Localization.Extensions;
 namespace GWGUI.App.ViewModels.Options;
 
-public sealed class HardwareRow(string? driveId, string port, string usbId, string readerLabel,
-    string size, string density, string rpm, bool available, bool configured, string configurationState)
+public sealed class HardwareRow(string? driveId, string port, string usbId, string readerLabel, string size, string density, string rpm, bool available, bool configured, string configurationState)
 {
     public string? DriveId { get; } = driveId;
     public string Port { get; } = port;

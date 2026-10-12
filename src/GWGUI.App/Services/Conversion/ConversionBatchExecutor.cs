@@ -17,11 +17,7 @@ using GWGUI.App.Functions.Localization;
 
 namespace GWGUI.App.Services.Conversion;
 
-public sealed class ConversionBatchExecutor(
-    IGreaseweazleRunner runner,
-    MediaImageReadingService mediaReader,
-    MediaConversionService conversionService,
-    SequentialMediaConversionService sequentialConversionService)
+public sealed class ConversionBatchExecutor(IGreaseweazleRunner runner, MediaImageReadingService mediaReader, MediaConversionService conversionService, SequentialMediaConversionService sequentialConversionService)
 {
     private readonly MediaImageReadingService mediaReader = mediaReader ?? throw new ArgumentNullException(nameof(mediaReader));
     private readonly MediaConversionService conversionService = conversionService ?? throw new ArgumentNullException(nameof(conversionService));

@@ -29,8 +29,7 @@ internal static class SignalConnectionComponent
         }
     }
 
-    internal static void ApplyChromaBlur(float[] target, float[] source, int center, int left,
-        int right, float amount)
+    internal static void ApplyChromaBlur(float[] target, float[] source, int center, int left, int right, float amount)
     {
         Components(source, center, out var luminance, out var inPhase, out var quadrature);
         Components(source, left, out _, out var leftI, out var leftQ);
@@ -42,8 +41,7 @@ internal static class SignalConnectionComponent
         target[center + 2] = Math.Clamp(luminance - 1.106f * inPhase + 1.703f * quadrature, 0f, 1f);
     }
 
-    private static void Components(float[] source, int index, out float luminance,
-        out float inPhase, out float quadrature)
+    private static void Components(float[] source, int index, out float luminance, out float inPhase, out float quadrature)
     {
         var red = source[index]; var green = source[index + 1]; var blue = source[index + 2];
         luminance = red * 0.299f + green * 0.587f + blue * 0.114f;

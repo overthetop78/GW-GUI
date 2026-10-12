@@ -13,8 +13,7 @@ namespace GWGUI.App.Views.Controls.Emulation.Machine;
 
 public sealed partial class EmulationSection
 {
-    private async void VideoConfigurationChanged(object? sender,
-        EmulationConfigurationSavedEventArgs args) =>
+    private async void VideoConfigurationChanged(object? sender, EmulationConfigurationSavedEventArgs args) =>
         await EmulationOpenMachineConfigurationFunctions.TryApplyAsync(_openMachines,
             args.Configuration.ModuleId, args.Configuration.Id, async tab =>
             {

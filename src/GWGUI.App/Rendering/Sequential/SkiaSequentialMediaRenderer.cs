@@ -7,15 +7,7 @@ namespace GWGUI.App.Rendering.Sequential;
 
 public sealed class SkiaSequentialMediaRenderer
 {
-    public void Render(
-        SKCanvas canvas,
-        SequentialMediaRenderModel? model,
-        SequentialMediaSegment? selectedSegment,
-        int preparedSegmentCount,
-        int wrappedLineCount,
-        int width,
-        int height,
-        float zoom = 1)
+    public void Render(SKCanvas canvas, SequentialMediaRenderModel? model, SequentialMediaSegment? selectedSegment, int preparedSegmentCount, int wrappedLineCount, int width, int height, float zoom = 1)
     {
         canvas.Clear(SequentialMediaRenderConstants.BackgroundColor);
         if (model is null) return;
@@ -76,13 +68,7 @@ public sealed class SkiaSequentialMediaRenderer
         }
     }
 
-    public SequentialMediaSegment? HitTest(
-        SequentialMediaRenderModel? model,
-        int wrappedLineCount,
-        int width,
-        int height,
-        SKPoint point,
-        float zoom = 1)
+    public SequentialMediaSegment? HitTest(SequentialMediaRenderModel? model, int wrappedLineCount, int width, int height, SKPoint point, float zoom = 1)
     {
         if (model is null) return null;
         var layout = BuildLayout(model);

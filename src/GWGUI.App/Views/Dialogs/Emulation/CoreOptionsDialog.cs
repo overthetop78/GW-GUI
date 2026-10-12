@@ -15,8 +15,7 @@ public sealed class CoreOptionsDialog : Window
 
     public IReadOnlyDictionary<string, string> Values => _options.Where(option => _controls.ContainsKey(option.Key)).ToDictionary(option => option.Key, option => ReadValue(_controls[option.Key]), StringComparer.Ordinal);
 
-    public CoreOptionsDialog(string emulatorName, string emulatorVersion,
-        IReadOnlyList<EmulationOption> options, string? moduleId = null)
+    public CoreOptionsDialog(string emulatorName, string emulatorVersion, IReadOnlyList<EmulationOption> options, string? moduleId = null)
     {
         _options = options.Where(option => option.IsVisible).ToArray();
         _moduleId = moduleId;
@@ -28,8 +27,7 @@ public sealed class CoreOptionsDialog : Window
         SizeToContent = SizeToContent.Height;
         ResizeMode = ResizeMode.NoResize;
 
-        var subtitle = string.IsNullOrWhiteSpace(emulatorVersion)
-            ? emulatorName : $"{emulatorName} · {emulatorVersion}";
+        var subtitle = string.IsNullOrWhiteSpace(emulatorVersion) ? emulatorName : $"{emulatorName} · {emulatorVersion}";
         var body = new StackPanel();
         foreach (var group in _options.GroupBy(option => option.Category ?? string.Empty, StringComparer.Ordinal))
         {

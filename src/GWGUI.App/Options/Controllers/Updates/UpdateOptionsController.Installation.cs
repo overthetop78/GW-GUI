@@ -60,8 +60,7 @@ internal sealed partial class UpdateOptionsController : IDisposable
         await PrepareNewModuleAsync(cancellation => _moduleInstallation.PrepareFromCatalogAsync(module.CatalogUrl, module.DisplayName, new Progress<double>(value => ActiveModuleProgress().Value = value * 100), cancellation));
     }
 
-    private async Task PrepareNewModuleAsync(
-        Func<CancellationToken, Task<PendingModuleInstallation>> prepare)
+    private async Task PrepareNewModuleAsync(Func<CancellationToken, Task<PendingModuleInstallation>> prepare)
     {
         if (_preparationCancellation is not null) return;
         PendingModuleInstallation? prepared = null;

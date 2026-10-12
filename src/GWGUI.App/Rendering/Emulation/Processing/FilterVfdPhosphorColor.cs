@@ -22,8 +22,7 @@ internal static class FilterVfdPhosphorColor
         _ => (0.18f, 0.78f, 1f)
     };
 
-    internal static void Apply(float[] colors, float[] emission, float[] halo,
-        EmulationVfdColor color)
+    internal static void Apply(float[] colors, float[] emission, float[] halo, EmulationVfdColor color)
     {
         var tint = Tint(color);
         for (var pixel = 0; pixel < emission.Length; pixel++)

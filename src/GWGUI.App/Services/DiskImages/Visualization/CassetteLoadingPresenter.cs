@@ -22,10 +22,7 @@ internal sealed class CassetteLoadingPresenter(
 {
     private static readonly TimeSpan MinimumSegmentPresentationInterval = TimeSpan.FromMilliseconds(100);
 
-    internal async Task CompleteAsync(
-        CancellationToken cancellationToken,
-        string shownName,
-        ExploredMediaImage? exploredMediaImage)
+    internal async Task CompleteAsync(CancellationToken cancellationToken, string shownName, ExploredMediaImage? exploredMediaImage)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (mediaVisualization.SequentialRenderModel is not { } model || model.Segments.Count == 0)
@@ -71,9 +68,7 @@ internal sealed class CassetteLoadingPresenter(
     private static IReadOnlyList<string> FileDescriptions(ExploredMediaImage? explored)
     {
         if (explored?.Document.MediaKind != MediaKind.Tape) return [];
-        return explored.Volumes.SelectMany(volume => volume.FileSystem?.Entries ?? []).SelectMany(EnumerateFiles).Select(entry => new ExplorerContentItem(entry))
-            .Select(item => $"{item.Name} — {item.TypeText}")
-            .ToArray();
+        return explored.Volumes.SelectMany(volume => volume.FileSystem?.Entries ?? []).SelectMany(EnumerateFiles).Select(entry => new ExplorerContentItem(entry)).Select(item => $"{item.Name} — {item.TypeText}").ToArray();
     }
 
     private static IEnumerable<FileSystemEntry> EnumerateFiles(FileSystemEntry entry)

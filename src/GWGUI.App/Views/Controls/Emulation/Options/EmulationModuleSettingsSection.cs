@@ -54,9 +54,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
     private readonly SemaphoreSlim _saveInputGate = new(1, 1);
     private EmulationMachineTab _selectedTab = EmulationMachineTab.General;
 
-    internal EmulationModuleSettingsSection(IEmulationModule module,
-        GWGUI.VideoPresentation.Services.VideoPresentationProfileStore? profiles = null,
-        Action<Exception>? showError = null)
+    internal EmulationModuleSettingsSection(IEmulationModule module, GWGUI.VideoPresentation.Services.VideoPresentationProfileStore? profiles = null, Action<Exception>? showError = null)
     {
         FlowDirection = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         _module = module;
@@ -96,8 +94,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
         _videoProcessing.ConfigurationChanged += async (_, _) =>
         {
             var profile = _profiles.Get(_module.Id, _configuration.Id);
-            _profiles.Set(_module.Id, _configuration.Id,
-                profile with { Processing = _videoProcessing.Configuration });
+            _profiles.Set(_module.Id, _configuration.Id, profile with { Processing = _videoProcessing.Configuration });
             if (!_saved.Any(item => item.Id == _configuration.Id))
                 EmulationConfigurationDraftStore.Set(_module.Id, _configuration);
             VideoConfigurationChanged?.Invoke(this, new EmulationConfigurationSavedEventArgs(_configuration));
@@ -123,9 +120,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
 
     internal Task ReloadWhenOpenedAsync() => ExecuteAsync(ReloadAsync);
 
-    internal async Task ReloadAfterConfigurationDeletedAsync(
-        Guid configurationId,
-        string machineId)
+    internal async Task ReloadAfterConfigurationDeletedAsync(Guid configurationId, string machineId)
     {
         if (_configuration.Id == configurationId)
             EmulationConfigurationDraftStore.Remove(_module.Id, machineId);

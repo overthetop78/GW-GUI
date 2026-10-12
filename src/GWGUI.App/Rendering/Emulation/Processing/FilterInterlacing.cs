@@ -7,8 +7,7 @@ internal sealed class FilterInterlacing
     private int _height;
     private long _sequence;
 
-    internal void ApplyFieldWeave(float[] colors, int sourceWidth, int sourceHeight,
-        long sequence, bool enabled, int visibility)
+    internal void ApplyFieldWeave(float[] colors, int sourceWidth, int sourceHeight, long sequence, bool enabled, int visibility)
     {
         if (!enabled || visibility <= 0)
         {

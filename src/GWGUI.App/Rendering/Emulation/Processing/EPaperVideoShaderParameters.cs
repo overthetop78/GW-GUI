@@ -3,12 +3,9 @@ using GWGUI.Emulation.Contracts;
 
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal readonly record struct EPaperVideoShaderParameters(
-    Vector4 InkAndColor, Vector4 PaperSurface, Vector4 Temporal)
+internal readonly record struct EPaperVideoShaderParameters(Vector4 InkAndColor, Vector4 PaperSurface, Vector4 Temporal)
 {
-    internal static EPaperVideoShaderParameters From(
-        EmulationVideoProcessingConfiguration configuration, bool hasHistory,
-        double elapsedMilliseconds)
+    internal static EPaperVideoShaderParameters From(EmulationVideoProcessingConfiguration configuration, bool hasHistory, double elapsedMilliseconds)
     {
         var value = configuration.EPaper;
         return new(

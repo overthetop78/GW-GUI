@@ -163,8 +163,7 @@ internal static partial class EmulationSettingsLayout
         return HeaderCard(child, header);
     }
 
-    internal static Border InformationBanner(string text) =>
-        InformationBanner(new TextBlock { Text = text, TextWrapping = TextWrapping.Wrap });
+    internal static Border InformationBanner(string text) => InformationBanner(new TextBlock { Text = text, TextWrapping = TextWrapping.Wrap });
 
     internal static Border InformationBanner(TextBlock text)
     {

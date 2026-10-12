@@ -3,12 +3,9 @@ using GWGUI.Emulation.Contracts;
 
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal readonly record struct SegmentDisplayVideoShaderParameters(
-    Vector4 Geometry, Vector4 Shape, Vector4 Emission, Vector4 Optical, Vector4 Temporal)
+internal readonly record struct SegmentDisplayVideoShaderParameters(Vector4 Geometry, Vector4 Shape, Vector4 Emission, Vector4 Optical, Vector4 Temporal)
 {
-    internal static SegmentDisplayVideoShaderParameters From(
-        EmulationVideoProcessingConfiguration configuration, bool hasHistory,
-        double elapsedMilliseconds)
+    internal static SegmentDisplayVideoShaderParameters From(EmulationVideoProcessingConfiguration configuration, bool hasHistory, double elapsedMilliseconds)
     {
         var value = configuration.SegmentDisplay;
         var flags = (value.DecimalPoint ? 1 : 0) | (value.Colon ? 2 : 0);

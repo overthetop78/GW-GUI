@@ -117,14 +117,7 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
             sections.Add(new(Localize("Visual.ChsGeometryTitle"), ControlVisualConstants.InformationGlyph, entries));
         }
 
-        return new(
-            Localize("Visual.BlockInspectorTitle"),
-            range is null
-                ? null
-                : cartridge
-                    ? range.Label
-                    : range.Label ?? $"LBA {range.Start:N0} · {range.Length:N0}",
-            sections);
+        return new(Localize("Visual.BlockInspectorTitle"), range is null ? null : cartridge ? range.Label : range.Label ?? $"LBA {range.Start:N0} · {range.Length:N0}", sections);
     }
 
     private static string? CartridgeBankLabel(IReadOnlyDictionary<string, string> metadata, long address)
@@ -135,9 +128,7 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
             || address % bankSize != 0)
             return null;
         var bank = address / bankSize;
-        return metadata.TryGetValue($"bank.{bank}.chunkId", out var chunkId)
-            ? chunkId
-            : $"bank{bank:D2}";
+        return metadata.TryGetValue($"bank.{bank}.chunkId", out var chunkId) ? chunkId : $"bank{bank:D2}";
     }
 
     private string Localize(string key, params object[] arguments) => localize(key, arguments);

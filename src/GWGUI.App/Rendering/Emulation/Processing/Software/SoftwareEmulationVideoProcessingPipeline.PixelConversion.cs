@@ -8,8 +8,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulationVideoProcessingPipeline
 {
-    private static void Validate(VideoFrame frame, EmulationVideoProcessingSize sourceSize,
-        EmulationVideoProcessingSize outputSize)
+    private static void Validate(VideoFrame frame, EmulationVideoProcessingSize sourceSize, EmulationVideoProcessingSize outputSize)
     {
         if (sourceSize.Width != frame.Width || sourceSize.Height != frame.Height)
             throw new ArgumentException(nameof(sourceSize));

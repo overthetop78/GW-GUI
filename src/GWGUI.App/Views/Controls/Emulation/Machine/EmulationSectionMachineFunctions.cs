@@ -27,8 +27,7 @@ public sealed partial class EmulationSection
             runtime.MediaDevices, runtime.MountedMedia, presentation.Renderer,
             presentation.Processing!,
             EmulationShortcutMap.GlobalShortcuts(_settings.EmulationShortcuts),
-            Path.Combine(_settings.EmulationStateFolder,
-                $"{selected.Module.Id}-{selected.Configuration.Id:N}.gwas"),
+            Path.Combine(_settings.EmulationStateFolder, $"{selected.Module.Id}-{selected.Configuration.Id:N}.gwas"),
             _settings.EmulationCaptureFolder, RuntimeDisplayName(runtime),
             error => ControlErrorPresenter.ShowEmulation(this, error, ControlErrorContexts.EmulationConfigurationOpening, selected.DisplayName),
             runtime.SupportsPointerCapture,
@@ -47,18 +46,14 @@ public sealed partial class EmulationSection
         await AddMachineAsync(selected, runtime, view, view.StopAsync);
     }
 
-    private ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(
-        IEmulationModule module,
-        IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default)
+    private ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationModule module, IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         var moduleRoot = Path.Combine(_settings.EmulationStorageFolder, module.Id);
         return module.CreateRuntimeAsync(configuration,
             new EmulationRuntimeServices(Path.Combine(moduleRoot, "Sessions"), Path.Combine(moduleRoot, "States"), Path.Combine(moduleRoot, "Converted"), Environment.ProcessPath!, (device, latency) => new WasapiAudioOutput(device, latency)), cancellationToken);
     }
 
-    internal Task AddMachineAsync(EmulationConfigurationListItem selected, EmulationMachineRuntime runtime,
-        FrameworkElement view, Func<Task> stop)
+    internal Task AddMachineAsync(EmulationConfigurationListItem selected, EmulationMachineRuntime runtime, FrameworkElement view, Func<Task> stop)
     {
         var key = (selected.Module.Id, selected.Configuration.Id);
         var tab = new TabItem { Content = view, Tag = runtime, Padding = new Thickness(18, 9, 14, 9) };
@@ -70,8 +65,7 @@ public sealed partial class EmulationSection
         return Task.CompletedTask;
     }
 
-    internal async Task CloseMachineAsync(
-        (string ModuleId, Guid Id) key, TabItem tab, Func<Task> stop)
+    internal async Task CloseMachineAsync((string ModuleId, Guid Id) key, TabItem tab, Func<Task> stop)
     {
         if (!_openMachines.ContainsKey(key)) return;
         await stop();

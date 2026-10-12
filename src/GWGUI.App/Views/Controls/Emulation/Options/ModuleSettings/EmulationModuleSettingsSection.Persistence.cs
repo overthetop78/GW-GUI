@@ -47,8 +47,7 @@ internal sealed partial class EmulationModuleSettingsSection
         await PersistCapturedConfigurationAsync(configuration, _saved.Any(item => item.Id == configuration.Id));
     }
 
-    private async Task PersistCapturedConfigurationAsync(IEmulationConfiguration configuration,
-        bool hasSavedConfiguration)
+    private async Task PersistCapturedConfigurationAsync(IEmulationConfiguration configuration, bool hasSavedConfiguration)
     {
         await _saveInputGate.WaitAsync();
         try

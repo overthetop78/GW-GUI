@@ -18,8 +18,7 @@ internal static class SignalConnectionRf
         }
         """;
 
-    public static void Apply(float[] colors, int width, int height, long sequence, int intensity,
-        EmulationSignalStandard standard)
+    public static void Apply(float[] colors, int width, int height, long sequence, int intensity, EmulationSignalStandard standard)
     {
         if (intensity <= 0) return;
         var source = colors.ToArray();

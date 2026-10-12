@@ -120,10 +120,8 @@ internal static class WindowsDeviceNameResolver
     private static extern uint CM_Get_Parent(out uint parent, uint child, uint flags);
 
     [DllImport("cfgmgr32.dll", CharSet = CharSet.Unicode)]
-    private static extern uint CM_Get_DevNode_PropertyW(uint deviceInstance, ref DevPropKey propertyKey,
-        out uint propertyType, byte[]? propertyBuffer, ref uint propertyBufferSize, uint flags);
+    private static extern uint CM_Get_DevNode_PropertyW(uint deviceInstance, ref DevPropKey propertyKey, out uint propertyType, byte[]? propertyBuffer, ref uint propertyBufferSize, uint flags);
 
     [DllImport("cfgmgr32.dll", CharSet = CharSet.Unicode)]
-    private static extern uint CM_Get_Device_IDW(uint deviceInstance, StringBuilder buffer,
-        uint bufferLength, uint flags);
+    private static extern uint CM_Get_Device_IDW(uint deviceInstance, StringBuilder buffer, uint bufferLength, uint flags);
 }

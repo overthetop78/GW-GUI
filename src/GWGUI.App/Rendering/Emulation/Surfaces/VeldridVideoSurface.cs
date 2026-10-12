@@ -179,9 +179,7 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         _snapshot = null;
     }
 
-    private void EnsureDevice(int width, int height,
-        GWGUI.VideoPresentation.Enums.EmulationVideoSampling sampling,
-        GWGUI.VideoPresentation.Enums.EmulationVideoDisplayTechnology displayTechnology)
+    private void EnsureDevice(int width, int height, GWGUI.VideoPresentation.Enums.EmulationVideoSampling sampling, GWGUI.VideoPresentation.Enums.EmulationVideoDisplayTechnology displayTechnology)
     {
         if (_device is null)
         {

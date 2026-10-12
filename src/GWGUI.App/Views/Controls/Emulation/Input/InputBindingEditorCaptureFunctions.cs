@@ -197,8 +197,7 @@ public partial class InputBindingEditor
         _controllerDetailedBaseline = detailedStates;
     }
 
-    internal static string? NewlyActivatedDetailedControl(GameInputLiveState current,
-        GameInputLiveState baseline)
+    internal static string? NewlyActivatedDetailedControl(GameInputLiveState current, GameInputLiveState baseline)
     {
         var rawController = current.DeviceId.StartsWith("rawgamecontroller:", StringComparison.OrdinalIgnoreCase);
         foreach (var control in current.Controls.Where(item => item.Type == GameInputControlType.Button))
@@ -217,8 +216,7 @@ public partial class InputBindingEditor
         return null;
     }
 
-    internal static string? NewlyMovedGenericAxis(EmulationControllerState current,
-        EmulationControllerState baseline)
+    internal static string? NewlyMovedGenericAxis(EmulationControllerState current, EmulationControllerState baseline)
     {
         const float threshold = .35f;
         foreach (var control in current.Controls.Where(item => item.Key.StartsWith("Axis", StringComparison.OrdinalIgnoreCase)))

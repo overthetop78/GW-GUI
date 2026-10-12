@@ -47,8 +47,7 @@ internal static class EmulationModuleManifestReader
             throw new InvalidDataException("Manifest field 'updateCatalogUrl' must contain an absolute HTTPS URL.");
         var current = hostApiVersion ?? EmulationHostApi.CurrentVersion;
         if (current < minimum || current > maximum)
-            throw new InvalidDataException($"Module '{manifest.Id}' version {manifest.ModuleVersion} requires host API " +
-                $"{minimum} to {maximum}; available API is {current}.");
+            throw new InvalidDataException($"Module '{manifest.Id}' version {manifest.ModuleVersion} requires host API " + $"{minimum} to {maximum}; available API is {current}.");
         return manifest;
     }
 

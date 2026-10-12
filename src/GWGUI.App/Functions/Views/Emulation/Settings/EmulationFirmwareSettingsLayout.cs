@@ -48,13 +48,11 @@ internal static partial class EmulationSettingsLayout
         return page;
     }
 
-    internal static Grid FirmwareRow(string name, string? version,
-        EmulationFirmwareCompatibility compatibility, string? sourcePath = null, string destination = "")
+    internal static Grid FirmwareRow(string name, string? version, EmulationFirmwareCompatibility compatibility, string? sourcePath = null, string destination = "")
     {
         var grid = new Grid { MinHeight = EmulationFirmwareSettingsConstants.FirmwareRowMinimumHeight,
             Margin = new Thickness(8, 2, 8, 2) };
-        grid.ColumnDefinitions.Add(new ColumnDefinition
-            { Width = new GridLength(EmulationFirmwareSettingsConstants.FirmwareIconColumnWidth) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(EmulationFirmwareSettingsConstants.FirmwareIconColumnWidth) });
         grid.ColumnDefinitions.Add(new ColumnDefinition());
         grid.ColumnDefinitions.Add(new ColumnDefinition
         {
@@ -96,8 +94,7 @@ internal static partial class EmulationSettingsLayout
         return grid;
     }
 
-    private static Border FirmwareBadge(string text,
-        (string Text, Brush Foreground, Brush Background, Brush Border) colors) => new()
+    private static Border FirmwareBadge(string text, (string Text, Brush Foreground, Brush Background, Brush Border) colors) => new()
     {
         Child = new TextBlock
         {
@@ -137,8 +134,7 @@ internal static partial class EmulationSettingsLayout
 
     internal static void UpdateFirmwareUseButton(Button button, EmulationFirmwareCompatibility? compatibility) => button.IsEnabled = compatibility is not null and not EmulationFirmwareCompatibility.Incompatible;
 
-    private static (string Text, Brush Foreground, Brush Background, Brush Border) FirmwareBadgeColors(
-        EmulationFirmwareCompatibility compatibility) => compatibility switch
+    private static (string Text, Brush Foreground, Brush Background, Brush Border) FirmwareBadgeColors(EmulationFirmwareCompatibility compatibility) => compatibility switch
         {
             EmulationFirmwareCompatibility.Official =>
                 (LocExtension.Get("Emulation.Firmware.Official"), new SolidColorBrush(Color.FromRgb(31, 87, 142)),
