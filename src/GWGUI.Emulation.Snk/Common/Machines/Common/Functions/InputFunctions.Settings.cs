@@ -100,7 +100,9 @@ internal static class InputSettingsFunctions
         if (source.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
             return Enum.TryParse<EmulationKey>(source[InputMappingConstants.KeyboardPrefix.Length..], out var key) && Enum.IsDefined(key) && key != EmulationKey.Unknown;
         if (source.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
-            return source[InputMappingConstants.MousePrefix.Length..] is InputMappingConstants.MouseLeft or InputMappingConstants.MouseRight or InputMappingConstants.MouseMiddle or InputMappingConstants.MouseExtended1 or InputMappingConstants.MouseExtended2 or InputMappingConstants.MouseWheelUp or InputMappingConstants.MouseWheelDown or InputMappingConstants.MouseWheelLeft or InputMappingConstants.MouseWheelRight;
+            return source[InputMappingConstants.MousePrefix.Length..] is InputMappingConstants.MouseLeft or InputMappingConstants.MouseRight
+                or InputMappingConstants.MouseMiddle or InputMappingConstants.MouseExtended1 or InputMappingConstants.MouseExtended2 or InputMappingConstants.MouseWheelUp
+                or InputMappingConstants.MouseWheelDown or InputMappingConstants.MouseWheelLeft or InputMappingConstants.MouseWheelRight;
         return source.Length > InputMappingConstants.ControllerPrefix.Length && source.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase);
     }
 }
