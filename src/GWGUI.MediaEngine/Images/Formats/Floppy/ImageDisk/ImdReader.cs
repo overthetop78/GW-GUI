@@ -10,7 +10,6 @@ using GWGUI.MediaEngine.Images.Reading.Recognition;
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.ImageDisk;
-
 /// <summary>Lit les images sectorielles Dave Dunfield ImageDisk.</summary>
 public sealed class ImdReader : IMediaImageReader
 {
@@ -24,25 +23,39 @@ public sealed class ImdReader : IMediaImageReader
         DiskImageFormatIds.EpsonQx10Booter,
         DiskImageFormatIds.EpsonQx10Logo
     }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedExtensions = new[] { DiskImageFileExtensions.Imd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedExtensions = new[]
+    {
+        DiskImageFileExtensions.Imd
+    }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures = [ImdFormat.Signature.ToArray()];
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Floppy }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Sectors }.ToFrozenSet();
-
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[]
+    {
+        MediaKind.Floppy
+    }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[]
+    {
+        MediaRepresentationKind.Sectors
+    }.ToFrozenSet();
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
-    IReadOnlySet<string> IMediaImageReader.Extensions => SupportedExtensions;
-    IReadOnlyList<ReadOnlyMemory<byte>> IMediaImageReader.Signatures => SupportedSignatures;
-    IReadOnlySet<string> IMediaImageReader.AssociatedFileExtensions => FrozenSet<string>.Empty;
-    IReadOnlySet<MediaKind> IMediaImageReader.MediaKinds => SupportedMediaKinds;
-    IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentationKinds;
-    bool IMediaImageReader.SupportsFormatId(string formatId)
-        => SupportedFormatIds.Contains(formatId) || formatId.StartsWith(DiskImageFormatIds.EpsonQx10Prefix, StringComparison.OrdinalIgnoreCase);
 
+    IReadOnlySet<string> IMediaImageReader.Extensions => SupportedExtensions;
+
+    IReadOnlyList<ReadOnlyMemory<byte>> IMediaImageReader.Signatures => SupportedSignatures;
+
+    IReadOnlySet<string> IMediaImageReader.AssociatedFileExtensions => FrozenSet<string>.Empty;
+
+    IReadOnlySet<MediaKind> IMediaImageReader.MediaKinds => SupportedMediaKinds;
+
+    IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentationKinds;
+
+    bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId) || formatId.StartsWith(DiskImageFormatIds.EpsonQx10Prefix, StringComparison.OrdinalIgnoreCase);
     /// <summary>Lit un fichier ImageDisk et construit son image sectorielle.</summary>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default) => (await ReadDetailedAsync(path, cancellationToken).ConfigureAwait(false)).SectorImage;
-
     /// <summary>Lit un fichier ImageDisk en conservant ses pistes, modes, cartes et états.</summary>
-    public async Task<ImdImage> ReadDetailedAsync(string path, CancellationToken cancellationToken = default)
+    public async Task<ImdImage> ReadDetailedAsync(
+        string path,
+        CancellationToken cancellationToken = default
+    )
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
         return ReadDetailed(data, cancellationToken);
@@ -50,9 +63,11 @@ public sealed class ImdReader : IMediaImageReader
 
     /// <summary>Analyse une séquence ImageDisk et construit son image sectorielle.</summary>
     internal static SectorImage Read(ReadOnlySpan<byte> data, CancellationToken cancellationToken = default) => ReadDetailed(data, cancellationToken).SectorImage;
-
     /// <summary>Analyse une séquence ImageDisk en conservant les informations réinscriptibles.</summary>
-    public static ImdImage ReadDetailed(ReadOnlySpan<byte> data, CancellationToken cancellationToken = default)
+    public static ImdImage ReadDetailed(
+        ReadOnlySpan<byte> data,
+        CancellationToken cancellationToken = default
+    )
     {
         var offset = FindTrackDataOffset(data, out var comment);
         var tracks = new List<ImdTrack>();
@@ -69,54 +84,75 @@ public sealed class ImdReader : IMediaImageReader
             {
                 EnsureAvailable(data, offset, ImdLayout.MapEntrySize, ImdSection.SectorRecord);
                 var recordType = (ImdSectorRecordType)data[offset++];
-                if (!Enum.IsDefined(recordType)) throw ImdExceptions.InvalidRecordType((byte)recordType);
+                if (!Enum.IsDefined(recordType))
+                    throw ImdExceptions.InvalidRecordType((byte)recordType);
                 var bytes = ReadSectorRecord(data, ref offset, recordType, sizes[index]);
                 sectors.Add(new(cylinders?[index] ?? header.Cylinder, checked((byte)((heads?[index] ?? header.Head) & (int)ImdHeadFlags.HeadMask)), numbers[index], sizes[index], recordType, bytes));
             }
+
             tracks.Add(new(header.Mode, header.Cylinder, checked((byte)header.Head), sectors));
         }
+
         return new(comment, tracks, BuildImage(tracks.SelectMany(track => track.Sectors).ToArray()));
     }
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(
+        MediaRecognitionContext context,
+        CancellationToken cancellationToken
+    )
     {
-        if (context.RequestedFormatId is not null && !((IMediaImageReader)this).SupportsFormatId(context.RequestedFormatId)) return false;
-        if (context.Length < ImdFormat.SignatureLength) return false;
+        if (context.RequestedFormatId is not null && !((IMediaImageReader)this).SupportsFormatId(context.RequestedFormatId))
+            return false;
+        if (context.Length < ImdFormat.SignatureLength)
+            return false;
         var signature = await context.ReadHeaderAsync(ImdFormat.SignatureLength, cancellationToken).ConfigureAwait(false);
         return signature.Span.SequenceEqual(ImdFormat.Signature);
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
+        MediaRecognitionContext context,
+        CancellationToken cancellationToken
+    )
     {
         var data = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
         var image = ReadDetailed(data.Span, cancellationToken);
-        return MediaImageDocumentFactory.CreateFloppySector(
-            context.Source,
-            image.SectorImage,
-            ImdMetadataFunctions.Create(image));
+        return MediaImageDocumentFactory.CreateFloppySector(context.Source, image.SectorImage, ImdMetadataFunctions.Create(image));
     }
 
-    private static int FindTrackDataOffset(ReadOnlySpan<byte> data, out string comment)
+    private static int FindTrackDataOffset(
+        ReadOnlySpan<byte> data,
+        out string comment
+    )
     {
         var commentEnd = data.IndexOf(ImdFormat.CommentTerminator);
-        if (commentEnd < ImdFormat.SignatureLength || !data[..ImdFormat.SignatureLength].SequenceEqual(ImdFormat.Signature)) throw ImdExceptions.MissingSignature(commentEnd, data.Length);
+        if (commentEnd < ImdFormat.SignatureLength || !data[..ImdFormat.SignatureLength].SequenceEqual(ImdFormat.Signature))
+            throw ImdExceptions.MissingSignature(commentEnd, data.Length);
         comment = System.Text.Encoding.ASCII.GetString(data[..commentEnd]);
         return commentEnd + ImdLayout.MapEntrySize;
     }
 
-    private static ImdTrackHeader ReadTrackHeader(ReadOnlySpan<byte> data, ref int offset)
+    private static ImdTrackHeader ReadTrackHeader(
+        ReadOnlySpan<byte> data,
+        ref int offset
+    )
     {
         EnsureAvailable(data, offset, ImdLayout.TrackHeaderSize, ImdSection.TrackHeader);
         var header = data.Slice(offset, ImdLayout.TrackHeaderSize);
         offset += ImdLayout.TrackHeaderSize;
         var mode = (ImdMode)header[ImdLayout.ModeOffset];
         var sectorCount = header[ImdLayout.SectorCountOffset];
-        if (!Enum.IsDefined(mode) || sectorCount == 0) throw ImdExceptions.InvalidTrackHeader(mode, sectorCount);
+        if (!Enum.IsDefined(mode) || sectorCount == 0)
+            throw ImdExceptions.InvalidTrackHeader(mode, sectorCount);
         var flags = (ImdHeadFlags)header[ImdLayout.HeadFlagsOffset];
         return new(mode, header[ImdLayout.CylinderOffset], flags, (int)(flags & ImdHeadFlags.HeadMask), sectorCount, header[ImdLayout.SectorSizeCodeOffset]);
     }
 
-    private static byte[] ReadByteMap(ReadOnlySpan<byte> data, ref int offset, int count, ImdSection section)
+    private static byte[] ReadByteMap(
+        ReadOnlySpan<byte> data,
+        ref int offset,
+        int count,
+        ImdSection section
+    )
     {
         EnsureAvailable(data, offset, count, section);
         var map = data.Slice(offset, count).ToArray();
@@ -124,29 +160,44 @@ public sealed class ImdReader : IMediaImageReader
         return map;
     }
 
-    private static int[] ReadSectorSizes(ReadOnlySpan<byte> data, ref int offset, int count, byte sizeCode)
+    private static int[] ReadSectorSizes(
+        ReadOnlySpan<byte> data,
+        ref int offset,
+        int count,
+        byte sizeCode
+    )
     {
         if (sizeCode != ImdLayout.ExplicitSectorSizeCode)
         {
-            if (sizeCode > ImdLayout.MaximumExponentialSizeCode) throw ImdExceptions.InvalidSizeCode(sizeCode);
+            if (sizeCode > ImdLayout.MaximumExponentialSizeCode)
+                throw ImdExceptions.InvalidSizeCode(sizeCode);
             return Enumerable.Repeat(ImdLayout.BaseSectorSize << sizeCode, count).ToArray();
         }
+
         var length = count * ImdLayout.SectorSizeMapEntrySize;
         EnsureAvailable(data, offset, length, ImdSection.SectorSizeMap);
         var sizes = new int[count];
-        for (var index = 0; index < count; index++) sizes[index] = BinaryPrimitives.ReadUInt16LittleEndian(data.Slice(offset + index * ImdLayout.SectorSizeMapEntrySize, ImdLayout.SectorSizeMapEntrySize));
+        for (var index = 0; index < count; index++)
+            sizes[index] = BinaryPrimitives.ReadUInt16LittleEndian(data.Slice(offset + index * ImdLayout.SectorSizeMapEntrySize, ImdLayout.SectorSizeMapEntrySize));
         offset += length;
         return sizes;
     }
 
-    private static byte[] ReadSectorRecord(ReadOnlySpan<byte> data, ref int offset, ImdSectorRecordType type, int size)
+    private static byte[] ReadSectorRecord(
+        ReadOnlySpan<byte> data,
+        ref int offset,
+        ImdSectorRecordType type,
+        int size
+    )
     {
-        if (!type.HasData()) return new byte[size];
+        if (!type.HasData())
+            return new byte[size];
         if (type.IsCompressed())
         {
             EnsureAvailable(data, offset, 1, ImdSection.CompressedValue);
             return Enumerable.Repeat(data[offset++], size).ToArray();
         }
+
         EnsureAvailable(data, offset, size, ImdSection.SectorData);
         var bytes = data.Slice(offset, size).ToArray();
         offset += size;
@@ -168,9 +219,15 @@ public sealed class ImdReader : IMediaImageReader
         return new(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks, sectors.Any(sector => sector.Size != blockSize), ordered.Sum(sector => (long)sector.Size), ordered.Length);
     }
 
-    private static void EnsureAvailable(ReadOnlySpan<byte> data, int offset, int count, ImdSection section)
+    private static void EnsureAvailable(
+        ReadOnlySpan<byte> data,
+        int offset,
+        int count,
+        ImdSection section
+    )
     {
-        if (offset < 0 || count < 0 || offset > data.Length - count) throw ImdExceptions.TruncatedSection(section, offset, count, Math.Max(0, data.Length - offset));
+        if (offset < 0 || count < 0 || offset > data.Length - count)
+            throw ImdExceptions.TruncatedSection(section, offset, count, Math.Max(0, data.Length - offset));
     }
 
     private readonly record struct ImdTrackHeader(ImdMode Mode, byte Cylinder, ImdHeadFlags HeadFlags, int Head, int SectorCount, byte SectorSizeCode);

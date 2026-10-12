@@ -1,7 +1,6 @@
 using GWGUI.MediaEngine.Constants;
 
 namespace GWGUI.MediaEngine.Images.Formats;
-
 public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
 {
     public IReadOnlyList<DiskFormat> Formats { get; }
@@ -15,7 +14,14 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
         {
             Density = density
         };
-        DiskFormat Cartridge(string id, string family, string key, string fallback, IReadOnlyList<string> extensions, string tag)
+        DiskFormat Cartridge(
+            string id,
+            string family,
+            string key,
+            string fallback,
+            IReadOnlyList<string> extensions,
+            string tag
+        )
         {
             var normalized = extensions.Select(Normalize).ToArray();
             return new(
@@ -31,77 +37,77 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
                 false
             );
         }
-    
+
         var ima = new Func<bool, ImageExtension>(isDefault => E(".ima", "Extension.ima", "IMA disk image", isDefault));
         var img = new Func<ImageExtension>(() => E(".img", "Extension.img", "IMG disk image"));
         IReadOnlyList<ImageExtension> Ibm() => [ima(true), img()];
         Formats = [
             new(
-            "raw.scp",
-            "Raw",
-            T("Format.raw.scp", "Raw flux image"),
-            [E(".scp", "Extension.scp", "SuperCard Pro", true)],
-            CompatibleSourceExtensions: Set(".scp", ".hfe"),
-            Tag: "RAW-SCP",
-            FormFactor: FloppyFormFactor.Unknown,
-            SupportsPhysicalRead: true,
-            SupportsPhysicalWrite: true
-        ),
+                "raw.scp",
+                "Raw",
+                T("Format.raw.scp", "Raw flux image"),
+                [E(".scp", "Extension.scp", "SuperCard Pro", true)],
+                CompatibleSourceExtensions: Set(".scp", ".hfe"),
+                Tag: "RAW-SCP",
+                FormFactor: FloppyFormFactor.Unknown,
+                SupportsPhysicalRead: true,
+                SupportsPhysicalWrite: true
+            ),
             D(
-            F("amiga.amigados", "Amiga", "AmigaDOS — 880 KiB", [E(".adf", "Extension.adf.amiga", "Amiga Disk File", true)], true, "AMIGA-DD", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".adf", ".hfe"),
-            FloppyDensity.DoubleDensity
-        ),
+                F("amiga.amigados", "Amiga", "AmigaDOS — 880 KiB", [E(".adf", "Extension.adf.amiga", "Amiga Disk File", true)], true, "AMIGA-DD", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".adf", ".hfe"),
+                FloppyDensity.DoubleDensity
+            ),
             D(
-            F("amiga.amigados_hd", "Amiga", "AmigaDOS HD — 1.76 MiB", [E(".adf", "Extension.adf.amiga", "Amiga Disk File", true)], true, "AMIGA-HD", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".adf", ".hfe"),
-            FloppyDensity.HighDensity
-        ),
+                F("amiga.amigados_hd", "Amiga", "AmigaDOS HD — 1.76 MiB", [E(".adf", "Extension.adf.amiga", "Amiga Disk File", true)], true, "AMIGA-HD", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".adf", ".hfe"),
+                FloppyDensity.HighDensity
+            ),
             D(F("atarist.180", "Atari ST", "Atari ST — 180 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-180", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".hfe"), FloppyDensity.DoubleDensity),
             D(
-            F("atarist.360", "Atari ST", "Atari ST — 360 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-360", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".msa", ".hfe"),
-            FloppyDensity.DoubleDensity
-        ),
+                F("atarist.360", "Atari ST", "Atari ST — 360 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-360", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".msa", ".hfe"),
+                FloppyDensity.DoubleDensity
+            ),
             D(
-            F("atarist.400", "Atari ST", "Atari ST — 400 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-400", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".msa", ".hfe"),
-            FloppyDensity.DoubleDensity
-        ),
+                F("atarist.400", "Atari ST", "Atari ST — 400 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-400", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".msa", ".hfe"),
+                FloppyDensity.DoubleDensity
+            ),
             D(
-            F("atarist.440", "Atari ST", "Atari ST — 440 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-440", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".msa", ".hfe"),
-            FloppyDensity.DoubleDensity
-        ),
+                F("atarist.440", "Atari ST", "Atari ST — 440 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-440", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".msa", ".hfe"),
+                FloppyDensity.DoubleDensity
+            ),
             D(
-            F(
-            "atarist.720",
-            "Atari ST",
-            "Atari ST — 720 KiB",
-            [E(".st", "Extension.st", "Atari ST image", true), E(".msa", "Extension.msa", "Magic Shadow Archiver")],
-            true,
-            "ST-720",
-            FloppyFormFactor.ThreeAndHalfInch,
-            true,
-            true,
-            ".scp",
-            ".st",
-            ".msa",
-            ".hfe"
-        ),
-            FloppyDensity.DoubleDensity
-        ),
+                F(
+                    "atarist.720",
+                    "Atari ST",
+                    "Atari ST — 720 KiB",
+                    [E(".st", "Extension.st", "Atari ST image", true), E(".msa", "Extension.msa", "Magic Shadow Archiver")],
+                    true,
+                    "ST-720",
+                    FloppyFormFactor.ThreeAndHalfInch,
+                    true,
+                    true,
+                    ".scp",
+                    ".st",
+                    ".msa",
+                    ".hfe"
+                ),
+                FloppyDensity.DoubleDensity
+            ),
             D(
-            F("atarist.800", "Atari ST", "Atari ST — 800 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-800", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".msa", ".hfe"),
-            FloppyDensity.DoubleDensity
-        ),
+                F("atarist.800", "Atari ST", "Atari ST — 800 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-800", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".msa", ".hfe"),
+                FloppyDensity.DoubleDensity
+            ),
             D(
-            F("atarist.810", "Atari ST", "Atari ST — 810 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-810", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".msa", ".hfe"),
-            FloppyDensity.DoubleDensity
-        ),
+                F("atarist.810", "Atari ST", "Atari ST — 810 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-810", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".msa", ".hfe"),
+                FloppyDensity.DoubleDensity
+            ),
             D(
-            F("atarist.880", "Atari ST", "Atari ST — 880 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-880", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".msa", ".hfe"),
-            FloppyDensity.DoubleDensity
-        ),
+                F("atarist.880", "Atari ST", "Atari ST — 880 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-880", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".msa", ".hfe"),
+                FloppyDensity.DoubleDensity
+            ),
             D(
-            F("atarist.1440", "Atari ST", "Atari ST — 1.44 MiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-1440", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".hfe"),
-            FloppyDensity.HighDensity
-        ),
+                F("atarist.1440", "Atari ST", "Atari ST — 1.44 MiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-1440", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".hfe"),
+                FloppyDensity.HighDensity
+            ),
             F("atari.90", "Atari 8-bit", "Atari 8-bit — 90 KiB", [E(".atr", "Extension.atr", "Atari ATR image", true)], true, "ATARI8-90", FloppyFormFactor.FiveAndQuarterInch, true, true, ".scp", ".atr", ".hfe"),
             F("atari.130", "Atari 8-bit", "Atari 8-bit — 130 KiB", [E(".atr", "Extension.atr", "Atari ATR image", true)], true, "ATARI8-130", FloppyFormFactor.FiveAndQuarterInch, true, true, ".scp", ".atr", ".hfe"),
             F("atari.140", "Atari 8-bit", "Atari 8-bit — 140 KiB", [E(".atr", "Extension.atr", "Atari ATR image", true)], false, "ATARI8-140", FloppyFormFactor.FiveAndQuarterInch, false, false, ".atr"),
@@ -122,174 +128,174 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             F("commodore.1541", "Commodore", "Commodore 64 — 1541", [E(".d64", "Extension.d64", "Commodore D64 image", true)], true, "C64-1541", FloppyFormFactor.FiveAndQuarterInch, true, true, ".scp", ".d64", ".hfe"),
             F("commodore.1571", "Commodore", "Commodore 128 — 1571", [E(".d71", "Extension.d71", "Commodore D71 image", true)], true, "C128-1571", FloppyFormFactor.FiveAndQuarterInch, true, true, ".scp", ".d71", ".hfe"),
             D(
-            F("commodore.1581", "Commodore", "Commodore 128 — 1581", [E(".d81", "Extension.d81", "Commodore D81 image", true)], true, "C128-1581", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".d81", ".hfe"),
-            FloppyDensity.DoubleDensity
-        ),
+                F("commodore.1581", "Commodore", "Commodore 128 — 1581", [E(".d81", "Extension.d81", "Commodore D81 image", true)], true, "C128-1581", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".d81", ".hfe"),
+                FloppyDensity.DoubleDensity
+            ),
             F(
-            "apple2.appledos.113",
-            "Apple II",
-            "Apple II DOS 3.2 — 113 KiB",
-            [E(".d13", "Extension.d13", "Apple DOS 3.2 image", true)],
-            false,
-            "APPLE2-DOS32",
-            FloppyFormFactor.FiveAndQuarterInch,
-            true,
-            true,
-            ".scp",
-            ".d13",
-            ".nib",
-            ".woz",
-            ".2mg",
-            ".hfe"
-        ),
+                "apple2.appledos.113",
+                "Apple II",
+                "Apple II DOS 3.2 — 113 KiB",
+                [E(".d13", "Extension.d13", "Apple DOS 3.2 image", true)],
+                false,
+                "APPLE2-DOS32",
+                FloppyFormFactor.FiveAndQuarterInch,
+                true,
+                true,
+                ".scp",
+                ".d13",
+                ".nib",
+                ".woz",
+                ".2mg",
+                ".hfe"
+            ),
             F(
-            "apple2.appledos.140",
-            "Apple II",
-            "Apple II DOS 3.3 — 140 KiB",
-            [E(".do", "Extension.do", "Apple DOS-order image", true), E(".dsk", "Extension.dsk.apple", "Apple disk image"), E(".nib", "Extension.nib", "Apple nibble image"), E(".woz", "Extension.woz", "Apple WOZ image")],
-            true,
-            "APPLE2-DOS33",
-            FloppyFormFactor.FiveAndQuarterInch,
-            true,
-            true,
-            ".scp",
-            ".do",
-            ".dsk",
-            ".nib",
-            ".woz",
-            ".2mg",
-            ".hfe"
-        ),
+                "apple2.appledos.140",
+                "Apple II",
+                "Apple II DOS 3.3 — 140 KiB",
+                [E(".do", "Extension.do", "Apple DOS-order image", true), E(".dsk", "Extension.dsk.apple", "Apple disk image"), E(".nib", "Extension.nib", "Apple nibble image"), E(".woz", "Extension.woz", "Apple WOZ image")],
+                true,
+                "APPLE2-DOS33",
+                FloppyFormFactor.FiveAndQuarterInch,
+                true,
+                true,
+                ".scp",
+                ".do",
+                ".dsk",
+                ".nib",
+                ".woz",
+                ".2mg",
+                ".hfe"
+            ),
             F(
-            "apple2.prodos.140",
-            "Apple II",
-            "Apple II ProDOS — 140 KiB",
-            [E(".po", "Extension.po", "Apple ProDOS-order image", true), E(".2mg", "Extension.2mg", "Apple 2IMG image")],
-            true,
-            "APPLE2-PRODOS",
-            FloppyFormFactor.FiveAndQuarterInch,
-            true,
-            true,
-            ".scp",
-            ".po",
-            ".do",
-            ".dsk",
-            ".nib",
-            ".woz",
-            ".2mg",
-            ".hfe"
-        ),
+                "apple2.prodos.140",
+                "Apple II",
+                "Apple II ProDOS — 140 KiB",
+                [E(".po", "Extension.po", "Apple ProDOS-order image", true), E(".2mg", "Extension.2mg", "Apple 2IMG image")],
+                true,
+                "APPLE2-PRODOS",
+                FloppyFormFactor.FiveAndQuarterInch,
+                true,
+                true,
+                ".scp",
+                ".po",
+                ".do",
+                ".dsk",
+                ".nib",
+                ".woz",
+                ".2mg",
+                ".hfe"
+            ),
             D(
+                F(
+                    "apple2.prodos.800",
+                    "Apple II",
+                    "Apple II ProDOS — 800 KiB",
+                    [E(".po", "Extension.po", "Apple ProDOS-order image", true), E(".2mg", "Extension.2mg", "Apple 2IMG image")],
+                    true,
+                    "APPLE2-PRODOS-800",
+                    FloppyFormFactor.ThreeAndHalfInch,
+                    true,
+                    true,
+                    ".scp",
+                    ".po",
+                    ".2mg",
+                    ".image",
+                    ".hfe"
+                ),
+                FloppyDensity.DoubleDensity
+            ),
             F(
-            "apple2.prodos.800",
-            "Apple II",
-            "Apple II ProDOS — 800 KiB",
-            [E(".po", "Extension.po", "Apple ProDOS-order image", true), E(".2mg", "Extension.2mg", "Apple 2IMG image")],
-            true,
-            "APPLE2-PRODOS-800",
-            FloppyFormFactor.ThreeAndHalfInch,
-            true,
-            true,
-            ".scp",
-            ".po",
-            ".2mg",
-            ".image",
-            ".hfe"
-        ),
-            FloppyDensity.DoubleDensity
-        ),
-            F(
-            "apple3.sos",
-            "Apple III",
-            "Apple III SOS — 140 KiB",
-            [E(".po", "Extension.po", "Apple ProDOS-order image", true), E(".dsk", "Extension.dsk.apple", "Apple disk image")],
-            false,
-            "APPLE3-SOS",
-            FloppyFormFactor.FiveAndQuarterInch,
-            true,
-            true,
-            ".scp",
-            ".po",
-            ".do",
-            ".dsk",
-            ".2mg",
-            ".hfe"
-        ),
+                "apple3.sos",
+                "Apple III",
+                "Apple III SOS — 140 KiB",
+                [E(".po", "Extension.po", "Apple ProDOS-order image", true), E(".dsk", "Extension.dsk.apple", "Apple disk image")],
+                false,
+                "APPLE3-SOS",
+                FloppyFormFactor.FiveAndQuarterInch,
+                true,
+                true,
+                ".scp",
+                ".po",
+                ".do",
+                ".dsk",
+                ".2mg",
+                ".hfe"
+            ),
             D(
-            F(
-            "mac.400",
-            "Apple Macintosh",
-            "Apple Macintosh/Lisa GCR — 400 KiB",
-            [E(".image", "Extension.image.apple", "Apple DiskCopy image", true), E(".img", "Extension.img.apple", "Apple raw disk image")],
-            true,
-            "MAC-400",
-            FloppyFormFactor.ThreeAndHalfInch,
-            true,
-            true,
-            ".scp",
-            ".image",
-            ".dc42",
-            ".img",
-            ".hfe"
-        ),
-            FloppyDensity.DoubleDensity
-        ),
+                F(
+                    "mac.400",
+                    "Apple Macintosh",
+                    "Apple Macintosh/Lisa GCR — 400 KiB",
+                    [E(".image", "Extension.image.apple", "Apple DiskCopy image", true), E(".img", "Extension.img.apple", "Apple raw disk image")],
+                    true,
+                    "MAC-400",
+                    FloppyFormFactor.ThreeAndHalfInch,
+                    true,
+                    true,
+                    ".scp",
+                    ".image",
+                    ".dc42",
+                    ".img",
+                    ".hfe"
+                ),
+                FloppyDensity.DoubleDensity
+            ),
             D(
-            F(
-            "mac.800",
-            "Apple Macintosh",
-            "Apple Macintosh GCR — 800 KiB",
-            [E(".image", "Extension.image.apple", "Apple DiskCopy image", true), E(".img", "Extension.img.apple", "Apple raw disk image")],
-            true,
-            "MAC-800",
-            FloppyFormFactor.ThreeAndHalfInch,
-            true,
-            true,
-            ".scp",
-            ".image",
-            ".dc42",
-            ".img",
-            ".hfe"
-        ),
-            FloppyDensity.DoubleDensity
-        ),
+                F(
+                    "mac.800",
+                    "Apple Macintosh",
+                    "Apple Macintosh GCR — 800 KiB",
+                    [E(".image", "Extension.image.apple", "Apple DiskCopy image", true), E(".img", "Extension.img.apple", "Apple raw disk image")],
+                    true,
+                    "MAC-800",
+                    FloppyFormFactor.ThreeAndHalfInch,
+                    true,
+                    true,
+                    ".scp",
+                    ".image",
+                    ".dc42",
+                    ".img",
+                    ".hfe"
+                ),
+                FloppyDensity.DoubleDensity
+            ),
             D(
-            F(
-            "mac.1440",
-            "Apple Macintosh",
-            "Apple Macintosh MFM — 1.44 MiB",
-            [E(".img", "Extension.img.apple", "Apple raw disk image", true), E(".image", "Extension.image.apple", "Apple DiskCopy image")],
-            true,
-            "MAC-1440",
-            FloppyFormFactor.ThreeAndHalfInch,
-            true,
-            true,
-            ".scp",
-            ".image",
-            ".dc42",
-            ".img",
-            ".hfe"
-        ),
-            FloppyDensity.HighDensity
-        ),
+                F(
+                    "mac.1440",
+                    "Apple Macintosh",
+                    "Apple Macintosh MFM — 1.44 MiB",
+                    [E(".img", "Extension.img.apple", "Apple raw disk image", true), E(".image", "Extension.image.apple", "Apple DiskCopy image")],
+                    true,
+                    "MAC-1440",
+                    FloppyFormFactor.ThreeAndHalfInch,
+                    true,
+                    true,
+                    ".scp",
+                    ".image",
+                    ".dc42",
+                    ".img",
+                    ".hfe"
+                ),
+                FloppyDensity.HighDensity
+            ),
             D(
-            F("acorn.adfs.800", "Acorn", "Acorn — ADFS · 800 KiB", [E(".adf", "Extension.adf.acorn", "Acorn Disk File", true)], true, "ACORN-800", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".adf", ".hfe"),
-            FloppyDensity.DoubleDensity
-        ),
+                F("acorn.adfs.800", "Acorn", "Acorn — ADFS · 800 KiB", [E(".adf", "Extension.adf.acorn", "Acorn Disk File", true)], true, "ACORN-800", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".adf", ".hfe"),
+                FloppyDensity.DoubleDensity
+            ),
             new("acorn.dfs.atom", "Acorn Atom", "Acorn Atom DOS — 100 KiB", [new(".dsk", "Atom DSK", true)], false, Set(".dsk", ".scp", ".hfe"), "ACORN-ATOM-DOS", FloppyFormFactor.FiveAndQuarterInch, true, true),
             new(
-            "apricot.pcxi.315",
-            "ACT Apricot",
-            "ACT Apricot PC/Xi — ApriDisk 315 KiB",
-            [new(".dsk", "ApriDisk", true)],
-            false,
-            Set(".dsk"),
-            "APRICOT-PCXI-315",
-            FloppyFormFactor.ThreeAndHalfInch,
-            true,
-            true,
-            FloppyDensity.DoubleDensity
-        ),
+                "apricot.pcxi.315",
+                "ACT Apricot",
+                "ACT Apricot PC/Xi — ApriDisk 315 KiB",
+                [new(".dsk", "ApriDisk", true)],
+                false,
+                Set(".dsk"),
+                "APRICOT-PCXI-315",
+                FloppyFormFactor.ThreeAndHalfInch,
+                true,
+                true,
+                FloppyDensity.DoubleDensity
+            ),
             new("acorn.dfs.ss", "Acorn / BBC Micro", "BBC DFS — 100 KiB", [new(".ssd", "SSD", true)], true, Set(".scp", ".ssd", ".img", ".hfe"), "BBC-DFS-SS", FloppyFormFactor.FiveAndQuarterInch, true, true),
             new("acorn.dfs.ss80", "Acorn / BBC Micro", "BBC DFS — 200 KiB", [new(".ssd", "SSD", true)], true, Set(".scp", ".ssd", ".img", ".hfe"), "BBC-DFS-SS80", FloppyFormFactor.FiveAndQuarterInch, true, true),
             new("acorn.dfs.ds", "Acorn / BBC Micro", "BBC DFS — 200 KiB (DS)", [new(".dsd", "DSD", true)], true, Set(".scp", ".dsd", ".img", ".hfe"), "BBC-DFS-DS", FloppyFormFactor.FiveAndQuarterInch, true, true),
@@ -298,66 +304,66 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             new("amstrad.pcw", "Amstrad", "Amstrad PCW — 3″", [new(".dsk", "DSK", true), new(".edsk", "Extended DSK")], true, Set(".scp", ".dsk", ".edsk", ".hfe"), "AMSTRAD-PCW", FloppyFormFactor.ThreeInch, true, true),
             new(DiskImageFormatIds.AmstradCpr, "Amstrad", T("Format.amstrad.cpr", "CPR"), [new(".cpr", "CPR", true)], true, Set(".cpr", ".rom", ".bin"), "AMSTRAD-CPR", FloppyFormFactor.Unknown, false, false),
             new(
-            DiskImageFormatIds.AmstradRom,
-            "Amstrad",
-            T("Format.amstrad.rom", "Amstrad CPC ROM"),
-            [new(".rom", "ROM", true), new(".bin", "BIN")],
-            true,
-            Set(".cpr", ".rom", ".bin"),
-            "AMSTRAD-ROM",
-            FloppyFormFactor.Unknown,
-            false,
-            false
-        ),
+                DiskImageFormatIds.AmstradRom,
+                "Amstrad",
+                T("Format.amstrad.rom", "Amstrad CPC ROM"),
+                [new(".rom", "ROM", true), new(".bin", "BIN")],
+                true,
+                Set(".cpr", ".rom", ".bin"),
+                "AMSTRAD-ROM",
+                FloppyFormFactor.Unknown,
+                false,
+                false
+            ),
             Cartridge(DiskImageFormatIds.NintendoNes, "Nintendo", "Format.nintendo.nes", "Nintendo NES", [DiskImageFileExtensions.Nes], "NINTENDO-NES"),
             F(
-            DiskImageFormatIds.NintendoFamicomDisk,
-            "Nintendo",
-            "Nintendo Famicom Disk System",
-            [new(DiskImageFileExtensions.Fds, "FDS", true)],
-            true,
-            "NINTENDO-FDS",
-            FloppyFormFactor.Unknown,
-            false,
-            false,
-            DiskImageFileExtensions.Fds
-        ),
+                DiskImageFormatIds.NintendoFamicomDisk,
+                "Nintendo",
+                "Nintendo Famicom Disk System",
+                [new(DiskImageFileExtensions.Fds, "FDS", true)],
+                true,
+                "NINTENDO-FDS",
+                FloppyFormFactor.Unknown,
+                false,
+                false,
+                DiskImageFileExtensions.Fds
+            ),
             new(
-            OpticalImageFormatIds.Gdi,
-            "Sega",
-            T("Format.optical-gdi", "Dreamcast GDI"),
-            [new(DiskImageFileExtensions.Gdi, "GDI", true)],
-            true,
-            Set(DiskImageFileExtensions.Gdi),
-            "SEGA-DREAMCAST-GDI",
-            FloppyFormFactor.Unknown,
-            false,
-            false
-        ),
+                OpticalImageFormatIds.Gdi,
+                "Sega",
+                T("Format.optical-gdi", "Dreamcast GDI"),
+                [new(DiskImageFileExtensions.Gdi, "GDI", true)],
+                true,
+                Set(DiskImageFileExtensions.Gdi),
+                "SEGA-DREAMCAST-GDI",
+                FloppyFormFactor.Unknown,
+                false,
+                false
+            ),
             new(
-            OpticalImageFormatIds.XboxXdvdfs,
-            "Microsoft",
-            T("Format.microsoft.xbox.xdvdfs", "Xbox XDVDFS"),
-            [new(DiskImageFileExtensions.Iso, "ISO", true)],
-            true,
-            Set(DiskImageFileExtensions.Iso),
-            "MICROSOFT-XBOX-XDVDFS",
-            FloppyFormFactor.Unknown,
-            false,
-            false
-        ),
+                OpticalImageFormatIds.XboxXdvdfs,
+                "Microsoft",
+                T("Format.microsoft.xbox.xdvdfs", "Xbox XDVDFS"),
+                [new(DiskImageFileExtensions.Iso, "ISO", true)],
+                true,
+                Set(DiskImageFileExtensions.Iso),
+                "MICROSOFT-XBOX-XDVDFS",
+                FloppyFormFactor.Unknown,
+                false,
+                false
+            ),
             new(
-            DiskImageFormatIds.NintendoWiiU,
-            "Nintendo",
-            T("Format.nintendo.wiiu", "Nintendo Wii U"),
-            [new(DiskImageFileExtensions.Wud, "WUD", true), new(DiskImageFileExtensions.Wux, "WUX")],
-            true,
-            Set(DiskImageFileExtensions.Wud, DiskImageFileExtensions.Wux),
-            "NINTENDO-WIIU",
-            FloppyFormFactor.Unknown,
-            false,
-            false
-        ),
+                DiskImageFormatIds.NintendoWiiU,
+                "Nintendo",
+                T("Format.nintendo.wiiu", "Nintendo Wii U"),
+                [new(DiskImageFileExtensions.Wud, "WUD", true), new(DiskImageFileExtensions.Wux, "WUX")],
+                true,
+                Set(DiskImageFileExtensions.Wud, DiskImageFileExtensions.Wux),
+                "NINTENDO-WIIU",
+                FloppyFormFactor.Unknown,
+                false,
+                false
+            ),
             Cartridge(DiskImageFormatIds.NintendoSnes, "Nintendo", "Format.nintendo.snes", "Nintendo SNES", [DiskImageFileExtensions.Sfc, DiskImageFileExtensions.Smc], "NINTENDO-SNES"),
             Cartridge(DiskImageFormatIds.NintendoN64, "Nintendo", "Format.nintendo.n64", "Nintendo 64", [DiskImageFileExtensions.N64, DiskImageFileExtensions.Z64, DiskImageFileExtensions.V64], "NINTENDO-N64"),
             Cartridge(DiskImageFormatIds.NintendoGameBoy, "Nintendo", "Format.nintendo.gameboy", "Nintendo Game Boy", [DiskImageFileExtensions.Gb], "NINTENDO-GB"),
@@ -366,33 +372,33 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             Cartridge(DiskImageFormatIds.NintendoNds, "Nintendo", "Format.nintendo.nds", "Nintendo DS", [DiskImageFileExtensions.Nds], "NINTENDO-NDS"),
             Cartridge(DiskImageFormatIds.NintendoGameWatch, "Nintendo", "Format.nintendo.game_watch", "Nintendo Game & Watch", [DiskImageFileExtensions.Mgw], "NINTENDO-GAMEWATCH"),
             Cartridge(
-            DiskImageFormatIds.Nintendo3Ds,
-            "Nintendo",
-            "Format.nintendo.3ds",
-            "Nintendo 3DS",
-            [
-            DiskImageFileExtensions.ThreeDs,
-            DiskImageFileExtensions.Cia,
-            DiskImageFileExtensions.ThreeDsx,
-            DiskImageFileExtensions.Cci,
-            DiskImageFileExtensions.Cxi,
-            DiskImageFileExtensions.Axf,
-            DiskImageFileExtensions.Elf,
-            DiskImageFileExtensions.App
-        ],
-            "NINTENDO-3DS"
-        ),
+                DiskImageFormatIds.Nintendo3Ds,
+                "Nintendo",
+                "Format.nintendo.3ds",
+                "Nintendo 3DS",
+                [
+                    DiskImageFileExtensions.ThreeDs,
+                    DiskImageFileExtensions.Cia,
+                    DiskImageFileExtensions.ThreeDsx,
+                    DiskImageFileExtensions.Cci,
+                    DiskImageFileExtensions.Cxi,
+                    DiskImageFileExtensions.Axf,
+                    DiskImageFileExtensions.Elf,
+                    DiskImageFileExtensions.App
+                ],
+                "NINTENDO-3DS"
+            ),
             Cartridge(DiskImageFormatIds.NintendoVirtualBoy, "Nintendo", "Format.nintendo.virtual_boy", "Nintendo Virtual Boy", [DiskImageFileExtensions.Vb], "NINTENDO-VB"),
             Cartridge(DiskImageFormatIds.SegaSg1000, "Sega", "Format.sega.sg1000", "Sega SG-1000 / My Card", [DiskImageFileExtensions.Sg, DiskImageFileExtensions.Mv], "SEGA-SG1000"),
             Cartridge(DiskImageFormatIds.SegaMasterSystem, "Sega", "Format.sega.master_system", "Sega Master System", [DiskImageFileExtensions.Sms], "SEGA-SMS"),
             Cartridge(
-            DiskImageFormatIds.SegaMegaDrive,
-            "Sega",
-            "Format.sega.mega_drive",
-            "Sega Mega Drive / Genesis",
-            [DiskImageFileExtensions.Md, DiskImageFileExtensions.Mdx, DiskImageFileExtensions.Sgd, DiskImageFileExtensions.Smd, DiskImageFileExtensions.Bms, DiskImageFileExtensions.SixtyEightK, DiskImageFileExtensions.Gen],
-            "SEGA-MD"
-        ),
+                DiskImageFormatIds.SegaMegaDrive,
+                "Sega",
+                "Format.sega.mega_drive",
+                "Sega Mega Drive / Genesis",
+                [DiskImageFileExtensions.Md, DiskImageFileExtensions.Mdx, DiskImageFileExtensions.Sgd, DiskImageFileExtensions.Smd, DiskImageFileExtensions.Bms, DiskImageFileExtensions.SixtyEightK, DiskImageFileExtensions.Gen],
+                "SEGA-MD"
+            ),
             Cartridge(DiskImageFormatIds.SegaGameGear, "Sega", "Format.sega.game_gear", "Sega Game Gear", [DiskImageFileExtensions.Gg], "SEGA-GG"),
             Cartridge(DiskImageFormatIds.SegaThirtyTwoX, "Sega", "Format.sega.32x", "Sega 32X", [DiskImageFileExtensions.ThirtyTwoX], "SEGA-32X"),
             Cartridge(DiskImageFormatIds.NecPcEngine, "NEC", "Format.nec.pc_engine", "NEC PC Engine / TurboGrafx HuCard", [DiskImageFileExtensions.Pce], "NEC-PCE"),
@@ -414,31 +420,31 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             F("ucsd.ibm.mfm", "UCSD p-System", "UCSD p-System — IBM MFM", [new(".img", "IMG", true), new(".td0", "TD0")], false, "UCSD-IBM-MFM", FloppyFormFactor.Unknown, true, true, ".scp", ".img", ".td0", ".hfe"),
             new("commodore900.coherent", "Commodore 900", "Commodore 900 — COHERENT", [new(".bin", "BIN", true), new(".img", "IMG")], false, Set(".scp", ".bin", ".img", ".hfe"), "C900-COHERENT", FloppyFormFactor.Unknown, true, true),
             new(
-            "applelisa.office",
-            "Apple Lisa",
-            "Apple Lisa Office System",
-            [new(".image", "DiskCopy", true), new(".dc42", "DiskCopy 4.2")],
-            false,
-            Set(".scp", ".image", ".dc42", ".hfe"),
-            "LISA-OFFICE",
-            FloppyFormFactor.ThreeAndHalfInch,
-            true,
-            true,
-            FloppyDensity.DoubleDensity
-        ),
+                "applelisa.office",
+                "Apple Lisa",
+                "Apple Lisa Office System",
+                [new(".image", "DiskCopy", true), new(".dc42", "DiskCopy 4.2")],
+                false,
+                Set(".scp", ".image", ".dc42", ".hfe"),
+                "LISA-OFFICE",
+                FloppyFormFactor.ThreeAndHalfInch,
+                true,
+                true,
+                FloppyDensity.DoubleDensity
+            ),
             new(
-            "applelisa.macworks",
-            "Apple Lisa",
-            "Apple Lisa — MacWorks",
-            [new(".image", "DiskCopy", true), new(".dc42", "DiskCopy 4.2")],
-            false,
-            Set(".scp", ".image", ".dc42", ".hfe"),
-            "LISA-MACWORKS",
-            FloppyFormFactor.ThreeAndHalfInch,
-            true,
-            true,
-            FloppyDensity.DoubleDensity
-        ),
+                "applelisa.macworks",
+                "Apple Lisa",
+                "Apple Lisa — MacWorks",
+                [new(".image", "DiskCopy", true), new(".dc42", "DiskCopy 4.2")],
+                false,
+                Set(".scp", ".image", ".dc42", ".hfe"),
+                "LISA-MACWORKS",
+                FloppyFormFactor.ThreeAndHalfInch,
+                true,
+                true,
+                FloppyDensity.DoubleDensity
+            ),
             F("raw.hfe", "Raw", "HxC flux image", [E(".hfe", "Extension.hfe", "HxC Floppy Emulator", true)], false, "RAW-HFE", FloppyFormFactor.Unknown, true, true, ".scp", ".hfe")
         ];
     }

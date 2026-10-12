@@ -3,19 +3,19 @@ using FileSystemEntryKind = GWGUI.MediaEngine.Enums.FileSystemEntryKind;
 using GWGUI.MediaEngine.Interfaces;
 using GWGUI.MediaEngine.Images.Reading.Metadata;
 using GWGUI.MediaEngine.Contracts.Explorer;
-
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
-
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Contracts.Explorer;
-
 /// <summary>Construit le contrat public complet depuis les modèles internes déjà validés.</summary>
 internal static class DiskImageContractData
 {
     private static readonly IReadOnlyDictionary<string, string> EmptyParameters = new Dictionary<string, string>();
-
-    public static IMetadonneesImage CreateMetadata(string sourcePath, SectorImage image, ScpImage? scp)
+    public static IMetadonneesImage CreateMetadata(
+        string sourcePath,
+        SectorImage image,
+        ScpImage? scp
+    )
     {
         if (scp is not null)
         {
@@ -39,41 +39,30 @@ internal static class DiskImageContractData
                 header.Checksum.ToString("X8", System.Globalization.CultureInfo.InvariantCulture),
                 null,
                 scp.ChecksumValid,
-                properties);
+                properties
+            );
         }
 
-        return new MetadataData(
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            image.Cylinders * image.Heads,
-            image.Heads,
-            false,
-            null,
-            null,
-            null,
-            new Dictionary<string, string>
-            {
-                ["extension"] = Path.GetExtension(sourcePath)
-            });
+        return new MetadataData(null, null, null, null, null, null, image.Cylinders * image.Heads, image.Heads, false, null, null, null, new Dictionary<string, string> { ["extension"] = Path.GetExtension(sourcePath) });
     }
 
-    public static IReadOnlyList<IPiste> CreateTracks(SectorImage image, ScpImage? scp)
+    public static IReadOnlyList<IPiste> CreateTracks(
+        SectorImage image,
+        ScpImage? scp
+    )
     {
         if (scp is not null)
         {
             return scp.Tracks.Select(track => FromScpTrack(track, scp.Header.ResolutionNanoseconds)).ToArray();
         }
 
-        return Enumerable.Range(0, image.Cylinders)
-            .SelectMany(cylinder => Enumerable.Range(0, image.Heads).Select(head => FromSectorTrack(image, cylinder, head)))
-            .ToArray();
+        return Enumerable.Range(0, image.Cylinders).SelectMany(cylinder => Enumerable.Range(0, image.Heads).Select(head => FromSectorTrack(image, cylinder, head))).ToArray();
     }
 
-    public static IPiste FromScpTrack(ScpTrack track, int resolutionNanoseconds)
+    public static IPiste FromScpTrack(
+        ScpTrack track,
+        int resolutionNanoseconds
+    )
     {
         return ScpTrackContractMapper.FromScpTrack(track, resolutionNanoseconds);
     }
@@ -84,19 +73,15 @@ internal static class DiskImageContractData
         DiskImageMetadata metadata,
         bool fileSystemRecognized,
         IReadOnlyList<ExploredFileSystem> fileSystems,
-        IReadOnlyList<SectorImage> decodedImages)
+        IReadOnlyList<SectorImage> decodedImages
+    )
     {
         var resolver = new DiskSystemResolver();
         var results = new List<IFormatDetecte>();
         var represented = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-
         foreach (var fileSystem in fileSystems)
         {
-            results.Add(CreateFormat(
-                fileSystem.Image.WithFormatId(fileSystem.FormatId),
-                fileSystem.Volume,
-                metadata,
-                resolver));
+            results.Add(CreateFormat(fileSystem.Image.WithFormatId(fileSystem.FormatId), fileSystem.Volume, metadata, resolver));
             represented.Add(fileSystem.FormatId);
         }
 
@@ -120,24 +105,22 @@ internal static class DiskImageContractData
 
     public static IReadOnlyList<IDiagnostic> CreateDiagnostics(IEnumerable<string> warnings)
     {
-        return warnings.Select(warning =>
-            (IDiagnostic)new DiagnosticData("warning", warning, EmptyParameters, null, null, null, null)).ToArray();
+        return warnings.Select(warning => (IDiagnostic)new DiagnosticData("warning", warning, EmptyParameters, null, null, null, null)).ToArray();
     }
 
     private static IFormatDetecte CreateFormat(
         SectorImage image,
         FileSystemVolume? volume,
         DiskImageMetadata metadata,
-        DiskSystemResolver resolver)
+        DiskSystemResolver resolver
+    )
     {
         var sectors = Enumerable.Range(0, image.BlockCount).Select(logicalBlock => CreateSector(image, logicalBlock)).ToArray();
         var entries = volume?.Entries.Select(CreateEntry).ToArray() ?? [];
         var validCount = sectors.Count(sector => sector.Etat == "available" && sector.DonneesValides != false);
         var invalidCount = sectors.Count(sector => sector.Etat == "invalid");
         long? freeBytes = volume is { FreeSpaceKnown: true } ? volume.FreeBytes : null;
-        long? usedBytes = volume is { FreeSpaceKnown: true }
-            ? Math.Max(0, volume.Capacity - volume.FreeBytes)
-            : null;
+        long? usedBytes = volume is { FreeSpaceKnown: true } ? Math.Max(0, volume.Capacity - volume.FreeBytes) : null;
         return new FormatData(
             resolver.ResolveId(image.FormatId) ?? string.Empty,
             image.FormatId,
@@ -170,10 +153,14 @@ internal static class DiskImageContractData
             metadata.Content.ModificationId,
             metadata.ProtectionId,
             entries,
-            CreateDiagnostics(volume?.Warnings ?? []));
+            CreateDiagnostics(volume?.Warnings ?? [])
+        );
     }
 
-    private static ISecteur CreateSector(SectorImage image, int logicalBlock)
+    private static ISecteur CreateSector(
+        SectorImage image,
+        int logicalBlock
+    )
     {
         if (!image.TryGetBlock(logicalBlock, out var block))
         {
@@ -196,7 +183,8 @@ internal static class DiskImageContractData
             tag,
             block.FormatCode,
             block.DiagnosticCode,
-            [block.Revolution]);
+            [block.Revolution]
+        );
     }
 
     private static IEntree CreateEntry(FileSystemEntry entry)
@@ -221,20 +209,24 @@ internal static class DiskImageContractData
             entry.LinkTarget,
             data,
             entry.Children.Select(CreateEntry).ToArray(),
-            CreateDiagnostics(entry.Diagnostics));
+            CreateDiagnostics(entry.Diagnostics)
+        );
     }
 
-    private static IPiste FromSectorTrack(SectorImage image, int cylinder, int head)
+    private static IPiste FromSectorTrack(
+        SectorImage image,
+        int cylinder,
+        int head
+    )
     {
-        var sectors = image.AvailableBlocks
-            .Where(block => block.Address.Cylinder == cylinder && block.Address.Head == head)
-            .OrderBy(block => block.Address.Number)
-            .Select(block => (ISecteurSource)new SourceSectorData(block.Address.Number, block.Data.Count, block.Data.ToArray()))
-            .ToArray();
+        var sectors = image.AvailableBlocks.Where(block => block.Address.Cylinder == cylinder && block.Address.Head == head).OrderBy(block => block.Address.Number).Select(block => (ISecteurSource)new SourceSectorData(block.Address.Number, block.Data.Count, block.Data.ToArray())).ToArray();
         return new TrackData(null, cylinder, head, [], sectors);
     }
 
-    private static SectorAddress AddressFor(SectorImage image, int logicalBlock)
+    private static SectorAddress AddressFor(
+        SectorImage image,
+        int logicalBlock
+    )
     {
         var track = logicalBlock / image.SectorsPerTrack;
         var cylinder = track / image.Heads;
@@ -250,8 +242,10 @@ internal static class DiskImageContractData
 
     private static string EncodingId(string formatId)
     {
-        if (formatId.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase)) return "amiga-mfm";
-        if (formatId.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) || formatId.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase)) return "ibm-mfm";
+        if (formatId.StartsWith("amiga.", StringComparison.OrdinalIgnoreCase))
+            return "amiga-mfm";
+        if (formatId.StartsWith("ibm.", StringComparison.OrdinalIgnoreCase) || formatId.StartsWith("atarist.", StringComparison.OrdinalIgnoreCase))
+            return "ibm-mfm";
         return string.Empty;
     }
 
@@ -306,7 +300,21 @@ internal static class DiskImageContractData
         IReadOnlyList<IEntree> Entrees,
         IReadOnlyList<IDiagnostic> Diagnostics
     ) : IFormatDetecte;
-    private sealed record SectorData(int BlocLogique, int Cylindre, int Face, int Numero, int Taille, string Etat, ReadOnlyMemory<byte> Donnees, bool? EnteteValide, bool? DonneesValides, ReadOnlyMemory<byte>? Tag, byte? CodeFormat, byte? CodeDiagnostic, IReadOnlyList<int> Revolutions) : ISecteur;
+    private sealed record SectorData(
+        int BlocLogique,
+        int Cylindre,
+        int Face,
+        int Numero,
+        int Taille,
+        string Etat,
+        ReadOnlyMemory<byte> Donnees,
+        bool? EnteteValide,
+        bool? DonneesValides,
+        ReadOnlyMemory<byte>? Tag,
+        byte? CodeFormat,
+        byte? CodeDiagnostic,
+        IReadOnlyList<int> Revolutions
+    ) : ISecteur;
     private sealed record EntryData(
         string Nom,
         string Type,

@@ -1,10 +1,8 @@
 ﻿using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Models.Sectors;
-
 using GWGUI.MediaEngine.Images.Formats.Floppy.Rx02;
 
 namespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
-
 /// <summary>Indique l'encodage d'un bloc de données RX02.</summary>
 internal enum DecRx02DataEncoding
 {
@@ -15,17 +13,20 @@ internal enum DecRx02DataEncoding
 }
 
 /// <summary>Distingue les secteurs RX01 FM et RX02 M²FM à partir de leur taille.</summary>
-internal enum DecRx02SectorEncoding { Fm, M2Fm }
+internal enum DecRx02SectorEncoding
+{
+    Fm,
+    M2Fm
+}
 
 /// <summary>Décrit une marque de données RX02.</summary>
-/// <param name="Mark">Valeur décodée.</param>
-/// <param name="Pattern">Motif binaire.</param>
-/// <param name="Encoding">Encodage des données.</param>
-/// <param name="Deleted">Indique un secteur supprimé.</param>
-/// <param name="SectorSize">Taille physique.</param>
-/// <param name="SizeCode">Code de taille attendu dans l'en-tête.</param>
+/// <param name = "Mark">Valeur décodée.</param>
+/// <param name = "Pattern">Motif binaire.</param>
+/// <param name = "Encoding">Encodage des données.</param>
+/// <param name = "Deleted">Indique un secteur supprimé.</param>
+/// <param name = "SectorSize">Taille physique.</param>
+/// <param name = "SizeCode">Code de taille attendu dans l'en-tête.</param>
 internal sealed record DecRx02DataMarkDefinition(byte Mark, IReadOnlyList<byte> Pattern, DecRx02DataEncoding Encoding, bool Deleted, int SectorSize, byte SizeCode);
-
 /// <summary>Regroupe les définitions techniques du format DEC RX02.</summary>
 internal static class DecRx02Format
 {
@@ -115,33 +116,33 @@ internal static class DecRx02Format
     /// <summary>Diviseur du calcul de confiance.</summary>
     public const double ConfidenceDivisor = 20;
     /// <summary>Motif normal remplacé lors de la conversion M²FM.</summary>
-    public static IReadOnlyList<bool> NormalM2FmRule { get; } = Array.AsReadOnly([false, false, true, false, true, false, true, false, true, false, false]);
+    public static IReadOnlyList<bool> NormalM2FmRule { get; } = Array.AsReadOnly([false, false, true, false, true, false, true, false, true, false, false ]);
     /// <summary>Motif encodé utilisé par la conversion M²FM.</summary>
-    public static IReadOnlyList<bool> EncodedM2FmRule { get; } = Array.AsReadOnly([false, true, false, false, false, true, false, false, false, true, false]);
+    public static IReadOnlyList<bool> EncodedM2FmRule { get; } = Array.AsReadOnly([false, true, false, false, false, true, false, false, false, true, false ]);
     /// <summary>Motif binaire de la marque d'en-tête.</summary>
     public static IReadOnlyList<byte> HeaderMark { get; } = FmAddressMarkPatterns.For(HeaderAddressMark);
     /// <summary>Définitions fermées des six marques de données.</summary>
-    public static IReadOnlyList<DecRx02DataMarkDefinition> DataMarks { get; } = Array.AsReadOnly<DecRx02DataMarkDefinition>(
-    [
-        Mark(FmDeletedDataMark, DecRx02DataEncoding.Fm, true),
-        Mark(M2FmDataMark, DecRx02DataEncoding.M2Fm, false),
-        Mark(DataMarkFa, DecRx02DataEncoding.Fm, false),
-        Mark(FmDataMark, DecRx02DataEncoding.Fm, false),
-        Mark(DataMarkFc, DecRx02DataEncoding.Fm, false),
-        Mark(M2FmDeletedDataMark, DecRx02DataEncoding.M2Fm, true)
-    ]);
+    public static IReadOnlyList<DecRx02DataMarkDefinition> DataMarks { get; } = Array.AsReadOnly<DecRx02DataMarkDefinition>([
+            Mark(FmDeletedDataMark, DecRx02DataEncoding.Fm, true),
+            Mark(M2FmDataMark, DecRx02DataEncoding.M2Fm, false),
+            Mark(DataMarkFa, DecRx02DataEncoding.Fm, false),
+            Mark(FmDataMark, DecRx02DataEncoding.Fm, false),
+            Mark(DataMarkFc, DecRx02DataEncoding.Fm, false),
+            Mark(M2FmDeletedDataMark, DecRx02DataEncoding.M2Fm, true)
+        ]);
 
     /// <summary>Crée l'exception signalant une taille de secteur incompatible.</summary>
-    /// <param name="actualSize">Taille observée.</param>
+    /// <param name = "actualSize">Taille observée.</param>
     /// <returns>Exception décrivant les tailles admises.</returns>
     public static ArgumentException InvalidSectorSize(int actualSize) => new($"DEC RX sectors contain {FmSectorByteCount} or {M2FmSectorByteCount} bytes; received {actualSize} bytes.");
-
     /// <summary>Obtient l'encodage et le code de taille imposés par la taille sectorielle.</summary>
-    public static (DecRx02SectorEncoding Encoding, byte SizeCode) EncodingForSize(int size) => size switch { FmSectorByteCount => (DecRx02SectorEncoding.Fm, FmSectorSizeCode), M2FmSectorByteCount => (DecRx02SectorEncoding.M2Fm, M2FmSectorSizeCode), _ => throw InvalidSectorSize(size) };
-
+    public static (DecRx02SectorEncoding Encoding, byte SizeCode) EncodingForSize(int size) => size switch
+    {
+        FmSectorByteCount => (DecRx02SectorEncoding.Fm, FmSectorSizeCode),
+        M2FmSectorByteCount => (DecRx02SectorEncoding.M2Fm, M2FmSectorSizeCode),
+        _ => throw InvalidSectorSize(size)};
     /// <summary>Obtient la marque fermée correspondant à l'encodage et à l'état supprimé.</summary>
     public static DecRx02DataMarkDefinition DataMarkFor(DecRx02SectorEncoding encoding, bool deleted) => DataMarks.Single(mark => mark.Encoding == (encoding == DecRx02SectorEncoding.M2Fm ? DecRx02DataEncoding.M2Fm : DecRx02DataEncoding.Fm) && mark.Deleted == deleted && (mark.Mark == FmDataMark || mark.Mark == FmDeletedDataMark || mark.Mark == M2FmDataMark || mark.Mark == M2FmDeletedDataMark));
-
     /// <summary>Construit une définition de marque depuis son motif et son encodage.</summary>
     private static DecRx02DataMarkDefinition Mark(byte mark, DecRx02DataEncoding encoding, bool deleted) => new(mark, FmAddressMarkPatterns.For(mark), encoding, deleted, encoding == DecRx02DataEncoding.M2Fm ? M2FmSectorByteCount : FmSectorByteCount, encoding == DecRx02DataEncoding.M2Fm ? M2FmSectorSizeCode : FmSectorSizeCode);
 }

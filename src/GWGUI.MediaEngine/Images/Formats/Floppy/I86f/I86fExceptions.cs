@@ -1,5 +1,4 @@
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.I86f;
-
 /// <summary>Construit les erreurs paramétrées produites pendant la lecture d'un conteneur 86F.</summary>
 internal static class I86fExceptions
 {

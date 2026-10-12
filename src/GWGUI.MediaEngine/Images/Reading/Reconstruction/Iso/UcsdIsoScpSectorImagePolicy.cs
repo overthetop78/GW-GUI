@@ -1,11 +1,8 @@
 using GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
-
 using GWGUI.MediaEngine.Images.Formats.Floppy.Raw;
-
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Reading.Reconstruction.Iso;
-
 /// <summary>Construit une image UCSD IBM MFM depuis des candidats ISO FM ou MFM.</summary>
 internal sealed class UcsdIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy
 {
@@ -13,12 +10,15 @@ internal sealed class UcsdIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy
     public IReadOnlyList<string> DecoderIds { get; } = [FluxCodecIds.IsoFm, FluxCodecIds.IsoMfm];
 
     /// <summary>Construit une image UCSD IBM MFM depuis les candidats physiques décodés.</summary>
-    /// <param name="formatId">Identifiant du format UCSD demandé.</param>
-    /// <param name="candidateSet">Candidats ISO regroupés par adresse.</param>
+    /// <param name = "formatId">Identifiant du format UCSD demandé.</param>
+    /// <param name = "candidateSet">Candidats ISO regroupés par adresse.</param>
     /// <returns>L'image sectorielle UCSD construite selon sa géométrie logique.</returns>
-    /// <exception cref="ArgumentNullException"><paramref name="formatId"/> est nul.</exception>
-    /// <exception cref="InvalidDataException">Aucun candidat physique ne permet de mesurer l'image.</exception>
-    public SectorImage Build(string? formatId, IsoSectorCandidateSet candidateSet)
+    /// <exception cref = "ArgumentNullException"><paramref name = "formatId"/> est nul.</exception>
+    /// <exception cref = "InvalidDataException">Aucun candidat physique ne permet de mesurer l'image.</exception>
+    public SectorImage Build(
+        string? formatId,
+        IsoSectorCandidateSet candidateSet
+    )
     {
         ArgumentNullException.ThrowIfNull(formatId);
         var candidates = candidateSet.Physical;

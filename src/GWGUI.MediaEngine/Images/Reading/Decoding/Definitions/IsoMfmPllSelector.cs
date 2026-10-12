@@ -1,25 +1,30 @@
-
 using GWGUI.MediaEngine.Images.Models.Flux;
 
 namespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
-
 /// <summary>Sélectionne le meilleur résultat parmi les tentatives PLL ISO MFM.</summary>
 internal static class IsoMfmPllSelector
 {
     /// <summary>Décode les facteurs dans leur ordre défini et conserve le premier meilleur score.</summary>
-    public static FluxDecodeResult Select(FluxRevolution revolution, double centre, Func<FluxBitstream, FluxDecodeResult> decode)
+    public static FluxDecodeResult Select(
+        FluxRevolution revolution,
+        double centre,
+        Func<FluxBitstream, FluxDecodeResult> decode
+    )
     {
         FluxDecodeResult? best = null;
         var bestScore = int.MinValue;
         foreach (var factor in IsoMfmFormat.PllFactors)
         {
             var candidate = decode(FluxTransitionDecoder.DecodePll(revolution.FluxIntervals, centre * factor));
-            if (factor == 1d && candidate.Sectors.Count > 0 && candidate.Sectors.All(sector => sector.Data is not null && sector.IntegrityValid == true)) return candidate;
+            if (factor == 1d && candidate.Sectors.Count > 0 && candidate.Sectors.All(sector => sector.Data is not null && sector.IntegrityValid == true))
+                return candidate;
             var score = Score(candidate);
-            if (score <= bestScore) continue;
+            if (score <= bestScore)
+                continue;
             best = candidate;
             bestScore = score;
         }
+
         return best!;
     }
 

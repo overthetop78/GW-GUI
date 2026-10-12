@@ -1,5 +1,4 @@
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
-
 /// <summary>Construit les erreurs détaillées de reconstruction sectorielle SCP.</summary>
 internal static class ScpSectorImageExceptions
 {

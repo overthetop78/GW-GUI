@@ -2,9 +2,7 @@
 using GWGUI.MediaEngine.Images.Models.Sectors;
 using GWGUI.MediaEngine.Constants;
 
-
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
-
 /// <summary>Résout le type SCP depuis l'identité et la géométrie centrales d'une image.</summary>
 internal static class ScpDiskTypeCatalog
 {
@@ -53,9 +51,7 @@ internal static class ScpDiskTypeCatalog
     }
 
     private static bool IsIbmPc360Family(string formatId) => formatId.Equals(DiskImageFormatIds.Ibm160, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Ibm180, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Ibm320, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Ibm360, StringComparison.OrdinalIgnoreCase);
-
     private static bool IsIbmPc1440Family(string formatId) => formatId.Equals(DiskImageFormatIds.Ibm1440, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Ibm1680, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.IbmDmf, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Ibm2880, StringComparison.OrdinalIgnoreCase);
-
     private static ScpDiskType ResolveOther(long capacity) => (capacity / DataSizeConstants.BytesPerKibibyte) switch
     {
         720 or 800 or 880 => ScpDiskType.Other720,

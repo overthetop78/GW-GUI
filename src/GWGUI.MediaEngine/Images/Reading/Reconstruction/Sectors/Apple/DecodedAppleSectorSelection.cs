@@ -1,7 +1,6 @@
 using GWGUI.MediaEngine.Images.Reading.Decoding;
 
 namespace GWGUI.MediaEngine.Images.Reading.Reconstruction.Sectors.Apple;
-
 /// <summary>Sélectionne le meilleur exemplaire de secteurs Apple décodés plusieurs fois.</summary>
 internal static class DecodedAppleSectorSelection
 {

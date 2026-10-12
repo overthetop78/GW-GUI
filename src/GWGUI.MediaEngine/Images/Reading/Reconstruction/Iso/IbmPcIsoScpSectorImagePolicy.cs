@@ -2,25 +2,25 @@ using GWGUI.MediaEngine.Images.Reading.Recognition.Ibm;
 using GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
 using GWGUI.MediaFileSystems.FileSystems.Fat12;
 using GWGUI.MediaEngine.Constants;
-
 using GWGUI.MediaEngine.Images.Formats.Floppy.Raw;
-
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Reading.Reconstruction.Iso;
-
 /// <summary>Construit une image IBM PC depuis des candidats ISO FM ou MFM.</summary>
-/// <param name="explicitlySelected">Indique si la géométrie IBM a été demandée explicitement sans exiger un OEM DOS connu.</param>
+/// <param name = "explicitlySelected">Indique si la géométrie IBM a été demandée explicitement sans exiger un OEM DOS connu.</param>
 internal sealed class IbmPcIsoScpSectorImagePolicy(bool explicitlySelected) : IIsoScpSectorImagePolicy
 {
     /// <summary>Identifiants des décodeurs ISO FM et MFM acceptés par la politique IBM.</summary>
     public IReadOnlyList<string> DecoderIds { get; } = [FluxCodecIds.IsoFm, FluxCodecIds.IsoMfm];
 
     /// <summary>Mesure les candidats, affine leur géométrie avec le BPB ou la FAT puis construit l'image IBM.</summary>
-    /// <param name="formatId">Identifiant demandé ; la géométrie détectée détermine l'identifiant final.</param>
-    /// <param name="candidateSet">Candidats ISO regroupés par adresse logique et physique.</param>
+    /// <param name = "formatId">Identifiant demandé ; la géométrie détectée détermine l'identifiant final.</param>
+    /// <param name = "candidateSet">Candidats ISO regroupés par adresse logique et physique.</param>
     /// <returns>L'image sectorielle IBM associée à la géométrie mesurée ou détectée.</returns>
-    public SectorImage Build(string? formatId, IsoSectorCandidateSet candidateSet)
+    public SectorImage Build(
+        string? formatId,
+        IsoSectorCandidateSet candidateSet
+    )
     {
         if (explicitlySelected && formatId is not null && !formatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) && !formatId.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase))
             throw ScpReconstructionExceptions.InvalidRequestedFormat(DiskImageFormatIds.IbmPrefix, formatId);
@@ -44,7 +44,7 @@ internal sealed class IbmPcIsoScpSectorImagePolicy(bool explicitlySelected) : II
             if (!hasBpbGeometry)
                 throw IsoScpReconstructionExceptions.NotIbmDos();
         }
-    
+
         if (!hasExplicitGeometry && hasBpbGeometry)
         {
             cylinders = bpbGeometry.Cylinders;
@@ -65,7 +65,7 @@ internal sealed class IbmPcIsoScpSectorImagePolicy(bool explicitlySelected) : II
                 sectorsPerTrack = geometry.SectorsPerTrack;
             }
         }
-    
+
         var resolved = hasExplicitGeometry ? explicitGeometry.FormatId : IbmPcGeometryCatalog.FormatIdForGeometry(cylinders, heads, sectorsPerTrack, sectorSize);
         return IsoSectorImageBuilder.CreateUniform(
             resolved,

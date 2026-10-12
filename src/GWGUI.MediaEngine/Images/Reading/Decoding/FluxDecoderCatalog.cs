@@ -1,5 +1,4 @@
 namespace GWGUI.MediaEngine.Images.Reading.Decoding;
-
 /// <summary>Construit le catalogue ordonné des décodeurs de flux fournis par défaut.</summary>
 internal static class FluxDecoderCatalog
 {

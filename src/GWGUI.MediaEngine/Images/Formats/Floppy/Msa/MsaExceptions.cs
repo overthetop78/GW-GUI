@@ -1,8 +1,6 @@
-
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Msa;
-
 /// <summary>Construit les erreurs détaillées produites pendant la lecture d'un conteneur MSA.</summary>
 internal static class MsaExceptions
 {

@@ -11,11 +11,13 @@ using GWGUI.MediaEngine.Images.Reading.Reconstruction.Atari;
 using GWGUI.MediaEngine.Images.Reading.Reconstruction.Iso;
 
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding;
-
 /// <summary>Provides the shared SCP decoders, reconstruction candidates, and sector reader.</summary>
 internal sealed class ScpSectorDecodingComposition
 {
-    public ScpSectorDecodingComposition(ScpReader scpReader, FileSystemRegistry fileSystems)
+    public ScpSectorDecodingComposition(
+        ScpReader scpReader,
+        FileSystemRegistry fileSystems
+    )
     {
         ArgumentNullException.ThrowIfNull(scpReader);
         ArgumentNullException.ThrowIfNull(fileSystems);
@@ -27,16 +29,17 @@ internal sealed class ScpSectorDecodingComposition
     }
 
     public FluxDecoderRegistry Decoders { get; }
-
     public AmigaScpSectorImageReader AmigaReader { get; }
-
     public AtariScpSectorImageReader AtariReader { get; }
-
     public ScpCandidateRegistry Candidates { get; }
-
     public ScpSectorImageReader Reader { get; }
 
-    private static ScpCandidateRegistry CreateCandidates(ScpReader scpReader, FluxDecoderRegistry decoders, AmigaScpSectorImageReader amigaReader, AtariScpSectorImageReader atariReader)
+    private static ScpCandidateRegistry CreateCandidates(
+        ScpReader scpReader,
+        FluxDecoderRegistry decoders,
+        AmigaScpSectorImageReader amigaReader,
+        AtariScpSectorImageReader atariReader
+    )
     {
         var isoReader = new IsoScpSectorImageReader(scpReader, decoders);
         var commodoreReader = new CommodoreScpSectorImageReader(scpReader, decoders);

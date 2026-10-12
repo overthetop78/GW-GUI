@@ -1,5 +1,4 @@
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.TeleDisk;
-
 /// <summary>Décompresse le flux LZSS/Huffman adaptatif des images TeleDisk 2.x avancées.</summary>
 internal static class Td0AdvancedDecompressor
 {
@@ -8,7 +7,6 @@ internal static class Td0AdvancedDecompressor
     private const int Threshold = 2;
     private const int SymbolCount = 256 + LookAhead - Threshold;
     private const int MaximumOutputSize = 3_000_000;
-
     public static byte[] Decompress(ReadOnlySpan<byte> compressed)
     {
         var reader = new BitReader(compressed.ToArray());
@@ -20,23 +18,39 @@ internal static class Td0AdvancedDecompressor
         while (output.Count < MaximumOutputSize)
         {
             int symbol;
-            try { symbol = tree.DecodeCharacter(reader); }
-            catch (EndOfStreamException) { break; }
-            if (symbol < 256) Emit((byte)symbol);
+            try
+            {
+                symbol = tree.DecodeCharacter(reader);
+            }
+            catch (EndOfStreamException)
+            {
+                break;
+            }
+
+            if (symbol < 256)
+                Emit((byte)symbol);
             else
             {
                 int distance;
-                try { distance = tree.DecodePosition(reader); }
-                catch (EndOfStreamException) { break; }
+                try
+                {
+                    distance = tree.DecodePosition(reader);
+                }
+                catch (EndOfStreamException)
+                {
+                    break;
+                }
+
                 var source = (position - distance - 1) & (WindowSize - 1);
                 var length = symbol + Threshold - 255;
                 for (var index = 0; index < length && output.Count < MaximumOutputSize; index++)
                     Emit(dictionary[(source + index) & (WindowSize - 1)]);
             }
         }
-        if (output.Count == MaximumOutputSize) throw new InvalidDataException("Le flux TeleDisk avancé dépasse la taille décompressée maximale.");
-        return output.ToArray();
 
+        if (output.Count == MaximumOutputSize)
+            throw new InvalidDataException("Le flux TeleDisk avancé dépasse la taille décompressée maximale.");
+        return output.ToArray();
         void Emit(byte value)
         {
             output.Add(value);
@@ -57,7 +71,6 @@ internal static class Td0AdvancedDecompressor
         private readonly int[] symbolMap;
         private static readonly byte[] PositionLength = BuildPositionTable(true);
         private static readonly byte[] PositionCode = BuildPositionTable(false);
-
         public AdaptiveTree(int symbols)
         {
             symbolCount = symbols;
@@ -73,19 +86,22 @@ internal static class Td0AdvancedDecompressor
                 son[index] = index + nodeCount;
                 symbolMap[index] = index;
             }
+
             for (int child = 0, branch = symbols; branch <= root; child += 2, branch++)
             {
                 frequency[branch] = frequency[child] + frequency[child + 1];
                 son[branch] = child;
                 parent[child] = parent[child + 1] = branch;
             }
+
             frequency[nodeCount] = ushort.MaxValue;
         }
 
         public int DecodeCharacter(BitReader reader)
         {
             var node = son[root];
-            while (node < nodeCount) node = son[node + reader.ReadBit()];
+            while (node < nodeCount)
+                node = son[node + reader.ReadBit()];
             var symbol = node - nodeCount;
             Update(symbol);
             return symbol;
@@ -96,13 +112,15 @@ internal static class Td0AdvancedDecompressor
             var bits = reader.ReadByte();
             var position = PositionCode[bits] << 6;
             var remaining = PositionLength[bits] - 2;
-            while (remaining-- > 0) bits = (byte)((bits << 1) | reader.ReadBit());
+            while (remaining-- > 0)
+                bits = (byte)((bits << 1) | reader.ReadBit());
             return position | bits & 0x3f;
         }
 
         private void Update(int symbol)
         {
-            if (frequency[root] == MaximumFrequency) Rebuild();
+            if (frequency[root] == MaximumFrequency)
+                Rebuild();
             var node = symbolMap[symbol];
             while (true)
             {
@@ -110,7 +128,8 @@ internal static class Td0AdvancedDecompressor
                 var ordered = node + 1;
                 if (value > frequency[ordered])
                 {
-                    while (value > frequency[ordered]) ordered++;
+                    while (value > frequency[ordered])
+                        ordered++;
                     ordered--;
                     frequency[node] = frequency[ordered];
                     frequency[ordered] = value;
@@ -122,15 +141,22 @@ internal static class Td0AdvancedDecompressor
                     son[node] = secondSon;
                     node = ordered;
                 }
+
                 node = parent[node];
-                if (node == 0) break;
+                if (node == 0)
+                    break;
             }
         }
 
-        private void Connect(int child, int branch)
+        private void Connect(
+            int child,
+            int branch
+        )
         {
-            if (child < nodeCount) parent[child] = parent[child + 1] = branch;
-            else symbolMap[child - nodeCount] = branch;
+            if (child < nodeCount)
+                parent[child] = parent[child + 1] = branch;
+            else
+                symbolMap[child - nodeCount] = branch;
         }
 
         private void Rebuild()
@@ -138,15 +164,18 @@ internal static class Td0AdvancedDecompressor
             var packed = 0;
             for (var index = 0; index < nodeCount; index++)
             {
-                if (son[index] < nodeCount) continue;
+                if (son[index] < nodeCount)
+                    continue;
                 frequency[packed] = (frequency[index] + 1) / 2;
                 son[packed++] = son[index];
             }
+
             for (int child = 0, branch = symbolCount; branch < nodeCount; child += 2, branch++)
             {
                 var value = frequency[child] + frequency[child + 1];
                 var insertion = branch - 1;
-                while (value < frequency[insertion]) insertion--;
+                while (value < frequency[insertion])
+                    insertion--;
                 insertion++;
                 var length = (branch - insertion) * 2;
                 if (length > 0)
@@ -154,14 +183,18 @@ internal static class Td0AdvancedDecompressor
                     Array.Copy(frequency, insertion, frequency, insertion + 1, length);
                     Array.Copy(son, insertion, son, insertion + 1, length);
                 }
+
                 frequency[insertion] = value;
                 son[insertion] = child;
             }
+
             for (var branch = 0; branch < nodeCount; branch++)
             {
                 var child = son[branch];
-                if (child >= nodeCount) symbolMap[child - nodeCount] = branch;
-                else parent[child] = parent[child + 1] = branch;
+                if (child >= nodeCount)
+                    symbolMap[child - nodeCount] = branch;
+                else
+                    parent[child] = parent[child + 1] = branch;
             }
         }
 
@@ -241,7 +274,7 @@ internal static class Td0AdvancedDecompressor
                 for (var suffix = 0; suffix < count; suffix++)
                     table[codes[value] + suffix] = lengths ? codeLengths[value] : (byte)value;
             }
-        
+
             return table;
         }
     }
@@ -251,15 +284,18 @@ internal static class Td0AdvancedDecompressor
         private int bitOffset;
         public int ReadBit()
         {
-            if (bitOffset >= data.Length * 8) throw new EndOfStreamException();
+            if (bitOffset >= data.Length * 8)
+                throw new EndOfStreamException();
             var value = data[bitOffset / 8] >> (7 - bitOffset % 8) & 1;
             bitOffset++;
             return value;
         }
+
         public byte ReadByte()
         {
             var value = 0;
-            for (var index = 0; index < 8; index++) value = value << 1 | ReadBit();
+            for (var index = 0; index < 8; index++)
+                value = value << 1 | ReadBit();
             return (byte)value;
         }
     }

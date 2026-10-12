@@ -3,33 +3,30 @@ using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSector
 using GWGUI.MediaEngine.Enums;
 
 namespace GWGUI.MediaEngine.Images.Models.Sectors;
-
 /// <summary>Représente une image sectorielle, sa géométrie et les blocs logiques effectivement disponibles.</summary>
 public sealed class SectorImage : IMediaSectorImage
 {
     /// <summary>Blocs disponibles indexés par leur numéro logique.</summary>
     private readonly IReadOnlyDictionary<int, SectorBlock> _blocks;
-
     /// <summary>Capacité explicite de l'image, en octets, ou <see langword="null"/> pour la déduire.</summary>
     private readonly long? _capacity;
-    /// <summary>Indique si les blocs peuvent avoir une taille différente de <see cref="BlockSize"/>.</summary>
+    /// <summary>Indique si les blocs peuvent avoir une taille différente de <see cref = "BlockSize"/>.</summary>
     private readonly bool _allowVariableBlockSize;
     /// <summary>Nombre logique explicite de blocs, ou <see langword="null"/> pour le déduire de la géométrie.</summary>
     private readonly int? _logicalBlockCount;
-
     /// <summary>Crée une image sectorielle validée à partir de sa géométrie et de ses blocs disponibles.</summary>
-    /// <param name="formatId">Identifiant technique non vide du format.</param>
-    /// <param name="blockSize">Taille nominale d'un bloc, en octets.</param>
-    /// <param name="cylinders">Nombre strictement positif de cylindres.</param>
-    /// <param name="heads">Nombre strictement positif de têtes.</param>
-    /// <param name="sectorsPerTrack">Nombre strictement positif de secteurs par piste.</param>
-    /// <param name="blocks">Blocs disponibles à copier dans l'image.</param>
-    /// <param name="allowVariableBlockSize">Autorise des tailles de blocs différentes de <paramref name="blockSize"/>.</param>
-    /// <param name="capacity">Capacité facultative de l'image, en octets.</param>
-    /// <param name="logicalBlockCount">Nombre logique facultatif de blocs.</param>
-    /// <exception cref="ArgumentException"><paramref name="formatId"/> est nul, vide ou blanc.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Une dimension, la capacité ou le nombre logique de blocs n'est pas strictement positif.</exception>
-    /// <exception cref="InvalidDataException">Les blocs contiennent un doublon, un numéro hors limites ou dépassent la capacité annoncée.</exception>
+    /// <param name = "formatId">Identifiant technique non vide du format.</param>
+    /// <param name = "blockSize">Taille nominale d'un bloc, en octets.</param>
+    /// <param name = "cylinders">Nombre strictement positif de cylindres.</param>
+    /// <param name = "heads">Nombre strictement positif de têtes.</param>
+    /// <param name = "sectorsPerTrack">Nombre strictement positif de secteurs par piste.</param>
+    /// <param name = "blocks">Blocs disponibles à copier dans l'image.</param>
+    /// <param name = "allowVariableBlockSize">Autorise des tailles de blocs différentes de <paramref name = "blockSize"/>.</param>
+    /// <param name = "capacity">Capacité facultative de l'image, en octets.</param>
+    /// <param name = "logicalBlockCount">Nombre logique facultatif de blocs.</param>
+    /// <exception cref = "ArgumentException"><paramref name = "formatId"/> est nul, vide ou blanc.</exception>
+    /// <exception cref = "ArgumentOutOfRangeException">Une dimension, la capacité ou le nombre logique de blocs n'est pas strictement positif.</exception>
+    /// <exception cref = "InvalidDataException">Les blocs contiennent un doublon, un numéro hors limites ou dépassent la capacité annoncée.</exception>
     public SectorImage(
         string formatId,
         int blockSize,
@@ -93,7 +90,7 @@ public sealed class SectorImage : IMediaSectorImage
     public int SectorsPerTrack { get; }
     /// <summary>Indique si les dimensions décrivent une géométrie physique ou un espace de blocs logiques.</summary>
     public SectorImageAddressingKind AddressingKind { get; }
-    /// <summary>Indique si le format autorise des tailles de blocs différentes de <see cref="BlockSize"/>.</summary>
+    /// <summary>Indique si le format autorise des tailles de blocs différentes de <see cref = "BlockSize"/>.</summary>
     public bool AllowsVariableBlockSize => _allowVariableBlockSize;
     /// <summary>Nombre total de blocs logiques annoncé par l'image.</summary>
     public int BlockCount => _logicalBlockCount ?? checked(Cylinders * Heads * SectorsPerTrack);
@@ -101,40 +98,46 @@ public sealed class SectorImage : IMediaSectorImage
     public long Capacity => _capacity ?? (long)BlockCount * BlockSize;
     /// <summary>Copie de la collection des blocs effectivement disponibles.</summary>
     public IReadOnlyCollection<SectorBlock> AvailableBlocks => _blocks.Values.ToArray();
+
     IReadOnlyCollection<IMediaSectorBlock> IMediaSectorImage.AvailableBlocks => _blocks.Values.Cast<IMediaSectorBlock>().ToArray();
     /// <summary>Numéros logiques des blocs absents, triés par ordre croissant.</summary>
     public IReadOnlyList<int> MissingBlocks => Enumerable.Range(0, BlockCount).Where(block => !_blocks.ContainsKey(block)).ToArray();
 
     /// <summary>Recherche un bloc à partir de son indice logique.</summary>
-    /// <param name="logicalBlock">Indice logique recherché, compté à partir de zéro.</param>
-    /// <param name="block">Bloc trouvé lorsque la méthode retourne <see langword="true"/>.</param>
+    /// <param name = "logicalBlock">Indice logique recherché, compté à partir de zéro.</param>
+    /// <param name = "block">Bloc trouvé lorsque la méthode retourne <see langword="true"/>.</param>
     /// <returns><see langword="true"/> si le bloc est disponible ; sinon <see langword="false"/>.</returns>
     public bool TryGetBlock(int logicalBlock, out SectorBlock block) => _blocks.TryGetValue(logicalBlock, out block!);
-
-    bool IMediaSectorImage.TryGetBlock(int logicalBlock, out IMediaSectorBlock block)
+    bool IMediaSectorImage.TryGetBlock(
+        int logicalBlock,
+        out IMediaSectorBlock block
+    )
     {
         if (_blocks.TryGetValue(logicalBlock, out var sector))
         {
             block = sector;
             return true;
         }
+
         block = null!;
         return false;
     }
 
     /// <summary>Retourne les données d'un bloc logique disponible.</summary>
-    /// <param name="logicalBlock">Indice logique du bloc, compté à partir de zéro.</param>
+    /// <param name = "logicalBlock">Indice logique du bloc, compté à partir de zéro.</param>
     /// <returns>Données du bloc exprimées en octets.</returns>
-    /// <exception cref="InvalidDataException">Le bloc est absent, ou sa taille diffère de <see cref="BlockSize"/> lorsque les tailles variables ne sont pas autorisées.</exception>
+    /// <exception cref = "InvalidDataException">Le bloc est absent, ou sa taille diffère de <see cref = "BlockSize"/> lorsque les tailles variables ne sont pas autorisées.</exception>
     public ReadOnlyMemory<byte> GetBlock(int logicalBlock)
     {
-        if (!_blocks.TryGetValue(logicalBlock, out var block)) throw SectorImageExceptions.MissingBlock(logicalBlock);
-        if (!_allowVariableBlockSize && block.Data.Count != BlockSize) throw SectorImageExceptions.InvalidBlockSize(logicalBlock, block.Data.Count, BlockSize);
+        if (!_blocks.TryGetValue(logicalBlock, out var block))
+            throw SectorImageExceptions.MissingBlock(logicalBlock);
+        if (!_allowVariableBlockSize && block.Data.Count != BlockSize)
+            throw SectorImageExceptions.InvalidBlockSize(logicalBlock, block.Data.Count, BlockSize);
         return block.Data is byte[] bytes ? bytes : block.Data.ToArray();
     }
 
     /// <summary>Crée une nouvelle image avec l'identifiant indiqué en conservant exactement la géométrie, les blocs et les règles de capacité de l'image courante.</summary>
-    /// <param name="formatId">Nouvel identifiant de format.</param>
+    /// <param name = "formatId">Nouvel identifiant de format.</param>
     /// <returns>Nouvelle image dont seul l'identifiant change.</returns>
     public SectorImage WithFormatId(string formatId) => new(formatId, BlockSize, Cylinders, Heads, SectorsPerTrack, AvailableBlocks, _allowVariableBlockSize, _capacity, _logicalBlockCount, AddressingKind);
 }

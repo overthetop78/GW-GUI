@@ -1,5 +1,4 @@
 namespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
-
 /// <summary>Construit les descriptions techniques du format DEC RX02.</summary>
 internal static class DecRx02Descriptions
 {
@@ -29,5 +28,5 @@ internal static class DecRx02Descriptions
 }
 
 /// <summary>Représente un en-tête RX02 décodé.</summary>
-/// <param name="Cylinder">Cylindre.</param><param name="Head">Face.</param><param name="Sector">Secteur.</param><param name="SizeCode">Code de taille.</param><param name="CrcValid">Validité du CRC.</param>
+/// <param name = "Cylinder">Cylindre.</param><param name = "Head">Face.</param><param name = "Sector">Secteur.</param><param name = "SizeCode">Code de taille.</param><param name = "CrcValid">Validité du CRC.</param>
 internal sealed record DecRx02Header(byte Cylinder, byte Head, byte Sector, byte SizeCode, bool CrcValid);

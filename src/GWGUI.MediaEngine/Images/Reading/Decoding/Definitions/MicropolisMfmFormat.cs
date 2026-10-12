@@ -1,7 +1,6 @@
 using GWGUI.MediaEngine.Images.Writing.Encoding;
 
 namespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
-
 /// <summary>Regroupe les définitions techniques du format Micropolis MFM.</summary>
 internal static class MicropolisMfmFormat
 {
@@ -83,15 +82,24 @@ internal static class MicropolisChecksum
         var value = MicropolisMfmFormat.InitialChecksum;
         foreach (var item in data)
         {
-            if (value > MicropolisMfmFormat.ChecksumModulus) value -= MicropolisMfmFormat.ChecksumModulus;
+            if (value > MicropolisMfmFormat.ChecksumModulus)
+                value -= MicropolisMfmFormat.ChecksumModulus;
             value += item;
         }
+
         return (byte)value;
     }
 }
 
 /// <summary>Représente les champs d'un record Micropolis complet.</summary>
-internal sealed record MicropolisMfmRecord(byte Cylinder, byte Sector, byte[] Data, byte StoredChecksum, byte[] Trailer, byte[] Bytes)
+internal sealed record MicropolisMfmRecord(
+    byte Cylinder,
+    byte Sector,
+    byte[] Data,
+    byte StoredChecksum,
+    byte[] Trailer,
+    byte[] Bytes
+)
 {
     /// <summary>Indique si le checksum stocké correspond au contenu du record.</summary>
     public bool ChecksumValid => MicropolisChecksum.Compute(Bytes.Skip(MicropolisMfmFormat.ChecksumDataOffset).Take(MicropolisMfmFormat.ChecksumDataLength)) == StoredChecksum;
@@ -112,7 +120,11 @@ internal sealed record MicropolisMfmRecord(byte Cylinder, byte Sector, byte[] Da
     }
 
     /// <summary>Crée les octets d'un record à encoder.</summary>
-    public static MicropolisMfmRecord Create(byte cylinder, byte sector, IReadOnlyList<byte> data)
+    public static MicropolisMfmRecord Create(
+        byte cylinder,
+        byte sector,
+        IReadOnlyList<byte> data
+    )
     {
         var bytes = new byte[MicropolisMfmFormat.RecordByteCount];
         bytes[MicropolisMfmFormat.AddressMarkOffset] = MicropolisMfmFormat.AddressMark;

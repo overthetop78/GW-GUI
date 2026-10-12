@@ -1,5 +1,4 @@
 namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
-
 using GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Recognition;
 
 /// <summary>Associe les familles et formats explicites à des candidats SCP nommés et immuables.</summary>
@@ -10,7 +9,6 @@ internal sealed class ScpCandidateRegistry
     private readonly IReadOnlyDictionary<ScpFormatFamily, IReadOnlyList<ScpSectorImageCandidate>> familyCandidates;
     private readonly IReadOnlyList<ScpFormatFamily> familyOrder;
     private readonly ScpSectorImageCandidate fallback;
-
     /// <summary>Copie toutes les inscriptions et l'ordre déterministe des familles.</summary>
     public ScpCandidateRegistry(
         IEnumerable<ScpFormatSelection> selections,
@@ -30,13 +28,13 @@ internal sealed class ScpCandidateRegistry
     /// <summary>Retourne le candidat spécialisé du format explicite, ou le candidat ISO de repli.</summary>
     public ScpSectorImageCandidate? Selected(string? formatId)
     {
-        if (formatId is null) return null;
+        if (formatId is null)
+            return null;
         return selections.FirstOrDefault(selection => selection.Matches(formatId))?.Candidate ?? fallback;
     }
 
     /// <summary>Retourne les candidats par défaut dans leur ordre d'inscription.</summary>
     public IReadOnlyList<ScpSectorImageCandidate> Default() => defaultCandidates;
-
     /// <summary>Retourne les candidats des familles détectées en respectant l'ordre global et en ignorant les familles non inscrites.</summary>
     public IReadOnlyList<ScpSectorImageCandidate> Automatic(IReadOnlySet<ScpFormatFamily> families)
     {

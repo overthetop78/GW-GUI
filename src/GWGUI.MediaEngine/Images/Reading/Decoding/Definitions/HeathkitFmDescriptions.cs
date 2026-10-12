@@ -1,5 +1,4 @@
 namespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
-
 /// <summary>Construit les descriptions techniques du format Heathkit FM.</summary>
 internal static class HeathkitFmDescriptions
 {

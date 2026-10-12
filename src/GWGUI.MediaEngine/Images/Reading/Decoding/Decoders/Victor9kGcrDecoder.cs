@@ -1,17 +1,14 @@
 ﻿using GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
 using GWGUI.MediaEngine.Functions;
 using GWGUI.MediaEngine.Images.Models.Sectors;
-
 using GWGUI.MediaEngine.Images.Models.Flux;
 
 namespace GWGUI.MediaEngine.Images.Reading.Decoding;
-
 /// <summary>Décode les pistes utilisant le format Victor 9000 GCR.</summary>
 public sealed class Victor9kGcrDecoder : IFluxDecoder
 {
     /// <summary>Obtient l'identifiant technique du codec.</summary>
     public string Id => Victor9kGcrFormat.CodecId;
-
     /// <summary>Obtient le nom affiché du codec.</summary>
     public string DisplayName => Victor9kGcrFormat.CodecDisplayName;
 
@@ -42,45 +39,48 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
                 {
                     decodedBytes.AddRange(data.Payload);
                     structures.Add(new(
-                        FluxStructureKind.FormatData,
-                        dataOffset,
-                        data.EndOffset - dataOffset,
-                        $"{FluxStructureDescriptions.Identity(Victor9kGcrFormat.StructureDescriptionName, FluxStructureKind.FormatData, header?.Cylinder ?? 0, Victor9kGcrFormat.LogicalHead, header?.Sector ?? 0, Victor9kGcrFormat.SectorByteCount, data.Prefix, "data block")}, {FluxStructureDescriptions.Integrity("checksum", data.ChecksumValid)}"
-                    ));
+                            FluxStructureKind.FormatData,
+                            dataOffset,
+                            data.EndOffset - dataOffset,
+                            $"{FluxStructureDescriptions.Identity(Victor9kGcrFormat.StructureDescriptionName, FluxStructureKind.FormatData, header?.Cylinder ?? 0, Victor9kGcrFormat.LogicalHead, header?.Sector ?? 0, Victor9kGcrFormat.SectorByteCount, data.Prefix, "data block")}, {FluxStructureDescriptions.Integrity("checksum", data.ChecksumValid)}"
+                        ));
                 }
             }
-    
+
             bool? integrity = header?.Valid == false || data?.ChecksumValid == false ? false : data is null ? null : true;
             sectors.Add(new(header?.Cylinder ?? 0, Victor9kGcrFormat.LogicalHead, header?.Sector ?? 0, Victor9kGcrFormat.SectorSizeCode, Victor9kGcrFormat.SectorByteCount, integrity, offset, SectorIntegrityKind.Checksum, Data: data?.Payload));
             structures.Add(new(
-                FluxStructureKind.FormatHeader,
-                offset,
-                Math.Max(Victor9kGcrFormat.MarkBitCount, headerEnd - offset),
-                FluxStructureDescriptions.Complete(
-                Victor9kGcrFormat.StructureDescriptionName,
-                FluxStructureKind.FormatHeader,
-                header?.Cylinder ?? 0,
-                Victor9kGcrFormat.LogicalHead,
-                header?.Sector ?? 0,
-                Victor9kGcrFormat.SectorByteCount,
-                null,
-                null,
-                header?.Valid,
-                data?.ChecksumValid,
-                "header",
-                "data checksum"
-            )
-            ));
+                    FluxStructureKind.FormatHeader,
+                    offset,
+                    Math.Max(Victor9kGcrFormat.MarkBitCount, headerEnd - offset),
+                    FluxStructureDescriptions.Complete(
+                        Victor9kGcrFormat.StructureDescriptionName,
+                        FluxStructureKind.FormatHeader,
+                        header?.Cylinder ?? 0,
+                        Victor9kGcrFormat.LogicalHead,
+                        header?.Sector ?? 0,
+                        Victor9kGcrFormat.SectorByteCount,
+                        null,
+                        null,
+                        header?.Valid,
+                        data?.ChecksumValid,
+                        "header",
+                        "data checksum"
+                    )
+                ));
             offset = Math.Max(offset + Victor9kGcrFormat.MarkBitCount - 1, (data?.EndOffset ?? headerEnd) - 1);
         }
-    
+
         CollectUnpairedDataMarks(stream, pairedDataOffsets, structures);
         var confidence = FluxDecoderConfidence.Calculate(sectors.Count, structures.Count, Victor9kGcrFormat.ConfidenceSectorWeight, Victor9kGcrFormat.ConfidenceDivisor);
         return new(Id, DisplayName, confidence, stream.BitCellTicks, structures, decodedBytes, sectors);
     }
 
     /// <summary>Décode et valide les six octets d'un en-tête Victor 9000.</summary>
-    internal static Victor9kHeader? TryDecodeHeader(IReadOnlyList<bool> bits, int markOffset)
+    internal static Victor9kHeader? TryDecodeHeader(
+        IReadOnlyList<bool> bits,
+        int markOffset
+    )
     {
         var bytes = CommodoreGcrCodec.TryDecodeBytes(bits, markOffset + Victor9kGcrFormat.EncodedDataStartBitOffset, Victor9kGcrFormat.HeaderByteCount, Victor9kGcrFormat.EncodedCellStride, out _);
         if (bytes is null)
@@ -90,28 +90,43 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Recherche la marque de données dans la plage fournie.</summary>
-    internal static int FindDataMark(FluxBitstream stream, int start, int end)
+    internal static int FindDataMark(
+        FluxBitstream stream,
+        int start,
+        int end
+    )
     {
-        for (var offset = Math.Max(0, start); offset + Victor9kGcrFormat.MarkBitCount <= end; offset++) if (FluxBitReader.MatchBytes(stream, offset, Victor9kGcrFormat.DataMark)) return offset;
+        for (var offset = Math.Max(0, start); offset + Victor9kGcrFormat.MarkBitCount <= end; offset++)
+            if (FluxBitReader.MatchBytes(stream, offset, Victor9kGcrFormat.DataMark))
+                return offset;
         return -1;
     }
 
     /// <summary>Lit le préfixe, la charge utile et le checksum faible puis fort.</summary>
-    internal static Victor9kData? TryDecodeData(IReadOnlyList<bool> bits, int markOffset)
+    internal static Victor9kData? TryDecodeData(
+        IReadOnlyList<bool> bits,
+        int markOffset
+    )
     {
         var bytes = CommodoreGcrCodec.TryDecodeBytes(bits, markOffset + Victor9kGcrFormat.EncodedDataStartBitOffset, Victor9kGcrFormat.DecodedDataByteCount, Victor9kGcrFormat.EncodedCellStride, out var endOffset);
-        if (bytes is null) return null;
+        if (bytes is null)
+            return null;
         var payload = bytes.Skip(Victor9kGcrFormat.DataOffset).Take(Victor9kGcrFormat.SectorByteCount).ToArray();
         var storedChecksum = (ushort)(bytes[Victor9kGcrFormat.ChecksumLowOffset] | bytes[Victor9kGcrFormat.ChecksumHighOffset] << BitPrimitives.BitsPerByte);
         return new(bytes[Victor9kGcrFormat.DataPrefixOffset], payload, storedChecksum, Victor9kChecksum.Compute(payload) == storedChecksum, endOffset);
     }
 
     /// <summary>Ajoute les marques de données qui n'ont été associées à aucun en-tête.</summary>
-    internal static void CollectUnpairedDataMarks(FluxBitstream stream, IReadOnlySet<int> pairedOffsets, ICollection<FluxStructure> structures)
+    internal static void CollectUnpairedDataMarks(
+        FluxBitstream stream,
+        IReadOnlySet<int> pairedOffsets,
+        ICollection<FluxStructure> structures
+    )
     {
         for (var offset = 0; offset + Victor9kGcrFormat.MarkBitCount <= stream.Bits.Length; offset++)
         {
-            if (!FluxBitReader.MatchBytes(stream, offset, Victor9kGcrFormat.DataMark) || pairedOffsets.Contains(offset)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, Victor9kGcrFormat.DataMark) || pairedOffsets.Contains(offset))
+                continue;
             structures.Add(new(FluxStructureKind.FormatData, offset, Victor9kGcrFormat.MarkBitCount, FluxStructureDescriptions.UnpairedData(Victor9kGcrFormat.StructureDescriptionName, null, "data block")));
             offset += Victor9kGcrFormat.MarkBitCount - 1;
         }

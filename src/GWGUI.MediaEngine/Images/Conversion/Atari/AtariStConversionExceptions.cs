@@ -1,10 +1,7 @@
-
 using GWGUI.MediaEngine.Images.Formats.Floppy.St;
-
 using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Conversion.Atari;
-
 /// <summary>Construit les erreurs propres à la conversion sectorielle Atari ST.</summary>
 internal static class AtariStConversionExceptions
 {

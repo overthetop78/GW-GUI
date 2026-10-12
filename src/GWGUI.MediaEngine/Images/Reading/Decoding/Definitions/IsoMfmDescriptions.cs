@@ -1,5 +1,4 @@
 namespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
-
 /// <summary>Construit les descriptions techniques ISO MFM.</summary>
 internal static class IsoMfmDescriptions
 {
