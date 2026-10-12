@@ -55,32 +55,29 @@ internal static class InputSettingsFunctions
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        EmulationInputSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
-        var allowedKeys = KeyboardDefinitions(configuration)
-            .Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
-        var keyboardBindings = settings.Keyboard is null ? configuration.Input.KeyboardBindings ?? ToStrings(configuration.Input.KeyboardMappings)
+        var allowedKeys = KeyboardDefinitions(configuration).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
+        var keyboardBindings = settings.Keyboard is null
+            ? configuration.Input.KeyboardBindings ?? ToStrings(configuration.Input.KeyboardMappings)
             : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key) && (string.IsNullOrWhiteSpace(item.Value) || Enum.TryParse<EmulationKey>(item.Value, true, out var key) && Enum.IsDefined(key))).ToDictionary(item => item.Key, item => string.IsNullOrWhiteSpace(item.Value) ? string.Empty : item.Value, StringComparer.Ordinal);
         var keyboard = keyboardBindings.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
         var controllers = settings.ControllerPorts.Select(port =>
         {
-            if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var peripheral)
-                || !Enum.IsDefined(peripheral))
+            if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var peripheral) || !Enum.IsDefined(peripheral))
                 throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(settings));
-            return new ControllerBinding(port.Number - BufferConstants.IndexIncrement,
-                peripheral, port.PhysicalDeviceId, port.Bindings.Values,
-                port.DeadZonePercent, port.VisualId);
+            return new ControllerBinding(port.Number - BufferConstants.IndexIncrement, peripheral, port.PhysicalDeviceId, port.Bindings.Values, port.DeadZonePercent, port.VisualId);
         }).ToArray();
         var result = configuration with
         {
             Input = configuration.Input with
             {
-                KeyboardMappings = keyboard, KeyboardBindings = keyboardBindings, Controllers = controllers,
+                KeyboardMappings = keyboard,
+                KeyboardBindings = keyboardBindings,
+                Controllers = controllers,
                 MouseMappings = configuration.Family == MachineFamily.Macintosh
-                    ? settings.Mouse?.Values.Where(pair => pair.Key == InputSnapshotFunctionsConstants.Left)
-                        .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal)
-                        ?? configuration.Input.MouseMappings : null
+                    ? settings.Mouse?.Values.Where(pair => pair.Key == InputSnapshotFunctionsConstants.Left).ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal) ?? configuration.Input.MouseMappings
+                    : null
             }
         };
         ConfigurationFunctions.Validate(result);
