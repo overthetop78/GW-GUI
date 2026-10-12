@@ -1,10 +1,25 @@
+using GWGUI.Emulation.Mattel.Emulators.Common.Contracts;
+using GWGUI.Emulation.Mattel.Emulators.Common.Factories;
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Dictionaries;
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services;
 using System.IO;
 
 namespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Factories;
 
 internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry)
-    : GWGUI.Emulation.Mattel.Emulators.Common.Factories.MachineFactory(catalogEntry)
+    : GWGUI.Emulation.Mattel.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorInputMapper
 {
+    public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model)
+    {
+        _ = ConfigurationFunctions.Family(model);
+        return [PeripheralCategory.Intellivision];
+    }
+
+    public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, PeripheralCategory peripheral) => ControllerProtocolDictionary.Actions(model, peripheral).Select(action => new InputActionDefinition(action.Definition)).ToArray();
+    public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => NativeInputMappingFunctions.Apply(snapshot, input, model);
+
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
     public override bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)

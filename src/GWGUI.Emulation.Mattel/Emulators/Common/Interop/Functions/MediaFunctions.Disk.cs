@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Mattel.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants;
 using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions;

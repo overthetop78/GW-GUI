@@ -6,10 +6,10 @@ internal static class StorageSettingsFunctions
 {
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
     {
-        var device=new EmulationMediaDevice(ConfigurationFunctions.DefaultSlots(configuration.Model).Single(),EmulationMediaType.Cartridge,
-            StorageSettingsConstants.CartridgeExtensions,RequiresMachineRecreation:true,ImageDirectory:configuration.Folders.Cartridges,IsPermanent:true);
-        return new([device],configuration.ConfiguredSlots,configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
+        var devices = new Engine().Adapter(configuration) is IEmulatorStorageSettings storage ? storage.DescribeStorage(configuration) : [];
+        return new(devices, configuration.ConfiguredSlots, configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
     }
+
     internal static MachineConfiguration Apply(MachineConfiguration configuration,EmulationStorageSettings settings)
     {
         var device=Describe(configuration).AvailableDevices.Single();

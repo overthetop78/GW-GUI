@@ -21,7 +21,7 @@ internal static class FirmwareFunctions
     internal static async ValueTask<EmulationFirmwareCandidate> ScanFileAsync(string path,MachineModel model,Emulator core,CancellationToken cancellationToken)
     {
         _=ConfigurationFunctions.Family(model);
-        if(core!=Emulator.FreeIntv) throw new ArgumentOutOfRangeException(nameof(core));
+        if (!ConfigurationFunctions.IsCompatible(model, core)) throw new ArgumentOutOfRangeException(nameof(core));
         var absolute=Path.GetFullPath(path);
         string? hash=null, destination=null;
         var compatibility=EmulationFirmwareCompatibility.Incompatible;

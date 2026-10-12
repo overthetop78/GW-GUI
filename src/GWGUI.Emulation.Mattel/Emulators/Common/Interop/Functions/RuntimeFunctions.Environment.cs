@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Mattel.Emulators.Common.Contracts;
+using GWGUI.Emulation.Mattel.Emulators.Common.Enums;
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Contracts;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;

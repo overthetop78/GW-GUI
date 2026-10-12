@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Contracts;
 using System.IO;
 using System.Runtime.InteropServices;
 

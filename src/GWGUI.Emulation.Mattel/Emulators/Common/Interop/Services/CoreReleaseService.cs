@@ -1,3 +1,10 @@
+using GWGUI.Emulation.Mattel.Emulators.Common.Constants;
+using GWGUI.Emulation.Mattel.Emulators.Common.Contracts;
+using GWGUI.Emulation.Mattel.Emulators.Common.Dictionaries;
+using GWGUI.Emulation.Mattel.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Mattel.Emulators.Common.Functions;
+using GWGUI.Emulation.Mattel.Emulators.Common.Interfaces;
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions;
 using System.Net.Http;
 using System.IO;
 namespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services;

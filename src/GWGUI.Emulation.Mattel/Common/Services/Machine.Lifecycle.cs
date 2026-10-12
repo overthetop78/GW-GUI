@@ -109,12 +109,12 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
     }
 
-    public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(InputSnapshotFunctions.Apply(snapshot, _inputConfiguration, Configuration.Model, Configuration.Core));
+    public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(InputSnapshotFunctions.Apply(snapshot, _inputConfiguration, Configuration.Model, _inputMapper));
 
     public void SetControllerPortDevice(int port, PeripheralCategory peripheral) =>
         QueueCommand(() =>
         {
-            if (port < ControllerConstants.FirstPort || port >= ConfigurationFunctions.ControllerPortCount(Configuration.Model) || !InputSettingsFunctions.Peripherals(Configuration.Core).Contains(peripheral))
+            if (port < ControllerConstants.FirstPort || port >= ConfigurationFunctions.ControllerPortCount(Configuration.Model) || !InputSettingsFunctions.Peripherals(Configuration.Model, Configuration.Core).Contains(peripheral))
                 throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(peripheral));
             var previous = _inputConfiguration.Controllers?.FirstOrDefault(binding => binding.Port == port);
             var binding = previous is null ? new ControllerBinding(port, peripheral) : previous with { Peripheral = peripheral };

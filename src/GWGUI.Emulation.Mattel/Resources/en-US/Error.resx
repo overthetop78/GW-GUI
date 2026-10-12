@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>The Mattel saved state is incompatible with the current machine.</value></data>
-  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>An unexpected Mattel emulation error occurred.</value></data>
-  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>A required Mattel firmware is missing.</value></data>
-  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>The system ROM is invalid or incompatible.</value></data>
   <data name="Emulation.Mattel.Error.ContentNotFound" xml:space="preserve"><value>The configured Mattel media was not found.</value></data>
   <data name="Emulation.Mattel.Error.ContentUnsupported" xml:space="preserve"><value>This machine does not support the selected media.</value></data>
-  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>A Mattel option has an invalid value.</value></data>
   <data name="Emulation.Mattel.Error.CoreNotFound" xml:space="preserve"><value>The required Mattel core was not found.</value></data>
   <data name="Emulation.Mattel.Error.CoreRejected" xml:space="preserve"><value>The selected Mattel core could not be loaded.</value></data>
-  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>The Mattel saved state is invalid.</value></data>
-  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>The Mattel host executable path is unavailable.</value></data>
   <data name="Emulation.Mattel.Error.Details" xml:space="preserve"><value>Details: {0}</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>The system ROM is invalid or incompatible.</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>A required Mattel firmware is missing.</value></data>
+  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>The Mattel host executable path is unavailable.</value></data>
   <data name="Emulation.Mattel.Error.HostProtocolFailure" xml:space="preserve"><value>Communication with the Mattel host failed.</value></data>
+  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>A Mattel option has an invalid value.</value></data>
+  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>The Mattel saved state is incompatible with the current machine.</value></data>
+  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>The Mattel saved state is invalid.</value></data>
+  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>An unexpected Mattel emulation error occurred.</value></data>
   <data name="Emulation.Mattel.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Unknown environment command: {0}</value></data>
 </root>

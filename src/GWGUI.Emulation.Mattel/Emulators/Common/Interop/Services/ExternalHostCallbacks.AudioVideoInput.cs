@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions;
 using System.IO;
 using System.Diagnostics;
 using System.Runtime.InteropServices;

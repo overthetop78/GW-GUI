@@ -4,11 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.freeintv.Description" xml:space="preserve"><value>Emuluje konsolę Mattel Intellivision.</value></data>
-  <data name="Emulation.Mattel.Memory.Display" xml:space="preserve"><value>Pamięć wideo</value></data>
+  <data name="Emulation.Emulator.freeintv.Description" xml:space="preserve"><value>Emuluje MATTEL INTELLIVISION konsola.</value></data>
   <data name="Emulation.Mattel.Controls.Native" xml:space="preserve"><value>Sterowniki konsoli</value></data>
-  <data name="Emulation.Mattel.Option.default_p1_controller" xml:space="preserve"><value>Player jeden kontroler</value></data>
-  <data name="Emulation.Mattel.Option.default_p1_controller.Help" xml:space="preserve"><value>Wybierz, który kontroler konsoli jest używany przez jednego gracza.</value></data>
-  <data name="Emulation.Mattel.Option.default_p1_controller.Value0" xml:space="preserve"><value>Prawy kontroler</value></data>
-  <data name="Emulation.Mattel.Option.default_p1_controller.Value1" xml:space="preserve"><value>lewy kontroler</value></data>
+  <data name="Emulation.Mattel.Memory.Display" xml:space="preserve"><value>Pamięć wideo</value></data>
+  <data name="Emulation.Mattel.Setting.PlayerOneController" xml:space="preserve"><value>Kontroler dla gracza 1</value></data>
+  <data name="Emulation.Mattel.Value.LeftController" xml:space="preserve"><value>Lewy kontroler</value></data>
+  <data name="Emulation.Mattel.Value.RightController" xml:space="preserve"><value>Prawy kontroler</value></data>
 </root>

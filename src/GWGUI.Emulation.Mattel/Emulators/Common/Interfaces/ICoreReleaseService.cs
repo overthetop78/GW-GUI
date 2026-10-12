@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Mattel.Emulators.Common.Contracts;
 namespace GWGUI.Emulation.Mattel.Emulators.Common.Interfaces;
 
 public interface ICoreReleaseService

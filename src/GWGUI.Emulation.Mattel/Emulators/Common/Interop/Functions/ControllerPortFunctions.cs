@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Contracts;
 namespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions;
 
 internal static class ControllerPortFunctions

@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Mattel.Emulators.Common.Constants;
+using GWGUI.Emulation.Mattel.Emulators.Common.Contracts;
+using GWGUI.Emulation.Mattel.Emulators.Common.Exceptions;
 using System.Net.Http;
 using System.IO;
 using System.Globalization;

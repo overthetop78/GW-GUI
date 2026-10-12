@@ -33,7 +33,7 @@ Le contrat Common est indépendant du backend : Libretro n'est pas sa définitio
 
 ## 3. Projet, entrée et intégration : chemins et contenus
 
-`<Famille>` désigne le namespace/projet, `<id>` l'identifiant stable du manifeste, `<Emulateur>` le dossier du cœur. Ne pas confondre ces identités ni changer celles déjà persistées.
+`<Famille>` désigne le namespace/projet, `<id>` l'identifiant stable du manifeste, `<Emulateur>` le dossier du cœur. Ne pas confondre ces identités ni changer celles déjà persistées. Avant la compilation, contrôler les identifiants des commandes d’hôte et de diagnostic, les préfixes de pipe et de mémoire partagée : ils doivent désigner le module propriétaire et ne pas être repris du modèle copié. Vérifier le rejet des commandes des autres modules dans le parcours livré. Une recherche de marque étrangère distingue les identifiants actifs des signatures binaires déjà écrites dans des fichiers persistés ; ne pas remplacer ces signatures sans une migration de format explicitement prévue et compatible.
 
 | Fichier | Contenu obligatoire | Consommateur / contrôle |
 |---|---|---|
@@ -536,3 +536,4 @@ Chaque ligne décrit une amélioration de cette procédure, pas une réalisation
 | 237 | 2026-10-12 23:01:33 | Donner le contexte technique aux sources avant traduction et contrôler libellés et aides ensemble. |
 | 238 | 2026-10-13 00:01:47 | Imports limités au propriétaire, déclarations multiples inspectées, arrêt réel des chaînes après erreur et contrôle du contenu avant staging ; parcours de présentation borné. |
 | 239 | 2026-10-13 00:05:00 | Compiler d’abord le sous-projet en échec avant la livraison complète ; qualifier les noms locaux homonymes des imports communs. |
+| 240 | 2026-10-13 00:32:55 | Vérifier les identifiants propres au module et le rejet des commandes étrangères ; préserver les signatures des formats persistés. |

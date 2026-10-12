@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Mattel.Emulators.Common.Contracts;
+using GWGUI.Emulation.Mattel.Emulators.Common.Functions;
 namespace GWGUI.Emulation.Mattel.Emulators.FreeIntv.Constants;
 
 internal static class EmulatorConstants

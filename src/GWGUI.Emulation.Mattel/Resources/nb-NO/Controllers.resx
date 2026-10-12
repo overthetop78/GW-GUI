@@ -4,9 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Mattel.Input.Top" xml:space="preserve"><value>Øvre sideknappen</value></data>
-  <data name="Emulation.Mattel.Input.BottomLeft" xml:space="preserve"><value>nedre venstre side knapp</value></data>
-  <data name="Emulation.Mattel.Input.BottomRight" xml:space="preserve"><value>nedre høyre side knapp</value></data>
-  <data name="Emulation.Mattel.Input.Clear" xml:space="preserve"><value>Clear</value></data>
-  <data name="Emulation.Mattel.Input.Enter" xml:space="preserve"><value>Enter</value></data>
+  <data name="Emulation.Mattel.Input.BottomLeft" xml:space="preserve"><value>Nedre venstre side knapp</value></data>
+  <data name="Emulation.Mattel.Input.BottomRight" xml:space="preserve"><value>Nedre høyre knapp</value></data>
+  <data name="Emulation.Mattel.Input.Top" xml:space="preserve"><value>Øvre sideknapp</value></data>
 </root>

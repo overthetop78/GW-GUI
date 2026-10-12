@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Constants;
 namespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions;
 
 internal static class KeyboardFunctions

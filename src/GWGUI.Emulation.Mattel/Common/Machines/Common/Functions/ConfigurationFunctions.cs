@@ -3,8 +3,8 @@ namespace GWGUI.Emulation.Mattel.Common.Machines.Common.Functions;
 internal static partial class ConfigurationFunctions
 {
     internal static MachineFamily Family(MachineModel model) => model == MachineModel.Intellivision ? MachineFamily.Intellivision : throw new ArgumentOutOfRangeException(nameof(model));
-    internal static Emulator DefaultEmulator(MachineModel model) { _ = Family(model); return Emulator.FreeIntv; }
-    internal static bool IsCompatible(MachineModel model, Emulator core) => model == MachineModel.Intellivision && core == Emulator.FreeIntv;
+    internal static Emulator DefaultEmulator(MachineModel model) => new Engine().DefaultEmulator(model);
+    internal static bool IsCompatible(MachineModel model, Emulator core) => Enum.IsDefined(core) && new Engine().Adapter(core).Definition.MachineIds.Contains(model.ToString());
     internal static IReadOnlyList<EmulationMediaSlot> DefaultSlots(MachineModel model) { _ = Family(model); return [EmulationMediaSlot.Cartridge0]; }
     internal static int ControllerPortCount(MachineModel model) { _ = Family(model); return ControllerConstants.PortCount; }
 

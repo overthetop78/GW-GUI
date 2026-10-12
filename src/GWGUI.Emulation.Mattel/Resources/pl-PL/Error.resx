@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>Stan zapisany przez Mattela jest niezgodny z obecną maszyną.</value></data>
-  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>Wystąpił nieoczekiwany błąd emulacji Mattela.</value></data>
-  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>Brakuje wymaganego oprogramowania firmowego Mattel.</value></data>
-  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>System ROM jest nieprawidłowy lub niekompatybilny.</value></data>
-  <data name="Emulation.Mattel.Error.ContentNotFound" xml:space="preserve"><value>Konfigurowane media Mattel nie zostały znalezione.</value></data>
+  <data name="Emulation.Mattel.Error.ContentNotFound" xml:space="preserve"><value>Nie znaleziono skonfigurowanych mediów Mattel.</value></data>
   <data name="Emulation.Mattel.Error.ContentUnsupported" xml:space="preserve"><value>Ta maszyna nie obsługuje wybranych mediów.</value></data>
-  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>Opcja Mattel ma niepoprawną wartość.</value></data>
-  <data name="Emulation.Mattel.Error.CoreNotFound" xml:space="preserve"><value>Nie znaleziono wymaganego rdzenia Mattela.</value></data>
-  <data name="Emulation.Mattel.Error.CoreRejected" xml:space="preserve"><value>Wybrany rdzeń Mattela nie mógł być wczytany.</value></data>
-  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>Stan zapisany przez Mattela jest niepoprawny.</value></data>
-  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>Ścieżka wykonywalna hosta Mattel jest niedostępna.</value></data>
+  <data name="Emulation.Mattel.Error.CoreNotFound" xml:space="preserve"><value>Nie znaleziono wymaganego rdzenia Mattel.</value></data>
+  <data name="Emulation.Mattel.Error.CoreRejected" xml:space="preserve"><value>Wybrany rdzeń Mattel nie mógł być wczytany.</value></data>
   <data name="Emulation.Mattel.Error.Details" xml:space="preserve"><value>Szczegóły: {0}</value></data>
-  <data name="Emulation.Mattel.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikacja z hostem Mattela nie powiodła się.</value></data>
-  <data name="Emulation.Mattel.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Nieznane polecenie środowiska: {0}</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>System ROM jest nieważny lub niezgodny.</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>Brakuje wymaganego oprogramowania Mattel.</value></data>
+  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>Ścieżka wykonywalna hosta Mattel jest niedostępna.</value></data>
+  <data name="Emulation.Mattel.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikacja z hostem Mattel nie powiodła się.</value></data>
+  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>Opcja Mattel ma nieprawidłową wartość.</value></data>
+  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>Zapisany stan Mattel jest niezgodny z obecną maszyną.</value></data>
+  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>Zapisany stan Mattel jest nieważny.</value></data>
+  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>Wystąpił nieoczekiwany błąd emulacji Mattela.</value></data>
+  <data name="Emulation.Mattel.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Polecenie nieznanego środowiska: {0}</value></data>
 </root>

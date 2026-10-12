@@ -4,11 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.freeintv.Description" xml:space="preserve"><value>Emulerer Mattel Intellivision konsol.</value></data>
-  <data name="Emulation.Mattel.Memory.Display" xml:space="preserve"><value>Video hukommelse</value></data>
+  <data name="Emulation.Emulator.freeintv.Description" xml:space="preserve"><value>Emulerer MATTEL INTELLIVISION konsol.</value></data>
   <data name="Emulation.Mattel.Controls.Native" xml:space="preserve"><value>Konsol-controllere</value></data>
-  <data name="Emulation.Mattel.Option.default_p1_controller" xml:space="preserve"><value>spiller en controller</value></data>
-  <data name="Emulation.Mattel.Option.default_p1_controller.Help" xml:space="preserve"><value>Vælg hvilken konsol controller der bruges af spilleren én.</value></data>
-  <data name="Emulation.Mattel.Option.default_p1_controller.Value0" xml:space="preserve"><value>Højre controller</value></data>
-  <data name="Emulation.Mattel.Option.default_p1_controller.Value1" xml:space="preserve"><value>Venstre controller</value></data>
+  <data name="Emulation.Mattel.Memory.Display" xml:space="preserve"><value>Videohukommelse</value></data>
+  <data name="Emulation.Mattel.Setting.PlayerOneController" xml:space="preserve"><value>controller til spiller 1</value></data>
+  <data name="Emulation.Mattel.Value.LeftController" xml:space="preserve"><value>Venstre styreenhed</value></data>
+  <data name="Emulation.Mattel.Value.RightController" xml:space="preserve"><value>Højre styreenhed</value></data>
 </root>

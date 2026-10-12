@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>Mattel räddade tillståndet är oförenligt med den nuvarande maskinen.</value></data>
-  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>Ett oväntat Mattel-emuleringsfel inträffade.</value></data>
-  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>En nödvändig Mattel firmware saknas.</value></data>
-  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>Systemet ROM är ogiltigt eller oförenligt.</value></data>
-  <data name="Emulation.Mattel.Error.ContentNotFound" xml:space="preserve"><value>De konfigurerade Mattel-media hittades inte.</value></data>
-  <data name="Emulation.Mattel.Error.ContentUnsupported" xml:space="preserve"><value>Denna maskin stöder inte de utvalda medierna.</value></data>
-  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>Ett Mattel-alternativ har ett ogiltigt värde.</value></data>
-  <data name="Emulation.Mattel.Error.CoreNotFound" xml:space="preserve"><value>Den nödvändiga Mattel kärnan hittades inte.</value></data>
+  <data name="Emulation.Mattel.Error.ContentNotFound" xml:space="preserve"><value>Den konfigurerade Mattel media hittades inte.</value></data>
+  <data name="Emulation.Mattel.Error.ContentUnsupported" xml:space="preserve"><value>Denna maskin stöder inte de valda medierna.</value></data>
+  <data name="Emulation.Mattel.Error.CoreNotFound" xml:space="preserve"><value>Den nödvändiga kärnan i Mattel hittades inte.</value></data>
   <data name="Emulation.Mattel.Error.CoreRejected" xml:space="preserve"><value>Den valda Mattel-kärnan kunde inte laddas.</value></data>
-  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>Mattel räddade tillståndet är ogiltigt.</value></data>
-  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>Mattel värd körbar väg är otillgänglig.</value></data>
   <data name="Emulation.Mattel.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>Systemet ROM är ogiltig eller oförenlig.</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>En nödvändig Mattel firmware saknas.</value></data>
+  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>Mattel värd körbar väg är otillgänglig.</value></data>
   <data name="Emulation.Mattel.Error.HostProtocolFailure" xml:space="preserve"><value>Kommunikation med Mattel-värden misslyckades.</value></data>
+  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>Ett Mattel alternativ har ett ogiltigt värde.</value></data>
+  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>Det sparade staten Mattel är oförenligt med den nuvarande maskinen.</value></data>
+  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>Det räddade staten Mattel är ogiltigt.</value></data>
+  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>Ett oväntat fel av Mattel-emulering inträffade.</value></data>
   <data name="Emulation.Mattel.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Okänd miljökommando: {0}</value></data>
 </root>

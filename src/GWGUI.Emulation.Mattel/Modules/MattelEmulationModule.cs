@@ -123,7 +123,7 @@ public sealed class MattelEmulationModule : IEmulationModule, IEmulationEmulator
         var options = current.Options.Where(option => allowed.Contains(option.Key)
             || option.Key == SettingsConstants.AudioOutput || option.Key == SettingsConstants.AudioLatency
             || option.Key == VideoAudioSettingsConstants.AudioVolumeOption).ToDictionary(option => option.Key, option => option.Value);
-        var controllers = current.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(core).Contains(binding.Peripheral) ? binding : binding with { Peripheral = PeripheralCategory.Intellivision }).ToArray();
+        var controllers = current.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(current.Model, core).Contains(binding.Peripheral) ? binding : binding with { Peripheral = PeripheralCategory.Intellivision }).ToArray();
         var result = current with { Core = core, Options = options, Input = current.Input with { Controllers = controllers } };
         ConfigurationFunctions.Validate(result);
         return ValueTask.FromResult<IEmulationConfiguration>(result);

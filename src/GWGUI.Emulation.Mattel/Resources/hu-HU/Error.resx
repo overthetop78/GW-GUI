@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>Az Mattel mentett állam összeegyeztethetetlen a jelenlegi gép.</value></data>
-  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>Váratlan Mattel emulációs hiba történt.</value></data>
-  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>Hiányzik egy szükséges Mattel firmware.</value></data>
-  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>A ROM rendszer érvénytelen vagy összeegyeztethetetlen.</value></data>
-  <data name="Emulation.Mattel.Error.ContentNotFound" xml:space="preserve"><value>A konfigurált Mattel média nem található.</value></data>
+  <data name="Emulation.Mattel.Error.ContentNotFound" xml:space="preserve"><value>A beállított Mattel média nem került elő.</value></data>
   <data name="Emulation.Mattel.Error.ContentUnsupported" xml:space="preserve"><value>Ez a gép nem támogatja a kiválasztott médiát.</value></data>
-  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>Az Mattel opciónak érvénytelen értéke van.</value></data>
   <data name="Emulation.Mattel.Error.CoreNotFound" xml:space="preserve"><value>A szükséges Mattel magot nem találták meg.</value></data>
-  <data name="Emulation.Mattel.Error.CoreRejected" xml:space="preserve"><value>A kiválasztott Mattel magot nem sikerült betölteni.</value></data>
-  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>Az Mattel mentett állam érvénytelen.</value></data>
-  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>Az Mattel host programozó elérési útja nem érhető el.</value></data>
+  <data name="Emulation.Mattel.Error.CoreRejected" xml:space="preserve"><value>A kiválasztott Mattel mag nem volt betöltve.</value></data>
   <data name="Emulation.Mattel.Error.Details" xml:space="preserve"><value>Részletek: {0}</value></data>
-  <data name="Emulation.Mattel.Error.HostProtocolFailure" xml:space="preserve"><value>A kommunikáció az Mattel host nem sikerült.</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>A rendszer ROM érvénytelen vagy összeegyeztethetetlen.</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>Egy szükséges Mattel firmware hiányzik.</value></data>
+  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>A Mattel host programozó elérési útja nem elérhető.</value></data>
+  <data name="Emulation.Mattel.Error.HostProtocolFailure" xml:space="preserve"><value>A kommunikáció a Mattel hosttal sikertelen.</value></data>
+  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>A Mattel opció érvénytelen értéket ad.</value></data>
+  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>A Mattel mentett állam összeegyeztethetetlen az aktuális géppel.</value></data>
+  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>A Mattel mentett állam érvénytelen.</value></data>
+  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>Váratlan Mattel emulációs hiba történt.</value></data>
   <data name="Emulation.Mattel.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Ismeretlen környezet parancs: {0}</value></data>
 </root>

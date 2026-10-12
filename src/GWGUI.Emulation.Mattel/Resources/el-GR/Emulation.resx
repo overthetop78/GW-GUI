@@ -4,11 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.freeintv.Description" xml:space="preserve"><value>Προσομοιάζει την κονσόλα Mattel Intellivision.</value></data>
-  <data name="Emulation.Mattel.Memory.Display" xml:space="preserve"><value>μνήμη βίντεο</value></data>
+  <data name="Emulation.Emulator.freeintv.Description" xml:space="preserve"><value>Προσομοιάζει το MATTEL INTELLIVISION κονσόλα.</value></data>
   <data name="Emulation.Mattel.Controls.Native" xml:space="preserve"><value>Ελεγκτές κονσόλας</value></data>
-  <data name="Emulation.Mattel.Option.default_p1_controller" xml:space="preserve"><value>Παίκτης ένας ελεγκτής</value></data>
-  <data name="Emulation.Mattel.Option.default_p1_controller.Help" xml:space="preserve"><value>Επιλέξτε ποιο χειριστήριο κονσόλας χρησιμοποιείται από τον παίκτη ένα.</value></data>
-  <data name="Emulation.Mattel.Option.default_p1_controller.Value0" xml:space="preserve"><value>δεξιός ελεγκτής</value></data>
-  <data name="Emulation.Mattel.Option.default_p1_controller.Value1" xml:space="preserve"><value>Αριστερό χειριστήριο</value></data>
+  <data name="Emulation.Mattel.Memory.Display" xml:space="preserve"><value>μνήμη βίντεο</value></data>
+  <data name="Emulation.Mattel.Setting.PlayerOneController" xml:space="preserve"><value>Ελεγκτής για παίκτη 1</value></data>
+  <data name="Emulation.Mattel.Value.LeftController" xml:space="preserve"><value>Αριστερό χειριστήριο</value></data>
+  <data name="Emulation.Mattel.Value.RightController" xml:space="preserve"><value>Δεξιός ελεγκτής</value></data>
 </root>

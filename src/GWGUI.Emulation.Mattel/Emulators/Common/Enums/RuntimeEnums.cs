@@ -8,28 +8,3 @@ internal enum EnvironmentLanguage : uint
     Hebrew = 21, Finnish = 23, Indonesian = 24, Swedish = 25, Ukrainian = 26, Czech = 27,
     Hungarian = 31, Norwegian = 34, Thai = 36
 }
-
-public enum ErrorCategory
-{
-    Core,
-    Firmware,
-    Content,
-    Option,
-    Host,
-    State
-}
-
-public enum ErrorCode
-{
-    CoreNotFound,
-    CoreRejected,
-    FirmwareMissing,
-    FirmwareInvalid,
-    ContentNotFound,
-    ContentRequired,
-    ContentUnsupported,
-    OptionInvalid,
-    HostProtocolFailure,
-    StateInvalid,
-    StateIncompatible
-}

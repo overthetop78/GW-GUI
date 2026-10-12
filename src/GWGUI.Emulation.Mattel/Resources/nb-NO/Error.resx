@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>Mattel-lagringstilstanden er ikke kompatibel med den aktuelle maskinen.</value></data>
-  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>En uventet Mattel- emuleringsfeil oppstod.</value></data>
-  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>En nødvendig Mattel firmware mangler.</value></data>
-  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>Systemets ROM er ugyldig eller uforenlig.</value></data>
   <data name="Emulation.Mattel.Error.ContentNotFound" xml:space="preserve"><value>De konfigurerte Mattel-mediene ble ikke funnet.</value></data>
-  <data name="Emulation.Mattel.Error.ContentUnsupported" xml:space="preserve"><value>Denne maskinen støtter ikke det valgte mediet.</value></data>
-  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>Et Mattel-alternativ har en ugyldig verdi.</value></data>
+  <data name="Emulation.Mattel.Error.ContentUnsupported" xml:space="preserve"><value>Denne maskinen støtter ikke de valgte mediene.</value></data>
   <data name="Emulation.Mattel.Error.CoreNotFound" xml:space="preserve"><value>Den nødvendige Mattel kjernen ble ikke funnet.</value></data>
-  <data name="Emulation.Mattel.Error.CoreRejected" xml:space="preserve"><value>Den valgte Mattel-kjernen kunne ikke lastes.</value></data>
-  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>Mattel lagret tilstand er ugyldig.</value></data>
-  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>Mattel-vertens kjørbare sti er utilgjengelig.</value></data>
+  <data name="Emulation.Mattel.Error.CoreRejected" xml:space="preserve"><value>Den valgte Mattel- kjernen kunne ikke lastes.</value></data>
   <data name="Emulation.Mattel.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareInvalid" xml:space="preserve"><value>Systemet ROM er ugyldig eller inkompatibel.</value></data>
+  <data name="Emulation.Mattel.Error.FirmwareMissing" xml:space="preserve"><value>En nødvendig Mattel firmware mangler.</value></data>
+  <data name="Emulation.Mattel.Error.HostExecutableMissing" xml:space="preserve"><value>Mattel-vertens kjøresti er utilgjengelig.</value></data>
   <data name="Emulation.Mattel.Error.HostProtocolFailure" xml:space="preserve"><value>Kommunikasjon med Mattel-verten mislyktes.</value></data>
-  <data name="Emulation.Mattel.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Ukjent miljøkommando: {0}</value></data>
+  <data name="Emulation.Mattel.Error.OptionInvalid" xml:space="preserve"><value>Et Mattel-alternativ har en ugyldig verdi.</value></data>
+  <data name="Emulation.Mattel.Error.StateIncompatible" xml:space="preserve"><value>Mattel-tilstanden som lagres er ikke kompatibel med den aktuelle maskinen.</value></data>
+  <data name="Emulation.Mattel.Error.StateInvalid" xml:space="preserve"><value>Mattel-tilstanden som ble lagret er ugyldig.</value></data>
+  <data name="Emulation.Mattel.Error.Unexpected" xml:space="preserve"><value>En uventet Mattel emuleringsfeil oppstod.</value></data>
+  <data name="Emulation.Mattel.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Ukjend miljøkommando: {0}</value></data>
 </root>

@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Mattel.Emulators.Common.Interop.Functions;
 namespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore

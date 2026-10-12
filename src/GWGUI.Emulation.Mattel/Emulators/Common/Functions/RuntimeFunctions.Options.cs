@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Mattel.Emulators.Common.Dictionaries;
 namespace GWGUI.Emulation.Mattel.Emulators.Common.Functions;
 
 internal static class NativeRuntimeOptionFunctions

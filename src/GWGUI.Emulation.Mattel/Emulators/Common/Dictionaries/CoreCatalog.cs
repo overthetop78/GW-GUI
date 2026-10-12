@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Mattel.Emulators.Common.Contracts;
+using GWGUI.Emulation.Mattel.Emulators.Common.Functions;
 using GWGUI.Emulation.Mattel.Common.Interfaces;
 using GWGUI.Emulation.Mattel.Emulators.Common.Factories;
 
