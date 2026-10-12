@@ -27,8 +27,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             try { action(); }
             catch (Exception error)
             {
-                throw EmulationErrorService.Translate(error, category, code,
-                    new EmulationMachineMessageContext(Configuration.Model));
+                throw EmulationErrorService.Translate(error, category, code, new EmulationMachineMessageContext(Configuration.Model));
             }
         }, completion));
         lock (_gate) Monitor.PulseAll(_gate);
@@ -104,10 +103,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             error = error is CoreMediaRequiredException
                 ? RequiredMediaWarning(Configuration, error)
                 : _startErrorTranslator?.Invoke(error)
-                ?? EmulationErrorService.Translate(error,
-                    EmulationMessageCategory.Machine,
-                    EmulationMessageCode.MachineStartFailed,
-                    new EmulationMachineMessageContext(Configuration.Model));
+                ?? EmulationErrorService.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(Configuration.Model));
             if (_core.Diagnostics.Count > 0) error.Data[MachineConstants.Diagnostics] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(100));
             _started?.TrySetException(error);
             FailPendingCommands(error);
@@ -132,19 +128,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         MachineConfiguration configuration, Exception error)
     {
         var storage = StorageSettingsFunctions.Describe(configuration);
-        var devices = storage.AvailableDevices
-            .Where(device => storage.ConfiguredSlots.Contains(device.Slot)
-                && device.MediaType is EmulationMediaType.Cartridge
-                    or EmulationMediaType.CompactDisc)
-            .ToArray();
+        var devices = storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot) && device.MediaType is EmulationMediaType.Cartridge or EmulationMediaType.CompactDisc).ToArray();
         return new EmulationMessageException(new EmulationMessage(
             EmulationMessageCategory.Media,
             EmulationMessageCode.RequiredMediaMissing,
             EmulationMessageSeverity.Warning,
             EmulationMessageTarget.Dialog,
-            new EmulationRequiredMachineMediaMessageContext(configuration.Model,
-                devices.Select(device => device.Slot.Category).Distinct().ToArray(),
-                devices.Select(device => device.DisplayLabel ?? device.Slot.ToString()).ToArray())),
+            new EmulationRequiredMachineMediaMessageContext(configuration.Model, devices.Select(device => device.Slot.Category).Distinct().ToArray(), devices.Select(device => device.DisplayLabel ?? device.Slot.ToString()).ToArray())),
             error);
     }
     private void FailPendingCommands(Exception error)

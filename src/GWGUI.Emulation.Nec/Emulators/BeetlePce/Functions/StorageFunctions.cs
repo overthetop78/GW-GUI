@@ -12,9 +12,7 @@ internal static class StorageFunctions
                 StorageConstants.CartridgeExtensions, RequiresMachineRecreation: true,
                 DisplayLabel: StorageConstants.CartridgeLabel, IsPermanent: model.HasBuiltInCartridgeSlot));
         if (model.SupportsCdDrive)
-            devices.Add(new(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
-                StorageConstants.CompactDiscExtensions, RequiresMachineRecreation: true,
-                DisplayLabel: StorageConstants.CompactDiscLabel, IsPermanent: true));
+            devices.Add(new(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc, StorageConstants.CompactDiscExtensions, RequiresMachineRecreation: true, DisplayLabel: StorageConstants.CompactDiscLabel, IsPermanent: true));
         return devices;
     }
 }

@@ -11,16 +11,12 @@ namespace GWGUI.Emulation.Nec.Emulators.BeetleSgx.Factories;
 
 internal sealed class BeetleSgxMachineFactory : IEmulatorAdapter
 {
-    public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) =>
-        GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Describe(configuration);
-    public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) =>
-        GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Apply(configuration, settings);
+    public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Describe(configuration);
+    public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Apply(configuration, settings);
 
-    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) =>
-        GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration);
+    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration);
 
-    private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
-        new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
+    private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
     public string EmulatorId => BeetleSgxConstants.Id;
     public string EmulatorKey => BeetleSgxConstants.Id;
@@ -40,18 +36,15 @@ internal sealed class BeetleSgxMachineFactory : IEmulatorAdapter
     {
         cancellationToken.ThrowIfCancellationRequested();
         var service = ReleaseService(context);
-        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition,
-            service.GetInstalledVersion()));
+        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, service.GetInstalledVersion()));
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
         EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await ReleaseService(context).GetAvailableAsync(cancellationToken)
-            .ConfigureAwait(false);
+        var releases = await ReleaseService(context).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName,
-            item.Id, item.IsRequired)).ToArray();
+        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();
     }
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context,
@@ -60,8 +53,7 @@ internal sealed class BeetleSgxMachineFactory : IEmulatorAdapter
     {
         if (!_availableReleases.TryGetValue(release.Id, out var selected))
             throw new ArgumentException(nameof(release));
-        return await ReleaseService(context).InstallAsync(selected, progress, cancellationToken)
-            .ConfigureAwait(false);
+        return await ReleaseService(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 
     public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
@@ -79,8 +71,7 @@ internal sealed class BeetleSgxMachineFactory : IEmulatorAdapter
         catch (InvalidDataException) { return ValueTask.FromResult<string?>(null); }
     }
 
-    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) =>
-        EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
+    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
 
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
@@ -88,12 +79,10 @@ internal sealed class BeetleSgxMachineFactory : IEmulatorAdapter
         var native = BeetlePceFastOptionFunctions.ToNative(configuration.EnsureId());
         return new Machine(machineId, native,
             new ProcessCore(context.HostExecutablePath, context.CorePath),
-            native.Media ?? [], Path.Combine(context.SessionsDirectory,
-                machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
+            native.Media ?? [], Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
             native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
             context.SaveDirectoryResolver?.Invoke(configuration));
     }
 
-    private static CoreReleaseService ReleaseService(EmulatorManagementContext context) =>
-        new(context.HttpClient, context.CoreDirectory, BeetleSgxConstants.ReleaseSettings);
+    private static CoreReleaseService ReleaseService(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, BeetleSgxConstants.ReleaseSettings);
 }

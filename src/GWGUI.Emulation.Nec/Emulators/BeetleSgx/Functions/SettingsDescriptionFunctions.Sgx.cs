@@ -12,44 +12,32 @@ internal static class BeetleSgxSettingsDescriptionFunctions
         Select(BeetleSgxSettingsConstants.HorizontalOverscan, EmulationMachineTab.Video,
             SettingsDescriptionFunctionsConstants.Video,
             BeetlePceFastSettingsConstants.ResourceHorizontalWidth,
-            options.GetValueOrDefault(BeetleSgxSettingsConstants.HorizontalOverscan,
-                BeetleSgxSettingsConstants.DefaultHorizontalOverscan),
-            Enumerable.Range(SettingsDescriptionFunctionsConstants.FirstChoice,
-                BeetleSgxSettingsConstants.HorizontalOverscanCount)
+            options.GetValueOrDefault(BeetleSgxSettingsConstants.HorizontalOverscan, BeetleSgxSettingsConstants.DefaultHorizontalOverscan),
+            Enumerable.Range(SettingsDescriptionFunctionsConstants.FirstChoice, BeetleSgxSettingsConstants.HorizontalOverscanCount)
                 .Select(index => BeetleSgxSettingsConstants.HorizontalOverscanStart
                     + index * BeetleSgxSettingsConstants.HorizontalOverscanStep)
                 .Select(value => Invariant(value.ToString(), value.ToString(), value))),
         Select(BeetleSgxSettingsConstants.AspectRatio, EmulationMachineTab.Video,
             SettingsDescriptionFunctionsConstants.Video,
             BeetleSgxSettingsConstants.ResourceAspectRatio,
-            options.GetValueOrDefault(BeetleSgxSettingsConstants.AspectRatio,
-                BeetleSgxSettingsConstants.AspectAuto),
+            options.GetValueOrDefault(BeetleSgxSettingsConstants.AspectRatio, BeetleSgxSettingsConstants.AspectAuto),
             [new(BeetleSgxSettingsConstants.AspectAuto, BeetleSgxSettingsConstants.ResourceAuto),
-                Invariant(BeetleSgxSettingsConstants.AspectSixFive,
-                    BeetleSgxSettingsConstants.AspectSixFive),
-                Invariant(BeetleSgxSettingsConstants.AspectFourThree,
-                    BeetleSgxSettingsConstants.AspectFourThree)]),
+                Invariant(BeetleSgxSettingsConstants.AspectSixFive, BeetleSgxSettingsConstants.AspectSixFive),
+                Invariant(BeetleSgxSettingsConstants.AspectFourThree, BeetleSgxSettingsConstants.AspectFourThree)]),
         Select(BeetleSgxSettingsConstants.InitialScanline, EmulationMachineTab.Video,
             SettingsDescriptionFunctionsConstants.Video,
             SettingsDescriptionFunctionsConstants.ResourceInitialScanline,
-            options.GetValueOrDefault(BeetleSgxSettingsConstants.InitialScanline,
-                BeetleSgxSettingsConstants.DefaultInitialScanline),
-            Enumerable.Range(BeetleSgxSettingsConstants.InitialScanlineStart,
-                BeetleSgxSettingsConstants.InitialScanlineCount)
-                .Select(value => Invariant(value.ToString(), value.ToString(), value))),
+            options.GetValueOrDefault(BeetleSgxSettingsConstants.InitialScanline, BeetleSgxSettingsConstants.DefaultInitialScanline),
+            Enumerable.Range(BeetleSgxSettingsConstants.InitialScanlineStart, BeetleSgxSettingsConstants.InitialScanlineCount).Select(value => Invariant(value.ToString(), value.ToString(), value))),
         Select(BeetleSgxSettingsConstants.LastScanline, EmulationMachineTab.Video,
             SettingsDescriptionFunctionsConstants.Video,
             SettingsDescriptionFunctionsConstants.ResourceLastScanline,
-            options.GetValueOrDefault(BeetleSgxSettingsConstants.LastScanline,
-                BeetleSgxSettingsConstants.DefaultLastScanline),
-            Enumerable.Range(BeetleSgxSettingsConstants.LastScanlineStart,
-                BeetleSgxSettingsConstants.LastScanlineCount)
-                .Select(value => Invariant(value.ToString(), value.ToString(), value))),
+            options.GetValueOrDefault(BeetleSgxSettingsConstants.LastScanline, BeetleSgxSettingsConstants.DefaultLastScanline),
+            Enumerable.Range(BeetleSgxSettingsConstants.LastScanlineStart, BeetleSgxSettingsConstants.LastScanlineCount).Select(value => Invariant(value.ToString(), value.ToString(), value))),
         Toggle(BeetleSgxSettingsConstants.NoSpriteLimit, EmulationMachineTab.Video,
             SettingsDescriptionFunctionsConstants.Video,
             SettingsDescriptionFunctionsConstants.ResourceNoSpriteLimit,
-            options.GetValueOrDefault(BeetleSgxSettingsConstants.NoSpriteLimit,
-                SettingsDescriptionFunctionsConstants.Disabled)
+            options.GetValueOrDefault(BeetleSgxSettingsConstants.NoSpriteLimit, SettingsDescriptionFunctionsConstants.Disabled)
                 == SettingsDescriptionFunctionsConstants.Enabled)
     ];
 
@@ -67,9 +55,7 @@ internal static class BeetleSgxSettingsDescriptionFunctions
             audio.Add(Select(id, EmulationMachineTab.Audio,
                 SettingsDescriptionFunctionsConstants.Audio, resource,
                 options.GetValueOrDefault(id, BeetleSgxSettingsConstants.DefaultVolume),
-                Enumerable.Range(BeetleSgxSettingsConstants.VolumeStart,
-                    BeetleSgxSettingsConstants.VolumeCount)
-                    .Select(index => index * BeetleSgxSettingsConstants.VolumeStep)
+                Enumerable.Range(BeetleSgxSettingsConstants.VolumeStart, BeetleSgxSettingsConstants.VolumeCount).Select(index => index * BeetleSgxSettingsConstants.VolumeStep)
                     .Select(value => Invariant(value.ToString(),
                         $"{value}{SettingsDescriptionFunctionsConstants.PercentUnit}", value))));
     }
@@ -78,13 +64,8 @@ internal static class BeetleSgxSettingsDescriptionFunctions
         Select(BeetleSgxSettingsConstants.MouseSensitivity, EmulationMachineTab.Mouse,
             SettingsDescriptionFunctionsConstants.Mouse,
             SettingsDescriptionFunctionsConstants.ResourceMouseSensitivity,
-            options.GetValueOrDefault(BeetleSgxSettingsConstants.MouseSensitivity,
-                BeetleSgxSettingsConstants.DefaultMouseSensitivity),
-            Enumerable.Range(BeetleSgxSettingsConstants.MouseSensitivityStart,
-                BeetleSgxSettingsConstants.MouseSensitivityCount)
-                .Select(value => (value /
-                    (decimal)SettingsDescriptionFunctionsConstants.MouseSensitivityDivisor)
-                    .ToString(SettingsDescriptionFunctionsConstants.DecimalFormat,
-                        System.Globalization.CultureInfo.InvariantCulture))
+            options.GetValueOrDefault(BeetleSgxSettingsConstants.MouseSensitivity, BeetleSgxSettingsConstants.DefaultMouseSensitivity),
+            Enumerable.Range(BeetleSgxSettingsConstants.MouseSensitivityStart, BeetleSgxSettingsConstants.MouseSensitivityCount)
+                .Select(value => (value / (decimal)SettingsDescriptionFunctionsConstants.MouseSensitivityDivisor).ToString(SettingsDescriptionFunctionsConstants.DecimalFormat, System.Globalization.CultureInfo.InvariantCulture))
                 .Select(value => Invariant(value, value)));
 }

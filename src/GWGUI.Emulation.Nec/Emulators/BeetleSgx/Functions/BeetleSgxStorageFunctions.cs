@@ -33,34 +33,24 @@ internal static class BeetleSgxStorageFunctions
         return devices;
     }
 
-    internal static bool IsCompactDiscEnabled(Model model,
-        IReadOnlyDictionary<string, string> options) =>
-        model.HasBuiltInCdDrive || options.TryGetValue(
-            BeetleSgxSettingsConstants.CdDriveEnabledOption, out var value)
-            && bool.TryParse(value, out var enabled) && enabled;
+    internal static bool IsCompactDiscEnabled(Model model, IReadOnlyDictionary<string, string> options) => model.HasBuiltInCdDrive || options.TryGetValue(BeetleSgxSettingsConstants.CdDriveEnabledOption, out var value) && bool.TryParse(value, out var enabled) && enabled;
 
     internal static EmulationStorageDeviceSettings CompactDiscSettings(
         IReadOnlyDictionary<string, string> options) =>
         new(EmulationMediaSlot.Cd0,
             CompactDisc: new EmulationCompactDiscDriveSettings(
-                options.GetValueOrDefault(BeetleSgxSettingsConstants.CdSpeed,
-                    BeetleSgxSettingsConstants.DefaultCdSpeed),
-                options.GetValueOrDefault(BeetleSgxSettingsConstants.CdImageCache,
-                    StorageSettingsFunctionsConstants.CacheDisabled)
+                options.GetValueOrDefault(BeetleSgxSettingsConstants.CdSpeed, BeetleSgxSettingsConstants.DefaultCdSpeed),
+                options.GetValueOrDefault(BeetleSgxSettingsConstants.CdImageCache, StorageSettingsFunctionsConstants.CacheDisabled)
                     == StorageSettingsFunctionsConstants.CacheEnabled,
                 false));
 
     internal static void ApplyOptions(Dictionary<string, string> options,
         EmulationStorageSettings settings, IReadOnlyCollection<EmulationMediaSlot> configured)
     {
-        options[BeetleSgxSettingsConstants.CdDriveEnabledOption] =
-            configured.Contains(EmulationMediaSlot.Cd0).ToString();
-        var cd = settings.DeviceSettings?.FirstOrDefault(item =>
-            item.Slot == EmulationMediaSlot.Cd0)?.CompactDisc;
+        options[BeetleSgxSettingsConstants.CdDriveEnabledOption] = configured.Contains(EmulationMediaSlot.Cd0).ToString();
+        var cd = settings.DeviceSettings?.FirstOrDefault(item => item.Slot == EmulationMediaSlot.Cd0)?.CompactDisc;
         if (cd is null) return;
-        options[BeetleSgxSettingsConstants.CdImageCache] = cd.CacheImage
-            ? StorageSettingsFunctionsConstants.CacheEnabled
-            : StorageSettingsFunctionsConstants.CacheDisabled;
+        options[BeetleSgxSettingsConstants.CdImageCache] = cd.CacheImage ? StorageSettingsFunctionsConstants.CacheEnabled : StorageSettingsFunctionsConstants.CacheDisabled;
         options[BeetleSgxSettingsConstants.CdSpeed] = cd.Speed;
     }
 }

@@ -81,8 +81,7 @@ internal static partial class InputSettingsFunctions
             [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start
         };
         if (type == ControllerType.AvenuePad3)
-            commands[EmulationControllerVisualControl.TertiaryAction] =
-                EmulationControllerCommandIds.Start;
+            commands[EmulationControllerVisualControl.TertiaryAction] = EmulationControllerCommandIds.Start;
         if (ControllerCatalog.HasSixButtons(type))
         {
             commands[EmulationControllerVisualControl.TertiaryAction] = EmulationControllerCommandIds.Y;
@@ -104,14 +103,7 @@ internal static partial class InputSettingsFunctions
         _ => InputSettingsFunctionsConstants.ResourceControllerPrefix + type
     };
 
-    private static IReadOnlyDictionary<string, string> ToStrings(
-        IReadOnlyDictionary<string, EmulationKey>? values) => values?.ToDictionary(
-            item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal)
-        ?? new Dictionary<string, string>();
+    private static IReadOnlyDictionary<string, string> ToStrings(IReadOnlyDictionary<string, EmulationKey>? values) => values?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>();
 
-    private static IReadOnlyDictionary<string, EmulationKey> ToKeys(
-        IReadOnlyDictionary<string, string> values) => values
-        .Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _))
-        .ToDictionary(item => item.Key,
-            item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
+    private static IReadOnlyDictionary<string, EmulationKey> ToKeys(IReadOnlyDictionary<string, string> values) => values.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
 }

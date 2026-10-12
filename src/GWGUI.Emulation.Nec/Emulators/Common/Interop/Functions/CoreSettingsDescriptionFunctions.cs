@@ -29,22 +29,15 @@ internal static partial class CoreSettingsDescriptionFunctions
         var ramDisplay = model.RamKib >= SettingsDescriptionFunctionsConstants.KibPerMib
             ? $"{model.RamKib / SettingsDescriptionFunctionsConstants.KibPerMib}{SettingsDescriptionFunctionsConstants.MemoryUnitMib}"
             : $"{ram}{SettingsDescriptionFunctionsConstants.MemoryUnitKib}";
-        var video = coreOptions ? [] : pcfx
-            ? BeetlePcfxSettingsDescriptionFunctions.Video(options)
-            : sgx ? BeetleSgxSettingsDescriptionFunctions.Video(options)
-                : geargrafx ? GeargrafxSettingsDescriptionFunctions.Video(model.Id, options)
-                : BeetlePceFastSettingsDescriptionFunctions.Video(options);
+        var video = coreOptions ? [] : pcfx ? BeetlePcfxSettingsDescriptionFunctions.Video(options) : sgx ? BeetleSgxSettingsDescriptionFunctions.Video(options) : geargrafx ? GeargrafxSettingsDescriptionFunctions.Video(model.Id, options) : BeetlePceFastSettingsDescriptionFunctions.Video(options);
         var audio = new List<EmulationSettingsField>
         {
-            Toggle(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio,
-                SettingsDescriptionFunctionsConstants.Audio,
-                SettingsDescriptionFunctionsConstants.ResourceAudioEnabled, configuration.AudioEnabled),
+            Toggle(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio, SettingsDescriptionFunctionsConstants.Audio, SettingsDescriptionFunctionsConstants.ResourceAudioEnabled, configuration.AudioEnabled),
             AudioOutput(configuration.Audio?.OutputDeviceId),
             Select(SettingsConstants.AudioLatency, EmulationMachineTab.Audio,
                 SettingsDescriptionFunctionsConstants.Audio,
                 SettingsDescriptionFunctionsConstants.ResourceAudioLatency,
-                (configuration.Audio?.LatencyMilliseconds
-                    ?? SettingsDescriptionFunctionsConstants.ThirdAudioLatency).ToString(),
+                (configuration.Audio?.LatencyMilliseconds ?? SettingsDescriptionFunctionsConstants.ThirdAudioLatency).ToString(),
                 SettingsDescriptionFunctionsConstants.AudioLatencies
                     .Select(value => Invariant(value.ToString(),
                         $"{value}{SettingsDescriptionFunctionsConstants.MillisecondUnit}", value)))
@@ -53,8 +46,7 @@ internal static partial class CoreSettingsDescriptionFunctions
         else if (pcfx) BeetlePcfxSettingsDescriptionFunctions.AddAudio(audio, options);
         else if (geargrafx) GeargrafxSettingsDescriptionFunctions.AddAudio(audio, options);
         else if (cdCapable && (model.HasBuiltInCdDrive
-            || bool.TryParse(options.GetValueOrDefault(
-                BeetlePceFastStorageConstants.CdDriveEnabledOption), out var cdEnabled)
+            || bool.TryParse(options.GetValueOrDefault(BeetlePceFastStorageConstants.CdDriveEnabledOption), out var cdEnabled)
                 && cdEnabled))
         {
             if (sgx) BeetleSgxSettingsDescriptionFunctions.AddCdAudio(audio, options);
@@ -66,9 +58,7 @@ internal static partial class CoreSettingsDescriptionFunctions
                 SettingsDescriptionFunctionsConstants.ResourceGeneral,
                 SettingsDescriptionFunctionsConstants.IconGeneral,
                 SettingsDescriptionFunctionsConstants.TwoColumns,
-                Information(SettingsConstants.Model, EmulationMachineTab.General,
-                    SettingsDescriptionFunctionsConstants.General,
-                    SettingsDescriptionFunctionsConstants.ResourceMachineModel, model.DisplayName),
+                Information(SettingsConstants.Model, EmulationMachineTab.General, SettingsDescriptionFunctionsConstants.General, SettingsDescriptionFunctionsConstants.ResourceMachineModel, model.DisplayName),
                 Information(SettingsConstants.Emulator, EmulationMachineTab.General,
                     SettingsDescriptionFunctionsConstants.General,
                     SettingsDescriptionFunctionsConstants.ResourceEmulator,
@@ -116,33 +106,26 @@ internal static partial class CoreSettingsDescriptionFunctions
         {
             var cpu = blocks.First(block => block.Tab == EmulationMachineTab.Cpu);
             var index = blocks.IndexOf(cpu);
-            blocks[index] = cpu with { Fields = cpu.Fields.Concat(
-                [GeargrafxSettingsDescriptionFunctions.CpuRegion(model.Id, options)]).ToArray() };
+            blocks[index] = cpu with { Fields = cpu.Fields.Concat([GeargrafxSettingsDescriptionFunctions.CpuRegion(model.Id, options)]).ToArray() };
         }
         if (cd)
-            blocks.Insert(PcEngineDuoMachineConstants.CdMemoryBlockPosition,
-                PcEngineDuoSettingsFunctions.CdRamBlock());
+            blocks.Insert(PcEngineDuoMachineConstants.CdMemoryBlockPosition, PcEngineDuoSettingsFunctions.CdRamBlock());
         if (!coreOptions && model.MouseButtonCount > SettingsDescriptionFunctionsConstants.FirstChoice)
             blocks.Add(Block(SettingsDescriptionFunctionsConstants.Mouse, EmulationMachineTab.Mouse,
                 SettingsDescriptionFunctionsConstants.ResourceMouseTab,
                 SettingsDescriptionFunctionsConstants.MouseIcon,
                 SettingsDescriptionFunctionsConstants.TwoColumns,
-                pcfx ? BeetlePcfxSettingsDescriptionFunctions.Mouse(options)
-                    : sgx ? BeetleSgxSettingsDescriptionFunctions.Mouse(options)
-                        : geargrafx ? GeargrafxSettingsDescriptionFunctions.Mouse(options)
-                        : BeetlePceFastSettingsDescriptionFunctions.Mouse(options)));
+                pcfx ? BeetlePcfxSettingsDescriptionFunctions.Mouse(options) : sgx ? BeetleSgxSettingsDescriptionFunctions.Mouse(options) : geargrafx ? GeargrafxSettingsDescriptionFunctions.Mouse(options) : BeetlePceFastSettingsDescriptionFunctions.Mouse(options)));
         if (coreOptions)
         {
-            foreach (var tab in CoreSettingsFunctions.Definitions(configuration.EmulatorId)
-                .Select(option => option.Tab).Distinct())
+            foreach (var tab in CoreSettingsFunctions.Definitions(configuration.EmulatorId).Select(option => option.Tab).Distinct())
             {
                 var block = blocks.FirstOrDefault(item => item.Tab == tab);
                 var blockId = block?.Id ?? CoreSettingsConstants.BlockPrefix + tab;
                 var fields = CoreSettingsFunctions.Fields(configuration, tab, blockId);
                 if (fields.Count == 0) continue;
                 if (block is null)
-                    blocks.Add(new EmulationSettingsBlock(blockId, tab,
-                        CoreSettingsConstants.Titles[tab], fields, Columns: CoreSettingsConstants.ColumnCount));
+                    blocks.Add(new EmulationSettingsBlock(blockId, tab, CoreSettingsConstants.Titles[tab], fields, Columns: CoreSettingsConstants.ColumnCount));
                 else blocks[blocks.IndexOf(block)] = block with
                     { Fields = block.Fields.Concat(fields).ToArray() };
             }
@@ -150,13 +133,10 @@ internal static partial class CoreSettingsDescriptionFunctions
             {
                 var firmware = blocks.First(item => item.Tab == EmulationMachineTab.Rom);
                 blocks[blocks.IndexOf(firmware)] = firmware with
-                    { Fields = firmware.Fields.Where(field => field.Editor != EmulationSettingsEditor.Path
-                        && field.Editor != EmulationSettingsEditor.Information)
-                        .Concat(FirmwareFunctions.Fields(configuration)).ToArray() };
+                    { Fields = firmware.Fields.Where(field => field.Editor != EmulationSettingsEditor.Path && field.Editor != EmulationSettingsEditor.Information).Concat(FirmwareFunctions.Fields(configuration)).ToArray() };
             }
         }
-        if (StorageSettingsFunctions.Describe(configuration).AvailableDevices
-            .Any(device => device.MediaType == EmulationMediaType.HardDisk))
+        if (StorageSettingsFunctions.Describe(configuration).AvailableDevices.Any(device => device.MediaType == EmulationMediaType.HardDisk))
             blocks.Add(new EmulationSettingsBlock(StorageDirectorySettings.BlockId, EmulationMachineTab.General,
                 StorageDirectorySettings.TitleResource,
                 [new EmulationSettingsField(StorageDirectorySettings.HardDiskDirectory, EmulationMachineTab.General,

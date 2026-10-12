@@ -37,10 +37,7 @@ public sealed class FirmwareCatalog
     public IReadOnlyList<Firmware> Scan()
     {
         Directory.CreateDirectory(_directory);
-        return Directory.EnumerateFiles(_directory, FirmwareCatalogConstants.SearchPattern,
-                SearchOption.AllDirectories)
-            .Where(path => Extensions.Contains(Path.GetExtension(path)))
-            .Select(Inspect)
+        return Directory.EnumerateFiles(_directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories).Where(path => Extensions.Contains(Path.GetExtension(path))).Select(Inspect)
             .OrderBy(entry => entry.Path, StringComparer.OrdinalIgnoreCase)
             .ToArray();
     }
@@ -62,22 +59,16 @@ public sealed class FirmwareCatalog
             FirmwareCatalogConstants.SystemCard3Md5 => Pce("Super CD-ROM System Card", "3.0", true),
             FirmwareCatalogConstants.SystemCard3UsMd5 => Pce("TurboGrafx CD Super System Card", "3.0"),
             FirmwareCatalogConstants.GamesExpressBlueMd5 => Pce("Games Express CD Card (Blue)", null),
-            FirmwareCatalogConstants.GamesExpressGreenMd5 => Pce("Games Express CD Card (Green)", null,
-                verified: false),
+            FirmwareCatalogConstants.GamesExpressGreenMd5 => Pce("Games Express CD Card (Green)", null, verified: false),
             FirmwareCatalogConstants.PcFxBiosMd5 => PcFx("PC-FX BIOS", "1.00", true),
-            FirmwareCatalogConstants.PcFxFrenchBiosMd5 => PcFx("PC-FX BIOS (FR)", "1.00",
-                verified: false),
-            FirmwareCatalogConstants.PcFxBios101Md5 => PcFx("PC-FX BIOS", "1.01",
-                verified: false),
-            FirmwareCatalogConstants.PcFxGaBiosMd5 => PcFx("PC-FX GA BIOS", null,
-                verified: false),
+            FirmwareCatalogConstants.PcFxFrenchBiosMd5 => PcFx("PC-FX BIOS (FR)", "1.00", verified: false),
+            FirmwareCatalogConstants.PcFxBios101Md5 => PcFx("PC-FX BIOS", "1.01", verified: false),
+            FirmwareCatalogConstants.PcFxGaBiosMd5 => PcFx("PC-FX GA BIOS", null, verified: false),
             FirmwareCatalogConstants.PcFxScsiMd5 => new Firmware(file.FullName, file.Length,
                 md5, sha256, file.LastWriteTimeUtc, FirmwareType.SystemRom,
                 IsKnown: true, IsOfficial: false, Name: "PC-FX SCSI ROM", Version: null,
                 CompatibleModels: []),
-            _ => new Firmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc,
-                FirmwareType.Unknown, IsKnown: false, IsOfficial: false,
-                Name: null, Version: null, CompatibleModels: [])
+            _ => new Firmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc, FirmwareType.Unknown, IsKnown: false, IsOfficial: false, Name: null, Version: null, CompatibleModels: [])
         };
         if (identified.IsKnown) return identified;
         if (name.Equals(GeargrafxFirmwareConstants.PacN1, StringComparison.OrdinalIgnoreCase)

@@ -29,9 +29,7 @@ internal static class CoreSaveRamFunctions
         Marshal.Copy(memory, bytes, CoreSaveRamConstants.FirstByteOffset, size);
         Directory.CreateDirectory(directory);
         var path = Path.Combine(directory, CoreSaveRamConstants.FileName);
-        var temporary = path + CoreSaveRamConstants.TemporaryNameSeparator
-            + Guid.NewGuid().ToString(CoreSaveRamConstants.TemporaryIdFormat)
-            + CoreSaveRamConstants.TemporarySuffix;
+        var temporary = path + CoreSaveRamConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(CoreSaveRamConstants.TemporaryIdFormat) + CoreSaveRamConstants.TemporarySuffix;
         try
         {
             File.WriteAllBytes(temporary, bytes);

@@ -29,8 +29,7 @@ public static class ControllerCatalog
             TurboExpressMachineConstants.Id => new List<ControllerType> { ControllerType.TurboExpressControls },
             PcEngineLtMachineConstants.Id => new List<ControllerType> { ControllerType.PcEngineLtControls }
                 .Concat(PcEngineControllers.Where(type => !IsMouse(type))).ToList(),
-            SuperGrafxMachineConstants.Id => new List<ControllerType>(PcEngineControllers.Where(type =>
-                type != ControllerType.PcEngineMouse)),
+            SuperGrafxMachineConstants.Id => new List<ControllerType>(PcEngineControllers.Where(type => type != ControllerType.PcEngineMouse)),
             _ => new List<ControllerType>(PcEngineControllers)
         };
         types.Add(ControllerType.None);
@@ -59,11 +58,9 @@ public static class ControllerCatalog
             _ => Types(model).Contains(type) ? type : Default(model)
         };
 
-    public static bool IsMouse(ControllerType type) =>
-        type is ControllerType.Mouse or ControllerType.PcEngineMouse or ControllerType.PcFxMouse;
+    public static bool IsMouse(ControllerType type) => type is ControllerType.Mouse or ControllerType.PcEngineMouse or ControllerType.PcFxMouse;
 
-    public static bool HasSixButtons(ControllerType type) =>
-        type is ControllerType.AvenuePad6 or ControllerType.ArcadePad6 or ControllerType.PcFxPad;
+    public static bool HasSixButtons(ControllerType type) => type is ControllerType.AvenuePad6 or ControllerType.ArcadePad6 or ControllerType.PcFxPad;
 
     public static IReadOnlyList<ControllerType> ParallelPortTypes { get; } =
         [ControllerType.Joystick, ControllerType.None];

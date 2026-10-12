@@ -31,9 +31,7 @@ internal static class GeargrafxSaveRamFunctions
         Marshal.Copy(memory, bytes, GeargrafxSaveRamConstants.FirstByteOffset, size);
         Directory.CreateDirectory(directory);
         var path = Path.Combine(directory, GeargrafxSaveRamConstants.FileName);
-        var temporary = path + GeargrafxSaveRamConstants.TemporaryNameSeparator
-            + Guid.NewGuid().ToString(GeargrafxSaveRamConstants.TemporaryIdFormat)
-            + GeargrafxSaveRamConstants.TemporarySuffix;
+        var temporary = path + GeargrafxSaveRamConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(GeargrafxSaveRamConstants.TemporaryIdFormat) + GeargrafxSaveRamConstants.TemporarySuffix;
         try
         {
             File.WriteAllBytes(temporary, bytes);

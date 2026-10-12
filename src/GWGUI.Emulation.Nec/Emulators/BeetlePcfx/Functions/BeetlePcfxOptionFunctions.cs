@@ -9,8 +9,7 @@ internal static class BeetlePcfxOptionFunctions
         // so only options explicitly returned by this core are forwarded.
         return configuration with
         {
-            Options = new Dictionary<string, string>(
-                configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
+            Options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
         };
     }
 }

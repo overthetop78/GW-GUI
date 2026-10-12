@@ -355,13 +355,7 @@ internal static class OptionConstants
                 new("76", "76", IsInvariant: true)
             ]
         ),
-        new(
-            "np2_BEEP_vol",
-            "Emulation.Nec.CoreOptions.np2_BEEP_vol",
-            "3",
-            EmulationMachineTab.Audio,
-            [new("3", "3", IsInvariant: true), new("0", "0", IsInvariant: true), new("1", "1", IsInvariant: true), new("2", "2", IsInvariant: true)]
-        ),
+        new("np2_BEEP_vol", "Emulation.Nec.CoreOptions.np2_BEEP_vol", "3", EmulationMachineTab.Audio, [new("3", "3", IsInvariant: true), new("0", "0", IsInvariant: true), new("1", "1", IsInvariant: true), new("2", "2", IsInvariant: true)]),
         new(
             "np2_GUI_controller",
             "Emulation.Nec.CoreOptions.np2_GUI_controller",

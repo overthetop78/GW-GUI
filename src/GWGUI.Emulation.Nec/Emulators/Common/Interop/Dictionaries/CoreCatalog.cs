@@ -17,12 +17,9 @@ internal static class CoreCatalog
         new(BeetleSgxConstants.Id, BeetleSgxConstants.LibraryName, BeetleSgxConstants.InstalledLibraryName),
         new(GeargrafxConstants.Id, GeargrafxConstants.LibraryName, GeargrafxConstants.InstalledLibraryName),
         new(BeetlePceCore.Id, BeetlePceCore.LibraryName, BeetlePceCore.LibraryFileName),
-        new(Quasi88Core.Id, Quasi88Core.LibraryName, Quasi88Core.LibraryFileName,
-            Subsystems: GWGUI.Emulation.Nec.Emulators.Quasi88.Constants.StorageConstants.Subsystems),
-        new(NekoProjectIICore.Id, NekoProjectIICore.LibraryName, NekoProjectIICore.LibraryFileName,
-            GWGUI.Emulation.Nec.Emulators.NekoProjectII.Functions.ContentFunctions.Prepare),
-        new(NP2KaiCore.Id, NP2KaiCore.LibraryName, NP2KaiCore.LibraryFileName,
-            GWGUI.Emulation.Nec.Emulators.NP2Kai.Functions.ContentFunctions.Prepare),
+        new(Quasi88Core.Id, Quasi88Core.LibraryName, Quasi88Core.LibraryFileName, Subsystems: GWGUI.Emulation.Nec.Emulators.Quasi88.Constants.StorageConstants.Subsystems),
+        new(NekoProjectIICore.Id, NekoProjectIICore.LibraryName, NekoProjectIICore.LibraryFileName, GWGUI.Emulation.Nec.Emulators.NekoProjectII.Functions.ContentFunctions.Prepare),
+        new(NP2KaiCore.Id, NP2KaiCore.LibraryName, NP2KaiCore.LibraryFileName, GWGUI.Emulation.Nec.Emulators.NP2Kai.Functions.ContentFunctions.Prepare),
     ];
 
     internal static CoreDefinition Get(string id) => All.Single(core => core.Id == id);

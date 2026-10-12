@@ -66,12 +66,9 @@ internal static class CoreStorageSettingsFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var available = Describe(configuration).AvailableDevices;
         if (settings.ConfiguredSlots.Any(slot => available.All(device => device.Slot != slot))
-            || settings.MountedMedia.Any(media => settings.ConfiguredSlots.All(slot => slot != media.Slot)
-                || available.All(device => device.Slot != media.Slot
-                    || device.MediaType != media.Type)))
+            || settings.MountedMedia.Any(media => settings.ConfiguredSlots.All(slot => slot != media.Slot) || available.All(device => device.Slot != media.Slot || device.MediaType != media.Type)))
             throw new ArgumentOutOfRangeException(nameof(settings));
-        var configured = settings.ConfiguredSlots.Concat(available
-            .Where(device => device.IsPermanent).Select(device => device.Slot)).Distinct().ToArray();
+        var configured = settings.ConfiguredSlots.Concat(available.Where(device => device.IsPermanent).Select(device => device.Slot)).Distinct().ToArray();
         var media = settings.MountedMedia.Select((item, index) => new MediaConfiguration(
             item.Path, item.Type switch
             {
@@ -84,8 +81,7 @@ internal static class CoreStorageSettingsFunctions
         foreach (var item in media)
             if (!ConfigurationValidationFunctions.Supports(model, item.Category))
                 throw new ArgumentOutOfRangeException(nameof(settings), item.Category, null);
-        var options = new Dictionary<string, string>(configuration.Options
-            ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+        var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         if (configuration.EmulatorId == BeetlePcfxConstants.Id)
             BeetlePcfxStorageFunctions.ApplyOptions(options, settings, configured);
         else if (configuration.EmulatorId == BeetlePceFastConstants.Id)

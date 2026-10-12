@@ -67,9 +67,7 @@ internal static class PcFxBackupMemoryFunctions
         Marshal.Copy(memory, bytes, PcFxBackupMemoryConstants.FirstByteOffset, bytes.Length);
         var directory = Path.GetDirectoryName(path);
         if (directory is not null) Directory.CreateDirectory(directory);
-        var temporary = path + PcFxBackupMemoryConstants.TemporaryNameSeparator
-            + Guid.NewGuid().ToString(PcFxBackupMemoryConstants.TemporaryIdFormat)
-            + PcFxBackupMemoryConstants.TemporarySuffix;
+        var temporary = path + PcFxBackupMemoryConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(PcFxBackupMemoryConstants.TemporaryIdFormat) + PcFxBackupMemoryConstants.TemporarySuffix;
         try
         {
             File.WriteAllBytes(temporary, bytes);

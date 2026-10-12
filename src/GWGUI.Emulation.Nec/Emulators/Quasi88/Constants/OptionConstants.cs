@@ -56,13 +56,7 @@ internal static class OptionConstants
             EmulationMachineTab.Storage,
             [new("enabled", "Emulation.Nec.CoreOptions.q88_save_to_disk_image.Choice0"), new("disabled", "Emulation.Nec.CoreOptions.q88_save_to_disk_image.Choice1")]
         ),
-        new(
-            "q88_rumble",
-            "Emulation.Nec.CoreOptions.q88_rumble",
-            "enabled",
-            EmulationMachineTab.Storage,
-            [new("enabled", "Emulation.Nec.CoreOptions.q88_rumble.Choice0"), new("disabled", "Emulation.Nec.CoreOptions.q88_rumble.Choice1")]
-        ),
+        new("q88_rumble", "Emulation.Nec.CoreOptions.q88_rumble", "enabled", EmulationMachineTab.Storage, [new("enabled", "Emulation.Nec.CoreOptions.q88_rumble.Choice0"), new("disabled", "Emulation.Nec.CoreOptions.q88_rumble.Choice1")]),
         new(
             "q88_screen_size",
             "Emulation.Nec.CoreOptions.q88_screen_size",

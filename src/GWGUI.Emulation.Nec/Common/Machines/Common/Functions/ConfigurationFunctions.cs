@@ -10,10 +10,8 @@ internal static class ConfigurationSummaryFunctions
     {
         var model = ModelCatalog.Get(configuration.Model);
         var details = new List<string> { $"CPU · {model.RamKib} KiB RAM" };
-        details.AddRange((configuration.Media ?? []).OrderBy(media => media.MountOrder)
-            .Select(media => Path.GetFileName(media.Path)));
-        return new EmulationConfigurationSummary(
-            MachineConfigurationConstants.ResourcePrefix + model.Id, details);
+        details.AddRange((configuration.Media ?? []).OrderBy(media => media.MountOrder).Select(media => Path.GetFileName(media.Path)));
+        return new EmulationConfigurationSummary(MachineConfigurationConstants.ResourcePrefix + model.Id, details);
     }
 }
 

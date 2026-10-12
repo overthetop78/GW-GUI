@@ -34,19 +34,12 @@ internal static class GeargrafxStorageFunctions
                 RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.CdDriveLabel,
                 IsPermanent: model.HasBuiltInCdDrive,
-                ModelResourceKey: model.Id == PcEngineDuoMachineConstants.Id
-                    ? BeetlePceFastStorageConstants.DuoCdRomResourceKey
-                    : BeetlePceFastStorageConstants.CdRom2ResourceKey));
+                ModelResourceKey: model.Id == PcEngineDuoMachineConstants.Id ? BeetlePceFastStorageConstants.DuoCdRomResourceKey : BeetlePceFastStorageConstants.CdRom2ResourceKey));
         }
         return devices;
     }
 
-    internal static bool IsCompactDiscEnabled(Model model,
-        IReadOnlyDictionary<string, string> options) =>
-        model.HasBuiltInCdDrive || options.TryGetValue(CdDriveEnabledOption, out var value)
-            && bool.TryParse(value, out var enabled) && enabled;
+    internal static bool IsCompactDiscEnabled(Model model, IReadOnlyDictionary<string, string> options) => model.HasBuiltInCdDrive || options.TryGetValue(CdDriveEnabledOption, out var value) && bool.TryParse(value, out var enabled) && enabled;
 
-    internal static void ApplyOptions(Dictionary<string, string> options,
-        IReadOnlyCollection<EmulationMediaSlot> configured) =>
-        options[CdDriveEnabledOption] = configured.Contains(EmulationMediaSlot.Cd0).ToString();
+    internal static void ApplyOptions(Dictionary<string, string> options, IReadOnlyCollection<EmulationMediaSlot> configured) => options[CdDriveEnabledOption] = configured.Contains(EmulationMediaSlot.Cd0).ToString();
 }

@@ -15,8 +15,7 @@ namespace GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Services;
 
 public sealed class CoreReleaseService
 {
-    public static readonly Uri LatestOfficialUri = new(
-        CoreReleaseConstants.OfficialArchiveUrl);
+    public static readonly Uri LatestOfficialUri = new(CoreReleaseConstants.OfficialArchiveUrl);
 
     private readonly HttpClient _httpClient;
     private readonly string _directory;
@@ -37,9 +36,7 @@ public sealed class CoreReleaseService
         try
         {
             using var document = JsonDocument.Parse(File.ReadAllText(manifestPath));
-            return document.RootElement.TryGetProperty(CoreReleaseConstants.Version, out var version)
-                ? version.GetString() ?? CoreReleaseConstants.Unknown
-                : CoreReleaseConstants.Unknown;
+            return document.RootElement.TryGetProperty(CoreReleaseConstants.Version, out var version) ? version.GetString() ?? CoreReleaseConstants.Unknown : CoreReleaseConstants.Unknown;
         }
         catch (JsonException) { return CoreReleaseConstants.Unknown; }
         catch (IOException) { return CoreReleaseConstants.Unknown; }
@@ -49,8 +46,7 @@ public sealed class CoreReleaseService
         CancellationToken cancellationToken = default)
     {
         using var request = new HttpRequestMessage(HttpMethod.Head, LatestOfficialUri);
-        using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead,
-            cancellationToken).ConfigureAwait(false);
+        using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
         var published = response.Content.Headers.LastModified ?? response.Headers.Date;
         var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.YyyyMMddHHmm) ?? CoreReleaseConstants.Latest;
@@ -80,21 +76,18 @@ public sealed class CoreReleaseService
         var extracted = destination + CoreReleaseConstants.Extract;
         try
         {
-            using var response = await _httpClient.GetAsync(release.DownloadUri,
-                HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+            using var response = await _httpClient.GetAsync(release.DownloadUri, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             var total = response.Content.Headers.ContentLength;
             await using (var source = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false))
-            await using (var target = new FileStream(download, FileMode.Create, FileAccess.Write, FileShare.None,
-                             81920, FileOptions.Asynchronous))
+            await using (var target = new FileStream(download, FileMode.Create, FileAccess.Write, FileShare.None, 81920, FileOptions.Asynchronous))
             {
                 var buffer = new byte[81920];
                 long written = 0;
                 int read;
                 while ((read = await source.ReadAsync(buffer, cancellationToken).ConfigureAwait(false)) > 0)
                 {
-                    await target.WriteAsync(buffer.AsMemory(BufferConstants.FirstBufferIndex, read),
-                        cancellationToken).ConfigureAwait(false);
+                    await target.WriteAsync(buffer.AsMemory(BufferConstants.FirstBufferIndex, read), cancellationToken).ConfigureAwait(false);
                     written += read;
                     if (total > 0) progress?.Report(written / (double)total.Value);
                 }
@@ -103,8 +96,7 @@ public sealed class CoreReleaseService
             if (release.IsZip)
             {
                 using var archive = ZipFile.OpenRead(download);
-                var entry = archive.Entries.FirstOrDefault(item =>
-                    Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.ArchiveLibraryName, StringComparison.OrdinalIgnoreCase))
+                var entry = archive.Entries.FirstOrDefault(item => Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.ArchiveLibraryName, StringComparison.OrdinalIgnoreCase))
                     ?? throw new InvalidDataException(BeetlePcfxExceptions.ArchiveMissingLibrary());
                 entry.ExtractToFile(extracted, true);
             }
@@ -113,8 +105,7 @@ public sealed class CoreReleaseService
             VerifyWindowsX64Library(extracted);
             var sha256 = Hash(extracted);
             File.Move(extracted, destination, true);
-            await ExternalCoreInstaller.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri,
-                destination, sha256, cancellationToken).ConfigureAwait(false);
+            await ExternalCoreInstaller.WriteManifestAsync(release.Id, release.DownloadUri.AbsoluteUri, destination, sha256, cancellationToken).ConfigureAwait(false);
             progress?.Report(1);
             return destination;
         }

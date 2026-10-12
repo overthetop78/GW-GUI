@@ -4,13 +4,7 @@ namespace GWGUI.Emulation.Nec.Emulators.NP2Kai.Constants;
 internal static class OptionConstants
 {
     internal static IReadOnlyList<CoreOptionDefinition> All { get; } = [
-        new(
-            "np2kai_drive",
-            "Emulation.Nec.CoreOptions.np2kai_drive",
-            "FDD2",
-            EmulationMachineTab.Storage,
-            [new("FDD2", "Emulation.Nec.CoreOptions.np2kai_drive.Choice0"), new("FDD1", "Emulation.Nec.CoreOptions.np2kai_drive.Choice1")]
-        ),
+        new("np2kai_drive", "Emulation.Nec.CoreOptions.np2kai_drive", "FDD2", EmulationMachineTab.Storage, [new("FDD2", "Emulation.Nec.CoreOptions.np2kai_drive.Choice0"), new("FDD1", "Emulation.Nec.CoreOptions.np2kai_drive.Choice1")]),
         new(
             "np2kai_keyboard",
             "Emulation.Nec.CoreOptions.np2kai_keyboard",
@@ -145,13 +139,7 @@ internal static class OptionConstants
                 new("Profile 2", "Emulation.Nec.CoreOptions.np2kai_vf1.Choice3")
             ]
         ),
-        new(
-            "np2kai_gdc",
-            "Emulation.Nec.CoreOptions.np2kai_gdc",
-            "uPD7220",
-            EmulationMachineTab.Video,
-            [new("uPD7220", "Emulation.Nec.CoreOptions.np2kai_gdc.Choice0"), new("uPD72020", "Emulation.Nec.CoreOptions.np2kai_gdc.Choice1")]
-        ),
+        new("np2kai_gdc", "Emulation.Nec.CoreOptions.np2kai_gdc", "uPD7220", EmulationMachineTab.Video, [new("uPD7220", "Emulation.Nec.CoreOptions.np2kai_gdc.Choice0"), new("uPD72020", "Emulation.Nec.CoreOptions.np2kai_gdc.Choice1")]),
         new(
             "np2kai_skipline",
             "Emulation.Nec.CoreOptions.np2kai_skipline",
@@ -159,13 +147,7 @@ internal static class OptionConstants
             EmulationMachineTab.Video,
             [new("Full 255 lines", "Emulation.Nec.CoreOptions.np2kai_skipline.Choice0"), new("OFF", "Emulation.Nec.CoreOptions.np2kai_skipline.Choice1"), new("ON", "Emulation.Nec.CoreOptions.np2kai_skipline.Choice2")]
         ),
-        new(
-            "np2kai_realpal",
-            "Emulation.Nec.CoreOptions.np2kai_realpal",
-            "OFF",
-            EmulationMachineTab.Video,
-            [new("OFF", "Emulation.Nec.CoreOptions.np2kai_realpal.Choice0"), new("ON", "Emulation.Nec.CoreOptions.np2kai_realpal.Choice1")]
-        ),
+        new("np2kai_realpal", "Emulation.Nec.CoreOptions.np2kai_realpal", "OFF", EmulationMachineTab.Video, [new("OFF", "Emulation.Nec.CoreOptions.np2kai_realpal.Choice0"), new("ON", "Emulation.Nec.CoreOptions.np2kai_realpal.Choice1")]),
         new("np2kai_lcd", "Emulation.Nec.CoreOptions.np2kai_lcd", "OFF", EmulationMachineTab.Storage, [new("OFF", "Emulation.Nec.CoreOptions.np2kai_lcd.Choice0"), new("ON", "Emulation.Nec.CoreOptions.np2kai_lcd.Choice1")]),
         new(
             "np2kai_SNDboard",
@@ -203,20 +185,8 @@ internal static class OptionConstants
                 new("None", "Emulation.Nec.CoreOptions.np2kai_SNDboard.Choice27")
             ]
         ),
-        new(
-            "np2kai_118ROM",
-            "Emulation.Nec.CoreOptions.np2kai_118ROM",
-            "ON",
-            EmulationMachineTab.General,
-            [new("ON", "Emulation.Nec.CoreOptions.np2kai_118ROM.Choice0"), new("OFF", "Emulation.Nec.CoreOptions.np2kai_118ROM.Choice1")]
-        ),
-        new(
-            "np2kai_jast_snd",
-            "Emulation.Nec.CoreOptions.np2kai_jast_snd",
-            "OFF",
-            EmulationMachineTab.Audio,
-            [new("OFF", "Emulation.Nec.CoreOptions.np2kai_jast_snd.Choice0"), new("ON", "Emulation.Nec.CoreOptions.np2kai_jast_snd.Choice1")]
-        ),
+        new("np2kai_118ROM", "Emulation.Nec.CoreOptions.np2kai_118ROM", "ON", EmulationMachineTab.General, [new("ON", "Emulation.Nec.CoreOptions.np2kai_118ROM.Choice0"), new("OFF", "Emulation.Nec.CoreOptions.np2kai_118ROM.Choice1")]),
+        new("np2kai_jast_snd", "Emulation.Nec.CoreOptions.np2kai_jast_snd", "OFF", EmulationMachineTab.Audio, [new("OFF", "Emulation.Nec.CoreOptions.np2kai_jast_snd.Choice0"), new("ON", "Emulation.Nec.CoreOptions.np2kai_jast_snd.Choice1")]),
         new("np2kai_xroll", "Emulation.Nec.CoreOptions.np2kai_xroll", "ON", EmulationMachineTab.Keyboard, [new("ON", "Emulation.Nec.CoreOptions.np2kai_xroll.Choice0"), new("OFF", "Emulation.Nec.CoreOptions.np2kai_xroll.Choice1")]),
         new(
             "np2kai_usefmgen",
@@ -500,13 +470,7 @@ internal static class OptionConstants
                 new("255", "255", IsInvariant: true)
             ]
         ),
-        new(
-            "np2kai_Seek_Snd",
-            "Emulation.Nec.CoreOptions.np2kai_Seek_Snd",
-            "OFF",
-            EmulationMachineTab.Audio,
-            [new("OFF", "Emulation.Nec.CoreOptions.np2kai_Seek_Snd.Choice0"), new("ON", "Emulation.Nec.CoreOptions.np2kai_Seek_Snd.Choice1")]
-        ),
+        new("np2kai_Seek_Snd", "Emulation.Nec.CoreOptions.np2kai_Seek_Snd", "OFF", EmulationMachineTab.Audio, [new("OFF", "Emulation.Nec.CoreOptions.np2kai_Seek_Snd.Choice0"), new("ON", "Emulation.Nec.CoreOptions.np2kai_Seek_Snd.Choice1")]),
         new(
             "np2kai_Seek_Vol",
             "Emulation.Nec.CoreOptions.np2kai_Seek_Vol",
@@ -555,13 +519,7 @@ internal static class OptionConstants
             EmulationMachineTab.Audio,
             [new("3", "3", IsInvariant: true), new("0", "0", IsInvariant: true), new("1", "1", IsInvariant: true), new("2", "2", IsInvariant: true)]
         ),
-        new(
-            "np2kai_CLGD_en",
-            "Emulation.Nec.CoreOptions.np2kai_CLGD_en",
-            "OFF",
-            EmulationMachineTab.Video,
-            [new("OFF", "Emulation.Nec.CoreOptions.np2kai_CLGD_en.Choice0"), new("ON", "Emulation.Nec.CoreOptions.np2kai_CLGD_en.Choice1")]
-        ),
+        new("np2kai_CLGD_en", "Emulation.Nec.CoreOptions.np2kai_CLGD_en", "OFF", EmulationMachineTab.Video, [new("OFF", "Emulation.Nec.CoreOptions.np2kai_CLGD_en.Choice0"), new("ON", "Emulation.Nec.CoreOptions.np2kai_CLGD_en.Choice1")]),
         new(
             "np2kai_CLGD_type",
             "Emulation.Nec.CoreOptions.np2kai_CLGD_type",
@@ -594,21 +552,9 @@ internal static class OptionConstants
                 new("Auto Select(Xe10, WSN-A4F)", "Emulation.Nec.CoreOptions.np2kai_CLGD_type.Choice23")
             ]
         ),
-        new(
-            "np2kai_CLGD_fc",
-            "Emulation.Nec.CoreOptions.np2kai_CLGD_fc",
-            "OFF",
-            EmulationMachineTab.Video,
-            [new("OFF", "Emulation.Nec.CoreOptions.np2kai_CLGD_fc.Choice0"), new("ON", "Emulation.Nec.CoreOptions.np2kai_CLGD_fc.Choice1")]
-        ),
+        new("np2kai_CLGD_fc", "Emulation.Nec.CoreOptions.np2kai_CLGD_fc", "OFF", EmulationMachineTab.Video, [new("OFF", "Emulation.Nec.CoreOptions.np2kai_CLGD_fc.Choice0"), new("ON", "Emulation.Nec.CoreOptions.np2kai_CLGD_fc.Choice1")]),
         new("np2kai_PEGC", "Emulation.Nec.CoreOptions.np2kai_PEGC", "ON", EmulationMachineTab.Video, [new("ON", "Emulation.Nec.CoreOptions.np2kai_PEGC.Choice0"), new("OFF", "Emulation.Nec.CoreOptions.np2kai_PEGC.Choice1")]),
-        new(
-            "np2kai_PCI_en",
-            "Emulation.Nec.CoreOptions.np2kai_PCI_en",
-            "OFF",
-            EmulationMachineTab.Video,
-            [new("OFF", "Emulation.Nec.CoreOptions.np2kai_PCI_en.Choice0"), new("ON", "Emulation.Nec.CoreOptions.np2kai_PCI_en.Choice1")]
-        ),
+        new("np2kai_PCI_en", "Emulation.Nec.CoreOptions.np2kai_PCI_en", "OFF", EmulationMachineTab.Video, [new("OFF", "Emulation.Nec.CoreOptions.np2kai_PCI_en.Choice0"), new("ON", "Emulation.Nec.CoreOptions.np2kai_PCI_en.Choice1")]),
         new(
             "np2kai_PCI_type",
             "Emulation.Nec.CoreOptions.np2kai_PCI_type",

@@ -5,12 +5,9 @@ namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Exceptions;
 
 internal static class CoreExceptions
 {
-    internal static string InvalidSaveRamSize(string path) =>
-        Text("Emulation.Error.Core.InvalidSaveRamSize", path);
-    internal static string SaveRamTooLarge() =>
-        Text("Emulation.Error.Core.SaveRamTooLarge");
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(NecEmulationModule).Assembly, "GWGUI.Emulation.Nec.Resources.Emulation");
+    internal static string InvalidSaveRamSize(string path) => Text("Emulation.Error.Core.InvalidSaveRamSize", path);
+    internal static string SaveRamTooLarge() => Text("Emulation.Error.Core.SaveRamTooLarge");
+    private static readonly EmulationModuleLocalization Localization = new(typeof(NecEmulationModule).Assembly, "GWGUI.Emulation.Nec.Resources.Emulation");
 
     internal static string HostConfigurationInvalid() => Text("Emulation.Error.Core.HostConfigurationInvalid");
     internal static string HostNotInitialized() => Text("Emulation.Error.Core.HostNotInitialized");
@@ -47,8 +44,7 @@ internal static class CoreExceptions
     internal static string ProcessUnavailable() => Text("Emulation.Error.Core.ProcessUnavailable");
     internal static string ProcessNotInitialized() => Text("Emulation.Error.Core.ProcessNotInitialized");
     internal static string ProcessTimeout() => Text("Emulation.Error.Core.ProcessTimeout");
-    internal static string ProcessCommunicationFailed(string detail) =>
-        Text("Emulation.Error.Core.ProcessCommunicationFailed", detail);
+    internal static string ProcessCommunicationFailed(string detail) => Text("Emulation.Error.Core.ProcessCommunicationFailed", detail);
     internal static string HostResponseUnavailable() => Text("Emulation.Error.Core.HostResponseUnavailable");
     internal static string UnknownCoreOption() => Text("Emulation.Error.Core.UnknownCoreOption");
     internal static string UnsupportedPixelFormat(int value) => Text("Emulation.Error.Core.UnsupportedPixelFormat", value);

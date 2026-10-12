@@ -11,23 +11,17 @@ internal static class GeargrafxFirmwareFunctions
         if (!string.IsNullOrWhiteSpace(selectedFirmwarePath)
             && !File.Exists(selectedFirmwarePath))
             throw new FileNotFoundException(null, selectedFirmwarePath);
-        var selectedName = string.IsNullOrWhiteSpace(selectedFirmwarePath)
-            ? null : Path.GetFileName(selectedFirmwarePath);
-        var preferPceLp1 = string.Equals(selectedName,
-            GeargrafxFirmwareConstants.PceLp1, StringComparison.OrdinalIgnoreCase);
-        var systemDirectory = Path.Combine(sessionDirectory,
-            CoreDirectoryConstants.SystemDirectoryName);
+        var selectedName = string.IsNullOrWhiteSpace(selectedFirmwarePath) ? null : Path.GetFileName(selectedFirmwarePath);
+        var preferPceLp1 = string.Equals(selectedName, GeargrafxFirmwareConstants.PceLp1, StringComparison.OrdinalIgnoreCase);
+        var systemDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
         Directory.CreateDirectory(systemDirectory);
 
         if (Directory.Exists(firmwareDirectory))
-            foreach (var source in Directory.EnumerateFiles(firmwareDirectory,
-                         FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories)
-                         .OrderBy(path => path, StringComparer.OrdinalIgnoreCase))
+            foreach (var source in Directory.EnumerateFiles(firmwareDirectory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories).OrderBy(path => path, StringComparer.OrdinalIgnoreCase))
             {
                 var name = Path.GetFileName(source);
                 if (!GeargrafxFirmwareConstants.SupportedNames.Contains(name)) continue;
-                if (preferPceLp1 && name.Equals(GeargrafxFirmwareConstants.PacN1,
-                        StringComparison.OrdinalIgnoreCase)) continue;
+                if (preferPceLp1 && name.Equals(GeargrafxFirmwareConstants.PacN1, StringComparison.OrdinalIgnoreCase)) continue;
                 var destination = Path.Combine(systemDirectory, name);
                 if (!File.Exists(destination)) File.Copy(source, destination);
             }

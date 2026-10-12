@@ -31,45 +31,30 @@ internal static class BeetlePceFastStorageFunctions
                 CompactDiscCacheResourceKey: StorageSettingsFunctionsConstants.ResourceCdImageCache,
                 CompactDiscIgnoreErrorsResourceKey:
                     BeetlePceFastStorageConstants.CdIgnoreErrorsResourceKey,
-                ModelResourceKey: model.Id == PcEngineDuoMachineConstants.Id
-                    ? BeetlePceFastStorageConstants.DuoCdRomResourceKey
-                    : BeetlePceFastStorageConstants.CdRom2ResourceKey));
+                ModelResourceKey: model.Id == PcEngineDuoMachineConstants.Id ? BeetlePceFastStorageConstants.DuoCdRomResourceKey : BeetlePceFastStorageConstants.CdRom2ResourceKey));
         return devices;
     }
 
-    internal static bool IsCompactDiscEnabled(Model model,
-        IReadOnlyDictionary<string, string> options) =>
-        model.HasBuiltInCdDrive || options.TryGetValue(
-            BeetlePceFastStorageConstants.CdDriveEnabledOption, out var value)
-            && bool.TryParse(value, out var enabled) && enabled;
+    internal static bool IsCompactDiscEnabled(Model model, IReadOnlyDictionary<string, string> options) => model.HasBuiltInCdDrive || options.TryGetValue(BeetlePceFastStorageConstants.CdDriveEnabledOption, out var value) && bool.TryParse(value, out var enabled) && enabled;
 
     internal static EmulationStorageDeviceSettings CompactDiscSettings(
         IReadOnlyDictionary<string, string> options) =>
         new(EmulationMediaSlot.Cd0,
             CompactDisc: new EmulationCompactDiscDriveSettings(
-                options.GetValueOrDefault(SettingsConstants.PceCdSpeed,
-                    BeetlePceFastStorageConstants.DefaultCdSpeed),
-                options.GetValueOrDefault(SettingsConstants.PceCdImageCache,
-                    StorageSettingsFunctionsConstants.CacheDisabled)
+                options.GetValueOrDefault(SettingsConstants.PceCdSpeed, BeetlePceFastStorageConstants.DefaultCdSpeed),
+                options.GetValueOrDefault(SettingsConstants.PceCdImageCache, StorageSettingsFunctionsConstants.CacheDisabled)
                     == StorageSettingsFunctionsConstants.CacheEnabled,
-                options.GetValueOrDefault(SettingsConstants.PceCdIgnoreErrors,
-                    StorageSettingsFunctionsConstants.CacheDisabled)
+                options.GetValueOrDefault(SettingsConstants.PceCdIgnoreErrors, StorageSettingsFunctionsConstants.CacheDisabled)
                     == StorageSettingsFunctionsConstants.CacheEnabled));
 
     internal static void ApplyOptions(Dictionary<string, string> options,
         EmulationStorageSettings settings, IReadOnlyCollection<EmulationMediaSlot> configured)
     {
-        options[BeetlePceFastStorageConstants.CdDriveEnabledOption] =
-            configured.Contains(EmulationMediaSlot.Cd0).ToString();
-        var cd = settings.DeviceSettings?.FirstOrDefault(item =>
-            item.Slot == EmulationMediaSlot.Cd0)?.CompactDisc;
+        options[BeetlePceFastStorageConstants.CdDriveEnabledOption] = configured.Contains(EmulationMediaSlot.Cd0).ToString();
+        var cd = settings.DeviceSettings?.FirstOrDefault(item => item.Slot == EmulationMediaSlot.Cd0)?.CompactDisc;
         if (cd is null) return;
-        options[SettingsConstants.PceCdImageCache] = cd.CacheImage
-            ? StorageSettingsFunctionsConstants.CacheEnabled
-            : StorageSettingsFunctionsConstants.CacheDisabled;
+        options[SettingsConstants.PceCdImageCache] = cd.CacheImage ? StorageSettingsFunctionsConstants.CacheEnabled : StorageSettingsFunctionsConstants.CacheDisabled;
         options[SettingsConstants.PceCdSpeed] = cd.Speed;
-        options[SettingsConstants.PceCdIgnoreErrors] = cd.IgnoreErrors
-            ? StorageSettingsFunctionsConstants.CacheEnabled
-            : StorageSettingsFunctionsConstants.CacheDisabled;
+        options[SettingsConstants.PceCdIgnoreErrors] = cd.IgnoreErrors ? StorageSettingsFunctionsConstants.CacheEnabled : StorageSettingsFunctionsConstants.CacheDisabled;
     }
 }

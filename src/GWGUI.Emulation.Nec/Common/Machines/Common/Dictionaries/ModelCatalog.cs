@@ -34,7 +34,5 @@ internal static class ModelCatalog
         Machines.PcEngineArcadeCard.Constants.MachineConstants.Definition
     ];
 
-    internal static Model Get(string id) => All.FirstOrDefault(item =>
-        string.Equals(item.Id, id, StringComparison.OrdinalIgnoreCase))
-        ?? throw new ArgumentOutOfRangeException(nameof(id), id, null);
+    internal static Model Get(string id) => All.FirstOrDefault(item => string.Equals(item.Id, id, StringComparison.OrdinalIgnoreCase)) ?? throw new ArgumentOutOfRangeException(nameof(id), id, null);
 }

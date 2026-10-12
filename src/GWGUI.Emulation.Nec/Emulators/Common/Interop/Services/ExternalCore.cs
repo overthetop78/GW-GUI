@@ -42,8 +42,7 @@ internal sealed class ExternalCore : IEmulatorCore
     public AudioChunk? LatestAudioChunk => _host?.LatestAudioChunk;
     public IReadOnlyList<CoreOption> Options => _host?.OptionCatalog ?? [];
     public IReadOnlyList<string> Diagnostics => _host?.Diagnostics ?? [];
-    public IReadOnlyDictionary<int, bool> LedStates => _host?.LedStates
-        ?? new Dictionary<int, bool>();
+    public IReadOnlyDictionary<int, bool> LedStates => _host?.LedStates ?? new Dictionary<int, bool>();
     public string CoreName { get; private set; } = string.Empty;
     public string CoreVersion { get; private set; } = string.Empty;
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } =
@@ -81,44 +80,35 @@ internal sealed class ExternalCore : IEmulatorCore
 
         var systemDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
         var contentDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.ContentDirectoryName);
-        saveDirectory = Path.GetFullPath(saveDirectory
-            ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
+        saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
         _saveDirectory = saveDirectory;
         Directory.CreateDirectory(systemDirectory);
         FirmwareFunctions.Prepare(configuration, systemDirectory);
         if (configuration.EmulatorId != GeargrafxConstants.Id
             && !string.IsNullOrWhiteSpace(configuration.FirmwarePath))
-            File.Copy(configuration.FirmwarePath,
-                Path.Combine(systemDirectory, FirmwareCatalogConstants.PcEngineSystemCardFileName), true);
+            File.Copy(configuration.FirmwarePath, Path.Combine(systemDirectory, FirmwareCatalogConstants.PcEngineSystemCardFileName), true);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
         var isolatedCoreDirectory = Path.Combine(sessionDirectory, ExternalCoreConstants.CoreDirectory);
         Directory.CreateDirectory(isolatedCoreDirectory);
         var isolatedCorePath = Path.Combine(isolatedCoreDirectory, isolatedLibraryName);
         File.Copy(sourceCorePath, isolatedCorePath, true);
-        var contentPath = definition.PrepareContent is null
-            ? PrepareContentPath(media, contentDirectory)
-            : definition.PrepareContent(media, contentDirectory, systemDirectory);
-        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory,
-            configuration.Options ?? new Dictionary<string, string>());
+        var contentPath = definition.PrepareContent is null ? PrepareContentPath(media, contentDirectory) : definition.PrepareContent(media, contentDirectory, systemDirectory);
+        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, configuration.Options ?? new Dictionary<string, string>());
 
         try
         {
             _library = new ExternalCoreLibrary(isolatedCorePath);
-            var apiVersion = Export<ExternalCoreApi.GetApiVersion>(
-                ExternalCoreConstants.RetroApiVersion)();
+            var apiVersion = Export<ExternalCoreApi.GetApiVersion>(ExternalCoreConstants.RetroApiVersion)();
             if (apiVersion != ExternalCoreInteropConstants.ApiVersion)
                 throw new NotSupportedException(CoreExceptions.UnsupportedApiVersion(apiVersion));
             Export<ExternalCoreApi.GetSystemInfo>(ExternalCoreConstants.RetroGetSystemInfo)(out var info);
             var libraryName = Marshal.PtrToStringUTF8(info.LibraryName);
-            if (!string.Equals(libraryName, expectedLibraryName,
-                    StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(libraryName, expectedLibraryName, StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException(CoreExceptions.LibraryIdentityMismatch(libraryName));
             CoreName = libraryName!;
             CoreVersion = Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty;
-            SupportedContentExtensions = (Marshal.PtrToStringUTF8(info.ValidExtensions) ?? string.Empty)
-                .Split(MediaConstants.SupportedExtensionSeparator,
-                    StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            SupportedContentExtensions = (Marshal.PtrToStringUTF8(info.ValidExtensions) ?? string.Empty).Split(MediaConstants.SupportedExtensionSeparator, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
                 .Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix))
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
             ValidateExtension(contentPath);
@@ -141,19 +131,15 @@ internal sealed class ExternalCore : IEmulatorCore
             Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroInit)();
             _initialized = true;
             _host.ValidateConfiguredOptions();
-            var setController = Export<ExternalCoreApi.SetControllerPortDevice>(
-                ExternalCoreConstants.RetroSetControllerPortDevice);
+            var setController = Export<ExternalCoreApi.SetControllerPortDevice>(ExternalCoreConstants.RetroSetControllerPortDevice);
             for (var port = 0; port < ModelCatalog.Get(configuration.Model).ControllerPortCount; port++)
-                setController((uint)port, configuration.Input?.ControllerBindings?
-                    .Any(binding => binding.Port == port && ControllerCatalog.IsMouse(binding.Type)) == true
-                    ? ExternalHostCallbacksConstants.MouseDevice : ExternalCoreConstants.JoypadDevice);
+                setController((uint)port, configuration.Input?.ControllerBindings?.Any(binding => binding.Port == port && ControllerCatalog.IsMouse(binding.Type)) == true ? ExternalHostCallbacksConstants.MouseDevice : ExternalCoreConstants.JoypadDevice);
 
             var loadGame = Export<ExternalCoreApi.LoadGame>(ExternalCoreConstants.RetroLoadGame);
             if (contentPath is null)
             {
                 if (!_host.SupportsNoGame)
-                    throw new GWGUI.Emulation.Nec.Common.Exceptions.CoreMediaRequiredException(
-                        CoreExceptions.StartWithoutMediaUnsupported());
+                    throw new GWGUI.Emulation.Nec.Common.Exceptions.CoreMediaRequiredException(CoreExceptions.StartWithoutMediaUnsupported());
                 _gameLoaded = loadGame(0);
             }
             else if (definition.Subsystems?.TryGetValue(media.Count, out var subsystem) == true)
@@ -174,9 +160,7 @@ internal sealed class ExternalCore : IEmulatorCore
         }
     }
 
-    internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(
-        MachineConfiguration configuration) => (configuration.Media ?? [])
-        .Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ToArray();
+    internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(MachineConfiguration configuration) => (configuration.Media ?? []).Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ToArray();
 
     internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media,
         string contentDirectory)
@@ -184,20 +168,16 @@ internal sealed class ExternalCore : IEmulatorCore
         return media.Count == 0 ? null : Path.GetFullPath(media[0].Path);
     }
 
-    public void RunFrame() => (_run
-        ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
+    public void RunFrame() => (_run ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
     public void HardReset()
     {
-        var configuration = _configuration
-            ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());
-        var sessionDirectory = _sessionDirectory
-            ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());
+        var configuration = _configuration ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());
+        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized());
         var saveDirectory = _saveDirectory;
         Dispose();
         Initialize(configuration, sessionDirectory, saveDirectory);
     }
-    public void SoftReset() => (_reset
-        ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
+    public void SoftReset() => (_reset ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
     public void SetInput(EmulationInputSnapshot snapshot)
     {
         if (_host is not null) _host.Input = snapshot;
@@ -206,35 +186,30 @@ internal sealed class ExternalCore : IEmulatorCore
     {
         if (_configuration?.EmulatorId == GeargrafxConstants.Id)
             throw new NotSupportedException(CoreExceptions.MediaRefused());
-        (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))
-            .DiskControl.Insert(path);
+        (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Insert(path);
     }
     public void EjectMedia()
     {
         EnsureDiskControlSupported();
-        (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))
-            .DiskControl.Eject();
+        (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Eject();
     }
     public void SelectDisk(int index)
     {
         EnsureDiskControlSupported();
-        (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))
-            .DiskControl.Select(index);
+        (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Select(index);
     }
 
     private void EnsureDiskControlSupported()
     {
         if (_configuration?.EmulatorId != GeargrafxConstants.Id) return;
         var current = ResolveConfiguredMedia(_configuration).FirstOrDefault();
-        if (current is null || !Path.GetExtension(current.Path).Equals(
-                GeargrafxConstants.MmiExtension, StringComparison.OrdinalIgnoreCase))
+        if (current is null || !Path.GetExtension(current.Path).Equals(GeargrafxConstants.MmiExtension, StringComparison.OrdinalIgnoreCase))
             throw new NotSupportedException(CoreExceptions.DiskControlUnavailable());
     }
 
     public byte[] SaveState()
     {
-        var size = (_getSerializedSize
-            ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
+        var size = (_getSerializedSize ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
         if (size == ExternalCoreInteropConstants.EmptyNativeSize || size > SavedStateConstants.MaximumStateSize)
             throw new InvalidOperationException(CoreExceptions.InvalidStateSize(size));
         var state = new byte[(int)size];
@@ -263,9 +238,7 @@ internal sealed class ExternalCore : IEmulatorCore
         finally { Marshal.FreeHGlobal(buffer); }
     }
 
-    public void SetOption(string key, string value) => (_host
-        ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))
-        .SetOption(key, value);
+    public void SetOption(string key, string value) => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).SetOption(key, value);
 
     public void Stop()
     {
@@ -340,8 +313,7 @@ internal sealed class ExternalCore : IEmulatorCore
                 Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = path.Pointer },
                     games + index * itemSize, false);
             }
-            return Export<SubsystemContracts.LoadGameSpecial>(ExternalCoreConstants.RetroLoadGameSpecial)
-                (type, games, (nuint)media.Count);
+            return Export<SubsystemContracts.LoadGameSpecial>(ExternalCoreConstants.RetroLoadGameSpecial) (type, games, (nuint)media.Count);
         }
         finally
         {
@@ -350,8 +322,7 @@ internal sealed class ExternalCore : IEmulatorCore
         }
     }
 
-    private T Export<T>(string name) where T : Delegate => (_library
-        ?? throw new InvalidOperationException(CoreExceptions.CoreNotLoaded())).Resolve<T>(name);
+    private T Export<T>(string name) where T : Delegate => (_library ?? throw new InvalidOperationException(CoreExceptions.CoreNotLoaded())).Resolve<T>(name);
 
     private static string ResolveCorePath(string path)
     {

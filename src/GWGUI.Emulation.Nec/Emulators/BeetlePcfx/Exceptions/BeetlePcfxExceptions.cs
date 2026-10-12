@@ -5,12 +5,9 @@ namespace GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Exceptions;
 
 internal static class BeetlePcfxExceptions
 {
-    internal static string InvalidBackupSize(string path) =>
-        Text("Emulation.Error.BeetlePcfx.InvalidBackupSize", path);
-    internal static string UnexpectedBackupMemorySize() =>
-        Text("Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize");
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(NecEmulationModule).Assembly, "GWGUI.Emulation.Nec.Resources.Emulation");
+    internal static string InvalidBackupSize(string path) => Text("Emulation.Error.BeetlePcfx.InvalidBackupSize", path);
+    internal static string UnexpectedBackupMemorySize() => Text("Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize");
+    private static readonly EmulationModuleLocalization Localization = new(typeof(NecEmulationModule).Assembly, "GWGUI.Emulation.Nec.Resources.Emulation");
 
     internal static string HostConfigurationInvalid() => Text("Emulation.Error.BeetlePcfx.HostConfigurationInvalid");
     internal static string HostNotInitialized() => Text("Emulation.Error.BeetlePcfx.HostNotInitialized");
@@ -47,8 +44,7 @@ internal static class BeetlePcfxExceptions
     internal static string ProcessUnavailable() => Text("Emulation.Error.BeetlePcfx.ProcessUnavailable");
     internal static string ProcessNotInitialized() => Text("Emulation.Error.BeetlePcfx.ProcessNotInitialized");
     internal static string ProcessTimeout() => Text("Emulation.Error.BeetlePcfx.ProcessTimeout");
-    internal static string ProcessCommunicationFailed(string detail) =>
-        Text("Emulation.Error.BeetlePcfx.ProcessCommunicationFailed", detail);
+    internal static string ProcessCommunicationFailed(string detail) => Text("Emulation.Error.BeetlePcfx.ProcessCommunicationFailed", detail);
     internal static string HostResponseUnavailable() => Text("Emulation.Error.BeetlePcfx.HostResponseUnavailable");
     internal static string UnknownCoreOption() => Text("Emulation.Error.BeetlePcfx.UnknownCoreOption");
     internal static string UnsupportedPixelFormat(int value) => Text("Emulation.Error.BeetlePcfx.UnsupportedPixelFormat", value);
