@@ -91,10 +91,7 @@ public sealed class FirmwareCatalog
         stream.Position = 0;
         var sha256 = Convert.ToHexString(SHA256.HashData(stream));
         var known = Known.TryGetValue(md5, out var identity);
-        return new Firmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc,
-            FirmwareType.SystemRom, known, known, known ? identity.Name : null,
-            known ? identity.Version : null, known ? identity.Models : [],
-            known ? identity.FileNames : []);
+        return new Firmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc, FirmwareType.SystemRom, known, known, known ? identity.Name : null, known ? identity.Version : null, known ? identity.Models : [], known ? identity.FileNames : []);
     }
 
     internal static bool TryIdentifyKnown(string md5, out (string Name, string Version, string[] Models, string[] FileNames) identity) => Known.TryGetValue(md5, out identity);
