@@ -1,0 +1,140 @@
+using System.IO;
+using System.Globalization;
+using System.IO.Pipes;
+using System.Runtime.Versioning;
+using System.Text;
+using System.Text.Json;
+using GWGUI.Emulation;
+
+namespace GWGUI.Emulation.Watara.Common.Services;
+
+public static class CoreHost
+{
+    [SupportedOSPlatform(CoreHostConstants.Windows)]
+    internal static void Run(string pipeName, string videoMapName, Func<string, Emulator, IEmulatorCore> createCore)
+    {
+        ArgumentNullException.ThrowIfNull(createCore);
+        using var video = new SharedVideoWriter(videoMapName);
+        using var pipe = new NamedPipeClientStream(CoreHostConstants.LocalPipeServerName, pipeName, PipeDirection.InOut, PipeOptions.None);
+        pipe.Connect(CoreHostConstants.ConnectionTimeoutMilliseconds);
+        using var reader = new BinaryReader(pipe, Encoding.UTF8, leaveOpen: true);
+        using var transportWriter = new BinaryWriter(pipe, Encoding.UTF8, leaveOpen: true);
+        IEmulatorCore? core = null;
+        var lastVideoSequence = CoreHostConstants.InitialVideoSequence;
+        var lastDiagnosticCount = CoreHostConstants.InitialDiagnosticCount;
+        try
+        {
+            while (TryReadCommand(reader, out var command))
+            {
+                var exit = command == HostCommand.Dispose;
+                using var responseStream = new MemoryStream();
+                using var writer = new BinaryWriter(responseStream, Encoding.UTF8, leaveOpen: true);
+                try
+                {
+                    CoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Success);
+                    switch (command)
+                    { case HostCommand.Initialize: Initialize(reader, writer, createCore, ref core, ref lastDiagnosticCount); lastVideoSequence = CoreHostConstants.InitialVideoSequence; break; case HostCommand.RunFrame: RunFrame(reader, writer, video, EnsureCore(core), ref lastVideoSequence, ref lastDiagnosticCount); break; case HostCommand.HardReset: EnsureCore(core).HardReset(); break; case HostCommand.Stop: EnsureCore(core).Stop(); break; case HostCommand.InsertMedia: EnsureCore(core).InsertMedia(ReadMedia(reader)); break; case HostCommand.EjectMedia: EnsureCore(core).EjectMedia(EmulationMediaSlot.FromProtocolValue(reader.ReadInt32())); break; case HostCommand.SaveState: CoreHostFunctions.WriteBytes(writer, EnsureCore(core).SaveState()); break; case HostCommand.LoadState: EnsureCore(core).LoadState(CoreHostFunctions.ReadBytes(reader)); break; case HostCommand.SetOption: EnsureCore(core).SetOption(reader.ReadString(), reader.ReadString()); break; case HostCommand.SelectDisk: EnsureCore(core).SelectDisk(reader.ReadInt32()); break; case HostCommand.GetDiskStatus: CoreHostFunctions.WriteDiskStatus(writer, EnsureCore(core).GetDiskStatus()); break; case HostCommand.SetControllerPortDevice: EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(), (PeripheralCategory)reader.ReadInt32()); break; case HostCommand.Dispose: core?.Dispose(); core = null; break; default: throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, CoreHostErrors.UnknownCommandFormat, (byte)command));
+                    }
+                }
+                catch (Exception error)
+                {
+                    responseStream.SetLength(0);
+                    responseStream.Position = 0;
+                    CoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Failure);
+                    CoreHostFunctions.WriteError(writer, error);
+                }
+                writer.Flush();
+                CoreHostFunctions.WriteBytes(transportWriter, responseStream.GetBuffer().AsSpan(0, checked((int)responseStream.Length)));
+                if (exit) break;
+            }
+        }
+        finally
+        {
+            core?.Dispose();
+        }
+    }
+
+    private static bool TryReadCommand(BinaryReader reader, out HostCommand command)
+    {
+        try
+        {
+            command = CoreHostFunctions.ReadRequestHeader(reader);
+            return true;
+        }
+        catch (EndOfStreamException)
+        {
+            command = default;
+            return false;
+        }
+    }
+
+    private static void Initialize(BinaryReader reader, BinaryWriter writer, Func<string, Emulator, IEmulatorCore> createCore, ref IEmulatorCore? core, ref int lastDiagnosticCount)
+    {
+        var previousCore = core;
+        core = null;
+        try { previousCore?.Dispose(); }
+        finally { core = null; }
+        var corePath = reader.ReadString();
+        var emulator = (Emulator)reader.ReadInt32();
+        var session = reader.ReadString();
+        var saves = CoreHostFunctions.ReadString(reader);
+        var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);
+        core = createCore(corePath, emulator);
+        core.Initialize(configuration, session, saves);
+        writer.Write(core.CoreSha256);
+        writer.Write(core.FramesPerSecond);
+        writer.Write(core.SampleRate);
+        writer.Write(core.SupportsSaveStates);
+        WriteRuntimeStatus(writer, core.Region, core.BufferedAudioFrames, core.AudioOverrunCount, core.AudioUnderrunCount);
+        writer.Write(JsonSerializer.Serialize(core.Options, CoreHostFunctions.JsonOptions));
+        writer.Write(JsonSerializer.Serialize(core.Diagnostics, CoreHostFunctions.JsonOptions));
+        lastDiagnosticCount = core.Diagnostics.Count;
+        writer.Write(core.CoreName);
+        writer.Write(core.CoreVersion);
+        writer.Write(string.Join(CoreHostConstants.ExtensionListSeparator, core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
+        CoreHostFunctions.WriteLedStates(writer, core.LedStates);
+    }
+
+    [SupportedOSPlatform(CoreHostConstants.Windows)]
+    private static void RunFrame(BinaryReader reader, BinaryWriter writer, SharedVideoWriter video, IEmulatorCore core, ref long lastVideoSequence, ref int lastDiagnosticCount)
+    {
+        var audioStatus = JsonSerializer.Deserialize<AudioOutputBufferStatus?>(reader.ReadString(), CoreHostFunctions.JsonOptions);
+        if (core is IEmulatorAudioBufferFeedback feedback) feedback.SetAudioBufferStatus(audioStatus);
+        core.SetInput(CoreHostFunctions.ReadInput(reader));
+        core.RunFrame();
+        var frame = core.LatestVideoFrame;
+        CoreHostFunctions.WriteResizableSharedFrame(writer, frame?.Sequence == lastVideoSequence ? null : frame, video);
+        if (frame is not null) lastVideoSequence = frame.Sequence;
+        var bufferedAudioFrames = core.BufferedAudioFrames;
+        var audioOverrunCount = core.AudioOverrunCount;
+        var audioUnderrunCount = core.AudioUnderrunCount;
+        var audio = new List<AudioChunk>();
+        while (core.TryDequeueAudio(out var chunk) && chunk is not null) audio.Add(chunk);
+        CoreHostFunctions.WriteAudio(writer, audio);
+        writer.Write(core.FramesPerSecond);
+        writer.Write(core.SampleRate);
+        WriteRuntimeStatus(writer, core.Region, bufferedAudioFrames, audioOverrunCount, audioUnderrunCount);
+        writer.Write(core.SupportsSaveStates);
+        var diagnosticsChanged = core.Diagnostics.Count != lastDiagnosticCount;
+        writer.Write(diagnosticsChanged);
+        if (diagnosticsChanged)
+        {
+            writer.Write(JsonSerializer.Serialize(core.Diagnostics, CoreHostFunctions.JsonOptions));
+            lastDiagnosticCount = core.Diagnostics.Count;
+        }
+        CoreHostFunctions.WriteLedStates(writer, core.LedStates);
+        writer.Write(core is IEmulatorAudioBufferFeedback latency ? latency.MinimumAudioLatencyMilliseconds : 0);
+    }
+
+    private static void WriteRuntimeStatus(BinaryWriter writer, EmulationVideoStandard? region, int bufferedAudioFrames, long audioOverrunCount, long audioUnderrunCount)
+    {
+        writer.Write(RuntimeFunctions.RegionValue(region));
+        writer.Write(bufferedAudioFrames);
+        writer.Write(audioOverrunCount);
+        writer.Write(audioUnderrunCount);
+    }
+
+    private static MediaConfiguration ReadMedia(BinaryReader reader) => JsonSerializer.Deserialize<MediaConfiguration>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);
+
+    private static IEmulatorCore EnsureCore(IEmulatorCore? core) => core ?? throw new InvalidOperationException(CoreHostErrors.NotInitialized);
+}

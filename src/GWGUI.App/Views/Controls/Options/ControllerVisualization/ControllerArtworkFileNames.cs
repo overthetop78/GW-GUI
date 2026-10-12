@@ -2,6 +2,7 @@ namespace GWGUI.App.Views.Controls.Options.ControllerVisualization;
 
 internal static class ControllerArtworkFileNames
 {
+    internal const string WataraSupervisionControls = "watara-supervision-controls.png";
     internal const string ThomsonMj90102 = "thomson-mj90-102.png";
     internal const string SnkNeoGeoArcadeStick = "snk-arcade-stick.png";
     internal const string SnkNeoGeoCdPad = "snk-cd-pad.png";

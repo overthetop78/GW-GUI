@@ -260,3 +260,11 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-12 01:31:31 | 42:35:47 | -34:35:47 | Reprise. Thomson : fermeture et transport du processus isolé. |
 | 2026-10-12 01:38:38 | 42:42:54 | -34:42:54 | Reprise. Thomson : catalogue et gestion du module. |
 | 2026-10-12 01:51:26 | 42:55:42 | -34:55:42 | Reprise. Thomson : visuels des machines et intégration. |
+| 2026-10-12 03:01:49 | 44:06:05 | -36:06:05 | Reprise. Watara : contrat Potator et base du module. |
+| 2026-10-12 03:10:48 | 44:15:04 | -36:15:04 | Reprise. Watara : contrôles intégrés et transport isolé. |
+| 2026-10-12 03:24:06 | 44:28:22 | -36:28:22 | Reprise. Watara : dépendances des états et de la session. |
+| 2026-10-12 03:26:12 | 44:30:28 | -36:30:28 | Reprise. Watara : session et arrêt du cœur. |
+| 2026-10-12 03:31:21 | 44:35:37 | -36:35:37 | Reprise. Watara : installation et fabrique Potator. |
+| 2026-10-12 03:39:16 | 44:43:32 | -36:43:32 | Reprise. Watara : matériel et entrée publique du module. |
+| 2026-10-12 03:43:20 | 44:47:36 | -36:47:36 | Reprise. Watara : visuels et intégration App. |
+| 2026-10-12 03:53:52 | 44:58:08 | -36:58:08 | Reprise. Watara : validation du parcours livré. |

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.potator.Description" xml:space="preserve"><value>Εξομοιωτής κονσόλας χειρός.</value></data>
+  <data name="Emulation.Watara.Video.Palette" xml:space="preserve"><value>Παλέτα χρωμάτων</value></data>
+  <data name="Emulation.Watara.Video.Ghosting" xml:space="preserve"><value>LCD επιμονή εικόνας</value></data>
+  <data name="Emulation.Watara.Video.Threshold" xml:space="preserve"><value>Κατώφλι ρύθμισης ήχου</value></data>
+  <data name="Emulation.Watara.Video.Manual" xml:space="preserve"><value>Χειροκίνητο</value></data>
+  <data name="Emulation.Watara.Memory.Video" xml:space="preserve"><value>μνήμη βίντεο</value></data>
+</root>

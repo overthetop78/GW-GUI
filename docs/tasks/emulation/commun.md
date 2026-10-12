@@ -269,4 +269,4 @@
     - [ ] Modifier `docs/tasks/emulation/revision-types-entrees.md` : développer dans l'ordre les actions de code identifiées par l'inventaire, avec chemins réels, contenu à remplacer et appelants à migrer ; traiter SDK puis propriétaires Common puis adaptateurs puis descriptions/persistance/session puis ressources de toutes les langues, avant la vérification finale.
 
 - [ ] Commiter les corrections restantes autorisées.
-  - [ ] Modifier `.git/index` et la référence de branche : commiter tous les fichiers restants, y compris le catalogue Libretro restauré, les modules, le SDK, les ressources, les registres et la restauration des outils, sans push.
+  - [ ] Commiter tous les fichiers restants, y compris le catalogue Libretro restauré, les modules, le SDK, les ressources, les registres et la restauration des outils, sans push.
