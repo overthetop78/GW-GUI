@@ -24,9 +24,7 @@ internal static class InputSettingsFunctions
     internal static IReadOnlyList<InputBindingDefinition> Definitions(PeripheralCategory peripheral)
     {
         if (peripheral == PeripheralCategory.None) return [];
-        var actions = ControllerActionConstants.All.Where(action =>
-            (action is not ("Purple" or "Blue") || peripheral == PeripheralCategory.SuperAction)
-            && (action is not ("SpinnerLeft" or "SpinnerRight") || peripheral is not PeripheralCategory.Standard));
+        var actions = ControllerActionConstants.All.Where(action => (action is not ("Purple" or "Blue") || peripheral == PeripheralCategory.SuperAction) && (action is not ("SpinnerLeft" or "SpinnerRight") || peripheral is not PeripheralCategory.Standard));
         return actions.Select(action => new InputBindingDefinition(action,
             action is "Up" or "Down" or "Left" or "Right" ? "Emulation.Controller.Action." + action : "Emulation.Coleco.Action." + action,
             string.Empty, action.StartsWith("Keypad", StringComparison.Ordinal) ? action[6..] : action == "Star" ? "*" : action == "Pound" ? "#" : null)).ToArray();

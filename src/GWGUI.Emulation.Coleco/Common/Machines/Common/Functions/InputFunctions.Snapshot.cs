@@ -7,8 +7,7 @@ internal static class InputSnapshotFunctions
         var keys = snapshot.Keys;
         if (model == MachineModel.Adam)
         {
-            var bindings = InputSettingsFunctions.KeyboardBindings(input, model).Where(pair => !string.IsNullOrEmpty(pair.Value)).ToDictionary(
-                pair => InputMappingConstants.AdamPrefix + pair.Key, pair => Enum.Parse<EmulationKey>(pair.Value));
+            var bindings = InputSettingsFunctions.KeyboardBindings(input, model).Where(pair => !string.IsNullOrEmpty(pair.Value)).ToDictionary( pair => InputMappingConstants.AdamPrefix + pair.Key, pair => Enum.Parse<EmulationKey>(pair.Value));
             keys = EmulationInputMappingFunctions.MapKeyboard(keys, bindings);
         }
         var controllers = Enumerable.Repeat(EmulationControllerState.Empty, ControllerConstants.PortCount).ToArray();
