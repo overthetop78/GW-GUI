@@ -1,7 +1,6 @@
 using GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts;
 
 namespace GWGUI.Emulation.Sega.Emulators.GenesisPlusGXWide.Constants;
-
 internal static class CoreConstants
 {
     internal const string Id = "genesis_plus_gx_wide";
@@ -20,13 +19,12 @@ internal static class CoreConstants
         OptionConstants.All,
         FirmwareConstants.All,
         new(
-        Id,
-        DisplayName,
-        DescriptionResourceKey,
-        new HashSet<string>(StringComparer.Ordinal) { ModelConstants.Sg1000, ModelConstants.Sc3000, ModelConstants.MarkIII, ModelConstants.MasterSystem, ModelConstants.GameGear, ModelConstants.MegaDrive, ModelConstants.MegaCd, ModelConstants.Pico }
-    ),
+            Id,
+            DisplayName,
+            DescriptionResourceKey,
+            new HashSet<string>(StringComparer.Ordinal) { ModelConstants.Sg1000, ModelConstants.Sc3000, ModelConstants.MarkIII, ModelConstants.MasterSystem, ModelConstants.GameGear, ModelConstants.MegaDrive, ModelConstants.MegaCd, ModelConstants.Pico }
+        ),
         MachineOptions: MachineOptionConstants.All,
         PrepareContent: Functions.ContentFunctions.Prepare
     );
 }
-

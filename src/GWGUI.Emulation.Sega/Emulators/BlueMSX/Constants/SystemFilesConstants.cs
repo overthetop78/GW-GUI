@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Sega.Emulators.BlueMSX.Constants;
-
 internal static class SystemFilesConstants
 {
     internal const string MachinesDirectory = "Machines";
