@@ -55,11 +55,12 @@ using GWGUI.MediaEngine.Images.Reading.Decoding;
 using GWGUI.MediaEngine.Images.Reading;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.App.Constants.Views.Shell;
-namespace GWGUI.App.Views.Windows.Shell;
 
+namespace GWGUI.App.Views.Windows.Shell;
 public partial class MainWindow : Window
 {
     private TrackProgressStrip Face1TrackProgress => StatusBarBlock.Face1Progress;
+
     private readonly ISettingsStore _settingsStore;
     private readonly IGreaseweazleRunner _runner;
     private readonly IGwCommandBuilder _commandBuilder;
@@ -102,8 +103,20 @@ public partial class MainWindow : Window
     private readonly bool _settingsProvidedAtStartup;
     private readonly Action<string> _openDocumentation;
     private readonly Action<Exception, string> _writeError;
-
-    public MainWindow() : this(null, null, null, null, null, null, null, null, null, null) { }
+    public MainWindow() : this(
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    )
+    {
+    }
 
     public MainWindow(
         IMessageDialogService? dialogs,
@@ -396,7 +409,10 @@ public partial class MainWindow : Window
             RefreshExplorerFormats();
             ScpDecoderCombo.ItemsSource = new[]
             {
-                new ScpDecoderChoice(null, LocExtension.Get("Visual.Automatic"))
+                new ScpDecoderChoice(
+                null,
+                LocExtension.Get("Visual.Automatic")
+            )
             }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, DecoderName(x.Id)))).ToArray();
             ScpDecoderCombo.SelectedIndex = 0;
         },
@@ -433,5 +449,4 @@ public partial class MainWindow : Window
         ErrorLog.EntryWritten += AppendErrorToConsole;
         ErrorLog.WarningWritten += AppendWarningToConsole;
     }
-
 }

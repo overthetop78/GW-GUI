@@ -22,10 +22,7 @@ using System.Windows.Input;
 using Microsoft.Win32;
 using GWGUI.Infrastructure.Processes;
 
-
-
 namespace GWGUI.App.Views.Windows.Preferences;
-
 public partial class PreferencesWindow : Window
 {
     private ScrollViewer GeneralScrollViewer => GeneralSection.Scroller;
@@ -50,6 +47,7 @@ public partial class PreferencesWindow : Window
     private ListBox ReadProfilesList => ProfilesSection.ReadProfiles;
     private ListBox WriteProfilesList => ProfilesSection.WriteProfiles;
     private ListBox ConvertProfilesList => ProfilesSection.ConvertProfiles;
+
     private readonly AppSettings _settings;
     private readonly HardwareOptionsState _hardwareState;
     private readonly ProfileOptionsState _profileState;
@@ -75,6 +73,7 @@ public partial class PreferencesWindow : Window
     public ObservableCollection<ProfileOptionRow> WriteProfiles => _profileOptionsController.Write;
     public ObservableCollection<ProfileOptionRow> ConvertProfiles => _profileOptionsController.Convert;
     public ObservableCollection<LogOptionRow> LogOptions => _loggingOptionsController.Options;
+
     public PreferencesWindow(
         AppSettings settings,
         IHardwareRegistry? hardwareRegistry = null,
@@ -140,7 +139,6 @@ public partial class PreferencesWindow : Window
     private void ConnectSections()
     {
         RegisterSectionNames();
-
         HardwareSection.ScanRequested += ScanHardware_Click;
         HardwareSection.AddDriveRequested += AddDrive_Click;
         HardwareSection.SaveDriveRequested += SaveHardwareRow_Click;
@@ -184,31 +182,32 @@ public partial class PreferencesWindow : Window
         Title = LocExtension.Get("Options.PreferencesTitle");
     }
 
-    internal static string RenderTagPattern(string pattern, string name, string family, string format, string extension, DateTime timestamp) =>
-        TagPatternFormatter.Render(pattern, name, family, format, extension, timestamp);
-
+    internal static string RenderTagPattern(string pattern, string name, string family, string format, string extension, DateTime timestamp) => TagPatternFormatter.Render(pattern, name, family, format, extension, timestamp);
     private async void AutoSaveText_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => await SaveFromEditorAsync();
-
     private async void ScanHardware_Click(object sender, RoutedEventArgs e) => await _hardwareOptionsController.ScanAsync();
-
     private void AddDrive_Click(object sender, RoutedEventArgs e) => _hardwareOptionsController.AddDrive();
-
-    private async void SaveHardwareRow_Click(object sender, RoutedEventArgs e)
+    private async void SaveHardwareRow_Click(
+        object sender,
+        RoutedEventArgs e
+    )
     {
-        if (sender is not FrameworkElement { DataContext: HardwareRow row }) return;
+        if (sender is not FrameworkElement { DataContext: HardwareRow row })
+            return;
         await _hardwareOptionsController.SaveAsync(row);
     }
 
-    private async void ForgetHardwareRow_Click(object sender, RoutedEventArgs e)
+    private async void ForgetHardwareRow_Click(
+        object sender,
+        RoutedEventArgs e
+    )
     {
-        if (sender is not FrameworkElement { DataContext: HardwareRow row }) return;
+        if (sender is not FrameworkElement { DataContext: HardwareRow row })
+            return;
         await _hardwareOptionsController.ForgetAsync(row);
     }
 
     private void RemoveHardwareRow(HardwareRow row) => _hardwareOptionsController.Remove(row);
-
     private void RefreshHardwareRows() => _hardwareOptionsController.RefreshRows();
-
     internal void MergeUnconfigured(IReadOnlyList<ControllerSettings> detectedControllers)
     {
         _hardwareOptionsController.MergeUnconfigured(detectedControllers);
@@ -226,29 +225,50 @@ public partial class PreferencesWindow : Window
 
     internal async Task PersistSettingsAsync()
     {
-        if (_initializing) return;
+        if (_initializing)
+            return;
         ApplyControlsToSettings();
         await _saveLock.WaitAsync().ConfigureAwait(false);
-        try { await _settingsStore.SaveAsync(_settings).ConfigureAwait(false); }
-        finally { _saveLock.Release(); }
+        try
+        {
+            await _settingsStore.SaveAsync(_settings).ConfigureAwait(false);
+        }
+        finally
+        {
+            _saveLock.Release();
+        }
     }
 
     internal async Task SaveFromEditorAsync()
     {
-        try { await PersistSettingsAsync(); }
-        catch (Exception exception) { _reportSaveError(exception); }
+        try
+        {
+            await PersistSettingsAsync();
+        }
+        catch (Exception exception)
+        {
+            _reportSaveError(exception);
+        }
     }
 
     private void Close_Click(object sender, RoutedEventArgs e) => BeginClose();
-
-    private void Window_Closing(object? sender, CancelEventArgs e)
+    private void Window_Closing(
+        object? sender,
+        CancelEventArgs e
+    )
     {
-        if (_initializing || _closingAfterSave) return;
+        if (_initializing || _closingAfterSave)
+            return;
         e.Cancel = true;
         BeginClose();
     }
 
-    private void ShowLoggedError(Exception exception, string context, string titleKey, MessageBoxImage icon)
+    private void ShowLoggedError(
+        Exception exception,
+        string context,
+        string titleKey,
+        MessageBoxImage icon
+    )
     {
         ErrorLog.Write(exception, context);
         var detail = ExceptionDescriptionFunctions.Describe(exception);
@@ -257,14 +277,18 @@ public partial class PreferencesWindow : Window
 
     private void BeginClose()
     {
-        if (_closeInProgress) return;
+        if (_closeInProgress)
+            return;
         _closeInProgress = true;
         _ = SaveAndCloseAsync();
     }
 
     private async Task SaveAndCloseAsync()
     {
-        try { await PersistSettingsAsync().ConfigureAwait(false); }
+        try
+        {
+            await PersistSettingsAsync().ConfigureAwait(false);
+        }
         catch (Exception exception)
         {
             ErrorLog.Write(exception, "Saving Preferences while closing");
@@ -272,16 +296,25 @@ public partial class PreferencesWindow : Window
             try
             {
                 if (!Dispatcher.HasShutdownStarted && !Dispatcher.HasShutdownFinished)
-                    await Dispatcher.InvokeAsync(() => { if (IsLoaded) MessageBox.Show(this, LocExtension.Get("Error.SaveFailed", detail), LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning); }).Task.ConfigureAwait(false);
+                    await Dispatcher.InvokeAsync(() =>
+                    {
+                        if (IsLoaded)
+                            MessageBox.Show(this, LocExtension.Get("Error.SaveFailed", detail), LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }).Task.ConfigureAwait(false);
             }
-            catch (Exception dialogException) { ErrorLog.Write(dialogException, "Displaying Preferences save error"); }
+            catch (Exception dialogException)
+            {
+                ErrorLog.Write(dialogException, "Displaying Preferences save error");
+            }
         }
+
         try
         {
             if (!Dispatcher.HasShutdownStarted && !Dispatcher.HasShutdownFinished)
                 await Dispatcher.InvokeAsync(() =>
                 {
-                    if (_closingAfterSave) return;
+                    if (_closingAfterSave)
+                        return;
                     _closingAfterSave = true;
                     _closeInProgress = false;
                     Close();

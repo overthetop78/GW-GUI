@@ -1,8 +1,17 @@
 namespace GWGUI.App.Rendering.Emulation.Processing;
 internal static class FilterTwoXSai
 {
-    internal static void Sample(float[] source,int width,int height,float x,float y,Span<float> result)=>SampleCore(source,width,height,x,y,result,.45f,0);
-    internal static void SampleCore(float[] source, int width, int height, float x, float y, Span<float> result, float strength, int variant)
+    internal static void Sample(float[] source, int width, int height, float x, float y, Span<float> result) => SampleCore(source, width, height, x, y, result, .45f, 0);
+    internal static void SampleCore(
+        float[] source,
+        int width,
+        int height,
+        float x,
+        float y,
+        Span<float> result,
+        float strength,
+        int variant
+    )
     {
         var px = Math.Clamp((int)MathF.Floor(x), 0, width - 1);
         var py = Math.Clamp((int)MathF.Floor(y), 0, height - 1);
@@ -23,6 +32,7 @@ internal static class FilterTwoXSai
         for (var channel = 0; channel < 3; channel++)
             result[channel] = c[channel] + (target[channel] - c[channel]) * corner;
     }
-    internal const string OpenGlShader="""vec4 twoXSaiSample(vec2 uv){vec2 p=uv*Processing.zw,f=fract(p),b=floor(p),d=vec2(f.x<.5?-1.0:1.0,f.y<.5?-1.0:1.0);vec3 c=xbrPointAt(b,vec2(0.0)),h=xbrPointAt(b,vec2(d.x,0.0)),v=xbrPointAt(b,vec2(0.0,d.y));vec3 t=advancedSame(h,v)?h:(h+v)*.5;float q=clamp(1.0-1.7*length(f-vec2(d.x<0.0?0.0:1.0,d.y<0.0?0.0:1.0)),0.0,1.0);return vec4(mix(c,t,q*.45),1.0);}""";
-    internal const string VeldridShader="""vec3 twoXSaiSampleCompact(vec2 uv){ivec2 size=textureSize(sampler2D(Source,PointSampler),0);vec2 p=uv*vec2(size),f=fract(p);ivec2 b=ivec2(floor(p)),d=ivec2(f.x<.5?-1:1,f.y<.5?-1:1);vec3 c=filterPointAt(b),h=filterPointAt(b+ivec2(d.x,0)),v=filterPointAt(b+ivec2(0,d.y));vec3 t=filterColorDistance(h,v)<.035?h:(h+v)*.5;float q=clamp(1.0-1.7*length(f-vec2(d.x<0?0.0:1.0,d.y<0?0.0:1.0)),0.0,1.0);return mix(c,t,q*.45);}""";
+
+    internal const string OpenGlShader = """vec4 twoXSaiSample(vec2 uv){vec2 p=uv*Processing.zw,f=fract(p),b=floor(p),d=vec2(f.x<.5?-1.0:1.0,f.y<.5?-1.0:1.0);vec3 c=xbrPointAt(b,vec2(0.0)),h=xbrPointAt(b,vec2(d.x,0.0)),v=xbrPointAt(b,vec2(0.0,d.y));vec3 t=advancedSame(h,v)?h:(h+v)*.5;float q=clamp(1.0-1.7*length(f-vec2(d.x<0.0?0.0:1.0,d.y<0.0?0.0:1.0)),0.0,1.0);return vec4(mix(c,t,q*.45),1.0);}""";
+    internal const string VeldridShader = """vec3 twoXSaiSampleCompact(vec2 uv){ivec2 size=textureSize(sampler2D(Source,PointSampler),0);vec2 p=uv*vec2(size),f=fract(p);ivec2 b=ivec2(floor(p)),d=ivec2(f.x<.5?-1:1,f.y<.5?-1:1);vec3 c=filterPointAt(b),h=filterPointAt(b+ivec2(d.x,0)),v=filterPointAt(b+ivec2(0,d.y));vec3 t=filterColorDistance(h,v)<.035?h:(h+v)*.5;float q=clamp(1.0-1.7*length(f-vec2(d.x<0?0.0:1.0,d.y<0?0.0:1.0)),0.0,1.0);return mix(c,t,q*.45);}""";
 }

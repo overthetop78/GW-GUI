@@ -1,7 +1,6 @@
 using GWGUI.App.Rendering.Emulation.Processing;
 
 namespace GWGUI.App.Rendering.Emulation.Processing.OpenGl.Shaders;
-
 internal static class OpenGlVideoShaderSource
 {
     internal const string VertexSource = """
@@ -13,7 +12,6 @@ internal static class OpenGlVideoShaderSource
             TextureCoordinate = gl_MultiTexCoord0.xy;
         }
         """;
-
     private static readonly string FragmentTemplate = """
         #version 120
         uniform sampler2D Source;
@@ -65,18 +63,7 @@ internal static class OpenGlVideoShaderSource
         uniform vec4 ProjectionScreen;
         varying vec2 TextureCoordinate;
 
-        """ + VideoBrightnessParameterFunctions.Shader
-        + VideoContrastParameterFunctions.Shader + VideoGammaParameterFunctions.Shader
-        + VideoSaturationParameterFunctions.Shader + VideoSharpnessParameterFunctions.Shader
-        + FilterBicubic.OpenGlShader + FilterNormal.OpenGlShader
-        + FilterBilinear.OpenGlShader + FilterSharpBilinear.OpenGlShader
-        + FilterJinc2.OpenGlShader + FilterLanczos.OpenGlShader
-        + FilterXbr.OpenGlShader + FilterHqx.OpenGlShader + FilterXbrz.OpenGlShader
-        + FilterHq2x.OpenGlShader + FilterHq3x.OpenGlShader + FilterHq4x.OpenGlShader
-        + FilterTwoXSai.OpenGlShader + FilterSuperTwoXSai.OpenGlShader
-        + FilterSuperEagle.OpenGlShader + FilterEpxScale2x.OpenGlShader
-        + FilterScaleFx.OpenGlShader + FilterScaleNx.OpenGlShader + FilterSabr.OpenGlShader
-        + """
+        """ + VideoBrightnessParameterFunctions.Shader + VideoContrastParameterFunctions.Shader + VideoGammaParameterFunctions.Shader + VideoSaturationParameterFunctions.Shader + VideoSharpnessParameterFunctions.Shader + FilterBicubic.OpenGlShader + FilterNormal.OpenGlShader + FilterBilinear.OpenGlShader + FilterSharpBilinear.OpenGlShader + FilterJinc2.OpenGlShader + FilterLanczos.OpenGlShader + FilterXbr.OpenGlShader + FilterHqx.OpenGlShader + FilterXbrz.OpenGlShader + FilterHq2x.OpenGlShader + FilterHq3x.OpenGlShader + FilterHq4x.OpenGlShader + FilterTwoXSai.OpenGlShader + FilterSuperTwoXSai.OpenGlShader + FilterSuperEagle.OpenGlShader + FilterEpxScale2x.OpenGlShader + FilterScaleFx.OpenGlShader + FilterScaleNx.OpenGlShader + FilterSabr.OpenGlShader + """
         vec4 sampleConfigured(vec2 uv)
         {
             int sampling = int(Processing.y + 0.5);
@@ -158,40 +145,22 @@ internal static class OpenGlVideoShaderSource
 
         """ + "\n" + """
         #if DISPLAY_TECHNOLOGY == 2
-        """ + "\n" + FilterFixedPixelSubpixels.Shader + FilterFixedPixelGrid.Shader
-        + FilterLcdDisplay.Shader + FilterLedBacklitLcdDisplay.Shader + FilterOledDisplay.Shader
-        + FilterFixedPixelResponse.Shader + FilterFixedPixelPersistence.Shader + "\n" + """
+        """ + "\n" + FilterFixedPixelSubpixels.Shader + FilterFixedPixelGrid.Shader + FilterLcdDisplay.Shader + FilterLedBacklitLcdDisplay.Shader + FilterOledDisplay.Shader + FilterFixedPixelResponse.Shader + FilterFixedPixelPersistence.Shader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 3
-        """ + "\n" + FilterPlasmaCellStructure.Shader + FilterPlasmaTemporalDithering.Shader
-        + FilterPlasmaLightDiffusion.Shader + FilterPlasmaPersistence.Shader
-        + FilterPlasmaBlackDepth.Shader + FilterPlasmaPhosphorIntensity.Shader
-        + FilterPlasmaGammaResponse.Shader
-        + FilterPlasmaAutomaticBrightnessLimiter.Shader + "\n" + """
+        """ + "\n" + FilterPlasmaCellStructure.Shader + FilterPlasmaTemporalDithering.Shader + FilterPlasmaLightDiffusion.Shader + FilterPlasmaPersistence.Shader + FilterPlasmaBlackDepth.Shader + FilterPlasmaPhosphorIntensity.Shader + FilterPlasmaGammaResponse.Shader + FilterPlasmaAutomaticBrightnessLimiter.Shader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 4
-        """ + "\n" + FilterVectorLineDetection.Shader + FilterVectorLineIntensity.Shader
-        + FilterVectorBeamWidth.Shader + FilterVectorBeamFocus.Shader
-        + FilterVectorHalo.Shader + FilterVectorHaloRadius.Shader
-        + FilterVectorPhosphorColor.Shader + FilterVectorPersistence.Shader + "\n" + """
+        """ + "\n" + FilterVectorLineDetection.Shader + FilterVectorLineIntensity.Shader + FilterVectorBeamWidth.Shader + FilterVectorBeamFocus.Shader + FilterVectorHalo.Shader + FilterVectorHaloRadius.Shader + FilterVectorPhosphorColor.Shader + FilterVectorPersistence.Shader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 5
-        """ + "\n" + FilterVfdEmissionThreshold.Shader + FilterVfdPhosphorIntensity.Shader
-        + FilterVfdPhosphorColor.Shader + FilterVfdGlass.Shader
-        + FilterVfdCellStructure.Shader + FilterVfdHaloRadius.Shader
-        + FilterVfdHalo.Shader + FilterVfdPersistence.Shader + "\n" + """
+        """ + "\n" + FilterVfdEmissionThreshold.Shader + FilterVfdPhosphorIntensity.Shader + FilterVfdPhosphorColor.Shader + FilterVfdGlass.Shader + FilterVfdCellStructure.Shader + FilterVfdHaloRadius.Shader + FilterVfdHalo.Shader + FilterVfdPersistence.Shader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 6
-        """ + "\n" + FilterLedMatrixCellStructure.Shader
-        + FilterLedMatrixColor.Shader + FilterLedMatrixBrightness.Shader
-        + FilterLedMatrixHalo.Shader + FilterLedMatrixBlackDepth.Shader + "\n" + """
+        """ + "\n" + FilterLedMatrixCellStructure.Shader + FilterLedMatrixColor.Shader + FilterLedMatrixBrightness.Shader + FilterLedMatrixHalo.Shader + FilterLedMatrixBlackDepth.Shader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 7
-        """ + "\n" + FilterDotMatrixCellSize.Shader + FilterDotMatrixCellGap.Shader
-        + FilterDotMatrixShape.Shader + FilterDotMatrixDotSize.Shader + FilterDotMatrixContrast.Shader
-        + FilterDotMatrixBrightness.Shader + FilterDotMatrixPalette.Shader
-        + FilterDotMatrixHalo.Shader + FilterDotMatrixResponse.Shader
-        + FilterDotMatrixPersistence.Shader + "\n" + """
+        """ + "\n" + FilterDotMatrixCellSize.Shader + FilterDotMatrixCellGap.Shader + FilterDotMatrixShape.Shader + FilterDotMatrixDotSize.Shader + FilterDotMatrixContrast.Shader + FilterDotMatrixBrightness.Shader + FilterDotMatrixPalette.Shader + FilterDotMatrixHalo.Shader + FilterDotMatrixResponse.Shader + FilterDotMatrixPersistence.Shader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 8
         """ + "\n" + FilterSegmentDisplay.OpenGlShader + "\n" + """
@@ -606,11 +575,7 @@ internal static class OpenGlVideoShaderSource
             if(t==10)color=projectionPixel(uv);
         #endif
             return clamp(color,0.0,1.0);}
-        """ + SignalConnectionRgbScart.Shader + SignalConnectionComponent.Shader
-        + SignalConnectionSVideo.Shader + SignalConnectionComposite.Shader
-        + SignalConnectionRf.Shader + SignalStandardPal.Shader + SignalStandardNtsc.Shader
-        + SignalStandardSecam.Shader + FilterGrain.Shader + FilterVhs.Shader
-        + FilterChromaticAberration.Shader + FilterBloom.Shader + FilterSepia.Shader + """
+        """ + SignalConnectionRgbScart.Shader + SignalConnectionComponent.Shader + SignalConnectionSVideo.Shader + SignalConnectionComposite.Shader + SignalConnectionRf.Shader + SignalStandardPal.Shader + SignalStandardNtsc.Shader + SignalStandardSecam.Shader + FilterGrain.Shader + FilterVhs.Shader + FilterChromaticAberration.Shader + FilterBloom.Shader + FilterSepia.Shader + """
         vec3 signalEffects(vec3 color,vec2 uv)
         {
             vec2 stepSize=1.0/max(Processing.zw,vec2(1.0));
@@ -639,9 +604,7 @@ internal static class OpenGlVideoShaderSource
             color=filterGrain(color,Stylistic.x,extraHash(floor(uv*Output.xy)+General.z)*2.0-1.0);
             return clamp(color,0.0,1.0);
         }
-        """ + FilterGeneralPersistence.Shader + FilterMotionBlur.Shader
-        + FilterFlicker.Shader + FilterInterlacing.Shader
-        + FilterBlackFrameInsertion.Shader + """
+        """ + FilterGeneralPersistence.Shader + FilterMotionBlur.Shader + FilterFlicker.Shader + FilterInterlacing.Shader + FilterBlackFrameInsertion.Shader + """
         void main()
         {
             vec3 center=extraDisplay(restoreColor(crtPixel(TextureCoordinate),TextureCoordinate),TextureCoordinate);
@@ -674,8 +637,5 @@ internal static class OpenGlVideoShaderSource
             gl_FragColor=vec4(linearToSrgb(center.r),linearToSrgb(center.g),linearToSrgb(center.b),1.0);
         }
         """;
-
-    internal static string Fragment(EmulationVideoSampling sampling,
-        EmulationVideoDisplayTechnology displayTechnology) =>
-        FragmentTemplate.Replace("#version 120", $"#version 120\n#define DISPLAY_TECHNOLOGY {(int)displayTechnology}");
+    internal static string Fragment(EmulationVideoSampling sampling, EmulationVideoDisplayTechnology displayTechnology) => FragmentTemplate.Replace("#version 120", $"#version 120\n#define DISPLAY_TECHNOLOGY {(int)displayTechnology}");
 }

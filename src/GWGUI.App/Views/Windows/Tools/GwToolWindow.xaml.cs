@@ -11,7 +11,6 @@ using System.Windows.Controls;
 using GWGUI.Infrastructure.Processes;
 
 namespace GWGUI.App.Views.Windows.Tools;
-
 public partial class GwToolWindow : Window
 {
     private readonly string _executable;
@@ -28,7 +27,6 @@ public partial class GwToolWindow : Window
     private bool _operationHasStopped;
     private readonly Func<string, string, bool> _confirm;
     private readonly Action<Exception, string> _logError;
-
     public GwToolWindow(
         string executable,
         string verb,
@@ -64,6 +62,7 @@ public partial class GwToolWindow : Window
             _closeWhenOperationStops = true;
             _cancellation.Cancel();
         }
+
         base.OnClosing(e);
     }
 
@@ -115,21 +114,88 @@ public partial class GwToolWindow : Window
         }
     }
 
-    private void AddField(string key, string label, string value)
+    private void AddField(
+        string key,
+        string label,
+        string value
+    )
     {
-        var panel = new StackPanel { Margin = new Thickness(0, 0, 14, 8) }; panel.Children.Add(new TextBlock { Text = label });
-        var text = new TextBox { Text = value, Width = 150 }; AutomationProperties.SetName(text, label); text.TextChanged += (_, _) => UpdateCommand(); panel.Children.Add(text); ParametersPanel.Children.Add(panel); _fields[key] = text;
+        var panel = new StackPanel
+        {
+            Margin = new Thickness(
+                0,
+                0,
+                14,
+                8
+            )
+        };
+        panel.Children.Add(new TextBlock { Text = label });
+        var text = new TextBox
+        {
+            Text = value,
+            Width = 150
+        };
+        AutomationProperties.SetName(text, label);
+        text.TextChanged += (_, _) => UpdateCommand();
+        panel.Children.Add(text);
+        ParametersPanel.Children.Add(panel);
+        _fields[key] = text;
     }
 
-    private void AddOptionalField(string key, string label, string value)
+    private void AddOptionalField(
+        string key,
+        string label,
+        string value
+    )
     {
-        var panel = new StackPanel { Margin = new Thickness(0, 0, 14, 8) }; var check = new CheckBox { Content = label }; check.Checked += (_, _) => UpdateCommand(); check.Unchecked += (_, _) => UpdateCommand(); panel.Children.Add(check);
-        var text = new TextBox { Text = value, Width = 145 }; AutomationProperties.SetName(text, label); text.TextChanged += (_, _) => UpdateCommand(); panel.Children.Add(text); ParametersPanel.Children.Add(panel); _checks[key] = check; _fields[key] = text;
+        var panel = new StackPanel
+        {
+            Margin = new Thickness(
+                0,
+                0,
+                14,
+                8
+            )
+        };
+        var check = new CheckBox
+        {
+            Content = label
+        };
+        check.Checked += (_, _) => UpdateCommand();
+        check.Unchecked += (_, _) => UpdateCommand();
+        panel.Children.Add(check);
+        var text = new TextBox
+        {
+            Text = value,
+            Width = 145
+        };
+        AutomationProperties.SetName(text, label);
+        text.TextChanged += (_, _) => UpdateCommand();
+        panel.Children.Add(text);
+        ParametersPanel.Children.Add(panel);
+        _checks[key] = check;
+        _fields[key] = text;
     }
 
-    private void AddCheck(string key, string label)
+    private void AddCheck(
+        string key,
+        string label
+    )
     {
-        var check = new CheckBox { Content = label, Margin = new Thickness(0, 8, 16, 8) }; check.Checked += (_, _) => UpdateCommand(); check.Unchecked += (_, _) => UpdateCommand(); ParametersPanel.Children.Add(check); _checks[key] = check;
+        var check = new CheckBox
+        {
+            Content = label,
+            Margin = new Thickness(
+                0,
+                8,
+                16,
+                8
+            )
+        };
+        check.Checked += (_, _) => UpdateCommand();
+        check.Unchecked += (_, _) => UpdateCommand();
+        ParametersPanel.Children.Add(check);
+        _checks[key] = check;
     }
 
     private GwCommand BuildCommand()
@@ -140,45 +206,68 @@ public partial class GwToolWindow : Window
     private bool Checked(string key) => _checks.GetValueOrDefault(key)?.IsChecked == true;
     private void UpdateCommand()
     {
-        if (CommandText is null) return;
-        try { CommandText.Text = BuildCommand().ToDisplayString(); ExecuteButton.IsEnabled = true; Summary.Text = L("Tool.Ready"); }
-        catch (ArgumentException) { CommandText.Text = L("Tool.InvalidParameters"); ExecuteButton.IsEnabled = false; Summary.Text = L("Tool.InvalidParametersHelp"); }
+        if (CommandText is null)
+            return;
+        try
+        {
+            CommandText.Text = BuildCommand().ToDisplayString();
+            ExecuteButton.IsEnabled = true;
+            Summary.Text = L("Tool.Ready");
+        }
+        catch (ArgumentException)
+        {
+            CommandText.Text = L("Tool.InvalidParameters");
+            ExecuteButton.IsEnabled = false;
+            Summary.Text = L("Tool.InvalidParametersHelp");
+        }
     }
 
     private async void Execute_Click(object sender, RoutedEventArgs e) => await ExecuteAsync();
-
     internal async Task ExecuteAsync()
     {
         if (_runner.IsRunning)
         {
-            if (_confirm(LocExtension.Get("Operation.StopConfirm"), LocExtension.Get("Operation.StopTitle"))) _cancellation?.Cancel();
+            if (_confirm(LocExtension.Get("Operation.StopConfirm"), LocExtension.Get("Operation.StopTitle")))
+                _cancellation?.Cancel();
             return;
         }
+
         _cancellation = new CancellationTokenSource();
         ExecuteButton.Content = LocExtension.Get("Common.Stop");
         RawOutput.Clear();
         Summary.Text = L("Tool.Running");
-        var progress = new Progress<GwOutputLine>(line => { RawOutput.AppendText(line.Text + Environment.NewLine); RawOutput.ScrollToEnd(); if (_consoleLog is not null) _ = _consoleLog.AppendAsync(line.Text); });
+        var progress = new Progress<GwOutputLine>(line =>
+        {
+            RawOutput.AppendText(line.Text + Environment.NewLine);
+            RawOutput.ScrollToEnd();
+            if (_consoleLog is not null)
+                _ = _consoleLog.AppendAsync(line.Text);
+        });
         try
         {
-            if (_verb == "update" && Checked("bootloader") && !_confirm(L("Tool.BootloaderWarning"), L("Tool.BootloaderTitle"))) return;
+            if (_verb == "update" && Checked("bootloader") && !_confirm(L("Tool.BootloaderWarning"), L("Tool.BootloaderTitle")))
+                return;
             var command = BuildCommand();
-            if (_consoleLog is not null) await _consoleLog.BeginAsync(_verb, command.ToDisplayString());
+            if (_consoleLog is not null)
+                await _consoleLog.BeginAsync(_verb, command.ToDisplayString());
             var result = await _runner.RunAsync(command, progress, _cancellation.Token);
             if (_verb == "info")
             {
                 var info = GwInfoParser.Parse(string.Join(Environment.NewLine, result.Output.Select(x => x.Text)));
                 Summary.Text = $"{info.Model ?? L("Tool.ControllerFallback")} · {info.FirmwareVersion ?? L("Tool.FirmwareUnknown")} · {info.Port ?? L("Tool.PortUnknown")}" + (info.HasNetworkWarning ? "\n" + L("Tool.NetworkWarning") : "");
             }
-            else Summary.Text = result.IsSuccess ? L("Operation.Succeeded") : result.WasCancelled ? L("Operation.Cancelled") : LocExtension.Get("Operation.ExitCode", result.ExitCode);
-            if (_consoleLog is not null) await _consoleLog.AppendAsync(Summary.Text);
+            else
+                Summary.Text = result.IsSuccess ? L("Operation.Succeeded") : result.WasCancelled ? L("Operation.Cancelled") : LocExtension.Get("Operation.ExitCode", result.ExitCode);
+            if (_consoleLog is not null)
+                await _consoleLog.AppendAsync(Summary.Text);
         }
         catch (Exception exception)
         {
             _logError(exception, $"Running GW tool '{_verb}'");
             var detail = ExceptionDescriptionFunctions.Describe(exception);
             Summary.Text = LocExtension.Get("Error.Unexpected", detail);
-            if (_consoleLog is not null) await _consoleLog.AppendAsync(Summary.Text);
+            if (_consoleLog is not null)
+                await _consoleLog.AppendAsync(Summary.Text);
         }
         finally
         {
@@ -196,7 +285,15 @@ public partial class GwToolWindow : Window
     private static string L(string key) => LocExtension.Get(key);
     private static string TitleFor(string verb) => verb switch
     {
-        "info" => L("Tool.Title.Info"), "bandwidth" => L("Tool.Title.Bandwidth"), "rpm" => L("Tool.Title.Rpm"), "seek" => L("Tool.Title.Seek"),
-        "pin" => L("Tool.Title.Pin"), "reset" => L("Tool.Title.Reset"), "delays" => L("Tool.Title.Delays"), "update" => L("Tool.Title.Update"), "align" => L("Tool.Title.Align"), _ => verb
+        "info" => L("Tool.Title.Info"),
+        "bandwidth" => L("Tool.Title.Bandwidth"),
+        "rpm" => L("Tool.Title.Rpm"),
+        "seek" => L("Tool.Title.Seek"),
+        "pin" => L("Tool.Title.Pin"),
+        "reset" => L("Tool.Title.Reset"),
+        "delays" => L("Tool.Title.Delays"),
+        "update" => L("Tool.Title.Update"),
+        "align" => L("Tool.Title.Align"),
+        _ => verb
     };
 }
