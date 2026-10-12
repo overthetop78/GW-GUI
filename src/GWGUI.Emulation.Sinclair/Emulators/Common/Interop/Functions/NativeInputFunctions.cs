@@ -9,15 +9,7 @@ internal static class NativeInputFunctions
         [ControllerCommand.Right] = InputConstants.JoypadRightId,
         [ControllerCommand.Fire1] = InputConstants.JoypadFireId
     };
-    internal static short State(
-        EmulationInputSnapshot snapshot,
-        IReadOnlySet<uint> keyboard,
-        uint port,
-        uint device,
-        uint index,
-        uint id,
-        Emulator emulator
-    )
+    internal static short State(EmulationInputSnapshot snapshot, IReadOnlySet<uint> keyboard, uint port, uint device, uint index, uint id, Emulator emulator)
     {
         if (index != InputConstants.LeftAnalogIndex)
             return InputConstants.InactiveState;

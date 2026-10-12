@@ -14,10 +14,7 @@ internal static class EmulationMediaConversionFunctions
         media.IsReadOnly,
         media.IsInserted
     );
-    internal static MediaConfiguration ToSinclair(
-        EmulationMedia media,
-        IReadOnlyList<MediaConfiguration> mountedMedia
-    )
+    internal static MediaConfiguration ToSinclair(EmulationMedia media, IReadOnlyList<MediaConfiguration> mountedMedia)
     {
         var category = (media.Type, media.Slot.Category) switch
         {

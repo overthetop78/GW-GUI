@@ -1,10 +1,7 @@
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;
 internal static class ControllerPortFunctions
 {
-    internal static void Configure(
-        ExternalCoreExports exports,
-        MachineConfiguration configuration
-    )
+    internal static void Configure(ExternalCoreExports exports, MachineConfiguration configuration)
     {
         var count = ConfigurationFunctions.ControllerPortCount(configuration.Model);
         var controllers = configuration.Input.Controllers ?? [];

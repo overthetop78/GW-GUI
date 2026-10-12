@@ -26,11 +26,7 @@ internal static class MediaRuntimeFunctions
 
     internal static bool CanExchange(MachineConfiguration configuration, EmulationMediaSlot slot) => slot == EmulationMediaSlot.Floppy0 && configuration.Model is MachineModel.SpectrumPlus3 or MachineModel.Pentagon128K or MachineModel.Pentagon512K or MachineModel.Pentagon1024K or MachineModel.Scorpion256K;
     private static MediaConfiguration? InitialMedia(MachineConfiguration configuration) => configuration.Media.Where(media => media.IsInserted && media.Category != MediaCategory.Cartridge).OrderBy(media => media.Category == MediaCategory.Tape ? 0 : 1).FirstOrDefault();
-    internal static LoadedContent? Prepare(
-        MachineConfiguration configuration,
-        string sessionDirectory,
-        IReadOnlySet<string> supportedExtensions
-    )
+    internal static LoadedContent? Prepare(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
         var devices = Devices(configuration);
         if (configuration.ConfiguredSlots.Any(slot => !devices.Any(device => device.Slot == slot)))
@@ -48,11 +44,7 @@ internal static class MediaRuntimeFunctions
         return ContentFunctions.Create(path, MediaRuntimeConstants.NeedsFullPath, supportedExtensions);
     }
 
-    internal static void CompleteLoad(
-        MachineConfiguration configuration,
-        string sessionDirectory,
-        ExternalHostCallbacks callbacks
-    )
+    internal static void CompleteLoad(MachineConfiguration configuration, string sessionDirectory, ExternalHostCallbacks callbacks)
     {
         var initial = configuration.InitialContent is null ? InitialMedia(configuration) : null;
         var devices = Devices(configuration);
@@ -96,10 +88,7 @@ internal static class MediaRuntimeFunctions
         }.Concat(images).ToArray();
     }
 
-    private static string PrepareInitialContent(
-        MachineConfiguration configuration,
-        string sessionDirectory
-    )
+    private static string PrepareInitialContent(MachineConfiguration configuration, string sessionDirectory)
     {
         var paths = InitialContentPaths(configuration);
         var source = paths[0];

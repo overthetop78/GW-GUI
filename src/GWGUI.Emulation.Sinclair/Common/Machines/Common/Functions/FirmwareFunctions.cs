@@ -29,10 +29,7 @@ internal static class FirmwareFunctions
         FirmwareCategory.USpeech => FirmwareConstants.USpeechFileName,
         FirmwareCategory.Sp0256 => FirmwareConstants.Sp0256FileName,
         _ => throw new ArgumentOutOfRangeException(nameof(role))};
-    internal static IReadOnlyList<FirmwareConfiguration> Apply(
-        MachineConfiguration configuration,
-        IReadOnlyDictionary<string, string?> values
-    )
+    internal static IReadOnlyList<FirmwareConfiguration> Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var result = configuration.Firmwares.ToList();
         foreach (var role in Roles(configuration.Model))
@@ -47,12 +44,7 @@ internal static class FirmwareFunctions
         return result;
     }
 
-    internal static async ValueTask<EmulationFirmwareCandidate> ScanFileAsync(
-        string path,
-        MachineModel model,
-        Emulator core,
-        CancellationToken cancellationToken
-    )
+    internal static async ValueTask<EmulationFirmwareCandidate> ScanFileAsync(string path, MachineModel model, Emulator core, CancellationToken cancellationToken)
     {
         if (!ConfigurationFunctions.IsCompatible(model, core))
             throw new ArgumentOutOfRangeException(nameof(core));
@@ -90,10 +82,7 @@ internal static class FirmwareFunctions
         return new(hash ?? absolute, absolute, Path.GetFileName(absolute), null, compatibility, destination);
     }
 
-    internal static FirmwareConfiguration Select(
-        EmulationFirmwareCandidate candidate,
-        MachineModel model
-    )
+    internal static FirmwareConfiguration Select(EmulationFirmwareCandidate candidate, MachineModel model)
     {
         if (candidate.Compatibility is not EmulationFirmwareCompatibility.Compatible and not EmulationFirmwareCompatibility.PartiallyCompatible || !IsField(candidate.DestinationFieldId ?? string.Empty))
             throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareCannotBeSelected);

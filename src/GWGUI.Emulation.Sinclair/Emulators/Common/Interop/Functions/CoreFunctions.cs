@@ -4,10 +4,7 @@ using System.Runtime.InteropServices;
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;
 internal static class CoreFunctions
 {
-    internal static ExternalCoreInfo ReadInitializedInfo(
-        ExternalCoreExports exports,
-        Emulator expectedEmulator
-    )
+    internal static ExternalCoreInfo ReadInitializedInfo(ExternalCoreExports exports, Emulator expectedEmulator)
     {
         exports.GetSystemInfo(out var nativeInfo);
         var libraryName = Marshal.PtrToStringUTF8(nativeInfo.LibraryName) ?? string.Empty;
@@ -51,10 +48,7 @@ internal static class CoreFunctions
         library.Resolve<ExternalCoreApi.Serialize>(ExternalCoreExportNames.Serialize),
         library.Resolve<ExternalCoreApi.Serialize>(ExternalCoreExportNames.Unserialize)
     );
-    internal static void InstallCallbacks(
-        ExternalCoreExports exports,
-        ExternalHostCallbacks callbacks
-    )
+    internal static void InstallCallbacks(ExternalCoreExports exports, ExternalHostCallbacks callbacks)
     {
         exports.SetEnvironment(callbacks.Environment);
         exports.SetVideo(callbacks.Video);
@@ -64,10 +58,7 @@ internal static class CoreFunctions
         exports.SetInputState(callbacks.InputState);
     }
 
-    internal static bool WritePointer(
-        nint destination,
-        nint value
-    )
+    internal static bool WritePointer(nint destination, nint value)
     {
         if (destination == nint.Zero)
             return false;
@@ -75,10 +66,7 @@ internal static class CoreFunctions
         return true;
     }
 
-    internal static bool WriteBoolean(
-        nint destination,
-        bool value
-    )
+    internal static bool WriteBoolean(nint destination, bool value)
     {
         if (destination == nint.Zero)
             return false;
@@ -86,10 +74,7 @@ internal static class CoreFunctions
         return true;
     }
 
-    internal static bool WriteInteger(
-        nint destination,
-        int value
-    )
+    internal static bool WriteInteger(nint destination, int value)
     {
         if (destination == nint.Zero)
             return false;
@@ -98,10 +83,7 @@ internal static class CoreFunctions
     }
 
     internal static bool WriteInteger(nint destination, uint value) => WriteInteger(destination, checked((int)value));
-    internal static bool WriteUnsignedLong(
-        nint destination,
-        ulong value
-    )
+    internal static bool WriteUnsignedLong(nint destination, ulong value)
     {
         if (destination == nint.Zero)
             return false;

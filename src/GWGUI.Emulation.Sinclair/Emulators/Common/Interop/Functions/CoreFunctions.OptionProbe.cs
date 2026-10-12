@@ -9,10 +9,7 @@ public static class CoreOptionProbe
         return error.GetType().Name;
     }
 
-    public static IReadOnlyList<CoreOption> Inspect(
-        string corePath,
-        Emulator emulator
-    )
+    public static IReadOnlyList<CoreOption> Inspect(string corePath, Emulator emulator)
     {
         var absolutePath = Path.GetFullPath(corePath);
         ExternalCoreProbe.Inspect(absolutePath, emulator);

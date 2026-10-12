@@ -4,11 +4,7 @@ namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;
 internal static class FirmwareRuntimeFunctions
 {
     internal static void Prepare(MachineConfiguration configuration, string systemDirectory) => ((LibretroMachineFactory)CoreCatalog.CreateAdapter(configuration.Core)).PrepareFirmware(configuration, systemDirectory);
-    internal static void CopyVerified(
-        MachineConfiguration configuration,
-        FirmwareCategory role,
-        string target
-    )
+    internal static void CopyVerified(MachineConfiguration configuration, FirmwareCategory role, string target)
     {
         var firmware = configuration.Firmwares.SingleOrDefault(item => item.Category == role);
         if (firmware is null)

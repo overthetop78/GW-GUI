@@ -19,10 +19,7 @@ internal static class InputSettingsFunctions
         new(InputMappingConstants.MouseRight, InputMappingConstants.MouseRightResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight)
     ];
     private static IReadOnlyDictionary<string, string> MouseBindings(InputConfiguration input) => MouseDefinitions().ToDictionary(definition => definition.Id, definition => input.Mouse?.GetValueOrDefault(definition.Id, definition.DefaultBinding) ?? definition.DefaultBinding, StringComparer.Ordinal);
-    private static IReadOnlyList<PeripheralCategory> Choices(
-        MachineConfiguration configuration,
-        int port
-    )
+    private static IReadOnlyList<PeripheralCategory> Choices(MachineConfiguration configuration, int port)
     {
         var timex = configuration.Model is MachineModel.TimexTc2068 or MachineModel.TimexTs2068 or MachineModel.SpectrumSe;
         var choices = Peripherals(configuration.Core).Where(category => timex || category is not PeripheralCategory.Timex1Joystick and not PeripheralCategory.Timex2Joystick);
@@ -64,10 +61,7 @@ internal static class InputSettingsFunctions
         return new(keyboard, mouse, ports);
     }
 
-    internal static MachineConfiguration Apply(
-        MachineConfiguration configuration,
-        EmulationInputSettings settings
-    )
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         var count = ConfigurationFunctions.ControllerPortCount(configuration.Model);
         if (settings.ControllerPorts.Count != count || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, count)) || configuration.Core != Emulator.Fuse && settings.Mouse is not null)
