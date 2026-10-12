@@ -4,82 +4,30 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.o2em.Description"><value>Emulasi konsol Magnavox Odyssey² dan Philips Videopac G7000.</value></data>
-  <data name="Emulation.Emulator.m2000.Description"><value>Emulasi komputer Philips P2000T.</value></data>
-  <data name="Emulation.Emulator.same_cdi.Description"><value>Emulates Philips CD-i player.</value></data>
-  <data name="Emulation.Philips.Memory.Display"><value>Memori video</value></data>
-  <data name="Emulation.Philips.Video.Native"><value>video emulator</value></data>
-  <data name="Emulation.Philips.Audio.Native"><value>Audio emulator</value></data>
-  <data name="Emulation.Philips.Keyboard.Native"><value>Interface interpretasi</value></data>
-  <data name="Emulation.Philips.Controls.Native"><value>Kontrol Emulator</value></data>
-  <data name="Emulation.Philips.System.Native"><value>Opsi emulator</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios"><value>Model konsol</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios.Help"><value>Pilih perangkat keras konsol dan BIOS-nya.</value></data>
-  <data name="Emulation.Philips.Option.o2em_region"><value>Standar televisi</value></data>
-  <data name="Emulation.Philips.Option.o2em_region.Help"><value>Pilih standar televisi, atau deteksi dari model konsol.</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads"><value>Pengontrol swap</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads.Help"><value>Tukar port masukan dari dua console controller.</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency"><value>Transparansi papan tik On-screen</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency.Help"><value>Atur transparansi papan tik on-screen.</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan"><value>Batas layar crop</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan.Help"><value>Hapus batas yang tak digunakan pada gambar permainan.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames"><value>Blend berturut-turut frame</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Help"><value>blend berturut-turut frame untuk mengurangi flicker.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value1"><value>blend dua frame</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value2"><value>Galing (65%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value3"><value>Galing (75%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value4"><value>Galing (85%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value5"><value>Galing (95%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume"><value>Volume suara konsol</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume.Help"><value>Atur volume yang dihasilkan oleh konsol yang tergandakan.</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume"><value>Volume Suara</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume.Help"><value>Atur volume pidato yang dihasilkan oleh aksesori The Voice.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter"><value>Penyaring audio Lower-pass</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter.Help"><value>Kurangi frekuensi audio tinggi untuk melunakkan suara.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range"><value>Daya penyaring audio</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range.Help"><value>Atur seberapa kuat filter mengurangi frekuensi audio tinggi.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping"><value>Interface interpretasi</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Help"><value>Cocok dengan papan tik host berdasarkan karakter atau posisi kunci.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value0"><value>Karakter Cocok</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value1"><value>Posisi tombol Match</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard"><value>Standar televisi</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard.Help"><value>Pilih standar televisi yang digunakan oleh pemutar CD-i.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config"><value>Baca konfigurasi asli</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config.Help"><value>Muat konfigurasi yang disimpan oleh emulator.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config"><value>Simpan konfigurasi asli</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config.Help"><value>Simpan konfigurasi dalam format emulator asli.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves"><value>Nama status simpan</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Help"><value>Nama disimpan oleh permainan atau sistem yang telah digandakan.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value0"><value>Per game</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value1"><value>Per sistem</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves"><value>Penyimpanan gigih terpisah untuk setiap permainan</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves.Help"><value>Jauhkan file memori yang gigih terpisah untuk setiap permainan.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save"><value>Secara otomatis menyimpan dan memuat status</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save.Help"><value>Mengembalikan keadaan yang disimpan saat startup dan menyimpan keadaan ketika ditutup.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli"><value>Mulai dari argumen perintah -line</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli.Help"><value>Gunakan moda emulator lokal -line startup.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable"><value>Gunakan path MAME asli</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable.Help"><value>Gunakan path yang dikonfigurasi dalam konfigurasi MAME asli.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer"><value>Metode render alternatif</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer.Help"><value>Gunakan metoda render video alternatif yang disediakan oleh emulator.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres"><value>Resolusi rendering</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres.Help"><value>Pilih resolusi keluaran dari metoda render alternatif.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable"><value>Masukan tetikus</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable.Help"><value>Aktifkan masukan tetikus dalam pemutar yang telah digandakan.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode"><value>Masukan Light-gun</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Help"><value>Pilih bagaimana menunjuk masukan dilewatkan ke pistol cahaya.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value1"><value>Layar Sentuh</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value2"><value>pistol ringan</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles"><value>Profil tombol game-specific</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles.Help"><value>Gunakan profil tombol yang disediakan oleh emulator untuk permainan saat ini.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable"><value>interpretasi joystick arah empat</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Help"><value>Tolak joystick arah menggunakan native four-direction mode.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value1"><value>Empat arah</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value2"><value>Belang empat arah</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle"><value>Batas kecepatan eksekusi asli</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle.Help"><value>Biarkan emulator membatasi eksekusi dengan kecepatan mesin normal.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable"><value>Kode cheat</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable.Help"><value>Aktifkan kode cheat didukung oleh emulator.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock"><value>Kecepatan CPU</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock.Help"><value>Set jam CPU sebagai persentase dari kecepatan aslinya.</value></data>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Emulasi PHILIPS P2000T komputer.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>Emulasi MAGNAVOX ODYSSEY2 dan PHILIPS VIDEOPAC G7000 konsol.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>Emulasi PHILIPS CD-I konsol.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Audio emulator</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Interpretasi papan tik</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>Memori video</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Redering video alternatif</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Volume audio dari konsol</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Keadaan disimpan otomatis</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Kode permainan curang</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Hapus batas video</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>Pemetaan tombol papan tik</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Filter audio Lower-pass</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Frekuensi pembeku filter audio</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>blend frame video</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Pisahkan memori persisten untuk setiap permainan</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Penamaan berkas keadaan tersimpan</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Batas kecepatan emulasi</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Volume suara</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Opsi emulator</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>Per permainan</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Posisi kunci fisik</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Campuran sederhana</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Karakter yang dicetak</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Per sistem</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Video emulator</value></data>
 </root>

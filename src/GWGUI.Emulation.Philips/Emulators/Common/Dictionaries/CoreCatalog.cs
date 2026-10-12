@@ -1,4 +1,6 @@
-﻿using GWGUI.Emulation.Philips.Common.Interfaces;
+﻿using GWGUI.Emulation.Philips.Emulators.Common.Contracts;
+using GWGUI.Emulation.Philips.Emulators.Common.Functions;
+using GWGUI.Emulation.Philips.Common.Interfaces;
 using GWGUI.Emulation.Philips.Emulators.Common.Factories;
 
 namespace GWGUI.Emulation.Philips.Emulators.Common.Dictionaries;

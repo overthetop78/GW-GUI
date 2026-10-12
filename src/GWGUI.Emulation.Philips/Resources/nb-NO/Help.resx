@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Help.AlternateRenderer" xml:space="preserve"><value>Bruk den alternative rendringsmetode som emulatoren tilveiebringer.</value></data>
+  <data name="Emulation.Philips.Help.AudioVolume" xml:space="preserve"><value>Sett lydvolumet som genereres av konsollen i prosent.</value></data>
+  <data name="Emulation.Philips.Help.AutoSave" xml:space="preserve"><value>Lagre maskintilstanden når du lukker og gjenoppretter det når det samme innholdet starter igjen.</value></data>
+  <data name="Emulation.Philips.Help.Cheats" xml:space="preserve"><value>Aktivere juksekoder som leveres av emulatoren.</value></data>
+  <data name="Emulation.Philips.Help.CpuOverclock" xml:space="preserve"><value>Juster prosessorhastighet som en prosentdel av dens opprinnelige frekvens.</value></data>
+  <data name="Emulation.Philips.Help.CropOverscan" xml:space="preserve"><value>Fjern den ytre kanten fra videobildet.</value></data>
+  <data name="Emulation.Philips.Help.KeyboardMapping" xml:space="preserve"><value>Velg om vertstastaturtastene følger deres trykte tegn eller deres fysiske posisjoner.</value></data>
+  <data name="Emulation.Philips.Help.LowPassFilter" xml:space="preserve"><value>Reduser høye frekvenser i konsolllyden.</value></data>
+  <data name="Emulation.Philips.Help.LowPassRange" xml:space="preserve"><value>Sett avskjæring av filteret i lave pass som en prosentdel av lydprøvetakingsfrekvensen.</value></data>
+  <data name="Emulation.Philips.Help.MixFrames" xml:space="preserve"><value>Bland påfølgende videorammer. Enkelt bruker lik vekt; en prosentandel kontrollerer hvor mye av det forrige bildet som er synlig.</value></data>
+  <data name="Emulation.Philips.Help.NvramPerGame" xml:space="preserve"><value>Lagre vedvarende hukommelse separat for hvert spill.</value></data>
+  <data name="Emulation.Philips.Help.Resolution" xml:space="preserve"><value>Velg videoutgangsoppløsningen.</value></data>
+  <data name="Emulation.Philips.Help.StateNaming" xml:space="preserve"><value>Lagre lagrede stater separat for hvert spill eller dele dem for hele systemet.</value></data>
+  <data name="Emulation.Philips.Help.Throttle" xml:space="preserve"><value>Begrens emuleringshastigheten til den opprinnelige maskinhastigheten.</value></data>
+  <data name="Emulation.Philips.Help.VideoStandard" xml:space="preserve"><value>Velg TV-standarden som brukes av den emulerte maskinen.</value></data>
+  <data name="Emulation.Philips.Help.VoiceVolume" xml:space="preserve"><value>Juster talevolumet som en prosentdel.</value></data>
+</root>

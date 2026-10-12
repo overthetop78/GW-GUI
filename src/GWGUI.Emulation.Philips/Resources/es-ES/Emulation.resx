@@ -4,82 +4,30 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.o2em.Description"><value>Consolas Magnavox Odyssey² y Philips Videopac G7000.</value></data>
-  <data name="Emulation.Emulator.m2000.Description"><value>Emula el ordenador Philips P2000T.</value></data>
-  <data name="Emulation.Emulator.same_cdi.Description"><value>Emulates Philips CD-i jugadores.</value></data>
-  <data name="Emulation.Philips.Memory.Display"><value>memoria del vídeo</value></data>
-  <data name="Emulation.Philips.Video.Native"><value>Emulator video</value></data>
-  <data name="Emulation.Philips.Audio.Native"><value>Emulator audio</value></data>
-  <data name="Emulation.Philips.Keyboard.Native"><value>Interpretación del teclado</value></data>
-  <data name="Emulation.Philips.Controls.Native"><value>Controles del emulador</value></data>
-  <data name="Emulation.Philips.System.Native"><value>Opciones del emulador</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios"><value>Modelo de consola</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios.Help"><value>Seleccione el hardware de la consola y su BIOS.</value></data>
-  <data name="Emulation.Philips.Option.o2em_region"><value>estándar de televisión</value></data>
-  <data name="Emulation.Philips.Option.o2em_region.Help"><value>Seleccione el estándar de televisión, o detectarlo desde el modelo de consola.</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads"><value>Controladores del súbito</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads.Help"><value>Cierre los puertos de entrada de los dos controladores de consola.</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency"><value>Transparencia del teclado en pantalla</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency.Help"><value>Establece la transparencia del teclado en pantalla.</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan"><value>Crop screen borders</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan.Help"><value>Eliminar las fronteras no utilizadas alrededor de la imagen del juego.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames"><value>Blend sucesivos marcos</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Help"><value>Blend sucesivos marcos para reducir el flicker.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value1"><value>Blend dos marcos</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value2"><value>Fantasma (65%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value3"><value>Fantasma (75%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value4"><value>Fantasma (85%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value5"><value>Fantasma (95%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume"><value>volumen del sonido de consola</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume.Help"><value>Establezca el volumen producido por la consola emulada.</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume"><value>El volumen de voz</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume.Help"><value>Establecer el volumen del discurso producido por The Voice accessory.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter"><value>Filtro de audio de paso bajo</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter.Help"><value>Reducir las frecuencias de audio altas para suavizar el sonido.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range"><value>Fuerza del filtro de audio</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range.Help"><value>Establece lo fuerte que el filtro reduce las frecuencias de audio altas.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping"><value>Interpretación del teclado</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Help"><value>Coincide con el teclado host por carácter o por posición clave.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value0"><value>Personajes coincidentes</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value1"><value>Coincide posiciones clave</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard"><value>estándar de televisión</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard.Help"><value>Seleccione el estándar de televisión utilizado por el reproductor CD-i.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config"><value>Leer configuración nativa</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config.Help"><value>Cargue la configuración guardada por el emulador.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config"><value>Guardar configuración nativa</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config.Help"><value>Guardar la configuración en el formato emulador nativo.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves"><value>Nombres del estado guardado</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Help"><value>Nombre estados guardados por juego o por sistema emulado.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value0"><value>Per juego</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value1"><value>Por sistema</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves"><value>Separar los ahorros persistentes para cada juego</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves.Help"><value>Mantenga un archivo de memoria persistente separado para cada juego.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save"><value>Guardar y cargar automáticamente los estados</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save.Help"><value>Restaurar un estado guardado al iniciarse y guardar el estado al cerrar.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli"><value>Comience desde argumentos en línea de comandos</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli.Help"><value>Usar el modo de arranque en línea del emulador nativo.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable"><value>Use caminos MAME nativos</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable.Help"><value>Use los caminos configurados en la configuración MAME nativa.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer"><value>Método de renderización alternativa</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer.Help"><value>Use el método de reproducción de vídeo alternativo proporcionado por el emulador.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres"><value>Rendering resolution</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres.Help"><value>Seleccione la resolución de salida del método de renderizado alternativo.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable"><value>entrada del ratón</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable.Help"><value>Activar entrada del ratón en el reproductor emulado.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode"><value>Entrada de pistola ligera</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Help"><value>Seleccione cómo se transmite la entrada a la pistola de luz.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value1"><value>Pantalla táctil</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value2"><value>Pistola ligera</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles"><value>Perfiles de botones específicos para el juego</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles.Help"><value>Use el perfil del botón suministrado por el emulador para el juego actual.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable"><value>Interpretación del joystick de cuatro direcciones</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Help"><value>Restringir las direcciones del joystick usando los modos nativos de cuatro direcciones.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value1"><value>Cuatro direcciones</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value2"><value>4 direcciones estrictas</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle"><value>Limite la velocidad de ejecución nativa</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle.Help"><value>Deje que el emulador limite la ejecución a la velocidad normal de la máquina.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable"><value>Códigos cheat</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable.Help"><value>Activar los códigos de trampa soportados por el emulador.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock"><value>velocidad de CPU</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock.Help"><value>Establece el reloj CPU como porcentaje de su velocidad original.</value></data>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Emula a los PHILIPS P2000T ordenador.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>Emulates MAGNAVOX ODYSSEY2 y PHILIPS VIDEOPAC G7000 consolas.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>Emulates PHILIPS CD-I consolas.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Emulador de audio</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Interpretación de teclado</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>Memoria de vídeo</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Reproducción de vídeo alternativa</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Volumen de audio de la consola</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Estados salvados automáticos</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Códigos de juego de trampas</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Eliminar la frontera de vídeo</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>Cartografía de claves</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Filtro de audio de baja velocidad</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Frecuencia de corte de filtro de audio</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>Marcos de vídeo de Blend</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Separar la memoria persistente para cada juego</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Nombre de archivo estatal</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Velocidad de emulación límite</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Volumen de voz</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Opciones de emulador</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>Per juego</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Posiciones clave físicas</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Mezcla simple</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Personajes impresos</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Sistema</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Video de emulador</value></data>
 </root>

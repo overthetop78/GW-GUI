@@ -4,82 +4,30 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.o2em.Description"><value>Emuloidaan Magnavox Odyssey² ja Philips Videopac G7000 konsolit.</value></data>
-  <data name="Emulation.Emulator.m2000.Description"><value>Emultaa Philips P2000T-tietokonetta.</value></data>
-  <data name="Emulation.Emulator.same_cdi.Description"><value>Emultaa Philips CD-i pelaajia.</value></data>
-  <data name="Emulation.Philips.Memory.Display"><value>Videomuisti</value></data>
-  <data name="Emulation.Philips.Video.Native"><value>Emulaattori video</value></data>
-  <data name="Emulation.Philips.Audio.Native"><value>Emulaattoriääni</value></data>
-  <data name="Emulation.Philips.Keyboard.Native"><value>Näppäimistön tulkinta</value></data>
-  <data name="Emulation.Philips.Controls.Native"><value>Emulaattorin ohjaimet</value></data>
-  <data name="Emulation.Philips.System.Native"><value>Emulaattorivalinnat</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios"><value>Konsolimalli</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios.Help"><value>Valitse konsolilaitteisto ja sen BIOS.</value></data>
-  <data name="Emulation.Philips.Option.o2em_region"><value>Televisiostandardi</value></data>
-  <data name="Emulation.Philips.Option.o2em_region.Help"><value>Valitse televisiostandardi tai havaitse se konsolimallista.</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads"><value>Vaihda ohjaimia</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads.Help"><value>Vaihda kahden konsoliohjaimen syöttöportit.</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency"><value>Näytössä olevien näppäimistöjen läpinäkyvyys</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency.Help"><value>Aseta näytön näppäimistön läpinäkyvyys.</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan"><value>Crop näytön rajat</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan.Help"><value>Poista käyttämättömät rajat pelikuvan ympärillä.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames"><value>Blend peräkkäiset kehykset</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Help"><value>Blend peräkkäisiä kehyksiä vähentää välkkymistä.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value1"><value>Sekoita kaksi ruutua</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value2"><value>Ghosting (65%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value3"><value>Ghosting (75%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value4"><value>Ghosting (85%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value5"><value>Ghosting (95%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume"><value>Konsolin äänenvoimakkuus</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume.Help"><value>Aseta emulgoidun konsolin tuottama määrä.</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume"><value>Äänen määrä</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume.Help"><value>Aseta The Voice -lisävarusteen tuottama puhemäärä.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter"><value>Low-pass-äänisuodatin</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter.Help"><value>Vähentää korkeita äänitaajuuksia pehmentää ääntä.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range"><value>Äänisuodattimen vahvuus</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range.Help"><value>Aseta kuinka voimakkaasti suodatin vähentää korkeita äänitaajuuksia.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping"><value>Näppäimistön tulkinta</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Help"><value>Match isäntä näppäimistön luonteen tai avainpaikan mukaan.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value0"><value>Match-merkit</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value1"><value>Ottelun avainpaikat</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard"><value>Televisiostandardi</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard.Help"><value>Valitse CD-i-soittimen käyttämä televisiostandardi.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config"><value>Lue natiivi konfiguraatio</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config.Help"><value>Lataa emulaattorin tallentama asetus.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config"><value>Tallenna natiivi konfiguraatio</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config.Help"><value>Tallenna konfiguraatio natiivissa emulaattorimuodossa.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves"><value>Tallennetut valtion nimet</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Help"><value>Nimi tallentaa valtiot pelin tai emulgoitu järjestelmä.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value0"><value>per peli</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value1"><value>Järjestelmää kohti</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves"><value>Erilliset pysyvät säästöt jokaiselle pelille</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves.Help"><value>Pidä erillinen jatkuva muistitiedosto jokaiselle pelille.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save"><value>Tallenna ja lataa automaattisesti</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save.Help"><value>Palauta tallennettu tila käynnistettäessä ja tallenna tila sulkemisen yhteydessä.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli"><value>Aloita komentorivin argumenteista</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli.Help"><value>Käytä natiivia emulaattorin komentorivin käynnistystilaa.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable"><value>Käytä alkuperäisiä MAME polkuja</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable.Help"><value>Käytä natiivin MAME-kokoonpanossa konfiguroituja polkuja.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer"><value>Vaihtoehtoinen renderointimenetelmä</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer.Help"><value>Käytä vaihtoehtoista videonkäsittelymenetelmää, jonka emulaattori tarjoaa.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres"><value>Renderöintiresoluutio</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres.Help"><value>Valitse vaihtoehtoisen renderointimenetelmän ulostuloresoluutio.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable"><value>Hiiren syöte</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable.Help"><value>Ota hiiren syötin käyttöön emulgoidussa soittimessa.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode"><value>Valokivääri syöte</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Help"><value>Valitse, miten osoittelu syötetään valopistooliin.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value1"><value>Kosketusnäyttö</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value2"><value>Kevytpistooli</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles"><value>Pelikohtaiset painikeprofiilit</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles.Help"><value>Käytä painikkeen profiilia, jonka emulaattori tarjoaa nykyiseen peliin.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable"><value>Nelisuuntainen joystick-tulkinta</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Help"><value>Rajoita joystick suuntiin käyttämällä natiivi nelisuuntaiset tilat.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value1"><value>neljä suuntaa</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value2"><value>Tiukat neljä suuntaa</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle"><value>Rajoita alkuperäistä suoritusnopeutta</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle.Help"><value>Anna emulaattorin rajoittaa suoritus normaaliin koneen nopeuteen.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable"><value>Huijauskoodit</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable.Help"><value>Ota käyttöön emulaattorin tukemat huijauskoodit.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock"><value>CPU-nopeus</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock.Help"><value>Aseta CPU kello prosentteina sen alkuperäisestä nopeudesta.</value></data>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Emuloi PHILIPS P2000T tietokone.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>Emulgointi MAGNAVOX ODYSSEY2 sekä PHILIPS VIDEOPAC G7000 Konsoleja.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>Emulgointi PHILIPS CD-I Konsoleja.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Emulaattoriääni</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Näppäimistön tulkinta</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>Videomuisti</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Vaihtoehtoinen videonkäsittely</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Konsolin äänenvoimakkuus</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Automaattinen tallennettu tila</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Pelinumerot</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Poista videon raja</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>Näppäimistön näppäimistökartoitus</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Matalan kierron äänisuodatin</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Äänisuodattimen katkaisutaajuus</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>Sekoita videokehykset</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Erillinen jatkuva muisti jokaiselle pelille</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Tallennetun tilan tiedoston nimi</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Emulointinopeudeltaan rajoitettu</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Äänimäärä</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Emulaattorin valinnat</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>Peliä kohti</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Fyysiset avainasemat</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Yksinkertainen sekoittaminen</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Painetut merkit</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Järjestelmä</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Emulaattorivideo</value></data>
 </root>

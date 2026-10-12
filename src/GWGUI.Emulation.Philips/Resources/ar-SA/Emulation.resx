@@ -4,82 +4,30 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.o2em.Description"><value>المواد Magnavox Odyssey² و Philips Videopac G7000 المعونات.</value></data>
-  <data name="Emulation.Emulator.m2000.Description"><value>يَحْملُ حاسوب Philips P2000T.</value></data>
-  <data name="Emulation.Emulator.same_cdi.Description"><value>المواد Philips CD-i اللاعبون.</value></data>
-  <data name="Emulation.Philips.Memory.Display"><value>ذاكرة الفيديو</value></data>
-  <data name="Emulation.Philips.Video.Native"><value>شريط فيديو محرر</value></data>
-  <data name="Emulation.Philips.Audio.Native"><value>السماعة السمعية</value></data>
-  <data name="Emulation.Philips.Keyboard.Native"><value>تفسير لوحة المفاتيح</value></data>
-  <data name="Emulation.Philips.Controls.Native"><value>مراقبة المرشد</value></data>
-  <data name="Emulation.Philips.System.Native"><value>خيارات المرشدين</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios"><value>نموذج كونسول</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios.Help"><value>Select the console equipment and its BIOS.</value></data>
-  <data name="Emulation.Philips.Option.o2em_region"><value>معيار التليفزيون</value></data>
-  <data name="Emulation.Philips.Option.o2em_region.Help"><value>اختيار المعيار التلفزيوني، أو الكشف عنه من نموذج الائتلاف.</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads"><value>متحكمو السوائب</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads.Help"><value>تسوي موانئ مدخلات اثنين من متحكمي الاقزام.</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency"><value>الشفافية على اللوحة الرئيسية</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency.Help"><value>وضع شفافية لوحة المفاتيح على الشاشة.</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan"><value>حدود شاشات المحاصيل</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan.Help"><value>إزالة الحدود غير المستخدمة حول صورة اللعبة.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames"><value>أطر متتالية مائلة</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Help"><value>أطر متتالية مائلة للحد من البرغوث.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value1"><value>وضع إطارين معلقين</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value2"><value>الشبح (65 في المائة)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value3"><value>الشبح (75 في المائة)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value4"><value>الشبح (85 في المائة)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value5"><value>الشبح (95 في المائة)</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume"><value>مجلد الصوت الكونسول</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume.Help"><value>وضع المجلد الذي تنتجه المجموعة المؤمّنة.</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume"><value>حجم الصوت</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume.Help"><value>تحديد حجم الخطاب الذي يصدره النافذ الصوتي.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter"><value>مرشح صوتي منخفض التجويف</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter.Help"><value>خفض الترددات الصوتية العالية لتخفيف الصوت.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range"><value>قوة مرشح الصوتيات</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range.Help"><value>تحديد مدى قوة المرشّح في الحد من الترددات الصوتية العالية.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping"><value>تفسير لوحة المفاتيح</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Help"><value>تطابق لوحة المفاتيح المضيفة حسب الشخصية أو بالموقع الرئيسي.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value0"><value>خصائص المصيد</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value1"><value>تحديد المواقع الرئيسية</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard"><value>معيار التليفزيون</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard.Help"><value>اختيار المعيار التلفزيوني الذي يستخدمه لاعب CD-i.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config"><value>اقرأ تشكيلة محلية</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config.Help"><value>وضع التشكيلة التي أنقذها المرشد.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config"><value>تشكيلة إنقاذ السكان الأصليين</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config.Help"><value>وفر التشكيلة في شكل مرشدي السكان الأصليين.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves"><value>أسماء الدول المحتفظ بها</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Help"><value>الاسم الذي أنقذ الولايات عن طريق لعبة أو نظام محاكاة.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value0"><value>لعبة واحدة</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value1"><value>لكل نظام</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves"><value>توفير مستقل لكل لعبة</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves.Help"><value>احتفظ بملف مستقل للذاكرة لكل لعبة</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save"><value>الادخار والتحميل الآليان</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save.Help"><value>استعادة الدولة المنقذة في البداية وإنقاذ الولاية عند إغلاقها.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli"><value>بداية من الحجج على خط القيادة</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli.Help"><value>استخدام أسلوب بدء خط القيادة المحلي.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable"><value>Use native MAME paths</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable.Help"><value>إستعملْ الطرقَ المُشوّهةَ في السكان الأصليينِ MAME الاتحاد.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer"><value>طريقة التحويل البديلة</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer.Help"><value>استخدام طريقة التداول بالفيديو البديلة التي يوفرها المرشد.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres"><value>قرار بشأن نوع الجنس</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres.Help"><value>اختيار تسوية نواتج طريقة الصنع البديلة.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable"><value>مدخل الفئران</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable.Help"><value>مدخل الفأر الميسر في اللاعب المحاكاة.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode"><value>مدخل الأسلحة الخفيفة</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Help"><value>اختيار كيفية توجيه المدخلات إلى البندقية الخفيفة.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value1"><value>Touchscen</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value2"><value>بندقية خفيفة</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles"><value>ملامح زر خاصة باللعب</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles.Help"><value>استخدام ملف الزر الذي يوفره المرشد للمباراة الحالية.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable"><value>4 - تفسير لبهجة ذي اتجاه أربعة</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Help"><value>إعادة تحديد اتجاهات البهجة باستخدام أساليب الإتجاهات الأربعة الأصلية.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value1"><value>أربعة اتجاهات</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value2"><value>أربعة اتجاهات صلبة</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle"><value>الحد من سرعة التنفيذ المحلي</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle.Help"><value>دع المرشد يقصر التنفيذ على سرعة الآلة العادية.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable"><value>رموز الشيكات</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable.Help"><value>تمكين رموز الغش المدعومة من قِبَل المرشد.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock"><value>CPU السرعة</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock.Help"><value>حدد الساعة CPU كنسبة مئوية من سرعتها الأصلية</value></data>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>يُمَزِعُ PHILIPS P2000T كمبيوتر</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>المواد MAGNAVOX ODYSSEY2 و PHILIPS VIDEOPAC G7000 -أقنعة</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>المواد PHILIPS CD-I -أقنعة</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>الصوت المسمّى</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>الترجمة الشفوية</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>ذكرى فيديو</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>التصوير البديل للفيديو</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>كمية الصوت من الفول</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>الولايات المنقذة آليا</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>رموز غش لعبة</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>إزالة شريط الفيديو</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>رسم الخرائط الرئيسية</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>مرشح صوتي منخفض التجويف</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>تردد مصفوف الصوت</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>أشرطة فيديو معلّقة</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>ذاكرة ثابتة منفصلة لكل لعبة</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>ملف الولاية المنقذ</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>سرعة القيد</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>حجم الصوت</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>خيارات الانطلاق</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>لعبة</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>الوظائف الأساسية</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>بسيطة</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>الشخصيات المطبوعة</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>النظام</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>شريط فيديو محرر</value></data>
 </root>

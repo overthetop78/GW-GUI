@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Error.StateIncompatible"><value>Philipsin tallennettu tila on yhteensopimaton nykyisen koneen kanssa.</value></data>
-  <data name="Emulation.Philips.Error.Unexpected"><value>Tapahtui odottamaton Philips-emulointivirhe.</value></data>
-  <data name="Emulation.Philips.Error.FirmwareMissing"><value>Tarvittava Philips-ohjelmisto puuttuu.</value></data>
-  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>Järjestelmä ROM on virheellinen tai yhteensopimaton.</value></data>
-  <data name="Emulation.Philips.Error.ContentNotFound"><value>Määriteltyä Philips-mediaa ei löytynyt.</value></data>
-  <data name="Emulation.Philips.Error.ContentUnsupported"><value>Tämä laite ei tue valittua mediaa.</value></data>
-  <data name="Emulation.Philips.Error.OptionInvalid"><value>Philips-valinnalla on virheellinen arvo.</value></data>
-  <data name="Emulation.Philips.Error.CoreNotFound"><value>Tarvittavaa Philipsin ydintä ei löytynyt.</value></data>
-  <data name="Emulation.Philips.Error.CoreRejected"><value>Valittua Philips-ydintä ei voitu ladata.</value></data>
-  <data name="Emulation.Philips.Error.StateInvalid"><value>Philips-tallenne on virheellinen.</value></data>
-  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>Philips-isännän suoritettava polku ei ole käytettävissä.</value></data>
-  <data name="Emulation.Philips.Error.Details"><value>Yksityiskohdat: {0}</value></data>
-  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>Yhteydenpito Philipsien isäntään epäonnistui.</value></data>
-  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>Tuntematon ympäristökomento: {0}</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound" xml:space="preserve"><value>Määriteltyä Philips-mediaa ei löytynyt.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported" xml:space="preserve"><value>Tämä laite ei tue valittuja media.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound" xml:space="preserve"><value>Tarvittavaa Philipsin ydintä ei löytynyt.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected" xml:space="preserve"><value>Valittua Philipsin ydintä ei voitu ladata.</value></data>
+  <data name="Emulation.Philips.Error.Details" xml:space="preserve"><value>Yksityiskohdat: {0}</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid" xml:space="preserve"><value>Järjestelmä ROM on virheellinen tai yhteensopimaton.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing" xml:space="preserve"><value>Tarvittu Philips-ohjelmisto puuttuu.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing" xml:space="preserve"><value>Philipsin isäntää ei ole saatavilla.</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure" xml:space="preserve"><value>Yhteydet Philipsin isännän kanssa epäonnistuivat.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid" xml:space="preserve"><value>Philips-valinnalla on virheellinen arvo.</value></data>
+  <data name="Emulation.Philips.Error.StateIncompatible" xml:space="preserve"><value>Philipsin tallennetut tilat eivät sovi nykyiseen koneeseen.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid" xml:space="preserve"><value>Philipsin pelastama osavaltio on kelvoton.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected" xml:space="preserve"><value>Tapahtui odottamaton Philips-emulointivirhe.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Tuntematon ympäristökomento: {0}</value></data>
 </root>

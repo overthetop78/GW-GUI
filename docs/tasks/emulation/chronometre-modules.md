@@ -290,3 +290,5 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-12 21:12:43 | 62:16:59 | -54:16:59 | Reprise. Bandai : frontière neutre livrée ; poursuite de Coleco. |
 | 2026-10-12 22:03:59 | 63:08:15 | -55:08:15 | Reprise. Epoch : options semantiques, frontiere neutre et ressources. |
 | 2026-10-12 22:48:40 | 63:52:56 | -55:52:56 | Reprise. Fairchild : raccordement FreeChaF, frontiere et ressources. |
+| 2026-10-12 23:09:31 | 64:13:47 | -56:13:47 | Reprise. Philips : descriptions communes des trois adaptateurs. |
+| 2026-10-12 23:37:19 | 64:41:35 | -56:41:35 | Reprise. Philips : catalogue commun indépendant des fabriques natives. |

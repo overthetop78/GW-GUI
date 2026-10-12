@@ -4,13 +4,15 @@ namespace GWGUI.Emulation.Philips.Common.Machines.Common.Functions;
 
 internal static class InputSettingsFunctions
 {
-    internal static IReadOnlyList<PeripheralCategory> Peripherals(Emulator core) => core switch
+    internal static IReadOnlyList<PeripheralCategory> Peripherals(MachineModel model, Emulator core) => new Engine().Adapter(core) is IEmulatorInputMapper mapper ? mapper.GetPeripherals(model) : [];
+    private static string ControllerResource(PeripheralCategory peripheral) => peripheral switch
     {
-        Emulator.O2em => [PeripheralCategory.Joystick, PeripheralCategory.None],
-        Emulator.SameCdi => [PeripheralCategory.CdiGamepad, PeripheralCategory.Mouse, PeripheralCategory.LightGun, PeripheralCategory.None],
-        Emulator.M2000 => [],
-        _ => throw new ArgumentOutOfRangeException(nameof(core))
+        PeripheralCategory.Joystick => "Controllers.Enum.Joystick",
+        PeripheralCategory.Mouse => "Emulation.Tab.Mouse",
+        PeripheralCategory.None => "Emulation.Controller.None",
+        _ => "Emulation.Philips.Controller." + peripheral
     };
+
     internal static PeripheralCategory DefaultPeripheral(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.Cdi ? PeripheralCategory.CdiGamepad : PeripheralCategory.Joystick;
     internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) =>
         ConfigurationFunctions.Family(model) == MachineFamily.P2000
@@ -25,14 +27,14 @@ internal static class InputSettingsFunctions
             {
                 var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
                 var peripheral = binding?.Peripheral ?? DefaultPeripheral(configuration.Model);
-                var choices = Peripherals(configuration.Core).Select(category => new EmulationControllerChoice(category.ToString(),
-                    "Emulation.Philips.Controller." + category,
-                    BindingDefinitions: ControllerProtocolDictionary.Actions(configuration.Model, category).Select(action => action.Definition).ToArray(),
+                var choices = Peripherals(configuration.Model, configuration.Core).Select(category => new EmulationControllerChoice(category.ToString(),
+                    ControllerResource(category),
+                    BindingDefinitions: InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, category).Select(action => action.Definition).ToArray(),
                     CompatibleVisualIds: ControllerVisualDictionary.VisualId(category) is { } visualId ? [visualId] : [],
                     DefaultVisualId: ControllerVisualDictionary.VisualId(category),
                     VisualCommandIds: ControllerVisualDictionary.Commands(category))).ToArray();
                 return new EmulationControllerPort(port + 1, choices, peripheral.ToString(), binding?.DeviceId,
-                    new(ControllerProtocolDictionary.Actions(configuration.Model, peripheral).Select(action => action.Definition).ToArray(),
+                    new(InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, peripheral).Select(action => action.Definition).ToArray(),
                         binding?.Mappings ?? new Dictionary<string, string>(),
                         EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                     binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId);
@@ -47,7 +49,7 @@ internal static class InputSettingsFunctions
             throw new ArgumentException(nameof(settings));
         var controllers = settings.ControllerPorts.Select(port =>
         {
-            if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var peripheral) || !Peripherals(configuration.Core).Contains(peripheral))
+            if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var peripheral) || !Peripherals(configuration.Model, configuration.Core).Contains(peripheral))
                 throw new ArgumentException(nameof(settings));
             return new ControllerBinding(port.Number - 1, peripheral, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId);
         }).ToArray();
@@ -61,8 +63,8 @@ internal static class InputSettingsFunctions
         else if (configuration.Input.Keyboard?.Count > 0) throw new ArgumentException(nameof(configuration.Input));
         foreach (var binding in configuration.Input.Controllers ?? [])
         {
-            if (!Peripherals(configuration.Core).Contains(binding.Peripheral)) throw new ArgumentException(nameof(configuration.Input));
-            var ids = ControllerProtocolDictionary.Actions(configuration.Model, binding.Peripheral).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
+            if (!Peripherals(configuration.Model, configuration.Core).Contains(binding.Peripheral)) throw new ArgumentException(nameof(configuration.Input));
+            var ids = InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, binding.Peripheral).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
             if (binding.Mappings?.Any(pair => !ids.Contains(pair.Key) || !IsSource(pair.Value)) == true) throw new ArgumentException(nameof(configuration.Input));
         }
     }

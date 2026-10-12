@@ -14,19 +14,13 @@ global using GWGUI.Emulation.Philips.Common.Machines.Common.Contracts;
 global using GWGUI.Emulation.Philips.Common.Machines.Common.Dictionaries;
 global using GWGUI.Emulation.Philips.Common.Machines.Common.Functions;
 global using GWGUI.Emulation.Philips.Common.Contracts;
+global using GWGUI.Emulation.Philips.Common.Dictionaries;
 global using GWGUI.Emulation.Philips.Common.Interfaces;
 global using GWGUI.Emulation.Philips.Common.Services;
-global using GWGUI.Emulation.Philips.Emulators.Common.Contracts;
-global using GWGUI.Emulation.Philips.Emulators.Common.Constants;
-global using GWGUI.Emulation.Philips.Emulators.Common.Functions;
-global using GWGUI.Emulation.Philips.Emulators.Common.Exceptions;
-global using GWGUI.Emulation.Philips.Emulators.Common.Enums;
-global using GWGUI.Emulation.Philips.Emulators.Common.Interfaces;
-global using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;
-global using GWGUI.Emulation.Philips.Emulators.Common.Interop.Contracts;
-global using GWGUI.Emulation.Philips.Emulators.Common.Interop.Factories;
-global using GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions;
-global using GWGUI.Emulation.Philips.Emulators.Common.Interop.Services;
-global using GWGUI.Emulation.Philips.Emulators.Common.Dictionaries;
-global using GWGUI.Emulation.Philips.Emulators.Common.Factories;
 global using GWGUI.Emulation.Philips.Common.Machines.Common.Constants;
+
+global using GWGUI.Emulation.Philips.Common.Enums;
+
+global using GWGUI.Emulation.Philips.Common.Exceptions;
+
+global using GWGUI.Emulation.Philips.Common.Functions;

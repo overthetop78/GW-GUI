@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Help.AlternateRenderer" xml:space="preserve"><value>Dùng phương pháp vẽ thay thế do trình giả lập cung cấp.</value></data>
+  <data name="Emulation.Philips.Help.AudioVolume" xml:space="preserve"><value>Đặt âm lượng của âm thanh được tạo ra bởi bàn điều khiển, theo phần trăm.</value></data>
+  <data name="Emulation.Philips.Help.AutoSave" xml:space="preserve"><value>Lưu tình trạng của máy khi đóng và phục hồi nó khi nội dung tương tự bắt đầu lại.</value></data>
+  <data name="Emulation.Philips.Help.Cheats" xml:space="preserve"><value>Bật mã gian lận do trình giả lập cung cấp.</value></data>
+  <data name="Emulation.Philips.Help.CpuOverclock" xml:space="preserve"><value>Điều chỉnh tốc độ xử lý theo tỷ lệ phần trăm tần số gốc.</value></data>
+  <data name="Emulation.Philips.Help.CropOverscan" xml:space="preserve"><value>Gỡ bỏ biên giới bên ngoài khỏi ảnh video.</value></data>
+  <data name="Emulation.Philips.Help.KeyboardMapping" xml:space="preserve"><value>Chọn nếu phím bàn phím máy theo ký tự in hay vị trí vật lý của chúng.</value></data>
+  <data name="Emulation.Philips.Help.LowPassFilter" xml:space="preserve"><value>Giảm tần số cao trong âm thanh điều khiển.</value></data>
+  <data name="Emulation.Philips.Help.LowPassRange" xml:space="preserve"><value>Đặt bộ lọc nhập thấp là phần trăm tần số lấy mẫu âm thanh.</value></data>
+  <data name="Emulation.Philips.Help.MixFrames" xml:space="preserve"><value>Kết hợp khung ảnh. Đơn giản sử dụng trọng lượng bằng nhau; phần trăm điều khiển lượng ảnh trước có thể nhìn thấy được.</value></data>
+  <data name="Emulation.Philips.Help.NvramPerGame" xml:space="preserve"><value>Lưu trữ bộ nhớ bền bỉ riêng biệt cho mỗi trò chơi.</value></data>
+  <data name="Emulation.Philips.Help.Resolution" xml:space="preserve"><value>Chọn độ phân giải kết xuất phim.</value></data>
+  <data name="Emulation.Philips.Help.StateNaming" xml:space="preserve"><value>Lưu các tiểu dụng riêng lẻ cho mỗi trò chơi hoặc chia sẻ chúng cho toàn bộ hệ thống.</value></data>
+  <data name="Emulation.Philips.Help.Throttle" xml:space="preserve"><value>Giới hạn tốc độ phát triển của máy gốc.</value></data>
+  <data name="Emulation.Philips.Help.VideoStandard" xml:space="preserve"><value>Chọn tiêu chuẩn truyền hình được dùng bởi máy mô phỏng.</value></data>
+  <data name="Emulation.Philips.Help.VoiceVolume" xml:space="preserve"><value>Điều chỉnh âm lượng giọng nói theo phần trăm.</value></data>
+</root>

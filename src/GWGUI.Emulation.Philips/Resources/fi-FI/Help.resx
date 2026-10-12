@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Help.AlternateRenderer" xml:space="preserve"><value>Käytä emulaattorin tarjoamaa vaihtoehtoista renderointimenetelmää.</value></data>
+  <data name="Emulation.Philips.Help.AudioVolume" xml:space="preserve"><value>Aseta konsolin tuottamien äänien määrä prosentteina.</value></data>
+  <data name="Emulation.Philips.Help.AutoSave" xml:space="preserve"><value>Tallenna koneen tila sulkemisen ja sen palauttamisen yhteydessä, kun sama sisältö alkaa uudelleen.</value></data>
+  <data name="Emulation.Philips.Help.Cheats" xml:space="preserve"><value>Ota käyttöön emulaattorin antama huijauskoodi.</value></data>
+  <data name="Emulation.Philips.Help.CpuOverclock" xml:space="preserve"><value>Säädä prosessorin nopeutta prosentteina alkuperäisestä taajuudesta.</value></data>
+  <data name="Emulation.Philips.Help.CropOverscan" xml:space="preserve"><value>Poista ulkoraja videokuvasta.</value></data>
+  <data name="Emulation.Philips.Help.KeyboardMapping" xml:space="preserve"><value>Valitse, noudattavatko näppäimistön näppäimistöt painettuja merkkejä vai fyysisiä asemia.</value></data>
+  <data name="Emulation.Philips.Help.LowPassFilter" xml:space="preserve"><value>Vähennä korkeita taajuuksia konsoliäänessä.</value></data>
+  <data name="Emulation.Philips.Help.LowPassRange" xml:space="preserve"><value>Aseta matalan suodattimen katkaisuprosentti prosentteina ääninäytteen taajuudesta.</value></data>
+  <data name="Emulation.Philips.Help.MixFrames" xml:space="preserve"><value>Yhdistää peräkkäisiä videokehyksiä. Yksinkertainen käyttää yhtä painoja; prosenttiosuus ohjaa sitä, kuinka paljon edellisestä kuvasta on näkyvissä.</value></data>
+  <data name="Emulation.Philips.Help.NvramPerGame" xml:space="preserve"><value>Tallenna jatkuva muisti erikseen kunkin pelin.</value></data>
+  <data name="Emulation.Philips.Help.Resolution" xml:space="preserve"><value>Valitse videon ulostulon tarkkuus.</value></data>
+  <data name="Emulation.Philips.Help.StateNaming" xml:space="preserve"><value>Tallenna tallennetut tilat erikseen jokaiselle pelille tai jaa ne koko järjestelmälle.</value></data>
+  <data name="Emulation.Philips.Help.Throttle" xml:space="preserve"><value>Rajoita emulgointinopeus alkuperäiseen koneen nopeuteen.</value></data>
+  <data name="Emulation.Philips.Help.VideoStandard" xml:space="preserve"><value>Valitse emulgoidun koneen käyttämä televisiostandardi.</value></data>
+  <data name="Emulation.Philips.Help.VoiceVolume" xml:space="preserve"><value>Säädä puheen äänenvoimakkuutta prosentteina.</value></data>
+</root>

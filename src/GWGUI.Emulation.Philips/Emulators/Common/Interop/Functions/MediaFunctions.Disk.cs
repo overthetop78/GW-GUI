@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Philips.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;
 using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions;

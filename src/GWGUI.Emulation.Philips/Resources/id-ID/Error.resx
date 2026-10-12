@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Error.StateIncompatible"><value>Philips negara yang disimpan tidak kompatibel dengan mesin saat ini.</value></data>
-  <data name="Emulation.Philips.Error.Unexpected"><value>Kesalahan emulasi Philips yang tak terduga terjadi.</value></data>
-  <data name="Emulation.Philips.Error.FirmwareMissing"><value>Sebuah firmware Philips yang diperlukan hilang.</value></data>
-  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>Sistem ROM tidak valid atau tidak kompatibel.</value></data>
-  <data name="Emulation.Philips.Error.ContentNotFound"><value>Media Philips yang dikonfigurasi tidak ditemukan.</value></data>
-  <data name="Emulation.Philips.Error.ContentUnsupported"><value>Mesin ini tidak mendukung media yang dipilih.</value></data>
-  <data name="Emulation.Philips.Error.OptionInvalid"><value>Sebuah opsi Philips memiliki nilai yang tidak valid.</value></data>
-  <data name="Emulation.Philips.Error.CoreNotFound"><value>Inti Philips yang diperlukan tidak ditemukan.</value></data>
-  <data name="Emulation.Philips.Error.CoreRejected"><value>Inti Philips yang dipilih tidak dapat dimuat.</value></data>
-  <data name="Emulation.Philips.Error.StateInvalid"><value>Philips negara yang disimpan tidak valid.</value></data>
-  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>Path executable Philips host tidak tersedia.</value></data>
-  <data name="Emulation.Philips.Error.Details"><value>Rincian: {0}</value></data>
-  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>Komunikasi dengan tuan rumah Philips gagal.</value></data>
-  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>Perintah lingkungan tak dikenal: {0}</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound" xml:space="preserve"><value>Media Philips yang dikonfigurasi tidak ditemukan.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported" xml:space="preserve"><value>Mesin ini tidak mendukung media yang dipilih.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound" xml:space="preserve"><value>Inti yang diperlukan Philips tidak ditemukan.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected" xml:space="preserve"><value>Inti Philips yang dipilih tidak dapat dimuat.</value></data>
+  <data name="Emulation.Philips.Error.Details" xml:space="preserve"><value>Rincian: {0}</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid" xml:space="preserve"><value>Sistem ROM tidak valid atau tidak kompatibel.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing" xml:space="preserve"><value>Sebuah firmware Philips yang diperlukan hilang.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing" xml:space="preserve"><value>Path yang dapat dieksekusi oleh Philips tidak tersedia.</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikasi dengan tuan rumah Philips gagal.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid" xml:space="preserve"><value>Pilihan Philips memiliki nilai yang tidak valid.</value></data>
+  <data name="Emulation.Philips.Error.StateIncompatible" xml:space="preserve"><value>Negara bagian Philips yang selamat tidak kompatibel dengan mesin saat ini.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid" xml:space="preserve"><value>Kondisi simpan Philips tidak valid.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected" xml:space="preserve"><value>Kesalahan emulasi Philips yang tak terduga terjadi.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Perintah lingkungan tidak dikenal: {0}</value></data>
 </root>

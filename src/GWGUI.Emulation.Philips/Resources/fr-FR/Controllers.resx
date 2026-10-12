@@ -4,16 +4,13 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Controller.Joystick"><value>Joystick</value></data>
-  <data name="Emulation.Philips.Controller.CdiGamepad"><value>Manette CD-i</value></data>
-  <data name="Emulation.Philips.Controller.Mouse"><value>Souris</value></data>
-  <data name="Emulation.Philips.Controller.LightGun"><value>Pistolet optique</value></data>
-  <data name="Emulation.Philips.Controller.None"><value>Aucun</value></data>
-  <data name="Emulation.Philips.Input.Fire"><value>Bouton de tir</value></data>
-  <data name="Emulation.Philips.Input.Action1"><value>Bouton 1</value></data>
-  <data name="Emulation.Philips.Input.Action2"><value>Bouton 2</value></data>
-  <data name="Emulation.Philips.Input.Action3"><value>Bouton 3</value></data>
-  <data name="Emulation.Philips.Input.Trigger"><value>Gâchette</value></data>
-  <data name="Emulation.Philips.Input.Auxiliary"><value>Bouton auxiliaire</value></data>
-  <data name="Emulation.Philips.Input.Reload"><value>Recharger</value></data>
+  <data name="Emulation.Philips.Controller.CdiGamepad" xml:space="preserve"><value>Manette CD-i</value></data>
+  <data name="Emulation.Philips.Controller.LightGun" xml:space="preserve"><value>Pistolet optique</value></data>
+  <data name="Emulation.Philips.Input.Action1" xml:space="preserve"><value>Bouton 1</value></data>
+  <data name="Emulation.Philips.Input.Action2" xml:space="preserve"><value>Bouton 2</value></data>
+  <data name="Emulation.Philips.Input.Action3" xml:space="preserve"><value>Bouton 3</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary" xml:space="preserve"><value>Bouton auxiliaire</value></data>
+  <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Tirer</value></data>
+  <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Recharger</value></data>
+  <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Gâchette</value></data>
 </root>

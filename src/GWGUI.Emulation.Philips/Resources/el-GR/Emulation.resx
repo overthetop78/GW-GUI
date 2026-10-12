@@ -4,82 +4,30 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.o2em.Description"><value>Προσομοιάζει τις κονσόλες Magnavox Odyssey² και Philips Videopac G7000.</value></data>
-  <data name="Emulation.Emulator.m2000.Description"><value>Προσομοιάζει τον υπολογιστή Philips P2000T.</value></data>
-  <data name="Emulation.Emulator.same_cdi.Description"><value>Προσομοιάζει Philips CD-i παίκτες.</value></data>
-  <data name="Emulation.Philips.Memory.Display"><value>μνήμη βίντεο</value></data>
-  <data name="Emulation.Philips.Video.Native"><value>βίντεο εξομοιωτή</value></data>
-  <data name="Emulation.Philips.Audio.Native"><value>Audio εξομοιωτή</value></data>
-  <data name="Emulation.Philips.Keyboard.Native"><value>Διερμηνεία πληκτρολογίου</value></data>
-  <data name="Emulation.Philips.Controls.Native"><value>Έλεγχοι εξομοιωτών</value></data>
-  <data name="Emulation.Philips.System.Native"><value>Επιλογές εξομοιωτή</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios"><value>Μοντέλο κονσόλας</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios.Help"><value>Επιλέξτε το υλικό της κονσόλας και το BIOS του.</value></data>
-  <data name="Emulation.Philips.Option.o2em_region"><value>Πρότυπο τηλεόρασης</value></data>
-  <data name="Emulation.Philips.Option.o2em_region.Help"><value>Επιλέξτε το πρότυπο τηλεόρασης, ή εντοπίστε το από το μοντέλο κονσόλα.</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads"><value>Ελεγκτές εναλλαγής</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads.Help"><value>Εναλλαγή των θυρών εισόδου των δύο ελεγκτών κονσόλας.</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency"><value>Διαφάνεια πληκτρολογίου στην οθόνη</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency.Help"><value>Ορίστε τη διαφάνεια του πληκτρολογίου στην οθόνη.</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan"><value>Περικοπή περιγράμματος οθόνης</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan.Help"><value>Αφαίρεση των μη χρησιμοποιηθέντων περιγραμμάτων γύρω από την εικόνα του παιχνιδιού.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames"><value>Μείγμα διαδοχικών πλαισίων</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Help"><value>Μείγμα διαδοχικών πλαισίων για τη μείωση του flicker.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value1"><value>Ανάμειξη δύο πλαισίων</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value2"><value>Ghosting (65%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value3"><value>Ghosting (75%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value4"><value>Ghosting (85%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value5"><value>Ghosting (95%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume"><value>Κονσόλα ένταση ήχου</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume.Help"><value>Ορισμός της έντασης που παράγεται από την προσομοιωμένη κονσόλα.</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume"><value>Ο τόμος φωνής</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume.Help"><value>Ορίστε τον όγκο του λόγου που παράγεται από το αξεσουάρ The Voice.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter"><value>Φίλτρο ήχου χαμηλής διέλευσης</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter.Help"><value>Μειώστε τις υψηλές συχνότητες ήχου για να μαλακώσετε τον ήχο.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range"><value>Αντοχή φίλτρου ήχου</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range.Help"><value>Ορίστε πόσο έντονα το φίλτρο μειώνει τις υψηλές συχνότητες ήχου.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping"><value>Διερμηνεία πληκτρολογίου</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Help"><value>Ταίριασμα του πληκτρολογίου υποδοχής με το χαρακτήρα ή τη θέση-κλειδί.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value0"><value>Ταίριασμα χαρακτήρων</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value1"><value>Ταίριασμα των βασικών θέσεων</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard"><value>Πρότυπο τηλεόρασης</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard.Help"><value>Επιλέξτε το πρότυπο τηλεόρασης που χρησιμοποιείται από τον CD-i player.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config"><value>Διαβάστε τις εγγενείς ρυθμίσεις</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config.Help"><value>Φόρτωση των ρυθμίσεων που αποθηκεύονται από τον εξομοιωτή.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config"><value>Αποθήκευση εγγενών ρυθμίσεων</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config.Help"><value>Αποθήκευση των ρυθμίσεων στη μορφή αυτοχθόνων εξομοιωτών.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves"><value>Αποθηκευμένα ονόματα κατάστασης</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Help"><value>Το όνομα αποθηκεύεται ανά παιχνίδι ή με σύστημα που προσομοιάζει.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value0"><value>Ανά παιχνίδι</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value1"><value>Ανά σύστημα</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves"><value>Ξεχωριστές επίμονες αποθήκες για κάθε παιχνίδι</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves.Help"><value>Κρατήστε ένα ξεχωριστό αρχείο επίμονης μνήμης για κάθε παιχνίδι.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save"><value>Αυτόματη αποθήκευση και φόρτωση καταστάσεων</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save.Help"><value>Επαναφορά μιας αποθηκευμένης κατάστασης κατά την εκκίνηση και αποθήκευση της κατάστασης κατά το κλείσιμο.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli"><value>Έναρξη από τις παραμέτρους γραμμής εντολών</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli.Help"><value>Χρησιμοποιήστε τη λειτουργία εκκίνησης γραμμής εντολών προσομοιωτή ιθαγενών.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable"><value>Χρήση εγγενών μονοπατιών MAME</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable.Help"><value>Χρησιμοποιήστε τις διαδρομές που διαμορφώνονται στις εγγενείς ρυθμίσεις MAME.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer"><value>Εναλλακτική μέθοδος απόδοσης</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer.Help"><value>Χρησιμοποιήστε την εναλλακτική μέθοδο video rendering που παρέχεται από τον εξομοιωτή.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres"><value>Αποτύπωση ανάλυσης</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres.Help"><value>Επιλέξτε την ανάλυση εξόδου της εναλλακτικής μεθόδου απόδοσης.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable"><value>Εισαγωγή ποντικιού</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable.Help"><value>Ενεργοποίηση εισόδου ποντικιού στον αναπαραγωγέα που προσομοιάζει.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode"><value>Είσοδος ελαφρού όπλου</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Help"><value>Επιλέξτε τον τρόπο με τον οποίο η είσοδος δείχνει μεταδίδεται στο ελαφρύ όπλο.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value1"><value>οθόνη αφής</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value2"><value>Φωτεινό όπλο</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles"><value>Προφίλ κουμπιών ειδικά για το παιχνίδι</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles.Help"><value>Χρησιμοποιήστε το προφίλ κουμπιών που παρέχεται από τον εξομοιωτή για το τρέχον παιχνίδι.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable"><value>Διερμηνεία joystick τεσσάρων κατευθύνσεων</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Help"><value>Περιορίστε τις κατευθύνσεις joystick χρησιμοποιώντας τους εγγενείς τρόπους τεσσάρων κατευθύνσεων.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value1"><value>Τέσσερις κατευθύνσεις</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value2"><value>Αυστηρές τέσσερις κατευθύνσεις</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle"><value>Περιορίστε την εγγενή ταχύτητα εκτέλεσης</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle.Help"><value>Αφήστε τον εξομοιωτή να περιορίσει την εκτέλεση στην κανονική ταχύτητα του μηχανήματος.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable"><value>Απατεώνες κώδικες</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable.Help"><value>Ενεργοποιήστε τους κωδικούς εξαπάτησης που υποστηρίζονται από τον εξομοιωτή.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock"><value>Ταχύτητα CPU</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock.Help"><value>Ρυθμίστε το ρολόι CPU ως ποσοστό της αρχικής του ταχύτητας.</value></data>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Προσομοιάζει το PHILIPS P2000T Υπολογιστή.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>Εξομοίωση MAGNAVOX ODYSSEY2 και PHILIPS VIDEOPAC G7000 κονσόλες.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>Εξομοίωση PHILIPS CD-I κονσόλες.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Ήχος εξομοιωτή</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Ερμηνεία πληκτρολογίου</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>μνήμη βίντεο</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Εναλλακτική απόδοση βίντεο</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Όγκος ήχου της κονσόλας</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Αυτόματη αποθήκευση καταστάσεων</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Κωδικοί εξαπατήσεως παιχνιδιού</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Αφαίρεση του περιγράμματος βίντεο</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>χαρτογράφηση κλειδιού πληκτρολογίου</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Φίλτρο ήχου χαμηλής διέλευσης</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Συχνότητα διακοπής φίλτρου ήχου</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>Μείγμα πλαισίων βίντεο</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Ξεχωριστή επίμονη μνήμη για κάθε παιχνίδι</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Αποθηκευμένη ονομασία αρχείου κατάστασης</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Οριακή ταχύτητα εξομοίωσης</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Ήχος φωνής</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Επιλογές εξομοιωτή</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>Ανά παιχνίδι</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Θέσεις-κλειδιά</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Απλή ανάμειξη</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Τυπωμένοι χαρακτήρες</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Ανά σύστημα</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Βίντεο εξομοιωτή</value></data>
 </root>

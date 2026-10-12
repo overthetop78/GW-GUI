@@ -4,82 +4,30 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.o2em.Description"><value>安裝有Magnavox Odyssey²和Philips Videopac G7000控制臺.</value></data>
-  <data name="Emulation.Emulator.m2000.Description"><value>模擬了Philips P2000T計算機.</value></data>
-  <data name="Emulation.Emulator.same_cdi.Description"><value>模擬出Philips CD-i名玩家.</value></data>
-  <data name="Emulation.Philips.Memory.Display"><value>視頻內存</value></data>
-  <data name="Emulation.Philips.Video.Native"><value>模擬視頻</value></data>
-  <data name="Emulation.Philips.Audio.Native"><value>模擬音頻</value></data>
-  <data name="Emulation.Philips.Keyboard.Native"><value>鍵盤解釋</value></data>
-  <data name="Emulation.Philips.Controls.Native"><value>模擬控制器</value></data>
-  <data name="Emulation.Philips.System.Native"><value>模擬選項</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios"><value>控制臺模型</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios.Help"><value>選擇控制臺硬件及其BIOS.</value></data>
-  <data name="Emulation.Philips.Option.o2em_region"><value>電視標準</value></data>
-  <data name="Emulation.Philips.Option.o2em_region.Help"><value>選擇電視標準,或從控制臺模型中檢測出.</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads"><value>交換控制器</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads.Help"><value>交換兩個控制臺控制器的輸入端口.</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency"><value>屏幕上鍵盤透明</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency.Help"><value>設置屏幕上鍵盤的透明度.</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan"><value>裁剪屏幕邊框</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan.Help"><value>去掉游戲圖像周圍未使用的邊框.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames"><value>組合相繼框架</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Help"><value>將相繼的幀混合來減少閃爍.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value1"><value>混合兩個框架</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value2"><value>幽靈 (65%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value3"><value>幽靈 (75%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value4"><value>幽靈 (85%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value5"><value>幽靈 (95%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume"><value>控制臺音量</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume.Help"><value>設置模擬控制臺產生的音量.</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume"><value>語音音量</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume.Help"><value>設置由"聲音附屬"制作的語音音量.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter"><value>低通音頻過濾器</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter.Help"><value>降低高音頻頻率來軟化聲音.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range"><value>音頻過濾強度</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range.Help"><value>設定濾波器如何強烈地降低高音頻頻率.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping"><value>鍵盤解釋</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Help"><value>按字符或按鍵位置匹配主機鍵盤.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value0"><value>匹配字符</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value1"><value>匹配密鑰位置</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard"><value>電視標準</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard.Help"><value>選擇CD-i播放器使用的電視標準.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config"><value>已讀本地配置</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config.Help"><value>裝入由模擬器保存的配置.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config"><value>保存本地配置</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config.Help"><value>以本地仿真器格式保存配置.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves"><value>已保存的狀態名稱</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Help"><value>名稱通過游戲或模擬系統保存狀態.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value0"><value>每場游戲</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value1"><value>每個系統</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves"><value>每個游戲分別持續保存</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves.Help"><value>為每款游戲保留單獨的持久內存文件.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save"><value>自動保存并裝入狀態</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save.Help"><value>啟動時恢復保存狀態,關閉時保存狀態.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli"><value>從命令行參數開始</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli.Help"><value>使用本土仿真器命令行啟動模式.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable"><value>使用本地 MAME 路徑</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable.Help"><value>使用本地 MAME 配置中配置的路徑.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer"><value>替代渲染方法</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer.Help"><value>使用由仿真器提供的其他視頻渲染方法.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres"><value>渲染分辨率</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres.Help"><value>選擇替代渲染方法的輸出分辨率.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable"><value>鼠標輸入</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable.Help"><value>在被模擬的玩家中啟用鼠標輸入.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode"><value>光槍輸入</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Help"><value>選擇指向輸入如何傳遞到輕炮上.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value1"><value>觸摸屏</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value2"><value>輕炮</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles"><value>游戲特定按鈕配置</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles.Help"><value>為當前游戲使用由模擬器提供的按鈕配置.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable"><value>四方向樂桿解釋</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Help"><value>使用原生的四向模式限制活潑棒方向.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value1"><value>四個方向</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value2"><value>嚴格四個方向</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle"><value>限制本地執行速度</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle.Help"><value>讓模擬器將執行限制在正常的機器速度.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable"><value>騙取代碼</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable.Help"><value>啟用由模擬器支持的作弊代碼.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock"><value>CPU速度</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock.Help"><value>將CPU時鐘設定為原速度的百分比.</value></data>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>模拟 PHILIPS P2000T 电脑</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>模拟 MAGNAVOX ODYSSEY2 财务报告和已审计财务报表 PHILIPS VIDEOPAC G7000 控制台 控制台 控制台</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>模拟 PHILIPS CD-I 控制台 控制台 控制台</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>模拟音频</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>键盘解释</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>视频内存</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>替代性视频渲染</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>控制台的音频音量</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>自动保存状态</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>游戏作弊代码</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>删除视频边框</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>键盘键盘映射</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>低通音频过滤器</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>音频过滤断接频率</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>混合视频帧</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>每个游戏分别持续内存</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>保存的状态文件命名</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>限制仿真速度</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>语音量</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>模拟选项</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>每场比赛</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>物理关键位置</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>简单混合</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>已打印字符</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>每个系统</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>模拟视频</value></data>
 </root>

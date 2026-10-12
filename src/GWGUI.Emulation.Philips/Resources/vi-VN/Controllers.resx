@@ -4,16 +4,13 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Controller.Joystick"><value>cần điều khiển</value></data>
-  <data name="Emulation.Philips.Controller.CdiGamepad"><value>CD-i Gamepad</value></data>
-  <data name="Emulation.Philips.Controller.Mouse"><value>Chuột</value></data>
-  <data name="Emulation.Philips.Controller.LightGun"><value>Súng ánh sáng</value></data>
-  <data name="Emulation.Philips.Controller.None"><value>Không</value></data>
-  <data name="Emulation.Philips.Input.Fire"><value>nút chữa cháy</value></data>
-  <data name="Emulation.Philips.Input.Action1"><value>Nút 1</value></data>
-  <data name="Emulation.Philips.Input.Action2"><value>Nút 2</value></data>
-  <data name="Emulation.Philips.Input.Action3"><value>Nút 3</value></data>
-  <data name="Emulation.Philips.Input.Trigger"><value>gây nên</value></data>
-  <data name="Emulation.Philips.Input.Auxiliary"><value>nút phụ</value></data>
-  <data name="Emulation.Philips.Input.Reload"><value>Nạp lại</value></data>
+  <data name="Emulation.Philips.Controller.CdiGamepad" xml:space="preserve"><value>CD-I Trò chơipad</value></data>
+  <data name="Emulation.Philips.Controller.LightGun" xml:space="preserve"><value>Súng nhẹ</value></data>
+  <data name="Emulation.Philips.Input.Action1" xml:space="preserve"><value>Nút 1</value></data>
+  <data name="Emulation.Philips.Input.Action2" xml:space="preserve"><value>Nút 2</value></data>
+  <data name="Emulation.Philips.Input.Action3" xml:space="preserve"><value>Nút 3</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary" xml:space="preserve"><value>Nút phụ</value></data>
+  <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Bắn</value></data>
+  <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Nạp lại</value></data>
+  <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Súng gây nên</value></data>
 </root>

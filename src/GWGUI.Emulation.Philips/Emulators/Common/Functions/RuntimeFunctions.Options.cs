@@ -1,4 +1,5 @@
-﻿namespace GWGUI.Emulation.Philips.Emulators.Common.Functions;
+﻿using GWGUI.Emulation.Philips.Emulators.Common.Dictionaries;
+namespace GWGUI.Emulation.Philips.Emulators.Common.Functions;
 
 internal static class NativeRuntimeOptionFunctions
 {

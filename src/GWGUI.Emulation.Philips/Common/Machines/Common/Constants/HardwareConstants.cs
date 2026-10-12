@@ -13,5 +13,4 @@ internal static class HardwareConstants
     internal const long VideopacRamBytes = 64 + 128;
     internal const int P2000OutputWidth = 480, P2000OutputHeight = 480;
     internal const int VideopacOutputWidth = 340, VideopacOutputHeight = 250;
-    internal const int VideopacCroppedWidth = 320, VideopacCroppedHeight = 240;
 }

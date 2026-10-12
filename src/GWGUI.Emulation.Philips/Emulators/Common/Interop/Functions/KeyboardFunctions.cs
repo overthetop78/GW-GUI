@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions;

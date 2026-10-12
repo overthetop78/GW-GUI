@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using GWGUI.Emulation.Philips.Emulators.Common.Contracts;
+using GWGUI.Emulation.Philips.Emulators.Common.Dictionaries;
+using System.IO;
 
 namespace GWGUI.Emulation.Philips.Emulators.Common.Factories;
 
@@ -37,7 +39,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
                 Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), RequiresMediaRestart,
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
-                coreFactory: () => CreateCore(configuration, context));
+                coreFactory: () => CreateCore(configuration, context), inputMapper: this as IEmulatorInputMapper);
             completed = true;
             return machine;
         }

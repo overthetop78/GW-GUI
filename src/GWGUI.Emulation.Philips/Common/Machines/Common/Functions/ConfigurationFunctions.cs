@@ -10,21 +10,9 @@ internal static partial class ConfigurationFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     };
 
-    internal static Emulator DefaultEmulator(MachineModel model) => Family(model) switch
-    {
-        MachineFamily.Cdi => Emulator.SameCdi,
-        MachineFamily.P2000 => Emulator.M2000,
-        MachineFamily.Videopac => Emulator.O2em,
-        _ => throw new ArgumentOutOfRangeException(nameof(model))
-    };
+    internal static Emulator DefaultEmulator(MachineModel model) => new Engine().DefaultEmulator(model);
 
-    internal static bool IsCompatible(MachineModel model, Emulator core) => Family(model) switch
-    {
-        MachineFamily.Cdi => core is Emulator.SameCdi,
-        MachineFamily.P2000 => core == Emulator.M2000,
-        MachineFamily.Videopac => core == Emulator.O2em,
-        _ => false
-    };
+    internal static bool IsCompatible(MachineModel model, Emulator core) => Enum.IsDefined(core) && new Engine().Adapter(core).Definition.MachineIds.Contains(model.ToString());
 
     internal static IReadOnlyList<EmulationMediaSlot> DefaultSlots(MachineModel model) => Family(model) switch
     {

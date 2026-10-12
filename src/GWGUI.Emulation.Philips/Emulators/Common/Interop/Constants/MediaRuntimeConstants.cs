@@ -2,7 +2,6 @@ namespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;
 
 internal static class MediaRuntimeConstants
 {
-    internal const string ConsoleFirmwareFieldPrefix = "firmware.";
     internal const int VideopacBiosBytes = 1024;
     internal const string OdysseyBiosFileName = "o2rom.bin";
     internal const string VideopacBiosFileName = "c52.bin";

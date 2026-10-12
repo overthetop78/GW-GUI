@@ -11,6 +11,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly object _gate = new();
     private IEmulatorCore _core;
     private readonly Func<IEmulatorCore>? _coreFactory;
+    private readonly IEmulatorInputMapper? _inputMapper;
     private readonly Func<EmulationMediaSlot, string?, bool> _requiresMediaRestart;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
@@ -31,7 +32,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core,
         string sessionDirectory, Func<EmulationMediaSlot, string?, bool> requiresMediaRestart,
         IAudioOutput? audioOutput = null, string? saveDirectory = null,
-        Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null)
+        Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null, IEmulatorInputMapper? inputMapper = null)
     {
         Id = id;
         Configuration = configuration;
@@ -39,6 +40,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _inputConfiguration = configuration.Input;
         _core = core;
         _coreFactory = coreFactory;
+        _inputMapper = inputMapper;
         _requiresMediaRestart = requiresMediaRestart ?? throw new ArgumentNullException(nameof(requiresMediaRestart));
         _sessionDirectory = sessionDirectory;
         _audio = new AudioOutputController(audioOutput, audioOutputFactory);
@@ -100,14 +102,14 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     IReadOnlyList<EmulationOption> IEmulationRuntime.AvailableOptions => AvailableOptions
         .Select(option => new EmulationOption(
             option.Key,
-            option.Name,
-            option.Description,
+            option.ResourceKey ?? option.Name,
+            option.ExplanationResourceKey ?? option.Description,
             option.Category,
             option.DefaultValue,
             option.CurrentValue,
-            option.Values.Select(value => new EmulationOptionValue(value.Value, value.Label)).ToArray(),
+            option.Values.Select(value => new EmulationOptionValue(value.Value, SettingsDescriptionFunctions.ChoiceLabel(value))).ToArray(),
             option.IsVisible,
-            RuntimeOptionFunctions.RequiresRestart(Configuration.Core, option.Key)))
+            option.RequiresRuntimeReload))
         .ToArray();
     VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;
     double IEmulationVideo.FramesPerSecond => _core.FramesPerSecond;

@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Philips.Emulators.Common.Contracts;
 namespace GWGUI.Emulation.Philips.Emulators.Common.Interfaces;
 
 public interface ICoreReleaseService

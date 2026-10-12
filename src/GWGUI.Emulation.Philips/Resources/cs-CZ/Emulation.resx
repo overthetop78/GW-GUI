@@ -4,82 +4,30 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.o2em.Description"><value>Emuláty Magnavox Odyssey² a konzoly Philips Videopac G7000.</value></data>
-  <data name="Emulation.Emulator.m2000.Description"><value>Emuluje počítač Philips P2000T.</value></data>
-  <data name="Emulation.Emulator.same_cdi.Description"><value>Emuluje přehrávače Philips CD-i.</value></data>
-  <data name="Emulation.Philips.Memory.Display"><value>Video paměť</value></data>
-  <data name="Emulation.Philips.Video.Native"><value>Emulátor video</value></data>
-  <data name="Emulation.Philips.Audio.Native"><value>Emulátor audio</value></data>
-  <data name="Emulation.Philips.Keyboard.Native"><value>Keyboard interpretace</value></data>
-  <data name="Emulation.Philips.Controls.Native"><value>Ovládací prvky emulátoru</value></data>
-  <data name="Emulation.Philips.System.Native"><value>Možnosti emulátoru</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios"><value>Konzolový model</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios.Help"><value>Vyberte konzolový hardware a jeho BIOS.</value></data>
-  <data name="Emulation.Philips.Option.o2em_region"><value>Televizní standard</value></data>
-  <data name="Emulation.Philips.Option.o2em_region.Help"><value>Vyberte televizní standard nebo jej detekujte z modelu konzole.</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads"><value>Swap regulátory</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads.Help"><value>Výměna vstupních portů dvou konzolových regulátorů.</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency"><value>průhlednost klávesnice na obrazovce</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency.Help"><value>Nastavte průhlednost klávesnice na obrazovce.</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan"><value>Hranice obrazovky v obilí</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan.Help"><value>Odstraňte nepoužité hranice kolem obrázku hry.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames"><value>Blend po sobě jdoucí rámy</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Help"><value>Směšujte po sobě jdoucí rámy pro snížení blikání.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value1"><value>Směs dvou rámů</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value2"><value>Ghosting (65%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value3"><value>Ghosting (75%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value4"><value>Ghosting (85%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value5"><value>Ghosting (95%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume"><value>Konzolový hlasitost zvuku</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume.Help"><value>Nastavte objem vytvořený emulovanou konzolou.</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume"><value>Hlasová hlasitost</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume.Help"><value>Nastavte hlasitost řeči produkované Příslušenství Hlasu.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter"><value>Low- pass audio filtr</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter.Help"><value>Snížit vysoké frekvence zvuku pro změkčení zvuku.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range"><value>Pevnost zvukového filtru</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range.Help"><value>Nastavte, jak silně filtr snižuje vysoké zvukové frekvence.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping"><value>Keyboard interpretace</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Help"><value>Srovnat klávesnici hostitele podle charakteru nebo polohy klíče.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value0"><value>Shoda znaků</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value1"><value>Srovnat klíčové pozice</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard"><value>Televizní standard</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard.Help"><value>Vyberte televizní standard používaný CD-i přehrávačem.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config"><value>Přečtěte si nativní konfiguraci</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config.Help"><value>Načíst konfiguraci uloženou emulátorem.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config"><value>Uložit nativní konfiguraci</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config.Help"><value>Uložit konfiguraci ve formátu nativního emulátoru.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves"><value>Saved- state names</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Help"><value>Název uložený stavy podle hry nebo emulovaným systémem.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value0"><value>na hru</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value1"><value>pro každý systém</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves"><value>Samostatné perzistentní uložení pro každou hru</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves.Help"><value>Pro každou hru uchovejte samostatný perzistentní paměťový soubor.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save"><value>Automaticky uložit a načíst stavy</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save.Help"><value>Obnovit uložený stav při spuštění a uložit stav při zavření.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli"><value>Začněte z argumentů command- line</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli.Help"><value>Použijte režim spuštění nativního emulátoru.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable"><value>Používejte nativní MAME cesty</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable.Help"><value>Použijte cesty konfigurované v nativní konfiguraci MAME.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer"><value>Alternativní metoda vykreslování</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer.Help"><value>Použijte alternativní metodu video vykreslování poskytovanou emulátorem.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres"><value>Rozlišení přehledu</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres.Help"><value>zvolte výstupní rozlišení alternativní metody vykreslování.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable"><value>Vstup myši</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable.Help"><value>Povolit vstup myši v emulovaném přehrávači.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode"><value>Vstup do Light- gun</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Help"><value>zvolte, jak se ukazuje vstup do lehkého děla.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value1"><value>Touchscreen</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value2"><value>Light gun</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles"><value>profily specifického tlačítka hry</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles.Help"><value>Pro aktuální hru použijte profil tlačítka dodaný emulátorem.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable"><value>interpretace čtyřsměrného joysticku</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Help"><value>Omezte joystick směry pomocí nativních čtyřsměrných režimů.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value1"><value>Čtyři směry</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value2"><value>Strict čtyři směry</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle"><value>Limit nativní rychlost provedení</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle.Help"><value>Nechte emulátor omezit výkon na normální rychlost stroje.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable"><value>kódy podvádění</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable.Help"><value>Povolit kódy podvádění podporované emulátorem.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock"><value>CPU rychlost</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock.Help"><value>Nastavte hodiny CPU jako procento své původní rychlosti.</value></data>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Emuluje se PHILIPS P2000T počítač.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>Emuláty MAGNAVOX ODYSSEY2 a PHILIPS VIDEOPAC G7000 konzole.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>Emuláty PHILIPS CD-I konzole.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Emulátor audio</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Výklad klávesnice</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>Video paměť</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Alternativní video renderování</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Zvukový objem konzole</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Automatické stavy</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Kódy podvádění hry</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Odstranit hranici videa</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>Mapování klávesových klíčů</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Zvukový filtr Low- pass</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Zvukový filtr s uzavírací frekvencí</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>Rozmíchané videorámy</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Samostatná perzistentní paměť pro každou hru</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Uložené pojmenování souboru</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Mezní rychlost emulace</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Hlasitost</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Možnosti emulátoru</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>V každé hře</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Fyzikální klíčové pozice</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Jednoduché míchání</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Tištěné znaky</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Systém</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Emulátor video</value></data>
 </root>

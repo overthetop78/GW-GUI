@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Error.StateIncompatible"><value>Az Philips mentett állam összeegyeztethetetlen a jelenlegi gép.</value></data>
-  <data name="Emulation.Philips.Error.Unexpected"><value>Váratlan Philips emulációs hiba történt.</value></data>
-  <data name="Emulation.Philips.Error.FirmwareMissing"><value>Hiányzik egy szükséges Philips firmware.</value></data>
-  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>A ROM rendszer érvénytelen vagy összeegyeztethetetlen.</value></data>
-  <data name="Emulation.Philips.Error.ContentNotFound"><value>A konfigurált Philips média nem található.</value></data>
-  <data name="Emulation.Philips.Error.ContentUnsupported"><value>Ez a gép nem támogatja a kiválasztott médiát.</value></data>
-  <data name="Emulation.Philips.Error.OptionInvalid"><value>Az Philips opciónak érvénytelen értéke van.</value></data>
-  <data name="Emulation.Philips.Error.CoreNotFound"><value>A szükséges Philips magot nem találták meg.</value></data>
-  <data name="Emulation.Philips.Error.CoreRejected"><value>A kiválasztott Philips magot nem sikerült betölteni.</value></data>
-  <data name="Emulation.Philips.Error.StateInvalid"><value>Az Philips mentett állam érvénytelen.</value></data>
-  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>Az Philips host programozó elérési útja nem érhető el.</value></data>
-  <data name="Emulation.Philips.Error.Details"><value>Részletek: {0}</value></data>
-  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>A kommunikáció az Philips host nem sikerült.</value></data>
-  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>Ismeretlen környezet parancs: {0}</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound" xml:space="preserve"><value>A beszervezett Philips média nem került elő.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported" xml:space="preserve"><value>Ez a gép nem támogatja a kiválasztott médiát.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound" xml:space="preserve"><value>A szükséges Philips magot nem találták meg.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected" xml:space="preserve"><value>A Philips mag nem volt betöltve.</value></data>
+  <data name="Emulation.Philips.Error.Details" xml:space="preserve"><value>Részletek: {0}</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid" xml:space="preserve"><value>A rendszer ROM érvénytelen vagy összeegyeztethetetlen.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing" xml:space="preserve"><value>Egy Philips firmware hiányzik.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing" xml:space="preserve"><value>A Philips host futtató elérési útja nem elérhető.</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure" xml:space="preserve"><value>A Philips host-tal való kommunikáció nem sikerült.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid" xml:space="preserve"><value>A Philips opció érvénytelen értéket ad.</value></data>
+  <data name="Emulation.Philips.Error.StateIncompatible" xml:space="preserve"><value>A Philips mentett állam összeegyeztethetetlen az aktuális gép.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid" xml:space="preserve"><value>A Philips mentett állam érvénytelen.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected" xml:space="preserve"><value>Váratlan Philips emulációs hiba történt.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Ismeretlen környezet parancs: {0}</value></data>
 </root>

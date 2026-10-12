@@ -4,16 +4,13 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Controller.Joystick"><value>Joystick</value></data>
-  <data name="Emulation.Philips.Controller.CdiGamepad"><value>CD-i gamepad</value></data>
-  <data name="Emulation.Philips.Controller.Mouse"><value>Ποντίκι</value></data>
-  <data name="Emulation.Philips.Controller.LightGun"><value>Φωτεινό όπλο</value></data>
-  <data name="Emulation.Philips.Controller.None"><value>Κανένα</value></data>
-  <data name="Emulation.Philips.Input.Fire"><value>κουμπί πυρκαγιάς</value></data>
-  <data name="Emulation.Philips.Input.Action1"><value>Κουμπί 1</value></data>
-  <data name="Emulation.Philips.Input.Action2"><value>Κουμπί 2</value></data>
-  <data name="Emulation.Philips.Input.Action3"><value>Κουμπί 3</value></data>
-  <data name="Emulation.Philips.Input.Trigger"><value>Ενεργοποίηση</value></data>
-  <data name="Emulation.Philips.Input.Auxiliary"><value>Βοηθητικό κουμπί</value></data>
-  <data name="Emulation.Philips.Input.Reload"><value>Επαναφόρτωση</value></data>
+  <data name="Emulation.Philips.Controller.CdiGamepad" xml:space="preserve"><value>CD-I Πλήκτρο παιχνιδιού</value></data>
+  <data name="Emulation.Philips.Controller.LightGun" xml:space="preserve"><value>Ελαφρόκαννο</value></data>
+  <data name="Emulation.Philips.Input.Action1" xml:space="preserve"><value>Κουμπί 1</value></data>
+  <data name="Emulation.Philips.Input.Action2" xml:space="preserve"><value>Κουμπί 2</value></data>
+  <data name="Emulation.Philips.Input.Action3" xml:space="preserve"><value>Κουμπί 3</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary" xml:space="preserve"><value>Βοηθητικό κουμπί</value></data>
+  <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Ρίξε.</value></data>
+  <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Επαναφόρτωση</value></data>
+  <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Πυροκροτητής όπλου</value></data>
 </root>

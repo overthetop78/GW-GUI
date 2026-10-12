@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Error.StateIncompatible"><value>Philips 保存状态与当前机器不相容.</value></data>
-  <data name="Emulation.Philips.Error.Unexpected"><value>发生了出乎意料的 Philips 仿真错误 。</value></data>
-  <data name="Emulation.Philips.Error.FirmwareMissing"><value>缺少一个所需的Philips固件。</value></data>
-  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>系统ROM无效或不兼容.</value></data>
-  <data name="Emulation.Philips.Error.ContentNotFound"><value>未找到配置的 Philips 介质 。</value></data>
-  <data name="Emulation.Philips.Error.ContentUnsupported"><value>此机器不支持所选的媒体 。</value></data>
-  <data name="Emulation.Philips.Error.OptionInvalid"><value>Philips 选项的值无效 。</value></data>
-  <data name="Emulation.Philips.Error.CoreNotFound"><value>未找到所需的 Philips 核心 。</value></data>
-  <data name="Emulation.Philips.Error.CoreRejected"><value>无法装入选中的 Philips 核心 。</value></data>
-  <data name="Emulation.Philips.Error.StateInvalid"><value>Philips 保存状态无效 。</value></data>
-  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>Philips 主机可执行路径没有可用 。</value></data>
-  <data name="Emulation.Philips.Error.Details"><value>细节 :{0}</value></data>
-  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>与 Philips 主机的通信失败 。</value></data>
-  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>未知的环境命令 :{0}</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound" xml:space="preserve"><value>配置的飞利浦媒体未找到 。</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported" xml:space="preserve"><value>此机器不支持所选的媒体 。</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound" xml:space="preserve"><value>飞利浦所需的核心没有找到.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected" xml:space="preserve"><value>无法装入选中的飞利浦核心 。</value></data>
+  <data name="Emulation.Philips.Error.Details" xml:space="preserve"><value>细节 : {0}</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid" xml:space="preserve"><value>系统 ROM 无效或不兼容。</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing" xml:space="preserve"><value>飞利浦的固件不见了</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing" xml:space="preserve"><value>飞利浦主机可执行路径无法使用 。</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure" xml:space="preserve"><value>与飞利浦东道主的通信失败.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid" xml:space="preserve"><value>飞利浦选项的值无效 。</value></data>
+  <data name="Emulation.Philips.Error.StateIncompatible" xml:space="preserve"><value>飞利浦救出状态与现在的机器不相容.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid" xml:space="preserve"><value>飞利浦保存状态无效.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected" xml:space="preserve"><value>发生了意外的飞利浦模拟错误.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知的环境命令 : {0}</value></data>
 </root>

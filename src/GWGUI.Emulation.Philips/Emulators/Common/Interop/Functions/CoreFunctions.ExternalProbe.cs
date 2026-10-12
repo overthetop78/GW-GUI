@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Contracts;
 using System.IO;
 using System.Runtime.InteropServices;
 

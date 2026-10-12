@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Help.AlternateRenderer" xml:space="preserve"><value>使用模拟器提供的可替代渲染方法.</value></data>
+  <data name="Emulation.Philips.Help.AudioVolume" xml:space="preserve"><value>设定控制台产生的音量, 作为百分比 。</value></data>
+  <data name="Emulation.Philips.Help.AutoSave" xml:space="preserve"><value>关闭时保存机器状态, 当同一内容再次开始时恢复它.</value></data>
+  <data name="Emulation.Philips.Help.Cheats" xml:space="preserve"><value>启用模拟器提供的作弊代码 。</value></data>
+  <data name="Emulation.Philips.Help.CpuOverclock" xml:space="preserve"><value>调整处理器速度占其原频率的百分比。</value></data>
+  <data name="Emulation.Philips.Help.CropOverscan" xml:space="preserve"><value>从视频图像中去掉外边框 。</value></data>
+  <data name="Emulation.Philips.Help.KeyboardMapping" xml:space="preserve"><value>选择主机键盘键跟随其打印的字符还是其物理位置.</value></data>
+  <data name="Emulation.Philips.Help.LowPassFilter" xml:space="preserve"><value>降低控制台音频的高频率.</value></data>
+  <data name="Emulation.Philips.Help.LowPassRange" xml:space="preserve"><value>设定低通滤波截取频率占音频采样频率的百分比.</value></data>
+  <data name="Emulation.Philips.Help.MixFrames" xml:space="preserve"><value>混合相继的相机相框。 简单使用等重; 百分比控制上一个图像的可见度 。</value></data>
+  <data name="Emulation.Philips.Help.NvramPerGame" xml:space="preserve"><value>将每个游戏的持久内存单独存储 。</value></data>
+  <data name="Emulation.Philips.Help.Resolution" xml:space="preserve"><value>选择视频输出分辨率 。</value></data>
+  <data name="Emulation.Philips.Help.StateNaming" xml:space="preserve"><value>存储保存的状态为每款游戏单独保存,或共享整个系统.</value></data>
+  <data name="Emulation.Philips.Help.Throttle" xml:space="preserve"><value>将模拟速度限制在原机速度.</value></data>
+  <data name="Emulation.Philips.Help.VideoStandard" xml:space="preserve"><value>选择仿真机使用的电视标准.</value></data>
+  <data name="Emulation.Philips.Help.VoiceVolume" xml:space="preserve"><value>调整语音量的百分比。</value></data>
+</root>

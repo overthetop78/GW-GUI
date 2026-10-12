@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions;
 namespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore

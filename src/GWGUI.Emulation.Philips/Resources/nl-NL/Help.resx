@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Help.AlternateRenderer" xml:space="preserve"><value>Gebruik de alternatieve renderingsmethode die door de emulator wordt verstrekt.</value></data>
+  <data name="Emulation.Philips.Help.AudioVolume" xml:space="preserve"><value>Stel het volume van geluiden gegenereerd door de console in als een percentage.</value></data>
+  <data name="Emulation.Philips.Help.AutoSave" xml:space="preserve"><value>Bewaar de machinestatus bij het sluiten en herstel wanneer dezelfde inhoud opnieuw begint.</value></data>
+  <data name="Emulation.Philips.Help.Cheats" xml:space="preserve"><value>Schakel de valsspeler codes in die door de emulator worden verstrekt.</value></data>
+  <data name="Emulation.Philips.Help.CpuOverclock" xml:space="preserve"><value>Pas de processorsnelheid aan als een percentage van de oorspronkelijke frequentie.</value></data>
+  <data name="Emulation.Philips.Help.CropOverscan" xml:space="preserve"><value>Verwijder de buitenrand van de videoafbeelding.</value></data>
+  <data name="Emulation.Philips.Help.KeyboardMapping" xml:space="preserve"><value>Kies of host toetsenbord toetsen hun afgedrukte tekens of hun fysieke posities volgen.</value></data>
+  <data name="Emulation.Philips.Help.LowPassFilter" xml:space="preserve"><value>Verminder hoge frequenties in de console audio.</value></data>
+  <data name="Emulation.Philips.Help.LowPassRange" xml:space="preserve"><value>Stel de low-pass filter cutoff in als een percentage van de audiobemonsteringsfrequentie.</value></data>
+  <data name="Emulation.Philips.Help.MixFrames" xml:space="preserve"><value>Meng opeenvolgende videoframes. Eenvoudig gebruikt gelijke gewichten; een percentage bepaalt hoeveel van de vorige afbeelding zichtbaar blijft.</value></data>
+  <data name="Emulation.Philips.Help.NvramPerGame" xml:space="preserve"><value>Bewaar persistent geheugen apart voor elk spel.</value></data>
+  <data name="Emulation.Philips.Help.Resolution" xml:space="preserve"><value>Kies de video-uitvoerresolutie.</value></data>
+  <data name="Emulation.Philips.Help.StateNaming" xml:space="preserve"><value>Bewaar opgeslagen staten afzonderlijk voor elk spel of deel ze voor het hele systeem.</value></data>
+  <data name="Emulation.Philips.Help.Throttle" xml:space="preserve"><value>Beperk de emulatiesnelheid tot de oorspronkelijke machinesnelheid.</value></data>
+  <data name="Emulation.Philips.Help.VideoStandard" xml:space="preserve"><value>Kies de televisiestandaard die door de emuleerde machine wordt gebruikt.</value></data>
+  <data name="Emulation.Philips.Help.VoiceVolume" xml:space="preserve"><value>Pas het spraakvolume aan als een percentage.</value></data>
+</root>

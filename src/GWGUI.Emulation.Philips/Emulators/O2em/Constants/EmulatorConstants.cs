@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Philips.Emulators.Common.Contracts;
+using GWGUI.Emulation.Philips.Emulators.Common.Functions;
 namespace GWGUI.Emulation.Philips.Emulators.O2em.Constants;
 
 internal static class EmulatorConstants

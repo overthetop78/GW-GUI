@@ -4,16 +4,13 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Controller.Joystick"><value>Joystick</value></data>
-  <data name="Emulation.Philips.Controller.CdiGamepad"><value>CD-i gamepad</value></data>
-  <data name="Emulation.Philips.Controller.Mouse"><value>Egér</value></data>
-  <data name="Emulation.Philips.Controller.LightGun"><value>Könnyűpuska</value></data>
-  <data name="Emulation.Philips.Controller.None"><value>Nincs</value></data>
-  <data name="Emulation.Philips.Input.Fire"><value>Tűz gomb</value></data>
-  <data name="Emulation.Philips.Input.Action1"><value>1. gomb</value></data>
-  <data name="Emulation.Philips.Input.Action2"><value>Gomb 2</value></data>
-  <data name="Emulation.Philips.Input.Action3"><value>Gomb 3</value></data>
-  <data name="Emulation.Philips.Input.Trigger"><value>Nyomtató</value></data>
-  <data name="Emulation.Philips.Input.Auxiliary"><value>Segédgomb</value></data>
-  <data name="Emulation.Philips.Input.Reload"><value>Újratöltés</value></data>
+  <data name="Emulation.Philips.Controller.CdiGamepad" xml:space="preserve"><value>CD-I gamepad</value></data>
+  <data name="Emulation.Philips.Controller.LightGun" xml:space="preserve"><value>Fénypuska</value></data>
+  <data name="Emulation.Philips.Input.Action1" xml:space="preserve"><value>Gomb 1</value></data>
+  <data name="Emulation.Philips.Input.Action2" xml:space="preserve"><value>Gomb 2</value></data>
+  <data name="Emulation.Philips.Input.Action3" xml:space="preserve"><value>Gomb 3</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary" xml:space="preserve"><value>Segédgomb</value></data>
+  <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Lőj!</value></data>
+  <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Újratöltés</value></data>
+  <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>A fegyver kioldója</value></data>
 </root>

@@ -3,13 +3,7 @@ namespace GWGUI.Emulation.Philips.Common.Machines.Common.Functions;
 
 internal static class CoreOptionValidationFunctions
 {
-    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core switch
-    {
-        Emulator.M2000 => Emulators.M2000.Dictionaries.M2000OptionCatalog.All,
-        Emulator.O2em => Emulators.O2em.Dictionaries.O2emOptionCatalog.All,
-        Emulator.SameCdi => Emulators.SameCdi.Dictionaries.SameCdiOptionCatalog.All,
-        _ => throw new ArgumentOutOfRangeException(nameof(core))
-    };
+    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];
 
     internal static void Validate(MachineConfiguration configuration)
     {

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Help.AlternateRenderer" xml:space="preserve"><value>Використовуйте альтернативний метод рендерингу, який надається емулятором.</value></data>
+  <data name="Emulation.Philips.Help.AudioVolume" xml:space="preserve"><value>Встановити обсяг звуків, що створюються консолі, як відсоток.</value></data>
+  <data name="Emulation.Philips.Help.AutoSave" xml:space="preserve"><value>Заощаджуйте стан машини при закриванні і відновленні його при цьому, коли цей самий вміст знову запускається.</value></data>
+  <data name="Emulation.Philips.Help.Cheats" xml:space="preserve"><value>Увімкнути коди обману, надані емулятором.</value></data>
+  <data name="Emulation.Philips.Help.CpuOverclock" xml:space="preserve"><value>Регульувати швидкість процесора в відсотках від початкової частоти.</value></data>
+  <data name="Emulation.Philips.Help.CropOverscan" xml:space="preserve"><value>Видаліть зовнішній кордон з відео образу.</value></data>
+  <data name="Emulation.Philips.Help.KeyboardMapping" xml:space="preserve"><value>Виберіть, чи слідувати за допомогою клавіатури, які слідують за ними, або їх фізичними положеннями.</value></data>
+  <data name="Emulation.Philips.Help.LowPassFilter" xml:space="preserve"><value>Зменшити високі частоти в консолі аудіо.</value></data>
+  <data name="Emulation.Philips.Help.LowPassRange" xml:space="preserve"><value>Встановити низькопрохідний фільтр-ріжучий відключення як відсоток частоти відбору аудіо.</value></data>
+  <data name="Emulation.Philips.Help.MixFrames" xml:space="preserve"><value>Визначте послідовні відеорамки. Простіше використовується однакова вага, контроль відсотка, скільки попереднього зображення залишається видимим.</value></data>
+  <data name="Emulation.Philips.Help.NvramPerGame" xml:space="preserve"><value>Зберігати застійну пам'ять окремо для кожної гри.</value></data>
+  <data name="Emulation.Philips.Help.Resolution" xml:space="preserve"><value>Виберіть роздільну здатність відеовиходу.</value></data>
+  <data name="Emulation.Philips.Help.StateNaming" xml:space="preserve"><value>Зберігати стани окремо для кожної гри або поділитися ними на всю систему.</value></data>
+  <data name="Emulation.Philips.Help.Throttle" xml:space="preserve"><value>Швидкість емульсії для початкової швидкості машини.</value></data>
+  <data name="Emulation.Philips.Help.VideoStandard" xml:space="preserve"><value>Виберіть стандарт телебачення, який використовується в емулі.</value></data>
+  <data name="Emulation.Philips.Help.VoiceVolume" xml:space="preserve"><value>Налаштування обсягу мови в відсотках.</value></data>
+</root>

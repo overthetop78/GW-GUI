@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Error.StateIncompatible"><value>Philips räddade tillståndet är oförenligt med den nuvarande maskinen.</value></data>
-  <data name="Emulation.Philips.Error.Unexpected"><value>Ett oväntat Philips-emuleringsfel inträffade.</value></data>
-  <data name="Emulation.Philips.Error.FirmwareMissing"><value>En nödvändig Philips firmware saknas.</value></data>
-  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>Systemet ROM är ogiltigt eller oförenligt.</value></data>
-  <data name="Emulation.Philips.Error.ContentNotFound"><value>De konfigurerade Philips-media hittades inte.</value></data>
-  <data name="Emulation.Philips.Error.ContentUnsupported"><value>Denna maskin stöder inte de utvalda medierna.</value></data>
-  <data name="Emulation.Philips.Error.OptionInvalid"><value>Ett Philips-alternativ har ett ogiltigt värde.</value></data>
-  <data name="Emulation.Philips.Error.CoreNotFound"><value>Den nödvändiga Philips kärnan hittades inte.</value></data>
-  <data name="Emulation.Philips.Error.CoreRejected"><value>Den valda Philips-kärnan kunde inte laddas.</value></data>
-  <data name="Emulation.Philips.Error.StateInvalid"><value>Philips räddade tillståndet är ogiltigt.</value></data>
-  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>Philips värd körbar väg är otillgänglig.</value></data>
-  <data name="Emulation.Philips.Error.Details"><value>Detaljer: {0}</value></data>
-  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>Kommunikation med Philips-värden misslyckades.</value></data>
-  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>Okänd miljökommando: {0}</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound" xml:space="preserve"><value>Den konfigurerade Philips-medier hittades inte.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported" xml:space="preserve"><value>Denna maskin stöder inte de valda medierna.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound" xml:space="preserve"><value>Den nödvändiga kärnan i Philips hittades inte.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected" xml:space="preserve"><value>Den valda Philips-kärnan kunde inte laddas.</value></data>
+  <data name="Emulation.Philips.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid" xml:space="preserve"><value>Systemet ROM är ogiltig eller oförenlig.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing" xml:space="preserve"><value>En nödvändig filippos firmware saknas.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing" xml:space="preserve"><value>Philips värd körbar väg är otillgänglig.</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure" xml:space="preserve"><value>Kommunikation med Philips värd misslyckades.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid" xml:space="preserve"><value>Ett Philips-alternativ har ett ogiltigt värde.</value></data>
+  <data name="Emulation.Philips.Error.StateIncompatible" xml:space="preserve"><value>Philips sparade tillstånd är oförenligt med den nuvarande maskinen.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid" xml:space="preserve"><value>Philips räddade staten är ogiltig.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected" xml:space="preserve"><value>Ett oväntat Philips-emuleringsfel inträffade.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Okänd miljökommando: {0}</value></data>
 </root>

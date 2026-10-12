@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Contracts;
 namespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions;
 
 internal static class ControllerPortFunctions

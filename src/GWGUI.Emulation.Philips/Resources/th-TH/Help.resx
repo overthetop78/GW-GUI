@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Help.AlternateRenderer" xml:space="preserve"><value>ใช้วิธีการแสดงผลทางเลือกที่โปรแกรมจําลองให้</value></data>
+  <data name="Emulation.Philips.Help.AudioVolume" xml:space="preserve"><value>ตั้งค่าระดับเสียงของเสียงที่สร้างโดยคอนโซลแบบร้อยละ</value></data>
+  <data name="Emulation.Philips.Help.AutoSave" xml:space="preserve"><value>บันทึกสถานะเครื่องจักรเมื่อปิดและเรียกคืน เมื่อเนื้อหาเดียวกันเริ่มต้นอีกครั้ง</value></data>
+  <data name="Emulation.Philips.Help.Cheats" xml:space="preserve"><value>เปิดใช้การโกงรหัสที่โปรแกรมจําลองกําหนด</value></data>
+  <data name="Emulation.Philips.Help.CpuOverclock" xml:space="preserve"><value>ปรับความเร็วโพรเซสเป็นเปอร์เซ็นต์ของความถี่ดั้งเดิม</value></data>
+  <data name="Emulation.Philips.Help.CropOverscan" xml:space="preserve"><value>ลบขอบนอกออกจากภาพวิดีโอ</value></data>
+  <data name="Emulation.Philips.Help.KeyboardMapping" xml:space="preserve"><value>เลือกว่าปุ่มบนโฮสต์จะตามตัวอักษรที่พิมพ์ออกมา หรือตําแหน่งกายภาพ</value></data>
+  <data name="Emulation.Philips.Help.LowPassFilter" xml:space="preserve"><value>ลดความถี่เสียงในคอนโซล</value></data>
+  <data name="Emulation.Philips.Help.LowPassRange" xml:space="preserve"><value>ตั้งค่าการตัดตัวกรองผ่านผ่านช่องต่ํา เป็นเปอร์เซ็นต์ของความถี่ตัวอย่างเสียง</value></data>
+  <data name="Emulation.Philips.Help.MixFrames" xml:space="preserve"><value>ปรับลดกรอบวิดีโอให้ต่อเนื่อง ง่ายๆ จะใช้น้ําหนักเท่ากัน เปอร์เซ็นต์ควบคุมจํานวนภาพก่อนหน้าที่ปรากฏ</value></data>
+  <data name="Emulation.Philips.Help.NvramPerGame" xml:space="preserve"><value>เก็บหน่วยความจําไว้แยกกัน สําหรับแต่ละเกม</value></data>
+  <data name="Emulation.Philips.Help.Resolution" xml:space="preserve"><value>เลือกความละเอียดการแสดงผลวิดีโอ</value></data>
+  <data name="Emulation.Philips.Help.StateNaming" xml:space="preserve"><value>ร้านค้าได้บันทึกรัฐแยกแต่ละเกม หรือแบ่งปันให้กับทั้งระบบ</value></data>
+  <data name="Emulation.Philips.Help.Throttle" xml:space="preserve"><value>จํากัดความเร็วการจําลองกับความเร็วเครื่องจักรเดิม</value></data>
+  <data name="Emulation.Philips.Help.VideoStandard" xml:space="preserve"><value>เลือกมาตรฐานทีวีที่ใช้โดยเครื่องจําลอง</value></data>
+  <data name="Emulation.Philips.Help.VoiceVolume" xml:space="preserve"><value>ปรับ ปริมาณ คํา พูด ให้ เป็น เปอร์เซ็นต์.</value></data>
+</root>

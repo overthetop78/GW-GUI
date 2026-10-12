@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Help.AlternateRenderer" xml:space="preserve"><value>استخدم طريقة الصنع البديلة التي يوفرها المرشد</value></data>
+  <data name="Emulation.Philips.Help.AudioVolume" xml:space="preserve"><value>حدد حجم الأصوات التي تولدها مجموعة الضمادات، كنسبة مئوية.</value></data>
+  <data name="Emulation.Philips.Help.AutoSave" xml:space="preserve"><value>أنقذوا الالة عندما تغلق وتعيدوها عندما يبدأ المحتوى نفسه مرة أخرى</value></data>
+  <data name="Emulation.Philips.Help.Cheats" xml:space="preserve"><value>رموز الغش التي يوفرها المرشد</value></data>
+  <data name="Emulation.Philips.Help.CpuOverclock" xml:space="preserve"><value>معدل سرعة المعالج كنسبة مئوية من تواترها الأصلي</value></data>
+  <data name="Emulation.Philips.Help.CropOverscan" xml:space="preserve"><value>أبعد الحدود الخارجية عن صورة الفيديو</value></data>
+  <data name="Emulation.Philips.Help.KeyboardMapping" xml:space="preserve"><value>اختر ما إذا كانت مفاتيح لوحة المفاتيح المضيفة تتبع طابعاتها المطبوعة أو مواقعها المادية.</value></data>
+  <data name="Emulation.Philips.Help.LowPassFilter" xml:space="preserve"><value>خفض الترددات العالية في الصوت</value></data>
+  <data name="Emulation.Philips.Help.LowPassRange" xml:space="preserve"><value>حددوا التصفية المنخفضة كنسبة مئوية من تردد العينات الصوتية</value></data>
+  <data name="Emulation.Philips.Help.MixFrames" xml:space="preserve"><value>أُطر فيديو مائلة متتالية - تستخدم ببساطة أوزاناً متساوية؛ وتتحكم نسبة مئوية في مدى ما تبقى من الصورة السابقة واضحة.</value></data>
+  <data name="Emulation.Philips.Help.NvramPerGame" xml:space="preserve"><value>تخزين الذاكرة الدائمة بشكل منفصل لكل لعبة</value></data>
+  <data name="Emulation.Philips.Help.Resolution" xml:space="preserve"><value>اختر قرار إنتاج الفيديو</value></data>
+  <data name="Emulation.Philips.Help.StateNaming" xml:space="preserve"><value>تم تخزين الولايات بشكل منفصل لكل لعبة أو تقاسمها للنظام بأكمله</value></data>
+  <data name="Emulation.Philips.Help.Throttle" xml:space="preserve"><value>خفف السرعة إلى سرعة الآلة الأصلية</value></data>
+  <data name="Emulation.Philips.Help.VideoStandard" xml:space="preserve"><value>اختر معيار التلفزيون الذي تستخدمه الآلة المُحتَزَنة.</value></data>
+  <data name="Emulation.Philips.Help.VoiceVolume" xml:space="preserve"><value>عدل حجم الخطاب كنسبة مئوية</value></data>
+</root>

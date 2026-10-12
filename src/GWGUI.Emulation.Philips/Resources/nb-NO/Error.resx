@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Error.StateIncompatible"><value>Philips-lagringstilstanden er ikke kompatibel med den aktuelle maskinen.</value></data>
-  <data name="Emulation.Philips.Error.Unexpected"><value>En uventet Philips- emuleringsfeil oppstod.</value></data>
-  <data name="Emulation.Philips.Error.FirmwareMissing"><value>En nødvendig Philips firmware mangler.</value></data>
-  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>Systemets ROM er ugyldig eller uforenlig.</value></data>
-  <data name="Emulation.Philips.Error.ContentNotFound"><value>De konfigurerte Philips-mediene ble ikke funnet.</value></data>
-  <data name="Emulation.Philips.Error.ContentUnsupported"><value>Denne maskinen støtter ikke det valgte mediet.</value></data>
-  <data name="Emulation.Philips.Error.OptionInvalid"><value>Et Philips-alternativ har en ugyldig verdi.</value></data>
-  <data name="Emulation.Philips.Error.CoreNotFound"><value>Den nødvendige Philips kjernen ble ikke funnet.</value></data>
-  <data name="Emulation.Philips.Error.CoreRejected"><value>Den valgte Philips-kjernen kunne ikke lastes.</value></data>
-  <data name="Emulation.Philips.Error.StateInvalid"><value>Philips lagret tilstand er ugyldig.</value></data>
-  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>Philips-vertens kjørbare sti er utilgjengelig.</value></data>
-  <data name="Emulation.Philips.Error.Details"><value>Detaljer: {0}</value></data>
-  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>Kommunikasjon med Philips-verten mislyktes.</value></data>
-  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>Ukjent miljøkommando: {0}</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound" xml:space="preserve"><value>Den konfigurerte Philips-mediene ble ikke funnet.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported" xml:space="preserve"><value>Denne maskinen støtter ikke de valgte mediene.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound" xml:space="preserve"><value>Den nødvendige Filips kjernen ble ikke funnet.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected" xml:space="preserve"><value>Den valgte Philips-kjernen kunne ikke lastes.</value></data>
+  <data name="Emulation.Philips.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid" xml:space="preserve"><value>Systemet ROM er ugyldig eller inkompatibel.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing" xml:space="preserve"><value>En nødvendig Philips firmware mangler.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing" xml:space="preserve"><value>Philips-vertens kjørbare sti er utilgjengelig.</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure" xml:space="preserve"><value>Kommunikasjon med Philips-værten mislyktes.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid" xml:space="preserve"><value>Et Philips-alternativ har en ugyldig verdi.</value></data>
+  <data name="Emulation.Philips.Error.StateIncompatible" xml:space="preserve"><value>Philips-tilstanden er ikke kompatibel med den aktuelle maskinen.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid" xml:space="preserve"><value>Philips-staten er ugyldig.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected" xml:space="preserve"><value>En uventet Philips-emuleringsfeil oppstod.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Ukjend miljøkommando: {0}</value></data>
 </root>

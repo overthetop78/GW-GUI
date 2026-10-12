@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;
 using System.IO;
 using System.IO.Compression;
 

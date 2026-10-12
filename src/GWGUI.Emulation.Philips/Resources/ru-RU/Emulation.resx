@@ -4,82 +4,30 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.o2em.Description"><value>Имитирует консоли Magnavox Odyssey² и Philips Videopac G7000.</value></data>
-  <data name="Emulation.Emulator.m2000.Description"><value>эмулирует компьютер Philips P2000T.</value></data>
-  <data name="Emulation.Emulator.same_cdi.Description"><value>эмулирует проигрыватели Philips CD-i.</value></data>
-  <data name="Emulation.Philips.Memory.Display"><value>Видеопамять</value></data>
-  <data name="Emulation.Philips.Video.Native"><value>видео эмулятор</value></data>
-  <data name="Emulation.Philips.Audio.Native"><value>Emulator audio</value></data>
-  <data name="Emulation.Philips.Keyboard.Native"><value>интерпретация клавиатуры</value></data>
-  <data name="Emulation.Philips.Controls.Native"><value>элементы управления эмулятором</value></data>
-  <data name="Emulation.Philips.System.Native"><value>опции эмулятора</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios"><value>консольная модель</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios.Help"><value>Выберите консольное оборудование и его BIOS.</value></data>
-  <data name="Emulation.Philips.Option.o2em_region"><value>Телевизионный стандарт</value></data>
-  <data name="Emulation.Philips.Option.o2em_region.Help"><value>Выберите телевизионный стандарт или удалите его из модели консоли.</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads"><value>контроллеры Swap</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads.Help"><value>поменяйте входные порты двух контроллеров консоли.</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency"><value>прозрачность экранной клавиатуры</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency.Help"><value>установите прозрачность экранной клавиатуры.</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan"><value>Crop Screen Borders</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan.Help"><value>Удалите неиспользуемые границы вокруг изображения игры.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames"><value>Blend последовательные кадры</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Help"><value>Смешайте последовательные кадры, чтобы уменьшить мерцание.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value1"><value>Blend два кадра</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value2"><value>Призрак (65%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value3"><value>Призрак (75%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value4"><value>Призрак (85%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value5"><value>Призрак (95%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume"><value>Консольный звуковой объем</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume.Help"><value>Установите объем, создаваемый эмулированной консолью.</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume"><value>The Voice volume</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume.Help"><value>Установите громкость речи, произведённой аксессуаром Голос.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter"><value>низкочастотный аудиофильтр</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter.Help"><value>Уменьшите высокие звуковые частоты, чтобы смягчить звук.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range"><value>Прочность аудиофильтра</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range.Help"><value>Установите, насколько сильно фильтр снижает высокие звуковые частоты.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping"><value>интерпретация клавиатуры</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Help"><value>Сопоставьте клавиатуру хоста по характеру или по позиции клавиши.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value0"><value>Матч персонажей</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value1"><value>Матч ключевых позиций</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard"><value>Телевизионный стандарт</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard.Help"><value>Выберите телевизионный стандарт, используемый проигрывателем CD-i.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config"><value>Читать нативную конфигурацию</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config.Help"><value>Загрузите конфигурацию, сохраненную эмулятором.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config"><value>Сохранить нативную конфигурацию</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config.Help"><value>Сохранить конфигурацию в нативном формате эмулятора.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves"><value>Saved-state Names</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Help"><value>Сохраненные состояния имени с помощью игры или эмулированной системы.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value0"><value>Per game</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value1"><value>Per system</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves"><value>Отдельные постоянные сохранения для каждой игры</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves.Help"><value>Держите отдельный файл постоянной памяти для каждой игры.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save"><value>Автоматическое сохранение и загрузка состояний</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save.Help"><value>Восстановите сохраненное состояние при запуске и сохраните состояние при закрытии.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli"><value>Начните с аргументов командной строки</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli.Help"><value>Используйте нативный режим запуска командной строки эмулятора.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable"><value>Используйте нативные пути MAME</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable.Help"><value>Используйте пути, сконфигурированные в нативной конфигурации MAME.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer"><value>Альтернативный метод рендеринга</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer.Help"><value>Используйте альтернативный метод рендеринга видео, предоставляемый эмулятором.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres"><value>Rendering resolution</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres.Help"><value>Выберите разрешение вывода альтернативного метода рендеринга.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable"><value>Mouse input</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable.Help"><value>Включить ввод мыши в эмулируемом плеере.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode"><value>Light-gun input</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Help"><value>Выберите, как указательный ввод передается легкому пистолету.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value1"><value>Touchscreen</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value2"><value>Light Gun</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles"><value>игровые профили кнопок</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles.Help"><value>Используйте профиль кнопки, предоставленный эмулятором для текущей игры.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable"><value>Четырехнаправленная интерпретация джойстика</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Help"><value>Ограничьте направления джойстиков, используя нативные режимы четырех направлений.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value1"><value>четыре направления</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value2"><value>строго четыре направления</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle"><value>Ограничить нативную скорость выполнения</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle.Help"><value>пусть эмулятор ограничивает выполнение до нормальной скорости машины.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable"><value>коды обмана</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable.Help"><value>Включите чит-коды, поддерживаемые эмулятором.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock"><value>CPU Speed</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock.Help"><value>Установите часы CPU в процентах от их первоначальной скорости.</value></data>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Подражает PHILIPS P2000T Компьютер.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>эмулировать MAGNAVOX ODYSSEY2 и PHILIPS VIDEOPAC G7000 Консоли.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>эмулировать PHILIPS CD-I Консоли.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Аудио эмулятор</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Толкование клавиш</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>Видеопамять</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Альтернативный видеорендеринг</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Аудио объем консоли</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Автоматические спасенные состояния</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Игровые чит-коды</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Удалить видеограницу</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>Картографирование клавиш клавиатуры</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Низкочастотный аудиофильтр</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Частота отключения аудиофильтра</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>Смешные видеокадры</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Отдельная постоянная память для каждой игры</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Сохраненный файл с именем</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Ограничение скорости эмуляции</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Голосовой объем</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Варианты эмулятора</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>Пер за игру</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Физические ключевые позиции</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Простое смешивание</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Печатные персонажи</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Система на единицу</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Видео эмулятор</value></data>
 </root>

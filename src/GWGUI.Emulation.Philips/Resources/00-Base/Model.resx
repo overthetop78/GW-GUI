@@ -4,8 +4,11 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Model.PhilipsCdi"><value>Philips CD-i</value></data>
-  <data name="Emulation.Philips.Model.P2000T"><value>Philips P2000T</value></data>
-  <data name="Emulation.Philips.Model.Odyssey2"><value>Magnavox Odyssey²</value></data>
-  <data name="Emulation.Philips.Model.VideopacG7000"><value>Philips Videopac G7000</value></data>
+  <data name="Emulation.Philips.Cpu.I8048" xml:space="preserve"><value>Intel 8048</value></data>
+  <data name="Emulation.Philips.Cpu.Scc68070" xml:space="preserve"><value>Philips SCC68070</value></data>
+  <data name="Emulation.Philips.Cpu.Z80" xml:space="preserve"><value>Zilog Z80</value></data>
+  <data name="Emulation.Philips.Model.Odyssey2" xml:space="preserve"><value>Magnavox Odyssey²</value></data>
+  <data name="Emulation.Philips.Model.P2000T" xml:space="preserve"><value>Philips P2000T</value></data>
+  <data name="Emulation.Philips.Model.PhilipsCdi" xml:space="preserve"><value>Philips CD-i</value></data>
+  <data name="Emulation.Philips.Model.VideopacG7000" xml:space="preserve"><value>Philips Videopac G7000</value></data>
 </root>

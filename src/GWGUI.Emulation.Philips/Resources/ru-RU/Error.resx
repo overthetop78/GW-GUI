@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Error.StateIncompatible"><value>Сохраненное состояние Philips несовместимо с текущей машиной.</value></data>
-  <data name="Emulation.Philips.Error.Unexpected"><value>Неожиданная ошибка эмуляции Philips.</value></data>
-  <data name="Emulation.Philips.Error.FirmwareMissing"><value>Требуемая прошивка Philips отсутствует.</value></data>
-  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>Система ROM является недействительной или несовместимой.</value></data>
-  <data name="Emulation.Philips.Error.ContentNotFound"><value>Настроенных носителей Philips обнаружено не было.</value></data>
-  <data name="Emulation.Philips.Error.ContentUnsupported"><value>Данная машина не поддерживает выбранные носители.</value></data>
-  <data name="Emulation.Philips.Error.OptionInvalid"><value>Опцион Philips имеет недействительное значение.</value></data>
-  <data name="Emulation.Philips.Error.CoreNotFound"><value>Требуемое ядро Philips найдено не было.</value></data>
-  <data name="Emulation.Philips.Error.CoreRejected"><value>Выбранное ядро Philips не могло быть загружено.</value></data>
-  <data name="Emulation.Philips.Error.StateInvalid"><value>Philips сохраненное состояние является недействительным.</value></data>
-  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>Исполняемый путь хоста Philips недоступен.</value></data>
-  <data name="Emulation.Philips.Error.Details"><value>Подробности: {0}</value></data>
-  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>Связь с хостом Philips не удалось.</value></data>
-  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>Неизвестная команда окружения: {0}</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound" xml:space="preserve"><value>Настроенные СМИ Philips не найдены.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported" xml:space="preserve"><value>Данная машина не поддерживает выбранные носители.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound" xml:space="preserve"><value>Необходимый ядро Philips не найден.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected" xml:space="preserve"><value>Выбранный ядро Philips не удалось загрузить.</value></data>
+  <data name="Emulation.Philips.Error.Details" xml:space="preserve"><value>Подробности: {0}</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM является недействительным или несовместимым.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing" xml:space="preserve"><value>Не хватает необходимого прошивки Philips.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing" xml:space="preserve"><value>Исполняемый путь хоста Philips недоступен.</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure" xml:space="preserve"><value>Общение с хозяином Philips не увенчалось успехом.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid" xml:space="preserve"><value>Опцион Philips имеет недействительное значение.</value></data>
+  <data name="Emulation.Philips.Error.StateIncompatible" xml:space="preserve"><value>Сохранённое состояние Philips несовместимо с нынешней машиной.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid" xml:space="preserve"><value>Спасенное государство Филипс недействительно.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected" xml:space="preserve"><value>Неожиданная ошибка эмуляции Philips.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Неизвестная команда окружения: {0}</value></data>
 </root>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Philips.Help.AlternateRenderer" xml:space="preserve"><value>Należy zastosować alternatywną metodę utylizacji dostarczoną przez emulator.</value></data>
+  <data name="Emulation.Philips.Help.AudioVolume" xml:space="preserve"><value>Ustaw objętość dźwięków generowanych przez konsolę jako procent.</value></data>
+  <data name="Emulation.Philips.Help.AutoSave" xml:space="preserve"><value>Zapisz stan maszyny podczas zamykania i przywracania jej, gdy ta sama zawartość zaczyna się ponownie.</value></data>
+  <data name="Emulation.Philips.Help.Cheats" xml:space="preserve"><value>Włącz kody oszustw dostarczone przez emulator.</value></data>
+  <data name="Emulation.Philips.Help.CpuOverclock" xml:space="preserve"><value>Dostosuj prędkość procesora jako procent jego pierwotnej częstotliwości.</value></data>
+  <data name="Emulation.Philips.Help.CropOverscan" xml:space="preserve"><value>Usuń zewnętrzną granicę z obrazu wideo.</value></data>
+  <data name="Emulation.Philips.Help.KeyboardMapping" xml:space="preserve"><value>Wybierz, czy klucze klawiatury hosta podążają za drukowanymi znakami lub ich pozycjami fizycznymi.</value></data>
+  <data name="Emulation.Philips.Help.LowPassFilter" xml:space="preserve"><value>Zredukuj wysokie częstotliwości w konsoli audio.</value></data>
+  <data name="Emulation.Philips.Help.LowPassRange" xml:space="preserve"><value>Ustaw odcięcie filtra dolnoprzepustowego jako procent częstotliwości próbkowania dźwięku.</value></data>
+  <data name="Emulation.Philips.Help.MixFrames" xml:space="preserve"><value>Zmieszać kolejne ramki wideo. Proste używa równych wag; procent kontroluje, jak dużo poprzedniego obrazu pozostaje widoczne.</value></data>
+  <data name="Emulation.Philips.Help.NvramPerGame" xml:space="preserve"><value>Przechowuj pamięć trwałą oddzielnie dla każdej gry.</value></data>
+  <data name="Emulation.Philips.Help.Resolution" xml:space="preserve"><value>Wybierz rozdzielczość wyjścia wideo.</value></data>
+  <data name="Emulation.Philips.Help.StateNaming" xml:space="preserve"><value>Przechowuj zapisywane stany oddzielnie dla każdej gry lub udostępniaj je dla całego systemu.</value></data>
+  <data name="Emulation.Philips.Help.Throttle" xml:space="preserve"><value>Ograniczyć prędkość emulacji do pierwotnej prędkości maszyny.</value></data>
+  <data name="Emulation.Philips.Help.VideoStandard" xml:space="preserve"><value>Wybierz standard telewizyjny używany przez maszynę emulowaną.</value></data>
+  <data name="Emulation.Philips.Help.VoiceVolume" xml:space="preserve"><value>Dostosuj głośność mowy jako procent.</value></data>
+</root>

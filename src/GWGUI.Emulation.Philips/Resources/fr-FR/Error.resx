@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Error.StateIncompatible"><value>L'état de sauvegarde Philips est incompatible avec la machine actuelle.</value></data>
-  <data name="Emulation.Philips.Error.Unexpected"><value>Une erreur inattendue d'émulation Philips s'est produite.</value></data>
-  <data name="Emulation.Philips.Error.FirmwareMissing"><value>Il manque un firmware Philips requis.</value></data>
-  <data name="Emulation.Philips.Error.FirmwareInvalid"><value>Le système ROM est invalide ou incompatible.</value></data>
-  <data name="Emulation.Philips.Error.ContentNotFound"><value>Le support Philips configuré n'a pas été trouvé.</value></data>
-  <data name="Emulation.Philips.Error.ContentUnsupported"><value>Cette machine ne supporte pas les médias sélectionnés.</value></data>
-  <data name="Emulation.Philips.Error.OptionInvalid"><value>Une option Philips a une valeur non valide.</value></data>
-  <data name="Emulation.Philips.Error.CoreNotFound"><value>Le noyau Philips requis n'a pas été trouvé.</value></data>
-  <data name="Emulation.Philips.Error.CoreRejected"><value>Le noyau Philips sélectionné n'a pas pu être chargé.</value></data>
-  <data name="Emulation.Philips.Error.StateInvalid"><value>L'état de sauvegarde Philips est invalide.</value></data>
-  <data name="Emulation.Philips.Error.HostExecutableMissing"><value>Le chemin exécutable de l'hôte Philips n'est pas disponible.</value></data>
-  <data name="Emulation.Philips.Error.Details"><value>Détails : {0}</value></data>
-  <data name="Emulation.Philips.Error.HostProtocolFailure"><value>La communication avec l'hôte Philips a échoué.</value></data>
-  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand"><value>Commande d'environnement inconnu : {0}</value></data>
+  <data name="Emulation.Philips.Error.ContentNotFound" xml:space="preserve"><value>Le support Philips configuré n'a pas été trouvé.</value></data>
+  <data name="Emulation.Philips.Error.ContentUnsupported" xml:space="preserve"><value>Cette machine ne supporte pas les médias sélectionnés.</value></data>
+  <data name="Emulation.Philips.Error.CoreNotFound" xml:space="preserve"><value>Le noyau de Philips requis n'a pas été trouvé.</value></data>
+  <data name="Emulation.Philips.Error.CoreRejected" xml:space="preserve"><value>Le noyau de Philips sélectionné ne pouvait pas être chargé.</value></data>
+  <data name="Emulation.Philips.Error.Details" xml:space="preserve"><value>Détails: {0}</value></data>
+  <data name="Emulation.Philips.Error.FirmwareInvalid" xml:space="preserve"><value>Le système ROM est invalide ou incompatible.</value></data>
+  <data name="Emulation.Philips.Error.FirmwareMissing" xml:space="preserve"><value>Il manque un firmware Philips requis.</value></data>
+  <data name="Emulation.Philips.Error.HostExecutableMissing" xml:space="preserve"><value>Le chemin exécutable de l'hôte Philips n'est pas disponible.</value></data>
+  <data name="Emulation.Philips.Error.HostProtocolFailure" xml:space="preserve"><value>La communication avec l'hôte Philips a échoué.</value></data>
+  <data name="Emulation.Philips.Error.OptionInvalid" xml:space="preserve"><value>Une option Philips a une valeur non valide.</value></data>
+  <data name="Emulation.Philips.Error.StateIncompatible" xml:space="preserve"><value>L'état sauvé de Philips est incompatible avec la machine actuelle.</value></data>
+  <data name="Emulation.Philips.Error.StateInvalid" xml:space="preserve"><value>L'état sauvé de Philips est invalide.</value></data>
+  <data name="Emulation.Philips.Error.Unexpected" xml:space="preserve"><value>Une erreur inattendue d'émulation de Philips s'est produite.</value></data>
+  <data name="Emulation.Philips.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Commande d'environnement inconnu : {0}</value></data>
 </root>

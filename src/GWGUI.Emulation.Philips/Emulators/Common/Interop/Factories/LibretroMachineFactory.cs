@@ -1,10 +1,29 @@
-﻿using System.IO;
+﻿using GWGUI.Emulation.Philips.Emulators.Common.Contracts;
+using GWGUI.Emulation.Philips.Emulators.Common.Factories;
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Dictionaries;
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Services;
+using System.IO;
 
 namespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Factories;
 
 internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry)
-    : GWGUI.Emulation.Philips.Emulators.Common.Factories.MachineFactory(catalogEntry)
+    : GWGUI.Emulation.Philips.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorInputMapper, IEmulatorFirmwareSettings
 {
+    public ValueTask<EmulationFirmwareCandidate> ScanFirmwareAsync(string path, MachineModel model, CancellationToken cancellationToken) => FirmwareIdentificationFunctions.ScanFileAsync(path, model, Emulator, cancellationToken);
+
+    public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => ConfigurationFunctions.Family(model) switch
+    {
+        MachineFamily.P2000 => [],
+        MachineFamily.Videopac => [PeripheralCategory.Joystick, PeripheralCategory.None],
+        MachineFamily.Cdi => [PeripheralCategory.CdiGamepad, PeripheralCategory.Mouse, PeripheralCategory.LightGun, PeripheralCategory.None],
+        _ => throw new ArgumentOutOfRangeException(nameof(model))
+    };
+
+    public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, PeripheralCategory peripheral) => ControllerProtocolDictionary.Actions(model, peripheral).Select(action => new InputActionDefinition(action.Definition)).ToArray();
+    public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => NativeInputMappingFunctions.Apply(snapshot, input, model);
+
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
     public override bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)

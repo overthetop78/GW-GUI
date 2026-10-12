@@ -4,16 +4,13 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Controller.Joystick"><value>Joystick</value></data>
-  <data name="Emulation.Philips.Controller.CdiGamepad"><value>CD-i Gamepad</value></data>
-  <data name="Emulation.Philips.Controller.Mouse"><value>Maus</value></data>
-  <data name="Emulation.Philips.Controller.LightGun"><value>Light Gun</value></data>
-  <data name="Emulation.Philips.Controller.None"><value>Keine</value></data>
-  <data name="Emulation.Philips.Input.Fire"><value>Feuerknopf</value></data>
-  <data name="Emulation.Philips.Input.Action1"><value>Knopf 1</value></data>
-  <data name="Emulation.Philips.Input.Action2"><value>Button 2</value></data>
-  <data name="Emulation.Philips.Input.Action3"><value>Button 3</value></data>
-  <data name="Emulation.Philips.Input.Trigger"><value>Trigger</value></data>
-  <data name="Emulation.Philips.Input.Auxiliary"><value>Hilfs-Button</value></data>
-  <data name="Emulation.Philips.Input.Reload"><value>Reload</value></data>
+  <data name="Emulation.Philips.Controller.CdiGamepad" xml:space="preserve"><value>CD-I Gamepad</value></data>
+  <data name="Emulation.Philips.Controller.LightGun" xml:space="preserve"><value>Leuchtfeuerwaffen</value></data>
+  <data name="Emulation.Philips.Input.Action1" xml:space="preserve"><value>Knopf 1</value></data>
+  <data name="Emulation.Philips.Input.Action2" xml:space="preserve"><value>Knopf 2</value></data>
+  <data name="Emulation.Philips.Input.Action3" xml:space="preserve"><value>Knopf 3</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary" xml:space="preserve"><value>Hilfsknopf</value></data>
+  <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Schießen</value></data>
+  <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Beladung</value></data>
+  <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Waffenauslöser</value></data>
 </root>

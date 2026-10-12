@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Philips.Emulators.Common.Contracts;
+using GWGUI.Emulation.Philips.Emulators.Common.Enums;
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Contracts;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;

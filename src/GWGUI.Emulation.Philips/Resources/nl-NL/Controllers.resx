@@ -4,16 +4,13 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Controller.Joystick"><value>Joystick</value></data>
-  <data name="Emulation.Philips.Controller.CdiGamepad"><value>CD-i gamepad</value></data>
-  <data name="Emulation.Philips.Controller.Mouse"><value>Muis</value></data>
-  <data name="Emulation.Philips.Controller.LightGun"><value>Lichtpistool</value></data>
-  <data name="Emulation.Philips.Controller.None"><value>Geen</value></data>
-  <data name="Emulation.Philips.Input.Fire"><value>brandknop</value></data>
-  <data name="Emulation.Philips.Input.Action1"><value>Knop 1</value></data>
-  <data name="Emulation.Philips.Input.Action2"><value>Knop 2</value></data>
-  <data name="Emulation.Philips.Input.Action3"><value>Knop 3</value></data>
-  <data name="Emulation.Philips.Input.Trigger"><value>Trigger</value></data>
-  <data name="Emulation.Philips.Input.Auxiliary"><value>Hulpknop</value></data>
-  <data name="Emulation.Philips.Input.Reload"><value>herladen</value></data>
+  <data name="Emulation.Philips.Controller.CdiGamepad" xml:space="preserve"><value>CD-I gamepad</value></data>
+  <data name="Emulation.Philips.Controller.LightGun" xml:space="preserve"><value>Lichtgeweer</value></data>
+  <data name="Emulation.Philips.Input.Action1" xml:space="preserve"><value>Knop 1</value></data>
+  <data name="Emulation.Philips.Input.Action2" xml:space="preserve"><value>Knop 2</value></data>
+  <data name="Emulation.Philips.Input.Action3" xml:space="preserve"><value>Knop 3</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary" xml:space="preserve"><value>Hulpknop</value></data>
+  <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Schiet.</value></data>
+  <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Herladen</value></data>
+  <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Pistoolaanjager</value></data>
 </root>

@@ -4,16 +4,13 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Philips.Controller.Joystick"><value>Joystick</value></data>
-  <data name="Emulation.Philips.Controller.CdiGamepad"><value>CD-i gamepad</value></data>
-  <data name="Emulation.Philips.Controller.Mouse"><value>Mouse</value></data>
-  <data name="Emulation.Philips.Controller.LightGun"><value>Light gun</value></data>
-  <data name="Emulation.Philips.Controller.None"><value>Nessuno</value></data>
-  <data name="Emulation.Philips.Input.Fire"><value>Pulsante del fuoco</value></data>
-  <data name="Emulation.Philips.Input.Action1"><value>Pulsante 1</value></data>
-  <data name="Emulation.Philips.Input.Action2"><value>Pulsante 2</value></data>
-  <data name="Emulation.Philips.Input.Action3"><value>Pulsante 3</value></data>
-  <data name="Emulation.Philips.Input.Trigger"><value>Trigger</value></data>
-  <data name="Emulation.Philips.Input.Auxiliary"><value>Pulsante ausiliario</value></data>
-  <data name="Emulation.Philips.Input.Reload"><value>Reload</value></data>
+  <data name="Emulation.Philips.Controller.CdiGamepad" xml:space="preserve"><value>CD-I gamepad</value></data>
+  <data name="Emulation.Philips.Controller.LightGun" xml:space="preserve"><value>Luce</value></data>
+  <data name="Emulation.Philips.Input.Action1" xml:space="preserve"><value>Pulsante 1</value></data>
+  <data name="Emulation.Philips.Input.Action2" xml:space="preserve"><value>Pulsante 2</value></data>
+  <data name="Emulation.Philips.Input.Action3" xml:space="preserve"><value>Pulsante 3</value></data>
+  <data name="Emulation.Philips.Input.Auxiliary" xml:space="preserve"><value>Pulsante ausiliario</value></data>
+  <data name="Emulation.Philips.Input.Fire" xml:space="preserve"><value>Spara!</value></data>
+  <data name="Emulation.Philips.Input.Reload" xml:space="preserve"><value>Ricaricare</value></data>
+  <data name="Emulation.Philips.Input.Trigger" xml:space="preserve"><value>Attacco pistola</value></data>
 </root>

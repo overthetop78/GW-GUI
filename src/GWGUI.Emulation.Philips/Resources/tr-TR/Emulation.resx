@@ -4,82 +4,30 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.o2em.Description"><value>Magnavox Odyssey² ve Philips Videopac G7000 konsolları.</value></data>
-  <data name="Emulation.Emulator.m2000.Description"><value>Philips P2000T bilgisayarını kullanın.</value></data>
-  <data name="Emulation.Emulator.same_cdi.Description"><value>Philips CD-i oyuncuları.</value></data>
-  <data name="Emulation.Philips.Memory.Display"><value>Video hafıza</value></data>
-  <data name="Emulation.Philips.Video.Native"><value>Emulator video</value></data>
-  <data name="Emulation.Philips.Audio.Native"><value>Emulator audio</value></data>
-  <data name="Emulation.Philips.Keyboard.Native"><value>Klavye yorumu</value></data>
-  <data name="Emulation.Philips.Controls.Native"><value>Emulator kontrolleri</value></data>
-  <data name="Emulation.Philips.System.Native"><value>Emulator seçenekleri</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios"><value>Konsol modeli</value></data>
-  <data name="Emulation.Philips.Option.o2em_bios.Help"><value>Konsol donanımını ve BIOS'unu seçin.</value></data>
-  <data name="Emulation.Philips.Option.o2em_region"><value>Televizyon standart</value></data>
-  <data name="Emulation.Philips.Option.o2em_region.Help"><value>Televizyon standardını seçin veya konsol modelinden tespit edin.</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads"><value>Swap kontrolörleri</value></data>
-  <data name="Emulation.Philips.Option.o2em_swap_gamepads.Help"><value>Swap iki konsol kontrolörünün giriş limanları.</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency"><value>Ekranda klavye şeffaflığı</value></data>
-  <data name="Emulation.Philips.Option.o2em_vkbd_transparency.Help"><value>Ekrandaki klavyenin şeffaflığını ayarlayın.</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan"><value>Crop ekran sınırları</value></data>
-  <data name="Emulation.Philips.Option.o2em_crop_overscan.Help"><value>Oyun imajının etrafında kullanılmamış sınırları ortadan kaldır.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames"><value>Başarılı çerçeveler</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Help"><value>flicker'i azaltmak için başarısal çerçeveler.</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value1"><value>İki çerçeve</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value2"><value>Hayalet (65%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value3"><value>Hayalet (75%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value4"><value>Hayalet (85%)</value></data>
-  <data name="Emulation.Philips.Option.o2em_mix_frames.Value5"><value>Hayaleting (95)</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume"><value>Konsol ses hacmi</value></data>
-  <data name="Emulation.Philips.Option.o2em_audio_volume.Help"><value>Emated konsol tarafından üretilen hacmi ayarlayın.</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume"><value>The Voice volume</value></data>
-  <data name="Emulation.Philips.Option.o2em_voice_volume.Help"><value>The Voice accessory tarafından üretilen konuşma hacmini ayarlayın.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter"><value>Low-pass ses filtresi</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_filter.Help"><value>Sesi yumuşatmak için yüksek ses frekanslarını azaltın.</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range"><value>Audio filtre gücü</value></data>
-  <data name="Emulation.Philips.Option.o2em_low_pass_range.Help"><value>Filtrenin yüksek ses frekanslarını nasıl güçlü bir şekilde azalttığını ayarlayın.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping"><value>Klavye yorumu</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Help"><value>Ev sahibi klavyeyi karakter ya da anahtar pozisyonla eşleştirin.</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value0"><value>Match karakterleri</value></data>
-  <data name="Emulation.Philips.Option.m2000_keyboard_mapping.Value1"><value>Match key pozisyonları</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard"><value>Televizyon standart</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_video_standard.Help"><value>CD-i oyuncu tarafından kullanılan televizyon standardını seçin.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config"><value>yerel yapılandırmayı okuyun</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_read_config.Help"><value>Simülasyon tarafından kaydedilen yapılandırmayı gönderin.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config"><value>Yerli yapılandırma</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_write_config.Help"><value>Yerli emülatör formatındaki konfigürasyonu kurtarın.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves"><value>Saved-state isimleri</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Help"><value>İsim oyun tarafından ya da emated sistem tarafından kurtarıldı.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value0"><value>Per game</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_saves.Value1"><value>Per system</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves"><value>Ayrı kalıcı her oyun için tasarruflar</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_nvram_saves.Help"><value>Her oyun için ayrı kalıcı bir hafıza dosyası tutun.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save"><value>Otomatik olarak tasarruf ve yük devletler</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_auto_save.Help"><value>Başlangıçta kurtarılan bir durumu geri yükleyin ve kapanış sırasında devleti kurtarır.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli"><value>komut satırı tartışmalarından başlayın</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_boot_from_cli.Help"><value>Yerli emülatör komut satırı başlangıç modu kullanın.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable"><value>Yerel MAME yollarını kullanın</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_paths_enable.Help"><value>Yerli MAME konfigürasyonunda yapılandırılan yolları kullanın.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer"><value>Alternatif uygulama yöntemi</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_alternate_renderer.Help"><value>Simülasyon tarafından sağlanan alternatif video işleme yöntemini kullanın.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres"><value>Rendering Çözünürlük</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_altres.Help"><value>Alternatif işleme yönteminin çıktı kararını seçin.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable"><value>Mouse girişi</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mouse_enable.Help"><value>Emated oyuncudaki enable fare girişi.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode"><value>Light-gun input</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Help"><value>Girişin ışık tabancasına nasıl geçtiğini seçin.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value1"><value>Touchscreen</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_lightgun_mode.Value2"><value>Işık tabancası</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles"><value>Game-specific düğme profilleri</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_buttons_profiles.Help"><value>Mevcut oyun için emülatör tarafından sağlanan düğme profili kullanın.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable"><value>Four-road joystick yorumu</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Help"><value>Yerel dört yönlü modları kullanarak sevinçlendirici yönler.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value1"><value>Four ways</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_mame_4way_enable.Value2"><value>Strict dört yön</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle"><value>Limit yerli yürütme hızı</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_throttle.Help"><value>Ekranlama limiti normal makine hızını sınırlandıralım.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable"><value>Hile kodları</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cheats_enable.Help"><value>Kılavuz tarafından desteklenen hile kodları etkinleştirin.</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock"><value>CPU hız</value></data>
-  <data name="Emulation.Philips.Option.same_cdi_cpu_overclock.Help"><value>CPU saatini orijinal hızının bir yüzdesi olarak ayarlayın.</value></data>
+  <data name="Emulation.Emulator.m2000.Description" xml:space="preserve"><value>Emulates the the PHILIPS P2000T Bilgisayar.</value></data>
+  <data name="Emulation.Emulator.o2em.Description" xml:space="preserve"><value>Emulates MAGNAVOX ODYSSEY2 ve PHILIPS VIDEOPAC G7000 Konsollar.</value></data>
+  <data name="Emulation.Emulator.same_cdi.Description" xml:space="preserve"><value>Emulates PHILIPS CD-I Konsollar.</value></data>
+  <data name="Emulation.Philips.Audio.Native" xml:space="preserve"><value>Yapımcı Seslendirici Seslendirici Ses</value></data>
+  <data name="Emulation.Philips.Keyboard.Native" xml:space="preserve"><value>Klavye yorumu</value></data>
+  <data name="Emulation.Philips.Memory.Display" xml:space="preserve"><value>Video hafıza</value></data>
+  <data name="Emulation.Philips.Setting.AlternateRenderer" xml:space="preserve"><value>Alternatif video oluşturma</value></data>
+  <data name="Emulation.Philips.Setting.AudioVolume" xml:space="preserve"><value>Konsolun ses hacmi</value></data>
+  <data name="Emulation.Philips.Setting.AutoSave" xml:space="preserve"><value>Otomatik kurtarılan devletler</value></data>
+  <data name="Emulation.Philips.Setting.Cheats" xml:space="preserve"><value>Oyun hile kodları</value></data>
+  <data name="Emulation.Philips.Setting.CropOverscan" xml:space="preserve"><value>Video sınırı kaldır</value></data>
+  <data name="Emulation.Philips.Setting.KeyboardMapping" xml:space="preserve"><value>Klavye anahtar haritalama</value></data>
+  <data name="Emulation.Philips.Setting.LowPassFilter" xml:space="preserve"><value>Low-pass ses filtre</value></data>
+  <data name="Emulation.Philips.Setting.LowPassRange" xml:space="preserve"><value>Ses filtresi kesoff frekansı</value></data>
+  <data name="Emulation.Philips.Setting.MixFrames" xml:space="preserve"><value>Video çerçeveleri</value></data>
+  <data name="Emulation.Philips.Setting.NvramPerGame" xml:space="preserve"><value>Her oyun için ayrı kalıcı hafıza</value></data>
+  <data name="Emulation.Philips.Setting.StateNaming" xml:space="preserve"><value>Kaydetilen devlet dosyası</value></data>
+  <data name="Emulation.Philips.Setting.Throttle" xml:space="preserve"><value>Limit emulation speed</value></data>
+  <data name="Emulation.Philips.Setting.VoiceVolume" xml:space="preserve"><value>Ses hacimleri</value></data>
+  <data name="Emulation.Philips.System.Native" xml:space="preserve"><value>Emulator seçenekleri</value></data>
+  <data name="Emulation.Philips.Value.Game" xml:space="preserve"><value>Oyun</value></data>
+  <data name="Emulation.Philips.Value.Positional" xml:space="preserve"><value>Fiziksel anahtar pozisyonları</value></data>
+  <data name="Emulation.Philips.Value.Simple" xml:space="preserve"><value>Basit karıştırmak</value></data>
+  <data name="Emulation.Philips.Value.Symbolic" xml:space="preserve"><value>Baslı karakterler</value></data>
+  <data name="Emulation.Philips.Value.System" xml:space="preserve"><value>Per system</value></data>
+  <data name="Emulation.Philips.Video.Native" xml:space="preserve"><value>Emulator video</value></data>
 </root>
