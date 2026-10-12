@@ -35,8 +35,7 @@ internal static class StorageSettingsFunctions
                 || !devices.TryGetValue(media.Slot, out var device) || device.MediaType != media.Type
                 || !device.AcceptedExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase)))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
-        var options = configuration.Options.Where(option => !option.Key.StartsWith(StorageSettingsFunctionsConstants.StorageDevice, StringComparison.Ordinal))
-            .ToDictionary(option => option.Key, option => option.Value, StringComparer.Ordinal);
+        var options = configuration.Options.Where(option => !option.Key.StartsWith(StorageSettingsFunctionsConstants.StorageDevice, StringComparison.Ordinal)) .ToDictionary(option => option.Key, option => option.Value, StringComparer.Ordinal);
         foreach (var slot in settings.ConfiguredSlots)
             if (!devices[slot].IsPermanent)
                 options[StorageSettingsFunctionsConstants.StorageDevice + slot] = devices[slot].MediaType.ToString();

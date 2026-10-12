@@ -9,9 +9,6 @@ public sealed class AppleEmulationModuleFactory : IEmulationModuleFactory
     public IEmulationModule Create(EmulationModuleContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
-        return new AppleEmulationModule(
-            Path.Combine(context.ModuleDirectory, EmulationModuleConstants.ConfigurationsDirectoryName),
-            context.DataDirectory, context.HttpClient,
-            Path.Combine(context.ModuleDirectory, EmulationModuleConstants.CoreDirectoryName));
+        return new AppleEmulationModule( Path.Combine(context.ModuleDirectory, EmulationModuleConstants.ConfigurationsDirectoryName), context.DataDirectory, context.HttpClient, Path.Combine(context.ModuleDirectory, EmulationModuleConstants.CoreDirectoryName));
     }
 }

@@ -31,8 +31,7 @@ internal sealed partial class ExternalCore
             if (media.Configuration.Category != MediaCategory.Floppy ||
                 string.Equals(Path.GetExtension(media.RuntimePath), SessionMediaConstants.PlaylistExtension, StringComparison.OrdinalIgnoreCase))
                 throw DynamicMediaUnavailable();
-            WithDrive(media.Configuration.Slot, () => RequireCallbacks().DiskControl.InsertAt(
-                media.Configuration.Slot == EmulationMediaSlot.Floppy1 ? SessionMediaConstants.SecondMediaIndex : SessionMediaConstants.FirstMediaIndex, media.RuntimePath));
+            WithDrive(media.Configuration.Slot, () => RequireCallbacks().DiskControl.InsertAt( media.Configuration.Slot == EmulationMediaSlot.Floppy1 ? SessionMediaConstants.SecondMediaIndex : SessionMediaConstants.FirstMediaIndex, media.RuntimePath));
         }
     }
 
