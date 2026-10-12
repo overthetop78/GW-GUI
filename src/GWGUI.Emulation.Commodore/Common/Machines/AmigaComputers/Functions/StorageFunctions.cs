@@ -60,10 +60,7 @@ internal static class AmigaStorageSettingsFunctions
     }
 
     private static int Count(IReadOnlyDictionary<string, string> options, string key, int fallback, int maximum) => options.TryGetValue(key, out var value) && int.TryParse(value, out var parsed) ? Math.Clamp(parsed, (int)DriveCapacity.None, maximum) : Math.Clamp(fallback, (int)DriveCapacity.None, maximum);
-    internal static MachineConfiguration Apply(
-        MachineConfiguration configuration,
-        EmulationStorageSettings settings
-    )
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>());
         options[StorageSettingsFunctionsConstants.GwguiFloppyDriveCount] = settings.ConfiguredSlots.Count(slot => slot.Category == EmulationMediaCategory.FloppyDrive).ToString();
@@ -88,10 +85,7 @@ internal static class AmigaStorageSettingsFunctions
         };
     }
 
-    private static FloppyDriveDialogOptions FloppyOptions(
-        MachineConfiguration configuration,
-        int index
-    )
+    private static FloppyDriveDialogOptions FloppyOptions(MachineConfiguration configuration, int index)
     {
         var options = configuration.Options ?? new Dictionary<string, string>();
         return new FloppyDriveDialogOptions(
@@ -102,10 +96,7 @@ internal static class AmigaStorageSettingsFunctions
         );
     }
 
-    private static EmulationStorageDeviceSettings DeviceSettings(
-        IReadOnlyDictionary<string, string> options,
-        EmulationMediaSlot slot
-    )
+    private static EmulationStorageDeviceSettings DeviceSettings(IReadOnlyDictionary<string, string> options, EmulationMediaSlot slot)
     {
         if (slot.Category != EmulationMediaCategory.FloppyDrive)
             return new EmulationStorageDeviceSettings(slot);

@@ -138,10 +138,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
 
     internal long AudioOverrunCount { get; private set; }
 
-    internal void SetOption(
-        string key,
-        string value
-    )
+    internal void SetOption(string key, string value)
     {
         if (!OptionCatalog.Any(option => option.Key.Equals(key, StringComparison.Ordinal)))
             throw new ArgumentOutOfRangeException(nameof(key), key, CoreExceptions.UnknownCoreOption());

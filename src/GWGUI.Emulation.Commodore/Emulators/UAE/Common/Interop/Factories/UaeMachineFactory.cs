@@ -5,8 +5,7 @@ internal abstract class UaeMachineFactory : AmigaMachineFactory
 {
     internal override MachineConfiguration PrepareConfiguration(MachineConfiguration configuration) => UaeOptionFunctions.ToNative(configuration);
 
-    internal override IReadOnlyDictionary<string, string> NativeOptions(MachineConfiguration configuration,
-        IReadOnlyList<MediaConfiguration> media)
+    internal override IReadOnlyDictionary<string, string> NativeOptions(MachineConfiguration configuration, IReadOnlyList<MediaConfiguration> media)
     {
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(),
             StringComparer.Ordinal)

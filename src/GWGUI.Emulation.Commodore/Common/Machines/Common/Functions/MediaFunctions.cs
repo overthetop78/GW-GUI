@@ -5,8 +5,7 @@ namespace GWGUI.Emulation.Commodore.Common.Machines.Common.Functions;
 
 internal static class EmulationMediaConversionFunctions
 {
-    internal static IReadOnlyList<EmulationMedia> ToCommon(
-        IReadOnlyList<MediaConfiguration> media)
+    internal static IReadOnlyList<EmulationMedia> ToCommon(IReadOnlyList<MediaConfiguration> media)
     {
         var indexes = new Dictionary<EmulationMediaCategory, int>();
         var result = new List<EmulationMedia>();

@@ -31,18 +31,13 @@ internal static class AmigaHardDiskFormats
 internal static class AmigaRuntimeMediaFunctions
 {
     private static readonly MediaEngineComposition MediaEngine = MediaEngineComposition.CreateDefault();
-    internal static async ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) =>
-        media.Type == EmulationMediaType.Floppy
-            ? media with { Path = await ConvertScpPathAsync(media.Path, conversionDirectory).ConfigureAwait(false) }
-            : media;
+    internal static async ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) => media.Type == EmulationMediaType.Floppy ? media with { Path = await ConvertScpPathAsync(media.Path, conversionDirectory).ConfigureAwait(false) } : media;
 
     internal static async Task<MachineConfiguration> PrepareConfigurationAsync(MachineConfiguration configuration, string conversionDirectory)
     {
         var media = new List<MediaConfiguration>();
         foreach (var item in ExternalCore.ResolveConfiguredMedia(configuration))
-            media.Add(item.Category == MediaCategory.Floppy
-                ? item with { Path = await ConvertScpPathAsync(item.Path, conversionDirectory).ConfigureAwait(false) }
-                : item);
+            media.Add(item.Category == MediaCategory.Floppy ? item with { Path = await ConvertScpPathAsync(item.Path, conversionDirectory).ConfigureAwait(false) } : item);
         return configuration with { Media = media };
     }
 

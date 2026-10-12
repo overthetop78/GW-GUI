@@ -37,8 +37,7 @@ public sealed class CoreReleaseService
         catch (IOException) { return CoreReleaseConstants.Unknown; }
     }
 
-    public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
     {
         var releases = new List<CoreRelease>();
         if (_definition.RequiredRelease is { } required) releases.Add(required);
@@ -65,8 +64,7 @@ public sealed class CoreReleaseService
 
     public string GetLibraryPath(CoreRelease release) => RequiredLibraryPath;
 
-    public async Task<string> InstallAsync(CoreRelease release,
-        IProgress<double>? progress = null, CancellationToken cancellationToken = default)
+    public async Task<string> InstallAsync(CoreRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(release);
         Directory.CreateDirectory(_directory);

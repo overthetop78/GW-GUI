@@ -55,11 +55,7 @@ internal static partial class AmigaSettingsDescriptionFunctions
         : bytes < MemoryConstants.BytesPerMib 
         ? new EmulationSettingsChoice(id, string.Empty, string.Format(MemoryConstants.KibLabelFormat, bytes / MemoryConstants.BytesPerKib), bytes) 
         : new EmulationSettingsChoice(id, string.Empty, string.Format(MemoryConstants.MibLabelFormat, bytes / MemoryConstants.BytesPerMib), bytes);
-    private static IReadOnlyList<EmulationSettingsChoice> CpuFrequencyChoices(
-        AmigaModel model,
-        CpuCompatibility compatibility,
-        bool ntsc
-    )
+    private static IReadOnlyList<EmulationSettingsChoice> CpuFrequencyChoices(AmigaModel model, CpuCompatibility compatibility, bool ntsc)
     {
         var nominal = NominalCpuFrequencyMhz(model, ntsc);
         if (compatibility is CpuCompatibility.MemoryExact or CpuCompatibility.Exact)
@@ -85,12 +81,7 @@ internal static partial class AmigaSettingsDescriptionFunctions
         }.Select(item => FrequencyChoice(item.Ratio, item.Throttle, SettingsValueConstants.AutomaticCpuMultiplier, nominal * item.Ratio)).ToArray();
     }
 
-    private static EmulationSettingsChoice FrequencyChoice(
-        double ratio,
-        string throttle,
-        string multiplier,
-        double frequency
-    )
+    private static EmulationSettingsChoice FrequencyChoice(double ratio, string throttle, string multiplier, double frequency)
     {
         var prefix = Approximately(ratio, ClockConstants.NominalSpeedRatio) ? SettingsValueConstants.NominalCpuSpeedLabel : string.Format(SettingsValueConstants.PercentageLabelFormat, Math.Round(ratio * SettingsValueConstants.MaximumPercentage));
         return new EmulationSettingsChoice(
@@ -101,11 +92,7 @@ internal static partial class AmigaSettingsDescriptionFunctions
         );
     }
 
-    private static string CpuFrequencyValue(
-        IReadOnlyDictionary<string, string> options,
-        CpuCompatibility compatibility,
-        IReadOnlyList<EmulationSettingsChoice> choices
-    )
+    private static string CpuFrequencyValue(IReadOnlyDictionary<string, string> options, CpuCompatibility compatibility, IReadOnlyList<EmulationSettingsChoice> choices)
     {
         var throttle = Value(options, SettingsConstants.OptionCpuThrottle, SettingsValueConstants.NominalCpuThrottle);
         var multiplier = Value(options, SettingsConstants.OptionCpuMultiplier, SettingsValueConstants.AutomaticCpuMultiplier);

@@ -7,8 +7,7 @@ namespace GWGUI.Emulation.Commodore.Emulators.Frodo.Factories;
 internal sealed class MachineFactory : GWGUI.Emulation.Commodore.Emulators.Common.Interop.Factories.MachineFactory
 {
     public override EmulatorCatalogEntry CatalogEntry { get; } = new(Emulator.Frodo,
-        new(EmulatorConstants.Id, EmulatorConstants.DisplayName, EmulatorConstants.DescriptionResourceKey,
-            new HashSet<string>(StringComparer.Ordinal) { C64Models.C64 }));
+        new(EmulatorConstants.Id, EmulatorConstants.DisplayName, EmulatorConstants.DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { C64Models.C64 }));
     internal override CoreDefinition CoreDefinition { get; } = new(EmulatorConstants.DisplayName, EmulatorConstants.LibraryFile, EmulatorConstants.DownloadUrl);
     public override IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => EmulatorConstants.Roms.Select(rom => rom.Slot).ToArray();
     public override IReadOnlyList<EmulationMediaDevice> GetMediaDevices(MachineConfiguration configuration) =>

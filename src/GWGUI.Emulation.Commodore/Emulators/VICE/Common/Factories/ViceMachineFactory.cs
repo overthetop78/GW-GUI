@@ -36,20 +36,14 @@ internal abstract class ViceMachineFactory : GWGUI.Emulation.Commodore.Emulators
             ? [new EmulationMediaDevice(new(EmulationMediaCategory.CartridgeSlot, ContentConstants.PrimaryMediaIndex), EmulationMediaType.Cartridge, CartridgeExtensions, RequiresMachineRecreation: true)]
             : []).ToArray();
     internal override uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports, int port, ControllerType type) => type == ControllerType.None ? ContentConstants.NoControllerDevice : ContentConstants.JoypadDevice;
-    internal override IReadOnlyDictionary<string, string> NativeOptions(
-        MachineConfiguration configuration,
-        IReadOnlyList<MediaConfiguration> media
-    )
+    internal override IReadOnlyDictionary<string, string> NativeOptions(MachineConfiguration configuration, IReadOnlyList<MediaConfiguration> media)
     {
         var options = (configuration.Options ?? new Dictionary<string, string>()).Where(pair => pair.Key.StartsWith(ContentConstants.OptionPrefix, StringComparison.Ordinal)).ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal);
         options[ModelOption] = Models[configuration.Model].Option;
         return options;
     }
 
-    internal override void PrepareFirmware(
-        MachineConfiguration configuration,
-        string systemDirectory
-    )
+    internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
     {
         foreach (var rom in RomDefinitions(configuration))
         {
@@ -59,11 +53,7 @@ internal abstract class ViceMachineFactory : GWGUI.Emulation.Commodore.Emulators
         }
     }
 
-    internal override string? PrepareContent(
-        MachineConfiguration configuration,
-        string session,
-        IReadOnlyList<MediaConfiguration> media
-    )
+    internal override string? PrepareContent(MachineConfiguration configuration, string session, IReadOnlyList<MediaConfiguration> media)
     {
         if (media.Count > GetMediaDevices(configuration).Count)
             throw new ArgumentOutOfRangeException(nameof(media));

@@ -12,8 +12,7 @@ internal sealed class AmiberryMachineFactory : AmigaMachineFactory
     internal override string? FirmwareOverrideOption => OptionConstants.Kickstart;
     internal override string ExtendedRomFileName(string model, string path) => model.Equals(OptionConstants.Cd32, StringComparison.OrdinalIgnoreCase) ? OptionConstants.Cd32ExtendedRom : OptionConstants.CdtvExtendedRom;
 
-    internal override IReadOnlyDictionary<string, string> NativeOptions(MachineConfiguration configuration,
-        IReadOnlyList<MediaConfiguration> media)
+    internal override IReadOnlyDictionary<string, string> NativeOptions(MachineConfiguration configuration, IReadOnlyList<MediaConfiguration> media)
     {
         var options = (configuration.Options ?? new Dictionary<string, string>()).Where(pair => pair.Key.StartsWith(OptionConstants.Prefix, StringComparison.Ordinal))
             .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal);

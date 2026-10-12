@@ -4,11 +4,9 @@ namespace GWGUI.Emulation.Commodore.Emulators.UAE.Common.Interop.Functions;
 
 internal static class UaeOptionFunctions
 {
-    internal static MachineConfiguration ToNative(MachineConfiguration configuration) =>
-        configuration with { Options = Translate(configuration.Options) };
+    internal static MachineConfiguration ToNative(MachineConfiguration configuration) => configuration with { Options = Translate(configuration.Options) };
 
-    private static IReadOnlyDictionary<string, string>? Translate(
-        IReadOnlyDictionary<string, string>? options)
+    private static IReadOnlyDictionary<string, string>? Translate(IReadOnlyDictionary<string, string>? options)
     {
         if (options is null) return null;
         var translated = new Dictionary<string, string>(StringComparer.Ordinal);

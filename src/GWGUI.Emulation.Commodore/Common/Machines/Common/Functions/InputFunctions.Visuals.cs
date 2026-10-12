@@ -16,7 +16,7 @@ internal static partial class InputSettingsFunctions
 
     internal static string DefaultKey(EmulationKey key, IReadOnlyDictionary<EmulationKey, EmulationKey> defaults) => defaults.GetValueOrDefault(key, key).ToString();
 
-private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) => type switch
+    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) => type switch
     {
         ControllerType.Joystick =>
         [
@@ -46,8 +46,7 @@ private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) =
         _ => null
     };
 
-    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? VisualCommandIds(
-        ControllerType type) => type switch
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? VisualCommandIds(ControllerType type) => type switch
     {
         ControllerType.Joystick or ControllerType.AnalogJoystick =>
             new Dictionary<EmulationControllerVisualControl, string>

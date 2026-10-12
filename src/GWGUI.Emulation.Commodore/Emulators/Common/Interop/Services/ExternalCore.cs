@@ -134,10 +134,7 @@ internal sealed class ExternalCore : IEmulatorCore
             for (var port = ControllerPortConstants.MinimumControllerPort;
                  port < adapter.ControllerPortCount(configuration); port++)
             {
-                var controller = configuration.Controllers is { } controllers && port < controllers.Count
-                    ? controllers[port]
-                    : configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == port)?.Type
-                      ?? defaultController;
+                var controller = configuration.Controllers is { } controllers && port < controllers.Count ? controllers[port] : configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == port)?.Type ?? defaultController;
                 if (controller == ControllerType.Automatic) controller = defaultController;
                 setController((uint)port, adapter.ControllerDevice(_host.ControllerPorts, port, controller));
             }
@@ -264,8 +261,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
     private T Export<T>(string name) where T : Delegate => (_library ?? throw new InvalidOperationException(CoreExceptions.CoreNotLoaded())).Resolve<T>(name);
 
-    internal static uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports,
-        int port, ControllerType controller)
+    internal static uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports, int port, ControllerType controller)
     {
         if (controller == ControllerType.None) return ExternalCoreConstants.NoControllerDevice;
         var requestedName = controller switch

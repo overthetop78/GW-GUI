@@ -116,8 +116,7 @@ public sealed class AmigaFirmwareCatalog
         return null;
     }
 
-    private static bool TryIdentifyKnown(FileInfo file, string md5,
-        out (string Version, FirmwareType Type, string[] Models) identity)
+    private static bool TryIdentifyKnown(FileInfo file, string md5, out (string Version, FirmwareType Type, string[] Models) identity)
     {
         if (Known.TryGetValue(md5, out identity)) return true;
         if (file.Length != FirmwareCatalogConstants.RepeatedKickstartLength) return false;

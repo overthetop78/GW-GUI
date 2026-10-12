@@ -4,10 +4,7 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Functions;
 internal static partial class AmigaSettingsDescriptionFunctions
 {
-    internal static IReadOnlyList<EmulationSettingsBlock> Create(
-        AmigaModel model,
-        MachineConfiguration configuration
-    )
+    internal static IReadOnlyList<EmulationSettingsBlock> Create(AmigaModel model, MachineConfiguration configuration)
     {
         var options = configuration.Options ?? new Dictionary<string, string>();
         var cpu = Value(options, SettingsConstants.OptionCpuModel, CpuValue(model.DefaultCpu));

@@ -27,11 +27,7 @@ internal static class KeyboardBindingFunctions
         return expanded;
     }
 
-    internal static InputConfiguration Normalize(
-        InputConfiguration? input,
-        IReadOnlyDictionary<EmulationKey, EmulationKey> defaults,
-        IReadOnlyDictionary<EmulationKey, EmulationKey> legacyTargets
-    )
+    internal static InputConfiguration Normalize(InputConfiguration? input, IReadOnlyDictionary<EmulationKey, EmulationKey> defaults, IReadOnlyDictionary<EmulationKey, EmulationKey> legacyTargets)
     {
         input ??= new InputConfiguration();
         var result = defaults.ToDictionary(item => item.Key.ToString(), item => item.Value.ToString(), StringComparer.Ordinal);

@@ -5,10 +5,9 @@ namespace GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Functions;
 
 internal static partial class AmigaSettingsDescriptionFunctions
 {
-private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value, ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id));
+    private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value, ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id));
 
-    private static EmulationSettingsField Toggle(string id, EmulationMachineTab tab, string block,
-        string label, bool value, bool refreshSettingsOnChange = false) =>
+    private static EmulationSettingsField Toggle(string id, EmulationMachineTab tab, string block, string label, bool value, bool refreshSettingsOnChange = false) =>
         new(id, tab, block, label, EmulationSettingsEditor.Toggle,
             value ? SettingsValueConstants.Enabled : SettingsValueConstants.Disabled,
             ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id),
