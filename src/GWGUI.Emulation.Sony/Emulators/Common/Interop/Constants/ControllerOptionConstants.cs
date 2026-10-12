@@ -20,9 +20,7 @@ internal static class ControllerOptionConstants
     internal const string SteeringDeadzoneSuffix = "_SteeringDeadzone";
     internal const string TwistResponseSuffix = "_TwistResponse";
     internal const string AnalogCalibrationHelp = "Emulation.Option.Sony.Controller.AnalogCalibration.Short";
-    internal static bool IsAnalogCalibration(string key) =>
-        key == Emulators.BeetlePsx.Constants.OptionConstants.AnalogCalibrationKey
-        || key == Emulators.BeetlePsxHw.Constants.OptionConstants.AnalogCalibrationKey;
+    internal static bool IsAnalogCalibration(string key) => key == Emulators.BeetlePsx.Constants.OptionConstants.AnalogCalibrationKey || key == Emulators.BeetlePsxHw.Constants.OptionConstants.AnalogCalibrationKey;
     internal const string Multitap = "multitap";
     internal const string Deadzone = "deadzone";
     internal const string PortOneSuffix = "_p1";

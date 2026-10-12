@@ -81,15 +81,11 @@ internal sealed class ProcessCore : IEmulatorCore
         _saveDirectory = saveDirectory is null ? null : Path.GetFullPath(saveDirectory);
         var pipeName = $"{ProcessCoreConstants.PipePrefix}{Guid.NewGuid():N}";
         var videoMapName = $"{ProcessCoreConstants.VideoMapPrefix}{Guid.NewGuid():N}";
-        _videoMemory = MemoryMappedFile.CreateNew(videoMapName, EmulationHostProtocolConstants.VideoMapCapacity,
-            MemoryMappedFileAccess.ReadWrite);
+        _videoMemory = MemoryMappedFile.CreateNew(videoMapName, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
         try
         {
-            _videoMap = _videoMemory.CreateViewAccessor(0,
-                EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
-            _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, 1,
-                PipeTransmissionMode.Byte, PipeOptions.Asynchronous,
-                ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
+            _videoMap = _videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
+            _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, 1, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
             var startInfo = new ProcessStartInfo(_hostExecutablePath)
             {
                 UseShellExecute = false,
@@ -99,8 +95,7 @@ internal sealed class ProcessCore : IEmulatorCore
             startInfo.ArgumentList.Add(ProcessCoreConstants.CoreHost);
             startInfo.ArgumentList.Add(pipeName);
             startInfo.ArgumentList.Add(videoMapName);
-            _process = Process.Start(startInfo)
-                ?? throw new InvalidOperationException(Pcsx2Exceptions.ProcessStartFailed());
+            _process = Process.Start(startInfo) ?? throw new InvalidOperationException(Pcsx2Exceptions.ProcessStartFailed());
             EmulationChildProcessLifetime.Attach(_process);
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(15));
             _pipe.WaitForConnectionAsync(timeout.Token).GetAwaiter().GetResult();
@@ -118,8 +113,7 @@ internal sealed class ProcessCore : IEmulatorCore
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
             CoreName = Response.ReadString();
             CoreVersion = Response.ReadString();
-            SupportedContentExtensions = Response.ReadString().Split('|', StringSplitOptions.RemoveEmptyEntries)
-                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+            SupportedContentExtensions = Response.ReadString().Split('|', StringSplitOptions.RemoveEmptyEntries).ToHashSet(StringComparer.OrdinalIgnoreCase);
             DiskCount = Response.ReadInt32();
             CurrentDiskIndex = Response.ReadInt32();
             LedStates = CoreHostProtocol.ReadLedStates(Response);
@@ -137,8 +131,7 @@ internal sealed class ProcessCore : IEmulatorCore
         Begin(HostCommand.RunFrame);
         CoreHostProtocol.WriteInput(_writer!, _input.Consume());
         CompleteRequest();
-        LatestVideoFrame = CoreHostProtocol.ReadSharedFrame(Response,
-            _videoMap ?? throw new InvalidOperationException(Pcsx2Exceptions.VideoBufferUnavailable())) ?? LatestVideoFrame;
+        LatestVideoFrame = CoreHostProtocol.ReadSharedFrame(Response, _videoMap ?? throw new InvalidOperationException(Pcsx2Exceptions.VideoBufferUnavailable())) ?? LatestVideoFrame;
         foreach (var chunk in CoreHostProtocol.ReadAudio(Response))
         {
             LatestAudioChunk = chunk;
@@ -155,10 +148,8 @@ internal sealed class ProcessCore : IEmulatorCore
 
     public void HardReset()
     {
-        var configuration = _configuration
-            ?? throw new InvalidOperationException(Pcsx2Exceptions.ProcessNotInitialized());
-        var sessionDirectory = _sessionDirectory
-            ?? throw new InvalidOperationException(Pcsx2Exceptions.ProcessNotInitialized());
+        var configuration = _configuration ?? throw new InvalidOperationException(Pcsx2Exceptions.ProcessNotInitialized());
+        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(Pcsx2Exceptions.ProcessNotInitialized());
         var saveDirectory = _saveDirectory;
         ReleaseHost();
         Initialize(configuration, sessionDirectory, saveDirectory);
@@ -201,8 +192,7 @@ internal sealed class ProcessCore : IEmulatorCore
 
     public void SetControllerPortDevice(int port, ControllerType type)
     {
-        var configuration = _configuration
-            ?? throw new InvalidOperationException(Pcsx2Exceptions.ProcessNotInitialized());
+        var configuration = _configuration ?? throw new InvalidOperationException(Pcsx2Exceptions.ProcessNotInitialized());
         ControllerFunctions.Validate(configuration, port, type);
         Begin(HostCommand.SetControllerPortDevice);
         _writer!.Write(port);
@@ -302,9 +292,7 @@ internal sealed class ProcessCore : IEmulatorCore
             var exit = _process is { HasExited: true } ? $" It exited with code {_process.ExitCode}." : string.Empty;
             _connectionFailed = true;
             TerminateProcess();
-            throw new InvalidOperationException(timedOut
-                ? Pcsx2Exceptions.ProcessTimeout()
-                : Pcsx2Exceptions.ProcessCommunicationFailed(exit), error);
+            throw new InvalidOperationException(timedOut ? Pcsx2Exceptions.ProcessTimeout() : Pcsx2Exceptions.ProcessCommunicationFailed(exit), error);
         }
     }
 

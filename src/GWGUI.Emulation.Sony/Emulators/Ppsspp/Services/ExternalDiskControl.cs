@@ -156,8 +156,7 @@ internal sealed class ExternalDiskControl
         return Marshal.GetDelegateForFunctionPointer<T>(pointer);
     }
 
-    private static T? OptionalDelegate<T>(nint pointer) where T : Delegate =>
-        pointer == 0 ? null : Marshal.GetDelegateForFunctionPointer<T>(pointer);
+    private static T? OptionalDelegate<T>(nint pointer) where T : Delegate => pointer == 0 ? null : Marshal.GetDelegateForFunctionPointer<T>(pointer);
 }
 
 

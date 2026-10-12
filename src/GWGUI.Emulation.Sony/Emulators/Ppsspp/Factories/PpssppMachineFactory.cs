@@ -8,15 +8,12 @@ namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Factories;
 
 internal sealed class PpssppMachineFactory : IEmulatorAdapter
 {
-    private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
-        new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
+    private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
     public bool RequiresExternalFirmware => false;
     public IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => [];
-    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) =>
-        Emulators.Common.Interop.Functions.CoreSettingsFunctions.Blocks(Dictionaries.OptionCatalog.All, configuration);
-    public IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) =>
-        [ControllerType.Joystick, ControllerType.None];
+    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => Emulators.Common.Interop.Functions.CoreSettingsFunctions.Blocks(Dictionaries.OptionCatalog.All, configuration);
+    public IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) => [ControllerType.Joystick, ControllerType.None];
     public IReadOnlyList<string> SupportedContentExtensions => PpssppConstants.ContentExtensions;
     public string EmulatorId => PpssppConstants.Id;
     public string EmulatorKey => PpssppConstants.Id;
@@ -47,11 +44,9 @@ internal sealed class PpssppMachineFactory : IEmulatorAdapter
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
         EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory)
-            .GetAvailableAsync(cancellationToken).ConfigureAwait(false);
+        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName,
-            item.Id, item.IsRequired)).ToArray();
+        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();
     }
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context,
@@ -60,23 +55,18 @@ internal sealed class PpssppMachineFactory : IEmulatorAdapter
     {
         if (!_availableReleases.TryGetValue(release.Id, out var selected))
             throw new ArgumentException(nameof(release));
-        return await new CoreReleaseService(context.HttpClient, context.CoreDirectory)
-            .InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
+        return await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient,
-            context.CoreDirectory).FindInstalledPathAsync(cancellationToken));
+    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient, context.CoreDirectory).FindInstalledPathAsync(cancellationToken));
 
-    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) =>
-        EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
+    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
 
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
         var machineId = Guid.NewGuid();
         var native = PpssppOptionFunctions.ToNative(configuration.EnsureId());
-        var sessionDirectory = Path.Combine(context.SessionsDirectory,
-            machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
+        var sessionDirectory = Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
         ProcessCore? core = null;
         IAudioOutput? audio = null;
         var ownershipTransferred = false;
@@ -84,8 +74,7 @@ internal sealed class PpssppMachineFactory : IEmulatorAdapter
         {
             core = new ProcessCore(context.HostExecutablePath, context.CorePath);
             audio = native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null;
-            var machine = new Machine(machineId, native, core, native.Media ?? [], sessionDirectory,
-                audio, context.SaveDirectoryResolver?.Invoke(configuration));
+            var machine = new Machine(machineId, native, core, native.Media ?? [], sessionDirectory, audio, context.SaveDirectoryResolver?.Invoke(configuration));
             ownershipTransferred = true;
             return machine;
         }

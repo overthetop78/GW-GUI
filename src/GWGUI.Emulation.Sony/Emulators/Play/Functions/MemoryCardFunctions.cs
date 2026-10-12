@@ -15,9 +15,7 @@ internal static class MemoryCardFunctions
         try
         {
             var document = XDocument.Load(configuration);
-            var selected = document.Descendants("Preference").FirstOrDefault(entry =>
-                (string?)entry.Attribute("Name") == "ps2.mc" + index + ".directory.v2")
-                ?.Attribute("Value")?.Value;
+            var selected = document.Descendants("Preference").FirstOrDefault(entry => (string?)entry.Attribute("Name") == "ps2.mc" + index + ".directory.v2") ?.Attribute("Value")?.Value;
             return !string.IsNullOrWhiteSpace(selected) && Directory.Exists(selected) ? selected : fallback;
         }
         catch (XmlException) { return fallback; }

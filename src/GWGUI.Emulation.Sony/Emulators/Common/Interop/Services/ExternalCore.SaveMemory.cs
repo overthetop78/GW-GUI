@@ -42,14 +42,12 @@ internal sealed partial class ExternalCore
     private void PersistMemoryCards()
     {
         if (!_saveMemoryReady) return;
-        NativeMemoryCards.PersistFiles(_memoryCardFiles, _configuration?.Model == ModelConstants.PlayStation2
-            ? StorageSettingsFunctionsConstants.Ps2MemoryCardSize : StorageSettingsFunctionsConstants.MemoryCardSize);
+        NativeMemoryCards.PersistFiles(_memoryCardFiles, _configuration?.Model == ModelConstants.PlayStation2 ? StorageSettingsFunctionsConstants.Ps2MemoryCardSize : StorageSettingsFunctionsConstants.MemoryCardSize);
     }
 
     private (nint Pointer, int Size) SaveMemory()
     {
-        var size = _getMemorySize?.Invoke(SaveMemoryConstants.SaveRamId)
-            ?? ExternalCoreInteropConstants.EmptyNativeSize;
+        var size = _getMemorySize?.Invoke(SaveMemoryConstants.SaveRamId) ?? ExternalCoreInteropConstants.EmptyNativeSize;
         if (size == ExternalCoreInteropConstants.EmptyNativeSize) return default;
         if (size > SaveMemoryConstants.MaximumManagedBufferSize)
             throw new InvalidOperationException(CoreExceptions.InvalidStateSize(size));

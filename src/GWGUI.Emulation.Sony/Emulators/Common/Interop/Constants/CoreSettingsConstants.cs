@@ -19,8 +19,7 @@ internal static class CoreSettingsConstants
         || key == Emulators.BeetlePsxHw.Constants.OptionConstants.CpuFreqScaleKey
         || key == Emulators.SwanStation.Constants.OptionConstants.CPUOverclockKey
         || key == Emulators.PcsxRearmed.Constants.OptionConstants.PsxclockKey;
-    internal static bool IsCdAudio(string key) =>
-        key == Emulators.SwanStation.Constants.OptionConstants.CDROMMuteCDAudioKey;
+    internal static bool IsCdAudio(string key) => key == Emulators.SwanStation.Constants.OptionConstants.CDROMMuteCDAudioKey;
     internal const string OptionResourcePrefix = "Emulation.Option.";
     internal const string NumericFormat = "0.########";
     internal const string StorageTitleResource = "Emulation.Tab.Storage";

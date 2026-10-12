@@ -17,9 +17,7 @@ internal static partial class InputSettingsFunctions
         } : type is not (ControllerType.Joystick or ControllerType.DualShock)
             ? null : model.Id switch
         {
-            ModelConstants.PlayStation => type == ControllerType.DualShock
-                ? [EmulationControllerVisualIds.SonyDualShock1]
-                : [EmulationControllerVisualIds.SonyPlayStationController],
+            ModelConstants.PlayStation => type == ControllerType.DualShock ? [EmulationControllerVisualIds.SonyDualShock1] : [EmulationControllerVisualIds.SonyPlayStationController],
             ModelConstants.PlayStation2 => [EmulationControllerVisualIds.SonyDualShock2],
             ModelConstants.PocketStation => null,
             ModelConstants.Psp => [EmulationControllerVisualIds.SonyPsp1000],
@@ -28,8 +26,7 @@ internal static partial class InputSettingsFunctions
             _ => null
         };
 
-    private static string? DefaultVisualId(ControllerType type, Model model) =>
-        CompatibleVisualIds(type, model)?.FirstOrDefault();
+    private static string? DefaultVisualId(ControllerType type, Model model) => CompatibleVisualIds(type, model)?.FirstOrDefault();
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
         VisualCommandIds(ControllerType type, Model model) =>
@@ -147,14 +144,7 @@ internal static partial class InputSettingsFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
     };
 
-    private static IReadOnlyDictionary<string, string> ToStrings(
-        IReadOnlyDictionary<string, EmulationKey>? values) => values?.ToDictionary(
-            item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal)
-        ?? new Dictionary<string, string>();
+    private static IReadOnlyDictionary<string, string> ToStrings(IReadOnlyDictionary<string, EmulationKey>? values) => values?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>();
 
-    private static IReadOnlyDictionary<string, EmulationKey> ToKeys(
-        IReadOnlyDictionary<string, string> values) => values
-        .Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _))
-        .ToDictionary(item => item.Key,
-            item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
+    private static IReadOnlyDictionary<string, EmulationKey> ToKeys(IReadOnlyDictionary<string, string> values) => values.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
 }

@@ -13,8 +13,7 @@ internal static class OptionCatalog
             OptionConstants.ResolutionHelpResource, null,
             OptionValueFunctions.ToNative(ResolutionScale.Native),
             OptionValueFunctions.ToNative(ResolutionScale.Native),
-            Enum.GetValues<ResolutionScale>().Select(scale =>
-                new CoreOptionValue(OptionValueFunctions.ToNative(scale), OptionValueFunctions.ToNative(scale))).ToArray(),
+            Enum.GetValues<ResolutionScale>().Select(scale => new CoreOptionValue(OptionValueFunctions.ToNative(scale), OptionValueFunctions.ToNative(scale))).ToArray(),
             Tab: EmulationMachineTab.Video),
         new(OptionConstants.PresentationKey, OptionConstants.PresentationLabelResource,
             OptionConstants.PresentationHelpResource, null,

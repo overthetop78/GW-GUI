@@ -6,8 +6,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Exceptions;
 
 internal static class CoreExceptions
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(SonyEmulationModule).Assembly, CoreExceptionsResourceConstants.ResourceName);
+    private static readonly EmulationModuleLocalization Localization = new(typeof(SonyEmulationModule).Assembly, CoreExceptionsResourceConstants.ResourceName);
 
     internal static string HostConfigurationInvalid() => Text(CoreExceptionsResourceConstants.HostConfigurationInvalid);
     internal static string HostNotInitialized() => Text(CoreExceptionsResourceConstants.HostNotInitialized);
@@ -42,8 +41,7 @@ internal static class CoreExceptions
     internal static string ProcessUnavailable() => Text(CoreExceptionsResourceConstants.ProcessUnavailable);
     internal static string ProcessNotInitialized() => Text(CoreExceptionsResourceConstants.ProcessNotInitialized);
     internal static string ProcessTimeout() => Text(CoreExceptionsResourceConstants.ProcessTimeout);
-    internal static string ProcessCommunicationFailed(string detail) =>
-        Text(CoreExceptionsResourceConstants.ProcessCommunicationFailed, detail);
+    internal static string ProcessCommunicationFailed(string detail) => Text(CoreExceptionsResourceConstants.ProcessCommunicationFailed, detail);
     internal static string HostResponseUnavailable() => Text(CoreExceptionsResourceConstants.HostResponseUnavailable);
     internal static string UnknownCoreOption() => Text(CoreExceptionsResourceConstants.UnknownCoreOption);
     internal static string UnsupportedPixelFormat(int value) => Text(CoreExceptionsResourceConstants.UnsupportedPixelFormat, value);

@@ -43,6 +43,5 @@ internal static class StorageSettingsFunctionsConstants
          DiskImageFileExtensions.Chd, DiskImageFileExtensions.Iso,
          DiskImageFileExtensions.Ccd, DiskImageFileExtensions.Mds];
 
-    internal static readonly IReadOnlyList<string> PspExtensions =
-        [DiskImageFileExtensions.Iso, DiskImageFileExtensions.Chd];
+    internal static readonly IReadOnlyList<string> PspExtensions = [DiskImageFileExtensions.Iso, DiskImageFileExtensions.Chd];
 }

@@ -8,13 +8,7 @@ namespace GWGUI.Emulation.Sony.Emulators.BeetlePsx.Factories;
 internal sealed class BeetlePsxMachineFactory : CoreMachineFactory
 {
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
-    public override int GetControllerPortCount(MachineConfiguration configuration) =>
-        base.GetControllerPortCount(configuration)
-        + AdditionalControllers(OptionConstants.EnableMultitapPort1Key, configuration)
-        + AdditionalControllers(OptionConstants.EnableMultitapPort2Key, configuration);
+    public override int GetControllerPortCount(MachineConfiguration configuration) => base.GetControllerPortCount(configuration) + AdditionalControllers(OptionConstants.EnableMultitapPort1Key, configuration) + AdditionalControllers(OptionConstants.EnableMultitapPort2Key, configuration);
 
-    private static int AdditionalControllers(string key, MachineConfiguration configuration) =>
-        configuration.Options?.GetValueOrDefault(key) == ToggleValues.Enabled
-            ? ControllerPortConstants.AdditionalControllersPerMultitap
-            : ControllerPortConstants.NoAdditionalControllers;
+    private static int AdditionalControllers(string key, MachineConfiguration configuration) => configuration.Options?.GetValueOrDefault(key) == ToggleValues.Enabled ? ControllerPortConstants.AdditionalControllersPerMultitap : ControllerPortConstants.NoAdditionalControllers;
 }

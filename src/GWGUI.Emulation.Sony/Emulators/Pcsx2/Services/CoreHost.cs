@@ -21,8 +21,7 @@ public static class CoreHost
     public static void Run(string pipeName, string videoMapName)
     {
         using var videoMemory = MemoryMappedFile.OpenExisting(videoMapName, MemoryMappedFileRights.ReadWrite);
-        using var videoMap = videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity,
-            MemoryMappedFileAccess.ReadWrite);
+        using var videoMap = videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
         using var pipe = new NamedPipeClientStream(CoreHostConstants.Value, pipeName, PipeDirection.InOut, PipeOptions.None);
         pipe.Connect(15_000);
         using var reader = new BinaryReader(pipe, System.Text.Encoding.UTF8, true);
@@ -48,8 +47,7 @@ public static class CoreHost
                             var corePath = reader.ReadString();
                             var session = reader.ReadString();
                             var saves = CoreHostProtocol.ReadString(reader);
-                            var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(), CoreHostProtocol.JsonOptions)
-                                ?? throw new InvalidDataException(Pcsx2Exceptions.HostConfigurationInvalid());
+                            var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(Pcsx2Exceptions.HostConfigurationInvalid());
                             core = new ExternalCore(corePath);
                             core.Initialize(configuration, session, saves);
                             writer.Write(true);
@@ -68,8 +66,7 @@ public static class CoreHost
                             activeCore.RunFrame();
                             writer.Write(true);
                             var frame = activeCore.LatestVideoFrame;
-                            CoreHostProtocol.WriteSharedFrame(writer,
-                                frame?.Sequence == lastVideoSequence ? null : frame, videoMap);
+                            CoreHostProtocol.WriteSharedFrame(writer, frame?.Sequence == lastVideoSequence ? null : frame, videoMap);
                             if (frame is not null) lastVideoSequence = frame.Sequence;
                             var audio = new List<AudioChunk>();
                             while (activeCore.TryDequeueAudio(out var chunk) && chunk is not null) audio.Add(chunk);
@@ -96,8 +93,7 @@ public static class CoreHost
                         case HostCommand.LoadState: EnsureCore(core).LoadState(CoreHostProtocol.ReadBytes(reader)); WriteSuccess(writer); break;
                         case HostCommand.SetOption: EnsureCore(core).SetOption(reader.ReadString(), reader.ReadString()); WriteSuccess(writer); break;
                         case HostCommand.SetControllerPortDevice:
-                            EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(),
-                                (ControllerType)reader.ReadInt32());
+                            EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(), (ControllerType)reader.ReadInt32());
                             WriteSuccess(writer);
                             break;
                         case HostCommand.SelectDisk: EnsureCore(core).SelectDisk(reader.ReadInt32()); WriteSuccess(writer); break;
@@ -113,9 +109,7 @@ public static class CoreHost
                     writer.Write(error.ToString());
                 }
                 writer.Flush();
-                CoreHostProtocol.WriteBytes(transportWriter,
-                    responseStream.GetBuffer().AsSpan(BufferConstants.FirstBufferIndex,
-                        checked((int)responseStream.Length)));
+                CoreHostProtocol.WriteBytes(transportWriter, responseStream.GetBuffer().AsSpan(BufferConstants.FirstBufferIndex, checked((int)responseStream.Length)));
                 if (exit) break;
             }
         }

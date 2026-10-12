@@ -32,23 +32,17 @@ internal static class StorageSettingsFunctions
                     DisplayLabelResourceKey: StorageSettingsFunctionsConstants.MemoryCardSlotResource,
                     ModelResourceKey: StorageSettingsFunctionsConstants.MemoryCardModelResource));
         if (model.HasBuiltInMemoryCard)
-            devices.Add(new EmulationMediaDevice(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard,
-                Machines.PocketStation.Constants.MediaConstants.FlashImageExtensions,
-                RequiresMachineRecreation: true, IsPermanent: true));
+            devices.Add(new EmulationMediaDevice(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard, Machines.PocketStation.Constants.MediaConstants.FlashImageExtensions, RequiresMachineRecreation: true, IsPermanent: true));
         if (model.SupportsCompactDiscDrive && adapter is not null)
             devices.Add(new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
                 adapter.SupportedContentExtensions,
                 RequiresMachineRecreation: true,
                 DisplayLabel: model.Id == ModelConstants.Psp ? "UMD" : StorageSettingsFunctionsConstants.CompactDiscDriveLabel,
-                ModelResourceKey: model.Id == ModelConstants.Psp ? StorageSettingsFunctionsConstants.UmdModelResource
-                    : StorageSettingsFunctionsConstants.CdModelResource,
+                ModelResourceKey: model.Id == ModelConstants.Psp ? StorageSettingsFunctionsConstants.UmdModelResource : StorageSettingsFunctionsConstants.CdModelResource,
                 IsPermanent: model.HasBuiltInCompactDiscDrive,
                 ConfigurationKind: EmulationStorageConfigurationKind.CompactDiscDrive,
-                ConfigurationFields: adapter.GetSettingsBlocks(configuration)
-                    .Where(block => block.Tab == EmulationMachineTab.Storage)
-                    .SelectMany(block => block.Fields).ToArray()));
-        devices = devices.OrderByDescending(device => device.Slot.Category == EmulationMediaCategory.CompactDiscDrive)
-            .ThenByDescending(device => device.IsPermanent).ThenBy(device => device.Slot.Index).ToList();
+                ConfigurationFields: adapter.GetSettingsBlocks(configuration).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray()));
+        devices = devices.OrderByDescending(device => device.Slot.Category == EmulationMediaCategory.CompactDiscDrive).ThenByDescending(device => device.IsPermanent).ThenBy(device => device.Slot.Index).ToList();
         var configured = devices.Where(device => device.Slot.Category switch
         {
             EmulationMediaCategory.MemoryCard => device.IsPermanent || model.HasBuiltInMemoryCard
@@ -60,12 +54,9 @@ internal static class StorageSettingsFunctions
         var mounted = EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
         var deviceSettings = devices.Where(device => device.MediaType == EmulationMediaType.MemoryCard)
             .Select(device => new EmulationStorageDeviceSettings(device.Slot,
-                MemoryCardPath: options.GetValueOrDefault(
-                    StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + device.Slot.Index)
-                    ?? (configuration.EmulatorId == Emulators.Play.Constants.CoreConstants.Id
-                        ? Emulators.Play.Functions.MemoryCardFunctions.DirectoryFor(device.Slot.Index) : null))).ToList();
-        deviceSettings.Add(new EmulationStorageDeviceSettings(EmulationMediaSlot.Cd0,
-            CompactDisc: new EmulationCompactDiscDriveSettings(Options: options)));
+                MemoryCardPath: options.GetValueOrDefault(StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + device.Slot.Index)
+                    ?? (configuration.EmulatorId == Emulators.Play.Constants.CoreConstants.Id ? Emulators.Play.Functions.MemoryCardFunctions.DirectoryFor(device.Slot.Index) : null))).ToList();
+        deviceSettings.Add(new EmulationStorageDeviceSettings(EmulationMediaSlot.Cd0, CompactDisc: new EmulationCompactDiscDriveSettings(Options: options)));
         return new EmulationStorageSettings(devices, configured, mounted, deviceSettings);
     }
 
@@ -89,13 +80,10 @@ internal static class StorageSettingsFunctions
         var options = new Dictionary<string, string>(configuration.Options
             ?? new Dictionary<string, string>(), StringComparer.Ordinal)
         {
-            [StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption] = settings.ConfiguredSlots
-                .Contains(EmulationMediaSlot.Cd0).ToString()
+            [StorageSettingsFunctionsConstants.CompactDiscDriveEnabledOption] = settings.ConfiguredSlots.Contains(EmulationMediaSlot.Cd0).ToString()
         };
-        var cdOptions = settings.DeviceSettings?.FirstOrDefault(item => item.Slot == EmulationMediaSlot.Cd0)
-            ?.CompactDisc?.Options;
-        var cdFields = settings.AvailableDevices.FirstOrDefault(device => device.Slot == EmulationMediaSlot.Cd0)
-            ?.ConfigurationFields ?? [];
+        var cdOptions = settings.DeviceSettings?.FirstOrDefault(item => item.Slot == EmulationMediaSlot.Cd0) ?.CompactDisc?.Options;
+        var cdFields = settings.AvailableDevices.FirstOrDefault(device => device.Slot == EmulationMediaSlot.Cd0) ?.ConfigurationFields ?? [];
         foreach (var field in cdFields)
             if (cdOptions?.TryGetValue(field.Id, out var selected) == true) options[field.Id] = selected;
         if (model.Id is ModelConstants.PlayStation or ModelConstants.PlayStation2 or ModelConstants.Psp
@@ -104,8 +92,7 @@ internal static class StorageSettingsFunctions
             {
                 var slot = new EmulationMediaSlot(EmulationMediaCategory.MemoryCard, index);
                 var path = settings.DeviceSettings?.FirstOrDefault(item => item.Slot == slot)?.MemoryCardPath;
-                options[StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + index] =
-                    settings.ConfiguredSlots.Contains(slot).ToString();
+                options[StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + index] = settings.ConfiguredSlots.Contains(slot).ToString();
                 if (string.IsNullOrWhiteSpace(path))
                     options.Remove(StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + index);
                 else
@@ -117,8 +104,7 @@ internal static class StorageSettingsFunctions
                     else
                     {
                         if (!File.Exists(path)) throw new FileNotFoundException(null, path);
-                        var size = model.Id == ModelConstants.PlayStation2
-                            ? StorageSettingsFunctionsConstants.Ps2MemoryCardSize : StorageSettingsFunctionsConstants.MemoryCardSize;
+                        var size = model.Id == ModelConstants.PlayStation2 ? StorageSettingsFunctionsConstants.Ps2MemoryCardSize : StorageSettingsFunctionsConstants.MemoryCardSize;
                         if (new FileInfo(path).Length != size) throw new InvalidDataException(nameof(settings));
                     }
                     options[StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + index] = Path.GetFullPath(path);
@@ -172,7 +158,5 @@ internal static class StorageSettingsFunctions
             image.Write(erased);
     }
 
-    private static bool OptionBool(IReadOnlyDictionary<string, string> options,
-        string key) => options.TryGetValue(key, out var value) && bool.TryParse(value, out var parsed)
-        && parsed;
+    private static bool OptionBool(IReadOnlyDictionary<string, string> options, string key) => options.TryGetValue(key, out var value) && bool.TryParse(value, out var parsed) && parsed;
 }

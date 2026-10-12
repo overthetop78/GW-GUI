@@ -7,6 +7,5 @@ namespace GWGUI.Emulation.Sony.Emulators.Play.Factories;
 internal sealed class PlayMachineFactory : CoreMachineFactory
 {
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
-    public override int GetControllerPortCount(MachineConfiguration configuration) =>
-        ControllerPortConstants.OneControllerPort;
+    public override int GetControllerPortCount(MachineConfiguration configuration) => ControllerPortConstants.OneControllerPort;
 }

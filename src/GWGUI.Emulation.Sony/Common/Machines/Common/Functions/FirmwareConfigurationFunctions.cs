@@ -11,8 +11,7 @@ internal static class FirmwareConfigurationFunctions
             EmulationMachineTab.Rom, SettingsDescriptionFunctionsConstants.Firmware,
             slot.LabelResourceKey, EmulationSettingsEditor.Path,
             configuration.FirmwarePaths?.GetValueOrDefault(slot.FieldId)
-                ?? (configuration.Model == ModelConstants.PlayStation && configuration.FirmwarePaths?.Count == 1
-                    ? configuration.FirmwarePaths.Values.Single() : null),
+                ?? (configuration.Model == ModelConstants.PlayStation && configuration.FirmwarePaths?.Count == 1 ? configuration.FirmwarePaths.Values.Single() : null),
             DefaultFolderCategory: EmulationDefaultFolderCategory.Firmware)).ToArray();
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration,
@@ -42,12 +41,8 @@ internal static class FirmwareConfigurationFunctions
             using var stream = File.OpenRead(path);
             var digest = Convert.ToHexString(SHA256.HashData(stream));
             var name = Path.GetFileName(path);
-            foreach (var slot in slots.Where(slot => configuration.Model == ModelConstants.PlayStation
-                ? PlayStationFirmware.BiosExtensions.Contains(Path.GetExtension(path))
-                : Path.GetExtension(slot.FileName).Equals(Path.GetExtension(path), StringComparison.OrdinalIgnoreCase)))
-                candidates.Add(new EmulationFirmwareCandidate(digest + slot.FieldId, path,
-                    name, null,
-                    EmulationFirmwareCompatibility.Unknown, slot.FieldId));
+            foreach (var slot in slots.Where(slot => configuration.Model == ModelConstants.PlayStation ? PlayStationFirmware.BiosExtensions.Contains(Path.GetExtension(path)) : Path.GetExtension(slot.FileName).Equals(Path.GetExtension(path), StringComparison.OrdinalIgnoreCase)))
+                candidates.Add(new EmulationFirmwareCandidate(digest + slot.FieldId, path, name, null, EmulationFirmwareCompatibility.Unknown, slot.FieldId));
         }
         return candidates;
     }

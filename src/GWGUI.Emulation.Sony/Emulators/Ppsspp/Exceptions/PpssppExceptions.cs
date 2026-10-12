@@ -5,8 +5,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Exceptions;
 
 internal static class PpssppExceptions
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Error");
+    private static readonly EmulationModuleLocalization Localization = new(typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Error");
 
     internal static string HostConfigurationInvalid() => Text("Emulation.Error.Ppsspp.HostConfigurationInvalid");
     internal static string HostNotInitialized() => Text("Emulation.Error.Ppsspp.HostNotInitialized");
@@ -43,8 +42,7 @@ internal static class PpssppExceptions
     internal static string ProcessUnavailable() => Text("Emulation.Error.Ppsspp.ProcessUnavailable");
     internal static string ProcessNotInitialized() => Text("Emulation.Error.Ppsspp.ProcessNotInitialized");
     internal static string ProcessTimeout() => Text("Emulation.Error.Ppsspp.ProcessTimeout");
-    internal static string ProcessCommunicationFailed(string detail) =>
-        Text("Emulation.Error.Ppsspp.ProcessCommunicationFailed", detail);
+    internal static string ProcessCommunicationFailed(string detail) => Text("Emulation.Error.Ppsspp.ProcessCommunicationFailed", detail);
     internal static string HostResponseUnavailable() => Text("Emulation.Error.Ppsspp.HostResponseUnavailable");
     internal static string UnknownCoreOption() => Text("Emulation.Error.Ppsspp.UnknownCoreOption");
     internal static string UnsupportedPixelFormat(int value) => Text("Emulation.Error.Ppsspp.UnsupportedPixelFormat", value);

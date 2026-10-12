@@ -26,8 +26,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             try { action(); }
             catch (Exception error)
             {
-                throw EmulationErrorService.Translate(error, category, code,
-                    new EmulationMachineMessageContext(Configuration.Model));
+                throw EmulationErrorService.Translate(error, category, code, new EmulationMachineMessageContext(Configuration.Model));
             }
         }, completion));
         lock (_gate) Monitor.PulseAll(_gate);
@@ -111,11 +110,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
         catch (Exception error)
         {
-            error = _startErrorTranslator?.Invoke(error)
-                ?? EmulationErrorService.Translate(error,
-                    EmulationMessageCategory.Machine,
-                    EmulationMessageCode.MachineStartFailed,
-                    new EmulationMachineMessageContext(Configuration.Model));
+            error = _startErrorTranslator?.Invoke(error) ?? EmulationErrorService.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(Configuration.Model));
             if (_core.Diagnostics.Count > 0) error.Data[MachineConstants.Diagnostics] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(100));
             _started?.TrySetException(error);
             FailPendingCommands(error);

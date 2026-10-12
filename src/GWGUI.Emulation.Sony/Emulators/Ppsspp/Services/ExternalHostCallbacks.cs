@@ -27,8 +27,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private bool _disposed;
     private int _optionsUpdated;
     private readonly object _inputGate = new();
-    private readonly int[] _controllerTypes = Enumerable.Repeat((int)ControllerType.None,
-        ControllerPortConstants.MaximumControllerPortCount).ToArray();
+    private readonly int[] _controllerTypes = Enumerable.Repeat((int)ControllerType.None, ControllerPortConstants.MaximumControllerPortCount).ToArray();
     private EmulationInputSnapshot _pendingInput = EmulationInputSnapshot.Empty;
     private EmulationInputSnapshot _polledInput = EmulationInputSnapshot.Empty;
     private int _pointerX = ExternalHostCallbacksConstants.PointerCoordinateCenter;
@@ -119,9 +118,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         get
         {
             var now = Stopwatch.GetTimestamp();
-            return _ledStates.Keys.Concat(_ledActivityUntil.Keys).Distinct()
-                .ToDictionary(key => key, key => _ledStates.GetValueOrDefault(key)
-                    || _ledActivityUntil.GetValueOrDefault(key) > now);
+            return _ledStates.Keys.Concat(_ledActivityUntil.Keys).Distinct().ToDictionary(key => key, key => _ledStates.GetValueOrDefault(key) || _ledActivityUntil.GetValueOrDefault(key) > now);
         }
     }
     internal int BufferedAudioFrames { get { lock (_audioGate) return _bufferedAudioFrames; } }
@@ -133,8 +130,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             throw new ArgumentOutOfRangeException(nameof(key), key, PpssppExceptions.UnknownCoreOption());
         var option = OptionCatalog.First(item => item.Key.Equals(key, StringComparison.Ordinal));
         if (option.Values.Count > 0 && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(value), value,
-                PpssppExceptions.InvalidOptionValue(value, key));
+            throw new ArgumentOutOfRangeException(nameof(value), value, PpssppExceptions.InvalidOptionValue(value, key));
         _options[key] = value;
         Interlocked.Exchange(ref _optionsUpdated, 1);
         _updateOptionsDisplay?.Invoke();

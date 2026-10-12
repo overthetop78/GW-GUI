@@ -5,15 +5,13 @@ namespace GWGUI.Emulation.Sony.Modules;
 public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorManager,
     IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Emulation");
+    private static readonly EmulationModuleLocalization Localization = new(typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Emulation");
     private readonly ConfigurationStore _store;
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;
     private readonly string _firmwareDirectory;
     private readonly Engine _engine = new();
-    private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) =>
-        new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
+    private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) => new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
 
     public SonyEmulationModule(string configurationDirectory, string pathBase,
         HttpClient httpClient, string coreDirectory)
@@ -21,9 +19,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         _store = new ConfigurationStore(configurationDirectory, pathBase);
         _httpClient = httpClient;
         _coreDirectory = coreDirectory;
-        _firmwareDirectory = Path.Combine(pathBase, EmulationPathConstants.RootDirectoryName,
-            EmulationPathConstants.MachinesDirectoryName, EmulationModuleConstants.ModuleId,
-            EmulationPathConstants.FirmwareDirectoryName);
+        _firmwareDirectory = Path.Combine(pathBase, EmulationPathConstants.RootDirectoryName, EmulationPathConstants.MachinesDirectoryName, EmulationModuleConstants.ModuleId, EmulationPathConstants.FirmwareDirectoryName);
     }
 
     public string Id => EmulationModuleConstants.ModuleId;
@@ -31,20 +27,16 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
     public string BrandImageResourceName =>
         $"{EmulationModuleConstants.AssetResourcePrefix}.sony.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
-    public EmulationSettingsVisibility DefaultVisibility { get; } = new(
-        Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
+    public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
 
-    public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) =>
-        Localization.TryGetString(key, culture, out value);
+    public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) => Localization.TryGetString(key, culture, out value);
 
-    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode) =>
-        _engine.TryHandleHostCommand(arguments, out exitCode);
+    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode) => _engine.TryHandleHostCommand(arguments, out exitCode);
 
     public EmulationMachineSettings Describe(string machineId,
         IEmulationConfiguration? configuration = null)
     {
-        var current = configuration as MachineConfiguration
-            ?? (MachineConfiguration)CreateConfiguration(machineId);
+        var current = configuration as MachineConfiguration ?? (MachineConfiguration)CreateConfiguration(machineId);
         var model = ModelCatalog.Get(current.Model);
         var hasAdapter = EmulatorCatalog.GetAll(model.Id).Any(adapter => adapter.Id == current.EmulatorId);
         var blocks = SettingsDescriptionFunctions.Create(current);
@@ -60,8 +52,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
                 || model.SupportsCompactDiscDrive,
             _ => item.Value
         });
-        return new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs),
-            blocks);
+        return new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs), blocks);
     }
 
     public IEmulationConfiguration CreateConfiguration(string machineId)
@@ -69,8 +60,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         var model = ModelCatalog.Get(machineId);
         return new MachineConfiguration(model.Id, DefaultEmulatorId(model.Id),
             Options: new Dictionary<string, string>(StringComparer.Ordinal), Id: Guid.NewGuid(),
-            Controllers: Enumerable.Repeat(ControllerType.Joystick,
-                model.ControllerPortCount).ToArray(),
+            Controllers: Enumerable.Repeat(ControllerType.Joystick, model.ControllerPortCount).ToArray(),
             Input: new InputConfiguration(), Media: []);
     }
 
@@ -80,10 +70,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         if (configuration is not MachineConfiguration current)
             throw new ArgumentException(nameof(configuration));
         var created = (MachineConfiguration)CreateConfiguration(machineId);
-        var emulatorId = EmulatorCatalog.GetAll(machineId)
-            .Any(item => item.Id == current.EmulatorId)
-            ? current.EmulatorId
-            : created.EmulatorId;
+        var emulatorId = EmulatorCatalog.GetAll(machineId).Any(item => item.Id == current.EmulatorId) ? current.EmulatorId : created.EmulatorId;
         return created with { Id = current.Id, EmulatorId = emulatorId,
             AudioEnabled = current.AudioEnabled, Audio = current.Audio };
     }
@@ -94,14 +81,12 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         var sony = RequireConfiguration(configuration);
         var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == sony.EmulatorId);
         var firmwareFields = (adapter?.GetFirmwareSlots(sony) ?? []).Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
-        var options = new Dictionary<string, string>(sony.Options
-            ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+        var options = new Dictionary<string, string>(sony.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         foreach (var item in values)
         {
             if (firmwareFields.Contains(item.Key) || item.Key is SettingsConstants.Model or SettingsConstants.Emulator
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
-                or SettingsConstants.AudioLatency || item.Key.StartsWith(
-                    SettingsConstants.Model + ".", StringComparison.Ordinal)) continue;
+                or SettingsConstants.AudioLatency || item.Key.StartsWith(SettingsConstants.Model + ".", StringComparison.Ordinal)) continue;
             if (item.Value is null) options.Remove(item.Key);
             else options[item.Key] = item.Value;
         }
@@ -109,55 +94,31 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         return (adapter is null ? sony : FirmwareConfigurationFunctions.Apply(sony, values, adapter)) with
         {
             Options = options,
-            AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled)
-                ? enabled == SettingsDescriptionFunctionsConstants.Enabled : sony.AudioEnabled,
+            AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) ? enabled == SettingsDescriptionFunctionsConstants.Enabled : sony.AudioEnabled,
             Audio = audio with
             {
-                OutputDeviceId = values.TryGetValue(SettingsConstants.AudioOutput, out var output)
-                    ? string.IsNullOrWhiteSpace(output) ? null : output : audio.OutputDeviceId,
-                LatencyMilliseconds = values.TryGetValue(SettingsConstants.AudioLatency, out var latency)
-                    && int.TryParse(latency, out var parsedLatency)
-                    ? parsedLatency : audio.LatencyMilliseconds
+                OutputDeviceId = values.TryGetValue(SettingsConstants.AudioOutput, out var output) ? string.IsNullOrWhiteSpace(output) ? null : output : audio.OutputDeviceId,
+                LatencyMilliseconds = values.TryGetValue(SettingsConstants.AudioLatency, out var latency) && int.TryParse(latency, out var parsedLatency) ? parsedLatency : audio.LatencyMilliseconds
             }
         };
     }
 
-    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) =>
-        configuration is MachineConfiguration sony
-            ? sony.Options ?? new Dictionary<string, string>()
-            : throw new ArgumentException(nameof(configuration));
+    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) => configuration is MachineConfiguration sony ? sony.Options ?? new Dictionary<string, string>() : throw new ArgumentException(nameof(configuration));
 
-    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) =>
-        ConfigurationSummaryFunctions.Create(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) => ConfigurationSummaryFunctions.Create(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
 
-    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) =>
-        StorageSettingsFunctions.Describe(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) => StorageSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
 
-    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration,
-        EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(
-        configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)),
-        settings);
+    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
-    public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) =>
-        InputSettingsFunctions.Describe(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => InputSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
 
-    public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration,
-        EmulationInputSettings settings) => InputSettingsFunctions.Apply(
-        configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)),
-        settings);
+    public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => InputSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
     public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default) => configuration is MachineConfiguration sony
-        ? new ValueTask(_store.SaveAsync(sony, cancellationToken))
-        : ValueTask.FromException(new ArgumentException(nameof(configuration)));
+        CancellationToken cancellationToken = default) => configuration is MachineConfiguration sony ? new ValueTask(_store.SaveAsync(sony, cancellationToken)) : ValueTask.FromException(new ArgumentException(nameof(configuration)));
 
-    public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(
-        CancellationToken cancellationToken = default) =>
-        (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false))
-        .Cast<IEmulationConfiguration>().ToArray();
+    public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
 
     public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration,
         CancellationToken cancellationToken = default)
@@ -199,8 +160,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         foreach (var emulator in EmulatorCatalog.GetAll(sony.Model))
         {
             var adapter = _engine.Adapter(emulator.Id);
-            installations.Add(await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken)
-                .ConfigureAwait(false));
+            installations.Add(await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false));
         }
         return installations;
     }
@@ -211,8 +171,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         cancellationToken.ThrowIfCancellationRequested();
         var sony = RequireConfiguration(configuration);
         if (!EmulatorCatalog.GetAll(sony.Model).Any(item => item.Id == emulatorId))
-            return ValueTask.FromException<IEmulationConfiguration>(
-                new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null));
+            return ValueTask.FromException<IEmulationConfiguration>(new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null));
         return ValueTask.FromResult<IEmulationConfiguration>(sony with { EmulatorId = emulatorId });
     }
 
@@ -255,8 +214,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         if (configuration is not MachineConfiguration sony)
             throw new ArgumentException(nameof(configuration));
         var adapter = _engine.Adapter(sony);
-        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken)
-            .ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(
+        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(
                 EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
                 EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
                 new EmulationEmulatorMessageContext(adapter.EmulatorId)));
@@ -264,9 +222,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
-            value => Path.Combine(services.StatesDirectory,
-                value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat),
-                CoreDirectoryConstants.SavesDirectoryName));
+            value => Path.Combine(services.StatesDirectory, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat), CoreDirectoryConstants.SavesDirectoryName));
         var storage = StorageSettingsFunctions.Describe(sony);
         var mounted = adapter.ResolveConfiguredMedia(sony);
         return new EmulationMachineRuntime(sony,
@@ -302,8 +258,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
     {
         var current = RequireConfiguration(configuration);
         if (current.Model != machineId) throw new ArgumentException(nameof(machineId));
-        return ValueTask.FromResult(FirmwareConfigurationFunctions.Scan(current,
-            GetFirmwareDirectory(machineId), _engine.Adapter(current), cancellationToken));
+        return ValueTask.FromResult(FirmwareConfigurationFunctions.Scan(current, GetFirmwareDirectory(machineId), _engine.Adapter(current), cancellationToken));
     }
 
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)
@@ -317,9 +272,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
             new Dictionary<string, string?> { [firmware.DestinationFieldId!] = Path.GetFullPath(firmware.Path) }, adapter);
     }
 
-    private static string DefaultEmulatorId(string machineId) =>
-        EmulatorCatalog.GetAll(machineId).FirstOrDefault()?.Id ?? string.Empty;
+    private static string DefaultEmulatorId(string machineId) => EmulatorCatalog.GetAll(machineId).FirstOrDefault()?.Id ?? string.Empty;
 
-    private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) =>
-        configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+    private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) => configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
 }

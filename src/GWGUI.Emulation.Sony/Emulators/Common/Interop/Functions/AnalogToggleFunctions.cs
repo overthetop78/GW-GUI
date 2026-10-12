@@ -13,9 +13,7 @@ internal static class AnalogToggleFunctions
     private const uint L1R1SelectMask = (1u << 10) | (1u << 11) | (1u << 2);
 
     internal static uint ButtonMask(EmulationControllerState controller, ControllerType type) =>
-        type is ControllerType.DualShock or ControllerType.AnalogController or ControllerType.AnalogJoystick
-            && ControllerInputFunctions.PortButton(controller, InputSettingsFunctionsConstants.Analog)
-            ? controller.Buttons | L1R1SelectMask : controller.Buttons;
+        type is ControllerType.DualShock or ControllerType.AnalogController or ControllerType.AnalogJoystick && ControllerInputFunctions.PortButton(controller, InputSettingsFunctionsConstants.Analog) ? controller.Buttons | L1R1SelectMask : controller.Buttons;
 
     internal static MachineConfiguration Configure(MachineConfiguration configuration)
     {
@@ -30,12 +28,10 @@ internal static class AnalogToggleFunctions
                 options[Rearmed.AnalogComboKey] = Rearmed.AnalogComboL1PlusR1PlusSelect;
                 break;
             case Emulators.BeetlePsx.Constants.CoreConstants.Id:
-                ConfigureBeetle(Beetle.AnalogToggleKey, Beetle.AnalogToggleEnabledAnalog, Beetle.AnalogToggleEnabled,
-                    Beetle.AnalogToggleComboKey, Beetle.AnalogToggleComboL1PlusR1PlusSelect, Beetle.AnalogToggleHoldKey);
+                ConfigureBeetle(Beetle.AnalogToggleKey, Beetle.AnalogToggleEnabledAnalog, Beetle.AnalogToggleEnabled, Beetle.AnalogToggleComboKey, Beetle.AnalogToggleComboL1PlusR1PlusSelect, Beetle.AnalogToggleHoldKey);
                 break;
             case Emulators.BeetlePsxHw.Constants.CoreConstants.Id:
-                ConfigureBeetle(BeetleHw.AnalogToggleKey, BeetleHw.AnalogToggleEnabledAnalog, BeetleHw.AnalogToggleEnabled,
-                    BeetleHw.AnalogToggleComboKey, BeetleHw.AnalogToggleComboL1PlusR1PlusSelect, BeetleHw.AnalogToggleHoldKey);
+                ConfigureBeetle(BeetleHw.AnalogToggleKey, BeetleHw.AnalogToggleEnabledAnalog, BeetleHw.AnalogToggleEnabled, BeetleHw.AnalogToggleComboKey, BeetleHw.AnalogToggleComboL1PlusR1PlusSelect, BeetleHw.AnalogToggleHoldKey);
                 break;
         }
         return configuration with { Options = options };
@@ -48,7 +44,5 @@ internal static class AnalogToggleFunctions
         }
     }
 
-    internal static bool IsManagedOption(string key) => key is Swan.ControllerAnalogComboKey or Rearmed.AnalogComboKey
-        or Beetle.AnalogToggleKey or Beetle.AnalogToggleComboKey or Beetle.AnalogToggleHoldKey
-        or BeetleHw.AnalogToggleKey or BeetleHw.AnalogToggleComboKey or BeetleHw.AnalogToggleHoldKey;
+    internal static bool IsManagedOption(string key) => key is Swan.ControllerAnalogComboKey or Rearmed.AnalogComboKey or Beetle.AnalogToggleKey or Beetle.AnalogToggleComboKey or Beetle.AnalogToggleHoldKey or BeetleHw.AnalogToggleKey or BeetleHw.AnalogToggleComboKey or BeetleHw.AnalogToggleHoldKey;
 }

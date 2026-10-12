@@ -31,8 +31,7 @@ internal sealed partial class ExternalHostCallbacks
                 Pointer = _pendingInput.Pointer with { DeltaX = 0, DeltaY = 0, Wheel = 0, HorizontalWheel = 0 }
             };
         }
-        PublishKeyboardTransitions(_controllerTypes.Any(type => (ControllerType)type != ControllerType.None)
-            ? _polledInput.Keys : new HashSet<EmulationKey>());
+        PublishKeyboardTransitions(_controllerTypes.Any(type => (ControllerType)type != ControllerType.None) ? _polledInput.Keys : new HashSet<EmulationKey>());
     }
 
     private void PublishKeyboardTransitions(IReadOnlySet<EmulationKey> keys)
@@ -57,8 +56,7 @@ internal sealed partial class ExternalHostCallbacks
         if (alt && enter) _suppressFullscreenChord = true;
         if (!_suppressFullscreenChord) return keys;
         if (!alt && !enter) _suppressFullscreenChord = false;
-        return keys.Where(key => key is not (EmulationKey.LeftAlt or EmulationKey.RightAlt
-            or EmulationKey.Return or EmulationKey.NumpadEnter)).ToHashSet();
+        return keys.Where(key => key is not (EmulationKey.LeftAlt or EmulationKey.RightAlt or EmulationKey.Return or EmulationKey.NumpadEnter)).ToHashSet();
     }
 
     private static uint CharacterFor(uint code, IReadOnlySet<EmulationKey> keys)
@@ -77,8 +75,7 @@ internal sealed partial class ExternalHostCallbacks
         };
     }
 
-    private static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift
-        or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt;
+    private static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt;
 
     private void HandleLog(int level, nint format)
     {
@@ -106,8 +103,7 @@ internal sealed partial class ExternalHostCallbacks
             || (ControllerType)Volatile.Read(ref _controllerTypes[(int)port]) == ControllerType.None)
             return default;
         var input = _polledInput;
-        var controller = port < input.Controllers.Count
-            ? input.Controllers[(int)port] : EmulationControllerState.Empty;
+        var controller = port < input.Controllers.Count ? input.Controllers[(int)port] : EmulationControllerState.Empty;
         if (device == KeyboardDevice)
             return KeyboardMap.TryGetValue(id, out var key) && input.Keys.Contains(key) ? (short)1 : (short)0;
 
@@ -159,9 +155,7 @@ internal sealed partial class ExternalHostCallbacks
 
     private static short Bool(bool value) => value ? (short)1 : (short)0;
     private static short ClampToShort(int value) => (short)Math.Clamp(value, short.MinValue, short.MaxValue);
-    private static int AccumulatePointerCoordinate(int coordinate, int delta) =>
-        (int)Math.Clamp((long)coordinate + (long)delta * PointerCoordinateScale,
-            PointerCoordinateMinimum, PointerCoordinateMaximum);
+    private static int AccumulatePointerCoordinate(int coordinate, int delta) => (int)Math.Clamp((long)coordinate + (long)delta * PointerCoordinateScale, PointerCoordinateMinimum, PointerCoordinateMaximum);
     private static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
 
     private static IReadOnlyDictionary<uint, EmulationKey> CreateKeyboardMap()

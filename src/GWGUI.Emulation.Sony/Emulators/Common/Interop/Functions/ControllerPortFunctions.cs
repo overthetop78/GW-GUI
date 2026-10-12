@@ -20,16 +20,13 @@ internal static class ControllerPortFunctions
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
             if (ports[port].Any(device => device.Id == NativeControllerConstants.JoypadDevice))
                 return NativeControllerConstants.JoypadDevice;
-            var joypads = ports[port].Where(device =>
-                (device.Id & NativeControllerConstants.DeviceBaseMask) == NativeControllerConstants.JoypadDevice)
-                .ToArray();
+            var joypads = ports[port].Where(device => (device.Id & NativeControllerConstants.DeviceBaseMask) == NativeControllerConstants.JoypadDevice).ToArray();
             if (joypads.Length == SemanticPortConstants.OneControllerPort) return joypads.Single().Id;
             throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
         if (port < ports.Count && NativeControllerConstants.NativeNames.TryGetValue(type, out var names))
         {
-            var device = ports[port].FirstOrDefault(device =>
-                names.Contains(device.Name, StringComparer.OrdinalIgnoreCase));
+            var device = ports[port].FirstOrDefault(device => names.Contains(device.Name, StringComparer.OrdinalIgnoreCase));
             if (device is not null) return device.Id;
         }
         throw new ArgumentOutOfRangeException(nameof(type), type, null);

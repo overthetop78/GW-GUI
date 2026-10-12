@@ -29,8 +29,7 @@ internal static class EmulationMediaConversionFunctions
                 MediaCategory.MemoryCard => EmulationMediaType.MemoryCard,
                 _ => throw new ArgumentOutOfRangeException(nameof(media), item.Category, null)
             };
-            return new EmulationMedia(Path.GetFullPath(item.Path),
-                new EmulationMediaSlot(category, index), type, item.IsReadOnly, item.IsInserted);
+            return new EmulationMedia(Path.GetFullPath(item.Path), new EmulationMediaSlot(category, index), type, item.IsReadOnly, item.IsInserted);
         }).ToArray();
     }
 }

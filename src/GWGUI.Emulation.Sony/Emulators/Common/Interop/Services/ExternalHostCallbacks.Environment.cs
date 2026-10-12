@@ -65,11 +65,7 @@ internal sealed partial class ExternalHostCallbacks
                 case ExternalCoreApiConstants.GetVariableUpdate:
                     if (data != nint.Zero)
                         Marshal.WriteByte(data,
-                            Interlocked.Exchange(ref _optionsUpdated,
-                                ExternalCoreInteropConstants.InactiveState)
-                            != ExternalCoreInteropConstants.InactiveState
-                                ? ExternalCoreInteropConstants.NativeBooleanTrue
-                                : ExternalCoreInteropConstants.NativeBooleanFalse);
+                            Interlocked.Exchange(ref _optionsUpdated, ExternalCoreInteropConstants.InactiveState) != ExternalCoreInteropConstants.InactiveState ? ExternalCoreInteropConstants.NativeBooleanTrue : ExternalCoreInteropConstants.NativeBooleanFalse);
                     return true;
                 case ExternalCoreApiConstants.GetDiskControlVersion:
                     if (data != 0) Marshal.WriteInt32(data, 1);
@@ -96,8 +92,7 @@ internal sealed partial class ExternalHostCallbacks
                 case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:
                     return CaptureOptionsDisplayCallback(data);
                 case ExternalCoreApiConstants.SetSupportNoGame:
-                    SupportsNoGame = data != nint.Zero
-                        && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
+                    SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
                     return true;
                 case ExternalCoreApiConstants.GetMessageInterfaceVersion:
                     if (data != nint.Zero)
@@ -149,12 +144,10 @@ internal sealed partial class ExternalHostCallbacks
             var definition = Marshal.PtrToStringUTF8(variable.Value);
             var parts = definition?.Split(';', 2) ?? [];
             var name = parts.ElementAtOrDefault(0)?.Trim() ?? key;
-            var values = parts.ElementAtOrDefault(1)?.Trim().Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-                .Select(value => new CoreOptionValue(value, value)).ToArray() ?? [];
+            var values = parts.ElementAtOrDefault(1)?.Trim().Split('|', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Select(value => new CoreOptionValue(value, value)).ToArray() ?? [];
             var defaultValue = values.FirstOrDefault()?.Value ?? string.Empty;
             if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;
-            catalog.Add(new CoreOption(key, name, null, null, defaultValue, defaultValue, values,
-                !_optionVisibility.TryGetValue(key, out var visible) || visible));
+            catalog.Add(new CoreOption(key, name, null, null, defaultValue, defaultValue, values, !_optionVisibility.TryGetValue(key, out var visible) || visible));
         }
         OptionCatalog = catalog;
     }
@@ -163,12 +156,9 @@ internal sealed partial class ExternalHostCallbacks
     {
         if (options == 0) return;
         var definitions = Marshal.ReadIntPtr(options, IntPtr.Size);
-        var definitionSize = (CoreOptionPointerFieldsBeforeValues
-            + MaximumCoreOptionValues * CoreOptionValueFieldCount
-            + CoreOptionTerminatorFieldCount) * IntPtr.Size;
+        var definitionSize = (CoreOptionPointerFieldsBeforeValues + MaximumCoreOptionValues * CoreOptionValueFieldCount + CoreOptionTerminatorFieldCount) * IntPtr.Size;
         var valuesOffset = CoreOptionPointerFieldsBeforeValues * IntPtr.Size;
-        var defaultOffset = valuesOffset
-            + MaximumCoreOptionValues * CoreOptionValueFieldCount * IntPtr.Size;
+        var defaultOffset = valuesOffset + MaximumCoreOptionValues * CoreOptionValueFieldCount * IntPtr.Size;
         var catalog = new List<CoreOption>();
 
         for (var optionIndex = 0; optionIndex < MaximumCoreOptionDefinitions; optionIndex++)
@@ -178,22 +168,18 @@ internal sealed partial class ExternalHostCallbacks
             if (keyPointer == 0) break;
             var key = Marshal.PtrToStringUTF8(keyPointer)!;
             var name = StringAt(definition, IntPtr.Size) ?? key;
-            var description = StringAt(
-                definition, CoreOptionDescriptionPointerIndex * IntPtr.Size);
-            var category = StringAt(
-                definition, CoreOptionCategoryPointerIndex * IntPtr.Size);
+            var description = StringAt(definition, CoreOptionDescriptionPointerIndex * IntPtr.Size);
+            var category = StringAt(definition, CoreOptionCategoryPointerIndex * IntPtr.Size);
             var defaultValue = StringAt(definition, defaultOffset) ?? string.Empty;
             var values = new List<CoreOptionValue>();
             for (var valueIndex = 0; valueIndex < MaximumCoreOptionValues; valueIndex++)
             {
-                var valueOffset = valuesOffset
-                    + valueIndex * CoreOptionValueFieldCount * IntPtr.Size;
+                var valueOffset = valuesOffset + valueIndex * CoreOptionValueFieldCount * IntPtr.Size;
                 var value = StringAt(definition, valueOffset);
                 if (value is null) break;
                 values.Add(new CoreOptionValue(value, StringAt(definition, valueOffset + IntPtr.Size) ?? value));
             }
-            catalog.Add(new CoreOption(key, name, description, category, defaultValue, defaultValue, values,
-                !_optionVisibility.TryGetValue(key, out var visible) || visible));
+            catalog.Add(new CoreOption(key, name, description, category, defaultValue, defaultValue, values, !_optionVisibility.TryGetValue(key, out var visible) || visible));
             if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;
         }
         OptionCatalog = catalog;
@@ -216,9 +202,7 @@ internal sealed partial class ExternalHostCallbacks
     {
         if (data == 0) return false;
         var callback = Marshal.PtrToStructure<ExternalCoreApi.CoreOptionsUpdateDisplayCallback>(data).Callback;
-        _updateOptionsDisplay = callback == 0
-            ? null
-            : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.UpdateCoreOptionsDisplay>(callback);
+        _updateOptionsDisplay = callback == 0 ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.UpdateCoreOptionsDisplay>(callback);
         return true;
     }
 
@@ -287,8 +271,7 @@ internal sealed partial class ExternalHostCallbacks
             var devices = new List<ControllerDevice>(checked((int)info.Count));
             for (var index = 0; index < info.Count; index++)
             {
-                var description = Marshal.PtrToStructure<ExternalCoreApi.ControllerDescription>(
-                    info.Types + checked((int)index) * descriptionSize);
+                var description = Marshal.PtrToStructure<ExternalCoreApi.ControllerDescription>(info.Types + checked((int)index) * descriptionSize);
                 var name = description.Description == 0 ? null : Marshal.PtrToStringUTF8(description.Description);
                 if (!string.IsNullOrWhiteSpace(name)) devices.Add(new ControllerDevice(name, description.Id));
             }

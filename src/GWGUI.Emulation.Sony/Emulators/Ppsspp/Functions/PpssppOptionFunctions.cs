@@ -6,8 +6,7 @@ internal static class PpssppOptionFunctions
     {
         return configuration with
         {
-            Options = new Dictionary<string, string>(
-                configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
+            Options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
         };
     }
 }

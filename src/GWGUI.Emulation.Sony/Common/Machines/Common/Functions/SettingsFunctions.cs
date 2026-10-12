@@ -11,9 +11,7 @@ internal static partial class SettingsDescriptionFunctions
             Block(SettingsDescriptionFunctionsConstants.General, EmulationMachineTab.General,
                 SettingsDescriptionFunctionsConstants.ResourceGeneral,
                 SettingsDescriptionFunctionsConstants.IconGeneral, 2,
-                Information(SettingsConstants.Model, EmulationMachineTab.General,
-                    SettingsDescriptionFunctionsConstants.General,
-                    SettingsDescriptionFunctionsConstants.ResourceMachineModel, model.DisplayName),
+                Information(SettingsConstants.Model, EmulationMachineTab.General, SettingsDescriptionFunctionsConstants.General, SettingsDescriptionFunctionsConstants.ResourceMachineModel, model.DisplayName),
                 Information(SettingsConstants.Emulator, EmulationMachineTab.General,
                     SettingsDescriptionFunctionsConstants.General,
                     SettingsDescriptionFunctionsConstants.ResourceEmulator,
@@ -21,10 +19,7 @@ internal static partial class SettingsDescriptionFunctions
             Block(SettingsDescriptionFunctionsConstants.Cpu, EmulationMachineTab.Cpu,
                 SettingsDescriptionFunctionsConstants.ResourceCpuProcessor,
                 SettingsDescriptionFunctionsConstants.IconCpu, 2,
-                Information(SettingsConstants.Model + ".cpu", EmulationMachineTab.Cpu,
-                    SettingsDescriptionFunctionsConstants.Cpu,
-                    SettingsDescriptionFunctionsConstants.ResourceCpuModel,
-                    string.Join(" / ", model.Processors))),
+                Information(SettingsConstants.Model + ".cpu", EmulationMachineTab.Cpu, SettingsDescriptionFunctionsConstants.Cpu, SettingsDescriptionFunctionsConstants.ResourceCpuModel, string.Join(" / ", model.Processors))),
             Block(SettingsDescriptionFunctionsConstants.Acceleration, EmulationMachineTab.Cpu,
                 SettingsDescriptionFunctionsConstants.ResourceAcceleration,
                 SettingsDescriptionFunctionsConstants.IconCpu, 1,
@@ -38,9 +33,7 @@ internal static partial class SettingsDescriptionFunctions
                 Information(SettingsConstants.Ram, EmulationMachineTab.Ram,
                     SettingsDescriptionFunctionsConstants.Memory,
                     SettingsDescriptionFunctionsConstants.ResourceMemoryMain,
-                    $"{(model.Id == ModelConstants.Psp
-                        && configuration.Options?.GetValueOrDefault(Emulators.Ppsspp.Constants.OptionConstants.PspModelKey)
-                            != "psp_1000" ? 64 * 1024 : model.RamKib)} KiB")),
+                    $"{(model.Id == ModelConstants.Psp && configuration.Options?.GetValueOrDefault(Emulators.Ppsspp.Constants.OptionConstants.PspModelKey) != "psp_1000" ? 64 * 1024 : model.RamKib)} KiB")),
             Block(SettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video,
                 SettingsDescriptionFunctionsConstants.ResourceVideo,
                 SettingsDescriptionFunctionsConstants.IconVideo, 2,
@@ -51,10 +44,7 @@ internal static partial class SettingsDescriptionFunctions
             Block(SettingsDescriptionFunctionsConstants.Audio, EmulationMachineTab.Audio,
                 SettingsDescriptionFunctionsConstants.ResourceAudio,
                 SettingsDescriptionFunctionsConstants.IconAudio, 2,
-                Toggle(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio,
-                    SettingsDescriptionFunctionsConstants.Audio,
-                    SettingsDescriptionFunctionsConstants.ResourceAudioEnabled,
-                    configuration.AudioEnabled),
+                Toggle(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio, SettingsDescriptionFunctionsConstants.Audio, SettingsDescriptionFunctionsConstants.ResourceAudioEnabled, configuration.AudioEnabled),
                 AudioOutput(configuration.Audio?.OutputDeviceId),
                 Select(SettingsConstants.AudioLatency, EmulationMachineTab.Audio,
                     SettingsDescriptionFunctionsConstants.Audio,
@@ -89,8 +79,7 @@ internal static partial class SettingsDescriptionFunctions
             }
             if (model.Id == ModelConstants.PlayStation)
             {
-                var clock = blocks.SelectMany(block => block.Fields).FirstOrDefault(field =>
-                    Emulators.Common.Interop.Constants.CoreSettingsConstants.IsCpuClock(field.Id));
+                var clock = blocks.SelectMany(block => block.Fields).FirstOrDefault(field => Emulators.Common.Interop.Constants.CoreSettingsConstants.IsCpuClock(field.Id));
                 if (clock is not null)
                 {
                     var index = blocks.FindIndex(block => block.Id == SettingsDescriptionFunctionsConstants.Acceleration);
@@ -107,8 +96,7 @@ internal static partial class SettingsDescriptionFunctions
             }
         }
         var hardwareVideo = blocks.FindIndex(block => block.Id == SettingsDescriptionFunctionsConstants.Video);
-        var renderingVideo = blocks.FindIndex(block => block.Tab == EmulationMachineTab.Video
-            && block.IsCollapsible);
+        var renderingVideo = blocks.FindIndex(block => block.Tab == EmulationMachineTab.Video && block.IsCollapsible);
         if (hardwareVideo >= 0 && renderingVideo >= 0)
         {
             var rendering = blocks[renderingVideo];

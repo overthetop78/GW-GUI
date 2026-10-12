@@ -5,8 +5,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Exceptions;
 
 internal static class Pcsx2Exceptions
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Error");
+    private static readonly EmulationModuleLocalization Localization = new(typeof(SonyEmulationModule).Assembly, "GWGUI.Emulation.Sony.Resources.Error");
 
     internal static string HostConfigurationInvalid() => Text("Emulation.Error.Pcsx2.HostConfigurationInvalid");
     internal static string HostNotInitialized() => Text("Emulation.Error.Pcsx2.HostNotInitialized");
@@ -43,8 +42,7 @@ internal static class Pcsx2Exceptions
     internal static string ProcessUnavailable() => Text("Emulation.Error.Pcsx2.ProcessUnavailable");
     internal static string ProcessNotInitialized() => Text("Emulation.Error.Pcsx2.ProcessNotInitialized");
     internal static string ProcessTimeout() => Text("Emulation.Error.Pcsx2.ProcessTimeout");
-    internal static string ProcessCommunicationFailed(string detail) =>
-        Text("Emulation.Error.Pcsx2.ProcessCommunicationFailed", detail);
+    internal static string ProcessCommunicationFailed(string detail) => Text("Emulation.Error.Pcsx2.ProcessCommunicationFailed", detail);
     internal static string HostResponseUnavailable() => Text("Emulation.Error.Pcsx2.HostResponseUnavailable");
     internal static string UnknownCoreOption() => Text("Emulation.Error.Pcsx2.UnknownCoreOption");
     internal static string UnsupportedPixelFormat(int value) => Text("Emulation.Error.Pcsx2.UnsupportedPixelFormat", value);

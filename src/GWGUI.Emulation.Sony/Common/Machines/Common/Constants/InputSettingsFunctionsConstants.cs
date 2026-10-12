@@ -57,33 +57,21 @@ internal static class InputSettingsFunctionsConstants
     internal const string ResourceControllerAutomatic = "Emulation.Controller.Automatic";
     internal const string ResourceControllerNone = "Emulation.Controller.None";
     internal const string ResourceControllerJoystick = "Controllers.Enum.Joystick";
-    internal const string ResourcePlayStationController =
-        "Emulation.Sony.Controller.PlayStationController";
-    internal const string ResourceDualShock2 =
-        "Emulation.Sony.Controller.PlayStation2DualShock2";
-    internal const string ResourceDualShock3 =
-        "Emulation.Sony.Controller.PlayStation3DualShock3";
-    internal const string ResourceDualShock =
-        "Emulation.Sony.Controller.PlayStationDualShock";
-    internal const string ResourceDualAnalog =
-        "Emulation.Sony.Controller.PlayStationDualAnalog";
-    internal const string ResourceAnalogJoystick =
-        "Emulation.Sony.Controller.PlayStationAnalogJoystick";
-    internal const string ResourcePlayStationMouse =
-        "Emulation.Sony.Controller.PlayStationMouse";
-    internal const string ResourceGunCon =
-        "Emulation.Sony.Controller.PlayStationNamcoGunCon";
-    internal const string ResourceJustifier =
-        "Emulation.Sony.Controller.PlayStationKonamiJustifier";
+    internal const string ResourcePlayStationController = "Emulation.Sony.Controller.PlayStationController";
+    internal const string ResourceDualShock2 = "Emulation.Sony.Controller.PlayStation2DualShock2";
+    internal const string ResourceDualShock3 = "Emulation.Sony.Controller.PlayStation3DualShock3";
+    internal const string ResourceDualShock = "Emulation.Sony.Controller.PlayStationDualShock";
+    internal const string ResourceDualAnalog = "Emulation.Sony.Controller.PlayStationDualAnalog";
+    internal const string ResourceAnalogJoystick = "Emulation.Sony.Controller.PlayStationAnalogJoystick";
+    internal const string ResourcePlayStationMouse = "Emulation.Sony.Controller.PlayStationMouse";
+    internal const string ResourceGunCon = "Emulation.Sony.Controller.PlayStationNamcoGunCon";
+    internal const string ResourceJustifier = "Emulation.Sony.Controller.PlayStationKonamiJustifier";
     internal const string NeGcon = "neGcon";
     internal const string NeGconRumble = "neGcon Rumble";
     internal const string KeyboardAndMouseGlyphs = "⌨ + 🖱";
-    internal const string ResourceDualShock4 =
-        "Emulation.Sony.Controller.PlayStation4DualShock4";
-    internal const string ResourceDualSense =
-        "Emulation.Sony.Controller.PlayStation5DualSense";
-    internal const string ResourcePspIntegrated =
-        "Emulation.Sony.Controller.PSPIntegrated";
+    internal const string ResourceDualShock4 = "Emulation.Sony.Controller.PlayStation4DualShock4";
+    internal const string ResourceDualSense = "Emulation.Sony.Controller.PlayStation5DualSense";
+    internal const string ResourcePspIntegrated = "Emulation.Sony.Controller.PSPIntegrated";
     internal const string ResourceControllerKeyboard = "Emulation.Tab.Keyboard";
     internal const string ResourceKeyHelp = "Emulation.Key.Help";
     internal const string ResourceSteeringLeft = "Emulation.Sony.Input.SteeringLeft";

@@ -10,18 +10,12 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 internal static class MemoryCardFunctions
 {
     internal static int Count(MachineConfiguration configuration) => configuration.Model == ModelConstants.Psp ? 1
-        : configuration.EmulatorId is
-        Emulators.BeetlePsx.Constants.CoreConstants.Id or Emulators.BeetlePsxHw.Constants.CoreConstants.Id
-        ? ControllerFunctions.PortCount(configuration) : StorageSettingsFunctionsConstants.MemoryCardCount;
+        : configuration.EmulatorId is Emulators.BeetlePsx.Constants.CoreConstants.Id or Emulators.BeetlePsxHw.Constants.CoreConstants.Id ? ControllerFunctions.PortCount(configuration) : StorageSettingsFunctionsConstants.MemoryCardCount;
 
-    internal static IReadOnlyList<string> NativeFileNames(MachineConfiguration configuration) =>
-        NativeFileNames(configuration.EmulatorId).Take(Count(configuration)).ToArray();
+    internal static IReadOnlyList<string> NativeFileNames(MachineConfiguration configuration) => NativeFileNames(configuration.EmulatorId).Take(Count(configuration)).ToArray();
 
     internal static string? SelectedPath(MachineConfiguration configuration, int index) =>
-        bool.TryParse(configuration.Options?.GetValueOrDefault(
-            StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + index), out var enabled) && enabled
-            ? configuration.Options?.GetValueOrDefault(StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + index)
-            : null;
+        bool.TryParse(configuration.Options?.GetValueOrDefault(StorageSettingsFunctionsConstants.MemoryCardEnabledOptionPrefix + index), out var enabled) && enabled ? configuration.Options?.GetValueOrDefault(StorageSettingsFunctionsConstants.MemoryCardPathOptionPrefix + index) : null;
 
     internal static IReadOnlyList<string> NativeFileNames(string coreId) => coreId switch
     {
@@ -30,8 +24,7 @@ internal static class MemoryCardFunctions
         Emulators.SwanStation.Constants.CoreConstants.Id => [MemoryCardConstants.SwanFirstFile, MemoryCardConstants.SwanSecondFile],
         Emulators.PcsxRearmed.Constants.CoreConstants.Id => [MemoryCardConstants.RearmedFirstFile, MemoryCardConstants.RearmedSecondFile],
         Emulators.BeetlePsx.Constants.CoreConstants.Id or Emulators.BeetlePsxHw.Constants.CoreConstants.Id =>
-            Enumerable.Range(0, MemoryCardConstants.MaximumCards).Select(index =>
-                MemoryCardConstants.BeetleFilePrefix + index + StorageSettingsFunctionsConstants.MemoryCardExtension).ToArray(),
+            Enumerable.Range(0, MemoryCardConstants.MaximumCards).Select(index => MemoryCardConstants.BeetleFilePrefix + index + StorageSettingsFunctionsConstants.MemoryCardExtension).ToArray(),
         _ => []
     };
 
@@ -64,12 +57,10 @@ internal static class MemoryCardFunctions
                 options[Rearmed.Memcard2Key] = second ? Rearmed.Memcard2Shared : Rearmed.Memcard2None;
                 break;
             case Emulators.BeetlePsx.Constants.CoreConstants.Id:
-                ConfigureBeetle(Beetle.UseMednafenMemcard0MethodKey, Beetle.UseMednafenMemcard0MethodMednafen,
-                    Beetle.EnableMemcard1Key, Beetle.SharedMemoryCardsKey, Beetle.MemcardLeftIndexKey, Beetle.MemcardRightIndexKey);
+                ConfigureBeetle(Beetle.UseMednafenMemcard0MethodKey, Beetle.UseMednafenMemcard0MethodMednafen, Beetle.EnableMemcard1Key, Beetle.SharedMemoryCardsKey, Beetle.MemcardLeftIndexKey, Beetle.MemcardRightIndexKey);
                 break;
             case Emulators.BeetlePsxHw.Constants.CoreConstants.Id:
-                ConfigureBeetle(BeetleHw.UseMednafenMemcard0MethodKey, BeetleHw.UseMednafenMemcard0MethodMednafen,
-                    BeetleHw.EnableMemcard1Key, BeetleHw.SharedMemoryCardsKey, BeetleHw.MemcardLeftIndexKey, BeetleHw.MemcardRightIndexKey);
+                ConfigureBeetle(BeetleHw.UseMednafenMemcard0MethodKey, BeetleHw.UseMednafenMemcard0MethodMednafen, BeetleHw.EnableMemcard1Key, BeetleHw.SharedMemoryCardsKey, BeetleHw.MemcardLeftIndexKey, BeetleHw.MemcardRightIndexKey);
                 break;
         }
         return configuration with { Options = options };
