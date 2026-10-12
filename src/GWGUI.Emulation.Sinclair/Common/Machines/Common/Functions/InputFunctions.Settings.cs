@@ -6,7 +6,8 @@ internal static class InputSettingsFunctions
         Emulator.EightyOne => [PeripheralCategory.None, PeripheralCategory.CursorJoystick],
         Emulator.Fuse => Enum.GetValues<PeripheralCategory>(),
         Emulator.None => [PeripheralCategory.None],
-        _ => throw new ArgumentOutOfRangeException(nameof(core))};
+        _ => throw new ArgumentOutOfRangeException(nameof(core))
+    };
     internal static PeripheralCategory DefaultPeripheral(MachineModel model) => model switch
     {
         MachineModel.Zx80 => PeripheralCategory.None,
@@ -18,7 +19,9 @@ internal static class InputSettingsFunctions
         new(InputMappingConstants.MouseLeft, InputMappingConstants.MouseLeftResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft),
         new(InputMappingConstants.MouseRight, InputMappingConstants.MouseRightResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight)
     ];
-    private static IReadOnlyDictionary<string, string> MouseBindings(InputConfiguration input) => MouseDefinitions().ToDictionary(definition => definition.Id, definition => input.Mouse?.GetValueOrDefault(definition.Id, definition.DefaultBinding) ?? definition.DefaultBinding, StringComparer.Ordinal);
+    private static IReadOnlyDictionary<string, string> MouseBindings(InputConfiguration input) => MouseDefinitions().ToDictionary(definition => definition.Id,
+        definition => input.Mouse?.GetValueOrDefault(definition.Id, definition.DefaultBinding) ?? definition.DefaultBinding,
+        StringComparer.Ordinal);
     private static IReadOnlyList<PeripheralCategory> Choices(MachineConfiguration configuration, int port)
     {
         var timex = configuration.Model is MachineModel.TimexTc2068 or MachineModel.TimexTs2068 or MachineModel.SpectrumSe;

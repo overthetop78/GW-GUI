@@ -21,7 +21,8 @@ internal static class EmulationMediaConversionFunctions
             (EmulationMediaType.Cassette, EmulationMediaCategory.CassetteDrive) => MediaCategory.Tape,
             (EmulationMediaType.Floppy, EmulationMediaCategory.FloppyDrive) => MediaCategory.Floppy,
             (EmulationMediaType.Cartridge, EmulationMediaCategory.CartridgeSlot) => MediaCategory.Cartridge,
-            _ => throw new ArgumentOutOfRangeException(nameof(media))};
+            _ => throw new ArgumentOutOfRangeException(nameof(media))
+        };
         var existing = mountedMedia.FirstOrDefault(item => item.Slot == media.Slot);
         return existing is null 
             ? new MediaConfiguration(media.Path, category, media.Slot, IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted) 

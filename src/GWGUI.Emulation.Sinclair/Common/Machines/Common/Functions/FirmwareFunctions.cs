@@ -28,7 +28,8 @@ internal static class FirmwareFunctions
         FirmwareCategory.Scorpion3 => FirmwareConstants.Scorpion3FileName,
         FirmwareCategory.USpeech => FirmwareConstants.USpeechFileName,
         FirmwareCategory.Sp0256 => FirmwareConstants.Sp0256FileName,
-        _ => throw new ArgumentOutOfRangeException(nameof(role))};
+        _ => throw new ArgumentOutOfRangeException(nameof(role))
+    };
     internal static IReadOnlyList<FirmwareConfiguration> Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var result = configuration.Firmwares.ToList();

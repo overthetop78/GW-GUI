@@ -9,7 +9,11 @@ internal static class CoreCatalog
     private static readonly IReadOnlyDictionary<string, EmulatorCatalogEntry> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);
     public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;
 
-    private static IReadOnlyList<MachineFactory> DiscoverFactories() => typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type)).Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!).OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal).ToArray();
+    private static IReadOnlyList<MachineFactory> DiscoverFactories() => typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract 
+        && typeof(MachineFactory).IsAssignableFrom(type) 
+        && typeof(IEmulatorAdapter).IsAssignableFrom(type)).Select(type => (MachineFactory)Activator.CreateInstance(type,
+        nonPublic: true)!).OrderBy(adapter => adapter.EmulatorId,
+        StringComparer.Ordinal).ToArray();
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();
     internal static IEmulatorAdapter CreateAdapter(Emulator emulator)
     {

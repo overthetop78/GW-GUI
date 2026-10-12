@@ -11,7 +11,8 @@ internal static class HardwareModelCatalog
         MachineModel.TimexTs2068 => HardwareConstants.TimexNtscFrequencyHz,
         MachineModel.SpectrumSe => HardwareConstants.SpectrumSeFrequencyHz,
         MachineModel.Spectrum16K or MachineModel.Spectrum48K or MachineModel.TimexTc2048 or MachineModel.TimexTc2068 or MachineModel.Scorpion256K => HardwareConstants.SpectrumFrequencyHz,
-        _ => throw new ArgumentOutOfRangeException(nameof(model))};
+        _ => throw new ArgumentOutOfRangeException(nameof(model))
+    };
     private static long Memory(MachineModel model) => model switch
     {
         MachineModel.Zx80 => HardwareConstants.Zx80MemoryBytes,
@@ -22,5 +23,6 @@ internal static class HardwareModelCatalog
         MachineModel.Scorpion256K => HardwareConstants.Memory256KBytes,
         MachineModel.Pentagon512K => HardwareConstants.Memory512KBytes,
         MachineModel.Pentagon1024K => HardwareConstants.Memory1024KBytes,
-        _ => throw new ArgumentOutOfRangeException(nameof(model))};
+        _ => throw new ArgumentOutOfRangeException(nameof(model))
+    };
 }

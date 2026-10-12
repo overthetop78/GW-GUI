@@ -16,7 +16,8 @@ internal static class MediaRuntimeFunctions
             MachineModel.SpectrumPlus3 => MediaRuntimeConstants.Plus3Extensions,
             MachineModel.SpectrumPlus3E => MediaRuntimeConstants.Plus3EExtensions,
             MachineModel.Pentagon128K or MachineModel.Pentagon512K or MachineModel.Pentagon1024K or MachineModel.Scorpion256K => MediaRuntimeConstants.TrDosExtensions,
-            _ => Array.Empty<string>()};
+            _ => Array.Empty<string>()
+        };
         if (floppyExtensions.Count != 0)
             result.Add(new(EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy, floppyExtensions, RequiresMachineRecreation: !CanExchange(configuration, EmulationMediaSlot.Floppy0)));
         if (configuration.Model is MachineModel.TimexTc2068 or MachineModel.TimexTs2068)
@@ -24,7 +25,8 @@ internal static class MediaRuntimeFunctions
         return result;
     }
 
-    internal static bool CanExchange(MachineConfiguration configuration, EmulationMediaSlot slot) => slot == EmulationMediaSlot.Floppy0 && configuration.Model is MachineModel.SpectrumPlus3 or MachineModel.Pentagon128K or MachineModel.Pentagon512K or MachineModel.Pentagon1024K or MachineModel.Scorpion256K;
+    internal static bool CanExchange(MachineConfiguration configuration,
+        EmulationMediaSlot slot) => slot == EmulationMediaSlot.Floppy0 && configuration.Model is MachineModel.SpectrumPlus3 or MachineModel.Pentagon128K or MachineModel.Pentagon512K or MachineModel.Pentagon1024K or MachineModel.Scorpion256K;
     private static MediaConfiguration? InitialMedia(MachineConfiguration configuration) => configuration.Media.Where(media => media.IsInserted && media.Category != MediaCategory.Cartridge).OrderBy(media => media.Category == MediaCategory.Tape ? 0 : 1).FirstOrDefault();
     internal static LoadedContent? Prepare(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
