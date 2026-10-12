@@ -39,12 +39,7 @@ internal static class KeyboardFunctions
         return map;
     }
 
-    private static void AddRange(
-        Dictionary<EmulationKey, uint> map,
-        EmulationKey first,
-        uint nativeFirst,
-        int count
-    )
+    private static void AddRange(Dictionary<EmulationKey, uint> map, EmulationKey first, uint nativeFirst, int count)
     {
         for (var index = 0; index < count; index++)
             map.Add((EmulationKey)((int)first + index), nativeFirst + (uint)index);

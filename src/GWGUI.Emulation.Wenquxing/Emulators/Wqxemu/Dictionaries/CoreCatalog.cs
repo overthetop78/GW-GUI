@@ -18,11 +18,7 @@ internal static class CoreCatalog
         EmulatorConstants.DescriptionResourceKey
     );
     internal static EmulatorCatalogEntry Get(Emulator emulator) => emulator == Emulator.Wqxemu ? Entry : throw new ArgumentOutOfRangeException(nameof(emulator));
-    internal static CoreInstallationPaths GetInstallationPaths(
-        Emulator emulator,
-        string installationRoot,
-        string version
-    )
+    internal static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version)
     {
         Get(emulator);
         ArgumentException.ThrowIfNullOrWhiteSpace(installationRoot);
@@ -33,10 +29,7 @@ internal static class CoreCatalog
         return new CoreInstallationPaths(directory, Path.Combine(directory, Entry.DllName), Path.Combine(directory, EmulatorCatalogConstants.ManifestFileName));
     }
 
-    internal static string GetActiveManifestPath(
-        Emulator emulator,
-        string installationRoot
-    )
+    internal static string GetActiveManifestPath(Emulator emulator, string installationRoot)
     {
         Get(emulator);
         ArgumentException.ThrowIfNullOrWhiteSpace(installationRoot);

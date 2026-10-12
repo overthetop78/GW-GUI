@@ -16,7 +16,7 @@ namespace GWGUI.Emulation.Wenquxing.Common.Services;
 [SupportedOSPlatform(CoreHostConstants.Windows)]
 internal sealed partial class ProcessCore : IEmulatorCore
 {
-private void Request(HostCommand command, Action<BinaryWriter>? write = null, Action<BinaryReader>? read = null, bool allowUninitialized = false)
+    private void Request(HostCommand command, Action<BinaryWriter>? write = null, Action<BinaryReader>? read = null, bool allowUninitialized = false)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
         if (_connectionFailed) throw new InvalidOperationException(CoreHostErrors.ProcessUnavailable);

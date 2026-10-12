@@ -34,10 +34,7 @@ internal static class KeyboardDictionary
     }
 
     internal static IReadOnlyList<InputBindingDefinition> Definitions(MachineModel model) => Defaults(model).Select(pair => new InputBindingDefinition(pair.Key.ToString(), string.Empty, pair.Value.ToString(), Labels[pair.Key])).ToArray();
-    internal static IReadOnlyDictionary<string, string> Bindings(
-        InputConfiguration input,
-        MachineModel model
-    )
+    internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)
     {
         var bindings = Definitions(model).ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);
         foreach (var pair in input.Keyboard ?? new Dictionary<string, string>())
@@ -53,11 +50,7 @@ internal static class KeyboardDictionary
         return bindings;
     }
 
-    internal static IReadOnlySet<EmulationKey> Apply(
-        IReadOnlySet<EmulationKey> keys,
-        InputConfiguration input,
-        MachineModel model
-    )
+    internal static IReadOnlySet<EmulationKey> Apply(IReadOnlySet<EmulationKey> keys, InputConfiguration input, MachineModel model)
     {
         var mappings = Bindings(input, model).Where(pair => pair.Value.Length != 0).ToDictionary(pair => pair.Key, pair => Enum.Parse<EmulationKey>(pair.Value), StringComparer.Ordinal);
         return EmulationInputMappingFunctions.MapKeyboard(keys, mappings);

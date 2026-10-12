@@ -18,10 +18,7 @@ internal static class FirmwareFunctions
         Requirements(configuration).Select(requirement => new EmulationSettingsField(requirement.FieldId, EmulationMachineTab.Rom, FirmwareConstants.BlockId, requirement.DisplayResourceKey, EmulationSettingsEditor.Path, configuration.Firmware.Images.GetValueOrDefault(requirement.Role))).ToArray(),
         IsCompact: true
     );
-    internal static FirmwareConfiguration Apply(
-        MachineConfiguration configuration,
-        IReadOnlyDictionary<string, string?> values
-    )
+    internal static FirmwareConfiguration Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var selected = new Dictionary<FirmwareRole, string>(configuration.Firmware.Images);
         foreach (var requirement in Requirements(configuration))
@@ -36,11 +33,7 @@ internal static class FirmwareFunctions
         return new(selected);
     }
 
-    internal static ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanAsync(
-        string directory,
-        MachineConfiguration configuration,
-        CancellationToken cancellationToken
-    )
+    internal static ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanAsync(string directory, MachineConfiguration configuration, CancellationToken cancellationToken)
     {
         var result = new List<EmulationFirmwareCandidate>();
         var capabilities = Capabilities(configuration);
@@ -61,10 +54,7 @@ internal static class FirmwareFunctions
         return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(result);
     }
 
-    internal static MachineConfiguration Select(
-        MachineConfiguration configuration,
-        EmulationFirmwareCandidate candidate
-    )
+    internal static MachineConfiguration Select(MachineConfiguration configuration, EmulationFirmwareCandidate candidate)
     {
         var requirement = Requirements(configuration).SingleOrDefault(item => item.FieldId == candidate.DestinationFieldId) ?? throw new ArgumentException(nameof(candidate));
         var selected = new Dictionary<FirmwareRole, string>(configuration.Firmware.Images)

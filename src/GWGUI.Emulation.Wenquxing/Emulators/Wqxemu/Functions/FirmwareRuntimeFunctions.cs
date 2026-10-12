@@ -5,11 +5,7 @@ using NativeFirmwareConstants = GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Const
 namespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Functions;
 internal static class FirmwareRuntimeFunctions
 {
-    internal static bool IsCompatible(
-        MachineConfiguration configuration,
-        FirmwareRole role,
-        string path
-    )
+    internal static bool IsCompatible(MachineConfiguration configuration, FirmwareRole role, string path)
     {
         if (!FirmwareCatalog.Requirements(configuration.Model).Any(requirement => requirement.Role == role))
             return false;
@@ -52,10 +48,7 @@ internal static class FirmwareRuntimeFunctions
         }
     }
 
-    internal static void Prepare(
-        MachineConfiguration configuration,
-        string systemDirectory
-    )
+    internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
     {
         var requirements = FirmwareCatalog.Requirements(configuration.Model);
         if (configuration.Firmware.Images.Keys.Any(role => !requirements.Any(requirement => requirement.Role == role)))

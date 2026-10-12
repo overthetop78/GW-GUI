@@ -8,7 +8,7 @@ namespace GWGUI.Emulation.Wenquxing.Common.Services;
 
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput, IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
-private MachineConfiguration CurrentConfiguration() => Configuration with { Media = _mountedMedia.ToArray(), Input = _inputConfiguration };
+    private MachineConfiguration CurrentConfiguration() => Configuration with { Media = _mountedMedia.ToArray(), Input = _inputConfiguration };
 
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken)
     {
