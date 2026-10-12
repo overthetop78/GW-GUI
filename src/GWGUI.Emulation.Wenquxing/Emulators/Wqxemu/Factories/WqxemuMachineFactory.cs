@@ -48,7 +48,8 @@ internal sealed class WqxemuMachineFactory : IEmulatorAdapter, IEmulatorFirmware
         return installation.LibraryPath;
     }
 
-    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => (await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator.Wqxemu, cancellationToken).ConfigureAwait(false))?.LibraryPath;
+    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
+        CancellationToken cancellationToken) => (await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator.Wqxemu, cancellationToken).ConfigureAwait(false))?.LibraryPath;
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => [];
     public IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => null;
     public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);
