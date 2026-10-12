@@ -10,8 +10,7 @@ public sealed class UpdateArchiveValidator
 {
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
 
-    public ValidatedUpdateArchive ExtractValidated(string archivePath, string destinationDirectory,
-        string componentId, UpdateComponentKind kind, string expectedVersion)
+    public ValidatedUpdateArchive ExtractValidated(string archivePath, string destinationDirectory, string componentId, UpdateComponentKind kind, string expectedVersion)
     {
         var archive = Path.GetFullPath(archivePath);
         var destination = Path.GetFullPath(destinationDirectory);
@@ -19,8 +18,7 @@ public sealed class UpdateArchiveValidator
         if (Directory.Exists(destination)) Directory.Delete(destination, recursive: true);
         Directory.CreateDirectory(destination);
 
-        var expectedRoot = kind == UpdateComponentKind.Application
-            ? "GW GUI" : $"Modules/{componentId}";
+        var expectedRoot = kind == UpdateComponentKind.Application ? "GW GUI" : $"Modules/{componentId}";
         var files = 0;
         var targets = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         try
@@ -128,6 +126,4 @@ public sealed class UpdateArchiveValidator
     }
 }
 
-public sealed record ValidatedUpdateArchive(
-    string RootDirectory,
-    EmulationModuleManifest? ModuleManifest);
+public sealed record ValidatedUpdateArchive(string RootDirectory, EmulationModuleManifest? ModuleManifest);

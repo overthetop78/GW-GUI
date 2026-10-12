@@ -8,11 +8,7 @@ public sealed class UpdatePlanBuilder
     public const int SupportedSchemaVersion = 2;
     public const string ApplicationId = "gwgui";
 
-    public UpdateSearchResult Search(
-        UpdateCatalog catalog,
-        InstalledUpdateState installed,
-        UpdateSearchScope scope,
-        IReadOnlyDictionary<string, string>? selections = null)
+    public UpdateSearchResult Search(UpdateCatalog catalog, InstalledUpdateState installed, UpdateSearchScope scope, IReadOnlyDictionary<string, string>? selections = null)
     {
         Validate(catalog);
         if (scope == UpdateSearchScope.Application && catalog.Kind != UpdateCatalogKind.Application)
@@ -50,8 +46,7 @@ public sealed class UpdatePlanBuilder
                 var feasible = newer.Where(release => ApplicationReleaseIsFeasible(release, installedModules)).ToArray();
                 selectedApplication = Select(application.Id, feasible, selections, issues);
                 if (selectedApplication is not null)
-                    targetHostApi = ParseVersion(selectedApplication.HostApiVersion, 2,
-                        $"application {selectedApplication.Version} host API");
+                    targetHostApi = ParseVersion(selectedApplication.HostApiVersion, 2, $"application {selectedApplication.Version} host API");
                 rows.Add(new(application.Id, application.Kind, installed.ApplicationVersion,
                     newer.Count == 0 ? UpdateAvailability.UpToDate : feasible.Length == 0 ? UpdateAvailability.Incompatible : UpdateAvailability.Available,
                     feasible, selectedApplication?.Version));
@@ -70,15 +65,8 @@ public sealed class UpdatePlanBuilder
                 var compatible = newer.Where(release => AcceptsHostApi(release, targetHostApi)).ToArray();
                 var selected = Select(component.Id, compatible, selections, issues);
                 var availability = newer.Count == 0 ? UpdateAvailability.UpToDate
-                    : compatible.Length > 0 ? UpdateAvailability.Available
-                    : newer.Any(release => ParseVersion(release.HostApiMinimum, 2,
-                        $"module '{component.Id}' minimum API") > targetHostApi)
-                        ? UpdateAvailability.ApplicationUpdateRequired : UpdateAvailability.Incompatible;
-                var requiredApi = availability == UpdateAvailability.ApplicationUpdateRequired
-                    ? newer.Select(release => ParseVersion(release.HostApiMinimum, 2,
-                            $"module '{component.Id}' minimum API"))
-                        .Min()?.ToString(2)
-                    : null;
+                    : compatible.Length > 0 ? UpdateAvailability.Available : newer.Any(release => ParseVersion(release.HostApiMinimum, 2, $"module '{component.Id}' minimum API") > targetHostApi) ? UpdateAvailability.ApplicationUpdateRequired : UpdateAvailability.Incompatible;
+                var requiredApi = availability == UpdateAvailability.ApplicationUpdateRequired ? newer.Select(release => ParseVersion(release.HostApiMinimum, 2, $"module '{component.Id}' minimum API")).Min()?.ToString(2) : null;
                 rows.Add(new(component.Id, component.Kind, installedModule.Version, availability, compatible.Length > 0 ? compatible : newer, selected?.Version, requiredApi));
                 if (selected is not null) moduleSelections[component.Id] = selected;
             }
@@ -93,10 +81,8 @@ public sealed class UpdatePlanBuilder
         foreach (var installedModule in installed.Modules)
         {
             var release = moduleSelections.GetValueOrDefault(installedModule.Id);
-            var minimum = ParseVersion(release?.HostApiMinimum ?? installedModule.HostApiMinimum, 2,
-                $"module '{installedModule.Id}' minimum API");
-            var maximum = ParseVersion(release?.HostApiMaximum ?? installedModule.HostApiMaximum, 2,
-                $"module '{installedModule.Id}' maximum API");
+            var minimum = ParseVersion(release?.HostApiMinimum ?? installedModule.HostApiMinimum, 2, $"module '{installedModule.Id}' minimum API");
+            var maximum = ParseVersion(release?.HostApiMaximum ?? installedModule.HostApiMaximum, 2, $"module '{installedModule.Id}' maximum API");
             if (targetHostApi < minimum || targetHostApi > maximum)
                 issues.Add($"Module '{installedModule.Id}' does not support target host API {targetHostApi.ToString(2)}.");
         }
@@ -105,19 +91,11 @@ public sealed class UpdatePlanBuilder
         return new(scope, rows, plan);
     }
 
-    private static IReadOnlyList<UpdateCatalogRelease> NewerReleases(
-        UpdateCatalogComponent component, Version installedVersion) => component.Releases
-        .Where(release => ParseVersion(release.Version, 3,
-            $"component '{component.Id}' release version") > installedVersion)
-        .OrderByDescending(release => ParseVersion(release.Version, 3,
-            $"component '{component.Id}' release version"))
+    private static IReadOnlyList<UpdateCatalogRelease> NewerReleases(UpdateCatalogComponent component, Version installedVersion) => component.Releases.Where(release => ParseVersion(release.Version, 3, $"component '{component.Id}' release version") > installedVersion)
+        .OrderByDescending(release => ParseVersion(release.Version, 3, $"component '{component.Id}' release version"))
         .ToArray();
 
-    private static UpdateCatalogRelease? Select(
-        string componentId,
-        IReadOnlyList<UpdateCatalogRelease> releases,
-        IReadOnlyDictionary<string, string>? selections,
-        ICollection<string> issues)
+    private static UpdateCatalogRelease? Select(string componentId, IReadOnlyList<UpdateCatalogRelease> releases, IReadOnlyDictionary<string, string>? selections, ICollection<string> issues)
     {
         if (releases.Count == 0) return null;
         if (selections is null || !selections.TryGetValue(componentId, out var requested)) return releases[0];
@@ -126,9 +104,7 @@ public sealed class UpdatePlanBuilder
         return selected;
     }
 
-    private static bool ApplicationReleaseIsFeasible(
-        UpdateCatalogRelease release,
-        IReadOnlyDictionary<string, InstalledModuleVersion> installedModules)
+    private static bool ApplicationReleaseIsFeasible(UpdateCatalogRelease release, IReadOnlyDictionary<string, InstalledModuleVersion> installedModules)
     {
         var hostApi = ParseVersion(release.HostApiVersion, 2, $"application {release.Version} host API");
         foreach (var module in installedModules.Values)
