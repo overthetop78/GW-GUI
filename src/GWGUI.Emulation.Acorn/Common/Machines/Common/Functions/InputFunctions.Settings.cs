@@ -1,40 +1,40 @@
 using GWGUI.Emulation.Acorn.Common.Machines.BbcMicro.Functions;
 
 namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Functions;
-
 internal static class InputSettingsFunctions
 {
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var input = configuration.Input;
         var definitions = BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration);
-        var keyboard = new EmulationInputBindingSet(definitions,
-            input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard);
+        var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard);
         var configured = input.Controllers ?? [];
-        var choices = ControllerFunctions.Peripherals(configuration.Model)
-            .OrderBy(category => category).Select(Choice).ToArray();
-        var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort,
-            ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(index =>
+        var choices = ControllerFunctions.Peripherals(configuration.Model).OrderBy(category => category).Select(Choice).ToArray();
+        var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(index =>
         {
             var current = configured.FirstOrDefault(binding => binding.Port == index);
             var peripheral = current?.Peripheral ?? PeripheralCategory.AnalogJoystick;
-            return new EmulationControllerPort(index + BufferConstants.IndexIncrement,
-                choices, peripheral.ToString(), current?.DeviceId,
-                new EmulationInputBindingSet(ControllerDefinitions(peripheral),
-                    current?.Mappings ?? new Dictionary<string, string>(),
-                    EmulationInputSource.Keyboard | EmulationInputSource.Mouse
-                        | EmulationInputSource.Controller, true),
+            return new EmulationControllerPort(
+                index + BufferConstants.IndexIncrement,
+                choices,
+                peripheral.ToString(),
+                current?.DeviceId,
+                new EmulationInputBindingSet(ControllerDefinitions(peripheral), current?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                 current?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent,
-                current?.VisualId);
+                current?.VisualId
+            );
         }).ToArray();
         return new EmulationInputSettings(keyboard, null, ports);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
+    internal static MachineConfiguration Apply(
+        MachineConfiguration configuration,
+        EmulationInputSettings settings
+    )
     {
         var allowedKeys = BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
-        var keyboardBindings = settings.Keyboard is null
-            ? configuration.Input.KeyboardBindings ?? ToStrings(configuration.Input.KeyboardMappings)
+        var keyboardBindings = settings.Keyboard is null 
+            ? configuration.Input.KeyboardBindings ?? ToStrings(configuration.Input.KeyboardMappings) 
             : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key) && (string.IsNullOrWhiteSpace(item.Value) || Enum.TryParse<EmulationKey>(item.Value, true, out var key) && Enum.IsDefined(key))).ToDictionary(item => item.Key, item => string.IsNullOrWhiteSpace(item.Value) ? string.Empty : item.Value, StringComparer.Ordinal);
         var keyboard = keyboardBindings.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
         var controllers = settings.ControllerPorts.Select(port =>
@@ -56,23 +56,19 @@ internal static class InputSettingsFunctions
         return result;
     }
 
-    private static EmulationControllerChoice Choice(PeripheralCategory category) =>
-        new(category.ToString(), category switch
+    private static EmulationControllerChoice Choice(PeripheralCategory category) => new(
+        category.ToString(),
+        category switch
         {
             PeripheralCategory.None => InputSettingsFunctionsConstants.ResourceControllerNone,
             PeripheralCategory.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
             PeripheralCategory.AnalogJoystick => InputSettingsFunctionsConstants.ResourceControllerAnalogJoystick,
             _ => throw new ArgumentOutOfRangeException(nameof(category), category, null)
-        }, BindingDefinitions: ControllerDefinitions(category));
-
-    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory category) =>
-        category == PeripheralCategory.None ? []
-            : InputSettingsFunctionsConstants.ControllerActions.Select(action =>
-                new InputBindingDefinition(action,
-                    InputSettingsFunctionsConstants.ResourceActionPrefix + action, string.Empty)).ToArray();
-
-    private static IReadOnlyDictionary<string, string> ToStrings(
-        IReadOnlyDictionary<string, EmulationKey>? mappings) =>
-        mappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal)
-            ?? new Dictionary<string, string>(StringComparer.Ordinal);
+        },
+        BindingDefinitions: ControllerDefinitions(category)
+    );
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory category) => category == PeripheralCategory.None 
+        ? [] 
+        : InputSettingsFunctionsConstants.ControllerActions.Select(action => new InputBindingDefinition(action, InputSettingsFunctionsConstants.ResourceActionPrefix + action, string.Empty)).ToArray();
+    private static IReadOnlyDictionary<string, string> ToStrings(IReadOnlyDictionary<string, EmulationKey>? mappings) => mappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>(StringComparer.Ordinal);
 }
