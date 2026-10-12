@@ -42,8 +42,7 @@ internal sealed partial class ExternalCore
         if (!ConfigurationFunctions.SupportsSlot(configuration.Model, media.Slot))
             throw new ArgumentOutOfRangeException(nameof(media));
         ContentFunctions.Validate(media.Path, _info.Extensions);
-        var replacement = configuration.Media.Where(value => value.Slot != media.Slot)
-            .Append(media with { IsInserted = true }).ToArray();
+        var replacement = configuration.Media.Where(value => value.Slot != media.Slot).Append(media with { IsInserted = true }).ToArray();
         var next = configuration with { Media = replacement };
         ConfigurationFunctions.Validate(next);
         var mounted = replacement.Where(value => value.IsInserted && value.Category != MediaCategory.Cartridge).ToArray();

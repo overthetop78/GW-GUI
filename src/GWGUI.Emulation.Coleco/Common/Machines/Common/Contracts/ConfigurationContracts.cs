@@ -7,9 +7,7 @@ internal sealed record ConfigurationDocument(int SchemaVersion, Guid Id, Machine
     IReadOnlyDictionary<string, string> Options, InputConfiguration Input, FolderConfiguration Folders,
     bool AudioEnabled, IReadOnlyList<EmulationMediaSlot> ConfiguredSlots);
 
-public sealed record FolderConfiguration(string? Shared = null, string? Cartridges = null,
-    string? Floppies = null, string? DataPacks = null, string? Saves = null,
-    string? States = null, string? Captures = null);
+public sealed record FolderConfiguration(string? Shared = null, string? Cartridges = null, string? Floppies = null, string? DataPacks = null, string? Saves = null, string? States = null, string? Captures = null);
 
 public sealed record MachineConfiguration : IEmulationConfiguration
 {

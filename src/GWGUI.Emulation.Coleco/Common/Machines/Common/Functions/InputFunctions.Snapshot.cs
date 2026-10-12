@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
 {
-    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration input,
-        MachineModel model, Emulator core)
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model, Emulator core)
     {
         var keys = snapshot.Keys;
         if (model == MachineModel.Adam)

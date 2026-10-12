@@ -20,8 +20,7 @@ internal static class CoreReleaseFunctions
         return new CoreRelease(entry.Emulator, CoreReleaseConstants.ReleaseIdPrefix + version, version, entry.ArchiveUri, published, response.Content.Headers.ContentLength);
     }
 
-    internal static async Task<long> DownloadAsync(HttpClient client, Uri source, string destination,
-        IProgress<CoreInstallProgress>? progress, CancellationToken cancellationToken)
+    internal static async Task<long> DownloadAsync(HttpClient client, Uri source, string destination, IProgress<CoreInstallProgress>? progress, CancellationToken cancellationToken)
     {
         using var response = await client.GetAsync(source, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
@@ -62,8 +61,7 @@ internal static class CoreReleaseFunctions
         return await JsonSerializer.DeserializeAsync<T>(stream, ManifestJsonOptions, cancellationToken).ConfigureAwait(false);
     }
 
-    private static async Task WriteJsonAtomicallyAsync<T>(string manifestPath,
-        T value, CancellationToken cancellationToken)
+    private static async Task WriteJsonAtomicallyAsync<T>(string manifestPath, T value, CancellationToken cancellationToken)
     {
         Directory.CreateDirectory(Path.GetDirectoryName(manifestPath)!);
         var temporary = manifestPath + CoreReleaseConstants.TemporaryManifestExtension;

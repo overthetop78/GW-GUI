@@ -7,7 +7,7 @@ namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalHostCallbacks : IDisposable
 {
-private bool SetRotation(nint data)
+    private bool SetRotation(nint data)
     {
         if (data == nint.Zero) return false;
         var rotation = unchecked((uint)Marshal.ReadInt32(data));

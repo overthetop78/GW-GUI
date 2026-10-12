@@ -16,8 +16,7 @@ internal static class FirmwareRuntimeFunctions
             GWGUI.Emulation.Coleco.Emulators.BlueMSX.Functions.SystemFilesFunctions.Prepare(configuration, systemDirectory);
     }
 
-    private static void Copy(MachineConfiguration configuration, FirmwareCategory category,
-        int length, string name, string directory)
+    private static void Copy(MachineConfiguration configuration, FirmwareCategory category, int length, string name, string directory)
     {
         var firmware = configuration.Firmwares.SingleOrDefault(value => value.Category == category);
         if (firmware is null || !File.Exists(firmware.Path))

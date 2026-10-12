@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Coleco.Emulators.Common.Functions;
 
 internal static class ControllerFunctions
 {
-    internal static EmulationInputSnapshot ApplyDeadZones(EmulationInputSnapshot input,
-        IReadOnlyList<ControllerBinding>? bindings)
+    internal static EmulationInputSnapshot ApplyDeadZones(EmulationInputSnapshot input, IReadOnlyList<ControllerBinding>? bindings)
     {
         var snapshot = InputFunctions.Freeze(input);
         if (bindings is null) return snapshot;

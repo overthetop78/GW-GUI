@@ -4,8 +4,7 @@ internal static class ControllerProtocolDictionary
 {
     internal static readonly IReadOnlyList<int> GearKeypad = [1, 9, 10, 11, 12, 13, 14, 15];
     internal static readonly IReadOnlyList<int> BlueKeypad = [9, 1, 11, 10, 13, 12, 15, 14];
-    internal static readonly IReadOnlyDictionary<int, int> JollyKeypad = new Dictionary<int, int>
-    { [1] = 0, [2] = 8, [3] = 1, [4] = 9, [5] = 0, [6] = 8, [7] = 1, [8] = 9, [9] = 2, [0] = 2 };
+    internal static readonly IReadOnlyDictionary<int, int> JollyKeypad = new Dictionary<int, int> { [1] = 0, [2] = 8, [3] = 1, [4] = 9, [5] = 0, [6] = 8, [7] = 1, [8] = 9, [9] = 2, [0] = 2 };
     internal const int JollyKeypadFirstModifier = 12, JollyKeypadSecondModifier = 13;
     internal static int Button(Emulator core, string action) => action switch
     {

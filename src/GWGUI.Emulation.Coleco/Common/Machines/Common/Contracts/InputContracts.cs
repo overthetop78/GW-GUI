@@ -1,5 +1,3 @@
 namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Contracts;
 
-public sealed record InputConfiguration(
-    IReadOnlyDictionary<string, string>? Keyboard = null,
-    IReadOnlyList<ControllerBinding>? Controllers = null);
+public sealed record InputConfiguration(IReadOnlyDictionary<string, string>? Keyboard = null, IReadOnlyList<ControllerBinding>? Controllers = null);

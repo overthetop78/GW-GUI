@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions;
 
 internal static class ControllerPortFunctions
 {
-    internal static void Configure(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration)
+    internal static void Configure(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration)
     {
         if (configuration.Core == Emulator.GearColeco)
         {
@@ -27,8 +26,7 @@ internal static class ControllerPortFunctions
             ConfigurePort(exports, callbacks, configuration, port, configuration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port)?.Peripheral ?? PeripheralCategory.Standard);
     }
 
-    internal static void ConfigurePort(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration, int port, PeripheralCategory peripheral)
+    internal static void ConfigurePort(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration, int port, PeripheralCategory peripheral)
     {
         if (port is < ControllerConstants.FirstPort or >= ControllerConstants.PortCount)
             throw new ArgumentOutOfRangeException(nameof(port));

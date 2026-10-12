@@ -15,8 +15,7 @@ internal sealed class LoadedSubsystem : IDisposable
         GameInfos = gameInfos;
     }
 
-    internal static LoadedSubsystem Create(IReadOnlyList<string?> paths,
-        bool needsFullPath, IReadOnlySet<string> supportedExtensions)
+    internal static LoadedSubsystem Create(IReadOnlyList<string?> paths, bool needsFullPath, IReadOnlySet<string> supportedExtensions)
     {
         var contents = new LoadedContent?[paths.Count];
         var stride = Marshal.SizeOf<ExternalCoreApi.GameInfo>();
