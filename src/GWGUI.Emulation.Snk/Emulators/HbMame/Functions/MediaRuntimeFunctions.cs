@@ -14,7 +14,12 @@ internal static class MediaRuntimeFunctions
     private static readonly IReadOnlySet<string> CardExtensions = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "mcr", "neo" };
     internal sealed record PreparedMemoryCard(string SourcePath, string RuntimePath, bool IsReadOnly);
 
-    internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineModel model) => model == MachineModel.NeoGeoMvs ? [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, RuntimeOptionConstants.CartridgeExtensions, RequiresMachineRecreation: true), new(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard, [".mcr", ".neo"], RequiresMachineRecreation: true)] : [];
+    internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineModel model) => model == MachineModel.NeoGeoMvs
+        ? [
+        new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, RuntimeOptionConstants.CartridgeExtensions, RequiresMachineRecreation: true),
+        new(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard, [".mcr", ".neo"], RequiresMachineRecreation: true)
+    ]
+        : [];
 
     internal static IReadOnlyList<string> InitialContentPaths(MachineConfiguration configuration)
     {

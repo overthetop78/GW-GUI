@@ -41,8 +41,22 @@ internal static class InputSnapshotFunctions
 
     private static bool IsPressed(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
-        if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase)) return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key);
-        if (mapping.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase)) return mapping[InputMappingConstants.MousePrefix.Length..] switch { InputMappingConstants.MouseLeft => snapshot.Pointer.Left, InputMappingConstants.MouseRight => snapshot.Pointer.Right, InputMappingConstants.MouseMiddle => snapshot.Pointer.Middle, InputMappingConstants.MouseExtended1 => snapshot.Pointer.ExtendedButton1, InputMappingConstants.MouseExtended2 => snapshot.Pointer.ExtendedButton2, InputMappingConstants.MouseWheelUp => snapshot.Pointer.Wheel > 0, InputMappingConstants.MouseWheelDown => snapshot.Pointer.Wheel < 0, InputMappingConstants.MouseWheelLeft => snapshot.Pointer.HorizontalWheel < 0, InputMappingConstants.MouseWheelRight => snapshot.Pointer.HorizontalWheel > 0, _ => false };
+        if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
+            return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key);
+        if (mapping.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
+            return mapping[InputMappingConstants.MousePrefix.Length..] switch
+            {
+                InputMappingConstants.MouseLeft => snapshot.Pointer.Left,
+                InputMappingConstants.MouseRight => snapshot.Pointer.Right,
+                InputMappingConstants.MouseMiddle => snapshot.Pointer.Middle,
+                InputMappingConstants.MouseExtended1 => snapshot.Pointer.ExtendedButton1,
+                InputMappingConstants.MouseExtended2 => snapshot.Pointer.ExtendedButton2,
+                InputMappingConstants.MouseWheelUp => snapshot.Pointer.Wheel > 0,
+                InputMappingConstants.MouseWheelDown => snapshot.Pointer.Wheel < 0,
+                InputMappingConstants.MouseWheelLeft => snapshot.Pointer.HorizontalWheel < 0,
+                InputMappingConstants.MouseWheelRight => snapshot.Pointer.HorizontalWheel > 0,
+                _ => false
+            };
         return mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase) && EmulationInputMappingFunctions.IsControllerSourcePressed(mapping, controller);
     }
 }

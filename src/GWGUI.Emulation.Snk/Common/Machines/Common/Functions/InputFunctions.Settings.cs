@@ -9,8 +9,19 @@ internal static class InputSettingsFunctions
         return models.SelectMany(Choices).Distinct().ToArray();
     }
 
-    internal static PeripheralCategory DefaultPeripheral(MachineModel model) => model switch { MachineModel.NeoGeoPocket => PeripheralCategory.NeoGeoPocket, MachineModel.NeoGeoPocketColor => PeripheralCategory.NeoGeoPocketColor, MachineModel.NeoGeoCd or MachineModel.NeoGeoCdz => PeripheralCategory.NeoGeoCdPad, MachineModel.NeoGeoAes or MachineModel.NeoGeoMvs => PeripheralCategory.NeoGeoArcadeStick, _ => throw new ArgumentOutOfRangeException(nameof(model)) };
-    private static IReadOnlyList<PeripheralCategory> Choices(MachineModel model) => model switch { MachineModel.NeoGeoPocket => [PeripheralCategory.NeoGeoPocket], MachineModel.NeoGeoPocketColor => [PeripheralCategory.NeoGeoPocketColor], MachineModel.NeoGeoAes or MachineModel.NeoGeoMvs or MachineModel.NeoGeoCd or MachineModel.NeoGeoCdz => [PeripheralCategory.NeoGeoArcadeStick, PeripheralCategory.NeoGeoCdPad], _ => throw new ArgumentOutOfRangeException(nameof(model)) };
+    internal static PeripheralCategory DefaultPeripheral(MachineModel model) => model switch
+    {
+        MachineModel.NeoGeoPocket => PeripheralCategory.NeoGeoPocket,
+        MachineModel.NeoGeoPocketColor => PeripheralCategory.NeoGeoPocketColor,
+        MachineModel.NeoGeoCd or MachineModel.NeoGeoCdz => PeripheralCategory.NeoGeoCdPad,
+        MachineModel.NeoGeoAes or MachineModel.NeoGeoMvs => PeripheralCategory.NeoGeoArcadeStick,
+        _ => throw new ArgumentOutOfRangeException(nameof(model))};
+    private static IReadOnlyList<PeripheralCategory> Choices(MachineModel model) => model switch
+    {
+        MachineModel.NeoGeoPocket => [PeripheralCategory.NeoGeoPocket],
+        MachineModel.NeoGeoPocketColor => [PeripheralCategory.NeoGeoPocketColor],
+        MachineModel.NeoGeoAes or MachineModel.NeoGeoMvs or MachineModel.NeoGeoCd or MachineModel.NeoGeoCdz => [PeripheralCategory.NeoGeoArcadeStick, PeripheralCategory.NeoGeoCdPad],
+        _ => throw new ArgumentOutOfRangeException(nameof(model))};
     internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => port >= ControllerConstants.FirstPort && port < ConfigurationFunctions.ControllerPortCount(configuration) && Choices(configuration.Model).Contains(peripheral);
 
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
@@ -19,8 +30,28 @@ internal static class InputSettingsFunctions
         {
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
             var peripheral = binding?.Peripheral ?? DefaultPeripheral(configuration.Model);
-            var choices = Choices(configuration.Model).Select(category => new EmulationControllerChoice(category.ToString(), "Emulation.Snk.Controller." + category, BindingDefinitions: ControllerProtocolDictionary.Actions(configuration.Model, category).Select(action => action.Definition).ToArray(), CompatibleVisualIds: ControllerVisualDictionary.VisualIds(category), DefaultVisualId: ControllerVisualDictionary.DefaultVisualId(category), VisualCommandIds: ControllerVisualDictionary.Commands(category))).ToArray();
-            return new EmulationControllerPort(port + 1, choices, peripheral.ToString(), binding?.DeviceId, new(ControllerProtocolDictionary.Actions(configuration.Model, peripheral).Select(action => action.Definition).ToArray(), binding?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true), binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId);
+            var choices = Choices(configuration.Model).Select(category => new EmulationControllerChoice(
+                category.ToString(),
+                "Emulation.Snk.Controller." + category,
+                BindingDefinitions: ControllerProtocolDictionary.Actions(configuration.Model, category).Select(action => action.Definition).ToArray(),
+                CompatibleVisualIds: ControllerVisualDictionary.VisualIds(category),
+                DefaultVisualId: ControllerVisualDictionary.DefaultVisualId(category),
+                VisualCommandIds: ControllerVisualDictionary.Commands(category)
+            )).ToArray();
+            return new EmulationControllerPort(
+                port + 1,
+                choices,
+                peripheral.ToString(),
+                binding?.DeviceId,
+                new(
+                ControllerProtocolDictionary.Actions(configuration.Model, peripheral).Select(action => action.Definition).ToArray(),
+                binding?.Mappings ?? new Dictionary<string, string>(),
+                EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
+                true
+            ),
+                binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent,
+                binding?.VisualId
+            );
         }).ToArray();
         return new(null, null, ports);
     }
@@ -52,9 +83,12 @@ internal static class InputSettingsFunctions
 
     private static bool IsSource(string source)
     {
-        if (string.IsNullOrEmpty(source)) return true;
-        if (source.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase)) return Enum.TryParse<EmulationKey>(source[InputMappingConstants.KeyboardPrefix.Length..], out var key) && Enum.IsDefined(key) && key != EmulationKey.Unknown;
-        if (source.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase)) return source[InputMappingConstants.MousePrefix.Length..] is InputMappingConstants.MouseLeft or InputMappingConstants.MouseRight or InputMappingConstants.MouseMiddle or InputMappingConstants.MouseExtended1 or InputMappingConstants.MouseExtended2 or InputMappingConstants.MouseWheelUp or InputMappingConstants.MouseWheelDown or InputMappingConstants.MouseWheelLeft or InputMappingConstants.MouseWheelRight;
+        if (string.IsNullOrEmpty(source))
+            return true;
+        if (source.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
+            return Enum.TryParse<EmulationKey>(source[InputMappingConstants.KeyboardPrefix.Length..], out var key) && Enum.IsDefined(key) && key != EmulationKey.Unknown;
+        if (source.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
+            return source[InputMappingConstants.MousePrefix.Length..] is InputMappingConstants.MouseLeft or InputMappingConstants.MouseRight or InputMappingConstants.MouseMiddle or InputMappingConstants.MouseExtended1 or InputMappingConstants.MouseExtended2 or InputMappingConstants.MouseWheelUp or InputMappingConstants.MouseWheelDown or InputMappingConstants.MouseWheelLeft or InputMappingConstants.MouseWheelRight;
         return source.Length > InputMappingConstants.ControllerPrefix.Length && source.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase);
     }
 }

@@ -5,7 +5,15 @@ namespace GWGUI.Emulation.Snk.Emulators.Mame2000.Functions;
 
 internal static class MediaRuntimeFunctions
 {
-    private static readonly IReadOnlyDictionary<string, string> ParentDrivers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase) { ["sengokh"] = "sengoku", ["burningh"] = "burningf", ["2020bbh"] = "2020bb", ["maglordh"] = "maglord", ["puzzldpr"] = "puzzledp", ["breakrev"] = "breakers" };
+    private static readonly IReadOnlyDictionary<string, string> ParentDrivers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+    {
+        ["sengokh"] = "sengoku",
+        ["burningh"] = "burningf",
+        ["2020bbh"] = "2020bb",
+        ["maglordh"] = "maglord",
+        ["puzzldpr"] = "puzzledp",
+        ["breakrev"] = "breakers"
+    };
     internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineModel model) => model == MachineModel.NeoGeoMvs ? [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, RuntimeOptionConstants.CartridgeExtensions, RequiresMachineRecreation: true)] : [];
 
     internal static IReadOnlyList<string> InitialContentPaths(MachineConfiguration configuration)

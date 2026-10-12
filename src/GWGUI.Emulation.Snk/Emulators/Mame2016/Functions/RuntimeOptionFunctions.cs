@@ -5,7 +5,19 @@ namespace GWGUI.Emulation.Snk.Emulators.Mame2016.Functions;
 
 internal static class RuntimeOptionFunctions
 {
-    private static readonly IReadOnlySet<string> ManagedOptions = new HashSet<string>(StringComparer.Ordinal) { RuntimeOptionConstants.ReadConfig, RuntimeOptionConstants.WriteConfig, RuntimeOptionConstants.MouseEnable, RuntimeOptionConstants.Throttle, RuntimeOptionConstants.SoftlistsEnable, RuntimeOptionConstants.SoftlistsAutoMedia, RuntimeOptionConstants.MediaType, RuntimeOptionConstants.BootToBios, RuntimeOptionConstants.BootToOsd, RuntimeOptionConstants.BootFromCli };
+    private static readonly IReadOnlySet<string> ManagedOptions = new HashSet<string>(StringComparer.Ordinal)
+    {
+        RuntimeOptionConstants.ReadConfig,
+        RuntimeOptionConstants.WriteConfig,
+        RuntimeOptionConstants.MouseEnable,
+        RuntimeOptionConstants.Throttle,
+        RuntimeOptionConstants.SoftlistsEnable,
+        RuntimeOptionConstants.SoftlistsAutoMedia,
+        RuntimeOptionConstants.MediaType,
+        RuntimeOptionConstants.BootToBios,
+        RuntimeOptionConstants.BootToOsd,
+        RuntimeOptionConstants.BootFromCli
+    };
 
     internal static IReadOnlyDictionary<string, string> Prepare(MachineConfiguration configuration)
     {

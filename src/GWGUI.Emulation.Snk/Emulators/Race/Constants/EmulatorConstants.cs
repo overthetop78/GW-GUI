@@ -9,5 +9,8 @@ internal static class EmulatorConstants
     internal const string InspectedRevision = "c7810dd7f172827bfa2004813bc000b13786636b";
     internal const string ArchiveUri = "https://buildbot.libretro.com/nightly/windows/x86_64/latest/race_libretro.dll.zip";
     internal const string DescriptionResourceKey = "Emulation.Emulator.race.Description";
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.Race, Id, LibraryName, DllName, new Uri(ArchiveUri, UriKind.Absolute), SourceUri, InspectedRevision, MachineModel.NeoGeoPocket, MachineModel.NeoGeoPocketColor) with { DescriptionResourceKey = DescriptionResourceKey };
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.Race, Id, LibraryName, DllName, new Uri(ArchiveUri, UriKind.Absolute), SourceUri, InspectedRevision, MachineModel.NeoGeoPocket, MachineModel.NeoGeoPocketColor)with
+    {
+        DescriptionResourceKey = DescriptionResourceKey
+    };
 }

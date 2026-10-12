@@ -12,7 +12,12 @@ internal static class MediaRuntimeFunctions
     private const bool NeedsFullPath = true;
     internal sealed record PreparedMemoryCard(string SourcePath, string RuntimePath, bool IsReadOnly);
 
-    internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineConfiguration configuration) => ConfigurationFunctions.Family(configuration.Model) == MachineFamily.NeoGeoCd ? [new(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc, [CueExtension, ChdExtension], RequiresMachineRecreation: true)] : [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, [CartridgeExtension], RequiresMachineRecreation: true), new(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard, [MemoryCardExtension], RequiresMachineRecreation: true)];
+    internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineConfiguration configuration) => ConfigurationFunctions.Family(configuration.Model) == MachineFamily.NeoGeoCd
+        ? [new(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc, [CueExtension, ChdExtension], RequiresMachineRecreation: true)]
+        : [
+        new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, [CartridgeExtension], RequiresMachineRecreation: true),
+        new(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard, [MemoryCardExtension], RequiresMachineRecreation: true)
+    ];
 
     internal static IReadOnlyList<string> InitialContentPaths(MachineConfiguration configuration)
     {

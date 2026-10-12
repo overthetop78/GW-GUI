@@ -16,6 +16,8 @@ internal static class RuntimeOptionFunctions
     internal static IReadOnlyList<CoreOption> Describe(MachineConfiguration configuration)
     {
         var selected = Prepare(configuration);
-        return OptionCatalog.Options.Select(option => option with { CurrentValue = selected[option.Key], IsVisible = option.IsVisible && option.Key != RuntimeOptionConstants.QsoundOutputFilter, IsEnabled = option.Key == RuntimeOptionConstants.FrameskipThreshold ? selected[RuntimeOptionConstants.Frameskip] == RuntimeOptionConstants.Threshold : option.Key != RuntimeOptionConstants.FrameskipInterval || selected[RuntimeOptionConstants.Frameskip] != RuntimeOptionConstants.Disabled }).ToArray();
+        return OptionCatalog.Options.Select(option => option with { CurrentValue = selected[option.Key], IsVisible = option.IsVisible && option.Key != RuntimeOptionConstants.QsoundOutputFilter, IsEnabled = option.Key == RuntimeOptionConstants.FrameskipThreshold
+            ? selected[RuntimeOptionConstants.Frameskip] == RuntimeOptionConstants.Threshold
+            : option.Key != RuntimeOptionConstants.FrameskipInterval || selected[RuntimeOptionConstants.Frameskip] != RuntimeOptionConstants.Disabled }).ToArray();
     }
 }

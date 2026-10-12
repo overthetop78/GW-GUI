@@ -12,7 +12,17 @@ internal static class FirmwareRuntimeFunctions
     private const string SoundRom = "sm1.sm1";
     private const string FixedRom = "sfix.sfx";
     private const string ZoomRom = "000-lo.lo";
-    private static readonly IReadOnlyDictionary<string, string> BiosFiles = new Dictionary<string, string>(StringComparer.Ordinal) { ["default"] = "sp-s2.sp1", ["euro"] = "sp-s2.sp1", ["euro-s1"] = "sp-s.sp1", ["us"] = "usa_2slt.bin", ["us-e"] = "sp-e.sp1", ["asia"] = "asia-s3.rom", ["japan"] = "vs-bios.rom", ["japan-s2"] = "sp-j2.rom" };
+    private static readonly IReadOnlyDictionary<string, string> BiosFiles = new Dictionary<string, string>(StringComparer.Ordinal)
+    {
+        ["default"] = "sp-s2.sp1",
+        ["euro"] = "sp-s2.sp1",
+        ["euro-s1"] = "sp-s.sp1",
+        ["us"] = "usa_2slt.bin",
+        ["us-e"] = "sp-e.sp1",
+        ["asia"] = "asia-s3.rom",
+        ["japan"] = "vs-bios.rom",
+        ["japan-s2"] = "sp-j2.rom"
+    };
     internal static IReadOnlyList<FirmwareCategory> Roles => [FirmwareCategory.SystemBios];
     private static bool IsCompatible(ZipArchive archive) => BiosFiles.Values.Any(file => archive.GetEntry(file)?.Length == BiosRomBytes) && archive.GetEntry(SoundRom)?.Length == BiosRomBytes && archive.GetEntry(FixedRom)?.Length == BiosRomBytes && archive.GetEntry(ZoomRom)?.Length == ZoomRomBytes;
 

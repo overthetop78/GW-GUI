@@ -2,7 +2,17 @@ namespace GWGUI.Emulation.Snk.Common.Machines.Common.Contracts;
 
 internal sealed record SavedStateHeader( int FormatVersion, Emulator Core, string CoreName, string CoreVersion, string CoreSha256, MachineModel Model, string ConfigurationSha256, string ContentSha256, string StateSha256);
 
-internal sealed record StateConfigurationFingerprint( int SchemaVersion, MachineModel Model, Emulator Core, bool AudioEnabled, IReadOnlyList<StateContentEntry> Content, IReadOnlyList<KeyValuePair<string, string>> Options, StateInputFingerprint Input, IReadOnlyList<MediaConfiguration> Media, IReadOnlyList<FirmwareConfiguration> Firmwares);
+internal sealed record StateConfigurationFingerprint(
+    int SchemaVersion,
+    MachineModel Model,
+    Emulator Core,
+    bool AudioEnabled,
+    IReadOnlyList<StateContentEntry> Content,
+    IReadOnlyList<KeyValuePair<string, string>> Options,
+    StateInputFingerprint Input,
+    IReadOnlyList<MediaConfiguration> Media,
+    IReadOnlyList<FirmwareConfiguration> Firmwares
+);
 
 internal sealed record StateContentEntry(string Slot, string Category, string Hash);
 

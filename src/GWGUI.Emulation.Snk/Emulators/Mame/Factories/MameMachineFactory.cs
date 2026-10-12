@@ -24,8 +24,25 @@ internal sealed class MameMachineFactory() : LibretroMachineFactory(EmulatorCons
 
     internal override IReadOnlyDictionary<ControllerCommand, uint> ControllerButtonIds(MachineConfiguration configuration)
     {
-        var result = new Dictionary<ControllerCommand, uint> { [ControllerCommand.Up] = InputConstants.JoypadUpId, [ControllerCommand.Down] = InputConstants.JoypadDownId, [ControllerCommand.Left] = InputConstants.JoypadLeftId, [ControllerCommand.Right] = InputConstants.JoypadRightId, [ControllerCommand.A] = InputConstants.JoypadBId, [ControllerCommand.B] = InputConstants.JoypadAId };
-        if (configuration.Family == MachineFamily.NeoGeoPocket) result[ControllerCommand.Option] = InputConstants.JoypadSelectId; else { result[ControllerCommand.C] = InputConstants.JoypadYId; result[ControllerCommand.D] = InputConstants.JoypadXId; result[ControllerCommand.Start] = InputConstants.JoypadStartId; result[ControllerCommand.Select] = InputConstants.JoypadSelectId; }
+        var result = new Dictionary<ControllerCommand, uint>
+        {
+            [ControllerCommand.Up] = InputConstants.JoypadUpId,
+            [ControllerCommand.Down] = InputConstants.JoypadDownId,
+            [ControllerCommand.Left] = InputConstants.JoypadLeftId,
+            [ControllerCommand.Right] = InputConstants.JoypadRightId,
+            [ControllerCommand.A] = InputConstants.JoypadBId,
+            [ControllerCommand.B] = InputConstants.JoypadAId
+        };
+        if (configuration.Family == MachineFamily.NeoGeoPocket)
+            result[ControllerCommand.Option] = InputConstants.JoypadSelectId;
+        else
+        {
+            result[ControllerCommand.C] = InputConstants.JoypadYId;
+            result[ControllerCommand.D] = InputConstants.JoypadXId;
+            result[ControllerCommand.Start] = InputConstants.JoypadStartId;
+            result[ControllerCommand.Select] = InputConstants.JoypadSelectId;
+        }
+    
         return result;
     }
 }

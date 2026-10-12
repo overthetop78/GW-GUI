@@ -19,5 +19,17 @@ internal sealed class Mame2003MachineFactory() : LibretroMachineFactory(Emulator
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices(configuration.Model);
     public override IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => NativeMedia.InitialContentPaths(configuration);
     public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);
-    internal override IReadOnlyDictionary<ControllerCommand, uint> ControllerButtonIds(MachineConfiguration configuration) => new Dictionary<ControllerCommand, uint> { [ControllerCommand.Up] = InputConstants.JoypadUpId, [ControllerCommand.Down] = InputConstants.JoypadDownId, [ControllerCommand.Left] = InputConstants.JoypadLeftId, [ControllerCommand.Right] = InputConstants.JoypadRightId, [ControllerCommand.A] = InputConstants.JoypadBId, [ControllerCommand.B] = InputConstants.JoypadYId, [ControllerCommand.C] = InputConstants.JoypadXId, [ControllerCommand.D] = InputConstants.JoypadAId, [ControllerCommand.Start] = InputConstants.JoypadStartId, [ControllerCommand.Select] = InputConstants.JoypadSelectId };
+    internal override IReadOnlyDictionary<ControllerCommand, uint> ControllerButtonIds(MachineConfiguration configuration) => new Dictionary<ControllerCommand, uint>
+    {
+        [ControllerCommand.Up] = InputConstants.JoypadUpId,
+        [ControllerCommand.Down] = InputConstants.JoypadDownId,
+        [ControllerCommand.Left] = InputConstants.JoypadLeftId,
+        [ControllerCommand.Right] = InputConstants.JoypadRightId,
+        [ControllerCommand.A] = InputConstants.JoypadBId,
+        [ControllerCommand.B] = InputConstants.JoypadYId,
+        [ControllerCommand.C] = InputConstants.JoypadXId,
+        [ControllerCommand.D] = InputConstants.JoypadAId,
+        [ControllerCommand.Start] = InputConstants.JoypadStartId,
+        [ControllerCommand.Select] = InputConstants.JoypadSelectId
+    };
 }

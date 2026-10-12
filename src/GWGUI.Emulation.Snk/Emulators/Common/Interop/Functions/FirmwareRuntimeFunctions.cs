@@ -11,15 +11,20 @@ internal static class FirmwareRuntimeFunctions
         var firmware = configuration.Firmwares.SingleOrDefault(item => item.Category == role);
         if (firmware is null)
         {
-            if (FirmwareFunctions.IsRequired(configuration.Model, configuration.Core, role)) throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareMissing, ErrorMessages.RequiredFirmwareMissing);
+            if (FirmwareFunctions.IsRequired(configuration.Model, configuration.Core, role))
+                throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareMissing, ErrorMessages.RequiredFirmwareMissing);
             return;
         }
-        if (!File.Exists(firmware.Path)) throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareMissing, ErrorMessages.FirmwareFileMissing);
+    
+        if (!File.Exists(firmware.Path))
+            throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareMissing, ErrorMessages.FirmwareFileMissing);
         var candidate = FirmwareFunctions.ScanFileAsync(firmware.Path, configuration.Model, configuration.Core, CancellationToken.None).AsTask().GetAwaiter().GetResult();
-        if (candidate.Compatibility is not (EmulationFirmwareCompatibility.Official or EmulationFirmwareCompatibility.Compatible or EmulationFirmwareCompatibility.PartiallyCompatible) || candidate.DestinationFieldId != FirmwareFunctions.Field(role)) throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
+        if (candidate.Compatibility is not (EmulationFirmwareCompatibility.Official or EmulationFirmwareCompatibility.Compatible or EmulationFirmwareCompatibility.PartiallyCompatible) || candidate.DestinationFieldId != FirmwareFunctions.Field(role))
+            throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
         var source = Path.GetFullPath(firmware.Path);
         var destination = Path.GetFullPath(target);
         Directory.CreateDirectory(Path.GetDirectoryName(destination)!);
-        if (!string.Equals(source, destination, StringComparison.OrdinalIgnoreCase)) File.Copy(source, destination, overwrite: true);
+        if (!string.Equals(source, destination, StringComparison.OrdinalIgnoreCase))
+            File.Copy(source, destination, overwrite: true);
     }
 }

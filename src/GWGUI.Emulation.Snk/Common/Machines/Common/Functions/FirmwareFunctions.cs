@@ -23,17 +23,22 @@ internal static class FirmwareFunctions
 
     internal static ValueTask<EmulationFirmwareCandidate> ScanFileAsync(string path, MachineModel model, Emulator core, CancellationToken cancellationToken)
     {
-        if (!ConfigurationFunctions.IsCompatible(model, core)) throw new ArgumentOutOfRangeException(nameof(core));
+        if (!ConfigurationFunctions.IsCompatible(model, core))
+            throw new ArgumentOutOfRangeException(nameof(core));
         cancellationToken.ThrowIfCancellationRequested();
         var absolute = Path.GetFullPath(path);
-        return core != Emulator.None && EmulatorCatalog.CreateAdapter(core) is IEmulatorFirmwareAdapter adapter ? adapter.InspectFirmwareAsync(absolute, model, cancellationToken) : ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, EmulationFirmwareCompatibility.Unknown));
+        return core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorFirmwareAdapter adapter
+            ? adapter.InspectFirmwareAsync(absolute, model, cancellationToken)
+            : ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, EmulationFirmwareCompatibility.Unknown));
     }
 
     internal static FirmwareConfiguration Select(EmulationFirmwareCandidate candidate, MachineModel model, Emulator core)
     {
-        if (candidate.Compatibility is not EmulationFirmwareCompatibility.Official and not EmulationFirmwareCompatibility.Compatible and not EmulationFirmwareCompatibility.PartiallyCompatible || !IsField(candidate.DestinationFieldId ?? string.Empty)) throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareCannotBeSelected);
+        if (candidate.Compatibility is not EmulationFirmwareCompatibility.Official and not EmulationFirmwareCompatibility.Compatible and not EmulationFirmwareCompatibility.PartiallyCompatible || !IsField(candidate.DestinationFieldId ?? string.Empty))
+            throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareCannotBeSelected);
         var roles = Roles(model, core).Where(role => Field(role) == candidate.DestinationFieldId).ToArray();
-        if (roles.Length != 1) throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareCannotBeSelected);
+        if (roles.Length != 1)
+            throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareCannotBeSelected);
         return new(roles[0], candidate.Path, IsRequired(model, core, roles[0]), IsOriginalFirmware: false);
     }
 }

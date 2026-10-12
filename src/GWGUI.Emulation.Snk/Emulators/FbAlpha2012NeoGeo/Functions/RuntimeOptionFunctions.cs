@@ -17,6 +17,13 @@ internal static class RuntimeOptionFunctions
     {
         var options = Prepare(configuration);
         var mode = configuration.Model == MachineModel.NeoGeoAes ? RuntimeOptionConstants.Aes : RuntimeOptionConstants.Mvs;
-        return OptionCatalog.Options.Select(option => option with { DefaultValue = option.Key == RuntimeOptionConstants.NeoGeoMode ? mode : option.DefaultValue, CurrentValue = options.GetValueOrDefault(option.Key, option.DefaultValue), IsEnabled = option.Key switch { RuntimeOptionConstants.FrameskipThreshold => options[RuntimeOptionConstants.Frameskip] == RuntimeOptionConstants.ManualFrameskip, RuntimeOptionConstants.LowpassRange => options[RuntimeOptionConstants.LowpassFilter] == RuntimeOptionConstants.FilterEnabled, _ => true }, Values = option.Key == RuntimeOptionConstants.NeoGeoMode ? option.Values.Where(value => value.Value == mode || value.Value is RuntimeOptionConstants.UniverseBios or RuntimeOptionConstants.DipSwitch).ToArray() : option.Values }).ToArray();
+        return OptionCatalog.Options.Select(option => option with { DefaultValue = option.Key == RuntimeOptionConstants.NeoGeoMode ? mode : option.DefaultValue, CurrentValue = options.GetValueOrDefault(option.Key, option.DefaultValue), IsEnabled = option.Key switch
+        {
+            RuntimeOptionConstants.FrameskipThreshold => options[RuntimeOptionConstants.Frameskip] == RuntimeOptionConstants.ManualFrameskip,
+            RuntimeOptionConstants.LowpassRange => options[RuntimeOptionConstants.LowpassFilter] == RuntimeOptionConstants.FilterEnabled,
+            _ => true
+        }, Values = option.Key == RuntimeOptionConstants.NeoGeoMode
+            ? option.Values.Where(value => value.Value == mode || value.Value is RuntimeOptionConstants.UniverseBios or RuntimeOptionConstants.DipSwitch).ToArray()
+            : option.Values }).ToArray();
     }
 }

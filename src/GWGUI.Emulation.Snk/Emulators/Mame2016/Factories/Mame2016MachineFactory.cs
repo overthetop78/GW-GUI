@@ -25,8 +25,25 @@ internal sealed class Mame2016MachineFactory() : LibretroMachineFactory(Emulator
     internal override IReadOnlyDictionary<ControllerCommand, uint> ControllerButtonIds(MachineConfiguration configuration)
     {
         var arcade = configuration.Model == MachineModel.NeoGeoMvs;
-        var result = new Dictionary<ControllerCommand, uint> { [ControllerCommand.Up] = InputConstants.JoypadUpId, [ControllerCommand.Down] = InputConstants.JoypadDownId, [ControllerCommand.Left] = InputConstants.JoypadLeftId, [ControllerCommand.Right] = InputConstants.JoypadRightId, [ControllerCommand.A] = arcade ? InputConstants.JoypadBId : InputConstants.JoypadAId, [ControllerCommand.B] = arcade ? InputConstants.JoypadAId : InputConstants.JoypadBId };
-        if (configuration.Family == MachineFamily.NeoGeoPocket) result[ControllerCommand.Option] = InputConstants.JoypadSelectId; else { result[ControllerCommand.C] = arcade ? InputConstants.JoypadYId : InputConstants.JoypadXId; result[ControllerCommand.D] = arcade ? InputConstants.JoypadXId : InputConstants.JoypadYId; result[ControllerCommand.Start] = InputConstants.JoypadStartId; result[ControllerCommand.Select] = InputConstants.JoypadSelectId; }
+        var result = new Dictionary<ControllerCommand, uint>
+        {
+            [ControllerCommand.Up] = InputConstants.JoypadUpId,
+            [ControllerCommand.Down] = InputConstants.JoypadDownId,
+            [ControllerCommand.Left] = InputConstants.JoypadLeftId,
+            [ControllerCommand.Right] = InputConstants.JoypadRightId,
+            [ControllerCommand.A] = arcade ? InputConstants.JoypadBId : InputConstants.JoypadAId,
+            [ControllerCommand.B] = arcade ? InputConstants.JoypadAId : InputConstants.JoypadBId
+        };
+        if (configuration.Family == MachineFamily.NeoGeoPocket)
+            result[ControllerCommand.Option] = InputConstants.JoypadSelectId;
+        else
+        {
+            result[ControllerCommand.C] = arcade ? InputConstants.JoypadYId : InputConstants.JoypadXId;
+            result[ControllerCommand.D] = arcade ? InputConstants.JoypadXId : InputConstants.JoypadYId;
+            result[ControllerCommand.Start] = InputConstants.JoypadStartId;
+            result[ControllerCommand.Select] = InputConstants.JoypadSelectId;
+        }
+    
         return result;
     }
 }

@@ -77,7 +77,11 @@ internal sealed class SessionContentDirectory : IDisposable
         if (File.Exists(path)) throw new IOException(path);
     }
 
-    private static string NativePath(string path) => path.StartsWith(SessionContentConstants.ExtendedPathPrefix, StringComparison.Ordinal) ? path : path.StartsWith(SessionContentConstants.UncPathPrefix, StringComparison.Ordinal) ? SessionContentConstants.ExtendedUncPathPrefix + path[SessionContentConstants.UncPathPrefix.Length..] : SessionContentConstants.ExtendedPathPrefix + path;
+    private static string NativePath(string path) => path.StartsWith(SessionContentConstants.ExtendedPathPrefix, StringComparison.Ordinal)
+        ? path
+        : path.StartsWith(SessionContentConstants.UncPathPrefix, StringComparison.Ordinal)
+        ? SessionContentConstants.ExtendedUncPathPrefix + path[SessionContentConstants.UncPathPrefix.Length..]
+        : SessionContentConstants.ExtendedPathPrefix + path;
 
     [DllImport(SessionContentConstants.NativeLibrary, EntryPoint = "CreateFileW", CharSet = CharSet.Unicode, SetLastError = true)]
     private static extern SafeFileHandle CreateFile(string path, uint access, uint share, nint securityAttributes, uint creationDisposition, uint flags, nint template);

@@ -53,14 +53,32 @@ internal static class FirmwareRuntimeFunctions
     private static readonly IReadOnlyList<(string Id, string FileName, int Length)> CdBios = Array.AsReadOnly(new (string Id, string FileName, int Length)[] { ("top", "top-sp1.bin", LargeBiosBytes), ("topproto", "prototype_neocd_ver_0.02.bin", LargeBiosBytes), ("front", "front-sp1.bin", LargeBiosBytes), ("unibios32", "uni-bioscd32.rom", LargeBiosBytes), ("unibios33", "uni-bioscd33.rom", LargeBiosBytes) });
     private static readonly IReadOnlyList<(string Id, string FileName, int Length)> CdzBios = Array.AsReadOnly(new (string Id, string FileName, int Length)[] { ("official", "neocd.bin", LargeBiosBytes), ("unibios32", "uni-bioscd32.rom", LargeBiosBytes), ("unibios33", "uni-bioscd33.rom", LargeBiosBytes) });
     internal static IReadOnlyList<FirmwareCategory> Roles => [FirmwareCategory.SystemBios];
-    internal static string Driver(MachineModel model) => model switch { MachineModel.NeoGeoAes => "aes", MachineModel.NeoGeoMvs => "neogeo", MachineModel.NeoGeoPocket => "ngp", MachineModel.NeoGeoPocketColor => "ngpc", MachineModel.NeoGeoCd => "neocd", MachineModel.NeoGeoCdz => "neocdz", _ => throw new ArgumentOutOfRangeException(nameof(model)) };
+    internal static string Driver(MachineModel model) => model switch
+    {
+        MachineModel.NeoGeoAes => "aes",
+        MachineModel.NeoGeoMvs => "neogeo",
+        MachineModel.NeoGeoPocket => "ngp",
+        MachineModel.NeoGeoPocketColor => "ngpc",
+        MachineModel.NeoGeoCd => "neocd",
+        MachineModel.NeoGeoCdz => "neocdz",
+        _ => throw new ArgumentOutOfRangeException(nameof(model))};
 
     private static string? SelectBios(ZipArchive archive, MachineModel model)
     {
-        if (model is MachineModel.NeoGeoPocket or MachineModel.NeoGeoPocketColor) return archive.GetEntry(model == MachineModel.NeoGeoPocket ? "ngp_bios.ngp" : "ngpcbios.rom")?.Length == PocketBiosBytes ? string.Empty : null;
-        if (archive.GetEntry(ZoomRom)?.Length != CartridgeBiosBytes) return null;
-        if (model == MachineModel.NeoGeoMvs && (archive.GetEntry(FixedRom)?.Length != CartridgeBiosBytes || archive.GetEntry(SoundRom)?.Length != CartridgeBiosBytes)) return null;
-        IEnumerable<(string Id, string FileName, int Length)> alternatives = model switch { MachineModel.NeoGeoAes => AesBios.Concat(MvsBios.Where(bios => bios.Id.StartsWith("unibios", StringComparison.Ordinal))), MachineModel.NeoGeoMvs => MvsBios, MachineModel.NeoGeoCd => CdBios, MachineModel.NeoGeoCdz => CdzBios, _ => [] };
+        if (model is MachineModel.NeoGeoPocket or MachineModel.NeoGeoPocketColor)
+            return archive.GetEntry(model == MachineModel.NeoGeoPocket ? "ngp_bios.ngp" : "ngpcbios.rom")?.Length == PocketBiosBytes ? string.Empty : null;
+        if (archive.GetEntry(ZoomRom)?.Length != CartridgeBiosBytes)
+            return null;
+        if (model == MachineModel.NeoGeoMvs && (archive.GetEntry(FixedRom)?.Length != CartridgeBiosBytes || archive.GetEntry(SoundRom)?.Length != CartridgeBiosBytes))
+            return null;
+        IEnumerable<(string Id, string FileName, int Length)> alternatives = model switch
+        {
+            MachineModel.NeoGeoAes => AesBios.Concat(MvsBios.Where(bios => bios.Id.StartsWith("unibios", StringComparison.Ordinal))),
+            MachineModel.NeoGeoMvs => MvsBios,
+            MachineModel.NeoGeoCd => CdBios,
+            MachineModel.NeoGeoCdz => CdzBios,
+            _ => []
+        };
         return alternatives.FirstOrDefault(bios => archive.GetEntry(bios.FileName)?.Length == bios.Length).Id;
     }
 

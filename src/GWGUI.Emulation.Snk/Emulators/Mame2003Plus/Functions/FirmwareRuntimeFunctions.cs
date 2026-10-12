@@ -12,7 +12,25 @@ internal static class FirmwareRuntimeFunctions
     private const string SoundRom = "mame.sm1";
     private const string FixedRom = "sfix.sfx";
     private const string ZoomRom = "mamelo.lo";
-    private static readonly IReadOnlyDictionary<string, string> BiosFiles = new Dictionary<string, string>(StringComparer.Ordinal) { ["default"] = "sp-s2.sp1", ["euro"] = "sp-s2.sp1", ["euro-s1"] = "sp-s.sp1", ["us"] = "usa_2slt.bin", ["us-e"] = "sp-e.sp1", ["asia"] = "asia-s3.rom", ["japan"] = "vs-bios.rom", ["japan-s2"] = "sp-j2.sp1", ["unibios40"] = "uni-bios_4_0.rom", ["unibios33"] = "uni-bios_3_3.rom", ["unibios20"] = "uni-bios_2_0.rom", ["unibios13"] = "uni-bios_1_3.rom", ["unibios11"] = "uni-bios_1_1.rom", ["unibios10"] = "uni-bios_1_0.rom", ["debug"] = "neodebug.rom", ["asia-aes"] = "neo-epo.bin" };
+    private static readonly IReadOnlyDictionary<string, string> BiosFiles = new Dictionary<string, string>(StringComparer.Ordinal)
+    {
+        ["default"] = "sp-s2.sp1",
+        ["euro"] = "sp-s2.sp1",
+        ["euro-s1"] = "sp-s.sp1",
+        ["us"] = "usa_2slt.bin",
+        ["us-e"] = "sp-e.sp1",
+        ["asia"] = "asia-s3.rom",
+        ["japan"] = "vs-bios.rom",
+        ["japan-s2"] = "sp-j2.sp1",
+        ["unibios40"] = "uni-bios_4_0.rom",
+        ["unibios33"] = "uni-bios_3_3.rom",
+        ["unibios20"] = "uni-bios_2_0.rom",
+        ["unibios13"] = "uni-bios_1_3.rom",
+        ["unibios11"] = "uni-bios_1_1.rom",
+        ["unibios10"] = "uni-bios_1_0.rom",
+        ["debug"] = "neodebug.rom",
+        ["asia-aes"] = "neo-epo.bin"
+    };
     internal static IReadOnlyList<FirmwareCategory> Roles => [FirmwareCategory.SystemBios];
     private static bool IsCompatible(ZipArchive archive) => BiosFiles.Values.Any(file => archive.GetEntry(file)?.Length == BiosRomBytes) && archive.GetEntry(SoundRom)?.Length == BiosRomBytes && archive.GetEntry(FixedRom)?.Length == BiosRomBytes && archive.GetEntry(ZoomRom)?.Length == ZoomRomBytes;
 

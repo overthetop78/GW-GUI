@@ -33,10 +33,22 @@ public sealed class SnkEmulationModule : IEmulationModule, IEmulationEmulatorMan
     {
         var model = ModelCatalog.Parse(machineId);
         var current = configuration is null ? new MachineConfiguration(model) : Require(configuration);
-        if (current.Model != model) throw new ArgumentException(nameof(configuration));
-        var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
-        { EmulationMachineTab.Keyboard => false, EmulationMachineTab.Mouse => false, EmulationMachineTab.Rom => FirmwareFunctions.Roles(current.Model, current.Core).Count > 0, EmulationMachineTab.Cpu => true, EmulationMachineTab.Ram => HardwareModelCatalog.Get(current.Model).MainMemoryBytes is not null, EmulationMachineTab.Controllers => ConfigurationFunctions.ControllerPortCount(current) > BufferConstants.EmptyCollectionCount, EmulationMachineTab.Storage => true, _ => item.Value
-        });
+        if (current.Model != model)
+            throw new ArgumentException(nameof(configuration));
+        var tabs = DefaultVisibility.Tabs.ToDictionary(
+            item => item.Key,
+            item => item.Key switch
+        {
+            EmulationMachineTab.Keyboard => false,
+            EmulationMachineTab.Mouse => false,
+            EmulationMachineTab.Rom => FirmwareFunctions.Roles(current.Model, current.Core).Count > 0,
+            EmulationMachineTab.Cpu => true,
+            EmulationMachineTab.Ram => HardwareModelCatalog.Get(current.Model).MainMemoryBytes is not null,
+            EmulationMachineTab.Controllers => ConfigurationFunctions.ControllerPortCount(current) > BufferConstants.EmptyCollectionCount,
+            EmulationMachineTab.Storage => true,
+            _ => item.Value
+        }
+        );
         return new EmulationMachineSettings(machineId, new EmulationSettingsVisibility(tabs), SettingsDescriptionFunctions.Create(current));
     }
 
@@ -103,12 +115,21 @@ public sealed class SnkEmulationModule : IEmulationModule, IEmulationEmulatorMan
         cancellationToken.ThrowIfCancellationRequested();
         var current = Require(configuration);
         var adapter = _engine.Adapter(emulatorId);
-        if (!adapter.Definition.MachineIds.Contains(current.MachineId)) throw new ArgumentOutOfRangeException(nameof(emulatorId));
+        if (!adapter.Definition.MachineIds.Contains(current.MachineId))
+            throw new ArgumentOutOfRangeException(nameof(emulatorId));
         var core = Enum.Parse<Emulator>(adapter.EmulatorKey);
         var allowed = CoreOptionValidationFunctions.ForCore(core).Select(option => option.Key).ToHashSet(StringComparer.Ordinal);
         var options = current.Options.Where(option => allowed.Contains(option.Key) || option.Key == SettingsConstants.AudioOutput || option.Key == SettingsConstants.AudioLatency || option.Key == VideoAudioSettingsConstants.AudioVolumeOption).ToDictionary(option => option.Key, option => option.Value);
         var controllers = current.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(core).Contains(binding.Peripheral) ? binding : binding with { Peripheral = InputSettingsFunctions.DefaultPeripheral(current.Model) }).ToArray();
-        var result = current with { Core = core, Options = options, Input = current.Input with { Controllers = controllers } };
+        var result = current with
+        {
+            Core = core,
+            Options = options,
+            Input = current.Input with
+            {
+                Controllers = controllers
+            }
+        };
         ConfigurationFunctions.Validate(result);
         return ValueTask.FromResult<IEmulationConfiguration>(result);
     }
@@ -119,20 +140,36 @@ public sealed class SnkEmulationModule : IEmulationModule, IEmulationEmulatorMan
     {
         var current = Require(configuration);
         var adapter = _engine.Adapter(current);
-        var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken) .ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage( EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog, new EmulationEmulatorMessageContext(adapter.EmulatorId)));
+        var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog, new EmulationEmulatorMessageContext(adapter.EmulatorId)));
         var output = current.Options.GetValueOrDefault(SettingsConstants.AudioOutput);
-        if (output == SettingsConstants.DefaultOutput) output = null;
-        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : SettingsConstants.DefaultLatency;
-        var context = new EmulatorCreationContext(services.SessionsDirectory, corePath, services.HostExecutablePath, () => services.CreateAudioOutput(output, latency), value => value.Folders.Saves ?? Path.Combine(services.StatesDirectory, EmulationModuleConstants.SavesDirectoryName, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)));
+        if (output == SettingsConstants.DefaultOutput)
+            output = null;
+        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)
+            ? parsed
+            : SettingsConstants.DefaultLatency;
+        var context = new EmulatorCreationContext(
+            services.SessionsDirectory,
+            corePath,
+            services.HostExecutablePath,
+            () => services.CreateAudioOutput(output, latency),
+            value => value.Folders.Saves ?? Path.Combine(services.StatesDirectory, EmulationModuleConstants.SavesDirectoryName, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat))
+        );
         var storage = StorageSettingsFunctions.Describe(current);
-        return new EmulationMachineRuntime(current, media =>
+        return new EmulationMachineRuntime(
+            current,
+            media =>
         {
             var selected = current with
             {
                 Media = media.Select(item => EmulationMediaConversionFunctions.ToSnk(item, current.Media)).ToArray()
             };
             return _engine.CreateMachine(selected, context);
-        }, storage.AvailableDevices, storage.MountedMedia, ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey, false);
+        },
+            storage.AvailableDevices,
+            storage.MountedMedia,
+            ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey,
+            false
+        );
     }
 
     private IEmulatorAdapter Adapter(string machineId) => _engine.Adapters(ModelCatalog.Parse(machineId).ToString()).FirstOrDefault(adapter => adapter.EmulatorKey == ConfigurationFunctions.DefaultEmulator(ModelCatalog.Parse(machineId)).ToString()) ?? throw new ArgumentOutOfRangeException(nameof(machineId));

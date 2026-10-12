@@ -10,9 +10,12 @@ internal static class RuntimeOptionFunctions
     internal static IReadOnlyDictionary<string, string> Prepare(MachineConfiguration configuration)
     {
         var result = OptionCatalog.Options.Where(option => IsApplicable(configuration, option.Key)).ToDictionary(option => option.Key, option => option.DefaultValue, StringComparer.Ordinal);
-        if (configuration.Family == MachineFamily.NeoGeoCartridge) result[RuntimeOptionConstants.NeogeoMode] = DefaultMode(configuration.Model);
-        foreach (var option in configuration.Options) result[option.Key] = option.Value;
-        if (configuration.Family == MachineFamily.NeoGeoCartridge && configuration.Media.Any(media => media.Slot == EmulationMediaSlot.MemoryCard0)) result[RuntimeOptionConstants.MemcardMode] = configuration.Media.Any(media => media.Slot == EmulationMediaSlot.MemoryCard0 && media.IsInserted) ? RuntimeOptionConstants.PerGameCard : RuntimeOptionConstants.Disabled;
+        if (configuration.Family == MachineFamily.NeoGeoCartridge)
+            result[RuntimeOptionConstants.NeogeoMode] = DefaultMode(configuration.Model);
+        foreach (var option in configuration.Options)
+            result[option.Key] = option.Value;
+        if (configuration.Family == MachineFamily.NeoGeoCartridge && configuration.Media.Any(media => media.Slot == EmulationMediaSlot.MemoryCard0))
+            result[RuntimeOptionConstants.MemcardMode] = configuration.Media.Any(media => media.Slot == EmulationMediaSlot.MemoryCard0 && media.IsInserted) ? RuntimeOptionConstants.PerGameCard : RuntimeOptionConstants.Disabled;
         return result;
     }
 
@@ -28,12 +31,25 @@ internal static class RuntimeOptionFunctions
             if (option.Key == RuntimeOptionConstants.NeogeoMode)
             {
                 defaultValue = DefaultMode(configuration.Model);
-                values = values.Where(value => value.Value is RuntimeOptionConstants.UniverseBios or RuntimeOptionConstants.DipSwitch || (configuration.Model == MachineModel.NeoGeoAes ? value.Value is RuntimeOptionConstants.AesEurope or RuntimeOptionConstants.AesJapan : value.Value is RuntimeOptionConstants.MvsEurope or RuntimeOptionConstants.MvsUsa or RuntimeOptionConstants.MvsJapan)).ToArray();
+                values = values.Where(value => value.Value is RuntimeOptionConstants.UniverseBios or RuntimeOptionConstants.DipSwitch || (configuration.Model == MachineModel.NeoGeoAes
+                    ? value.Value is RuntimeOptionConstants.AesEurope or RuntimeOptionConstants.AesJapan
+                    : value.Value is RuntimeOptionConstants.MvsEurope or RuntimeOptionConstants.MvsUsa or RuntimeOptionConstants.MvsJapan)).ToArray();
             }
-            if (option.Key == RuntimeOptionConstants.MemcardMode && configuration.Media.Any(media => media.Slot == EmulationMediaSlot.MemoryCard0)) visible = false;
-            if (option.Key == RuntimeOptionConstants.FrameskipManualThreshold) enabled = selected.GetValueOrDefault(RuntimeOptionConstants.FrameskipType) == RuntimeOptionConstants.ManualFrameskip;
-            if (option.Key == RuntimeOptionConstants.FixedFrameskip) enabled = selected.GetValueOrDefault(RuntimeOptionConstants.FrameskipType) == RuntimeOptionConstants.FixedFrameskipMode;
-            return option with { DefaultValue = defaultValue, CurrentValue = selected.GetValueOrDefault(option.Key, defaultValue), Values = values, IsVisible = visible, IsEnabled = enabled };
+    
+            if (option.Key == RuntimeOptionConstants.MemcardMode && configuration.Media.Any(media => media.Slot == EmulationMediaSlot.MemoryCard0))
+                visible = false;
+            if (option.Key == RuntimeOptionConstants.FrameskipManualThreshold)
+                enabled = selected.GetValueOrDefault(RuntimeOptionConstants.FrameskipType) == RuntimeOptionConstants.ManualFrameskip;
+            if (option.Key == RuntimeOptionConstants.FixedFrameskip)
+                enabled = selected.GetValueOrDefault(RuntimeOptionConstants.FrameskipType) == RuntimeOptionConstants.FixedFrameskipMode;
+            return option with
+            {
+                DefaultValue = defaultValue,
+                CurrentValue = selected.GetValueOrDefault(option.Key, defaultValue),
+                Values = values,
+                IsVisible = visible,
+                IsEnabled = enabled
+            };
         }).ToArray();
     }
 

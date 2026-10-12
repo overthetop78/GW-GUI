@@ -61,7 +61,34 @@ internal static class EnvironmentFunctions
     }
 
     internal static uint CurrentLanguage() => (uint)(CultureInfo.CurrentUICulture.TwoLetterISOLanguageName switch
-    { EnvironmentFunctionsConstants.Ja => EnvironmentLanguage.Japanese, EnvironmentFunctionsConstants.Fr => EnvironmentLanguage.French, EnvironmentFunctionsConstants.Es => EnvironmentLanguage.Spanish, EnvironmentFunctionsConstants.De => EnvironmentLanguage.German, EnvironmentFunctionsConstants.It => EnvironmentLanguage.Italian, EnvironmentFunctionsConstants.Nl => EnvironmentLanguage.Dutch, EnvironmentFunctionsConstants.Pt when string.Equals(CultureInfo.CurrentUICulture.Name, EnvironmentFunctionsConstants.PtBR, StringComparison.OrdinalIgnoreCase) => EnvironmentLanguage.PortugueseBrazil, EnvironmentFunctionsConstants.Pt => EnvironmentLanguage.PortuguesePortugal, EnvironmentFunctionsConstants.Ru => EnvironmentLanguage.Russian, EnvironmentFunctionsConstants.Ko => EnvironmentLanguage.Korean, EnvironmentFunctionsConstants.Zh when CultureInfo.CurrentUICulture.Name.Contains(EnvironmentFunctionsConstants.Hant, StringComparison.OrdinalIgnoreCase) => EnvironmentLanguage.ChineseTraditional, EnvironmentFunctionsConstants.Zh => EnvironmentLanguage.ChineseSimplified, EnvironmentFunctionsConstants.Pl => EnvironmentLanguage.Polish, EnvironmentFunctionsConstants.Vi => EnvironmentLanguage.Vietnamese, EnvironmentFunctionsConstants.Ar => EnvironmentLanguage.Arabic, EnvironmentFunctionsConstants.El => EnvironmentLanguage.Greek, EnvironmentFunctionsConstants.Tr => EnvironmentLanguage.Turkish, EnvironmentFunctionsConstants.He => EnvironmentLanguage.Hebrew, EnvironmentFunctionsConstants.Fi => EnvironmentLanguage.Finnish, EnvironmentFunctionsConstants.Id => EnvironmentLanguage.Indonesian, EnvironmentFunctionsConstants.Sv => EnvironmentLanguage.Swedish, EnvironmentFunctionsConstants.Uk => EnvironmentLanguage.Ukrainian, EnvironmentFunctionsConstants.Cs => EnvironmentLanguage.Czech, EnvironmentFunctionsConstants.Hu => EnvironmentLanguage.Hungarian, EnvironmentFunctionsConstants.Nb => EnvironmentLanguage.Norwegian, EnvironmentFunctionsConstants.Th => EnvironmentLanguage.Thai, _ => EnvironmentLanguage.English
+    {
+        EnvironmentFunctionsConstants.Ja => EnvironmentLanguage.Japanese,
+        EnvironmentFunctionsConstants.Fr => EnvironmentLanguage.French,
+        EnvironmentFunctionsConstants.Es => EnvironmentLanguage.Spanish,
+        EnvironmentFunctionsConstants.De => EnvironmentLanguage.German,
+        EnvironmentFunctionsConstants.It => EnvironmentLanguage.Italian,
+        EnvironmentFunctionsConstants.Nl => EnvironmentLanguage.Dutch,
+        EnvironmentFunctionsConstants.Pt when string.Equals(CultureInfo.CurrentUICulture.Name, EnvironmentFunctionsConstants.PtBR, StringComparison.OrdinalIgnoreCase) => EnvironmentLanguage.PortugueseBrazil,
+        EnvironmentFunctionsConstants.Pt => EnvironmentLanguage.PortuguesePortugal,
+        EnvironmentFunctionsConstants.Ru => EnvironmentLanguage.Russian,
+        EnvironmentFunctionsConstants.Ko => EnvironmentLanguage.Korean,
+        EnvironmentFunctionsConstants.Zh when CultureInfo.CurrentUICulture.Name.Contains(EnvironmentFunctionsConstants.Hant, StringComparison.OrdinalIgnoreCase) => EnvironmentLanguage.ChineseTraditional,
+        EnvironmentFunctionsConstants.Zh => EnvironmentLanguage.ChineseSimplified,
+        EnvironmentFunctionsConstants.Pl => EnvironmentLanguage.Polish,
+        EnvironmentFunctionsConstants.Vi => EnvironmentLanguage.Vietnamese,
+        EnvironmentFunctionsConstants.Ar => EnvironmentLanguage.Arabic,
+        EnvironmentFunctionsConstants.El => EnvironmentLanguage.Greek,
+        EnvironmentFunctionsConstants.Tr => EnvironmentLanguage.Turkish,
+        EnvironmentFunctionsConstants.He => EnvironmentLanguage.Hebrew,
+        EnvironmentFunctionsConstants.Fi => EnvironmentLanguage.Finnish,
+        EnvironmentFunctionsConstants.Id => EnvironmentLanguage.Indonesian,
+        EnvironmentFunctionsConstants.Sv => EnvironmentLanguage.Swedish,
+        EnvironmentFunctionsConstants.Uk => EnvironmentLanguage.Ukrainian,
+        EnvironmentFunctionsConstants.Cs => EnvironmentLanguage.Czech,
+        EnvironmentFunctionsConstants.Hu => EnvironmentLanguage.Hungarian,
+        EnvironmentFunctionsConstants.Nb => EnvironmentLanguage.Norwegian,
+        EnvironmentFunctionsConstants.Th => EnvironmentLanguage.Thai,
+        _ => EnvironmentLanguage.English
     });
 
     internal static string CopyNativeLogTemplate(nint format)

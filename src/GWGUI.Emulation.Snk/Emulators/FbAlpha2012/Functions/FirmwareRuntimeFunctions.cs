@@ -79,8 +79,15 @@ internal static class FirmwareRuntimeFunctions
     private static bool Valid(ZipArchive archive, MachineModel model, string? mode)
     {
         bool Has(string name, int length) => archive.GetEntry(name)?.Length == length;
-        if (!Has(ZoomRom, RomBankBytes)) return false;
-        if (model is not (MachineModel.NeoGeoAes or MachineModel.NeoGeoMvs) || !Has(FixedRom, RomBankBytes) || !Has(SoundRom, RomBankBytes)) return false;
-        return BiosAlternatives.Any(bios => Has(bios.Key, bios.Value) && (mode switch { RuntimeOptionConstants.Aes => bios.Key is JapanAesRom or AsiaAesRom, RuntimeOptionConstants.Mvs => bios.Key is not (JapanAesRom or AsiaAesRom) && !bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal), RuntimeOptionConstants.UniverseBios => bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal), _ => model != MachineModel.NeoGeoAes || bios.Key is JapanAesRom or AsiaAesRom || bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal) }));
+        if (!Has(ZoomRom, RomBankBytes))
+            return false;
+        if (model is not (MachineModel.NeoGeoAes or MachineModel.NeoGeoMvs) || !Has(FixedRom, RomBankBytes) || !Has(SoundRom, RomBankBytes))
+            return false;
+        return BiosAlternatives.Any(bios => Has(bios.Key, bios.Value) && (mode switch
+        {
+            RuntimeOptionConstants.Aes => bios.Key is JapanAesRom or AsiaAesRom,
+            RuntimeOptionConstants.Mvs => bios.Key is not (JapanAesRom or AsiaAesRom) && !bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal),
+            RuntimeOptionConstants.UniverseBios => bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal),
+            _ => model != MachineModel.NeoGeoAes || bios.Key is JapanAesRom or AsiaAesRom || bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal)}));
     }
 }

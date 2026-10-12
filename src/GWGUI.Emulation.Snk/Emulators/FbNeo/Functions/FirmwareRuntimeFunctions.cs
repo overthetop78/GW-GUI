@@ -92,10 +92,20 @@ internal static class FirmwareRuntimeFunctions
     private static bool Valid(ZipArchive archive, MachineModel model, string? mode)
     {
         bool Has(string name, int length) => archive.GetEntry(name)?.Length == length;
-        if (model is MachineModel.NeoGeoPocket or MachineModel.NeoGeoPocketColor) return Has(model == MachineModel.NeoGeoPocket ? PocketBios : PocketColorBios, PocketBiosBytes);
-        if (!Has(ZoomRom, RomBankBytes)) return false;
-        if (model == MachineModel.NeoGeoCdz) return Has(CdRom, CdBiosBytes);
-        if (model is not (MachineModel.NeoGeoAes or MachineModel.NeoGeoMvs) || !Has(FixedRom, RomBankBytes) || !Has(SoundRom, RomBankBytes)) return false;
-        return BiosAlternatives.Any(bios => Has(bios.Key, bios.Value) && (mode switch { RuntimeOptionConstants.AesEurope => bios.Key == AsiaAesRom, RuntimeOptionConstants.AesJapan => bios.Key == JapanAesRom, RuntimeOptionConstants.UniverseBios => bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal), RuntimeOptionConstants.MvsEurope or RuntimeOptionConstants.MvsUsa or RuntimeOptionConstants.MvsJapan => bios.Key is not (JapanAesRom or AsiaAesRom) && !bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal), _ => model != MachineModel.NeoGeoAes || bios.Key is JapanAesRom or AsiaAesRom || bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal) }));
+        if (model is MachineModel.NeoGeoPocket or MachineModel.NeoGeoPocketColor)
+            return Has(model == MachineModel.NeoGeoPocket ? PocketBios : PocketColorBios, PocketBiosBytes);
+        if (!Has(ZoomRom, RomBankBytes))
+            return false;
+        if (model == MachineModel.NeoGeoCdz)
+            return Has(CdRom, CdBiosBytes);
+        if (model is not (MachineModel.NeoGeoAes or MachineModel.NeoGeoMvs) || !Has(FixedRom, RomBankBytes) || !Has(SoundRom, RomBankBytes))
+            return false;
+        return BiosAlternatives.Any(bios => Has(bios.Key, bios.Value) && (mode switch
+        {
+            RuntimeOptionConstants.AesEurope => bios.Key == AsiaAesRom,
+            RuntimeOptionConstants.AesJapan => bios.Key == JapanAesRom,
+            RuntimeOptionConstants.UniverseBios => bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal),
+            RuntimeOptionConstants.MvsEurope or RuntimeOptionConstants.MvsUsa or RuntimeOptionConstants.MvsJapan => bios.Key is not (JapanAesRom or AsiaAesRom) && !bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal),
+            _ => model != MachineModel.NeoGeoAes || bios.Key is JapanAesRom or AsiaAesRom || bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal)}));
     }
 }

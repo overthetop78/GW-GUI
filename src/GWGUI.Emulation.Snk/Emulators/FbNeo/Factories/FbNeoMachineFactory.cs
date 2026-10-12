@@ -35,16 +35,38 @@ internal sealed class FbNeoMachineFactory() : LibretroMachineFactory(EmulatorCon
 
     internal override bool LoadContent(MachineConfiguration configuration, ExternalCoreExports exports, LoadedContent? content)
     {
-        var loaded = configuration.Family switch { MachineFamily.NeoGeoCd => content is not null && exports.LoadGameSpecial(RuntimeOptionConstants.CdSubsystem, content.GameInfo, RuntimeOptionConstants.ContentCount), MachineFamily.NeoGeoPocket => content is not null && exports.LoadGameSpecial(RuntimeOptionConstants.PocketSubsystem, content.GameInfo, RuntimeOptionConstants.ContentCount), _ => exports.LoadGame(content?.GameInfo ?? nint.Zero) };
-        if (loaded) ControllerPortFunctions.Configure(exports, configuration);
+        var loaded = configuration.Family switch
+        {
+            MachineFamily.NeoGeoCd => content is not null && exports.LoadGameSpecial(RuntimeOptionConstants.CdSubsystem, content.GameInfo, RuntimeOptionConstants.ContentCount),
+            MachineFamily.NeoGeoPocket => content is not null && exports.LoadGameSpecial(RuntimeOptionConstants.PocketSubsystem, content.GameInfo, RuntimeOptionConstants.ContentCount),
+            _ => exports.LoadGame(content?.GameInfo ?? nint.Zero)};
+        if (loaded)
+            ControllerPortFunctions.Configure(exports, configuration);
         return loaded;
     }
 
     internal override uint ControllerDeviceId(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => peripheral == PeripheralCategory.None ? InputConstants.NoDevice : RuntimeOptionConstants.ClassicControllerDevice;
     internal override IReadOnlyDictionary<ControllerCommand, uint> ControllerButtonIds(MachineConfiguration configuration)
     {
-        var result = new Dictionary<ControllerCommand, uint> { [ControllerCommand.Up] = InputConstants.JoypadUpId, [ControllerCommand.Down] = InputConstants.JoypadDownId, [ControllerCommand.Left] = InputConstants.JoypadLeftId, [ControllerCommand.Right] = InputConstants.JoypadRightId, [ControllerCommand.A] = InputConstants.JoypadBId, [ControllerCommand.B] = InputConstants.JoypadAId };
-        if (configuration.Family == MachineFamily.NeoGeoPocket) result[ControllerCommand.Option] = InputConstants.JoypadYId; else { result[ControllerCommand.C] = InputConstants.JoypadYId; result[ControllerCommand.D] = InputConstants.JoypadXId; result[ControllerCommand.Start] = InputConstants.JoypadStartId; result[ControllerCommand.Select] = InputConstants.JoypadSelectId; }
+        var result = new Dictionary<ControllerCommand, uint>
+        {
+            [ControllerCommand.Up] = InputConstants.JoypadUpId,
+            [ControllerCommand.Down] = InputConstants.JoypadDownId,
+            [ControllerCommand.Left] = InputConstants.JoypadLeftId,
+            [ControllerCommand.Right] = InputConstants.JoypadRightId,
+            [ControllerCommand.A] = InputConstants.JoypadBId,
+            [ControllerCommand.B] = InputConstants.JoypadAId
+        };
+        if (configuration.Family == MachineFamily.NeoGeoPocket)
+            result[ControllerCommand.Option] = InputConstants.JoypadYId;
+        else
+        {
+            result[ControllerCommand.C] = InputConstants.JoypadYId;
+            result[ControllerCommand.D] = InputConstants.JoypadXId;
+            result[ControllerCommand.Start] = InputConstants.JoypadStartId;
+            result[ControllerCommand.Select] = InputConstants.JoypadSelectId;
+        }
+    
         return result;
     }
 }

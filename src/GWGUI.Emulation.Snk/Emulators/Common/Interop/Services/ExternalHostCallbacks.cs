@@ -30,7 +30,9 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private bool _disposed;
     private readonly ExternalCoreVirtualFileSystem _virtualFileSystem;
 
-    internal ExternalHostCallbacks(MachineConfiguration configuration, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions) : this(configuration.Core, systemDirectory, contentDirectory, saveDirectory, assetsDirectory, configuredOptions, configuration) { }
+    internal ExternalHostCallbacks(MachineConfiguration configuration, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions) : this(configuration.Core, systemDirectory, contentDirectory, saveDirectory, assetsDirectory, configuredOptions, configuration)
+    {
+    }
 
     internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions, MachineConfiguration? configuration = null)
     {

@@ -5,7 +5,18 @@ namespace GWGUI.Emulation.Snk.Emulators.Mame.Functions;
 
 internal static class RuntimeOptionFunctions
 {
-    private static readonly IReadOnlySet<string> ManagedOptions = new HashSet<string>(StringComparer.Ordinal) { RuntimeOptionConstants.ReadConfig, RuntimeOptionConstants.WriteConfig, RuntimeOptionConstants.MamePathsEnable, RuntimeOptionConstants.SoftlistsEnable, RuntimeOptionConstants.SoftlistsAutoMedia, RuntimeOptionConstants.MediaType, RuntimeOptionConstants.ButtonsProfiles, RuntimeOptionConstants.MouseEnable, RuntimeOptionConstants.BootToOsd };
+    private static readonly IReadOnlySet<string> ManagedOptions = new HashSet<string>(StringComparer.Ordinal)
+    {
+        RuntimeOptionConstants.ReadConfig,
+        RuntimeOptionConstants.WriteConfig,
+        RuntimeOptionConstants.MamePathsEnable,
+        RuntimeOptionConstants.SoftlistsEnable,
+        RuntimeOptionConstants.SoftlistsAutoMedia,
+        RuntimeOptionConstants.MediaType,
+        RuntimeOptionConstants.ButtonsProfiles,
+        RuntimeOptionConstants.MouseEnable,
+        RuntimeOptionConstants.BootToOsd
+    };
     private static readonly IReadOnlySet<string> UnsupportedInputs = new HashSet<string>(StringComparer.Ordinal) { RuntimeOptionConstants.LightgunMode, RuntimeOptionConstants.LightgunOffscreenMode };
 
     internal static IReadOnlyDictionary<string, string> Prepare(MachineConfiguration configuration)

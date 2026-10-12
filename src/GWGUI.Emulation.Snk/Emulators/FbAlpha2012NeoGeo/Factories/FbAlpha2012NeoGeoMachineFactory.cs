@@ -35,5 +35,17 @@ internal sealed class FbAlpha2012NeoGeoMachineFactory() : LibretroMachineFactory
     }
 
     internal override uint ControllerDeviceId(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => peripheral == PeripheralCategory.None ? InputConstants.NoDevice : RuntimeOptionConstants.ClassicControllerDevice;
-    internal override IReadOnlyDictionary<ControllerCommand, uint> ControllerButtonIds(MachineConfiguration configuration) => new Dictionary<ControllerCommand, uint> { [ControllerCommand.Up] = InputConstants.JoypadUpId, [ControllerCommand.Down] = InputConstants.JoypadDownId, [ControllerCommand.Left] = InputConstants.JoypadLeftId, [ControllerCommand.Right] = InputConstants.JoypadRightId, [ControllerCommand.A] = InputConstants.JoypadBId, [ControllerCommand.B] = InputConstants.JoypadAId, [ControllerCommand.C] = InputConstants.JoypadYId, [ControllerCommand.D] = InputConstants.JoypadXId, [ControllerCommand.Start] = InputConstants.JoypadStartId, [ControllerCommand.Select] = InputConstants.JoypadSelectId };
+    internal override IReadOnlyDictionary<ControllerCommand, uint> ControllerButtonIds(MachineConfiguration configuration) => new Dictionary<ControllerCommand, uint>
+    {
+        [ControllerCommand.Up] = InputConstants.JoypadUpId,
+        [ControllerCommand.Down] = InputConstants.JoypadDownId,
+        [ControllerCommand.Left] = InputConstants.JoypadLeftId,
+        [ControllerCommand.Right] = InputConstants.JoypadRightId,
+        [ControllerCommand.A] = InputConstants.JoypadBId,
+        [ControllerCommand.B] = InputConstants.JoypadAId,
+        [ControllerCommand.C] = InputConstants.JoypadYId,
+        [ControllerCommand.D] = InputConstants.JoypadXId,
+        [ControllerCommand.Start] = InputConstants.JoypadStartId,
+        [ControllerCommand.Select] = InputConstants.JoypadSelectId
+    };
 }

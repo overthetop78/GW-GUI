@@ -5,7 +5,16 @@ namespace GWGUI.Emulation.Snk.Emulators.Geolith.Functions;
 
 internal static class RuntimeOptionFunctions
 {
-    private static readonly IReadOnlySet<string> CartridgeOptions = new HashSet<string>(StringComparer.Ordinal) { RuntimeOptionConstants.SystemType, RuntimeOptionConstants.UnibiosHw, RuntimeOptionConstants.Memcard, RuntimeOptionConstants.MemcardWp, RuntimeOptionConstants.Settingmode, RuntimeOptionConstants.FourPlayer, RuntimeOptionConstants.Freeplay };
+    private static readonly IReadOnlySet<string> CartridgeOptions = new HashSet<string>(StringComparer.Ordinal)
+    {
+        RuntimeOptionConstants.SystemType,
+        RuntimeOptionConstants.UnibiosHw,
+        RuntimeOptionConstants.Memcard,
+        RuntimeOptionConstants.MemcardWp,
+        RuntimeOptionConstants.Settingmode,
+        RuntimeOptionConstants.FourPlayer,
+        RuntimeOptionConstants.Freeplay
+    };
     private static readonly IReadOnlySet<string> CdOptions = new HashSet<string>(StringComparer.Ordinal) { RuntimeOptionConstants.CdSystemType, RuntimeOptionConstants.CdSpeedHack, RuntimeOptionConstants.CdDmaLenLimit, RuntimeOptionConstants.CdSkipLoading };
 
     internal static IReadOnlyDictionary<string, string> Defaults(MachineModel model)
@@ -48,14 +57,28 @@ internal static class RuntimeOptionFunctions
         return OptionCatalog.Options.Select(option =>
         {
             var values = option.Values;
-            if (option.Key == RuntimeOptionConstants.SystemType) values = option.Values.Where(value => value.Value == defaults[option.Key] || value.Value == RuntimeOptionConstants.UniverseBios).ToArray();
-            if (option.Key == RuntimeOptionConstants.CdSystemType) values = option.Values.Where(value => configuration.Model == MachineModel.NeoGeoCd ? value.Value is RuntimeOptionConstants.CdFront or RuntimeOptionConstants.CdTop : value.Value is RuntimeOptionConstants.Cdz or RuntimeOptionConstants.CdzUniverseBios).ToArray();
+            if (option.Key == RuntimeOptionConstants.SystemType)
+                values = option.Values.Where(value => value.Value == defaults[option.Key] || value.Value == RuntimeOptionConstants.UniverseBios).ToArray();
+            if (option.Key == RuntimeOptionConstants.CdSystemType)
+                values = option.Values.Where(value => configuration.Model == MachineModel.NeoGeoCd
+                    ? value.Value is RuntimeOptionConstants.CdFront or RuntimeOptionConstants.CdTop
+                    : value.Value is RuntimeOptionConstants.Cdz or RuntimeOptionConstants.CdzUniverseBios).ToArray();
             var visible = option.IsVisible && (cd ? !CartridgeOptions.Contains(option.Key) : !CdOptions.Contains(option.Key));
-            if (option.Key is RuntimeOptionConstants.Memcard or RuntimeOptionConstants.MemcardWp && configuration.Media.Any(media => media.Slot == EmulationMediaSlot.MemoryCard0)) visible = false;
+            if (option.Key is RuntimeOptionConstants.Memcard or RuntimeOptionConstants.MemcardWp && configuration.Media.Any(media => media.Slot == EmulationMediaSlot.MemoryCard0))
+                visible = false;
             var enabled = option.Key != RuntimeOptionConstants.FourPlayer || AllowsFourPlayers(configuration.Model, options);
-            if (option.Key is RuntimeOptionConstants.Settingmode or RuntimeOptionConstants.Freeplay) enabled = !cd && configuration.Model == MachineModel.NeoGeoMvs;
-            if (option.Key == RuntimeOptionConstants.CdSpeedHack) enabled = cd && options[RuntimeOptionConstants.CdSystemType] != RuntimeOptionConstants.CdzUniverseBios;
-            return option with { DefaultValue = defaults[option.Key], CurrentValue = options[option.Key], Values = values, IsVisible = visible, IsEnabled = enabled };
+            if (option.Key is RuntimeOptionConstants.Settingmode or RuntimeOptionConstants.Freeplay)
+                enabled = !cd && configuration.Model == MachineModel.NeoGeoMvs;
+            if (option.Key == RuntimeOptionConstants.CdSpeedHack)
+                enabled = cd && options[RuntimeOptionConstants.CdSystemType] != RuntimeOptionConstants.CdzUniverseBios;
+            return option with
+            {
+                DefaultValue = defaults[option.Key],
+                CurrentValue = options[option.Key],
+                Values = values,
+                IsVisible = visible,
+                IsEnabled = enabled
+            };
         }).ToArray();
     }
 }

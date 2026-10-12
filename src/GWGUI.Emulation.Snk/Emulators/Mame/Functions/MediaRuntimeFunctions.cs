@@ -18,7 +18,15 @@ internal static class MediaRuntimeFunctions
     internal sealed record PreparedMemoryCard(string SourcePath, string RuntimePath, bool IsReadOnly);
 
     private static IReadOnlyList<string> Extensions(MachineModel model) => model switch { MachineModel.NeoGeoCd or MachineModel.NeoGeoCdz => CdExtensions, MachineModel.NeoGeoPocket or MachineModel.NeoGeoPocketColor => PocketExtensions, _ => RuntimeOptionConstants.CartridgeExtensions };
-    internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineModel model) => model switch { MachineModel.NeoGeoCd or MachineModel.NeoGeoCdz => [new(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc, CdExtensions, RequiresMachineRecreation: true)], MachineModel.NeoGeoPocket or MachineModel.NeoGeoPocketColor => [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, PocketExtensions, RequiresMachineRecreation: true)], _ => [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, RuntimeOptionConstants.CartridgeExtensions, RequiresMachineRecreation: true), new(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard, [".mcr", ".neo"], RequiresMachineRecreation: true)] };
+    internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineModel model) => model switch
+    {
+        MachineModel.NeoGeoCd or MachineModel.NeoGeoCdz => [new(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc, CdExtensions, RequiresMachineRecreation: true)],
+        MachineModel.NeoGeoPocket or MachineModel.NeoGeoPocketColor => [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, PocketExtensions, RequiresMachineRecreation: true)],
+        _ => [
+            new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, RuntimeOptionConstants.CartridgeExtensions, RequiresMachineRecreation: true),
+            new(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard, [".mcr", ".neo"], RequiresMachineRecreation: true)
+        ]
+    };
 
     internal static IReadOnlyList<string> InitialContentPaths(MachineConfiguration configuration)
     {
