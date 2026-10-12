@@ -114,8 +114,7 @@ internal static class FirmwareCatalogConstants
             [KickstartVersion._3_0] = "3.0",
             [KickstartVersion._3_1] = "3.1"
         };
-    internal const string SummaryFirmwareVersionPattern =
-        @"(?<!\d)(?:1\.[123]|2\.0[45]|3\.[01])(?:\.\d+)?(?!\d)";
+    internal const string SummaryFirmwareVersionPattern = @"(?<!\d)(?:1\.[123]|2\.0[45]|3\.[01])(?:\.\d+)?(?!\d)";
     internal const int KickstartHeaderSize = 16;
     internal const int VersionHighByteOffset = 12;
     internal const int VersionLowByteOffset = 13;

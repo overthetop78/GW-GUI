@@ -102,8 +102,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
     public void SetInput(EmulationInputSnapshot snapshot)
     {
         _lastPhysicalInput = snapshot;
-        _core.SetInput(InputSnapshotFunctions.Apply(snapshot, Configuration.Input,
-            _controllerPointerSwitchPressed));
+        _core.SetInput(InputSnapshotFunctions.Apply(snapshot, Configuration.Input, _controllerPointerSwitchPressed));
     }
 
     private async ValueTask<bool> SwitchControllerPointerAsync(CancellationToken cancellationToken)
@@ -136,8 +135,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         if (_currentDiskPath is not null)
         {
             await EjectMediaAsync(cancellationToken).ConfigureAwait(false);
-            await Task.Delay(EmulationMediaSlotConstants.DiskChangeDelayMilliseconds, cancellationToken)
-                .ConfigureAwait(false);
+            await Task.Delay(EmulationMediaSlotConstants.DiskChangeDelayMilliseconds, cancellationToken).ConfigureAwait(false);
         }
 
         await QueueCommand(() =>
@@ -155,11 +153,9 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         QueueCommand(() => { _core.EjectMedia(); _currentDiskPath = null; }, cancellationToken,
             EmulationMessageCategory.Media, EmulationMessageCode.MediaOperationFailed);
 
-    public ValueTask InsertFloppyAsync(string path, CancellationToken cancellationToken = default) =>
-        InsertMediaAsync(path, cancellationToken);
+    public ValueTask InsertFloppyAsync(string path, CancellationToken cancellationToken = default) => InsertMediaAsync(path, cancellationToken);
 
-    public ValueTask EjectFloppyAsync(CancellationToken cancellationToken = default) =>
-        EjectMediaAsync(cancellationToken);
+    public ValueTask EjectFloppyAsync(CancellationToken cancellationToken = default) => EjectMediaAsync(cancellationToken);
 
     public ValueTask SelectDiskAsync(int index, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
@@ -190,8 +186,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
                 || saved.Header.CoreSha256 != _core.CoreSha256
                 || !OptionsEqual(saved.Header.FirmwareSha256s, FirmwareHashes())
                 || !OptionsEqual(saved.Header.Options, _currentOptions)
-                || !(saved.Header.MediaSha256s ?? []).SequenceEqual(
-                    _mediaPaths.Select(StateStore.HashPath), StringComparer.OrdinalIgnoreCase))
+                || !(saved.Header.MediaSha256s ?? []).SequenceEqual(_mediaPaths.Select(StateStore.HashPath), StringComparer.OrdinalIgnoreCase))
                 throw MachineExceptions.SavedStateIncompatible();
             _core.LoadState(saved.State);
         }, cancellationToken, EmulationMessageCategory.SavedState,

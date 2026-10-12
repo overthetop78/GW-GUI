@@ -17,8 +17,7 @@ internal static class EmulationMediaConversionFunctions
             if (index < BufferConstants.FirstCollectionIndex) throw new ArgumentOutOfRangeException(nameof(item.SlotIndex));
             indexes[category] = index;
             indexes[category]++;
-            result.Add(new EmulationMedia(Path.GetFullPath(item.Path),
-                new EmulationMediaSlot(category, index), ToType(item.Category), item.IsReadOnly, true));
+            result.Add(new EmulationMedia(Path.GetFullPath(item.Path), new EmulationMediaSlot(category, index), ToType(item.Category), item.IsReadOnly, true));
         }
         return result;
     }
@@ -45,8 +44,7 @@ internal static class EmulationMediaConversionFunctions
             MediaCategory.Cartridge => EmulationMediaCategory.CartridgeSlot,
             _ => default
         };
-        return media is MediaCategory.Floppy or MediaCategory.HardDrive or MediaCategory.CompactDisc
-            or MediaCategory.Cassette or MediaCategory.Cartridge;
+        return media is MediaCategory.Floppy or MediaCategory.HardDrive or MediaCategory.CompactDisc or MediaCategory.Cassette or MediaCategory.Cartridge;
     }
 
     private static EmulationMediaType ToType(MediaCategory media) => media switch
@@ -62,11 +60,7 @@ internal static class EmulationMediaConversionFunctions
 
 public static class RuntimeMediaFunctions
 {
-    public static ValueTask<EmulationMedia> PrepareMediaAsync(MachineConfiguration configuration,
-        EmulationMedia media, string conversionDirectory) =>
-        EmulatorCatalog.CreateAdapter(configuration.Core).PrepareMediaAsync(media, conversionDirectory);
+    public static ValueTask<EmulationMedia> PrepareMediaAsync(MachineConfiguration configuration, EmulationMedia media, string conversionDirectory) => EmulatorCatalog.CreateAdapter(configuration.Core).PrepareMediaAsync(media, conversionDirectory);
 
-    public static Task<MachineConfiguration> PrepareConfigurationAsync(
-        MachineConfiguration configuration, string conversionDirectory) =>
-        EmulatorCatalog.CreateAdapter(configuration.Core).PrepareRuntimeConfigurationAsync(configuration, conversionDirectory);
+    public static Task<MachineConfiguration> PrepareConfigurationAsync(MachineConfiguration configuration, string conversionDirectory) => EmulatorCatalog.CreateAdapter(configuration.Core).PrepareRuntimeConfigurationAsync(configuration, conversionDirectory);
 }

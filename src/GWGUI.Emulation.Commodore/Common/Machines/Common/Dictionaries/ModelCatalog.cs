@@ -56,6 +56,5 @@ public static class ModelCatalog
         Plus4Models.C232
     ];
 
-    public static Model Get(string id) => All.FirstOrDefault(model => model.Id.Equals(id, StringComparison.Ordinal))
-        ?? throw new ArgumentOutOfRangeException(nameof(id), id, null);
+    public static Model Get(string id) => All.FirstOrDefault(model => model.Id.Equals(id, StringComparison.Ordinal)) ?? throw new ArgumentOutOfRangeException(nameof(id), id, null);
 }

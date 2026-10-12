@@ -68,9 +68,7 @@ public sealed class AmigaFirmwareCatalog
     public IReadOnlyList<AmigaFirmware> Scan()
     {
         Directory.CreateDirectory(_directory);
-        return Directory.EnumerateFiles(_directory, FirmwareCatalogConstants.AllFilesPattern, SearchOption.AllDirectories)
-            .Where(path => Extensions.Contains(Path.GetExtension(path)))
-            .Select(CreateEntry)
+        return Directory.EnumerateFiles(_directory, FirmwareCatalogConstants.AllFilesPattern, SearchOption.AllDirectories).Where(path => Extensions.Contains(Path.GetExtension(path))).Select(CreateEntry)
             .OrderBy(entry => entry.Path, StringComparer.OrdinalIgnoreCase)
             .ToArray();
     }
@@ -89,14 +87,8 @@ public sealed class AmigaFirmwareCatalog
         var known = TryIdentifyKnown(file, md5, out var identity);
         var alternative = known ? null : TryReadAlternativeSystem(file, md5);
         var type = Path.GetExtension(path).Equals(FirmwareCatalogConstants.Key, StringComparison.OrdinalIgnoreCase) ? FirmwareType.RomKey
-            : known ? identity.Type
-            : alternative is not null ? FirmwareType.Kickstart
-            : Path.GetFileName(path).Contains(FirmwareCatalogConstants.Ext, StringComparison.OrdinalIgnoreCase) ? FirmwareType.ExtendedRom
-            : detected is not null ? FirmwareType.Kickstart
-            : FirmwareType.Unknown;
-        var name = known ? KnownName(identity.Type, identity.Version)
-            : alternative?.Name
-            ?? (type == FirmwareType.Kickstart ? FirmwareCatalogConstants.Kickstart : null);
+            : known ? identity.Type : alternative is not null ? FirmwareType.Kickstart : Path.GetFileName(path).Contains(FirmwareCatalogConstants.Ext, StringComparison.OrdinalIgnoreCase) ? FirmwareType.ExtendedRom : detected is not null ? FirmwareType.Kickstart : FirmwareType.Unknown;
+        var name = known ? KnownName(identity.Type, identity.Version) : alternative?.Name ?? (type == FirmwareType.Kickstart ? FirmwareCatalogConstants.Kickstart : null);
         return new AmigaFirmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc,
             type, known || alternative is not null, known, name,
             known ? identity.Version : alternative?.Version ?? detected?.Version,
@@ -110,11 +102,8 @@ public sealed class AmigaFirmwareCatalog
         foreach (var product in new[] { FirmwareCatalogConstants.EmuTOS, FirmwareCatalogConstants.Serena })
         {
             if (!text.Contains(product, StringComparison.OrdinalIgnoreCase)) continue;
-            var match = System.Text.RegularExpressions.Regex.Matches(text,
-                    FirmwareCatalogConstants.AlternativeVersionPattern)
-                .Cast<System.Text.RegularExpressions.Match>()
-                .FirstOrDefault(candidate => candidate.Groups[FirmwareCatalogConstants.Version].Value.Split(FirmwareCatalogConstants.VersionComponentSeparator)
-                    .Any(component => component != FirmwareCatalogConstants.ZeroVersionComponent));
+            var match = System.Text.RegularExpressions.Regex.Matches(text, FirmwareCatalogConstants.AlternativeVersionPattern).Cast<System.Text.RegularExpressions.Match>()
+                .FirstOrDefault(candidate => candidate.Groups[FirmwareCatalogConstants.Version].Value.Split(FirmwareCatalogConstants.VersionComponentSeparator).Any(component => component != FirmwareCatalogConstants.ZeroVersionComponent));
             var version = match is not null ? string.Concat(product, FirmwareCatalogConstants.ProductVersionSeparator, match.Groups[FirmwareCatalogConstants.Version].Value) : product;
             if (product == FirmwareCatalogConstants.EmuTOS)
             {

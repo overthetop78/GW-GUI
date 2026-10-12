@@ -17,8 +17,7 @@ internal sealed class InputAccumulator
                 DeltaX = SaturatingAdd(_current.Pointer.DeltaX, snapshot.Pointer.DeltaX),
                 DeltaY = SaturatingAdd(_current.Pointer.DeltaY, snapshot.Pointer.DeltaY),
                 Wheel = SaturatingAdd(_current.Pointer.Wheel, snapshot.Pointer.Wheel),
-                HorizontalWheel = SaturatingAdd(_current.Pointer.HorizontalWheel,
-                    snapshot.Pointer.HorizontalWheel)
+                HorizontalWheel = SaturatingAdd(_current.Pointer.HorizontalWheel, snapshot.Pointer.HorizontalWheel)
             };
             _current = snapshot with { Pointer = pointer };
         }
@@ -37,6 +36,5 @@ internal sealed class InputAccumulator
         }
     }
 
-    private static int SaturatingAdd(int left, int right) =>
-        (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
+    private static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
 }

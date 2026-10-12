@@ -14,9 +14,7 @@ internal static class UaeOptionFunctions
         var translated = new Dictionary<string, string>(StringComparer.Ordinal);
         foreach (var option in options)
         {
-            var key = option.Key.StartsWith(UaeOptionConstants.GenericPrefix, StringComparison.Ordinal)
-                ? UaeOptionConstants.NativePrefix + option.Key[UaeOptionConstants.GenericPrefix.Length..]
-                : option.Key;
+            var key = option.Key.StartsWith(UaeOptionConstants.GenericPrefix, StringComparison.Ordinal) ? UaeOptionConstants.NativePrefix + option.Key[UaeOptionConstants.GenericPrefix.Length..] : option.Key;
             translated[key] = option.Value;
         }
         return translated;

@@ -47,8 +47,7 @@ internal static class StateStore
             throw MachineExceptions.SavedStateInvalid();
         var headerBytes = new byte[length];
         stream.ReadExactly(headerBytes);
-        var header = JsonSerializer.Deserialize<SavedStateHeader>(headerBytes, JsonOptions)
-            ?? throw MachineExceptions.SavedStateInvalid();
+        var header = JsonSerializer.Deserialize<SavedStateHeader>(headerBytes, JsonOptions) ?? throw MachineExceptions.SavedStateInvalid();
         using var state = new MemoryStream();
         stream.CopyTo(state);
         var stateBytes = state.ToArray();
@@ -69,8 +68,7 @@ internal static class StateStore
         if (!Directory.Exists(path)) throw MachineExceptions.MediaNotFound();
         using var hash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
         Span<byte> length = stackalloc byte[sizeof(int)];
-        foreach (var file in Directory.EnumerateFiles(path, StateStoreConstants.AllFilesPattern, SearchOption.AllDirectories)
-                     .Order(StringComparer.OrdinalIgnoreCase))
+        foreach (var file in Directory.EnumerateFiles(path, StateStoreConstants.AllFilesPattern, SearchOption.AllDirectories).Order(StringComparer.OrdinalIgnoreCase))
         {
             var relative = Path.GetRelativePath(path, file).Replace(Path.DirectorySeparatorChar, StateStoreConstants.CanonicalDirectorySeparator);
             var name = Encoding.UTF8.GetBytes(relative);

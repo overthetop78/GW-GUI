@@ -10,9 +10,7 @@ internal static class AmigaSettingsApplicationFunctions
         options.Remove(SettingsConstants.ParallelJoystickAdapter);
         if (values.TryGetValue(SettingsConstants.OptionSoundVolumeCd, out var cdVolume)
             && !string.IsNullOrWhiteSpace(cdVolume))
-            options[SettingsConstants.OptionSoundVolumeCd] =
-                cdVolume.TrimEnd(SettingsValueConstants.PercentSuffix)
-                + SettingsValueConstants.PercentSuffix;
+            options[SettingsConstants.OptionSoundVolumeCd] = cdVolume.TrimEnd(SettingsValueConstants.PercentSuffix) + SettingsValueConstants.PercentSuffix;
         if (values.GetValueOrDefault(SettingsConstants.CpuSpeed)?.Split(MachineSettingsConstants.CpuSpeedSeparator) is [var throttle, var multiplier])
         {
             options[SettingsConstants.OptionCpuThrottle] = throttle;
@@ -21,10 +19,7 @@ internal static class AmigaSettingsApplicationFunctions
         var currentInput = current.Input ?? new InputConfiguration();
         var input = currentInput with
         {
-            ParallelJoystickAdapterEnabled = values.TryGetValue(
-                SettingsConstants.ParallelJoystickAdapter, out var parallelJoystickAdapter)
-                    ? parallelJoystickAdapter == SettingsValueConstants.Enabled
-                    : currentInput.ParallelJoystickAdapterEnabled
+            ParallelJoystickAdapterEnabled = values.TryGetValue(SettingsConstants.ParallelJoystickAdapter, out var parallelJoystickAdapter) ? parallelJoystickAdapter == SettingsValueConstants.Enabled : currentInput.ParallelJoystickAdapterEnabled
         };
         return current with { Options = options, Input = input };
     }

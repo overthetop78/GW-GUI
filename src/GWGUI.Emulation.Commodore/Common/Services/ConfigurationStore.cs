@@ -13,9 +13,7 @@ public sealed class ConfigurationStore
     };
     private readonly string _directory;
     private readonly string _pathBase;
-    private static readonly SemaphoreSlim SaveGate = new(
-        ConfigurationStoreConstants.InitialWriterCount,
-        ConfigurationStoreConstants.MaximumWriterCount);
+    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);
 
     public ConfigurationStore(string directory, string? pathBase = null)
     {
@@ -27,10 +25,7 @@ public sealed class ConfigurationStore
     {
         Directory.CreateDirectory(_directory);
         var configurations = new List<MachineConfiguration>();
-        var paths = Directory.EnumerateDirectories(_directory)
-            .Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName))
-            .Where(File.Exists)
-            .Order(StringComparer.OrdinalIgnoreCase);
+        var paths = Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);
         foreach (var path in paths)
         {
             try
@@ -58,19 +53,12 @@ public sealed class ConfigurationStore
             {
                 SchemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion
             };
-            var machineDirectory = Path.Combine(_directory,
-                configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
+            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
             Directory.CreateDirectory(machineDirectory);
             var target = Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName);
-            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator
-                + Guid.NewGuid().ToString(
-                ConfigurationStoreConstants.MachineIdentifierFormat)
-                + ConfigurationStoreConstants.TemporaryFileSuffix;
-            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write,
-                             FileShare.None, ConfigurationStoreConstants.WriteBufferSize,
-                             ConfigurationStoreConstants.UseAsyncFileAccess))
-                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken)
-                    .ConfigureAwait(false);
+            temporary = target + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;
+            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, ConfigurationStoreConstants.UseAsyncFileAccess))
+                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken).ConfigureAwait(false);
             ConfigurationFileAccessFunctions.ReplaceFile(temporary, target);
         }
         finally
@@ -82,8 +70,7 @@ public sealed class ConfigurationStore
 
     public void Delete(Guid id)
     {
-        var target = Path.Combine(_directory,
-            id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
+        var target = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
         if (Directory.Exists(target))
             Directory.Delete(target, ConfigurationStoreConstants.RecursiveDirectoryDelete);
     }
@@ -111,10 +98,8 @@ public sealed class ConfigurationStore
         var relative = Path.GetRelativePath(_pathBase, fullPath);
         if (Path.IsPathFullyQualified(relative)) return fullPath;
         if (relative != ConfigurationStoreConstants.ParentDirectoryName
-            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName
-                + Path.DirectorySeparatorChar, StringComparison.Ordinal))
-            return relative.Replace(Path.DirectorySeparatorChar,
-                ConfigurationStoreConstants.StoredDirectorySeparator);
+            && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal))
+            return relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator);
         return fullPath;
     }
 
@@ -122,8 +107,6 @@ public sealed class ConfigurationStore
     {
         if (string.IsNullOrWhiteSpace(path)) return null;
         if (Path.IsPathFullyQualified(path)) return path;
-        return Path.GetFullPath(Path.Combine(_pathBase,
-            path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator,
-                Path.DirectorySeparatorChar)));
+        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));
     }
 }

@@ -6,8 +6,7 @@ namespace GWGUI.Emulation.Commodore.Common.Machines.Common.Functions;
 
 internal static class ConfigurationSummaryFunctions
 {
-    internal static EmulationConfigurationSummary Create(MachineConfiguration configuration) =>
-        EmulatorCatalog.CreateAdapter(configuration.Core).Summarize(configuration);
+    internal static EmulationConfigurationSummary Create(MachineConfiguration configuration) => EmulatorCatalog.CreateAdapter(configuration.Core).Summarize(configuration);
 
     internal static EmulationConfigurationSummary CreateBasic(MachineConfiguration configuration)
     {
@@ -18,10 +17,8 @@ internal static class ConfigurationSummaryFunctions
             string.Format(CultureInfo.InvariantCulture, MachineSettingsConstants.RamKibFormat, model.RamKib),
             model.Chipset
         };
-        details.AddRange((configuration.FirmwarePaths ?? new Dictionary<string, string>()).Values
-            .Select(Path.GetFileName).OfType<string>());
-        return new EmulationConfigurationSummary(
-            MachineCatalog.All.Single(machine => machine.Id == model.Id).DisplayResourceKey, details);
+        details.AddRange((configuration.FirmwarePaths ?? new Dictionary<string, string>()).Values.Select(Path.GetFileName).OfType<string>());
+        return new EmulationConfigurationSummary(MachineCatalog.All.Single(machine => machine.Id == model.Id).DisplayResourceKey, details);
     }
 }
 

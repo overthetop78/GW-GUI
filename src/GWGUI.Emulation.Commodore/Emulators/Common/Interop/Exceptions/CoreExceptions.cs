@@ -5,8 +5,7 @@ namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Exceptions;
 
 internal static class CoreExceptions
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(CommodoreEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly EmulationModuleLocalization Localization = new(typeof(CommodoreEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
 
     internal static string HostConfigurationInvalid() => Text(CoreErrorResourceKeys.HostConfigurationInvalid);
     internal static string HostNotInitialized() => Text(CoreErrorResourceKeys.HostNotInitialized);
@@ -45,8 +44,7 @@ internal static class CoreExceptions
     internal static string ProcessUnavailable() => Text(CoreErrorResourceKeys.ProcessUnavailable);
     internal static string ProcessNotInitialized() => Text(CoreErrorResourceKeys.ProcessNotInitialized);
     internal static string ProcessTimeout() => Text(CoreErrorResourceKeys.ProcessTimeout);
-    internal static string ProcessCommunicationFailed(string detail) =>
-        Text(CoreErrorResourceKeys.ProcessCommunicationFailed, detail);
+    internal static string ProcessCommunicationFailed(string detail) => Text(CoreErrorResourceKeys.ProcessCommunicationFailed, detail);
     internal static string HostResponseUnavailable() => Text(CoreErrorResourceKeys.HostResponseUnavailable);
     internal static string UnknownCoreOption() => Text(CoreErrorResourceKeys.UnknownCoreOption);
     internal static string UnsupportedPixelFormat(int value) => Text(CoreErrorResourceKeys.UnsupportedPixelFormat, value);
@@ -62,8 +60,6 @@ internal static class CoreExceptions
     private static string Text(string key, params object[] arguments)
     {
         if (!Localization.TryGetString(key, CultureInfo.CurrentUICulture, out var value)) value = key;
-        return arguments.Length == BufferConstants.EmptyCollectionCount
-            ? value
-            : string.Format(CultureInfo.CurrentCulture, value, arguments);
+        return arguments.Length == BufferConstants.EmptyCollectionCount ? value : string.Format(CultureInfo.CurrentCulture, value, arguments);
     }
 }

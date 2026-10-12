@@ -15,9 +15,7 @@ public record Model(
     bool HasKeyboard,
     IReadOnlyList<ControllerType> ControllerTypes)
 {
-    public string Chipset => string.Join(ChipsetDisplayConstants.ComponentSeparator,
-        Chipsets.Select(component => component == ChipsetModel.VICII
-            ? ChipsetDisplayConstants.VicII : component.ToString()));
+    public string Chipset => string.Join(ChipsetDisplayConstants.ComponentSeparator, Chipsets.Select(component => component == ChipsetModel.VICII ? ChipsetDisplayConstants.VicII : component.ToString()));
     public CpuModel DefaultCpu => CpuModels[BufferConstants.FirstCollectionIndex];
     public int MaximumFloppyDrives => (int)FloppyDriveCapacity;
     public int MaximumHardDrives => (int)HardDriveCapacity;

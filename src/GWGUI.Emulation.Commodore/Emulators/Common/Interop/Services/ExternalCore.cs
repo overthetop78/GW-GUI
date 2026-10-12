@@ -48,10 +48,8 @@ internal sealed class ExternalCore : IEmulatorCore
     public int DiskCount => _host?.DiskControl.ImageCount ?? BufferConstants.EmptyCollectionCount;
     public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? ExternalCoreConstants.NoSelectedDisk;
     internal uint Region => (_getRegion ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
-    internal nuint GetMemorySize(uint id) =>
-        (_getMemorySize ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))(id);
-    internal nint GetMemoryData(uint id) =>
-        (_getMemoryData ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))(id);
+    internal nuint GetMemorySize(uint id) => (_getMemorySize ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))(id);
+    internal nint GetMemoryData(uint id) => (_getMemoryData ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))(id);
 
     public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
@@ -67,11 +65,8 @@ internal sealed class ExternalCore : IEmulatorCore
         _adapter = adapter;
         var systemDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
         var contentPath = adapter.PrepareContent(configuration, sessionDirectory, media);
-        var contentDirectory = contentPath is null
-            ? Path.Combine(sessionDirectory, CoreDirectoryConstants.ContentDirectoryName)
-            : Path.GetDirectoryName(contentPath)!;
-        saveDirectory = Path.GetFullPath(saveDirectory
-            ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
+        var contentDirectory = contentPath is null ? Path.Combine(sessionDirectory, CoreDirectoryConstants.ContentDirectoryName) : Path.GetDirectoryName(contentPath)!;
+        saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
@@ -99,9 +94,7 @@ internal sealed class ExternalCore : IEmulatorCore
                 throw new InvalidDataException(CoreExceptions.FullContentPathsRequired());
             CoreName = libraryName!;
             CoreVersion = Marshal.PtrToStringUTF8(systemInfo.LibraryVersion) ?? string.Empty;
-            SupportedContentExtensions = (Marshal.PtrToStringUTF8(systemInfo.ValidExtensions) ?? string.Empty)
-                .Split(MediaConstants.SupportedExtensionSeparator,
-                    StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            SupportedContentExtensions = (Marshal.PtrToStringUTF8(systemInfo.ValidExtensions) ?? string.Empty).Split(MediaConstants.SupportedExtensionSeparator, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
                 .Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix))
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
             if (contentPath is not null && !Directory.Exists(contentPath))
@@ -184,14 +177,11 @@ internal sealed class ExternalCore : IEmulatorCore
     {
         if (configuration.Media is { Count: > BufferConstants.EmptyCollectionCount }) return configuration.Media;
         if (configuration.Floppies is { Count: > BufferConstants.EmptyCollectionCount })
-            return configuration.Floppies.Select(floppy => new MediaConfiguration(
-                floppy.Path, MediaCategory.Floppy, floppy.Label, floppy.IsReadOnly)).ToArray();
-        return configuration.InitialDiskPath is null ? []
-            : [new MediaConfiguration(configuration.InitialDiskPath, InferMediaCategory(configuration, configuration.InitialDiskPath))];
+            return configuration.Floppies.Select(floppy => new MediaConfiguration(floppy.Path, MediaCategory.Floppy, floppy.Label, floppy.IsReadOnly)).ToArray();
+        return configuration.InitialDiskPath is null ? [] : [new MediaConfiguration(configuration.InitialDiskPath, InferMediaCategory(configuration, configuration.InitialDiskPath))];
     }
 
-    internal static MediaCategory InferMediaCategory(MachineConfiguration configuration, string path) =>
-        ((MachineFactory)EmulatorCatalog.CreateAdapter(configuration.Core)).InferMediaCategory(configuration, path);
+    internal static MediaCategory InferMediaCategory(MachineConfiguration configuration, string path) => ((MachineFactory)EmulatorCatalog.CreateAdapter(configuration.Core)).InferMediaCategory(configuration, path);
     public void HardReset() => (_reset ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))();
     public void SetInput(EmulationInputSnapshot snapshot)
     {
@@ -199,8 +189,7 @@ internal sealed class ExternalCore : IEmulatorCore
     }
     public void InsertMedia(string path)
     {
-        var diskControl = (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))
-            .DiskControl;
+        var diskControl = (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl;
         try { diskControl.Insert(path); }
         catch (Exception) when (_adapter is not null)
         {
@@ -209,10 +198,8 @@ internal sealed class ExternalCore : IEmulatorCore
             diskControl.Insert(converted);
         }
     }
-    public void EjectMedia() => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))
-        .DiskControl.Eject();
-    public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized()))
-        .DiskControl.Select(index);
+    public void EjectMedia() => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Eject();
+    public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).DiskControl.Select(index);
 
     private static bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path)
     {
@@ -267,8 +254,7 @@ internal sealed class ExternalCore : IEmulatorCore
         }
     }
 
-    public void SetOption(string key, string value) =>
-        (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).SetOption(key, value);
+    public void SetOption(string key, string value) => (_host ?? throw new InvalidOperationException(CoreExceptions.CoreNotInitialized())).SetOption(key, value);
 
     public void Stop()
     {
@@ -276,8 +262,7 @@ internal sealed class ExternalCore : IEmulatorCore
         _gameLoaded = false;
     }
 
-    private T Export<T>(string name) where T : Delegate =>
-        (_library ?? throw new InvalidOperationException(CoreExceptions.CoreNotLoaded())).Resolve<T>(name);
+    private T Export<T>(string name) where T : Delegate => (_library ?? throw new InvalidOperationException(CoreExceptions.CoreNotLoaded())).Resolve<T>(name);
 
     internal static uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports,
         int port, ControllerType controller)

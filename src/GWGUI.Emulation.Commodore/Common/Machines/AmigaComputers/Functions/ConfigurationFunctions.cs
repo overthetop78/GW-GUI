@@ -17,12 +17,8 @@ internal static partial class AmigaConfigurationSummaryFunctions
         var chipset = model.Chipset;
         if (TryOption(options, SettingsConstants.OptionVideoStandard, out var configuredVideo))
         {
-            var videoStandard = configuredVideo.StartsWith(SettingsValueConstants.NTSC,
-                StringComparison.OrdinalIgnoreCase)
-                ? SettingsValueConstants.NTSC
-                : SettingsValueConstants.PAL;
-            chipset = string.Concat(chipset, MachineConfigurationConstants.ChipsetVideoStandardSeparator,
-                videoStandard);
+            var videoStandard = configuredVideo.StartsWith(SettingsValueConstants.NTSC, StringComparison.OrdinalIgnoreCase) ? SettingsValueConstants.NTSC : SettingsValueConstants.PAL;
+            chipset = string.Concat(chipset, MachineConfigurationConstants.ChipsetVideoStandardSeparator, videoStandard);
         }
         details.Add(chipset);
 
@@ -43,15 +39,13 @@ internal static partial class AmigaConfigurationSummaryFunctions
         var hardDriveCount = NumberOption(options, StorageSettingsFunctionsConstants.GwguiHardDriveCount);
         if (floppyCount > (int)DriveCapacity.None) devices.Add(string.Concat(ConfigurationSummaryFunctionsConstants.FloppyLabelPrefix, floppyCount));
         if (hardDriveCount > (int)DriveCapacity.None) devices.Add(string.Concat(ConfigurationSummaryFunctionsConstants.HardDriveLabelPrefix, hardDriveCount));
-        if (Option(options, StorageSettingsFunctionsConstants.GwguiCdDriveEnabled,
-                model.HasCdDrive ? StorageSettingsFunctionsConstants.Enabled : StorageSettingsFunctionsConstants.Disabled)
+        if (Option(options, StorageSettingsFunctionsConstants.GwguiCdDriveEnabled, model.HasCdDrive ? StorageSettingsFunctionsConstants.Enabled : StorageSettingsFunctionsConstants.Disabled)
             == StorageSettingsFunctionsConstants.Enabled)
             devices.Add(StorageSettingsFunctionsConstants.CompactDiscSummaryLabel);
         if (devices.Count > BufferConstants.EmptyCollectionCount)
             details.Add(string.Join(MachineConfigurationConstants.DeviceSeparator, devices));
 
-        var displayResourceKey = MachineCatalog.All.First(item => item.Id == configuration.Model)
-            .DisplayResourceKey;
+        var displayResourceKey = MachineCatalog.All.First(item => item.Id == configuration.Model).DisplayResourceKey;
         return new EmulationConfigurationSummary(displayResourceKey, details);
     }
 
@@ -73,10 +67,7 @@ internal static partial class AmigaConfigurationSummaryFunctions
     private static string ShortName(string path)
     {
         var name = Path.GetFileNameWithoutExtension(path);
-        return name.Length <= ConfigurationSummaryFunctionsConstants.MaximumShortNameLength
-            ? name
-            : name[..ConfigurationSummaryFunctionsConstants.TruncatedShortNameLength]
-              + ConfigurationSummaryFunctionsConstants.Ellipsis;
+        return name.Length <= ConfigurationSummaryFunctionsConstants.MaximumShortNameLength ? name : name[..ConfigurationSummaryFunctionsConstants.TruncatedShortNameLength] + ConfigurationSummaryFunctionsConstants.Ellipsis;
     }
 
     private static int ChipMemoryKib(string value) => int.TryParse(value, out var parsed) ? parsed * (int)RamCapacity._512KB : (int)RamCapacity.None;
@@ -86,12 +77,9 @@ internal static partial class AmigaConfigurationSummaryFunctions
         _ => (int)RamCapacity.None
     };
     private static int MemoryMib(string value) => int.TryParse(value, out var parsed) ? parsed : (int)RamCapacity.None;
-    private static int NumberOption(IReadOnlyDictionary<string, string> options, string key) =>
-        options.TryGetValue(key, out var value) && int.TryParse(value, out var parsed) ? parsed : (int)DriveCapacity.None;
-    private static string Option(IReadOnlyDictionary<string, string> options, string key, string fallback) =>
-        options.GetValueOrDefault(key) ?? fallback;
-    private static bool HasAnyOption(IReadOnlyDictionary<string, string> options, params string[] keys) =>
-        keys.Any(options.ContainsKey);
+    private static int NumberOption(IReadOnlyDictionary<string, string> options, string key) => options.TryGetValue(key, out var value) && int.TryParse(value, out var parsed) ? parsed : (int)DriveCapacity.None;
+    private static string Option(IReadOnlyDictionary<string, string> options, string key, string fallback) => options.GetValueOrDefault(key) ?? fallback;
+    private static bool HasAnyOption(IReadOnlyDictionary<string, string> options, params string[] keys) => keys.Any(options.ContainsKey);
     private static bool TryOption(IReadOnlyDictionary<string, string> options, string key, out string value)
     {
         if (options.TryGetValue(key, out var configured) && !string.IsNullOrWhiteSpace(configured))
@@ -102,9 +90,7 @@ internal static partial class AmigaConfigurationSummaryFunctions
         value = string.Empty;
         return false;
     }
-    private static string FormatMemory(long bytes) => bytes < MemoryConstants.BytesPerMib
-        ? string.Format(MemoryConstants.FractionalKibLabelFormat, bytes / (double)MemoryConstants.BytesPerKib)
-        : string.Format(MemoryConstants.FractionalMibLabelFormat, bytes / (double)MemoryConstants.BytesPerMib);
+    private static string FormatMemory(long bytes) => bytes < MemoryConstants.BytesPerMib ? string.Format(MemoryConstants.FractionalKibLabelFormat, bytes / (double)MemoryConstants.BytesPerKib) : string.Format(MemoryConstants.FractionalMibLabelFormat, bytes / (double)MemoryConstants.BytesPerMib);
 
     [GeneratedRegex(FirmwareCatalogConstants.SummaryFirmwareVersionPattern, RegexOptions.IgnoreCase)]
     private static partial Regex FirmwareVersionPattern();
@@ -132,8 +118,7 @@ internal static class AmigaConfigurationValidationFunctions
         {
             Span<byte> header = stackalloc byte[FirmwareCatalogConstants.EncryptedKickstartHeader.Length];
             using var stream = File.OpenRead(path);
-            return stream.Read(header) == header.Length
-                && Encoding.ASCII.GetString(header) == FirmwareCatalogConstants.EncryptedKickstartHeader;
+            return stream.Read(header) == header.Length && Encoding.ASCII.GetString(header) == FirmwareCatalogConstants.EncryptedKickstartHeader;
         }
         catch (IOException)
         {

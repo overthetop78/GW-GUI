@@ -25,8 +25,7 @@ internal static class AmigaHardDiskFormats
              [HardDiskPreparation.Blank, HardDiskPreparation.AmigaOfs, HardDiskPreparation.AmigaFfs],
              GWGUI.Emulation.HardDisks.Containers.DiskContainerKind.Gzip)]);
 
-    private static IReadOnlyList<HardDiskImageFormat> Describe(IEnumerable<HardDiskImageFormat> formats) =>
-        formats.Select(Formats.Describe).ToArray();
+    private static IReadOnlyList<HardDiskImageFormat> Describe(IEnumerable<HardDiskImageFormat> formats) => formats.Select(Formats.Describe).ToArray();
 }
 
 internal static class AmigaRuntimeMediaFunctions
@@ -51,12 +50,10 @@ internal static class AmigaRuntimeMediaFunctions
     {
         if (!Path.GetExtension(path).Equals(StorageSettingsFunctionsConstants.Scp, StringComparison.OrdinalIgnoreCase)) return path;
         var info = new FileInfo(path);
-        var identity = string.Join(RuntimeMediaConstants.ConversionIdentitySeparator,
-            Path.GetFullPath(path), info.Length, info.LastWriteTimeUtc.Ticks);
+        var identity = string.Join(RuntimeMediaConstants.ConversionIdentitySeparator, Path.GetFullPath(path), info.Length, info.LastWriteTimeUtc.Ticks);
         var hash = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(identity)))[..RuntimeMediaConstants.ConversionCacheHashLength];
         Directory.CreateDirectory(conversionDirectory);
-        var output = Path.Combine(conversionDirectory, string.Concat(Path.GetFileNameWithoutExtension(path),
-            RuntimeMediaConstants.ConversionFileNameSeparator, hash, StorageSettingsFunctionsConstants.Adf));
+        var output = Path.Combine(conversionDirectory, string.Concat(Path.GetFileNameWithoutExtension(path), RuntimeMediaConstants.ConversionFileNameSeparator, hash, StorageSettingsFunctionsConstants.Adf));
         if (File.Exists(output)) return output;
         var converter = MediaEngine.Conversion.AmigaAdfRuntimeConverter;
         try { await converter.ConvertDetectedAsync(path, output).ConfigureAwait(false); }

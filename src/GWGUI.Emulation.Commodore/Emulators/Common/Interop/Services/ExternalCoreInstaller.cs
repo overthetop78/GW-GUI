@@ -41,26 +41,22 @@ public sealed class ExternalCoreInstaller
         var extracted = LibraryPath + CoreReleaseConstants.Extract;
         try
         {
-            using var response = await _httpClient.GetAsync(DownloadUrl, HttpCompletionOption.ResponseHeadersRead,
-                cancellationToken).ConfigureAwait(false);
+            using var response = await _httpClient.GetAsync(DownloadUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             await using (var source = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false))
-            await using (var destination = new FileStream(package, FileMode.Create, FileAccess.Write, FileShare.None,
-                             BufferConstants.FileTransferBufferSize, FileOptions.Asynchronous))
+            await using (var destination = new FileStream(package, FileMode.Create, FileAccess.Write, FileShare.None, BufferConstants.FileTransferBufferSize, FileOptions.Asynchronous))
                 await source.CopyToAsync(destination, cancellationToken).ConfigureAwait(false);
 
             using (var archive = ZipFile.OpenRead(package))
             {
-                var entry = archive.Entries.FirstOrDefault(item =>
-                    Path.GetFileName(item.FullName).Equals(_definition.LibraryFile, StringComparison.OrdinalIgnoreCase))
+                var entry = archive.Entries.FirstOrDefault(item => Path.GetFileName(item.FullName).Equals(_definition.LibraryFile, StringComparison.OrdinalIgnoreCase))
                     ?? throw new InvalidDataException(CoreExceptions.ArchiveMissingLibrary());
                 entry.ExtractToFile(extracted, true);
             }
             CoreReleaseService.VerifyWindowsX64Library(extracted);
             var sha256 = Hash(extracted);
             File.Move(extracted, LibraryPath, true);
-            await WriteManifestAsync(CoreRevision, DownloadUrl, LibraryPath, sha256,
-                cancellationToken).ConfigureAwait(false);
+            await WriteManifestAsync(CoreRevision, DownloadUrl, LibraryPath, sha256, cancellationToken).ConfigureAwait(false);
             return LibraryPath;
         }
         finally

@@ -25,8 +25,6 @@ internal static class AmigaFirmwareFunctions
         if (firmware.Type == FirmwareType.RomKey) return EmulationFirmwareCompatibility.Compatible;
         if (!firmware.CompatibleModels.Contains(machineId, StringComparer.OrdinalIgnoreCase))
             return EmulationFirmwareCompatibility.Incompatible;
-        return firmware.IsOfficial ? EmulationFirmwareCompatibility.Official
-            : firmware.IsKnown ? EmulationFirmwareCompatibility.Compatible
-            : EmulationFirmwareCompatibility.PartiallyCompatible;
+        return firmware.IsOfficial ? EmulationFirmwareCompatibility.Official : firmware.IsKnown ? EmulationFirmwareCompatibility.Compatible : EmulationFirmwareCompatibility.PartiallyCompatible;
     }
 }

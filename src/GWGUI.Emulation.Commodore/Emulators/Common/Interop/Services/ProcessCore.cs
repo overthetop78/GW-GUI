@@ -69,12 +69,9 @@ internal sealed class ProcessCore : IEmulatorCore
         Directory.CreateDirectory(sessionDirectory);
         var pipeName = string.Concat(ProcessCoreConstants.PipeNamePrefix, Guid.NewGuid().ToString(ProcessCoreConstants.SessionIdentifierFormat));
         var videoMapName = string.Concat(ProcessCoreConstants.VideoMapNamePrefix, Guid.NewGuid().ToString(ProcessCoreConstants.SessionIdentifierFormat));
-        _videoMemory = MemoryMappedFile.CreateNew(videoMapName, EmulationHostProtocolConstants.VideoMapCapacity,
-            MemoryMappedFileAccess.ReadWrite);
-        _videoMap = _videoMemory.CreateViewAccessor(ProcessCoreConstants.ViewStartOffset, EmulationHostProtocolConstants.VideoMapCapacity,
-            MemoryMappedFileAccess.ReadWrite);
-        _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, ProcessCoreConstants.PipeInstanceCount, PipeTransmissionMode.Byte,
-            PipeOptions.Asynchronous, ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
+        _videoMemory = MemoryMappedFile.CreateNew(videoMapName, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
+        _videoMap = _videoMemory.CreateViewAccessor(ProcessCoreConstants.ViewStartOffset, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
+        _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, ProcessCoreConstants.PipeInstanceCount, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
         var startInfo = new ProcessStartInfo(_hostExecutablePath)
         {
             UseShellExecute = false,
@@ -112,8 +109,7 @@ internal sealed class ProcessCore : IEmulatorCore
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
             CoreName = Response.ReadString();
             CoreVersion = Response.ReadString();
-            SupportedContentExtensions = Response.ReadString().Split(ProcessCoreConstants.ExtensionSeparator, StringSplitOptions.RemoveEmptyEntries)
-                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+            SupportedContentExtensions = Response.ReadString().Split(ProcessCoreConstants.ExtensionSeparator, StringSplitOptions.RemoveEmptyEntries).ToHashSet(StringComparer.OrdinalIgnoreCase);
             DiskCount = Response.ReadInt32();
             CurrentDiskIndex = Response.ReadInt32();
             LedStates = CoreHostProtocol.ReadLedStates(Response);
@@ -131,8 +127,7 @@ internal sealed class ProcessCore : IEmulatorCore
         Begin(HostCommand.RunFrame);
         CoreHostProtocol.WriteInput(_writer!, _input.Consume());
         CompleteRequest();
-        LatestVideoFrame = CoreHostProtocol.ReadSharedFrame(Response,
-            _videoMap ?? throw new InvalidOperationException(CoreExceptions.VideoBufferUnavailable())) ?? LatestVideoFrame;
+        LatestVideoFrame = CoreHostProtocol.ReadSharedFrame(Response, _videoMap ?? throw new InvalidOperationException(CoreExceptions.VideoBufferUnavailable())) ?? LatestVideoFrame;
         foreach (var chunk in CoreHostProtocol.ReadAudio(Response))
         {
             LatestAudioChunk = chunk;
@@ -258,9 +253,7 @@ internal sealed class ProcessCore : IEmulatorCore
             var exit = _process is { HasExited: true } ? string.Format(ProcessCoreConstants.ProcessExitDetailFormat, _process.ExitCode) : string.Empty;
             _connectionFailed = true;
             TerminateProcess();
-            throw new InvalidOperationException(timedOut
-                ? CoreExceptions.ProcessTimeout()
-                : CoreExceptions.ProcessCommunicationFailed(exit), error);
+            throw new InvalidOperationException(timedOut ? CoreExceptions.ProcessTimeout() : CoreExceptions.ProcessCommunicationFailed(exit), error);
         }
     }
 

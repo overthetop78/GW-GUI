@@ -20,8 +20,7 @@ internal static class SettingsDescriptionFunctions
                         ExplanationResourceKey: slot.ExplanationResourceKey,
                         DetailedExplanationResourceKey: slot.DetailedExplanationResourceKey)).ToArray(),
                 SettingsGlyphs.Firmware, MachineSettingsConstants.InformationColumnCount));
-        if (EmulatorCatalog.CreateAdapter(configuration.Core).GetMediaDevices(configuration)
-            .Any(device => device.MediaType == EmulationMediaType.HardDisk))
+        if (EmulatorCatalog.CreateAdapter(configuration.Core).GetMediaDevices(configuration).Any(device => device.MediaType == EmulationMediaType.HardDisk))
             blocks.Add(new EmulationSettingsBlock(StorageDirectorySettings.BlockId, EmulationMachineTab.General,
                 StorageDirectorySettings.TitleResource,
                 [new EmulationSettingsField(StorageDirectorySettings.HardDiskDirectory, EmulationMachineTab.General,
@@ -44,8 +43,7 @@ internal static class SettingsDescriptionFunctions
             Information(SettingsBlocks.MainMemory, EmulationMachineTab.Ram, SettingsResourceKeys.MemoryMain,
                 SettingsGlyphs.Memory, MachineSettingsConstants.RamField,
                 string.Format(CultureInfo.InvariantCulture, MachineSettingsConstants.RamKibFormat, model.RamKib)),
-            Information(SettingsBlocks.Display, EmulationMachineTab.Video, SettingsResourceKeys.VideoSettingsDisplay,
-                SettingsGlyphs.Video, MachineSettingsConstants.ChipsetField, model.Chipset)
+            Information(SettingsBlocks.Display, EmulationMachineTab.Video, SettingsResourceKeys.VideoSettingsDisplay, SettingsGlyphs.Video, MachineSettingsConstants.ChipsetField, model.Chipset)
         };
         blocks.Add(new EmulationSettingsBlock(SettingsBlocks.Audio, EmulationMachineTab.Audio,
             SettingsResourceKeys.Audio,
@@ -62,7 +60,5 @@ internal static class SettingsDescriptionFunctions
     }
 
     private static EmulationSettingsBlock Information(string id, EmulationMachineTab tab, string label,
-        string glyph, string fieldId, string value) => new(id, tab, label,
-        [new EmulationSettingsField(fieldId, tab, id, label, EmulationSettingsEditor.Information, value)],
-        glyph, MachineSettingsConstants.InformationColumnCount);
+        string glyph, string fieldId, string value) => new(id, tab, label, [new EmulationSettingsField(fieldId, tab, id, label, EmulationSettingsEditor.Information, value)], glyph, MachineSettingsConstants.InformationColumnCount);
 }

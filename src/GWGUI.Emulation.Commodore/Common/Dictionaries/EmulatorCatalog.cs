@@ -35,30 +35,20 @@ internal static class EmulatorCatalog
         new ViceXVicAdapter()
     ];
 
-    internal static IReadOnlyList<EmulationEmulatorDefinition> All =>
-        CreateAdapters().Select(adapter => adapter.Definition).ToArray();
+    internal static IReadOnlyList<EmulationEmulatorDefinition> All => CreateAdapters().Select(adapter => adapter.Definition).ToArray();
 
-    internal static IEmulatorAdapter CreateAdapter(Emulator emulator) =>
-        CreateAdapters().SingleOrDefault(adapter => string.Equals(
-            adapter.EmulatorKey, emulator.ToString(), StringComparison.Ordinal))
-        ?? throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);
+    internal static IEmulatorAdapter CreateAdapter(Emulator emulator) => CreateAdapters().SingleOrDefault(adapter => string.Equals(adapter.EmulatorKey, emulator.ToString(), StringComparison.Ordinal)) ?? throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);
 
-    internal static EmulationEmulatorDefinition Get(Emulator emulator) =>
-        CreateAdapter(emulator).Definition;
+    internal static EmulationEmulatorDefinition Get(Emulator emulator) => CreateAdapter(emulator).Definition;
 
-    internal static EmulationEmulatorDefinition Get(string emulatorId) =>
-        CreateAdapters().SingleOrDefault(adapter => string.Equals(
-            adapter.EmulatorId, emulatorId, StringComparison.Ordinal))?.Definition
-        ?? throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
+    internal static EmulationEmulatorDefinition Get(string emulatorId) => CreateAdapters().SingleOrDefault(adapter => string.Equals(adapter.EmulatorId, emulatorId, StringComparison.Ordinal))?.Definition ?? throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
 
-    internal static IReadOnlyList<EmulationEmulatorDefinition> GetAll(string machineId) =>
-        All.Where(definition => definition.MachineIds.Contains(machineId)).ToArray();
+    internal static IReadOnlyList<EmulationEmulatorDefinition> GetAll(string machineId) => All.Where(definition => definition.MachineIds.Contains(machineId)).ToArray();
 
     internal static Emulator DefaultFor(string machineId)
     {
         _ = ModelCatalog.Get(machineId);
-        var adapter = CreateAdapters().FirstOrDefault(item => item.Definition.MachineIds.Contains(machineId))
-            ?? throw new ArgumentOutOfRangeException(nameof(machineId), machineId, null);
+        var adapter = CreateAdapters().FirstOrDefault(item => item.Definition.MachineIds.Contains(machineId)) ?? throw new ArgumentOutOfRangeException(nameof(machineId), machineId, null);
         return Enum.Parse<Emulator>(adapter.EmulatorKey);
     }
 }

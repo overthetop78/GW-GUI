@@ -11,11 +11,7 @@ internal abstract class ViceMachineFactory : GWGUI.Emulation.Commodore.Emulators
     public override MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration) => ViceKeyboard.Supports(configuration) 
         ? configuration with
     {
-        Input = KeyboardBindingFunctions.Normalize(
-            configuration.Input,
-            ViceKeyboard.Defaults(configuration),
-            ViceKeyboard.LegacyTargets(configuration)
-        )
+        Input = KeyboardBindingFunctions.Normalize(configuration.Input, ViceKeyboard.Defaults(configuration), ViceKeyboard.LegacyTargets(configuration))
         }
 
 
@@ -79,11 +75,7 @@ internal abstract class ViceMachineFactory : GWGUI.Emulation.Commodore.Emulators
         var romFile = Path.Combine(directory, ContentConstants.RomConfigurationFile);
         var lines = new List<string>
         {
-            string.Format(
-                CultureInfo.InvariantCulture,
-                ContentConstants.SectionFormat,
-                ResourceSection
-            )
+            string.Format(CultureInfo.InvariantCulture, ContentConstants.SectionFormat, ResourceSection)
         };
         foreach (var rom in selected)
         {

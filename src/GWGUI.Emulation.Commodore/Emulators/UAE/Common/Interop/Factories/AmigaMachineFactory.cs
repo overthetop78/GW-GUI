@@ -222,9 +222,7 @@ internal abstract class AmigaMachineFactory : MachineFactory
             Add(UaeConfigurationConstants.ExtendedRomConfiguration, Path.GetFullPath(configuration.FirmwarePath(SettingsConstants.ExtendedRomPath)));
         Add(
             UaeConfigurationConstants.NtScConfiguration,
-            Value(SettingsConstants.OptionVideoStandard, SettingsValueConstants.PAL).StartsWith(SettingsValueConstants.NTSC, StringComparison.OrdinalIgnoreCase)
-                ? UaeConfigurationConstants.Enabled
-                : UaeConfigurationConstants.Disabled
+            Value(SettingsConstants.OptionVideoStandard, SettingsValueConstants.PAL).StartsWith(SettingsValueConstants.NTSC, StringComparison.OrdinalIgnoreCase) ? UaeConfigurationConstants.Enabled : UaeConfigurationConstants.Disabled
         );
         var floppy = BufferConstants.FirstCollectionIndex;
         var hardDrive = BufferConstants.FirstCollectionIndex;
@@ -249,9 +247,7 @@ internal abstract class AmigaMachineFactory : MachineFactory
                     var drive = UaeConfigurationConstants.HardDrivePrefix + hardDrive++;
                     Add(
                         Directory.Exists(path) ? UaeConfigurationConstants.FileSystemPrefix : UaeConfigurationConstants.HardfilePrefix,
-                        Directory.Exists(path)
-                            ? string.Format(UaeConfigurationConstants.DirectoryMountFormat, access, drive, path)
-                            : string.Format(UaeConfigurationConstants.HardfileMountFormat, access, drive, path, UaeConfigurationConstants.HardfileGeometry)
+                        Directory.Exists(path) ? string.Format(UaeConfigurationConstants.DirectoryMountFormat, access, drive, path) : string.Format(UaeConfigurationConstants.HardfileMountFormat, access, drive, path, UaeConfigurationConstants.HardfileGeometry)
                     );
                     break;
                 default:

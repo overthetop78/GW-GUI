@@ -3,8 +3,7 @@ namespace GWGUI.Emulation.Commodore.Emulators.UAE.Common.Interop.Factories;
 
 internal abstract class UaeMachineFactory : AmigaMachineFactory
 {
-    internal override MachineConfiguration PrepareConfiguration(MachineConfiguration configuration) =>
-        UaeOptionFunctions.ToNative(configuration);
+    internal override MachineConfiguration PrepareConfiguration(MachineConfiguration configuration) => UaeOptionFunctions.ToNative(configuration);
 
     internal override IReadOnlyDictionary<string, string> NativeOptions(MachineConfiguration configuration,
         IReadOnlyList<MediaConfiguration> media)
@@ -18,8 +17,7 @@ internal abstract class UaeMachineFactory : AmigaMachineFactory
         };
         var floppies = media.Where(item => item.Category == MediaCategory.Floppy).ToArray();
         if (floppies.Length > UaeContentConstants.SingleContentCount)
-            options[UaeOptionConstants.FloppyMultidrive] = configuration.MountFloppiesInSeparateDrives
-                ? SettingsValueConstants.Enabled : SettingsValueConstants.Disabled;
+            options[UaeOptionConstants.FloppyMultidrive] = configuration.MountFloppiesInSeparateDrives ? SettingsValueConstants.Enabled : SettingsValueConstants.Disabled;
         if (floppies.Length > BufferConstants.EmptyCollectionCount && floppies.All(item => item.IsReadOnly))
             options[UaeOptionConstants.FloppyWriteProtection] = SettingsValueConstants.Enabled;
         return options;

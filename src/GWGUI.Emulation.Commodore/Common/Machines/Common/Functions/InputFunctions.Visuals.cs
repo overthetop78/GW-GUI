@@ -14,9 +14,7 @@ internal static partial class InputSettingsFunctions
         _ => key.ToString()
     };
 
-    internal static string DefaultKey(EmulationKey key,
-        IReadOnlyDictionary<EmulationKey, EmulationKey> defaults) =>
-        defaults.GetValueOrDefault(key, key).ToString();
+    internal static string DefaultKey(EmulationKey key, IReadOnlyDictionary<EmulationKey, EmulationKey> defaults) => defaults.GetValueOrDefault(key, key).ToString();
 
 private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) => type switch
     {
@@ -92,11 +90,7 @@ private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) =
         _ => string.Format(System.Globalization.CultureInfo.InvariantCulture, InputSnapshotFunctionsConstants.ControllerResourceFormat, type)
     };
 
-    private static IReadOnlyDictionary<string, string> ToStrings(
-        IReadOnlyDictionary<string, EmulationKey>? values) => values?.ToDictionary(item => item.Key,
-        item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>();
+    private static IReadOnlyDictionary<string, string> ToStrings(IReadOnlyDictionary<string, EmulationKey>? values) => values?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>();
 
-    private static IReadOnlyDictionary<string, EmulationKey> ToKeys(IReadOnlyDictionary<string, string> values) =>
-        values.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key,
-            item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
+    private static IReadOnlyDictionary<string, EmulationKey> ToKeys(IReadOnlyDictionary<string, string> values) => values.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
 }

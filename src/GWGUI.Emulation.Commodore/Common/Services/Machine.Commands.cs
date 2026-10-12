@@ -7,9 +7,7 @@ namespace GWGUI.Emulation.Commodore.Common.Services;
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
-    private IReadOnlyDictionary<string, string> FirmwareHashes() =>
-        (Configuration.FirmwarePaths ?? new Dictionary<string, string>())
-            .ToDictionary(pair => pair.Key, pair => StateStore.HashFile(pair.Value), StringComparer.Ordinal);
+    private IReadOnlyDictionary<string, string> FirmwareHashes() => (Configuration.FirmwarePaths ?? new Dictionary<string, string>()).ToDictionary(pair => pair.Key, pair => StateStore.HashFile(pair.Value), StringComparer.Ordinal);
     private static string? HashOptionalPath(string? path) => path is null ? null : StateStore.HashPath(path);
 
     private static bool OptionsEqual(IReadOnlyDictionary<string, string>? left, IReadOnlyDictionary<string, string> right)
@@ -31,8 +29,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             try { action(); }
             catch (Exception error)
             {
-                throw EmulationErrorService.Translate(error, category, code,
-                    new EmulationMachineMessageContext(Configuration.Model));
+                throw EmulationErrorService.Translate(error, category, code, new EmulationMachineMessageContext(Configuration.Model));
             }
         }, completion));
         lock (_gate) Monitor.PulseAll(_gate);
@@ -105,11 +102,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
         catch (Exception error)
         {
-            error = _startErrorTranslator?.Invoke(error)
-                ?? EmulationErrorService.Translate(error,
-                    EmulationMessageCategory.Machine,
-                    EmulationMessageCode.MachineStartFailed,
-                    new EmulationMachineMessageContext(Configuration.Model));
+            error = _startErrorTranslator?.Invoke(error) ?? EmulationErrorService.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(Configuration.Model));
             if (_core.Diagnostics.Count > BufferConstants.EmptyCollectionCount) error.Data[MachineConstants.DiagnosticsDataKey] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(MachineConstants.MaximumDiagnosticEntries));
             _started?.TrySetException(error);
             FailPendingCommands(error);

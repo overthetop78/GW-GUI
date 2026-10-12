@@ -8,19 +8,16 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
     IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager,
     IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(CommodoreEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly EmulationModuleLocalization Localization = new(typeof(CommodoreEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
 
-    public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) =>
-        Localization.TryGetString(key, culture, out value);
+    public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) => Localization.TryGetString(key, culture, out value);
 
     private readonly ConfigurationStore _store;
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;
     private readonly string _firmwareDirectory;
     private readonly Engine _engine = new();
-    private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) =>
-        new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
+    private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) => new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
 
     public CommodoreEmulationModule(string configurationDirectory, string pathBase, HttpClient httpClient,
         string coreDirectory)
@@ -28,21 +25,16 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         _store = new ConfigurationStore(configurationDirectory, pathBase);
         _httpClient = httpClient;
         _coreDirectory = coreDirectory;
-        _firmwareDirectory = Path.Combine(pathBase, EmulationPathConstants.RootDirectoryName,
-            EmulationPathConstants.MachinesDirectoryName, FirmwareConstants.DirectoryName,
-            EmulationPathConstants.FirmwareDirectoryName);
+        _firmwareDirectory = Path.Combine(pathBase, EmulationPathConstants.RootDirectoryName, EmulationPathConstants.MachinesDirectoryName, FirmwareConstants.DirectoryName, EmulationPathConstants.FirmwareDirectoryName);
     }
 
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
-    public string BrandImageResourceName =>
-        EmulationModuleConstants.BrandImageResourceName;
+    public string BrandImageResourceName => EmulationModuleConstants.BrandImageResourceName;
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
-    public EmulationSettingsVisibility DefaultVisibility { get; } = new(
-        Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
+    public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
 
-    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
-        => _engine.TryHandleHostCommand(arguments, out exitCode);
+    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode) => _engine.TryHandleHostCommand(arguments, out exitCode);
 
     public EmulationMachineSettings Describe(string machineId, IEmulationConfiguration? configuration = null)
     {
@@ -59,12 +51,10 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
                 _ => item.Value
             })
         };
-        return new EmulationMachineSettings(machineId, visibility,
-            SettingsDescriptionFunctions.Create(model, current));
+        return new EmulationMachineSettings(machineId, visibility, SettingsDescriptionFunctions.Create(model, current));
     }
 
-    public IEmulationConfiguration CreateConfiguration(string machineId) =>
-        new MachineConfiguration(ModelCatalog.Get(machineId).Id, EmulatorCatalog.DefaultFor(machineId), Id: Guid.NewGuid());
+    public IEmulationConfiguration CreateConfiguration(string machineId) => new MachineConfiguration(ModelCatalog.Get(machineId).Id, EmulatorCatalog.DefaultFor(machineId), Id: Guid.NewGuid());
 
     public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId)
     {
@@ -90,23 +80,17 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         }
         var currentAudio = current.Audio ?? new AudioConfiguration();
         var hasOutput = values.TryGetValue(MachineSettingsConstants.AudioOutput, out var output);
-        var latency = int.TryParse(values.GetValueOrDefault(MachineSettingsConstants.AudioLatency), out var latencyValue)
-            ? latencyValue : currentAudio.LatencyMilliseconds;
-        var stereo = int.TryParse(values.GetValueOrDefault(MachineSettingsConstants.AudioStereoSeparation),
-            out var stereoValue) ? stereoValue : currentAudio.StereoSeparation;
+        var latency = int.TryParse(values.GetValueOrDefault(MachineSettingsConstants.AudioLatency), out var latencyValue) ? latencyValue : currentAudio.LatencyMilliseconds;
+        var stereo = int.TryParse(values.GetValueOrDefault(MachineSettingsConstants.AudioStereoSeparation), out var stereoValue) ? stereoValue : currentAudio.StereoSeparation;
         var updated = current with
         {
             Options = options,
-            HardDiskDirectory = values.TryGetValue(StorageDirectorySettings.HardDiskDirectory, out var directory)
-                ? string.IsNullOrWhiteSpace(directory) ? null : directory : current.HardDiskDirectory,
+            HardDiskDirectory = values.TryGetValue(StorageDirectorySettings.HardDiskDirectory, out var directory) ? string.IsNullOrWhiteSpace(directory) ? null : directory : current.HardDiskDirectory,
             FirmwarePaths = ApplyFirmwarePaths(current, values, firmwareFields),
-            AudioEnabled = values.TryGetValue(MachineSettingsConstants.AudioEnabled, out var audioEnabled)
-                ? audioEnabled == MachineSettingsConstants.Enabled : current.AudioEnabled,
+            AudioEnabled = values.TryGetValue(MachineSettingsConstants.AudioEnabled, out var audioEnabled) ? audioEnabled == MachineSettingsConstants.Enabled : current.AudioEnabled,
             Audio = currentAudio with
             {
-                OutputDeviceId = hasOutput
-                    ? string.IsNullOrWhiteSpace(output) ? null : output
-                    : currentAudio.OutputDeviceId,
+                OutputDeviceId = hasOutput ? string.IsNullOrWhiteSpace(output) ? null : output : currentAudio.OutputDeviceId,
                 LatencyMilliseconds = latency,
                 StereoSeparation = stereo
             },
@@ -128,40 +112,22 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         return paths;
     }
 
-    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) =>
-        new Dictionary<string, string>((configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration))).Options
-            ?? new Dictionary<string, string>());
+    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) => new Dictionary<string, string>((configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration))).Options ?? new Dictionary<string, string>());
 
-    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) =>
-        ConfigurationSummaryFunctions.Create(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) => ConfigurationSummaryFunctions.Create(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
 
-    public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) =>
-        InputSettingsFunctions.Describe(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => InputSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
 
-    public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration,
-        EmulationInputSettings settings) => InputSettingsFunctions.Apply(
-        configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
+    public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => InputSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
     public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default) => configuration is MachineConfiguration current
-        ? new ValueTask(_store.SaveAsync(current, cancellationToken))
-        : ValueTask.FromException(new ArgumentException(nameof(configuration)));
+        CancellationToken cancellationToken = default) => configuration is MachineConfiguration current ? new ValueTask(_store.SaveAsync(current, cancellationToken)) : ValueTask.FromException(new ArgumentException(nameof(configuration)));
 
-    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) =>
-        StorageSettingsFunctions.Describe(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) => StorageSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
 
-    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration,
-        EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(
-        configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
+    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
-    public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(
-        CancellationToken cancellationToken = default) =>
-        (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false))
-        .Cast<IEmulationConfiguration>().ToArray();
+    public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
 
     public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration,
         CancellationToken cancellationToken = default)
@@ -186,8 +152,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         _ = ModelCatalog.Get(machineId);
         var definition = EmulatorCatalog.Get(EmulatorCatalog.DefaultFor(machineId));
         var adapter = _engine.Adapter(definition.Id);
-        return await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken)
-            .ConfigureAwait(false);
+        return await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false);
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId,
@@ -196,8 +161,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         _ = ModelCatalog.Get(machineId);
         var definition = EmulatorCatalog.Get(EmulatorCatalog.DefaultFor(machineId));
         var adapter = _engine.Adapter(definition.Id);
-        return await adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken)
-            .ConfigureAwait(false);
+        return await adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false);
     }
 
     public async ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release,
@@ -206,15 +170,13 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         _ = ModelCatalog.Get(machineId);
         var definition = EmulatorCatalog.Get(EmulatorCatalog.DefaultFor(machineId));
         var adapter = _engine.Adapter(definition.Id);
-        return await adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken)
-            .ConfigureAwait(false);
+        return await adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken).ConfigureAwait(false);
     }
 
     public async ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(
         IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
-        var adapter = _engine.Adapter(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)));
+        var adapter = _engine.Adapter(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
         return await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false);
     }
 
@@ -243,16 +205,14 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         var slots = adapter.GetFirmwareSlots(selected).Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
         return ValueTask.FromResult<IEmulationConfiguration>(selected with
         {
-            FirmwarePaths = current.FirmwarePaths?.Where(pair => slots.Contains(pair.Key))
-                .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal)
+            FirmwarePaths = current.FirmwarePaths?.Where(pair => slots.Contains(pair.Key)).ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal)
         });
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
         IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
-        var adapter = _engine.Adapter(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)));
+        var adapter = _engine.Adapter(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
         return await adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false);
     }
 
@@ -260,8 +220,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         EmulationEmulatorRelease release, IProgress<double>? progress = null,
         CancellationToken cancellationToken = default)
     {
-        var adapter = _engine.Adapter(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)));
+        var adapter = _engine.Adapter(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
         return await adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken).ConfigureAwait(false);
     }
 
@@ -289,8 +248,7 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration,
         EmulationFirmwareCandidate firmware)
     {
-        var current = configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration));
+        var current = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
         if (firmware.DestinationFieldId is not { } field
             || !_engine.Adapter(current).GetFirmwareSlots(current).Any(slot => slot.FieldId == field))
             throw new ArgumentException(nameof(firmware));
@@ -305,14 +263,10 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         ConfigurationValidationFunctions.ValidateForSave(current);
         foreach (var slot in _engine.Adapter(current).GetFirmwareSlots(current))
             if (slot.IsRequired && string.IsNullOrWhiteSpace(current.FirmwarePath(slot.FieldId)))
-                throw new EmulationMessageException(new EmulationMessage(
-                    EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareMissing,
-                    EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
-        var runtime = await RuntimeMediaFunctions.PrepareConfigurationAsync(current,
-            services.ConvertedMediaDirectory).ConfigureAwait(false);
+                throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Firmware, EmulationMessageCode.FirmwareMissing, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+        var runtime = await RuntimeMediaFunctions.PrepareConfigurationAsync(current, services.ConvertedMediaDirectory).ConfigureAwait(false);
         var emulator = _engine.Adapter(runtime);
-        var corePath = await emulator.FindInstalledCorePathAsync(EmulatorManagement(emulator), cancellationToken)
-            .ConfigureAwait(false)
+        var corePath = await emulator.FindInstalledCorePathAsync(EmulatorManagement(emulator), cancellationToken).ConfigureAwait(false)
             ?? throw new EmulationMessageException(new EmulationMessage(
                 EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
                 EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
@@ -321,18 +275,14 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
         var creationContext = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
-            value => Path.Combine(services.StatesDirectory,
-                value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat),
-                CoreDirectoryConstants.SavesDirectoryName));
+            value => Path.Combine(services.StatesDirectory, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat), CoreDirectoryConstants.SavesDirectoryName));
         var storage = StorageSettingsFunctions.Describe(runtime);
-        var devices = storage.AvailableDevices
-            .Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray();
+        var devices = storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray();
         var mounted = emulator.ResolveConfiguredMedia(runtime);
         return new EmulationMachineRuntime(runtime,
             CreateMachineFactory(_engine, runtime, creationContext), devices, mounted,
             MachineCatalog.All.First(machine => machine.Id == runtime.Model).DisplayResourceKey, true,
-            (media, _) => RuntimeMediaFunctions.PrepareMediaAsync(runtime, media,
-                services.ConvertedMediaDirectory));
+            (media, _) => RuntimeMediaFunctions.PrepareMediaAsync(runtime, media, services.ConvertedMediaDirectory));
     }
 
     private static Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> CreateMachineFactory(

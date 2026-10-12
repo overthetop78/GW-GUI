@@ -10,14 +10,9 @@ internal static partial class InputSettingsFunctions
         configuration = EmulatorCatalog.CreateAdapter(configuration.Core).ApplyInputConfiguration(configuration);
         var input = configuration.Input ?? new InputConfiguration();
         var model = ModelCatalog.Get(configuration.Model);
-        var keyboard = model.HasKeyboard
-            ? new EmulationInputBindingSet(EmulatorCatalog.CreateAdapter(configuration.Core).GetKeyboardDefinitions(configuration),
-                input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard)
-            : null;
+        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(EmulatorCatalog.CreateAdapter(configuration.Core).GetKeyboardDefinitions(configuration), input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard) : null;
         var mouse = model.MouseButtonCount == MachineSettingsConstants.NoDevices ? null : new EmulationInputBindingSet(MouseDefinitions(model),
-            (input.MouseButtonMappings ?? new Dictionary<string, MouseAction>())
-                .Where(item => item.Value != MouseAction.None)
-                .ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal),
+            (input.MouseButtonMappings ?? new Dictionary<string, MouseAction>()).Where(item => item.Value != MouseAction.None).ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal),
             EmulationInputSource.Mouse | EmulationInputSource.Keyboard);
         var configured = input.ControllerBindings ?? [];
         var portCount = EmulatorCatalog.CreateAdapter(configuration.Core).GetControllerPortCount(configuration);
@@ -25,16 +20,12 @@ internal static partial class InputSettingsFunctions
         {
             var number = index + ControllerPortConstants.OneControllerPort;
             var current = configured.FirstOrDefault(item => item.Port == index);
-            var type = current?.Type ?? (index < model.ControllerPortCount
-                ? ControllerCatalog.Default(model) : ControllerType.Joystick);
-            var choices = index < model.ControllerPortCount
-                ? ControllerCatalog.Types(model) : ControllerCatalog.ParallelPortTypes;
+            var type = current?.Type ?? (index < model.ControllerPortCount ? ControllerCatalog.Default(model) : ControllerType.Joystick);
+            var choices = index < model.ControllerPortCount ? ControllerCatalog.Types(model) : ControllerCatalog.ParallelPortTypes;
             return new EmulationControllerPort(number,
                 choices.Select(Choice).ToArray(), type.ToString(),
                 current?.DeviceId,
-                new EmulationInputBindingSet(ControllerDefinitions(type), current?.ButtonMappings
-                    ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
-                    true), VisualId: current?.VisualId);
+                new EmulationInputBindingSet(ControllerDefinitions(type), current?.ButtonMappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true), VisualId: current?.VisualId);
         }).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
@@ -44,16 +35,12 @@ internal static partial class InputSettingsFunctions
     {
         var current = configuration.Input ?? new InputConfiguration();
         var keyboard = settings.Keyboard?.Values ?? new Dictionary<string, string>();
-        var mouse = settings.Mouse?.Values
-            .Where(item => !string.IsNullOrWhiteSpace(item.Value)
-                && Enum.TryParse<MouseAction>(item.Key, true, out var action)
-                && action != MouseAction.None)
+        var mouse = settings.Mouse?.Values.Where(item => !string.IsNullOrWhiteSpace(item.Value) && Enum.TryParse<MouseAction>(item.Key, true, out var action) && action != MouseAction.None)
             .ToDictionary(item => item.Value, item => Enum.Parse<MouseAction>(item.Key, true),
                 StringComparer.OrdinalIgnoreCase)
             ?? new Dictionary<string, MouseAction>();
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(port.Number - ControllerPortConstants.OneControllerPort,
-            Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type)
-                ? type : ControllerType.None, port.PhysicalDeviceId, port.Bindings.Values,
+            Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type) ? type : ControllerType.None, port.PhysicalDeviceId, port.Bindings.Values,
             port.VisualId)).ToArray();
         var input = current with
         {
@@ -76,8 +63,7 @@ internal static partial class InputSettingsFunctions
             Definition(nameof(MouseAction.RightButton), InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)
         };
         if (model.MouseButtonCount >= InputSnapshotFunctionsConstants.MouseWithMiddleButtonCount)
-            definitions.Add(Definition(nameof(MouseAction.MiddleButton),
-                InputSettingsFunctionsConstants.ResourceMouseButtonMiddle, InputSettingsFunctionsConstants.MouseMiddle));
+            definitions.Add(Definition(nameof(MouseAction.MiddleButton), InputSettingsFunctionsConstants.ResourceMouseButtonMiddle, InputSettingsFunctionsConstants.MouseMiddle));
         return definitions;
     }
 
@@ -112,13 +98,8 @@ internal static partial class InputSettingsFunctions
         return definitions;
     }
 
-    internal static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding) =>
-        new(id, resourceKey, defaultBinding, resourceKey.Contains(InputSettingsFunctionsConstants.ResourceKeySeparator) ? null : resourceKey);
+    internal static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding) => new(id, resourceKey, defaultBinding, resourceKey.Contains(InputSettingsFunctionsConstants.ResourceKeySeparator) ? null : resourceKey);
 
     private static EmulationControllerChoice Choice(ControllerType type) =>
-        new(type.ToString(), ControllerResourceKey(type),
-            BindingDefinitions: ControllerDefinitions(type),
-            CompatibleVisualIds: CompatibleVisualIds(type),
-            DefaultVisualId: DefaultVisualId(type),
-            VisualCommandIds: VisualCommandIds(type));
+        new(type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type), CompatibleVisualIds: CompatibleVisualIds(type), DefaultVisualId: DefaultVisualId(type), VisualCommandIds: VisualCommandIds(type));
 }

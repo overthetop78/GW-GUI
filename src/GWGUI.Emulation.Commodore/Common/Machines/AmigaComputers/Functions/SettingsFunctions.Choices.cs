@@ -92,9 +92,7 @@ internal static partial class AmigaSettingsDescriptionFunctions
         double frequency
     )
     {
-        var prefix = Approximately(ratio, ClockConstants.NominalSpeedRatio) 
-            ? SettingsValueConstants.NominalCpuSpeedLabel 
-            : string.Format(SettingsValueConstants.PercentageLabelFormat, Math.Round(ratio * SettingsValueConstants.MaximumPercentage));
+        var prefix = Approximately(ratio, ClockConstants.NominalSpeedRatio) ? SettingsValueConstants.NominalCpuSpeedLabel : string.Format(SettingsValueConstants.PercentageLabelFormat, Math.Round(ratio * SettingsValueConstants.MaximumPercentage));
         return new EmulationSettingsChoice(
             string.Join(SettingsValueConstants.CpuSpeedSelectionSeparator, throttle, multiplier),
             string.Empty,
@@ -114,9 +112,7 @@ internal static partial class AmigaSettingsDescriptionFunctions
         var expected = compatibility is CpuCompatibility.MemoryExact or CpuCompatibility.Exact 
             ? string.Join(SettingsValueConstants.CpuSpeedSelectionSeparator, SettingsValueConstants.NominalCpuThrottle, multiplier) 
             : string.Join(SettingsValueConstants.CpuSpeedSelectionSeparator, throttle, SettingsValueConstants.AutomaticCpuMultiplier);
-        return choices.Any(choice => choice.Id == expected) 
-            ? expected 
-            : choices.FirstOrDefault(choice => choice.Id == SettingsValueConstants.NominalCpuSpeedSelection)?.Id ?? choices[BufferConstants.FirstCollectionIndex].Id;
+        return choices.Any(choice => choice.Id == expected) ? expected : choices.FirstOrDefault(choice => choice.Id == SettingsValueConstants.NominalCpuSpeedSelection)?.Id ?? choices[BufferConstants.FirstCollectionIndex].Id;
     }
 
     private static double NominalCpuFrequencyMhz(AmigaModel model, bool ntsc) => model.Id switch

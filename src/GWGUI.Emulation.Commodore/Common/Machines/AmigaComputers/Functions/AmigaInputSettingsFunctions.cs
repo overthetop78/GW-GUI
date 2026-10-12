@@ -12,16 +12,14 @@ internal static class AmigaInputSettingsFunctions
     {
         var keys = configuration.Model == CdtvModels.CDTV ? CdtvKeyboard.SpecialKeys : ComputerKeyboard.SpecialKeys;
         var defaults = configuration.Model == CdtvModels.CDTV ? CdtvDefaults.DefaultHostKeys : ComputerDefaults.DefaultHostKeys;
-        return keys.Select(key => InputSettingsFunctions.Definition(key.ToString(),
-            InputSettingsFunctions.KeyResource(key), InputSettingsFunctions.DefaultKey(key, defaults))).ToArray();
+        return keys.Select(key => InputSettingsFunctions.Definition(key.ToString(), InputSettingsFunctions.KeyResource(key), InputSettingsFunctions.DefaultKey(key, defaults))).ToArray();
     }
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration)
     {
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>());
         options[SettingsConstants.OptionTurboFire] = configuration.Input?.ControllerBindings?
-            .Any(binding => binding.ButtonMappings?.Any(item => item.Key == InputSettingsFunctionsConstants.L2
-                && !string.IsNullOrWhiteSpace(item.Value)) == true) == true
+            .Any(binding => binding.ButtonMappings?.Any(item => item.Key == InputSettingsFunctionsConstants.L2 && !string.IsNullOrWhiteSpace(item.Value)) == true) == true
             ? InputSettingsFunctionsConstants.Enabled : InputSettingsFunctionsConstants.Disabled;
         options[SettingsConstants.OptionTurboFireButton] = InputSettingsFunctionsConstants.L2;
         return configuration with { Options = options };
