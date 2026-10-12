@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Bandai.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
 {
-    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot,
-        InputConfiguration? configuration, MachineModel model)
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration? configuration, MachineModel model)
     {
         if (configuration?.Controllers is not { Count: > 0 }) return InputFunctions.Freeze(snapshot with { Controllers = [] });
         var controllers = Enumerable.Repeat(EmulationControllerState.Empty, ControllerConstants.PortCount).ToArray();
@@ -29,8 +28,7 @@ internal static class InputSnapshotFunctions
         return snapshot with { Controllers = controllers };
     }
 
-    private static bool IsPressed(string source, EmulationControllerState controller,
-        EmulationInputSnapshot snapshot)
+    private static bool IsPressed(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
         if (source.StartsWith(InputSnapshotFunctionsConstants.Keyboard, StringComparison.OrdinalIgnoreCase))
             return Enum.TryParse<EmulationKey>(source[InputSnapshotFunctionsConstants.Keyboard.Length..], true, out var key) && snapshot.Keys.Contains(key);

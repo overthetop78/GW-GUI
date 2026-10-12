@@ -8,7 +8,7 @@ namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalHostCallbacks : IDisposable
 {
-private void OnVideo(nint data, uint width, uint height, nuint pitch)
+    private void OnVideo(nint data, uint width, uint height, nuint pitch)
     {
         if (data == nint.Zero)
         {

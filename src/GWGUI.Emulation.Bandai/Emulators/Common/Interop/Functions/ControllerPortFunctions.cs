@@ -2,15 +2,13 @@ namespace GWGUI.Emulation.Bandai.Emulators.Common.Interop.Functions;
 
 internal static class ControllerPortFunctions
 {
-    internal static void Configure(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration)
+    internal static void Configure(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration)
     {
         ConfigurePort(exports, callbacks, configuration, ControllerConstants.FirstPort, configuration.Input.Controllers?.FirstOrDefault()?.Peripheral ?? PeripheralCategory.Automatic);
         callbacks.ConfigureInput(configuration.Input);
     }
 
-    internal static void ConfigurePort(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration, int port, PeripheralCategory peripheral)
+    internal static void ConfigurePort(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration, int port, PeripheralCategory peripheral)
     {
         if (port != ControllerConstants.FirstPort)
             throw new ArgumentOutOfRangeException(nameof(port), ErrorMessages.InvalidControllerPort);

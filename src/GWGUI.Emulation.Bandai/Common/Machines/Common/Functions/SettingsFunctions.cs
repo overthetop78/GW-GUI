@@ -15,10 +15,7 @@ internal static class SettingsDescriptionFunctions
         return blocks;
     }
 
-    private static void AddHardware(
-        List<EmulationSettingsBlock> blocks,
-        MachineConfiguration configuration
-    )
+    private static void AddHardware(List<EmulationSettingsBlock> blocks, MachineConfiguration configuration)
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
         if (hardware is null)
@@ -59,16 +56,9 @@ internal static class SettingsDescriptionFunctions
             ));
     }
 
-    private static string Memory(long bytes) => bytes >= SettingsConstants.BytesPerKibibyte 
-        ? $"{(bytes / SettingsConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture)} {SettingsConstants.KibibyteUnit}" 
-        : $"{bytes.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.ByteUnit}";
+    private static string Memory(long bytes) => bytes >= SettingsConstants.BytesPerKibibyte ? $"{(bytes / SettingsConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture)} {SettingsConstants.KibibyteUnit}" : $"{bytes.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.ByteUnit}";
     internal static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
-    internal static EmulationSettingsField Native(
-        MachineConfiguration configuration,
-        CoreOption option,
-        EmulationMachineTab tab,
-        string blockId
-    )
+    internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string blockId)
     {
         var resource = option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}.");
         var choices = option.Values.Select(choice => new EmulationSettingsChoice(

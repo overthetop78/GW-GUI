@@ -5,8 +5,7 @@ namespace GWGUI.Emulation.Bandai.Common.Machines.Common.Functions;
 
 internal static class FirmwareFunctions
 {
-    internal static async ValueTask<EmulationFirmwareCandidate> ScanFileAsync(string path,
-        CancellationToken cancellationToken)
+    internal static async ValueTask<EmulationFirmwareCandidate> ScanFileAsync(string path, CancellationToken cancellationToken)
     {
         var absolute = Path.GetFullPath(path);
         var compatibility = EmulationFirmwareCompatibility.Incompatible;

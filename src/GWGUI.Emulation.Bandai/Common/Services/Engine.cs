@@ -12,8 +12,7 @@ public sealed class Engine
         _adapters = adapters.ToDictionary(adapter => adapter.EmulatorId, StringComparer.Ordinal);
     }
 
-    internal IEmulatedMachine CreateMachine(MachineConfiguration configuration,
-        EmulatorCreationContext context)
+    internal IEmulatedMachine CreateMachine(MachineConfiguration configuration, EmulatorCreationContext context)
     {
         ArgumentNullException.ThrowIfNull(configuration);
         ArgumentNullException.ThrowIfNull(context);

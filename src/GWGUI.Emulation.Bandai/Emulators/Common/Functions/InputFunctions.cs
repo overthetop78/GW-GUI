@@ -5,8 +5,7 @@ internal static class InputFunctions
     internal static EmulationInputSnapshot Freeze(EmulationInputSnapshot? snapshot)
     {
         snapshot ??= EmulationInputSnapshot.Empty;
-        return new(new HashSet<EmulationKey>(snapshot.Keys), snapshot.Pointer with { },
-            snapshot.Controllers.ToArray());
+        return new(new HashSet<EmulationKey>(snapshot.Keys), snapshot.Pointer with { }, snapshot.Controllers.ToArray());
     }
 
     internal static short State(EmulationInputSnapshot snapshot, uint port, uint device, uint index, uint id)

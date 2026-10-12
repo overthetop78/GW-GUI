@@ -16,8 +16,7 @@ namespace GWGUI.Emulation.Bandai.Common.Services;
 [SupportedOSPlatform(ProcessCoreConstants.Windows)]
 internal sealed partial class ProcessCore : IEmulatorCore
 {
-private void Request(HostCommand command, Action<BinaryWriter>? write = null,
-        Action<BinaryReader>? read = null, bool allowUninitialized = false)
+    private void Request(HostCommand command, Action<BinaryWriter>? write = null, Action<BinaryReader>? read = null, bool allowUninitialized = false)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
         if (_connectionFailed) throw new InvalidOperationException(CoreHostErrors.ProcessUnavailable);
@@ -75,9 +74,7 @@ private void Request(HostCommand command, Action<BinaryWriter>? write = null,
     {
         var cancelled = _cancellationToken.IsCancellationRequested;
         var timedOut = error is OperationCanceledException && !cancelled;
-        var exitSuffix = _process is { HasExited: true }
-            ? string.Format(CultureInfo.InvariantCulture, CoreHostErrors.ProcessExitSuffixFormat, _process.ExitCode)
-            : string.Empty;
+        var exitSuffix = _process is { HasExited: true } ? string.Format(CultureInfo.InvariantCulture, CoreHostErrors.ProcessExitSuffixFormat, _process.ExitCode) : string.Empty;
         _connectionFailed = true;
         TerminateHostProcess();
         var message = cancelled ? CoreHostErrors.RequestCancelled : timedOut ? CoreHostErrors.ResponseTimeout : CoreHostErrors.CommunicationFailed + exitSuffix;

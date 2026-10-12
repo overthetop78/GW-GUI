@@ -13,8 +13,7 @@ public sealed class CoreReleaseService : ICoreReleaseService
         _installationRoot = Path.GetFullPath(installationRoot);
     }
 
-    public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(Emulator emulator,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
         var entry = CoreCatalog.Get(emulator);
         using var request = new HttpRequestMessage(HttpMethod.Head, entry.ArchiveUri);
@@ -23,9 +22,7 @@ public sealed class CoreReleaseService : ICoreReleaseService
         return [CoreReleaseFunctions.ParseRelease(entry, response)];
     }
 
-    public async Task<CoreInstallationPaths> InstallAsync(CoreRelease release,
-        IProgress<CoreInstallProgress>? progress = null,
-        CancellationToken cancellationToken = default)
+    public async Task<CoreInstallationPaths> InstallAsync(CoreRelease release, IProgress<CoreInstallProgress>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(release);
         var entry = CoreCatalog.Get(release.Emulator);
@@ -60,8 +57,7 @@ public sealed class CoreReleaseService : ICoreReleaseService
         }
     }
 
-    public async Task<CoreInstallationPaths?> GetActiveInstallationAsync(Emulator emulator,
-        CancellationToken cancellationToken = default)
+    public async Task<CoreInstallationPaths?> GetActiveInstallationAsync(Emulator emulator, CancellationToken cancellationToken = default)
     {
         var marker = await CoreReleaseFunctions.ReadJsonAsync<CoreActiveInstallation>(CoreCatalog.GetActiveManifestPath(emulator, _installationRoot), cancellationToken).ConfigureAwait(false);
         if (marker is null) return null;
