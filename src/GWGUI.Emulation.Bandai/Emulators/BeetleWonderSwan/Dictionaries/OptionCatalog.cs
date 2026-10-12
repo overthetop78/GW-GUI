@@ -2,28 +2,34 @@ using GWGUI.Emulation.Bandai.Common.Contracts;
 using GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Constants;
 
 namespace GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Dictionaries;
-
 internal static class BeetleWonderSwanOptionCatalog
 {
-    internal static IReadOnlyList<CoreOption> All { get; } =
-    [
-        new(OptionConstants.OptionLanguage, "Language (Restart Required)",
-            "Console language saved in the internal EEPROM. Applied when a game is loaded.", null,
-            "english", "english",
-            [
-                new("english", "English"),
-                new("japanese", "Japanese"),
-            ]),
-        new(OptionConstants.OptionNameSource, "Owner Name Source (Restart Required)",
-            "Select the owner name stored in the internal EEPROM. Applied when a game is loaded.", null,
-            "frontend", "frontend",
-            [
-                new("frontend", "Frontend Username"),
-                new("default", "Default (Mednafen)"),
-            ]),
-        new(OptionConstants.OptionBirthYear, "Owner Birth Year (Restart Required)",
-            "Birth year stored in the internal EEPROM. Applied when a game is loaded.", null,
-            "1989", "1989",
+    internal static IReadOnlyList<CoreOption> All { get; } = [
+        new(
+            OptionConstants.OptionLanguage,
+            "Language (Restart Required)",
+            "Console language saved in the internal EEPROM. Applied when a game is loaded.",
+            null,
+            "english",
+            "english",
+            [new("english", "English"), new("japanese", "Japanese"), ]
+        ),
+        new(
+            OptionConstants.OptionNameSource,
+            "Owner Name Source (Restart Required)",
+            "Select the owner name stored in the internal EEPROM. Applied when a game is loaded.",
+            null,
+            "frontend",
+            "frontend",
+            [new("frontend", "Frontend Username"), new("default", "Default (Mednafen)"), ]
+        ),
+        new(
+            OptionConstants.OptionBirthYear,
+            "Owner Birth Year (Restart Required)",
+            "Birth year stored in the internal EEPROM. Applied when a game is loaded.",
+            null,
+            "1989",
+            "1989",
             [
                 new("1920", "1920"),
                 new("1921", "1921"),
@@ -135,10 +141,16 @@ internal static class BeetleWonderSwanOptionCatalog
                 new("2027", "2027"),
                 new("2028", "2028"),
                 new("2029", "2029"),
-            ]),
-        new(OptionConstants.OptionBirthMonth, "Owner Birth Month (Restart Required)",
-            "Birth month stored in the internal EEPROM. Applied when a game is loaded.", null,
-            "6", "6",
+
+            ]
+        ),
+        new(
+            OptionConstants.OptionBirthMonth,
+            "Owner Birth Month (Restart Required)",
+            "Birth month stored in the internal EEPROM. Applied when a game is loaded.",
+            null,
+            "6",
+            "6",
             [
                 new("1", "January"),
                 new("2", "February"),
@@ -152,10 +164,16 @@ internal static class BeetleWonderSwanOptionCatalog
                 new("10", "October"),
                 new("11", "November"),
                 new("12", "December"),
-            ]),
-        new(OptionConstants.OptionBirthDay, "Owner Birth Day (Restart Required)",
-            "Birth day stored in the internal EEPROM. Applied when a game is loaded.", null,
-            "23", "23",
+
+            ]
+        ),
+        new(
+            OptionConstants.OptionBirthDay,
+            "Owner Birth Day (Restart Required)",
+            "Birth day stored in the internal EEPROM. Applied when a game is loaded.",
+            null,
+            "23",
+            "23",
             [
                 new("1", "1"),
                 new("2", "2"),
@@ -188,42 +206,44 @@ internal static class BeetleWonderSwanOptionCatalog
                 new("29", "29"),
                 new("30", "30"),
                 new("31", "31"),
-            ]),
-        new(OptionConstants.OptionSex, "Owner Sex (Restart Required)",
-            "Owner sex stored in the internal EEPROM. Applied when a game is loaded.", null,
-            "female", "female",
-            [
-                new("female", "Female"),
-                new("male", "Male"),
-            ]),
-        new(OptionConstants.OptionBlood, "Owner Blood Type (Restart Required)",
-            "Blood type stored in the internal EEPROM. Applied when a game is loaded.", null,
-            "o", "o",
-            [
-                new("o", "O"),
-                new("a", "A"),
-                new("b", "B"),
-                new("ab", "AB"),
-            ]),
-        new(OptionConstants.OptionRotateDisplay, "Display Rotation",
-            "Select landscape or portrait orientation. Manual mode uses the assigned rotation button.", null,
-            "manual", "manual",
-            [
-                new("manual", "Manual"),
-                new("landscape", "Landscape"),
-                new("portrait", "Portrait"),
-            ]),
-        new(OptionConstants.OptionRotateKeymap, "Rotate Button Mappings",
-            "Automatic mode follows the display orientation. Other modes keep the controls in the selected orientation.", null,
-            "auto", "auto",
-            [
-                new("auto", "Auto"),
-                new("disabled", "Landscape"),
-                new("enabled", "Portrait"),
-            ]),
-        new(OptionConstants.OptionMonoPalette, "Color Palette",
-            "Select the colors used for monochrome games.", null,
-            "default", "default",
+
+            ]
+        ),
+        new(OptionConstants.OptionSex, "Owner Sex (Restart Required)", "Owner sex stored in the internal EEPROM. Applied when a game is loaded.", null, "female", "female", [new("female", "Female"), new("male", "Male"), ]),
+        new(
+            OptionConstants.OptionBlood,
+            "Owner Blood Type (Restart Required)",
+            "Blood type stored in the internal EEPROM. Applied when a game is loaded.",
+            null,
+            "o",
+            "o",
+            [new("o", "O"), new("a", "A"), new("b", "B"), new("ab", "AB"), ]
+        ),
+        new(
+            OptionConstants.OptionRotateDisplay,
+            "Display Rotation",
+            "Select landscape or portrait orientation. Manual mode uses the assigned rotation button.",
+            null,
+            "manual",
+            "manual",
+            [new("manual", "Manual"), new("landscape", "Landscape"), new("portrait", "Portrait"), ]
+        ),
+        new(
+            OptionConstants.OptionRotateKeymap,
+            "Rotate Button Mappings",
+            "Automatic mode follows the display orientation. Other modes keep the controls in the selected orientation.",
+            null,
+            "auto",
+            "auto",
+            [new("auto", "Auto"), new("disabled", "Landscape"), new("enabled", "Portrait"), ]
+        ),
+        new(
+            OptionConstants.OptionMonoPalette,
+            "Color Palette",
+            "Select the colors used for monochrome games.",
+            null,
+            "default",
+            "default",
             [
                 new("default", "Grayscale"),
                 new("wonderswan", "WS - WonderSwan"),
@@ -252,25 +272,34 @@ internal static class BeetleWonderSwanOptionCatalog
                 new("ti_83", "TI-83"),
                 new("travel_wood", "Travel Wood"),
                 new("virtual_boy", "Virtual Boy"),
-            ]),
-        new(OptionConstants.OptionGfxColors, "Color Depth (Restart Required)",
-            "Select the color depth. The 24-bit mode requires more processing power.", null,
-            "16bit", "16bit",
-            [
-                new("16bit", "Thousands (16-bit)"),
-                new("24bit", "Millions (24-bit)"),
-            ]),
-        new(OptionConstants.OptionFrameskip, "Frameskip",
-            "Skip video frames to reduce audio crackling. Automatic mode follows audio buffer status. Manual mode uses the selected threshold.", null,
-            "disabled", "disabled",
-            [
-                new("disabled", "disabled"),
-                new("auto", "Auto"),
-                new("manual", "Manual"),
-            ]),
-        new(OptionConstants.OptionFrameskipThreshold, "Frameskip Threshold (%)",
-            "In manual mode, skip frames when the audio buffer falls below this percentage.", null,
-            "33", "33",
+
+            ]
+        ),
+        new(
+            OptionConstants.OptionGfxColors,
+            "Color Depth (Restart Required)",
+            "Select the color depth. The 24-bit mode requires more processing power.",
+            null,
+            "16bit",
+            "16bit",
+            [new("16bit", "Thousands (16-bit)"), new("24bit", "Millions (24-bit)"), ]
+        ),
+        new(
+            OptionConstants.OptionFrameskip,
+            "Frameskip",
+            "Skip video frames to reduce audio crackling. Automatic mode follows audio buffer status. Manual mode uses the selected threshold.",
+            null,
+            "disabled",
+            "disabled",
+            [new("disabled", "disabled"), new("auto", "Auto"), new("manual", "Manual"), ]
+        ),
+        new(
+            OptionConstants.OptionFrameskipThreshold,
+            "Frameskip Threshold (%)",
+            "In manual mode, skip frames when the audio buffer falls below this percentage.",
+            null,
+            "33",
+            "33",
             [
                 new("15", "15"),
                 new("18", "18"),
@@ -288,29 +317,20 @@ internal static class BeetleWonderSwanOptionCatalog
                 new("54", "54"),
                 new("57", "57"),
                 new("60", "60"),
-            ]),
-        new(OptionConstants.Option60hzMode, "60Hz Mode",
-            "Skip every fifth frame to display at 60 Hz. This reduces motion smoothness.", null,
-            "enabled", "enabled",
-            [
-                new("disabled", "disabled"),
-                new("enabled", "enabled"),
-            ]),
-        new(OptionConstants.OptionSoundSampleRate, "Sound Output Sample Rate",
-            "Higher sample rates slightly improve audio quality and require more processing power.", null,
-            "44100", "44100",
-            [
-                new("11025", "11025"),
-                new("22050", "22050"),
-                new("44100", "44100"),
-                new("48000", "48000"),
-            ]),
-        new(OptionConstants.OptionSoundLowPass, "Audio Filter",
-            "Apply a low-pass filter to soften the sound.", null,
-            "disabled", "disabled",
-            [
-                new("disabled", "disabled"),
-                new("enabled", "enabled"),
-            ]),
+
+            ]
+        ),
+        new(OptionConstants.Option60hzMode, "60Hz Mode", "Skip every fifth frame to display at 60 Hz. This reduces motion smoothness.", null, "enabled", "enabled", [new("disabled", "disabled"), new("enabled", "enabled"), ]),
+        new(
+            OptionConstants.OptionSoundSampleRate,
+            "Sound Output Sample Rate",
+            "Higher sample rates slightly improve audio quality and require more processing power.",
+            null,
+            "44100",
+            "44100",
+            [new("11025", "11025"), new("22050", "22050"), new("44100", "44100"), new("48000", "48000"), ]
+        ),
+        new(OptionConstants.OptionSoundLowPass, "Audio Filter", "Apply a low-pass filter to soften the sound.", null, "disabled", "disabled", [new("disabled", "disabled"), new("enabled", "enabled"), ]),
+
     ];
 }

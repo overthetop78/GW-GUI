@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Bandai.Common.Contracts;
-
 public sealed record CoreOption(
     string Key,
     string Name,
@@ -10,6 +9,6 @@ public sealed record CoreOption(
     IReadOnlyList<CoreOptionValue> Values,
     bool IsVisible = true,
     string? CategorizedName = null,
-    string? CategorizedDescription = null);
-
+    string? CategorizedDescription = null
+);
 public sealed record CoreOptionValue(string Value, string Label);
