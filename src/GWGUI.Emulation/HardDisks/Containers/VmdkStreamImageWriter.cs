@@ -20,45 +20,61 @@ public static class VmdkStreamImageWriter
 
     public static void Write(Stream destination, long capacity, Action<Stream>? initialize = null)
     {
-        ContainerValidation.Validate(destination, capacity); Validate(capacity);
+        ContainerValidation.Validate(destination, capacity);
+        Validate(capacity);
         using var content = SparseImageContent.Create(capacity, initialize);
         var groups = new SortedDictionary<int, uint[]>();
         var tableCount = checked((int)((capacity + (long)GrainBytes * EntriesPerTable - 1) / ((long)GrainBytes * EntriesPerTable)));
         var directory = new byte[((tableCount * 4 + 511) / 512) * 512];
         var geometry = DiscUtils.Geometry.FromCapacity(capacity);
         var cid = Guid.NewGuid().ToString("N")[..8];
-        var descriptor = Encoding.ASCII.GetBytes(FormattableString.Invariant(
-            $"# Disk DescriptorFile\nversion=1\nCID={cid}\nparentCID=ffffffff\ncreateType=\"streamOptimized\"\nRW {capacity / 512} SPARSE \"disk.vmdk\"\nddb.adapterType = \"ide\"\nddb.geometry.cylinders = \"{geometry.Cylinders}\"\nddb.geometry.heads = \"{geometry.HeadsPerCylinder}\"\nddb.geometry.sectors = \"{geometry.SectorsPerTrack}\"\nddb.virtualHWVersion = \"4\"\n"));
+        var descriptor = Encoding.ASCII.GetBytes(FormattableString.Invariant($"# Disk DescriptorFile\nversion=1\nCID={cid}\nparentCID=ffffffff\ncreateType=\"streamOptimized\"\nRW {capacity / 512} SPARSE \"disk.vmdk\"\nddb.adapterType = \"ide\"\nddb.geometry.cylinders = \"{geometry.Cylinders}\"\nddb.geometry.heads = \"{geometry.HeadsPerCylinder}\"\nddb.geometry.sectors = \"{geometry.SectorsPerTrack}\"\nddb.virtualHWVersion = \"4\"\n"));
         destination.SetLength(DataStartSector * 512);
-        destination.Position = 0; destination.Write(Header(capacity, ulong.MaxValue));
+        destination.Position = 0;
+        destination.Write(Header(capacity, ulong.MaxValue));
         destination.Write(descriptor);
         destination.Position = DataStartSector * 512;
         var grain = new byte[GrainBytes];
         foreach (var unit in SparseImageContent.AllocatedUnits(content, GrainBytes))
         {
-            Array.Clear(grain); content.Position = unit * GrainBytes;
+            Array.Clear(grain);
+            content.Position = unit * GrainBytes;
             content.ReadExactly(grain.AsSpan(0, (int)Math.Min(GrainBytes, capacity - content.Position)));
-            if (!grain.AsSpan().ContainsAnyExcept((byte)0)) continue;
+            if (!grain.AsSpan().ContainsAnyExcept((byte)0))
+                continue;
             using var compressed = new MemoryStream();
-            using (var zlib = new ZLibStream(compressed, CompressionLevel.Fastest, leaveOpen: true)) zlib.Write(grain);
+            using (var zlib = new ZLibStream(compressed, CompressionLevel.Fastest, leaveOpen: true))
+                zlib.Write(grain);
             var group = checked((int)(unit / EntriesPerTable));
-            if (!groups.TryGetValue(group, out var table)) groups.Add(group, table = new uint[EntriesPerTable]);
+            if (!groups.TryGetValue(group, out var table))
+                groups.Add(group, table = new uint[EntriesPerTable]);
             table[unit % EntriesPerTable] = checked((uint)(destination.Position / 512));
-            var marker = new byte[12]; Put64(marker, 0, (ulong)(unit * (GrainBytes / 512))); Put32(marker, 8, (uint)compressed.Length);
-            destination.Write(marker); compressed.Position = 0; compressed.CopyTo(destination); Pad(destination);
+            var marker = new byte[12];
+            Put64(marker, 0, (ulong)(unit * (GrainBytes / 512)));
+            Put32(marker, 8, (uint)compressed.Length);
+            destination.Write(marker);
+            compressed.Position = 0;
+            compressed.CopyTo(destination);
+            Pad(destination);
         }
-        foreach (var (group, table) in groups)
+    
+        foreach (var(group, table)in groups)
         {
             destination.Write(Marker(4, 1));
             Put32(directory, group * 4, checked((uint)(destination.Position / 512)));
             var bytes = new byte[EntriesPerTable * 4];
-            for (var index = 0; index < table.Length; index++) Put32(bytes, index * 4, table[index]);
+            for (var index = 0; index < table.Length; index++)
+                Put32(bytes, index * 4, table[index]);
             destination.Write(bytes);
         }
+    
         destination.Write(Marker((ulong)(directory.Length / 512), 2));
-        var directorySector = (ulong)(destination.Position / 512); destination.Write(directory);
-        destination.Write(Marker(1, 3)); destination.Write(Header(capacity, directorySector));
-        destination.Write(Marker(0, 0)); destination.Flush();
+        var directorySector = (ulong)(destination.Position / 512);
+        destination.Write(directory);
+        destination.Write(Marker(1, 3));
+        destination.Write(Header(capacity, directorySector));
+        destination.Write(Marker(0, 0));
+        destination.Flush();
     }
 
     private static byte[] Header(long capacity, ulong directorySector)
