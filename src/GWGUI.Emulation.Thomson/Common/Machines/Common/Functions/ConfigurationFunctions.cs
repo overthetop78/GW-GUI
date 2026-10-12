@@ -5,7 +5,6 @@ using GWGUI.Emulation.Thomson.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Thomson.Common.Machines.Common.Enums;
 
 namespace GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;
-
 internal static partial class ConfigurationFunctions
 {
     internal static MachineFamily Family(MachineModel model) => model switch
@@ -13,8 +12,11 @@ internal static partial class ConfigurationFunctions
         MachineModel.Mo5 or MachineModel.Mo6 => MachineFamily.Mo,
         MachineModel.To7 or MachineModel.To770 or MachineModel.To8 or MachineModel.To8D or MachineModel.To9 or MachineModel.To9Plus => MachineFamily.To,
         _ => throw new ArgumentOutOfRangeException(nameof(model))};
-
-    internal static int ControllerPortCount(MachineModel model) { _ = Family(model); return ControllerConstants.PortCount; }
+    internal static int ControllerPortCount(MachineModel model)
+    {
+        _ = Family(model);
+        return ControllerConstants.PortCount;
+    }
 
     internal static void Validate(MachineConfiguration configuration)
     {
@@ -41,7 +43,7 @@ internal static partial class ConfigurationFunctions
             if (media.Category != expected)
                 throw new ArgumentException(nameof(configuration.Media));
         }
-    
+
         if (configuration.Options.Any(option => string.IsNullOrWhiteSpace(option.Key) || option.Value is null))
             throw new ArgumentException(nameof(configuration.Options));
         if (configuration.Input.MouseSpeedPercent is < InputMappingConstants.MinimumMouseSpeedPercent or > InputMappingConstants.MaximumMouseSpeedPercent)

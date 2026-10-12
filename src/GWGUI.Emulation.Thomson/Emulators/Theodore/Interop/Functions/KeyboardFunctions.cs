@@ -2,7 +2,6 @@ using GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Constants;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Thomson.Emulators.Theodore.Interop.Functions;
-
 internal static class KeyboardFunctions
 {
     internal static IReadOnlyDictionary<EmulationKey, uint> CreateKeyMap(MachineModel model)
@@ -14,15 +13,26 @@ internal static class KeyboardFunctions
             [EmulationKey.Return] = KeyboardConstants.Return,
             [EmulationKey.Escape] = KeyboardConstants.Escape,
             [EmulationKey.Space] = KeyboardConstants.Space,
-            [EmulationKey.Comma] = ',', [EmulationKey.Minus] = '-', [EmulationKey.Period] = '.',
-            [EmulationKey.Slash] = '/', [EmulationKey.Semicolon] = ';', [EmulationKey.Equals] = '=',
-            [EmulationKey.LeftBracket] = '[', [EmulationKey.Backslash] = '\\',
-            [EmulationKey.RightBracket] = ']', [EmulationKey.Quote] = '\'', [EmulationKey.Backquote] = '`',
+            [EmulationKey.Comma] = ',',
+            [EmulationKey.Minus] = '-',
+            [EmulationKey.Period] = '.',
+            [EmulationKey.Slash] = '/',
+            [EmulationKey.Semicolon] = ';',
+            [EmulationKey.Equals] = '=',
+            [EmulationKey.LeftBracket] = '[',
+            [EmulationKey.Backslash] = '\\',
+            [EmulationKey.RightBracket] = ']',
+            [EmulationKey.Quote] = '\'',
+            [EmulationKey.Backquote] = '`',
             [EmulationKey.Delete] = KeyboardConstants.Delete,
-            [EmulationKey.Up] = KeyboardConstants.Up, [EmulationKey.Down] = KeyboardConstants.Down,
-            [EmulationKey.Right] = KeyboardConstants.Right, [EmulationKey.Left] = KeyboardConstants.Left,
-            [EmulationKey.Insert] = KeyboardConstants.Insert, [EmulationKey.Home] = KeyboardConstants.Home,
-            [EmulationKey.End] = KeyboardConstants.End, [EmulationKey.PageUp] = KeyboardConstants.PageUp,
+            [EmulationKey.Up] = KeyboardConstants.Up,
+            [EmulationKey.Down] = KeyboardConstants.Down,
+            [EmulationKey.Right] = KeyboardConstants.Right,
+            [EmulationKey.Left] = KeyboardConstants.Left,
+            [EmulationKey.Insert] = KeyboardConstants.Insert,
+            [EmulationKey.Home] = KeyboardConstants.Home,
+            [EmulationKey.End] = KeyboardConstants.End,
+            [EmulationKey.PageUp] = KeyboardConstants.PageUp,
             [EmulationKey.PageDown] = KeyboardConstants.PageDown,
             [EmulationKey.CapsLock] = KeyboardConstants.CapsLock,
             [EmulationKey.RightShift] = KeyboardConstants.RightShift,
@@ -49,13 +59,20 @@ internal static class KeyboardFunctions
         map[EmulationKey.ThomsonStop] = KeyboardConstants.Tab;
         map[EmulationKey.ThomsonAccent] = KeyboardConstants.Backspace;
         map[EmulationKey.ThomsonRaz] = KeyboardConstants.LeftAlt;
-        if (ConfigurationFunctions.Family(model) == MachineFamily.Mo) { map.Remove(EmulationKey.RightShift); map[EmulationKey.ThomsonBasic] = KeyboardConstants.RightShift; }
+        if (ConfigurationFunctions.Family(model) == MachineFamily.Mo)
+        {
+            map.Remove(EmulationKey.RightShift);
+            map[EmulationKey.ThomsonBasic] = KeyboardConstants.RightShift;
+        }
+
         return map;
     }
 
     internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)((HasShift(keys) ? KeyboardConstants.ShiftModifier : KeyboardConstants.NoModifiers) | (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? KeyboardConstants.ControlModifier : KeyboardConstants.NoModifiers) | (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? KeyboardConstants.AltModifier : KeyboardConstants.NoModifiers));
-
-    internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)
+    internal static uint Character(
+        uint code,
+        IReadOnlySet<EmulationKey> keys
+    )
     {
         var shifted = HasShift(keys);
         if (code is >= KeyboardConstants.FirstLetter and <= KeyboardConstants.LastLetter)
@@ -90,14 +107,16 @@ internal static class KeyboardFunctions
     }
 
     internal static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt;
-
-
     private static bool HasShift(IReadOnlySet<EmulationKey> keys) => keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift);
-
     private static bool IsPrintable(uint code) => code is >= KeyboardConstants.FirstPrintableCharacter and <= KeyboardConstants.LastPrintableCharacter;
-
-    private static void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)
+    private static void AddRange(
+        IDictionary<EmulationKey, uint> map,
+        EmulationKey firstKey,
+        uint firstCode,
+        int count
+    )
     {
-        for (var offset = KeyboardConstants.FirstRangeOffset; offset < count; offset++) map[(EmulationKey)((int)firstKey + offset)] = firstCode + checked((uint)offset);
+        for (var offset = KeyboardConstants.FirstRangeOffset; offset < count; offset++)
+            map[(EmulationKey)((int)firstKey + offset)] = firstCode + checked((uint)offset);
     }
 }

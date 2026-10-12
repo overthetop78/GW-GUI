@@ -2,7 +2,6 @@ using System.IO;
 using GWGUI.Emulation.Thomson.Emulators.Theodore.Constants;
 
 namespace GWGUI.Emulation.Thomson.Emulators.Theodore.Functions;
-
 internal static class MediaRuntimeFunctions
 {
     internal static MediaCategory Category(string path)

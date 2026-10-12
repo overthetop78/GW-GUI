@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Thomson.Common.Contracts;
-
 public sealed record CoreOption(
     string Key,
     string Name,

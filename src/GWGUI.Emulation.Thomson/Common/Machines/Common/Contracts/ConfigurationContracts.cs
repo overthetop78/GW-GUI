@@ -6,7 +6,6 @@ using GWGUI.Emulation.Thomson.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;
 
 namespace GWGUI.Emulation.Thomson.Common.Machines.Common.Contracts;
-
 internal sealed record ConfigurationDocument(
     int SchemaVersion,
     Guid Id,
@@ -19,7 +18,6 @@ internal sealed record ConfigurationDocument(
     IReadOnlyList<EmulationMediaSlot> ConfiguredSlots,
     string? InitialContent = null
 );
-
 public sealed record MachineConfiguration : IEmulationConfiguration
 {
     [JsonConstructor]
@@ -34,7 +32,18 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         bool audioEnabled,
         IReadOnlyList<EmulationMediaSlot> configuredSlots,
         string? initialContent = null
-    ) : this(model, media, options, input, id, schemaVersion, audioEnabled, core, configuredSlots, initialContent)
+    ) : this(
+        model,
+        media,
+        options,
+        input,
+        id,
+        schemaVersion,
+        audioEnabled,
+        core,
+        configuredSlots,
+        initialContent
+    )
     {
     }
 

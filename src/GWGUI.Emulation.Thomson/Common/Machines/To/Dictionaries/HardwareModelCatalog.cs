@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Thomson.Common.Machines.To.Dictionaries;
-
 internal static class HardwareModelCatalog
 {
     // TO7: Thomas Conté, https://commons.wikimedia.org/wiki/File:Thomson_TO7_(Thomas_Conté)_(cropped).jpg (CC BY-SA 2.0).

@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Thomson.Common.Machines.Common.Constants;
-
 internal static class SettingsConstants
 {
     internal const string AudioEnabled = "thomson_audio_enabled", AudioOutput = "gwgui_thomson_audio_output", AudioLatency = "gwgui_thomson_audio_latency", MouseSpeed = "thomson_mouse_speed";
