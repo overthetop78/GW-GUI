@@ -82,7 +82,9 @@ public sealed class AppleDosVolumeWriter
 
     private static int[] Allocate(bool[] free, int count, int sectorsPerTrack)
     {
-        var candidates = Enumerable.Range(0, AppleDosFileSystemLayout.TrackCount).OrderBy(track => Math.Abs(track - (AppleDosFileSystemLayout.VtocTrack - 1))).ThenBy(track => track).SelectMany(track => Enumerable.Range(0, sectorsPerTrack).Select(sector => track * sectorsPerTrack + sector)).Where(logical => free[logical]).Take(count).ToArray();
+        var candidates = Enumerable.Range(0,
+            AppleDosFileSystemLayout.TrackCount).OrderBy(track => Math.Abs(track - (AppleDosFileSystemLayout.VtocTrack - 1))).ThenBy(track => track).SelectMany(track => Enumerable.Range(0,
+            sectorsPerTrack).Select(sector => track * sectorsPerTrack + sector)).Where(logical => free[logical]).Take(count).ToArray();
         if (candidates.Length != count)
             throw AppleDosVolumeWriterExceptions.DiskFull();
         foreach (var logical in candidates)

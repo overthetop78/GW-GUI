@@ -11,5 +11,6 @@ internal static class ProDosFileTypeNames
         ProDosFileType.Basic => "BASIC",
         ProDosFileType.Variables => "Variables",
         ProDosFileType.System => "Système",
-        _ => $"ProDOS ${(byte)type:X2}"};
+        _ => $"ProDOS ${(byte)type:X2}"
+    };
 }

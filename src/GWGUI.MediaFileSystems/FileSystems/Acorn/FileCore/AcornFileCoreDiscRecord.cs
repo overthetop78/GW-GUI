@@ -23,7 +23,24 @@ public sealed record AcornFileCoreDiscRecord(int Log2SectorSize, int IdLength, i
         var root = BinaryPrimitives.ReadInt32LittleEndian(data[AcornFileCoreDiscRecordLayout.RootAddressOffset..]);
         var discSize = ComposeDiscSize(BinaryPrimitives.ReadUInt32LittleEndian(data[AcornFileCoreDiscRecordLayout.DiscSizeLowOffset..]), BinaryPrimitives.ReadUInt32LittleEndian(data[AcornFileCoreDiscRecordLayout.DiscSizeHighOffset..]));
         var sectorBitCount = BitConstants.BitsPerByte << log2Sector;
-        if (log2Sector is < AcornFileCoreDiscRecordLayout.MinimumLog2SectorSize or > AcornFileCoreDiscRecordLayout.MaximumLog2SectorSize || idLength < log2Sector + AcornFileCoreDiscRecordLayout.MinimumIdExtraBits || idLength > AcornFileCoreDiscRecordLayout.MaximumIdLength || log2MapBit > log2Sector || zoneCount < AcornFileCoreDiscRecordLayout.MinimumZoneCount || root < AcornFileCoreDiscRecordLayout.MinimumRootAddress || discSize < AcornFileCoreDiscRecordLayout.MinimumDiscSize || discSize > imageCapacity || zoneSpare >= sectorBitCount)
+        if (log2Sector is < AcornFileCoreDiscRecordLayout.MinimumLog2SectorSize or > AcornFileCoreDiscRecordLayout.MaximumLog2SectorSize 
+            || idLength 
+            < log2Sector 
+            + AcornFileCoreDiscRecordLayout.MinimumIdExtraBits 
+            || idLength 
+            > AcornFileCoreDiscRecordLayout.MaximumIdLength 
+            || log2MapBit 
+            > log2Sector 
+            || zoneCount 
+            < AcornFileCoreDiscRecordLayout.MinimumZoneCount 
+            || root 
+            < AcornFileCoreDiscRecordLayout.MinimumRootAddress 
+            || discSize 
+            < AcornFileCoreDiscRecordLayout.MinimumDiscSize 
+            || discSize 
+            > imageCapacity 
+            || zoneSpare 
+            >= sectorBitCount)
             return false;
         var name = AcornFileCoreNameCodec.Decode(data.Slice(AcornFileCoreDiscRecordLayout.DiscNameOffset, AcornFileCoreDiscRecordLayout.DiscNameLength));
         record = new(log2Sector, idLength, log2MapBit, zoneCount, zoneSpare, root, discSize, name, data[AcornFileCoreDiscRecordLayout.Log2ShareSizeOffset] & AcornFileCoreDiscRecordLayout.Log2ShareSizeMask);

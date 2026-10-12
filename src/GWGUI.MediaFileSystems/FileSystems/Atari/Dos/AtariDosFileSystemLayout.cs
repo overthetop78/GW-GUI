@@ -67,8 +67,7 @@ public static class AtariDosFileSystemLayout
     public const string SharedSectorViewAttribute = "shared-sector-view";
 
     /// <summary>Calcule le nombre de secteurs occupés par un VTOC étendu MyDOS.</summary>
-    public static int ExtendedVtocSectorCount(byte code, int sectorSize) =>
-        code < MinimumExtendedVtocCode ? 0 : sectorSize == MinimumSectorSize ? checked((code - 2) * 2) : code - 2;
+    public static int ExtendedVtocSectorCount(byte code, int sectorSize) => code < MinimumExtendedVtocCode ? 0 : sectorSize == MinimumSectorSize ? checked((code - 2) * 2) : code - 2;
     /// <summary>Caractère de remplissage des noms.</summary>
     public const byte NamePadding = 0x20;
     /// <summary>Premier caractère ASCII imprimable.</summary>

@@ -16,7 +16,8 @@ public sealed class Rt11FileSystemReader : IFileSystemReader
     }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     /// <inheritdoc/>
-    public bool CanRead(IMediaSectorImage image) => CatalogFormatIds.Contains(image.FormatId) && image.BlockSize == Rt11FileSystemLayout.BlockSize && image.TryGetBlock(Rt11FileSystemLayout.HomeBlock, out var home) && home.Data.Count == Rt11FileSystemLayout.BlockSize && Rt11HomeBlockProbe.LooksLikeRt11(home.Data.ToArray());
+    public bool CanRead(IMediaSectorImage image) => CatalogFormatIds.Contains(image.FormatId) && image.BlockSize == Rt11FileSystemLayout.BlockSize && image.TryGetBlock(Rt11FileSystemLayout.HomeBlock,
+        out var home) && home.Data.Count == Rt11FileSystemLayout.BlockSize && Rt11HomeBlockProbe.LooksLikeRt11(home.Data.ToArray());
     /// <inheritdoc/>
     public FileSystemVolume Read(IMediaSectorImage image)
     {

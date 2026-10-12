@@ -72,7 +72,8 @@ public static class AmigaDosRecoveryReader
         if (!ancestors.Add(candidate.BlockNumber))
             return CreateEntry(candidate, [], null, false);
         var children = candidate.Kind == FileSystemEntryKind.Directory 
-            ? candidates.Values.Where(child => child.ParentBlock == candidate.BlockNumber).Select(child => BuildEntry(image, child, candidates, variant, warnings, new HashSet<int>(ancestors))).OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory).ThenBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray() 
+            ? candidates.Values.Where(child => child.ParentBlock == candidate.BlockNumber).Select(child => BuildEntry(image, child, candidates, variant, warnings, new HashSet<int>(ancestors))).OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory).ThenBy(entry => entry.Name,
+                StringComparer.OrdinalIgnoreCase).ToArray() 
             : [];
         if (candidate.Kind != FileSystemEntryKind.File)
             return CreateEntry(candidate, children, null, true);

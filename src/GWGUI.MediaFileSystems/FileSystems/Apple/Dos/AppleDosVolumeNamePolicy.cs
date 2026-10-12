@@ -10,6 +10,14 @@ public sealed class AppleDosVolumeNamePolicy : IMigrationNamePolicy
     public static bool TryParse(string name, out byte volumeNumber)
     {
         volumeNumber = 0;
-        return name.Length == AppleDosFileSystemLayout.VolumeNamePrefix.Length + 3 && name.StartsWith(AppleDosFileSystemLayout.VolumeNamePrefix, StringComparison.OrdinalIgnoreCase) && byte.TryParse(name.AsSpan(AppleDosFileSystemLayout.VolumeNamePrefix.Length), out volumeNumber) && volumeNumber < byte.MaxValue;
+        return name.Length 
+            == AppleDosFileSystemLayout.VolumeNamePrefix.Length 
+            + 3 
+            && name.StartsWith(AppleDosFileSystemLayout.VolumeNamePrefix,
+            StringComparison.OrdinalIgnoreCase) 
+            && byte.TryParse(name.AsSpan(AppleDosFileSystemLayout.VolumeNamePrefix.Length),
+            out volumeNumber) 
+            && volumeNumber 
+            < byte.MaxValue;
     }
 }

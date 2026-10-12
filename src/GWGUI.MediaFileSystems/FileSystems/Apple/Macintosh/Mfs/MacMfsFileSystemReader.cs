@@ -19,7 +19,15 @@ public sealed class MacMfsFileSystemReader : IFileSystemReader
     }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     /// <inheritdoc/>
-    public bool CanRead(IMediaSectorImage image) => image.BlockSize == MacMfsFileSystemLayout.SectorSize && image.TryGetBlock(MacMfsFileSystemLayout.MasterDirectoryBlock, out var block) && block.Data.Count >= MacMfsFileSystemLayout.MinimumMdbLength && MacFileSystemPrimitives.ReadUInt16(block.Data.ToArray(), 0) == MacMfsFileSystemLayout.Signature;
+    public bool CanRead(IMediaSectorImage image) => image.BlockSize 
+        == MacMfsFileSystemLayout.SectorSize 
+        && image.TryGetBlock(MacMfsFileSystemLayout.MasterDirectoryBlock,
+        out var block) 
+        && block.Data.Count 
+        >= MacMfsFileSystemLayout.MinimumMdbLength 
+        && MacFileSystemPrimitives.ReadUInt16(block.Data.ToArray(),
+        0) 
+        == MacMfsFileSystemLayout.Signature;
     /// <inheritdoc/>
     public FileSystemVolume Read(IMediaSectorImage image)
     {

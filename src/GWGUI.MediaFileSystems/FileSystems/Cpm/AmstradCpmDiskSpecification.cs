@@ -46,7 +46,13 @@ public sealed record AmstradCpmDiskSpecification(byte Tracks, byte SectorsPerTra
         var reservedTracks = bytes[ReservedTracksOffset];
         var allocationSize = MinimumSectorSize << (bytes[AllocationSizeCodeOffset] & SizeCodeMask);
         var directoryBlocks = bytes[DirectoryBlocksOffset];
-        if (tracks is 0 or > MaximumTracks || sectorsPerTrack is 0 or > MaximumSectorsPerTrack || sectorSize is < MinimumSectorSize or > MaximumSectorSize || reservedTracks > MaximumReservedTracks || allocationSize is < MinimumAllocationSize or > MaximumAllocationSize || directoryBlocks is 0 or > MaximumDirectoryBlocks)
+        if (tracks is 0 or > MaximumTracks 
+            || sectorsPerTrack is 0 or > MaximumSectorsPerTrack 
+            || sectorSize is < MinimumSectorSize or > MaximumSectorSize 
+            || reservedTracks 
+            > MaximumReservedTracks 
+            || allocationSize is < MinimumAllocationSize or > MaximumAllocationSize 
+            || directoryBlocks is 0 or > MaximumDirectoryBlocks)
             return false;
         specification = new(tracks, sectorsPerTrack, sectorSize, reservedTracks, allocationSize, directoryBlocks);
         return true;

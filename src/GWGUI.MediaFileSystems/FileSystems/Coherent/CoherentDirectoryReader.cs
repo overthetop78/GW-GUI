@@ -6,7 +6,15 @@ namespace GWGUI.MediaFileSystems.FileSystems.Coherent;
 internal static class CoherentDirectoryReader
 {
     /// <summary>Lit le répertoire racine en distinguant cycles et secondes références.</summary>
-    public static IReadOnlyList<FileSystemEntry> ReadRoot(CoherentImageData image, int inodeZoneEnd, List<string> warnings) => Read(image, inodeZoneEnd, CoherentFileSystemLayout.RootInodeNumber, new HashSet<ushort>(), new HashSet<ushort>(), warnings, CoherentNameCodec.InodeDescription(CoherentFileSystemLayout.RootInodeNumber)).Entries;
+    public static IReadOnlyList<FileSystemEntry> ReadRoot(CoherentImageData image,
+        int inodeZoneEnd,
+        List<string> warnings) => Read(image,
+        inodeZoneEnd,
+        CoherentFileSystemLayout.RootInodeNumber,
+        new HashSet<ushort>(),
+        new HashSet<ushort>(),
+        warnings,
+        CoherentNameCodec.InodeDescription(CoherentFileSystemLayout.RootInodeNumber)).Entries;
     /// <summary>Lit récursivement un répertoire et retourne ses entrées ainsi que la validité de ses données.</summary>
     private static (IReadOnlyList<FileSystemEntry> Entries, bool IsValid) Read(
         CoherentImageData image,

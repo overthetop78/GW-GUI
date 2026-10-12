@@ -16,7 +16,8 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
     }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     /// <inheritdoc/>
-    public bool CanRead(IMediaSectorImage image) => CatalogFormatIds.Contains(image.FormatId) && image.BlockSize == AcornAdfsLayout.BlockSize && image.BlockCount == AcornAdfsLayout.ImageBlockCount && TryCreateLayout(image, out var layout) && AcornAdfsDirectoryReader.TryRead(image, layout.RootAddress, layout, out _);
+    public bool CanRead(IMediaSectorImage image) => CatalogFormatIds.Contains(image.FormatId) && image.BlockSize == AcornAdfsLayout.BlockSize && image.BlockCount == AcornAdfsLayout.ImageBlockCount && TryCreateLayout(image,
+        out var layout) && AcornAdfsDirectoryReader.TryRead(image, layout.RootAddress, layout, out _);
     /// <inheritdoc/>
     public FileSystemVolume Read(IMediaSectorImage image)
     {

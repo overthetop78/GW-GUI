@@ -20,10 +20,30 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
 
     public bool CanRead(IMediaSectorImage image)
     {
-        if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize != BbcDfsFileSystemLayout.SectorSize || !image.TryGetBlock(BbcDfsFileSystemLayout.NamesSector, out var names) || !image.TryGetBlock(BbcDfsFileSystemLayout.MetadataSector, out var metadata) || names.Data.Count != BbcDfsFileSystemLayout.SectorSize || metadata.Data.Count != BbcDfsFileSystemLayout.SectorSize)
+        if (!CatalogFormatIds.Contains(image.FormatId) 
+            || image.BlockSize 
+            != BbcDfsFileSystemLayout.SectorSize 
+            || !image.TryGetBlock(BbcDfsFileSystemLayout.NamesSector,
+            out var names) 
+            || !image.TryGetBlock(BbcDfsFileSystemLayout.MetadataSector,
+            out var metadata) 
+            || names.Data.Count 
+            != BbcDfsFileSystemLayout.SectorSize 
+            || metadata.Data.Count 
+            != BbcDfsFileSystemLayout.SectorSize)
             return false;
         var count = metadata.Data[BbcDfsFileSystemLayout.EntryCountOffset];
-        return count % BbcDfsFileSystemLayout.EntryPartSize == 0 && count <= BbcDfsFileSystemLayout.MaximumEntryCount * BbcDfsFileSystemLayout.EntryPartSize && ((metadata.Data[BbcDfsFileSystemLayout.TotalSectorsHighOffset] & BbcDfsFileSystemLayout.TotalSectorsHighMask) << BitConstants.BitsPerByte | metadata.Data[BbcDfsFileSystemLayout.TotalSectorsLowOffset]) <= image.BlockCount;
+        return count 
+            % BbcDfsFileSystemLayout.EntryPartSize 
+            == 0 
+            && count 
+            <= BbcDfsFileSystemLayout.MaximumEntryCount 
+            * BbcDfsFileSystemLayout.EntryPartSize 
+            && ((metadata.Data[BbcDfsFileSystemLayout.TotalSectorsHighOffset] 
+            & BbcDfsFileSystemLayout.TotalSectorsHighMask) 
+            << BitConstants.BitsPerByte 
+            | metadata.Data[BbcDfsFileSystemLayout.TotalSectorsLowOffset]) 
+            <= image.BlockCount;
     }
 
     public FileSystemVolume Read(IMediaSectorImage image)

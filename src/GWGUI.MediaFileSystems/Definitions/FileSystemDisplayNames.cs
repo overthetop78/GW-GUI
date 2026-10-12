@@ -70,7 +70,8 @@ internal static class FileSystemDisplayNames
         0x000e => "Lisa Office System (table catalog)",
         0x000f => "Lisa Office System (hash catalog)",
         0x0011 => "Lisa Office System (B-tree catalog)",
-        _ => $"Lisa Office System (${version:X4})"};
+        _ => $"Lisa Office System (${version:X4})"
+    };
     /// <summary>Retourne le nom ProDOS ou SOS correspondant au format.</summary>
     /// <param name = "formatId">Identifiant du format d'image disque.</param>
     /// <returns>Nom affiché de ProDOS ou SOS.</returns>
