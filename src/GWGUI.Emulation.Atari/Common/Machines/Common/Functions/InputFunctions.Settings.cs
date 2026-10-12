@@ -37,8 +37,7 @@ internal static partial class InputSettingsFunctions
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         var current = configuration.Input ?? new InputConfiguration();
-        var keyboard = settings.Keyboard?.Values.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal)
-            ?? current.KeyboardMappings;
+        var keyboard = settings.Keyboard?.Values.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal) ?? current.KeyboardMappings;
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(port.Number - 1,
             Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, true, out var peripheral) ? peripheral : PeripheralCategory.None, port.PhysicalDeviceId, port.Bindings.Values,
             port.DeadZonePercent, port.VisualId)).ToArray();

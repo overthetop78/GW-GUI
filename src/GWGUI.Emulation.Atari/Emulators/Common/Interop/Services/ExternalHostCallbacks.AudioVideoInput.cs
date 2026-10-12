@@ -31,9 +31,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             EmulationMediaActivityFunctions.CaptureHatariOverlay(pixels.AsSpan(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _ledStates);
         else if (_emulator == Emulator.Atari800)
             EmulationMediaActivityFunctions.CaptureAtari800Overlay(pixels.AsSpan(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _ledStates);
-        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length),
-            checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio,
-            ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));
+        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));
     }
 
     private void OnAudioSample(short left, short right)

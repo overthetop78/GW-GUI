@@ -41,9 +41,7 @@ internal static class ExternalCoreProbe
                         [ErrorContextConstants.Actual] = libraryName
                     });
 
-            return new ExternalCoreInfo(expectedEmulator, libraryName,
-                Marshal.PtrToStringUTF8(nativeInfo.LibraryVersion) ?? string.Empty,
-                CoreFunctions.ParseExtensions(nativeInfo.ValidExtensions), nativeInfo.NeedFullPath, nativeInfo.BlockExtract);
+            return new ExternalCoreInfo(expectedEmulator, libraryName, Marshal.PtrToStringUTF8(nativeInfo.LibraryVersion) ?? string.Empty, CoreFunctions.ParseExtensions(nativeInfo.ValidExtensions), nativeInfo.NeedFullPath, nativeInfo.BlockExtract);
         }
         catch (EmulationException)
         {

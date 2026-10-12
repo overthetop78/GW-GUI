@@ -20,8 +20,7 @@ internal static partial class SettingsDescriptionFunctions
 
     private static void AddGeneralFolders(MachineConfiguration configuration, CompatibilityDefinition compatibility, ICollection<EmulationSettingsBlock> blocks)
     {
-        var supportsHardDisk = EightBitSettingsCatalog.SupportsComputerOptions(configuration.Model)
-            || compatibility.Media.Any(rule => rule.Availability == MediaAvailability.Available && rule.Category is MediaCategory.HardDisk or MediaCategory.Directory);
+        var supportsHardDisk = EightBitSettingsCatalog.SupportsComputerOptions(configuration.Model) || compatibility.Media.Any(rule => rule.Availability == MediaAvailability.Available && rule.Category is MediaCategory.HardDisk or MediaCategory.Directory);
         if (!supportsHardDisk) return;
         blocks.Add(Block(SettingsDescriptionFunctionsConstants.DefaultFolders, EmulationMachineTab.General, SettingsDescriptionFunctionsConstants.ResourceFolderDefault, SettingsDescriptionFunctionsConstants.Value2, 1,
             new EmulationSettingsField(SettingsConstants.HardDiskFolder, EmulationMachineTab.General,

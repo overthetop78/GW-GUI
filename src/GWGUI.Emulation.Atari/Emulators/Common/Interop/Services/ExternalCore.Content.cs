@@ -43,8 +43,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     private void ReplacePreparedContent(MediaConfiguration media)
     {
         var configuration = _configuration ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
-        var prepared = _mediaAdapter.PrepareContent(configuration, media, _sessionDirectory ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized), _info)
-            ?? throw new NotSupportedException(ErrorMessages.ContentLoadFailed);
+        var prepared = _mediaAdapter.PrepareContent(configuration, media, _sessionDirectory ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized), _info) ?? throw new NotSupportedException(ErrorMessages.ContentLoadFailed);
         var candidate = ContentFunctions.Create(prepared.RuntimePath, prepared.NeedsFullPath, _info.Extensions);
         var exports = RequireExports();
         var previousContent = _content;

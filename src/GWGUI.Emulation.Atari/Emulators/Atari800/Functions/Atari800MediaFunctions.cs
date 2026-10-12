@@ -57,8 +57,7 @@ internal static class Atari800MediaFunctions
         options[EightBitSettingsConstants.SystemOptionKey] = SystemValue(machine, options);
         options.Remove(SettingsConstants.MainMemory);
         var configuredCassetteBoot = options.TryGetValue(EightBitSettingsConstants.CassetteBootOptionKey, out var cassetteBoot) && string.Equals(cassetteBoot, EightBitSettingsConstants.Enabled, StringComparison.OrdinalIgnoreCase);
-        options[EightBitSettingsConstants.CassetteBootOptionKey] =
-            media?.ContentType == Atari800ContentType.Cassette && (configuredCassetteBoot || media.Configuration.CassetteAutoBoot) ? EightBitSettingsConstants.Enabled : EightBitSettingsConstants.Disabled;
+        options[EightBitSettingsConstants.CassetteBootOptionKey] = media?.ContentType == Atari800ContentType.Cassette && (configuredCassetteBoot || media.Configuration.CassetteAutoBoot) ? EightBitSettingsConstants.Enabled : EightBitSettingsConstants.Disabled;
         options[EightBitSettingsConstants.SioAccelerationOptionKey] = EightBitSettingsConstants.Enabled;
         if (options.TryGetValue(VideoAudioSettingsConstants.StandardOption, out var standard))
             options[EightBitSettingsConstants.VideoStandardOptionKey] = string.Equals(standard, HardwareRegion.Pal.ToString(), StringComparison.OrdinalIgnoreCase) ? EightBitSettingsConstants.Pal : EightBitSettingsConstants.Ntsc;
