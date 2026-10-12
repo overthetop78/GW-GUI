@@ -111,7 +111,8 @@ public sealed class NintendoEmulationModule : IEmulationModule, IEmulationEmulat
 
     public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => InputSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
-    public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => configuration is MachineConfiguration nintendo ? new ValueTask(_store.SaveAsync(nintendo, cancellationToken)) : ValueTask.FromException(new ArgumentException(nameof(configuration)));
+    public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
+        CancellationToken cancellationToken = default) => configuration is MachineConfiguration nintendo ? new ValueTask(_store.SaveAsync(nintendo, cancellationToken)) : ValueTask.FromException(new ArgumentException(nameof(configuration)));
 
     public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
 
