@@ -2,7 +2,6 @@ using System.Globalization;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Constants;
 
 namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Functions;
-
 internal static class RuntimeOptionFunctions
 {
     internal static IReadOnlyDictionary<string, string> Prepare(MachineConfiguration configuration)

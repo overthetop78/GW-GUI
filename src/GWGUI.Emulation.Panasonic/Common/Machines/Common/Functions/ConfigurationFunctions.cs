@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;
-
 internal static class ConfigurationFunctions
 {
     internal static void Validate(MachineConfiguration configuration)

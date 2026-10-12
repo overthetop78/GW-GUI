@@ -2,7 +2,6 @@ using System.Runtime.InteropServices;
 using GWGUI.Emulation.Interop;
 
 namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services;
-
 internal sealed class OptionCallbackHost : IDisposable
 {
     private const int MaximumVariableCount = 4096;
@@ -48,35 +47,52 @@ internal sealed class OptionCallbackHost : IDisposable
                 IsVisible: key is not (GWGUI.Emulation.Panasonic.Emulators.Opera.Constants.RuntimeOptionConstants.Bios or GWGUI.Emulation.Panasonic.Emulators.Opera.Constants.RuntimeOptionConstants.Font)
             );
         }
-    
+
         throw new InvalidOperationException("Native option table has no terminating entry.");
     }
 
     internal bool ReturnValue(nint data)
     {
-        if (data == nint.Zero) return false;
+        if (data == nint.Zero)
+            return false;
         var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
         var key = Marshal.PtrToStringUTF8(variable.Key);
-        if (key is null || !_values.TryGetValue(key, out var value)) return false;
-        if (!_strings.TryGetValue(key, out var text)) { text = new ExternalCoreUtf8String(value); _strings.Add(key, text); }
+        if (key is null || !_values.TryGetValue(key, out var value))
+            return false;
+        if (!_strings.TryGetValue(key, out var text))
+        {
+            text = new ExternalCoreUtf8String(value);
+            _strings.Add(key, text);
+        }
+
         variable.Value = text.Pointer;
         Marshal.StructureToPtr(variable, data, false);
         return true;
     }
 
-    internal void SetValue(string key, string value)
+    internal void SetValue(
+        string key,
+        string value
+    )
     {
-        if (!_options.TryGetValue(key, out var option) || !option.Values.Any(choice => choice.Value == value)) throw new ArgumentException(nameof(value));
-        if (_values[key] == value) return;
+        if (!_options.TryGetValue(key, out var option) || !option.Values.Any(choice => choice.Value == value))
+            throw new ArgumentException(nameof(value));
+        if (_values[key] == value)
+            return;
         _values[key] = value;
-        _options[key] = option with { CurrentValue = value };
-        if (_strings.Remove(key, out var previous)) previous.Dispose();
+        _options[key] = option with
+        {
+            CurrentValue = value
+        };
+        if (_strings.Remove(key, out var previous))
+            previous.Dispose();
         _updated = true;
     }
 
     internal bool ReturnUpdated(nint data)
     {
-        if (data == nint.Zero) return false;
+        if (data == nint.Zero)
+            return false;
         Marshal.WriteByte(data, _updated ? (byte)1 : (byte)0);
         _updated = false;
         return true;
@@ -84,7 +100,8 @@ internal sealed class OptionCallbackHost : IDisposable
 
     public void Dispose()
     {
-        foreach (var value in _strings.Values) value.Dispose();
+        foreach (var value in _strings.Values)
+            value.Dispose();
         _strings.Clear();
         _values.Clear();
         _options.Clear();

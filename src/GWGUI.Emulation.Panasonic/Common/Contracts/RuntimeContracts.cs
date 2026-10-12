@@ -4,8 +4,10 @@ using GWGUI.Emulation.Panasonic.Common.Machines.Common.Enums;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Panasonic.Common.Contracts;
-
-internal sealed record MachineCommand(Action Action, TaskCompletionSource Completion)
+internal sealed record MachineCommand(
+    Action Action,
+    TaskCompletionSource Completion
+)
 {
     internal void Execute()
     {
@@ -23,7 +25,6 @@ internal sealed record MachineCommand(Action Action, TaskCompletionSource Comple
 }
 
 public sealed record RuntimeGeometry(int Width, int Height, int Pitch, float AspectRatio);
-
 public sealed record RuntimeStatus(
     MachineModel Model,
     EmulationVideoStandard? Region,

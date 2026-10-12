@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Panasonic.Common.Machines.ThreeDO.Dictionaries;
-
 internal static class ControllerCatalog
 {
     internal static IReadOnlyList<ControllerCommand> Commands(PeripheralCategory peripheral) => peripheral switch
@@ -94,7 +93,7 @@ internal static class ControllerCatalog
         ControllerCommand.CoinPlayer1 => "COIN 1",
         ControllerCommand.CoinPlayer2 => "COIN 2",
         _ => command.ToString().ToUpperInvariant()};
-    internal static IReadOnlyDictionary<EmulationControllerVisualControl, string> VisualCommands(PeripheralCategory peripheral) => peripheral == PeripheralCategory.ThreeDOPad
+    internal static IReadOnlyDictionary<EmulationControllerVisualControl, string> VisualCommands(PeripheralCategory peripheral) => peripheral == PeripheralCategory.ThreeDOPad 
         ? new Dictionary<EmulationControllerVisualControl, string>
     {
         [EmulationControllerVisualControl.DirectionUp] = ControllerCommand.Up.ToString(),
@@ -108,7 +107,8 @@ internal static class ControllerCatalog
         [EmulationControllerVisualControl.PlayPause] = ControllerCommand.P.ToString(),
         [EmulationControllerVisualControl.LeftShoulder] = ControllerCommand.L.ToString(),
         [EmulationControllerVisualControl.RightShoulder] = ControllerCommand.R.ToString()
-    }
-    
+        }
+
+
         : new Dictionary<EmulationControllerVisualControl, string>();
 }

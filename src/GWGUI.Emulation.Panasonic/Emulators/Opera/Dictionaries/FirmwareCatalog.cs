@@ -1,7 +1,6 @@
 using NativeFirmwareConstants = GWGUI.Emulation.Panasonic.Emulators.Opera.Constants.FirmwareConstants;
 
 namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Dictionaries;
-
 internal static class FirmwareCatalog
 {
     internal static IReadOnlyList<FirmwareRequirement> Requirements(MachineModel model)

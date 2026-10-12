@@ -1,33 +1,61 @@
 namespace GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;
-
 internal static class InputSnapshotFunctions
 {
     // Named controls contain normalized command pressure; the .Delta suffix carries relative displacement separately.
-    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model, Emulator core)
+    internal static EmulationInputSnapshot Apply(
+        EmulationInputSnapshot snapshot,
+        InputConfiguration input,
+        MachineModel model,
+        Emulator core
+    )
     {
-        if (!Enum.IsDefined(model) || !Enum.IsDefined(core)) throw new ArgumentOutOfRangeException(nameof(model));
+        if (!Enum.IsDefined(model) || !Enum.IsDefined(core))
+            throw new ArgumentOutOfRangeException(nameof(model));
         var controllers = new EmulationControllerState[ControllerConstants.PortCount];
         for (var port = ControllerConstants.FirstPort; port < controllers.Length; port++)
         {
             var binding = input.Controllers?.FirstOrDefault(item => item.Port == port);
-            if (binding is null || binding.Peripheral == PeripheralCategory.None) { controllers[port] = EmulationControllerState.Empty; continue; }
+            if (binding is null || binding.Peripheral == PeripheralCategory.None)
+            {
+                controllers[port] = EmulationControllerState.Empty;
+                continue;
+            }
+
             var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
             var values = new Dictionary<string, float>(StringComparer.Ordinal);
             foreach (var command in ControllerCatalog.Commands(binding.Peripheral))
             {
                 var mapping = binding.Mappings?.GetValueOrDefault(command.ToString()) ?? string.Empty;
-                if (string.IsNullOrEmpty(mapping)) continue;
+                if (string.IsNullOrEmpty(mapping))
+                    continue;
                 var physical = EmulationInputMappingFunctions.ResolveSourceController(mapping, snapshot.Controllers, source);
                 var value = Value(mapping, physical, snapshot, binding.DeadZonePercent);
                 var relative = IsMotion(command) && mapping.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase) && mapping[InputMappingConstants.MousePrefix.Length..] is "X+" or "X−" or "Y+" or "Y−";
                 values[command.ToString() + (relative ? InputMappingConstants.RelativeMotionSuffix : string.Empty)] = value;
             }
-            controllers[port] = EmulationControllerState.Empty with { DeviceId = source.DeviceId, Controls = new(values) };
+
+            controllers[port] = EmulationControllerState.Empty with
+            {
+                DeviceId = source.DeviceId,
+                Controls = new(values)
+            };
         }
-        return snapshot with { Keys = EmulationInputSnapshot.Empty.Keys, Pointer = EmulationInputSnapshot.Empty.Pointer, Controllers = controllers };
+
+        return snapshot with
+        {
+            Keys = EmulationInputSnapshot.Empty.Keys,
+            Pointer = EmulationInputSnapshot.Empty.Pointer,
+            Controllers = controllers
+        };
     }
+
     private static bool IsMotion(ControllerCommand command) => command is ControllerCommand.MoveUp or ControllerCommand.MoveDown or ControllerCommand.MoveLeft or ControllerCommand.MoveRight or ControllerCommand.AimUp or ControllerCommand.AimDown or ControllerCommand.AimLeft or ControllerCommand.AimRight;
-    private static float Value(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot, int deadZone)
+    private static float Value(
+        string mapping,
+        EmulationControllerState controller,
+        EmulationInputSnapshot snapshot,
+        int deadZone
+    )
     {
         if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
             return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key) ? 1 : 0;

@@ -2,7 +2,6 @@ using GWGUI.Emulation.Interop;
 using GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Enums;
 
 namespace GWGUI.Emulation.Panasonic.Emulators.Opera.Interop.Services;
-
 internal sealed class InputCallbackHost
 {
     private const uint DeviceMask = 255, LeftAnalogIndex = 0, RightAnalogIndex = 1, HorizontalAxis = 0, VerticalAxis = 1;
@@ -12,12 +11,38 @@ internal sealed class InputCallbackHost
     private EmulationInputSnapshot _input = EmulationInputSnapshot.Empty;
     private int _width = 320, _height = 240;
     private bool _polled;
-    internal InputCallbackHost() { PollCallback = OnPoll; StateCallback = OnState; }
+    internal InputCallbackHost()
+    {
+        PollCallback = OnPoll;
+        StateCallback = OnState;
+    }
+
     internal ExternalCoreApi.InputPollCallback PollCallback { get; }
     internal ExternalCoreApi.InputStateCallback StateCallback { get; }
     internal Exception? Failure { get; private set; }
-    internal void Update(EmulationInputSnapshot input, int width, int height) { _input = input; _width = Math.Max(1, width); _height = Math.Max(1, height); _polled = false; }
-    internal void SetPeripheral(int port, PeripheralCategory peripheral) { if (port < 0 || port >= _peripherals.Length || !Enum.IsDefined(peripheral)) throw new ArgumentOutOfRangeException(nameof(port)); _peripherals[port] = peripheral; }
+
+    internal void Update(
+        EmulationInputSnapshot input,
+        int width,
+        int height
+    )
+    {
+        _input = input;
+        _width = Math.Max(1, width);
+        _height = Math.Max(1, height);
+        _polled = false;
+    }
+
+    internal void SetPeripheral(
+        int port,
+        PeripheralCategory peripheral
+    )
+    {
+        if (port < 0 || port >= _peripherals.Length || !Enum.IsDefined(peripheral))
+            throw new ArgumentOutOfRangeException(nameof(port));
+        _peripherals[port] = peripheral;
+    }
+
     internal static NativeDevice Device(PeripheralCategory peripheral) => peripheral switch
     {
         PeripheralCategory.None => NativeDevice.None,
@@ -37,7 +62,8 @@ internal sealed class InputCallbackHost
     private short Motion(int port, ControllerCommand negative, ControllerCommand positive) => (short)Math.Clamp(Math.Round(MotionValue(port, negative, positive)), short.MinValue, short.MaxValue);
     private void OnPoll()
     {
-        if (_polled) return;
+        if (_polled)
+            return;
         _polled = true;
         try
         {
@@ -47,9 +73,18 @@ internal sealed class InputCallbackHost
                 _aimY[port] = (short)Math.Clamp(Math.Round(_aimY[port] + MotionValue(port, ControllerCommand.AimUp, ControllerCommand.AimDown) * ushort.MaxValue / _height), short.MinValue, short.MaxValue);
             }
         }
-        catch (Exception error) { Failure ??= error; }
+        catch (Exception error)
+        {
+            Failure ??= error;
+        }
     }
-    private short OnState(uint port, uint device, uint index, uint id)
+
+    private short OnState(
+        uint port,
+        uint device,
+        uint index,
+        uint id
+    )
     {
         try
         {
@@ -80,8 +115,8 @@ internal sealed class InputCallbackHost
                     return command is { } action ? Button(p, action) : (short)0;
                 case NativeDevice.Analog:
                     if (_peripherals[p] == PeripheralCategory.OrbatakTrackball && index == LeftAnalogIndex)
-                        return id == HorizontalAxis
-                            ? TrackballAxis(p, ControllerCommand.MoveLeft, ControllerCommand.MoveRight)
+                        return id == HorizontalAxis 
+                            ? TrackballAxis(p, ControllerCommand.MoveLeft, ControllerCommand.MoveRight) 
                             : id == VerticalAxis ? TrackballAxis(p, ControllerCommand.MoveUp, ControllerCommand.MoveDown) : (short)0;
                     if (index == LeftAnalogIndex)
                         return id == HorizontalAxis ? Axis(p, ControllerCommand.YawLeft, ControllerCommand.YawRight) : id == VerticalAxis ? Axis(p, ControllerCommand.PitchUp, ControllerCommand.PitchDown) : (short)0;
@@ -124,5 +159,13 @@ internal sealed class InputCallbackHost
             return 0;
         }
     }
-    internal void Release() { _input = EmulationInputSnapshot.Empty; _polled = false; Array.Clear(_aimX); Array.Clear(_aimY); Failure = null; }
+
+    internal void Release()
+    {
+        _input = EmulationInputSnapshot.Empty;
+        _polled = false;
+        Array.Clear(_aimX);
+        Array.Clear(_aimY);
+        Failure = null;
+    }
 }

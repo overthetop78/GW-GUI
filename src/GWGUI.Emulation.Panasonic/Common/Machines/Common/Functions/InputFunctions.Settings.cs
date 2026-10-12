@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;
-
 internal static class InputSettingsFunctions
 {
     private static IReadOnlyList<string> Visuals(PeripheralCategory peripheral) => peripheral == PeripheralCategory.ThreeDOPad ? [EmulationControllerVisualIds.PanasonicFzJp1] : [];
@@ -9,14 +8,14 @@ internal static class InputSettingsFunctions
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var choices = Enum.GetValues<PeripheralCategory>().Select(peripheral => new EmulationControllerChoice(
-            peripheral.ToString(),
-            peripheral == PeripheralCategory.None ? "Emulation.Controller.None" : "Emulation.Panasonic.Controller." + peripheral,
-            null,
-            ControllerCatalog.Definitions(peripheral),
-            Visuals(peripheral),
-            Visuals(peripheral).FirstOrDefault(),
-            ControllerCatalog.VisualCommands(peripheral)
-        )).ToArray();
+                peripheral.ToString(),
+                peripheral == PeripheralCategory.None ? "Emulation.Controller.None" : "Emulation.Panasonic.Controller." + peripheral,
+                null,
+                ControllerCatalog.Definitions(peripheral),
+                Visuals(peripheral),
+                Visuals(peripheral).FirstOrDefault(),
+                ControllerCatalog.VisualCommands(peripheral)
+            )).ToArray();
         var ports = Enumerable.Range(ControllerConstants.FirstPort, ControllerConstants.PortCount).Select(port =>
         {
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
@@ -34,30 +33,45 @@ internal static class InputSettingsFunctions
         }).ToArray();
         return new(null, null, ports);
     }
-    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
+
+    internal static MachineConfiguration Apply(
+        MachineConfiguration configuration,
+        EmulationInputSettings settings
+    )
     {
-        if (settings.Keyboard is not null || settings.Mouse is not null || settings.ControllerPorts.Count != ControllerConstants.PortCount) throw new ArgumentException(nameof(settings));
+        if (settings.Keyboard is not null || settings.Mouse is not null || settings.ControllerPorts.Count != ControllerConstants.PortCount)
+            throw new ArgumentException(nameof(settings));
         var controllers = new List<ControllerBinding>();
         foreach (var port in settings.ControllerPorts)
         {
-            if (port.Number < 1 || port.Number > ControllerConstants.PortCount || !Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var peripheral) || !Enum.IsDefined(peripheral)) throw new ArgumentException(nameof(settings));
+            if (port.Number < 1 || port.Number > ControllerConstants.PortCount || !Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var peripheral) || !Enum.IsDefined(peripheral))
+                throw new ArgumentException(nameof(settings));
             controllers.Add(new(port.Number - 1, peripheral, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId));
         }
-        var result = configuration with { Input = new(controllers) };
+
+        var result = configuration with
+        {
+            Input = new(controllers)
+        };
         ConfigurationFunctions.Validate(result);
         return result;
     }
+
     internal static void Validate(MachineConfiguration configuration)
     {
         var controllers = configuration.Input.Controllers ?? [];
-        if (controllers.Select(binding => binding.Port).Distinct().Count() != controllers.Count) throw new ArgumentException(nameof(configuration.Input));
+        if (controllers.Select(binding => binding.Port).Distinct().Count() != controllers.Count)
+            throw new ArgumentException(nameof(configuration.Input));
         foreach (var binding in controllers)
         {
-            if (!SupportsPeripheral(configuration, binding.Port, binding.Peripheral) || binding.DeadZonePercent < ControllerConstants.MinimumDeadZonePercent || binding.DeadZonePercent > ControllerConstants.MaximumDeadZonePercent) throw new ArgumentException(nameof(configuration.Input));
+            if (!SupportsPeripheral(configuration, binding.Port, binding.Peripheral) || binding.DeadZonePercent < ControllerConstants.MinimumDeadZonePercent || binding.DeadZonePercent > ControllerConstants.MaximumDeadZonePercent)
+                throw new ArgumentException(nameof(configuration.Input));
             var commands = ControllerCatalog.Commands(binding.Peripheral).Select(command => command.ToString()).ToHashSet(StringComparer.Ordinal);
-            if (binding.Mappings?.Any(pair => !commands.Contains(pair.Key) || !IsSource(pair.Value)) == true) throw new ArgumentException(nameof(configuration.Input));
+            if (binding.Mappings?.Any(pair => !commands.Contains(pair.Key) || !IsSource(pair.Value)) == true)
+                throw new ArgumentException(nameof(configuration.Input));
         }
     }
+
     private static bool IsSource(string source)
     {
         if (string.IsNullOrEmpty(source))

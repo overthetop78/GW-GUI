@@ -7,15 +7,15 @@ using System.Text.Json;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Panasonic.Common.Functions;
-
 internal static class CoreHostFunctions
 {
     internal static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
-
     internal static string CreatePipeName() => CoreHostConstants.PipePrefix + Guid.NewGuid().ToString(CoreHostConstants.UniqueNameFormat);
     internal static string CreateVideoMapName() => CoreHostConstants.VideoMapPrefix + Guid.NewGuid().ToString(CoreHostConstants.UniqueNameFormat);
-
-    internal static void WriteRequestHeader(BinaryWriter writer, HostCommand command)
+    internal static void WriteRequestHeader(
+        BinaryWriter writer,
+        HostCommand command
+    )
     {
         writer.Write(CoreHostConstants.ProtocolVersion);
         writer.Write((byte)command);
@@ -27,7 +27,10 @@ internal static class CoreHostFunctions
         return (HostCommand)reader.ReadByte();
     }
 
-    internal static void WriteResponseHeader(BinaryWriter writer, HostResponseStatus status)
+    internal static void WriteResponseHeader(
+        BinaryWriter writer,
+        HostResponseStatus status
+    )
     {
         writer.Write(CoreHostConstants.ProtocolVersion);
         writer.Write((byte)status);
@@ -41,18 +44,16 @@ internal static class CoreHostFunctions
 
     internal static void ValidateProtocolVersion(int version)
     {
-        if (version == CoreHostConstants.ProtocolVersion) return;
+        if (version == CoreHostConstants.ProtocolVersion)
+            return;
         throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, CoreHostErrors.ProtocolVersionMismatchFormat, version, CoreHostConstants.ProtocolVersion));
     }
 
-    internal static HostError CreateError(Exception error) => error is EmulationMessageException structured
-        ? new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, structured.MessageData.Category, structured.MessageData.MessageCode)
+    internal static HostError CreateError(Exception error) => error is EmulationMessageException structured 
+        ? new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, structured.MessageData.Category, structured.MessageData.MessageCode) 
         : new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, null, null);
-
     internal static void WriteError(BinaryWriter writer, Exception error) => writer.Write(JsonSerializer.Serialize(CreateError(error), JsonOptions));
-
     internal static HostError ReadError(BinaryReader reader) => JsonSerializer.Deserialize<HostError>(reader.ReadString(), JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.CommunicationFailed);
-
     internal static void WriteString(BinaryWriter writer, string? value) => EmulationHostProtocolFunctions.WriteString(writer, value);
     internal static string? ReadString(BinaryReader reader) => EmulationHostProtocolFunctions.ReadString(reader);
     internal static void WriteBytes(BinaryWriter writer, ReadOnlySpan<byte> value) => EmulationHostProtocolFunctions.WriteBytes(writer, value);
@@ -68,10 +69,15 @@ internal static class CoreHostFunctions
     }
 
     [SupportedOSPlatform(CoreHostConstants.Windows)]
-    internal static void WriteResizableSharedFrame(BinaryWriter writer, VideoFrame? frame, SharedVideoWriter video)
+    internal static void WriteResizableSharedFrame(
+        BinaryWriter writer,
+        VideoFrame? frame,
+        SharedVideoWriter video
+    )
     {
         writer.Write(frame is not null);
-        if (frame is null) return;
+        if (frame is null)
+            return;
         var length = frame.Pixels.Length;
         video.EnsureCapacity(length);
         var slot = (int)(frame.Sequence & (EmulationHostProtocolConstants.VideoSlotCount - 1));
@@ -91,12 +97,19 @@ internal static class CoreHostFunctions
     }
 
     [SupportedOSPlatform(CoreHostConstants.Windows)]
-    internal static VideoFrame? ReadResizableSharedFrame(BinaryReader reader, ref MemoryMappedFile? memory, ref MemoryMappedViewAccessor? view, ref string? activeName)
+    internal static VideoFrame? ReadResizableSharedFrame(
+        BinaryReader reader,
+        ref MemoryMappedFile? memory,
+        ref MemoryMappedViewAccessor? view,
+        ref string? activeName
+    )
     {
-        if (!reader.ReadBoolean()) return null;
+        if (!reader.ReadBoolean())
+            return null;
         var mapName = reader.ReadString();
         var slotCapacity = reader.ReadInt32();
-        if (slotCapacity < CoreHostConstants.MinimumVideoSlotCapacity || slotCapacity > EmulationHostProtocolConstants.VideoSlotCapacity || !BitOperations.IsPow2(slotCapacity)) throw new InvalidDataException(EmulationHostProtocolConstants.InvalidSharedVideoMetadata);
+        if (slotCapacity < CoreHostConstants.MinimumVideoSlotCapacity || slotCapacity > EmulationHostProtocolConstants.VideoSlotCapacity || !BitOperations.IsPow2(slotCapacity))
+            throw new InvalidDataException(EmulationHostProtocolConstants.InvalidSharedVideoMetadata);
         if (!string.Equals(mapName, activeName, StringComparison.Ordinal))
         {
             var previousView = view;
@@ -104,8 +117,15 @@ internal static class CoreHostFunctions
             view = null;
             memory = null;
             activeName = null;
-            try { previousView?.Dispose(); }
-            finally { previousMemory?.Dispose(); }
+            try
+            {
+                previousView?.Dispose();
+            }
+            finally
+            {
+                previousMemory?.Dispose();
+            }
+
             var nextMemory = MemoryMappedFile.OpenExisting(mapName, MemoryMappedFileRights.Read);
             MemoryMappedViewAccessor? nextView = null;
             var completed = false;
@@ -121,11 +141,18 @@ internal static class CoreHostFunctions
             {
                 if (!completed)
                 {
-                    try { nextView?.Dispose(); }
-                    finally { nextMemory.Dispose(); }
+                    try
+                    {
+                        nextView?.Dispose();
+                    }
+                    finally
+                    {
+                        nextMemory.Dispose();
+                    }
                 }
             }
         }
+
         var width = reader.ReadInt32();
         var height = reader.ReadInt32();
         var pitch = reader.ReadInt32();
@@ -135,24 +162,25 @@ internal static class CoreHostFunctions
         var timestamp = TimeSpan.FromTicks(reader.ReadInt64());
         var slot = reader.ReadInt32();
         var length = reader.ReadInt32();
-        if (width <= 0 || height <= 0 || pitch <= 0 || length != checked(pitch * height) || slot is < 0 or >= EmulationHostProtocolConstants.VideoSlotCount || length > slotCapacity) throw new InvalidDataException(EmulationHostProtocolConstants.InvalidSharedVideoMetadata);
+        if (width <= 0 || height <= 0 || pitch <= 0 || length != checked(pitch * height) || slot is < 0 or >= EmulationHostProtocolConstants.VideoSlotCount || length > slotCapacity)
+            throw new InvalidDataException(EmulationHostProtocolConstants.InvalidSharedVideoMetadata);
         var pixels = GC.AllocateUninitializedArray<byte>(length);
         var read = view!.ReadArray((long)slot * slotCapacity, pixels, 0, length);
-        if (read != length) throw new EndOfStreamException(EmulationHostProtocolConstants.SharedVideoEndedEarly);
+        if (read != length)
+            throw new EndOfStreamException(EmulationHostProtocolConstants.SharedVideoEndedEarly);
         return new VideoFrame(pixels, width, height, pitch, format, aspect, sequence, timestamp);
     }
+
     internal static void WriteAudio(BinaryWriter writer, IReadOnlyList<AudioChunk> chunks) => EmulationHostProtocolFunctions.WriteAudio(writer, chunks);
     internal static IReadOnlyList<AudioChunk> ReadAudio(BinaryReader reader) => EmulationHostProtocolFunctions.ReadAudio(reader, CoreHostConstants.HostName);
     internal static void WriteLedStates(BinaryWriter writer, IReadOnlyDictionary<int, bool> states) => EmulationHostProtocolFunctions.WriteLedStates(writer, states);
     internal static IReadOnlyDictionary<int, bool> ReadLedStates(BinaryReader reader) => EmulationHostProtocolFunctions.ReadLedStates(reader, CoreHostConstants.HostName);
-
     internal static void WriteDiskStatus(BinaryWriter writer, DiskStatus status) => writer.Write(JsonSerializer.Serialize(status, JsonOptions));
-
     internal static DiskStatus ReadDiskStatus(BinaryReader reader) => JsonSerializer.Deserialize<DiskStatus>(reader.ReadString(), JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.CommunicationFailed);
-
     internal static void DisposeTransport(IDisposable? resource)
     {
-        if (resource is null) return;
+        if (resource is null)
+            return;
         try
         {
             resource.Dispose();

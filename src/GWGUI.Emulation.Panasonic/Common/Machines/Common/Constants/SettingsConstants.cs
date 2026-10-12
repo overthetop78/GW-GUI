@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Panasonic.Common.Machines.Common.Constants;
-
 internal static class SettingsConstants
 {
     internal const string AudioEnabled = "panasonic_audio_enabled", AudioOutput = "gwgui_panasonic_audio_output", AudioLatency = "gwgui_panasonic_audio_latency";
