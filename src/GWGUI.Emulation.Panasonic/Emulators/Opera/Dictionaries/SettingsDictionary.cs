@@ -43,17 +43,11 @@ internal static class SettingsDictionary
     internal static IReadOnlyList<EmulationSettingsChoice> SaveModes { get; } = [new("per game", "Emulation.Panasonic.Value.PerGame"), new("shared", "Emulation.Panasonic.Value.Shared")];
     internal static IReadOnlyList<EmulationSettingsChoice> CdSpeeds { get; } = new[]
     {
-        new EmulationSettingsChoice(
-            "unbounded",
-            "Emulation.Panasonic.Value.Unlimited"
-        )
+        new EmulationSettingsChoice("unbounded", "Emulation.Panasonic.Value.Unlimited")
     }.Concat(new[] { 1, 2, 4, 8, 16, 24, 32 }.Select(speed => new EmulationSettingsChoice(speed + "x", string.Empty, $"{speed}×"))).ToArray();
     internal static IReadOnlyList<EmulationSettingsChoice> Seeds { get; } = new[]
     {
-        new EmulationSettingsChoice(
-            "random",
-            "Emulation.Panasonic.Value.Random"
-        )
+        new EmulationSettingsChoice("random", "Emulation.Panasonic.Value.Random")
     }.Concat(new[] { "0x00000000", "0x00000001", "0xdeadbeef", "0xcafebabe", "0xfeedface", "0xbaadf00d", "0x8badf00d", "0xdeadc0de", "0xc001d00d", "0x0badf00d", "0x74726170", "0x65786974" }.Select(value => new EmulationSettingsChoice(value, string.Empty, value))).ToArray();
     internal static IReadOnlyList<EmulationSettingsChoice> Versions { get; } = Numbers(10);
     internal static IReadOnlyList<EmulationSettingsChoice> DeviceCounts { get; } = Numbers(ControllerConstants.PortCount + 1);

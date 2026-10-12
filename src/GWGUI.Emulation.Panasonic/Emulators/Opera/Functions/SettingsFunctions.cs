@@ -38,13 +38,7 @@ internal static class SettingsDescriptionFunctions
                 ],
                 Columns: 2
             ),
-            new(
-                audio,
-                EmulationMachineTab.Audio,
-                "Emulation.Panasonic.Audio.Processing",
-                [Toggle(configuration, RuntimeOptionConstants.ThreadedDsp, EmulationMachineTab.Audio, audio, "Emulation.Panasonic.Audio.Parallel")],
-                IsCompact: true
-            ),
+            new(audio, EmulationMachineTab.Audio, "Emulation.Panasonic.Audio.Processing", [Toggle(configuration, RuntimeOptionConstants.ThreadedDsp, EmulationMachineTab.Audio, audio, "Emulation.Panasonic.Audio.Parallel")], IsCompact: true),
             new(
                 storage,
                 EmulationMachineTab.Storage,

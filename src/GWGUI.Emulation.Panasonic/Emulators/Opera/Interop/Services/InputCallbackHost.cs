@@ -115,9 +115,7 @@ internal sealed class InputCallbackHost
                     return command is { } action ? Button(p, action) : (short)0;
                 case NativeDevice.Analog:
                     if (_peripherals[p] == PeripheralCategory.OrbatakTrackball && index == LeftAnalogIndex)
-                        return id == HorizontalAxis 
-                            ? TrackballAxis(p, ControllerCommand.MoveLeft, ControllerCommand.MoveRight) 
-                            : id == VerticalAxis ? TrackballAxis(p, ControllerCommand.MoveUp, ControllerCommand.MoveDown) : (short)0;
+                        return id == HorizontalAxis ? TrackballAxis(p, ControllerCommand.MoveLeft, ControllerCommand.MoveRight) : id == VerticalAxis ? TrackballAxis(p, ControllerCommand.MoveUp, ControllerCommand.MoveDown) : (short)0;
                     if (index == LeftAnalogIndex)
                         return id == HorizontalAxis ? Axis(p, ControllerCommand.YawLeft, ControllerCommand.YawRight) : id == VerticalAxis ? Axis(p, ControllerCommand.PitchUp, ControllerCommand.PitchDown) : (short)0;
                     return index == RightAnalogIndex && id == VerticalAxis ? Axis(p, ControllerCommand.ThrottleUp, ControllerCommand.ThrottleDown) : (short)0;
