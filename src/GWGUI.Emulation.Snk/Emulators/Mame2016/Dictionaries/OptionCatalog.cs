@@ -154,17 +154,7 @@ internal static class OptionCatalog
             IsVisible: true,
             RequiresRestart: false,
             ResourceKey: SettingsTextConstants.SettingAlternateRenderMethod
-        ), new(
-            RuntimeOptionConstants.SoftlistsEnable,
-            "Enable softlists",
-            "",
-            EmulationMachineTab.General.ToString(),
-            "enabled",
-            "enabled",
-            [new("enabled", "enabled"), new("disabled", "disabled")],
-            IsVisible: false,
-            RequiresRestart: false
-        ), new(
+        ), new(RuntimeOptionConstants.SoftlistsEnable, "Enable softlists", "", EmulationMachineTab.General.ToString(), "enabled", "enabled", [new("enabled", "enabled"), new("disabled", "disabled")], IsVisible: false, RequiresRestart: false), new(
             RuntimeOptionConstants.SoftlistsAutoMedia,
             "Softlist automatic media type",
             "",

@@ -86,9 +86,7 @@ internal static class MediaRuntimeFunctions
     )
     {
         var paths = InitialContentPaths(configuration);
-        var extensions = configuration.Model == MachineModel.NeoGeoCdz 
-            ? RuntimeOptionConstants.CdExtensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase) 
-            : supportedExtensions;
+        var extensions = configuration.Model == MachineModel.NeoGeoCdz ? RuntimeOptionConstants.CdExtensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase) : supportedExtensions;
         if (paths.Count == 0)
             return null;
         var source = paths[0];

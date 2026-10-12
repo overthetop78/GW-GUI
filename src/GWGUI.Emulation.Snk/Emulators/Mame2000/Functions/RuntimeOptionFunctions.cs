@@ -20,9 +20,7 @@ internal static class RuntimeOptionFunctions
         {
             CurrentValue = selected[option.Key],
             IsVisible = option.IsVisible && option.Key != RuntimeOptionConstants.QsoundOutputFilter,
-            IsEnabled = option.Key == RuntimeOptionConstants.FrameskipThreshold
-                ? selected[RuntimeOptionConstants.Frameskip] == RuntimeOptionConstants.Threshold
-                : option.Key != RuntimeOptionConstants.FrameskipInterval || selected[RuntimeOptionConstants.Frameskip] != RuntimeOptionConstants.Disabled
+            IsEnabled = option.Key == RuntimeOptionConstants.FrameskipThreshold ? selected[RuntimeOptionConstants.Frameskip] == RuntimeOptionConstants.Threshold : option.Key != RuntimeOptionConstants.FrameskipInterval || selected[RuntimeOptionConstants.Frameskip] != RuntimeOptionConstants.Disabled
         }).ToArray();
     }
 }

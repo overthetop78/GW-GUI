@@ -29,9 +29,7 @@ internal static class RuntimeOptionFunctions
             DefaultValue = option.Key == RuntimeOptionConstants.NeoGeoMode ? mode : option.DefaultValue,
             CurrentValue = options.GetValueOrDefault(option.Key, option.DefaultValue),
             IsVisible = !cd || option.Key is not (RuntimeOptionConstants.NeoGeoMode or RuntimeOptionConstants.Samplerate),
-            Values = option.Key == RuntimeOptionConstants.NeoGeoMode
-                ? option.Values.Where(value => value.Value == mode || value.Value is RuntimeOptionConstants.UniverseBios or RuntimeOptionConstants.DipSwitch).ToArray()
-                : option.Values
+            Values = option.Key == RuntimeOptionConstants.NeoGeoMode ? option.Values.Where(value => value.Value == mode || value.Value is RuntimeOptionConstants.UniverseBios or RuntimeOptionConstants.DipSwitch).ToArray() : option.Values
         }).ToArray();
     }
 }

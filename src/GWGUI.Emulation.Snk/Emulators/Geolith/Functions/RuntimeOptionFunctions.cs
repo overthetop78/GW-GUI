@@ -55,9 +55,7 @@ internal static class RuntimeOptionFunctions
     internal static int ControllerPorts(MachineConfiguration configuration)
     {
         var options = Prepare(configuration);
-        return AllowsFourPlayers(configuration.Model, options) && options[RuntimeOptionConstants.FourPlayer] == RuntimeOptionConstants.On 
-            ? RuntimeOptionConstants.ExtendedControllerPorts 
-            : RuntimeOptionConstants.StandardControllerPorts;
+        return AllowsFourPlayers(configuration.Model, options) && options[RuntimeOptionConstants.FourPlayer] == RuntimeOptionConstants.On ? RuntimeOptionConstants.ExtendedControllerPorts : RuntimeOptionConstants.StandardControllerPorts;
     }
 
     internal static IReadOnlyList<CoreOption> Describe(MachineConfiguration configuration)
@@ -71,9 +69,7 @@ internal static class RuntimeOptionFunctions
             if (option.Key == RuntimeOptionConstants.SystemType)
                 values = option.Values.Where(value => value.Value == defaults[option.Key] || value.Value == RuntimeOptionConstants.UniverseBios).ToArray();
             if (option.Key == RuntimeOptionConstants.CdSystemType)
-                values = option.Values.Where(value => configuration.Model == MachineModel.NeoGeoCd
-                    ? value.Value is RuntimeOptionConstants.CdFront or RuntimeOptionConstants.CdTop
-                    : value.Value is RuntimeOptionConstants.Cdz or RuntimeOptionConstants.CdzUniverseBios).ToArray();
+                values = option.Values.Where(value => configuration.Model == MachineModel.NeoGeoCd ? value.Value is RuntimeOptionConstants.CdFront or RuntimeOptionConstants.CdTop : value.Value is RuntimeOptionConstants.Cdz or RuntimeOptionConstants.CdzUniverseBios).ToArray();
             var visible = option.IsVisible && (cd ? !CartridgeOptions.Contains(option.Key) : !CdOptions.Contains(option.Key));
             if (option.Key is RuntimeOptionConstants.Memcard or RuntimeOptionConstants.MemcardWp && configuration.Media.Any(media => media.Slot == EmulationMediaSlot.MemoryCard0))
                 visible = false;

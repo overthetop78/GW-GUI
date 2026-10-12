@@ -45,9 +45,7 @@ internal static class MediaRuntimeFunctions
     {
         var slot = configuration.Family == MachineFamily.NeoGeoCd ? EmulationMediaSlot.Cd0 : EmulationMediaSlot.Cartridge0;
         var path = configuration.InitialContent is { Length: > 0 } initial ? initial : configuration.Media.SingleOrDefault(media => media.Slot == slot && media.IsInserted)?.Path;
-        return path is null 
-            ? [] 
-            : [ContentFunctions.Validate(path, Extensions(configuration.Model).Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase))];
+        return path is null ? [] : [ContentFunctions.Validate(path, Extensions(configuration.Model).Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase))];
     }
 
     private static MediaConfiguration? InsertedCard(MachineConfiguration configuration) => configuration.Media.SingleOrDefault(media => media.Slot == EmulationMediaSlot.MemoryCard0 && media.IsInserted);

@@ -29,9 +29,7 @@ internal static class RuntimeOptionFunctions
         {
             DefaultValue = option.Key == RuntimeOptionConstants.NeogeoBios && configuration.Model == MachineModel.NeoGeoAes ? AesBios : option.DefaultValue,
             CurrentValue = selected[option.Key],
-            Values = option.Key == RuntimeOptionConstants.NeogeoBios
-                ? option.Values.Where(value => configuration.Model == MachineModel.NeoGeoAes ? value.Value == AesBios : value.Value != AesBios).ToArray()
-                : option.Values
+            Values = option.Key == RuntimeOptionConstants.NeogeoBios ? option.Values.Where(value => configuration.Model == MachineModel.NeoGeoAes ? value.Value == AesBios : value.Value != AesBios).ToArray() : option.Values
         }).ToArray();
     }
 }

@@ -64,15 +64,11 @@ internal static class MediaRuntimeFunctions
         ["doubled1e"] = "doubled1",
         ["bangbedp"] = "bangbead"
     };
-    internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineModel model) => model is MachineModel.NeoGeoMvs or MachineModel.NeoGeoAes 
-        ? [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, RuntimeOptionConstants.CartridgeExtensions, RequiresMachineRecreation: true)] 
-        : [];
+    internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineModel model) => model is MachineModel.NeoGeoMvs or MachineModel.NeoGeoAes ? [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, RuntimeOptionConstants.CartridgeExtensions, RequiresMachineRecreation: true)] : [];
     internal static IReadOnlyList<string> InitialContentPaths(MachineConfiguration configuration)
     {
         var path = configuration.InitialContent is { Length: > 0 } initial ? initial : configuration.Media.SingleOrDefault(media => media.Slot == EmulationMediaSlot.Cartridge0 && media.IsInserted)?.Path;
-        return path is null 
-            ? [] 
-            : [ContentFunctions.Validate(path, RuntimeOptionConstants.CartridgeExtensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase))];
+        return path is null ? [] : [ContentFunctions.Validate(path, RuntimeOptionConstants.CartridgeExtensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase))];
     }
 
     internal static LoadedContent? Prepare(

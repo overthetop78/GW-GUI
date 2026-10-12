@@ -56,9 +56,7 @@ internal static class SavedStateFunctions
     internal static string ContentHash(MachineConfiguration configuration) => HashBytes(JsonSerializer.SerializeToUtf8Bytes(ContentEntries(configuration), StateConstants.JsonOptions));
     private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration)
     {
-        IReadOnlyList<string> initialPaths = configuration.InitialContent is null 
-            ? Array.Empty<string>() 
-            : new Engine().Adapter(configuration)is IEmulatorMediaAdapter adapter ? adapter.ResolveInitialContentPaths(configuration) : [configuration.InitialContent];
+        IReadOnlyList<string> initialPaths = configuration.InitialContent is null ? Array.Empty<string>() : new Engine().Adapter(configuration)is IEmulatorMediaAdapter adapter ? adapter.ResolveInitialContentPaths(configuration) : [configuration.InitialContent];
         var entries = configuration.Firmwares.OrderBy(firmware => firmware.Category).Select(firmware => new StateContentEntry(StateConstants.FirmwareCategory, firmware.Category.ToString(), HashPath(firmware.Path))).Concat(configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).Select(media => new StateContentEntry(StateConstants.MediaCategory, $"{media.Category}:{media.Slot}", HashPath(media.Path)))).Concat(initialPaths.Select((path, index) => new StateContentEntry(StateConstants.InitialContentCategory, index.ToString(System.Globalization.CultureInfo.InvariantCulture) + ":" + Path.GetFileName(path), HashPath(path)))).ToArray();
         return entries;
     }
