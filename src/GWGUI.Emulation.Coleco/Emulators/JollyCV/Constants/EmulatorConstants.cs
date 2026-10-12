@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Coleco.Emulators.JollyCV.Constants;
 
 internal static class EmulatorConstants
 {
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(
-        Emulator.JollyCV, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.ColecoVision)
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.JollyCV, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.ColecoVision)
         with { DescriptionResourceKey = DescriptionResourceKey };
     internal const string Id = "jollycv";
     internal const string LibraryName = "JollyCV";

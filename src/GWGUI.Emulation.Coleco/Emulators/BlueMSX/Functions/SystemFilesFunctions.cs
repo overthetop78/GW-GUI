@@ -9,11 +9,9 @@ internal static class SystemFilesFunctions
     {
         if (configuration.Model != MachineModel.ColecoVision)
             throw new ArgumentOutOfRangeException(nameof(configuration));
-        var machineDirectory = Path.Combine(systemDirectory, SystemFilesConstants.MachinesDirectory,
-            SystemFilesConstants.MachineDirectory);
+        var machineDirectory = Path.Combine(systemDirectory, SystemFilesConstants.MachinesDirectory, SystemFilesConstants.MachineDirectory);
         Directory.CreateDirectory(machineDirectory);
-        File.WriteAllText(Path.Combine(machineDirectory, SystemFilesConstants.ConfigurationFileName),
-            SystemFilesConstants.Configuration);
+        File.WriteAllText(Path.Combine(machineDirectory, SystemFilesConstants.ConfigurationFileName), SystemFilesConstants.Configuration);
         var firmware = configuration.Firmwares.SingleOrDefault(entry => entry.Category == FirmwareCategory.Os7);
         if (firmware is not null)
         {

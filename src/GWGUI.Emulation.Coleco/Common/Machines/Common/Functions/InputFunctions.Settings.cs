@@ -19,8 +19,7 @@ internal static class InputSettingsFunctions
     };
 
     internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) =>
-        model != MachineModel.Adam ? new Dictionary<string, string>() : KeyboardDefaults.ToDictionary(pair => pair.Key,
-            pair => input.Keyboard?.GetValueOrDefault(pair.Key, pair.Value.ToString()) ?? pair.Value.ToString());
+        model != MachineModel.Adam ? new Dictionary<string, string>() : KeyboardDefaults.ToDictionary(pair => pair.Key, pair => input.Keyboard?.GetValueOrDefault(pair.Key, pair.Value.ToString()) ?? pair.Value.ToString());
 
     internal static IReadOnlyList<InputBindingDefinition> Definitions(PeripheralCategory peripheral)
     {
@@ -30,8 +29,7 @@ internal static class InputSettingsFunctions
             && (action is not ("SpinnerLeft" or "SpinnerRight") || peripheral is not PeripheralCategory.Standard));
         return actions.Select(action => new InputBindingDefinition(action,
             action is "Up" or "Down" or "Left" or "Right" ? "Emulation.Controller.Action." + action : "Emulation.Coleco.Action." + action,
-            string.Empty, action.StartsWith("Keypad", StringComparison.Ordinal) ? action[6..]
-                : action == "Star" ? "*" : action == "Pound" ? "#" : null)).ToArray();
+            string.Empty, action.StartsWith("Keypad", StringComparison.Ordinal) ? action[6..] : action == "Star" ? "*" : action == "Pound" ? "#" : null)).ToArray();
     }
 
     private static readonly IReadOnlyDictionary<EmulationControllerVisualControl,string> VisualCommands = new Dictionary<EmulationControllerVisualControl,string>
@@ -59,8 +57,7 @@ internal static class InputSettingsFunctions
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var keyboard = configuration.Model == MachineModel.Adam ? new EmulationInputBindingSet(
-            KeyboardDefaults.Select(pair => new InputBindingDefinition(pair.Key, "Emulation.Coleco.Key." + pair.Key,
-                pair.Value.ToString(), pair.Key.StartsWith("Smart", StringComparison.Ordinal) ? "Smart " + pair.Key[5..] : null)).ToArray(),
+            KeyboardDefaults.Select(pair => new InputBindingDefinition(pair.Key, "Emulation.Coleco.Key." + pair.Key, pair.Value.ToString(), pair.Key.StartsWith("Smart", StringComparison.Ordinal) ? "Smart " + pair.Key[5..] : null)).ToArray(),
             configuration.Input.Keyboard ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard) : null;
         var choices = Peripherals(configuration.Core).Select(peripheral => new EmulationControllerChoice(peripheral.ToString(),
             peripheral == PeripheralCategory.None ? "Emulation.Controller.None" : "Emulation.Coleco.Controller." + peripheral,
@@ -73,8 +70,7 @@ internal static class InputSettingsFunctions
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == index);
             var peripheral = binding?.Peripheral ?? PeripheralCategory.Standard;
             return new EmulationControllerPort(index + 1, choices, peripheral.ToString(), binding?.DeviceId,
-                new(Definitions(peripheral), binding?.Mappings ?? new Dictionary<string, string>(),
-                    EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
+                new(Definitions(peripheral), binding?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                 binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId);
         }).ToArray();
         return new(keyboard, null, ports);
@@ -86,8 +82,7 @@ internal static class InputSettingsFunctions
         {
             if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var peripheral)
                 || !Peripherals(configuration.Core).Contains(peripheral)) throw new ArgumentException(nameof(settings));
-            return new ControllerBinding(port.Number - 1, peripheral, port.PhysicalDeviceId, port.Bindings.Values,
-                port.DeadZonePercent, port.VisualId);
+            return new ControllerBinding(port.Number - 1, peripheral, port.PhysicalDeviceId, port.Bindings.Values, port.DeadZonePercent, port.VisualId);
         }).ToArray();
         var result = configuration with { Input = new(settings.Keyboard?.Values ?? configuration.Input.Keyboard, controllers) };
         ConfigurationFunctions.Validate(result);

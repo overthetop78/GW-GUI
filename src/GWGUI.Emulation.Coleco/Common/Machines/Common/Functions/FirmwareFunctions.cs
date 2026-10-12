@@ -7,8 +7,7 @@ internal static class FirmwareFunctions
 {
     internal static string Field(FirmwareCategory role) => "coleco_firmware_" + role;
     internal static bool IsField(string field) => Enum.GetValues<FirmwareCategory>().Any(role => Field(role) == field);
-    internal static IReadOnlyList<FirmwareCategory> Roles(MachineModel model) => model == MachineModel.Adam
-        ? [FirmwareCategory.Os7, FirmwareCategory.Eos, FirmwareCategory.SmartWriter] : [FirmwareCategory.Os7];
+    internal static IReadOnlyList<FirmwareCategory> Roles(MachineModel model) => model == MachineModel.Adam ? [FirmwareCategory.Os7, FirmwareCategory.Eos, FirmwareCategory.SmartWriter] : [FirmwareCategory.Os7];
 
     internal static IReadOnlyList<FirmwareConfiguration> Apply(MachineConfiguration configuration,
         IReadOnlyDictionary<string, string?> values)
@@ -51,16 +50,13 @@ internal static class FirmwareFunctions
                 var name = Path.GetFileNameWithoutExtension(absolute);
                 role = bytes.Length == MediaRuntimeConstants.SmartWriterBytes && model == MachineModel.Adam
                     ? FirmwareCategory.SmartWriter
-                    : bytes.Length == MediaRuntimeConstants.Os7Bytes
-                        ? name.Contains("eos", StringComparison.OrdinalIgnoreCase) && model == MachineModel.Adam
-                            ? FirmwareCategory.Eos : FirmwareCategory.Os7 : null;
+                    : bytes.Length == MediaRuntimeConstants.Os7Bytes ? name.Contains("eos", StringComparison.OrdinalIgnoreCase) && model == MachineModel.Adam ? FirmwareCategory.Eos : FirmwareCategory.Os7 : null;
                 if (role is not null) compatibility = EmulationFirmwareCompatibility.PartiallyCompatible;
             }
         }
         catch (IOException) { }
         catch (UnauthorizedAccessException) { }
-        return new(hash ?? absolute, absolute, Path.GetFileName(absolute), null, compatibility,
-            compatibility == EmulationFirmwareCompatibility.Incompatible || role is null ? null : Field(role.Value));
+        return new(hash ?? absolute, absolute, Path.GetFileName(absolute), null, compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible || role is null ? null : Field(role.Value));
     }
 
     internal static FirmwareConfiguration Select(EmulationFirmwareCandidate candidate)

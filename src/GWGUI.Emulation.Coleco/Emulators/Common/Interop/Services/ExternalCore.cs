@@ -65,8 +65,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         {
             _configuration = configuration;
             _sessionDirectory = Path.GetFullPath(sessionDirectory);
-            _saveDirectory = Path.GetFullPath(saveDirectory ?? configuration.Folders.Saves
-                ?? Path.Combine(_sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
+            _saveDirectory = Path.GetFullPath(saveDirectory ?? configuration.Folders.Saves ?? Path.Combine(_sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
             var systemDirectory = Path.Combine(_sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
             Directory.CreateDirectory(systemDirectory);
             FirmwareRuntimeFunctions.Prepare(configuration, systemDirectory);
@@ -77,13 +76,11 @@ internal sealed partial class ExternalCore : IEmulatorCore
                 runtimeOptions[GWGUI.Emulation.Coleco.Emulators.BlueMSX.Constants.OptionConstants.OptionMsxtype] = CoreModelConstants.ColecoVision;
             if (configuration.Core == Emulator.GearColeco)
             {
-                runtimeOptions[GearOptions.OptionCartridgeHardware] = configuration.Model == MachineModel.Adam
-                    ? MediaRuntimeConstants.AdamHardware : MediaRuntimeConstants.ColecoVisionHardware;
+                runtimeOptions[GearOptions.OptionCartridgeHardware] = configuration.Model == MachineModel.Adam ? MediaRuntimeConstants.AdamHardware : MediaRuntimeConstants.ColecoVisionHardware;
                 var media = configuration.Media.Where(value => value.IsInserted && value.Category != MediaCategory.Cartridge).ToArray();
                 if (media.Select(value => value.IsReadOnly).Distinct().Count() > 1)
                     throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
-                runtimeOptions[GearOptions.OptionAdamWritableMedia] = media.Any(value => !value.IsReadOnly)
-                    ? MediaRuntimeConstants.SaveWorkingCopy : MediaRuntimeConstants.Disabled;
+                runtimeOptions[GearOptions.OptionAdamWritableMedia] = media.Any(value => !value.IsReadOnly) ? MediaRuntimeConstants.SaveWorkingCopy : MediaRuntimeConstants.Disabled;
             }
             _callbacks = new ExternalHostCallbacks(Emulator,
                 systemDirectory,
@@ -97,10 +94,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             PrepareInitialMedia(configuration);
             if (_content is null && _subsystem is null && !_callbacks.SupportsNoGame)
                 throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentRequired, ErrorMessages.ContentRequired);
-            var loaded = _subsystem is not null
-                ? _exports.LoadGameSpecial(GWGUI.Emulation.Coleco.Emulators.GearColeco.Constants.SubsystemConstants.Adam,
-                    _subsystem.GameInfos, _subsystem.Count)
-                : _exports.LoadGame(_content?.GameInfo ?? nint.Zero);
+            var loaded = _subsystem is not null ? _exports.LoadGameSpecial(GWGUI.Emulation.Coleco.Emulators.GearColeco.Constants.SubsystemConstants.Adam, _subsystem.GameInfos, _subsystem.Count) : _exports.LoadGame(_content?.GameInfo ?? nint.Zero);
             if (!loaded)
                 throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
             _gameLoaded = true;
@@ -110,8 +104,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             ControllerPortFunctions.Configure(_exports, _callbacks, configuration);
             _exports.GetSystemAvInfo(out var avInfo);
             _callbacks.ApplySystemAvInfo(avInfo);
-            Region = _exports.GetRegion() == ExternalCoreInteropConstants.NativeBooleanTrue
-                ? EmulationVideoStandard.Pal : EmulationVideoStandard.Ntsc;
+            Region = _exports.GetRegion() == ExternalCoreInteropConstants.NativeBooleanTrue ? EmulationVideoStandard.Pal : EmulationVideoStandard.Ntsc;
             completed = true;
         }
         finally

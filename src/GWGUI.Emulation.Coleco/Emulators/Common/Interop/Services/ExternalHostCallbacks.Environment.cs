@@ -35,8 +35,7 @@ private bool OnEnvironment(uint command, nint data)
             case ExternalCoreApiConstants.GetVariableUpdate:
                 return _optionHost.GetAndClearUpdated(data);
             case ExternalCoreApiConstants.SetSupportNoGame:
-                SupportsNoGame = data != nint.Zero
-                    && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
+                SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
                 return data != nint.Zero;
             case ExternalCoreApiConstants.GetCanDuplicateFrames:
             case ExternalCoreApiConstants.GetInputBitmasks:
@@ -70,9 +69,7 @@ private bool OnEnvironment(uint command, nint data)
             case ExternalCoreApiConstants.GetSensorInterface:
                 return SetSensorInterface(data);
             case ExternalCoreApiConstants.GetInputDeviceCapabilities:
-                return CoreFunctions.WriteUnsignedLong(data,
-                    EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability
-                    | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability);
+                return CoreFunctions.WriteUnsignedLong(data, EnvironmentConstants.JoypadCapability | EnvironmentConstants.MouseCapability | EnvironmentConstants.KeyboardCapability | EnvironmentConstants.AnalogCapability);
             case ExternalCoreApiConstants.GetLanguage:
                 return CoreFunctions.WriteInteger(data, EnvironmentFunctions.CurrentLanguage());
             case ExternalCoreApiConstants.GetFastForwarding:
@@ -89,8 +86,7 @@ private bool OnEnvironment(uint command, nint data)
                 MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);
                 return data != nint.Zero;
             case ExternalCoreApiConstants.SetSupportAchievements:
-                SupportsAchievements = data != nint.Zero
-                    && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
+                SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
                 return data != nint.Zero;
             case ExternalCoreApiConstants.SetDiskControl:
                 if (data == nint.Zero) return false;

@@ -20,14 +20,11 @@ internal static class ControllerPortFunctions
                 .Where(value => value is not null).Distinct(StringComparer.Ordinal).ToArray();
             if (spinners.Length > 1)
                 throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid, ErrorMessages.ContentLoadFailed);
-            callbacks.SetOption(GearOptions.OptionSpinners,
-                spinners.FirstOrDefault() ?? MediaRuntimeConstants.Disabled);
+            callbacks.SetOption(GearOptions.OptionSpinners, spinners.FirstOrDefault() ?? MediaRuntimeConstants.Disabled);
         }
         callbacks.ConfigureInput(configuration.Input);
         for (var port = ControllerConstants.FirstPort; port < ControllerConstants.PortCount; port++)
-            ConfigurePort(exports, callbacks, configuration, port,
-                configuration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port)?.Peripheral
-                    ?? PeripheralCategory.Standard);
+            ConfigurePort(exports, callbacks, configuration, port, configuration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port)?.Peripheral ?? PeripheralCategory.Standard);
     }
 
     internal static void ConfigurePort(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
@@ -36,8 +33,6 @@ internal static class ControllerPortFunctions
         if (port is < ControllerConstants.FirstPort or >= ControllerConstants.PortCount)
             throw new ArgumentOutOfRangeException(nameof(port));
         if (!Enum.IsDefined(peripheral)) throw new ArgumentOutOfRangeException(nameof(peripheral));
-        exports.SetControllerPortDevice((uint)port, peripheral == PeripheralCategory.None
-            ? CoreLifecycleConstants.NoDevice : configuration.Core == Emulator.GearColeco
-                ? CoreLifecycleConstants.ColecoVisionDevice : CoreLifecycleConstants.DefaultJoypadDevice);
+        exports.SetControllerPortDevice((uint)port, peripheral == PeripheralCategory.None ? CoreLifecycleConstants.NoDevice : configuration.Core == Emulator.GearColeco ? CoreLifecycleConstants.ColecoVisionDevice : CoreLifecycleConstants.DefaultJoypadDevice);
     }
 }

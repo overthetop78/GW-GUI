@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Coleco.Emulators.GearColeco.Constants;
 
 internal static class EmulatorConstants
 {
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(
-        Emulator.GearColeco, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.ColecoVision, MachineModel.Adam)
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.GearColeco, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.ColecoVision, MachineModel.Adam)
         with { DescriptionResourceKey = DescriptionResourceKey };
     internal const string Id = "gearcoleco";
     internal const string LibraryName = "Gearcoleco";

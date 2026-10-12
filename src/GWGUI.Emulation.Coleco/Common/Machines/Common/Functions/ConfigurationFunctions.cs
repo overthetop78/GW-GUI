@@ -15,9 +15,7 @@ internal static class ConfigurationFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     };
 
-    internal static bool IsCompatible(MachineModel model, Emulator core) =>
-        Enum.IsDefined(model) && Enum.IsDefined(core)
-        && (model == MachineModel.ColecoVision || core == Emulator.GearColeco);
+    internal static bool IsCompatible(MachineModel model, Emulator core) => Enum.IsDefined(model) && Enum.IsDefined(core) && (model == MachineModel.ColecoVision || core == Emulator.GearColeco);
 
     internal static void Validate(MachineConfiguration configuration)
     {
@@ -64,16 +62,13 @@ internal static class ConfigurationFunctions
         }
         if (configuration.Input.Keyboard is { Count: > 0 } keys
             && (configuration.Model != MachineModel.Adam
-                || keys.Any(mapping => !KeyboardActionConstants.All.Contains(mapping.Key)
-                    || !string.IsNullOrEmpty(mapping.Value) && (!Enum.TryParse<EmulationKey>(mapping.Value, out var key) || !Enum.IsDefined(key)))))
+                || keys.Any(mapping => !KeyboardActionConstants.All.Contains(mapping.Key) || !string.IsNullOrEmpty(mapping.Value) && (!Enum.TryParse<EmulationKey>(mapping.Value, out var key) || !Enum.IsDefined(key)))))
             throw new ArgumentException(nameof(configuration.Input));
         if (configuration.Core == Emulator.GearColeco)
         {
-            var rotaryTypes = (configuration.Input.Controllers ?? []).Select(binding => binding.Peripheral)
-                .Where(peripheral => peripheral is PeripheralCategory.SuperAction or PeripheralCategory.Roller or PeripheralCategory.Driving)
+            var rotaryTypes = (configuration.Input.Controllers ?? []).Select(binding => binding.Peripheral).Where(peripheral => peripheral is PeripheralCategory.SuperAction or PeripheralCategory.Roller or PeripheralCategory.Driving)
                 .Distinct().Count();
-            if (rotaryTypes > 1 || configuration.Media.Where(media => media.IsInserted && media.Category != MediaCategory.Cartridge)
-                    .Select(media => media.IsReadOnly).Distinct().Count() > 1)
+            if (rotaryTypes > 1 || configuration.Media.Where(media => media.IsInserted && media.Category != MediaCategory.Cartridge).Select(media => media.IsReadOnly).Distinct().Count() > 1)
                 throw new ArgumentException(nameof(configuration));
         }
         CoreOptionValidationFunctions.Validate(configuration);

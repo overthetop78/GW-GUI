@@ -20,8 +20,7 @@ internal static class ContentFunctions
                 new Dictionary<string, string>
                 {
                     [ErrorContextConstants.Extension] = extension,
-                    [ErrorContextConstants.SupportedExtensions] = string.Join(
-                        MediaConstants.ExtensionListSeparator, supportedExtensions.Order(StringComparer.OrdinalIgnoreCase))
+                    [ErrorContextConstants.SupportedExtensions] = string.Join(MediaConstants.ExtensionListSeparator, supportedExtensions.Order(StringComparer.OrdinalIgnoreCase))
                 });
         return Path.GetFullPath(contentPath);
     }

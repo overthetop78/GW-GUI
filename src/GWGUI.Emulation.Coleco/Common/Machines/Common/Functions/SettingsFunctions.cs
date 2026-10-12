@@ -30,14 +30,10 @@ internal static class SettingsDescriptionFunctions
                     : $"{(hardware.CpuFrequencyHz / SettingsConstants.HertzPerKilohertz).ToString("0.###", CultureInfo.CurrentCulture)} {SettingsConstants.KilohertzUnit}")));
         var memoryFields = new List<EmulationSettingsField>
         {
-            Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram,
-                SettingsConstants.ResourceMemoryMain, SettingsConstants.ResourceMemoryMain,
-                Memory(hardware.MainMemoryBytes))
+            Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, SettingsConstants.ResourceMemoryMain, Memory(hardware.MainMemoryBytes))
         };
         if (hardware.DisplayMemoryBytes > 0)
-            memoryFields.Add(Information(SettingsConstants.DisplayMemory, EmulationMachineTab.Ram,
-                SettingsConstants.ResourceMemoryMain, SettingsConstants.ResourceDisplayMemory,
-                Memory(hardware.DisplayMemoryBytes)));
+            memoryFields.Add(Information(SettingsConstants.DisplayMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, SettingsConstants.ResourceDisplayMemory, Memory(hardware.DisplayMemoryBytes)));
         blocks.Add(Block(EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, memoryFields.ToArray()));
         blocks.Add(Block(EmulationMachineTab.Video, SettingsConstants.ResourceVideoResolution,
             Information(SettingsConstants.DisplayResolution, EmulationMachineTab.Video,
@@ -49,8 +45,7 @@ internal static class SettingsDescriptionFunctions
         ? $"{(bytes / SettingsConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture)} {SettingsConstants.KibibyteUnit}"
         : $"{bytes.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.ByteUnit}";
 
-    private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block,
-        string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
+    private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
 
     internal static IReadOnlyList<CoreOption> RelevantOptions(MachineConfiguration configuration) =>
         CoreOptionValidationFunctions.ForCore(configuration.Core).Where(option => configuration.Core switch
@@ -67,8 +62,7 @@ internal static class SettingsDescriptionFunctions
     private static void AddNative(List<EmulationSettingsBlock> blocks, MachineConfiguration configuration,
         IEnumerable<CoreOption> options)
     {
-        foreach (var group in options.GroupBy(option => option.Category == "input" ? EmulationMachineTab.Controllers
-                     : EmulationMachineTab.Video))
+        foreach (var group in options.GroupBy(option => option.Category == "input" ? EmulationMachineTab.Controllers : EmulationMachineTab.Video))
         {
             var resource = group.Key switch
             {
@@ -110,20 +104,16 @@ internal static class SettingsDescriptionFunctions
                 configuration.Options.GetValueOrDefault(SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput),
                 [new(SettingsConstants.DefaultOutput, SettingsConstants.ResourceDefaultOutput)],
                 ChoiceSource: EmulationSettingsChoiceSource.AudioOutputDevices),
-            AudioSelection(configuration, SettingsConstants.AudioLatency, SettingsConstants.ResourceAudioLatency,
-                SettingsConstants.DefaultLatency, SettingsConstants.Latencies, SettingsConstants.MillisecondsUnit),
-            AudioSelection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume,
-                SettingsConstants.DefaultVolume, SettingsConstants.Volumes, SettingsConstants.PercentUnit));
+            AudioSelection(configuration, SettingsConstants.AudioLatency, SettingsConstants.ResourceAudioLatency, SettingsConstants.DefaultLatency, SettingsConstants.Latencies, SettingsConstants.MillisecondsUnit),
+            AudioSelection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume, SettingsConstants.DefaultVolume, SettingsConstants.Volumes, SettingsConstants.PercentUnit));
 
     private static EmulationSettingsField AudioSelection(MachineConfiguration configuration, string id,
         string resource, int fallback, IReadOnlyList<int> values, string unit) =>
         new(id, EmulationMachineTab.Audio, SettingsConstants.ResourceAudio, resource,
-            EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(id,
-                fallback.ToString(CultureInfo.InvariantCulture)),
+            EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(id, fallback.ToString(CultureInfo.InvariantCulture)),
             values.Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture),
                 string.Empty, $"{value.ToString(CultureInfo.InvariantCulture)} {unit}")).ToArray());
 
-    private static EmulationSettingsBlock Block(EmulationMachineTab tab, string resource,
-        params EmulationSettingsField[] fields) => new(resource, tab, resource, fields);
+    private static EmulationSettingsBlock Block(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields) => new(resource, tab, resource, fields);
 }
 

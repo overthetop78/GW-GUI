@@ -41,8 +41,7 @@ internal static class InputSnapshotFunctions
                     }
                     else if (digit is >= 1 and <= 8)
                     {
-                        var indices = core == Emulator.GearColeco ? ControllerProtocolDictionary.GearKeypad
-                            : ControllerProtocolDictionary.BlueKeypad;
+                        var indices = core == Emulator.GearColeco ? ControllerProtocolDictionary.GearKeypad : ControllerProtocolDictionary.BlueKeypad;
                         buttons |= 1u << indices[digit - 1];
                     }
                     else if (core == Emulator.GearColeco)

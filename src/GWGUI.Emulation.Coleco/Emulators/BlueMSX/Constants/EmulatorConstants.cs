@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Coleco.Emulators.BlueMSX.Constants;
 
 internal static class EmulatorConstants
 {
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(
-        Emulator.BlueMSX, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.ColecoVision)
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.BlueMSX, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.ColecoVision)
         with { DescriptionResourceKey = DescriptionResourceKey };
     internal const string Id = "bluemsx";
     internal const string LibraryName = "blueMSX";

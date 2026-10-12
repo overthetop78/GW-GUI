@@ -7,9 +7,7 @@ internal static class HardwareModelCatalog
         MachineModel.ColecoVision => new(HardwareConstants.Z80Resource, HardwareConstants.CpuFrequencyHz,
             HardwareConstants.ColecoVisionRamBytes, HardwareConstants.DisplayWidth,
             HardwareConstants.DisplayHeight, HardwareConstants.VideoRamBytes),
-        MachineModel.Adam => new(HardwareConstants.Z80Resource, HardwareConstants.CpuFrequencyHz,
-            HardwareConstants.AdamRamBytes, HardwareConstants.DisplayWidth,
-            HardwareConstants.DisplayHeight, HardwareConstants.VideoRamBytes),
+        MachineModel.Adam => new(HardwareConstants.Z80Resource, HardwareConstants.CpuFrequencyHz, HardwareConstants.AdamRamBytes, HardwareConstants.DisplayWidth, HardwareConstants.DisplayHeight, HardwareConstants.VideoRamBytes),
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     };
 }

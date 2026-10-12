@@ -11,8 +11,7 @@ internal static class StorageSettingsFunctions
         {
             new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, SettingsConstants.CartridgeExtensions,
                 RequiresMachineRecreation: true, ImageDirectory: configuration.Folders.Cartridges, IsPermanent: true,
-                ConfigurationKind: configuration.Core == Emulator.GearColeco
-                    ? EmulationStorageConfigurationKind.CartridgeSlot : EmulationStorageConfigurationKind.None,
+                ConfigurationKind: configuration.Core == Emulator.GearColeco ? EmulationStorageConfigurationKind.CartridgeSlot : EmulationStorageConfigurationKind.None,
                 ConfigurationFields: CartridgeFields(configuration))
         };
         if (configuration.Model == MachineModel.Adam)
@@ -29,24 +28,17 @@ internal static class StorageSettingsFunctions
         }
         return new(devices, configuration.ConfiguredSlots,
             configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray(),
-            configuration.Core == Emulator.GearColeco
-                ? [new(EmulationMediaSlot.Cartridge0, Cartridge: new CartridgeSlotSettings(Options:
-                    CartridgeFields(configuration).ToDictionary(field => field.Id, field => field.Value!)))] : []);
+            configuration.Core == Emulator.GearColeco ? [new(EmulationMediaSlot.Cartridge0, Cartridge: new CartridgeSlotSettings(Options: CartridgeFields(configuration).ToDictionary(field => field.Id, field => field.Value!)))] : []);
     }
 
     private static IReadOnlyList<EmulationSettingsField> CartridgeFields(MachineConfiguration configuration) =>
-        configuration.Core == Emulator.GearColeco
-            ? [SettingsDescriptionFunctions.Native(configuration,
-                CoreOptionValidationFunctions.ForCore(configuration.Core).Single(option => option.Key == CartridgeOptions.OptionMapper),
-                EmulationMachineTab.Storage, "Emulation.Storage.Cartridges")] : [];
+        configuration.Core == Emulator.GearColeco ? [SettingsDescriptionFunctions.Native(configuration, CoreOptionValidationFunctions.ForCore(configuration.Core).Single(option => option.Key == CartridgeOptions.OptionMapper), EmulationMachineTab.Storage, "Emulation.Storage.Cartridges")] : [];
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
         var devices = Describe(configuration).AvailableDevices.ToDictionary(device => device.Slot);
         if (settings.ConfiguredSlots.Any(slot => !devices.ContainsKey(slot))
-            || settings.MountedMedia.Any(media => !devices.TryGetValue(media.Slot, out var device)
-                || device.MediaType != media.Type
-                || !device.AcceptedExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase)))
+            || settings.MountedMedia.Any(media => !devices.TryGetValue(media.Slot, out var device) || device.MediaType != media.Type || !device.AcceptedExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase)))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
         var options = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal);
         foreach (var deviceSettings in settings.DeviceSettings ?? [])

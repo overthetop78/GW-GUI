@@ -12,6 +12,5 @@ internal static class DiskControlErrors
     internal static string ReplaceFailed => ContentUnsupported();
     internal static string MediaMissing => ExceptionText.Get("Emulation.Coleco.Error.ContentNotFound");
 
-    private static string ContentUnsupported() =>
-        ExceptionText.Get("Emulation.Coleco.Error.ContentUnsupported");
+    private static string ContentUnsupported() => ExceptionText.Get("Emulation.Coleco.Error.ContentUnsupported");
 }

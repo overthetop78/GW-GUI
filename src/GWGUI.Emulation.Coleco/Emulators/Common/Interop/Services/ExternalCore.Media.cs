@@ -14,9 +14,7 @@ internal sealed partial class ExternalCore
         if (cartridge is not null)
         {
             var path = ContentFunctions.Validate(cartridge.Path, _info.Extensions);
-            _batterySavePath = Path.Combine(_saveDirectory!,
-                Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(path))).ToLowerInvariant()
-                    + MediaConstants.BatterySaveExtension);
+            _batterySavePath = Path.Combine(_saveDirectory!, Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(path))).ToLowerInvariant() + MediaConstants.BatterySaveExtension);
         }
         if (configuration.Model == MachineModel.Adam)
         {

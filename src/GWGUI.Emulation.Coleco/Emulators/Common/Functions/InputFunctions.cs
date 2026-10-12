@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.Coleco.Emulators.Common.Functions;
 
 internal static class InputFunctions
 {
-    private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap =
-        KeyboardFunctions.CreateKeyMap().ToDictionary(pair => pair.Value, pair => pair.Key);
+    private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = KeyboardFunctions.CreateKeyMap().ToDictionary(pair => pair.Value, pair => pair.Key);
 
     internal static EmulationInputSnapshot Freeze(EmulationInputSnapshot? snapshot)
     {
@@ -17,9 +16,7 @@ internal static class InputFunctions
     internal static short State(EmulationInputSnapshot snapshot, uint port, uint device, uint index, uint id)
     {
         if (device == InputConstants.KeyboardDevice)
-            return KeyboardMap.TryGetValue(id, out var key) && snapshot.Keys.Contains(key)
-                ? InputConstants.ActiveState
-                : InputConstants.InactiveState;
+            return KeyboardMap.TryGetValue(id, out var key) && snapshot.Keys.Contains(key) ? InputConstants.ActiveState : InputConstants.InactiveState;
         if (device == InputConstants.MouseDevice)
             return MouseState(snapshot.Pointer, port, index, id);
         if (port >= snapshot.Controllers.Count) return InputConstants.InactiveState;
@@ -29,10 +26,7 @@ internal static class InputFunctions
             if (index != InputConstants.LeftAnalogIndex) return InputConstants.InactiveState;
             if (id == InputConstants.JoypadMaskId)
                 return unchecked((short)(controller.Buttons & ushort.MaxValue));
-            return id < InputConstants.MaximumJoypadButtonCount &&
-                   (controller.Buttons & (1u << checked((int)id))) != ExternalCoreInteropConstants.NoInputState
-                ? InputConstants.ActiveState
-                : InputConstants.InactiveState;
+            return id < InputConstants.MaximumJoypadButtonCount && (controller.Buttons & (1u << checked((int)id))) != ExternalCoreInteropConstants.NoInputState ? InputConstants.ActiveState : InputConstants.InactiveState;
         }
         if (device != InputConstants.AnalogDevice) return InputConstants.InactiveState;
         return (index, id) switch
@@ -85,6 +79,5 @@ internal static class InputFunctions
 
     private static short Boolean(bool value) => value ? InputConstants.ActiveState : InputConstants.InactiveState;
     private static short Clamp(int value) => (short)Math.Clamp(value, short.MinValue, short.MaxValue);
-    private static int SaturatingAdd(int left, int right) =>
-        (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
+    private static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
 }

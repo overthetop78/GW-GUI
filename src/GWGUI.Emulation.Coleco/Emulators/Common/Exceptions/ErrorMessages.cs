@@ -2,9 +2,7 @@ namespace GWGUI.Emulation.Coleco.Emulators.Common.Exceptions;
 
 internal static class ErrorMessages
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(ErrorMessages).Assembly,
-        "GWGUI.Emulation.Coleco.Resources.Emulation");
+    private static readonly EmulationModuleLocalization Localization = new(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Coleco.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();
     internal static string RequiredFirmwareMissing => FirmwareMissing();
@@ -48,12 +46,9 @@ internal static class ErrorMessages
     internal static string StateUnavailable => StateInvalidText();
     internal static string StateSaveFailed => StateInvalidText();
     internal static string StateLoadFailed => StateInvalidText();
-    internal static string StateIncompatible =>
-        Text("Emulation.Coleco.Error.StateIncompatible");
-    internal static string MachineInvalidState =>
-        Text("Emulation.Coleco.Error.Unexpected");
-    internal static string MachineStopped =>
-        Text("Emulation.Coleco.Error.Unexpected");
+    internal static string StateIncompatible => Text("Emulation.Coleco.Error.StateIncompatible");
+    internal static string MachineInvalidState => Text("Emulation.Coleco.Error.Unexpected");
+    internal static string MachineStopped => Text("Emulation.Coleco.Error.Unexpected");
 
     private static string FirmwareMissing() => Text("Emulation.Coleco.Error.FirmwareMissing");
     private static string FirmwareInvalid() => Text("Emulation.Coleco.Error.FirmwareInvalid");
@@ -66,9 +61,6 @@ internal static class ErrorMessages
 
     private static string Text(string resourceKey)
     {
-        return Localization.TryGetString(resourceKey, System.Globalization.CultureInfo.CurrentUICulture,
-            out var value)
-            ? value
-            : resourceKey;
+        return Localization.TryGetString(resourceKey, System.Globalization.CultureInfo.CurrentUICulture, out var value) ? value : resourceKey;
     }
 }

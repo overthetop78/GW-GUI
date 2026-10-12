@@ -26,23 +26,20 @@ internal static class CoreOptionValidationFunctions
             }
             if (option.Key == SettingsConstants.AudioLatency)
             {
-                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer,
-                        System.Globalization.CultureInfo.InvariantCulture, out var latency)
+                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var latency)
                     || !SettingsConstants.Latencies.Contains(latency))
                     throw new ArgumentException(nameof(configuration.Options));
                 continue;
             }
             if (option.Key == VideoAudioSettingsConstants.AudioVolumeOption)
             {
-                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer,
-                        System.Globalization.CultureInfo.InvariantCulture, out var volume)
+                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var volume)
                     || volume is < VideoAudioSettingsConstants.MinimumVolumePercent
                         or > VideoAudioSettingsConstants.MaximumVolumePercent)
                     throw new ArgumentException(nameof(configuration.Options));
                 continue;
             }
-            if (!catalog.Any(definition => definition.Key == option.Key
-                && definition.Values.Any(choice => choice.Value == option.Value)))
+            if (!catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value)))
                 throw new ArgumentException(nameof(configuration.Options));
         }
         if (configuration.Core == Emulator.GearColeco

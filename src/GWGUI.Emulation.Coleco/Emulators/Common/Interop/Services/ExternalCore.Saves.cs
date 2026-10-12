@@ -13,12 +13,10 @@ internal sealed partial class ExternalCore
         var size = exports.GetMemorySize(MediaConstants.BatteryMemoryId);
         if (size == 0) return (nint.Zero, 0);
         if (size > MediaConstants.MaximumBatterySaveBytes)
-            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported,
-                ErrorMessages.ContentLoadFailed);
+            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
         var pointer = exports.GetMemoryData(MediaConstants.BatteryMemoryId);
         if (pointer == nint.Zero)
-            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported,
-                ErrorMessages.ContentLoadFailed);
+            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
         return (pointer, checked((int)size));
     }
 
@@ -30,8 +28,7 @@ internal sealed partial class ExternalCore
         if (File.Exists(_batterySavePath))
         {
             if (new FileInfo(_batterySavePath).Length != memory.Length)
-                throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported,
-                    ErrorMessages.ContentLoadFailed);
+                throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
             var bytes = File.ReadAllBytes(_batterySavePath);
             Marshal.Copy(bytes, 0, memory.Pointer, bytes.Length);
         }
@@ -46,13 +43,10 @@ internal sealed partial class ExternalCore
         var bytes = new byte[memory.Length];
         Marshal.Copy(memory.Pointer, bytes, 0, bytes.Length);
         Directory.CreateDirectory(Path.GetDirectoryName(_batterySavePath)!);
-        var temporary = _batterySavePath + ConfigurationStoreConstants.TemporaryNameSeparator
-            + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat)
-            + ConfigurationStoreConstants.TemporaryFileSuffix;
+        var temporary = _batterySavePath + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;
         try
         {
-            using (var stream = new FileStream(temporary, FileMode.CreateNew, FileAccess.Write, FileShare.None,
-                       ConfigurationStoreConstants.WriteBufferSize, FileOptions.WriteThrough))
+            using (var stream = new FileStream(temporary, FileMode.CreateNew, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, FileOptions.WriteThrough))
             {
                 stream.Write(bytes);
                 stream.Flush(flushToDisk: true);

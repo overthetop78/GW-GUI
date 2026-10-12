@@ -32,8 +32,7 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         Core = core ?? ConfigurationFunctions.DefaultEmulator(model);
         Firmwares = firmwares?.ToArray() ?? [];
         Media = media?.ToArray() ?? [];
-        Options = options is null ? new Dictionary<string, string>(StringComparer.Ordinal)
-            : new Dictionary<string, string>(options, StringComparer.Ordinal);
+        Options = options is null ? new Dictionary<string, string>(StringComparer.Ordinal) : new Dictionary<string, string>(options, StringComparer.Ordinal);
         Input = input ?? new InputConfiguration();
         Id = id == Guid.Empty ? Guid.NewGuid() : id;
         SchemaVersion = schemaVersion;
