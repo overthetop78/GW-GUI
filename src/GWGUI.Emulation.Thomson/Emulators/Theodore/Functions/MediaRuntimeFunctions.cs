@@ -12,7 +12,8 @@ internal static class MediaRuntimeFunctions
             MediaRuntimeConstants.Floppy or MediaRuntimeConstants.SapFloppy => MediaCategory.Floppy,
             MediaRuntimeConstants.Tape => MediaCategory.Tape,
             MediaRuntimeConstants.MoCartridge or MediaRuntimeConstants.ToCartridge or MediaRuntimeConstants.RomCartridge => MediaCategory.Cartridge,
-            _ => throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog))};
+            _ => throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog))
+        };
     }
 
     internal static IReadOnlyList<string> InitialContentPaths(MachineConfiguration configuration) => configuration.InitialContent is { Length: > 0 } path ? [Path.GetFullPath(path)] : configuration.Media.Where(media => media.IsInserted).Select(media => Path.GetFullPath(media.Path)).ToArray();

@@ -7,7 +7,17 @@ using System.Text.Json;
 namespace GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;
 internal static class SavedStateFunctions
 {
-    internal static SavedStateHeader CreateHeader(MachineConfiguration configuration, IEmulatorCore core, ReadOnlySpan<byte> state) => new(StateConstants.CurrentFormatVersion, core.Emulator, core.CoreName, core.CoreVersion, core.CoreSha256, configuration.Model, ConfigurationHash(configuration), ContentHash(configuration), HashBytes(state));
+    internal static SavedStateHeader CreateHeader(MachineConfiguration configuration,
+        IEmulatorCore core,
+        ReadOnlySpan<byte> state) => new(StateConstants.CurrentFormatVersion,
+        core.Emulator,
+        core.CoreName,
+        core.CoreVersion,
+        core.CoreSha256,
+        configuration.Model,
+        ConfigurationHash(configuration),
+        ContentHash(configuration),
+        HashBytes(state));
     internal static void Validate(SavedStateHeader header, MachineConfiguration configuration, IEmulatorCore core)
     {
         if (header.FormatVersion != StateConstants.CurrentFormatVersion)
@@ -30,7 +40,10 @@ internal static class SavedStateFunctions
             throw Invalid(EmulationMessageCode.SavedStateInvalid, ErrorMessages.StateInvalid);
     }
 
-    internal static EmulationMessageException Invalid(EmulationMessageCode code, string message, Exception? innerException = null) => new(new EmulationMessage(EmulationMessageCategory.SavedState, code, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog), innerException ?? new InvalidDataException(message));
+    internal static EmulationMessageException Invalid(EmulationMessageCode code,
+        string message,
+        Exception? innerException = null) => new(new EmulationMessage(EmulationMessageCategory.SavedState, code, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog),
+        innerException ?? new InvalidDataException(message));
     internal static string HashBytes(ReadOnlySpan<byte> value) => Convert.ToHexString(SHA256.HashData(value));
     internal static string ConfigurationHash(MachineConfiguration configuration)
     {
@@ -55,15 +68,29 @@ internal static class SavedStateFunctions
         {
             configuration.InitialContent
         };
-        var entries = configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).Select(media => new StateContentEntry(StateConstants.MediaCategory, $"{media.Category}:{media.Slot}", HashPath(media.Path))).Concat(initialPaths.Select((path, index) => new StateContentEntry(StateConstants.InitialContentCategory, index.ToString(System.Globalization.CultureInfo.InvariantCulture) + ":" + Path.GetFileName(path), HashPath(path)))).ToArray();
+        var entries = configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).Select(media => new StateContentEntry(StateConstants.MediaCategory, $"{media.Category}:{media.Slot}", HashPath(media.Path))).Concat(initialPaths.Select((path,
+            index) => new StateContentEntry(StateConstants.InitialContentCategory, index.ToString(System.Globalization.CultureInfo.InvariantCulture) + ":" + Path.GetFileName(path), HashPath(path)))).ToArray();
         return entries;
     }
 
     private static EmulationMediaSlot MediaOrder(MediaConfiguration media) => media.Slot;
-    internal static bool IsHeaderValid(SavedStateHeader header) => header.FormatVersion > StateConstants.EmptyLength && Enum.IsDefined(header.Core) && Enum.IsDefined(header.Model) && !string.IsNullOrWhiteSpace(header.CoreName) && !string.IsNullOrWhiteSpace(header.CoreVersion) && !string.IsNullOrWhiteSpace(header.CoreSha256) && !string.IsNullOrWhiteSpace(header.ConfigurationSha256) && !string.IsNullOrWhiteSpace(header.ContentSha256) && !string.IsNullOrWhiteSpace(header.StateSha256);
+    internal static bool IsHeaderValid(SavedStateHeader header) => header.FormatVersion 
+        > StateConstants.EmptyLength 
+        && Enum.IsDefined(header.Core) 
+        && Enum.IsDefined(header.Model) 
+        && !string.IsNullOrWhiteSpace(header.CoreName) 
+        && !string.IsNullOrWhiteSpace(header.CoreVersion) 
+        && !string.IsNullOrWhiteSpace(header.CoreSha256) 
+        && !string.IsNullOrWhiteSpace(header.ConfigurationSha256) 
+        && !string.IsNullOrWhiteSpace(header.ContentSha256) 
+        && !string.IsNullOrWhiteSpace(header.StateSha256);
     private static StateInputFingerprint InputFingerprint(InputConfiguration input) => new(
         (input.Keyboard ?? new Dictionary<string, string>()).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray(),
-        (input.Controllers ?? []).OrderBy(controller => controller.Port).Select(controller => new StateControllerFingerprint(controller.Port, controller.Peripheral, controller.DeviceId, controller.DeadZonePercent, (controller.Mappings ?? new Dictionary<string, string>()).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray())).ToArray(),
+        (input.Controllers ?? []).OrderBy(controller => controller.Port).Select(controller => new StateControllerFingerprint(controller.Port,
+            controller.Peripheral,
+            controller.DeviceId,
+            controller.DeadZonePercent,
+            (controller.Mappings ?? new Dictionary<string, string>()).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray())).ToArray(),
         (input.Mouse ?? new Dictionary<string, string>()).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray(),
         input.MouseSpeedPercent
     );

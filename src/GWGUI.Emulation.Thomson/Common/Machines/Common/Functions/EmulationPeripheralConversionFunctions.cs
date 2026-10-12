@@ -8,6 +8,7 @@ internal static class EmulationPeripheralConversionFunctions
         {
             EmulationPeripheralCategory.None => PeripheralCategory.None,
             EmulationPeripheralCategory.Automatic or EmulationPeripheralCategory.RetroPad or EmulationPeripheralCategory.Joystick => PeripheralCategory.Joystick,
-            _ => throw new ArgumentOutOfRangeException(nameof(peripheral))};
+            _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
+        };
     }
 }

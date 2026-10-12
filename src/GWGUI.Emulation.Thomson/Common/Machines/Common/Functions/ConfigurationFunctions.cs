@@ -11,7 +11,8 @@ internal static partial class ConfigurationFunctions
     {
         MachineModel.Mo5 or MachineModel.Mo6 => MachineFamily.Mo,
         MachineModel.To7 or MachineModel.To770 or MachineModel.To8 or MachineModel.To8D or MachineModel.To9 or MachineModel.To9Plus => MachineFamily.To,
-        _ => throw new ArgumentOutOfRangeException(nameof(model))};
+        _ => throw new ArgumentOutOfRangeException(nameof(model))
+    };
     internal static int ControllerPortCount(MachineModel model)
     {
         _ = Family(model);
@@ -39,7 +40,8 @@ internal static partial class ConfigurationFunctions
                 EmulationMediaCategory.CassetteDrive => MediaCategory.Tape,
                 EmulationMediaCategory.FloppyDrive => MediaCategory.Floppy,
                 EmulationMediaCategory.CartridgeSlot => MediaCategory.Cartridge,
-                _ => throw new ArgumentException(nameof(configuration.Media))};
+                _ => throw new ArgumentException(nameof(configuration.Media))
+            };
             if (media.Category != expected)
                 throw new ArgumentException(nameof(configuration.Media));
         }

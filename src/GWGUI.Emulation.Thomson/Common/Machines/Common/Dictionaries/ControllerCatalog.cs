@@ -5,8 +5,11 @@ internal static class ControllerCatalog
     {
         PeripheralCategory.None => [],
         PeripheralCategory.Joystick => Enum.GetValues<ControllerCommand>(),
-        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))};
-    internal static IReadOnlyList<InputBindingDefinition> Definitions(PeripheralCategory peripheral) => Commands(peripheral).Select(command => new InputBindingDefinition(command.ToString(), "Emulation.Controller.Action." + (command == ControllerCommand.Fire ? "Fire1" : command.ToString()), string.Empty)).ToArray();
+        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
+    };
+    internal static IReadOnlyList<InputBindingDefinition> Definitions(PeripheralCategory peripheral) => Commands(peripheral).Select(command => new InputBindingDefinition(command.ToString(),
+        "Emulation.Controller.Action." + (command == ControllerCommand.Fire ? "Fire1" : command.ToString()),
+        string.Empty)).ToArray();
     internal static IReadOnlyDictionary<EmulationControllerVisualControl, string> VisualCommands { get; } = new Dictionary<EmulationControllerVisualControl, string>
     {
         [EmulationControllerVisualControl.DirectionUp] = ControllerCommand.Up.ToString(),
