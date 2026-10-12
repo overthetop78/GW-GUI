@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Pilih orientasi lansekap atau potret. Mode manual menggunakan tombol rotasi yang ditugaskan.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>Mode otomatis mengikuti orientasi tampilan. Mode lain menjaga kontrol dalam orientasi yang dipilih.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Pilih warna yang digunakan untuk game monokrom.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Pilih kedalaman warna keluaran. Mode 24- bit membutuhkan lebih banyak daya pemrosesan.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Lewati bingkai video untuk mengurangi bunyi audio. Mode otomatis mengikuti penyangga audio. Mode manual memakai threshold yang dipilih.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>Dalam mode manual, lewati frame ketika penyangga audio berada di bawah persentase ini.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Lewati setiap frame kelima untuk menampilkan pada 60 Hz. Ini mengurangi smoothness gerak.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Tingkat sampel yang lebih tinggi sedikit meningkatkan kualitas audio dan membutuhkan lebih banyak daya pemrosesan.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Terapkan filter rendah untuk melunakkan suara.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Tukar aksi tombol A dan B.</value></data>
+</root>

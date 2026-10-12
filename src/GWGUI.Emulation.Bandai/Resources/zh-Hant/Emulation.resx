@@ -4,51 +4,24 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-    <data name="Emulation.Bandai.Video.Native"><value>控制臺視頻</value></data>
-  <data name="Emulation.Bandai.Audio.Native"><value>控制臺聲音</value></data>
-  <data name="Emulation.Bandai.Controls.Native"><value>控制臺控件</value></data>
-    <data name="Emulation.Emulator.mednafen_wswan.Description"><value>模擬WonderSwan控制臺.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description"><value>Playdia回放與PlaydiaEmu回放.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description"><value>Tamagotchi P1與TamaLIBretro相仿.</value></data>
-                                                                  <data name="Emulation.Bandai.Option.wswan_rotate_display"><value>顯示旋轉</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Help"><value>選擇地貌或肖像取向. 手動模式使用指定的旋轉按鈕.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value0"><value>手動</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value1"><value>風景</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value2"><value>外觀</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap"><value>屏幕取向控制</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Help"><value>自動模式遵循顯示方向。 其他模式將控件保存在所選方向上。</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value0"><value>自動的</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value1"><value>風景</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value2"><value>外觀</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette"><value>顏色調色板</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Help"><value>選擇單色游戲所用的顏色。</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Value0"><value>灰度( T)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors"><value>顏色深度</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors.Help"><value>選擇顏色深度。 24位模式需要更多的處理功率.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip"><value>框架skip</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Help"><value>跳過視頻幀以減少音頻裂縫. 自動模式遵循音頻緩沖狀態. 手動模式使用所選閾值.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value0"><value>已停用</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value1"><value>自動的</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value2"><value>手動</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold"><value>框架線閾值(%)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold.Help"><value>在手動模式下,當音頻緩沖器低于此百分比時跳過幀 。</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode"><value>60Hz 模式</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Help"><value>跳過每第五幀顯示在60 Hz. 這會降低運動平滑度.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value0"><value>已停用</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value1"><value>已啟用</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate"><value>聲音輸出樣本率</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate.Help"><value>較高的采樣率會略微提高音頻質量并需要更多的處理功率.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass"><value>音頻過濾器</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Help"><value>應用低通濾波器來軟化聲音.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value0"><value>已停用</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value1"><value>已啟用</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_volume"><value>音頻音量(%)</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab"><value>交換按鈕 A 和 B</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value0"><value>已停用</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value1"><value>已啟用</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging"><value>除錯日志</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value0"><value>已停用</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value1"><value>已啟用</value></data>
-      <data name="Emulation.Bandai.Playdia.Hle"><value>此核心在不模仿處理器的情況下會播放碟片.</value></data>
-  <data name="Emulation.Bandai.Memory.Display"><value>顯示內存</value></data>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>控制台视频</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>控制台声音</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>控制台控制</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>模拟神奇天鹅控制台.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia DCD 与 PlaydiaEmu 一起播放 。</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>塔马戈奇 P1 与 TamaLIBretro 模拟 。</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>此核心在播放盘片时不模仿处理器.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>显示内存</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>显示方向</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>控制方向</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>单色调色板</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>音频缓冲阈值</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60赫兹模式</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>音频采样率</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>音频过滤器</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>交换按钮 A 和 B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>自动</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>手动</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>橫向</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>縱向</value></data>
 </root>

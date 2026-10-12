@@ -4,51 +4,24 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-    <data name="Emulation.Bandai.Video.Native"><value>קונסול וידאו</value></data>
-  <data name="Emulation.Bandai.Audio.Native"><value>קונסולת קול</value></data>
-  <data name="Emulation.Bandai.Controls.Native"><value>בקרת הקונסולה</value></data>
-    <data name="Emulation.Emulator.mednafen_wswan.Description"><value>עקבו אחרי WonderSwan Consoles</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description"><value>Playdia disback עם PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description"><value>Tamagotchi P1 חיקוי עם TamaLIBretro.</value></data>
-                                                                  <data name="Emulation.Bandai.Option.wswan_rotate_display"><value>תגית: Rotation</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Help"><value>נוף נבחר או אוריינטציה דיוקן. מצב ידני משתמש כפתור הסיבוב שהוקצה.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value0"><value>ידני</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value1"><value>נוף</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value2"><value>דיוקן</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap"><value>בקרה על כיוון המסך</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Help"><value>מצב אוטומטי עוקב אחר אוריינטציה התצוגה. מצבים אחרים שומרים על הפקדים באוריינטציה שנבחרה.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value0"><value>אוֹטוֹמָטִי</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value1"><value>נוף</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value2"><value>דיוקן</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette"><value>צבע Palette</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Help"><value>בחרו את הצבעים המשמשים למשחקי מונוכרום.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Value0"><value>אפורה</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors"><value>צבע Depth</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors.Help"><value>בחרו את עומק הצבע. מצב 24bit דורש יותר כוח עיבוד.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip"><value>המונחים:</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Help"><value>דלג מסגרות וידאו כדי להפחית סדקים אודיו. מצב אוטומטי עוקב אחר מצב buffer אודיו. מצב ידני משתמש בסף הנבחר.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value0"><value>מוגבלות</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value1"><value>אוֹטוֹמָטִי</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value2"><value>ידני</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold"><value>פורסקיפ Threshold (%)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold.Help"><value>במצב ידני, לדלג על מסגרות כאשר buffer אודיו נופל מתחת אחוז זה.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode"><value>מצב 60Hz</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Help"><value>לדלג על כל מסגרת חמישית כדי להציג ב 60 Hz. זה מקטין את החלקות התנועה.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value0"><value>מוגבלות</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value1"><value>המונחים</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate"><value>המונחים: rate</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate.Help"><value>שיעור הדגימה גבוה מעט לשפר את איכות השמע ודורש יותר כוח עיבוד.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass"><value>תגית: Audio</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Help"><value>השתמש מסנן נמוך כדי לרכך את הצליל.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value0"><value>מוגבלות</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value1"><value>המונחים</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_volume"><value>Audio Volume (%)</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab"><value>כפתורים A ו- B</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value0"><value>מוגבלות</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value1"><value>המונחים</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging"><value>תגית: Log</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value0"><value>מוגבלות</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value1"><value>המונחים</value></data>
-      <data name="Emulation.Bandai.Playdia.Hle"><value>הליבה הזו משחקת דיסקים מבלי לחקות את המעבדים.</value></data>
-  <data name="Emulation.Bandai.Memory.Display"><value>מציג זיכרון</value></data>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>וידאו Console</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>קונסולת קול</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>בקרת הקונסולה</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>קונסולות WonderSwan</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia disback עם PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Tamagotchi P1 חיקוי עם TamaLIBretro</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>הליבה הזו משחקת דיסקים מבלי לחקות את המעבדים.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>זיכרון תצוגה</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>המונחים</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>המונחים:</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>המונחים: Monochrome</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>המונחים: buffer סף</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>מצב 60 הרץ</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>אחוזי דגימת אודיו</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>פילטר Audio</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>כפתורים A ו- B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>אוטומטי אוטומטי</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>ידני</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>לרוחב</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>לאורך</value></data>
 </root>

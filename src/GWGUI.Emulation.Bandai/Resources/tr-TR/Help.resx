@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Peyzaj veya portre yönlendirmesi seçin. Manual modu atanan rotasyon düğmesine kullanır.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>Otomatik mod ekran yönlendirmesini takip eder. Diğer modlar seçilen yönelimde kontrolleri tutar.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Monokro oyunları için kullanılan renkler seçin.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Çıktı rengi derinliğini seçin. 24bit modu daha fazla işleme gücü gerektirir.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Ses çatlaklarını azaltmak için video çerçeveleri girin. Otomatik mod, seçilen eşi kullanır.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>Elli modda, ses tampon bu yüzdenin altında düşerken çerçeveleri atlayın.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>60 Hz.'de görüntülemek için her beşinci çerçeveyi girin. Bu hareket pürüzsüzliğini azaltır.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Yüksek örnekleme oranları biraz daha ses kalitesini geliştirir ve daha fazla işleme gücü gerektirir.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Sesi yumuşatmak için düşük geçit filtresi uygulayın.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Swap, düğmelerin eylemleri A ve B.</value></data>
+</root>

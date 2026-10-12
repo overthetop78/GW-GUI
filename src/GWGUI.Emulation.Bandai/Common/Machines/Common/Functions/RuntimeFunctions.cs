@@ -44,8 +44,7 @@ internal static class RuntimeOptionFunctions
 {
     internal static bool RequiresRestart(Emulator emulator, string key) =>
         emulator == Emulator.BeetleWonderSwan && BeetleWonderSwanOptionCatalog.All.Any(option =>
-            option.Key == key && option.Name.Contains(CoreOptionConstants.RestartRequiredMarker,
-                StringComparison.Ordinal));
+            option.Key == key && option.RequiresRuntimeReload);
 }
 
 internal static class MessageFunctions

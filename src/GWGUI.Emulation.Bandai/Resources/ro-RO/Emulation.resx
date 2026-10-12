@@ -4,51 +4,24 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-    <data name="Emulation.Bandai.Video.Native"><value>Consolă video</value></data>
-  <data name="Emulation.Bandai.Audio.Native"><value>Sunet de consolă</value></data>
-  <data name="Emulation.Bandai.Controls.Native"><value>Comenzi de consolă</value></data>
-    <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emulează consolele WonderSwan.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description"><value>Playdia redare disc cu PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description"><value>Tamagotchi P1 emulare cu TamaLIBretro.</value></data>
-                                                                  <data name="Emulation.Bandai.Option.wswan_rotate_display"><value>Rotire afișare</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Help"><value>Selectaţi peisajul sau orientarea portretului. Modul manual folosește butonul de rotație atribuit.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value0"><value>Manual</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value1"><value>Peisaj</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value2"><value>Portret</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap"><value>Controale pentru orientarea ecranului</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Help"><value>Modul automat urmează orientarea ecranului. Alte moduri păstrează controalele în orientarea selectată.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value0"><value>Automat</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value1"><value>Peisaj</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value2"><value>Portret</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette"><value>Paleta de culori</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Help"><value>Selectaţi culorile folosite pentru jocurile monocrome.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Value0"><value>Grayscale</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors"><value>Adâncime color</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors.Help"><value>Selectaţi adâncimea culorii. Modul de 24 biți necesită mai multă putere de procesare.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip"><value>Frameskip</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Help"><value>Sari peste cadrele video pentru a reduce trosniturile audio. Modul automat urmează starea tampon audio. Modul manual utilizează pragul selectat.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value0"><value>Dezactivat</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value1"><value>Automat</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value2"><value>Manual</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold"><value>Prag frameskip (%)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold.Help"><value>În modul manual, săriți peste cadre atunci când tamponul audio scade sub acest procent.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode"><value>Mod 60Hz</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Help"><value>Sari peste fiecare al cincilea cadru pentru a fi afișat la 60 Hz. Acest lucru reduce netezirea mișcării.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value0"><value>Dezactivat</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value1"><value>Activat</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate"><value>Rata eșantionului de ieșire acustică</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate.Help"><value>Ratele mai mari de eşantion îmbunătăţesc uşor calitatea audio şi necesită mai multă putere de procesare.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass"><value>Filtru audio</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Help"><value>Se aplică un filtru de trecere joasă pentru a înmuia sunetul.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value0"><value>Dezactivat</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value1"><value>Activat</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_volume"><value>Volum audio (%)</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab"><value>Butonii de schimb A și B</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value0"><value>Dezactivat</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value1"><value>Activat</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging"><value>Depanare jurnalizare</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value0"><value>Dezactivat</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value1"><value>Activat</value></data>
-      <data name="Emulation.Bandai.Playdia.Hle"><value>Acest nucleu joacă discuri fără a emula procesoarele.</value></data>
-  <data name="Emulation.Bandai.Memory.Display"><value>Memorie afișată</value></data>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Consolă video</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Sunet de consolă</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Controalele consolei</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emulează consolele WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Redare disc Playdia cu PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>TamagotchiCity in California USA P1 emulare cu TamaliBretro.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Acest nucleu joacă discuri fără a emula procesoarele.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Memorie afișată</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Orientarea ecranului</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Orientarea controlului</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Paleta monocromă</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>Prag de tampon audio</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>Modul 60 Hz</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Rata de eșantionare audio</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Filtru audio</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Butonii de schimb A și B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Automat</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Manual</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Peisaj</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Portret</value></data>
 </root>

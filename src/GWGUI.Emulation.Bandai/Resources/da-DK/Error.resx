@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Den Bandai gemt tilstand er uforenelig med den nuværende maskine.</value></data>
-  <data name="Emulation.Bandai.Error.Unexpected"><value>En uventet Bandai emulering fejl opstod.</value></data>
-  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>En påkrævet Bandai firmware mangler.</value></data>
-  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>System ROM er ugyldig eller inkompatibel.</value></data>
-  <data name="Emulation.Bandai.Error.ContentNotFound"><value>De konfigurerede Bandai medier blev ikke fundet.</value></data>
-  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Denne maskine understøtter ikke de valgte medier.</value></data>
-  <data name="Emulation.Bandai.Error.OptionInvalid"><value>En Bandai indstilling har en ugyldig værdi.</value></data>
-  <data name="Emulation.Bandai.Error.CoreNotFound"><value>Den krævede Bandai kerne blev ikke fundet.</value></data>
-  <data name="Emulation.Bandai.Error.CoreRejected"><value>Den valgte Bandai-kerne kunne ikke indlæses.</value></data>
-  <data name="Emulation.Bandai.Error.StateInvalid"><value>Bandai gemt tilstand er ugyldig.</value></data>
-  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Den Bandai vært eksekverbar sti er ikke tilgængelig.</value></data>
-  <data name="Emulation.Bandai.Error.Details"><value>Detaljer: {0}</value></data>
-  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Kommunikationen med Bandai-værten mislykkedes.</value></data>
-  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Ukendt miljøkommando: {0}</value></data>
+  <data name="Emulation.Bandai.Error.StateIncompatible" xml:space="preserve"><value>Den Bandai gemt tilstand er uforenelig med den nuværende maskine.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected" xml:space="preserve"><value>En uventet Bandai emulering fejl opstod.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing" xml:space="preserve"><value>En påkrævet Bandai firmware mangler.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid" xml:space="preserve"><value>System ROM er ugyldig eller inkompatibel.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound" xml:space="preserve"><value>De konfigurerede Bandai medier blev ikke fundet.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported" xml:space="preserve"><value>Denne maskine understøtter ikke de valgte medier.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid" xml:space="preserve"><value>En Bandai indstilling har en ugyldig værdi.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound" xml:space="preserve"><value>Den krævede Bandai kerne blev ikke fundet.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected" xml:space="preserve"><value>Den valgte Bandai-kerne kunne ikke indlæses.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid" xml:space="preserve"><value>Bandai gemt tilstand er ugyldig.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing" xml:space="preserve"><value>Den Bandai vært eksekverbar sti er ikke tilgængelig.</value></data>
+  <data name="Emulation.Bandai.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure" xml:space="preserve"><value>Kommunikationen med Bandai-værten mislykkedes.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Ukendt miljøkommando: {0}</value></data>
 </root>

@@ -6,15 +6,19 @@ internal sealed class CoreOptionHost : IDisposable
 {
     private readonly Dictionary<string, string> _values;
     private readonly HashSet<string> _configuredKeys;
+    private readonly IReadOnlyDictionary<string, CoreOption> _presentation;
     private readonly Dictionary<string, ExternalCoreUtf8String> _nativeValues = new(StringComparer.Ordinal);
     private readonly Dictionary<string, bool> _visibility = new(StringComparer.Ordinal);
     private ExternalCoreApi.UpdateCoreOptionsDisplay? _displayUpdate;
     private int _updated;
 
-    internal CoreOptionHost(IReadOnlyDictionary<string, string> configured)
+    internal CoreOptionHost(
+        IReadOnlyDictionary<string, string> configured,
+        IReadOnlyList<CoreOption>? presentation = null)
     {
         _values = new(configured, StringComparer.Ordinal);
         _configuredKeys = configured.Keys.ToHashSet(StringComparer.Ordinal);
+        _presentation = (presentation ?? []).ToDictionary(option => option.Key, StringComparer.Ordinal);
     }
 
     internal IReadOnlyList<CoreOption> Catalog { get; private set; } = [];
@@ -101,7 +105,7 @@ internal sealed class CoreOptionHost : IDisposable
         if (string.IsNullOrWhiteSpace(key)) return false;
         _visibility[key] = display.Visible;
         Catalog = Catalog.Select(option => option.Key.Equals(key, StringComparison.Ordinal)
-            ? option with { IsVisible = display.Visible } : option).ToArray();
+            ? option with { IsVisible = display.Visible && IsExposed(key) } : option).ToArray();
         return true;
     }
 
@@ -153,9 +157,34 @@ internal sealed class CoreOptionHost : IDisposable
             return option with
             {
                 CurrentValue = selected,
-                IsVisible = !_visibility.TryGetValue(option.Key, out var visible) || visible
+                IsVisible = option.IsVisible && IsExposed(option.Key) &&
+                    (!_visibility.TryGetValue(option.Key, out var visible) || visible)
             };
-        }).ToArray();
+        }).Select(ApplyPresentation).ToArray();
+    }
+
+    private bool IsExposed(string key) =>
+        !_presentation.TryGetValue(key, out var presentation) || presentation.IsVisible;
+
+    private CoreOption ApplyPresentation(CoreOption option)
+    {
+        if (!_presentation.TryGetValue(option.Key, out var presentation)) return option;
+        var choices = presentation.Values.ToDictionary(value => value.Value, StringComparer.Ordinal);
+        return option with
+        {
+            Name = presentation.Name,
+            ResourceKey = presentation.ResourceKey,
+            ExplanationResourceKey = presentation.ExplanationResourceKey,
+            RequiresRuntimeReload = presentation.RequiresRuntimeReload,
+            Values = option.Values.Select(value => choices.TryGetValue(value.Value, out var choice)
+                ? value with
+                {
+                    Label = choice.InvariantDisplayValue ?? value.Label,
+                    ResourceKey = choice.ResourceKey,
+                    InvariantDisplayValue = choice.InvariantDisplayValue
+                }
+                : value).ToArray()
+        };
     }
 
     private nint NativeValue(string key, string value)

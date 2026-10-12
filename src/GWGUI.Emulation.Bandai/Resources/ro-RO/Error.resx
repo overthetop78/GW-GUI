@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Starea salvată de Bandai este incompatibilă cu maşina curentă.</value></data>
-  <data name="Emulation.Bandai.Error.Unexpected"><value>S-a produs o eroare de emulare neaşteptată a Bandai.</value></data>
-  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>Un firmware Bandai necesar lipseste.</value></data>
-  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>Sistemul ROM este invalid sau incompatibil.</value></data>
-  <data name="Emulation.Bandai.Error.ContentNotFound"><value>Presa configurată Bandai nu a fost găsită.</value></data>
-  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Această mașină nu suportă media selectată.</value></data>
-  <data name="Emulation.Bandai.Error.OptionInvalid"><value>O opțiune Bandai are o valoare invalidă.</value></data>
-  <data name="Emulation.Bandai.Error.CoreNotFound"><value>Miezul Bandai necesar nu a fost găsit.</value></data>
-  <data name="Emulation.Bandai.Error.CoreRejected"><value>Miezul selectat Bandai nu a putut fi încărcat.</value></data>
-  <data name="Emulation.Bandai.Error.StateInvalid"><value>Statul Bandai salvat este invalid.</value></data>
-  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Calea executabilă Bandai nu este disponibilă.</value></data>
-  <data name="Emulation.Bandai.Error.Details"><value>Detalii: {0}</value></data>
-  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Comunicarea cu gazda Bandai a eşuat.</value></data>
-  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Comandă de mediu necunoscută: {0}</value></data>
+  <data name="Emulation.Bandai.Error.StateIncompatible" xml:space="preserve"><value>Starea salvată de Bandai este incompatibilă cu maşina curentă.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected" xml:space="preserve"><value>S-a produs o eroare de emulare neaşteptată a Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing" xml:space="preserve"><value>Un firmware Bandai necesar lipseste.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid" xml:space="preserve"><value>Sistemul ROM este invalid sau incompatibil.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound" xml:space="preserve"><value>Presa configurată Bandai nu a fost găsită.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported" xml:space="preserve"><value>Această mașină nu suportă media selectată.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid" xml:space="preserve"><value>O opțiune Bandai are o valoare invalidă.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound" xml:space="preserve"><value>Miezul Bandai necesar nu a fost găsit.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected" xml:space="preserve"><value>Miezul selectat Bandai nu a putut fi încărcat.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid" xml:space="preserve"><value>Statul Bandai salvat este invalid.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing" xml:space="preserve"><value>Calea executabilă Bandai nu este disponibilă.</value></data>
+  <data name="Emulation.Bandai.Error.Details" xml:space="preserve"><value>Detalii: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure" xml:space="preserve"><value>Comunicarea cu gazda Bandai a eşuat.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comandă de mediu necunoscută: {0}</value></data>
 </root>

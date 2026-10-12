@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Válassza ki a tájat vagy a portré tájolását. A kézi üzemmód a kijelölt rotációs gombot használja.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>Automatikus üzemmód követi a kijelző irányát. Más üzemmódok a beállított irányban tartják a vezérlőket.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Válassza ki a monokróm játékok színeit.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Válassza ki a kimeneti színmélységet. A 24 bites üzemmódhoz több feldolgozási teljesítmény szükséges.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Kihagyja a videó keretek csökkentésére audio repedés. Automatikus mód követi a hangpuffer. Kézi módban használja a kiválasztott küszöbértéket.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>Kézi módban, ugorjuk át a képkockákat, amikor a hangpuffer ez alá a százalék alá esik.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Minden ötödik képkockát kihagyjuk 60 Hz-en. Ez csökkenti a mozgás simaságát.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>A magasabb mintavételi arány némileg javítja az audió minőségét, és több feldolgozási energiát igényel.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Alkalmazzon egy alacsony áthaladású szűrőt a hang megpuhítására.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>A gombok és B.</value></data>
+</root>

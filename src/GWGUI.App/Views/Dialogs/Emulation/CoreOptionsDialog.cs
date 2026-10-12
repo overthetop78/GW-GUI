@@ -10,6 +10,7 @@ namespace GWGUI.App.Views.Dialogs.Emulation;
 public sealed class CoreOptionsDialog : Window
 {
     private readonly IReadOnlyList<EmulationOption> _options;
+    private readonly string? _moduleId;
     private readonly Dictionary<string, FrameworkElement> _controls = new(StringComparer.Ordinal);
 
     public IReadOnlyDictionary<string, string> Values => _options
@@ -18,9 +19,10 @@ public sealed class CoreOptionsDialog : Window
             StringComparer.Ordinal);
 
     public CoreOptionsDialog(string emulatorName, string emulatorVersion,
-        IReadOnlyList<EmulationOption> options)
+        IReadOnlyList<EmulationOption> options, string? moduleId = null)
     {
-        _options = options;
+        _options = options.Where(option => option.IsVisible).ToArray();
+        _moduleId = moduleId;
         Title = LocExtension.Get("Emulation.Core.NameOptions");
         Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(window => window.IsActive);
         ShowInTaskbar = false;
@@ -32,7 +34,7 @@ public sealed class CoreOptionsDialog : Window
         var subtitle = string.IsNullOrWhiteSpace(emulatorVersion)
             ? emulatorName : $"{emulatorName} · {emulatorVersion}";
         var body = new StackPanel();
-        foreach (var group in options.GroupBy(option => option.Category ?? string.Empty,
+        foreach (var group in _options.GroupBy(option => option.Category ?? string.Empty,
                      StringComparer.Ordinal))
         {
             var fields = group.Select(CreateField).ToArray();
@@ -57,7 +59,8 @@ public sealed class CoreOptionsDialog : Window
         }
         else
         {
-            var choices = option.Values.Select(value => new CoreOptionChoice(value.Value, value.Label)).ToArray();
+            var choices = option.Values.Select(value => new CoreOptionChoice(
+                value.Value, Resolve(value.Label))).ToArray();
             control = new ComboBox
             {
                 ItemsSource = choices,
@@ -67,10 +70,16 @@ public sealed class CoreOptionsDialog : Window
             };
         }
         _controls[option.Key] = control;
-        return (System.Text.RegularExpressions.Regex.Replace(option.Name,
+        if (!string.IsNullOrWhiteSpace(option.Description))
+            control.ToolTip = Resolve(option.Description);
+        return (System.Text.RegularExpressions.Regex.Replace(Resolve(option.Name),
             @"\s*\(restart required\)", string.Empty,
             System.Text.RegularExpressions.RegexOptions.IgnoreCase), control);
     }
+
+    private string Resolve(string text) => text.StartsWith("Emulation.", StringComparison.Ordinal)
+        ? LocExtension.GetForModule(_moduleId, text)
+        : text;
 
     private static string ReadValue(FrameworkElement control) => control switch
     {

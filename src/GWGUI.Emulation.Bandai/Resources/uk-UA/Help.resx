@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Виберіть ландшафт або портретну спрямованість. Ручний режим використовує надану кнопку обертання.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>Автоматичний режим слідувати орієнтації дисплея. Інші режими зберігають контрольні елементи в обраній орієнтації.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Виберіть кольори, які використовуються для монохромних ігор.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Виберіть глибину кольору виходу. Режим 24-біту вимагає більшої потужності обробки.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Пропустити відеорамки для зменшення потокового відео. Автоматичний режим слідувати буферу аудіо. Ручний режим використовує вибраний поріг.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>У ручному режимі пропускаємо кадри при буфері аудіо нижче цього відсотка.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Пропустити кожну п'яту раму для відображення на 60 Гц. Це зменшує гладкість руху.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Вищевизначні ціни трохи покращують якість звуку і вимагають більшої кількості переробної потужності.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Наносити низькопрозорий фільтр для розм'якшення звуку.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Обмін діями кнопок А і B.</value></data>
+</root>

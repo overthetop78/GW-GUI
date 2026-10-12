@@ -4,9 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Bandai.Action.Start"><value>开始</value></data>
-  <data name="Emulation.Bandai.Action.Select"><value>选择</value></data>
-  <data name="Emulation.Bandai.Action.Rotate"><value>旋转</value></data>
-  <data name="Emulation.Bandai.Action.Execute"><value>执行</value></data>
-  <data name="Emulation.Bandai.Action.Cancel"><value>取消( E)</value></data>
+  <data name="Emulation.Bandai.Action.Rotate" xml:space="preserve"><value>旋转</value></data>
+  <data name="Emulation.Bandai.Action.Execute" xml:space="preserve"><value>执行</value></data>
+  <data name="Emulation.Bandai.Action.Cancel" xml:space="preserve"><value>取消( E)</value></data>
 </root>

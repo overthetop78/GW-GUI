@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Selecteer landschap of portretoriëntatie. Handmatige modus gebruikt de toegewezen draaiknop.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>De automatische modus volgt de oriëntatie van het scherm. Andere standen houden de bediening in de geselecteerde oriëntatie.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Selecteer de kleuren die gebruikt worden voor monochrome spellen.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Selecteer de kleurdiepte van de uitgang. De 24-bit modus vereist meer verwerkingskracht.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Skip videoframes om audio kraken te verminderen. Automatische modus volgt de audiobuffer. Handmatige modus gebruikt de geselecteerde drempel.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>In handmatige modus, sla frames over wanneer de audiobuffer onder dit percentage valt.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Sla elk vijfde frame over om te tonen op 60 Hz. Dit vermindert de bewegingsgladheid.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Hogere sampling rates iets verbeteren audiokwaliteit en vereisen meer verwerkingskracht.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Breng een laagdoorlaatfilter aan om het geluid te verzachten.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>De acties van de knoppen A en B.</value></data>
+</root>

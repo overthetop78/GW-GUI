@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Bandai.Error.StateIncompatible"><value>El estado salvado Bandai es incompatible con la máquina actual.</value></data>
-  <data name="Emulation.Bandai.Error.Unexpected"><value>Se produjo un error inesperado de emulación Bandai.</value></data>
-  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>Falta un firmware de Bandai requerido.</value></data>
-  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>El sistema ROM es inválido o incompatible.</value></data>
-  <data name="Emulation.Bandai.Error.ContentNotFound"><value>No se encontró el medio de Bandai configurado.</value></data>
-  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Esta máquina no admite los medios seleccionados.</value></data>
-  <data name="Emulation.Bandai.Error.OptionInvalid"><value>Una opción Bandai tiene un valor inválido.</value></data>
-  <data name="Emulation.Bandai.Error.CoreNotFound"><value>No se encontró el núcleo de Bandai requerido.</value></data>
-  <data name="Emulation.Bandai.Error.CoreRejected"><value>El núcleo de Bandai seleccionado no puede ser cargado.</value></data>
-  <data name="Emulation.Bandai.Error.StateInvalid"><value>El estado salvado de Bandai es inválido.</value></data>
-  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>El camino ejecutable de Bandai host no está disponible.</value></data>
-  <data name="Emulation.Bandai.Error.Details"><value>Detalles: {0}</value></data>
-  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>La comunicación con el anfitrión Bandai falló.</value></data>
-  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>desconocido medio ambiente comando: {0}</value></data>
+  <data name="Emulation.Bandai.Error.StateIncompatible" xml:space="preserve"><value>El estado salvado Bandai es incompatible con la máquina actual.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected" xml:space="preserve"><value>Se produjo un error inesperado de emulación Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing" xml:space="preserve"><value>Falta un firmware de Bandai requerido.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid" xml:space="preserve"><value>El sistema ROM es inválido o incompatible.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound" xml:space="preserve"><value>No se encontró el medio de Bandai configurado.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported" xml:space="preserve"><value>Esta máquina no admite los medios seleccionados.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid" xml:space="preserve"><value>Una opción Bandai tiene un valor inválido.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound" xml:space="preserve"><value>No se encontró el núcleo de Bandai requerido.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected" xml:space="preserve"><value>El núcleo de Bandai seleccionado no puede ser cargado.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid" xml:space="preserve"><value>El estado salvado de Bandai es inválido.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing" xml:space="preserve"><value>El camino ejecutable de Bandai host no está disponible.</value></data>
+  <data name="Emulation.Bandai.Error.Details" xml:space="preserve"><value>Detalles: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure" xml:space="preserve"><value>La comunicación con el anfitrión Bandai falló.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>desconocido medio ambiente comando: {0}</value></data>
 </root>

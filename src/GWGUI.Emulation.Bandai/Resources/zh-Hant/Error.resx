@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Bandai所保存的狀態與目前的機器不相容.</value></data>
-  <data name="Emulation.Bandai.Error.Unexpected"><value>發生了出乎意料的 Bandai 仿真錯誤 。</value></data>
-  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>缺少一個必要的 Bandai 固件。</value></data>
-  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>系統ROM無效或不兼容.</value></data>
-  <data name="Emulation.Bandai.Error.ContentNotFound"><value>未找到配置的 Bandai 媒體 。</value></data>
-  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>此機器不支持所選的媒體 。</value></data>
-  <data name="Emulation.Bandai.Error.OptionInvalid"><value>Bandai 選項的值無效 。</value></data>
-  <data name="Emulation.Bandai.Error.CoreNotFound"><value>未找到所需的 Bandai 核心 。</value></data>
-  <data name="Emulation.Bandai.Error.CoreRejected"><value>無法裝入選中的 Bandai 核心 。</value></data>
-  <data name="Emulation.Bandai.Error.StateInvalid"><value>Bandai 保存狀態無效 。</value></data>
-  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Bandai 主機可執行路徑無法使用 。</value></data>
-  <data name="Emulation.Bandai.Error.Details"><value>細節 :{0}</value></data>
-  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>與Bandai主機的通信失敗.</value></data>
-  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>未知的環境命令 :{0}</value></data>
+  <data name="Emulation.Bandai.Error.StateIncompatible" xml:space="preserve"><value>Bandai所保存的狀態與目前的機器不相容.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected" xml:space="preserve"><value>發生了出乎意料的 Bandai 仿真錯誤 。</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing" xml:space="preserve"><value>缺少一個必要的 Bandai 固件。</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid" xml:space="preserve"><value>系統ROM無效或不兼容.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound" xml:space="preserve"><value>未找到配置的 Bandai 媒體 。</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported" xml:space="preserve"><value>此機器不支持所選的媒體 。</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid" xml:space="preserve"><value>Bandai 選項的值無效 。</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound" xml:space="preserve"><value>未找到所需的 Bandai 核心 。</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected" xml:space="preserve"><value>無法裝入選中的 Bandai 核心 。</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid" xml:space="preserve"><value>Bandai 保存狀態無效 。</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing" xml:space="preserve"><value>Bandai 主機可執行路徑無法使用 。</value></data>
+  <data name="Emulation.Bandai.Error.Details" xml:space="preserve"><value>細節 :{0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure" xml:space="preserve"><value>與Bandai主機的通信失敗.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知的環境命令 :{0}</value></data>
 </root>

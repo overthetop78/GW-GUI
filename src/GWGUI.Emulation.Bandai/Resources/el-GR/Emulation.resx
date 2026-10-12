@@ -4,51 +4,24 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-    <data name="Emulation.Bandai.Video.Native"><value>Κονσόλα βίντεο</value></data>
-  <data name="Emulation.Bandai.Audio.Native"><value>Ήχος κονσόλας</value></data>
-  <data name="Emulation.Bandai.Controls.Native"><value>Έλεγχοι κονσόλας</value></data>
-    <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Προσομοιάζει κονσόλες WonderSwan.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description"><value>Playdia δισκοβολία με PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description"><value>Tamagotchi P1 εξομοίωση με TamaLIBretro.</value></data>
-                                                                  <data name="Emulation.Bandai.Option.wswan_rotate_display"><value>Εμφάνιση περιστροφής</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Help"><value>Επιλέξτε τον προσανατολισμό τοπίου ή πορτραίτας. Η χειροκίνητη λειτουργία χρησιμοποιεί το δοσμένο κουμπί περιστροφής.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value0"><value>Χειροκίνητο</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value1"><value>Τοπίο</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value2"><value>Πορτραίτο</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap"><value>Έλεγχοι για τον προσανατολισμό οθόνης</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Help"><value>Η αυτόματη λειτουργία ακολουθεί τον προσανατολισμό της οθόνης. Άλλες λειτουργίες διατηρούν τα χειριστήρια στον επιλεγμένο προσανατολισμό.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value0"><value>Αυτόματο</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value1"><value>Τοπίο</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value2"><value>Πορτραίτο</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette"><value>Παλέτα χρωμάτων</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Help"><value>Επιλέξτε τα χρώματα που χρησιμοποιούνται για μονόχρωμα παιχνίδια.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Value0"><value>Διαβαθμίσεις του γκρι</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors"><value>Βάθος χρώματος</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors.Help"><value>Επιλέξτε το βάθος χρώματος. Η λειτουργία 24 bit απαιτεί περισσότερη ισχύ επεξεργασίας.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip"><value>Πλαϊνόφυλλο</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Help"><value>Παράλειψη πλαισίων βίντεο για τη μείωση του ήχου brackling. Η αυτόματη λειτουργία ακολουθεί την κατάσταση αναμονής ήχου. Η χειροκίνητη λειτουργία χρησιμοποιεί το επιλεγμένο κατώφλι.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value0"><value>Απενεργοποίηση</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value1"><value>Αυτόματο</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value2"><value>Χειροκίνητο</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold"><value>Κατώτατο όριο Frameskip (%)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold.Help"><value>Σε χειροκίνητη λειτουργία, παραλείψτε τα πλαίσια όταν ο ρυθμιστής ήχου πέφτει κάτω από αυτό το ποσοστό.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode"><value>Λειτουργία 60Hz</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Help"><value>Παράκαμψη κάθε πέμπτου πλαισίου για εμφάνιση στα 60 Hz. Αυτό μειώνει την απαλότητα της κίνησης.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value0"><value>Απενεργοποίηση</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value1"><value>Ενεργοποιημένο</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate"><value>Ρυθμός δείγματος εξόδου ήχου</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate.Help"><value>Υψηλότερα ποσοστά δειγμάτων βελτιώνουν ελαφρώς την ποιότητα του ήχου και απαιτούν περισσότερη ισχύ επεξεργασίας.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass"><value>Φίλτρο ήχου</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Help"><value>Εφαρμόστε ένα φίλτρο χαμηλής διέλευσης για να μαλακώσετε τον ήχο.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value0"><value>Απενεργοποίηση</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value1"><value>Ενεργοποιημένο</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_volume"><value>Όγκος ήχου (%)</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab"><value>Εναλλαγή κουμπιών A και B</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value0"><value>Απενεργοποίηση</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value1"><value>Ενεργοποιημένο</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging"><value>Καταγραφή αποσφαλμάτωσης</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value0"><value>Απενεργοποίηση</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value1"><value>Ενεργοποιημένο</value></data>
-      <data name="Emulation.Bandai.Playdia.Hle"><value>Αυτός ο πυρήνας παίζει δίσκους χωρίς να προσομοιώνει τους επεξεργαστές.</value></data>
-  <data name="Emulation.Bandai.Memory.Display"><value>Εμφάνιση μνήμης</value></data>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Κονσόλα βίντεο</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Ήχος κονσόλας</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Έλεγχος κονσόλας</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Προσομοιάζει κονσόλες WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia δισκοβολία με PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Ταμαγκοτίτσι P1 εξομοίωση με TamaLIBretro.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Αυτός ο πυρήνας παίζει δίσκους χωρίς να εξομοιώνει τους επεξεργαστές.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Εμφάνιση μνήμης</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Απεικόνιση προσανατολισμού</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Προσανατολισμός ελέγχου</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Μονόχρωμη παλέτα</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>Κατώφλι ρύθμισης ήχου</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>Λειτουργία 60 Hz</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Ρυθμός δειγματοληψίας ήχου</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Φίλτρο ήχου</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Κουμπί ανταλλαγής A και B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Αυτόματο</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Χειροκίνητο</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Οριζόντιος</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Κατακόρυφος</value></data>
 </root>

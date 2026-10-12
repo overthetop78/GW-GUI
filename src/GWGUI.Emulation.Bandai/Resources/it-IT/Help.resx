@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Selezionare l'orientamento orizzontale o verticale. La modalità manuale utilizza il pulsante di rotazione assegnato.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>La modalità automatica segue l'orientamento del display. Altre modalità mantengono i controlli nell'orientamento selezionato.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Selezionare i colori utilizzati per i giochi monocromatici.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Seleziona la profondità di colore di uscita. La modalità a 24 bit richiede una maggiore potenza di elaborazione.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Salta i video frame per ridurre il cracking audio. La modalità automatica segue il buffer audio. La modalità manuale utilizza la soglia selezionata.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>In modalità manuale, saltare i frame quando il buffer audio scende sotto questa percentuale.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Salta ogni quinta cornice da visualizzare a 60 Hz. Questo riduce la scorrevolezza del movimento.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Le velocità di campionamento più elevate migliorano leggermente la qualità audio e richiedono una maggiore potenza di elaborazione.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Applicare un filtro a basso passaggio per ammorbidire il suono.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Scorrere le azioni dei pulsanti A e B.</value></data>
+</root>

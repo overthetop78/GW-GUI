@@ -4,51 +4,24 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-    <data name="Emulation.Bandai.Video.Native"><value>Konsollvideo</value></data>
-  <data name="Emulation.Bandai.Audio.Native"><value>Konsolllyd</value></data>
-  <data name="Emulation.Bandai.Controls.Native"><value>Konsollkontroller</value></data>
-    <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emulerer WonderSwan-konsoller.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description"><value>Playdia plate avspilling med PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description"><value>Tamagotchi P1 emulering med TamaLIBretro.</value></data>
-                                                                  <data name="Emulation.Bandai.Option.wswan_rotate_display"><value>Vis rotasjon</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Help"><value>Velg landskap eller portrettretning. Manuell modus bruker den tildelte rotasjonsknappen.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value0"><value>Manuell</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value1"><value>Landskap</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value2"><value>Portrett</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap"><value>Kontroller for skjermorientering</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Help"><value>Automatisk modus følger skjermretningen. Andre moduser holder kontrollene i den valgte orienteringen.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value0"><value>Automatisk</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value1"><value>Landskap</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value2"><value>Portrett</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette"><value>Fargepalett</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Help"><value>Velg fargene som brukes til monokrom spill.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Value0"><value>Gråtoni</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors"><value>Fargedybde</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors.Help"><value>Velg fargedybde. 24-bits modus krever mer prosesskraft.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip"><value>Framesp</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Help"><value>Hopp over videorammer for å redusere lydsprekkering. Automatisk modus følger lydbufferstatus. Manuell modus bruker den valgte terskelen.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value0"><value>Deaktivert</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value1"><value>Automatisk</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value2"><value>Manuell</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold"><value>Rammesnipegrense (%)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold.Help"><value>I manuell modus, hopp over rammer når lydbufferen faller under denne prosentdelen.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode"><value>60Hz-modus</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Help"><value>Hopp over hver femte ramme for å vise på 60 Hz. Dette reduserer bevegelses glatthet.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value0"><value>Deaktivert</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value1"><value>Aktivert</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate"><value>Lydutgangsprøvehastighet</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate.Help"><value>Høyere prøvehastigheter forbedre lydkvaliteten litt og krever mer prosessorkraft.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass"><value>Lydfilter</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Help"><value>Påfør et lavt pass filter for å myke lyden.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value0"><value>Deaktivert</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value1"><value>Aktivert</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_volume"><value>Lydvolum (%)</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab"><value>Bytt knapper A og B</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value0"><value>Deaktivert</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value1"><value>Aktivert</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging"><value>Feilsøkingslogging</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value0"><value>Deaktivert</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value1"><value>Aktivert</value></data>
-      <data name="Emulation.Bandai.Playdia.Hle"><value>Denne kjernen spiller plater uten å emulere prosessorene.</value></data>
-  <data name="Emulation.Bandai.Memory.Display"><value>Vis minne</value></data>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Konsollvideo</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Konsolllyd</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Konsollkontroller</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emulerer WonderSwan-konsoller.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia plate avspilling med PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Tamagotchi P1 emulering med TamaLIBretro.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Denne kjernen spiller plater uten å emulere prosessorene.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Vis minne</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Vis orientering</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Kontrollorientering</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Monokrom palett</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>Audio buffer terskel</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Hz-modus</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Lydprøvetakingshastighet</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Lydfilter</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Bytt knapper A og B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Automatisk</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Manuell</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Liggende</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Stående</value></data>
 </root>

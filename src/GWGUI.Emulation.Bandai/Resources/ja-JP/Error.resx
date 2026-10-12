@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Bandai保存状態は、現在のマシンと互換性がありません。</value></data>
-  <data name="Emulation.Bandai.Error.Unexpected"><value>予期しないBandaiエミュレーションエラーが発生しました。</value></data>
-  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>必要なBandaiファームウェアは欠落しています。</value></data>
-  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>システム ROM は無効または非互換です。</value></data>
-  <data name="Emulation.Bandai.Error.ContentNotFound"><value>構成された Bandai メディアが見つかりませんでした。</value></data>
-  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>選択したメディアに対応していません。</value></data>
-  <data name="Emulation.Bandai.Error.OptionInvalid"><value>Bandaiオプションには無効な値があります。</value></data>
-  <data name="Emulation.Bandai.Error.CoreNotFound"><value>必須のBandaiコアが見つかりませんでした。</value></data>
-  <data name="Emulation.Bandai.Error.CoreRejected"><value>選択されたBandai中心は荷を積むことができませんでした。</value></data>
-  <data name="Emulation.Bandai.Error.StateInvalid"><value>Bandai保存状態が無効です。</value></data>
-  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Bandaiホスト実行可能なパスは利用できません。</value></data>
-  <data name="Emulation.Bandai.Error.Details"><value>詳細情報: {0}</value></data>
-  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Bandai ホストとの通信が失敗しました。</value></data>
-  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>不明な環境コマンド: {0}</value></data>
+  <data name="Emulation.Bandai.Error.StateIncompatible" xml:space="preserve"><value>Bandai保存状態は、現在のマシンと互換性がありません。</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected" xml:space="preserve"><value>予期しないBandaiエミュレーションエラーが発生しました。</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing" xml:space="preserve"><value>必要なBandaiファームウェアは欠落しています。</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid" xml:space="preserve"><value>システム ROM は無効または非互換です。</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound" xml:space="preserve"><value>構成された Bandai メディアが見つかりませんでした。</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported" xml:space="preserve"><value>選択したメディアに対応していません。</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid" xml:space="preserve"><value>Bandaiオプションには無効な値があります。</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound" xml:space="preserve"><value>必須のBandaiコアが見つかりませんでした。</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected" xml:space="preserve"><value>選択されたBandai中心は荷を積むことができませんでした。</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid" xml:space="preserve"><value>Bandai保存状態が無効です。</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing" xml:space="preserve"><value>Bandaiホスト実行可能なパスは利用できません。</value></data>
+  <data name="Emulation.Bandai.Error.Details" xml:space="preserve"><value>詳細情報: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure" xml:space="preserve"><value>Bandai ホストとの通信が失敗しました。</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>不明な環境コマンド: {0}</value></data>
 </root>

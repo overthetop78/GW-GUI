@@ -4,51 +4,24 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-    <data name="Emulation.Bandai.Video.Native"><value>Console วิดีโอ</value></data>
-  <data name="Emulation.Bandai.Audio.Native"><value>เสียงคอนโซล</value></data>
-  <data name="Emulation.Bandai.Controls.Native"><value>ตัวควบคุมคอนโซล</value></data>
-    <data name="Emulation.Emulator.mednafen_wswan.Description"><value>แผงควบคุม WonderSwan</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description"><value>Playdia แผ่น เล่นเพลงด้วย PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description"><value>Tamagotchi P1 จําลองด้วย TamaLIBretro.</value></data>
-                                                                  <data name="Emulation.Bandai.Option.wswan_rotate_display"><value>การหมุนแนวการจัดหน้าจอ</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Help"><value>เลือกรูปแบบภูมิทัศน์หรือแนวการวาดภาพ โหมดด้วยตนเองจะใช้ปุ่มหมุนที่กําหนดให้ใช้</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value0"><value>ป้อนกระดาษเอง</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value1"><value>แนวนอน</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value2"><value>วาดภาพ</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap"><value>ควบคุมการวางจอภาพ</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Help"><value>โหมดอัตโนมัติต่อไปนี้ทิศทางการแสดงผล โหมดอื่น ๆ จะยังคงควบคุมในแนวการวางจอภาพที่เลือกไว้</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value1"><value>แนวนอน</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value2"><value>วาดภาพ</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette"><value>จานสี</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Help"><value>เลือกสีที่จะใช้ในเกมสีเดียว</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Value0"><value>ไล่ระดับสีเทา</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors"><value>ความลึกสี</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors.Help"><value>เลือกความลึกสี โหมด 24 บิต ต้องการพลังงานประมวลผลมากขึ้น</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip"><value>กรอบภาพName</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Help"><value>ข้ามเฟรมวิดีโอเพื่อลดเสียงแตก โหมดอัตโนมัติต่อไปนี้สถานะบัฟเฟอร์เสียง โหมดป้อนกระดาษเอง ใช้ขีดจํากัดที่เลือกไว้</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value0"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value1"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value2"><value>ป้อนกระดาษเอง</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold"><value>เฟรมสคิป Trescold (%)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold.Help"><value>ในโหมดด้วยตนเอง ให้ข้ามเฟรมเมื่อบัฟเฟอร์เสียง อยู่ใต้เปอร์เซ็นต์นี้</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode"><value>โหมด 60Hz</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Help"><value>ข้ามทุกห้าเฟรมเพื่อแสดงเมื่อ 60 Hz. นี่จะช่วยลดการเคลื่อนที่ที่ราบรื่น</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value0"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value1"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate"><value>อัตราการสุ่มตัวอย่างเสียง</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate.Help"><value>อัตราตัวอย่างที่สูงกว่าเล็กน้อย ปรับคุณภาพเสียง และต้องใช้พลังงานประมวลผลมากขึ้น</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass"><value>ตัวกรองเสียง</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Help"><value>ใช้ตัวกรองทางช่องต่ําเพื่อลดเสียง</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value0"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value1"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_volume"><value>ระดับเสียงเสียง (%)</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab"><value>ปุ่มสลับที่ A และ B</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value0"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value1"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging"><value>ปูมบันทึกการดีบั๊ก</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value0"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value1"><value>เปิดใช้งาน</value></data>
-      <data name="Emulation.Bandai.Playdia.Hle"><value>นี่เป็นแผ่นหลักที่เล่นอยู่โดยไม่มีการจําลองตัวประมวลผล</value></data>
-  <data name="Emulation.Bandai.Memory.Display"><value>แสดงหน่วยความจํา</value></data>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>คลิปวิดีโอ</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>เสียงคอนโซล</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>ควบคุมคอนโซล</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>แผงควบคุม WonderSwan</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>เล่นแผ่น Dayia โดยเล่นโดยPlaydiaEmu</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>ทา มา โตะ ชิ P1 จับคู่กับ ทามาลลลไอเบรโทร</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>ไดรฟ์หลักนี้ ไม่ได้ทําการปรับค่าโพรเซสของดิสก์</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>แสดงหน่วยความจํา</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>แสดงทิศทางการทํางาน</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>ทิศทางการวางจอภาพ</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>จานสีเดียว</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>แปรงทาสี</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 โหมด Hz</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>อัตราสุ่มเสียง</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>ตัวกรองเสียง</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>ปุ่มสลับที่ A และ B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>อัตโนมัติ</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>กําหนดเอง</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>แนวนอน</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>แนวตั้ง</value></data>
 </root>

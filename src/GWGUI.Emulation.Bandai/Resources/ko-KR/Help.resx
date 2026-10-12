@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>풍경이나 초상화 방향을 선택하십시오. 수동 모드는 지정된 회전 버튼을 사용합니다.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>자동 모드는 디스플레이 방향을 따릅니다. 다른 모드는 선택된 오리엔테이션에 컨트롤을 유지합니다.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>모노크롬 게임에 사용되는 색상을 선택합니다.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>출력 색상 깊이를 선택하십시오. 24 비트 모드는 더 많은 처리 전력을 필요로합니다.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>오디오 균열을 줄이기 위해 비디오 프레임을 건너 뛰기. 자동 모드는 오디오 버퍼를 따릅니다. 수동 모드는 선택된 임계값을 사용합니다.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>수동 모드에서는 오디오 버퍼가이 비율을 떨어질 때 프레임을 건너 뛰십시오.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>60Hz에서 표시할 것이다 각 다섯번째 구조를 건너 뛰기. 이것은 운동 매끈함을 감소시킵니다.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>높은 샘플링 속도는 약간 오디오 품질을 향상시키고 더 많은 처리 능력을 필요로합니다.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>사운드를 부드럽게 하는 저하 레버 필터를 적용하십시오.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>버튼 A의 동작을 교환하고 B.</value></data>
+</root>

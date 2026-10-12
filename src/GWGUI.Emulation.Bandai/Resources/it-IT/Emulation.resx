@@ -4,51 +4,24 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-    <data name="Emulation.Bandai.Video.Native"><value>Console video</value></data>
-  <data name="Emulation.Bandai.Audio.Native"><value>Suono di console</value></data>
-  <data name="Emulation.Bandai.Controls.Native"><value>Console di controllo</value></data>
-    <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emulates WonderSwan console.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description"><value>Riproduzione disco Playdia con PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description"><value>Emulazione Tamagotchi P1 con TamaLIBretro.</value></data>
-                                                                  <data name="Emulation.Bandai.Option.wswan_rotate_display"><value>Rotazione di visualizzazione</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Help"><value>Selezionare l'orientamento orizzontale o verticale. La modalità manuale utilizza il pulsante di rotazione assegnato.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value0"><value>Manuale</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value1"><value>Paesaggio paesaggio</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value2"><value>Ritratto</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap"><value>Controlli per l'orientamento dello schermo</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Help"><value>La modalità automatica segue l'orientamento del display. Altre modalità mantengono i controlli nell'orientamento selezionato.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value0"><value>Automatico</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value1"><value>Paesaggio paesaggio</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value2"><value>Ritratto</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette"><value>Colore Palette</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Help"><value>Selezionare i colori utilizzati per giochi monocromatici.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Value0"><value>Scala di grigi</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors"><value>Deprezzamento del colore</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors.Help"><value>Selezionare la profondità del colore. La modalità a 24 bit richiede una maggiore potenza di elaborazione.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip"><value>Telaio</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Help"><value>Salta fotogrammi video per ridurre l'audio crackling. La modalità automatica segue lo stato del buffer audio. La modalità manuale utilizza la soglia selezionata.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value0"><value>Disattivato</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value1"><value>Automatico</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value2"><value>Manuale</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold"><value>Soglia di tiro con telaio (%)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold.Help"><value>In modalità manuale, saltare i frame quando il buffer audio scende sotto questa percentuale.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode"><value>Modalità 60Hz</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Help"><value>Salta ogni quinta cornice da visualizzare a 60 Hz. Ciò riduce la levigatezza del movimento.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value0"><value>Disattivato</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value1"><value>Attivato</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate"><value>Tasso di campionamento dell'uscita del suono</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate.Help"><value>I tassi di campionamento più elevati migliorano leggermente la qualità audio e richiedono una maggiore potenza di elaborazione.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass"><value>Filtro audio</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Help"><value>Applicare un filtro passa-basso per ammorbidire il suono.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value0"><value>Disattivato</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value1"><value>Attivato</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_volume"><value>Volume audio (%)</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab"><value>Pulsanti Swap A e B</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value0"><value>Disattivato</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value1"><value>Attivato</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging"><value>Debug Logging</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value0"><value>Disattivato</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value1"><value>Attivato</value></data>
-      <data name="Emulation.Bandai.Playdia.Hle"><value>Questo core gioca dischi senza emulare i processori.</value></data>
-  <data name="Emulation.Bandai.Memory.Display"><value>Memoria di visualizzazione</value></data>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Console video</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Suono di console</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Comandi di console</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emulates WonderSwan consoles.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Riproduzione disco Playdia con PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Tappeto P1 emulazione con TamaLIBretro.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Questo core suona dischi senza emulare i processori.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Memoria di visualizzazione</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>orientamento visualizzazione</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>orientamento di controllo</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Tavolozza monocromatica</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>Soglia di buffer audio</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>Modalità 60 Hz</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Tasso di campionamento audio</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Filtro audio</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Pulsanti per Swap A e B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Automatico</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Manuale</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Orizzontale</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Verticale</value></data>
 </root>

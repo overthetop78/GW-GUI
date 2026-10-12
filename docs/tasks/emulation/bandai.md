@@ -1,13 +1,5 @@
-# Travail restant : bandai
+# Achever la séparation du backend Bandai
 
-- [ ] Correction des ressources communes des reglages.
-  - [ ] Relier les adaptateurs aux descriptions communes.
-    - [ ] Creer `src/GWGUI.Emulation.Bandai/Common/Machines/Common/Constants/SettingsResourceConstants.cs` : constantes partagees des libelles, aides et choix ; reutiliser les ressources SDK existantes.
-    - [ ] Modifier `src/GWGUI.Emulation.Bandai/Common/Contracts/CoreContracts.cs` : references de ressources communes sans changement des cles ou valeurs natives.
-    - [ ] Modifier `src/GWGUI.Emulation.Bandai/Emulators/BeetleWonderSwan/Dictionaries/OptionCatalog.cs` : relier chaque option et choix natifs aux constantes Common, selon leur sens et leur valeur, sans traduction par coeur.
-    - [ ] Modifier `src/GWGUI.Emulation.Bandai/Emulators/PlaydiaEmu/Dictionaries/OptionCatalog.cs` : relier chaque option et choix natifs aux constantes Common, selon leur sens et leur valeur, sans traduction par coeur.
-    - [ ] Modifier `src/GWGUI.Emulation.Bandai/Emulators/TamaLibretro/Dictionaries/OptionCatalog.cs` : relier chaque option et choix natifs aux constantes Common, selon leur sens et leur valeur, sans traduction par coeur.
-    - [ ] Modifier `src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/SettingsFunctions.cs` : afficher les ressources Common et supprimer la fabrication de cles depuis les prefixes natifs ou indices.
-  - [ ] Regenerer et verifier les ressources.
-    - [ ] Modifier `src/GWGUI.Emulation.Bandai/Resources/{00-Base,en-US,<culture>}/Emulation.resx` : ressources communes uniques, invariants uniquement dans 00-Base, anciennes traductions natives supprimees, copie base vers en-US nettoyee puis Argos global.
-    - [ ] Creer `docs/tasks/emulation/bandai-ressources-verification.json` : references et valeurs natives verifiees, cultures et invariants controles, compilation et affichage reels constates ; ne pas declarer des essais non executes.
+- [ ] Achever la séparation restante du backend Bandai.
+  - [ ] Corriger les dépendances encore présentes.
+    - [ ] Modifier `src/GWGUI.Emulation.Bandai/Common/Machines/Common/Functions/ConfigurationFunctions.cs`, `RuntimeFunctions.cs`, `Common/Services/Engine.cs`, `EmulationGlobalUsings.cs` et leurs dépendances : déléguer les décisions propres aux cœurs, conserver les contrats neutres dans Common et les conversions natives dans leurs adaptateurs ; préciser les fichiers et déplacements avant réalisation.

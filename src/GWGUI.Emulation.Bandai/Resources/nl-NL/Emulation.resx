@@ -4,51 +4,24 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-    <data name="Emulation.Bandai.Video.Native"><value>Console video</value></data>
-  <data name="Emulation.Bandai.Audio.Native"><value>Console-geluid</value></data>
-  <data name="Emulation.Bandai.Controls.Native"><value>Console-besturingen</value></data>
-    <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emuleert WonderSwan consoles.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description"><value>Playdia schijfweergave met PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description"><value>Tamagotchi P1 emulatie met TamaLIBretro.</value></data>
-                                                                  <data name="Emulation.Bandai.Option.wswan_rotate_display"><value>Weergaverotatie</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Help"><value>Selecteer landschap of portretoriëntatie. Handmatige modus maakt gebruik van de toegewezen rotatieknop.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value0"><value>Handmatig</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value1"><value>Landschap</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value2"><value>Portret</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap"><value>Controles voor schermoriëntatie</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Help"><value>De automatische modus volgt de oriëntatie van het scherm. Andere modi houden de bedieningen in de geselecteerde oriëntatie.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value0"><value>Automatisch</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value1"><value>Landschap</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value2"><value>Portret</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette"><value>Kleurpalet</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Help"><value>Selecteer de kleuren die gebruikt worden voor monochrome spellen.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Value0"><value>Grijswaarden</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors"><value>Kleurdiepte</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors.Help"><value>Selecteer de kleurdiepte. De 24-bit modus vereist meer verwerkingskracht.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip"><value>Frameskip</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Help"><value>Skip video frames om audio kraken te verminderen. De automatische modus volgt de audiobufferstatus. Handmatige modus gebruikt de geselecteerde drempel.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value0"><value>Uitgeschakeld</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value1"><value>Automatisch</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value2"><value>Handmatig</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold"><value>Drempelwaarde frameskip (%)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold.Help"><value>In handmatige modus, sla frames over wanneer de audiobuffer onder dit percentage valt.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode"><value>60Hz-modus</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Help"><value>Sla elk vijfde frame over op 60 Hz. Dit vermindert de bewegingsgladheid.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value0"><value>Uitgeschakeld</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value1"><value>Ingeschakeld</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate"><value>Sample rate voor geluidsuitvoer</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate.Help"><value>Hogere sample rates iets verbeteren audio kwaliteit en vereisen meer verwerkingskracht.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass"><value>Audiofilter</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Help"><value>Breng een laagdoorlaatfilter aan om het geluid te verzachten.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value0"><value>Uitgeschakeld</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value1"><value>Ingeschakeld</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_volume"><value>Audiovolume (%)</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab"><value>Wisselknoppen A en B</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value0"><value>Uitgeschakeld</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value1"><value>Ingeschakeld</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging"><value>Debugloggen</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value0"><value>Uitgeschakeld</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value1"><value>Ingeschakeld</value></data>
-      <data name="Emulation.Bandai.Playdia.Hle"><value>Deze core speelt schijven zonder de processors na te bootsen.</value></data>
-  <data name="Emulation.Bandai.Memory.Display"><value>Toon geheugen</value></data>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Console video</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Console-geluid</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Console-besturing</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emuleert WonderSwan consoles.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia-schijf afspelen met PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Tamagotchi P1 emulatie met TamaLIBretro.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Deze kern speelt schijven zonder de processors na te bootsen.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Toon geheugen</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Richting tonen</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Controleoriëntatie</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Monochroom palet</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>Audiobufferdrempel</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Hz modus</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Geluidsbemonsteringssnelheid</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Audiofilter</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Wisselknoppen A en B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Automatisch</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Handleiding</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Liggend</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Staand</value></data>
 </root>

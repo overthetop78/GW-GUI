@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Stan zapisany przez Bandai jest niezgodny z obecną maszyną.</value></data>
-  <data name="Emulation.Bandai.Error.Unexpected"><value>Wystąpił nieoczekiwany błąd emulacji Bandai.</value></data>
-  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>Brakuje wymaganego firmware Bandai.</value></data>
-  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>System ROM jest nieprawidłowy lub niekompatybilny.</value></data>
-  <data name="Emulation.Bandai.Error.ContentNotFound"><value>Konfigurowane media Bandai nie zostały znalezione.</value></data>
-  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Ta maszyna nie obsługuje wybranych mediów.</value></data>
-  <data name="Emulation.Bandai.Error.OptionInvalid"><value>Opcja Bandai ma nieprawidłową wartość.</value></data>
-  <data name="Emulation.Bandai.Error.CoreNotFound"><value>Wymagany rdzeń Bandai nie został znaleziony.</value></data>
-  <data name="Emulation.Bandai.Error.CoreRejected"><value>Wybrany rdzeń Bandai nie mógł być załadowany.</value></data>
-  <data name="Emulation.Bandai.Error.StateInvalid"><value>Stan zapisany przez Bandai jest nieważny.</value></data>
-  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Ścieżka wykonywalna hosta Bandai jest niedostępna.</value></data>
-  <data name="Emulation.Bandai.Error.Details"><value>Szczegóły: {0}</value></data>
-  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Komunikacja z gospodarzem Bandai nie powiodła się.</value></data>
-  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Nieznane polecenie środowiska: {0}</value></data>
+  <data name="Emulation.Bandai.Error.StateIncompatible" xml:space="preserve"><value>Stan zapisany przez Bandai jest niezgodny z obecną maszyną.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected" xml:space="preserve"><value>Wystąpił nieoczekiwany błąd emulacji Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing" xml:space="preserve"><value>Brakuje wymaganego firmware Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid" xml:space="preserve"><value>System ROM jest nieprawidłowy lub niekompatybilny.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound" xml:space="preserve"><value>Konfigurowane media Bandai nie zostały znalezione.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported" xml:space="preserve"><value>Ta maszyna nie obsługuje wybranych mediów.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid" xml:space="preserve"><value>Opcja Bandai ma nieprawidłową wartość.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound" xml:space="preserve"><value>Wymagany rdzeń Bandai nie został znaleziony.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected" xml:space="preserve"><value>Wybrany rdzeń Bandai nie mógł być załadowany.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid" xml:space="preserve"><value>Stan zapisany przez Bandai jest nieważny.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing" xml:space="preserve"><value>Ścieżka wykonywalna hosta Bandai jest niedostępna.</value></data>
+  <data name="Emulation.Bandai.Error.Details" xml:space="preserve"><value>Szczegóły: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikacja z gospodarzem Bandai nie powiodła się.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Nieznane polecenie środowiska: {0}</value></data>
 </root>

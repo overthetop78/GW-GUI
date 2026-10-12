@@ -9,6 +9,9 @@ public sealed record CoreOption(
     IReadOnlyList<CoreOptionValue> Values,
     bool IsVisible = true,
     string? CategorizedName = null,
-    string? CategorizedDescription = null
+    string? CategorizedDescription = null,
+    string? ResourceKey = null,
+    string? ExplanationResourceKey = null,
+    bool RequiresRuntimeReload = false
 );
-public sealed record CoreOptionValue(string Value, string Label);
+public sealed record CoreOptionValue(string Value, string Label, string? ResourceKey = null, string? InvariantDisplayValue = null);

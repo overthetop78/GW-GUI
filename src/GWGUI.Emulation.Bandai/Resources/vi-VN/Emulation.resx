@@ -4,51 +4,24 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-    <data name="Emulation.Bandai.Video.Native"><value>Video bàn điều khiển</value></data>
-  <data name="Emulation.Bandai.Audio.Native"><value>Âm thanh bàn điều khiển</value></data>
-  <data name="Emulation.Bandai.Controls.Native"><value>Điều khiển bàn điều khiển</value></data>
-    <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Đặt các bàn điều khiển WonderSwan.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description"><value>Playdia đĩa phát lại bằng PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description"><value>Tamagotchi P1 với TamaLIBretro.</value></data>
-                                                                  <data name="Emulation.Bandai.Option.wswan_rotate_display"><value>Hiển thị Quay</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Help"><value>Chọn kiểu dáng hoặc hướng chân dung. Chế độ hướng dẫn sử dụng nút xoay chỉ định.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value0"><value>Thủ công</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value1"><value>Nằm ngang</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value2"><value>Thẳng đứng</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap"><value>Điều khiển hướng màn hình</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Help"><value>Chế độ tự động theo hướng hiển thị. Các chế độ khác giữ điều khiển trong hướng đã chọn.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value1"><value>Nằm ngang</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value2"><value>Thẳng đứng</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette"><value>Bảng màu</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Help"><value>Chọn màu dùng cho trò chơi đơn sắc.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Value0"><value>Mức xám</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors"><value>Độ sâu màu</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors.Help"><value>Chọn độ sâu màu. Chế độ 24bit đòi hỏi nhiều năng lượng xử lý hơn.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip"><value>Bộ khung</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Help"><value>Bỏ qua các khung phim để giảm âm thanh crackling. Chế độ tự động theo trạng thái đệm âm thanh. Chế độ thủ công sử dụng ngưỡng đã chọn.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value0"><value>Đã tắt</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value1"><value>Tự động</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value2"><value>Thủ công</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold"><value>Bảng chọn khung ()</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold.Help"><value>Trong chế độ thủ công, bỏ qua khung khi bộ đệm âm thanh nằm dưới tỷ lệ này.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode"><value>Chế độ 60Hz</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Help"><value>Nhảy qua mỗi khung thứ năm để hiển thị tại 60 Hz. Điều này làm giảm sự chuyển động mịn màng.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value0"><value>Đã tắt</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value1"><value>Đã bật</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate"><value>Tốc độ mẫu âm thanh</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate.Help"><value>Tốc độ mẫu cao hơn một chút cải thiện chất lượng âm thanh và yêu cầu thêm năng lượng xử lý.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass"><value>Lọc âm thanh</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Help"><value>Dùng bộ lọc nhập thấp để làm dịu âm thanh.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value0"><value>Đã tắt</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value1"><value>Đã bật</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_volume"><value>Âm lượng (%)</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab"><value>Thay đổi nút A và B</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value0"><value>Đã tắt</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value1"><value>Đã bật</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging"><value>Ghi lưu gỡ lỗi</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value0"><value>Đã tắt</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value1"><value>Đã bật</value></data>
-      <data name="Emulation.Bandai.Playdia.Hle"><value>Cái lõi này chơi đĩa mà không tạo ra các bộ xử lý.</value></data>
-  <data name="Emulation.Bandai.Memory.Display"><value>Hiển thị bộ nhớ</value></data>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Video bàn điều khiển</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Âm thanh bàn điều khiển</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Điều khiển bàn điều khiển</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Hãy đặt các bàn điều khiển WonderSwan.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdia đĩa phát lại bằng PlaydiaEmu.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Ta- ri- tiName P1 Liên lạc với TamaLIBretro.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Cái lõi này chơi đĩa mà không cần nâng cấp bộ xử lý.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Hiển thị bộ nhớ</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Hiện hướng</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Hướng điều khiển</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Bảng màu Đơn sắc</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>Ngưỡng đệm âm thanh</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>Chế độ 60 Hz</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Tốc độ bắt chước âm thanh</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Lọc âm thanh</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Thay đổi nút A và B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Tự động</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Thủ công</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Ngang</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Dọc</value></data>
 </root>

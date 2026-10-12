@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Landschafts- oder Porträtorientierung auswählen. Manueller Modus verwendet die zugewiesene Drehtaste.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>Der Automatikmodus folgt der Anzeigeausrichtung, andere Modi halten die Bedienelemente in der ausgewählten Ausrichtung.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Wählen Sie die Farben aus, die für monochrome Spiele verwendet werden.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Wählen Sie die Ausgangsfarbtiefe. Der 24-Bit-Modus erfordert mehr Rechenleistung.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Videorahmen überspringen, um das Knistern von Audio zu reduzieren. Automatischer Modus folgt dem Audiopuffer. Manueller Modus verwendet den gewählten Schwellenwert.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>Im manuellen Modus überspringen Sie Frames, wenn der Audiopuffer diesen Prozentsatz unterschreitet.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Überspringen Sie jeden fünften Frame, um ihn mit 60 Hz anzuzeigen. Dies reduziert die Bewegungsruhe.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Höhere Abtastraten verbessern die Audioqualität leicht und erfordern mehr Rechenleistung.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Tragen Sie einen Tiefpassfilter auf, um den Klang zu mildern.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Tauschen Sie die Aktionen der Buttons A und B.</value></data>
+</root>

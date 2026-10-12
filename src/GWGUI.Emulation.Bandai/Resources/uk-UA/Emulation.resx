@@ -4,51 +4,24 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-    <data name="Emulation.Bandai.Video.Native"><value>Консоль відео</value></data>
-  <data name="Emulation.Bandai.Audio.Native"><value>Консольний звук</value></data>
-  <data name="Emulation.Bandai.Controls.Native"><value>Контроль консолі</value></data>
-    <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emulates WonderSwan консолі.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description"><value>Playdia дискове відтворення з PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description"><value>Tamagotchi P1 емульсія з TamaLIBretro.</value></data>
-                                                                  <data name="Emulation.Bandai.Option.wswan_rotate_display"><value>Розширення екрану</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Help"><value>Виберіть ландшафт або портретну спрямованість. Ручний режим використовує надану кнопку обертання.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value0"><value>Посібник</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value1"><value>Пейзаж</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value2"><value>Портфоліо</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap"><value>Контроль за орієнтацією екрану</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Help"><value>Автоматичний режим слідувати орієнтації дисплея. Інші режими зберігають контроль в обраній спрямованості.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value0"><value>Автоматичний</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value1"><value>Пейзаж</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value2"><value>Портфоліо</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette"><value>Колір Палітра</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Help"><value>Виберіть кольори, які використовуються для монохромних ігор.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Value0"><value>Сірий</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors"><value>Колір Глибина</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors.Help"><value>Виберіть глибину кольору. Режим 24-бітного вимагає більшої потужності обробки.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip"><value>Карсип</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Help"><value>Пропустити відеорамки, щоб зменшити потокове відео. Автоматичний режим: аудіо буферний статус. Ручний режим використовує обраний поріг.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value0"><value>Вимкнено</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value1"><value>Автоматичний</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value2"><value>Посібник</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold"><value>Рамкип Пороги (%)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold.Help"><value>У ручному режимі пропустіть кадри, коли аудіо буфер потрапляє нижче цього відсотка.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode"><value>60Hz Режим</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Help"><value>Пропустити кожен п'ятий кадр для відображення на 60 Hz. Це зменшує плавність руху.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value0"><value>Вимкнено</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value1"><value>Увімкнено</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate"><value>Звуковий вихід Зразок швидкість</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate.Help"><value>Висока швидкість вибірки трохи покращує якість звуку і вимагає більшої потужності обробки.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass"><value>Аудіо фільтр</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Help"><value>Застосувати низькопрозорий фільтр для розм'якшення звуку.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value0"><value>Вимкнено</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value1"><value>Увімкнено</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_volume"><value>Аудіо Об'єм (%)</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab"><value>Заміна кнопок A і B</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value0"><value>Вимкнено</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value1"><value>Увімкнено</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging"><value>Debug лосини</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value0"><value>Вимкнено</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value1"><value>Увімкнено</value></data>
-      <data name="Emulation.Bandai.Playdia.Hle"><value>Цей сердечник грає диски без емульсії процесорів.</value></data>
-  <data name="Emulation.Bandai.Memory.Display"><value>Дисплей пам'яті</value></data>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Консоль відео</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Звукові консольні</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Контроль консолі</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emulates WonderSwan консолі.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>Playdiaemu - відео @ PlaydiaEmu</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Таготчі P1 емуляція з ТамалиБретро.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Цей сердечник грає диски без емуляційних процесорів.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Відображення пам'яті</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>Дисплей орієнта</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Контролююча спрямованість</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Монохромна палітра</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>Аудіо буферний поріг</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Гц режим</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Швидкість відбору аудіо</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Фільтри</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Кнопки обміну A та B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Автоматична</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Магістр</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Альбомна</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Портретна</value></data>
 </root>

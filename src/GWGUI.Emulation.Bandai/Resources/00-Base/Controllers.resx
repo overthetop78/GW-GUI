@@ -4,22 +4,22 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Bandai.Controller.WonderSwan"><value>WonderSwan</value></data>
-  <data name="Emulation.Bandai.Controller.Playdia"><value>Playdia</value></data>
-  <data name="Emulation.Bandai.Controller.Tamagotchi"><value>Tamagotchi</value></data>
-  <data name="Emulation.Bandai.Action.A"><value>A</value></data>
-  <data name="Emulation.Bandai.Action.B"><value>B</value></data>
-  <data name="Emulation.Bandai.Action.X1"><value>X1</value></data>
-  <data name="Emulation.Bandai.Action.X2"><value>X2</value></data>
-  <data name="Emulation.Bandai.Action.X3"><value>X3</value></data>
-  <data name="Emulation.Bandai.Action.X4"><value>X4</value></data>
-  <data name="Emulation.Bandai.Action.Y1"><value>Y1</value></data>
-  <data name="Emulation.Bandai.Action.Y2"><value>Y2</value></data>
-  <data name="Emulation.Bandai.Action.Y3"><value>Y3</value></data>
-  <data name="Emulation.Bandai.Action.Y4"><value>Y4</value></data>
-  <data name="Emulation.Bandai.Action.Start"><value>Start</value></data>
-  <data name="Emulation.Bandai.Action.Select"><value>Select</value></data>
-  <data name="Emulation.Bandai.Action.Rotate"><value>Rotate</value></data>
-  <data name="Emulation.Bandai.Action.Execute"><value>Execute</value></data>
-  <data name="Emulation.Bandai.Action.Cancel"><value>Cancel</value></data>
+  <data name="Emulation.Bandai.Controller.WonderSwan" xml:space="preserve"><value>WonderSwan</value></data>
+  <data name="Emulation.Bandai.Controller.Playdia" xml:space="preserve"><value>Playdia</value></data>
+  <data name="Emulation.Bandai.Controller.Tamagotchi" xml:space="preserve"><value>Tamagotchi</value></data>
+  <data name="Emulation.Bandai.Action.A" xml:space="preserve"><value>A</value></data>
+  <data name="Emulation.Bandai.Action.B" xml:space="preserve"><value>B</value></data>
+  <data name="Emulation.Bandai.Action.X1" xml:space="preserve"><value>X1</value></data>
+  <data name="Emulation.Bandai.Action.X2" xml:space="preserve"><value>X2</value></data>
+  <data name="Emulation.Bandai.Action.X3" xml:space="preserve"><value>X3</value></data>
+  <data name="Emulation.Bandai.Action.X4" xml:space="preserve"><value>X4</value></data>
+  <data name="Emulation.Bandai.Action.Y1" xml:space="preserve"><value>Y1</value></data>
+  <data name="Emulation.Bandai.Action.Y2" xml:space="preserve"><value>Y2</value></data>
+  <data name="Emulation.Bandai.Action.Y3" xml:space="preserve"><value>Y3</value></data>
+  <data name="Emulation.Bandai.Action.Y4" xml:space="preserve"><value>Y4</value></data>
+  <data name="Emulation.Bandai.Action.Start" xml:space="preserve"><value>Start</value></data>
+  <data name="Emulation.Bandai.Action.Select" xml:space="preserve"><value>Select</value></data>
+  <data name="Emulation.Bandai.Action.Rotate" xml:space="preserve"><value>Rotate</value></data>
+  <data name="Emulation.Bandai.Action.Execute" xml:space="preserve"><value>Execute</value></data>
+  <data name="Emulation.Bandai.Action.Cancel" xml:space="preserve"><value>Cancel</value></data>
 </root>

@@ -160,7 +160,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         var runtime = _session.Machine.Runtime;
         if (runtime.AvailableOptions.Count == 0) return;
         var dialog = new CoreOptionsDialog(runtime.EmulatorName, runtime.EmulatorVersion,
-            runtime.AvailableOptions);
+            runtime.AvailableOptions, _options.ModuleId);
         try
         {
             if (dialog.ShowDialog() != true) return;

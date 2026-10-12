@@ -4,9 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Bandai.Action.Start"><value>Start</value></data>
-  <data name="Emulation.Bandai.Action.Select"><value>Alegeți</value></data>
-  <data name="Emulation.Bandai.Action.Rotate"><value>Rotește</value></data>
-  <data name="Emulation.Bandai.Action.Execute"><value>Execută</value></data>
-  <data name="Emulation.Bandai.Action.Cancel"><value>Renunță</value></data>
+  <data name="Emulation.Bandai.Action.Rotate" xml:space="preserve"><value>Rotește</value></data>
+  <data name="Emulation.Bandai.Action.Execute" xml:space="preserve"><value>Execută</value></data>
+  <data name="Emulation.Bandai.Action.Cancel" xml:space="preserve"><value>Renunță</value></data>
 </root>

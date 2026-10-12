@@ -4,51 +4,24 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-    <data name="Emulation.Bandai.Video.Native"><value>콘솔 영상</value></data>
-  <data name="Emulation.Bandai.Audio.Native"><value>콘솔 사운드</value></data>
-  <data name="Emulation.Bandai.Controls.Native"><value>콘솔 컨트롤</value></data>
-    <data name="Emulation.Emulator.mednafen_wswan.Description"><value>WonderSwan 콘솔을 격리합니다.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description"><value>Playdia 디스크 재생 PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description"><value>Tamagotchi P1 에뮬레이션 와 TamaLIBretro.</value></data>
-                                                                  <data name="Emulation.Bandai.Option.wswan_rotate_display"><value>전시 교체</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Help"><value>조경 또는 초상화 오리엔테이션을 선택하십시오. 수동 모드는 지정된 회전 버튼을 사용합니다.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value0"><value>(주)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value1"><value>팟캐스트</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value2"><value>포트레이트(Portrait)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap"><value>화면 방향 제어</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Help"><value>자동 모드는 디스플레이 방향을 따릅니다. 다른 형태는 선택된 오리엔테이션에 있는 통제를 지킵니다.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value0"><value>오토매틱</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value1"><value>팟캐스트</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value2"><value>포트레이트(Portrait)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette"><value>색깔 팔레트</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Help"><value>모노크롬 게임에 사용되는 색상을 선택합니다.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Value0"><value>회색 가늠자</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors"><value>색깔 깊이</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors.Help"><value>색상의 깊이를 선택합니다. 24 비트 모드는 더 많은 처리 전력을 요구합니다.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip"><value>프레임스키프</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Help"><value>오디오 균열을 줄이기 위해 비디오 프레임을 건너 뛰기. 자동 모드는 오디오 버퍼 상태를 따릅니다. 수동 모드는 선택된 임계값을 사용합니다.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value0"><value>사용 안 함</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value1"><value>오토매틱</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value2"><value>(주)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold"><value>Frameskip 임계 값 (%)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold.Help"><value>수동 모드에서는 오디오 버퍼가이 비율 아래 떨어지면 프레임을 건너 뛸 수 있습니다.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode"><value>60Hz 형태</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Help"><value>60 Hz에서 표시 할 다섯 번째 프레임을 건너 뛸 수 있습니다. 이것은 운동 매끈함을 감소시킵니다.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value0"><value>사용 안 함</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value1"><value>사용</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate"><value>건강한 산출 표본 비율</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate.Help"><value>더 높은 표본 비율은 약간 오디오 질을 개량하고 처리 힘을 더 요구합니다.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass"><value>오디오 필터</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Help"><value>사운드를 연화하기 위해 낮은 패스 필터를 적용합니다.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value0"><value>사용 안 함</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value1"><value>사용</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_volume"><value>오디오 볼륨 (%)</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab"><value>스왑 버튼 A 및 B</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value0"><value>사용 안 함</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value1"><value>사용</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging"><value>Debug 로깅</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value0"><value>사용 안 함</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value1"><value>사용</value></data>
-      <data name="Emulation.Bandai.Playdia.Hle"><value>이 핵심은 가공업자를 유화 없이 원판을 합니다.</value></data>
-  <data name="Emulation.Bandai.Memory.Display"><value>전시 기억</value></data>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>콘솔 비디오</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>콘솔 사운드</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>콘솔 컨트롤</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>WonderSwan 콘솔을 에뮬레이트합니다.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>PlaydiaEmu와 함께 재생합니다.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>타카오 P1 TamaLIBretro와 에뮬레이션.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>이 핵심은 가공업자를 유화 없이 원판을 합니다.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>전시 기억</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>전시 방향</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>제어 방향</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Monochrome 팔레트</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>오디오 버퍼 임계값</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Hz 모드</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>오디오 샘플링 속도</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>오디오 필터</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>스왑 버튼 A 및 B</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>의 특징</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>가로</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>세로</value></data>
 </root>

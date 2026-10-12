@@ -7,25 +7,29 @@ internal static class BeetleWonderSwanOptionCatalog
     internal static IReadOnlyList<CoreOption> All { get; } = [
         new(
             OptionConstants.OptionLanguage,
-            "Language (Restart Required)",
+            "Language",
             "Console language saved in the internal EEPROM. Applied when a game is loaded.",
             null,
             "english",
             "english",
-            [new("english", "English"), new("japanese", "Japanese"), ]
+            [new("english", "English"), new("japanese", "Japanese"), ],
+            IsVisible: false,
+            RequiresRuntimeReload: true
         ),
         new(
             OptionConstants.OptionNameSource,
-            "Owner Name Source (Restart Required)",
+            "Owner Name Source",
             "Select the owner name stored in the internal EEPROM. Applied when a game is loaded.",
             null,
             "frontend",
             "frontend",
-            [new("frontend", "Frontend Username"), new("default", "Default (Mednafen)"), ]
+            [new("frontend", "Frontend Username"), new("default", "Default (Mednafen)"), ],
+            IsVisible: false,
+            RequiresRuntimeReload: true
         ),
         new(
             OptionConstants.OptionBirthYear,
-            "Owner Birth Year (Restart Required)",
+            "Owner Birth Year",
             "Birth year stored in the internal EEPROM. Applied when a game is loaded.",
             null,
             "1989",
@@ -142,11 +146,13 @@ internal static class BeetleWonderSwanOptionCatalog
                 new("2028", "2028"),
                 new("2029", "2029"),
 
-            ]
+            ],
+            IsVisible: false,
+            RequiresRuntimeReload: true
         ),
         new(
             OptionConstants.OptionBirthMonth,
-            "Owner Birth Month (Restart Required)",
+            "Owner Birth Month",
             "Birth month stored in the internal EEPROM. Applied when a game is loaded.",
             null,
             "6",
@@ -165,11 +171,13 @@ internal static class BeetleWonderSwanOptionCatalog
                 new("11", "November"),
                 new("12", "December"),
 
-            ]
+            ],
+            IsVisible: false,
+            RequiresRuntimeReload: true
         ),
         new(
             OptionConstants.OptionBirthDay,
-            "Owner Birth Day (Restart Required)",
+            "Owner Birth Day",
             "Birth day stored in the internal EEPROM. Applied when a game is loaded.",
             null,
             "23",
@@ -207,17 +215,31 @@ internal static class BeetleWonderSwanOptionCatalog
                 new("30", "30"),
                 new("31", "31"),
 
-            ]
+            ],
+            IsVisible: false,
+            RequiresRuntimeReload: true
         ),
-        new(OptionConstants.OptionSex, "Owner Sex (Restart Required)", "Owner sex stored in the internal EEPROM. Applied when a game is loaded.", null, "female", "female", [new("female", "Female"), new("male", "Male"), ]),
+        new(
+            OptionConstants.OptionSex,
+            "Owner Sex",
+            "Owner sex stored in the internal EEPROM. Applied when a game is loaded.",
+            null,
+            "female",
+            "female",
+            [new("female", "Female"), new("male", "Male"), ],
+            IsVisible: false,
+            RequiresRuntimeReload: true
+        ),
         new(
             OptionConstants.OptionBlood,
-            "Owner Blood Type (Restart Required)",
+            "Owner Blood Type",
             "Blood type stored in the internal EEPROM. Applied when a game is loaded.",
             null,
             "o",
             "o",
-            [new("o", "O"), new("a", "A"), new("b", "B"), new("ab", "AB"), ]
+            [new("o", "O"), new("a", "A"), new("b", "B"), new("ab", "AB"), ],
+            IsVisible: false,
+            RequiresRuntimeReload: true
         ),
         new(
             OptionConstants.OptionRotateDisplay,
@@ -226,7 +248,14 @@ internal static class BeetleWonderSwanOptionCatalog
             null,
             "manual",
             "manual",
-            [new("manual", "Manual"), new("landscape", "Landscape"), new("portrait", "Portrait"), ]
+            [
+                new("manual", "Manual", ResourceKey: SettingsChoiceConstants.Manual),
+                new("landscape", "Landscape", ResourceKey: SettingsChoiceConstants.Landscape),
+                new("portrait", "Portrait", ResourceKey: SettingsChoiceConstants.Portrait),
+
+            ],
+            ResourceKey: SettingsTextConstants.DisplayRotation,
+            ExplanationResourceKey: SettingsTextConstants.DisplayRotationHelp
         ),
         new(
             OptionConstants.OptionRotateKeymap,
@@ -235,7 +264,14 @@ internal static class BeetleWonderSwanOptionCatalog
             null,
             "auto",
             "auto",
-            [new("auto", "Auto"), new("disabled", "Landscape"), new("enabled", "Portrait"), ]
+            [
+                new("auto", "Auto", ResourceKey: SettingsChoiceConstants.Automatic),
+                new("disabled", "Landscape", ResourceKey: SettingsChoiceConstants.Landscape),
+                new("enabled", "Portrait", ResourceKey: SettingsChoiceConstants.Portrait),
+
+            ],
+            ResourceKey: SettingsTextConstants.ControlOrientation,
+            ExplanationResourceKey: SettingsTextConstants.ControlOrientationHelp
         ),
         new(
             OptionConstants.OptionMonoPalette,
@@ -245,44 +281,49 @@ internal static class BeetleWonderSwanOptionCatalog
             "default",
             "default",
             [
-                new("default", "Grayscale"),
-                new("wonderswan", "WS - WonderSwan"),
-                new("wondeswan_color", "WS - WonderSwan Color"),
-                new("swancrystal", "WS - SwanCrystal"),
-                new("gb_dmg", "Game Boy DMG"),
-                new("gb_pocket", "Game Boy Pocket"),
-                new("gb_light", "Game Boy Light"),
-                new("blossom_pink", "Blossom Pink"),
-                new("bubbles_blue", "Bubbles Blue"),
-                new("buttercup_green", "Buttercup Green"),
-                new("digivice", "Digivice"),
-                new("game_com", "Game.com"),
-                new("gameking", "GameKing"),
-                new("game_master", "Game Master"),
-                new("golden_wild", "Golden Wild"),
-                new("greenscale", "Greenscale"),
-                new("hokage_orange", "Hokage Orange"),
-                new("labo_fawn", "Labo Fawn"),
-                new("legendary_super_saiyan", "Legendary Super Saiyan"),
-                new("microvision", "Microvision"),
-                new("million_live_gold", "Million Live Gold"),
-                new("odyssey_gold", "Odyssey Gold"),
-                new("shiny_sky_blue", "Shiny Sky Blue"),
-                new("slime_blue", "Slime Blue"),
-                new("ti_83", "TI-83"),
-                new("travel_wood", "Travel Wood"),
-                new("virtual_boy", "Virtual Boy"),
+                new("default", "Grayscale", ResourceKey: SettingsChoiceConstants.Grayscale),
+                new("wonderswan", "WS - WonderSwan", InvariantDisplayValue: "WS - WonderSwan"),
+                new("wondeswan_color", "WS - WonderSwan Color", InvariantDisplayValue: "WS - WonderSwan Color"),
+                new("swancrystal", "WS - SwanCrystal", InvariantDisplayValue: "WS - SwanCrystal"),
+                new("gb_dmg", "Game Boy DMG", InvariantDisplayValue: "Game Boy DMG"),
+                new("gb_pocket", "Game Boy Pocket", InvariantDisplayValue: "Game Boy Pocket"),
+                new("gb_light", "Game Boy Light", InvariantDisplayValue: "Game Boy Light"),
+                new("blossom_pink", "Blossom Pink", InvariantDisplayValue: "Blossom Pink"),
+                new("bubbles_blue", "Bubbles Blue", InvariantDisplayValue: "Bubbles Blue"),
+                new("buttercup_green", "Buttercup Green", InvariantDisplayValue: "Buttercup Green"),
+                new("digivice", "Digivice", InvariantDisplayValue: "Digivice"),
+                new("game_com", "Game.com", InvariantDisplayValue: "Game.com"),
+                new("gameking", "GameKing", InvariantDisplayValue: "GameKing"),
+                new("game_master", "Game Master", InvariantDisplayValue: "Game Master"),
+                new("golden_wild", "Golden Wild", InvariantDisplayValue: "Golden Wild"),
+                new("greenscale", "Greenscale", InvariantDisplayValue: "Greenscale"),
+                new("hokage_orange", "Hokage Orange", InvariantDisplayValue: "Hokage Orange"),
+                new("labo_fawn", "Labo Fawn", InvariantDisplayValue: "Labo Fawn"),
+                new("legendary_super_saiyan", "Legendary Super Saiyan", InvariantDisplayValue: "Legendary Super Saiyan"),
+                new("microvision", "Microvision", InvariantDisplayValue: "Microvision"),
+                new("million_live_gold", "Million Live Gold", InvariantDisplayValue: "Million Live Gold"),
+                new("odyssey_gold", "Odyssey Gold", InvariantDisplayValue: "Odyssey Gold"),
+                new("shiny_sky_blue", "Shiny Sky Blue", InvariantDisplayValue: "Shiny Sky Blue"),
+                new("slime_blue", "Slime Blue", InvariantDisplayValue: "Slime Blue"),
+                new("ti_83", "TI-83", InvariantDisplayValue: "TI-83"),
+                new("travel_wood", "Travel Wood", InvariantDisplayValue: "Travel Wood"),
+                new("virtual_boy", "Virtual Boy", InvariantDisplayValue: "Virtual Boy"),
 
-            ]
+            ],
+            ResourceKey: SettingsTextConstants.MonochromePalette,
+            ExplanationResourceKey: SettingsTextConstants.MonochromePaletteHelp
         ),
         new(
             OptionConstants.OptionGfxColors,
-            "Color Depth (Restart Required)",
+            "Color Depth",
             "Select the color depth. The 24-bit mode requires more processing power.",
             null,
             "16bit",
             "16bit",
-            [new("16bit", "Thousands (16-bit)"), new("24bit", "Millions (24-bit)"), ]
+            [new("16bit", "Thousands (16-bit)", InvariantDisplayValue: "16 bits"), new("24bit", "Millions (24-bit)", InvariantDisplayValue: "24 bits"), ],
+            ResourceKey: SettingsTextConstants.ColorDepth,
+            ExplanationResourceKey: SettingsTextConstants.ColorDepthHelp,
+            RequiresRuntimeReload: true
         ),
         new(
             OptionConstants.OptionFrameskip,
@@ -291,7 +332,9 @@ internal static class BeetleWonderSwanOptionCatalog
             null,
             "disabled",
             "disabled",
-            [new("disabled", "disabled"), new("auto", "Auto"), new("manual", "Manual"), ]
+            [new("disabled", "disabled", ResourceKey: SettingsChoiceConstants.Disabled), new("auto", "Auto", ResourceKey: SettingsChoiceConstants.Automatic), new("manual", "Manual", ResourceKey: SettingsChoiceConstants.Manual), ],
+            ResourceKey: SettingsTextConstants.FrameSkipping,
+            ExplanationResourceKey: SettingsTextConstants.FrameSkippingHelp
         ),
         new(
             OptionConstants.OptionFrameskipThreshold,
@@ -301,26 +344,38 @@ internal static class BeetleWonderSwanOptionCatalog
             "33",
             "33",
             [
-                new("15", "15"),
-                new("18", "18"),
-                new("21", "21"),
-                new("24", "24"),
-                new("27", "27"),
-                new("30", "30"),
-                new("33", "33"),
-                new("36", "36"),
-                new("39", "39"),
-                new("42", "42"),
-                new("45", "45"),
-                new("48", "48"),
-                new("51", "51"),
-                new("54", "54"),
-                new("57", "57"),
-                new("60", "60"),
+                new("15", "15", InvariantDisplayValue: "15 %"),
+                new("18", "18", InvariantDisplayValue: "18 %"),
+                new("21", "21", InvariantDisplayValue: "21 %"),
+                new("24", "24", InvariantDisplayValue: "24 %"),
+                new("27", "27", InvariantDisplayValue: "27 %"),
+                new("30", "30", InvariantDisplayValue: "30 %"),
+                new("33", "33", InvariantDisplayValue: "33 %"),
+                new("36", "36", InvariantDisplayValue: "36 %"),
+                new("39", "39", InvariantDisplayValue: "39 %"),
+                new("42", "42", InvariantDisplayValue: "42 %"),
+                new("45", "45", InvariantDisplayValue: "45 %"),
+                new("48", "48", InvariantDisplayValue: "48 %"),
+                new("51", "51", InvariantDisplayValue: "51 %"),
+                new("54", "54", InvariantDisplayValue: "54 %"),
+                new("57", "57", InvariantDisplayValue: "57 %"),
+                new("60", "60", InvariantDisplayValue: "60 %"),
 
-            ]
+            ],
+            ResourceKey: SettingsTextConstants.FrameSkipThreshold,
+            ExplanationResourceKey: SettingsTextConstants.FrameSkipThresholdHelp
         ),
-        new(OptionConstants.Option60hzMode, "60Hz Mode", "Skip every fifth frame to display at 60 Hz. This reduces motion smoothness.", null, "enabled", "enabled", [new("disabled", "disabled"), new("enabled", "enabled"), ]),
+        new(
+            OptionConstants.Option60hzMode,
+            "60Hz Mode",
+            "Skip every fifth frame to display at 60 Hz. This reduces motion smoothness.",
+            null,
+            "enabled",
+            "enabled",
+            [new("disabled", "disabled", ResourceKey: SettingsChoiceConstants.Disabled), new("enabled", "enabled", ResourceKey: SettingsChoiceConstants.Enabled), ],
+            ResourceKey: SettingsTextConstants.FixedRefreshRate,
+            ExplanationResourceKey: SettingsTextConstants.FixedRefreshRateHelp
+        ),
         new(
             OptionConstants.OptionSoundSampleRate,
             "Sound Output Sample Rate",
@@ -328,9 +383,27 @@ internal static class BeetleWonderSwanOptionCatalog
             null,
             "44100",
             "44100",
-            [new("11025", "11025"), new("22050", "22050"), new("44100", "44100"), new("48000", "48000"), ]
+            [
+                new("11025", "11025", InvariantDisplayValue: "11.025 kHz"),
+                new("22050", "22050", InvariantDisplayValue: "22.05 kHz"),
+                new("44100", "44100", InvariantDisplayValue: "44.1 kHz"),
+                new("48000", "48000", InvariantDisplayValue: "48 kHz"),
+
+            ],
+            ResourceKey: SettingsTextConstants.AudioSampleRate,
+            ExplanationResourceKey: SettingsTextConstants.AudioSampleRateHelp
         ),
-        new(OptionConstants.OptionSoundLowPass, "Audio Filter", "Apply a low-pass filter to soften the sound.", null, "disabled", "disabled", [new("disabled", "disabled"), new("enabled", "enabled"), ]),
+        new(
+            OptionConstants.OptionSoundLowPass,
+            "Audio Filter",
+            "Apply a low-pass filter to soften the sound.",
+            null,
+            "disabled",
+            "disabled",
+            [new("disabled", "disabled", ResourceKey: SettingsChoiceConstants.Disabled), new("enabled", "enabled", ResourceKey: SettingsChoiceConstants.Enabled), ],
+            ResourceKey: SettingsTextConstants.AudioFilter,
+            ExplanationResourceKey: SettingsTextConstants.AudioFilterHelp
+        ),
 
     ];
 }

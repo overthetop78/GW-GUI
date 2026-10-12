@@ -4,51 +4,24 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-    <data name="Emulation.Bandai.Video.Native"><value>Konzol videó</value></data>
-  <data name="Emulation.Bandai.Audio.Native"><value>Konzol hang</value></data>
-  <data name="Emulation.Bandai.Controls.Native"><value>Konzolok kezelőszerve</value></data>
-    <data name="Emulation.Emulator.mednafen_wswan.Description"><value>Emulálja a WonderSwan konzolokat.</value></data>
-  <data name="Emulation.Emulator.playdiaemu.Description"><value>Playdia CD lejátszás PlaydiaEmu.</value></data>
-  <data name="Emulation.Emulator.tamalibretro.Description"><value>Tamagotchi P1 emuláció TamaLIBretro -vel.</value></data>
-                                                                  <data name="Emulation.Bandai.Option.wswan_rotate_display"><value>Forgatás megjelenítése</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Help"><value>Válassza ki a tájkép vagy portré orientációját. A kézi üzemmód a kijelölt rotációs gombot használja.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value0"><value>Kézi</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value1"><value>Tájkép</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_display.Value2"><value>Portré</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap"><value>A képernyő tájolásának vezérlése</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Help"><value>Automatikus mód követi a kijelző orientációját. Más üzemmódok a beállított irányban tartják a vezérlőket.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value0"><value>Automatikus</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value1"><value>Tájkép</value></data>
-  <data name="Emulation.Bandai.Option.wswan_rotate_keymap.Value2"><value>Portré</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette"><value>Színpaletta</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Help"><value>Válassza ki a monokróm játékok színeit.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_mono_palette.Value0"><value>Szürkeárnyalatok</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors"><value>Színmélység</value></data>
-  <data name="Emulation.Bandai.Option.wswan_gfx_colors.Help"><value>Válassza ki a színmélységet. A 24 bites üzemmódhoz több feldolgozási energia szükséges.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip"><value>Frameszkip</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Help"><value>Kihagyjuk a videó kereteket, hogy csökkentsük az audió ropogást. Automatikus mód követi az audió pufferállapotot. A kézi üzemmód a kiválasztott küszöbértéket használja.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value0"><value>Letiltva</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value1"><value>Automatikus</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip.Value2"><value>Kézi</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold"><value>Frameskip küszöbérték (%)</value></data>
-  <data name="Emulation.Bandai.Option.wswan_frameskip_threshold.Help"><value>Kézi módban ugorjuk át a képkockákat, amikor a hangpuffer ez alá a százalék alá esik.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode"><value>60Hz üzemmód</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Help"><value>Minden ötödik képkockát ugorj át 60 Hz-en. Ez csökkenti a mozgás simaságát.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value0"><value>Letiltva</value></data>
-  <data name="Emulation.Bandai.Option.wswan_60hz_mode.Value1"><value>Engedélyezett</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate"><value>Hang kimeneti mintaarány</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_sample_rate.Help"><value>Magasabb mintaárak enyhén javítja az audió minőségét, és több feldolgozási energiát igényel.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass"><value>Hangszűrő</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Help"><value>Helyezzen fel egy aluláteresztő szűrőt a hang megpuhítására.</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value0"><value>Letiltva</value></data>
-  <data name="Emulation.Bandai.Option.wswan_sound_low_pass.Value1"><value>Engedélyezett</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_volume"><value>Hangerő (%)</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab"><value>Az A és B cseregombok</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value0"><value>Letiltva</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_swap_ab.Value1"><value>Engedélyezett</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging"><value>A hibakeresés bejelentkezése</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value0"><value>Letiltva</value></data>
-  <data name="Emulation.Bandai.Option.playdiaemu_debug_logging.Value1"><value>Engedélyezett</value></data>
-      <data name="Emulation.Bandai.Playdia.Hle"><value>Ez a mag anélkül játszik korongokat, hogy lemásolná a processzorokat.</value></data>
-  <data name="Emulation.Bandai.Memory.Display"><value>Memória megjelenítése</value></data>
+  <data name="Emulation.Bandai.Video.Native" xml:space="preserve"><value>Konzol videó</value></data>
+  <data name="Emulation.Bandai.Audio.Native" xml:space="preserve"><value>Konzol hang</value></data>
+  <data name="Emulation.Bandai.Controls.Native" xml:space="preserve"><value>Konzolok kezelőszerve</value></data>
+  <data name="Emulation.Emulator.mednafen_wswan.Description" xml:space="preserve"><value>Emulálja a csodahattyú konzolokat.</value></data>
+  <data name="Emulation.Emulator.playdiaemu.Description" xml:space="preserve"><value>PlaydiaEmu lejátszás.</value></data>
+  <data name="Emulation.Emulator.tamalibretro.Description" xml:space="preserve"><value>Tamagotchi P1 Emuláció a Tamali Bretróval.</value></data>
+  <data name="Emulation.Bandai.Playdia.Hle" xml:space="preserve"><value>Ez a mag lemezeket játszik anélkül, hogy a processzorokat utánozná.</value></data>
+  <data name="Emulation.Bandai.Memory.Display" xml:space="preserve"><value>Memória megjelenítése</value></data>
+  <data name="Emulation.Bandai.Setting.DisplayRotation" xml:space="preserve"><value>A kijelző iránya</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation" xml:space="preserve"><value>Irányítási irány</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette" xml:space="preserve"><value>Monokróm paletta</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold" xml:space="preserve"><value>Hangpufferküszöbérték</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate" xml:space="preserve"><value>60 Hz-es üzemmód</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate" xml:space="preserve"><value>Hangminta-mintavétel aránya</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter" xml:space="preserve"><value>Hangszűrő</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons" xml:space="preserve"><value>Az A és B cseregombok</value></data>
+  <data name="Emulation.Bandai.Value.Automatic" xml:space="preserve"><value>Automatikus</value></data>
+  <data name="Emulation.Bandai.Value.Manual" xml:space="preserve"><value>Kézi</value></data>
+  <data name="Emulation.Bandai.Value.Landscape" xml:space="preserve"><value>Fekvő</value></data>
+  <data name="Emulation.Bandai.Value.Portrait" xml:space="preserve"><value>Álló</value></data>
 </root>

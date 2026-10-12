@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Bandai.Error.StateIncompatible"><value>Сохраненное состояние Bandai несовместимо с текущей машиной.</value></data>
-  <data name="Emulation.Bandai.Error.Unexpected"><value>Произошла неожиданная ошибка эмуляции Bandai.</value></data>
-  <data name="Emulation.Bandai.Error.FirmwareMissing"><value>Необходимая прошивка Bandai отсутствует.</value></data>
-  <data name="Emulation.Bandai.Error.FirmwareInvalid"><value>Система ROM является недействительной или несовместимой.</value></data>
-  <data name="Emulation.Bandai.Error.ContentNotFound"><value>Настроенные средства массовой информации Bandai не были найдены.</value></data>
-  <data name="Emulation.Bandai.Error.ContentUnsupported"><value>Данная машина не поддерживает выбранные носители.</value></data>
-  <data name="Emulation.Bandai.Error.OptionInvalid"><value>Опцион Bandai имеет недействительное значение.</value></data>
-  <data name="Emulation.Bandai.Error.CoreNotFound"><value>Требуемое ядро Bandai найдено не было.</value></data>
-  <data name="Emulation.Bandai.Error.CoreRejected"><value>Выбранное ядро Bandai не могло быть загружено.</value></data>
-  <data name="Emulation.Bandai.Error.StateInvalid"><value>Bandai сохраненное состояние является недействительным.</value></data>
-  <data name="Emulation.Bandai.Error.HostExecutableMissing"><value>Исполняемый путь хоста Bandai недоступен.</value></data>
-  <data name="Emulation.Bandai.Error.Details"><value>Подробности: {0}</value></data>
-  <data name="Emulation.Bandai.Error.HostProtocolFailure"><value>Связь с хостом Bandai не удалось.</value></data>
-  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand"><value>Неизвестная команда окружения: {0}</value></data>
+  <data name="Emulation.Bandai.Error.StateIncompatible" xml:space="preserve"><value>Сохраненное состояние Bandai несовместимо с текущей машиной.</value></data>
+  <data name="Emulation.Bandai.Error.Unexpected" xml:space="preserve"><value>Произошла неожиданная ошибка эмуляции Bandai.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareMissing" xml:space="preserve"><value>Необходимая прошивка Bandai отсутствует.</value></data>
+  <data name="Emulation.Bandai.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM является недействительной или несовместимой.</value></data>
+  <data name="Emulation.Bandai.Error.ContentNotFound" xml:space="preserve"><value>Настроенные средства массовой информации Bandai не были найдены.</value></data>
+  <data name="Emulation.Bandai.Error.ContentUnsupported" xml:space="preserve"><value>Данная машина не поддерживает выбранные носители.</value></data>
+  <data name="Emulation.Bandai.Error.OptionInvalid" xml:space="preserve"><value>Опцион Bandai имеет недействительное значение.</value></data>
+  <data name="Emulation.Bandai.Error.CoreNotFound" xml:space="preserve"><value>Требуемое ядро Bandai найдено не было.</value></data>
+  <data name="Emulation.Bandai.Error.CoreRejected" xml:space="preserve"><value>Выбранное ядро Bandai не могло быть загружено.</value></data>
+  <data name="Emulation.Bandai.Error.StateInvalid" xml:space="preserve"><value>Bandai сохраненное состояние является недействительным.</value></data>
+  <data name="Emulation.Bandai.Error.HostExecutableMissing" xml:space="preserve"><value>Исполняемый путь хоста Bandai недоступен.</value></data>
+  <data name="Emulation.Bandai.Error.Details" xml:space="preserve"><value>Подробности: {0}</value></data>
+  <data name="Emulation.Bandai.Error.HostProtocolFailure" xml:space="preserve"><value>Связь с хостом Bandai не удалось.</value></data>
+  <data name="Emulation.Bandai.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Неизвестная команда окружения: {0}</value></data>
 </root>

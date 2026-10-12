@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>เลือกรูปแบบภูมิทัศน์หรือภาพเคลื่อนไหว โหมดคู่มือจะใช้ปุ่มหมุนที่กําหนดให้ใช้</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>โหมดอัตโนมัติต่อไปนี้การวางจอภาพในการแสดงผล โหมดอื่น ๆ จะคงการควบคุมไว้ในแนวการจัดหน้าจอที่เลือก</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>เลือกสีที่จะใช้ในเกมสีเดียว</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>เลือกความลึกสีผลลัพธ์ โหมด 24 บิต ต้องการพลังงานประมวลผลมากขึ้น</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>ข้ามเฟรมวิดีโอเพื่อลดเสียงแตก โหมดโดยอัตโนมัติจะตามตลับเสียง โหมดด้วยตนเองจะใช้การเปิดรับเสียง</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>ในโหมดด้วยตนเอง, ข้ามเฟรมเมื่อบัฟเฟอร์เสียงอยู่ใต้เปอร์เซ็นต์นี้</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>ข้ามทุกเฟรมที่ห้าเพื่อแสดงเมื่อ 60 เอชซี นี้จะช่วยลดความเรียบในการเคลื่อนที่</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>อัตรา การ สุ่ม ตัว อย่าง สูง ขึ้น ช่วย ปรับ ปรุง คุณภาพ เสียง และ ต้อง ใช้ พลัง ใน การ ประมวล ผล มาก ขึ้น.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>ใช้ตัวกรองแบบ Light-pass เพื่อลดเสียง</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>สลับการกระทําของปุ่ม A และ B.</value></data>
+</root>

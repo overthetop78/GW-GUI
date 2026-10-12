@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Selectaţi orientarea peisajului sau portretului. Modul manual utilizează butonul de rotaţie atribuit.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>Modul automat urmează orientarea ecranului. Alte moduri păstrează comenzile în orientarea selectată.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Selectaţi culorile folosite pentru jocurile monocrome.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Selectaţi adâncimea culorii de ieşire. Modul 24-biţi necesită mai multă putere de procesare.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Sari peste rame video pentru a reduce trosnituri audio. Modul automat urmează tampon audio. Modul manual folosește pragul selectat.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>În modul manual, săriți peste rame atunci când tamponul audio scade sub acest procent.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Sari peste fiecare al cincilea cadru pentru a afișa la 60 Hz. Aceasta reduce netezimea mișcării.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Ratele mai mari de eșantionare îmbunătățește ușor calitatea audio și necesită mai multă putere de procesare.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Aplicaţi un filtru de trecere joasă pentru a îndulci sunetul.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Schimbă acțiunile butoanelor A și B.</value></data>
+</root>

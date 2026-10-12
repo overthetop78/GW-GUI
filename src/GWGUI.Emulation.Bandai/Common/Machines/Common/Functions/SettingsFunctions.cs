@@ -1,8 +1,4 @@
 using System.Globalization;
-using WS = GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Constants.OptionConstants;
-using PD = GWGUI.Emulation.Bandai.Emulators.PlaydiaEmu.Constants.OptionConstants;
-using GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Dictionaries;
-using GWGUI.Emulation.Bandai.Emulators.PlaydiaEmu.Dictionaries;
 
 namespace GWGUI.Emulation.Bandai.Common.Machines.Common.Functions;
 internal static class SettingsDescriptionFunctions
@@ -14,32 +10,8 @@ internal static class SettingsDescriptionFunctions
             Audio(configuration)
         };
         AddHardware(blocks, configuration);
-        if (configuration.Family == MachineFamily.WonderSwan)
-        {
-            AddNative(
-                blocks,
-                configuration,
-                BeetleWonderSwanOptionCatalog.All.Where(option => option.Key is not (WS.OptionLanguage or WS.OptionNameSource or WS.OptionBirthYear or WS.OptionBirthMonth or WS.OptionBirthDay or WS.OptionSex or WS.OptionBlood))
-            );
-        }
-        else if (configuration.Family == MachineFamily.Playdia)
-        {
-            AddNative(blocks, configuration, PlaydiaEmuOptionCatalog.All.Where(option => option.Key == PD.OptionSwapAb));
-        }
-        else
-            blocks.Add(Block(
-                    EmulationMachineTab.Rom,
-                    SettingsConstants.ResourceFirmware,
-                    new EmulationSettingsField(
-                        SettingsConstants.Firmware,
-                        EmulationMachineTab.Rom,
-                        SettingsConstants.ResourceFirmware,
-                        SettingsConstants.ResourceFirmware,
-                        EmulationSettingsEditor.Path,
-                        configuration.Firmwares.SingleOrDefault()?.Path,
-                        RequiresRestart: true
-                    )
-                ));
+        if (new Engine().Adapter(configuration)is IEmulatorSettings settings)
+            blocks.AddRange(settings.DescribeSettings(configuration));
         return blocks;
     }
 
@@ -50,15 +22,7 @@ internal static class SettingsDescriptionFunctions
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
         if (hardware is null)
-        {
-            blocks.Add(Block(
-                    EmulationMachineTab.General,
-                    SettingsConstants.ResourceEmulator,
-                    Information(SettingsConstants.PlaydiaHle, EmulationMachineTab.General, SettingsConstants.ResourceEmulator, SettingsConstants.ResourcePlaydiaHle, string.Empty)
-                ));
             return;
-        }
-
         blocks.Add(Block(
                 EmulationMachineTab.Cpu,
                 SettingsConstants.ResourceCpuProcessor,
@@ -104,53 +68,19 @@ internal static class SettingsDescriptionFunctions
     private static string Memory(long bytes) => bytes >= SettingsConstants.BytesPerKibibyte 
         ? $"{(bytes / SettingsConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture)} {SettingsConstants.KibibyteUnit}" 
         : $"{bytes.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.ByteUnit}";
-    private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
-    private static void AddNative(
-        List<EmulationSettingsBlock> blocks,
-        MachineConfiguration configuration,
-        IEnumerable<CoreOption> options
-    )
-    {
-        foreach (var group in options.GroupBy(option => option.Key switch
-        {
-            WS.OptionRotateDisplay or WS.OptionMonoPalette or WS.OptionGfxColors or WS.OptionFrameskip or WS.OptionFrameskipThreshold or WS.Option60hzMode => EmulationMachineTab.Video,
-            WS.OptionSoundSampleRate or WS.OptionSoundLowPass => EmulationMachineTab.Audio,
-            WS.OptionRotateKeymap or PD.OptionSwapAb => EmulationMachineTab.Controllers,
-            _ => EmulationMachineTab.General
-        }))
-        {
-            var resource = group.Key switch
-            {
-                EmulationMachineTab.Video => SettingsConstants.ResourceNativeVideo,
-                EmulationMachineTab.Audio => SettingsConstants.ResourceNativeAudio,
-                EmulationMachineTab.Controllers => SettingsConstants.ResourceNativeControls,
-                _ => SettingsConstants.ResourceOwner
-            };
-            blocks.Add(Block(group.Key, resource, group.Select(option => Native(configuration, option, group.Key, resource)).ToArray())with { IsCompact = group.Key == EmulationMachineTab.Audio });
-        }
-    }
-
-    private static EmulationSettingsField Native(
+    internal static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
+    internal static EmulationSettingsField Native(
         MachineConfiguration configuration,
         CoreOption option,
         EmulationMachineTab tab,
         string blockId
     )
     {
-        var resource = SettingsConstants.NativeOptionResourcePrefix + option.Key;
-        var choices = option.Values.Select((choice, index) => new EmulationSettingsChoice(
+        var resource = option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}.");
+        var choices = option.Values.Select(choice => new EmulationSettingsChoice(
                 choice.Value,
-                string.Format(CultureInfo.InvariantCulture, SettingsConstants.NativeChoiceResourceFormat, resource, index),
-                option.Key == WS.OptionGfxColors
-                    ? choice.Value switch
-                    {
-                        "16bit" => "16 bits",
-                        "24bit" => "24 bits",
-                        _ => choice.Value
-                    }
-                    : option.Key == WS.OptionSoundSampleRate && double.TryParse(choice.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out var hertz)
-                    ? $"{(hertz / SettingsConstants.HertzPerKilohertz).ToString("0.###", CultureInfo.CurrentCulture)} {SettingsConstants.KilohertzUnit}"
-                    : option.Key == WS.OptionMonoPalette && index > 0 ? choice.Label : null
+                choice.ResourceKey ?? (choice.InvariantDisplayValue is not null ? string.Empty : throw new InvalidOperationException($"Missing common choice for {option.Key}/{choice.Value}.")),
+                choice.InvariantDisplayValue
             )).ToArray();
         return new(
             option.Key,
@@ -160,8 +90,8 @@ internal static class SettingsDescriptionFunctions
             EmulationSettingsEditor.Selection,
             configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue),
             choices,
-            ExplanationResourceKey: resource + SettingsConstants.HelpResourceSuffix,
-            RequiresRestart: RuntimeOptionFunctions.RequiresRestart(configuration.Core, option.Key)
+            ExplanationResourceKey: option.ExplanationResourceKey,
+            RequiresRestart: false
         );
     }
 
@@ -198,5 +128,5 @@ internal static class SettingsDescriptionFunctions
         configuration.Options.GetValueOrDefault(id, fallback.ToString(CultureInfo.InvariantCulture)),
         values.Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture), string.Empty, $"{value.ToString(CultureInfo.InvariantCulture)} {unit}")).ToArray()
     );
-    private static EmulationSettingsBlock Block(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields) => new(resource, tab, resource, fields);
+    internal static EmulationSettingsBlock Block(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields) => new(resource, tab, resource, fields);
 }

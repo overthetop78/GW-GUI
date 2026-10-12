@@ -42,9 +42,6 @@ internal static class SettingsConstants
     internal const string ResourceNativeAudio = "Emulation.Bandai.Audio.Native";
     internal const string ResourceNativeControls = "Emulation.Bandai.Controls.Native";
     internal const string ResourceOwner = "Emulation.Bandai.Owner";
-    internal const string NativeOptionResourcePrefix = "Emulation.Bandai.Option.";
-    internal const string NativeChoiceResourceFormat = "{0}.Value{1}";
-    internal const string HelpResourceSuffix = ".Help";
     internal const string ResourceAudio = "Emulation.Audio";
     internal const string ResourceAudioEnabled = "Emulation.Audio.Enabled";
     internal const string ResourceAudioOutput = "Emulation.Audio.Output";

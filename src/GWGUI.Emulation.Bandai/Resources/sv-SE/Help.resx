@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Välj landskap eller porträtt orientering. Manuellt läge använder den tilldelade rotationsknappen.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>Automatiskt läge följer displayorienteringen. Andra lägen håller kontrollerna i den valda orienteringen.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Välj de färger som används för monokroma spel.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Välj utgångsfärgdjupet. 24-bitarsläget kräver mer bearbetningskraft.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Hoppa över videoramar för att minska ljudkracklingen. Automatiskt läge följer ljudbufferten. Manuellt läge använder det valda tröskelvärdet.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>I manuellt läge, hoppa ramar när ljudbufferten faller under denna procentandel.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Hoppa över varje femte ram för att visa på 60 Hz. Detta minskar rörelsesläckhet.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Högre provtagningsgrader förbättrar något ljudkvaliteten och kräver mer bearbetningskraft.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Applicera ett lågpassfilter för att mjuka ljudet.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Byt upp knapparna A och B.</value></data>
+</root>

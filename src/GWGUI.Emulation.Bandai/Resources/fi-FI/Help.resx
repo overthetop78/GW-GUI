@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Bandai.Setting.DisplayRotation.Help" xml:space="preserve"><value>Valitse maisema tai muotokuvan suunta. Manuaalinen tila käyttää määrättyä pyörimisnappia.</value></data>
+  <data name="Emulation.Bandai.Setting.ControlOrientation.Help" xml:space="preserve"><value>Automaattinen tila seuraa näytön suuntaa. Muut tilat pitävät ohjaimet valitussa suunnassa.</value></data>
+  <data name="Emulation.Bandai.Setting.MonochromePalette.Help" xml:space="preserve"><value>Valitse värit käytetään yksivärisiä pelejä.</value></data>
+  <data name="Emulation.Bandai.Setting.ColorDepth.Help" xml:space="preserve"><value>Valitse tulostusvärisyvyys. 24-bittinen tila vaatii enemmän prosessointitehoa.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipping.Help" xml:space="preserve"><value>Ohita videokehykset äänen särötyksen vähentämiseksi. Automaattinen tila seuraa audiopuskuria. Manuaalinen tila käyttää valittua kynnystä.</value></data>
+  <data name="Emulation.Bandai.Setting.FrameSkipThreshold.Help" xml:space="preserve"><value>Ohita kehykset manuaalitilassa, kun äänipuskuri laskee alle tämän prosenttiosuuden.</value></data>
+  <data name="Emulation.Bandai.Setting.FixedRefreshRate.Help" xml:space="preserve"><value>Ohita joka viides ruutu 60 Hz:n korkeudessa. Tämä vähentää liikkeen sujuvuutta.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioSampleRate.Help" xml:space="preserve"><value>Suuremmat näytteenottotaajuudet parantavat äänen laatua hieman ja vaativat enemmän käsittelytehoa.</value></data>
+  <data name="Emulation.Bandai.Setting.AudioFilter.Help" xml:space="preserve"><value>Käytä matalan pass-suodattimen pehmentää ääni.</value></data>
+  <data name="Emulation.Bandai.Setting.SwapButtons.Help" xml:space="preserve"><value>Vaihda painikkeiden A ja B.</value></data>
+</root>
