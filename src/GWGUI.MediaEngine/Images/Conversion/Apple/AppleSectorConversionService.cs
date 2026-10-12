@@ -16,10 +16,14 @@ public sealed class AppleSectorConversionService(AppleDiskImageReader imageReade
     /// <summary>Indique si le format et l'extension forment une cible sectorielle Apple cohérente.</summary>
     public static bool CanCreate(string formatId, string extension)
     {
-        if (extension.Equals(DiskImageFileExtensions.TwoMg, StringComparison.OrdinalIgnoreCase)) return IsSupportedFormat(formatId);
-        if (formatId.Equals(DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase)) return extension.Equals(DiskImageFileExtensions.D13, StringComparison.OrdinalIgnoreCase);
-        if (formatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase)) return extension.Equals(DiskImageFileExtensions.Do, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase);
-        if (AppleRawImageWriter.IsProDos140(formatId)) return extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Do, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase);
+        if (extension.Equals(DiskImageFileExtensions.TwoMg, StringComparison.OrdinalIgnoreCase))
+            return IsSupportedFormat(formatId);
+        if (formatId.Equals(DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase))
+            return extension.Equals(DiskImageFileExtensions.D13, StringComparison.OrdinalIgnoreCase);
+        if (formatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase))
+            return extension.Equals(DiskImageFileExtensions.Do, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase);
+        if (AppleRawImageWriter.IsProDos140(formatId))
+            return extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Do, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Dsk, StringComparison.OrdinalIgnoreCase);
         return formatId.Equals(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.Po, StringComparison.OrdinalIgnoreCase);
     }
 

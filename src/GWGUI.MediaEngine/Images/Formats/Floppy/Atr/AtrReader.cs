@@ -88,9 +88,7 @@ public sealed class AtrReader : IMediaImageReader
     {
         var sectorSize = BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.SectorSizeOffset));
         var payloadLength = GetUsablePayloadLength(data, sectorSize);
-        var sectorCount = sectorSize == AtrLayout.SingleDensitySectorSize
-            ? (payloadLength + sectorSize - 1) / sectorSize
-            : AtrLayout.GetSectorCount(payloadLength, sectorSize);
+        var sectorCount = sectorSize == AtrLayout.SingleDensitySectorSize ? (payloadLength + sectorSize - 1) / sectorSize : AtrLayout.GetSectorCount(payloadLength, sectorSize);
         var geometry = AtrLayout.GetGeometry(sectorSize, sectorCount);
         var blocks = new List<SectorBlock>(sectorCount);
         var offset = AtrLayout.HeaderSize;
@@ -103,11 +101,12 @@ public sealed class AtrReader : IMediaImageReader
             var sectorInTrack = logicalIndex % geometry.SectorsPerTrack + AtrLayout.FirstSectorNumber;
             var sectorData = new byte[length];
             var availableLength = Math.Min(length, data.Length - offset);
-            if (availableLength > 0) data.AsSpan(offset, availableLength).CopyTo(sectorData);
+            if (availableLength > 0)
+                data.AsSpan(offset, availableLength).CopyTo(sectorData);
             blocks.Add(new(logicalIndex, new(cylinder, AtrLayout.LogicalHeadIndex, sectorInTrack), sectorData));
             offset += availableLength;
         }
-
+    
         var isTruncatedSingleDensity = AtrLayout.IsTruncatedSingleDensity(sectorSize, sectorCount);
         if (isTruncatedSingleDensity)
         {
@@ -118,11 +117,21 @@ public sealed class AtrReader : IMediaImageReader
                 blocks.Add(new(logicalIndex, new(cylinder, AtrLayout.LogicalHeadIndex, sectorInTrack), new byte[AtrLayout.SingleDensitySectorSize]));
             }
         }
-        var capacity = isTruncatedSingleDensity
-            ? (long)AtrLayout.StandardSectorCount * AtrLayout.SingleDensitySectorSize
-            : payloadLength;
+    
+        var capacity = isTruncatedSingleDensity ? (long)AtrLayout.StandardSectorCount * AtrLayout.SingleDensitySectorSize : payloadLength;
         var logicalBlockCount = isTruncatedSingleDensity ? AtrLayout.StandardSectorCount : sectorCount;
-        return new(AtrFormat.GetFormatId(sectorSize, sectorCount), sectorSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, blocks, allowVariableBlockSize: sectorSize != AtrLayout.SingleDensitySectorSize, capacity: capacity, logicalBlockCount: logicalBlockCount, addressingKind: geometry.AddressingKind);
+        return new(
+            AtrFormat.GetFormatId(sectorSize, sectorCount),
+            sectorSize,
+            geometry.Cylinders,
+            geometry.Heads,
+            geometry.SectorsPerTrack,
+            blocks,
+            allowVariableBlockSize: sectorSize != AtrLayout.SingleDensitySectorSize,
+            capacity: capacity,
+            logicalBlockCount: logicalBlockCount,
+            addressingKind: geometry.AddressingKind
+        );
     }
 
     /// <summary>Charge un conteneur ATR et vÃ©rifie son en-tÃªte, ses longueurs et l'intÃ©gritÃ© de ses limites sectorielles.</summary>

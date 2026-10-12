@@ -40,15 +40,24 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
             var header = collection.Headers[index];
             var nextHeaderOffset = index + 1 < collection.Headers.Count ? collection.Headers[index + 1].Offset : int.MaxValue;
             var data = collection.DataBlocks.FirstOrDefault(candidate => candidate.Offset > header.EndOffset && candidate.Offset < nextHeaderOffset);
-            if (data is not null) pairedData.Add(data);
+            if (data is not null)
+                pairedData.Add(data);
             bool? dataValid = data?.ChecksumValid;
             bool? integrity = !header.ChecksumValid || dataValid == false ? false : dataValid is null ? null : true;
             var payload = data?.Bytes.Skip(Commodore900GcrFormat.DataPayloadOffset).Take(Commodore900GcrFormat.SectorByteCount).ToArray();
             sectors.Add(new(header.Cylinder, Commodore900GcrFormat.LogicalHead, header.Sector, Commodore900GcrFormat.SectorSizeCode, Commodore900GcrFormat.SectorByteCount, integrity, header.Offset, SectorIntegrityKind.Checksum, payload));
-            structures.Add(new(FluxStructureKind.CommodoreHeader, header.Offset, Math.Max(Commodore900GcrFormat.MinimumSyncBitCount, header.EndOffset - header.Offset), Commodore900GcrDescriptions.Header(header.Cylinder, header.Sector, header.ChecksumValid)));
-            if (data is not null) structures.Add(new(FluxStructureKind.FormatData, data.Offset, Math.Max(Commodore900GcrFormat.MinimumSyncBitCount, data.EndOffset - data.Offset), Commodore900GcrDescriptions.Data(header.Cylinder, header.Sector, data.ChecksumValid)));
+            structures.Add(new(
+                FluxStructureKind.CommodoreHeader,
+                header.Offset,
+                Math.Max(Commodore900GcrFormat.MinimumSyncBitCount, header.EndOffset - header.Offset),
+                Commodore900GcrDescriptions.Header(header.Cylinder, header.Sector, header.ChecksumValid)
+            ));
+            if (data is not null)
+                structures.Add(new(FluxStructureKind.FormatData, data.Offset, Math.Max(Commodore900GcrFormat.MinimumSyncBitCount, data.EndOffset - data.Offset), Commodore900GcrDescriptions.Data(header.Cylinder, header.Sector, data.ChecksumValid)));
         }
-        foreach (var data in collection.DataBlocks.Where(data => !pairedData.Contains(data))) structures.Add(new(FluxStructureKind.FormatData, data.Offset, Math.Max(Commodore900GcrFormat.MinimumSyncBitCount, data.EndOffset - data.Offset), Commodore900GcrDescriptions.UnpairedData(data.ChecksumValid)));
+    
+        foreach (var data in collection.DataBlocks.Where(data => !pairedData.Contains(data)))
+            structures.Add(new(FluxStructureKind.FormatData, data.Offset, Math.Max(Commodore900GcrFormat.MinimumSyncBitCount, data.EndOffset - data.Offset), Commodore900GcrDescriptions.UnpairedData(data.ChecksumValid)));
         return new(sectors, structures);
     }
 

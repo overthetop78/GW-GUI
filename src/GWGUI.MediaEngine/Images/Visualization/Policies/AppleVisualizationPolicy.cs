@@ -54,8 +54,8 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
 
     /// <inheritdoc />
     public override SectorAddress VisualAddress(SectorImage image, SectorAddress address) => image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) && image.Heads == DiskGeometryConstants.SingleSidedHeadCount && image.Cylinders > LisaFileWareGeometry.LinearTrackThreshold
-            ? new(address.Cylinder / LisaFileWareGeometry.HeadCount, address.Cylinder % LisaFileWareGeometry.HeadCount, address.Number)
-            : address;
+        ? new(address.Cylinder / LisaFileWareGeometry.HeadCount, address.Cylinder % LisaFileWareGeometry.HeadCount, address.Number)
+        : address;
 
     /// <inheritdoc />
     public override IReadOnlyDictionary<string, int>? TrackAttributes(SectorImage image, int sectorCount)

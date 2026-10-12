@@ -72,9 +72,19 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
             headers.Add(new(syncOffset, dataOffset + CommodoreGcrFormat.EncodedByteBitCount, null, 0, 0, 0, 0, null));
             return;
         }
+    
         decodedBytes.AddRange(decoded);
         var headerValid = decoded[CommodoreGcrFormat.HeaderMarkOffset] == CommodoreGcrFormat.HeaderMark && CommodoreGcrChecksum.IsValid(decoded.Skip(CommodoreGcrFormat.HeaderChecksumOffset));
-        headers.Add(new(syncOffset, dataOffset + CommodoreGcrFormat.EncodedHeaderBitCount, decoded, decoded[CommodoreGcrFormat.HeaderTrackOffset], decoded[CommodoreGcrFormat.HeaderSectorOffset], decoded[CommodoreGcrFormat.HeaderDiskId2Offset], decoded[CommodoreGcrFormat.HeaderDiskId1Offset], headerValid));
+        headers.Add(new(
+            syncOffset,
+            dataOffset + CommodoreGcrFormat.EncodedHeaderBitCount,
+            decoded,
+            decoded[CommodoreGcrFormat.HeaderTrackOffset],
+            decoded[CommodoreGcrFormat.HeaderSectorOffset],
+            decoded[CommodoreGcrFormat.HeaderDiskId2Offset],
+            decoded[CommodoreGcrFormat.HeaderDiskId1Offset],
+            headerValid
+        ));
     }
 
     /// <summary>Décode et conserve un bloc de données rencontré après une synchronisation.</summary>

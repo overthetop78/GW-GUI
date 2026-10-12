@@ -172,12 +172,7 @@ public sealed class VmdkWriter : IMediaImageWriter
         output.Position = end;
     }
 
-    private static byte[] CreateDescriptor(
-        BlockMediaImageRepresentation blocks,
-        string createType,
-        string extentType,
-        string extentFileName,
-        string extentSuffix)
+    private static byte[] CreateDescriptor(BlockMediaImageRepresentation blocks, string createType, string extentType, string extentFileName, string extentSuffix)
     {
         var capacitySectors = blocks.Capacity / HardDiskFormatConstants.LegacyLogicalSectorSize;
         var contentId = (uint)Random.Shared.NextInt64(1, uint.MaxValue);

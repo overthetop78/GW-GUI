@@ -22,19 +22,32 @@ public sealed class MicralNFmDecoder : IFluxDecoder
         var decodedBytes = new List<byte>();
         for (var offset = 0; offset + MicralNFmFormat.MarkBitCount <= stream.Bits.Length; offset++)
         {
-            if (!FluxBitReader.MatchBytes(stream, offset, MicralNFmFormat.SectorMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, MicralNFmFormat.SectorMark))
+                continue;
             var block = TryDecodeBlock(stream, offset);
             if (block is null)
             {
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, MicralNFmFormat.MarkBitCount, FluxStructureDescriptions.Truncated(MicralNFmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, null, "hard-sector block, checksum unavailable")));
+                structures.Add(new(
+                    FluxStructureKind.FormatHeader,
+                    offset,
+                    MicralNFmFormat.MarkBitCount,
+                    FluxStructureDescriptions.Truncated(MicralNFmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, null, "hard-sector block, checksum unavailable")
+                ));
                 offset += MicralNFmFormat.ScanAdvance;
                 continue;
             }
+    
             decodedBytes.AddRange(block.Data);
             sectors.Add(new(block.Cylinder, MicralNFmFormat.LogicalHead, block.Sector, MicralNFmFormat.SectorSizeCode, MicralNFmFormat.SectorSize, block.ChecksumValid, offset, SectorIntegrityKind.Checksum, Data: block.Data));
-            structures.Add(new(FluxStructureKind.FormatHeader, offset, MicralNFmFormat.BlockBitCount, $"{FluxStructureDescriptions.Identity(MicralNFmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, block.Cylinder, MicralNFmFormat.LogicalHead, block.Sector, MicralNFmFormat.SectorSize, MicralNFmFormat.AddressMark, null)}, {FluxStructureDescriptions.Integrity("checksum", block.ChecksumValid)}"));
+            structures.Add(new(
+                FluxStructureKind.FormatHeader,
+                offset,
+                MicralNFmFormat.BlockBitCount,
+                $"{FluxStructureDescriptions.Identity(MicralNFmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, block.Cylinder, MicralNFmFormat.LogicalHead, block.Sector, MicralNFmFormat.SectorSize, MicralNFmFormat.AddressMark, null)}, {FluxStructureDescriptions.Integrity("checksum", block.ChecksumValid)}"
+            ));
             offset += MicralNFmFormat.ScanAdvance;
         }
+    
         var confidence = FluxDecoderConfidence.Calculate(sectors.Count, structures.Count, MicralNFmFormat.ConfidenceSectorWeight, MicralNFmFormat.ConfidenceDivisor);
         return new(Id, DisplayName, confidence, stream.BitCellTicks, structures, decodedBytes, sectors);
     }

@@ -36,7 +36,18 @@ public sealed class SectorImageFluxVisualizer
         var start = tracks.Min(track => track.TrackNumber);
         var end = tracks.Max(track => track.TrackNumber);
         var heads = tracks.Select(track => track.Head).Distinct().Count() == 1 ? tracks[0].Head == 0 ? ScpHeadSelection.Side0 : ScpHeadSelection.Side1 : ScpHeadSelection.Both;
-        var header = new ScpHeader(ScpVisualizationDefaults.Version, ScpVisualizationDefaults.DiskType, ScpVisualizationDefaults.RevolutionCount, start, end, ScpFlags.IndexAligned | ScpFlags.Writable, ScpBitCellEncoding.Default16Bit, heads, ScpVisualizationDefaults.Resolution, ScpVisualizationDefaults.Checksum);
+        var header = new ScpHeader(
+            ScpVisualizationDefaults.Version,
+            ScpVisualizationDefaults.DiskType,
+            ScpVisualizationDefaults.RevolutionCount,
+            start,
+            end,
+            ScpFlags.IndexAligned | ScpFlags.Writable,
+            ScpBitCellEncoding.Default16Bit,
+            heads,
+            ScpVisualizationDefaults.Resolution,
+            ScpVisualizationDefaults.Checksum
+        );
         return new(header, tracks, true, image.Capacity);
     }
 

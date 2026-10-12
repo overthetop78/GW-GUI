@@ -47,10 +47,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
     }
 
     /// <summary>Reconstruit les secteurs GCR zonés d'une disquette Commodore 900.</summary>
-    private SectorImage Read900(
-        ScpImage scp,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    private SectorImage Read900(ScpImage scp, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var candidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
         var completed = 0;
@@ -62,27 +59,42 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
                 ReportTrack(progress, track, ++completed, scp.Tracks.Count);
                 continue;
             }
+    
             foreach (var window in ScpTrackDecodeWindowFactory.Create(track))
             {
                 var decoded = decoders.Decode(FluxCodecIds.Commodore900Gcr, window.Flux);
                 foreach (var sector in decoded.Sectors)
                 {
-                    if (sector.Data is null || sector.Data.Count != Commodore900Geometry.SectorSize || sector.Cylinder != track.Cylinder || sector.Number < 0 || sector.Number >= Commodore900Geometry.SectorsPerTrack(track.Cylinder)) continue;
+                    if (sector.Data is null || sector.Data.Count != Commodore900Geometry.SectorSize || sector.Cylinder != track.Cylinder || sector.Number < 0 || sector.Number >= Commodore900Geometry.SectorsPerTrack(track.Cylinder))
+                        continue;
                     var address = new SectorAddress(track.Cylinder, track.Head, sector.Number);
-                    if (!candidates.TryGetValue(address, out var list)) candidates[address] = list = [];
+                    if (!candidates.TryGetValue(address, out var list))
+                        candidates[address] = list = [];
                     list.Add((sector, window.Revolution));
                 }
             }
+    
             ReportTrack(progress, track, ++completed, scp.Tracks.Count);
         }
-        if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(Commodore900GcrFormat.StructureDescriptionName);
+    
+        if (candidates.Count == 0)
+            throw ScpReconstructionExceptions.NoDecodedSectors(Commodore900GcrFormat.StructureDescriptionName);
         var blocks = candidates.Select(candidate =>
         {
             var best = SectorCandidateSelector.Best(candidate.Value, value => value.Sector.IntegrityValid);
             return new SectorBlock(Commodore900Geometry.LogicalBlockOf(candidate.Key), candidate.Key, best.Sector.Data!.ToArray(), best.Sector.IntegrityValid, best.Revolution);
         }).ToArray();
         var blockCount = blocks.Max(block => block.LogicalBlock) + 1;
-        return new(DiskImageFormatIds.Commodore900Coherent, Commodore900Geometry.SectorSize, Commodore900Geometry.CylinderCount, Commodore900Geometry.HeadCount, Commodore900Geometry.MaximumSectorsPerTrack, blocks, capacity: (long)blockCount * Commodore900Geometry.SectorSize, logicalBlockCount: blockCount);
+        return new(
+            DiskImageFormatIds.Commodore900Coherent,
+            Commodore900Geometry.SectorSize,
+            Commodore900Geometry.CylinderCount,
+            Commodore900Geometry.HeadCount,
+            Commodore900Geometry.MaximumSectorsPerTrack,
+            blocks,
+            capacity: (long)blockCount * Commodore900Geometry.SectorSize,
+            logicalBlockCount: blockCount
+        );
     }
 
     /// <summary>Reconstruit une image 1541 ou 1571 depuis les secteurs GCR.</summary>
@@ -144,10 +156,7 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
     /// <param name="cancellationToken">Jeton permettant d'annuler le décodage.</param>
     /// <returns>L'image 1581 reconstruite en blocs logiques de 256 octets.</returns>
     /// <exception cref="InvalidDataException">Aucun secteur MFM n'a été décodé ou tous les candidats sortent de la géométrie physique 1581.</exception>
-    private SectorImage Read1581(
-        ScpImage scp,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    private SectorImage Read1581(ScpImage scp, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var candidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
         var completed = 0;
@@ -159,29 +168,43 @@ public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDeco
                 var decoded = decoders.Decode(FluxCodecIds.IsoMfm, window.Flux);
                 foreach (var sector in decoded.Sectors)
                 {
-                    if (sector.Data is null || sector.Data.Count != Commodore1581Geometry.PhysicalSectorSize || sector.Number is < 1 or > Commodore1581Geometry.PhysicalSectorsPerTrack) continue;
+                    if (sector.Data is null || sector.Data.Count != Commodore1581Geometry.PhysicalSectorSize || sector.Number is < 1 or > Commodore1581Geometry.PhysicalSectorsPerTrack)
+                        continue;
                     var address = new SectorAddress(track.Cylinder, track.Head, sector.Number);
-                    if (!candidates.TryGetValue(address, out var list)) candidates[address] = list = [];
+                    if (!candidates.TryGetValue(address, out var list))
+                        candidates[address] = list = [];
                     list.Add((sector, window.Revolution));
                 }
             }
+    
             ReportTrack(progress, track, ++completed, scp.Tracks.Count);
         }
-        if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(Commodore1581Geometry.StructureDescriptionName);
+    
+        if (candidates.Count == 0)
+            throw ScpReconstructionExceptions.NoDecodedSectors(Commodore1581Geometry.StructureDescriptionName);
         var blocks = new List<SectorBlock>();
-        foreach (var (address, values) in candidates)
+        foreach (var(address, values)in candidates)
         {
-            if (address.Cylinder is < 0 or >= Commodore1581Geometry.LogicalCylinderCount || address.Head is < 0 or >= Commodore1581Geometry.PhysicalHeadCount) continue;
+            if (address.Cylinder is < 0 or >= Commodore1581Geometry.LogicalCylinderCount || address.Head is < 0 or >= Commodore1581Geometry.PhysicalHeadCount)
+                continue;
             var best = SectorCandidateSelector.Best(values, value => value.Sector.IntegrityValid);
             var physical = best.Sector.Data!.ToArray();
             var logicalBase = Commodore1581Geometry.PhysicalSectorToLogicalBlock(address.Cylinder, address.Head, address.Number);
             for (var half = 0; half < Commodore1581Geometry.LogicalBlocksPerPhysicalSector; half++)
             {
                 var logical = logicalBase + half;
-                blocks.Add(new(logical, new(logical / Commodore1581Geometry.LogicalBlocksPerTrack, 0, logical % Commodore1581Geometry.LogicalBlocksPerTrack), physical.AsSpan(half * Commodore1581Geometry.LogicalBlockSize, Commodore1581Geometry.LogicalBlockSize).ToArray(), best.Sector.IntegrityValid, best.Revolution));
+                blocks.Add(new(
+                    logical,
+                    new(logical / Commodore1581Geometry.LogicalBlocksPerTrack, 0, logical % Commodore1581Geometry.LogicalBlocksPerTrack),
+                    physical.AsSpan(half * Commodore1581Geometry.LogicalBlockSize, Commodore1581Geometry.LogicalBlockSize).ToArray(),
+                    best.Sector.IntegrityValid,
+                    best.Revolution
+                ));
             }
         }
-        if (blocks.Count == 0) throw ScpReconstructionExceptions.NoUsableSectors(Commodore1581Geometry.StructureDescriptionName);
+    
+        if (blocks.Count == 0)
+            throw ScpReconstructionExceptions.NoUsableSectors(Commodore1581Geometry.StructureDescriptionName);
         return new(DiskImageFormatIds.Commodore1581, Commodore1581Geometry.LogicalBlockSize, Commodore1581Geometry.LogicalCylinderCount, Commodore1581Geometry.LogicalHeadCount, Commodore1581Geometry.LogicalBlocksPerTrack, blocks);
     }
 

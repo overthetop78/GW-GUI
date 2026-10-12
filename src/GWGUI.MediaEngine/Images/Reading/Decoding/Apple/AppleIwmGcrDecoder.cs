@@ -69,14 +69,21 @@ public abstract class AppleIwmGcrDecoder : IFluxDecoder
     private static AppleIwmDataDecodeResult FindAndDecodeData(FluxBitstream stream, int headerEnd, AppleIwmAddressDecodeResult? address, List<FluxStructure> structures, List<byte> bytes, HashSet<int> pairedData)
     {
         var dataOffset = address?.Valid == true ? FindMark(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + AppleIwmGcrFormat.DataSearchBitCount), AppleIwmGcrFormat.DataMark) : -1;
-        if (dataOffset < 0) return new(null, null, null, headerEnd);
+        if (dataOffset < 0)
+            return new(null, null, null, headerEnd);
         pairedData.Add(dataOffset);
         var encoded = TryReadSymbols(stream, dataOffset + AppleIwmGcrFormat.MarkBitCount, AppleIwmGcrFormat.DataSymbolCount);
         if (encoded is null || !encoded.All(AppleIIGcrFormat.InverseSixAndTwoTable.ContainsKey))
         {
-            structures.Add(new(FluxStructureKind.AppleData, dataOffset, AppleIwmGcrFormat.MarkBitCount, FluxStructureDescriptions.Truncated(AppleIwmGcrFormat.StructureDescriptionName, FluxStructureKind.AppleData, null, AppleIwmGcrFormat.UnavailableChecksumVariant)));
+            structures.Add(new(
+                FluxStructureKind.AppleData,
+                dataOffset,
+                AppleIwmGcrFormat.MarkBitCount,
+                FluxStructureDescriptions.Truncated(AppleIwmGcrFormat.StructureDescriptionName, FluxStructureKind.AppleData, null, AppleIwmGcrFormat.UnavailableChecksumVariant)
+            ));
             return new(null, null, null, headerEnd);
         }
+    
         var values = encoded.Select(value => AppleIIGcrFormat.InverseSixAndTwoTable[value]).ToArray();
         var decoded = AppleIwmGcrCodec.Decode(values.AsSpan(1, AppleIwmGcrFormat.EncodedPayloadSymbolCount), out var checksum);
         var valid = checksum[3] == values[AppleIwmGcrFormat.PackedChecksumSymbolOffset] && checksum[2] == values[AppleIwmGcrFormat.ThirdChecksumSymbolOffset] && checksum[1] == values[AppleIwmGcrFormat.SecondChecksumSymbolOffset] && checksum[0] == values[AppleIwmGcrFormat.FirstChecksumSymbolOffset];
@@ -84,7 +91,23 @@ public abstract class AppleIwmGcrDecoder : IFluxDecoder
         var data = decoded.Skip(AppleIwmGcrFormat.TagByteCount).Take(AppleIwmGcrFormat.SectorByteCount).ToArray();
         var structureEnd = dataOffset + AppleIwmGcrFormat.MarkBitCount + AppleIwmGcrFormat.DataSymbolCount * BitPrimitives.BitsPerByte;
         bytes.AddRange(data);
-        structures.Add(new(FluxStructureKind.AppleData, dataOffset, structureEnd - dataOffset, FluxStructureDescriptions.WithIntegrity(AppleIwmGcrFormat.StructureDescriptionName, FluxStructureKind.AppleData, address?.Cylinder ?? 0, address?.Head ?? 0, address?.Sector ?? 0, AppleIwmGcrFormat.SectorByteCount, null, null, AppleIwmGcrFormat.ChecksumLabel, valid)));
+        structures.Add(new(
+            FluxStructureKind.AppleData,
+            dataOffset,
+            structureEnd - dataOffset,
+            FluxStructureDescriptions.WithIntegrity(
+            AppleIwmGcrFormat.StructureDescriptionName,
+            FluxStructureKind.AppleData,
+            address?.Cylinder ?? 0,
+            address?.Head ?? 0,
+            address?.Sector ?? 0,
+            AppleIwmGcrFormat.SectorByteCount,
+            null,
+            null,
+            AppleIwmGcrFormat.ChecksumLabel,
+            valid
+        )
+        ));
         return new(data, tag, valid, structureEnd);
     }
 
@@ -93,8 +116,38 @@ public abstract class AppleIwmGcrDecoder : IFluxDecoder
     private static void AddSectorAndAddress(int offset, int headerEnd, AppleIwmAddressDecodeResult? address, AppleIwmDataDecodeResult data, List<DecodedSector> sectors, List<FluxStructure> structures)
     {
         bool? integrity = address?.Valid == false || data.Valid == false ? false : data.Valid is null ? null : true;
-        sectors.Add(new(address?.Cylinder ?? 0, address?.Head ?? 0, address?.Sector ?? 0, SectorSizeCode.FromByteCount(AppleIwmGcrFormat.SectorByteCount), AppleIwmGcrFormat.SectorByteCount, integrity, offset, SectorIntegrityKind.Checksum, data.Data, data.Tag, address?.Format));
-        structures.Add(new(FluxStructureKind.AppleAddress, offset, Math.Max(AppleIwmGcrFormat.MarkBitCount, headerEnd - offset), FluxStructureDescriptions.Complete(AppleIwmGcrFormat.StructureDescriptionName, FluxStructureKind.AppleAddress, address?.Cylinder ?? 0, address?.Head ?? 0, address?.Sector ?? 0, AppleIwmGcrFormat.SectorByteCount, null, null, address?.Valid, data.Valid, AppleIwmGcrFormat.AddressChecksumLabel, AppleIwmGcrFormat.DataChecksumLabel)));
+        sectors.Add(new(
+            address?.Cylinder ?? 0,
+            address?.Head ?? 0,
+            address?.Sector ?? 0,
+            SectorSizeCode.FromByteCount(AppleIwmGcrFormat.SectorByteCount),
+            AppleIwmGcrFormat.SectorByteCount,
+            integrity,
+            offset,
+            SectorIntegrityKind.Checksum,
+            data.Data,
+            data.Tag,
+            address?.Format
+        ));
+        structures.Add(new(
+            FluxStructureKind.AppleAddress,
+            offset,
+            Math.Max(AppleIwmGcrFormat.MarkBitCount, headerEnd - offset),
+            FluxStructureDescriptions.Complete(
+            AppleIwmGcrFormat.StructureDescriptionName,
+            FluxStructureKind.AppleAddress,
+            address?.Cylinder ?? 0,
+            address?.Head ?? 0,
+            address?.Sector ?? 0,
+            AppleIwmGcrFormat.SectorByteCount,
+            null,
+            null,
+            address?.Valid,
+            data.Valid,
+            AppleIwmGcrFormat.AddressChecksumLabel,
+            AppleIwmGcrFormat.DataChecksumLabel
+        )
+        ));
     }
 
     /// <summary>Ajoute les marques de données qui n'ont été associées à aucune adresse.</summary>

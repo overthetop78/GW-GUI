@@ -23,6 +23,14 @@ internal sealed class UcsdIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy
         ArgumentNullException.ThrowIfNull(formatId);
         var candidates = candidateSet.Physical;
         var measured = IsoSectorImageBuilder.Measure(candidates);
-        return IsoSectorImageBuilder.CreateUniform(formatId, candidates, measured.SectorSize, measured.Cylinders, UcsdIbmMfmGeometry.HeadCount, UcsdIbmMfmGeometry.LogicalSectorsPerCylinder, address => Array.IndexOf(candidates.Keys.Where(item => item.Cylinder == address.Cylinder && item.Head == address.Head).Select(item => item.Number).Distinct().OrderBy(number => number).ToArray(), address.Number));
+        return IsoSectorImageBuilder.CreateUniform(
+            formatId,
+            candidates,
+            measured.SectorSize,
+            measured.Cylinders,
+            UcsdIbmMfmGeometry.HeadCount,
+            UcsdIbmMfmGeometry.LogicalSectorsPerCylinder,
+            address => Array.IndexOf(candidates.Keys.Where(item => item.Cylinder == address.Cylinder && item.Head == address.Head).Select(item => item.Number).Distinct().OrderBy(number => number).ToArray(), address.Number)
+        );
     }
 }

@@ -4,7 +4,20 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
 internal static class HeathkitFmDescriptions
 {
     /// <summary>Décrit un en-tête et les checksums associés.</summary>
-    public static string Header(HeathkitHeader header, bool? dataValid) => FluxStructureDescriptions.Complete(HeathkitFmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, header.Cylinder, HeathkitFmFormat.LogicalHead, header.Sector, HeathkitFmFormat.SectorSize, null, $"volume {header.Volume}", header.ChecksumValid, dataValid, "header checksum", "data checksum");
+    public static string Header(HeathkitHeader header, bool? dataValid) => FluxStructureDescriptions.Complete(
+        HeathkitFmFormat.StructureDescriptionName,
+        FluxStructureKind.FormatHeader,
+        header.Cylinder,
+        HeathkitFmFormat.LogicalHead,
+        header.Sector,
+        HeathkitFmFormat.SectorSize,
+        null,
+        $"volume {header.Volume}",
+        header.ChecksumValid,
+        dataValid,
+        "header checksum",
+        "data checksum"
+    );
     /// <summary>Décrit un bloc de données et son checksum.</summary>
     public static string Data(HeathkitHeader header, bool valid) => FluxStructureDescriptions.WithIntegrity(HeathkitFmFormat.StructureDescriptionName, FluxStructureKind.FormatData, header.Cylinder, HeathkitFmFormat.LogicalHead, header.Sector, HeathkitFmFormat.SectorSize, null, null, "checksum", valid);
     /// <summary>Décrit une marque tronquée.</summary>

@@ -15,8 +15,11 @@ public sealed class D81ConversionService(CommodoreScpSectorImageReader scpReader
     /// <summary>Reconstruit ou relit la source puis écrit son ordre logique D81.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)
     {
-        if (!CanCreate(formatId, Path.GetExtension(outputPath))) throw new InvalidDataException($"Format '{formatId}' cannot be written to '{Path.GetExtension(outputPath)}' as D81.");
-        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) ? await scpReader.ReadAsync(sourcePath, DiskImageFormatIds.Commodore1581, cancellationToken).ConfigureAwait(false) : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        if (!CanCreate(formatId, Path.GetExtension(outputPath)))
+            throw new InvalidDataException($"Format '{formatId}' cannot be written to '{Path.GetExtension(outputPath)}' as D81.");
+        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase)
+            ? await scpReader.ReadAsync(sourcePath, DiskImageFormatIds.Commodore1581, cancellationToken).ConfigureAwait(false)
+            : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         await writer.WriteAsync(image, outputPath, cancellationToken).ConfigureAwait(false);
     }
 }

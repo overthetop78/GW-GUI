@@ -16,9 +16,11 @@ public sealed class CpcDskWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWr
     private static byte[] Build(CpcDskImage image)
     {
         var trackCount = checked(image.Cylinders * image.Heads);
-        if (image.Cylinders is < CpcDskLayout.MinimumCylinderCount or > CpcDskLayout.MaximumCylinderCount || image.Heads is < CpcDskLayout.MinimumHeadCount or > CpcDskLayout.MaximumHeadCount || image.Tracks.Count != trackCount) throw CpcDskExceptions.InvalidContainer("the declared geometry and track collection disagree");
+        if (image.Cylinders is < CpcDskLayout.MinimumCylinderCount or > CpcDskLayout.MaximumCylinderCount || image.Heads is < CpcDskLayout.MinimumHeadCount or > CpcDskLayout.MaximumHeadCount || image.Tracks.Count != trackCount)
+            throw CpcDskExceptions.InvalidContainer("the declared geometry and track collection disagree");
         var serializedTracks = image.Tracks.Select((track, index) => SerializeTrack(track, index, image.Kind)).ToArray();
-        if (image.Kind == CpcDskContainerKind.Standard) ValidateStandardTracks(serializedTracks);
+        if (image.Kind == CpcDskContainerKind.Standard)
+            ValidateStandardTracks(serializedTracks);
         var header = new byte[CpcDskLayout.DiskInformationBlockSize];
         (image.Kind == CpcDskContainerKind.Extended ? CpcDskFormat.ExtendedHeaderBytes : CpcDskFormat.StandardHeaderBytes).CopyTo(header);
         System.Text.Encoding.ASCII.GetBytes(CpcDskFormat.Creator).CopyTo(header, CpcDskLayout.CreatorOffset);
@@ -27,7 +29,8 @@ public sealed class CpcDskWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWr
         if (image.Kind == CpcDskContainerKind.Standard)
             BinaryPrimitives.WriteUInt16LittleEndian(header.AsSpan(CpcDskLayout.StandardTrackSizeOffset), checked((ushort)serializedTracks[0].Length));
         else
-            for (var index = 0; index < serializedTracks.Length; index++) header[CpcDskLayout.ExtendedTrackSizeTableOffset + index] = checked((byte)(serializedTracks[index].Length / CpcDskLayout.ExtendedTrackSizeUnit));
+            for (var index = 0; index < serializedTracks.Length; index++)
+                header[CpcDskLayout.ExtendedTrackSizeTableOffset + index] = checked((byte)(serializedTracks[index].Length / CpcDskLayout.ExtendedTrackSizeUnit));
         var output = new byte[header.Length + serializedTracks.Sum(track => track.Length)];
         header.CopyTo(output, 0);
         var position = header.Length;
@@ -36,6 +39,7 @@ public sealed class CpcDskWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWr
             track.CopyTo(output, position);
             position += track.Length;
         }
+    
         return output;
     }
 

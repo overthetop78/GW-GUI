@@ -21,15 +21,17 @@ internal static class AppleIwmGcrCodec
             b2[index] = (byte)((w2 & AppleIwmGcrFormat.SixBitMask) | ((w4 << AppleIwmGcrFormat.SecondChecksumShift) & AppleIwmGcrFormat.EncodedHighBitsMask));
             b3[index] = (byte)((w3 & AppleIwmGcrFormat.SixBitMask) | ((w4 << AppleIwmGcrFormat.FirstChecksumShift) & AppleIwmGcrFormat.EncodedHighBitsMask));
         }
+    
         var output = new byte[AppleIwmGcrFormat.TaggedSectorByteCount];
         uint c1 = 0;
         uint c2 = 0;
         uint c3 = 0;
         var destination = 0;
-        for (var index = 0; ; index++)
+        for (var index = 0;; index++)
         {
             c1 = (c1 & AppleIwmGcrFormat.ChecksumByteMask) << 1;
-            if ((c1 & AppleIwmGcrFormat.ChecksumCarryBit) != 0) c1++;
+            if ((c1 & AppleIwmGcrFormat.ChecksumCarryBit) != 0)
+                c1++;
             var value = (byte)(b1[index] ^ c1);
             c3 += value;
             if ((c1 & AppleIwmGcrFormat.ChecksumCarryBit) != 0)
@@ -37,6 +39,7 @@ internal static class AppleIwmGcrCodec
                 c3++;
                 c1 &= AppleIwmGcrFormat.ChecksumByteMask;
             }
+    
             output[destination++] = value;
             value = (byte)(b2[index] ^ c3);
             c2 += value;
@@ -45,8 +48,10 @@ internal static class AppleIwmGcrCodec
                 c2++;
                 c3 &= AppleIwmGcrFormat.ChecksumByteMask;
             }
+    
             output[destination++] = value;
-            if (destination == AppleIwmGcrFormat.TaggedSectorByteCount) break;
+            if (destination == AppleIwmGcrFormat.TaggedSectorByteCount)
+                break;
             value = (byte)(b3[index] ^ c2);
             c1 += value;
             if (c2 > AppleIwmGcrFormat.ChecksumByteMask)
@@ -54,9 +59,16 @@ internal static class AppleIwmGcrCodec
                 c1++;
                 c2 &= AppleIwmGcrFormat.ChecksumByteMask;
             }
+    
             output[destination++] = value;
         }
-        checksum = [(byte)(c1 & AppleIwmGcrFormat.SixBitMask), (byte)(c2 & AppleIwmGcrFormat.SixBitMask), (byte)(c3 & AppleIwmGcrFormat.SixBitMask), (byte)(((c1 & AppleIwmGcrFormat.ChecksumHighBitsMask) >> AppleIwmGcrFormat.FirstChecksumShift) | ((c2 & AppleIwmGcrFormat.ChecksumHighBitsMask) >> AppleIwmGcrFormat.SecondChecksumShift) | ((c3 & AppleIwmGcrFormat.ChecksumHighBitsMask) >> AppleIwmGcrFormat.ThirdChecksumShift))];
+    
+        checksum = [
+            (byte)(c1 & AppleIwmGcrFormat.SixBitMask),
+            (byte)(c2 & AppleIwmGcrFormat.SixBitMask),
+            (byte)(c3 & AppleIwmGcrFormat.SixBitMask),
+            (byte)(((c1 & AppleIwmGcrFormat.ChecksumHighBitsMask) >> AppleIwmGcrFormat.FirstChecksumShift) | ((c2 & AppleIwmGcrFormat.ChecksumHighBitsMask) >> AppleIwmGcrFormat.SecondChecksumShift) | ((c3 & AppleIwmGcrFormat.ChecksumHighBitsMask) >> AppleIwmGcrFormat.ThirdChecksumShift))
+        ];
         return output;
     }
 
@@ -64,7 +76,8 @@ internal static class AppleIwmGcrCodec
     /// <param name="source">Douze octets de tags suivis des 512 octets sectoriels.</param><returns>Symboles GCR encodés.</returns>
     public static byte[] Encode(IReadOnlyList<byte> source)
     {
-        if (source.Count != AppleIwmGcrFormat.TaggedSectorByteCount) throw AppleIwmGcrFormat.InvalidTaggedSectorSize(source.Count);
+        if (source.Count != AppleIwmGcrFormat.TaggedSectorByteCount)
+            throw AppleIwmGcrFormat.InvalidTaggedSectorSize(source.Count);
         var b1 = new byte[AppleIwmGcrFormat.GroupByteCount];
         var b2 = new byte[AppleIwmGcrFormat.GroupByteCount];
         var b3 = new byte[AppleIwmGcrFormat.GroupByteCount];
@@ -72,10 +85,11 @@ internal static class AppleIwmGcrCodec
         uint c2 = 0;
         uint c3 = 0;
         var position = 0;
-        for (var index = 0; ; index++)
+        for (var index = 0;; index++)
         {
             c1 = (c1 & AppleIwmGcrFormat.ChecksumByteMask) << 1;
-            if ((c1 & AppleIwmGcrFormat.ChecksumCarryBit) != 0) c1++;
+            if ((c1 & AppleIwmGcrFormat.ChecksumCarryBit) != 0)
+                c1++;
             var value = source[position++];
             b1[index] = (byte)(value ^ c1);
             c3 += value;
@@ -84,6 +98,7 @@ internal static class AppleIwmGcrCodec
                 c3++;
                 c1 &= AppleIwmGcrFormat.ChecksumByteMask;
             }
+    
             value = source[position++];
             b2[index] = (byte)(value ^ c3);
             c2 += value;
@@ -92,7 +107,9 @@ internal static class AppleIwmGcrCodec
                 c2++;
                 c3 &= AppleIwmGcrFormat.ChecksumByteMask;
             }
-            if (position == source.Count) break;
+    
+            if (position == source.Count)
+                break;
             value = source[position++];
             b3[index] = (byte)(value ^ c2);
             c1 += value;
@@ -102,14 +119,17 @@ internal static class AppleIwmGcrCodec
                 c2 &= AppleIwmGcrFormat.ChecksumByteMask;
             }
         }
+    
         var symbols = new List<byte>(AppleIwmGcrFormat.EncodedPayloadSymbolCount + AppleIwmGcrFormat.ChecksumSymbolCount);
         for (var index = 0; index <= AppleIwmGcrFormat.LastGroupIndex; index++)
         {
             symbols.Add((byte)(((b1[index] >> AppleIwmGcrFormat.ThirdChecksumShift) & AppleIwmGcrFormat.FirstPackedChecksumMask) | ((b2[index] >> AppleIwmGcrFormat.SecondChecksumShift) & AppleIwmGcrFormat.SecondPackedChecksumMask) | ((b3[index] >> AppleIwmGcrFormat.FirstChecksumShift) & AppleIwmGcrFormat.ThirdPackedChecksumMask)));
             symbols.Add((byte)(b1[index] & AppleIwmGcrFormat.SixBitMask));
             symbols.Add((byte)(b2[index] & AppleIwmGcrFormat.SixBitMask));
-            if (index != AppleIwmGcrFormat.LastGroupIndex) symbols.Add((byte)(b3[index] & AppleIwmGcrFormat.SixBitMask));
+            if (index != AppleIwmGcrFormat.LastGroupIndex)
+                symbols.Add((byte)(b3[index] & AppleIwmGcrFormat.SixBitMask));
         }
+    
         symbols.Add((byte)(((c1 & AppleIwmGcrFormat.ChecksumHighBitsMask) >> AppleIwmGcrFormat.FirstChecksumShift) | ((c2 & AppleIwmGcrFormat.ChecksumHighBitsMask) >> AppleIwmGcrFormat.SecondChecksumShift) | ((c3 & AppleIwmGcrFormat.ChecksumHighBitsMask) >> AppleIwmGcrFormat.ThirdChecksumShift)));
         symbols.Add((byte)(c3 & AppleIwmGcrFormat.SixBitMask));
         symbols.Add((byte)(c2 & AppleIwmGcrFormat.SixBitMask));

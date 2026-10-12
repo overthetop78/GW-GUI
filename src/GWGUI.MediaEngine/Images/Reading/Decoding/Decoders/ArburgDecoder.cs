@@ -39,19 +39,39 @@ public sealed class ArburgDecoder : IFluxDecoder
         const int usefulSize = ArburgFormat.DataUsefulSize;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
-            if (!FluxBitReader.MatchBytes(stream, offset, ArburgFormat.DataMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, ArburgFormat.DataMark))
+                continue;
             var complete = offset + markBits + blockSize * ArburgFormat.FmEncodedByteBitCount <= stream.Bits.Length;
             (byte[] Data, bool Valid)? decoded = null;
             if (complete)
             {
                 decoded = TryDecodeFmBlock(stream, offset + markBits, blockSize, usefulSize);
-                if (decoded is null) continue;
+                if (decoded is null)
+                    continue;
                 bytes.AddRange(decoded.Value.Data);
             }
+    
             sectors.Add(new(ArburgFormat.LogicalCylinder, ArburgFormat.LogicalHead, ArburgFormat.LogicalSector, ArburgFormat.SectorSizeCode, blockSize, decoded?.Valid, offset, SectorIntegrityKind.Checksum, decoded?.Data));
-            structures.Add(new(FluxStructureKind.FormatData, offset, complete ? markBits + blockSize * ArburgFormat.FmEncodedByteBitCount : markBits, FluxStructureDescriptions.WithIntegrity(ArburgFormat.StructureDescriptionName, FluxStructureKind.FormatData, ArburgFormat.LogicalCylinder, ArburgFormat.LogicalHead, ArburgFormat.LogicalSector, blockSize, null, ArburgFormat.DataBlockDescription, ArburgFormat.ChecksumDescription, decoded?.Valid)));
+            structures.Add(new(
+                FluxStructureKind.FormatData,
+                offset,
+                complete ? markBits + blockSize * ArburgFormat.FmEncodedByteBitCount : markBits,
+                FluxStructureDescriptions.WithIntegrity(
+                ArburgFormat.StructureDescriptionName,
+                FluxStructureKind.FormatData,
+                ArburgFormat.LogicalCylinder,
+                ArburgFormat.LogicalHead,
+                ArburgFormat.LogicalSector,
+                blockSize,
+                null,
+                ArburgFormat.DataBlockDescription,
+                ArburgFormat.ChecksumDescription,
+                decoded?.Valid
+            )
+            ));
             offset += ArburgFormat.DataMarkAdvanceBitCount;
         }
+    
         return new(structures, sectors, bytes);
     }
 
@@ -68,13 +88,32 @@ public sealed class ArburgDecoder : IFluxDecoder
         const int usefulSize = ArburgFormat.SystemUsefulSize;
         for (var offset = 0; offset + markBits <= stream.Bits.Length; offset++)
         {
-            if (!FluxBitReader.MatchBytes(stream, offset, ArburgFormat.SystemMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, ArburgFormat.SystemMark))
+                continue;
             var decoded = TryDecodeSystemBlock(stream, offset + markBits, blockSize, usefulSize);
-            if (decoded is not null) bytes.AddRange(decoded.Value.Data);
+            if (decoded is not null)
+                bytes.AddRange(decoded.Value.Data);
             sectors.Add(new(ArburgFormat.LogicalCylinder, ArburgFormat.LogicalHead, ArburgFormat.LogicalSector, ArburgFormat.SectorSizeCode, blockSize, decoded?.Valid, offset, SectorIntegrityKind.Checksum, decoded?.Data));
-            structures.Add(new(FluxStructureKind.FormatHeader, offset, decoded is null ? markBits : decoded.Value.EndOffset - offset, FluxStructureDescriptions.WithIntegrity(ArburgFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, ArburgFormat.LogicalCylinder, ArburgFormat.LogicalHead, ArburgFormat.LogicalSector, blockSize, null, ArburgFormat.SystemBlockDescription, ArburgFormat.ChecksumDescription, decoded?.Valid)));
+            structures.Add(new(
+                FluxStructureKind.FormatHeader,
+                offset,
+                decoded is null ? markBits : decoded.Value.EndOffset - offset,
+                FluxStructureDescriptions.WithIntegrity(
+                ArburgFormat.StructureDescriptionName,
+                FluxStructureKind.FormatHeader,
+                ArburgFormat.LogicalCylinder,
+                ArburgFormat.LogicalHead,
+                ArburgFormat.LogicalSector,
+                blockSize,
+                null,
+                ArburgFormat.SystemBlockDescription,
+                ArburgFormat.ChecksumDescription,
+                decoded?.Valid
+            )
+            ));
             offset += ArburgFormat.SystemMarkAdvanceBitCount;
         }
+    
         return new(structures, sectors, bytes);
     }
 

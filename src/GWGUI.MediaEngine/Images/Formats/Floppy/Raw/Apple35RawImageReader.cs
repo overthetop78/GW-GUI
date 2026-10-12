@@ -18,11 +18,15 @@ internal static class Apple35RawImageReader
     /// <summary>Applique les sondes Lisa, Macintosh et ProDOS à la disposition de capacité déjà validée.</summary>
     public static AppleRawImageReadResult Read(ReadOnlyMemory<byte> data, string extension, AppleRawImageLayout layout)
     {
-        if (layout == AppleRawImageLayoutCatalog.Apple400K && AppleRawImageProbe.LooksLikeLisaOffice(data.Span)) return new(MacintoshGcrSectorImageBuilder.Create(data, DiskImageFormatIds.AppleLisaRaw, MacintoshGcrGeometry.ForHeads(MacintoshGcrGeometry.SingleSidedHeadCount)), AppleRawImageMatchKind.ValidatedStructure);
+        if (layout == AppleRawImageLayoutCatalog.Apple400K && AppleRawImageProbe.LooksLikeLisaOffice(data.Span))
+            return new(MacintoshGcrSectorImageBuilder.Create(data, DiskImageFormatIds.AppleLisaRaw, MacintoshGcrGeometry.ForHeads(MacintoshGcrGeometry.SingleSidedHeadCount)), AppleRawImageMatchKind.ValidatedStructure);
         var macintosh = AppleRawImageProbe.ProbeMac(data.Span);
-        if (macintosh is not null) return ReadMacintosh(data, layout, macintosh.Value);
-        if (layout == AppleRawImageLayoutCatalog.Apple800K && AppleRawImageProbe.LooksLikeProDos(data.Span)) return new(MacintoshGcrSectorImageBuilder.Create(data, DiskImageFormatIds.AppleIIProDos, MacintoshGcrGeometry.ForHeads(MacintoshGcrGeometry.DoubleSidedHeadCount)), AppleRawImageMatchKind.ValidatedStructure);
-        if (layout == AppleRawImageLayoutCatalog.Macintosh1440K && AppleRawImageProbe.LooksLikeProDos(data.Span)) return new(LinearSectorImageBuilder.Create(data, DiskImageFormatIds.AppleIIProDos, MacintoshGeometry), AppleRawImageMatchKind.ValidatedStructure);
+        if (macintosh is not null)
+            return ReadMacintosh(data, layout, macintosh.Value);
+        if (layout == AppleRawImageLayoutCatalog.Apple800K && AppleRawImageProbe.LooksLikeProDos(data.Span))
+            return new(MacintoshGcrSectorImageBuilder.Create(data, DiskImageFormatIds.AppleIIProDos, MacintoshGcrGeometry.ForHeads(MacintoshGcrGeometry.DoubleSidedHeadCount)), AppleRawImageMatchKind.ValidatedStructure);
+        if (layout == AppleRawImageLayoutCatalog.Macintosh1440K && AppleRawImageProbe.LooksLikeProDos(data.Span))
+            return new(LinearSectorImageBuilder.Create(data, DiskImageFormatIds.AppleIIProDos, MacintoshGeometry), AppleRawImageMatchKind.ValidatedStructure);
         throw AppleRawImageExceptions.KnownCapacityWithoutStructure(data.Length, extension, ["Lisa", "MFS", "HFS", "ProDOS"]);
     }
 

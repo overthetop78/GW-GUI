@@ -24,7 +24,8 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
         var decodedBytes = new List<byte>();
         for (var offset = 0; offset + MicropolisMfmFormat.SyncBitCount <= stream.Bits.Length; offset++)
         {
-            if (!FluxBitReader.MatchBytes(stream, offset, MicropolisMfmFormat.Sync)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, MicropolisMfmFormat.Sync))
+                continue;
             var recordStart = offset + MicropolisMfmFormat.SyncZeroCount * MicropolisMfmFormat.EncodedByteBitCount;
             var record = TryDecodeRecord(stream, recordStart);
             if (record is null)
@@ -33,11 +34,18 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
                 offset += MicropolisMfmFormat.SyncBitCount - 1;
                 continue;
             }
+    
             decodedBytes.AddRange(record.Data);
             sectors.Add(new(record.Cylinder, MicropolisMfmFormat.LogicalHead, record.Sector, MicropolisMfmFormat.SectorSizeCode, MicropolisMfmFormat.SectorSize, record.ChecksumValid, offset, SectorIntegrityKind.Checksum, Data: record.Data));
-            structures.Add(new(FluxStructureKind.FormatHeader, offset, (MicropolisMfmFormat.SyncZeroCount + MicropolisMfmFormat.RecordByteCount) * MicropolisMfmFormat.EncodedByteBitCount, $"{FluxStructureDescriptions.Identity(MicropolisMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, record.Cylinder, MicropolisMfmFormat.LogicalHead, record.Sector, MicropolisMfmFormat.SectorSize, MicropolisMfmFormat.AddressMark, null)}, {FluxStructureDescriptions.Integrity("checksum", record.ChecksumValid)}"));
+            structures.Add(new(
+                FluxStructureKind.FormatHeader,
+                offset,
+                (MicropolisMfmFormat.SyncZeroCount + MicropolisMfmFormat.RecordByteCount) * MicropolisMfmFormat.EncodedByteBitCount,
+                $"{FluxStructureDescriptions.Identity(MicropolisMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, record.Cylinder, MicropolisMfmFormat.LogicalHead, record.Sector, MicropolisMfmFormat.SectorSize, MicropolisMfmFormat.AddressMark, null)}, {FluxStructureDescriptions.Integrity("checksum", record.ChecksumValid)}"
+            ));
             offset += MicropolisMfmFormat.SyncBitCount - 1;
         }
+    
         var confidence = FluxDecoderConfidence.Calculate(sectors.Count, structures.Count, MicropolisMfmFormat.ConfidenceSectorWeight, MicropolisMfmFormat.ConfidenceDivisor);
         return new(Id, DisplayName, confidence, stream.BitCellTicks, structures, decodedBytes, sectors);
     }

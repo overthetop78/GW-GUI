@@ -39,10 +39,12 @@ public sealed class CommodoreGcrTrackEncoder : TrackEncoderBase
     /// <summary>Calcule ou lit le numéro de piste disque et vérifie sa plage standard.</summary>
     private static int ResolveDiskTrack(TrackEncodeRequest request)
     {
-        if (request.Cylinder > CommodoreGcrFormat.MaximumCylinder) throw TrackEncodingExceptions.FormatValueOutOfRange("Commodore GCR", nameof(request.Cylinder), request.Cylinder, CommodoreGcrFormat.MaximumCylinder);
+        if (request.Cylinder > CommodoreGcrFormat.MaximumCylinder)
+            throw TrackEncodingExceptions.FormatValueOutOfRange("Commodore GCR", nameof(request.Cylinder), request.Cylinder, CommodoreGcrFormat.MaximumCylinder);
         var tracksPerSide = Attribute(request, TrackEncodingAttributeKeys.TracksPerSide, CommodoreGcrFormat.TracksPerSide);
         var diskTrack = Attribute(request, CommodoreGcrFormat.TrackAttributeName, request.Cylinder + CommodoreGcrFormat.MinimumDiskTrack + request.Head * tracksPerSide);
-        if (diskTrack is < CommodoreGcrFormat.MinimumDiskTrack or > CommodoreGcrFormat.MaximumDiskTrack) throw new ArgumentOutOfRangeException(CommodoreGcrFormat.TrackAttributeName, diskTrack, $"Commodore disk track must be between {CommodoreGcrFormat.MinimumDiskTrack} and {CommodoreGcrFormat.MaximumDiskTrack}.");
+        if (diskTrack is < CommodoreGcrFormat.MinimumDiskTrack or > CommodoreGcrFormat.MaximumDiskTrack)
+            throw new ArgumentOutOfRangeException(CommodoreGcrFormat.TrackAttributeName, diskTrack, $"Commodore disk track must be between {CommodoreGcrFormat.MinimumDiskTrack} and {CommodoreGcrFormat.MaximumDiskTrack}.");
         return diskTrack;
     }
 

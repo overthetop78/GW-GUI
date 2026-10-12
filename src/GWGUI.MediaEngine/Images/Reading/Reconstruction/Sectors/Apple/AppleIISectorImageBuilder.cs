@@ -30,7 +30,12 @@ internal static class AppleIISectorImageBuilder
     }
 
     /// <summary>Construit les blocs dans l'ordre d'un fichier DOS Apple II.</summary>
-    private static SectorBlock[] CreateDosBlocks(IReadOnlyDictionary<(int Track, int Sector), DecodedSector> selected, int sectorsPerTrack) => selected.Where(pair => pair.Key.Sector < sectorsPerTrack).Select(pair => new SectorBlock(pair.Key.Track * sectorsPerTrack + (sectorsPerTrack == AppleIIGeometry.SectorsPerTrack ? AppleIISectorOrderConverter.PhysicalToDosFileSector(pair.Key.Sector) : pair.Key.Sector), new(pair.Key.Track, 0, pair.Key.Sector), pair.Value.Data!.ToArray(), pair.Value.IntegrityValid)).ToArray();
+    private static SectorBlock[] CreateDosBlocks(IReadOnlyDictionary<(int Track, int Sector), DecodedSector> selected, int sectorsPerTrack) => selected.Where(pair => pair.Key.Sector < sectorsPerTrack).Select(pair => new SectorBlock(
+        pair.Key.Track * sectorsPerTrack + (sectorsPerTrack == AppleIIGeometry.SectorsPerTrack ? AppleIISectorOrderConverter.PhysicalToDosFileSector(pair.Key.Sector) : pair.Key.Sector),
+        new(pair.Key.Track, 0, pair.Key.Sector),
+        pair.Value.Data!.ToArray(),
+        pair.Value.IntegrityValid
+    )).ToArray();
 
     /// <summary>Assemble deux secteurs physiques de 256 octets dans chaque bloc logique ProDOS de 512 octets.</summary>
     private static SectorBlock[] CreateProDosBlocks(IReadOnlyDictionary<(int Track, int Sector), DecodedSector> selected, int trackCount)

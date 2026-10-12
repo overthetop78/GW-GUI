@@ -22,8 +22,8 @@ internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolic
     /// <returns>L'image sectorielle construite par la première famille dont les critères sont satisfaits.</returns>
     public SectorImage Build(string? formatId, IsoSectorCandidateSet candidates)
     {
-        if (TryDetectEpsonFormat(candidates.Physical, out var epsonFormat)) return EpsonQx10SectorImageBuilder.Create(epsonFormat, candidates.Physical);
-
+        if (TryDetectEpsonFormat(candidates.Physical, out var epsonFormat))
+            return EpsonQx10SectorImageBuilder.Create(epsonFormat, candidates.Physical);
         var measured = IsoSectorImageBuilder.Measure(candidates.Addressed);
         if (measured.ZeroBased && measured.SectorSize == AutomaticIsoScpSelectionRules.BbcSectorSize && measured.SectorsPerTrack == AutomaticIsoScpSelectionRules.BbcSectorsPerTrack)
             return new BbcIsoScpSectorImagePolicy().Build(null, candidates);
@@ -35,7 +35,7 @@ internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolic
             if (GWGUI.MediaEngine.Images.Reading.Recognition.Ibm.IbmDosDiskProbe.TryIdentify(boot, fatMedia, true, out _))
                 return new IbmPcIsoScpSectorImagePolicy(false).Build(null, candidates);
         }
-
+    
         var atari8Bit = measured.SectorSize is AutomaticIsoScpSelectionRules.AtariSingleDensitySectorSize or AutomaticIsoScpSelectionRules.AtariDoubleDensitySectorSize && measured.Heads == DiskGeometryConstants.SingleSidedHeadCount && measured.SectorsPerTrack is AutomaticIsoScpSelectionRules.AtariStandardSectorsPerTrack or AutomaticIsoScpSelectionRules.AtariEnhancedSectorsPerTrack;
         return atari8Bit ? new Atari8BitIsoScpSectorImagePolicy(null).Build(null, candidates) : new AtariStIsoScpSectorImagePolicy().Build(null, candidates);
     }
@@ -51,8 +51,11 @@ internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolic
     private static EpsonQx10SectorDescriptor? DescribeEpsonSector(KeyValuePair<SectorAddress, List<IsoSectorCandidate>> pair)
     {
         var withData = pair.Value.Where(value => value.Sector.Data is not null).ToArray();
-        if (withData.Length == 0) return null;
-        var size = withData.GroupBy(value => value.Sector.IntegrityValid == true ? AutomaticIsoScpSelectionRules.ValidIntegrityScore : value.Sector.IntegrityValid is null ? AutomaticIsoScpSelectionRules.UnknownIntegrityScore : AutomaticIsoScpSelectionRules.InvalidIntegrityScore).OrderByDescending(group => group.Key).First().GroupBy(value => value.Sector.Data!.Count).OrderByDescending(group => group.Count()).ThenByDescending(group => group.Key).First().Key;
+        if (withData.Length == 0)
+            return null;
+        var size = withData.GroupBy(value => value.Sector.IntegrityValid == true
+            ? AutomaticIsoScpSelectionRules.ValidIntegrityScore
+            : value.Sector.IntegrityValid is null ? AutomaticIsoScpSelectionRules.UnknownIntegrityScore : AutomaticIsoScpSelectionRules.InvalidIntegrityScore).OrderByDescending(group => group.Key).First().GroupBy(value => value.Sector.Data!.Count).OrderByDescending(group => group.Count()).ThenByDescending(group => group.Key).First().Key;
         return new(pair.Key.Cylinder, pair.Key.Head, pair.Key.Number, size);
     }
 }

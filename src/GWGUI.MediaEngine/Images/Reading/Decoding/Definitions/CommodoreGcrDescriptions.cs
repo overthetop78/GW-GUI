@@ -18,5 +18,18 @@ internal static class CommodoreGcrDescriptions
     /// <param name="headerValid">Validité du checksum d'en-tête.</param>
     /// <param name="dataValid">Validité du checksum des données.</param>
     /// <returns>Description technique.</returns>
-    public static string Header(byte track, byte sector, bool? headerValid, bool? dataValid) => FluxStructureDescriptions.Complete(CommodoreGcrFormat.StructureDescriptionName, FluxStructureKind.CommodoreHeader, track, CommodoreGcrFormat.LogicalHead, sector, CommodoreGcrFormat.SectorByteCount, null, null, headerValid, dataValid, CommodoreGcrFormat.HeaderChecksumDescription, CommodoreGcrFormat.DataChecksumDescription);
+    public static string Header(byte track, byte sector, bool? headerValid, bool? dataValid) => FluxStructureDescriptions.Complete(
+        CommodoreGcrFormat.StructureDescriptionName,
+        FluxStructureKind.CommodoreHeader,
+        track,
+        CommodoreGcrFormat.LogicalHead,
+        sector,
+        CommodoreGcrFormat.SectorByteCount,
+        null,
+        null,
+        headerValid,
+        dataValid,
+        CommodoreGcrFormat.HeaderChecksumDescription,
+        CommodoreGcrFormat.DataChecksumDescription
+    );
 }

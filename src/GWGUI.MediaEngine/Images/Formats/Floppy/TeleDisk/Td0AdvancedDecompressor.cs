@@ -167,14 +167,81 @@ internal static class Td0AdvancedDecompressor
 
         private static byte[] BuildPositionTable(bool lengths)
         {
-            ReadOnlySpan<byte> codeLengths = [3,4,4,4,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6,6,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8];
-            ReadOnlySpan<byte> codes = [0x00,0x20,0x30,0x40,0x50,0x58,0x60,0x68,0x70,0x78,0x80,0x88,0x90,0x94,0x98,0x9c,0xa0,0xa4,0xa8,0xac,0xb0,0xb4,0xb8,0xbc,0xc0,0xc2,0xc4,0xc6,0xc8,0xca,0xcc,0xce,0xd0,0xd2,0xd4,0xd6,0xd8,0xda,0xdc,0xde,0xe0,0xe2,0xe4,0xe6,0xe8,0xea,0xec,0xee,0xf0,0xf1,0xf2,0xf3,0xf4,0xf5,0xf6,0xf7,0xf8,0xf9,0xfa,0xfb,0xfc,0xfd,0xfe,0xff];
+            ReadOnlySpan<byte> codeLengths = [3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8];
+            ReadOnlySpan<byte> codes = [
+                0x00,
+                0x20,
+                0x30,
+                0x40,
+                0x50,
+                0x58,
+                0x60,
+                0x68,
+                0x70,
+                0x78,
+                0x80,
+                0x88,
+                0x90,
+                0x94,
+                0x98,
+                0x9c,
+                0xa0,
+                0xa4,
+                0xa8,
+                0xac,
+                0xb0,
+                0xb4,
+                0xb8,
+                0xbc,
+                0xc0,
+                0xc2,
+                0xc4,
+                0xc6,
+                0xc8,
+                0xca,
+                0xcc,
+                0xce,
+                0xd0,
+                0xd2,
+                0xd4,
+                0xd6,
+                0xd8,
+                0xda,
+                0xdc,
+                0xde,
+                0xe0,
+                0xe2,
+                0xe4,
+                0xe6,
+                0xe8,
+                0xea,
+                0xec,
+                0xee,
+                0xf0,
+                0xf1,
+                0xf2,
+                0xf3,
+                0xf4,
+                0xf5,
+                0xf6,
+                0xf7,
+                0xf8,
+                0xf9,
+                0xfa,
+                0xfb,
+                0xfc,
+                0xfd,
+                0xfe,
+                0xff
+            ];
             var table = new byte[256];
             for (var value = 0; value < codeLengths.Length; value++)
             {
                 var count = 1 << (8 - codeLengths[value]);
-                for (var suffix = 0; suffix < count; suffix++) table[codes[value] + suffix] = lengths ? codeLengths[value] : (byte)value;
+                for (var suffix = 0; suffix < count; suffix++)
+                    table[codes[value] + suffix] = lengths ? codeLengths[value] : (byte)value;
             }
+        
             return table;
         }
     }

@@ -25,7 +25,8 @@ public sealed class NorthstarMfmDecoder : IFluxDecoder
         var decodedBytes = new List<byte>();
         for (var offset = 0; offset + NorthstarMfmFormat.MarkBitCount <= stream.Bits.Length; offset++)
         {
-            if (!FluxBitReader.MatchBytes(stream, offset, NorthstarMfmFormat.SectorMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, NorthstarMfmFormat.SectorMark))
+                continue;
             var identity = TryDecodeIdentity(stream, offset + NorthstarMfmFormat.MarkBitCount);
             var block = identity is null ? null : TryDecodeBlock(stream, offset + NorthstarMfmFormat.MarkBitCount, identity);
             if (block is not null)
@@ -33,16 +34,19 @@ public sealed class NorthstarMfmDecoder : IFluxDecoder
                 decodedBytes.Add(identity!.PackedValue);
                 decodedBytes.AddRange(block.Data);
             }
-            if (identity is not null) sectors.Add(new(identity.Cylinder, NorthstarMfmFormat.LogicalHead, identity.Sector, NorthstarMfmFormat.SectorSizeCode, NorthstarMfmFormat.SectorSize, block?.ChecksumValid, offset, SectorIntegrityKind.Checksum, Data: block?.Data));
+    
+            if (identity is not null)
+                sectors.Add(new(identity.Cylinder, NorthstarMfmFormat.LogicalHead, identity.Sector, NorthstarMfmFormat.SectorSizeCode, NorthstarMfmFormat.SectorSize, block?.ChecksumValid, offset, SectorIntegrityKind.Checksum, Data: block?.Data));
             var description = block is not null
                 ? $"{FluxStructureDescriptions.Identity(NorthstarMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, identity!.Cylinder, NorthstarMfmFormat.LogicalHead, identity.Sector, NorthstarMfmFormat.SectorSize, NorthstarMfmFormat.AddressMark, null)}, {FluxStructureDescriptions.Integrity("checksum", block.ChecksumValid)}"
                 : identity is not null
-                    ? $"{FluxStructureDescriptions.Identity(NorthstarMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, identity.Cylinder, NorthstarMfmFormat.LogicalHead, identity.Sector, NorthstarMfmFormat.SectorSize, NorthstarMfmFormat.AddressMark, null)}, {FluxStructureDescriptions.Integrity("checksum", null)}"
-                    : FluxStructureDescriptions.Truncated(NorthstarMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, null, "hard-sector block");
+                ? $"{FluxStructureDescriptions.Identity(NorthstarMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, identity.Cylinder, NorthstarMfmFormat.LogicalHead, identity.Sector, NorthstarMfmFormat.SectorSize, NorthstarMfmFormat.AddressMark, null)}, {FluxStructureDescriptions.Integrity("checksum", null)}"
+                : FluxStructureDescriptions.Truncated(NorthstarMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, null, "hard-sector block");
             var length = block is not null ? NorthstarMfmFormat.FullBlockBitCount : identity is not null ? NorthstarMfmFormat.MarkBitCount + NorthstarMfmFormat.IdentityBitCount : NorthstarMfmFormat.MarkBitCount;
             structures.Add(new(FluxStructureKind.FormatHeader, offset, length, description));
             offset += NorthstarMfmFormat.ScanAdvance;
         }
+    
         var confidence = FluxDecoderConfidence.Calculate(sectors.Count, structures.Count, NorthstarMfmFormat.ConfidenceSectorWeight, NorthstarMfmFormat.ConfidenceDivisor);
         return new(Id, DisplayName, confidence, stream.BitCellTicks, structures, decodedBytes, sectors);
     }

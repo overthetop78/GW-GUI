@@ -13,7 +13,14 @@ internal static class CenturionMfmDescriptions
 
     /// <summary>Décrit un préfixe de données tronqué ou non pris en charge.</summary>
     /// <param name="key">Clé observée, ou valeur nulle si elle n'a pas pu être lue.</param><returns>Description du bloc incomplet.</returns>
-    public static string TruncatedData(byte? key = null) => FluxStructureDescriptions.Truncated(CenturionMfmFormat.StructureDescriptionName, FluxStructureKind.FormatData, null, key is null ? CenturionMfmFormat.UnavailableCrcDescription : key == CenturionMfmFormat.SupportedDataKey ? CenturionMfmFormat.UnavailableCrcDescription : CenturionMfmFormat.UnsupportedKeyDescription(key.Value));
+    public static string TruncatedData(byte? key = null) => FluxStructureDescriptions.Truncated(
+        CenturionMfmFormat.StructureDescriptionName,
+        FluxStructureKind.FormatData,
+        null,
+        key is null
+        ? CenturionMfmFormat.UnavailableCrcDescription
+        : key == CenturionMfmFormat.SupportedDataKey ? CenturionMfmFormat.UnavailableCrcDescription : CenturionMfmFormat.UnsupportedKeyDescription(key.Value)
+    );
 
     /// <summary>Décrit une marque de données sans en-tête associé.</summary>
     /// <returns>Description de la marque non appariée.</returns>

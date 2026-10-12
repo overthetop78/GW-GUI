@@ -118,9 +118,11 @@ internal static class AppleIIGcrCodec
     /// <param name="source">Données sectorielles à encoder.</param><returns>Symboles GCR encodés, checksum inclus.</returns>
     public static byte[] EncodeSixAndTwo(IReadOnlyList<byte> source)
     {
-        if (source.Count != AppleIIGcrFormat.SectorSize) throw AppleIIGcrFormat.InvalidSectorSize(source.Count);
+        if (source.Count != AppleIIGcrFormat.SectorSize)
+            throw AppleIIGcrFormat.InvalidSectorSize(source.Count);
         var buffer = new byte[AppleIIGcrFormat.MinimumSixAndTwoWorkBufferByteCount];
-        for (var index = 0; index < source.Count; index++) buffer[index] = source[index];
+        for (var index = 0; index < source.Count; index++)
+            buffer[index] = source[index];
         var encoded = new List<byte>(AppleIIGcrFormat.SixAndTwoEncodedByteCount);
         byte checksum = 0;
         for (var index = 0; index < AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount; index++)
@@ -129,12 +131,14 @@ internal static class AppleIIGcrCodec
             encoded.Add(AppleIIGcrFormat.SixAndTwoTable[value ^ checksum]);
             checksum = value;
         }
+    
         for (var index = 0; index < AppleIIGcrFormat.SectorSize; index++)
         {
             var value = (byte)(source[index] >> 2);
             encoded.Add(AppleIIGcrFormat.SixAndTwoTable[value ^ checksum]);
             checksum = value;
         }
+    
         encoded.Add(AppleIIGcrFormat.SixAndTwoTable[checksum]);
         return encoded.ToArray();
     }

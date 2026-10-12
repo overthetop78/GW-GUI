@@ -155,7 +155,8 @@ public sealed class ImdReader : IMediaImageReader
 
     private static SectorImage BuildImage(IReadOnlyList<ImdSector> sectors)
     {
-        if (sectors.Count == 0) throw ImdExceptions.NoSectors();
+        if (sectors.Count == 0)
+            throw ImdExceptions.NoSectors();
         var blockSize = sectors.GroupBy(sector => sector.Size).OrderByDescending(group => group.Count()).First().Key;
         var cylinders = sectors.Max(sector => sector.Cylinder) + 1;
         var heads = sectors.Max(sector => sector.Head) + 1;

@@ -13,16 +13,21 @@ public sealed class DecRx02Writer(IAtomicImageFileWriter? fileWriter = null)
     /// <summary>Valide la géométrie, sépare chaque bloc en deux secteurs puis écrit atomiquement le dump.</summary>
     public async Task WriteAsync(SectorImage image, string path, CancellationToken cancellationToken = default)
     {
-        if (!image.FormatId.Equals(DiskImageFormatIds.DecRx02, StringComparison.OrdinalIgnoreCase) || image.BlockSize != DecRx02Geometry.LogicalBlockSize || image.BlockCount != DecRx02Geometry.LogicalBlockCount || image.Cylinders != DecRx02Geometry.TrackCount || image.Heads != DecRx02Geometry.HeadCount) throw new InvalidDataException("The sector image does not use the DEC RX02 geometry.");
+        if (!image.FormatId.Equals(DiskImageFormatIds.DecRx02, StringComparison.OrdinalIgnoreCase) || image.BlockSize != DecRx02Geometry.LogicalBlockSize || image.BlockCount != DecRx02Geometry.LogicalBlockCount || image.Cylinders != DecRx02Geometry.TrackCount || image.Heads != DecRx02Geometry.HeadCount)
+            throw new InvalidDataException("The sector image does not use the DEC RX02 geometry.");
         var bytes = new byte[DecRx02Geometry.Capacity];
         for (var blockIndex = 0; blockIndex < DecRx02Geometry.LogicalBlockCount; blockIndex++)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            if (!image.TryGetBlock(blockIndex, out var block)) throw new InvalidDataException($"DEC RX02 logical block {blockIndex} is missing.");
-            if (block.Data.Count != DecRx02Geometry.LogicalBlockSize) throw new InvalidDataException($"DEC RX02 logical block {blockIndex} has an invalid size.");
+            if (!image.TryGetBlock(blockIndex, out var block))
+                throw new InvalidDataException($"DEC RX02 logical block {blockIndex} is missing.");
+            if (block.Data.Count != DecRx02Geometry.LogicalBlockSize)
+                throw new InvalidDataException($"DEC RX02 logical block {blockIndex} has an invalid size.");
             var data = block.Data.ToArray();
-            for (var part = 0; part < DecRx02Geometry.PhysicalSectorsPerLogicalBlock; part++) DecRx02SectorOrder.WriteLogicalSector(bytes, blockIndex * DecRx02Geometry.PhysicalSectorsPerLogicalBlock + part, data.AsSpan(part * DecRx02Geometry.PhysicalSectorSize, DecRx02Geometry.PhysicalSectorSize));
+            for (var part = 0; part < DecRx02Geometry.PhysicalSectorsPerLogicalBlock; part++)
+                DecRx02SectorOrder.WriteLogicalSector(bytes, blockIndex * DecRx02Geometry.PhysicalSectorsPerLogicalBlock + part, data.AsSpan(part * DecRx02Geometry.PhysicalSectorSize, DecRx02Geometry.PhysicalSectorSize));
         }
+    
         await files.WriteAsync(path, (output, token) => output.WriteAsync(bytes, token).AsTask(), cancellationToken).ConfigureAwait(false);
     }
 }

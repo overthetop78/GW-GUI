@@ -37,7 +37,18 @@ internal static class EpsonQx10GeometryCatalog
     /// <summary>Géométrie variable de 399 Kio.</summary>
     public static EpsonQx10Geometry Geometry399 { get; } = new(DiskImageFormatIds.EpsonQx10_399, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, (cylinder, head) => cylinder == 0 && head == 0 ? Layout320 : LayoutData);
     /// <summary>Géométrie variable LOGO.</summary>
-    public static EpsonQx10Geometry GeometryLogo { get; } = new(DiskImageFormatIds.EpsonQx10Logo, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, (cylinder, _) => cylinder switch { 0 or 1 or 4 => Layout320, 5 or 6 => LayoutLogoAlternate, 3 or 7 => default, _ => LayoutData });
+    public static EpsonQx10Geometry GeometryLogo { get; } = new(
+        DiskImageFormatIds.EpsonQx10Logo,
+        DiskGeometryConstants.FortyTrackCylinderCount,
+        DiskGeometryConstants.DoubleSidedHeadCount,
+        (cylinder, _) => cylinder switch
+    {
+        0 or 1 or 4 => Layout320,
+        5 or 6 => LayoutLogoAlternate,
+        3 or 7 => default,
+        _ => LayoutData
+    }
+    );
     /// <summary>Géométrie variable de 396 Kio.</summary>
     public static EpsonQx10Geometry Geometry396 { get; } = new(DiskImageFormatIds.EpsonQx10_396, DiskGeometryConstants.FortyTrackCylinderCount, DiskGeometryConstants.DoubleSidedHeadCount, (cylinder, _) => cylinder <= 1 ? Layout320 : LayoutData);
     /// <summary>Collection non modifiable de toutes les géométries Epson cataloguées.</summary>

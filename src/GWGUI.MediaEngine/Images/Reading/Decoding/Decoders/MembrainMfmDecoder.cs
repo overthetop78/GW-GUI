@@ -25,7 +25,8 @@ public sealed class MembrainMfmDecoder : IFluxDecoder
         var pairedDataOffsets = new HashSet<int>();
         for (var offset = 0; offset + MembrainMfmFormat.HeaderPatternBitCount <= stream.Bits.Length; offset++)
         {
-            if (!FluxBitReader.MatchBytes(stream, offset, MembrainMfmFormat.HeaderPattern)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, MembrainMfmFormat.HeaderPattern))
+                continue;
             var header = TryDecodeHeader(stream, offset);
             if (header is null)
             {
@@ -33,25 +34,50 @@ public sealed class MembrainMfmDecoder : IFluxDecoder
                 offset += MembrainMfmFormat.HeaderPatternBitCount - 1;
                 continue;
             }
+    
             decodedBytes.AddRange(header.Bytes);
             var dataOffset = FindDataMark(stream, offset + MembrainMfmFormat.DataSearchInitialBitOffset, Math.Min(stream.Bits.Length, offset + MembrainMfmFormat.DataSearchBitCount));
             var data = dataOffset < 0 ? null : TryDecodeData(stream, dataOffset);
             if (dataOffset >= 0)
             {
                 pairedDataOffsets.Add(dataOffset);
-                if (data is null) structures.Add(new(FluxStructureKind.FormatData, dataOffset, MembrainMfmFormat.DataPatternBitCount, FluxStructureDescriptions.Truncated(MembrainMfmFormat.StructureDescriptionName, FluxStructureKind.FormatData, null, "CRC unavailable")));
+                if (data is null)
+                    structures.Add(new(FluxStructureKind.FormatData, dataOffset, MembrainMfmFormat.DataPatternBitCount, FluxStructureDescriptions.Truncated(MembrainMfmFormat.StructureDescriptionName, FluxStructureKind.FormatData, null, "CRC unavailable")));
                 else
                 {
                     decodedBytes.AddRange(data.Payload);
-                    structures.Add(new(FluxStructureKind.FormatData, data.Offset, MembrainMfmFormat.DataBlockByteCount * MembrainMfmFormat.EncodedByteBitCount, $"{FluxStructureDescriptions.Identity(MembrainMfmFormat.StructureDescriptionName, FluxStructureKind.FormatData, header.Cylinder, header.Head, header.Sector, MembrainMfmFormat.SectorSize, data.Mark, "data block")}, {FluxStructureDescriptions.Integrity("CRC", data.CrcValid)}"));
+                    structures.Add(new(
+                        FluxStructureKind.FormatData,
+                        data.Offset,
+                        MembrainMfmFormat.DataBlockByteCount * MembrainMfmFormat.EncodedByteBitCount,
+                        $"{FluxStructureDescriptions.Identity(MembrainMfmFormat.StructureDescriptionName, FluxStructureKind.FormatData, header.Cylinder, header.Head, header.Sector, MembrainMfmFormat.SectorSize, data.Mark, "data block")}, {FluxStructureDescriptions.Integrity("CRC", data.CrcValid)}"
+                    ));
                 }
             }
+    
             bool? integrity = !header.CrcValid || data?.CrcValid == false ? false : data is null ? null : true;
             sectors.Add(new(header.Cylinder, header.Head, header.Sector, MembrainMfmFormat.SectorSizeCode, MembrainMfmFormat.SectorSize, integrity, offset, Data: data?.Payload));
-            structures.Add(new(FluxStructureKind.FormatHeader, offset, MembrainMfmFormat.HeaderBitCount, FluxStructureDescriptions.Complete(MembrainMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, header.Cylinder, header.Head, header.Sector, MembrainMfmFormat.SectorSize, MembrainMfmFormat.HeaderAddressMark, null, header.CrcValid, data?.CrcValid)));
+            structures.Add(new(
+                FluxStructureKind.FormatHeader,
+                offset,
+                MembrainMfmFormat.HeaderBitCount,
+                FluxStructureDescriptions.Complete(
+                MembrainMfmFormat.StructureDescriptionName,
+                FluxStructureKind.FormatHeader,
+                header.Cylinder,
+                header.Head,
+                header.Sector,
+                MembrainMfmFormat.SectorSize,
+                MembrainMfmFormat.HeaderAddressMark,
+                null,
+                header.CrcValid,
+                data?.CrcValid
+            )
+            ));
             var structureEnd = data is null ? offset + MembrainMfmFormat.HeaderBitCount : data.Offset + MembrainMfmFormat.DataBlockByteCount * MembrainMfmFormat.EncodedByteBitCount;
             offset = Math.Max(offset + MembrainMfmFormat.HeaderPatternBitCount - 1, structureEnd - 1);
         }
+    
         CollectUnpairedDataMarks(stream, pairedDataOffsets, structures);
         var confidence = FluxDecoderConfidence.Calculate(sectors.Count, structures.Count, MembrainMfmFormat.ConfidenceSectorWeight, MembrainMfmFormat.ConfidenceDivisor);
         return new(Id, DisplayName, confidence, stream.BitCellTicks, structures, decodedBytes, sectors);

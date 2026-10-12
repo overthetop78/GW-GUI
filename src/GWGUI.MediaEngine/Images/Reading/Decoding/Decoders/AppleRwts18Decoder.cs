@@ -51,7 +51,8 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
     {
         var cursor = offset + AppleRwts18Format.AddressMarkBitCount;
         var address = AppleBitLatch.TryReadBytes(bits, ref cursor, AppleRwts18Format.AddressByteCount);
-        if (address is null || !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[0], out var track) || !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[1], out var sector) || !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[2], out var checksum) || address[3] != AppleRwts18Format.AddressTrailer || sector >= AppleRwts18Format.SectorCount || (byte)(track ^ sector) != checksum) return null;
+        if (address is null || !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[0], out var track) || !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[1], out var sector) || !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[2], out var checksum) || address[3] != AppleRwts18Format.AddressTrailer || sector >= AppleRwts18Format.SectorCount || (byte)(track ^ sector) != checksum)
+            return null;
         return new(track, sector, cursor);
     }
 
@@ -59,12 +60,45 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
     /// <param name="offset">Position de l'adresse, en bits.</param><param name="address">Adresse validée.</param><param name="data">Données éventuellement reconnues.</param><param name="structures">Collection recevant les structures.</param><param name="decodedBytes">Collection recevant les octets décodés.</param><param name="sectors">Collection recevant le secteur.</param>
     private static void AddSectorAndStructures(int offset, AppleRwts18Address address, (byte[] Data, bool Valid, int StartOffset, int EndOffset)? data, List<FluxStructure> structures, List<byte> decodedBytes, List<DecodedSector> sectors)
     {
-        structures.Add(new(FluxStructureKind.AppleAddress, offset, address.Cursor - offset, FluxStructureDescriptions.WithIntegrity(AppleRwts18Format.StructureDescriptionName, FluxStructureKind.AppleAddress, address.Track, AppleRwts18Format.LogicalHead, address.Sector, AppleRwts18Format.SectorByteCount, null, null, AppleRwts18Format.AddressChecksumLabel, true)));
+        structures.Add(new(
+            FluxStructureKind.AppleAddress,
+            offset,
+            address.Cursor - offset,
+            FluxStructureDescriptions.WithIntegrity(
+            AppleRwts18Format.StructureDescriptionName,
+            FluxStructureKind.AppleAddress,
+            address.Track,
+            AppleRwts18Format.LogicalHead,
+            address.Sector,
+            AppleRwts18Format.SectorByteCount,
+            null,
+            null,
+            AppleRwts18Format.AddressChecksumLabel,
+            true
+        )
+        ));
         if (data is not null)
         {
-            structures.Add(new(FluxStructureKind.AppleData, data.Value.StartOffset, data.Value.EndOffset - data.Value.StartOffset, FluxStructureDescriptions.WithIntegrity(AppleRwts18Format.StructureDescriptionName, FluxStructureKind.AppleData, address.Track, AppleRwts18Format.LogicalHead, address.Sector, AppleRwts18Format.SectorByteCount, null, null, AppleRwts18Format.DataChecksumLabel, data.Value.Valid)));
+            structures.Add(new(
+                FluxStructureKind.AppleData,
+                data.Value.StartOffset,
+                data.Value.EndOffset - data.Value.StartOffset,
+                FluxStructureDescriptions.WithIntegrity(
+                AppleRwts18Format.StructureDescriptionName,
+                FluxStructureKind.AppleData,
+                address.Track,
+                AppleRwts18Format.LogicalHead,
+                address.Sector,
+                AppleRwts18Format.SectorByteCount,
+                null,
+                null,
+                AppleRwts18Format.DataChecksumLabel,
+                data.Value.Valid
+            )
+            ));
             decodedBytes.AddRange(data.Value.Data);
         }
+    
         sectors.Add(new(address.Track, AppleRwts18Format.LogicalHead, address.Sector, AppleRwts18Format.SectorSizeCode, AppleRwts18Format.SectorByteCount, data?.Valid, offset, SectorIntegrityKind.Checksum, data?.Data));
     }
 

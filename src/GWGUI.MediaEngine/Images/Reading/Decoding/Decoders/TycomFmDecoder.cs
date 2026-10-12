@@ -25,7 +25,8 @@ public sealed class TycomFmDecoder : IFluxDecoder
         var pairedDataOffsets = new HashSet<int>();
         for (var offset = 0; offset + TycomFmFormat.MarkBitCount <= stream.Bits.Length; offset++)
         {
-            if (!FluxBitReader.MatchBytes(stream, offset, TycomFmFormat.HeaderMark)) continue;
+            if (!FluxBitReader.MatchBytes(stream, offset, TycomFmFormat.HeaderMark))
+                continue;
             var header = TryDecodeHeader(stream, offset);
             if (header is null)
             {
@@ -33,12 +34,19 @@ public sealed class TycomFmDecoder : IFluxDecoder
                 offset += TycomFmFormat.MarkBitCount - 1;
                 continue;
             }
+    
             if (!header.CrcValid)
             {
-                structures.Add(new(FluxStructureKind.FormatHeader, offset, TycomFmFormat.HeaderBitCount, $"{FluxStructureDescriptions.Identity(TycomFmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, header.Cylinder, TycomFmFormat.LogicalHead, header.Sector, 0, TycomFmFormat.HeaderAddressMark, null)}, {FluxStructureDescriptions.Integrity("header CRC", false)}"));
+                structures.Add(new(
+                    FluxStructureKind.FormatHeader,
+                    offset,
+                    TycomFmFormat.HeaderBitCount,
+                    $"{FluxStructureDescriptions.Identity(TycomFmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, header.Cylinder, TycomFmFormat.LogicalHead, header.Sector, 0, TycomFmFormat.HeaderAddressMark, null)}, {FluxStructureDescriptions.Integrity("header CRC", false)}"
+                ));
                 offset += TycomFmFormat.MarkBitCount - 1;
                 continue;
             }
+    
             decodedBytes.Add(header.Cylinder);
             decodedBytes.Add(header.Sector);
             var dataMark = FindNextDataMark(stream, offset + TycomFmFormat.HeaderBitCount, TycomFmFormat.MaximumDataSearchDistanceBits);
@@ -46,17 +54,35 @@ public sealed class TycomFmDecoder : IFluxDecoder
             if (dataMark is not null)
             {
                 pairedDataOffsets.Add(dataMark.Offset);
-                if (data is null) structures.Add(new(FluxStructureKind.FormatData, dataMark.Offset, TycomFmFormat.MarkBitCount, FluxStructureDescriptions.Truncated(TycomFmFormat.StructureDescriptionName, FluxStructureKind.FormatData, dataMark.Definition.Mark, "sector data")));
+                if (data is null)
+                    structures.Add(new(
+                        FluxStructureKind.FormatData,
+                        dataMark.Offset,
+                        TycomFmFormat.MarkBitCount,
+                        FluxStructureDescriptions.Truncated(TycomFmFormat.StructureDescriptionName, FluxStructureKind.FormatData, dataMark.Definition.Mark, "sector data")
+                    ));
                 else
                 {
                     decodedBytes.AddRange(data.Payload);
-                    structures.Add(new(FluxStructureKind.FormatData, dataMark.Offset, TycomFmFormat.DataBlockBitCount, $"{FluxStructureDescriptions.Identity(TycomFmFormat.StructureDescriptionName, FluxStructureKind.FormatData, header.Cylinder, TycomFmFormat.LogicalHead, header.Sector, TycomFmFormat.SectorSize, dataMark.Definition.Mark, null)}, {FluxStructureDescriptions.Integrity("CRC", data.CrcValid)}"));
+                    structures.Add(new(
+                        FluxStructureKind.FormatData,
+                        dataMark.Offset,
+                        TycomFmFormat.DataBlockBitCount,
+                        $"{FluxStructureDescriptions.Identity(TycomFmFormat.StructureDescriptionName, FluxStructureKind.FormatData, header.Cylinder, TycomFmFormat.LogicalHead, header.Sector, TycomFmFormat.SectorSize, dataMark.Definition.Mark, null)}, {FluxStructureDescriptions.Integrity("CRC", data.CrcValid)}"
+                    ));
                 }
             }
+    
             sectors.Add(new(header.Cylinder, TycomFmFormat.LogicalHead, header.Sector, TycomFmFormat.SectorSizeCode, TycomFmFormat.SectorSize, data?.CrcValid, offset, Data: data?.Payload));
-            structures.Add(new(FluxStructureKind.FormatHeader, offset, TycomFmFormat.HeaderBitCount, FluxStructureDescriptions.Complete(TycomFmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, header.Cylinder, TycomFmFormat.LogicalHead, header.Sector, TycomFmFormat.SectorSize, dataMark?.Definition.Mark, null, true, data?.CrcValid)));
+            structures.Add(new(
+                FluxStructureKind.FormatHeader,
+                offset,
+                TycomFmFormat.HeaderBitCount,
+                FluxStructureDescriptions.Complete(TycomFmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, header.Cylinder, TycomFmFormat.LogicalHead, header.Sector, TycomFmFormat.SectorSize, dataMark?.Definition.Mark, null, true, data?.CrcValid)
+            ));
             offset += TycomFmFormat.MarkBitCount - 1;
         }
+    
         CollectUnpairedDataMarks(stream, pairedDataOffsets, structures);
         var ordered = structures.OrderBy(item => item.BitOffset).ToArray();
         var confidence = FluxDecoderConfidence.Calculate(sectors.Count, ordered.Length, TycomFmFormat.ConfidenceSectorWeight, TycomFmFormat.ConfidenceDivisor);

@@ -255,11 +255,78 @@ internal static class DiskImageContractData
         return string.Empty;
     }
 
-    private sealed record MetadataData(string? Signature, string? TypeDisquette, int? ResolutionNanosecondes, int? NombreRevolutions, int? PremierePiste, int? DernierePiste, int NombrePistes, int? NombreFaces, bool ChecksumPresent, string? ChecksumDeclare, string? ChecksumCalcule, bool? ChecksumValide, IReadOnlyDictionary<string, string> ProprietesFormat) : IMetadonneesImage;
+    private sealed record MetadataData(
+        string? Signature,
+        string? TypeDisquette,
+        int? ResolutionNanosecondes,
+        int? NombreRevolutions,
+        int? PremierePiste,
+        int? DernierePiste,
+        int NombrePistes,
+        int? NombreFaces,
+        bool ChecksumPresent,
+        string? ChecksumDeclare,
+        string? ChecksumCalcule,
+        bool? ChecksumValide,
+        IReadOnlyDictionary<string, string> ProprietesFormat
+    ) : IMetadonneesImage;
     private sealed record TrackData(int? NumeroSource, int Cylindre, int Face, IReadOnlyList<IRevolution> Revolutions, IReadOnlyList<ISecteurSource> SecteursSource) : IPiste;
     private sealed record SourceSectorData(int Numero, int Taille, ReadOnlyMemory<byte> Donnees) : ISecteurSource;
-    private sealed record FormatData(string MachineId, string FormatId, string Encodage, int Cylindres, int Faces, int? SecteursParPiste, int? TailleSecteur, long CapaciteOctets, int NombreSecteursValides, int NombreSecteursInvalides, int NombreSecteursAbsents, IReadOnlyList<ISecteur> Secteurs, string? SystemeFichiers, string? NomVolume, long? CapaciteVolume, long? EspaceUtilise, long? EspaceLibre, DateTimeOffset? CreationVolume, DateTimeOffset? ModificationVolume, IReadOnlyList<string> AttributsVolume, bool? Amorcable, int? NumeroDisque, int? NombreDisques, string? OrigineNumeroDisque, int NombreEntrees, string? Organisation, string? Chargeur, IReadOnlyList<string> Compactages, string? Crack, string? Protection, IReadOnlyList<IEntree> Entrees, IReadOnlyList<IDiagnostic> Diagnostics) : IFormatDetecte;
+    private sealed record FormatData(
+        string MachineId,
+        string FormatId,
+        string Encodage,
+        int Cylindres,
+        int Faces,
+        int? SecteursParPiste,
+        int? TailleSecteur,
+        long CapaciteOctets,
+        int NombreSecteursValides,
+        int NombreSecteursInvalides,
+        int NombreSecteursAbsents,
+        IReadOnlyList<ISecteur> Secteurs,
+        string? SystemeFichiers,
+        string? NomVolume,
+        long? CapaciteVolume,
+        long? EspaceUtilise,
+        long? EspaceLibre,
+        DateTimeOffset? CreationVolume,
+        DateTimeOffset? ModificationVolume,
+        IReadOnlyList<string> AttributsVolume,
+        bool? Amorcable,
+        int? NumeroDisque,
+        int? NombreDisques,
+        string? OrigineNumeroDisque,
+        int NombreEntrees,
+        string? Organisation,
+        string? Chargeur,
+        IReadOnlyList<string> Compactages,
+        string? Crack,
+        string? Protection,
+        IReadOnlyList<IEntree> Entrees,
+        IReadOnlyList<IDiagnostic> Diagnostics
+    ) : IFormatDetecte;
     private sealed record SectorData(int BlocLogique, int Cylindre, int Face, int Numero, int Taille, string Etat, ReadOnlyMemory<byte> Donnees, bool? EnteteValide, bool? DonneesValides, ReadOnlyMemory<byte>? Tag, byte? CodeFormat, byte? CodeDiagnostic, IReadOnlyList<int> Revolutions) : ISecteur;
-    private sealed record EntryData(string Nom, string Type, string? TypeNatifId, long Taille, long? TailleOccupee, DateTimeOffset? Creation, DateTimeOffset? Modification, DateTimeOffset? Acces, string? Commentaire, IReadOnlyList<string> Attributs, uint? AttributsBruts, long? ReferenceStockage, bool MetadonneesValides, bool? DonneesValides, bool NomSynthetique, string? CibleLien, ReadOnlyMemory<byte>? Donnees, IReadOnlyList<IEntree> Enfants, IReadOnlyList<IDiagnostic> Diagnostics) : IEntree;
+    private sealed record EntryData(
+        string Nom,
+        string Type,
+        string? TypeNatifId,
+        long Taille,
+        long? TailleOccupee,
+        DateTimeOffset? Creation,
+        DateTimeOffset? Modification,
+        DateTimeOffset? Acces,
+        string? Commentaire,
+        IReadOnlyList<string> Attributs,
+        uint? AttributsBruts,
+        long? ReferenceStockage,
+        bool MetadonneesValides,
+        bool? DonneesValides,
+        bool NomSynthetique,
+        string? CibleLien,
+        ReadOnlyMemory<byte>? Donnees,
+        IReadOnlyList<IEntree> Enfants,
+        IReadOnlyList<IDiagnostic> Diagnostics
+    ) : IEntree;
     private sealed record DiagnosticData(string Niveau, string Code, IReadOnlyDictionary<string, string> Parametres, int? Cylindre, int? Face, int? Revolution, int? Secteur) : IDiagnostic;
 }

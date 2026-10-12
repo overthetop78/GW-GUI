@@ -17,9 +17,15 @@ public sealed class AtariStConversionService(AtariScpSectorImageReader scpReader
     public async Task ConvertAsync(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)
     {
         var sourceExtension = Path.GetExtension(sourcePath);
-        var image = sourceExtension.Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) ? await scpReader.ReadAsync(sourcePath, formatId, cancellationToken).ConfigureAwait(false) : sourceExtension.Equals(DiskImageFileExtensions.Msa, StringComparison.OrdinalIgnoreCase) ? await msaReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false) : await stReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        var image = sourceExtension.Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase)
+            ? await scpReader.ReadAsync(sourcePath, formatId, cancellationToken).ConfigureAwait(false)
+            : sourceExtension.Equals(DiskImageFileExtensions.Msa, StringComparison.OrdinalIgnoreCase)
+            ? await msaReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false)
+            : await stReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         var transformed = AtariStGeometryTransformer.Transform(image, formatId, sourceExtension.Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase));
-        if (Path.GetExtension(outputPath).Equals(DiskImageFileExtensions.Msa, StringComparison.OrdinalIgnoreCase)) await msaWriter.WriteAsync(transformed, outputPath, cancellationToken).ConfigureAwait(false);
-        else await stWriter.WriteAsync(transformed, outputPath, cancellationToken).ConfigureAwait(false);
+        if (Path.GetExtension(outputPath).Equals(DiskImageFileExtensions.Msa, StringComparison.OrdinalIgnoreCase))
+            await msaWriter.WriteAsync(transformed, outputPath, cancellationToken).ConfigureAwait(false);
+        else
+            await stWriter.WriteAsync(transformed, outputPath, cancellationToken).ConfigureAwait(false);
     }
 }

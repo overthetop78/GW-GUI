@@ -12,7 +12,13 @@ internal sealed class ScpCandidateRegistry
     private readonly ScpSectorImageCandidate fallback;
 
     /// <summary>Copie toutes les inscriptions et l'ordre déterministe des familles.</summary>
-    public ScpCandidateRegistry(IEnumerable<ScpFormatSelection> selections, IEnumerable<ScpSectorImageCandidate> defaultCandidates, IEnumerable<KeyValuePair<ScpFormatFamily, IReadOnlyList<ScpSectorImageCandidate>>> familyCandidates, IEnumerable<ScpFormatFamily> familyOrder, ScpSectorImageCandidate fallback)
+    public ScpCandidateRegistry(
+        IEnumerable<ScpFormatSelection> selections,
+        IEnumerable<ScpSectorImageCandidate> defaultCandidates,
+        IEnumerable<KeyValuePair<ScpFormatFamily, IReadOnlyList<ScpSectorImageCandidate>>> familyCandidates,
+        IEnumerable<ScpFormatFamily> familyOrder,
+        ScpSectorImageCandidate fallback
+    )
     {
         this.selections = Array.AsReadOnly(selections.ToArray());
         this.defaultCandidates = Array.AsReadOnly(defaultCandidates.ToArray());

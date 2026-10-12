@@ -89,16 +89,39 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
     private static AppleDataDecodeResult FindAndDecodeSixAndTwoData(FluxBitstream stream, int headerEnd, AppleAddressDecodeResult? address, List<FluxStructure> structures, List<byte> bytes, HashSet<int> pairedData)
     {
         var dataOffset = Find(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + AppleIIGcrFormat.DataSearchBitCount), AppleIIGcrFormat.DataPrologue);
-        if (dataOffset < 0) return new(null, null, headerEnd);
+        if (dataOffset < 0)
+            return new(null, null, headerEnd);
         pairedData.Add(dataOffset);
         var decoded = AppleIIGcrCodec.TryDecodeSixAndTwo(stream.Bits, dataOffset + AppleIIGcrFormat.PrologueBitCount);
         if (decoded is null)
         {
-            structures.Add(new(FluxStructureKind.AppleData, dataOffset, AppleIIGcrFormat.PrologueBitCount, FluxStructureDescriptions.Truncated(AppleIIGcrFormat.StructureDescriptionName, FluxStructureKind.AppleData, null, AppleIIGcrFormat.UnavailableChecksumVariant)));
+            structures.Add(new(
+                FluxStructureKind.AppleData,
+                dataOffset,
+                AppleIIGcrFormat.PrologueBitCount,
+                FluxStructureDescriptions.Truncated(AppleIIGcrFormat.StructureDescriptionName, FluxStructureKind.AppleData, null, AppleIIGcrFormat.UnavailableChecksumVariant)
+            ));
             return new(null, null, headerEnd);
         }
+    
         bytes.AddRange(decoded.Value.Data);
-        structures.Add(new(FluxStructureKind.AppleData, dataOffset, decoded.Value.EndOffset - dataOffset, FluxStructureDescriptions.WithIntegrity(AppleIIGcrFormat.StructureDescriptionName, FluxStructureKind.AppleData, address?.Cylinder ?? 0, AppleIIGcrFormat.LogicalHead, address?.Sector ?? 0, AppleIIGcrFormat.SectorSize, null, null, AppleIIGcrFormat.ChecksumLabel, decoded.Value.Valid)));
+        structures.Add(new(
+            FluxStructureKind.AppleData,
+            dataOffset,
+            decoded.Value.EndOffset - dataOffset,
+            FluxStructureDescriptions.WithIntegrity(
+            AppleIIGcrFormat.StructureDescriptionName,
+            FluxStructureKind.AppleData,
+            address?.Cylinder ?? 0,
+            AppleIIGcrFormat.LogicalHead,
+            address?.Sector ?? 0,
+            AppleIIGcrFormat.SectorSize,
+            null,
+            null,
+            AppleIIGcrFormat.ChecksumLabel,
+            decoded.Value.Valid
+        )
+        ));
         return new(decoded.Value.Data, decoded.Value.Valid, decoded.Value.EndOffset);
     }
 
@@ -108,12 +131,30 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
     private static AppleDataDecodeResult FindAndDecodeFiveAndThreeData(FluxBitstream stream, int headerEnd, AppleAddressDecodeResult? address, List<FluxStructure> structures, List<byte> bytes, HashSet<int> pairedData)
     {
         var dataOffset = Find(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + AppleIIGcrFormat.DataSearchBitCount), AppleIIGcrFormat.DataPrologue);
-        if (dataOffset < 0) return new(null, null, headerEnd);
+        if (dataOffset < 0)
+            return new(null, null, headerEnd);
         pairedData.Add(dataOffset);
         var decoded = AppleIIGcrCodec.TryDecodeFiveAndThree(stream.Bits, dataOffset + AppleIIGcrFormat.PrologueBitCount);
-        if (decoded is null) return new(null, null, headerEnd);
+        if (decoded is null)
+            return new(null, null, headerEnd);
         bytes.AddRange(decoded.Value.Data);
-        structures.Add(new(FluxStructureKind.AppleData, dataOffset, decoded.Value.EndOffset - dataOffset, FluxStructureDescriptions.WithIntegrity(AppleIIGcrFormat.StructureDescriptionName, FluxStructureKind.AppleData, address?.Cylinder ?? 0, AppleIIGcrFormat.LogicalHead, address?.Sector ?? 0, AppleIIGcrFormat.SectorSize, null, AppleIIGcrFormat.ThirteenSectorVariant, AppleIIGcrFormat.ChecksumLabel, decoded.Value.Valid)));
+        structures.Add(new(
+            FluxStructureKind.AppleData,
+            dataOffset,
+            decoded.Value.EndOffset - dataOffset,
+            FluxStructureDescriptions.WithIntegrity(
+            AppleIIGcrFormat.StructureDescriptionName,
+            FluxStructureKind.AppleData,
+            address?.Cylinder ?? 0,
+            AppleIIGcrFormat.LogicalHead,
+            address?.Sector ?? 0,
+            AppleIIGcrFormat.SectorSize,
+            null,
+            AppleIIGcrFormat.ThirteenSectorVariant,
+            AppleIIGcrFormat.ChecksumLabel,
+            decoded.Value.Valid
+        )
+        ));
         return new(decoded.Value.Data, decoded.Value.Valid, decoded.Value.EndOffset);
     }
 
@@ -127,8 +168,32 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
         bool? integrity = address?.Valid == false || data.Valid == false ? false : data.Valid is null ? null : true;
         sectors.Add(new(cylinder, AppleIIGcrFormat.LogicalHead, sector, SectorSizeCode.FromByteCount(AppleIIGcrFormat.SectorSize), AppleIIGcrFormat.SectorSize, integrity, offset, SectorIntegrityKind.Checksum, data.Data));
         var description = variant is null
-            ? FluxStructureDescriptions.Complete(AppleIIGcrFormat.StructureDescriptionName, FluxStructureKind.AppleAddress, cylinder, AppleIIGcrFormat.LogicalHead, sector, AppleIIGcrFormat.SectorSize, null, $"V{volume}", address?.Valid, data.Valid, AppleIIGcrFormat.AddressChecksumLabel, AppleIIGcrFormat.DataChecksumLabel)
-            : FluxStructureDescriptions.WithIntegrity(AppleIIGcrFormat.StructureDescriptionName, FluxStructureKind.AppleAddress, cylinder, AppleIIGcrFormat.LogicalHead, sector, AppleIIGcrFormat.SectorSize, null, $"{variant} V{volume}", AppleIIGcrFormat.AddressChecksumLabel, address?.Valid);
+            ? FluxStructureDescriptions.Complete(
+            AppleIIGcrFormat.StructureDescriptionName,
+            FluxStructureKind.AppleAddress,
+            cylinder,
+            AppleIIGcrFormat.LogicalHead,
+            sector,
+            AppleIIGcrFormat.SectorSize,
+            null,
+            $"V{volume}",
+            address?.Valid,
+            data.Valid,
+            AppleIIGcrFormat.AddressChecksumLabel,
+            AppleIIGcrFormat.DataChecksumLabel
+        )
+            : FluxStructureDescriptions.WithIntegrity(
+            AppleIIGcrFormat.StructureDescriptionName,
+            FluxStructureKind.AppleAddress,
+            cylinder,
+            AppleIIGcrFormat.LogicalHead,
+            sector,
+            AppleIIGcrFormat.SectorSize,
+            null,
+            $"{variant} V{volume}",
+            AppleIIGcrFormat.AddressChecksumLabel,
+            address?.Valid
+        );
         structures.Add(new(FluxStructureKind.AppleAddress, offset, variant is null ? Math.Max(AppleIIGcrFormat.PrologueBitCount, headerEnd - offset) : AppleIIGcrFormat.AddressBlockBitCount, description));
     }
 

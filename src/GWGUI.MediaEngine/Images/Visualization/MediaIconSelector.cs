@@ -13,10 +13,8 @@ public static class MediaIconSelector
         return mediaKind switch
         {
             MediaKind.Floppy when format?.FormFactor == FloppyFormFactor.ThreeInch => MediaIconIds.FloppyThreeInch,
-            MediaKind.Floppy when format?.FormFactor == FloppyFormFactor.ThreeAndHalfInch &&
-                                  format.Density == FloppyDensity.ExtendedDensity => MediaIconIds.FloppyThreeAndHalfExtended,
-            MediaKind.Floppy when format?.FormFactor == FloppyFormFactor.ThreeAndHalfInch &&
-                                  format.Density == FloppyDensity.HighDensity => MediaIconIds.FloppyThreeAndHalfHigh,
+            MediaKind.Floppy when format?.FormFactor == FloppyFormFactor.ThreeAndHalfInch && format.Density == FloppyDensity.ExtendedDensity => MediaIconIds.FloppyThreeAndHalfExtended,
+            MediaKind.Floppy when format?.FormFactor == FloppyFormFactor.ThreeAndHalfInch && format.Density == FloppyDensity.HighDensity => MediaIconIds.FloppyThreeAndHalfHigh,
             MediaKind.Floppy when format?.FormFactor == FloppyFormFactor.ThreeAndHalfInch => MediaIconIds.FloppyThreeAndHalfDouble,
             MediaKind.Floppy when format?.FormFactor == FloppyFormFactor.FiveAndQuarterInch => MediaIconIds.FloppyFiveAndQuarter,
             MediaKind.Floppy when format?.FormFactor == FloppyFormFactor.EightInch => MediaIconIds.FloppyEightInch,

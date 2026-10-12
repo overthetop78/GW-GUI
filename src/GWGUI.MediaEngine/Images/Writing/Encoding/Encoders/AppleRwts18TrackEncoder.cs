@@ -31,7 +31,16 @@ public sealed class AppleRwts18TrackEncoder : TrackEncoderBase
     }
 
     /// <summary>Construit la marque, l'adresse, son checksum XOR, la fin d'adresse et les octets de synchronisation.</summary>
-    private static byte[] BuildAddressField(int cylinder, int sector) => [(byte)(AppleRwts18Format.EncodedAddressMark >> GWGUI.MediaEngine.Functions.BitPrimitives.BitsPerByte), (byte)(AppleRwts18Format.EncodedAddressMark & byte.MaxValue), AppleIIGcrFormat.SixAndTwoTable[cylinder], AppleIIGcrFormat.SixAndTwoTable[sector], AppleIIGcrFormat.SixAndTwoTable[cylinder ^ sector], AppleRwts18Format.AddressTrailer, AppleRwts18Format.SyncByte, AppleRwts18Format.SyncByte];
+    private static byte[] BuildAddressField(int cylinder, int sector) => [
+        (byte)(AppleRwts18Format.EncodedAddressMark >> GWGUI.MediaEngine.Functions.BitPrimitives.BitsPerByte),
+        (byte)(AppleRwts18Format.EncodedAddressMark & byte.MaxValue),
+        AppleIIGcrFormat.SixAndTwoTable[cylinder],
+        AppleIIGcrFormat.SixAndTwoTable[sector],
+        AppleIIGcrFormat.SixAndTwoTable[cylinder ^ sector],
+        AppleRwts18Format.AddressTrailer,
+        AppleRwts18Format.SyncByte,
+        AppleRwts18Format.SyncByte
+    ];
 
     /// <summary>Valide le cylindre et l'ensemble exact des six secteurs RWTS18 avant l'encodage.</summary>
     private static void ValidateTrack(TrackEncodeRequest request)

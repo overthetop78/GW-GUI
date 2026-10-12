@@ -111,17 +111,33 @@ public sealed class ScpReader : IScpReader, IMediaImageReader
     public static ScpHeader ReadHeader(ReadOnlySpan<byte> data)
     {
         ScpDataValidator.Require(data, ScpFormatConstants.FileStartOffset, ScpFormatConstants.HeaderLength, ScpSection.Header);
-        if (!ScpSignature.IsPresent(data)) throw ScpExceptions.MissingFileSignature();
+        if (!ScpSignature.IsPresent(data))
+            throw ScpExceptions.MissingFileSignature();
         var revolutions = data[ScpFormatConstants.RevolutionCountOffset];
         var startTrack = data[ScpFormatConstants.StartTrackOffset];
         var endTrack = data[ScpFormatConstants.EndTrackOffset];
         var bitCellEncoding = (ScpBitCellEncoding)data[ScpFormatConstants.BitCellWidthOffset];
         var heads = (ScpHeadSelection)data[ScpFormatConstants.HeadsOffset];
-        if (revolutions is < ScpFormatConstants.MinimumRevolutionCount or > ScpFormatConstants.MaximumRevolutionCount) throw ScpExceptions.InvalidRevolutionCount(revolutions);
-        if (endTrack < startTrack || endTrack >= ScpFormatConstants.FloppyTrackSlots) throw ScpExceptions.InvalidTrackRange(startTrack, endTrack);
-        if (bitCellEncoding is not (ScpBitCellEncoding.Default16Bit or ScpBitCellEncoding.Explicit16Bit)) throw ScpExceptions.UnsupportedBitCellWidth((byte)bitCellEncoding);
-        if (heads is not (ScpHeadSelection.Both or ScpHeadSelection.Side0 or ScpHeadSelection.Side1)) throw ScpExceptions.InvalidHeadSelector((byte)heads);
-        return new(data[ScpFormatConstants.VersionOffset], data[ScpFormatConstants.DiskTypeOffset], revolutions, startTrack, endTrack, (ScpFlags)data[ScpFormatConstants.FlagsOffset], bitCellEncoding, heads, data[ScpFormatConstants.ResolutionOffset], BinaryPrimitives.ReadUInt32LittleEndian(data.Slice(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength)));
+        if (revolutions is < ScpFormatConstants.MinimumRevolutionCount or > ScpFormatConstants.MaximumRevolutionCount)
+            throw ScpExceptions.InvalidRevolutionCount(revolutions);
+        if (endTrack < startTrack || endTrack >= ScpFormatConstants.FloppyTrackSlots)
+            throw ScpExceptions.InvalidTrackRange(startTrack, endTrack);
+        if (bitCellEncoding is not (ScpBitCellEncoding.Default16Bit or ScpBitCellEncoding.Explicit16Bit))
+            throw ScpExceptions.UnsupportedBitCellWidth((byte)bitCellEncoding);
+        if (heads is not (ScpHeadSelection.Both or ScpHeadSelection.Side0 or ScpHeadSelection.Side1))
+            throw ScpExceptions.InvalidHeadSelector((byte)heads);
+        return new(
+            data[ScpFormatConstants.VersionOffset],
+            data[ScpFormatConstants.DiskTypeOffset],
+            revolutions,
+            startTrack,
+            endTrack,
+            (ScpFlags)data[ScpFormatConstants.FlagsOffset],
+            bitCellEncoding,
+            heads,
+            data[ScpFormatConstants.ResolutionOffset],
+            BinaryPrimitives.ReadUInt32LittleEndian(data.Slice(ScpFormatConstants.ChecksumOffset, ScpFormatConstants.ChecksumLength))
+        );
     }
 
     /// <summary>Lit une piste SCP, valide son en-tête et confie chaque descripteur de révolution au lecteur spécialisé.</summary>
