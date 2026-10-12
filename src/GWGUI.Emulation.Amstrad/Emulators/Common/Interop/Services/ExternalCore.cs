@@ -54,8 +54,7 @@ internal sealed class ExternalCore : IEmulatorCore
         return false;
     }
 
-    public void Initialize(MachineConfiguration configuration, string sessionDirectory,
-        string? saveDirectory = null)
+    public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
         _configuration = configuration;
         _sessionDirectory = Path.GetFullPath(sessionDirectory);
@@ -140,8 +139,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
     internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(MachineConfiguration configuration) => (configuration.Media ?? []).Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ToArray();
 
-    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media,
-        string contentDirectory)
+    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media, string contentDirectory)
     {
         if (media.Count == BufferConstants.EmptyCollectionCount) return null;
         if (media.Count == BufferConstants.SingleItemCount || media.Any(item => item.Category != MediaCategory.Floppy))
@@ -230,9 +228,7 @@ internal sealed class ExternalCore : IEmulatorCore
                 _contentBuffer = Marshal.AllocHGlobal(bytes.Length);
                 Marshal.Copy(bytes, BufferConstants.FirstBufferIndex, _contentBuffer, bytes.Length);
             }
-            Marshal.StructureToPtr(new ExternalCoreApi.GameInfo
-                { Path = nativePath.Pointer, Data = _contentBuffer, Size = (nuint)(bytes?.Length ?? BufferConstants.EmptyCollectionCount) },
-                game, false);
+            Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = nativePath.Pointer, Data = _contentBuffer, Size = (nuint)(bytes?.Length ?? BufferConstants.EmptyCollectionCount) }, game, false);
             return loadGame(game);
         }
         finally

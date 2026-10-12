@@ -54,8 +54,7 @@ internal sealed partial class ExternalHostCallbacks
 
     private void HandleAudioSample(short left, short right)
     {
-        PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, AudioConstants.SingleFrameCount,
-            ++_audioSequence, _clock.Elapsed));
+        PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, AudioConstants.SingleFrameCount, ++_audioSequence, _clock.Elapsed));
     }
 
     private nuint HandleAudioBatch(nint data, nuint frames)

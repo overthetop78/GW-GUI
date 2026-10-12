@@ -42,8 +42,7 @@ public sealed class ExternalCoreInstaller
         return await service.InstallAsync(releases.Single(), cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 
-    internal static async Task WriteManifestAsync(string version, string source, string libraryPath,
-        string sha256, string architecture, CancellationToken cancellationToken)
+    internal static async Task WriteManifestAsync(string version, string source, string libraryPath, string sha256, string architecture, CancellationToken cancellationToken)
     {
         var manifest = new
         {
@@ -54,9 +53,7 @@ public sealed class ExternalCoreInstaller
             architecture,
             installedUtc = DateTimeOffset.UtcNow
         };
-        await File.WriteAllTextAsync(Path.Combine(Path.GetDirectoryName(libraryPath)!, CoreReleaseConstants.CoreJson),
-            JsonSerializer.Serialize(manifest, new JsonSerializerOptions { WriteIndented = true }),
-            cancellationToken).ConfigureAwait(false);
+        await File.WriteAllTextAsync(Path.Combine(Path.GetDirectoryName(libraryPath)!, CoreReleaseConstants.CoreJson), JsonSerializer.Serialize(manifest, new JsonSerializerOptions { WriteIndented = true }), cancellationToken).ConfigureAwait(false);
     }
 
     internal static string Hash(string path)

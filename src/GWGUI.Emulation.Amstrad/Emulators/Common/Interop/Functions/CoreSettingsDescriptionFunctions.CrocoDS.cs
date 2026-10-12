@@ -3,8 +3,7 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Functions;
 
 internal static partial class CoreSettingsDescriptionFunctions
 {
-    private static IReadOnlyList<EmulationSettingsBlock> CreateCrocoDS(
-        MachineConfiguration configuration, IReadOnlyList<CoreOption> coreOptions)
+    private static IReadOnlyList<EmulationSettingsBlock> CreateCrocoDS(MachineConfiguration configuration, IReadOnlyList<CoreOption> coreOptions)
     {
         var model = ModelCatalog.Get(configuration.Model);
         var blocks = new List<EmulationSettingsBlock>
@@ -41,8 +40,7 @@ internal static partial class CoreSettingsDescriptionFunctions
                 Select(SettingsConstants.AudioLatency, EmulationMachineTab.Audio, SettingsDescriptionFunctionsConstants.Audio,
                     SettingsDescriptionFunctionsConstants.ResourceAudioLatency,
                     (configuration.Audio?.LatencyMilliseconds ?? AudioConstants.DefaultLatencyMilliseconds).ToString(),
-                    AudioConstants.LatencyChoicesMilliseconds
-                        .Select(value => Invariant(value.ToString(), $"{value}{SettingsDescriptionFunctionsConstants.LatencyUnitSuffix}", value))))
+                    AudioConstants.LatencyChoicesMilliseconds.Select(value => Invariant(value.ToString(), $"{value}{SettingsDescriptionFunctionsConstants.LatencyUnitSuffix}", value))))
         };
         var fields = coreOptions.Where(option => option.IsVisible && option.Values.Count > BufferConstants.EmptyCollectionCount)
             .Select(option => new EmulationSettingsField(option.Key,

@@ -36,8 +36,7 @@ internal sealed class ProcessCore : IEmulatorCore
     private string? _sessionDirectory;
     private string? _saveDirectory;
 
-    internal ProcessCore(string hostExecutablePath, string hostCommand, string? corePath = null,
-        bool supportsPointerCapture = true)
+    internal ProcessCore(string hostExecutablePath, string hostCommand, string? corePath = null, bool supportsPointerCapture = true)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(hostExecutablePath);
         _hostExecutablePath = Path.GetFullPath(hostExecutablePath);

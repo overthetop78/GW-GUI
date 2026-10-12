@@ -45,8 +45,7 @@ internal static class StorageSettingsFunctions
         return new EmulationStorageSettings(devices, configured, mounted);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        EmulationStorageSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
         var media = settings.MountedMedia.Select((item, index) => new MediaConfiguration(
             item.Path, item.Type switch

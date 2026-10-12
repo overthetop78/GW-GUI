@@ -13,8 +13,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
     private readonly Engine _engine = new();
     private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) => new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
 
-    public AmstradEmulationModule(string configurationDirectory, string pathBase,
-        HttpClient httpClient, string coreDirectory)
+    public AmstradEmulationModule(string configurationDirectory, string pathBase, HttpClient httpClient, string coreDirectory)
     {
         _store = new ConfigurationStore(configurationDirectory, pathBase);
         _httpClient = httpClient;
@@ -23,8 +22,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
 
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
-    public string BrandImageResourceName =>
-        $"{EmulationModuleConstants.AssetResourcePrefix}{EmulationModuleConstants.ModuleIconResourceSuffix}";
+    public string BrandImageResourceName => $"{EmulationModuleConstants.AssetResourcePrefix}{EmulationModuleConstants.ModuleIconResourceSuffix}";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
 
@@ -32,8 +30,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode) => _engine.TryHandleHostCommand(arguments, out exitCode);
 
-    public EmulationMachineSettings Describe(string machineId,
-        IEmulationConfiguration? configuration = null)
+    public EmulationMachineSettings Describe(string machineId, IEmulationConfiguration? configuration = null)
     {
         var current = configuration as MachineConfiguration ?? (MachineConfiguration)CreateConfiguration(machineId);
         var model = ModelCatalog.Get(current.Model);
@@ -59,8 +56,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
             Input: new InputConfiguration(), Media: []);
     }
 
-    public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration,
-        string machineId)
+    public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId)
     {
         if (configuration is not MachineConfiguration current)
             throw new ArgumentException(nameof(configuration));
@@ -70,8 +66,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
             AudioEnabled = current.AudioEnabled, Audio = current.Audio };
     }
 
-    public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration,
-        IReadOnlyDictionary<string, string?> values)
+    public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var amstrad = RequireConfiguration(configuration);
         var options = new Dictionary<string, string>(amstrad.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
@@ -114,13 +109,11 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
 
     public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => InputSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
-    public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default) => configuration is MachineConfiguration amstrad ? new ValueTask(_store.SaveAsync(amstrad, cancellationToken)) : ValueTask.FromException(new ArgumentException(nameof(configuration)));
+    public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => configuration is MachineConfiguration amstrad ? new ValueTask(_store.SaveAsync(amstrad, cancellationToken)) : ValueTask.FromException(new ArgumentException(nameof(configuration)));
 
     public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
 
-    public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default)
+    public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         if (configuration is not MachineConfiguration amstrad)
             return ValueTask.FromException(new ArgumentException(nameof(configuration)));
@@ -128,31 +121,27 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         return new ValueTask(_store.SaveAsync(amstrad, cancellationToken));
     }
 
-    public ValueTask DeleteConfigurationAsync(Guid configurationId,
-        CancellationToken cancellationToken = default)
+    public ValueTask DeleteConfigurationAsync(Guid configurationId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         _store.Delete(configurationId);
         return ValueTask.CompletedTask;
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId,
-        CancellationToken cancellationToken = default)
+    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId, CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
         var adapter = _engine.Adapter(DefaultEmulatorId(machineId));
         return adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken);
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(
-        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         var adapter = _engine.Adapter(RequireConfiguration(configuration).EmulatorId);
         return adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken);
     }
 
-    public async ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(
-        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    public async ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         var amstrad = RequireConfiguration(configuration);
         var installations = new List<EmulationEmulatorInstallation>();
@@ -164,8 +153,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         return installations;
     }
 
-    public ValueTask<IEmulationConfiguration> UseEmulatorAsync(IEmulationConfiguration configuration,
-        string emulatorId, CancellationToken cancellationToken = default)
+    public ValueTask<IEmulationConfiguration> UseEmulatorAsync(IEmulationConfiguration configuration, string emulatorId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var amstrad = RequireConfiguration(configuration);
@@ -184,41 +172,33 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         return ValueTask.FromResult<IEmulationConfiguration>(selected);
     }
 
-    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
-        string machineId, CancellationToken cancellationToken = default)
+    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
         var adapter = _engine.Adapter(DefaultEmulatorId(machineId));
         return adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken);
     }
 
-    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
-        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         var adapter = _engine.Adapter(RequireConfiguration(configuration).EmulatorId);
         return adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken);
     }
 
-    public ValueTask<string> InstallEmulatorAsync(string machineId,
-        EmulationEmulatorRelease release, IProgress<double>? progress = null,
-        CancellationToken cancellationToken = default)
+    public ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
         var adapter = _engine.Adapter(DefaultEmulatorId(machineId));
         return adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken);
     }
 
-    public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration,
-        EmulationEmulatorRelease release, IProgress<double>? progress = null,
-        CancellationToken cancellationToken = default)
+    public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         var adapter = _engine.Adapter(RequireConfiguration(configuration).EmulatorId);
         return adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken);
     }
 
-    public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(
-        IEmulationConfiguration configuration, EmulationRuntimeServices services,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration, EmulationRuntimeServices services, CancellationToken cancellationToken = default)
     {
         if (configuration is not MachineConfiguration amstrad)
             throw new ArgumentException(nameof(configuration));
@@ -241,8 +221,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
             SupportsPointerCapture: amstrad.EmulatorId != CrocoDSProfile.Id && ModelCatalog.Get(amstrad.Model).MouseButtonCount > BufferConstants.EmptyCollectionCount);
     }
 
-    private static MachineConfiguration WithMedia(MachineConfiguration configuration,
-        IEnumerable<EmulationMedia> media) => configuration with
+    private static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with
     {
         Media = media.Select((item, index) => new MediaConfiguration(item.Path,
             item.Type switch

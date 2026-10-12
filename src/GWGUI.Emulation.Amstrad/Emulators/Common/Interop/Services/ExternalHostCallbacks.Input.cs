@@ -62,10 +62,7 @@ internal sealed partial class ExternalHostCallbacks
         return keys.Where(key => key is not (EmulationKey.LeftAlt or EmulationKey.RightAlt or EmulationKey.Return or EmulationKey.NumpadEnter)).ToHashSet();
     }
 
-    private static uint CharacterFor(
-        uint code,
-        IReadOnlySet<EmulationKey> keys
-    )
+    private static uint CharacterFor(uint code, IReadOnlySet<EmulationKey> keys)
     {
         var shifted = keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift);
         var caps = keys.Contains(EmulationKey.CapsLock);
@@ -101,20 +98,14 @@ internal sealed partial class ExternalHostCallbacks
     }
 
     private static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt;
-    private void HandleLog(
-        int level,
-        nint format
-    )
+    private void HandleLog(int level, nint format)
     {
         var message = format == nint.Zero ? null : Marshal.PtrToStringUTF8(format);
         if (!string.IsNullOrWhiteSpace(message))
             AddDiagnostic($"{ExternalHostCallbacksConstants.DiagnosticPrefix}{level}{ExternalHostCallbacksConstants.DiagnosticLevelSuffix}{message.TrimEnd()}");
     }
 
-    private void HandleLed(
-        int led,
-        int state
-    )
+    private void HandleLed(int led, int state)
     {
         if (led is not (>= BufferConstants.FirstCollectionIndex and < EmulationHostProtocolConstants.MaximumLedStateCount))
             return;
@@ -130,12 +121,7 @@ internal sealed partial class ExternalHostCallbacks
             _diagnostics.TryDequeue(out _);
     }
 
-    private short HandleInputState(
-        uint port,
-        uint device,
-        uint index,
-        uint id
-    )
+    private short HandleInputState(uint port, uint device, uint index, uint id)
     {
         var input = _polledInput;
         if (device == KeyboardDevice)

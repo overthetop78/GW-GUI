@@ -23,8 +23,7 @@ internal static partial class InputSettingsFunctions
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        EmulationInputSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         var current = configuration.Input ?? new InputConfiguration();
         var keyboard = KeyboardBindingFunctions.Normalize(current with { KeyboardBindings = settings.Keyboard?.Values ?? new Dictionary<string, string>() });

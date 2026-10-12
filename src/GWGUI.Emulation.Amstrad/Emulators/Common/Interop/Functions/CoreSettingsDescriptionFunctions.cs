@@ -3,8 +3,7 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Functions;
 
 internal static partial class CoreSettingsDescriptionFunctions
 {
-    internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration,
-        IReadOnlyList<CoreOption>? coreOptions = null)
+    internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration, IReadOnlyList<CoreOption>? coreOptions = null)
     {
         if (configuration.EmulatorId == CrocoDSProfile.Id) return CreateCrocoDS(configuration, coreOptions ?? []);
         var model = ModelCatalog.Get(configuration.Model);
@@ -77,8 +76,7 @@ internal static partial class CoreSettingsDescriptionFunctions
                     SettingsDescriptionFunctionsConstants.Audio,
                     SettingsDescriptionFunctionsConstants.ResourceAudioLatency,
                     (configuration.Audio?.LatencyMilliseconds ?? AudioConstants.DefaultLatencyMilliseconds).ToString(),
-                    AudioConstants.LatencyChoicesMilliseconds
-                        .Select(value => Invariant(value.ToString(), $"{value}{SettingsDescriptionFunctionsConstants.LatencyUnitSuffix}", value))),
+                    AudioConstants.LatencyChoicesMilliseconds.Select(value => Invariant(value.ToString(), $"{value}{SettingsDescriptionFunctionsConstants.LatencyUnitSuffix}", value))),
                 Toggle(SettingsConstants.FloppySound, EmulationMachineTab.Audio,
                     SettingsDescriptionFunctionsConstants.Audio,
                     SettingsDescriptionFunctionsConstants.ResourceAudioFloppySound,
