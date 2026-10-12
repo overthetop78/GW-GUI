@@ -36,8 +36,7 @@ internal static class EmulationMediaConversionFunctions
 
 internal static class EmulationMediaActivityFunctions
 {
-    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(
-        IReadOnlyDictionary<int, bool> leds) => new Dictionary<EmulationMediaSlot, bool>
+    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(IReadOnlyDictionary<int, bool> leds) => new Dictionary<EmulationMediaSlot, bool>
     {
         [EmulationMediaSlot.Cd0] =
             leds.GetValueOrDefault(StorageSettingsFunctionsConstants.CdActivityLed),

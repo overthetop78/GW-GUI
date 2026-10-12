@@ -57,8 +57,7 @@ internal static class BeetlePceFastSettingsDescriptionFunctions
                 options.GetValueOrDefault(SettingsConstants.PceLastScanline, BeetlePceFastSettingsConstants.DefaultPceLastScanline),
                 Enumerable.Range(BeetlePceFastSettingsConstants.PceLastScanlineStart, BeetlePceFastSettingsConstants.PceLastScanlineCount).Select(value => Invariant(value.ToString(), value.ToString(), value)))];
 
-    internal static void AddCdAudio(List<EmulationSettingsField> audio,
-        IReadOnlyDictionary<string, string> options)
+    internal static void AddCdAudio(List<EmulationSettingsField> audio, IReadOnlyDictionary<string, string> options)
     {
             foreach (var (id, label) in new[]
             {

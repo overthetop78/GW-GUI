@@ -20,10 +20,7 @@ internal sealed class BeetleSgxMachineFactory : IEmulatorAdapter
 
     public string EmulatorId => BeetleSgxConstants.Id;
     public string EmulatorKey => BeetleSgxConstants.Id;
-    public EmulationEmulatorDefinition Definition { get; } = new(
-        BeetleSgxConstants.Id, BeetleSgxConstants.DisplayName,
-        BeetleSgxConstants.DescriptionResourceKey,
-        new[] { SuperGrafxMachineConstants.Id }.ToHashSet(StringComparer.Ordinal));
+    public EmulationEmulatorDefinition Definition { get; } = new(BeetleSgxConstants.Id, BeetleSgxConstants.DisplayName, BeetleSgxConstants.DescriptionResourceKey, new[] { SuperGrafxMachineConstants.Id }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -31,33 +28,28 @@ internal sealed class BeetleSgxMachineFactory : IEmulatorAdapter
         return false;
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(
-        EmulatorManagementContext context, CancellationToken cancellationToken)
+    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var service = ReleaseService(context);
         return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, service.GetInstalledVersion()));
     }
 
-    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
-        EmulatorManagementContext context, CancellationToken cancellationToken)
+    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         var releases = await ReleaseService(context).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();
     }
 
-    public async ValueTask<string> InstallAsync(EmulatorManagementContext context,
-        EmulationEmulatorRelease release, IProgress<double>? progress,
-        CancellationToken cancellationToken)
+    public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
         if (!_availableReleases.TryGetValue(release.Id, out var selected))
             throw new ArgumentException(nameof(release));
         return await ReleaseService(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken)
+    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var path = ReleaseService(context).RequiredLibraryPath;

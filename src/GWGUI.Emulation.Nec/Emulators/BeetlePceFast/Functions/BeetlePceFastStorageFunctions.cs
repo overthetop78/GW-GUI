@@ -37,8 +37,7 @@ internal static class BeetlePceFastStorageFunctions
 
     internal static bool IsCompactDiscEnabled(Model model, IReadOnlyDictionary<string, string> options) => model.HasBuiltInCdDrive || options.TryGetValue(BeetlePceFastStorageConstants.CdDriveEnabledOption, out var value) && bool.TryParse(value, out var enabled) && enabled;
 
-    internal static EmulationStorageDeviceSettings CompactDiscSettings(
-        IReadOnlyDictionary<string, string> options) =>
+    internal static EmulationStorageDeviceSettings CompactDiscSettings(IReadOnlyDictionary<string, string> options) =>
         new(EmulationMediaSlot.Cd0,
             CompactDisc: new EmulationCompactDiscDriveSettings(
                 options.GetValueOrDefault(SettingsConstants.PceCdSpeed, BeetlePceFastStorageConstants.DefaultCdSpeed),
@@ -47,8 +46,7 @@ internal static class BeetlePceFastStorageFunctions
                 options.GetValueOrDefault(SettingsConstants.PceCdIgnoreErrors, StorageSettingsFunctionsConstants.CacheDisabled)
                     == StorageSettingsFunctionsConstants.CacheEnabled));
 
-    internal static void ApplyOptions(Dictionary<string, string> options,
-        EmulationStorageSettings settings, IReadOnlyCollection<EmulationMediaSlot> configured)
+    internal static void ApplyOptions(Dictionary<string, string> options, EmulationStorageSettings settings, IReadOnlyCollection<EmulationMediaSlot> configured)
     {
         options[BeetlePceFastStorageConstants.CdDriveEnabledOption] = configured.Contains(EmulationMediaSlot.Cd0).ToString();
         var cd = settings.DeviceSettings?.FirstOrDefault(item => item.Slot == EmulationMediaSlot.Cd0)?.CompactDisc;

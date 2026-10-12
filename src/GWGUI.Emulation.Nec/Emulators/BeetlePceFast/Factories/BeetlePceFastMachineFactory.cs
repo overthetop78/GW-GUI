@@ -46,8 +46,7 @@ internal sealed class BeetlePceFastMachineFactory : IEmulatorAdapter
         return true;
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(
-        EmulatorManagementContext context, CancellationToken cancellationToken)
+    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var service = new CoreReleaseService(context.HttpClient, context.CoreDirectory, ReleaseConstants.Settings);
@@ -55,17 +54,14 @@ internal sealed class BeetlePceFastMachineFactory : IEmulatorAdapter
         return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, version));
     }
 
-    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
-        EmulatorManagementContext context, CancellationToken cancellationToken)
+    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, ReleaseConstants.Settings).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();
     }
 
-    public async ValueTask<string> InstallAsync(EmulatorManagementContext context,
-        EmulationEmulatorRelease release, IProgress<double>? progress,
-        CancellationToken cancellationToken)
+    public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
         if (!_availableReleases.TryGetValue(release.Id, out var selected))
             throw new ArgumentException(nameof(release));

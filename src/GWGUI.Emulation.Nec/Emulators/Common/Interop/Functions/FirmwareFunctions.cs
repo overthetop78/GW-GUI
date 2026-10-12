@@ -22,8 +22,7 @@ internal static class FirmwareFunctions
             configuration.FirmwarePaths?.GetValueOrDefault(slot.FieldId),
             DefaultFolderCategory: EmulationDefaultFolderCategory.Firmware)).ToArray();
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        IReadOnlyDictionary<string, string?> values)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var paths = new Dictionary<string, string>(configuration.FirmwarePaths ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         foreach (var slot in Slots(configuration.EmulatorId))
@@ -35,8 +34,7 @@ internal static class FirmwareFunctions
         return configuration with { FirmwarePaths = paths };
     }
 
-    internal static IReadOnlyList<EmulationFirmwareCandidate> Scan(MachineConfiguration configuration,
-        string directory)
+    internal static IReadOnlyList<EmulationFirmwareCandidate> Scan(MachineConfiguration configuration, string directory)
     {
         if (!Directory.Exists(directory)) return [];
         var slots = Slots(configuration.EmulatorId);

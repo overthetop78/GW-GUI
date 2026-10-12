@@ -81,14 +81,12 @@ public sealed class FirmwareCatalog
                 CompatibleModels: [LaserActiveMachineConstants.Id]);
         return identified;
 
-        Firmware Pce(string firmwareName, string? version, bool official = false,
-            bool verified = true) => new(file.FullName, file.Length, md5, sha256,
+        Firmware Pce(string firmwareName, string? version, bool official = false, bool verified = true) => new(file.FullName, file.Length, md5, sha256,
             file.LastWriteTimeUtc, FirmwareType.SystemRom, IsKnown: true,
             IsOfficial: official, Name: firmwareName, Version: version,
             CompatibleModels: PcEngineCdModels, IsVerified: verified);
 
-        Firmware PcFx(string firmwareName, string? version, bool official = false,
-            bool verified = true) => new(file.FullName, file.Length, md5, sha256,
+        Firmware PcFx(string firmwareName, string? version, bool official = false, bool verified = true) => new(file.FullName, file.Length, md5, sha256,
             file.LastWriteTimeUtc, FirmwareType.SystemRom, IsKnown: true,
             IsOfficial: official, Name: firmwareName, Version: version,
             CompatibleModels: [PcFxMachineConstants.Id], IsVerified: verified);

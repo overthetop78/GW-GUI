@@ -18,8 +18,7 @@ public sealed class CoreReleaseService
     private readonly string _directory;
     private readonly CoreReleaseSettings _settings;
 
-    internal CoreReleaseService(HttpClient httpClient, string directory,
-        CoreReleaseSettings settings)
+    internal CoreReleaseService(HttpClient httpClient, string directory, CoreReleaseSettings settings)
     {
         _httpClient = httpClient;
         _directory = Path.GetFullPath(directory);
@@ -42,8 +41,7 @@ public sealed class CoreReleaseService
         catch (IOException) { return CoreReleaseConstants.Unknown; }
     }
 
-    public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
     {
         using var request = new HttpRequestMessage(HttpMethod.Head, _settings.OfficialArchiveUri);
         using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
@@ -51,8 +49,7 @@ public sealed class CoreReleaseService
         var published = response.Content.Headers.LastModified ?? response.Headers.Date;
         var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.YyyyMMddHHmm) ?? CoreReleaseConstants.Latest;
         return [new CoreRelease($"official-{suffix}",
-            published is null ? $"{_settings.DisplayName} · {CoreReleaseConstants.Latest}"
-                : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · {_settings.DisplayName}",
+            published is null ? $"{_settings.DisplayName} · {CoreReleaseConstants.Latest}" : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · {_settings.DisplayName}",
             _settings.OfficialArchiveUri, published, true, true)];
     }
 
@@ -66,8 +63,7 @@ public sealed class CoreReleaseService
 
     public string GetLibraryPath(CoreRelease release) => RequiredLibraryPath;
 
-    public async Task<string> InstallAsync(CoreRelease release,
-        IProgress<double>? progress = null, CancellationToken cancellationToken = default)
+    public async Task<string> InstallAsync(CoreRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(release);
         Directory.CreateDirectory(_directory);

@@ -60,8 +60,7 @@ internal sealed class ExternalCore : IEmulatorCore
         return false;
     }
 
-    public void Initialize(MachineConfiguration configuration, string sessionDirectory,
-        string? saveDirectory = null)
+    public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
         _configuration = configuration;
         var definition = CoreCatalog.Get(configuration.EmulatorId);
@@ -162,8 +161,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
     internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(MachineConfiguration configuration) => (configuration.Media ?? []).Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ToArray();
 
-    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media,
-        string contentDirectory)
+    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media, string contentDirectory)
     {
         return media.Count == 0 ? null : Path.GetFullPath(media[0].Path);
     }
@@ -281,9 +279,7 @@ internal sealed class ExternalCore : IEmulatorCore
                 content = Marshal.AllocHGlobal(bytes.Length);
                 Marshal.Copy(bytes, BufferConstants.FirstBufferIndex, content, bytes.Length);
             }
-            Marshal.StructureToPtr(new ExternalCoreApi.GameInfo
-                { Path = nativePath.Pointer, Data = content, Size = (nuint)bytes.Length },
-                game, false);
+            Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = nativePath.Pointer, Data = content, Size = (nuint)bytes.Length }, game, false);
             var loaded = loadGame(game);
             if (loaded && content != nint.Zero)
             {
@@ -310,8 +306,7 @@ internal sealed class ExternalCore : IEmulatorCore
             {
                 var path = new ExternalCoreUtf8String(Path.GetFullPath(media[index].Path));
                 paths.Add(path);
-                Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = path.Pointer },
-                    games + index * itemSize, false);
+                Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = path.Pointer }, games + index * itemSize, false);
             }
             return Export<SubsystemContracts.LoadGameSpecial>(ExternalCoreConstants.RetroLoadGameSpecial) (type, games, (nuint)media.Count);
         }

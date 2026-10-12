@@ -26,9 +26,7 @@ internal static partial class CoreSettingsDescriptionFunctions
         var cd = model.Id == PcEngineDuoMachineConstants.Id;
         var cdCapable = model.SupportsCdDrive && model.SupportsCartridgeSlot;
         var ram = model.RamKib.ToString(System.Globalization.CultureInfo.InvariantCulture);
-        var ramDisplay = model.RamKib >= SettingsDescriptionFunctionsConstants.KibPerMib
-            ? $"{model.RamKib / SettingsDescriptionFunctionsConstants.KibPerMib}{SettingsDescriptionFunctionsConstants.MemoryUnitMib}"
-            : $"{ram}{SettingsDescriptionFunctionsConstants.MemoryUnitKib}";
+        var ramDisplay = model.RamKib >= SettingsDescriptionFunctionsConstants.KibPerMib ? $"{model.RamKib / SettingsDescriptionFunctionsConstants.KibPerMib}{SettingsDescriptionFunctionsConstants.MemoryUnitMib}" : $"{ram}{SettingsDescriptionFunctionsConstants.MemoryUnitKib}";
         var video = coreOptions ? [] : pcfx ? BeetlePcfxSettingsDescriptionFunctions.Video(options) : sgx ? BeetleSgxSettingsDescriptionFunctions.Video(options) : geargrafx ? GeargrafxSettingsDescriptionFunctions.Video(model.Id, options) : BeetlePceFastSettingsDescriptionFunctions.Video(options);
         var audio = new List<EmulationSettingsField>
         {
@@ -38,9 +36,7 @@ internal static partial class CoreSettingsDescriptionFunctions
                 SettingsDescriptionFunctionsConstants.Audio,
                 SettingsDescriptionFunctionsConstants.ResourceAudioLatency,
                 (configuration.Audio?.LatencyMilliseconds ?? SettingsDescriptionFunctionsConstants.ThirdAudioLatency).ToString(),
-                SettingsDescriptionFunctionsConstants.AudioLatencies
-                    .Select(value => Invariant(value.ToString(),
-                        $"{value}{SettingsDescriptionFunctionsConstants.MillisecondUnit}", value)))
+                SettingsDescriptionFunctionsConstants.AudioLatencies.Select(value => Invariant(value.ToString(), $"{value}{SettingsDescriptionFunctionsConstants.MillisecondUnit}", value)))
         };
         if (coreOptions) { }
         else if (pcfx) BeetlePcfxSettingsDescriptionFunctions.AddAudio(audio, options);
@@ -126,8 +122,7 @@ internal static partial class CoreSettingsDescriptionFunctions
                 if (fields.Count == 0) continue;
                 if (block is null)
                     blocks.Add(new EmulationSettingsBlock(blockId, tab, CoreSettingsConstants.Titles[tab], fields, Columns: CoreSettingsConstants.ColumnCount));
-                else blocks[blocks.IndexOf(block)] = block with
-                    { Fields = block.Fields.Concat(fields).ToArray() };
+                else blocks[blocks.IndexOf(block)] = block with { Fields = block.Fields.Concat(fields).ToArray() };
             }
             if (FirmwareFunctions.Slots(configuration.EmulatorId).Count != 0)
             {

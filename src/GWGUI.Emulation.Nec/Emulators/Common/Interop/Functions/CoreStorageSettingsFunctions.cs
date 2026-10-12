@@ -29,8 +29,7 @@ internal static class CoreStorageSettingsFunctions
             Emulators.NP2Kai.Constants.CoreConstants.Id => Emulators.NP2Kai.Functions.StorageFunctions.Devices(model),
             _ => []
         };
-        devices = devices.Select(device => device.MediaType == EmulationMediaType.HardDisk
-            ? device with { ImageDirectory = configuration.HardDiskDirectory } : device).ToArray();
+        devices = devices.Select(device => device.MediaType == EmulationMediaType.HardDisk ? device with { ImageDirectory = configuration.HardDiskDirectory } : device).ToArray();
         var configured = devices.Where(device => device.Slot.Category switch
         {
             EmulationMediaCategory.CartridgeSlot => device.IsPermanent,
@@ -60,8 +59,7 @@ internal static class CoreStorageSettingsFunctions
         return new EmulationStorageSettings(devices, configured, mounted, deviceSettings);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        EmulationStorageSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
         var model = ModelCatalog.Get(configuration.Model);
         var available = Describe(configuration).AvailableDevices;

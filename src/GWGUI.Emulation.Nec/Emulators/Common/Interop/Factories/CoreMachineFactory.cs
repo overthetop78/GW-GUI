@@ -25,32 +25,27 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
         return false;
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(
-        EmulatorManagementContext context, CancellationToken cancellationToken)
+    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, ReleaseService(context).GetInstalledVersion()));
     }
 
-    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
-        EmulatorManagementContext context, CancellationToken cancellationToken)
+    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         var releases = await ReleaseService(context).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();
     }
 
-    public async ValueTask<string> InstallAsync(EmulatorManagementContext context,
-        EmulationEmulatorRelease release, IProgress<double>? progress,
-        CancellationToken cancellationToken)
+    public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
         if (!_availableReleases.TryGetValue(release.Id, out var selected))
             throw new ArgumentException(nameof(release));
         return await ReleaseService(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken)
+    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var path = ReleaseService(context).RequiredLibraryPath;

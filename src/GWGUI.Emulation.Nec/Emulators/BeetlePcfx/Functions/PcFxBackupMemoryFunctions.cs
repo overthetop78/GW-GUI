@@ -22,8 +22,7 @@ internal static class PcFxBackupMemoryFunctions
         backup.SetLength(PcFxBackupMemoryConstants.BankSize);
     }
 
-    internal static void Load(ExternalCoreApi.GetMemoryData getData,
-        ExternalCoreApi.GetMemorySize getSize, string directory, string? externalPath)
+    internal static void Load(ExternalCoreApi.GetMemoryData getData, ExternalCoreApi.GetMemorySize getSize, string directory, string? externalPath)
     {
         var memory = Memory(getData, getSize);
         LoadBank(Path.Combine(directory, PcFxBackupMemoryConstants.InternalFileName), memory);
@@ -31,8 +30,7 @@ internal static class PcFxBackupMemoryFunctions
             LoadBank(externalPath, memory + PcFxBackupMemoryConstants.BankSize);
     }
 
-    internal static void Save(ExternalCoreApi.GetMemoryData getData,
-        ExternalCoreApi.GetMemorySize getSize, string directory, string? externalPath)
+    internal static void Save(ExternalCoreApi.GetMemoryData getData, ExternalCoreApi.GetMemorySize getSize, string directory, string? externalPath)
     {
         var memory = Memory(getData, getSize);
         SaveBank(Path.Combine(directory, PcFxBackupMemoryConstants.InternalFileName), memory);
@@ -40,8 +38,7 @@ internal static class PcFxBackupMemoryFunctions
             SaveBank(externalPath, memory + PcFxBackupMemoryConstants.BankSize);
     }
 
-    private static nint Memory(ExternalCoreApi.GetMemoryData getData,
-        ExternalCoreApi.GetMemorySize getSize)
+    private static nint Memory(ExternalCoreApi.GetMemoryData getData, ExternalCoreApi.GetMemorySize getSize)
     {
         var size = getSize(PcFxBackupMemoryConstants.SaveRamType);
         var memory = getData(PcFxBackupMemoryConstants.SaveRamType);

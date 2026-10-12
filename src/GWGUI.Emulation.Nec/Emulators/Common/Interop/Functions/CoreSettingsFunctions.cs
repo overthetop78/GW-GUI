@@ -19,8 +19,7 @@ internal static class CoreSettingsFunctions
 
     internal static bool HasDefinitions(string emulatorId) => Definitions(emulatorId).Count != 0;
 
-    internal static IReadOnlyList<EmulationSettingsField> Fields(MachineConfiguration configuration,
-        EmulationMachineTab tab, string blockId) => Definitions(configuration.EmulatorId).Where(option => option.Tab == tab && AppliesTo(option, configuration.Model)).Select(option => new EmulationSettingsField(
+    internal static IReadOnlyList<EmulationSettingsField> Fields(MachineConfiguration configuration, EmulationMachineTab tab, string blockId) => Definitions(configuration.EmulatorId).Where(option => option.Tab == tab && AppliesTo(option, configuration.Model)).Select(option => new EmulationSettingsField(
             option.Key, tab, blockId, option.LabelResourceKey, EmulationSettingsEditor.Selection,
             configuration.Options?.GetValueOrDefault(option.Key) ?? Default(configuration, option),
             option.Choices.Select(choice => new EmulationSettingsChoice(choice.Value, choice.IsInvariant ? string.Empty : choice.Label, choice.IsInvariant ? choice.Label : null)).ToArray())).ToArray();

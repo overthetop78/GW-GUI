@@ -9,8 +9,7 @@ namespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;
 
 internal static class GeargrafxSettingsDescriptionFunctions
 {
-    internal static EmulationSettingsField[] Video(string modelId,
-        IReadOnlyDictionary<string, string> options)
+    internal static EmulationSettingsField[] Video(string modelId, IReadOnlyDictionary<string, string> options)
     {
         var laserActive = modelId == LaserActiveMachineConstants.Id;
         var aspect = laserActive ? GeargrafxSettingsConstants.LaserActiveAspectRatio : GeargrafxSettingsConstants.AspectRatio;
@@ -49,8 +48,7 @@ internal static class GeargrafxSettingsDescriptionFunctions
         return result.ToArray();
     }
 
-    internal static void AddAudio(List<EmulationSettingsField> audio,
-        IReadOnlyDictionary<string, string> options)
+    internal static void AddAudio(List<EmulationSettingsField> audio, IReadOnlyDictionary<string, string> options)
     {
         foreach (var (id, resource) in new[]
         {
@@ -62,8 +60,7 @@ internal static class GeargrafxSettingsDescriptionFunctions
                 SettingsDescriptionFunctionsConstants.Audio, resource,
                 options.GetValueOrDefault(id, GeargrafxSettingsConstants.DefaultVolume),
                 Enumerable.Range(GeargrafxSettingsConstants.VolumeStart, GeargrafxSettingsConstants.VolumeCount).Select(index => index * GeargrafxSettingsConstants.VolumeStep)
-                    .Select(value => Invariant(value.ToString(),
-                        $"{value}{SettingsDescriptionFunctionsConstants.PercentUnit}", value))));
+                    .Select(value => Invariant(value.ToString(), $"{value}{SettingsDescriptionFunctionsConstants.PercentUnit}", value))));
     }
 
     internal static EmulationSettingsField Mouse(IReadOnlyDictionary<string, string> options) =>
@@ -73,8 +70,7 @@ internal static class GeargrafxSettingsDescriptionFunctions
             options.GetValueOrDefault(GeargrafxSettingsConstants.MouseSensitivity, GeargrafxSettingsConstants.DefaultMouseSensitivity),
             Enumerable.Range(GeargrafxSettingsConstants.MouseStart, GeargrafxSettingsConstants.MouseCount).Select(value => Invariant(value.ToString(), value.ToString(), value)));
 
-    internal static EmulationSettingsField CpuRegion(string modelId,
-        IReadOnlyDictionary<string, string> options)
+    internal static EmulationSettingsField CpuRegion(string modelId, IReadOnlyDictionary<string, string> options)
     {
         var laserActive = modelId == LaserActiveMachineConstants.Id;
         var key = laserActive ? GeargrafxSettingsConstants.LaserActiveRegion : GeargrafxSettingsConstants.Region;

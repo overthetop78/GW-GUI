@@ -186,9 +186,7 @@ internal sealed partial class ExternalHostCallbacks
         var key = display.Key == 0 ? null : Marshal.PtrToStringUTF8(display.Key);
         if (string.IsNullOrWhiteSpace(key)) return false;
         _optionVisibility[key] = display.Visible;
-        OptionCatalog = OptionCatalog.Select(option => option.Key.Equals(key, StringComparison.Ordinal)
-            ? option with { IsVisible = display.Visible }
-            : option).ToArray();
+        OptionCatalog = OptionCatalog.Select(option => option.Key.Equals(key, StringComparison.Ordinal) ? option with { IsVisible = display.Visible } : option).ToArray();
         return true;
     }
 

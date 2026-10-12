@@ -14,9 +14,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         return left is null ? right.Count == 0 : left.All(pair => right.TryGetValue(pair.Key, out var value) && value == pair.Value);
     }
 
-    private ValueTask QueueCommand(Action action, CancellationToken cancellationToken,
-        EmulationMessageCategory category = EmulationMessageCategory.Machine,
-        EmulationMessageCode code = EmulationMessageCode.MachineStartFailed)
+    private ValueTask QueueCommand(Action action, CancellationToken cancellationToken, EmulationMessageCategory category = EmulationMessageCategory.Machine, EmulationMessageCode code = EmulationMessageCode.MachineStartFailed)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (State is not EmulationMachineState.Running and not EmulationMachineState.Paused)
@@ -124,8 +122,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
     }
 
-    internal static EmulationMessageException RequiredMediaWarning(
-        MachineConfiguration configuration, Exception error)
+    internal static EmulationMessageException RequiredMediaWarning(MachineConfiguration configuration, Exception error)
     {
         var storage = StorageSettingsFunctions.Describe(configuration);
         var devices = storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot) && device.MediaType is EmulationMediaType.Cartridge or EmulationMediaType.CompactDisc).ToArray();

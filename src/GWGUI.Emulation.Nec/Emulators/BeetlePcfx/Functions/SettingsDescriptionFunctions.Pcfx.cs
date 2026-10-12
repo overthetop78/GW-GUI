@@ -33,8 +33,7 @@ internal static class BeetlePcfxSettingsDescriptionFunctions
                 options.GetValueOrDefault(SettingsConstants.PcfxLastScanline, BeetlePcfxSettingsConstants.DefaultPcfxLastScanline),
                 Enumerable.Range(BeetlePcfxSettingsConstants.PcfxLastScanlineStart, BeetlePcfxSettingsConstants.PcfxLastScanlineCount).Select(value => Invariant(value.ToString(), value.ToString(), value)))];
 
-    internal static void AddAudio(List<EmulationSettingsField> audio,
-        IReadOnlyDictionary<string, string> options)
+    internal static void AddAudio(List<EmulationSettingsField> audio, IReadOnlyDictionary<string, string> options)
     {
             audio.Add(Select(SettingsConstants.PcfxSoundQuality, EmulationMachineTab.Audio,
                 SettingsDescriptionFunctionsConstants.Audio,

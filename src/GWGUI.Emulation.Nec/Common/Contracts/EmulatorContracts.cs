@@ -10,7 +10,5 @@ internal sealed record EmulatorCreationContext(
     Func<MachineConfiguration, string>? SaveDirectoryResolver,
     string FirmwareDirectory);
 
-internal sealed record EmulatorManagementContext(
-    HttpClient HttpClient,
-    string CoreDirectory);
+internal sealed record EmulatorManagementContext(HttpClient HttpClient, string CoreDirectory);
 

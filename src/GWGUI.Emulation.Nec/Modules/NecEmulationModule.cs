@@ -21,8 +21,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
     private readonly Engine _engine = new();
     private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) => new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
 
-    public NecEmulationModule(string configurationDirectory, string pathBase,
-        HttpClient httpClient, string coreDirectory)
+    public NecEmulationModule(string configurationDirectory, string pathBase, HttpClient httpClient, string coreDirectory)
     {
         _store = new ConfigurationStore(configurationDirectory, pathBase);
         _httpClient = httpClient;
@@ -40,8 +39,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode) => _engine.TryHandleHostCommand(arguments, out exitCode);
 
-    public EmulationMachineSettings Describe(string machineId,
-        IEmulationConfiguration? configuration = null)
+    public EmulationMachineSettings Describe(string machineId, IEmulationConfiguration? configuration = null)
     {
         var current = configuration as MachineConfiguration ?? (MachineConfiguration)CreateConfiguration(machineId);
         var model = ModelCatalog.Get(current.Model);
@@ -66,8 +64,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
             Input: new InputConfiguration(), Media: []);
     }
 
-    public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration,
-        string machineId)
+    public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId)
     {
         if (configuration is not MachineConfiguration current)
             throw new ArgumentException(nameof(configuration));
@@ -77,8 +74,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
             AudioEnabled = current.AudioEnabled, Audio = current.Audio };
     }
 
-    public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration,
-        IReadOnlyDictionary<string, string?> values)
+    public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var necConfiguration = RequireConfiguration(configuration);
         var options = new Dictionary<string, string>(necConfiguration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
@@ -121,8 +117,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
 
     public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => InputSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
-    public async ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default)
+    public async ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         if (configuration is not MachineConfiguration machine)
             throw new ArgumentException(nameof(configuration));
@@ -131,8 +126,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
 
     public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
 
-    public async ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default)
+    public async ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         if (configuration is not MachineConfiguration machine)
             throw new ArgumentException(nameof(configuration));
@@ -140,8 +134,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         await SaveMachineAsync(machine, cancellationToken).ConfigureAwait(false);
     }
 
-    private async Task SaveMachineAsync(MachineConfiguration machine,
-        CancellationToken cancellationToken)
+    private async Task SaveMachineAsync(MachineConfiguration machine, CancellationToken cancellationToken)
     {
         await _store.SaveAsync(machine, cancellationToken).ConfigureAwait(false);
         if (machine.Model == PcFxMachineConstants.Id
@@ -149,8 +142,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
             PcFxBackupMemoryFunctions.EnsureInternalFile(_store.MemoryDirectory(machine.Id));
     }
 
-    public ValueTask DeleteConfigurationAsync(Guid configurationId,
-        CancellationToken cancellationToken = default)
+    public ValueTask DeleteConfigurationAsync(Guid configurationId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         _store.Delete(configurationId);
@@ -163,8 +155,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         return _firmwareDirectory;
     }
 
-    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId,
-        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId, IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var current = RequireConfiguration(configuration);
@@ -188,15 +179,13 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(candidates);
     }
 
-    public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration,
-        EmulationFirmwareCandidate firmware)
+    public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)
     {
         var current = RequireConfiguration(configuration);
         if (FirmwareFunctions.Slots(current.EmulatorId).Any(slot => slot.FieldId == firmware.DestinationFieldId))
         {
             if (!File.Exists(firmware.Path)) throw new FileNotFoundException(null, firmware.Path);
-            return FirmwareFunctions.Apply(current, new Dictionary<string, string?>
-                { [firmware.DestinationFieldId!] = Path.GetFullPath(firmware.Path) });
+            return FirmwareFunctions.Apply(current, new Dictionary<string, string?> { [firmware.DestinationFieldId!] = Path.GetFullPath(firmware.Path) });
         }
         if (firmware.DestinationFieldId != SettingsConstants.FirmwarePath)
             throw new InvalidOperationException(nameof(firmware));
@@ -206,23 +195,20 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         return current with { FirmwarePath = inspected.Path };
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId,
-        CancellationToken cancellationToken = default)
+    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId, CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
         var adapter = _engine.Adapter(DefaultEmulatorId(machineId));
         return adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken);
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(
-        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         var adapter = _engine.Adapter(RequireConfiguration(configuration).EmulatorId);
         return adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken);
     }
 
-    public async ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(
-        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    public async ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         var necConfiguration = RequireConfiguration(configuration);
         var installations = new List<EmulationEmulatorInstallation>();
@@ -234,8 +220,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         return installations;
     }
 
-    public ValueTask<IEmulationConfiguration> UseEmulatorAsync(IEmulationConfiguration configuration,
-        string emulatorId, CancellationToken cancellationToken = default)
+    public ValueTask<IEmulationConfiguration> UseEmulatorAsync(IEmulationConfiguration configuration, string emulatorId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var necConfiguration = RequireConfiguration(configuration);
@@ -244,41 +229,33 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
         return ValueTask.FromResult<IEmulationConfiguration>(necConfiguration with { EmulatorId = emulatorId });
     }
 
-    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
-        string machineId, CancellationToken cancellationToken = default)
+    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
         var adapter = _engine.Adapter(DefaultEmulatorId(machineId));
         return adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken);
     }
 
-    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
-        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         var adapter = _engine.Adapter(RequireConfiguration(configuration).EmulatorId);
         return adapter.FindReleasesAsync(EmulatorManagement(adapter), cancellationToken);
     }
 
-    public ValueTask<string> InstallEmulatorAsync(string machineId,
-        EmulationEmulatorRelease release, IProgress<double>? progress = null,
-        CancellationToken cancellationToken = default)
+    public ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         _ = ModelCatalog.Get(machineId);
         var adapter = _engine.Adapter(DefaultEmulatorId(machineId));
         return adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken);
     }
 
-    public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration,
-        EmulationEmulatorRelease release, IProgress<double>? progress = null,
-        CancellationToken cancellationToken = default)
+    public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         var adapter = _engine.Adapter(RequireConfiguration(configuration).EmulatorId);
         return adapter.InstallAsync(EmulatorManagement(adapter), release, progress, cancellationToken);
     }
 
-    public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(
-        IEmulationConfiguration configuration, EmulationRuntimeServices services,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration, EmulationRuntimeServices services, CancellationToken cancellationToken = default)
     {
         if (configuration is not MachineConfiguration necConfiguration)
             throw new ArgumentException(nameof(configuration));
@@ -302,8 +279,7 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
             SupportsPointerCapture: ModelCatalog.Get(necConfiguration.Model).MouseButtonCount > 0);
     }
 
-    private static MachineConfiguration WithMedia(MachineConfiguration configuration,
-        IEnumerable<EmulationMedia> media) => configuration with
+    private static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with
     {
         Media = media.Select((item, index) => new MediaConfiguration(item.Path,
             item.Type switch

@@ -5,8 +5,7 @@ namespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;
 
 internal static class GeargrafxFirmwareFunctions
 {
-    internal static void Prepare(string firmwareDirectory, string sessionDirectory,
-        string? selectedFirmwarePath)
+    internal static void Prepare(string firmwareDirectory, string sessionDirectory, string? selectedFirmwarePath)
     {
         if (!string.IsNullOrWhiteSpace(selectedFirmwarePath)
             && !File.Exists(selectedFirmwarePath))

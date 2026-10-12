@@ -27,8 +27,7 @@ public static class ControllerCatalog
         {
             PcFxMachineConstants.Id => new List<ControllerType> { ControllerType.PcFxPad, ControllerType.PcFxMouse },
             TurboExpressMachineConstants.Id => new List<ControllerType> { ControllerType.TurboExpressControls },
-            PcEngineLtMachineConstants.Id => new List<ControllerType> { ControllerType.PcEngineLtControls }
-                .Concat(PcEngineControllers.Where(type => !IsMouse(type))).ToList(),
+            PcEngineLtMachineConstants.Id => new List<ControllerType> { ControllerType.PcEngineLtControls }.Concat(PcEngineControllers.Where(type => !IsMouse(type))).ToList(),
             SuperGrafxMachineConstants.Id => new List<ControllerType>(PcEngineControllers.Where(type => type != ControllerType.PcEngineMouse)),
             _ => new List<ControllerType>(PcEngineControllers)
         };

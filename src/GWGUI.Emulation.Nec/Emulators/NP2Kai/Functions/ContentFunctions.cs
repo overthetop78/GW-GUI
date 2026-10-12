@@ -8,8 +8,7 @@ namespace GWGUI.Emulation.Nec.Emulators.NP2Kai.Functions;
 
 internal static class ContentFunctions
 {
-    internal static string Prepare(IReadOnlyList<MediaConfiguration> media,
-        string contentDirectory, string systemDirectory)
+    internal static string Prepare(IReadOnlyList<MediaConfiguration> media, string contentDirectory, string systemDirectory)
     {
         var firmwareDirectory = Path.Combine(systemDirectory, FirmwareConstants.SystemSubdirectory);
         Directory.CreateDirectory(firmwareDirectory);

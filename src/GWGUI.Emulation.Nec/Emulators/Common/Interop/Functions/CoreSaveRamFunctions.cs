@@ -7,8 +7,7 @@ namespace GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
 
 internal static class CoreSaveRamFunctions
 {
-    internal static void Load(ExternalCoreApi.GetMemoryData getData,
-        ExternalCoreApi.GetMemorySize getSize, string directory)
+    internal static void Load(ExternalCoreApi.GetMemoryData getData, ExternalCoreApi.GetMemorySize getSize, string directory)
     {
         var memory = Memory(getData, getSize, out var size);
         if (memory == IntPtr.Zero) return;
@@ -20,8 +19,7 @@ internal static class CoreSaveRamFunctions
         Marshal.Copy(bytes, CoreSaveRamConstants.FirstByteOffset, memory, size);
     }
 
-    internal static void Save(ExternalCoreApi.GetMemoryData getData,
-        ExternalCoreApi.GetMemorySize getSize, string directory)
+    internal static void Save(ExternalCoreApi.GetMemoryData getData, ExternalCoreApi.GetMemorySize getSize, string directory)
     {
         var memory = Memory(getData, getSize, out var size);
         if (memory == IntPtr.Zero) return;
@@ -41,8 +39,7 @@ internal static class CoreSaveRamFunctions
         }
     }
 
-    private static nint Memory(ExternalCoreApi.GetMemoryData getData,
-        ExternalCoreApi.GetMemorySize getSize, out int size)
+    private static nint Memory(ExternalCoreApi.GetMemoryData getData, ExternalCoreApi.GetMemorySize getSize, out int size)
     {
         var length = getSize(CoreSaveRamConstants.SaveRamType);
         if (length == CoreSaveRamConstants.FirstByteOffset)

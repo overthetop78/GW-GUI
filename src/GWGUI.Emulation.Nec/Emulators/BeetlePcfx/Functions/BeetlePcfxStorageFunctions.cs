@@ -59,14 +59,12 @@ internal static class BeetlePcfxStorageFunctions
 
     internal static EmulationStorageDeviceSettings ExternalCardSettings(IReadOnlyDictionary<string, string> options) => new(EmulationMediaSlot.MemoryCard0, MemoryCardPath: options.GetValueOrDefault(PcFxBackupMemoryConstants.PathOption));
 
-    internal static EmulationStorageDeviceSettings CompactDiscSettings(
-        IReadOnlyDictionary<string, string> options) =>
+    internal static EmulationStorageDeviceSettings CompactDiscSettings(IReadOnlyDictionary<string, string> options) =>
         new(EmulationMediaSlot.Cd0, CompactDisc: new EmulationCompactDiscDriveSettings(
             CacheImage: options.GetValueOrDefault(SettingsConstants.PcfxCdImageCache, StorageSettingsFunctionsConstants.CacheDisabled)
                 == StorageSettingsFunctionsConstants.CacheEnabled));
 
-    internal static void ApplyOptions(Dictionary<string, string> options,
-        EmulationStorageSettings settings, IReadOnlyCollection<EmulationMediaSlot> configured)
+    internal static void ApplyOptions(Dictionary<string, string> options, EmulationStorageSettings settings, IReadOnlyCollection<EmulationMediaSlot> configured)
     {
         options[PcFxBackupMemoryConstants.EnabledOption] = configured.Contains(EmulationMediaSlot.MemoryCard0).ToString();
         var cardPath = settings.DeviceSettings?.FirstOrDefault(item => item.Slot == EmulationMediaSlot.MemoryCard0)?.MemoryCardPath;

@@ -7,6 +7,5 @@ namespace GWGUI.Emulation.Nec.Emulators.BeetlePce.Constants;
 
 internal static class OptionMachineConstants
 {
-    internal static IReadOnlySet<string> CompactDisc { get; } = new HashSet<string>(StringComparer.Ordinal)
-        { PcEngineDuoMachineConstants.Id, Cd.Id, SuperCd.Id, ArcadeCard.Id };
+    internal static IReadOnlySet<string> CompactDisc { get; } = new HashSet<string>(StringComparer.Ordinal) { PcEngineDuoMachineConstants.Id, Cd.Id, SuperCd.Id, ArcadeCard.Id };
 }

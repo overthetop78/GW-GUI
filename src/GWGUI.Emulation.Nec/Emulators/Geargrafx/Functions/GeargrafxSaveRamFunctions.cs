@@ -9,8 +9,7 @@ namespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;
 
 internal static class GeargrafxSaveRamFunctions
 {
-    internal static void Load(ExternalCoreApi.GetMemoryData getData,
-        ExternalCoreApi.GetMemorySize getSize, string directory)
+    internal static void Load(ExternalCoreApi.GetMemoryData getData, ExternalCoreApi.GetMemorySize getSize, string directory)
     {
         var memory = Memory(getData, getSize, out var size);
         if (memory == IntPtr.Zero) return;
@@ -22,8 +21,7 @@ internal static class GeargrafxSaveRamFunctions
         Marshal.Copy(bytes, GeargrafxSaveRamConstants.FirstByteOffset, memory, size);
     }
 
-    internal static void Save(ExternalCoreApi.GetMemoryData getData,
-        ExternalCoreApi.GetMemorySize getSize, string directory)
+    internal static void Save(ExternalCoreApi.GetMemoryData getData, ExternalCoreApi.GetMemorySize getSize, string directory)
     {
         var memory = Memory(getData, getSize, out var size);
         if (memory == IntPtr.Zero) return;
@@ -43,8 +41,7 @@ internal static class GeargrafxSaveRamFunctions
         }
     }
 
-    private static nint Memory(ExternalCoreApi.GetMemoryData getData,
-        ExternalCoreApi.GetMemorySize getSize, out int size)
+    private static nint Memory(ExternalCoreApi.GetMemoryData getData, ExternalCoreApi.GetMemorySize getSize, out int size)
     {
         var length = getSize(GeargrafxSaveRamConstants.SaveRamType);
         if (length == GeargrafxSaveRamConstants.FirstByteOffset)

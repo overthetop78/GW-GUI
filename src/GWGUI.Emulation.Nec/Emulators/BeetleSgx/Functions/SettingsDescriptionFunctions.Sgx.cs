@@ -41,8 +41,7 @@ internal static class BeetleSgxSettingsDescriptionFunctions
                 == SettingsDescriptionFunctionsConstants.Enabled)
     ];
 
-    internal static void AddCdAudio(List<EmulationSettingsField> audio,
-        IReadOnlyDictionary<string, string> options)
+    internal static void AddCdAudio(List<EmulationSettingsField> audio, IReadOnlyDictionary<string, string> options)
     {
         foreach (var (id, resource) in new[]
         {
@@ -56,8 +55,7 @@ internal static class BeetleSgxSettingsDescriptionFunctions
                 SettingsDescriptionFunctionsConstants.Audio, resource,
                 options.GetValueOrDefault(id, BeetleSgxSettingsConstants.DefaultVolume),
                 Enumerable.Range(BeetleSgxSettingsConstants.VolumeStart, BeetleSgxSettingsConstants.VolumeCount).Select(index => index * BeetleSgxSettingsConstants.VolumeStep)
-                    .Select(value => Invariant(value.ToString(),
-                        $"{value}{SettingsDescriptionFunctionsConstants.PercentUnit}", value))));
+                    .Select(value => Invariant(value.ToString(), $"{value}{SettingsDescriptionFunctionsConstants.PercentUnit}", value))));
     }
 
     internal static EmulationSettingsField Mouse(IReadOnlyDictionary<string, string> options) =>
