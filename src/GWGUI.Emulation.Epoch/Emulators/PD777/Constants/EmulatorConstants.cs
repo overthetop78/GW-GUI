@@ -8,7 +8,6 @@ internal static class EmulatorConstants
     internal const string SourceUri = "https://github.com/mittonk/PD777";
     internal const string InspectedRevision = "331af5f53cc0ffbab90f915681c8dfe3a4cda0a2";
     internal const string DescriptionResourceKey = "Emulation.Emulator.pd777.Description";
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(
-        Emulator.PD777, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.CassetteVision, MachineModel.CassetteVisionJr)
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.PD777, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.CassetteVision, MachineModel.CassetteVisionJr)
         with { DescriptionResourceKey = DescriptionResourceKey };
 }

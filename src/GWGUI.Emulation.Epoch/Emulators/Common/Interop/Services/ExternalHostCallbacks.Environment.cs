@@ -35,8 +35,7 @@ private bool OnEnvironment(uint command, nint data)
             case ExternalCoreApiConstants.GetVariableUpdate:
                 return _optionHost.GetAndClearUpdated(data);
             case ExternalCoreApiConstants.SetSupportNoGame:
-                SupportsNoGame = data != nint.Zero
-                    && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
+                SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
                 return data != nint.Zero;
             case ExternalCoreApiConstants.GetCanDuplicateFrames:
             case ExternalCoreApiConstants.GetInputBitmasks:
@@ -90,8 +89,7 @@ private bool OnEnvironment(uint command, nint data)
                 MemoryDescriptors = EnvironmentFunctions.CopyMemoryMap(data);
                 return data != nint.Zero;
             case ExternalCoreApiConstants.SetSupportAchievements:
-                SupportsAchievements = data != nint.Zero
-                    && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
+                SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != ExternalCoreInteropConstants.NativeBooleanFalse;
                 return data != nint.Zero;
             case ExternalCoreApiConstants.SetDiskControl:
                 if (data == nint.Zero) return false;

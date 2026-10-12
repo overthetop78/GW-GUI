@@ -10,16 +10,14 @@ internal sealed record NativeInputAction(string Id,
 
     internal InputBindingDefinition Definition => new(Id,
         Id is "Up" or "Down" or "Left" or "Right" ? "Emulation.Controller.Action." + Id : InputMappingConstants.ResourcePrefix + Id, DefaultBinding,
-        Id.StartsWith(InputMappingConstants.KeypadPrefix, StringComparison.Ordinal)
-            ? Id[InputMappingConstants.KeypadPrefix.Length..] : null);
+        Id.StartsWith(InputMappingConstants.KeypadPrefix, StringComparison.Ordinal) ? Id[InputMappingConstants.KeypadPrefix.Length..] : null);
 }
 
 internal static class ControllerProtocolDictionary
 {
     private enum NativeButton { B = 0, Y = 1, Select = 2, Start = 3, Up = 4, Down = 5, Left = 6, Right = 7, A = 8, X = 9, R = 11 }
 
-    private static NativeInputAction Button(string id, NativeButton nativeButton) =>
-        new(id, Button: (int)nativeButton);
+    private static NativeInputAction Button(string id, NativeButton nativeButton) => new(id, Button: (int)nativeButton);
 
     private static void AddAxis(List<NativeInputAction> actions, string id, int axis)
     {
@@ -41,13 +39,8 @@ internal static class ControllerProtocolDictionary
             if (port == ControllerConstants.FirstPort)
             {
                 for (var digit = 0; digit < KeyboardConstants.DigitCount; digit++)
-                    actions.Add(new(InputMappingConstants.KeypadPrefix + digit,
-                        Key: (EmulationKey)((int)EmulationKey.D0 + digit)));
-                actions.AddRange([
-                    new("Enter", Key: EmulationKey.Return),
-                    new("Clear", Key: EmulationKey.Backspace),
-                    new("Power", Key: EmulationKey.EpochPower),
-                    new("Reset", Key: EmulationKey.EpochReset)]);
+                    actions.Add(new(InputMappingConstants.KeypadPrefix + digit, Key: (EmulationKey)((int)EmulationKey.D0 + digit)));
+                actions.AddRange([new("Enter", Key: EmulationKey.Return), new("Clear", Key: EmulationKey.Backspace), new("Power", Key: EmulationKey.EpochPower), new("Reset", Key: EmulationKey.EpochReset)]);
             }
             return actions;
         }
@@ -67,10 +60,8 @@ internal static class ControllerProtocolDictionary
         }
         if (model != MachineModel.CassetteVisionJr)
         {
-            AddAxis(actions, port == ControllerConstants.FirstPort ? "Paddle2" : "Paddle3",
-                InputMappingConstants.LeftX);
-            AddAxis(actions, port == ControllerConstants.FirstPort ? "Paddle1" : "Paddle4",
-                InputMappingConstants.LeftY);
+            AddAxis(actions, port == ControllerConstants.FirstPort ? "Paddle2" : "Paddle3", InputMappingConstants.LeftX);
+            AddAxis(actions, port == ControllerConstants.FirstPort ? "Paddle1" : "Paddle4", InputMappingConstants.LeftY);
         }
         return actions;
     }

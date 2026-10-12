@@ -7,17 +7,14 @@ namespace GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore
 {
-    private IReadOnlySet<string> ContentExtensions => Emulator == Emulator.PD777
-        ? new HashSet<string>(_info.Extensions.Append(MediaRuntimeConstants.ArchiveExtension), StringComparer.OrdinalIgnoreCase)
-        : _info.Extensions;
+    private IReadOnlySet<string> ContentExtensions => Emulator == Emulator.PD777 ? new HashSet<string>(_info.Extensions.Append(MediaRuntimeConstants.ArchiveExtension), StringComparer.OrdinalIgnoreCase) : _info.Extensions;
 
     private void PrepareInitialMedia(MachineConfiguration configuration)
     {
         var cartridge = configuration.Media.SingleOrDefault(value => value.IsInserted);
         if (cartridge is null) return;
         var source = ContentFunctions.Validate(cartridge.Path, ContentExtensions);
-        var directory = Path.Combine(_sessionDirectory!, CoreDirectoryConstants.ContentDirectoryName,
-            Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
+        var directory = Path.Combine(_sessionDirectory!, CoreDirectoryConstants.ContentDirectoryName, Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
         Directory.CreateDirectory(directory);
         var extension = Path.GetExtension(source);
         string destination;
@@ -70,18 +67,15 @@ internal sealed partial class ExternalCore
         using var archive = ZipFile.OpenRead(source);
         foreach (var extension in new[] { MediaRuntimeConstants.PdProgramExtension, MediaRuntimeConstants.PdPatternExtension })
         {
-            var entry = archive.Entries.FirstOrDefault(entry => Path.GetExtension(entry.FullName).Equals(extension,
-                StringComparison.OrdinalIgnoreCase) && entry.Length > 0);
+            var entry = archive.Entries.FirstOrDefault(entry => Path.GetExtension(entry.FullName).Equals(extension, StringComparison.OrdinalIgnoreCase) && entry.Length > 0);
             if (entry is null)
-                throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported,
-                    ErrorMessages.ContentLoadFailed);
+                throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
             using var stream = entry.Open();
             var program = extension == MediaRuntimeConstants.PdProgramExtension;
             ValidatePdContent(stream, entry.Length, program);
             // Reopen after validation: compressed streams need not support seeking.
             using var content = entry.Open();
-            using var target = File.Create(Path.Combine(directory,
-                program ? MediaRuntimeConstants.PdProgramFileName : MediaRuntimeConstants.PdPatternFileName));
+            using var target = File.Create(Path.Combine(directory, program ? MediaRuntimeConstants.PdProgramFileName : MediaRuntimeConstants.PdPatternFileName));
             content.CopyTo(target);
         }
         return Path.Combine(directory, MediaRuntimeConstants.PdProgramFileName);
@@ -91,10 +85,7 @@ internal sealed partial class ExternalCore
     {
         if (length == (program ? MediaRuntimeConstants.PdRawProgramBytes : MediaRuntimeConstants.PdRawPatternBytes)) return;
         var magic = Encoding.ASCII.GetBytes(program ? MediaRuntimeConstants.PdProgramMagic : MediaRuntimeConstants.PdPatternMagic);
-        var formattedLength = program
-            ? length >= MediaRuntimeConstants.PdProgramHeaderBytes
-                && (length - MediaRuntimeConstants.PdProgramHeaderBytes) % MediaRuntimeConstants.PdProgramRecordBytes == 0
-            : length == MediaRuntimeConstants.PdFormattedPatternBytes;
+        var formattedLength = program ? length >= MediaRuntimeConstants.PdProgramHeaderBytes && (length - MediaRuntimeConstants.PdProgramHeaderBytes) % MediaRuntimeConstants.PdProgramRecordBytes == 0 : length == MediaRuntimeConstants.PdFormattedPatternBytes;
         if (!formattedLength)
             throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
         var header = new byte[magic.Length + (program ? 1 : 0)];

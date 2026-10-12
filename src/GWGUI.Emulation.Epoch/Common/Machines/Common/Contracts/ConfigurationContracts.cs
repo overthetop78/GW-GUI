@@ -30,8 +30,7 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         Core = core ?? ConfigurationFunctions.DefaultEmulator(model);
         Firmwares = firmwares?.ToArray() ?? [];
         Media = media?.ToArray() ?? [];
-        Options = options is null ? new Dictionary<string, string>(StringComparer.Ordinal)
-            : new Dictionary<string, string>(options, StringComparer.Ordinal);
+        Options = options is null ? new Dictionary<string, string>(StringComparer.Ordinal) : new Dictionary<string, string>(options, StringComparer.Ordinal);
         Input = input ?? new InputConfiguration();
         Id = id == Guid.Empty ? Guid.NewGuid() : id;
         SchemaVersion = schemaVersion;
@@ -46,8 +45,7 @@ public sealed record MachineConfiguration : IEmulationConfiguration
     public Guid Id { get; init; }
     public MachineModel Model { get; }
     public string MachineId => Model.ToString();
-    public MachineFamily Family => Model is MachineModel.CassetteVision or MachineModel.CassetteVisionJr
-        ? MachineFamily.CassetteVision : MachineFamily.SuperCassetteVision;
+    public MachineFamily Family => Model is MachineModel.CassetteVision or MachineModel.CassetteVisionJr ? MachineFamily.CassetteVision : MachineFamily.SuperCassetteVision;
     public Emulator Core { get; init; }
     public IReadOnlyList<FirmwareConfiguration> Firmwares { get; init; }
     public IReadOnlyList<MediaConfiguration> Media { get; init; }

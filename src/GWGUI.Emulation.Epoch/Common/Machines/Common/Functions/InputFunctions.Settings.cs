@@ -29,8 +29,7 @@ internal static class InputSettingsFunctions
     {
         var ports = Enumerable.Range(ControllerConstants.FirstPort, ControllerConstants.PortCount).Select(port =>
         {
-            var definitions = ControllerProtocolDictionary.Actions(configuration.Model, configuration.Core, port)
-                .Select(action => action.Definition).ToArray();
+            var definitions = ControllerProtocolDictionary.Actions(configuration.Model, configuration.Core, port).Select(action => action.Definition).ToArray();
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
             var choice = new EmulationControllerChoice(PeripheralCategory.Standard.ToString(),
                 "Emulation.Epoch.Controller." + configuration.Model, BindingDefinitions: definitions,
@@ -38,16 +37,13 @@ internal static class InputSettingsFunctions
                 DefaultVisualId: Visuals(configuration.Model, port).FirstOrDefault(),
                 VisualCommandIds: VisualCommands(configuration.Model, port, definitions));
             return new EmulationControllerPort(port + 1, [choice], PeripheralCategory.Standard.ToString(), binding?.DeviceId,
-                new(definitions, binding?.Mappings ?? new Dictionary<string, string>(),
-                    EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
+                new(definitions, binding?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                 binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId);
         }).ToArray();
         return new(null, null, ports);
     }
 
-    private static IReadOnlyList<string> Visuals(MachineModel model, int port) =>
-        ConfigurationFunctions.DefaultEmulator(model) == Emulator.EmuSCV
-            ? [EmulationControllerVisualIds.EpochSuperCassetteVisionController] : [];
+    private static IReadOnlyList<string> Visuals(MachineModel model, int port) => ConfigurationFunctions.DefaultEmulator(model) == Emulator.EmuSCV ? [EmulationControllerVisualIds.EpochSuperCassetteVisionController] : [];
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string> VisualCommands(
         MachineModel model, int port, IReadOnlyList<InputBindingDefinition> definitions)
     {
@@ -113,8 +109,7 @@ internal static class InputSettingsFunctions
         {
             if (port.SelectedControllerId != PeripheralCategory.Standard.ToString())
                 throw new ArgumentException(nameof(settings));
-            return new ControllerBinding(port.Number - 1, PeripheralCategory.Standard, port.PhysicalDeviceId,
-                new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId);
+            return new ControllerBinding(port.Number - 1, PeripheralCategory.Standard, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId);
         }).ToArray();
         var result = configuration with { Input = new(configuration.Input.Keyboard, controllers) };
         ConfigurationFunctions.Validate(result);
@@ -131,8 +126,7 @@ internal static class InputSettingsFunctions
         }
         foreach (var controller in configuration.Input.Controllers ?? [])
         {
-            var actions = ControllerProtocolDictionary.Actions(configuration.Model, configuration.Core, controller.Port)
-                .Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
+            var actions = ControllerProtocolDictionary.Actions(configuration.Model, configuration.Core, controller.Port).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
             if (controller.Mappings?.Any(pair => !actions.Contains(pair.Key) || !IsSource(pair.Value)) == true)
                 throw new ArgumentException(nameof(configuration.Input));
         }

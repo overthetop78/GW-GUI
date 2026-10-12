@@ -23,7 +23,5 @@ internal static class KeyboardFunctions
 
     internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => KeyboardConstants.NoModifiers;
     internal static bool IsModifier(EmulationKey key) => false;
-    internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys) =>
-        code >= KeyboardConstants.FirstDigit && code < KeyboardConstants.FirstDigit + KeyboardConstants.DigitCount
-            ? code : KeyboardConstants.NoCharacter;
+    internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys) => code >= KeyboardConstants.FirstDigit && code < KeyboardConstants.FirstDigit + KeyboardConstants.DigitCount ? code : KeyboardConstants.NoCharacter;
 }

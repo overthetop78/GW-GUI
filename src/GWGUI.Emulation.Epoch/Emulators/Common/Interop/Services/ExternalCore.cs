@@ -65,8 +65,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         {
             _configuration = configuration;
             _sessionDirectory = Path.GetFullPath(sessionDirectory);
-            _saveDirectory = Path.GetFullPath(saveDirectory ?? configuration.Folders.Saves
-                ?? Path.Combine(_sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
+            _saveDirectory = Path.GetFullPath(saveDirectory ?? configuration.Folders.Saves ?? Path.Combine(_sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
             var systemDirectory = Path.Combine(_sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
             Directory.CreateDirectory(systemDirectory);
             FirmwareRuntimeFunctions.Prepare(configuration, systemDirectory);
@@ -96,8 +95,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             ControllerPortFunctions.Configure(_exports);
             _exports.GetSystemAvInfo(out var avInfo);
             _callbacks.ApplySystemAvInfo(avInfo);
-            Region = _exports.GetRegion() == ExternalCoreInteropConstants.NativeBooleanTrue
-                ? EmulationVideoStandard.Pal : EmulationVideoStandard.Ntsc;
+            Region = _exports.GetRegion() == ExternalCoreInteropConstants.NativeBooleanTrue ? EmulationVideoStandard.Pal : EmulationVideoStandard.Ntsc;
             completed = true;
         }
         finally
@@ -113,8 +111,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     {
         if (Emulator == Emulator.EmuSCV && key == ConsoleOptions.OptionConsole
             && value != MediaRuntimeConstants.ConsoleModel(_configuration!.Model))
-            throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid,
-                CoreFunctions.CreateInvalidOptionValueMessage(key, value));
+            throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid, CoreFunctions.CreateInvalidOptionValueMessage(key, value));
         RequireCallbacks().SetOption(key, value);
     }
     public void SetControllerPortDevice(int port, PeripheralCategory peripheral)

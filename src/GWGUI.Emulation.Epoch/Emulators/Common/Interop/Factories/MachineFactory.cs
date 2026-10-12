@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.Epoch.Emulators.Common.Interop.Factories;
 
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
-    private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
-        new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
+    private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
     public EmulatorCatalogEntry CatalogEntry { get; } = catalogEntry;
     public Emulator Emulator => CatalogEntry.Emulator;
@@ -40,8 +39,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(
         EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory)
-            .GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
         var version = installation is null ? null : Path.GetFileName(installation.VersionDirectory);
         return new EmulationEmulatorInstallation(Definition, version);
     }
@@ -49,8 +47,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
         EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory)
-            .GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id,
             $"{item.DeclaredVersion} · {item.PublishedUtc.LocalDateTime:g}", item.DeclaredVersion)).ToArray();
@@ -61,23 +58,16 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     {
         if (!_availableReleases.TryGetValue(release.Id, out var selected) || selected.Emulator != Emulator)
             throw new ArgumentException(nameof(release));
-        var adapter = progress is null ? null : new Progress<CoreInstallProgress>(value =>
-            progress.Report(value.Fraction ?? 0));
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory)
-            .InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
+        var adapter = progress is null ? null : new Progress<CoreInstallProgress>(value => progress.Report(value.Fraction ?? 0));
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;
     }
 
-    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken) =>
-        await new CoreProvider(context.HttpClient, context.CoreDirectory)
-            .FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
+    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => await new CoreProvider(context.HttpClient, context.CoreDirectory).FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
 
-    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) =>
-        configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
+    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
 
-    public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) =>
-        configuration.Options;
+    public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options;
 
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
@@ -91,8 +81,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
         try
         {
             var machine = new Machine(id, configuration, core,
-                Path.Combine(context.SessionsDirectory,
-                    id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
+                Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
                 coreFactory: () => new ProcessCore(context.HostExecutablePath, context.CorePath, Emulator));

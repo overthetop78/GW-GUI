@@ -24,13 +24,11 @@ internal static class SettingsDescriptionFunctions
             "Emulation.Epoch.Firmware.ScvConsole", EmulationSettingsEditor.Path,
             configuration.Firmwares.SingleOrDefault(item => item.Category == role)?.Path)).ToArray();
         if (firmwareFields.Length > 0)
-            blocks.Add(new(SettingsConstants.ResourceFirmware + ".File", EmulationMachineTab.Rom,
-                SettingsConstants.ResourceFirmware, firmwareFields));
+            blocks.Add(new(SettingsConstants.ResourceFirmware + ".File", EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware, firmwareFields));
         return blocks;
     }
 
-    internal static IReadOnlyList<CoreOption> RelevantOptions(MachineConfiguration configuration) =>
-        CoreOptionValidationFunctions.ForCore(configuration.Core).Where(option => option.Key != ConsoleOptions.OptionConsole).ToArray();
+    internal static IReadOnlyList<CoreOption> RelevantOptions(MachineConfiguration configuration) => CoreOptionValidationFunctions.ForCore(configuration.Core).Where(option => option.Key != ConsoleOptions.OptionConsole).ToArray();
 
     private static EmulationMachineTab NativeTab(string key) => key switch
     {
@@ -56,11 +54,9 @@ internal static class SettingsDescriptionFunctions
         blocks.Add(Block(EmulationMachineTab.Cpu, SettingsConstants.ResourceCpuProcessor, cpu.ToArray()));
         var memory = new List<EmulationSettingsField>();
         if (hardware.MainMemoryBytes is long main)
-            memory.Add(Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain,
-                SettingsConstants.ResourceMemoryMain, Memory(main)));
+            memory.Add(Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, SettingsConstants.ResourceMemoryMain, Memory(main)));
         if (hardware.DisplayMemoryBytes is long display)
-            memory.Add(Information(SettingsConstants.DisplayMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain,
-                SettingsConstants.ResourceDisplayMemory, Memory(display)));
+            memory.Add(Information(SettingsConstants.DisplayMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, SettingsConstants.ResourceDisplayMemory, Memory(display)));
         if (memory.Count > 0) blocks.Add(Block(EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, memory.ToArray()));
         blocks.Add(Block(EmulationMachineTab.Video, SettingsConstants.ResourceVideoResolution,
             Information(SettingsConstants.DisplayResolution, EmulationMachineTab.Video, SettingsConstants.ResourceVideoResolution,
@@ -71,14 +67,12 @@ internal static class SettingsDescriptionFunctions
         ? $"{(bytes / SettingsConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture)} {SettingsConstants.KibibyteUnit}"
         : $"{bytes.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.ByteUnit}";
 
-    private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) =>
-        new(id, tab, block, label, EmulationSettingsEditor.Information, value);
+    private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
 
     private static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
     {
         var resource = SettingsConstants.NativeOptionResourcePrefix + option.Key;
-        var choices = option.Values.Select((choice, index) => new EmulationSettingsChoice(choice.Value,
-            string.Format(CultureInfo.InvariantCulture, SettingsConstants.NativeChoiceResourceFormat, resource, index))).ToArray();
+        var choices = option.Values.Select((choice, index) => new EmulationSettingsChoice(choice.Value, string.Format(CultureInfo.InvariantCulture, SettingsConstants.NativeChoiceResourceFormat, resource, index))).ToArray();
         var toggle = option.Values.Count == 2 && option.Values.All(choice => choice.Value is "enabled" or "disabled");
         return new(option.Key, tab, block, resource, toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection,
             configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), choices,
@@ -97,10 +91,8 @@ internal static class SettingsDescriptionFunctions
             SettingsConstants.ResourceAudioOutput, EmulationSettingsEditor.Selection,
             configuration.Options.GetValueOrDefault(SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput),
             [new(SettingsConstants.DefaultOutput, SettingsConstants.ResourceDefaultOutput)], ChoiceSource: EmulationSettingsChoiceSource.AudioOutputDevices),
-        AudioSelection(configuration, SettingsConstants.AudioLatency, SettingsConstants.ResourceAudioLatency,
-            SettingsConstants.DefaultLatency, SettingsConstants.Latencies, SettingsConstants.MillisecondsUnit),
-        AudioSelection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume,
-            SettingsConstants.DefaultVolume, SettingsConstants.Volumes, SettingsConstants.PercentUnit));
+        AudioSelection(configuration, SettingsConstants.AudioLatency, SettingsConstants.ResourceAudioLatency, SettingsConstants.DefaultLatency, SettingsConstants.Latencies, SettingsConstants.MillisecondsUnit),
+        AudioSelection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume, SettingsConstants.DefaultVolume, SettingsConstants.Volumes, SettingsConstants.PercentUnit));
 
     private static EmulationSettingsField AudioSelection(MachineConfiguration configuration, string id, string resource,
         int fallback, IReadOnlyList<int> values, string unit) => new(id, EmulationMachineTab.Audio, SettingsConstants.ResourceAudio,
@@ -108,6 +100,5 @@ internal static class SettingsDescriptionFunctions
             values.Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture), string.Empty,
                 $"{value.ToString(CultureInfo.InvariantCulture)} {unit}")).ToArray());
 
-    private static EmulationSettingsBlock Block(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields) =>
-        new(resource, tab, resource, fields);
+    private static EmulationSettingsBlock Block(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields) => new(resource, tab, resource, fields);
 }

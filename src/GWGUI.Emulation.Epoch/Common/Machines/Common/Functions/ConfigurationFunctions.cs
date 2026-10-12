@@ -26,12 +26,10 @@ internal static partial class ConfigurationFunctions
         if (configuration.ConfiguredSlots.Count != 1
             || configuration.ConfiguredSlots[0] != EmulationMediaSlot.Cartridge0
             || configuration.Media.Count > 1
-            || configuration.Media.Any(media => media.Slot != EmulationMediaSlot.Cartridge0
-                || media.Category != MediaCategory.Cartridge || string.IsNullOrWhiteSpace(media.Path)))
+            || configuration.Media.Any(media => media.Slot != EmulationMediaSlot.Cartridge0 || media.Category != MediaCategory.Cartridge || string.IsNullOrWhiteSpace(media.Path)))
             throw new ArgumentException(nameof(configuration.Media));
         if (configuration.Firmwares.Count > 1
-            || configuration.Firmwares.Any(firmware => configuration.Core != Emulator.EmuSCV
-                || firmware.Category != FirmwareCategory.Console || string.IsNullOrWhiteSpace(firmware.Path)))
+            || configuration.Firmwares.Any(firmware => configuration.Core != Emulator.EmuSCV || firmware.Category != FirmwareCategory.Console || string.IsNullOrWhiteSpace(firmware.Path)))
             throw new ArgumentException(nameof(configuration.Firmwares));
         var ports = new HashSet<int>();
         foreach (var controller in configuration.Input.Controllers ?? [])

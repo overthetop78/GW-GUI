@@ -15,8 +15,7 @@ internal static class StorageSettingsFunctions
         var device = Describe(configuration).AvailableDevices.Single();
         if (settings.ConfiguredSlots.Count != 1 || settings.ConfiguredSlots[0] != device.Slot
             || settings.MountedMedia.Count > 1
-            || settings.MountedMedia.Any(media => media.Slot != device.Slot || media.Type != device.MediaType
-                || !device.AcceptedExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase))
+            || settings.MountedMedia.Any(media => media.Slot != device.Slot || media.Type != device.MediaType || !device.AcceptedExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase))
             || settings.DeviceSettings?.Count > 0)
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
         var result = configuration with

@@ -78,11 +78,9 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         return ValueTask.CompletedTask;
     }
 
-    public ValueTask SoftResetAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(() => ResetCore(), cancellationToken);
+    public ValueTask SoftResetAsync(CancellationToken cancellationToken = default) => QueueCommand(() => ResetCore(), cancellationToken);
 
-    public ValueTask HardResetAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(() => ResetCore(), cancellationToken);
+    public ValueTask HardResetAsync(CancellationToken cancellationToken = default) => QueueCommand(() => ResetCore(), cancellationToken);
 
     public async ValueTask StopAsync(CancellationToken cancellationToken = default)
     {
@@ -111,8 +109,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         }
     }
 
-    public void SetInput(EmulationInputSnapshot snapshot) =>
-        _input.Update(InputSnapshotFunctions.Apply(snapshot, _inputConfiguration, Configuration.Model, Configuration.Core));
+    public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(InputSnapshotFunctions.Apply(snapshot, _inputConfiguration, Configuration.Model, Configuration.Core));
 
     public void SetControllerPortDevice(int port, PeripheralCategory peripheral) =>
         QueueCommand(() =>
@@ -127,8 +124,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         }, CancellationToken.None)
             .AsTask().GetAwaiter().GetResult();
 
-    ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) =>
-        ValueTask.FromResult(false);
+    ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) => ValueTask.FromResult(false);
 
     public void SetAudioMuted(bool muted)
     {
@@ -171,15 +167,13 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
             _mountedMedia.RemoveAll(item => item.Slot == slot);
         }, cancellationToken);
 
-    public ValueTask SelectDiskAsync(int index, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => _core.SelectDisk(index), cancellationToken);
+    public ValueTask SelectDiskAsync(int index, CancellationToken cancellationToken = default) => QueueCommand(() => _core.SelectDisk(index), cancellationToken);
 
     public ValueTask SaveStateAsync(string path, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
         {
             if (!SupportsSaveStates)
-                throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid,
-                    ErrorMessages.StateUnavailable);
+                throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid, ErrorMessages.StateUnavailable);
             var state = _core.SaveState();
             var header = SavedStateFunctions.CreateHeader(CurrentConfiguration(), _core, state);
             StateFileFunctions.Write(path, header, state);
@@ -189,15 +183,13 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         QueueCommand(() =>
         {
             if (!SupportsSaveStates)
-                throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid,
-                    ErrorMessages.StateUnavailable);
+                throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid, ErrorMessages.StateUnavailable);
             var saved = StateFileFunctions.Read(path);
             SavedStateFunctions.Validate(saved.Header, CurrentConfiguration(), _core);
             _core.LoadState(saved.State);
         }, cancellationToken);
 
-    public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => _core.SetOption(key, value), cancellationToken);
+    public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) => QueueCommand(() => _core.SetOption(key, value), cancellationToken);
 
 
 }

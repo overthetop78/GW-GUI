@@ -41,8 +41,7 @@ internal static class CoreDiagnosticFunctions
     {
         try
         {
-            return FileVersionInfo.GetVersionInfo(path).FileVersion
-                ?? CoreReleaseConstants.UnknownDiagnosticValue;
+            return FileVersionInfo.GetVersionInfo(path).FileVersion ?? CoreReleaseConstants.UnknownDiagnosticValue;
         }
         catch (FileNotFoundException)
         {
