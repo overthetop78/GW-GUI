@@ -104,8 +104,20 @@ public static class GwOptionValidator
         var match = Regex.Match(value, head ? @"^([01])(?:-([01]))?$" : @"^(\d+)(?:-(\d+)(?:/([1-9]\d*))?)?$"); if (!match.Success) return false;
         var start = int.Parse(match.Groups[1].Value, CultureInfo.InvariantCulture); var end = match.Groups[2].Success ? int.Parse(match.Groups[2].Value, CultureInfo.InvariantCulture) : start; return start <= end;
     }
-    private static string[] Elements(string value) { var elements = value.Split(':', StringSplitOptions.RemoveEmptyEntries); if (elements.Length == 0 || elements.Length != value.Count(character => character == ':') + 1) throw new ArgumentException("Specification contains an empty element."); return elements; }
-    private static (string Key, string Value) Assignment(string element) { var separator = element.IndexOf('='); if (separator <= 0 || separator == element.Length - 1 || element.IndexOf('=', separator + 1) >= 0) throw new ArgumentException("Invalid specification assignment."); return (element[..separator], element[(separator + 1)..]); }
+    private static string[] Elements(string value)
+    {
+        var elements = value.Split(':', StringSplitOptions.RemoveEmptyEntries);
+        if (elements.Length == 0 || elements.Length != value.Count(character => character == ':') + 1)
+            throw new ArgumentException("Specification contains an empty element.");
+        return elements;
+    }
+    private static (string Key, string Value) Assignment(string element)
+    {
+        var separator = element.IndexOf('=');
+        if (separator <= 0 || separator == element.Length - 1 || element.IndexOf('=', separator + 1) >= 0)
+            throw new ArgumentException("Invalid specification assignment.");
+        return (element[..separator], element[(separator + 1)..]);
+    }
     private static void Unique(HashSet<string> keys, string key) { if (!keys.Add(key)) throw new ArgumentException($"Duplicate specification element '{key}'."); }
 
     private static void Exclusive(IReadOnlySet<string> names, string first, string second)
