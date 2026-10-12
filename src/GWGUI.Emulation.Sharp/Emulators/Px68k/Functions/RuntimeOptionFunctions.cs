@@ -2,7 +2,6 @@ using GWGUI.Emulation.Sharp.Emulators.Px68k.Constants;
 using GWGUI.Emulation.Sharp.Emulators.Px68k.Dictionaries;
 
 namespace GWGUI.Emulation.Sharp.Emulators.Px68k.Functions;
-
 internal static class RuntimeOptionFunctions
 {
     internal static IReadOnlyDictionary<string, string> Defaults(MachineModel model)
@@ -16,7 +15,9 @@ internal static class RuntimeOptionFunctions
     internal static IReadOnlyDictionary<string, string> Prepare(MachineConfiguration configuration)
     {
         var result = new Dictionary<string, string>(Defaults(configuration.Model), StringComparer.Ordinal);
-        foreach (var option in configuration.Options) if (result.ContainsKey(option.Key)) result[option.Key] = option.Value;
+        foreach (var option in configuration.Options)
+            if (result.ContainsKey(option.Key))
+                result[option.Key] = option.Value;
         var ports = configuration.Input.Controllers ?? [];
         var first = ports.FirstOrDefault(binding => binding.Port == ControllerConstants.FirstPort)?.Peripheral ?? PeripheralCategory.None;
         var second = ports.FirstOrDefault(binding => binding.Port == ControllerConstants.FirstPort + 1)?.Peripheral ?? PeripheralCategory.None;

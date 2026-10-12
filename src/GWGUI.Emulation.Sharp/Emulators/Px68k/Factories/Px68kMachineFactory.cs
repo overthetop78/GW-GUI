@@ -3,11 +3,11 @@ using FirmwarePreparation = GWGUI.Emulation.Sharp.Emulators.Px68k.Functions.Firm
 using RuntimeOptions = GWGUI.Emulation.Sharp.Emulators.Px68k.Functions.RuntimeOptionFunctions;
 
 namespace GWGUI.Emulation.Sharp.Emulators.Px68k.Factories;
-
 internal sealed class Px68kMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry)
 {
     protected override bool SupportsPointerCapture => true;
     protected override bool SupportsNoContent => true;
+
     internal override LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions) => GWGUI.Emulation.Sharp.Emulators.Px68k.Functions.MediaRuntimeFunctions.Prepare(configuration, sessionDirectory);
     protected override bool RequiresMediaRestart(EmulationMediaSlot slot, string? path) => true;
     internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) => FirmwarePreparation.Prepare(configuration, systemDirectory);

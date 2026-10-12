@@ -1,20 +1,21 @@
 namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;
-
 internal static partial class ConfigurationFunctions
 {
     internal static MachineFamily Family(MachineModel model) => model switch
-    { MachineModel.X68000 or MachineModel.X68000Xvi or MachineModel.X68030 => MachineFamily.X68000, MachineModel.X1 or MachineModel.X1Turbo or MachineModel.X1TurboZ => MachineFamily.X1, _ => throw new ArgumentOutOfRangeException(nameof(model))
-    };
-
+    {
+        MachineModel.X68000 or MachineModel.X68000Xvi or MachineModel.X68030 => MachineFamily.X68000,
+        MachineModel.X1 or MachineModel.X1Turbo or MachineModel.X1TurboZ => MachineFamily.X1,
+        _ => throw new ArgumentOutOfRangeException(nameof(model))};
     internal static Emulator DefaultEmulator(MachineModel model) => model switch
-    { MachineModel.X68000 or MachineModel.X68000Xvi => Emulator.Px68k, MachineModel.X68030 => Emulator.None, MachineModel.X1 or MachineModel.X1Turbo or MachineModel.X1TurboZ => Emulator.X1, _ => throw new ArgumentOutOfRangeException(nameof(model))
-    };
-
+    {
+        MachineModel.X68000 or MachineModel.X68000Xvi => Emulator.Px68k,
+        MachineModel.X68030 => Emulator.None,
+        MachineModel.X1 or MachineModel.X1Turbo or MachineModel.X1TurboZ => Emulator.X1,
+        _ => throw new ArgumentOutOfRangeException(nameof(model))};
     internal static bool IsCompatible(MachineModel model, Emulator core) => Enum.IsDefined(model) && Enum.IsDefined(core) && (core == Emulator.None || core == DefaultEmulator(model));
     internal static IReadOnlyList<EmulationMediaSlot> DefaultSlots(MachineModel model) => Family(model) == MachineFamily.X68000 ? [EmulationMediaSlot.Floppy0, EmulationMediaSlot.Floppy1] : [EmulationMediaSlot.Floppy0];
     internal static IReadOnlyList<EmulationMediaSlot> AvailableSlots(MachineModel model) => Family(model) == MachineFamily.X68000 ? [EmulationMediaSlot.Floppy0, EmulationMediaSlot.Floppy1, EmulationMediaSlot.HardDisk0] : [EmulationMediaSlot.Floppy0];
     internal static int ControllerPortCount(MachineModel model) => Family(model) == MachineFamily.X68000 ? ControllerConstants.X68000PortCount : ControllerConstants.X1PortCount;
-
     internal static void Validate(MachineConfiguration configuration)
     {
         ArgumentNullException.ThrowIfNull(configuration);
@@ -35,14 +36,14 @@ internal static partial class ConfigurationFunctions
             if (media.Category != category)
                 throw new ArgumentException(nameof(configuration.Media));
         }
-    
+
         var roles = new HashSet<FirmwareCategory>();
         foreach (var firmware in configuration.Firmwares)
         {
             if (!FirmwareFunctions.Roles(configuration.Model).Contains(firmware.Category) || !roles.Add(firmware.Category) || string.IsNullOrWhiteSpace(firmware.Path))
                 throw new ArgumentException(nameof(configuration.Firmwares));
         }
-    
+
         var ports = new HashSet<int>();
         foreach (var controller in configuration.Input.Controllers ?? [])
         {

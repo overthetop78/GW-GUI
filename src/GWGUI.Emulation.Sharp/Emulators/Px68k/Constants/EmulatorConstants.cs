@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Sharp.Emulators.Px68k.Constants;
-
 internal static class EmulatorConstants
 {
     internal const string Id = "px68k";

@@ -1,7 +1,6 @@
 using System.IO;
 
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;
-
 public static class CoreOptionProbe
 {
     public static string DescribeFailure(Exception error)
@@ -10,7 +9,10 @@ public static class CoreOptionProbe
         return error.GetType().Name;
     }
 
-    public static IReadOnlyList<CoreOption> Inspect(string corePath, Emulator emulator)
+    public static IReadOnlyList<CoreOption> Inspect(
+        string corePath,
+        Emulator emulator
+    )
     {
         var absolutePath = Path.GetFullPath(corePath);
         ExternalCoreProbe.Inspect(absolutePath, emulator);

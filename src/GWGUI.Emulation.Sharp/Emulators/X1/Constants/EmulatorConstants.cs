@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Sharp.Emulators.X1.Constants;
-
 internal static class EmulatorConstants
 {
     internal const string Id = "x1";

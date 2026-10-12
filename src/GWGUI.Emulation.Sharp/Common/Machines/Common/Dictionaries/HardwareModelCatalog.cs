@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Dictionaries;
-
 internal static class HardwareModelCatalog
 {
     internal static HardwareModelDefinition Get(MachineModel model) => model switch

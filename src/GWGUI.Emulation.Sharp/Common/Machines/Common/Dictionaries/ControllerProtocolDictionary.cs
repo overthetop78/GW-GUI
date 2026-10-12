@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Dictionaries;
-
 internal sealed record NativeInputAction(ControllerCommand Command)
 {
     internal string Id => Command.ToString();
@@ -12,8 +11,10 @@ internal static class ControllerProtocolDictionary
 {
     private static readonly IReadOnlyList<ControllerCommand> Directions = Array.AsReadOnly(new[] { ControllerCommand.Up, ControllerCommand.Down, ControllerCommand.Left, ControllerCommand.Right });
     private static readonly IReadOnlyList<ControllerCommand> Buttons = Array.AsReadOnly(new[] { ControllerCommand.Fire1, ControllerCommand.Fire2, ControllerCommand.Fire3, ControllerCommand.Fire4, ControllerCommand.Fire5, ControllerCommand.Fire6, ControllerCommand.Fire7, ControllerCommand.Fire8 });
-
-    internal static IReadOnlyList<NativeInputAction> Actions(MachineModel model, PeripheralCategory peripheral)
+    internal static IReadOnlyList<NativeInputAction> Actions(
+        MachineModel model,
+        PeripheralCategory peripheral
+    )
     {
         var family = ConfigurationFunctions.Family(model);
         if (peripheral == PeripheralCategory.None)
