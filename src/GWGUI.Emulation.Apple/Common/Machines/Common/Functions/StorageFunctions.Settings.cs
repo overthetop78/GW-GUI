@@ -10,26 +10,20 @@ internal static class StorageSettingsFunctions
         if (ConfigurationFunctions.SupportsRuntime(configuration.Model))
         {
             var appleII = configuration.Family == MachineFamily.AppleII;
-            var floppyExtensions = appleII ? StorageSettingsFunctionsConstants.AppleWinFloppyExtensions
-                : StorageSettingsFunctionsConstants.MacintoshDiskExtensions;
+            var floppyExtensions = appleII ? StorageSettingsFunctionsConstants.AppleWinFloppyExtensions : StorageSettingsFunctionsConstants.MacintoshDiskExtensions;
             devices.Add(new(EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy, floppyExtensions,
                 RequiresMachineRecreation: !appleII, DisplayLabel: StorageSettingsFunctionsConstants.FirstDriveLabel,
                 ImageDirectory: configuration.Folders.Floppies, IsPermanent: true));
             if (appleII)
-                devices.Add(new(EmulationMediaSlot.Floppy1, EmulationMediaType.Floppy, floppyExtensions,
-                    DisplayLabel: StorageSettingsFunctionsConstants.SecondDriveLabel,
-                    ImageDirectory: configuration.Folders.Floppies, IsPermanent: true));
+                devices.Add(new(EmulationMediaSlot.Floppy1, EmulationMediaType.Floppy, floppyExtensions, DisplayLabel: StorageSettingsFunctionsConstants.SecondDriveLabel, ImageDirectory: configuration.Folders.Floppies, IsPermanent: true));
             devices.Add(new(EmulationMediaSlot.HardDisk0, EmulationMediaType.HardDisk,
-                appleII ? StorageSettingsFunctionsConstants.AppleWinHardDiskExtensions
-                    : StorageSettingsFunctionsConstants.MacintoshDiskExtensions,
+                appleII ? StorageSettingsFunctionsConstants.AppleWinHardDiskExtensions : StorageSettingsFunctionsConstants.MacintoshDiskExtensions,
                 IsRemovable: false, RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.HardDiskLabel,
                 ImageDirectory: configuration.Folders.HardDisks,
                 HardDiskFormats: HardDiskFormats.For(configuration)));
         }
-        return new(devices, devices.Where(device => device.IsPermanent
-                || configuration.Options.ContainsKey(StorageSettingsFunctionsConstants.StorageDevice + device.Slot)
-                || configuration.Media.Any(media => media.Slot == device.Slot)).Select(device => device.Slot).ToArray(),
+        return new(devices, devices.Where(device => device.IsPermanent || configuration.Options.ContainsKey(StorageSettingsFunctionsConstants.StorageDevice + device.Slot) || configuration.Media.Any(media => media.Slot == device.Slot)).Select(device => device.Slot).ToArray(),
             configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
     }
 
@@ -41,8 +35,7 @@ internal static class StorageSettingsFunctions
                 || !devices.TryGetValue(media.Slot, out var device) || device.MediaType != media.Type
                 || !device.AcceptedExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase)))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
-        var options = configuration.Options.Where(option =>
-                !option.Key.StartsWith(StorageSettingsFunctionsConstants.StorageDevice, StringComparison.Ordinal))
+        var options = configuration.Options.Where(option => !option.Key.StartsWith(StorageSettingsFunctionsConstants.StorageDevice, StringComparison.Ordinal))
             .ToDictionary(option => option.Key, option => option.Value, StringComparer.Ordinal);
         foreach (var slot in settings.ConfiguredSlots)
             if (!devices[slot].IsPermanent)
@@ -50,8 +43,7 @@ internal static class StorageSettingsFunctions
         var result = configuration with
         {
             Options = options,
-            Media = settings.MountedMedia.Select(media =>
-                EmulationMediaConversionFunctions.ToApple(media, configuration.Media)).ToArray()
+            Media = settings.MountedMedia.Select(media => EmulationMediaConversionFunctions.ToApple(media, configuration.Media)).ToArray()
         };
         ConfigurationFunctions.Validate(result);
         return result;

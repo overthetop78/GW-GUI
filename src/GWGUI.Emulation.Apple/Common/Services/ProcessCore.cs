@@ -26,8 +26,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     private readonly CancellationToken _cancellationToken;
     private readonly ConcurrentQueue<AudioChunk> _audio = new();
     private readonly EmulationInputAccumulator _input = new();
-    private readonly SemaphoreSlim _requestGate = new(CoreHostConstants.MaximumPipeInstances,
-        CoreHostConstants.MaximumPipeInstances);
+    private readonly SemaphoreSlim _requestGate = new(CoreHostConstants.MaximumPipeInstances, CoreHostConstants.MaximumPipeInstances);
     private NamedPipeServerStream? _pipe;
     private BinaryWriter? _writer;
     private Process? _process;
@@ -52,11 +51,9 @@ internal sealed partial class ProcessCore : IEmulatorCore
         _emulator = emulator;
         ArgumentException.ThrowIfNullOrWhiteSpace(hostCommand);
         _hostCommand = hostCommand;
-        _responseTimeout = responseTimeout ??
-            TimeSpan.FromSeconds(CoreHostConstants.ResponseTimeoutSeconds);
+        _responseTimeout = responseTimeout ?? TimeSpan.FromSeconds(CoreHostConstants.ResponseTimeoutSeconds);
         _cancellationToken = cancellationToken;
-        _connectionTimeout = connectionTimeout ??
-            TimeSpan.FromMilliseconds(CoreHostConstants.ConnectionTimeoutMilliseconds);
+        _connectionTimeout = connectionTimeout ?? TimeSpan.FromMilliseconds(CoreHostConstants.ConnectionTimeoutMilliseconds);
     }
 
     public Emulator Emulator => _emulator;
@@ -77,8 +74,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     public int BufferedAudioFrames { get; private set; }
     public long AudioOverrunCount { get; private set; }
     public long AudioUnderrunCount { get; private set; }
-    public HostProcessState HostProcessState =>
-        RuntimeFunctions.ProcessState(_process, _connectionFailed, _disposed);
+    public HostProcessState HostProcessState => RuntimeFunctions.ProcessState(_process, _connectionFailed, _disposed);
     public int? HostProcessId => _hostProcessId;
     internal string? PipeName => _pipeName;
     internal string? VideoMapName => _activeVideoMapName ?? _videoMapName;
@@ -123,8 +119,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
                 writer.Write(_corePath);
                 writer.Write((int)_emulator);
                 writer.Write(Path.GetFullPath(sessionDirectory));
-                CoreHostFunctions.WriteString(writer,
-                    saveDirectory is null ? null : Path.GetFullPath(saveDirectory));
+                CoreHostFunctions.WriteString(writer, saveDirectory is null ? null : Path.GetFullPath(saveDirectory));
                 writer.Write(JsonSerializer.Serialize(configuration, CoreHostFunctions.JsonOptions));
             }, ReadInitialization, allowUninitialized: true);
             _initialized = true;
@@ -136,8 +131,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         }
     }
 
-    public void RunFrame() => Request(HostCommand.RunFrame,
-        writer => CoreHostFunctions.WriteInput(writer, _input.Consume()), ReadFrame);
+    public void RunFrame() => Request(HostCommand.RunFrame, writer => CoreHostFunctions.WriteInput(writer, _input.Consume()), ReadFrame);
 
     public void HardReset() => Request(HostCommand.HardReset);
     public void Stop()
@@ -151,13 +145,10 @@ internal sealed partial class ProcessCore : IEmulatorCore
             writer.Write(port);
             writer.Write((int)peripheral);
         });
-    public void InsertMedia(MediaConfiguration media) => Request(HostCommand.InsertMedia,
-        writer => writer.Write(JsonSerializer.Serialize(media, CoreHostFunctions.JsonOptions)));
-    public void EjectMedia(EmulationMediaSlot slot) => Request(HostCommand.EjectMedia,
-        writer => writer.Write(slot.ProtocolValue));
+    public void InsertMedia(MediaConfiguration media) => Request(HostCommand.InsertMedia, writer => writer.Write(JsonSerializer.Serialize(media, CoreHostFunctions.JsonOptions)));
+    public void EjectMedia(EmulationMediaSlot slot) => Request(HostCommand.EjectMedia, writer => writer.Write(slot.ProtocolValue));
     public void SelectDisk(int index) => Request(HostCommand.SelectDisk, writer => writer.Write(index));
-    public void SaveMediaChanges(EmulationMediaSlot slot) => Request(HostCommand.SaveMediaChanges,
-        writer => writer.Write(slot.ProtocolValue));
+    public void SaveMediaChanges(EmulationMediaSlot slot) => Request(HostCommand.SaveMediaChanges, writer => writer.Write(slot.ProtocolValue));
     public DiskStatus GetDiskStatus()
     {
         DiskStatus? status = null;
@@ -167,8 +158,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
     public bool HasUnsavedMediaChanges(EmulationMediaSlot slot)
     {
         var hasChanges = false;
-        Request(HostCommand.HasUnsavedMediaChanges, writer => writer.Write(slot.ProtocolValue),
-            reader => hasChanges = reader.ReadBoolean());
+        Request(HostCommand.HasUnsavedMediaChanges, writer => writer.Write(slot.ProtocolValue), reader => hasChanges = reader.ReadBoolean());
         return hasChanges;
     }
     public byte[] SaveState()

@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.Apple.Emulators.MiniVmac.Constants;
 
 internal static class EmulatorConstants
 {
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(
-        Emulator.MiniVmac, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.MacintoshII)
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.MiniVmac, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.MacintoshII)
         with { DescriptionResourceKey = DescriptionResourceKey };
     internal const int MinimumRomBytes = 256 * 1024;
     internal const uint KeyboardDevice = 259;

@@ -16,8 +16,7 @@ public static class CoreOptionProbe
     {
         var absolutePath = Path.GetFullPath(corePath);
         ExternalCoreProbe.Inspect(absolutePath, emulator);
-        var session = Path.Combine(Path.GetTempPath(), CoreOptionProbeValues.GWGUIAppleOptionProbe,
-            Guid.NewGuid().ToString(CoreOptionProbeValues.N));
+        var session = Path.Combine(Path.GetTempPath(), CoreOptionProbeValues.GWGUIAppleOptionProbe, Guid.NewGuid().ToString(CoreOptionProbeValues.N));
         try
         {
             Directory.CreateDirectory(session);

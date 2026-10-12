@@ -76,8 +76,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _library = new ExternalCoreLibrary(_corePath);
             _exports = CoreFunctions.ResolveExports(_library);
             var runtimeOptions = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal);
-            if (Emulator == Emulator.AppleWin && configuration.Media.Any(item => item.IsInserted
-                    && item.Category == MediaCategory.HardDisk)
+            if (Emulator == Emulator.AppleWin && configuration.Media.Any(item => item.IsInserted && item.Category == MediaCategory.HardDisk)
                 && !runtimeOptions.ContainsKey(AppleWinOptions.Slot7))
                 runtimeOptions[AppleWinOptions.Slot7] = AppleWinOptions.HardDiskController;
             _callbacks = new ExternalHostCallbacks(Emulator,
@@ -101,8 +100,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             ControllerPortFunctions.Configure(_exports, _callbacks, configuration);
             _exports.GetSystemAvInfo(out var avInfo);
             _callbacks.ApplySystemAvInfo(avInfo);
-            Region = _exports.GetRegion() == ExternalCoreInteropConstants.NativeBooleanTrue
-                ? EmulationVideoStandard.Pal : EmulationVideoStandard.Ntsc;
+            Region = _exports.GetRegion() == ExternalCoreInteropConstants.NativeBooleanTrue ? EmulationVideoStandard.Pal : EmulationVideoStandard.Ntsc;
             completed = true;
         }
         finally

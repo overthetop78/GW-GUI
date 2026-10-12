@@ -12,6 +12,5 @@ internal static class DiskControlErrors
     internal static string ReplaceFailed => ContentUnsupported();
     internal static string MediaMissing => ExceptionText.Get("Emulation.Apple.Error.ContentNotFound");
 
-    private static string ContentUnsupported() =>
-        ExceptionText.Get("Emulation.Apple.Error.ContentUnsupported");
+    private static string ContentUnsupported() => ExceptionText.Get("Emulation.Apple.Error.ContentUnsupported");
 }

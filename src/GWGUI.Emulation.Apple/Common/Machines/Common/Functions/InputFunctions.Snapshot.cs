@@ -5,8 +5,7 @@ internal static class InputSnapshotFunctions
     internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot,
         InputConfiguration? configuration, MachineModel model)
     {
-        var keyboardMappings = InputSettingsFunctions.DefaultHostKeys(model)
-            .ToDictionary(item => item.Key.ToString(), item => item.Value, StringComparer.Ordinal);
+        var keyboardMappings = InputSettingsFunctions.DefaultHostKeys(model).ToDictionary(item => item.Key.ToString(), item => item.Value, StringComparer.Ordinal);
         var bindings = configuration?.KeyboardBindings ?? configuration?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal);
         if (bindings is not null)
             foreach (var mapping in bindings)
@@ -24,25 +23,21 @@ internal static class InputSnapshotFunctions
             keys.Remove(EmulationKey.RightAlt);
             mapped = mapped with { Keys = keys };
         }
-        if (configuration?.MouseMappings?.TryGetValue(InputSnapshotFunctionsConstants.Left,
-                out var mouseSource) == true)
+        if (configuration?.MouseMappings?.TryGetValue(InputSnapshotFunctionsConstants.Left, out var mouseSource) == true)
         {
-            var controller = EmulationInputMappingFunctions.ResolveSourceController(mouseSource,
-                snapshot.Controllers, EmulationControllerState.Empty);
+            var controller = EmulationInputMappingFunctions.ResolveSourceController(mouseSource, snapshot.Controllers, EmulationControllerState.Empty);
             mapped = mapped with
             {
                 Pointer = mapped.Pointer with { Left = IsPressed(mouseSource, controller, snapshot) }
             };
         }
         if (configuration?.Controllers is not { Count: > 0 }) return mapped with { Controllers = [] };
-        var controllers = Enumerable.Repeat(EmulationControllerState.Empty,
-            ControllerPortConstants.MaximumControllerPortCount).ToArray();
+        var controllers = Enumerable.Repeat(EmulationControllerState.Empty, ControllerPortConstants.MaximumControllerPortCount).ToArray();
         foreach (var binding in configuration.Controllers)
         {
             if (binding.Port < ControllerPortConstants.MinimumControllerPort
                 || binding.Port >= controllers.Length || binding.Peripheral == PeripheralCategory.None) continue;
-            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId,
-                snapshot.Controllers, binding.Port);
+            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, binding.Port);
             if (binding.Mappings is not { Count: > 0 })
             {
                 controllers[binding.Port] = EmulationControllerState.Empty;
@@ -55,8 +50,7 @@ internal static class InputSnapshotFunctions
             var vertical = 0f;
             foreach (var mapping in binding.Mappings)
             {
-                var controller = EmulationInputMappingFunctions.ResolveSourceController(mapping.Value,
-                    snapshot.Controllers, source);
+                var controller = EmulationInputMappingFunctions.ResolveSourceController(mapping.Value, snapshot.Controllers, source);
                 var target = InputSnapshotDictionary.CommonButtons.GetValueOrDefault(mapping.Key, -1);
                 if (target < 0) continue;
                 if (IsPressed(mapping.Value, controller, snapshot)) buttons |= 1u << target;
@@ -93,8 +87,7 @@ internal static class InputSnapshotFunctions
         return mapped with { Controllers = controllers };
     }
 
-    private static short Axis(float value) => (short)Math.Round(
-        Math.Clamp(value, -1f, 1f) * ControllerConstants.MaximumAxisMagnitude);
+    private static short Axis(float value) => (short)Math.Round(Math.Clamp(value, -1f, 1f) * ControllerConstants.MaximumAxisMagnitude);
 
     private static float Magnitude(string source, EmulationControllerState controller,
         EmulationInputSnapshot snapshot)
@@ -103,8 +96,7 @@ internal static class InputSnapshotFunctions
             || source.StartsWith(InputSnapshotFunctionsConstants.Mouse, StringComparison.OrdinalIgnoreCase))
             return IsPressed(source, controller, snapshot) ? 1f : 0f;
         var value = EmulationInputMappingFunctions.ControllerSourceValue(source, controller);
-        var name = source.Split(EmulationInputMappingConstants.SourceSeparator,
-            StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? string.Empty;
+        var name = source.Split(EmulationInputMappingConstants.SourceSeparator, StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? string.Empty;
         if (!controller.Controls.ContainsKey(name) && name is
             EmulationInputMappingConstants.LeftStickLeft or EmulationInputMappingConstants.LeftStickRight
             or EmulationInputMappingConstants.LeftStickUp or EmulationInputMappingConstants.LeftStickDown

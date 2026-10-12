@@ -16,9 +16,7 @@ internal static class ControllerPortFunctions
         else
             for (var port = ControllerPortConstants.MinimumControllerPort;
                  port < ConfigurationFunctions.ControllerPortCount(configuration.Model); port++)
-                ConfigurePort(exports, callbacks, configuration, port,
-                    configuration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port)?.Peripheral
-                    ?? PeripheralCategory.Automatic);
+                ConfigurePort(exports, callbacks, configuration, port, configuration.Input.Controllers?.FirstOrDefault(binding => binding.Port == port)?.Peripheral ?? PeripheralCategory.Automatic);
         callbacks.ConfigureInput(configuration.Input);
     }
 

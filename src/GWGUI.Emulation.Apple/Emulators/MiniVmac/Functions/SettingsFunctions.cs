@@ -20,9 +20,7 @@ internal static class SettingsDescriptionFunctions
         blocks.Add(Block(EmulationMachineTab.Ram, SettingsConstants.ResourceRuntimeMemory,
             Information(SettingsConstants.ResourceRuntimeMemory, EmulationMachineTab.Ram,
                 SettingsConstants.ResourceRuntimeMemory, $"{MiniVmacConstants.MainMemoryBytes / SettingsConstants.Kibibyte} KiB")));
-        blocks.Add(Block(EmulationMachineTab.Video, SettingsConstants.ResourceNativeVideo,
-            Native(configuration, MiniVmacOptionCatalog.All.Single(option => option.Key == MiniVmacOptions.Statusbar),
-                EmulationMachineTab.Video)));
+        blocks.Add(Block(EmulationMachineTab.Video, SettingsConstants.ResourceNativeVideo, Native(configuration, MiniVmacOptionCatalog.All.Single(option => option.Key == MiniVmacOptions.Statusbar), EmulationMachineTab.Video)));
         return blocks;
     }
 }

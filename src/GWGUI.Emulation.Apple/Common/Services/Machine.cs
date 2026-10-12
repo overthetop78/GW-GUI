@@ -56,9 +56,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public IEmulationRuntime Runtime => this;
     bool IEmulationInput.SupportsPointerCapture => Configuration.Family == MachineFamily.Macintosh;
     bool IEmulationInput.CapturePointerOnClick => Configuration.Family == MachineFamily.Macintosh && Configuration.Input.CaptureMouse;
-    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings =>
-        Configuration.Input?.KeyboardBindings ?? Configuration.Input?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(),
-            StringComparer.Ordinal) ?? new Dictionary<string, string>();
+    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings => Configuration.Input?.KeyboardBindings ?? Configuration.Input?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>();
     bool IEmulationInput.SupportsControllerPointerSwitch => false;
     bool IEmulationInput.ControllerPointerMode => false;
     public EmulationMachineState State { get; private set; } = EmulationMachineState.Created;
@@ -75,14 +73,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public RuntimeStatus RuntimeStatus => RuntimeFunctions.Status(Configuration, _core);
     public event EventHandler<VideoFrame>? VideoFrameReady;
     public event EventHandler<AudioChunk>? AudioChunkReady;
-    IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedMedia
-        .Select(EmulationMediaConversionFunctions.ToCommon).OfType<EmulationMedia>().ToArray();
-    ValueTask IEmulationMedia.InsertAsync(EmulationMedia media, CancellationToken cancellationToken) =>
-        InsertMediaAsync(EmulationMediaConversionFunctions.ToApple(media, _mountedMedia), cancellationToken);
-    ValueTask IEmulationMedia.EjectAsync(EmulationMediaSlot slot, CancellationToken cancellationToken) =>
-        EjectMediaAsync(slot, cancellationToken);
-    ValueTask IEmulationMedia.SelectDiskAsync(EmulationMediaSlot slot, int index,
-        CancellationToken cancellationToken) => SelectDiskAsync(index, cancellationToken);
+    IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedMedia.Select(EmulationMediaConversionFunctions.ToCommon).OfType<EmulationMedia>().ToArray();
+    ValueTask IEmulationMedia.InsertAsync(EmulationMedia media, CancellationToken cancellationToken) => InsertMediaAsync(EmulationMediaConversionFunctions.ToApple(media, _mountedMedia), cancellationToken);
+    ValueTask IEmulationMedia.EjectAsync(EmulationMediaSlot slot, CancellationToken cancellationToken) => EjectMediaAsync(slot, cancellationToken);
+    ValueTask IEmulationMedia.SelectDiskAsync(EmulationMediaSlot slot, int index, CancellationToken cancellationToken) => SelectDiskAsync(index, cancellationToken);
     AudioChunk? IEmulationAudio.LatestChunk => LatestAudioChunk;
     int IEmulationAudio.SampleRate => _core.SampleRate;
     bool IEmulationAudio.IsMuted => IsAudioMuted;
@@ -98,8 +92,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     string IEmulationRuntime.EmulatorName => CoreName;
     string IEmulationRuntime.EmulatorVersion => CoreVersion;
     IReadOnlySet<string> IEmulationRuntime.SupportedContentExtensions => SupportedContentExtensions;
-    IReadOnlyDictionary<EmulationMediaSlot, bool> IEmulationRuntime.MediaActivity =>
-        RuntimeStatus.MediaActivity;
+    IReadOnlyDictionary<EmulationMediaSlot, bool> IEmulationRuntime.MediaActivity => RuntimeStatus.MediaActivity;
     IReadOnlyList<EmulationOption> IEmulationRuntime.AvailableOptions => AvailableOptions
         .Select(option => new EmulationOption(
             option.Key,
@@ -120,10 +113,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         remove => VideoFrameReady -= value;
     }
     bool IEmulationSavedStates.IsSupported => SupportsSaveStates;
-    ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) =>
-        SaveStateAsync(path, cancellationToken);
-    ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) =>
-        LoadStateAsync(path, cancellationToken);
-    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) =>
-        SetControllerPortDevice(port, EmulationPeripheralConversionFunctions.ToApple(peripheral));
+    ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) => SaveStateAsync(path, cancellationToken);
+    ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) => LoadStateAsync(path, cancellationToken);
+    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, EmulationPeripheralConversionFunctions.ToApple(peripheral));
 }

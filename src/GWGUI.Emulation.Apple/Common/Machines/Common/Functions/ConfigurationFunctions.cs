@@ -18,9 +18,7 @@ internal static class ConfigurationFunctions
         return adapter is null ? preferred : Enum.Parse<Emulator>(adapter.EmulatorKey);
     }
 
-    internal static int ControllerPortCount(MachineModel model) => model is MachineModel.AppleII
-        or MachineModel.AppleIIPlus or MachineModel.AppleIIJPlus or MachineModel.AppleIIe
-        or MachineModel.AppleIIeEnhanced ? 1 : 0;
+    internal static int ControllerPortCount(MachineModel model) => model is MachineModel.AppleII or MachineModel.AppleIIPlus or MachineModel.AppleIIJPlus or MachineModel.AppleIIe or MachineModel.AppleIIeEnhanced ? 1 : 0;
 
     internal static void Validate(MachineConfiguration configuration)
     {

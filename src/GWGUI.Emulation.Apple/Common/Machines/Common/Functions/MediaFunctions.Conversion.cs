@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
 
 internal static class EmulationMediaConversionFunctions
 {
-    internal static EmulationMedia ToCommon(MediaConfiguration media) =>
-        new(media.Path, media.Slot, ToType(media.Category), media.IsReadOnly, media.IsInserted);
+    internal static EmulationMedia ToCommon(MediaConfiguration media) => new(media.Path, media.Slot, ToType(media.Category), media.IsReadOnly, media.IsInserted);
 
     internal static MediaConfiguration ToApple(EmulationMedia media,
         IReadOnlyList<MediaConfiguration> mountedMedia)
@@ -11,8 +10,7 @@ internal static class EmulationMediaConversionFunctions
         var category = ToAppleCategory(media.Type);
         var existing = mountedMedia.FirstOrDefault(item => item.Slot == media.Slot);
         return existing is null
-            ? new MediaConfiguration(media.Path, category, media.Slot,
-                IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted)
+            ? new MediaConfiguration(media.Path, category, media.Slot, IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted)
             : existing with
             {
                 Path = media.Path,

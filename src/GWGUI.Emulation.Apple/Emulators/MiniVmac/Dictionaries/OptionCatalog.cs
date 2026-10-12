@@ -13,11 +13,6 @@ internal static class MiniVmacOptionCatalog
                 new("disabled", "disabled", ResourceKey: "Emulation.Value.Disabled"),
                 new("enabled", "enabled", ResourceKey: "Emulation.Value.Enabled"),
             ], ResourceKey: SettingsTextConstants.SettingStatusBar),
-        new(OptionConstants.Kbdtype, "Keyboard Type", null, null,
-            "Callback", "Callback",
-            [
-                new("Callback", "Callback"),
-                new("Poll", "Poll"),
-            ]),
+        new(OptionConstants.Kbdtype, "Keyboard Type", null, null, "Callback", "Callback", [new("Callback", "Callback"), new("Poll", "Poll"),]),
     ];
 }

@@ -33,8 +33,7 @@ private void Request(HostCommand command, Action<BinaryWriter>? write = null,
             CoreHostFunctions.WriteRequestHeader(writer, command);
             write?.Invoke(writer);
             writer.Flush();
-            using var reader = new BinaryReader(new MemoryStream(ReadResponse(), writable: false), Encoding.UTF8,
-                leaveOpen: false);
+            using var reader = new BinaryReader(new MemoryStream(ReadResponse(), writable: false), Encoding.UTF8, leaveOpen: false);
             var status = CoreHostFunctions.ReadResponseHeader(reader);
             if (status == HostResponseStatus.Failure) ThrowRemoteError(CoreHostFunctions.ReadError(reader));
             if (status != HostResponseStatus.Success)
@@ -60,8 +59,7 @@ private void Request(HostCommand command, Action<BinaryWriter>? write = null,
         _pipe!.ReadExactlyAsync(header, timeout.Token).AsTask().GetAwaiter().GetResult();
         var length = BinaryPrimitives.ReadInt32LittleEndian(header);
         if (length is < 0 or > EmulationHostProtocolConstants.MaximumBlobLength)
-            throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture,
-                CoreHostErrors.InvalidResponseLengthFormat, length));
+            throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, CoreHostErrors.InvalidResponseLengthFormat, length));
         var response = GC.AllocateUninitializedArray<byte>(length);
         _pipe.ReadExactlyAsync(response, timeout.Token).AsTask().GetAwaiter().GetResult();
         return response;
@@ -70,8 +68,7 @@ private void Request(HostCommand command, Action<BinaryWriter>? write = null,
     private static void ThrowRemoteError(HostError error)
     {
         if (error.Category is { } category && error.Code is { } code)
-            throw new EmulationException(category, code, error.Message, error.Context,
-                isLocalized: error.IsLocalized);
+            throw new EmulationException(category, code, error.Message, error.Context, isLocalized: error.IsLocalized);
         throw new InvalidOperationException(error.Message);
     }
 
@@ -80,16 +77,11 @@ private void Request(HostCommand command, Action<BinaryWriter>? write = null,
         var cancelled = _cancellationToken.IsCancellationRequested;
         var timedOut = error is OperationCanceledException && !cancelled;
         var exitSuffix = _process is { HasExited: true }
-            ? string.Format(CultureInfo.InvariantCulture, CoreHostErrors.ProcessExitSuffixFormat,
-                _process.ExitCode)
+            ? string.Format(CultureInfo.InvariantCulture, CoreHostErrors.ProcessExitSuffixFormat, _process.ExitCode)
             : string.Empty;
         _connectionFailed = true;
         TerminateHostProcess();
-        var message = cancelled
-            ? CoreHostErrors.RequestCancelled
-            : timedOut
-                ? CoreHostErrors.ResponseTimeout
-                : CoreHostErrors.CommunicationFailed + exitSuffix;
+        var message = cancelled ? CoreHostErrors.RequestCancelled : timedOut ? CoreHostErrors.ResponseTimeout : CoreHostErrors.CommunicationFailed + exitSuffix;
         throw new InvalidOperationException(message, error);
     }
 

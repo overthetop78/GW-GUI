@@ -64,9 +64,7 @@ internal static class InputSettingsFunctions
                 KeyboardMappings = keyboard,
                 KeyboardBindings = keyboardBindings,
                 Controllers = controllers,
-                MouseMappings = configuration.Family == MachineFamily.Macintosh 
-                    ? settings.Mouse?.Values.Where(pair => pair.Key == InputSnapshotFunctionsConstants.Left).ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal) ?? configuration.Input.MouseMappings 
-                    : null
+                MouseMappings = configuration.Family == MachineFamily.Macintosh ? settings.Mouse?.Values.Where(pair => pair.Key == InputSnapshotFunctionsConstants.Left).ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal) ?? configuration.Input.MouseMappings : null
             }
         };
         ConfigurationFunctions.Validate(result);

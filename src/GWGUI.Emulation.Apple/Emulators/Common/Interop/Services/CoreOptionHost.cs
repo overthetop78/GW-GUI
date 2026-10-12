@@ -25,19 +25,15 @@ internal sealed class CoreOptionHost : IDisposable
     internal IReadOnlyList<CoreOptionCategory> Categories { get; private set; } = [];
     internal IReadOnlyDictionary<string, string> DocumentValues => _values;
 
-    internal void RegisterLegacyVariables(nint data) =>
-        ReplaceCatalog(CoreOptionFunctions.CopyLegacyVariables(data), []);
+    internal void RegisterLegacyVariables(nint data) => ReplaceCatalog(CoreOptionFunctions.CopyLegacyVariables(data), []);
 
-    internal void RegisterVersionOne(nint data) =>
-        ReplaceCatalog(CoreOptionFunctions.CopyLegacyDefinitions(data), []);
+    internal void RegisterVersionOne(nint data) => ReplaceCatalog(CoreOptionFunctions.CopyLegacyDefinitions(data), []);
 
     internal void RegisterVersionOneInternational(nint data)
     {
         if (data == nint.Zero) { ReplaceCatalog([], []); return; }
-        var englishPointer = Marshal.ReadIntPtr(data,
-            CoreOptionConstants.EnglishPointerIndex * IntPtr.Size);
-        var localPointer = Marshal.ReadIntPtr(data,
-            CoreOptionConstants.LocalPointerIndex * IntPtr.Size);
+        var englishPointer = Marshal.ReadIntPtr(data, CoreOptionConstants.EnglishPointerIndex * IntPtr.Size);
+        var localPointer = Marshal.ReadIntPtr(data, CoreOptionConstants.LocalPointerIndex * IntPtr.Size);
         var english = CoreOptionFunctions.CopyLegacyDefinitions(englishPointer);
         var local = CoreOptionFunctions.CopyLegacyDefinitions(localPointer);
         ReplaceCatalog(CoreOptionFunctions.MergeLocalizedDefinitions(english, local), []);
@@ -52,14 +48,11 @@ internal sealed class CoreOptionHost : IDisposable
     internal void RegisterVersionTwoInternational(nint data)
     {
         if (data == nint.Zero) { ReplaceCatalog([], []); return; }
-        var englishPointer = Marshal.ReadIntPtr(data,
-            CoreOptionConstants.EnglishPointerIndex * IntPtr.Size);
-        var localPointer = Marshal.ReadIntPtr(data,
-            CoreOptionConstants.LocalPointerIndex * IntPtr.Size);
+        var englishPointer = Marshal.ReadIntPtr(data, CoreOptionConstants.EnglishPointerIndex * IntPtr.Size);
+        var localPointer = Marshal.ReadIntPtr(data, CoreOptionConstants.LocalPointerIndex * IntPtr.Size);
         var english = CoreOptionFunctions.CopyVersionTwoDefinitions(englishPointer, out var englishCategories);
         var local = CoreOptionFunctions.CopyVersionTwoDefinitions(localPointer, out var localCategories);
-        ReplaceCatalog(CoreOptionFunctions.MergeLocalizedDefinitions(english, local),
-            CoreOptionFunctions.MergeLocalizedCategories(englishCategories, localCategories));
+        ReplaceCatalog(CoreOptionFunctions.MergeLocalizedDefinitions(english, local), CoreOptionFunctions.MergeLocalizedCategories(englishCategories, localCategories));
     }
 
     internal bool ReturnValue(nint data)
@@ -67,8 +60,7 @@ internal sealed class CoreOptionHost : IDisposable
         if (data == nint.Zero) return true;
         var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
         var key = variable.Key == nint.Zero ? null : Marshal.PtrToStringUTF8(variable.Key);
-        variable.Value = key is not null && _values.TryGetValue(key, out var value)
-            ? NativeValue(key, value) : nint.Zero;
+        variable.Value = key is not null && _values.TryGetValue(key, out var value) ? NativeValue(key, value) : nint.Zero;
         Marshal.StructureToPtr(variable, data, false);
         return true;
     }
@@ -86,15 +78,13 @@ internal sealed class CoreOptionHost : IDisposable
     internal bool GetAndClearUpdated(nint data)
     {
         if (data == nint.Zero) return false;
-        return CoreFunctions.WriteBoolean(data,
-            Interlocked.Exchange(ref _updated, CoreOptionConstants.NoEntries) != CoreOptionConstants.NoEntries);
+        return CoreFunctions.WriteBoolean(data, Interlocked.Exchange(ref _updated, CoreOptionConstants.NoEntries) != CoreOptionConstants.NoEntries);
     }
 
     internal void SetValue(string key, string value)
     {
         if (!SetValue(key, value, requireAnnouncedKey: true))
-            throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid,
-                CoreFunctions.CreateInvalidOptionValueMessage(key, value));
+            throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid, CoreFunctions.CreateInvalidOptionValueMessage(key, value));
     }
 
     internal bool ApplyVisibility(nint data)
@@ -113,8 +103,7 @@ internal sealed class CoreOptionHost : IDisposable
     {
         if (data == nint.Zero) return false;
         var pointer = Marshal.PtrToStructure<ExternalCoreApi.CoreOptionsUpdateDisplayCallback>(data).Callback;
-        _displayUpdate = pointer == nint.Zero ? null
-            : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.UpdateCoreOptionsDisplay>(pointer);
+        _displayUpdate = pointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.UpdateCoreOptionsDisplay>(pointer);
         return true;
     }
 
@@ -125,8 +114,7 @@ internal sealed class CoreOptionHost : IDisposable
             var option = Catalog.FirstOrDefault(item => item.Key.Equals(key, StringComparison.Ordinal));
             if (option is null || option.Values.Count == CoreOptionConstants.NoEntries) continue;
             if (!option.Values.Any(item => item.Value.Equals(_values[key], StringComparison.Ordinal)))
-                throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid,
-                    CoreFunctions.CreateInvalidOptionValueMessage(key, _values[key]));
+                throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid, CoreFunctions.CreateInvalidOptionValueMessage(key, _values[key]));
         }
     }
 

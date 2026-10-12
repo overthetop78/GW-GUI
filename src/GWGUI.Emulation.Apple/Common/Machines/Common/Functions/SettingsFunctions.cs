@@ -10,8 +10,7 @@ internal static partial class SettingsDescriptionFunctions
         var blocks = new List<EmulationSettingsBlock>
         {
             Block(EmulationMachineTab.Cpu, SettingsConstants.ResourceCpu,
-                Information(SettingsConstants.Cpu, EmulationMachineTab.Cpu, SettingsConstants.ResourceCpu,
-                    hardware.DefaultCpu.ToString()),
+                Information(SettingsConstants.Cpu, EmulationMachineTab.Cpu, SettingsConstants.ResourceCpu, hardware.DefaultCpu.ToString()),
                 Information(SettingsConstants.CpuFrequency, EmulationMachineTab.Cpu, SettingsConstants.ResourceFrequency,
                     $"{hardware.DefaultCpuFrequencyHz / (double)SettingsConstants.Megahertz:0.##} MHz")),
             Block(EmulationMachineTab.Ram, SettingsConstants.ResourceMemory,
@@ -27,24 +26,19 @@ internal static partial class SettingsDescriptionFunctions
         Block(EmulationMachineTab.Audio, SettingsConstants.ResourceAudio,
             new EmulationSettingsField(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio,
                 EmulationMachineTab.Audio.ToString(), SettingsConstants.ResourceAudioEnabled,
-                EmulationSettingsEditor.Toggle, configuration.AudioEnabled
-                    ? EmulationSettingConstants.Enabled : EmulationSettingConstants.Disabled),
+                EmulationSettingsEditor.Toggle, configuration.AudioEnabled ? EmulationSettingConstants.Enabled : EmulationSettingConstants.Disabled),
             new EmulationSettingsField(SettingsConstants.AudioOutput, EmulationMachineTab.Audio,
                 EmulationMachineTab.Audio.ToString(), SettingsConstants.ResourceAudioOutput,
-                EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(SettingsConstants.AudioOutput,
-                    SettingsConstants.DefaultOutput),
+                EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput),
                 [new(SettingsConstants.DefaultOutput, SettingsConstants.ResourceDefaultOutput)],
                 ChoiceSource: EmulationSettingsChoiceSource.AudioOutputDevices),
-            AudioSelection(configuration, SettingsConstants.AudioLatency, SettingsConstants.ResourceAudioLatency,
-                SettingsConstants.DefaultLatency, SettingsConstants.Latencies, "ms"),
-            AudioSelection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume,
-                SettingsConstants.DefaultVolume, SettingsConstants.Volumes, "%"));
+            AudioSelection(configuration, SettingsConstants.AudioLatency, SettingsConstants.ResourceAudioLatency, SettingsConstants.DefaultLatency, SettingsConstants.Latencies, "ms"),
+            AudioSelection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume, SettingsConstants.DefaultVolume, SettingsConstants.Volumes, "%"));
 
     private static EmulationSettingsField AudioSelection(MachineConfiguration configuration, string id,
         string resource, int fallback, IReadOnlyList<int> values, string unit) =>
         new(id, EmulationMachineTab.Audio, EmulationMachineTab.Audio.ToString(), resource,
-            EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(id,
-                fallback.ToString(CultureInfo.InvariantCulture)),
+            EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(id, fallback.ToString(CultureInfo.InvariantCulture)),
             values.Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture),
                 string.Empty, $"{value} {unit}")).ToArray());
 
@@ -56,15 +50,12 @@ internal static partial class SettingsDescriptionFunctions
         var choices = option.Values.Select((choice, index) => new EmulationSettingsChoice(choice.Value,
             choice.ResourceKey ?? (choice.InvariantDisplayValue is not null ? string.Empty : throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}.")), choice.InvariantDisplayValue))
             .ToArray();
-        return new(option.Key, tab, tab.ToString(), resource, EmulationSettingsEditor.Selection, value, choices,
-            RequiresRestart: false);
+        return new(option.Key, tab, tab.ToString(), resource, EmulationSettingsEditor.Selection, value, choices, RequiresRestart: false);
     }
 
     internal static string Resolution(int width, int height) => $"{width} × {height}";
 
-    internal static EmulationSettingsField Information(string id, EmulationMachineTab tab, string resource, string value) =>
-        new(id, tab, tab.ToString(), resource, EmulationSettingsEditor.Information, value, IsEnabled: false);
+    internal static EmulationSettingsField Information(string id, EmulationMachineTab tab, string resource, string value) => new(id, tab, tab.ToString(), resource, EmulationSettingsEditor.Information, value, IsEnabled: false);
 
-    internal static EmulationSettingsBlock Block(EmulationMachineTab tab, string resource,
-        params EmulationSettingsField[] fields) => new(resource, tab, resource, fields);
+    internal static EmulationSettingsBlock Block(EmulationMachineTab tab, string resource, params EmulationSettingsField[] fields) => new(resource, tab, resource, fields);
 }

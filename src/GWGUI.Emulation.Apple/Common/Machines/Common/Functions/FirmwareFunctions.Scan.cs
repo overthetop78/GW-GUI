@@ -8,8 +8,7 @@ internal static partial class FirmwareFunctions
     {
         if (candidate.Compatibility == EmulationFirmwareCompatibility.Incompatible
             || candidate.DestinationFieldId != SettingsConstants.Firmware)
-            throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid,
-                ErrorMessages.FirmwareCannotBeSelected);
+            throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareCannotBeSelected);
         return new(FirmwareCategory.SystemRom, candidate.Path, true);
     }
 }

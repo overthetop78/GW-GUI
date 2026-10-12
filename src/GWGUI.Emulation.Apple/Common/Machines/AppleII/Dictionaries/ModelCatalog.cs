@@ -19,8 +19,7 @@ public static class AppleIIModelCatalog
         new(model, model.ToString(), AppleIIModelConstants.ResourcePrefix + model, Emulator.AppleWin,
             Array.AsReadOnly(new[] { cpu }), AppleIIModelConstants.CpuFrequencyHz, memory,
             Array.AsReadOnly(new[] { HardwareRegion.Ntsc, HardwareRegion.Pal }),
-            Array.AsReadOnly(new[] { model is MachineModel.AppleIIe or MachineModel.AppleIIeEnhanced
-                ? HardwareVideoCapability.AppleIIe : HardwareVideoCapability.AppleII }),
+            Array.AsReadOnly(new[] { model is MachineModel.AppleIIe or MachineModel.AppleIIeEnhanced ? HardwareVideoCapability.AppleIIe : HardwareVideoCapability.AppleII }),
             Array.AsReadOnly(new[] { HardwareAudioCapability.Speaker }),
             Array.AsReadOnly(new[] { HardwareStorageCapability.Floppy, HardwareStorageCapability.HardDisk,
                 HardwareStorageCapability.Cassette }),

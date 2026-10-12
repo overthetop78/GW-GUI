@@ -21,9 +21,6 @@ internal static class HardDiskFormats
         // AppleWin Harddisk.h limits reported blocks; Mini vMac vSonyGetSize uses a 32-bit byte count.
         var appleII = configuration.Core == Emulator.AppleWin;
         var maximum = appleII ? AppleWinMaximumBlocks * SectorBytes : uint.MaxValue / SectorBytes * (long)SectorBytes;
-        return [Formats.Describe(new(appleII ? AppleWinFormatId : MacintoshFormatId,
-            appleII ? AppleWinExtension : MacintoshExtension,
-            appleII ? AppleWinInterface : MacintoshInterface, maximum, DefaultBytes,
-            [HardDiskPreparation.Blank]))];
+        return [Formats.Describe(new(appleII ? AppleWinFormatId : MacintoshFormatId, appleII ? AppleWinExtension : MacintoshExtension, appleII ? AppleWinInterface : MacintoshInterface, maximum, DefaultBytes, [HardDiskPreparation.Blank]))];
     }
 }

@@ -26,17 +26,13 @@ internal static class SessionMediaFunctions
 
 
         var runtimeDirectory = Path.Combine(sessionDirectory, SessionMediaConstants.SessionDirectoryName,
-            string.Format(CultureInfo.InvariantCulture, SessionMediaConstants.SessionInstanceNameFormat,
-                configuration.Slot, Guid.NewGuid().ToString(SessionMediaConstants.UniqueNameFormat)));
+            string.Format(CultureInfo.InvariantCulture, SessionMediaConstants.SessionInstanceNameFormat, configuration.Slot, Guid.NewGuid().ToString(SessionMediaConstants.UniqueNameFormat)));
         Directory.CreateDirectory(runtimeDirectory);
         var runtimePaths = new List<string>(sourcePaths.Count);
         for (var index = SessionMediaConstants.FirstMediaIndex; index < sourcePaths.Count; index++)
         {
             var sourcePath = sourcePaths[index];
-            var runtimeName = string.Format(CultureInfo.InvariantCulture,
-                SessionMediaConstants.RuntimeFileNameFormat,
-                index + SessionMediaConstants.RuntimeFileNumberOffset,
-                Path.GetFileName(sourcePath));
+            var runtimeName = string.Format(CultureInfo.InvariantCulture, SessionMediaConstants.RuntimeFileNameFormat, index + SessionMediaConstants.RuntimeFileNumberOffset, Path.GetFileName(sourcePath));
             var runtimePath = Path.Combine(runtimeDirectory, runtimeName);
             File.Copy(sourcePath, runtimePath, overwrite: true);
             SetReadOnly(runtimePath, configuration.IsReadOnly);
@@ -51,8 +47,7 @@ internal static class SessionMediaFunctions
             File.WriteAllLines(runtimeContentPath, File.ReadLines(configuration.Path).Select(line =>
             {
                 var trimmed = line.Trim();
-                if (trimmed.Length == 0 || trimmed.StartsWith(SessionMediaConstants.PlaylistCommentPrefix,
-                        StringComparison.Ordinal)) return line;
+                if (trimmed.Length == 0 || trimmed.StartsWith(SessionMediaConstants.PlaylistCommentPrefix, StringComparison.Ordinal)) return line;
                 var separator = line.IndexOf(SessionMediaConstants.PlaylistLabelSeparator);
                 var label = separator < 0 ? string.Empty : line[separator..];
                 return Path.GetFileName(runtimePaths[nextPath++]) + label;
@@ -60,8 +55,7 @@ internal static class SessionMediaFunctions
         }
 
         var result = new SessionMedia(configuration, runtimeContentPath, sourcePaths, runtimePaths, !configuration.IsReadOnly);
-        File.WriteAllText(Path.Combine(runtimeDirectory, SessionMediaConstants.SessionManifestFileName),
-            JsonSerializer.Serialize(result));
+        File.WriteAllText(Path.Combine(runtimeDirectory, SessionMediaConstants.SessionManifestFileName), JsonSerializer.Serialize(result));
         return result;
     }
 
@@ -69,16 +63,13 @@ internal static class SessionMediaFunctions
     {
         if (!Directory.Exists(directory)) return null;
         var root = Path.GetFullPath(directory) + Path.DirectorySeparatorChar;
-        foreach (var path in Directory.EnumerateFiles(directory, SessionMediaConstants.SessionManifestFileName,
-                     SearchOption.AllDirectories).OrderByDescending(File.GetLastWriteTimeUtc))
+        foreach (var path in Directory.EnumerateFiles(directory, SessionMediaConstants.SessionManifestFileName, SearchOption.AllDirectories).OrderByDescending(File.GetLastWriteTimeUtc))
         {
             var prepared = JsonSerializer.Deserialize<SessionMedia>(File.ReadAllText(path));
             if (prepared is null || prepared.Configuration.Slot != configuration.Slot
                 || prepared.Configuration.IsReadOnly != configuration.IsReadOnly
-                || !string.Equals(Path.GetFullPath(prepared.Configuration.Path), Path.GetFullPath(configuration.Path),
-                    StringComparison.OrdinalIgnoreCase)) continue;
-            if (!prepared.RuntimePaths.Append(prepared.RuntimePath).All(file =>
-                    Path.GetFullPath(file).StartsWith(root, StringComparison.OrdinalIgnoreCase) && File.Exists(file)))
+                || !string.Equals(Path.GetFullPath(prepared.Configuration.Path), Path.GetFullPath(configuration.Path), StringComparison.OrdinalIgnoreCase)) continue;
+            if (!prepared.RuntimePaths.Append(prepared.RuntimePath).All(file => Path.GetFullPath(file).StartsWith(root, StringComparison.OrdinalIgnoreCase) && File.Exists(file)))
                 continue;
             return prepared with { Configuration = configuration };
         }
@@ -98,11 +89,9 @@ internal static class SessionMediaFunctions
         var absoluteContentPath = Path.GetFullPath(contentPath);
         if (!IsPlaylist(absoluteContentPath)) return [absoluteContentPath];
         var playlistDirectory = Path.GetDirectoryName(absoluteContentPath)!;
-        var paths = File.ReadLines(absoluteContentPath)
-            .Select(line => line.Trim())
+        var paths = File.ReadLines(absoluteContentPath).Select(line => line.Trim())
             .Where(line => line.Length > SessionMediaConstants.FirstMediaIndex &&
-                           !line.StartsWith(SessionMediaConstants.PlaylistCommentPrefix,
-                               StringComparison.Ordinal))
+                           !line.StartsWith(SessionMediaConstants.PlaylistCommentPrefix, StringComparison.Ordinal))
             .Select(line => line.Split(SessionMediaConstants.PlaylistLabelSeparator)[0])
             .Select(line => Path.GetFullPath(Path.Combine(playlistDirectory, line)))
             .ToArray();
@@ -114,9 +103,7 @@ internal static class SessionMediaFunctions
         return paths;
     }
 
-    private static bool IsPlaylist(string path) => string.Equals(
-        Path.GetExtension(path), SessionMediaConstants.PlaylistExtension,
-        StringComparison.OrdinalIgnoreCase);
+    private static bool IsPlaylist(string path) => string.Equals(Path.GetExtension(path), SessionMediaConstants.PlaylistExtension, StringComparison.OrdinalIgnoreCase);
 
     private static void SetReadOnly(string path, bool readOnly)
     {
