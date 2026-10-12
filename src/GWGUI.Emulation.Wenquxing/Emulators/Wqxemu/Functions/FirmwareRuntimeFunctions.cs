@@ -8,18 +8,45 @@ internal static class FirmwareRuntimeFunctions
 {
     internal static bool IsCompatible(MachineConfiguration configuration, FirmwareRole role, string path)
     {
-        if (!FirmwareCatalog.Requirements(configuration.Model).Any(requirement => requirement.Role == role)) return false;
+        if (!FirmwareCatalog.Requirements(configuration.Model).Any(requirement => requirement.Role == role))
+            return false;
         try
         {
             var info = new FileInfo(path);
-            if (!info.Exists || info.Length == 0) return false;
+            if (!info.Exists || info.Length == 0)
+                return false;
             var extension = info.Extension.ToLowerInvariant();
-            var accepted = role switch { FirmwareRole.SystemRom => extension is ".rom" or ".bin", FirmwareRole.NorFlash => extension is ".nor" or ".fls", FirmwareRole.NandFlash => extension == ".nand", FirmwareRole.NandFirstPlane => extension == ".nand0", _ => false };
-            if (!accepted) return false;
-            return role switch { FirmwareRole.SystemRom => configuration.Model switch { MachineModel.NC1020 => info.Length >= NativeFirmwareConstants.Nc1020RomMinimumBytes, MachineModel.PC1000 => info.Length is NativeFirmwareConstants.Pc1000Rom12MBytes or NativeFirmwareConstants.Pc1000Rom16MBytes, MachineModel.CC800 => info.Length >= NativeFirmwareConstants.Cc800RomMinimumBytes, _ => false }, FirmwareRole.NorFlash => info.Length >= (configuration.Model is MachineModel.NC1020 or MachineModel.NC3000 ? NativeFirmwareConstants.Nor1MBytes : NativeFirmwareConstants.Nor512KBytes), _ => true };
+            var accepted = role switch
+            {
+                FirmwareRole.SystemRom => extension is ".rom" or ".bin",
+                FirmwareRole.NorFlash => extension is ".nor" or ".fls",
+                FirmwareRole.NandFlash => extension == ".nand",
+                FirmwareRole.NandFirstPlane => extension == ".nand0",
+                _ => false
+            };
+            if (!accepted)
+                return false;
+            return role switch
+            {
+                FirmwareRole.SystemRom => configuration.Model switch
+                {
+                    MachineModel.NC1020 => info.Length >= NativeFirmwareConstants.Nc1020RomMinimumBytes,
+                    MachineModel.PC1000 => info.Length is NativeFirmwareConstants.Pc1000Rom12MBytes or NativeFirmwareConstants.Pc1000Rom16MBytes,
+                    MachineModel.CC800 => info.Length >= NativeFirmwareConstants.Cc800RomMinimumBytes,
+                    _ => false
+                },
+                FirmwareRole.NorFlash => info.Length >= (configuration.Model is MachineModel.NC1020 or MachineModel.NC3000 ? NativeFirmwareConstants.Nor1MBytes : NativeFirmwareConstants.Nor512KBytes),
+                _ => true
+            };
         }
-        catch (IOException) { return false; }
-        catch (UnauthorizedAccessException) { return false; }
+        catch (IOException)
+        {
+            return false;
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return false;
+        }
     }
     internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
     {

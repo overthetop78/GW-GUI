@@ -6,15 +6,20 @@ namespace GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions;
 
 internal static class SavedStateFunctions
 {
-    internal static SavedStateHeader CreateHeader(MachineConfiguration configuration, IEmulatorCore core, ReadOnlySpan<byte> state) => new( StateConstants.CurrentFormatVersion, core.Emulator, core.CoreName, core.CoreVersion, core.CoreSha256, configuration.Model, ConfigurationHash(configuration), ContentHash(configuration), HashBytes(state));
+    internal static SavedStateHeader CreateHeader(MachineConfiguration configuration, IEmulatorCore core, ReadOnlySpan<byte> state) => new(StateConstants.CurrentFormatVersion, core.Emulator, core.CoreName, core.CoreVersion, core.CoreSha256, configuration.Model, ConfigurationHash(configuration), ContentHash(configuration), HashBytes(state));
 
     internal static void Validate(SavedStateHeader header, MachineConfiguration configuration, IEmulatorCore core)
     {
-        if (header.FormatVersion != StateConstants.CurrentFormatVersion) throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
-        if (header.Core != core.Emulator || !string.Equals(header.CoreName, core.CoreName, StringComparison.Ordinal) || !string.Equals(header.CoreVersion, core.CoreVersion, StringComparison.Ordinal) || !string.Equals(header.CoreSha256, core.CoreSha256, StringComparison.OrdinalIgnoreCase)) throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
-        if (header.Model != configuration.Model) throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
-        if (!string.Equals(header.ContentSha256, ContentHash(configuration), StringComparison.OrdinalIgnoreCase)) throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
-        if (!IsCompatibleConfigurationHash(configuration, header.ConfigurationSha256)) throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
+        if (header.FormatVersion != StateConstants.CurrentFormatVersion)
+            throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
+        if (header.Core != core.Emulator || !string.Equals(header.CoreName, core.CoreName, StringComparison.Ordinal) || !string.Equals(header.CoreVersion, core.CoreVersion, StringComparison.Ordinal) || !string.Equals(header.CoreSha256, core.CoreSha256, StringComparison.OrdinalIgnoreCase))
+            throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
+        if (header.Model != configuration.Model)
+            throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
+        if (!string.Equals(header.ContentSha256, ContentHash(configuration), StringComparison.OrdinalIgnoreCase))
+            throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
+        if (!IsCompatibleConfigurationHash(configuration, header.ConfigurationSha256))
+            throw Invalid(EmulationMessageCode.SavedStateIncompatible, ErrorMessages.StateIncompatible);
     }
 
     internal static void ValidatePayloadSize(int length)
@@ -29,7 +34,16 @@ internal static class SavedStateFunctions
 
     internal static string ConfigurationHash(MachineConfiguration configuration)
     {
-        var fingerprint = new StateConfigurationFingerprint( configuration.SchemaVersion, configuration.Model, configuration.Core, configuration.AudioEnabled, ContentEntries(configuration), configuration.Options.OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray(), InputFingerprint(configuration.Input, configuration.Model), configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase) .ToArray());
+        var fingerprint = new StateConfigurationFingerprint(
+            configuration.SchemaVersion,
+            configuration.Model,
+            configuration.Core,
+            configuration.AudioEnabled,
+            ContentEntries(configuration),
+            configuration.Options.OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray(),
+            InputFingerprint(configuration.Input, configuration.Model),
+            configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).ToArray()
+        );
         return HashBytes(JsonSerializer.SerializeToUtf8Bytes(fingerprint, StateConstants.JsonOptions));
     }
 

@@ -21,7 +21,10 @@ public sealed class WenquxingEmulationModule : IEmulationModule, IEmulationEmula
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
     public string BrandImageResourceName => $"{EmulationModuleConstants.AssetResourcePrefix}.wenquxing.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
-    public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, tab => tab is EmulationMachineTab.General or EmulationMachineTab.Cpu or EmulationMachineTab.Ram or EmulationMachineTab.Rom or EmulationMachineTab.Video or EmulationMachineTab.Audio or EmulationMachineTab.Keyboard));
+    public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(
+        tab => tab,
+        tab => tab is EmulationMachineTab.General or EmulationMachineTab.Cpu or EmulationMachineTab.Ram or EmulationMachineTab.Rom or EmulationMachineTab.Video or EmulationMachineTab.Audio or EmulationMachineTab.Keyboard
+    ));
     public bool TryGetString(string key, CultureInfo culture, out string value) => Localization.TryGetString(key, culture, out value);
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode) => _engine.TryHandleHostCommand(arguments, out exitCode);
     public EmulationMachineSettings Describe(string machineId, IEmulationConfiguration? configuration = null)
@@ -40,10 +43,20 @@ public sealed class WenquxingEmulationModule : IEmulationModule, IEmulationEmula
         var options = new Dictionary<string, string>(current.Options, StringComparer.Ordinal);
         foreach (var value in values)
         {
-            if (!editable.Contains(value.Key) || value.Key == SettingsConstants.AudioEnabled || FirmwareFunctions.Requirements(current).Any(requirement => requirement.FieldId == value.Key)) continue;
-            if (value.Value is null) options.Remove(value.Key); else options[value.Key] = value.Value;
+            if (!editable.Contains(value.Key) || value.Key == SettingsConstants.AudioEnabled || FirmwareFunctions.Requirements(current).Any(requirement => requirement.FieldId == value.Key))
+                continue;
+            if (value.Value is null)
+                options.Remove(value.Key);
+            else
+                options[value.Key] = value.Value;
         }
-        var result = current with { Options = options, Firmware = FirmwareFunctions.Apply(current, values), AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) && editable.Contains(SettingsConstants.AudioEnabled) ? enabled == EmulationSettingConstants.Enabled : current.AudioEnabled };
+    
+        var result = current with
+        {
+            Options = options,
+            Firmware = FirmwareFunctions.Apply(current, values),
+            AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) && editable.Contains(SettingsConstants.AudioEnabled) ? enabled == EmulationSettingConstants.Enabled : current.AudioEnabled
+        };
         ConfigurationFunctions.Validate(result);
         return result;
     }
@@ -83,11 +96,28 @@ public sealed class WenquxingEmulationModule : IEmulationModule, IEmulationEmula
         var adapter = _engine.Adapter(current);
         var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog, new EmulationEmulatorMessageContext(adapter.EmulatorId)));
         var output = current.Options.GetValueOrDefault(SettingsConstants.AudioOutput);
-        if (output == SettingsConstants.DefaultOutput) output = null;
-        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : SettingsConstants.DefaultLatency;
-        var context = new EmulatorCreationContext(services.SessionsDirectory, corePath, services.HostExecutablePath, () => services.CreateAudioOutput(output, latency), value => Path.Combine(services.StatesDirectory, EmulationModuleConstants.SavesDirectoryName, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)));
-
-        return new EmulationMachineRuntime(current, media => media.Count == 0 ? _engine.CreateMachine(current, context) : throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog)), [], [], ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey, false);
+        if (output == SettingsConstants.DefaultOutput)
+            output = null;
+        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)
+            ? parsed
+            : SettingsConstants.DefaultLatency;
+        var context = new EmulatorCreationContext(
+            services.SessionsDirectory,
+            corePath,
+            services.HostExecutablePath,
+            () => services.CreateAudioOutput(output, latency),
+            value => Path.Combine(services.StatesDirectory, EmulationModuleConstants.SavesDirectoryName, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat))
+        );
+        return new EmulationMachineRuntime(
+            current,
+            media => media.Count == 0
+            ? _engine.CreateMachine(current, context)
+            : throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog)),
+            [],
+            [],
+            ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey,
+            false
+        );
     }
     public string GetFirmwareDirectory(string machineId) { _ = ModelCatalog.Parse(machineId); return _firmwareDirectory; }
     public ValueTask<IReadOnlyList<EmulationFirmwareCandidate>> ScanFirmwareAsync(string machineId, IEmulationConfiguration configuration, CancellationToken cancellationToken = default)

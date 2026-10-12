@@ -80,7 +80,12 @@ internal sealed class ExternalCore : IEmulatorCore
     public void RunFrame() { RequireExports().Run(); ThrowCallbackFailure(); }
     public void HardReset() { _input?.Release(); RequireExports().Reset(); }
     public void SetInput(EmulationInputSnapshot snapshot) => (_input ?? throw new InvalidOperationException()).Update(snapshot);
-    public void SetOption(string key, string value) { if (key == GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Constants.RuntimeOptionConstants.Model) throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.OptionInvalid, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog)); (_environment ?? throw new InvalidOperationException()).SetOption(key, value); }
+    public void SetOption(string key, string value)
+    {
+        if (key == GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Constants.RuntimeOptionConstants.Model)
+            throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.OptionInvalid, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+        (_environment ?? throw new InvalidOperationException()).SetOption(key, value);
+    }
     public void SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) { if (port != 0 || peripheral != EmulationPeripheralCategory.Keyboard) throw new ArgumentException(nameof(peripheral)); }
     public void InsertMedia(MediaConfiguration media) => throw MediaUnsupported();
     public void EjectMedia(EmulationMediaSlot slot) => throw MediaUnsupported();
