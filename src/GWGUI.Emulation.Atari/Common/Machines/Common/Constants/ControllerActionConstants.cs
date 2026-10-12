@@ -1,18 +1,13 @@
 using GWGUI.Emulation.Constants;
 
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Constants;
-
 internal static class ControllerActionConstants
 {
-    internal static readonly IReadOnlyList<string> DirectionActions =
-        [EmulationControllerCommandIds.Up, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Left, EmulationControllerCommandIds.Right];
+    internal static readonly IReadOnlyList<string> DirectionActions = [EmulationControllerCommandIds.Up, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Left, EmulationControllerCommandIds.Right];
     internal static readonly IReadOnlyList<string> SingleFireActions = [EmulationControllerCommandIds.Fire1];
-    internal static readonly IReadOnlyList<string> DualFireActions =
-        [EmulationControllerCommandIds.Fire1, EmulationControllerCommandIds.Fire2];
-    internal static readonly IReadOnlyList<string> HatariFireActions =
-        [EmulationControllerCommandIds.Fire1, EmulationControllerCommandIds.Turbo];
-    internal static readonly IReadOnlyList<string> LynxActions =
-        [EmulationControllerCommandIds.Fire1, EmulationControllerCommandIds.Fire2, EmulationControllerCommandIds.Option1, EmulationControllerCommandIds.Option2, EmulationControllerCommandIds.Pause];
+    internal static readonly IReadOnlyList<string> DualFireActions = [EmulationControllerCommandIds.Fire1, EmulationControllerCommandIds.Fire2];
+    internal static readonly IReadOnlyList<string> HatariFireActions = [EmulationControllerCommandIds.Fire1, EmulationControllerCommandIds.Turbo];
+    internal static readonly IReadOnlyList<string> LynxActions = [EmulationControllerCommandIds.Fire1, EmulationControllerCommandIds.Fire2, EmulationControllerCommandIds.Option1, EmulationControllerCommandIds.Option2, EmulationControllerCommandIds.Pause];
     internal static readonly IReadOnlyList<string> KeypadActions = [
         EmulationControllerCommandIds.Start,
         EmulationControllerCommandIds.Pause,
