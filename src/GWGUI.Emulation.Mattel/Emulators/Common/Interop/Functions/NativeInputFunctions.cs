@@ -26,12 +26,14 @@ internal static class NativeInputFunctions
         {
             if (index == InputConstants.LeftAnalogIndex)
                 return id switch { InputConstants.AnalogXId => controller.LeftX,
-                    InputConstants.AnalogYId => controller.LeftY, _ => InputConstants.InactiveState };
+                    InputConstants.AnalogYId => controller.LeftY, _ => InputConstants.InactiveState 
+                };
             if (index != InputConstants.RightAnalogIndex) return InputConstants.InactiveState;
             foreach (var pair in KeypadAxes)
                 if (Pressed(controller, pair.Key))
                     return id switch { InputConstants.AnalogXId => pair.Value.X,
-                        InputConstants.AnalogYId => pair.Value.Y, _ => InputConstants.InactiveState };
+                        InputConstants.AnalogYId => pair.Value.Y, _ => InputConstants.InactiveState 
+                    };
             return InputConstants.InactiveState;
         }
         if (device != InputConstants.JoypadDevice || index != InputConstants.LeftAnalogIndex)
