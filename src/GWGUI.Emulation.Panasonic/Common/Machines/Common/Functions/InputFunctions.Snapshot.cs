@@ -44,7 +44,9 @@ internal static class InputSnapshotFunctions
         };
     }
 
-    private static bool IsMotion(ControllerCommand command) => command is ControllerCommand.MoveUp or ControllerCommand.MoveDown or ControllerCommand.MoveLeft or ControllerCommand.MoveRight or ControllerCommand.AimUp or ControllerCommand.AimDown or ControllerCommand.AimLeft or ControllerCommand.AimRight;
+    private static bool IsMotion(ControllerCommand command) => command is ControllerCommand.MoveUp or ControllerCommand.MoveDown
+        or ControllerCommand.MoveLeft or ControllerCommand.MoveRight or ControllerCommand.AimUp or ControllerCommand.AimDown or ControllerCommand.AimLeft
+        or ControllerCommand.AimRight;
     private static float Value(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot, int deadZone)
     {
         if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
