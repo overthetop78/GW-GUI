@@ -219,14 +219,14 @@ public sealed class AppleEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         var current = Require(configuration);
         if (current.Model != ModelCatalog.Parse(machineId)) throw new ArgumentException(nameof(machineId));
-        if (current.Core != Emulator.MiniVmac || !ConfigurationFunctions.SupportsRuntime(current.Model)) return [];
+        if (_engine.Adapter(current) is not IEmulatorFirmwareAdapter firmwareAdapter || !ConfigurationFunctions.SupportsRuntime(current.Model)) return [];
         var directory = GetFirmwareDirectory(machineId);
         Directory.CreateDirectory(directory);
         var candidates = new List<EmulationFirmwareCandidate>();
         foreach (var path in Directory.EnumerateFiles(directory).Order(StringComparer.OrdinalIgnoreCase))
         {
             cancellationToken.ThrowIfCancellationRequested();
-            candidates.Add(await FirmwareFunctions.ScanFileAsync(path, cancellationToken).ConfigureAwait(false));
+            candidates.Add(await FirmwareFunctions.ScanFileAsync(firmwareAdapter, current, path, cancellationToken).ConfigureAwait(false));
         }
         return candidates;
     }
@@ -234,9 +234,9 @@ public sealed class AppleEmulationModule : IEmulationModule, IEmulationEmulatorM
     public IEmulationConfiguration UseFirmware(IEmulationConfiguration configuration, EmulationFirmwareCandidate firmware)
     {
         var current = Require(configuration);
-        if (current.Core != Emulator.MiniVmac || !ConfigurationFunctions.SupportsRuntime(current.Model))
+        if (_engine.Adapter(current) is not IEmulatorFirmwareAdapter firmwareAdapter || !ConfigurationFunctions.SupportsRuntime(current.Model))
             throw new ArgumentException(nameof(configuration));
-        var scanned = FirmwareFunctions.ScanFileAsync(firmware.Path, CancellationToken.None).GetAwaiter().GetResult();
+        var scanned = FirmwareFunctions.ScanFileAsync(firmwareAdapter, current, firmware.Path, CancellationToken.None).GetAwaiter().GetResult();
         var result = current with { Firmwares = [FirmwareFunctions.Select(scanned)] };
         ConfigurationFunctions.Validate(result);
         return result;

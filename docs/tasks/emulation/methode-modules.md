@@ -124,7 +124,7 @@ Les noms suivants restent identiques pour les rôles équivalents. Ils n'imposen
 | Contrôleurs | `ControllerConstants.cs` | `ControllerContracts.cs` | `ControllerEnums.cs` | `ControllerFunctions.cs` | Ports réels, commandes sémantiques et associations physiques distincts ; capture/persistance/session partagent les identités. |
 | Cœur | `CoreConstants.cs`, `CoreManagementConstants.cs` | `CoreContracts.cs`, `EmulatorContracts.cs` | `CoreEnums.cs` | `CoreFunctions.cs` | Gestion et exécution neutres consommées par catalogue/services ; identité/DLL/API/options/protocole définis dans l'adaptateur. |
 | Module | `EmulationModuleConstants.cs` | Contrats SDK existants | Pas d'enum artificiel | Aucun helper sans appelant | Id, clés nom/description et noms logiques de l'entrée ; cohérence manifeste/registre/assembly. |
-| Firmware | `FirmwareConstants.cs` | `FirmwareContracts.cs` | `FirmwareEnums.cs` | `FirmwareFunctions.cs` | Rôles et détection neutres consommés par description/sélection/validation/lancement ; exigences réelles fournies par adaptateur. |
+| Firmware | `FirmwareConstants.cs` | `FirmwareContracts.cs` | `FirmwareEnums.cs` | `FirmwareFunctions.cs` | Rôles neutres consommés par description/sélection/validation/lancement ; exigences, noms de destination, tailles et identités natives fournis par `IEmulatorFirmwareAdapter`. Sélectionner la capacité une fois avant une boucle d’inspection, transmettre la configuration aux appels, puis appliquer la sélection matérielle commune ; aucun nom de cœur dans les conditions du module. |
 | Entrées | `InputConstants.cs` | `InputContracts.cs` | `InputEnums.cs` | `InputFunctions.cs` | Commandes matérielles indépendantes des touches/boutons physiques ; capture/session appliquent les associations ; conversion native dans l'adaptateur. |
 | Machine | `MachineConstants.cs` | `MachineContracts.cs` | `MachineEnums.cs` | `MachineFunctions.cs` | Identités, caractéristiques, capacités et configuration matérielle ; catalogues/descriptions/services. |
 | Médias | `MediaConstants.cs` | `MediaContracts.cs` | `MediaEnums.cs` | `MediaFunctions.cs` | Identités/formats/résolution neutres pour insertion/validation/session ; aucun filtre de jeux par titre ni duplication de MediaEngine. |
@@ -263,6 +263,7 @@ Appliquer cette règle à App, modules, scripts et contrôles. Lors d'un transfe
 8. Écrire preuves acquises et limites restantes dans `docs/tasks/emulation/<id>-verification.json`, pas dans cette procédure. Nettoyer après libération effective ; examiner diff final incluant nouveaux fichiers/modifications partagées.
 9. Commiter seulement le périmètre réellement terminé/vérifié, sans push/publication non demandé. Préparer le module suivant depuis la méthode corrigée et les données déjà relevées, sans refaire les inventaires.
 
+Pour nettoyer une fixture, résoudre les chemins absolus du dossier détenu et de sa racine autorisée, retirer le séparateur terminal de la racine puis en ajouter exactement un avant la comparaison. Vérifier que la cible reste dans cette racine avant la suppression récursive. Placer l’annonce de réussite après la fin effective du `finally` et du nettoyage ; une assertion réussie avant un échec de libération ne constitue pas un contrôle réussi.
 ## 12. Outils et écriture efficaces
 
 - TOUS les fichiers : aucune coupure artificielle d'une instruction/déclaration/appel/commande/balise avec attributs/entrée RESX/ligne de tableau. Garder les sauts structurels et contenu réel des chaînes ; ne pas fusionner les blocs. Chaque ligne générée est construite explicitement ; vérifier syntaxe/imports/namespace sur un résultat avant multiplication.
@@ -516,3 +517,5 @@ Chaque ligne décrit une amélioration de cette procédure, pas une réalisation
 | 224 | 2026-10-12 09:20:53 | Descriptions déléguées par capacité neutre et valeurs numériques explicites sans ressources par nombre. |
 | 225 | 2026-10-12 17:36:38 | Déléguer préparation et validation natives ; vérifier les appels homonymes et découvrir les adaptateurs sans imposer de backend. |
 | 226 | 2026-10-12 17:54:53 | Décisions de session fournies par les adaptateurs et sélectionnées une fois par machine. |
+| 227 | 2026-10-12 18:08:22 | Inspection et préparation de firmware déléguées ; sélectionner la capacité avant la boucle et conserver la compatibilité existante. |
+| 228 | 2026-10-12 18:17:26 | Normaliser les racines de nettoyage et annoncer la réussite après libération effective des fixtures. |

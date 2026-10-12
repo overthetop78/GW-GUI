@@ -36,11 +36,22 @@
     - [x] Produire `build/Debug/GW GUI/gwgui.exe` et les modules par le build Debug complet ; vérifier le résultat terminal et les DLL déclarées.
     - [x] Créer `artifacts/temp/apple-runtime-policy-validation/Validation.csproj` et `Program.cs` : contrôler les règles de supports et d’options des deux adaptateurs sur la DLL livrée, sans DLL native externe.
     - [x] Supprimer `artifacts/temp/apple-runtime-policy-validation` après la sortie effective du contrôle et commiter cette correction, sans push.
+  - [x] Déléguer le firmware à son adaptateur.
+    - [x] Créer `src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorFirmwareAdapter.cs` et `Emulators/MiniVmac/Functions/FirmwareFunctions.cs` : contrat neutre de préparation et inspection ; transférer la taille, le hash connu et le nom de destination Mini vMac dans ses fonctions existantes, sans durcir la compatibilité.
+    - [x] Modifier `src/GWGUI.Emulation.Apple/Emulators/MiniVmac/Factories/MiniVmacMachineFactory.cs` : implémenter la préparation et l’inspection de firmware par les fonctions Mini vMac.
+    - [x] Modifier `src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/FirmwareFunctions.cs`, `FirmwareFunctions.Scan.cs` et `Modules/AppleEmulationModule.cs` : déléguer à la capacité sélectionnée, conserver la sélection matérielle et les contrôles de modèle communs, raccorder tous les appels d’inspection avec leur configuration.
+    - [x] Modifier `docs/tasks/emulation/methode-modules.md` : faire fournir les exigences, l’inspection et la préparation du firmware par l’adaptateur, sans reconnaître un cœur concret dans le module.
+    - [x] Produire `build/Debug/GW GUI/gwgui.exe` et les modules par le build Debug complet ; vérifier le résultat terminal et toutes les DLL déclarées.
+    - [x] Créer `artifacts/temp/apple-firmware-validation/Validation.csproj` et `Program.cs` : vérifier préparation, classification et sélection avec des fichiers synthétiques détenus par le contrôle ; comparer les résultats et fichiers aux règles précédentes, sans prétendre démarrer un vrai firmware.
+    - [x] Modifier `docs/tasks/emulation/methode-modules.md` : normaliser les séparateurs finaux avant de comparer les chemins de nettoyage et n’annoncer la réussite du contrôle qu’après son finally.
+    - [x] Supprimer `artifacts/temp/apple-firmware-validation` après sortie du contrôle et commiter les corrections vérifiées, sans push.
   - [ ] Achever les autres dépendances natives constatées.
-    - [ ] Modifier `src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/FirmwareFunctions.cs`, `FirmwareFunctions.Scan.cs`, `StateFunctions.Saved.cs`, `RuntimeFunctions.cs`, `EmulationGlobalUsings.cs` et les adaptateurs correspondants : déléguer firmware et empreintes de supports, isoler la conversion de région native, rapatrier les contrats de transport neutres puis retirer les imports globaux de backend ; préciser les déplacements et appels avant réalisation.
+    - [ ] Modifier `src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/StateFunctions.Saved.cs`, `RuntimeFunctions.cs`, `EmulationGlobalUsings.cs` et leurs dépendances : déléguer les dépendances des supports, isoler la conversion de région native, déplacer les contrats et fonctions de transport neutres avant de retirer les imports globaux de backend ; détailler les déplacements et consommateurs avant réalisation.
 
 Contrôles acquis sur les DLL livrées : 10 descriptions de machines, défauts et légendes des choix Apple IIe, 1402 chaînes dans les cultures, fréquences/résolutions sans ressources numériques ; audit Argos 28 cultures et 4 catalogues, build complet 23 modules réussi. Contrôle temporaire supprimé. Les autres dépendances natives constatées restent dans le groupe suivant.
 
 Validation de cette correction : 68 contrôles sur les 10 modèles, exécutés contre la DLL livrée ; build complet réussi et 23 manifests/DLL contrôlés. Aucun cœur natif exécuté pour ce contrôle ; fichiers temporaires supprimés.
 
 Règles de session : 80 contrôles des adaptateurs et de leurs consommateurs Common, sur la DLL livrée ; aucune DLL native lancée, cœur factice libéré une seule fois, aucun résidu. Build complet réussi, 23 manifests/DLL contrôlés et contrôle temporaire supprimé.
+
+Firmware : 22 contrôles réussis sur fichiers synthétiques, après nettoyage effectif ; sélection et préparation raccordées au module, source conservée, aucune DLL native exécutée. Build complet et 23 manifests/DLL vérifiés ; toutes les fixtures et le projet temporaire supprimés.
