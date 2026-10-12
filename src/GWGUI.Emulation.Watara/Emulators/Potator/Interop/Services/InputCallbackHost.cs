@@ -33,12 +33,7 @@ internal sealed class InputCallbackHost
     {
     }
 
-    private short OnState(
-        uint port,
-        uint device,
-        uint index,
-        uint id
-    )
+    private short OnState(uint port, uint device, uint index, uint id)
     {
         try
         {

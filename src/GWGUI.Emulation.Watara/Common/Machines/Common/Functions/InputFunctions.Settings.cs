@@ -29,10 +29,7 @@ internal static class InputSettingsFunctions
         return new(null, null, [new(1, [choice], choice.Id, binding?.DeviceId, bindings, binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId ?? EmulationControllerVisualIds.WataraSupervisionControls)]);
     }
 
-    internal static MachineConfiguration Apply(
-        MachineConfiguration configuration,
-        EmulationInputSettings settings
-    )
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         if (settings.Keyboard is not null || settings.Mouse is not null || settings.ControllerPorts.Count != ControllerConstants.PortCount)
             throw new ArgumentException(nameof(settings));

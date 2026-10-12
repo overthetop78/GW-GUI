@@ -5,11 +5,7 @@ internal static class RuntimeFunctions
 {
     internal static int RegionValue(EmulationVideoStandard? region) => region is null ? RuntimeConstants.MissingRegionValue : (int)region.Value;
     internal static EmulationVideoStandard? ReadRegion(int value) => Enum.IsDefined(typeof(EmulationVideoStandard), value) ? (EmulationVideoStandard)value : null;
-    internal static HostProcessState ProcessState(
-        Process? process,
-        bool connectionFailed,
-        bool disposed
-    )
+    internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed)
     {
         if (connectionFailed)
             return HostProcessState.Faulted;
@@ -27,10 +23,7 @@ internal static class RuntimeFunctions
         }
     }
 
-    internal static RuntimeStatus Status(
-        MachineConfiguration configuration,
-        IEmulatorCore core
-    )
+    internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulatorCore core)
     {
         var frame = core.LatestVideoFrame;
         var geometry = frame is null ? null : new RuntimeGeometry(frame.Width, frame.Height, frame.Pitch, frame.AspectRatio);

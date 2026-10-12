@@ -10,11 +10,7 @@ namespace GWGUI.Emulation.Watara.Common.Services;
 public static class CoreHost
 {
     [SupportedOSPlatform(CoreHostConstants.Windows)]
-    internal static void Run(
-        string pipeName,
-        string videoMapName,
-        Func<string, Emulator, IEmulatorCore> createCore
-    )
+    internal static void Run(string pipeName, string videoMapName, Func<string, Emulator, IEmulatorCore> createCore)
     {
         ArgumentNullException.ThrowIfNull(createCore);
         using var video = new SharedVideoWriter(videoMapName);
@@ -102,10 +98,7 @@ public static class CoreHost
         }
     }
 
-    private static bool TryReadCommand(
-        BinaryReader reader,
-        out HostCommand command
-    )
+    private static bool TryReadCommand(BinaryReader reader, out HostCommand command)
     {
         try
         {
@@ -119,13 +112,7 @@ public static class CoreHost
         }
     }
 
-    private static void Initialize(
-        BinaryReader reader,
-        BinaryWriter writer,
-        Func<string, Emulator, IEmulatorCore> createCore,
-        ref IEmulatorCore? core,
-        ref int lastDiagnosticCount
-    )
+    private static void Initialize(BinaryReader reader, BinaryWriter writer, Func<string, Emulator, IEmulatorCore> createCore, ref IEmulatorCore? core, ref int lastDiagnosticCount)
     {
         var previousCore = core;
         core = null;
@@ -160,14 +147,7 @@ public static class CoreHost
     }
 
     [SupportedOSPlatform(CoreHostConstants.Windows)]
-    private static void RunFrame(
-        BinaryReader reader,
-        BinaryWriter writer,
-        SharedVideoWriter video,
-        IEmulatorCore core,
-        ref long lastVideoSequence,
-        ref int lastDiagnosticCount
-    )
+    private static void RunFrame(BinaryReader reader, BinaryWriter writer, SharedVideoWriter video, IEmulatorCore core, ref long lastVideoSequence, ref int lastDiagnosticCount)
     {
         var audioStatus = JsonSerializer.Deserialize<AudioOutputBufferStatus?>(reader.ReadString(), CoreHostFunctions.JsonOptions);
         if (core is IEmulatorAudioBufferFeedback feedback)
@@ -201,13 +181,7 @@ public static class CoreHost
         writer.Write(core is IEmulatorAudioBufferFeedback latency ? latency.MinimumAudioLatencyMilliseconds : 0);
     }
 
-    private static void WriteRuntimeStatus(
-        BinaryWriter writer,
-        EmulationVideoStandard? region,
-        int bufferedAudioFrames,
-        long audioOverrunCount,
-        long audioUnderrunCount
-    )
+    private static void WriteRuntimeStatus(BinaryWriter writer, EmulationVideoStandard? region, int bufferedAudioFrames, long audioOverrunCount, long audioUnderrunCount)
     {
         writer.Write(RuntimeFunctions.RegionValue(region));
         writer.Write(bufferedAudioFrames);

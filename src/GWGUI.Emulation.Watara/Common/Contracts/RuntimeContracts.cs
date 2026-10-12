@@ -4,10 +4,7 @@ using GWGUI.Emulation.Watara.Common.Machines.Common.Enums;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Watara.Common.Contracts;
-internal sealed record MachineCommand(
-    Action Action,
-    TaskCompletionSource Completion
-)
+internal sealed record MachineCommand(Action Action, TaskCompletionSource Completion)
 {
     internal void Execute()
     {

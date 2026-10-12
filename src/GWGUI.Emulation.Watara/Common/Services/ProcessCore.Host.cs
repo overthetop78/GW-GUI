@@ -16,7 +16,7 @@ namespace GWGUI.Emulation.Watara.Common.Services;
 [SupportedOSPlatform(CoreHostConstants.Windows)]
 internal sealed partial class ProcessCore : IEmulatorCore, IEmulatorAudioBufferFeedback
 {
-private Process StartHostProcess(string pipeName, string videoMapName)
+    private Process StartHostProcess(string pipeName, string videoMapName)
     {
         var startInfo = new ProcessStartInfo(_hostExecutablePath)
         {
