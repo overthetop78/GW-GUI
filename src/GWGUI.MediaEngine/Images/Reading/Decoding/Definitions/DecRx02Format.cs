@@ -140,9 +140,30 @@ internal static class DecRx02Format
     {
         FmSectorByteCount => (DecRx02SectorEncoding.Fm, FmSectorSizeCode),
         M2FmSectorByteCount => (DecRx02SectorEncoding.M2Fm, M2FmSectorSizeCode),
-        _ => throw InvalidSectorSize(size)};
+        _ => throw InvalidSectorSize(size)
+    };
     /// <summary>Obtient la marque fermée correspondant à l'encodage et à l'état supprimé.</summary>
-    public static DecRx02DataMarkDefinition DataMarkFor(DecRx02SectorEncoding encoding, bool deleted) => DataMarks.Single(mark => mark.Encoding == (encoding == DecRx02SectorEncoding.M2Fm ? DecRx02DataEncoding.M2Fm : DecRx02DataEncoding.Fm) && mark.Deleted == deleted && (mark.Mark == FmDataMark || mark.Mark == FmDeletedDataMark || mark.Mark == M2FmDataMark || mark.Mark == M2FmDeletedDataMark));
+    public static DecRx02DataMarkDefinition DataMarkFor(DecRx02SectorEncoding encoding,
+        bool deleted) => DataMarks.Single(mark => mark.Encoding 
+            == (encoding 
+            == DecRx02SectorEncoding.M2Fm ? DecRx02DataEncoding.M2Fm : DecRx02DataEncoding.Fm) 
+            && mark.Deleted 
+            == deleted 
+            && (mark.Mark 
+            == FmDataMark 
+            || mark.Mark 
+            == FmDeletedDataMark 
+            || mark.Mark 
+            == M2FmDataMark 
+            || mark.Mark 
+            == M2FmDeletedDataMark));
     /// <summary>Construit une définition de marque depuis son motif et son encodage.</summary>
-    private static DecRx02DataMarkDefinition Mark(byte mark, DecRx02DataEncoding encoding, bool deleted) => new(mark, FmAddressMarkPatterns.For(mark), encoding, deleted, encoding == DecRx02DataEncoding.M2Fm ? M2FmSectorByteCount : FmSectorByteCount, encoding == DecRx02DataEncoding.M2Fm ? M2FmSectorSizeCode : FmSectorSizeCode);
+    private static DecRx02DataMarkDefinition Mark(byte mark,
+        DecRx02DataEncoding encoding,
+        bool deleted) => new(mark,
+        FmAddressMarkPatterns.For(mark),
+        encoding,
+        deleted,
+        encoding == DecRx02DataEncoding.M2Fm ? M2FmSectorByteCount : FmSectorByteCount,
+        encoding == DecRx02DataEncoding.M2Fm ? M2FmSectorSizeCode : FmSectorSizeCode);
 }

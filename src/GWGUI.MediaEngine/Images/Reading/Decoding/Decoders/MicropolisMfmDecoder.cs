@@ -38,7 +38,14 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
                     FluxStructureKind.FormatHeader,
                     offset,
                     (MicropolisMfmFormat.SyncZeroCount + MicropolisMfmFormat.RecordByteCount) * MicropolisMfmFormat.EncodedByteBitCount,
-                    $"{FluxStructureDescriptions.Identity(MicropolisMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, record.Cylinder, MicropolisMfmFormat.LogicalHead, record.Sector, MicropolisMfmFormat.SectorSize, MicropolisMfmFormat.AddressMark, null)}, {FluxStructureDescriptions.Integrity("checksum", record.ChecksumValid)}"
+                    $"{FluxStructureDescriptions.Identity(MicropolisMfmFormat.StructureDescriptionName,
+                        FluxStructureKind.FormatHeader,
+                        record.Cylinder,
+                        MicropolisMfmFormat.LogicalHead,
+                        record.Sector,
+                        MicropolisMfmFormat.SectorSize,
+                        MicropolisMfmFormat.AddressMark,
+                        null)}, {FluxStructureDescriptions.Integrity("checksum", record.ChecksumValid)}"
                 ));
             offset += MicropolisMfmFormat.SyncBitCount - 1;
         }

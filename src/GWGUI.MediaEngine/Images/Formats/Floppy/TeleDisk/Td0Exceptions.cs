@@ -52,7 +52,13 @@ internal static class Td0Exceptions
     /// <summary>Signale une séquence encodée tronquée avec sa position et ses longueurs.</summary>
     /// <param name = "cylinder">Cylindre.</param><param name = "head">Face.</param><param name = "sector">Numéro de secteur.</param><param name = "encoding">Encodage.</param><param name = "position">Position dans la charge utile.</param><param name = "expectedLength">Longueur attendue.</param><param name = "availableLength">Longueur disponible.</param>
     /// <returns>Erreur de données construite.</returns>
-    public static InvalidDataException TruncatedEncoding(int cylinder, int head, int sector, Td0SectorEncoding encoding, int position, int expectedLength, int availableLength) => new($"TeleDisk sector {cylinder}/{head}/{sector} encoding {encoding} is truncated at offset {position}: {expectedLength} bytes required, {availableLength} available.");
+    public static InvalidDataException TruncatedEncoding(int cylinder,
+        int head,
+        int sector,
+        Td0SectorEncoding encoding,
+        int position,
+        int expectedLength,
+        int availableLength) => new($"TeleDisk sector {cylinder}/{head}/{sector} encoding {encoding} is truncated at offset {position}: {expectedLength} bytes required, {availableLength} available.");
     /// <summary>Signale un identifiant d'encodage non pris en charge.</summary>
     /// <param name = "cylinder">Cylindre.</param><param name = "head">Face.</param><param name = "sector">Numéro de secteur.</param><param name = "encoding">Encodage observé.</param>
     /// <returns>Erreur de données construite.</returns>
@@ -60,5 +66,10 @@ internal static class Td0Exceptions
     /// <summary>Signale une longueur décodée différente de la taille sectorielle attendue.</summary>
     /// <param name = "cylinder">Cylindre.</param><param name = "head">Face.</param><param name = "sector">Numéro de secteur.</param><param name = "encoding">Encodage.</param><param name = "observedLength">Longueur produite.</param><param name = "expectedLength">Longueur attendue.</param>
     /// <returns>Erreur de données construite.</returns>
-    public static InvalidDataException InvalidDecodedLength(int cylinder, int head, int sector, Td0SectorEncoding encoding, int observedLength, int expectedLength) => new($"TeleDisk sector {cylinder}/{head}/{sector} encoding {encoding} expands to {observedLength} bytes instead of {expectedLength}.");
+    public static InvalidDataException InvalidDecodedLength(int cylinder,
+        int head,
+        int sector,
+        Td0SectorEncoding encoding,
+        int observedLength,
+        int expectedLength) => new($"TeleDisk sector {cylinder}/{head}/{sector} encoding {encoding} expands to {observedLength} bytes instead of {expectedLength}.");
 }

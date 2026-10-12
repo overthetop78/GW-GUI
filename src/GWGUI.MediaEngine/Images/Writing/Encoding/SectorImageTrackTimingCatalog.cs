@@ -20,6 +20,18 @@ internal static class SectorImageTrackTimingCatalog
     }
 
     public static uint IndexTimeTicks(string formatId) => formatId.Equals(DiskImageFormatIds.Ibm1200, StringComparison.OrdinalIgnoreCase) ? TrackEncodingTimings.Rpm360IndexTimeTicks : TrackEncodingTimings.Rpm300IndexTimeTicks;
-    private static bool IsHighDensityIbm(string formatId) => formatId.Equals(DiskImageFormatIds.Ibm1200, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Ibm1440, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Ibm1680, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.IbmDmf, StringComparison.OrdinalIgnoreCase);
-    private static bool IsDoubleDensityFamily(string formatId) => formatId.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.MsxPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AcornAdfsPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AmstradPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.EpsonQx10Prefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.UcsdPrefix, StringComparison.OrdinalIgnoreCase);
+    private static bool IsHighDensityIbm(string formatId) => formatId.Equals(DiskImageFormatIds.Ibm1200,
+        StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Ibm1440,
+        StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Ibm1680,
+        StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.IbmDmf,
+        StringComparison.OrdinalIgnoreCase);
+    private static bool IsDoubleDensityFamily(string formatId) => formatId.StartsWith(DiskImageFormatIds.AtariPrefix,
+        StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AtariStPrefix,
+        StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.IbmPrefix,
+        StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.MsxPrefix,
+        StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AcornAdfsPrefix,
+        StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AmstradPrefix,
+        StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.EpsonQx10Prefix,
+        StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.UcsdPrefix,
+        StringComparison.OrdinalIgnoreCase);
 }

@@ -47,5 +47,8 @@ public sealed class AppleSectorConversionService(AppleDiskImageReader imageReade
     }
 
     /// <summary>Indique si l'identifiant appartient aux cinq profils sectoriels pris en charge.</summary>
-    private static bool IsSupportedFormat(string formatId) => formatId.Equals(DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase) || AppleRawImageWriter.IsProDos140(formatId) || formatId.Equals(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase);
+    private static bool IsSupportedFormat(string formatId) => formatId.Equals(DiskImageFormatIds.AppleIIAppleDos113,
+        StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIAppleDos140,
+        StringComparison.OrdinalIgnoreCase) || AppleRawImageWriter.IsProDos140(formatId) || formatId.Equals(DiskImageFormatIds.AppleIIProDos800,
+        StringComparison.OrdinalIgnoreCase);
 }

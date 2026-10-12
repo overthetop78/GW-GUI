@@ -179,7 +179,19 @@ public sealed class AtrReader : IMediaImageReader
         var declaredPayloadLength = paragraphCount * AtrLayout.ParagraphSize;
         var observedPayloadLength = data.Length - AtrLayout.HeaderSize;
         var usablePayloadLength = GetUsablePayloadLength(data, sectorSize);
-        var isRecoverableTruncatedImage = declaredPayloadLength != observedPayloadLength && (LooksLikeTruncatedSingleDensityBootImage(data, sectorSize, declaredPayloadLength, observedPayloadLength) || LooksLikeMislabeledEnhancedDensityImage(data, sectorSize, declaredPayloadLength, observedPayloadLength) || LooksLikeHeaderInclusivePayloadLength(sectorSize, declaredPayloadLength, observedPayloadLength));
+        var isRecoverableTruncatedImage = declaredPayloadLength 
+            != observedPayloadLength 
+            && (LooksLikeTruncatedSingleDensityBootImage(data,
+            sectorSize,
+            declaredPayloadLength,
+            observedPayloadLength) 
+            || LooksLikeMislabeledEnhancedDensityImage(data,
+            sectorSize,
+            declaredPayloadLength,
+            observedPayloadLength) 
+            || LooksLikeHeaderInclusivePayloadLength(sectorSize,
+            declaredPayloadLength,
+            observedPayloadLength));
         var isExternallyPaddedImage = declaredPayloadLength != observedPayloadLength && LooksLikeExternallyPaddedImage(data, sectorSize, declaredPayloadLength, observedPayloadLength);
         if (declaredPayloadLength != observedPayloadLength && !isRecoverableTruncatedImage && !isExternallyPaddedImage)
             throw AtrExceptions.PayloadLengthMismatch(observedPayloadLength, declaredPayloadLength);
@@ -206,7 +218,18 @@ public sealed class AtrReader : IMediaImageReader
 
     private static bool LooksLikeTruncatedSingleDensityBootImage(byte[] data, int sectorSize, long declaredPayloadLength, int observedPayloadLength)
     {
-        if (sectorSize != AtrLayout.SingleDensitySectorSize || observedPayloadLength < AtrLayout.SingleDensitySectorSize || observedPayloadLength >= AtrLayout.StandardSectorCount * AtrLayout.SingleDensitySectorSize || declaredPayloadLength <= observedPayloadLength || declaredPayloadLength > AtrLayout.StandardSectorCount * AtrLayout.SingleDensitySectorSize)
+        if (sectorSize 
+            != AtrLayout.SingleDensitySectorSize 
+            || observedPayloadLength 
+            < AtrLayout.SingleDensitySectorSize 
+            || observedPayloadLength 
+            >= AtrLayout.StandardSectorCount 
+            * AtrLayout.SingleDensitySectorSize 
+            || declaredPayloadLength 
+            <= observedPayloadLength 
+            || declaredPayloadLength 
+            > AtrLayout.StandardSectorCount 
+            * AtrLayout.SingleDensitySectorSize)
             return false;
         var bootSectorCount = data[AtrLayout.HeaderSize + 1];
         return bootSectorCount > 0 && bootSectorCount * AtrLayout.SingleDensitySectorSize <= observedPayloadLength;

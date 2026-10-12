@@ -14,7 +14,11 @@ internal abstract class SectorImageVisualizationPolicy : ISectorImageVisualizati
     /// <inheritdoc/>
     public virtual SectorAddress VisualAddress(SectorImage image, SectorAddress address) => address;
     /// <inheritdoc/>
-    public virtual IReadOnlyList<TrackSector> CreateTrackSectors(SectorImage image, IReadOnlyList<(SectorBlock Block, SectorAddress Address)> items) => items.Select(item => new TrackSector(item.Address.Number, item.Block.Data, SizeCode: SectorSizeCode.TryFromByteCount(item.Block.Data.Count, out var code) ? code : null, Attributes: TagAttributes(item.Block.Tag))).ToArray();
+    public virtual IReadOnlyList<TrackSector> CreateTrackSectors(SectorImage image,
+        IReadOnlyList<(SectorBlock Block, SectorAddress Address)> items) => items.Select(item => new TrackSector(item.Address.Number,
+        item.Block.Data,
+        SizeCode: SectorSizeCode.TryFromByteCount(item.Block.Data.Count, out var code) ? code : null,
+        Attributes: TagAttributes(item.Block.Tag))).ToArray();
     /// <inheritdoc/>
     public virtual IReadOnlyDictionary<string, int>? TrackAttributes(SectorImage image, int sectorCount) => null;
     /// <inheritdoc/>

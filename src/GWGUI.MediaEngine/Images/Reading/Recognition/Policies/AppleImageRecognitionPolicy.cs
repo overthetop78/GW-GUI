@@ -9,7 +9,8 @@ using GWGUI.MediaEngine.Images.Reading.Recognition;
 namespace GWGUI.MediaEngine.Images.Reading.Recognition.Policies;
 /// <summary>Présélectionne une signature certaine, un indice d'extension ou une famille Apple explicitement demandée, puis laisse le Reader valider entièrement le contenu.</summary>
 /// <param name = "reader">Lecteur public chargé de valider et reconstruire le candidat Apple.</param>
-internal sealed class AppleImageRecognitionPolicy(AppleDiskImageReader reader) : ReaderBackedRecognitionPolicy(async (context, cancellationToken) => await reader.ReadAsync(await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false), context.Extension, context.RequestedFormatId, cancellationToken).ConfigureAwait(false))
+internal sealed class AppleImageRecognitionPolicy(AppleDiskImageReader reader) : ReaderBackedRecognitionPolicy(async (context,
+    cancellationToken) => await reader.ReadAsync(await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false), context.Extension, context.RequestedFormatId, cancellationToken).ConfigureAwait(false))
 {
     /// <summary>Extensions servant uniquement d'indices pour les représentations Apple sans signature.</summary>
     private static readonly IReadOnlySet<string> ExtensionHints = new HashSet<string>(StringComparer.OrdinalIgnoreCase)

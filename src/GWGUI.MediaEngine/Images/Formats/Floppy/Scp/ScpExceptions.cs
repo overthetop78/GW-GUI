@@ -48,7 +48,11 @@ public static class ScpExceptions
     /// <param name = "trackNumber">Numéro de piste lorsque la section appartient à une piste.</param>
     /// <param name = "revolutionNumber">Numéro de révolution basé sur un lorsque la section contient du flux.</param>
     /// <returns>Exception contenant la section, sa position et sa longueur requise.</returns>
-    public static InvalidDataException IncompleteSection(ScpSection section, int offset, int requiredLength, int? trackNumber = null, int? revolutionNumber = null) => new($"Incomplete or invalid {SectionName(section, trackNumber, revolutionNumber)} at offset {offset}; {requiredLength} bytes are required.");
+    public static InvalidDataException IncompleteSection(ScpSection section,
+        int offset,
+        int requiredLength,
+        int? trackNumber = null,
+        int? revolutionNumber = null) => new($"Incomplete or invalid {SectionName(section, trackNumber, revolutionNumber)} at offset {offset}; {requiredLength} bytes are required.");
     /// <summary>
     /// Produit le nom technique d'une section à partir de son identifiant et de son adresse éventuelle.
     /// </summary>
@@ -63,5 +67,6 @@ public static class ScpExceptions
         ScpSection.TrackOffsetTable => "track-offset table",
         ScpSection.TrackHeader => $"track {trackNumber} header",
         ScpSection.RevolutionFlux => $"track {trackNumber}, revolution {revolutionNumber} flux",
-        _ => throw new ArgumentOutOfRangeException(nameof(section), section, null)};
+        _ => throw new ArgumentOutOfRangeException(nameof(section), section, null)
+    };
 }

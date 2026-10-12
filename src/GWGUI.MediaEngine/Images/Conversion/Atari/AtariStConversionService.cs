@@ -8,7 +8,11 @@ namespace GWGUI.MediaEngine.Images.Conversion.Atari;
 public sealed class AtariStConversionService(AtariScpSectorImageReader scpReader, AtariStReader stReader, MsaReader msaReader, AtariStWriter stWriter, MsaWriter msaWriter)
 {
     /// <summary>Indique si la sortie demandée relève de la conversion Atari ST interne.</summary>
-    public static bool CanCreate(string formatId, string extension) => formatId.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.St, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Msa, StringComparison.OrdinalIgnoreCase));
+    public static bool CanCreate(string formatId,
+        string extension) => formatId.StartsWith(DiskImageFormatIds.AtariStPrefix,
+        StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.St,
+        StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Msa,
+        StringComparison.OrdinalIgnoreCase));
     /// <summary>Reconstruit le format demandé puis écrit les blocs logiques dans leur ordre.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)
     {

@@ -25,5 +25,11 @@ internal static class IsoMfmPllSelector
     }
 
     /// <summary>Calcule le score pondéré d'un résultat.</summary>
-    public static int Score(FluxDecodeResult result) => result.Sectors.Count(sector => sector.IntegrityValid == true) * IsoMfmFormat.ValidSectorScoreWeight + result.Sectors.Count(sector => sector.Data is not null) * IsoMfmFormat.DataSectorScoreWeight + result.Sectors.Count * IsoMfmFormat.SectorScoreWeight;
+    public static int Score(FluxDecodeResult result) => result.Sectors.Count(sector => sector.IntegrityValid 
+        == true) 
+        * IsoMfmFormat.ValidSectorScoreWeight 
+        + result.Sectors.Count(sector => sector.Data is not null) 
+        * IsoMfmFormat.DataSectorScoreWeight 
+        + result.Sectors.Count 
+        * IsoMfmFormat.SectorScoreWeight;
 }

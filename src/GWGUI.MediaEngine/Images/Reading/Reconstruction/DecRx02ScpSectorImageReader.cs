@@ -26,8 +26,7 @@ public sealed class DecRx02ScpSectorImageReader(IScpReader scpReader, FluxDecode
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture et la reconstruction.</param>
     /// <returns>L'image RX02 reconstruite en blocs RT-11 de 512 octets.</returns>
     /// <exception cref="InvalidDataException">Aucun secteur RX02 n'a été décodé ou aucune paire physique complète ne peut former un bloc logique.</exception>
-    public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
-        => await ReadAsync(path, null, cancellationToken).ConfigureAwait(false);
+    public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default) => await ReadAsync(path, null, cancellationToken).ConfigureAwait(false);
 
     public async Task<SectorImage> ReadAsync(string path, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)
     {

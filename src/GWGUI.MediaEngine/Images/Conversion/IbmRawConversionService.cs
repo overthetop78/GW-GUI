@@ -8,7 +8,12 @@ namespace GWGUI.MediaEngine.Images.Conversion;
 public sealed class IbmRawConversionService(IsoScpSectorImageReader scpReader, IbmRawImageReader reader, IbmRawImageWriter writer)
 {
     /// <summary>Indique si la sortie demandée est un profil IBM brut explicite.</summary>
-    public static bool CanCreate(string formatId, string extension) => !formatId.Equals(DiskImageFormatIds.IbmScan, StringComparison.OrdinalIgnoreCase) && GWGUI.MediaEngine.Images.Formats.Floppy.Raw.IbmPcGeometryCatalog.TryFromFormatId(formatId, out _) && (extension.Equals(DiskImageFileExtensions.Ima, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase));
+    public static bool CanCreate(string formatId,
+        string extension) => !formatId.Equals(DiskImageFormatIds.IbmScan,
+        StringComparison.OrdinalIgnoreCase) && GWGUI.MediaEngine.Images.Formats.Floppy.Raw.IbmPcGeometryCatalog.TryFromFormatId(formatId,
+        out _) && (extension.Equals(DiskImageFileExtensions.Ima,
+        StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Img,
+        StringComparison.OrdinalIgnoreCase));
     /// <summary>Reconstruit ou relit la source puis écrit le profil IBM demandé.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)
     {

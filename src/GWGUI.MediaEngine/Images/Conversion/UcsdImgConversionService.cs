@@ -9,7 +9,11 @@ namespace GWGUI.MediaEngine.Images.Conversion;
 public sealed class UcsdImgConversionService(IsoScpSectorImageReader scpReader, UcsdRawImageReader rawReader, Td0Reader td0Reader, LinearSectorImageWriter writer, Td0Writer td0Writer)
 {
     /// <summary>Indique si la cible est une image UCSD IBM MFM brute.</summary>
-    public static bool CanCreate(string formatId, string extension) => formatId.Equals(DiskImageFormatIds.UcsdIbmMfm, StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase));
+    public static bool CanCreate(string formatId,
+        string extension) => formatId.Equals(DiskImageFormatIds.UcsdIbmMfm,
+        StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.Img,
+        StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Td0,
+        StringComparison.OrdinalIgnoreCase));
     /// <summary>Reconstruit ou relit la source, puis écrit les secteurs selon la géométrie UCSD explicite.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {

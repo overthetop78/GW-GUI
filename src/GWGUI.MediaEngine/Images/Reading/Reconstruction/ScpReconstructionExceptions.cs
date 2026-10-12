@@ -19,5 +19,7 @@ internal static class ScpReconstructionExceptions
     /// <summary>Crée l'erreur regroupant les diagnostics des trois reconstructeurs Apple essayés automatiquement.</summary>
     /// <param name = "rejections">Rejets conservés avec l'identité de chaque reconstructeur.</param>
     /// <returns>L'exception contenant les identités dans son message et les rejets originaux dans son exception interne.</returns>
-    public static InvalidDataException AppleCandidatesRejected(IReadOnlyCollection<(string Identity, InvalidDataException Error)> rejections) => new($"Apple reconstruction failed: {string.Join("; ", rejections.Select(rejection => $"{rejection.Identity}: {rejection.Error.Message}"))}", new AggregateException(rejections.Select(rejection => rejection.Error)));
+    public static InvalidDataException AppleCandidatesRejected(IReadOnlyCollection<(string Identity, InvalidDataException Error)> rejections) => new($"Apple reconstruction failed: {string.Join("; ",
+        rejections.Select(rejection => $"{rejection.Identity}: {rejection.Error.Message}"))}",
+        new AggregateException(rejections.Select(rejection => rejection.Error)));
 }

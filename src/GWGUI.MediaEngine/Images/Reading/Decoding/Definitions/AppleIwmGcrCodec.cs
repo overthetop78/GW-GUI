@@ -122,7 +122,15 @@ internal static class AppleIwmGcrCodec
         var symbols = new List<byte>(AppleIwmGcrFormat.EncodedPayloadSymbolCount + AppleIwmGcrFormat.ChecksumSymbolCount);
         for (var index = 0; index <= AppleIwmGcrFormat.LastGroupIndex; index++)
         {
-            symbols.Add((byte)(((b1[index] >> AppleIwmGcrFormat.ThirdChecksumShift) & AppleIwmGcrFormat.FirstPackedChecksumMask) | ((b2[index] >> AppleIwmGcrFormat.SecondChecksumShift) & AppleIwmGcrFormat.SecondPackedChecksumMask) | ((b3[index] >> AppleIwmGcrFormat.FirstChecksumShift) & AppleIwmGcrFormat.ThirdPackedChecksumMask)));
+            symbols.Add((byte)(((b1[index] 
+                >> AppleIwmGcrFormat.ThirdChecksumShift) 
+                & AppleIwmGcrFormat.FirstPackedChecksumMask) 
+                | ((b2[index] 
+                >> AppleIwmGcrFormat.SecondChecksumShift) 
+                & AppleIwmGcrFormat.SecondPackedChecksumMask) 
+                | ((b3[index] 
+                >> AppleIwmGcrFormat.FirstChecksumShift) 
+                & AppleIwmGcrFormat.ThirdPackedChecksumMask)));
             symbols.Add((byte)(b1[index] & AppleIwmGcrFormat.SixBitMask));
             symbols.Add((byte)(b2[index] & AppleIwmGcrFormat.SixBitMask));
             if (index != AppleIwmGcrFormat.LastGroupIndex)

@@ -114,7 +114,16 @@ internal sealed class ScpSectorDecodingComposition
             new ScpFormatSelection(id => id.StartsWith(DiskImageFormatIds.EpsonQx10Prefix, StringComparison.OrdinalIgnoreCase) || id.Equals(DiskImageFormatIds.UcsdIbmMfm, StringComparison.OrdinalIgnoreCase), isoSelected),
             new ScpFormatSelection(id => id.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase) || id.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase), atari),
             new ScpFormatSelection(
-                id => id.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) || id.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase) || id.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) || id.StartsWith(DiskImageFormatIds.AppleMacPrefix, StringComparison.OrdinalIgnoreCase) || id.StartsWith(DiskImageFormatIds.MacPrefix, StringComparison.OrdinalIgnoreCase),
+                id => id.StartsWith(DiskImageFormatIds.AppleIIPrefix,
+                    StringComparison.OrdinalIgnoreCase) 
+                    || id.StartsWith(DiskImageFormatIds.AppleIIIPrefix,
+                    StringComparison.OrdinalIgnoreCase) 
+                    || id.StartsWith(DiskImageFormatIds.AppleLisaPrefix,
+                    StringComparison.OrdinalIgnoreCase) 
+                    || id.StartsWith(DiskImageFormatIds.AppleMacPrefix,
+                    StringComparison.OrdinalIgnoreCase) 
+                    || id.StartsWith(DiskImageFormatIds.MacPrefix,
+                    StringComparison.OrdinalIgnoreCase),
                 apple
             )
         };

@@ -3,7 +3,17 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
 internal static class IsoMfmDescriptions
 {
     /// <summary>Décrit un en-tête et ses CRC.</summary>
-    public static string Header(IsoMfmHeader header, bool? dataValid) => FluxStructureDescriptions.Complete(IsoMfmFormat.StructureDescriptionName, FluxStructureKind.IdAddressMark, header.Cylinder, header.Head, header.Sector, header.Size, IsoMfmFormat.IdAddressMark, $"N{header.SizeCode}", header.CrcValid, dataValid);
+    public static string Header(IsoMfmHeader header,
+        bool? dataValid) => FluxStructureDescriptions.Complete(IsoMfmFormat.StructureDescriptionName,
+        FluxStructureKind.IdAddressMark,
+        header.Cylinder,
+        header.Head,
+        header.Sector,
+        header.Size,
+        IsoMfmFormat.IdAddressMark,
+        $"N{header.SizeCode}",
+        header.CrcValid,
+        dataValid);
     /// <summary>Décrit un bloc de données et son CRC.</summary>
     public static string Data(IsoMfmHeader header, IsoMfmDataMark mark, bool? valid) => FluxStructureDescriptions.WithIntegrity(IsoMfmFormat.StructureDescriptionName, mark.Definition.Kind, header.Cylinder, header.Head, header.Sector, header.Size, mark.Definition.Mark, null, "CRC", valid);
     /// <summary>Décrit une marque non appariée.</summary>

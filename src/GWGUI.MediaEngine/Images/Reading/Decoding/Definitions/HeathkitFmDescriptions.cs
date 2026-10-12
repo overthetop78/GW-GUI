@@ -18,7 +18,17 @@ internal static class HeathkitFmDescriptions
         "data checksum"
     );
     /// <summary>Décrit un bloc de données et son checksum.</summary>
-    public static string Data(HeathkitHeader header, bool valid) => FluxStructureDescriptions.WithIntegrity(HeathkitFmFormat.StructureDescriptionName, FluxStructureKind.FormatData, header.Cylinder, HeathkitFmFormat.LogicalHead, header.Sector, HeathkitFmFormat.SectorSize, null, null, "checksum", valid);
+    public static string Data(HeathkitHeader header,
+        bool valid) => FluxStructureDescriptions.WithIntegrity(HeathkitFmFormat.StructureDescriptionName,
+        FluxStructureKind.FormatData,
+        header.Cylinder,
+        HeathkitFmFormat.LogicalHead,
+        header.Sector,
+        HeathkitFmFormat.SectorSize,
+        null,
+        null,
+        "checksum",
+        valid);
     /// <summary>Décrit une marque tronquée.</summary>
     public static string TruncatedHeader() => FluxStructureDescriptions.Truncated(HeathkitFmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, null, "hard-sector header");
     /// <summary>Décrit une marque de données non appariée.</summary>

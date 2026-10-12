@@ -9,7 +9,12 @@ namespace GWGUI.MediaEngine.Images.Conversion.Commodore;
 public sealed class CommodoreDosConversionService(CommodoreScpSectorImageReader scpReader, D64Reader d64Reader, D71Reader d71Reader, CommodoreDosContainerWriter writer)
 {
     /// <summary>Indique si le format et l'extension forment une cible D64 ou D71 cohérente.</summary>
-    public static bool CanCreate(string formatId, string extension) => formatId.Equals(DiskImageFormatIds.Commodore1541, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.D64, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Commodore1571, StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.D71, StringComparison.OrdinalIgnoreCase);
+    public static bool CanCreate(string formatId,
+        string extension) => formatId.Equals(DiskImageFormatIds.Commodore1541,
+        StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.D64,
+        StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Commodore1571,
+        StringComparison.OrdinalIgnoreCase) && extension.Equals(DiskImageFileExtensions.D71,
+        StringComparison.OrdinalIgnoreCase);
     /// <summary>Reconstruit ou relit la source et conserve sa carte d'erreurs lorsqu'elle existe entièrement.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)
     {

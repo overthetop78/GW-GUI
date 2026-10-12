@@ -9,7 +9,11 @@ namespace GWGUI.MediaEngine.Images.Conversion.Apple;
 public sealed class LisaConversionService(AppleDiskImageReader reader, AppleScpSectorImageReader scpReader, DiskCopyWriter writer)
 {
     /// <summary>Indique si la cible est une image Lisa dans un conteneur DiskCopy.</summary>
-    public static bool CanCreate(string formatId, string extension) => formatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.Image, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Dc42, StringComparison.OrdinalIgnoreCase));
+    public static bool CanCreate(string formatId,
+        string extension) => formatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix,
+        StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.Image,
+        StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Dc42,
+        StringComparison.OrdinalIgnoreCase));
     /// <summary>Lit une source Apple, conserve les métadonnées DiskCopy disponibles et écrit les données ainsi que leurs tags.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {

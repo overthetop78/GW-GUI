@@ -9,7 +9,16 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
     {
         string T(string key, string fallback) => localize?.Invoke(key) ?? fallback;
         ImageExtension E(string extension, string key, string fallback, bool isDefault = false) => new(extension, T(key, fallback), isDefault);
-        DiskFormat F(string id, string family, string fallback, IReadOnlyList<ImageExtension> extensions, bool common, string tag, FloppyFormFactor formFactor, bool physicalRead, bool physicalWrite, params string[] sources) => new(id, family, T("Format." + id, fallback), extensions, common, Set(sources), tag, formFactor, physicalRead, physicalWrite);
+        DiskFormat F(string id,
+            string family,
+            string fallback,
+            IReadOnlyList<ImageExtension> extensions,
+            bool common,
+            string tag,
+            FloppyFormFactor formFactor,
+            bool physicalRead,
+            bool physicalWrite,
+            params string[] sources) => new(id, family, T("Format." + id, fallback), extensions, common, Set(sources), tag, formFactor, physicalRead, physicalWrite);
         DiskFormat D(DiskFormat format, FloppyDensity density) => format with
         {
             Density = density

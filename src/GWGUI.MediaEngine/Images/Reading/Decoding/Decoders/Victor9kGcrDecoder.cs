@@ -42,7 +42,14 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
                             FluxStructureKind.FormatData,
                             dataOffset,
                             data.EndOffset - dataOffset,
-                            $"{FluxStructureDescriptions.Identity(Victor9kGcrFormat.StructureDescriptionName, FluxStructureKind.FormatData, header?.Cylinder ?? 0, Victor9kGcrFormat.LogicalHead, header?.Sector ?? 0, Victor9kGcrFormat.SectorByteCount, data.Prefix, "data block")}, {FluxStructureDescriptions.Integrity("checksum", data.ChecksumValid)}"
+                            $"{FluxStructureDescriptions.Identity(Victor9kGcrFormat.StructureDescriptionName,
+                                FluxStructureKind.FormatData,
+                                header?.Cylinder ?? 0,
+                                Victor9kGcrFormat.LogicalHead,
+                                header?.Sector ?? 0,
+                                Victor9kGcrFormat.SectorByteCount,
+                                data.Prefix,
+                                "data block")}, {FluxStructureDescriptions.Integrity("checksum", data.ChecksumValid)}"
                         ));
                 }
             }
@@ -82,7 +89,8 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
         var bytes = CommodoreGcrCodec.TryDecodeBytes(bits, markOffset + Victor9kGcrFormat.EncodedDataStartBitOffset, Victor9kGcrFormat.HeaderByteCount, Victor9kGcrFormat.EncodedCellStride, out _);
         if (bytes is null)
             return null;
-        var valid = bytes[Victor9kGcrFormat.HeaderTypeOffset] == Victor9kGcrFormat.HeaderType && bytes[Victor9kGcrFormat.HeaderId2Offset] == Victor9kGcrFormat.HeaderId2 && bytes[Victor9kGcrFormat.HeaderId1Offset] == Victor9kGcrFormat.HeaderId1 && bytes[Victor9kGcrFormat.HeaderSumOffset] == Victor9kHeaderChecksum.Compute(bytes[Victor9kGcrFormat.HeaderCylinderOffset], bytes[Victor9kGcrFormat.HeaderSectorOffset]);
+        var valid = bytes[Victor9kGcrFormat.HeaderTypeOffset] == Victor9kGcrFormat.HeaderType && bytes[Victor9kGcrFormat.HeaderId2Offset] == Victor9kGcrFormat.HeaderId2 && bytes[Victor9kGcrFormat.HeaderId1Offset] == Victor9kGcrFormat.HeaderId1 && bytes[Victor9kGcrFormat.HeaderSumOffset] == Victor9kHeaderChecksum.Compute(bytes[Victor9kGcrFormat.HeaderCylinderOffset],
+            bytes[Victor9kGcrFormat.HeaderSectorOffset]);
         return new(bytes[Victor9kGcrFormat.HeaderCylinderOffset], bytes[Victor9kGcrFormat.HeaderSectorOffset], bytes, valid);
     }
 

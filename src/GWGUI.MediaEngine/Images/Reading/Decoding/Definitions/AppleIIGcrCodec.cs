@@ -140,7 +140,30 @@ internal static class AppleIIGcrCodec
         byte checksum = 0;
         for (var index = 0; index < AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount; index++)
         {
-            var value = (byte)(((buffer[index] & 1) << 1) | ((buffer[index] & 2) >> 1) | ((buffer[index + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount] & 1) << 3) | ((buffer[index + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount] & 2) << 1) | ((buffer[index + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount * 2] & 1) << 5) | ((buffer[index + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount * 2] & 2) << 3));
+            var value = (byte)(((buffer[index] 
+                & 1) 
+                << 1) 
+                | ((buffer[index] 
+                & 2) 
+                >> 1) 
+                | ((buffer[index 
+                + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount] 
+                & 1) 
+                << 3) 
+                | ((buffer[index 
+                + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount] 
+                & 2) 
+                << 1) 
+                | ((buffer[index 
+                + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount 
+                * 2] 
+                & 1) 
+                << 5) 
+                | ((buffer[index 
+                + AppleIIGcrFormat.SixAndTwoAuxiliaryByteCount 
+                * 2] 
+                & 2) 
+                << 3));
             encoded.Add(AppleIIGcrFormat.SixAndTwoTable[value ^ checksum]);
             checksum = value;
         }

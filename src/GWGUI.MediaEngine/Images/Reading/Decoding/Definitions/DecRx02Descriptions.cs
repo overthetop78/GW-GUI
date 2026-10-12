@@ -20,7 +20,18 @@ internal static class DecRx02Descriptions
         DecRx02Format.DataCrcDescription
     );
     /// <summary>Décrit un bloc de données.</summary>
-    public static string Data(DecRx02Header header, DecRx02DataMarkDefinition mark, bool? valid) => FluxStructureDescriptions.WithIntegrity(DecRx02Format.StructureDescriptionName, FluxStructureKind.FormatData, header.Cylinder, header.Head, header.Sector, mark.SectorSize, mark.Mark, Encoding(mark), DecRx02Format.DataCrcDescription, valid);
+    public static string Data(DecRx02Header header,
+        DecRx02DataMarkDefinition mark,
+        bool? valid) => FluxStructureDescriptions.WithIntegrity(DecRx02Format.StructureDescriptionName,
+        FluxStructureKind.FormatData,
+        header.Cylinder,
+        header.Head,
+        header.Sector,
+        mark.SectorSize,
+        mark.Mark,
+        Encoding(mark),
+        DecRx02Format.DataCrcDescription,
+        valid);
     /// <summary>Décrit une marque de données non appariée.</summary>
     public static string UnpairedData(DecRx02DataMarkDefinition mark) => FluxStructureDescriptions.UnclassifiedMark(DecRx02Format.StructureDescriptionName, FluxStructureKind.FormatData, mark.Mark, DecRx02Format.UnpairedDataDescription);
     /// <summary>Retourne le nom de l'encodage associé à une marque.</summary>

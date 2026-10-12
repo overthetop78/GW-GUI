@@ -10,7 +10,18 @@ public sealed class LinearSectorImageWriter(IAtomicImageFileWriter? fileWriter =
     /// <summary>Valide la géométrie puis écrit tous les blocs sans remplissage implicite.</summary>
     public async Task WriteAsync(SectorImage image, string path, RegularSectorGeometry geometry, CancellationToken cancellationToken = default)
     {
-        if (!image.FormatId.Equals(geometry.FormatId, StringComparison.OrdinalIgnoreCase) || image.BlockSize != geometry.BlockSize || image.Cylinders != geometry.Cylinders || image.Heads != geometry.Heads || image.SectorsPerTrack != geometry.SectorsPerTrack || image.BlockCount != geometry.BlockCount)
+        if (!image.FormatId.Equals(geometry.FormatId,
+            StringComparison.OrdinalIgnoreCase) 
+            || image.BlockSize 
+            != geometry.BlockSize 
+            || image.Cylinders 
+            != geometry.Cylinders 
+            || image.Heads 
+            != geometry.Heads 
+            || image.SectorsPerTrack 
+            != geometry.SectorsPerTrack 
+            || image.BlockCount 
+            != geometry.BlockCount)
             throw LinearSectorImageWriterExceptions.InvalidGeometry(image.FormatId, image.BlockSize, image.Cylinders, image.Heads, image.SectorsPerTrack, geometry.FormatId, geometry.BlockSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack);
         await files.WriteAsync(
             path,

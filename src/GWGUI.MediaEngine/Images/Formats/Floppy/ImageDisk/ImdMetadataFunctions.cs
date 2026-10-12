@@ -17,14 +17,7 @@ internal static class ImdMetadataFunctions
                 Mode = (byte)track.Mode,
                 track.Cylinder,
                 track.Head,
-                Sectors = track.Sectors.Select(sector => new
-                {
-                    sector.Cylinder,
-                    sector.Head,
-                    sector.Number,
-                    sector.Size,
-                    RecordType = (byte)sector.RecordType
-                })
+                Sectors = track.Sectors.Select(sector => new { sector.Cylinder, sector.Head, sector.Number, sector.Size, RecordType = (byte)sector.RecordType })
             })
         };
         return new Dictionary<string, string>(StringComparer.Ordinal)

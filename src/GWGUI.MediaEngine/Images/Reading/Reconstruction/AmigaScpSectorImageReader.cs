@@ -20,8 +20,7 @@ public sealed class AmigaScpSectorImageReader(IScpReader scpReader, FluxDecoderR
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture et la reconstruction.</param>
     /// <returns>L'image Amiga DD ou HD reconstruite à partir des secteurs utilisables.</returns>
     /// <exception cref="InvalidDataException">Aucun secteur Amiga n'a été décodé ou aucun secteur décodé ne respecte la géométrie Amiga.</exception>
-    public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
-        => await ReadAsync(path, null, cancellationToken).ConfigureAwait(false);
+    public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default) => await ReadAsync(path, null, cancellationToken).ConfigureAwait(false);
 
     public async Task<SectorImage> ReadAsync(string path, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)
     {

@@ -3,5 +3,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
 internal static class ScpSectorImageExceptions
 {
     /// <summary>Crée une erreur totale en conservant le chemin, le format demandé et chaque rejet.</summary>
-    public static AggregateException AllCandidatesRejected(string path, string? formatId, IReadOnlyList<ScpCandidateFailure> failures) => new($"Aucun candidat SCP n'a décodé '{path}' pour le format '{formatId ?? "automatique"}'.", failures.Select(failure => new InvalidDataException($"Candidat '{failure.CandidateId}' rejeté.", failure.Exception)));
+    public static AggregateException AllCandidatesRejected(string path,
+        string? formatId,
+        IReadOnlyList<ScpCandidateFailure> failures) => new($"Aucun candidat SCP n'a décodé '{path}' pour le format '{formatId ?? "automatique"}'.",
+        failures.Select(failure => new InvalidDataException($"Candidat '{failure.CandidateId}' rejeté.",
+        failure.Exception)));
 }

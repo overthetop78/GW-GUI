@@ -75,8 +75,7 @@ internal static class AtrLayout
     }
 
     /// <summary>Indique si les secteurs présents constituent le début d'une disquette simple densité standard.</summary>
-    public static bool IsTruncatedSingleDensity(int sectorSize, int sectorCount) =>
-        sectorSize == SingleDensitySectorSize && sectorCount > 0 && sectorCount < StandardSectorCount;
+    public static bool IsTruncatedSingleDensity(int sectorSize, int sectorCount) => sectorSize == SingleDensitySectorSize && sectorCount > 0 && sectorCount < StandardSectorCount;
 
     /// <summary>Retourne la géométrie physique standard correspondant à la taille et au nombre de secteurs ATR.</summary>
     /// <param name="sectorSize">Taille nominale d'un secteur.</param>

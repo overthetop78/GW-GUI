@@ -14,7 +14,20 @@ public sealed class AppleIITrackEncodingService
     /// <summary>Crée le service avec le registre d'encodeurs fourni ou le catalogue par défaut.</summary>
     public AppleIITrackEncodingService(FluxEncoderRegistry? encoders = null) => _encoders = encoders ?? new FluxEncoderRegistry();
     /// <summary>Indique si le format utilise le GCR Apple II 5,25 pouces standard.</summary>
-    public static bool Supports(string formatId) => formatId.Equals(DiskImageFormatIds.AppleIIDos32, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIDos33, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIGcr, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase);
+    public static bool Supports(string formatId) => formatId.Equals(DiskImageFormatIds.AppleIIDos32,
+        StringComparison.OrdinalIgnoreCase) 
+        || formatId.Equals(DiskImageFormatIds.AppleIIDos33,
+        StringComparison.OrdinalIgnoreCase) 
+        || formatId.Equals(DiskImageFormatIds.AppleIIGcr,
+        StringComparison.OrdinalIgnoreCase) 
+        || formatId.Equals(DiskImageFormatIds.AppleIIAppleDos113,
+        StringComparison.OrdinalIgnoreCase) 
+        || formatId.Equals(DiskImageFormatIds.AppleIIAppleDos140,
+        StringComparison.OrdinalIgnoreCase) 
+        || formatId.Equals(DiskImageFormatIds.AppleIIProDos140,
+        StringComparison.OrdinalIgnoreCase) 
+        || formatId.Equals(DiskImageFormatIds.AppleIIProDos,
+        StringComparison.OrdinalIgnoreCase);
     /// <summary>Encode toutes les pistes standard et valide chaque secteur attendu.</summary>
     public IReadOnlyList<IReadOnlyList<bool>> Encode(SectorImage image, int maximumBits, CancellationToken cancellationToken = default)
     {

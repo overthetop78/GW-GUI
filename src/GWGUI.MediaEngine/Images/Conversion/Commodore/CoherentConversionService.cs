@@ -7,7 +7,11 @@ namespace GWGUI.MediaEngine.Images.Conversion.Commodore;
 public sealed class CoherentConversionService(CommodoreScpSectorImageReader scpReader, CoherentRawImageReader reader, CoherentRawImageWriter writer)
 {
     /// <summary>Indique si la cible est un dump brut Commodore 900.</summary>
-    public static bool CanCreate(string formatId, string extension) => formatId.Equals(DiskImageFormatIds.Commodore900Coherent, StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.Bin, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase));
+    public static bool CanCreate(string formatId,
+        string extension) => formatId.Equals(DiskImageFormatIds.Commodore900Coherent,
+        StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.Bin,
+        StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Img,
+        StringComparison.OrdinalIgnoreCase));
     /// <summary>Reconstruit ou relit la source, puis écrit son ordre logique zoné commun.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {

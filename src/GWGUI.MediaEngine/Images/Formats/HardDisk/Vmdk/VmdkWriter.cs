@@ -37,7 +37,16 @@ public sealed class VmdkWriter : IMediaImageWriter
     public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension)
     {
         ArgumentNullException.ThrowIfNull(document);
-        return SupportedFormatIds.Contains(targetFormatId) && VmdkFormat.Extensions.Contains(targetExtension) && document.MediaKind == MediaKind.HardDisk && document.Representation is BlockMediaImageRepresentation blocks && blocks.Capacity > 0 && blocks.LogicalBlockSize == HardDiskFormatConstants.LegacyLogicalSectorSize && HasCompleteReadableCoverage(blocks);
+        return SupportedFormatIds.Contains(targetFormatId) 
+            && VmdkFormat.Extensions.Contains(targetExtension) 
+            && document.MediaKind 
+            == MediaKind.HardDisk 
+            && document.Representation is BlockMediaImageRepresentation blocks 
+            && blocks.Capacity 
+            > 0 
+            && blocks.LogicalBlockSize 
+            == HardDiskFormatConstants.LegacyLogicalSectorSize 
+            && HasCompleteReadableCoverage(blocks);
     }
 
     public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
@@ -171,7 +180,14 @@ public sealed class VmdkWriter : IMediaImageWriter
 
     private static HardDiskImageVariant SelectVariant(MediaImageDocument document, BlockMediaImageRepresentation blocks)
     {
-        if (document.FormatId.Equals(HardDiskImageFormatIds.Vmdk, StringComparison.OrdinalIgnoreCase) && document.Metadata.TryGetValue("variant", out var value) && Enum.TryParse<HardDiskImageVariant>(value, true, out var variant) && variant is HardDiskImageVariant.Fixed or HardDiskImageVariant.Sparse)
+        if (document.FormatId.Equals(HardDiskImageFormatIds.Vmdk,
+            StringComparison.OrdinalIgnoreCase) 
+            && document.Metadata.TryGetValue("variant",
+            out var value) 
+            && Enum.TryParse<HardDiskImageVariant>(value,
+            true,
+            out var variant) 
+            && variant is HardDiskImageVariant.Fixed or HardDiskImageVariant.Sparse)
             return variant;
         return blocks.Ranges.Any(range => range.Kind is MediaDataRangeKind.Zero or MediaDataRangeKind.Unallocated) ? HardDiskImageVariant.Sparse : HardDiskImageVariant.Fixed;
     }

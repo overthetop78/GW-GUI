@@ -9,8 +9,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Decoding.Sectors;
 internal sealed class ScpSectorImageReader(ScpCandidateRegistry candidates, FileSystemRegistry fileSystems)
 {
     /// <summary>Lit directement le candidat explicite, sinon parcourt les candidats par défaut dans leur ordre.</summary>
-    public Task<SectorImage> ReadAsync(string path, string? formatId, CancellationToken cancellationToken) =>
-        ReadAsync(path, formatId, null, cancellationToken);
+    public Task<SectorImage> ReadAsync(string path, string? formatId, CancellationToken cancellationToken) => ReadAsync(path, formatId, null, cancellationToken);
 
     public async Task<SectorImage> ReadAsync(string path, string? formatId, IProgress<ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {

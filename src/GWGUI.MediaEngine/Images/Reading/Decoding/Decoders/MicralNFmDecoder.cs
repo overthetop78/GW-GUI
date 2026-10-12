@@ -40,7 +40,14 @@ public sealed class MicralNFmDecoder : IFluxDecoder
                     FluxStructureKind.FormatHeader,
                     offset,
                     MicralNFmFormat.BlockBitCount,
-                    $"{FluxStructureDescriptions.Identity(MicralNFmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, block.Cylinder, MicralNFmFormat.LogicalHead, block.Sector, MicralNFmFormat.SectorSize, MicralNFmFormat.AddressMark, null)}, {FluxStructureDescriptions.Integrity("checksum", block.ChecksumValid)}"
+                    $"{FluxStructureDescriptions.Identity(MicralNFmFormat.StructureDescriptionName,
+                        FluxStructureKind.FormatHeader,
+                        block.Cylinder,
+                        MicralNFmFormat.LogicalHead,
+                        block.Sector,
+                        MicralNFmFormat.SectorSize,
+                        MicralNFmFormat.AddressMark,
+                        null)}, {FluxStructureDescriptions.Integrity("checksum", block.ChecksumValid)}"
                 ));
             offset += MicralNFmFormat.ScanAdvance;
         }

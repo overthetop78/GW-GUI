@@ -35,9 +35,25 @@ public sealed class NorthstarMfmDecoder : IFluxDecoder
             if (identity is not null)
                 sectors.Add(new(identity.Cylinder, NorthstarMfmFormat.LogicalHead, identity.Sector, NorthstarMfmFormat.SectorSizeCode, NorthstarMfmFormat.SectorSize, block?.ChecksumValid, offset, SectorIntegrityKind.Checksum, Data: block?.Data));
             var description = block is not null 
-                ? $"{FluxStructureDescriptions.Identity(NorthstarMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, identity!.Cylinder, NorthstarMfmFormat.LogicalHead, identity.Sector, NorthstarMfmFormat.SectorSize, NorthstarMfmFormat.AddressMark, null)}, {FluxStructureDescriptions.Integrity("checksum", block.ChecksumValid)}" 
+                ? $"{FluxStructureDescriptions.Identity(NorthstarMfmFormat.StructureDescriptionName,
+                    FluxStructureKind.FormatHeader,
+                    identity!.Cylinder,
+                    NorthstarMfmFormat.LogicalHead,
+                    identity.Sector,
+                    NorthstarMfmFormat.SectorSize,
+                    NorthstarMfmFormat.AddressMark,
+                    null)}, {FluxStructureDescriptions.Integrity("checksum",
+                    block.ChecksumValid)}" 
                 : identity is not null 
-                ? $"{FluxStructureDescriptions.Identity(NorthstarMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, identity.Cylinder, NorthstarMfmFormat.LogicalHead, identity.Sector, NorthstarMfmFormat.SectorSize, NorthstarMfmFormat.AddressMark, null)}, {FluxStructureDescriptions.Integrity("checksum", null)}" 
+                ? $"{FluxStructureDescriptions.Identity(NorthstarMfmFormat.StructureDescriptionName,
+                    FluxStructureKind.FormatHeader,
+                    identity.Cylinder,
+                    NorthstarMfmFormat.LogicalHead,
+                    identity.Sector,
+                    NorthstarMfmFormat.SectorSize,
+                    NorthstarMfmFormat.AddressMark,
+                    null)}, {FluxStructureDescriptions.Integrity("checksum",
+                    null)}" 
                 : FluxStructureDescriptions.Truncated(NorthstarMfmFormat.StructureDescriptionName, FluxStructureKind.FormatHeader, null, "hard-sector block");
             var length = block is not null ? NorthstarMfmFormat.FullBlockBitCount : identity is not null ? NorthstarMfmFormat.MarkBitCount + NorthstarMfmFormat.IdentityBitCount : NorthstarMfmFormat.MarkBitCount;
             structures.Add(new(FluxStructureKind.FormatHeader, offset, length, description));

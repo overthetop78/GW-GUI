@@ -50,7 +50,20 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
     {
         var cursor = offset + AppleRwts18Format.AddressMarkBitCount;
         var address = AppleBitLatch.TryReadBytes(bits, ref cursor, AppleRwts18Format.AddressByteCount);
-        if (address is null || !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[0], out var track) || !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[1], out var sector) || !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[2], out var checksum) || address[3] != AppleRwts18Format.AddressTrailer || sector >= AppleRwts18Format.SectorCount || (byte)(track ^ sector) != checksum)
+        if (address is null 
+            || !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[0],
+            out var track) 
+            || !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[1],
+            out var sector) 
+            || !AppleIIGcrFormat.InverseSixAndTwoTable.TryGetValue(address[2],
+            out var checksum) 
+            || address[3] 
+            != AppleRwts18Format.AddressTrailer 
+            || sector 
+            >= AppleRwts18Format.SectorCount 
+            || (byte)(track 
+            ^ sector) 
+            != checksum)
             return null;
         return new(track, sector, cursor);
     }

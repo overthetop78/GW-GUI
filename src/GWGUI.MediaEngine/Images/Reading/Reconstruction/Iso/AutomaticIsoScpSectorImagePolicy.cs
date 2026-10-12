@@ -33,7 +33,10 @@ internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolic
                 return new IbmPcIsoScpSectorImagePolicy(false).Build(null, candidates);
         }
 
-        var atari8Bit = measured.SectorSize is AutomaticIsoScpSelectionRules.AtariSingleDensitySectorSize or AutomaticIsoScpSelectionRules.AtariDoubleDensitySectorSize && measured.Heads == DiskGeometryConstants.SingleSidedHeadCount && measured.SectorsPerTrack is AutomaticIsoScpSelectionRules.AtariStandardSectorsPerTrack or AutomaticIsoScpSelectionRules.AtariEnhancedSectorsPerTrack;
+        var atari8Bit = measured.SectorSize is AutomaticIsoScpSelectionRules.AtariSingleDensitySectorSize or AutomaticIsoScpSelectionRules.AtariDoubleDensitySectorSize 
+            && measured.Heads 
+            == DiskGeometryConstants.SingleSidedHeadCount 
+            && measured.SectorsPerTrack is AutomaticIsoScpSelectionRules.AtariStandardSectorsPerTrack or AutomaticIsoScpSelectionRules.AtariEnhancedSectorsPerTrack;
         return atari8Bit ? new Atari8BitIsoScpSectorImagePolicy(null).Build(null, candidates) : new AtariStIsoScpSectorImagePolicy().Build(null, candidates);
     }
 
@@ -50,7 +53,8 @@ internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolic
         var withData = pair.Value.Where(value => value.Sector.Data is not null).ToArray();
         if (withData.Length == 0)
             return null;
-        var size = withData.GroupBy(value => value.Sector.IntegrityValid == true ? AutomaticIsoScpSelectionRules.ValidIntegrityScore : value.Sector.IntegrityValid is null ? AutomaticIsoScpSelectionRules.UnknownIntegrityScore : AutomaticIsoScpSelectionRules.InvalidIntegrityScore).OrderByDescending(group => group.Key).First().GroupBy(value => value.Sector.Data!.Count).OrderByDescending(group => group.Count()).ThenByDescending(group => group.Key).First().Key;
+        var size = withData.GroupBy(value => value.Sector.IntegrityValid 
+            == true ? AutomaticIsoScpSelectionRules.ValidIntegrityScore : value.Sector.IntegrityValid is null ? AutomaticIsoScpSelectionRules.UnknownIntegrityScore : AutomaticIsoScpSelectionRules.InvalidIntegrityScore).OrderByDescending(group => group.Key).First().GroupBy(value => value.Sector.Data!.Count).OrderByDescending(group => group.Count()).ThenByDescending(group => group.Key).First().Key;
         return new(pair.Key.Cylinder, pair.Key.Head, pair.Key.Number, size);
     }
 }

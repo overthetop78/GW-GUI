@@ -20,5 +20,10 @@ internal sealed class AdditionalImageInterpretationRegistry
     }
 
     /// <summary>Indique si le format source appartient aux cinq familles sectorielles historiquement réinterprétées.</summary>
-    private static bool SupportsAdditionalInterpretations(string formatId) => formatId.StartsWith(DiskImageFormatIds.AtariStPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AcornDfsPrefix, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Imd, StringComparison.OrdinalIgnoreCase);
+    private static bool SupportsAdditionalInterpretations(string formatId) => formatId.StartsWith(DiskImageFormatIds.AtariStPrefix,
+        StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AtariPrefix,
+        StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.IbmPrefix,
+        StringComparison.OrdinalIgnoreCase) || formatId.StartsWith(DiskImageFormatIds.AcornDfsPrefix,
+        StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.Imd,
+        StringComparison.OrdinalIgnoreCase);
 }

@@ -18,7 +18,17 @@ internal static class EmuFmDescriptions
         EmuFmFormat.CrcDescription
     );
     /// <summary>Décrit un bloc de données et son CRC.</summary>
-    public static string Data(EmuTrackIdentity identity, bool valid) => FluxStructureDescriptions.WithIntegrity(EmuFmFormat.StructureDescriptionName, FluxStructureKind.FormatData, identity.Cylinder, identity.Head, EmuFmFormat.SectorNumber, EmuFmFormat.SectorSize, null, null, EmuFmFormat.CrcDescription, valid);
+    public static string Data(EmuTrackIdentity identity,
+        bool valid) => FluxStructureDescriptions.WithIntegrity(EmuFmFormat.StructureDescriptionName,
+        FluxStructureKind.FormatData,
+        identity.Cylinder,
+        identity.Head,
+        EmuFmFormat.SectorNumber,
+        EmuFmFormat.SectorSize,
+        null,
+        null,
+        EmuFmFormat.CrcDescription,
+        valid);
     /// <summary>Décrit une marque non classée.</summary>
     public static string UnclassifiedMark() => FluxStructureDescriptions.UnclassifiedMark(EmuFmFormat.UnclassifiedStructureName, FluxStructureKind.FormatHeader, null, EmuFmFormat.MarkDescription);
 }

@@ -19,7 +19,12 @@ public static class Fat12ReinterpretationPolicy
         if (!source.TryGetBlock(FatBootSectorLayout.BootLogicalBlock, out var boot))
             throw Fat12ReinterpretationExceptions.InvalidBpb(source.FormatId);
         var bootBytes = boot.Data.ToArray();
-        if (!FatBpbGeometryDetector.TryDetect(bootBytes, target.Capacity, out var bpb) || bpb.SectorSize != target.SectorSize || bpb.TotalSectors != target.TotalSectors || bpb.Cylinders != target.Cylinders || bpb.Heads != target.Heads || bpb.SectorsPerTrack != target.SectorsPerTrack || !Fat12LayoutReader.TryRead(bootBytes, source.BlockCount, source.FormatId, out _))
+        if (!FatBpbGeometryDetector.TryDetect(bootBytes,
+            target.Capacity,
+            out var bpb) || bpb.SectorSize != target.SectorSize || bpb.TotalSectors != target.TotalSectors || bpb.Cylinders != target.Cylinders || bpb.Heads != target.Heads || bpb.SectorsPerTrack != target.SectorsPerTrack || !Fat12LayoutReader.TryRead(bootBytes,
+            source.BlockCount,
+            source.FormatId,
+            out _))
             throw Fat12ReinterpretationExceptions.InvalidBpb(source.FormatId);
         return target;
     }

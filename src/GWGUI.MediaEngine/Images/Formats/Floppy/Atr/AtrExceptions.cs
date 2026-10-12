@@ -7,7 +7,8 @@ internal static class AtrExceptions
     /// <summary>Signale un identifiant absent du catalogue ATR en écriture.</summary>
     public static InvalidDataException UnsupportedFormat(string formatId) => new($"ATR target format '{formatId}' is not supported.");
     /// <summary>Signale une image sectorielle incompatible avec le profil demandé.</summary>
-    public static InvalidDataException IncompatibleSectorImage(SectorImage image, AtrFormatProfile profile) => new($"Sector image '{image.FormatId}' contains {image.BlockCount} sectors and {image.Capacity} bytes; ATR profile '{profile.FormatId}' requires {profile.SectorCount} sectors and {profile.PayloadLength} bytes.");
+    public static InvalidDataException IncompatibleSectorImage(SectorImage image,
+        AtrFormatProfile profile) => new($"Sector image '{image.FormatId}' contains {image.BlockCount} sectors and {image.Capacity} bytes; ATR profile '{profile.FormatId}' requires {profile.SectorCount} sectors and {profile.PayloadLength} bytes.");
     /// <summary>Signale un secteur requis absent.</summary>
     public static InvalidDataException MissingSector(int sector) => new($"ATR sector {sector} is missing.");
     /// <summary>Signale une taille sectorielle incompatible.</summary>
@@ -18,7 +19,10 @@ internal static class AtrExceptions
     /// <param name = "observedSignature">Signature observée, lorsqu'elle peut être lue.</param>
     /// <param name = "expectedSignature">Signature ATR attendue.</param>
     /// <returns>Exception décrivant les valeurs observées et attendues.</returns>
-    public static InvalidDataException InvalidHeader(long observedLength, int expectedMinimumLength, ushort? observedSignature, ushort expectedSignature) => new($"The ATR header is invalid: length {observedLength} bytes (minimum {expectedMinimumLength}), signature {(observedSignature.HasValue ? $"0x{observedSignature.Value:X4}" : "unavailable")} (expected 0x{expectedSignature:X4}).");
+    public static InvalidDataException InvalidHeader(long observedLength,
+        int expectedMinimumLength,
+        ushort? observedSignature,
+        ushort expectedSignature) => new($"The ATR header is invalid: length {observedLength} bytes (minimum {expectedMinimumLength}), signature {(observedSignature.HasValue ? $"0x{observedSignature.Value:X4}" : "unavailable")} (expected 0x{expectedSignature:X4}).");
     /// <summary>Crée l'erreur signalant une taille sectorielle non prise en charge.</summary>
     /// <param name = "observedSectorSize">Taille observée, en octets.</param>
     /// <param name = "expectedSectorSizes">Tailles acceptées, en octets.</param>

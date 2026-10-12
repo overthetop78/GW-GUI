@@ -10,7 +10,17 @@ internal static class DataGeneralFmDescriptions
     /// <param name = "identity">Identité du secteur.</param>
     /// <param name = "valid">Validité du checksum.</param>
     /// <returns>Description technique.</returns>
-    public static string Data(DataGeneralSectorIdentity identity, bool valid) => FluxStructureDescriptions.WithIntegrity(DataGeneralFmFormat.StructureDescriptionName, FluxStructureKind.FormatData, identity.Cylinder, identity.Head, identity.Sector, DataGeneralFmFormat.SectorSize, null, null, DataGeneralFmFormat.ChecksumDescription, valid);
+    public static string Data(DataGeneralSectorIdentity identity,
+        bool valid) => FluxStructureDescriptions.WithIntegrity(DataGeneralFmFormat.StructureDescriptionName,
+        FluxStructureKind.FormatData,
+        identity.Cylinder,
+        identity.Head,
+        identity.Sector,
+        DataGeneralFmFormat.SectorSize,
+        null,
+        null,
+        DataGeneralFmFormat.ChecksumDescription,
+        valid);
 }
 
 /// <summary>Représente l'identité d'un secteur Data General.</summary>

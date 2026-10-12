@@ -63,8 +63,7 @@ public sealed class Cp2Reader : IMediaImageReader
     }
 
     /// <summary>Lit un conteneur CP2 déjà chargé en mémoire.</summary>
-    public Task<SectorImage> ReadAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken = default) =>
-        Task.FromResult(Read(data.ToArray(), cancellationToken));
+    public Task<SectorImage> ReadAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken = default) => Task.FromResult(Read(data.ToArray(), cancellationToken));
 
     async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
@@ -195,7 +194,11 @@ public sealed class Cp2Reader : IMediaImageReader
             // SNATCH-IT termine certains fichiers par des enregistrements C/H=6 synthétiques.
             // Ils ne décrivent aucune charge utile stockée et ne doivent pas étendre la géométrie.
             if (record[Cp2Layout.SectorCylinderOffset] != trackCylinder || record[Cp2Layout.SectorHeadOffset] != trackHead || sizeCode > Cp2Layout.MaximumSectorSizeCode) continue;
-            sectors.Add(new(record[Cp2Layout.SectorCylinderOffset], record[Cp2Layout.SectorHeadOffset], record[Cp2Layout.SectorNumberOffset], Cp2Layout.BaseSectorSize << sizeCode, BinaryPrimitives.ReadUInt16LittleEndian(record.Slice(Cp2Layout.SectorPositionOffset, Cp2Layout.SectorPositionLength))));
+            sectors.Add(new(record[Cp2Layout.SectorCylinderOffset],
+                record[Cp2Layout.SectorHeadOffset],
+                record[Cp2Layout.SectorNumberOffset],
+                Cp2Layout.BaseSectorSize << sizeCode,
+                BinaryPrimitives.ReadUInt16LittleEndian(record.Slice(Cp2Layout.SectorPositionOffset, Cp2Layout.SectorPositionLength))));
         }
         return new(sectors);
     }

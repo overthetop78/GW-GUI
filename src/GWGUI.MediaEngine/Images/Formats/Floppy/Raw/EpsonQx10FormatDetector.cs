@@ -43,7 +43,8 @@ internal static class EpsonQx10FormatDetector
     }
 
     /// <summary>Vérifie les secteurs d'une piste contre sa disposition attendue.</summary>
-    private static bool Matches(DetectedTrack track, EpsonQx10TrackGeometry expected) => expected.Count > 0 && track.Sectors.Count == expected.Count && track.Sectors.All(sector => sector.Number >= expected.FirstSector && sector.Number < expected.FirstSector + expected.Count && sector.Size == expected.SectorSize);
+    private static bool Matches(DetectedTrack track,
+        EpsonQx10TrackGeometry expected) => expected.Count > 0 && track.Sectors.Count == expected.Count && track.Sectors.All(sector => sector.Number >= expected.FirstSector && sector.Number < expected.FirstSector + expected.Count && sector.Size == expected.SectorSize);
     /// <summary>Décrit le numéro et la taille en octets d'un secteur retenu.</summary>
     /// <param name = "Number">Numéro du secteur observé.</param>
     /// <param name = "Size">Taille des données observées, en octets.</param>

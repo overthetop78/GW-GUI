@@ -29,7 +29,14 @@ public sealed class AppleNibbleConversionService
     /// <summary>Indique si le format demandé peut produire un conteneur NIB ou WOZ.</summary>
     public static bool CanCreate(string formatId, string extension) => OutputExtensions.Contains(extension) && (formatId.Equals(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase) || AppleIITrackEncodingService.Supports(formatId));
     /// <summary>Indique que le format visible peut nécessiter un convertisseur externe si la source réelle n'est pas représentable.</summary>
-    public static bool IsCatalogAliasTarget(string formatId, string extension) => OutputExtensions.Contains(extension) && (formatId.Equals(DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase));
+    public static bool IsCatalogAliasTarget(string formatId,
+        string extension) => OutputExtensions.Contains(extension) 
+            && (formatId.Equals(DiskImageFormatIds.AppleIIAppleDos113,
+            StringComparison.OrdinalIgnoreCase) 
+            || formatId.Equals(DiskImageFormatIds.AppleIIAppleDos140,
+            StringComparison.OrdinalIgnoreCase) 
+            || formatId.Equals(DiskImageFormatIds.AppleIIProDos140,
+            StringComparison.OrdinalIgnoreCase));
     /// <summary>Lit, valide puis convertit la source sans créer la sortie avant la fin des validations.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {

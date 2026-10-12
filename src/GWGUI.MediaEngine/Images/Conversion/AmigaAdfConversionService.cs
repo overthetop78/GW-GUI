@@ -8,7 +8,11 @@ namespace GWGUI.MediaEngine.Images.Conversion;
 public sealed class AmigaAdfConversionService(AmigaScpSectorImageReader scpReader, AdfReader reader, AmigaAdfWriter writer)
 {
     /// <summary>Indique si la sortie demandée est un ADF Amiga géré en interne.</summary>
-    public static bool CanCreate(string formatId, string extension) => (formatId.Equals(DiskImageFormatIds.AmigaDos, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AmigaDosHighDensity, StringComparison.OrdinalIgnoreCase)) && extension.Equals(DiskImageFileExtensions.Adf, StringComparison.OrdinalIgnoreCase);
+    public static bool CanCreate(string formatId,
+        string extension) => (formatId.Equals(DiskImageFormatIds.AmigaDos,
+        StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AmigaDosHighDensity,
+        StringComparison.OrdinalIgnoreCase)) && extension.Equals(DiskImageFileExtensions.Adf,
+        StringComparison.OrdinalIgnoreCase);
     /// <summary>Reconstruit ou relit la source puis écrit l'ADF demandé.</summary>
     public async Task ConvertAsync(string sourcePath, string outputPath, string formatId, CancellationToken cancellationToken = default)
     {

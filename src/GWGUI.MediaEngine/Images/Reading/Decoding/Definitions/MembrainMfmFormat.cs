@@ -102,9 +102,20 @@ internal static class MembrainMfmFormat
 internal static class MembrainMfmAddress
 {
     /// <summary>Empaquette le cylindre, la face et le secteur dans les deux octets Membrain.</summary>
-    public static (byte CylinderHigh, byte PackedAddress) Pack(int cylinder, int head, int sector) => ((byte)(cylinder >> MembrainMfmFormat.CylinderLowBitCount), (byte)(((cylinder & MembrainMfmFormat.CylinderLowValueMask) << MembrainMfmFormat.CylinderLowShift) | (head << MembrainMfmFormat.HeadShift) | (sector & MembrainMfmFormat.SectorMask)));
+    public static (byte CylinderHigh, byte PackedAddress) Pack(int cylinder,
+        int head,
+        int sector) => ((byte)(cylinder >> MembrainMfmFormat.CylinderLowBitCount), (byte)(((cylinder & MembrainMfmFormat.CylinderLowValueMask) << MembrainMfmFormat.CylinderLowShift) | (head << MembrainMfmFormat.HeadShift) | (sector & MembrainMfmFormat.SectorMask)));
     /// <summary>Dépaquette les deux octets d'adresse Membrain.</summary>
-    public static (byte Cylinder, byte Head, byte Sector) Unpack(byte cylinderHigh, byte packedAddress) => ((byte)(((cylinderHigh & MembrainMfmFormat.CylinderHighMask) << MembrainMfmFormat.CylinderLowBitCount) | ((packedAddress & MembrainMfmFormat.CylinderLowMask) >> MembrainMfmFormat.CylinderLowShift)), (byte)((packedAddress >> MembrainMfmFormat.HeadShift) & MembrainMfmFormat.HeadMask), (byte)(packedAddress & MembrainMfmFormat.SectorMask));
+    public static (byte Cylinder, byte Head, byte Sector) Unpack(byte cylinderHigh,
+        byte packedAddress) => ((byte)(((cylinderHigh 
+            & MembrainMfmFormat.CylinderHighMask) 
+            << MembrainMfmFormat.CylinderLowBitCount) 
+            | ((packedAddress 
+            & MembrainMfmFormat.CylinderLowMask) 
+            >> MembrainMfmFormat.CylinderLowShift)), (byte)((packedAddress 
+            >> MembrainMfmFormat.HeadShift) 
+            & MembrainMfmFormat.HeadMask), (byte)(packedAddress 
+            & MembrainMfmFormat.SectorMask));
 }
 
 /// <summary>Représente un en-tête Membrain décodé.</summary>

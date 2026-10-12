@@ -47,7 +47,14 @@ public sealed class MembrainMfmDecoder : IFluxDecoder
                             FluxStructureKind.FormatData,
                             data.Offset,
                             MembrainMfmFormat.DataBlockByteCount * MembrainMfmFormat.EncodedByteBitCount,
-                            $"{FluxStructureDescriptions.Identity(MembrainMfmFormat.StructureDescriptionName, FluxStructureKind.FormatData, header.Cylinder, header.Head, header.Sector, MembrainMfmFormat.SectorSize, data.Mark, "data block")}, {FluxStructureDescriptions.Integrity("CRC", data.CrcValid)}"
+                            $"{FluxStructureDescriptions.Identity(MembrainMfmFormat.StructureDescriptionName,
+                                FluxStructureKind.FormatData,
+                                header.Cylinder,
+                                header.Head,
+                                header.Sector,
+                                MembrainMfmFormat.SectorSize,
+                                data.Mark,
+                                "data block")}, {FluxStructureDescriptions.Integrity("CRC", data.CrcValid)}"
                         ));
                 }
             }

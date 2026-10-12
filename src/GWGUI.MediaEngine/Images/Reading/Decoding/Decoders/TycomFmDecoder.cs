@@ -65,7 +65,14 @@ public sealed class TycomFmDecoder : IFluxDecoder
                             FluxStructureKind.FormatData,
                             dataMark.Offset,
                             TycomFmFormat.DataBlockBitCount,
-                            $"{FluxStructureDescriptions.Identity(TycomFmFormat.StructureDescriptionName, FluxStructureKind.FormatData, header.Cylinder, TycomFmFormat.LogicalHead, header.Sector, TycomFmFormat.SectorSize, dataMark.Definition.Mark, null)}, {FluxStructureDescriptions.Integrity("CRC", data.CrcValid)}"
+                            $"{FluxStructureDescriptions.Identity(TycomFmFormat.StructureDescriptionName,
+                                FluxStructureKind.FormatData,
+                                header.Cylinder,
+                                TycomFmFormat.LogicalHead,
+                                header.Sector,
+                                TycomFmFormat.SectorSize,
+                                dataMark.Definition.Mark,
+                                null)}, {FluxStructureDescriptions.Integrity("CRC", data.CrcValid)}"
                         ));
                 }
             }

@@ -12,13 +12,29 @@ namespace GWGUI.MediaEngine.Images.Visualization.Policies;
 internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
 {
     /// <inheritdoc/>
-    public override bool CanHandle(SectorImage image) => image.FormatId.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) || image.FormatId.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase) || image.FormatId.StartsWith(DiskImageFormatIds.AppleMacPrefix, StringComparison.OrdinalIgnoreCase) || image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) || image.FormatId.StartsWith(DiskImageFormatIds.MacPrefix, StringComparison.OrdinalIgnoreCase);
+    public override bool CanHandle(SectorImage image) => image.FormatId.StartsWith(DiskImageFormatIds.AppleIIPrefix,
+        StringComparison.OrdinalIgnoreCase) 
+        || image.FormatId.StartsWith(DiskImageFormatIds.AppleIIIPrefix,
+        StringComparison.OrdinalIgnoreCase) 
+        || image.FormatId.StartsWith(DiskImageFormatIds.AppleMacPrefix,
+        StringComparison.OrdinalIgnoreCase) 
+        || image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix,
+        StringComparison.OrdinalIgnoreCase) 
+        || image.FormatId.StartsWith(DiskImageFormatIds.MacPrefix,
+        StringComparison.OrdinalIgnoreCase);
     /// <inheritdoc/>
     public override string EncoderId(SectorImage image)
     {
         if (image.FormatId.Equals(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase))
             return FluxCodecIds.AppleRwts18;
-        if ((image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) || image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos800, StringComparison.OrdinalIgnoreCase)) && image.BlockSize == AppleIIGeometry.ProDosBlockSize && image.Cylinders >= DiskGeometryConstants.EightyTrackCylinderCount)
+        if ((image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos,
+            StringComparison.OrdinalIgnoreCase) 
+            || image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos800,
+            StringComparison.OrdinalIgnoreCase)) 
+            && image.BlockSize 
+            == AppleIIGeometry.ProDosBlockSize 
+            && image.Cylinders 
+            >= DiskGeometryConstants.EightyTrackCylinderCount)
             return FluxCodecIds.AppleMacGcr;
         if (image.FormatId.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase) || image.FormatId.StartsWith(DiskImageFormatIds.AppleIIIPrefix, StringComparison.OrdinalIgnoreCase))
             return FluxCodecIds.AppleIIGcr;
@@ -50,7 +66,8 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
     }
 
     /// <inheritdoc/>
-    public override SectorAddress VisualAddress(SectorImage image, SectorAddress address) => image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) && image.Heads == DiskGeometryConstants.SingleSidedHeadCount && image.Cylinders > LisaFileWareGeometry.LinearTrackThreshold 
+    public override SectorAddress VisualAddress(SectorImage image,
+        SectorAddress address) => image.FormatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) && image.Heads == DiskGeometryConstants.SingleSidedHeadCount && image.Cylinders > LisaFileWareGeometry.LinearTrackThreshold 
         ? new(address.Cylinder / LisaFileWareGeometry.HeadCount, address.Cylinder % LisaFileWareGeometry.HeadCount, address.Number) 
         : address;
     /// <inheritdoc/>

@@ -8,7 +8,15 @@ internal static class CommodoreGcrDescriptions
     /// <summary>Décrit un bloc de données et son checksum.</summary>
     /// <param name = "valid">Validité du checksum.</param>
     /// <returns>Description technique.</returns>
-    public static string Data(bool? valid) => $"{FluxStructureDescriptions.Identity(CommodoreGcrFormat.StructureDescriptionName, FluxStructureKind.FormatData, 0, CommodoreGcrFormat.LogicalHead, 0, CommodoreGcrFormat.SectorByteCount, null, CommodoreGcrFormat.DataBlockDescription)}, {FluxStructureDescriptions.Integrity(CommodoreGcrFormat.DataChecksumDescription, valid)}";
+    public static string Data(bool? valid) => $"{FluxStructureDescriptions.Identity(CommodoreGcrFormat.StructureDescriptionName,
+        FluxStructureKind.FormatData,
+        0,
+        CommodoreGcrFormat.LogicalHead,
+        0,
+        CommodoreGcrFormat.SectorByteCount,
+        null,
+        CommodoreGcrFormat.DataBlockDescription)}, {FluxStructureDescriptions.Integrity(CommodoreGcrFormat.DataChecksumDescription,
+        valid)}";
     /// <summary>Décrit un en-tête et les checksums de l'en-tête et des données associées.</summary>
     /// <param name = "track">Piste.</param>
     /// <param name = "sector">Secteur.</param>

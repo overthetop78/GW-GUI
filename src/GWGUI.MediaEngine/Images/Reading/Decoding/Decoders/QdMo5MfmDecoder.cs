@@ -53,7 +53,14 @@ public sealed class QdMo5MfmDecoder : IFluxDecoder
                             FluxStructureKind.FormatData,
                             dataOffset,
                             QdMo5MfmFormat.DataBlockBitCount,
-                            $"{FluxStructureDescriptions.Identity(QdMo5MfmFormat.StructureDescriptionName, FluxStructureKind.FormatData, QdMo5MfmFormat.LogicalCylinder, QdMo5MfmFormat.LogicalHead, header.Sector, QdMo5MfmFormat.SectorSize, data.Prefix, null)}, {FluxStructureDescriptions.Integrity("checksum", data.ChecksumValid)}"
+                            $"{FluxStructureDescriptions.Identity(QdMo5MfmFormat.StructureDescriptionName,
+                                FluxStructureKind.FormatData,
+                                QdMo5MfmFormat.LogicalCylinder,
+                                QdMo5MfmFormat.LogicalHead,
+                                header.Sector,
+                                QdMo5MfmFormat.SectorSize,
+                                data.Prefix,
+                                null)}, {FluxStructureDescriptions.Integrity("checksum", data.ChecksumValid)}"
                         ));
                 }
             }

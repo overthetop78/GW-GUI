@@ -30,7 +30,18 @@ public sealed class CoherentRawImageWriter(IAtomicImageFileWriter? fileWriter = 
     /// <summary>Contrôle l'identifiant, la géométrie et la longueur logique de l'image.</summary>
     private static void ValidateImage(SectorImage image)
     {
-        if (!image.FormatId.Equals(DiskImageFormatIds.Commodore900Coherent, StringComparison.OrdinalIgnoreCase) || image.BlockSize != Commodore900Geometry.SectorSize || image.Cylinders != Commodore900Geometry.CylinderCount || image.Heads != Commodore900Geometry.HeadCount || image.SectorsPerTrack != Commodore900Geometry.MaximumSectorsPerTrack || image.BlockCount > Commodore900Geometry.BlockCount)
+        if (!image.FormatId.Equals(DiskImageFormatIds.Commodore900Coherent,
+            StringComparison.OrdinalIgnoreCase) 
+            || image.BlockSize 
+            != Commodore900Geometry.SectorSize 
+            || image.Cylinders 
+            != Commodore900Geometry.CylinderCount 
+            || image.Heads 
+            != Commodore900Geometry.HeadCount 
+            || image.SectorsPerTrack 
+            != Commodore900Geometry.MaximumSectorsPerTrack 
+            || image.BlockCount 
+            > Commodore900Geometry.BlockCount)
             throw new InvalidDataException("L'image sectorielle n'utilise pas la géométrie zonée du Commodore 900.");
     }
 }
