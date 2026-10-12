@@ -22,5 +22,15 @@ internal static class ControllerPortFunctions
         exports.SetControllerPortDevice(keyboardPort, InputConstants.SinclairKeyboard);
     }
 
-    private static uint Device(PeripheralCategory peripheral) => peripheral switch { PeripheralCategory.CursorJoystick => InputConstants.CursorJoystick, PeripheralCategory.KempstonJoystick => InputConstants.KempstonJoystick, PeripheralCategory.Sinclair1Joystick => InputConstants.Sinclair1Joystick, PeripheralCategory.Sinclair2Joystick => InputConstants.Sinclair2Joystick, PeripheralCategory.Timex1Joystick => InputConstants.Timex1Joystick, PeripheralCategory.Timex2Joystick => InputConstants.Timex2Joystick, PeripheralCategory.FullerJoystick => InputConstants.FullerJoystick, _ => InputConstants.NoDevice };
+    private static uint Device(PeripheralCategory peripheral) => peripheral switch
+    {
+        PeripheralCategory.CursorJoystick => InputConstants.CursorJoystick,
+        PeripheralCategory.KempstonJoystick => InputConstants.KempstonJoystick,
+        PeripheralCategory.Sinclair1Joystick => InputConstants.Sinclair1Joystick,
+        PeripheralCategory.Sinclair2Joystick => InputConstants.Sinclair2Joystick,
+        PeripheralCategory.Timex1Joystick => InputConstants.Timex1Joystick,
+        PeripheralCategory.Timex2Joystick => InputConstants.Timex2Joystick,
+        PeripheralCategory.FullerJoystick => InputConstants.FullerJoystick,
+        _ => InputConstants.NoDevice
+    };
 }

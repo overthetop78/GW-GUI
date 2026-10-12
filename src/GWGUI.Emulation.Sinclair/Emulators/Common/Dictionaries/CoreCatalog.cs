@@ -12,7 +12,7 @@ internal static class CoreCatalog
 
     public static IReadOnlyList<EmulatorCatalogEntry> All => Entries;
 
-    private static IReadOnlyList<MachineFactory> DiscoverFactories() => typeof(CoreCatalog).Assembly.GetTypes() .Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type)) .Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!) .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal) .ToArray();
+    private static IReadOnlyList<MachineFactory> DiscoverFactories() => typeof(CoreCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(MachineFactory).IsAssignableFrom(type) && typeof(IEmulatorAdapter).IsAssignableFrom(type)).Select(type => (MachineFactory)Activator.CreateInstance(type, nonPublic: true)!).OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal).ToArray();
 
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => DiscoverFactories();
 

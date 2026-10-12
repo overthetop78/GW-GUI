@@ -50,15 +50,41 @@ internal static class KeyboardFunctions
         return map;
     }
 
-    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)((HasShift(keys) ? KeyboardConstants.ShiftModifier : KeyboardConstants.NoModifiers) | (keys.Contains(EmulationKey.SinclairSymbolShift) || keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? KeyboardConstants.ControlModifier : KeyboardConstants.NoModifiers) | (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? KeyboardConstants.AltModifier : KeyboardConstants.NoModifiers));
+    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)((HasShift(keys) ? KeyboardConstants.ShiftModifier : KeyboardConstants.NoModifiers) | (keys.Contains(EmulationKey.SinclairSymbolShift) || keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl)
+        ? KeyboardConstants.ControlModifier
+        : KeyboardConstants.NoModifiers) | (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? KeyboardConstants.AltModifier : KeyboardConstants.NoModifiers));
 
     internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)
     {
         var shifted = HasShift(keys);
-        if (code is >= KeyboardConstants.FirstLetter and <= KeyboardConstants.LastLetter) return shifted ^ keys.Contains(EmulationKey.CapsLock) ? code - KeyboardConstants.UppercaseOffset : code;
-        if (!shifted) return IsPrintable(code) ? code : KeyboardConstants.NoCharacter;
+        if (code is >= KeyboardConstants.FirstLetter and <= KeyboardConstants.LastLetter)
+            return shifted ^ keys.Contains(EmulationKey.CapsLock) ? code - KeyboardConstants.UppercaseOffset : code;
+        if (!shifted)
+            return IsPrintable(code) ? code : KeyboardConstants.NoCharacter;
         return code switch
-        { '0' => ')', '1' => '!', '2' => '@', '3' => '#', '4' => '$', '5' => '%', '6' => '^', '7' => '&', '8' => '*', '9' => '(', '-' => '_', '=' => '+', '[' => '{', ']' => '}', '\\' => '|', ';' => ':', '\'' => '"', ',' => '<', '.' => '>', '/' => '?', '`' => '~', _ => IsPrintable(code) ? code : KeyboardConstants.NoCharacter
+        {
+            '0' => ')',
+            '1' => '!',
+            '2' => '@',
+            '3' => '#',
+            '4' => '$',
+            '5' => '%',
+            '6' => '^',
+            '7' => '&',
+            '8' => '*',
+            '9' => '(',
+            '-' => '_',
+            '=' => '+',
+            '[' => '{',
+            ']' => '}',
+            '\\' => '|',
+            ';' => ':',
+            '\'' => '"',
+            ',' => '<',
+            '.' => '>',
+            '/' => '?',
+            '`' => '~',
+            _ => IsPrintable(code) ? code : KeyboardConstants.NoCharacter
         };
     }
 

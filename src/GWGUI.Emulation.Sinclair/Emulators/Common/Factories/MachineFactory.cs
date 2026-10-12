@@ -32,16 +32,33 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
         ConfigurationFunctions.Validate(configuration);
-        if (configuration.Core != Emulator || !CatalogEntry.Models.Contains(configuration.Model)) throw new ArgumentException(nameof(configuration));
+        if (configuration.Core != Emulator || !CatalogEntry.Models.Contains(configuration.Model))
+            throw new ArgumentException(nameof(configuration));
         var id = Guid.NewGuid();
         var core = CreateCore(configuration, context);
         var completed = false;
         try
         {
-            var machine = new Machine(id, configuration, core, Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), (slot, path) => RequiresMediaRestart(configuration, slot, path), audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null, saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration), coreFactory: () => CreateCore(configuration, context), supportsPointerCapture: SupportsPointerCapture, requiresResetRestart: RequiresResetRestart, supportsNoContent: SupportsNoContent);
+            var machine = new Machine(
+                id,
+                configuration,
+                core,
+                Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
+                (slot, path) => RequiresMediaRestart(configuration, slot, path),
+                audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
+                saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
+                coreFactory: () => CreateCore(configuration, context),
+                supportsPointerCapture: SupportsPointerCapture,
+                requiresResetRestart: RequiresResetRestart,
+                supportsNoContent: SupportsNoContent
+            );
             completed = true;
             return machine;
         }
-        finally { if (!completed) core.Dispose(); }
+        finally
+        {
+            if (!completed)
+                core.Dispose();
+        }
     }
 }

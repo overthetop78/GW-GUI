@@ -8,10 +8,20 @@ internal static class MediaRuntimeFunctions
 {
     internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineConfiguration configuration)
     {
-        var result = new List<EmulationMediaDevice> { new(EmulationMediaSlot.Cassette0, EmulationMediaType.Cassette, MediaRuntimeConstants.TapeExtensions, RequiresMachineRecreation: true) };
-        var floppyExtensions = configuration.Model switch { MachineModel.SpectrumPlus3 => MediaRuntimeConstants.Plus3Extensions, MachineModel.SpectrumPlus3E => MediaRuntimeConstants.Plus3EExtensions, MachineModel.Pentagon128K or MachineModel.Pentagon512K or MachineModel.Pentagon1024K or MachineModel.Scorpion256K => MediaRuntimeConstants.TrDosExtensions, _ => Array.Empty<string>() };
-        if (floppyExtensions.Count != 0) result.Add(new(EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy, floppyExtensions, RequiresMachineRecreation: !CanExchange(configuration, EmulationMediaSlot.Floppy0)));
-        if (configuration.Model is MachineModel.TimexTc2068 or MachineModel.TimexTs2068) result.Add(new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, MediaRuntimeConstants.CartridgeExtensions, RequiresMachineRecreation: true));
+        var result = new List<EmulationMediaDevice>
+        {
+            new(EmulationMediaSlot.Cassette0, EmulationMediaType.Cassette, MediaRuntimeConstants.TapeExtensions, RequiresMachineRecreation: true)
+        };
+        var floppyExtensions = configuration.Model switch
+        {
+            MachineModel.SpectrumPlus3 => MediaRuntimeConstants.Plus3Extensions,
+            MachineModel.SpectrumPlus3E => MediaRuntimeConstants.Plus3EExtensions,
+            MachineModel.Pentagon128K or MachineModel.Pentagon512K or MachineModel.Pentagon1024K or MachineModel.Scorpion256K => MediaRuntimeConstants.TrDosExtensions,
+            _ => Array.Empty<string>()};
+        if (floppyExtensions.Count != 0)
+            result.Add(new(EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy, floppyExtensions, RequiresMachineRecreation: !CanExchange(configuration, EmulationMediaSlot.Floppy0)));
+        if (configuration.Model is MachineModel.TimexTc2068 or MachineModel.TimexTs2068)
+            result.Add(new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, MediaRuntimeConstants.CartridgeExtensions, RequiresMachineRecreation: true));
         return result;
     }
 
