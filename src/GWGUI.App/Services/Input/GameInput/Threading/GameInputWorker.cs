@@ -46,8 +46,7 @@ internal sealed class GameInputWorker
             action();
             return true;
         }
-        var completed = new TaskCompletionSource(
-            TaskCreationOptions.RunContinuationsAsynchronously);
+        var completed = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         _queue.Add(() =>
         {
             try
@@ -77,8 +76,7 @@ internal sealed class GameInputWorker
             return true;
         }
 
-        var completed = new TaskCompletionSource(
-            TaskCreationOptions.RunContinuationsAsynchronously);
+        var completed = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         _queue.Add(() =>
         {
             try

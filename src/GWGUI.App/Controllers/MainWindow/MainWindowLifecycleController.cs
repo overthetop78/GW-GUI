@@ -138,8 +138,7 @@ internal sealed class MainWindowLifecycleController(
             refreshHardware();
             foreach (var controller in check.NewControllers)
             {
-                var configure = dialogs.Show(LocExtension.Get("Hardware.NewDetected", controller.Model, controller.LastPort),
-                    LocExtension.Get("Hardware.NewDetectedTitle"), UserDialogButtons.YesNo, UserDialogIcon.Question) == UserDialogResult.Yes;
+                var configure = dialogs.Show(LocExtension.Get("Hardware.NewDetected", controller.Model, controller.LastPort), LocExtension.Get("Hardware.NewDetectedTitle"), UserDialogButtons.YesNo, UserDialogIcon.Question) == UserDialogResult.Yes;
                 settings().UnconfiguredControllers.Add(controller);
                 await settingsStore.SaveAsync(settings());
                 if (configure) navigation.ShowPreferences(settings(), PreferencesSection.Hardware);
@@ -170,22 +169,19 @@ internal sealed class MainWindowLifecycleController(
         try { await settingsStore.SaveAsync(settings()).WaitAsync(shutdown.Token).ConfigureAwait(false); }
         catch (OperationCanceledException)
         {
-            ErrorLog.Write(new TimeoutException("Settings save exceeded the application shutdown deadline."),
-                "Saving application settings during shutdown");
+            ErrorLog.Write(new TimeoutException("Settings save exceeded the application shutdown deadline."), "Saving application settings during shutdown");
         }
         catch (Exception exception) { failure = exception; }
         var stopping = await window.Dispatcher.InvokeAsync(stopEmulation);
         try { await stopping.WaitAsync(shutdown.Token).ConfigureAwait(false); }
         catch (OperationCanceledException)
         {
-            ErrorLog.Write(new TimeoutException("Emulation shutdown exceeded the application shutdown deadline."),
-                "Stopping emulation during application shutdown");
+            ErrorLog.Write(new TimeoutException("Emulation shutdown exceeded the application shutdown deadline."), "Stopping emulation during application shutdown");
         }
         try { await operation.WaitForCompletionAsync().WaitAsync(shutdown.Token).ConfigureAwait(false); }
         catch (OperationCanceledException)
         {
-            ErrorLog.Write(new TimeoutException("Operation shutdown exceeded the application shutdown deadline."),
-                "Stopping the active operation during application shutdown");
+            ErrorLog.Write(new TimeoutException("Operation shutdown exceeded the application shutdown deadline."), "Stopping the active operation during application shutdown");
         }
         if (window.Dispatcher.HasShutdownStarted || window.Dispatcher.HasShutdownFinished) return;
         try

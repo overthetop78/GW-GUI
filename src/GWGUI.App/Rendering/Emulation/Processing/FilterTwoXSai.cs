@@ -23,11 +23,7 @@ internal static class FilterTwoXSai
         var d = FilterSampling.ReadColor(source, width, height, px + (fx < .5f ? -1 : 1), py + (fy < .5f ? -1 : 1));
         var target = FilterSampling.Similar(h, v) 
             ? h 
-            : variant == 2 && FilterSampling.Similar(d, h) 
-            ? d 
-            : variant > 0 
-            ? new FilterColor((h.Red + v.Red + d.Red) / 3f, (h.Green + v.Green + d.Green) / 3f, (h.Blue + v.Blue + d.Blue) / 3f) 
-            : new FilterColor((h.Red + v.Red) / 2f, (h.Green + v.Green) / 2f, (h.Blue + v.Blue) / 2f);
+            : variant == 2 && FilterSampling.Similar(d, h) ? d : variant > 0 ? new FilterColor((h.Red + v.Red + d.Red) / 3f, (h.Green + v.Green + d.Green) / 3f, (h.Blue + v.Blue + d.Blue) / 3f) : new FilterColor((h.Red + v.Red) / 2f, (h.Green + v.Green) / 2f, (h.Blue + v.Blue) / 2f);
         var corner = Math.Clamp(1f - 1.7f * MathF.Sqrt(MathF.Pow(fx - (fx < .5f ? 0f : 1f), 2) + MathF.Pow(fy - (fy < .5f ? 0f : 1f), 2)), 0f, 1f) * strength;
         for (var channel = 0; channel < 3; channel++)
             result[channel] = c[channel] + (target[channel] - c[channel]) * corner;

@@ -71,8 +71,7 @@ internal static class EmulationDotMatrixSettingsBlock
             Margin = new Thickness(column == 0 ? 0 : 6, 0, column == 2 ? 0 : 6, 0)
         };
         AutomationProperties.SetAutomationId(card, titleResourceKey);
-        card.SetResourceReference(FrameworkElement.StyleProperty,
-            ControlVisualConstants.CardStyleResource);
+        card.SetResourceReference(FrameworkElement.StyleProperty, ControlVisualConstants.CardStyleResource);
         Grid.SetColumn(card, column);
         groups.Children.Add(card);
     }
@@ -111,13 +110,11 @@ internal static class EmulationDotMatrixSettingsBlock
         IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)
         where T : struct, Enum
     {
-        var choices = resources.Select(item => new ChoiceValue<T>(item.Key,
-            LocExtension.Get(item.Value))).ToArray();
+        var choices = resources.Select(item => new ChoiceValue<T>(item.Key, LocExtension.Get(item.Value))).ToArray();
         var selector = new ComboBox
         {
             ItemsSource = choices, DisplayMemberPath = nameof(ChoiceValue<T>.DisplayName),
-            SelectedItem = choices.First(item =>
-                EqualityComparer<T>.Default.Equals(item.Value, selected)), MinWidth = 160
+            SelectedItem = choices.First(item => EqualityComparer<T>.Default.Equals(item.Value, selected)), MinWidth = 160
         };
         AutomationProperties.SetAutomationId(selector, id);
         selector.SelectionChanged += (_, _) =>

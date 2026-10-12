@@ -10,15 +10,11 @@ namespace GWGUI.App.Services.Emulation;
 internal static class EmulationModuleRegistry
 {
     private static readonly HttpClient HttpClient = new();
-    private static readonly Lazy<IReadOnlyList<LoadedEmulationModule>> LoadedModules = new(() => Discover(
-        Path.Combine(AppContext.BaseDirectory, "Modules"), StoragePaths.DataDirectory, WriteDiagnostic));
+    private static readonly Lazy<IReadOnlyList<LoadedEmulationModule>> LoadedModules = new(() => Discover(Path.Combine(AppContext.BaseDirectory, "Modules"), StoragePaths.DataDirectory, WriteDiagnostic));
     internal static IReadOnlyList<LoadedEmulationModule> Packages => LoadedModules.Value;
     internal static IReadOnlyList<IEmulationModule> Modules => Packages.Select(package => package.Module).ToArray();
 
-    internal static IEmulationModuleLocalization? FindLocalization(string? moduleId) =>
-        string.IsNullOrWhiteSpace(moduleId) ? null : Packages.FirstOrDefault(package =>
-            string.Equals(package.Module.Id, moduleId, StringComparison.OrdinalIgnoreCase))?.Module
-            as IEmulationModuleLocalization;
+    internal static IEmulationModuleLocalization? FindLocalization(string? moduleId) => string.IsNullOrWhiteSpace(moduleId) ? null : Packages.FirstOrDefault(package => string.Equals(package.Module.Id, moduleId, StringComparison.OrdinalIgnoreCase))?.Module as IEmulationModuleLocalization;
 
     internal static IReadOnlyList<LoadedEmulationModule> Discover(string directory, string dataDirectory,
         Action<string, Exception?> diagnostic)
@@ -29,8 +25,7 @@ internal static class EmulationModuleRegistry
             if (!Directory.Exists(directory)) return [];
             foreach (var path in Directory.EnumerateFiles(directory, "*.dll", SearchOption.TopDirectoryOnly))
                 diagnostic($"Ignoring loose module DLL '{path}': a module folder with module.json is required.", null);
-            foreach (var path in Directory.EnumerateDirectories(directory)
-                         .OrderBy(path => path, StringComparer.OrdinalIgnoreCase))
+            foreach (var path in Directory.EnumerateDirectories(directory).OrderBy(path => path, StringComparer.OrdinalIgnoreCase))
                 LoadModule(path, dataDirectory, modules, diagnostic);
         }
         catch (Exception error)

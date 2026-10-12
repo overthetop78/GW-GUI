@@ -83,12 +83,7 @@ internal sealed class ConversionTabController(
     internal void BuildFormats(string? extension, DetectedImageFormat? detection = null)
     {
         sourceExtension = extension; sourceDetection = detection;
-        var items = formatPresenter.Build(
-            CurrentFormatCatalog(),
-            extension,
-            UsesInternal && engineDestinations is not null ? null : detection,
-            viewModel.Conversion.SelectedFormats,
-            viewModel.Conversion.ExplicitExtensions);
+        var items = formatPresenter.Build(CurrentFormatCatalog(), extension, UsesInternal && engineDestinations is not null ? null : detection, viewModel.Conversion.SelectedFormats, viewModel.Conversion.ExplicitExtensions);
         foreach (var item in items)
             if (!item.IsCompatible && viewModel.Conversion.SelectedFormats.Contains(item.Format.Id))
                 viewModel.Conversion.SetFormat(item.Format.Id, false, item.ExplicitExtensions);
@@ -139,10 +134,7 @@ internal sealed class ConversionTabController(
                 engineSourceDocument = document;
                 var directDestinations = mediaConversion.GetAvailableDestinations(document);
                 var sequentialDestinations = await sequentialMediaConversion.GetAvailableDestinationsAsync(document);
-                engineDestinations = directDestinations
-                    .Concat(sequentialDestinations)
-                    .Distinct()
-                    .ToArray();
+                engineDestinations = directDestinations.Concat(sequentialDestinations).Distinct().ToArray();
             }
             catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
             {
@@ -186,25 +178,19 @@ internal sealed class ConversionTabController(
         var curated = formatCatalog();
         if (!UsesInternal || engineDestinations is null) return curated;
         var source = sourceExtension ?? string.Empty;
-        var formats = engineDestinations
-            .GroupBy(destination => destination.FormatId, StringComparer.OrdinalIgnoreCase)
+        var formats = engineDestinations.GroupBy(destination => destination.FormatId, StringComparer.OrdinalIgnoreCase)
             .Select(group =>
             {
-                var presentation = curated.Formats.FirstOrDefault(format =>
-                    format.Id.Equals(group.Key, StringComparison.OrdinalIgnoreCase));
+                var presentation = curated.Formats.FirstOrDefault(format => format.Id.Equals(group.Key, StringComparison.OrdinalIgnoreCase));
                 var destinations = group.ToArray();
-                var extensions = destinations
-                    .Select((destination, index) => new ImageExtension(destination.Extension, destination.Extension.TrimStart('.').ToUpperInvariant(), index == 0))
-                    .ToArray();
+                var extensions = destinations.Select((destination, index) => new ImageExtension(destination.Extension, destination.Extension.TrimStart('.').ToUpperInvariant(), index == 0)).ToArray();
                 return new DiskFormat(
                     group.Key,
                     presentation?.Family ?? string.Empty,
                     presentation?.DisplayName ?? LocExtension.Get("Format." + group.Key),
                     extensions,
                     true,
-                    string.IsNullOrWhiteSpace(source)
-                        ? new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-                        : new HashSet<string>([source], StringComparer.OrdinalIgnoreCase),
+                    string.IsNullOrWhiteSpace(source) ? new HashSet<string>(StringComparer.OrdinalIgnoreCase) : new HashSet<string>([source], StringComparer.OrdinalIgnoreCase),
                     group.Key.ToUpperInvariant());
             });
         return new RuntimeImageFormatCatalog(curated, formats);
@@ -212,9 +198,7 @@ internal sealed class ConversionTabController(
 
     private bool IsInternalOutput(ConversionOutput output) =>
         ConversionBatchExecutor.IsInternal(viewModel.Conversion.SourcePath, output)
-        || engineDestinations?.Any(destination =>
-            destination.FormatId.Equals(output.FormatId, StringComparison.OrdinalIgnoreCase)
-            && destination.Extension.Equals(output.Extension, StringComparison.OrdinalIgnoreCase)) == true;
+        || engineDestinations?.Any(destination => destination.FormatId.Equals(output.FormatId, StringComparison.OrdinalIgnoreCase) && destination.Extension.Equals(output.Extension, StringComparison.OrdinalIgnoreCase)) == true;
 
     private EnabledOption[] Options() => viewModel.Conversion.BuildOptions().ToArray();
 
@@ -249,10 +233,7 @@ internal sealed class ConversionTabController(
         try { outputs = Plan(); GwOptionValidator.Validate(Options()); }
         catch (ConversionOutputCollisionException exception)
         {
-            dialogs.Show(
-                LocExtension.Get("Conversion.OutputCollision", Path.GetFileName(exception.OutputPath), LocExtension.Get("Conversion.AddTags")),
-                LocExtension.Get("Conversion.Title"),
-                icon: UserDialogIcon.Warning);
+            dialogs.Show(LocExtension.Get("Conversion.OutputCollision", Path.GetFileName(exception.OutputPath), LocExtension.Get("Conversion.AddTags")), LocExtension.Get("Conversion.Title"), icon: UserDialogIcon.Warning);
             return;
         }
         catch { diskDefinitionsController.ShowInvalid(LocExtension.Get("Conversion.Title")); return; }
@@ -262,8 +243,7 @@ internal sealed class ConversionTabController(
         var acceptSequentialLosses = false;
         if (UsesInternal)
         {
-            engineSourceDocument ??= await mediaReader.ReadAsync(
-                new GWGUI.MediaEngine.Contracts.MediaSourceDescriptor(viewModel.Conversion.SourcePath, []));
+            engineSourceDocument ??= await mediaReader.ReadAsync(new GWGUI.MediaEngine.Contracts.MediaSourceDescriptor(viewModel.Conversion.SourcePath, []));
             var losses = new List<string>();
             foreach (var output in outputs)
             {
@@ -278,11 +258,7 @@ internal sealed class ConversionTabController(
             if (distinctLosses.Length > 0)
             {
                 var detail = string.Join(Environment.NewLine, distinctLosses.Select(loss => $"• {loss}"));
-                if (dialogs.Show(
-                        LocExtension.Get("Conversion.SequentialLossesConfirm", detail),
-                        LocExtension.Get("Conversion.SequentialLossesTitle"),
-                        UserDialogButtons.YesNo,
-                        UserDialogIcon.Warning) != UserDialogResult.Yes)
+                if (dialogs.Show(LocExtension.Get("Conversion.SequentialLossesConfirm", detail), LocExtension.Get("Conversion.SequentialLossesTitle"), UserDialogButtons.YesNo, UserDialogIcon.Warning) != UserDialogResult.Yes)
                     return;
                 acceptSequentialLosses = true;
             }
@@ -324,7 +300,5 @@ internal sealed class ConversionTabController(
         settings().Conversion.OptionValues = viewModel.Conversion.CaptureValues();
     }
 
-    internal void RestoreSettings() => viewModel.Conversion.ApplySettings(settings().Conversion.AddTags,
-        settings().Conversion.SelectedFormats, settings().Conversion.ExplicitExtensions,
-        settings().Conversion.EnabledOptions, settings().Conversion.OptionValues);
+    internal void RestoreSettings() => viewModel.Conversion.ApplySettings(settings().Conversion.AddTags, settings().Conversion.SelectedFormats, settings().Conversion.ExplicitExtensions, settings().Conversion.EnabledOptions, settings().Conversion.OptionValues);
 }

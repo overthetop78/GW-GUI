@@ -27,15 +27,13 @@ public partial class MainMenu : UserControl
 
     private void Preferences_Click(object sender, RoutedEventArgs e) => PreferencesRequested?.Invoke(sender, e);
     private void Updates_Click(object sender, RoutedEventArgs e) => UpdatesRequested?.Invoke(sender, e);
-    private void EmulationPreferences_Click(object sender, RoutedEventArgs e) =>
-        EmulationPreferencesRequested?.Invoke(sender, e);
+    private void EmulationPreferences_Click(object sender, RoutedEventArgs e) => EmulationPreferencesRequested?.Invoke(sender, e);
 
     public void SetEmulationModules(IEnumerable<IEmulationModule> modules)
     {
         while (Emulation.Items.Count > 2) Emulation.Items.RemoveAt(Emulation.Items.Count - 1);
 
-        var entries = modules.OrderBy(module => LocExtension.GetForModule(module, module.DisplayResourceKey),
-            StringComparer.CurrentCultureIgnoreCase).ToArray();
+        var entries = modules.OrderBy(module => LocExtension.GetForModule(module, module.DisplayResourceKey), StringComparer.CurrentCultureIgnoreCase).ToArray();
         EmulationModulesSeparator.Visibility = entries.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
         foreach (var module in entries)
         {

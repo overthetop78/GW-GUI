@@ -13,10 +13,7 @@ public sealed class CoreOptionsDialog : Window
     private readonly string? _moduleId;
     private readonly Dictionary<string, FrameworkElement> _controls = new(StringComparer.Ordinal);
 
-    public IReadOnlyDictionary<string, string> Values => _options
-        .Where(option => _controls.ContainsKey(option.Key))
-        .ToDictionary(option => option.Key, option => ReadValue(_controls[option.Key]),
-            StringComparer.Ordinal);
+    public IReadOnlyDictionary<string, string> Values => _options.Where(option => _controls.ContainsKey(option.Key)).ToDictionary(option => option.Key, option => ReadValue(_controls[option.Key]), StringComparer.Ordinal);
 
     public CoreOptionsDialog(string emulatorName, string emulatorVersion,
         IReadOnlyList<EmulationOption> options, string? moduleId = null)
@@ -34,20 +31,14 @@ public sealed class CoreOptionsDialog : Window
         var subtitle = string.IsNullOrWhiteSpace(emulatorVersion)
             ? emulatorName : $"{emulatorName} · {emulatorVersion}";
         var body = new StackPanel();
-        foreach (var group in _options.GroupBy(option => option.Category ?? string.Empty,
-                     StringComparer.Ordinal))
+        foreach (var group in _options.GroupBy(option => option.Category ?? string.Empty, StringComparer.Ordinal))
         {
             var fields = group.Select(CreateField).ToArray();
             var content = StorageDialogUi.CompactFields(fields);
-            body.Children.Add(StorageDialogUi.IconCard(IconGlyphs.Settings,
-                string.IsNullOrWhiteSpace(group.Key) ? LocExtension.Get("Emulation.Core.NameOptions")
-                    : group.Key, content));
+            body.Children.Add(StorageDialogUi.IconCard(IconGlyphs.Settings, string.IsNullOrWhiteSpace(group.Key) ? LocExtension.Get("Emulation.Core.NameOptions") : group.Key, content));
         }
 
-        Content = StorageDialogUi.DialogLayout(
-            StorageDialogUi.DialogHeader(IconGlyphs.Settings, Title, subtitle),
-            body,
-            StorageDialogUi.Footer(this, LocExtension.Get("Common.Save")));
+        Content = StorageDialogUi.DialogLayout(StorageDialogUi.DialogHeader(IconGlyphs.Settings, Title, subtitle), body, StorageDialogUi.Footer(this, LocExtension.Get("Common.Save")));
     }
 
     private (string Label, FrameworkElement Control) CreateField(EmulationOption option)
@@ -59,8 +50,7 @@ public sealed class CoreOptionsDialog : Window
         }
         else
         {
-            var choices = option.Values.Select(value => new CoreOptionChoice(
-                value.Value, Resolve(value.Label))).ToArray();
+            var choices = option.Values.Select(value => new CoreOptionChoice(value.Value, Resolve(value.Label))).ToArray();
             control = new ComboBox
             {
                 ItemsSource = choices,
@@ -72,14 +62,10 @@ public sealed class CoreOptionsDialog : Window
         _controls[option.Key] = control;
         if (!string.IsNullOrWhiteSpace(option.Description))
             control.ToolTip = Resolve(option.Description);
-        return (System.Text.RegularExpressions.Regex.Replace(Resolve(option.Name),
-            @"\s*\(restart required\)", string.Empty,
-            System.Text.RegularExpressions.RegexOptions.IgnoreCase), control);
+        return (System.Text.RegularExpressions.Regex.Replace(Resolve(option.Name), @"\s*\(restart required\)", string.Empty, System.Text.RegularExpressions.RegexOptions.IgnoreCase), control);
     }
 
-    private string Resolve(string text) => text.StartsWith("Emulation.", StringComparison.Ordinal)
-        ? LocExtension.GetForModule(_moduleId, text)
-        : text;
+    private string Resolve(string text) => text.StartsWith("Emulation.", StringComparison.Ordinal) ? LocExtension.GetForModule(_moduleId, text) : text;
 
     private static string ReadValue(FrameworkElement control) => control switch
     {

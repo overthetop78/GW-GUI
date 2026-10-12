@@ -85,8 +85,7 @@ internal sealed class LoggingOptionsController
         await _persistAsync();
     }
 
-    private static void NumericTextEntered(object sender, TextCompositionEventArgs e) =>
-        e.Handled = e.Text.Any(character => !char.IsDigit(character));
+    private static void NumericTextEntered(object sender, TextCompositionEventArgs e) => e.Handled = e.Text.Any(character => !char.IsDigit(character));
 
     private void OpenLogsFolder(object sender, RoutedEventArgs e)
     {

@@ -148,12 +148,8 @@ internal static class FilterSegmentDisplay
         var cellHeight = FilterSegmentDisplayCellSize.Height(configuration.CellSize);
         var columns = Math.Max(1, (sourceWidth + cellWidth - 1) / cellWidth);
         var rows = Math.Max(1, (sourceHeight + cellHeight - 1) / cellHeight);
-        var elements = FilterSegmentDisplayLayout.Elements(configuration.Layout,
-            configuration.DecimalPoint, configuration.Colon)
-            .Select(element => FilterSegmentDisplaySegmentGap.Apply(element,
-                configuration.SegmentGap)).ToArray();
-        var activations = SampleActivations(source, sourceWidth, sourceHeight, width, height,
-            columns, rows, cellWidth, cellHeight, elements, configuration);
+        var elements = FilterSegmentDisplayLayout.Elements(configuration.Layout, configuration.DecimalPoint, configuration.Colon).Select(element => FilterSegmentDisplaySegmentGap.Apply(element, configuration.SegmentGap)).ToArray();
+        var activations = SampleActivations(source, sourceWidth, sourceHeight, width, height, columns, rows, cellWidth, cellHeight, elements, configuration);
         var tint = FilterSegmentDisplayColor.Apply(configuration.Color);
         var radius = FilterSegmentDisplayThickness.Radius(configuration.Thickness);
         var background = FilterSegmentDisplayBlackDepth.Apply(configuration.BlackDepth);
@@ -165,33 +161,23 @@ internal static class FilterSegmentDisplay
             var logicalY = (y + .5f) * sourceHeight / height;
             var cellX = Math.Min(columns - 1, (int)(logicalX / cellWidth));
             var cellY = Math.Min(rows - 1, (int)(logicalY / cellHeight));
-            var localX = FilterSegmentDisplayHorizontalGap.Apply(
-                logicalX / cellWidth - MathF.Floor(logicalX / cellWidth),
-                configuration.HorizontalGap);
-            var localY = FilterSegmentDisplayVerticalGap.Apply(
-                logicalY / cellHeight - MathF.Floor(logicalY / cellHeight),
-                configuration.VerticalGap);
+            var localX = FilterSegmentDisplayHorizontalGap.Apply(logicalX / cellWidth - MathF.Floor(logicalX / cellWidth), configuration.HorizontalGap);
+            var localY = FilterSegmentDisplayVerticalGap.Apply(logicalY / cellHeight - MathF.Floor(logicalY / cellHeight), configuration.VerticalGap);
             var nearest = 0;
             var distance = float.MaxValue;
             for (var element = 0; element < elements.Length; element++)
             {
-                var candidate = FilterSegmentDisplayEndShape.Distance(localX, localY,
-                    elements[element], configuration.EndShape);
+                var candidate = FilterSegmentDisplayEndShape.Distance(localX, localY, elements[element], configuration.EndShape);
                 if (candidate >= distance) continue;
                 distance = candidate;
                 nearest = element;
             }
-            var edge = MathF.Max(sourceWidth / (float)width, sourceHeight / (float)height)
-                / Math.Min(cellWidth, cellHeight);
+            var edge = MathF.Max(sourceWidth / (float)width, sourceHeight / (float)height) / Math.Min(cellWidth, cellHeight);
             var core = SmoothStep(radius + edge, radius - edge, distance);
-            var halo = FilterSegmentDisplayGlow.Apply(FilterSegmentDisplayHaloRadius.Apply(
-                MathF.Max(0f, distance - radius), configuration.HaloRadius),
-                configuration.Glow) * (1f - core);
+            var halo = FilterSegmentDisplayGlow.Apply(FilterSegmentDisplayHaloRadius.Apply(MathF.Max(0f, distance - radius), configuration.HaloRadius), configuration.Glow) * (1f - core);
             var cell = (cellY * columns + cellX) * elements.Length + nearest;
-            var activation = FilterSegmentDisplayOffSegmentVisibility.Apply(
-                activations[cell], configuration.OffSegmentVisibility);
-            var emission = FilterSegmentDisplayBrightness.Apply(
-                activation * Math.Clamp(core + halo, 0f, 1f), configuration.Brightness);
+            var activation = FilterSegmentDisplayOffSegmentVisibility.Apply(activations[cell], configuration.OffSegmentVisibility);
+            var emission = FilterSegmentDisplayBrightness.Apply(activation * Math.Clamp(core + halo, 0f, 1f), configuration.Brightness);
             var index = (y * width + x) * 3;
             colors[index] = Math.Clamp(background + emission * tint.R, 0f, 1f);
             colors[index + 1] = Math.Clamp(background + emission * tint.G, 0f, 1f);
@@ -221,12 +207,9 @@ internal static class FilterSegmentDisplay
                 var x = Math.Clamp((int)(logicalX * width / sourceWidth), 0, width - 1);
                 var y = Math.Clamp((int)(logicalY * height / sourceHeight), 0, height - 1);
                 var index = (y * width + x) * 3;
-                sum += source[index] * .2126f + source[index + 1] * .7152f
-                    + source[index + 2] * .0722f;
+                sum += source[index] * .2126f + source[index + 1] * .7152f + source[index + 2] * .0722f;
             }
-            result[(cellY * columns + cellX) * elements.Length + elementIndex] =
-                FilterSegmentDisplayContrast.Apply(FilterSegmentDisplayActivationThreshold.Apply(
-                    sum / samples, configuration.ActivationThreshold), configuration.Contrast);
+            result[(cellY * columns + cellX) * elements.Length + elementIndex] = FilterSegmentDisplayContrast.Apply(FilterSegmentDisplayActivationThreshold.Apply(sum / samples, configuration.ActivationThreshold), configuration.Contrast);
         }
         return result;
     }

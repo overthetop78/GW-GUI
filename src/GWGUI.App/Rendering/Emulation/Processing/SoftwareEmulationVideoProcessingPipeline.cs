@@ -66,69 +66,44 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
 
         var pixels = EmulationVideoPixelFunctions.ToBgra32(frame);
         var linear = ToLinear(pixels, frame.Width, frame.Height);
-        EmulationImageRestorationFunctions.ApplyDeinterlacing(linear, frame.Width, frame.Height,
-            normalized.Restoration.Deinterlacing);
-        EmulationImageRestorationFunctions.ApplyDedithering(linear, frame.Width, frame.Height,
-            normalized.Restoration.Dedithering);
-        EmulationImageRestorationFunctions.ApplyDenoising(linear, frame.Width, frame.Height,
-            normalized.Restoration.Denoising);
-        EmulationImageRestorationFunctions.ApplyDebanding(linear, frame.Width, frame.Height,
-            normalized.Restoration.Debanding);
-        EmulationImageRestorationFunctions.ApplyDetailRecovery(linear, frame.Width, frame.Height,
-            normalized.Restoration.DetailRecovery);
-        _interlacing.ApplyFieldWeave(linear, frame.Width, frame.Height, frame.Sequence,
-            normalized.Temporal.Interlacing > 0, normalized.Temporal.InterlacingVisibility);
+        EmulationImageRestorationFunctions.ApplyDeinterlacing(linear, frame.Width, frame.Height, normalized.Restoration.Deinterlacing);
+        EmulationImageRestorationFunctions.ApplyDedithering(linear, frame.Width, frame.Height, normalized.Restoration.Dedithering);
+        EmulationImageRestorationFunctions.ApplyDenoising(linear, frame.Width, frame.Height, normalized.Restoration.Denoising);
+        EmulationImageRestorationFunctions.ApplyDebanding(linear, frame.Width, frame.Height, normalized.Restoration.Debanding);
+        EmulationImageRestorationFunctions.ApplyDetailRecovery(linear, frame.Width, frame.Height, normalized.Restoration.DetailRecovery);
+        _interlacing.ApplyFieldWeave(linear, frame.Width, frame.Height, frame.Sequence, normalized.Temporal.Interlacing > 0, normalized.Temporal.InterlacingVisibility);
         var signalStandard = ResolveSignalStandard(frame, normalized.SignalSimulation.Standard);
-        ApplySignalConnection(linear, frame.Width, frame.Height, frame.Sequence,
-            normalized.SignalSimulation, signalStandard);
-        ApplySignalStandard(linear, frame.Width, frame.Height, normalized.SignalSimulation,
-            signalStandard);
-        linear = Resample(linear, frame.Width, frame.Height,
-            outputSize.Width, outputSize.Height, normalized.Sampling);
+        ApplySignalConnection(linear, frame.Width, frame.Height, frame.Sequence, normalized.SignalSimulation, signalStandard);
+        ApplySignalStandard(linear, frame.Width, frame.Height, normalized.SignalSimulation, signalStandard);
+        linear = Resample(linear, frame.Width, frame.Height, outputSize.Width, outputSize.Height, normalized.Sampling);
         VideoBrightnessParameterFunctions.Apply(linear, normalized.Adjustments.Brightness);
         VideoContrastParameterFunctions.Apply(linear, normalized.Adjustments.Contrast);
         VideoGammaParameterFunctions.Apply(linear, normalized.Adjustments.Gamma);
         VideoSaturationParameterFunctions.Apply(linear, normalized.Adjustments.Saturation);
-        ApplyDisplayTechnology(linear, sourceSize.Width, sourceSize.Height,
-            outputSize.Width, outputSize.Height, frame.Sequence, normalized);
-        VideoSharpnessParameterFunctions.Apply(linear, outputSize.Width, outputSize.Height,
-            normalized.Adjustments.Sharpness);
-        FilterVhs.Apply(linear, outputSize.Width, outputSize.Height,
-            frame.Sequence, normalized.Stylistic.Vhs);
-        FilterChromaticAberration.Apply(linear, outputSize.Width,
-            outputSize.Height, normalized.Stylistic.ChromaticAberration);
-        FilterBloom.Apply(linear, outputSize.Width, outputSize.Height,
-            normalized.Stylistic.Bloom);
+        ApplyDisplayTechnology(linear, sourceSize.Width, sourceSize.Height, outputSize.Width, outputSize.Height, frame.Sequence, normalized);
+        VideoSharpnessParameterFunctions.Apply(linear, outputSize.Width, outputSize.Height, normalized.Adjustments.Sharpness);
+        FilterVhs.Apply(linear, outputSize.Width, outputSize.Height, frame.Sequence, normalized.Stylistic.Vhs);
+        FilterChromaticAberration.Apply(linear, outputSize.Width, outputSize.Height, normalized.Stylistic.ChromaticAberration);
+        FilterBloom.Apply(linear, outputSize.Width, outputSize.Height, normalized.Stylistic.Bloom);
         FilterSepia.Apply(linear, normalized.Stylistic.Sepia);
-        FilterGrain.Apply(linear, outputSize.Width, outputSize.Height,
-            frame.Sequence, normalized.Stylistic.Grain);
-        ApplyFixedPixelTemporal(normalized, linear, outputSize.Width, outputSize.Height,
-            frame.Timestamp);
+        FilterGrain.Apply(linear, outputSize.Width, outputSize.Height, frame.Sequence, normalized.Stylistic.Grain);
+        ApplyFixedPixelTemporal(normalized, linear, outputSize.Width, outputSize.Height, frame.Timestamp);
         if (normalized.DisplayTechnology == EmulationVideoDisplayTechnology.Plasma)
-            _plasmaPersistence.Apply(linear, outputSize.Width, outputSize.Height,
-                frame.Sequence, normalized.Plasma.PersistenceIntensity);
+            _plasmaPersistence.Apply(linear, outputSize.Width, outputSize.Height, frame.Sequence, normalized.Plasma.PersistenceIntensity);
         else
             _plasmaPersistence.Reset();
-        ApplyVectorTemporal(normalized, linear, outputSize.Width, outputSize.Height,
-            frame.Sequence);
+        ApplyVectorTemporal(normalized, linear, outputSize.Width, outputSize.Height, frame.Sequence);
         if (normalized.DisplayTechnology == EmulationVideoDisplayTechnology.Vfd)
-            _vfdPersistence.Apply(linear, outputSize.Width, outputSize.Height,
-                frame.Timestamp, normalized.Vfd.PersistenceMilliseconds);
+            _vfdPersistence.Apply(linear, outputSize.Width, outputSize.Height, frame.Timestamp, normalized.Vfd.PersistenceMilliseconds);
         else
             _vfdPersistence.Reset();
-        ApplyDotMatrixTemporal(normalized, linear, outputSize.Width, outputSize.Height,
-            frame.Timestamp);
-        ApplySegmentDisplayTemporal(normalized, linear, outputSize.Width, outputSize.Height,
-            frame.Timestamp);
-        ApplyEPaperTemporal(normalized, linear, outputSize.Width, outputSize.Height,
-            frame.Timestamp);
+        ApplyDotMatrixTemporal(normalized, linear, outputSize.Width, outputSize.Height, frame.Timestamp);
+        ApplySegmentDisplayTemporal(normalized, linear, outputSize.Width, outputSize.Height, frame.Timestamp);
+        ApplyEPaperTemporal(normalized, linear, outputSize.Width, outputSize.Height, frame.Timestamp);
         FilterFlicker.Apply(linear, frame.Sequence, normalized.Temporal.Flicker);
-        _motionBlur.Apply(linear, outputSize.Width, outputSize.Height, frame.Sequence,
-            normalized.Temporal.MotionBlur);
-        _generalPersistence.Apply(linear, outputSize.Width, outputSize.Height, frame.Sequence,
-            normalized.Temporal.GeneralPersistence);
-        FilterBlackFrameInsertion.Apply(linear, frame.Sequence,
-            normalized.Temporal.BlackFrameInsertion);
+        _motionBlur.Apply(linear, outputSize.Width, outputSize.Height, frame.Sequence, normalized.Temporal.MotionBlur);
+        _generalPersistence.Apply(linear, outputSize.Width, outputSize.Height, frame.Sequence, normalized.Temporal.GeneralPersistence);
+        FilterBlackFrameInsertion.Apply(linear, frame.Sequence, normalized.Temporal.BlackFrameInsertion);
         var output = ToSrgb(linear, outputSize.Width, outputSize.Height);
         return frame with
         {
@@ -157,12 +132,10 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
                 SignalConnectionSVideo.Apply(colors, width, height, signal.ConnectionIntensity);
                 break;
             case EmulationSignalConnection.Composite:
-                SignalConnectionComposite.Apply(colors, width, height, sequence,
-                    signal.ConnectionIntensity);
+                SignalConnectionComposite.Apply(colors, width, height, sequence, signal.ConnectionIntensity);
                 break;
             case EmulationSignalConnection.Rf:
-                SignalConnectionRf.Apply(colors, width, height, sequence,
-                    signal.ConnectionIntensity, standard);
+                SignalConnectionRf.Apply(colors, width, height, sequence, signal.ConnectionIntensity, standard);
                 break;
         }
     }
@@ -189,10 +162,8 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
     {
         if (standard == EmulationSignalStandard.Automatic)
         {
-            var elapsed = frame.Sequence > _signalSequence
-                ? (frame.Timestamp - _signalTimestamp).TotalMilliseconds : 0;
-            standard = elapsed > SoftwareVideoProcessingConstants.PalFrameDurationThresholdMilliseconds
-                ? EmulationSignalStandard.Pal : EmulationSignalStandard.Ntsc;
+            var elapsed = frame.Sequence > _signalSequence ? (frame.Timestamp - _signalTimestamp).TotalMilliseconds : 0;
+            standard = elapsed > SoftwareVideoProcessingConstants.PalFrameDurationThresholdMilliseconds ? EmulationSignalStandard.Pal : EmulationSignalStandard.Ntsc;
         }
         _signalTimestamp = frame.Timestamp;
         _signalSequence = frame.Sequence;
@@ -202,21 +173,13 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
     internal static float SrgbToLinear(float value)
     {
         value = Math.Clamp(value, 0f, 1f);
-        return value <= SoftwareVideoProcessingConstants.SrgbToLinearThreshold
-            ? value / SoftwareVideoProcessingConstants.SrgbLinearScale
-            : MathF.Pow((value + SoftwareVideoProcessingConstants.SrgbOffset)
-                / SoftwareVideoProcessingConstants.SrgbScale,
-                SoftwareVideoProcessingConstants.SrgbGamma);
+        return value <= SoftwareVideoProcessingConstants.SrgbToLinearThreshold ? value / SoftwareVideoProcessingConstants.SrgbLinearScale : MathF.Pow((value + SoftwareVideoProcessingConstants.SrgbOffset) / SoftwareVideoProcessingConstants.SrgbScale, SoftwareVideoProcessingConstants.SrgbGamma);
     }
 
     internal static float LinearToSrgb(float value)
     {
         value = Math.Clamp(value, 0f, 1f);
-        return value <= SoftwareVideoProcessingConstants.LinearToSrgbThreshold
-            ? value * SoftwareVideoProcessingConstants.SrgbLinearScale
-            : SoftwareVideoProcessingConstants.SrgbScale * MathF.Pow(value,
-                1f / SoftwareVideoProcessingConstants.SrgbGamma)
-                - SoftwareVideoProcessingConstants.SrgbOffset;
+        return value <= SoftwareVideoProcessingConstants.LinearToSrgbThreshold ? value * SoftwareVideoProcessingConstants.SrgbLinearScale : SoftwareVideoProcessingConstants.SrgbScale * MathF.Pow(value, 1f / SoftwareVideoProcessingConstants.SrgbGamma) - SoftwareVideoProcessingConstants.SrgbOffset;
     }
 
     public void Dispose() => ResetTemporalHistory();

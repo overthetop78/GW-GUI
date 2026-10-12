@@ -13,7 +13,5 @@ public sealed record ScpInspectorModel(
     public int SectorCount => Sectors.Count;
     public int TotalTransitions => Revolutions.Sum(item => item.Transitions);
     public double AverageRpm => Revolutions.Count == 0 ? 0 : Revolutions.Average(item => item.Rpm);
-    public double AverageDurationMilliseconds => Revolutions.Count == 0
-        ? 0
-        : Revolutions.Average(item => item.DurationMilliseconds);
+    public double AverageDurationMilliseconds => Revolutions.Count == 0 ? 0 : Revolutions.Average(item => item.DurationMilliseconds);
 }

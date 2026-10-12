@@ -14,17 +14,11 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
     internal OpenGlVideoProcessingProgram(EmulationVideoSampling sampling,
         EmulationVideoDisplayTechnology displayTechnology)
     {
-        _program = _api.CreateProgram(
-            OpenGlVideoShaderSource.VertexSource,
-            OpenGlVideoShaderSource.Fragment(sampling, displayTechnology));
+        _program = _api.CreateProgram(OpenGlVideoShaderSource.VertexSource, OpenGlVideoShaderSource.Fragment(sampling, displayTechnology));
         _uniforms = new(_api, _program);
         _api.UseProgram(_program);
-        _api.SetUniform(
-            _api.GetUniformLocation(_program, OpenGlVideoUniformNames.Source),
-            OpenGlVideoConstants.SourceTextureUnit);
-        _api.SetUniform(
-            _api.GetUniformLocation(_program, OpenGlVideoUniformNames.History),
-            OpenGlVideoConstants.HistoryTextureUnit);
+        _api.SetUniform(_api.GetUniformLocation(_program, OpenGlVideoUniformNames.Source), OpenGlVideoConstants.SourceTextureUnit);
+        _api.SetUniform(_api.GetUniformLocation(_program, OpenGlVideoUniformNames.History), OpenGlVideoConstants.HistoryTextureUnit);
         _api.UseProgram(0);
     }
 
@@ -34,8 +28,7 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         float averageLuminance = 0f)
     {
         _api.UseProgram(_program);
-        _uniforms.Apply(configuration, sourceWidth, sourceHeight, outputWidth, outputHeight,
-            hasHistory, elapsedMilliseconds, sequence, averageLuminance);
+        _uniforms.Apply(configuration, sourceWidth, sourceHeight, outputWidth, outputHeight, hasHistory, elapsedMilliseconds, sequence, averageLuminance);
     }
 
     internal void Stop() => _api.UseProgram(0);

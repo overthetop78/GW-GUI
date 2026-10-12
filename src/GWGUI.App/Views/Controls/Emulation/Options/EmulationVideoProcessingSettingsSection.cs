@@ -44,8 +44,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
     {
         _shaderLoading = isLoading;
         if (_shaderLoadingIndicator is not null)
-            _shaderLoadingIndicator.Visibility = isLoading
-                ? Visibility.Visible : Visibility.Collapsed;
+            _shaderLoadingIndicator.Visibility = isLoading ? Visibility.Visible : Visibility.Collapsed;
     }
 
     internal void SetConfiguration(EmulationVideoProcessingConfiguration? configuration)
@@ -70,10 +69,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
 
     private void RebuildContent()
     {
-        var offsets = (Content as TabControl)?.Items.Cast<TabItem>()
-            .Where(item => item.Content is ScrollViewer)
-            .ToDictionary(item => (string)item.Tag,
-                item => ((ScrollViewer)item.Content).VerticalOffset, StringComparer.Ordinal)
+        var offsets = (Content as TabControl)?.Items.Cast<TabItem>().Where(item => item.Content is ScrollViewer).ToDictionary(item => (string)item.Tag, item => ((ScrollViewer)item.Content).VerticalOffset, StringComparer.Ordinal)
             ?? new Dictionary<string, double>(StringComparer.Ordinal);
         _loading = true;
         try
@@ -93,8 +89,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
             var technology = CreateTechnologyPanel();
             if (technology is not null)
             {
-                AutomationProperties.SetAutomationId(technology,
-                    EmulationVideoSettingsLayoutConstants.VideoTechnologyParametersAutomationId);
+                AutomationProperties.SetAutomationId(technology, EmulationVideoSettingsLayoutConstants.VideoTechnologyParametersAutomationId);
                 tabs.Items.Add(Tab(EmulationVideoSettingsLayoutConstants.TechnologyTabId,
                     EmulationVideoProcessingCatalog.DisplayTechnologyResourceKeys[
                         _configuration.DisplayTechnology], technology,
@@ -115,12 +110,8 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
                 EmulationVideoSettingsLayoutConstants.DisplayTabContentMaximumWidth,
                 compactFields: false, frameContent: false));
             if (_nativeSettings is not null)
-                tabs.Items.Add(Tab(nameof(_nativeSettings), EmulationResourceKeys.VideoRenderingSettings,
-                    _nativeSettings, EmulationVideoSettingsLayoutConstants.DisplayTabContentMaximumWidth,
-                    compactFields: false, frameContent: false));
-            tabs.SelectedItem = tabs.Items.Cast<TabItem>().FirstOrDefault(item =>
-                string.Equals((string)item.Tag, _selectedSettingsTab, StringComparison.Ordinal))
-                ?? tabs.Items[0];
+                tabs.Items.Add(Tab(nameof(_nativeSettings), EmulationResourceKeys.VideoRenderingSettings, _nativeSettings, EmulationVideoSettingsLayoutConstants.DisplayTabContentMaximumWidth, compactFields: false, frameContent: false));
+            tabs.SelectedItem = tabs.Items.Cast<TabItem>().FirstOrDefault(item => string.Equals((string)item.Tag, _selectedSettingsTab, StringComparison.Ordinal)) ?? tabs.Items[0];
             tabs.SelectionChanged += (_, args) =>
             {
                 if (!ReferenceEquals(args.Source, tabs) || tabs.SelectedItem is not TabItem selected)

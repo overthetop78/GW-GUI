@@ -32,10 +32,7 @@ internal static class EmulationMachineTabs
                 Tag = definition.Tab,
                 Header = new MainTabHeader { Icon = definition.Icon, Text = title },
                 Content = content,
-                Padding = new Thickness(EmulationMachineTabConstants.HorizontalPadding,
-                    EmulationMachineTabConstants.VerticalPadding,
-                    EmulationMachineTabConstants.HorizontalPadding,
-                    EmulationMachineTabConstants.VerticalPadding),
+                Padding = new Thickness(EmulationMachineTabConstants.HorizontalPadding, EmulationMachineTabConstants.VerticalPadding, EmulationMachineTabConstants.HorizontalPadding, EmulationMachineTabConstants.VerticalPadding),
                 HorizontalContentAlignment = HorizontalAlignment.Stretch,
                 VerticalContentAlignment = VerticalAlignment.Stretch
             };
@@ -51,8 +48,7 @@ internal static class EmulationMachineTabs
             };
         if (selectedTab is not null)
         {
-            var selected = tabs.Items.Cast<TabItem>().FirstOrDefault(item =>
-                item.Tag is EmulationMachineTab tab && tab == selectedTab);
+            var selected = tabs.Items.Cast<TabItem>().FirstOrDefault(item => item.Tag is EmulationMachineTab tab && tab == selectedTab);
             if (selected is not null) tabs.SelectedItem = selected;
         }
         return tabs;

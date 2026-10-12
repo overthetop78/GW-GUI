@@ -25,13 +25,11 @@ public sealed partial class EmulationPreferencesSection
 
     private ScrollViewer BuildShortcutsTab()
     {
-        _shortcuts.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"),
-            LocExtension.Get("Emulation.Input.Binding.Search"));
+        _shortcuts.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"), LocExtension.Get("Emulation.Input.Binding.Search"));
         return EmulationSettingsLayout.ScrollPage(new StackPanel
         {
             Margin = new Thickness(12),
-            Children = { EmulationSettingsLayout.InputBindings(_shortcuts,
-                LocExtension.Get("Emulation.Shortcut.Global")) }
+            Children = { EmulationSettingsLayout.InputBindings(_shortcuts, LocExtension.Get("Emulation.Shortcut.Global")) }
         });
     }
 
@@ -61,8 +59,7 @@ public sealed partial class EmulationPreferencesSection
     private Grid FolderControl(TextBox target)
     {
         var browse = new Button { MinWidth = 100 };
-        BindingOperations.SetBinding(browse, ContentControl.ContentProperty,
-            LocExtension.CreateBinding("Common.Browse"));
+        BindingOperations.SetBinding(browse, ContentControl.ContentProperty, LocExtension.CreateBinding("Common.Browse"));
         browse.Click += async (_, _) => await BrowseFolderAsync(target);
         return PathControl(target, browse);
     }

@@ -27,8 +27,7 @@ internal sealed class AvailableModuleRow
         IsDownloaded = isDownloaded;
         CanInstall = canInstall;
         StateLabel = stateLabel;
-        var state = isInstalled || isDownloaded ? UpdateVisualState.Current
-            : canInstall ? UpdateVisualState.Available : UpdateVisualState.Error;
+        var state = isInstalled || isDownloaded ? UpdateVisualState.Current : canInstall ? UpdateVisualState.Available : UpdateVisualState.Error;
         (StateForeground, StateBackground) = UpdateStateBrushes.For(state);
         StateIcon = StateIconFor(state);
     }

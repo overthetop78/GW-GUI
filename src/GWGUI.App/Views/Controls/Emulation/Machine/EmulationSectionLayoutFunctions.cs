@@ -57,10 +57,8 @@ public sealed partial class EmulationSection
         _selectorFrame.Padding = new Thickness(8, 4, 8, 4);
         _selectorFrame.Margin = new Thickness(0, 0, 0, 12);
         _selectorFrame.Height = ExpandedSelectorFrameHeight;
-        _selectorFrame.SetResourceReference(BackgroundProperty,
-            ControlVisualConstants.CardBrushResource);
-        _selectorFrame.SetResourceReference(BorderBrushProperty,
-            ControlVisualConstants.BorderBrushResource);
+        _selectorFrame.SetResourceReference(BackgroundProperty, ControlVisualConstants.CardBrushResource);
+        _selectorFrame.SetResourceReference(BorderBrushProperty, ControlVisualConstants.BorderBrushResource);
         root.Children.Add(_selectorFrame);
         var welcome = new TabItem
         {
@@ -94,15 +92,13 @@ public sealed partial class EmulationSection
         _selectorToggle.Padding = new Thickness(0);
         _selectorToggle.Margin = new Thickness(4, 4, 0, 4);
         _selectorToggle.VerticalAlignment = VerticalAlignment.Top;
-        _selectorToggle.SetResourceReference(StyleProperty,
-            ControlVisualConstants.StatusIconButtonStyleResource);
+        _selectorToggle.SetResourceReference(StyleProperty, ControlVisualConstants.StatusIconButtonStyleResource);
         UpdateSelectorToggle();
     }
 
     private void ConfigureSelectorCollapsedText()
     {
-        _selectorCollapsedText.Text = LocExtension.Get(
-            ControlVisualConstants.ConfigurationSelectorResource);
+        _selectorCollapsedText.Text = LocExtension.Get(ControlVisualConstants.ConfigurationSelectorResource);
         _selectorCollapsedText.FontWeight = FontWeights.SemiBold;
         _selectorCollapsedText.VerticalAlignment = VerticalAlignment.Center;
         _selectorCollapsedText.Margin = new Thickness(0, 4, 8, 4);
@@ -157,8 +153,7 @@ public sealed partial class EmulationSection
     {
         var image = EmulationAssetFunctions.Load(module, module.BrandImageResourceName);
         if (image is null) return null;
-        var button = CreateSelectorButton(displayName, image,
-            ReferenceEquals(_selectedModule, module));
+        var button = CreateSelectorButton(displayName, image, ReferenceEquals(_selectedModule, module));
         button.Click += (_, _) => SelectModule(module);
         return button;
     }
@@ -168,8 +163,7 @@ public sealed partial class EmulationSection
     {
         var image = EmulationAssetFunctions.Load(module, definition.ImageResourceName);
         if (image is null) return null;
-        var button = CreateSelectorButton(displayName, image,
-            ReferenceEquals(_selectedModule, module) && _selectedMachineId == definition.Id);
+        var button = CreateSelectorButton(displayName, image, ReferenceEquals(_selectedModule, module) && _selectedMachineId == definition.Id);
         button.Click += (_, _) => SelectMachine(module, definition);
         button.MouseDoubleClick += (_, args) =>
         {
@@ -210,9 +204,7 @@ public sealed partial class EmulationSection
             ToolTip = displayName,
             BorderThickness = new Thickness(1)
         };
-        button.Background = selected
-            ? new SolidColorBrush(Color.FromArgb(64, 77, 118, 232))
-            : Brushes.Transparent;
+        button.Background = selected ? new SolidColorBrush(Color.FromArgb(64, 77, 118, 232)) : Brushes.Transparent;
         if (selected)
             button.BorderBrush = new SolidColorBrush(Color.FromRgb(77, 118, 232));
         else
@@ -261,8 +253,7 @@ public sealed partial class EmulationSection
             Padding = new Thickness(0),
             Margin = new Thickness(0)
         };
-        button.SetResourceReference(StyleProperty,
-            ControlVisualConstants.StatusIconButtonStyleResource);
+        button.SetResourceReference(StyleProperty, ControlVisualConstants.StatusIconButtonStyleResource);
         button.Click += async (_, eventArgs) =>
         {
             eventArgs.Handled = true;
@@ -274,11 +265,9 @@ public sealed partial class EmulationSection
 
     private static string MachineTitle(EmulationConfigurationListItem selected)
     {
-        var machine = selected.Module.Machines.First(item =>
-            item.Id == selected.Configuration.MachineId);
+        var machine = selected.Module.Machines.First(item => item.Id == selected.Configuration.MachineId);
         return LocExtension.GetForModule(selected.Module, machine.DisplayResourceKey);
     }
 
-    private static string RuntimeDisplayName(EmulationMachineRuntime runtime) =>
-        LocExtension.GetForModule(runtime.Configuration.ModuleId, runtime.DisplayResourceKey);
+    private static string RuntimeDisplayName(EmulationMachineRuntime runtime) => LocExtension.GetForModule(runtime.Configuration.ModuleId, runtime.DisplayResourceKey);
 }

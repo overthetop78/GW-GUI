@@ -35,8 +35,7 @@ internal static partial class ControllerArtworkCatalog
 
 
     private static readonly Dictionary<ControllerVisualModel, ImageSource> ModelCache = [];
-    private static readonly Dictionary<string, ControllerArtworkProfile> ProfileCache =
-        new(StringComparer.Ordinal);
+    private static readonly Dictionary<string, ControllerArtworkProfile> ProfileCache = new(StringComparer.Ordinal);
 
     internal static bool TryGet(ControllerVisualModel model, out ImageSource artwork)
     {

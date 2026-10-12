@@ -13,9 +13,7 @@ internal static class VideoSharpnessParameterFunctions
         {
             var average = NeighborhoodAverage(source, width, height, x, y, channel);
             var index = (y * width + x) * 3 + channel;
-            colors[index] = Math.Clamp(setting > 0
-                ? source[index] + (source[index] - average) * strength
-                : source[index] + (average - source[index]) * strength, 0f, 1f);
+            colors[index] = Math.Clamp(setting > 0 ? source[index] + (source[index] - average) * strength : source[index] + (average - source[index]) * strength, 0f, 1f);
         }
     }
 

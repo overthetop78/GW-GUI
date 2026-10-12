@@ -45,8 +45,7 @@ internal static class FilterPlasmaTemporalDithering
             {
                 var original = colors[index + channel];
                 var quantized = MathF.Floor(original * levels + threshold) / levels;
-                colors[index + channel] = Math.Clamp(
-                    original + (quantized - original) * intensity, 0f, 1f);
+                colors[index + channel] = Math.Clamp(original + (quantized - original) * intensity, 0f, 1f);
             }
         }
     }

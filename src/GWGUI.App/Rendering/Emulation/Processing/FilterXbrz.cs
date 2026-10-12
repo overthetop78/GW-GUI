@@ -18,8 +18,7 @@ internal static class FilterXbrz
         EvaluateCorner(-1, -1, 2f - fractionX - fractionY);
         EvaluateCorner(-1, 1, 1f - fractionX + fractionY);
         for (var channel = 0; channel < 3; channel++)
-            result[channel] = SoftwareEmulationVideoProcessingPipeline.SrgbToLinear(
-                Lerp(center[channel], candidate[channel], bestBlend));
+            result[channel] = SoftwareEmulationVideoProcessingPipeline.SrgbToLinear(Lerp(center[channel], candidate[channel], bestBlend));
 
         void EvaluateCorner(int directionX, int directionY, float toward)
         {
@@ -33,25 +32,17 @@ internal static class FilterXbrz
             var centerHorizontal = ColorDistance(center, horizontal);
             var centerVertical = ColorDistance(center, vertical);
             if (centerHorizontal <= 0.01f || centerVertical <= 0.01f) return;
-            var edge = ColorDistance(center, outerHorizontal)
-                + ColorDistance(center, outerVertical)
-                + ColorDistance(vertical, diagonal)
-                + ColorDistance(horizontal, diagonal)
-                + 4f * ColorDistance(vertical, horizontal);
-            var alternative = ColorDistance(vertical, oppositeHorizontal)
-                + ColorDistance(horizontal, oppositeVertical)
-                + 4f * ColorDistance(center, diagonal);
+            var edge = ColorDistance(center, outerHorizontal) + ColorDistance(center, outerVertical) + ColorDistance(vertical, diagonal) + ColorDistance(horizontal, diagonal) + 4f * ColorDistance(vertical, horizontal);
+            var alternative = ColorDistance(vertical, oppositeHorizontal) + ColorDistance(horizontal, oppositeVertical) + 4f * ColorDistance(center, diagonal);
             if (edge >= alternative) return;
             var strong = edge * 1.5f < alternative;
-            var blend = strong ? SmoothStep(0.9f, 1.7f, toward)
-                : SmoothStep(1.2f, 1.9f, toward);
+            var blend = strong ? SmoothStep(0.9f, 1.7f, toward) : SmoothStep(1.2f, 1.9f, toward);
             if (blend <= bestBlend) return;
             bestBlend = blend;
             candidate = centerHorizontal <= centerVertical ? horizontal : vertical;
         }
 
-        FilterColor At(int offsetX, int offsetY) => Read(source, width, height,
-            centerX + offsetX, centerY + offsetY);
+        FilterColor At(int offsetX, int offsetY) => Read(source, width, height, centerX + offsetX, centerY + offsetY);
     }
 
     private static FilterColor Read(float[] source, int width, int height, int x, int y)
@@ -83,8 +74,7 @@ internal static class FilterXbrz
         return amount * amount * (3f - 2f * amount);
     }
 
-    private static float Lerp(float start, float end, float amount) =>
-        start + (end - start) * amount;
+    private static float Lerp(float start, float end, float amount) => start + (end - start) * amount;
 
     internal const string OpenGlShader = """
         float advancedColorDistance(vec3 first, vec3 second)

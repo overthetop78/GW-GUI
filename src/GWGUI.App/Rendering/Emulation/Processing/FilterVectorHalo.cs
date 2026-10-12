@@ -36,6 +36,5 @@ internal static class FilterVectorHalo
         }
     }
 
-    private static float Sample(float[] values, int width, int height, int x, int y) =>
-        values[Math.Clamp(y, 0, height - 1) * width + Math.Clamp(x, 0, width - 1)];
+    private static float Sample(float[] values, int width, int height, int x, int y) => values[Math.Clamp(y, 0, height - 1) * width + Math.Clamp(x, 0, width - 1)];
 }

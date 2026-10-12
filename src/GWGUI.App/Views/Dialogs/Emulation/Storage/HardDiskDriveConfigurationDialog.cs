@@ -73,8 +73,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         var address = new TextBox { Text = identifier, IsReadOnly = true };
         var interfaceChoice = new TextBlock();
         _imageFormat.ItemsSource = formats;
-        _imageFormat.SelectedItem = formats.FirstOrDefault(format => string.Equals(format.Extension,
-            Path.GetExtension(currentPath), StringComparison.OrdinalIgnoreCase)) ?? formats[0];
+        _imageFormat.SelectedItem = formats.FirstOrDefault(format => string.Equals(format.Extension, Path.GetExtension(currentPath), StringComparison.OrdinalIgnoreCase)) ?? formats[0];
         _newName.Text = defaultImageFileName ?? $"{identifier.TrimEnd(':')}{SelectedFormat.Extension}";
         interfaceChoice.Text = SelectedFormat.InterfaceName;
         _imageFormat.SelectionChanged += (_, _) =>
@@ -83,23 +82,17 @@ public sealed class HardDiskDriveConfigurationDialog : Window
             _newName.Text = Path.ChangeExtension(_newName.Text, SelectedFormat.Extension);
             SetSizeChoices();
         };
-        var secondFieldKey = _presentation?.ModelFieldResourceKey
-            ?? "Emulation.Storage.Device.Interface";
+        var secondFieldKey = _presentation?.ModelFieldResourceKey ?? "Emulation.Storage.Device.Interface";
         var reader = StorageDialogUi.SideBySide(
             StorageDialogUi.IconCard(_fixedImageSizeBytes is null ? IconGlyphs.HardDisk : IconGlyphs.Memory,
-                LocExtension.Get(
-                _presentation?.DeviceNameResourceKey ?? "Emulation.Device.Name"),
-                StorageDialogUi.CompactFields((LocExtension.Get(
-                    _presentation?.DeviceIdentifierResourceKey ?? "Emulation.Device.Name.Id"), address))),
-            StorageDialogUi.IconCard(IconGlyphs.Connection, LocExtension.Get(secondFieldKey),
-                StorageDialogUi.CompactFields((LocExtension.Get(secondFieldKey), interfaceChoice))));
+                LocExtension.Get(_presentation?.DeviceNameResourceKey ?? "Emulation.Device.Name"),
+                StorageDialogUi.CompactFields((LocExtension.Get(_presentation?.DeviceIdentifierResourceKey ?? "Emulation.Device.Name.Id"), address))),
+            StorageDialogUi.IconCard(IconGlyphs.Connection, LocExtension.Get(secondFieldKey), StorageDialogUi.CompactFields((LocExtension.Get(secondFieldKey), interfaceChoice))));
 
         _existingPath.Text = currentPath ?? string.Empty;
         var existing = new StackPanel { Margin = new Thickness(8) };
-        existing.Children.Add(StorageDialogUi.PathField(LocExtension.Get(
-            _presentation?.ImageResourceKey ?? "Emulation.Storage.Disk.Image"), _existingPath, BrowseExisting));
-        existing.Children.Add(StorageDialogUi.Info(LocExtension.Get(
-            _presentation?.ExistingHintResourceKey ?? "Emulation.Storage.Disk.ExistingHint")));
+        existing.Children.Add(StorageDialogUi.PathField(LocExtension.Get(_presentation?.ImageResourceKey ?? "Emulation.Storage.Disk.Image"), _existingPath, BrowseExisting));
+        existing.Children.Add(StorageDialogUi.Info(LocExtension.Get(_presentation?.ExistingHintResourceKey ?? "Emulation.Storage.Disk.ExistingHint")));
         if (_deleteImage is not null)
         {
             var delete = new Button { Content = LocExtension.Get("Emulation.Hdd.Delete"), HorizontalAlignment = HorizontalAlignment.Left };
@@ -166,19 +159,14 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         if (_fixedImageSizeBytes is null)
         {
             destinationAndAllocation.Children.Add(_preallocate);
-            destinationAndAllocation.Children.Add(StorageDialogUi.Info(
-                LocExtension.Get("Emulation.Storage.File.PreallocationHint")));
+            destinationAndAllocation.Children.Add(StorageDialogUi.Info(LocExtension.Get("Emulation.Storage.File.PreallocationHint")));
             destinationAndAllocation.Children.Add(_limits);
             destinationAndAllocation.Children.Add(StorageDialogUi.Info(LocExtension.Get("Emulation.Hdd.PreparationHint")));
         }
-        else destinationAndAllocation.Children.Add(StorageDialogUi.Info(
-            StorageSizeFormatter.FormatCapacity(_fixedImageSizeBytes.Value)));
+        else destinationAndAllocation.Children.Add(StorageDialogUi.Info(StorageSizeFormatter.FormatCapacity(_fixedImageSizeBytes.Value)));
         var createTop = StorageDialogUi.SideBySide(
-            StorageDialogUi.IconCard(IconGlyphs.File, LocExtension.Get(
-                _presentation?.ImageResourceKey ?? "Emulation.Storage.Disk.Image"), image),
-            StorageDialogUi.IconCard(IconGlyphs.OpenFolder, LocExtension.Get(
-                _presentation?.DestinationFolderResourceKey ?? "Emulation.Storage.File.DestinationFolder"),
-                destinationAndAllocation));
+            StorageDialogUi.IconCard(IconGlyphs.File, LocExtension.Get(_presentation?.ImageResourceKey ?? "Emulation.Storage.Disk.Image"), image),
+            StorageDialogUi.IconCard(IconGlyphs.OpenFolder, LocExtension.Get(_presentation?.DestinationFolderResourceKey ?? "Emulation.Storage.File.DestinationFolder"), destinationAndAllocation));
         var create = new StackPanel { Margin = new Thickness(4) };
         create.Children.Add(createTop);
 
@@ -205,16 +193,14 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         support.Children.Add(_supportMode);
         if (_fixedImageSizeBytes is null) support.Children.Add(advanced);
 
-        var footer = StorageDialogUi.Footer(this, LocExtension.Get(
-            _presentation?.UseActionResourceKey ?? "Emulation.Storage.Disk.Use"), Accept);
+        var footer = StorageDialogUi.Footer(this, LocExtension.Get(_presentation?.UseActionResourceKey ?? "Emulation.Storage.Disk.Use"), Accept);
         var remove = new Button { Content = LocExtension.Get("Emulation.Storage.Media.Remove"), HorizontalAlignment = HorizontalAlignment.Left };
         remove.Click += (_, _) => { SupportPath = null; DialogResult = true; };
         footer.Children.Insert(0, remove);
 
         var body = new StackPanel();
         body.Children.Add(reader);
-        body.Children.Add(StorageDialogUi.Card(LocExtension.Get(
-            _presentation?.AssociatedResourceKey ?? "Emulation.Storage.Media.Associated"), support));
+        body.Children.Add(StorageDialogUi.Card(LocExtension.Get(_presentation?.AssociatedResourceKey ?? "Emulation.Storage.Media.Associated"), support));
 
         var root = new Grid { Margin = new Thickness(18) };
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -254,8 +240,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         if (dialog.ShowDialog(this) == true)
         {
             _existingPath.Text = dialog.FileName;
-            _imageFormat.SelectedItem = _formats.First(format => string.Equals(format.Extension,
-                Path.GetExtension(dialog.FileName), StringComparison.OrdinalIgnoreCase));
+            _imageFormat.SelectedItem = _formats.First(format => string.Equals(format.Extension, Path.GetExtension(dialog.FileName), StringComparison.OrdinalIgnoreCase));
         }
     }
 
@@ -272,21 +257,16 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         {
             if (!File.Exists(_existingPath.Text))
             {
-                MessageBox.Show(this, LocExtension.Get(
-                    _presentation?.ImageRequiredResourceKey ?? "Emulation.Storage.Disk.ImageRequired"), Title,
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(this, LocExtension.Get(_presentation?.ImageRequiredResourceKey ?? "Emulation.Storage.Disk.ImageRequired"), Title, MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             SupportPath = Path.GetFullPath(_existingPath.Text);
-            var format = _formats.FirstOrDefault(candidate => string.Equals(candidate.Extension,
-                Path.GetExtension(SupportPath), StringComparison.OrdinalIgnoreCase));
-            if (format is null) { ShowError(LocExtension.Get(
-                _presentation?.InvalidFormatResourceKey ?? "Emulation.Hdd.InvalidFormat")); return; }
+            var format = _formats.FirstOrDefault(candidate => string.Equals(candidate.Extension, Path.GetExtension(SupportPath), StringComparison.OrdinalIgnoreCase));
+            if (format is null) { ShowError(LocExtension.Get(_presentation?.InvalidFormatResourceKey ?? "Emulation.Hdd.InvalidFormat")); return; }
             if (_fixedImageSizeBytes is { } existingFixedSize)
             {
                 if (new FileInfo(SupportPath).Length != existingFixedSize)
-                { ShowError(LocExtension.Get(
-                    _presentation?.InvalidSizeResourceKey ?? "Emulation.Storage.Disk.InvalidSize")); return; }
+                { ShowError(LocExtension.Get(_presentation?.InvalidSizeResourceKey ?? "Emulation.Storage.Disk.InvalidSize")); return; }
             }
             else HardDiskImageValidation.ValidateExisting(SupportPath, format);
             InterfaceId = format.InterfaceName;
@@ -298,8 +278,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         if (string.IsNullOrWhiteSpace(fileName)) fileName = _identifier.TrimEnd(':');
         if (string.IsNullOrEmpty(Path.GetExtension(fileName))) fileName += SelectedFormat.Extension;
         if (!string.Equals(Path.GetExtension(fileName), SelectedFormat.Extension, StringComparison.OrdinalIgnoreCase))
-        { ShowError(LocExtension.Get(
-            _presentation?.InvalidFormatResourceKey ?? "Emulation.Hdd.InvalidFormat")); return; }
+        { ShowError(LocExtension.Get(_presentation?.InvalidFormatResourceKey ?? "Emulation.Hdd.InvalidFormat")); return; }
         var folder = _imageDirectory;
         Directory.CreateDirectory(folder);
         var path = Path.Combine(folder, fileName);
@@ -309,8 +288,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
             var created = false;
             try
             {
-                using (var image = new FileStream(path, FileMode.CreateNew, FileAccess.Write,
-                    FileShare.None))
+                using (var image = new FileStream(path, FileMode.CreateNew, FileAccess.Write, FileShare.None))
                 {
                     created = true;
                     image.SetLength(fixedSize);
@@ -328,8 +306,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         }
         if (!TryGetByteSize(out var byteSize))
         {
-            MessageBox.Show(this, LocExtension.Get("Emulation.Storage.Disk.InvalidSize"), Title,
-                MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show(this, LocExtension.Get("Emulation.Storage.Disk.InvalidSize"), Title, MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
         if (!IsSupportedCapacity(byteSize, SelectedFormat))
@@ -344,8 +321,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
 
     private HardDiskImageFormat SelectedFormat => (HardDiskImageFormat)_imageFormat.SelectedItem;
 
-    private void ShowError(string message) => MessageBox.Show(this, message, Title,
-        MessageBoxButton.OK, MessageBoxImage.Warning);
+    private void ShowError(string message) => MessageBox.Show(this, message, Title, MessageBoxButton.OK, MessageBoxImage.Warning);
 
     private void SetSizeChoices()
     {
@@ -379,9 +355,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         {
             var heads = SelectedFormat.Geometry?.Heads ?? 1;
             var sectors = SelectedFormat.Geometry?.SectorsPerTrack ?? 32;
-            var bytesPerSector = SelectedFormat.LogicalSectorSizes.Contains(EmulationControlDefaults.HardDiskBytesPerSector)
-                ? EmulationControlDefaults.HardDiskBytesPerSector
-                : SelectedFormat.LogicalSectorSizes.Min();
+            var bytesPerSector = SelectedFormat.LogicalSectorSizes.Contains(EmulationControlDefaults.HardDiskBytesPerSector) ? EmulationControlDefaults.HardDiskBytesPerSector : SelectedFormat.LogicalSectorSizes.Min();
             _heads.Text = heads.ToString();
             _sectors.Text = sectors.ToString();
             _bytesPerSector.Text = bytesPerSector.ToString();
@@ -392,9 +366,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
 
     private void UpdateCapacity()
     {
-        _capacity.Text = TryGetByteSize(out var byteSize)
-            ? LocExtension.Get("Emulation.Storage.Geometry.CalculatedCapacity", StorageSizeFormatter.FormatCapacity(byteSize))
-            : LocExtension.Get("Emulation.Storage.Disk.InvalidSize");
+        _capacity.Text = TryGetByteSize(out var byteSize) ? LocExtension.Get("Emulation.Storage.Geometry.CalculatedCapacity", StorageSizeFormatter.FormatCapacity(byteSize)) : LocExtension.Get("Emulation.Storage.Disk.InvalidSize");
     }
 
     private bool TryGetByteSize(out long byteSize)
@@ -423,8 +395,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
             byteSize = preset * 1024L * 1024L;
             return true;
         }
-        if (double.TryParse(_customSize.Text, System.Globalization.NumberStyles.Float,
-                System.Globalization.CultureInfo.CurrentCulture, out var custom) && custom > 0)
+        if (double.TryParse(_customSize.Text, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.CurrentCulture, out var custom) && custom > 0)
         {
             var multiplier = _sizeUnit.SelectedIndex == 1 ? 1024d * 1024d * 1024d : 1024d * 1024d;
             if (custom <= long.MaxValue / multiplier)
@@ -437,10 +408,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         return false;
     }
 
-    private static bool IsSupportedCapacity(long byteSize, HardDiskImageFormat format) =>
-        byteSize >= format.MinimumBytes &&
-        byteSize <= format.MaximumBytes &&
-        format.LogicalSectorSizes.Any(sectorSize => byteSize % sectorSize == 0);
+    private static bool IsSupportedCapacity(long byteSize, HardDiskImageFormat format) => byteSize >= format.MinimumBytes && byteSize <= format.MaximumBytes && format.LogicalSectorSizes.Any(sectorSize => byteSize % sectorSize == 0);
 
 }
 

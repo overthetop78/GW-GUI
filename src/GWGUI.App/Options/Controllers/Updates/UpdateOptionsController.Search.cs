@@ -86,19 +86,12 @@ internal sealed partial class UpdateOptionsController : IDisposable
                 var isDownloaded = _pendingInstallations.Contains(module.Id);
                 var details = installedVersion is not null
                     ? _localize("Updates.InstalledVersion", [installedVersion])
-                    : isDownloaded
-                    ? _localize("Updates.ModuleDownloaded", [])
-                    : module.AvailableVersion is null
-                    ? _localize("Updates.Incompatible", [])
-                    : _localize("Updates.ModuleAvailableVersion", [module.AvailableVersion]);
+                    : isDownloaded ? _localize("Updates.ModuleDownloaded", []) : module.AvailableVersion is null ? _localize("Updates.Incompatible", []) : _localize("Updates.ModuleAvailableVersion", [module.AvailableVersion]);
                 AvailableModuleResults.Add(new(module.Id, module.DisplayName, module.CatalogUrl,
                     details, isInstalled, isDownloaded, module.CanInstall && !isDownloaded,
-                    isDownloaded ? _localize("Updates.ModuleDownloaded", [])
-                        : _localize("Updates.ModuleDirectoryInstalledBadge", [])));
+                    isDownloaded ? _localize("Updates.ModuleDownloaded", []) : _localize("Updates.ModuleDirectoryInstalledBadge", [])));
             }
-            _section.AvailableModuleStatus.Text = AvailableModuleResults.Count == 0
-                ? _localize("Updates.ModuleDirectoryEmpty", [])
-                : _localize("Updates.ModuleDirectoryResults", [AvailableModuleResults.Count]);
+            _section.AvailableModuleStatus.Text = AvailableModuleResults.Count == 0 ? _localize("Updates.ModuleDirectoryEmpty", []) : _localize("Updates.ModuleDirectoryResults", [AvailableModuleResults.Count]);
             _directoryState = UpdateVisualState.Current;
         }
         catch (Exception exception)
@@ -119,8 +112,7 @@ internal sealed partial class UpdateOptionsController : IDisposable
     private void VersionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (sender is not ComboBox { DataContext: UpdateComponentRow row }) return;
-        var selections = row.Kind == UpdateComponentKind.Application
-            ? _applicationSelections : _moduleSelections;
+        var selections = row.Kind == UpdateComponentKind.Application ? _applicationSelections : _moduleSelections;
         if (string.IsNullOrWhiteSpace(row.SelectedVersion)) selections.Remove(row.Id);
         else selections[row.Id] = row.SelectedVersion;
     }

@@ -12,8 +12,7 @@ internal static class VideoSaturationParameterFunctions
         var factor = 1f + setting / 10f;
         for (var index = 0; index < colors.Length; index += 3)
         {
-            var luminance = colors[index] * RedLuminance
-                + colors[index + 1] * GreenLuminance + colors[index + 2] * BlueLuminance;
+            var luminance = colors[index] * RedLuminance + colors[index + 1] * GreenLuminance + colors[index + 2] * BlueLuminance;
             colors[index] = Math.Clamp(luminance + (colors[index] - luminance) * factor, 0f, 1f);
             colors[index + 1] = Math.Clamp(luminance + (colors[index + 1] - luminance) * factor, 0f, 1f);
             colors[index + 2] = Math.Clamp(luminance + (colors[index + 2] - luminance) * factor, 0f, 1f);

@@ -51,8 +51,7 @@ internal static class FilterLedMatrixCellStructure
         var halo = new float[core.Length];
         var radius = .5f * (1f - Math.Clamp(cellGap, 0, 100) / 100f * .86f);
         var haloExtent = .04f + Math.Clamp(haloRadius, 0, 100) / 100f * .9f;
-        var edge = MathF.Max(sourceWidth / (float)outputWidth,
-            sourceHeight / (float)outputHeight) / pitch;
+        var edge = MathF.Max(sourceWidth / (float)outputWidth, sourceHeight / (float)outputHeight) / pitch;
         for (var y = 0; y < outputHeight; y++)
         for (var x = 0; x < outputWidth; x++)
         {
@@ -62,14 +61,11 @@ internal static class FilterLedMatrixCellStructure
             var cellY = Math.Min(rows - 1, (int)(sourceY / pitch));
             var localX = sourceX / pitch - MathF.Floor(sourceX / pitch) - .5f;
             var localY = sourceY / pitch - MathF.Floor(sourceY / pitch) - .5f;
-            var distance = shape == EmulationLedMatrixShape.Round
-                ? MathF.Sqrt(localX * localX + localY * localY)
-                : MathF.Max(MathF.Abs(localX), MathF.Abs(localY));
+            var distance = shape == EmulationLedMatrixShape.Round ? MathF.Sqrt(localX * localX + localY * localY) : MathF.Max(MathF.Abs(localX), MathF.Abs(localY));
             var pixelIndex = y * outputWidth + x;
             core[pixelIndex] = SmoothStep(radius + edge, radius - edge, distance);
             var outside = MathF.Max(0f, distance - radius);
-            halo[pixelIndex] = MathF.Exp(-outside * 4f / haloExtent)
-                * (1f - core[pixelIndex]);
+            halo[pixelIndex] = MathF.Exp(-outside * 4f / haloExtent) * (1f - core[pixelIndex]);
             var average = (cellY * columns + cellX) * 3;
             var pixel = pixelIndex * 3;
             emission[pixel] = averages[average];

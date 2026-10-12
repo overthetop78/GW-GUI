@@ -33,12 +33,8 @@ public static class MediaEngineParityCatalog
         var supported = MediaEngineConversionSupport.CanConvert(sourceExtension, format.Id, targetExtension);
         var fidelity = ConversionFidelity.ForConversion(sourceExtension, targetExtension);
         var passed = supported ? ParityValidationStatus.Passed : ParityValidationStatus.Pending;
-        var sectorParity = fidelity == ConversionFidelityLevel.PreservedFlux
-            ? ParityValidationStatus.NotApplicable
-            : passed;
-        var fluxParity = fidelity == ConversionFidelityLevel.PreservedFlux
-            ? passed
-            : ParityValidationStatus.NotApplicable;
+        var sectorParity = fidelity == ConversionFidelityLevel.PreservedFlux ? ParityValidationStatus.NotApplicable : passed;
+        var fluxParity = fidelity == ConversionFidelityLevel.PreservedFlux ? passed : ParityValidationStatus.NotApplicable;
 
         return new MediaParityRow(
             format.Id,
@@ -65,7 +61,5 @@ public static class MediaEngineParityCatalog
         _ => throw new ArgumentOutOfRangeException(nameof(fidelity), fidelity, null)
     };
 
-    private static string Normalize(string extension) => extension.StartsWith('.')
-        ? extension.ToLowerInvariant()
-        : "." + extension.ToLowerInvariant();
+    private static string Normalize(string extension) => extension.StartsWith('.') ? extension.ToLowerInvariant() : "." + extension.ToLowerInvariant();
 }

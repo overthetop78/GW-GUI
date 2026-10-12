@@ -83,8 +83,7 @@ public sealed partial class ControllerVisualizer
         ControllerArtworkProfile profile,
         Rect artworkBounds)
     {
-        var joystickZone = profile.Zones.FirstOrDefault(zone =>
-            zone.Shape == ControllerVisualZoneShape.JoystickDirection && HasVisualCommand(zone.Control));
+        var joystickZone = profile.Zones.FirstOrDefault(zone => zone.Shape == ControllerVisualZoneShape.JoystickDirection && HasVisualCommand(zone.Control));
         if (joystickZone is not null)
             DrawArtworkProfileJoystick(dc, ZoneBounds(artworkBounds, joystickZone));
 
@@ -100,11 +99,7 @@ public sealed partial class ControllerVisualizer
             switch (zone.Shape)
             {
                 case ControllerVisualZoneShape.Ellipse:
-                    DrawArtworkHalo(
-                        dc,
-                        new Point(bounds.X + bounds.Width / 2d, bounds.Y + bounds.Height / 2d),
-                        Math.Min(bounds.Width, bounds.Height) / 2d,
-                        active: true);
+                    DrawArtworkHalo(dc, new Point(bounds.X + bounds.Width / 2d, bounds.Y + bounds.Height / 2d), Math.Min(bounds.Width, bounds.Height) / 2d, active: true);
                     break;
                 case ControllerVisualZoneShape.DirectionalPad:
                     DrawArtworkDirection(dc, DirectionZoneBounds(bounds, zone.Control), active: true);
@@ -118,26 +113,19 @@ public sealed partial class ControllerVisualizer
 
     private void DrawArtworkProfileJoystick(DrawingContext dc, Rect bounds)
     {
-        var left = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionLeft),
-            HoveredVisualControl == EmulationControllerVisualControl.DirectionLeft ? 1f : 0f);
-        var right = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionRight),
-            HoveredVisualControl == EmulationControllerVisualControl.DirectionRight ? 1f : 0f);
-        var up = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionUp),
-            HoveredVisualControl == EmulationControllerVisualControl.DirectionUp ? 1f : 0f);
-        var down = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionDown),
-            HoveredVisualControl == EmulationControllerVisualControl.DirectionDown ? 1f : 0f);
+        var left = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionLeft), HoveredVisualControl == EmulationControllerVisualControl.DirectionLeft ? 1f : 0f);
+        var right = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionRight), HoveredVisualControl == EmulationControllerVisualControl.DirectionRight ? 1f : 0f);
+        var up = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionUp), HoveredVisualControl == EmulationControllerVisualControl.DirectionUp ? 1f : 0f);
+        var down = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionDown), HoveredVisualControl == EmulationControllerVisualControl.DirectionDown ? 1f : 0f);
         var x = Math.Clamp(right - left, -1f, 1f);
         var y = Math.Clamp(down - up, -1f, 1f);
         if (Math.Abs(x) <= .01f && Math.Abs(y) <= .01f) return;
 
         var size = Math.Min(bounds.Width, bounds.Height);
         var movement = size * .2d;
-        var center = new Point(
-            bounds.X + bounds.Width / 2d + x * movement,
-            bounds.Y + bounds.Height / 2d + y * movement);
+        var center = new Point(bounds.X + bounds.Width / 2d + x * movement, bounds.Y + bounds.Height / 2d + y * movement);
         var radius = Math.Max(6d, size * .2d);
-        dc.DrawEllipse(PressedFill(), new Pen(PressedStrong(), Math.Max(1.5d, size * .025d)),
-            center, radius, radius);
+        dc.DrawEllipse(PressedFill(), new Pen(PressedStrong(), Math.Max(1.5d, size * .025d)), center, radius, radius);
     }
 
     private float VisualZoneValue(EmulationControllerVisualControl control)
@@ -145,10 +133,7 @@ public sealed partial class ControllerVisualizer
         if (_visualCommandIds is null
             || !_visualCommandIds.TryGetValue(control, out var commandId))
             return 0f;
-        return Math.Clamp(
-            Math.Abs(_visualState?.EmulatedCommandValue(commandId) ?? 0f),
-            0f,
-            1f);
+        return Math.Clamp(Math.Abs(_visualState?.EmulatedCommandValue(commandId) ?? 0f), 0f, 1f);
     }
 
     private static Rect DirectionZoneBounds(
@@ -161,26 +146,10 @@ public sealed partial class ControllerVisualizer
         var verticalHeight = bounds.Height * .44d;
         return control switch
         {
-            EmulationControllerVisualControl.DirectionUp => new Rect(
-                bounds.X + (bounds.Width - verticalWidth) / 2d,
-                bounds.Y,
-                verticalWidth,
-                verticalHeight),
-            EmulationControllerVisualControl.DirectionDown => new Rect(
-                bounds.X + (bounds.Width - verticalWidth) / 2d,
-                bounds.Bottom - verticalHeight,
-                verticalWidth,
-                verticalHeight),
-            EmulationControllerVisualControl.DirectionLeft => new Rect(
-                bounds.X,
-                bounds.Y + (bounds.Height - horizontalHeight) / 2d,
-                horizontalWidth,
-                horizontalHeight),
-            EmulationControllerVisualControl.DirectionRight => new Rect(
-                bounds.Right - horizontalWidth,
-                bounds.Y + (bounds.Height - horizontalHeight) / 2d,
-                horizontalWidth,
-                horizontalHeight),
+            EmulationControllerVisualControl.DirectionUp => new Rect(bounds.X + (bounds.Width - verticalWidth) / 2d, bounds.Y, verticalWidth, verticalHeight),
+            EmulationControllerVisualControl.DirectionDown => new Rect(bounds.X + (bounds.Width - verticalWidth) / 2d, bounds.Bottom - verticalHeight, verticalWidth, verticalHeight),
+            EmulationControllerVisualControl.DirectionLeft => new Rect(bounds.X, bounds.Y + (bounds.Height - horizontalHeight) / 2d, horizontalWidth, horizontalHeight),
+            EmulationControllerVisualControl.DirectionRight => new Rect(bounds.Right - horizontalWidth, bounds.Y + (bounds.Height - horizontalHeight) / 2d, horizontalWidth, horizontalHeight),
             _ => bounds
         };
     }
@@ -206,10 +175,8 @@ public sealed partial class ControllerVisualizer
         return new Rect((620d - width) / 2d, (520d - height) / 2d, width, height);
     }
 
-    private static Point At(Rect bounds, double x, double y) =>
-        new(bounds.X + x * bounds.Width, bounds.Y + y * bounds.Height);
+    private static Point At(Rect bounds, double x, double y) => new(bounds.X + x * bounds.Width, bounds.Y + y * bounds.Height);
 
-    private static double Radius(Rect bounds, double normalized) =>
-        normalized * Math.Min(bounds.Width, bounds.Height);
+    private static double Radius(Rect bounds, double normalized) => normalized * Math.Min(bounds.Width, bounds.Height);
 
 }

@@ -20,6 +20,5 @@ public static class InputBindingSyntax
         return source.Length > 0;
     }
 
-    public static bool IsReservedShortcut(Key key, ModifierKeys modifiers) =>
-        KeyboardChordFunctions.IsWindowsReserved(new KeyboardChord(modifiers, [key]));
+    public static bool IsReservedShortcut(Key key, ModifierKeys modifiers) => KeyboardChordFunctions.IsWindowsReserved(new KeyboardChord(modifiers, [key]));
 }

@@ -45,21 +45,18 @@ public sealed class WpfWindowNavigationService : IWindowNavigationService
         _owner = owner;
         var commandRunner = runner ?? new GreaseweazleRunner();
         var commands = commandBuilder ?? new GwCommandBuilder();
-        _preferences = (settings, section) => new PreferencesWindow(settings,
-            new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), commandRunner, commands), hostTools, section);
+        _preferences = (settings, section) => new PreferencesWindow(settings, new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), commandRunner, commands), hostTools, section);
         _emulationPreferences = settings => new EmulationPreferencesWindow(settings);
         _emulationModuleOptions = (_, moduleId) =>
         {
-            var module = EmulationModuleRegistry.Modules.FirstOrDefault(candidate =>
-                string.Equals(candidate.Id, moduleId, StringComparison.OrdinalIgnoreCase))
+            var module = EmulationModuleRegistry.Modules.FirstOrDefault(candidate => string.Equals(candidate.Id, moduleId, StringComparison.OrdinalIgnoreCase))
                 ?? throw new InvalidOperationException($"Emulation module '{moduleId}' is not loaded.");
             return new EmulationModuleOptionsWindow(module);
         };
         _updates = () => new UpdatesWindow(pendingInstallations);
         _logs = directory => new LogHistoryWindow(directory);
         _about = () => new AboutWindow();
-        _tool = request => new GwToolWindow(request.Executable, request.Verb, request.Device, request.Drive,
-            commandRunner, commands, new ConsoleLogSession(request.LogsDirectory, () => request.Logging));
+        _tool = request => new GwToolWindow(request.Executable, request.Verb, request.Device, request.Drive, commandRunner, commands, new ConsoleLogSession(request.LogsDirectory, () => request.Logging));
         _show = (window, dialogOwner) =>
         {
             window.Owner = dialogOwner;
@@ -95,10 +92,8 @@ public sealed class WpfWindowNavigationService : IWindowNavigationService
         Show(_preferences(settings, section));
         return true;
     }
-    public void ShowEmulationPreferences(AppSettings settings) =>
-        Show(_emulationPreferences(settings));
-    public void ShowEmulationModuleOptions(AppSettings settings, string moduleId) =>
-        Show(_emulationModuleOptions(settings, moduleId));
+    public void ShowEmulationPreferences(AppSettings settings) => Show(_emulationPreferences(settings));
+    public void ShowEmulationModuleOptions(AppSettings settings, string moduleId) => Show(_emulationModuleOptions(settings, moduleId));
     public void ShowUpdates() => Show(_updates());
     public void ShowLogHistory(string logsDirectory) => Show(_logs(logsDirectory));
     public void ShowAbout() => Show(_about());

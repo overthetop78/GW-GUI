@@ -160,9 +160,7 @@ public partial class VisualizerTabSection : UserControl
     private void ConfigureInspectorSurfaces(MediaVisualizationDescriptor descriptor)
     {
         ClearInspectorModels();
-        Face0Inspector.SurfaceTitle = descriptor.RepresentationKind == MediaRepresentationKind.Sequential
-            ? LocExtension.Get("Explorer.Cassette")
-            : LocExtension.Get("Visual.Side", 0);
+        Face0Inspector.SurfaceTitle = descriptor.RepresentationKind == MediaRepresentationKind.Sequential ? LocExtension.Get("Explorer.Cassette") : LocExtension.Get("Visual.Side", 0);
         Face1Inspector.SurfaceTitle = LocExtension.Get("Visual.Side", 1);
         var hasFace0 = descriptor.Surfaces.Contains(0);
         var hasFace1 = descriptor.Surfaces.Contains(1);
@@ -194,8 +192,7 @@ public partial class VisualizerTabSection : UserControl
             view.SelectElement(surface, position);
     }
 
-    private void HandleViewElementSelected(int surface, long position) =>
-        TrackOverview.SelectElement(surface, position);
+    private void HandleViewElementSelected(int surface, long position) => TrackOverview.SelectElement(surface, position);
 
     private void LinkZoomChanged(object sender, RoutedEventArgs e)
     {

@@ -28,8 +28,7 @@ internal static class EmulationModuleManifestReader
         foreach (var property in document.RootElement.EnumerateObject())
             if (!names.Add(property.Name))
                 throw new InvalidDataException($"Duplicate manifest field '{property.Name}'.");
-        var manifest = document.RootElement.Deserialize<EmulationModuleManifest>(JsonOptions)
-            ?? throw new InvalidDataException("The emulation module manifest is empty.");
+        var manifest = document.RootElement.Deserialize<EmulationModuleManifest>(JsonOptions) ?? throw new InvalidDataException("The emulation module manifest is empty.");
         if (manifest.SchemaVersion != EmulationHostApi.ManifestSchemaVersion)
             throw new InvalidDataException($"Unsupported module manifest schema '{manifest.SchemaVersion}'.");
         ValidateFileName(manifest.Id, "id");

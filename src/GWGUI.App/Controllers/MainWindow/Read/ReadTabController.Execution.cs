@@ -76,17 +76,9 @@ internal sealed partial class ReadTabController
                 if (advanced.AutoNumberCheckBox.IsChecked != true) advanced.AutoNumberCheckBox.IsChecked = true;
                 var sequenceKind = advanced.SequenceKindComboBox.SelectedIndex == 1 ? SequenceKind.Alphabetic : SequenceKind.Numeric;
                 if (!SequenceFormatter.TryParse(advanced.SequenceValueTextBox.Text, sequenceKind, out var next)) next = sequenceKind == SequenceKind.Alphabetic ? 0 : 1;
-                var available = OutputConflictResolver.FindNextAvailableWithValue(
-                    view.FolderBlock.Input.Text,
-                    fileName.Text.Trim(),
-                    extension,
-                    sequenceKind,
-                    advanced.SequenceWidthComboBox.SelectedIndex + 1,
-                    next, exists);
+                var available = OutputConflictResolver.FindNextAvailableWithValue(view.FolderBlock.Input.Text, fileName.Text.Trim(), extension, sequenceKind, advanced.SequenceWidthComboBox.SelectedIndex + 1, next, exists);
                 target = available.Path;
-                viewModel.Read.SequenceValue = sequenceKind == SequenceKind.Numeric
-                    ? available.Value.ToString()
-                    : SequenceFormatter.Format(available.Value, sequenceKind, 1);
+                viewModel.Read.SequenceValue = sequenceKind == SequenceKind.Numeric ? available.Value.ToString() : SequenceFormatter.Format(available.Value, sequenceKind, 1);
             }
         }
 
@@ -139,9 +131,7 @@ internal sealed partial class ReadTabController
             if (result.IsSuccess)
             {
                 diskImageWorkspace.LastCapturedPath = target;
-                var summary = extension.Equals(ReadTabConstants.ScpExtension, StringComparison.OrdinalIgnoreCase)
-                    ? await AppendScpCaptureSummaryAsync(target)
-                    : string.Empty;
+                var summary = extension.Equals(ReadTabConstants.ScpExtension, StringComparison.OrdinalIgnoreCase) ? await AppendScpCaptureSummaryAsync(target) : string.Empty;
                 view.CompletionBlock.CompleteCapture(target, summary);
             }
             if (result.IsSuccess) viewModel.Read.TryAdvanceSequence();
@@ -178,9 +168,7 @@ internal sealed partial class ReadTabController
         {
             diskImageWorkspace.RememberReadImage(capture.Document);
             diskImageWorkspace.LastCapturedPath = target;
-            var summary = Path.GetExtension(target).Equals(ReadTabConstants.ScpExtension, StringComparison.OrdinalIgnoreCase)
-                ? await AppendScpCaptureSummaryAsync(target)
-                : string.Empty;
+            var summary = Path.GetExtension(target).Equals(ReadTabConstants.ScpExtension, StringComparison.OrdinalIgnoreCase) ? await AppendScpCaptureSummaryAsync(target) : string.Empty;
             view.CompletionBlock.CompleteCapture(target, summary);
             viewModel.Read.TryAdvanceSequence();
         }
@@ -195,9 +183,7 @@ internal sealed partial class ReadTabController
     private void ReportInternalProgress(PhysicalDiskReadOperationProgress readProgress)
     {
         progress.Accept(readProgress);
-        var line = readProgress.Cylinder is int cylinder && readProgress.Head is int head
-            ? LocExtension.Get("Status.TrackProgress", cylinder, head, readProgress.CompletedTracks, readProgress.TotalTracks)
-            : LocExtension.Get("Status.Running");
+        var line = readProgress.Cylinder is int cylinder && readProgress.Head is int head ? LocExtension.Get("Status.TrackProgress", cylinder, head, readProgress.CompletedTracks, readProgress.TotalTracks) : LocExtension.Get("Status.Running");
         if (string.Equals(line, lastInternalReadProgressLine, StringComparison.Ordinal)) return;
         lastInternalReadProgressLine = line;
         operation.AppendText(line + Environment.NewLine);

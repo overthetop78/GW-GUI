@@ -121,17 +121,12 @@ public static class MediaParityComparisonService
         return true;
     }
 
-    private static bool SequenceEqual(IReadOnlyList<byte>? first, IReadOnlyList<byte>? second) =>
-        first is null ? second is null : second is not null && first.SequenceEqual(second);
+    private static bool SequenceEqual(IReadOnlyList<byte>? first, IReadOnlyList<byte>? second) => first is null ? second is null : second is not null && first.SequenceEqual(second);
 
     private static string Geometry(SectorImage image) =>
         $"{image.Cylinders}x{image.Heads}x{image.SectorsPerTrack}x{image.BlockSize}";
 
-    private static ParityValidationStatus Status(bool passed) => passed
-        ? ParityValidationStatus.Passed
-        : ParityValidationStatus.Failed;
+    private static ParityValidationStatus Status(bool passed) => passed ? ParityValidationStatus.Passed : ParityValidationStatus.Failed;
 
-    private static string Normalize(string extension) => extension.StartsWith('.')
-        ? extension.ToLowerInvariant()
-        : "." + extension.ToLowerInvariant();
+    private static string Normalize(string extension) => extension.StartsWith('.') ? extension.ToLowerInvariant() : "." + extension.ToLowerInvariant();
 }

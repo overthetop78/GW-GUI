@@ -11,10 +11,7 @@ public sealed class OperationProfileCollection
         Reset([]);
     }
 
-    public IProfileStore<OperationProfile> For(OperationKind operation) =>
-        _stores.TryGetValue(operation, out var store)
-            ? store
-            : throw new ArgumentOutOfRangeException(nameof(operation));
+    public IProfileStore<OperationProfile> For(OperationKind operation) => _stores.TryGetValue(operation, out var store) ? store : throw new ArgumentOutOfRangeException(nameof(operation));
 
     public IReadOnlyList<OperationProfile> Localized(OperationKind operation, Func<string, string> localizeDefault) =>
         For(operation).GetAll()
@@ -28,9 +25,7 @@ public sealed class OperationProfileCollection
             _stores[operation] = new InMemoryProfileStore(operation, profiles.Where(profile => profile.Operation == operation));
     }
 
-    public List<ProfileSettings> Capture() => Enum.GetValues<OperationKind>()
-        .SelectMany(operation => For(operation).GetAll())
-        .Where(profile => !profile.IsSystem)
+    public List<ProfileSettings> Capture() => Enum.GetValues<OperationKind>().SelectMany(operation => For(operation).GetAll()).Where(profile => !profile.IsSystem)
         .Select(profile => new ProfileSettings
         {
             Id = profile.Id,
@@ -41,10 +36,5 @@ public sealed class OperationProfileCollection
         })
         .ToList();
 
-    private static OperationProfile ToProfile(ProfileSettings value) => new(
-        value.Id,
-        Enum.TryParse<OperationKind>(value.Operation, out var operation) ? operation : OperationKind.Read,
-        value.Name,
-        value.Values,
-        value.EnabledOptions);
+    private static OperationProfile ToProfile(ProfileSettings value) => new(value.Id, Enum.TryParse<OperationKind>(value.Operation, out var operation) ? operation : OperationKind.Read, value.Name, value.Values, value.EnabledOptions);
 }

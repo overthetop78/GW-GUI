@@ -20,8 +20,7 @@ public sealed partial class EmulationSection
             {
                 if (tab.Content is MachineController view)
                 {
-                    var profile = GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(
-                        args.Configuration.ModuleId, args.Configuration.Id);
+                    var profile = GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(args.Configuration.ModuleId, args.Configuration.Id);
                     view.ApplyVideoConfiguration(profile.Renderer, profile.Processing!);
                     var module = _modules.First(item => item.Id == args.Configuration.ModuleId);
                     await view.ApplyRuntimeOptionsAsync(module.RuntimeOptions(args.Configuration));
@@ -36,8 +35,7 @@ public sealed partial class EmulationSection
             {
                 if (tab.Content is MachineController view)
                 {
-                    var profile = GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(
-                        args.Configuration.ModuleId, args.Configuration.Id);
+                    var profile = GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(args.Configuration.ModuleId, args.Configuration.Id);
                     view.ApplyVideoConfiguration(profile.Renderer, profile.Processing!);
                     var module = _modules.First(item => item.Id == args.Configuration.ModuleId);
                     await view.ApplyConfigurationAsync(args.Configuration);
@@ -53,8 +51,7 @@ public sealed partial class EmulationSection
         {
             foreach (var configuration in await module.LoadConfigurationsAsync())
             {
-                items.Add(new EmulationConfigurationListItem(module, configuration,
-                    EmulationConfigurationPresenter.DisplayName(module, configuration)));
+                items.Add(new EmulationConfigurationListItem(module, configuration, EmulationConfigurationPresenter.DisplayName(module, configuration)));
             }
         }
         _configurations = items;
@@ -67,8 +64,7 @@ public sealed partial class EmulationSection
         }
         if (_selectedModule is not null && _selectedMachineId is not null)
         {
-            var matching = items.Where(item => item.Module.Id == _selectedModule.Id
-                && item.Configuration.MachineId == _selectedMachineId).ToArray();
+            var matching = items.Where(item => item.Module.Id == _selectedModule.Id && item.Configuration.MachineId == _selectedMachineId).ToArray();
             if (matching.Length == 0)
             {
                 _selectedMachineId = null;
@@ -119,8 +115,7 @@ public sealed partial class EmulationSection
             return;
         }
 
-        var sameSelection = ReferenceEquals(_selectedModule, module)
-            && _selectedMachineId == definition.Id;
+        var sameSelection = ReferenceEquals(_selectedModule, module) && _selectedMachineId == definition.Id;
         if (sameSelection)
         {
             _selectedMachineId = null;
@@ -137,16 +132,11 @@ public sealed partial class EmulationSection
 
     private EmulationConfigurationListItem? FindConfiguration(string moduleId, string machineId)
     {
-        var configurations = _configurations.Where(item => item.Module.Id == moduleId
-            && item.Configuration.MachineId == machineId).ToArray();
-        return configurations.FirstOrDefault(item => item.Configuration.Id == _selectedConfigurationId)
-            ?? configurations.FirstOrDefault();
+        var configurations = _configurations.Where(item => item.Module.Id == moduleId && item.Configuration.MachineId == machineId).ToArray();
+        return configurations.FirstOrDefault(item => item.Configuration.Id == _selectedConfigurationId) ?? configurations.FirstOrDefault();
     }
 
-    private EmulationConfigurationListItem? FindSelectedConfiguration() =>
-        _selectedModule is not null && _selectedMachineId is not null
-            ? FindConfiguration(_selectedModule.Id, _selectedMachineId)
-            : null;
+    private EmulationConfigurationListItem? FindSelectedConfiguration() => _selectedModule is not null && _selectedMachineId is not null ? FindConfiguration(_selectedModule.Id, _selectedMachineId) : null;
 
     private void RefreshSelector()
     {
@@ -156,28 +146,19 @@ public sealed partial class EmulationSection
         {
             _brandPanel.Children.Clear();
             _machinePanel.Children.Clear();
-            var configuredModules = _modules.Where(module => _configurations.Any(item =>
-                item.Module.Id == module.Id)).ToArray();
+            var configuredModules = _modules.Where(module => _configurations.Any(item => item.Module.Id == module.Id)).ToArray();
             foreach (var module in configuredModules)
             {
-                if (CreateBrandButton(module,
-                    LocExtension.GetForModule(module, module.DisplayResourceKey)) is { } button)
+                if (CreateBrandButton(module, LocExtension.GetForModule(module, module.DisplayResourceKey)) is { } button)
                     _brandPanel.Children.Add(button);
             }
-            _machinePanel.Visibility = _selectedModule is null
-                ? Visibility.Collapsed : Visibility.Visible;
+            _machinePanel.Visibility = _selectedModule is null ? Visibility.Collapsed : Visibility.Visible;
             if (_selectedModule is not null)
             {
-                var machineIds = _configurations.Where(item =>
-                    item.Module.Id == _selectedModule.Id)
-                    .Select(item => item.Configuration.MachineId)
-                    .Distinct(StringComparer.Ordinal)
-                    .ToHashSet(StringComparer.Ordinal);
-                foreach (var definition in _selectedModule.Machines.Where(item =>
-                    machineIds.Contains(item.Id)))
+                var machineIds = _configurations.Where(item => item.Module.Id == _selectedModule.Id).Select(item => item.Configuration.MachineId).Distinct(StringComparer.Ordinal).ToHashSet(StringComparer.Ordinal);
+                foreach (var definition in _selectedModule.Machines.Where(item => machineIds.Contains(item.Id)))
                 {
-                    if (CreateMachineButton(_selectedModule, definition,
-                        LocExtension.GetForModule(_selectedModule, definition.DisplayResourceKey))
+                    if (CreateMachineButton(_selectedModule, definition, LocExtension.GetForModule(_selectedModule, definition.DisplayResourceKey))
                         is { } button)
                         _machinePanel.Children.Add(button);
                 }
@@ -193,10 +174,8 @@ public sealed partial class EmulationSection
     private void RefreshOpenButtonVisibility()
     {
         var selected = FindSelectedConfiguration();
-        var isOpen = selected is not null && _openMachines.ContainsKey(
-            (selected.Module.Id, selected.Configuration.Id));
-        _open.Visibility = _selectorExpanded && selected is not null && !isOpen
-            ? Visibility.Visible : Visibility.Collapsed;
+        var isOpen = selected is not null && _openMachines.ContainsKey((selected.Module.Id, selected.Configuration.Id));
+        _open.Visibility = _selectorExpanded && selected is not null && !isOpen ? Visibility.Visible : Visibility.Collapsed;
         _open.IsEnabled = selected is not null && !isOpen;
     }
 
@@ -204,8 +183,7 @@ public sealed partial class EmulationSection
     {
         if (_selectorRendering
             || _machines.SelectedItem is not TabItem { Tag: EmulationMachineRuntime runtime }) return;
-        var module = _modules.FirstOrDefault(item =>
-            item.Id == runtime.Configuration.ModuleId);
+        var module = _modules.FirstOrDefault(item => item.Id == runtime.Configuration.ModuleId);
         if (module is null) return;
         _selectedModule = module;
         _selectedMachineId = runtime.Configuration.MachineId;
@@ -230,8 +208,7 @@ public sealed partial class EmulationSection
         }
         catch (Exception error)
         {
-            ControlErrorPresenter.ShowEmulation(this, error,
-                ControlErrorContexts.EmulationConfigurationOpening, selected.DisplayName);
+            ControlErrorPresenter.ShowEmulation(this, error, ControlErrorContexts.EmulationConfigurationOpening, selected.DisplayName);
         }
         finally
         {

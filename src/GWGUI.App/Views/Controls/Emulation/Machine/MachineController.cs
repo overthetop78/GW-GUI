@@ -54,19 +54,15 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         _mediaDevices = options.MediaDevices;
         _prepareMediaAsync = options.PrepareMediaAsync;
         _audioMuted = options.Machine.Audio.IsMuted;
-        _session = new MachineSession(options.ModuleId, options.ConfigurationId, options.WindowTitle,
-            options.Machine, options.MachineFactory, options.MountedMedia);
+        _session = new MachineSession(options.ModuleId, options.ConfigurationId, options.WindowTitle, options.Machine, options.MachineFactory, options.MountedMedia);
         _quickStates = new MachineQuickStates(() => _session.Machine.SavedStates, options.QuickStatePath);
-        _video = new MachineVideoPresenter(_view, options.Machine, options.VideoRenderer,
-            options.VideoProcessing);
+        _video = new MachineVideoPresenter(_view, options.Machine, options.VideoRenderer, options.VideoProcessing);
         _video.FramePresented += FramePresented;
         _video.ShaderLoadingChanged += VideoShaderLoadingChanged;
         VideoShaderLoadingChanged(_video.IsShaderLoading);
         _session.MachineChanged += MachineChanged;
-        _input = new MachineInputController(_view, _video.InputView, _video.InputHandle,
-            () => _session.Machine, options.GlobalShortcuts, ExecuteShortcutAsync, options.IsActive);
-        _commands = new MachineCommandBar(_view.Toolbar, CreateActions(), options.GlobalShortcuts,
-            options.ShowError, _input.RestoreFocus);
+        _input = new MachineInputController(_view, _video.InputView, _video.InputHandle, () => _session.Machine, options.GlobalShortcuts, ExecuteShortcutAsync, options.IsActive);
+        _commands = new MachineCommandBar(_view.Toolbar, CreateActions(), options.GlobalShortcuts, options.ShowError, _input.RestoreFocus);
         _commands.SetSavedStateAvailability(_quickStates.IsSupported, _quickStates.IsAvailable);
         _video.SurfaceChanged += VideoSurfaceChanged;
         _commands.RendererStatus.Text = MachinePresentationFunctions.RendererName(_video.Renderer);
@@ -117,8 +113,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     {
         if (_disposed || _session.Machine.State is not EmulationMachineState.Running
             and not EmulationMachineState.Paused) return;
-        foreach (var option in EmulationRuntimeOptionFunctions.HotChanges(
-                     options, _session.Machine.Runtime.AvailableOptions))
+        foreach (var option in EmulationRuntimeOptionFunctions.HotChanges(options, _session.Machine.Runtime.AvailableOptions))
             await _session.Machine.Runtime.SetOptionAsync(option.Key, option.Value);
     }
 
@@ -137,8 +132,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     private void VideoShaderLoadingChanged(bool isLoading)
     {
         _view.SetShaderLoading(isLoading);
-        EmulationVideoShaderLoadingStatus.Set(
-            _options.ModuleId, _options.ConfigurationId, isLoading);
+        EmulationVideoShaderLoadingStatus.Set(_options.ModuleId, _options.ConfigurationId, isLoading);
     }
 
     private MachineCommandActions CreateActions() => new(
@@ -151,16 +145,14 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         CaptureScreenAsync,
         ToggleFullscreenAsync,
         ToggleAudioAsync,
-        _options.SwitchControllerPointer ?? (_session.Machine.Input.SupportsControllerPointerSwitch
-            ? SwitchControllerPointerAsync : null),
+        _options.SwitchControllerPointer ?? (_session.Machine.Input.SupportsControllerPointerSwitch ? SwitchControllerPointerAsync : null),
         _session.Machine.Runtime.AvailableOptions.Count > 0 ? OpenCoreOptionsAsync : null);
 
     private async Task OpenCoreOptionsAsync()
     {
         var runtime = _session.Machine.Runtime;
         if (runtime.AvailableOptions.Count == 0) return;
-        var dialog = new CoreOptionsDialog(runtime.EmulatorName, runtime.EmulatorVersion,
-            runtime.AvailableOptions, _options.ModuleId);
+        var dialog = new CoreOptionsDialog(runtime.EmulatorName, runtime.EmulatorVersion, runtime.AvailableOptions, _options.ModuleId);
         try
         {
             if (dialog.ShowDialog() != true) return;
@@ -195,11 +187,8 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
 
     private Task HardResetAsync()
     {
-        var requiresRecreation = _mediaDevices.Any(device => device.RequiresMachineRecreation
-            && _session.MountedMedia.Any(media => media.Slot == device.Slot));
-        return requiresRecreation
-            ? _session.RecreateRunningMachineAsync()
-            : _session.Machine.Lifecycle.HardResetAsync().AsTask();
+        var requiresRecreation = _mediaDevices.Any(device => device.RequiresMachineRecreation && _session.MountedMedia.Any(media => media.Slot == device.Slot));
+        return requiresRecreation ? _session.RecreateRunningMachineAsync() : _session.Machine.Lifecycle.HardResetAsync().AsTask();
     }
 
     private async Task TogglePauseAsync()
@@ -228,12 +217,10 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
 
     private async Task CaptureScreenAsync()
     {
-        var snapshot = await _video.CaptureSnapshotAsync()
-            ?? throw new InvalidOperationException(LocExtension.Get("Emulation.Shortcut.Unavailable"));
+        var snapshot = await _video.CaptureSnapshotAsync() ?? throw new InvalidOperationException(LocExtension.Get("Emulation.Shortcut.Unavailable"));
         var capture = snapshot.Clone();
         capture.Freeze();
-        var path = await Task.Run(() => MachineCaptureFunctions.Save(
-            capture, _options.CaptureFolder, DateTime.Now));
+        var path = await Task.Run(() => MachineCaptureFunctions.Save(capture, _options.CaptureFolder, DateTime.Now));
         _commands.Status.Text = Path.GetFileName(path);
     }
 
@@ -311,8 +298,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         {
             var canOpenMedia = device.IsRemovable && device.MediaType != EmulationMediaType.MemoryCard;
             var mounted = _session.MountedMedia.FirstOrDefault(media => media.Slot == device.Slot);
-            var cassette = device.MediaType == EmulationMediaType.Cassette
-                ? _session.Machine.CassetteTransport : null;
+            var cassette = device.MediaType == EmulationMediaType.Cassette ? _session.Machine.CassetteTransport : null;
             var state = cassette?.State ?? EmulationCassetteState.Empty;
             var activeOperation = cassette?.ActiveOperation;
             return new MachineViewDevice(device.Slot.ToString(), device.DisplayLabel ?? device.Slot.ToString(),
@@ -320,10 +306,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
                 canOpenMedia ? () => InsertMediaAsync(device) : null,
                 canOpenMedia && mounted is not null ? () => EjectMediaAsync(device) : null,
                 device.MediaType == EmulationMediaType.Cassette ? CassetteStateText(state) : null,
-                device.MediaType == EmulationMediaType.Cassette
-                    ? CassetteCommandOrder.Select(command => CassetteCommand(
-                        command, cassette, state, activeOperation)).ToArray()
-                    : null);
+                device.MediaType == EmulationMediaType.Cassette ? CassetteCommandOrder.Select(command => CassetteCommand(command, cassette, state, activeOperation)).ToArray() : null);
         }), _options.ShowError, _input.RestoreFocus);
     }
 
@@ -334,8 +317,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         var supported = transport?.AvailableCommands.Contains(command) == true;
         return new MachineViewDeviceCommand(command, CassetteCommandText(command),
             CassetteCommandGlyph(command), supported,
-            CassetteTransportPresentationFunctions.IsEnabled(
-                _session.IsPowered, supported, state, activeOperation, command),
+            CassetteTransportPresentationFunctions.IsEnabled(_session.IsPowered, supported, state, activeOperation, command),
             CassetteTransportPresentationFunctions.IsActive(state, activeOperation, command),
             CassetteTransportPresentationFunctions.IsBlinking(state, activeOperation, command),
             () => ExecuteCassetteCommandAsync(command));
@@ -348,8 +330,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         {
             Filter = $"{LocExtension.Get("Emulation.Storage.Media.Associated")} ({string.Join(";", extensions)})|{string.Join(";", extensions)}",
             InitialDirectory = _options.InitialMediaDirectory(device),
-            ClientGuid = EmulationMediaDialogFunctions.ClientGuid(_options.ModuleId,
-                _options.MachineId, device.Slot)
+            ClientGuid = EmulationMediaDialogFunctions.ClientGuid(_options.ModuleId, _options.MachineId, device.Slot)
         };
         if (dialog.ShowDialog() != true) return;
         var directory = Path.GetDirectoryName(dialog.FileName);
@@ -379,8 +360,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     {
         var key = EmulationMediaSlot.Cassette0.ToString();
         _view.SetDeviceStatus(key, CassetteStateText(cassette.State));
-        _view.SetCassetteTransport(key, cassette.State, cassette.ActiveOperation,
-            cassette.AvailableCommands, _session.IsPowered);
+        _view.SetCassetteTransport(key, cassette.State, cassette.ActiveOperation, cassette.AvailableCommands, _session.IsPowered);
     }
 
     private static string CassetteStateText(EmulationCassetteState state) =>
@@ -411,8 +391,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         _ => MachinePresentationConstants.FloppyGlyph
     };
 
-    private void VideoSurfaceChanged(object? sender, EventArgs args) =>
-        _input.SetInputView(_video.InputView, _video.InputHandle);
+    private void VideoSurfaceChanged(object? sender, EventArgs args) => _input.SetInputView(_video.InputView, _video.InputHandle);
 
     private async Task ExecuteShortcutAsync(string action)
     {
@@ -442,8 +421,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
 
     private void FramePresented(object? sender, VideoFrame frame)
     {
-        _commands.Status.Text = MachinePresentationFunctions.Status(frame,
-            _session.Machine.Video.FramesPerSecond, _video.MeasuredFramesPerSecond);
+        _commands.Status.Text = MachinePresentationFunctions.Status(frame, _session.Machine.Video.FramesPerSecond, _video.MeasuredFramesPerSecond);
         var now = DateTime.UtcNow;
         var activityStates = _session.Machine.Runtime.MediaActivity;
         if (_session.Machine.CassetteTransport is { } cassette) UpdateCassetteTransport(cassette);
@@ -453,11 +431,9 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
             if (activityStates.GetValueOrDefault(device.Slot))
                 _mediaActivityUntil[device.Slot] = now + EmulationRuntimeConstants.MediaActivityPersistence;
             var active = _mediaActivityUntil.GetValueOrDefault(device.Slot) > now;
-            var present = _session.MountedMedia.Any(media => media.Slot == device.Slot)
-                || !device.IsRemovable;
+            var present = _session.MountedMedia.Any(media => media.Slot == device.Slot) || !device.IsRemovable;
             led.Fill = active ? Brushes.LimeGreen : present ? Brushes.ForestGreen : Brushes.Gray;
         }
-        _commands.SetInputStatus(_input.IsPointerCaptured,
-            GameInputControllerReader.ReadAll().Any(state => state != EmulationControllerState.Empty));
+        _commands.SetInputStatus(_input.IsPointerCaptured, GameInputControllerReader.ReadAll().Any(state => state != EmulationControllerState.Empty));
     }
 }

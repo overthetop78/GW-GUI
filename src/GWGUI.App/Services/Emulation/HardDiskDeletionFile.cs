@@ -72,9 +72,7 @@ internal static class HardDiskDeletionFile
 
     private static void RemoveEmptySparseBundleDirectories(IReadOnlyList<string> paths)
     {
-        var root = paths.Select(path => new FileInfo(path).Directory)
-            .SelectMany(directory => Ancestors(directory))
-            .FirstOrDefault(directory => directory.Extension.Equals(".sparsebundle", StringComparison.OrdinalIgnoreCase));
+        var root = paths.Select(path => new FileInfo(path).Directory).SelectMany(directory => Ancestors(directory)).FirstOrDefault(directory => directory.Extension.Equals(".sparsebundle", StringComparison.OrdinalIgnoreCase));
         if (root is null) return;
         var bands = Path.Combine(root.FullName, "bands");
         if (Directory.Exists(bands)) Directory.Delete(bands, recursive: false);

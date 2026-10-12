@@ -27,9 +27,7 @@ internal static class GameInputDescriptorPresenter
             rows.Add(new(LocExtension.Get("Controllers.GamepadLayout"), GameInputDisplayFormatter.Flags(standard.GamepadLayout)));
         if (standard.HasRacingWheel)
             rows.Add(new(LocExtension.Get("Controllers.WheelCapabilities"),
-                LocExtension.Get("Controllers.WheelDetails", standard.RacingWheelMaxAngle,
-                    Bool(standard.RacingWheelHasClutch), Bool(standard.RacingWheelHasHandbrake),
-                    Bool(standard.RacingWheelHasPatternShifter))));
+                LocExtension.Get("Controllers.WheelDetails", standard.RacingWheelMaxAngle, Bool(standard.RacingWheelHasClutch), Bool(standard.RacingWheelHasHandbrake), Bool(standard.RacingWheelHasPatternShifter))));
         var extras = ExtraControls(standard);
         if (!string.IsNullOrEmpty(extras)) rows.Add(new(LocExtension.Get("Controllers.ExtraControls"), extras));
         if (!string.IsNullOrWhiteSpace(device.HapticAudioEndpointId))
@@ -95,8 +93,7 @@ internal static class GameInputDescriptorPresenter
         }
         if (rows.Count == 0)
             foreach (var control in state.Controls.Where(control => control.Type == GameInputControlType.Axis))
-                rows.Add(new(GameInputDisplayFormatter.ControlName(control),
-                    control.Value.ToString("0.000", CultureInfo.CurrentCulture)));
+                rows.Add(new(GameInputDisplayFormatter.ControlName(control), control.Value.ToString("0.000", CultureInfo.CurrentCulture)));
         return rows;
     }
 
@@ -145,9 +142,7 @@ internal static class GameInputDescriptorPresenter
         return string.Join(" · ", parts);
     }
 
-    private static void Add(ICollection<ControllerAnalogRow> rows, string key, float value) =>
-        rows.Add(new(LocExtension.Get(key), value.ToString("0.000", CultureInfo.CurrentCulture)));
+    private static void Add(ICollection<ControllerAnalogRow> rows, string key, float value) => rows.Add(new(LocExtension.Get(key), value.ToString("0.000", CultureInfo.CurrentCulture)));
     private static string Bool(bool value) => LocExtension.Get(value ? "Controllers.Yes" : "Controllers.No");
-    private static string TrimPrefix(string value) => value.StartsWith("gameinput:", StringComparison.OrdinalIgnoreCase)
-        ? value["gameinput:".Length..] : value;
+    private static string TrimPrefix(string value) => value.StartsWith("gameinput:", StringComparison.OrdinalIgnoreCase) ? value["gameinput:".Length..] : value;
 }

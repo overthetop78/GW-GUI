@@ -40,8 +40,7 @@ internal sealed class ModuleInstallationService
         string displayName,
         CancellationToken cancellationToken = default)
     {
-        var prepared = await _packagePreparation.PrepareLocalModuleAsync(archivePath, displayName, cancellationToken)
-            .ConfigureAwait(false);
+        var prepared = await _packagePreparation.PrepareLocalModuleAsync(archivePath, displayName, cancellationToken).ConfigureAwait(false);
         EnsureNotInstalled(prepared.ModuleId);
         return prepared;
     }
@@ -51,35 +50,27 @@ internal sealed class ModuleInstallationService
         IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         var catalogUri = ValidateDirectCatalogUri(catalogUrl);
-        using var response = await _httpClient.GetAsync(catalogUri, HttpCompletionOption.ResponseHeadersRead,
-            cancellationToken).ConfigureAwait(false);
+        using var response = await _httpClient.GetAsync(catalogUri, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
         await using var content = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-        var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(content, JsonOptions, cancellationToken)
-            .ConfigureAwait(false) ?? throw new InvalidDataException("The module update catalog is empty.");
+        var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(content, JsonOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidDataException("The module update catalog is empty.");
         var component = _catalogValidator.Validate(catalog);
         EnsureNotInstalled(component.Id);
 
         var hostApi = Version.Parse(_hostApiVersion());
-        var release = component.Releases
-            .Where(candidate => Version.Parse(candidate.HostApiMinimum!) <= hostApi
-                && Version.Parse(candidate.HostApiMaximum!) >= hostApi)
-            .OrderByDescending(candidate => Version.Parse(candidate.Version))
+        var release = component.Releases.Where(candidate => Version.Parse(candidate.HostApiMinimum!) <= hostApi && Version.Parse(candidate.HostApiMaximum!) >= hostApi).OrderByDescending(candidate => Version.Parse(candidate.Version))
             .FirstOrDefault()
             ?? throw new InvalidDataException(
                 $"Module '{component.Id}' has no release compatible with host API {hostApi.ToString(2)}.");
-        var plan = new UpdatePlan(UpdateSearchScope.Modules,
-            [new UpdatePlanItem(component.Id, UpdateComponentKind.Module, "0.0.0", release)], true, []);
-        return await _packagePreparation.PrepareRemoteModuleAsync(plan, displayName,
-            catalogUri.AbsoluteUri, progress, cancellationToken).ConfigureAwait(false);
+        var plan = new UpdatePlan(UpdateSearchScope.Modules, [new UpdatePlanItem(component.Id, UpdateComponentKind.Module, "0.0.0", release)], true, []);
+        return await _packagePreparation.PrepareRemoteModuleAsync(plan, displayName, catalogUri.AbsoluteUri, progress, cancellationToken).ConfigureAwait(false);
     }
 
     private void EnsureNotInstalled(string moduleId)
     {
         if (_isPending(moduleId))
             throw new InvalidOperationException($"Module '{moduleId}' is already downloaded.");
-        if (_installedModules().Any(module =>
-                module.Manifest.Id.Equals(moduleId, StringComparison.OrdinalIgnoreCase)))
+        if (_installedModules().Any(module => module.Manifest.Id.Equals(moduleId, StringComparison.OrdinalIgnoreCase)))
             throw new InvalidOperationException(
                 $"Module '{moduleId}' is already installed. Use the module update action instead.");
     }
@@ -89,9 +80,7 @@ internal sealed class ModuleInstallationService
         if (!Uri.TryCreate(value?.Trim(), UriKind.Absolute, out var uri) || uri.Scheme != Uri.UriSchemeHttps)
             throw new ArgumentException("The module catalog address must be an absolute HTTPS URL.", nameof(value));
         if (!uri.AbsolutePath.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
-            throw new ArgumentException(
-                "Enter a direct machine-readable module catalog URL ending in .json, not a repository or web page.",
-                nameof(value));
+            throw new ArgumentException("Enter a direct machine-readable module catalog URL ending in .json, not a repository or web page.", nameof(value));
         return uri;
     }
 

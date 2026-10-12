@@ -18,8 +18,7 @@ internal sealed class MachineView : UserControl
 {
     private readonly Dictionary<string, Ellipse> _deviceLeds = new(StringComparer.Ordinal);
     private readonly Dictionary<string, TextBlock> _deviceStatuses = new(StringComparer.Ordinal);
-    private readonly Dictionary<string, Dictionary<EmulationCassetteCommand, Button>> _cassetteButtons =
-        new(StringComparer.Ordinal);
+    private readonly Dictionary<string, Dictionary<EmulationCassetteCommand, Button>> _cassetteButtons = new(StringComparer.Ordinal);
     private readonly HashSet<Button> _blinkingCassetteButtons = [];
     private readonly DispatcherTimer _cassetteBlinkTimer;
     private bool _cassetteBlinkVisible = true;
@@ -30,8 +29,7 @@ internal sealed class MachineView : UserControl
 
     internal MachineView()
     {
-        _cassetteBlinkTimer = new DispatcherTimer(
-            TimeSpan.FromMilliseconds(400), DispatcherPriority.Render, CassetteBlinkTick, Dispatcher);
+        _cassetteBlinkTimer = new DispatcherTimer(TimeSpan.FromMilliseconds(400), DispatcherPriority.Render, CassetteBlinkTick, Dispatcher);
         _cassetteBlinkTimer.Stop();
         Root = new Grid { Background = Brushes.Transparent };
         Root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -315,8 +313,7 @@ internal sealed class MachineView : UserControl
                     Margin = new Thickness(1, 0, 1, 0)
                 };
                 button.SetResourceReference(StyleProperty, "StatusIconButton");
-                SetCassetteButtonVisual(button, command.Command, command.IsSupported,
-                    command.IsActive, command.IsBlinking);
+                SetCassetteButtonVisual(button, command.Command, command.IsSupported, command.IsActive, command.IsBlinking);
                 button.Click += async (_, _) => await RunAsync(command.Execute, showError, restoreFocus);
                 buttons[command.Command] = button;
                 commandRow.Children.Add(button);
@@ -378,8 +375,7 @@ internal sealed class MachineView : UserControl
             var supported = supportedCommands.Contains(command);
             var active = CassetteTransportPresentationFunctions.IsActive(state, activeOperation, command);
             var blinking = CassetteTransportPresentationFunctions.IsBlinking(state, activeOperation, command);
-            button.IsEnabled = CassetteTransportPresentationFunctions.IsEnabled(
-                powered, supported, state, activeOperation, command);
+            button.IsEnabled = CassetteTransportPresentationFunctions.IsEnabled(powered, supported, state, activeOperation, command);
             SetCassetteButtonVisual(button, command, supported, active, blinking);
         }
         UpdateCassetteBlinkTimer();
@@ -403,8 +399,7 @@ internal sealed class MachineView : UserControl
         };
         button.Foreground = foreground;
         button.Background = Brushes.Transparent;
-        button.Opacity = supported ? 1 : command is EmulationCassetteCommand.Play or EmulationCassetteCommand.Record
-            ? 0.72 : 0.42;
+        button.Opacity = supported ? 1 : command is EmulationCassetteCommand.Play or EmulationCassetteCommand.Record ? 0.72 : 0.42;
         if (button.Content is Border face && face.Child is TextBlock icon)
         {
             icon.Foreground = foreground;

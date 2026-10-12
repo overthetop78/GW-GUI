@@ -74,8 +74,7 @@ internal sealed class EmulationSettingsFieldLabel : TextBlock
         postItText.Inlines.Add(new Run(label) { FontWeight = FontWeights.SemiBold });
         postItText.Inlines.Add(new LineBreak());
         postItText.Inlines.Add(new Run(detailedExplanation));
-        postItText.SetResourceReference(ForegroundProperty,
-            EmulationSettingsFieldHelpConstants.TextBrushResource);
+        postItText.SetResourceReference(ForegroundProperty, EmulationSettingsFieldHelpConstants.TextBrushResource);
 
         _postIt = new Border
         {
@@ -224,8 +223,7 @@ internal sealed class EmulationSettingsFieldLabel : TextBlock
             var desired = _content.DesiredSize;
             var icon = _horizontalTarget.TranslatePoint(new Point(), AdornedElement);
             var fieldTop = _verticalTarget.TranslatePoint(new Point(), AdornedElement);
-            var fieldBottom = _verticalTarget.TranslatePoint(
-                new Point(0, _verticalTarget.ActualHeight), AdornedElement);
+            var fieldBottom = _verticalTarget.TranslatePoint(new Point(0, _verticalTarget.ActualHeight), AdornedElement);
             var spacing = EmulationSettingsFieldHelpConstants.IconPopupSpacing;
             var x = Math.Clamp(icon.X, 0, Math.Max(0, finalSize.Width - desired.Width));
             var below = fieldBottom.Y + spacing;

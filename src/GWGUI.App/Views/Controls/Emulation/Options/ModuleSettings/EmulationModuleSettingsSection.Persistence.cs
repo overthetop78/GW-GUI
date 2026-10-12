@@ -25,8 +25,7 @@ internal sealed partial class EmulationModuleSettingsSection
             if (!wasSaved) EmulationConfigurationDraftStore.Set(_module.Id, previous);
             if (wasSaved) await PersistCapturedConfigurationAsync(previous, true);
             _configuration = _saved.FirstOrDefault(item => item.MachineId == selected.Definition.Id)
-                ?? (EmulationConfigurationDraftStore.TryGet(_module.Id, selected.Definition.Id, out var draft)
-                    ? draft : _module.CreateConfiguration(selected.Definition.Id));
+                ?? (EmulationConfigurationDraftStore.TryGet(_module.Id, selected.Definition.Id, out var draft) ? draft : _module.CreateConfiguration(selected.Definition.Id));
             RebuildEditor();
             NotifyEditingContextChanged();
         });
@@ -45,8 +44,7 @@ internal sealed partial class EmulationModuleSettingsSection
         _profiles.Get(_module.Id, _configuration.Id);
         CaptureEditorValues();
         var configuration = _configuration;
-        await PersistCapturedConfigurationAsync(configuration,
-            _saved.Any(item => item.Id == configuration.Id));
+        await PersistCapturedConfigurationAsync(configuration, _saved.Any(item => item.Id == configuration.Id));
     }
 
     private async Task PersistCapturedConfigurationAsync(IEmulationConfiguration configuration,
@@ -55,8 +53,7 @@ internal sealed partial class EmulationModuleSettingsSection
         await _saveInputGate.WaitAsync();
         try
         {
-            if (await EmulationConfigurationPersistenceFunctions.PersistAsync(
-                    _module, configuration, hasSavedConfiguration, profiles: _profiles))
+            if (await EmulationConfigurationPersistenceFunctions.PersistAsync(_module, configuration, hasSavedConfiguration, profiles: _profiles))
             {
                 _saved = _saved.Select(item => item.Id == configuration.Id ? configuration : item).ToArray();
                 ConfigurationSaved?.Invoke(this, new EmulationConfigurationSavedEventArgs(configuration));
@@ -91,20 +88,17 @@ internal sealed partial class EmulationModuleSettingsSection
     private static string? ReadValue(FrameworkElement control) => control switch
     {
         ComboBox { SelectedItem: EmulationSettingsChoiceView selected } => selected.Choice.Id,
-        CheckBox { Tag: EmulationSettingsField field } toggle => toggle.IsChecked == true
-            ? field.EnabledValue : field.DisabledValue,
+        CheckBox { Tag: EmulationSettingsField field } toggle => toggle.IsChecked == true ? field.EnabledValue : field.DisabledValue,
         TextBox text => text.Text,
         Grid { Tag: TextBox path } => path.Text,
-        Grid { Tag: Slider slider } => slider.Value.ToString(
-            EmulationSliderConstants.NumericFormat, CultureInfo.InvariantCulture),
+        Grid { Tag: Slider slider } => slider.Value.ToString(EmulationSliderConstants.NumericFormat, CultureInfo.InvariantCulture),
         _ => null
     };
 
     private void SelectMachine(string machineId)
     {
         _loading = true;
-        _machines.SelectedItem = _machines.Items.Cast<EmulationMachineChoice>()
-            .First(item => item.Definition.Id == machineId);
+        _machines.SelectedItem = _machines.Items.Cast<EmulationMachineChoice>().First(item => item.Definition.Id == machineId);
         _loading = false;
     }
 
@@ -129,8 +123,7 @@ internal sealed partial class EmulationModuleSettingsSection
     private void NotifyEditingContextChanged()
     {
         var machine = (_machines.SelectedItem as EmulationMachineChoice)?.DisplayName ?? _configuration.MachineId;
-        EditingContextChanged?.Invoke(this, new EmulationMachineEditingContext(
-            LocExtension.GetForModule(_module, _module.DisplayResourceKey), machine));
+        EditingContextChanged?.Invoke(this, new EmulationMachineEditingContext(LocExtension.GetForModule(_module, _module.DisplayResourceKey), machine));
     }
 
     private Task TabActivatedAsync(EmulationMachineTab tab) => RememberTabAndActivateAsync(tab);
@@ -148,8 +141,7 @@ internal sealed partial class EmulationModuleSettingsSection
         var choices = _module.Machines.Select(CreateMachineChoice).ToArray();
         _machines.ItemsSource = choices;
         SelectMachine(_configuration.MachineId);
-        FlowDirection = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft
-            ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+        FlowDirection = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         RebuildEditor();
         NotifyEditingContextChanged();
     }
@@ -157,8 +149,7 @@ internal sealed partial class EmulationModuleSettingsSection
     private void CaptureEditorValues()
     {
         if (_fieldControls.Count != 0)
-            _configuration = _module.ApplySettings(_configuration,
-                _fieldControls.ToDictionary(item => item.Key, item => ReadValue(item.Value), StringComparer.Ordinal));
+            _configuration = _module.ApplySettings(_configuration, _fieldControls.ToDictionary(item => item.Key, item => ReadValue(item.Value), StringComparer.Ordinal));
         if (_inputSettings is not null) _configuration = _inputSettings.Apply(_configuration);
         if (_storageSettings is not null) _configuration = _storageSettings.Apply(_configuration);
     }

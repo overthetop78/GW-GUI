@@ -8,8 +8,7 @@ internal static class ControllerVisualProfileStore
 {
     private static readonly object Sync = new();
     private static Dictionary<string, ControllerVisualProfile>? _profiles;
-    private static string FilePath => Path.Combine(StoragePaths.DataDirectory,
-        "Controllers", "visual-models.json");
+    private static string FilePath => Path.Combine(StoragePaths.DataDirectory, "Controllers", "visual-models.json");
 
     internal static string DisplayName(ControllerVisualModel model, string fallback) => model switch
     {
@@ -24,8 +23,7 @@ internal static class ControllerVisualProfileStore
     internal static IReadOnlyDictionary<string, ControllerVisualModel> GetModels()
     {
         lock (Sync)
-            return Profiles().ToDictionary(item => item.Key, item => item.Value.Model,
-                StringComparer.OrdinalIgnoreCase);
+            return Profiles().ToDictionary(item => item.Key, item => item.Value.Model, StringComparer.OrdinalIgnoreCase);
     }
 
     internal static bool TryGet(string deviceId, out ControllerVisualProfile profile)
@@ -51,19 +49,16 @@ internal static class ControllerVisualProfileStore
         }
     }
 
-    private static Dictionary<string, ControllerVisualProfile> Profiles() =>
-        _profiles ??= Load();
+    private static Dictionary<string, ControllerVisualProfile> Profiles() => _profiles ??= Load();
 
     private static Dictionary<string, ControllerVisualProfile> Load()
     {
         try
         {
             if (!File.Exists(FilePath)) return new(StringComparer.OrdinalIgnoreCase);
-            return JsonSerializer.Deserialize<Dictionary<string, ControllerVisualProfile>>(
-                    File.ReadAllText(FilePath))
+            return JsonSerializer.Deserialize<Dictionary<string, ControllerVisualProfile>>(File.ReadAllText(FilePath))
                 is { } profiles
-                ? new Dictionary<string, ControllerVisualProfile>(profiles,
-                    StringComparer.OrdinalIgnoreCase)
+                ? new Dictionary<string, ControllerVisualProfile>(profiles, StringComparer.OrdinalIgnoreCase)
                 : new(StringComparer.OrdinalIgnoreCase);
         }
         catch

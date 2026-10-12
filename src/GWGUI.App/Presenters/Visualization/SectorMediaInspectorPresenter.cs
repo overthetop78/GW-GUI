@@ -17,10 +17,7 @@ public sealed class SectorMediaInspectorPresenter(Func<string, object[], string>
         ArgumentNullException.ThrowIfNull(image);
         if (image.AddressingKind == SectorImageAddressingKind.Logical)
             return BuildLogicalRenderModel(image, fileSystemPaths, withData: true);
-        var surfaces = Enumerable.Range(0, image.Heads).Select(surface => new SectorMediaSurface(surface,
-            Enumerable.Range(0, image.Cylinders)
-                .Select(cylinder => AnalyzeTrack(image, surface, cylinder, fileSystemPaths))
-                .ToArray())).ToArray();
+        var surfaces = Enumerable.Range(0, image.Heads).Select(surface => new SectorMediaSurface(surface, Enumerable.Range(0, image.Cylinders).Select(cylinder => AnalyzeTrack(image, surface, cylinder, fileSystemPaths)).ToArray())).ToArray();
         return new(image.FormatId, image.BlockSize, surfaces);
     }
 
@@ -34,8 +31,7 @@ public sealed class SectorMediaInspectorPresenter(Func<string, object[], string>
                 Enumerable.Range(0, image.SectorsPerTrack).Select(slot =>
                 {
                     var logicalBlock = LogicalBlock(image, surface, cylinder, slot);
-                    return new SectorMediaElement(logicalBlock, logicalBlock, cylinder, slot, image.BlockSize,
-                        SectorMediaElementState.WithoutData);
+                    return new SectorMediaElement(logicalBlock, logicalBlock, cylinder, slot, image.BlockSize, SectorMediaElementState.WithoutData);
                 }).ToArray())).ToArray())).ToArray();
         return new(image.FormatId, image.BlockSize, surfaces);
     }
@@ -54,20 +50,14 @@ public sealed class SectorMediaInspectorPresenter(Func<string, object[], string>
                 return image.TryGetBlock(logicalBlock, out var block) ? block : null;
             })
             .ToArray();
-        var duplicateAddresses = blocks
-            .Where(block => block is not null)
-            .GroupBy(block => block!.Address.Number)
-            .Where(group => group.Skip(1).Any())
-            .Select(group => group.Key)
-            .ToHashSet();
+        var duplicateAddresses = blocks.Where(block => block is not null).GroupBy(block => block!.Address.Number).Where(group => group.Skip(1).Any()).Select(group => group.Key).ToHashSet();
 
         return new(cylinder, Enumerable.Range(0, image.SectorsPerTrack).Select(slot =>
         {
             var logicalBlock = LogicalBlock(image, surface, cylinder, slot);
             var block = blocks[slot];
             var available = block is not null;
-            var addressInconsistent = available &&
-                (block!.Address.Cylinder != cylinder || block.Address.Head != surface);
+            var addressInconsistent = available && (block!.Address.Cylinder != cylinder || block.Address.Head != surface);
             var addressDuplicated = available && duplicateAddresses.Contains(block!.Address.Number);
             return new SectorMediaElement(
                 logicalBlock,
@@ -128,16 +118,13 @@ public sealed class SectorMediaInspectorPresenter(Func<string, object[], string>
                 -1,
                 logicalBlock,
                 available ? block!.Data.Count : image.BlockSize,
-                available
-                    ? StateFor(block, image.BlockSize, image.AllowsVariableBlockSize, false, false)
-                    : SectorMediaElementState.WithoutData,
+                available ? StateFor(block, image.BlockSize, image.AllowsVariableBlockSize, false, false) : SectorMediaElementState.WithoutData,
                 fileSystemPaths?.GetValueOrDefault(logicalBlock));
         }).ToArray();
         return new(image.FormatId, image.BlockSize, [new SectorMediaSurface(0, [new SectorMediaTrack(0, elements)])], SectorMediaLayoutKind.Logical);
     }
 
-    private static int LogicalBlock(SectorImage image, int surface, int cylinder, int slot)
-        => checked((cylinder * image.Heads + surface) * image.SectorsPerTrack + slot);
+    private static int LogicalBlock(SectorImage image, int surface, int cylinder, int slot) => checked((cylinder * image.Heads + surface) * image.SectorsPerTrack + slot);
 
     private static SectorMediaElementState StateFor(
         SectorBlock? block,

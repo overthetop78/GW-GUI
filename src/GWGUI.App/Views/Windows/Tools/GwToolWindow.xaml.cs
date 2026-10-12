@@ -122,12 +122,7 @@ public partial class GwToolWindow : Window
     {
         var panel = new StackPanel
         {
-            Margin = new Thickness(
-                0,
-                0,
-                14,
-                8
-            )
+            Margin = new Thickness(0, 0, 14, 8)
         };
         panel.Children.Add(new TextBlock { Text = label });
         var text = new TextBox
@@ -150,12 +145,7 @@ public partial class GwToolWindow : Window
     {
         var panel = new StackPanel
         {
-            Margin = new Thickness(
-                0,
-                0,
-                14,
-                8
-            )
+            Margin = new Thickness(0, 0, 14, 8)
         };
         var check = new CheckBox
         {
@@ -185,12 +175,7 @@ public partial class GwToolWindow : Window
         var check = new CheckBox
         {
             Content = label,
-            Margin = new Thickness(
-                0,
-                8,
-                16,
-                8
-            )
+            Margin = new Thickness(0, 8, 16, 8)
         };
         check.Checked += (_, _) => UpdateCommand();
         check.Unchecked += (_, _) => UpdateCommand();

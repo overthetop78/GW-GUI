@@ -17,23 +17,20 @@ public sealed partial class EmulationSection
 {
     private async Task OpenMachineAsync(EmulationConfigurationListItem selected)
     {
-        var presentation = GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(
-            selected.Module.Id, selected.Configuration.Id);
+        var presentation = GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(selected.Module.Id, selected.Configuration.Id);
         var runtime = await CreateRuntimeAsync(selected.Module, selected.Configuration);
         MachineController? view = null;
         view = new MachineController(new MachineControllerOptions(
             selected.Module.Id, selected.Configuration.MachineId, selected.Configuration.Id,
             runtime.CreateMachine(runtime.MountedMedia), runtime.CreateMachine,
-            (configuration, cancellationToken) => CreateRuntimeAsync(
-                selected.Module, configuration, cancellationToken),
+            (configuration, cancellationToken) => CreateRuntimeAsync(selected.Module, configuration, cancellationToken),
             runtime.MediaDevices, runtime.MountedMedia, presentation.Renderer,
             presentation.Processing!,
             EmulationShortcutMap.GlobalShortcuts(_settings.EmulationShortcuts),
             Path.Combine(_settings.EmulationStateFolder,
                 $"{selected.Module.Id}-{selected.Configuration.Id:N}.gwas"),
             _settings.EmulationCaptureFolder, RuntimeDisplayName(runtime),
-            error => ControlErrorPresenter.ShowEmulation(this, error,
-                ControlErrorContexts.EmulationConfigurationOpening, selected.DisplayName),
+            error => ControlErrorPresenter.ShowEmulation(this, error, ControlErrorContexts.EmulationConfigurationOpening, selected.DisplayName),
             runtime.SupportsPointerCapture,
             device => InitialMediaDirectory(selected, device),
             (device, directory) => RememberMediaDirectory(selected, device, directory),
@@ -43,13 +40,9 @@ public sealed partial class EmulationSection
             PersistRuntimeOptionsAsync));
         async Task PersistRuntimeOptionsAsync(IReadOnlyDictionary<string, string> values)
         {
-            var configuration = (await selected.Module.LoadConfigurationsAsync())
-                .FirstOrDefault(item => item.Id == selected.Configuration.Id)
-                ?? selected.Configuration;
-            var nullableValues = values.ToDictionary(item => item.Key,
-                item => (string?)item.Value, StringComparer.Ordinal);
-            await selected.Module.SaveConfigurationAsync(
-                selected.Module.ApplySettings(configuration, nullableValues));
+            var configuration = (await selected.Module.LoadConfigurationsAsync()).FirstOrDefault(item => item.Id == selected.Configuration.Id) ?? selected.Configuration;
+            var nullableValues = values.ToDictionary(item => item.Key, item => (string?)item.Value, StringComparer.Ordinal);
+            await selected.Module.SaveConfigurationAsync(selected.Module.ApplySettings(configuration, nullableValues));
         }
         await AddMachineAsync(selected, runtime, view, view.StopAsync);
     }
@@ -61,12 +54,7 @@ public sealed partial class EmulationSection
     {
         var moduleRoot = Path.Combine(_settings.EmulationStorageFolder, module.Id);
         return module.CreateRuntimeAsync(configuration,
-            new EmulationRuntimeServices(
-                Path.Combine(moduleRoot, "Sessions"),
-                Path.Combine(moduleRoot, "States"),
-                Path.Combine(moduleRoot, "Converted"),
-                Environment.ProcessPath!,
-                (device, latency) => new WasapiAudioOutput(device, latency)), cancellationToken);
+            new EmulationRuntimeServices(Path.Combine(moduleRoot, "Sessions"), Path.Combine(moduleRoot, "States"), Path.Combine(moduleRoot, "Converted"), Environment.ProcessPath!, (device, latency) => new WasapiAudioOutput(device, latency)), cancellationToken);
     }
 
     internal Task AddMachineAsync(EmulationConfigurationListItem selected, EmulationMachineRuntime runtime,
@@ -75,8 +63,7 @@ public sealed partial class EmulationSection
         var key = (selected.Module.Id, selected.Configuration.Id);
         var tab = new TabItem { Content = view, Tag = runtime, Padding = new Thickness(18, 9, 14, 9) };
         tab.SetResourceReference(StyleProperty, ControlVisualConstants.MainTabItemStyleResource);
-        tab.Header = CreateMachineTabHeader(MachineTitle(selected), selected.DisplayName,
-            () => CloseMachineAsync(key, tab, stop));
+        tab.Header = CreateMachineTabHeader(MachineTitle(selected), selected.DisplayName, () => CloseMachineAsync(key, tab, stop));
         _openMachines.Add(key, tab);
         _machines.Items.Add(tab);
         _machines.SelectedItem = tab;

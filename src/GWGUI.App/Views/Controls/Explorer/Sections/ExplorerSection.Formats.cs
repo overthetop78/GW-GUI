@@ -25,10 +25,7 @@ public partial class ExplorerSection
 {
     private static IReadOnlyList<string> ReportedFormats(ExploredDiskImage document)
     {
-        return document.FormatsDetectes
-            .Select(format => format.FormatId)
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        return document.FormatsDetectes.Select(format => format.FormatId).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
     private string DetectedFormatsSummary()
@@ -37,32 +34,23 @@ public partial class ExplorerSection
             return LocExtension.Get("Explorer.DetectedFormats", $"{LocExtension.Get("System.atari-8bit")} (Atari CAS)");
 
         var catalog = new DiskClassificationCatalog(_formats);
-        var recognized = _detectedFormatIds.Select(id => catalog.ResolveFormat(id))
-            .Where(format => format is not null).Cast<DiskFormat>()
-            .DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
+        var recognized = _detectedFormatIds.Select(id => catalog.ResolveFormat(id)).Where(format => format is not null).Cast<DiskFormat>().DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
             .Select(format => $"{format.Family} ({format.DisplayName})")
             .ToArray();
-        var value = recognized.Length == 0
-            ? ControlVisualConstants.EmptyValue
-            : string.Join(ControlVisualConstants.DetailSeparator, recognized);
+        var value = recognized.Length == 0 ? ControlVisualConstants.EmptyValue : string.Join(ControlVisualConstants.DetailSeparator, recognized);
         return LocExtension.Get("Explorer.DetectedFormats", value);
     }
 
     private void UpdateDetectedFormatSelector(string? selectedId)
     {
         var catalog = new DiskClassificationCatalog(_formats);
-        var choices = _detectedFormatIds
-            .Select(id => catalog.ResolveFormat(id))
-            .Where(format => format is not null)
-            .Cast<DiskFormat>()
-            .DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
+        var choices = _detectedFormatIds.Select(id => catalog.ResolveFormat(id)).Where(format => format is not null).Cast<DiskFormat>().DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
             .Select(format => new ExplorerFormatChoice(format.Id,
                 $"{format.Family}{ControlVisualConstants.DetailSeparator}{format.DisplayName}"))
             .ToArray();
         _updatingDetectedFormatSelector = true;
         DetectedFormatSelector.ItemsSource = choices;
-        DetectedFormatSelector.SelectedItem = choices.FirstOrDefault(choice =>
-            string.Equals(choice.Id, selectedId, StringComparison.OrdinalIgnoreCase)) ?? choices.FirstOrDefault();
+        DetectedFormatSelector.SelectedItem = choices.FirstOrDefault(choice => string.Equals(choice.Id, selectedId, StringComparison.OrdinalIgnoreCase)) ?? choices.FirstOrDefault();
         var selectorVisible = choices.Length > 1;
         DetectedFormatSelector.Visibility = selectorVisible ? Visibility.Visible : Visibility.Collapsed;
         DetectedFormatLabel.Visibility = selectorVisible ? Visibility.Visible : Visibility.Collapsed;
@@ -76,18 +64,14 @@ public partial class ExplorerSection
         FormatChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    private void ManualOptionsButton_Click(object sender, RoutedEventArgs e) =>
-        ManualOptionsPopup.IsOpen = !ManualOptionsPopup.IsOpen;
+    private void ManualOptionsButton_Click(object sender, RoutedEventArgs e) => ManualOptionsPopup.IsOpen = !ManualOptionsPopup.IsOpen;
 
-    private CustomPopupPlacement[] ManualOptionsPopup_Place(Size popupSize, Size targetSize, Point offset) =>
-        [new(new Point(targetSize.Width - popupSize.Width, targetSize.Height), PopupPrimaryAxis.Horizontal)];
+    private CustomPopupPlacement[] ManualOptionsPopup_Place(Size popupSize, Size targetSize, Point offset) => [new(new Point(targetSize.Width - popupSize.Width, targetSize.Height), PopupPrimaryAxis.Horizontal)];
 
     private string CurrentSystem(ExploredDiskImage document)
     {
         var format = new DiskClassificationCatalog(_formats).ResolveFormat(document.PrimaryFormatId);
-        return format?.Family
-            ?? Classification.SelectedMachine
-            ?? ExplorerMetadataPresenter.Systems(document.Metadata);
+        return format?.Family ?? Classification.SelectedMachine ?? ExplorerMetadataPresenter.Systems(document.Metadata);
     }
 
     private string CurrentSystem(ExploredMediaImage document)
@@ -99,8 +83,7 @@ public partial class ExplorerSection
         if (Classification.SelectedMachine is { } selectedMachine) return selectedMachine;
         var format = new DiskClassificationCatalog(_formats).ResolveFormat(document.Document.FormatId);
         return format?.Family
-            ?? (document.Document.Metadata.TryGetValue(ExplorerMediaMetadataConstants.SystemId, out var systemId)
-                && systemId == DiskSystemIds.Atari8Bit ? LocExtension.Get("System.atari-8bit") : null)
+            ?? (document.Document.Metadata.TryGetValue(ExplorerMediaMetadataConstants.SystemId, out var systemId) && systemId == DiskSystemIds.Atari8Bit ? LocExtension.Get("System.atari-8bit") : null)
             ?? document.Document.MediaKind.ToString();
     }
 
@@ -126,9 +109,7 @@ public partial class ExplorerSection
 
     private Brush BrushFor(bool synthetic)
     {
-        var resourceKey = synthetic
-            ? ControlVisualConstants.SyntheticNameBrushResource
-            : ControlVisualConstants.TextBrushResource;
+        var resourceKey = synthetic ? ControlVisualConstants.SyntheticNameBrushResource : ControlVisualConstants.TextBrushResource;
         return TryFindResource(resourceKey) as Brush ?? SystemColors.WindowTextBrush;
     }
 

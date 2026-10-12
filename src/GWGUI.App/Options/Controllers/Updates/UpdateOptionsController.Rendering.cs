@@ -37,8 +37,7 @@ internal sealed partial class UpdateOptionsController : IDisposable
         target.Clear();
         foreach (var update in result.Components)
         {
-            var displayName = update.Kind == UpdateComponentKind.Application
-                ? _localize("Updates.Application", []) : update.ComponentId;
+            var displayName = update.Kind == UpdateComponentKind.Application ? _localize("Updates.Application", []) : update.ComponentId;
             var status = update.Availability switch
             {
                 UpdateAvailability.UpToDate => _localize("Updates.UpToDate", []),
@@ -54,12 +53,9 @@ internal sealed partial class UpdateOptionsController : IDisposable
     }
 
     private static UpdateVisualState StateFor(UpdateSearchResult result) =>
-        result.Components.Any(update => update.Availability is UpdateAvailability.Incompatible
-            or UpdateAvailability.ApplicationUpdateRequired)
+        result.Components.Any(update => update.Availability is UpdateAvailability.Incompatible or UpdateAvailability.ApplicationUpdateRequired)
             ? UpdateVisualState.Error
-            : result.Components.Any(update => update.Availability == UpdateAvailability.Available)
-                ? UpdateVisualState.Available
-                : UpdateVisualState.Current;
+            : result.Components.Any(update => update.Availability == UpdateAvailability.Available) ? UpdateVisualState.Available : UpdateVisualState.Current;
 
     private static UpdateVisualState VisualStateFor(UpdateAvailability availability) => availability switch
     {
@@ -68,8 +64,6 @@ internal sealed partial class UpdateOptionsController : IDisposable
         _ => UpdateVisualState.Error
     };
 
-    private string ResultStatus(UpdateSearchResult result) =>
-        result.Components.Any(update => update.Availability != UpdateAvailability.UpToDate)
-            ? _localize("Updates.Results", []) : _localize("Updates.NoUpdates", []);
+    private string ResultStatus(UpdateSearchResult result) => result.Components.Any(update => update.Availability != UpdateAvailability.UpToDate) ? _localize("Updates.Results", []) : _localize("Updates.NoUpdates", []);
 
 }

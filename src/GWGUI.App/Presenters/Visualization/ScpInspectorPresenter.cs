@@ -44,17 +44,12 @@ public sealed class ScpInspectorPresenter(FluxDecoderRegistry decoders, Func<str
         }
 
         if (model.Structures.Count > 0)
-            sections.Add(new(Localize("Visual.StructuresTitle"), ControlVisualConstants.InformationGlyph,
-                model.Structures.Select(entry => new MediaInspectorEntry(entry.Name, entry.Detail)).ToArray()));
+            sections.Add(new(Localize("Visual.StructuresTitle"), ControlVisualConstants.InformationGlyph, model.Structures.Select(entry => new MediaInspectorEntry(entry.Name, entry.Detail)).ToArray()));
 
         if (model.Sectors.Count > 0)
-            sections.Add(new(Localize("Visual.SectorsTitle"), ControlVisualConstants.InformationGlyph,
-                model.Sectors.Select((sector, index) => new MediaInspectorEntry(Localize("Visual.NumberPrefix") + (index + 1), sector)).ToArray()));
+            sections.Add(new(Localize("Visual.SectorsTitle"), ControlVisualConstants.InformationGlyph, model.Sectors.Select((sector, index) => new MediaInspectorEntry(Localize("Visual.NumberPrefix") + (index + 1), sector)).ToArray()));
 
-        return new(
-            Localize("Visual.Title"),
-            Localize("Visual.TrackTooltip", model.Head, model.Cylinder, model.RevolutionCount),
-            sections);
+        return new(Localize("Visual.Title"), Localize("Visual.TrackTooltip", model.Head, model.Cylinder, model.RevolutionCount), sections);
     }
 
     public ScpInspectorModel BuildModel(ScpImage image, ScpTrack track, string? decoderId)
@@ -65,8 +60,7 @@ public sealed class ScpInspectorPresenter(FluxDecoderRegistry decoders, Func<str
             index + 1, revolution.FluxIntervals.Count,
             revolution.DurationMilliseconds(image.Header.ResolutionNanoseconds),
             revolution.Rpm(image.Header.ResolutionNanoseconds))).ToArray();
-        var structures = decoded?.Structures.Take(30).Select(structure =>
-            new ScpInspectorEntry(Localize("Visual.StructureKind." + structure.Kind), Localize("Visual.BitOffset", structure.BitOffset))).ToArray() ?? [];
+        var structures = decoded?.Structures.Take(30).Select(structure => new ScpInspectorEntry(Localize("Visual.StructureKind." + structure.Kind), Localize("Visual.BitOffset", structure.BitOffset))).ToArray() ?? [];
         var sectors = decoded?.Sectors is { } decodedSectors ? decodedSectors.Take(30).Select(sector =>
             Localize("Visual.SectorDetail", sector.Cylinder, sector.Head, sector.Number, sector.SizeBytes, Localize("Visual.Integrity." + sector.IntegrityKind),
                 Localize(sector.IntegrityValid is null ? "Visual.IntegrityUnavailable" : sector.IntegrityValid.Value ? "Visual.CrcValid" : "Visual.CrcInvalid"))).ToArray() : [];

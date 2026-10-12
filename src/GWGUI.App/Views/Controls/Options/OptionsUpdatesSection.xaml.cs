@@ -55,8 +55,7 @@ public partial class OptionsUpdatesSection : UserControl
         var selectedKey = (UpdateNavigation.SelectedItem as UpdateNavigationItem)?.Key;
         _navigationItems = items;
         UpdateNavigation.ItemsSource = items;
-        UpdateNavigation.SelectedItem = items.FirstOrDefault(item => item.Key == selectedKey)
-            ?? items.FirstOrDefault();
+        UpdateNavigation.SelectedItem = items.FirstOrDefault(item => item.Key == selectedKey) ?? items.FirstOrDefault();
     }
 
     internal void RefreshLocalizedContent() => ShowSelectedPage();
@@ -69,16 +68,11 @@ public partial class OptionsUpdatesSection : UserControl
 
     private void ShowSelectedPage()
     {
-        var selected = UpdateNavigation.SelectedItem as UpdateNavigationItem
-            ?? _navigationItems.FirstOrDefault();
-        ApplicationPage.Visibility = selected?.Page == UpdateNavigationPage.Application
-            ? Visibility.Visible : Visibility.Collapsed;
-        DirectoryPage.Visibility = selected?.Page == UpdateNavigationPage.Directory
-            ? Visibility.Visible : Visibility.Collapsed;
-        InstalledModulePage.Visibility = selected?.Page == UpdateNavigationPage.Module
-            ? Visibility.Visible : Visibility.Collapsed;
-        AdvancedPage.Visibility = selected?.Page == UpdateNavigationPage.Advanced
-            ? Visibility.Visible : Visibility.Collapsed;
+        var selected = UpdateNavigation.SelectedItem as UpdateNavigationItem ?? _navigationItems.FirstOrDefault();
+        ApplicationPage.Visibility = selected?.Page == UpdateNavigationPage.Application ? Visibility.Visible : Visibility.Collapsed;
+        DirectoryPage.Visibility = selected?.Page == UpdateNavigationPage.Directory ? Visibility.Visible : Visibility.Collapsed;
+        InstalledModulePage.Visibility = selected?.Page == UpdateNavigationPage.Module ? Visibility.Visible : Visibility.Collapsed;
+        AdvancedPage.Visibility = selected?.Page == UpdateNavigationPage.Advanced ? Visibility.Visible : Visibility.Collapsed;
 
         if (selected?.Page != UpdateNavigationPage.Module) return;
         SelectedModuleTitle.Text = selected.Title;
@@ -90,21 +84,17 @@ public partial class OptionsUpdatesSection : UserControl
     {
         if (ModulesResultsList.ItemsSource is null) return;
         var view = CollectionViewSource.GetDefaultView(ModulesResultsList.ItemsSource);
-        view.Filter = item => item is UpdateComponentRow row
-            && string.Equals(row.Id, moduleId, StringComparison.OrdinalIgnoreCase);
+        view.Filter = item => item is UpdateComponentRow row && string.Equals(row.Id, moduleId, StringComparison.OrdinalIgnoreCase);
         view.Refresh();
     }
 
     private void Search_Click(object sender, RoutedEventArgs e) => SearchRequested?.Invoke(sender, e);
-    private void Version_SelectionChanged(object sender, SelectionChangedEventArgs e) =>
-        VersionSelectionChanged?.Invoke(sender, e);
+    private void Version_SelectionChanged(object sender, SelectionChangedEventArgs e) => VersionSelectionChanged?.Invoke(sender, e);
     private void Install_Click(object sender, RoutedEventArgs e) => InstallRequested?.Invoke(sender, e);
     private void Cancel_Click(object sender, RoutedEventArgs e) => CancelRequested?.Invoke(sender, e);
     private void SearchModules_Click(object sender, RoutedEventArgs e) => SearchModulesRequested?.Invoke(sender, e);
-    private void SearchAvailableModules_Click(object sender, RoutedEventArgs e) =>
-        SearchAvailableModulesRequested?.Invoke(sender, e);
-    private void InstallAvailableModule_Click(object sender, RoutedEventArgs e) =>
-        InstallAvailableModuleRequested?.Invoke(sender, e);
+    private void SearchAvailableModules_Click(object sender, RoutedEventArgs e) => SearchAvailableModulesRequested?.Invoke(sender, e);
+    private void InstallAvailableModule_Click(object sender, RoutedEventArgs e) => InstallAvailableModuleRequested?.Invoke(sender, e);
     private void InstallModules_Click(object sender, RoutedEventArgs e) => InstallModulesRequested?.Invoke(sender, e);
     private void CancelModules_Click(object sender, RoutedEventArgs e) => CancelModulesRequested?.Invoke(sender, e);
     private void InstallModuleFile_Click(object sender, RoutedEventArgs e) => InstallModuleFileRequested?.Invoke(sender, e);

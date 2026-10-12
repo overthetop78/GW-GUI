@@ -39,16 +39,12 @@ public partial class InputBindingEditor
     {
         var view = CollectionViewSource.GetDefaultView(_rows);
         var query = SearchBox.Text.Trim();
-        view.Filter = item => item is InputBindingRow row && (query.Length == 0 ||
-            row.Label.Contains(query, StringComparison.CurrentCultureIgnoreCase) ||
-            row.Binding.Contains(query, StringComparison.CurrentCultureIgnoreCase));
+        view.Filter = item => item is InputBindingRow row && (query.Length == 0 || row.Label.Contains(query, StringComparison.CurrentCultureIgnoreCase) || row.Binding.Contains(query, StringComparison.CurrentCultureIgnoreCase));
     }
 
     private void ValidateBindings()
     {
-        var duplicates = _rows.Where(row => !string.IsNullOrWhiteSpace(row.Binding))
-            .GroupBy(row => row.Binding.Trim(), StringComparer.OrdinalIgnoreCase)
-            .Where(group => group.Count() > 1).Select(group => group.Key)
+        var duplicates = _rows.Where(row => !string.IsNullOrWhiteSpace(row.Binding)).GroupBy(row => row.Binding.Trim(), StringComparer.OrdinalIgnoreCase).Where(group => group.Count() > 1).Select(group => group.Key)
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
         foreach (var row in _rows)
         {
@@ -70,11 +66,9 @@ public partial class InputBindingEditor
             return _captureSources.HasFlag(InputCaptureSources.Controller);
         if (ControllerInputConstants.LegacyButtonNames.Contains(trimmed, StringComparer.OrdinalIgnoreCase))
             return _captureSources.HasFlag(InputCaptureSources.Controller);
-        var keyboard = InputBindingSyntax.TryRemovePrefix(trimmed, InputBindingSyntaxConstants.KeyboardPrefix, out var keyboardSource)
-            ? keyboardSource : trimmed;
+        var keyboard = InputBindingSyntax.TryRemovePrefix(trimmed, InputBindingSyntaxConstants.KeyboardPrefix, out var keyboardSource) ? keyboardSource : trimmed;
         if (!_captureSources.HasFlag(InputCaptureSources.Keyboard) || !KeyboardChordFunctions.TryParse(keyboard, out var chord)) return false;
-        reserved = KeyboardChordFunctions.IsWindowsReserved(chord) ||
-                   _reservedBindings.Contains(trimmed) || _reservedBindings.Contains(keyboard);
+        reserved = KeyboardChordFunctions.IsWindowsReserved(chord) || _reservedBindings.Contains(trimmed) || _reservedBindings.Contains(keyboard);
         return true;
     }
 }

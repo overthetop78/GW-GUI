@@ -30,8 +30,7 @@ internal sealed class EmulationBindingVisualizationController
     {
         _bindings = bindings;
         _visualizer = visualizer;
-        _timer = new DispatcherTimer(
-            PollingInterval, DispatcherPriority.Input, Update, bindings.Dispatcher);
+        _timer = new DispatcherTimer(PollingInterval, DispatcherPriority.Input, Update, bindings.Dispatcher);
         _timer.Stop();
     }
 
@@ -50,10 +49,7 @@ internal sealed class EmulationBindingVisualizationController
     private void Update(object? sender, EventArgs args)
     {
         var controllers = GameInputControllerReader.ReadAll();
-        var values = _bindings.Rows.ToDictionary(
-            row => row.Id,
-            row => BindingValue(row.Binding, controllers),
-            StringComparer.Ordinal);
+        var values = _bindings.Rows.ToDictionary(row => row.Id, row => BindingValue(row.Binding, controllers), StringComparer.Ordinal);
         _visualizer.VisualState = new ControllerVisualState
         {
             EmulatedCommandValues = values
@@ -64,21 +60,17 @@ internal sealed class EmulationBindingVisualizationController
         string binding,
         IReadOnlyList<EmulationControllerState> controllers)
     {
-        if (InputBindingSyntax.TryRemovePrefix(
-                binding, InputBindingSyntaxConstants.ControllerPrefix, out _))
+        if (InputBindingSyntax.TryRemovePrefix(binding, InputBindingSyntaxConstants.ControllerPrefix, out _))
         {
             var deviceId = EmulationInputMappingFunctions.ParseControllerDeviceId(binding);
-            var controller = EmulationInputMappingFunctions.ResolveController(
-                deviceId, controllers, fallbackIndex: -1);
+            var controller = EmulationInputMappingFunctions.ResolveController(deviceId, controllers, fallbackIndex: -1);
             return EmulationInputMappingFunctions.ControllerSourceValue(binding, controller);
         }
 
-        if (InputBindingSyntax.TryRemovePrefix(
-                binding, InputBindingSyntaxConstants.MousePrefix, out var mouseSource))
+        if (InputBindingSyntax.TryRemovePrefix(binding, InputBindingSyntaxConstants.MousePrefix, out var mouseSource))
             return MouseValue(mouseSource);
 
-        if (InputBindingSyntax.TryRemovePrefix(
-                binding, InputBindingSyntaxConstants.KeyboardPrefix, out var keyboardSource))
+        if (InputBindingSyntax.TryRemovePrefix(binding, InputBindingSyntaxConstants.KeyboardPrefix, out var keyboardSource))
             return KeyboardValue(keyboardSource);
 
         return KeyboardValue(binding);

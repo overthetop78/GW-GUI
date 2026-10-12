@@ -39,9 +39,7 @@ public sealed class ConversionOperationViewModel : INotifyPropertyChanged
         if (values.Count == 0) _explicitExtensions.Remove(formatId); else _explicitExtensions[formatId] = values;
     }
 
-    public IEnumerable<ConversionSelection> BuildSelections(IEnumerable<DiskFormat> formats) => formats
-        .Where(format => _selectedFormats.Contains(format.Id))
-        .Select(format => new ConversionSelection(format.Id, _explicitExtensions.GetValueOrDefault(format.Id) ?? []));
+    public IEnumerable<ConversionSelection> BuildSelections(IEnumerable<DiskFormat> formats) => formats.Where(format => _selectedFormats.Contains(format.Id)).Select(format => new ConversionSelection(format.Id, _explicitExtensions.GetValueOrDefault(format.Id) ?? []));
 
     public void ApplyProfile(IReadOnlySet<string> enabled, IReadOnlyDictionary<string, string> values)
     {

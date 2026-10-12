@@ -94,8 +94,7 @@ internal static class EmulationFixedPixelSettingsBlock
         var card = new Border
         {
             Child = content,
-            Margin = new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6,
-                column == 0 ? 6 : 0, row == 0 ? 6 : 0)
+            Margin = new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column == 0 ? 6 : 0, row == 0 ? 6 : 0)
         };
         card.SetResourceReference(FrameworkElement.StyleProperty, ControlVisualConstants.CardStyleResource);
         Grid.SetRow(card, row);
@@ -106,8 +105,7 @@ internal static class EmulationFixedPixelSettingsBlock
     private static FrameworkElement Choice<T>(string id, IReadOnlyDictionary<T, string> resources,
         T selected, Action<T> changed) where T : struct, Enum
     {
-        var choices = resources.Select(item => new ChoiceValue<T>(item.Key,
-            LocExtension.Get(item.Value))).ToArray();
+        var choices = resources.Select(item => new ChoiceValue<T>(item.Key, LocExtension.Get(item.Value))).ToArray();
         var selector = new ComboBox
         {
             ItemsSource = choices,

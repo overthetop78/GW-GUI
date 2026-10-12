@@ -17,13 +17,10 @@ internal static class ControlErrorPresenter
     internal static string Describe(Exception error, string context)
     {
         ErrorLog.Write(error, context);
-        return LocExtension.Get(ControlErrorPresenterConstants.UnexpectedResource,
-            ExceptionDescriptionFunctions.Describe(error));
+        return LocExtension.Get(ControlErrorPresenterConstants.UnexpectedResource, ExceptionDescriptionFunctions.Describe(error));
     }
 
-    internal static void ShowUnexpected(FrameworkElement owner, Exception error, string context, string title) =>
-        CommonErrorDialog.Show(owner, new CommonErrorDialogContent(title, Describe(error, context),
-            CommonErrorDialog.ErrorIcon, Brushes.Firebrick));
+    internal static void ShowUnexpected(FrameworkElement owner, Exception error, string context, string title) => CommonErrorDialog.Show(owner, new CommonErrorDialogContent(title, Describe(error, context), CommonErrorDialog.ErrorIcon, Brushes.Firebrick));
 
     internal static void ShowEmulation(FrameworkElement owner, Exception error, string context, string machineName)
     {
@@ -37,8 +34,7 @@ internal static class ControlErrorPresenter
         var description = MessageText(message);
         if (message.Severity == EmulationMessageSeverity.Warning)
         {
-            var names = (message.Context as EmulationRequiredMachineMediaMessageContext)?
-                .RequiredMediaNames;
+            var names = (message.Context as EmulationRequiredMachineMediaMessageContext)?.RequiredMediaNames;
             ErrorLog.WriteWarning(names is { Count: > 0 }
                 ? $"{description}{Environment.NewLine}{string.Join(" / ", names)}"
                 : description, logContext);
@@ -48,9 +44,7 @@ internal static class ControlErrorPresenter
         if (message.Target != EmulationMessageTarget.Dialog) return;
         var details = MessageDetails(message, machineName);
         var media = MessageMedia(message);
-        CommonErrorDialog.Show(owner, new CommonErrorDialogContent(
-            MessageHeading(message), description, CommonErrorDialog.ErrorIcon,
-            MessageBrush(message.Severity), details, media));
+        CommonErrorDialog.Show(owner, new CommonErrorDialogContent(MessageHeading(message), description, CommonErrorDialog.ErrorIcon, MessageBrush(message.Severity), details, media));
     }
 
     private static string MessageHeading(EmulationMessage message) => message.MessageCode switch
@@ -112,10 +106,7 @@ internal static class ControlErrorPresenter
         ]
         : null;
 
-    private static IReadOnlyList<CommonErrorDialogMediaIcon>? MessageMedia(EmulationMessage message) =>
-        message.Context is IEmulationRequiredMediaMessageContext required
-            ? required.RequiredMedia.Select(MediaIcon).Distinct().ToArray()
-            : null;
+    private static IReadOnlyList<CommonErrorDialogMediaIcon>? MessageMedia(EmulationMessage message) => message.Context is IEmulationRequiredMediaMessageContext required ? required.RequiredMedia.Select(MediaIcon).Distinct().ToArray() : null;
 
     private static string MediaName(EmulationMediaCategory category) => LocExtension.Get(category switch
     {
@@ -153,7 +144,5 @@ internal static class ControlErrorPresenter
     internal static void ShowDetailed(FrameworkElement owner, Exception error, string description,
         string context, string title, IReadOnlyList<CommonErrorDialogDetail>? details = null,
         IReadOnlyList<CommonErrorDialogMediaIcon>? mediaIcons = null) =>
-        CommonErrorDialog.Show(owner, new CommonErrorDialogContent(title,
-            DescribeDetailed(error, description, context),
-            CommonErrorDialog.ErrorIcon, Brushes.Firebrick, details, mediaIcons));
+        CommonErrorDialog.Show(owner, new CommonErrorDialogContent(title, DescribeDetailed(error, description, context), CommonErrorDialog.ErrorIcon, Brushes.Firebrick, details, mediaIcons));
 }

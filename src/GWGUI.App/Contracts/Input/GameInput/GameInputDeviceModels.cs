@@ -117,6 +117,5 @@ internal sealed record GameInputLiveState(
     GameInputRacingWheelState? RacingWheel,
     bool ControlsUseNormalizedAxes = false)
 {
-    internal static GameInputLiveState Empty(string deviceId) =>
-        new(deviceId, 0, GameInputKind.Unknown, [], [], GameInputSystemButtons.None, null, null, null, null);
+    internal static GameInputLiveState Empty(string deviceId) => new(deviceId, 0, GameInputKind.Unknown, [], [], GameInputSystemButtons.None, null, null, null, null);
 }

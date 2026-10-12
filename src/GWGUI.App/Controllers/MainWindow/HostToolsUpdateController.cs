@@ -37,11 +37,8 @@ internal sealed class HostToolsUpdateController(
     {
         var available = settings.AvailableHostToolsVersion;
         var installed = settings.InstalledHostToolsVersion;
-        var newer = Version.TryParse(available, out var availableVersion) &&
-            (!Version.TryParse(installed, out var installedVersion) || availableVersion > installedVersion);
-        viewModel.HostToolsUpdateVisibility = newer
-            ? System.Windows.Visibility.Visible
-            : System.Windows.Visibility.Collapsed;
+        var newer = Version.TryParse(available, out var availableVersion) && (!Version.TryParse(installed, out var installedVersion) || availableVersion > installedVersion);
+        viewModel.HostToolsUpdateVisibility = newer ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
         if (newer)
             viewModel.HostToolsUpdateText = LocExtension.Get("HostTools.UpdateAvailable", available!);
     }

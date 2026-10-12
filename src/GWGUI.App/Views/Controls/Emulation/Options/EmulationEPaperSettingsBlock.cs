@@ -44,8 +44,7 @@ internal static class EmulationEPaperSettingsBlock
             ink.Add(Slider(EmulationVideoProcessingCatalog.EPaperColorSaturation,
                 value.ColorSaturation, 100,
                 number => changed(current => current with { ColorSaturation = number })));
-        AddGroup(groups, EmulationResourceKeys.VideoEPaperGroupInkAndColor, 0, 0, 1,
-            ink.ToArray());
+        AddGroup(groups, EmulationResourceKeys.VideoEPaperGroupInkAndColor, 0, 0, 1, ink.ToArray());
 
         AddGroup(groups, EmulationResourceKeys.VideoEPaperGroupPaperSurface, 0, 1, 1,
             Slider(EmulationVideoProcessingCatalog.EPaperPaperBrightness,
@@ -83,12 +82,10 @@ internal static class EmulationEPaperSettingsBlock
         var card = new Border
         {
             Child = content,
-            Margin = new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6,
-                column + columnSpan >= 2 ? 0 : 6, row == 0 ? 6 : 0)
+            Margin = new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column + columnSpan >= 2 ? 0 : 6, row == 0 ? 6 : 0)
         };
         AutomationProperties.SetAutomationId(card, titleResourceKey);
-        card.SetResourceReference(FrameworkElement.StyleProperty,
-            ControlVisualConstants.CardStyleResource);
+        card.SetResourceReference(FrameworkElement.StyleProperty, ControlVisualConstants.CardStyleResource);
         Grid.SetRow(card, row);
         Grid.SetColumn(card, column);
         Grid.SetColumnSpan(card, columnSpan);
@@ -129,13 +126,11 @@ internal static class EmulationEPaperSettingsBlock
         IReadOnlyDictionary<T, string> resources, T selected, Action<T> changed)
         where T : struct, Enum
     {
-        var choices = resources.Select(item => new ChoiceValue<T>(item.Key,
-            LocExtension.Get(item.Value))).ToArray();
+        var choices = resources.Select(item => new ChoiceValue<T>(item.Key, LocExtension.Get(item.Value))).ToArray();
         var selector = new ComboBox
         {
             ItemsSource = choices, DisplayMemberPath = nameof(ChoiceValue<T>.DisplayName),
-            SelectedItem = choices.First(item =>
-                EqualityComparer<T>.Default.Equals(item.Value, selected)), MinWidth = 160
+            SelectedItem = choices.First(item => EqualityComparer<T>.Default.Equals(item.Value, selected)), MinWidth = 160
         };
         AutomationProperties.SetAutomationId(selector, id);
         selector.SelectionChanged += (_, _) =>

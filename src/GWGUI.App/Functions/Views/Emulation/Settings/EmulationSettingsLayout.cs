@@ -69,14 +69,11 @@ internal static partial class EmulationSettingsLayout
         }
     }
 
-    internal static Grid CompactForm(int columns, params EmulationSettingsControlField[] fields) =>
-        Form(columns, false, fields);
+    internal static Grid CompactForm(int columns, params EmulationSettingsControlField[] fields) => Form(columns, false, fields);
 
-    internal static Grid BoundedForm(int columns, params EmulationSettingsControlField[] fields) =>
-        Form(columns, true, fields);
+    internal static Grid BoundedForm(int columns, params EmulationSettingsControlField[] fields) => Form(columns, true, fields);
 
-    internal static Grid BoundedForm(int columns, params (string Label, FrameworkElement Control)[] fields) =>
-        BoundedForm(columns, fields.Select(field => new EmulationSettingsControlField(field.Label, field.Control)).ToArray());
+    internal static Grid BoundedForm(int columns, params (string Label, FrameworkElement Control)[] fields) => BoundedForm(columns, fields.Select(field => new EmulationSettingsControlField(field.Label, field.Control)).ToArray());
 
     private static Grid Form(int columns, bool bounded, EmulationSettingsControlField[] fields)
     {
@@ -149,9 +146,7 @@ internal static partial class EmulationSettingsLayout
         return page;
     }
 
-    internal static Grid CompactForm(int columns, params (string Label, FrameworkElement Control)[] fields) =>
-        CompactForm(columns, fields.Select(field =>
-            new EmulationSettingsControlField(field.Label, field.Control)).ToArray());
+    internal static Grid CompactForm(int columns, params (string Label, FrameworkElement Control)[] fields) => CompactForm(columns, fields.Select(field => new EmulationSettingsControlField(field.Label, field.Control)).ToArray());
 
     internal static Border IconCard(UIElement child, string title, string icon) =>
         HeaderCard(child, title, new TextBlock { Text = icon, FontFamily = ControlVisualConstants.IconFont,
@@ -211,8 +206,7 @@ internal static partial class EmulationSettingsLayout
             if (source is ScrollViewer nested) return nested;
             if (source is ContentElement content)
             {
-                source = ContentOperations.GetParent(content)
-                    ?? (content as FrameworkContentElement)?.Parent;
+                source = ContentOperations.GetParent(content) ?? (content as FrameworkContentElement)?.Parent;
                 continue;
             }
             source = VisualTreeHelper.GetParent(source);

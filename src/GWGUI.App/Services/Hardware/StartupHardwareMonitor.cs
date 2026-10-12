@@ -35,8 +35,7 @@ public sealed class StartupHardwareMonitor(IHardwareRegistry registry, ISettings
         return new(true, settings.Controllers.Where(controller => !controller.IsAvailable).ToArray(), newControllers);
     }
 
-    public static bool SameController(ControllerSettings left, ControllerSettings right) =>
-        Same(left.UsbId, right.UsbId) || Same(left.UsbSerialNumber, right.UsbSerialNumber) || Same(left.PnpDeviceId, right.PnpDeviceId);
+    public static bool SameController(ControllerSettings left, ControllerSettings right) => Same(left.UsbId, right.UsbId) || Same(left.UsbSerialNumber, right.UsbSerialNumber) || Same(left.PnpDeviceId, right.PnpDeviceId);
 
     private static ControllerSettings CloneUnavailable(ControllerSettings source) => new()
     {
@@ -52,6 +51,5 @@ public sealed class StartupHardwareMonitor(IHardwareRegistry registry, ISettings
         target.LastPort = source.LastPort; target.Model = source.Model; target.IsAvailable = source.IsAvailable;
     }
 
-    private static bool Same(string? left, string? right) => !string.IsNullOrWhiteSpace(left) &&
-        !string.IsNullOrWhiteSpace(right) && string.Equals(left, right, StringComparison.OrdinalIgnoreCase);
+    private static bool Same(string? left, string? right) => !string.IsNullOrWhiteSpace(left) && !string.IsNullOrWhiteSpace(right) && string.Equals(left, right, StringComparison.OrdinalIgnoreCase);
 }

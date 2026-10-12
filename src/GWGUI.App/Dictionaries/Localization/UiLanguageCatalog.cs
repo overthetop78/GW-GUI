@@ -38,8 +38,7 @@ public static class UiLanguageCatalog
         new("vi-VN", "vi-VN", "Tiếng Việt")
     ];
 
-    private static readonly Dictionary<string, UiLanguage> ByCode =
-        Available.ToDictionary(language => language.Code, StringComparer.OrdinalIgnoreCase);
+    private static readonly Dictionary<string, UiLanguage> ByCode = Available.ToDictionary(language => language.Code, StringComparer.OrdinalIgnoreCase);
 
     public static UiLanguage Fallback => ByCode[FallbackCode];
 

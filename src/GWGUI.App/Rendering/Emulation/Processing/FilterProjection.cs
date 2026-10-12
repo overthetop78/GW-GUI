@@ -27,8 +27,7 @@ internal static class FilterProjection
             float Compose(float value)
             {
                 value = FilterProjectionLightOutput.Apply(value, configuration.LightOutput / 100f);
-                value = FilterProjectionVignette.Apply(value, (x + .5f) / width,
-                    (y + .5f) / height, configuration.Vignette / 100f);
+                value = FilterProjectionVignette.Apply(value, (x + .5f) / width, (y + .5f) / height, configuration.Vignette / 100f);
                 value = FilterProjectionAmbientLight.Apply(value, configuration.AmbientLight / 100f);
                 return FilterProjectionScreenTexture.Apply(value, x, y, texture);
             }
@@ -65,10 +64,8 @@ internal static class FilterProjection
         y = Math.Clamp(y, 0, height - 1);
         var left = (int)MathF.Floor(x);
         var right = Math.Min(width - 1, left + 1);
-        return Lerp(source[(y * width + left) * 3 + channel],
-            source[(y * width + right) * 3 + channel], x - left);
+        return Lerp(source[(y * width + left) * 3 + channel], source[(y * width + right) * 3 + channel], x - left);
     }
 
-    private static float Lerp(float start, float end, float amount) =>
-        start + (end - start) * amount;
+    private static float Lerp(float start, float end, float amount) => start + (end - start) * amount;
 }

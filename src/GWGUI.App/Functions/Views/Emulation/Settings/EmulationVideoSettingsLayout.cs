@@ -16,9 +16,7 @@ internal static partial class EmulationSettingsLayout
 
     internal static FrameworkElement VideoSettingsChoice(EmulationVideoSettingsField field)
     {
-        var tile = field.IsTrailingCheckBox && field.Control is CheckBox checkBox
-            ? TrailingCheckBoxTile(field, checkBox)
-            : LabeledSettingsTile(field);
+        var tile = field.IsTrailingCheckBox && field.Control is CheckBox checkBox ? TrailingCheckBoxTile(field, checkBox) : LabeledSettingsTile(field);
         tile.Margin = new Thickness(0, 3, 0, 9);
         return tile;
     }
@@ -34,12 +32,9 @@ internal static partial class EmulationSettingsLayout
         var cell = 0;
         foreach (var field in fields)
         {
-            var tile = field.IsTrailingCheckBox && field.Control is CheckBox checkBox
-                ? TrailingCheckBoxTile(field, checkBox)
-                : LabeledSettingsTile(field);
+            var tile = field.IsTrailingCheckBox && field.Control is CheckBox checkBox ? TrailingCheckBoxTile(field, checkBox) : LabeledSettingsTile(field);
             var column = cell % VideoSettingsColumnCount;
-            tile.Margin = new Thickness(column == 0 ? 0 : 12, 4,
-                column + field.ColumnSpan >= VideoSettingsColumnCount ? 0 : 12, 10);
+            tile.Margin = new Thickness(column == 0 ? 0 : 12, 4, column + field.ColumnSpan >= VideoSettingsColumnCount ? 0 : 12, 10);
             Grid.SetRow(tile, cell / VideoSettingsColumnCount);
             Grid.SetColumn(tile, column);
             Grid.SetColumnSpan(tile, field.ColumnSpan);

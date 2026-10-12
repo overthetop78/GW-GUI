@@ -24,8 +24,7 @@ internal sealed class EmulationInputSettingsController
     private InputBindingEditor? _keyboard;
     private InputBindingEditor? _mouse;
     private IReadOnlyList<EmulationControllerPortEditor> _ports = [];
-    private IReadOnlyDictionary<int, EmulationControllerPort> _portDefinitions =
-        new Dictionary<int, EmulationControllerPort>();
+    private IReadOnlyDictionary<int, EmulationControllerPort> _portDefinitions = new Dictionary<int, EmulationControllerPort>();
     private EmulationInputSettings _settings = new(null, null, []);
     private string? _moduleId;
     private string? _machineId;
@@ -72,16 +71,14 @@ internal sealed class EmulationInputSettingsController
 
     internal ValueTask SaveAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
-        GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(
-            configuration.ModuleId, configuration.Id);
+        GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(configuration.ModuleId, configuration.Id);
         return _manager.SaveInputSettingsAsync(configuration, cancellationToken);
     }
 
     private UIElement CreateKeyboardView()
     {
         _keyboard = CreateEditor(_settings.Keyboard);
-        return EmulationSettingsLayout.KeyboardSettingsPage(_keyboard,
-            LocExtension.Get("Emulation.Keyboard.SpecialKeysOnlyHint"));
+        return EmulationSettingsLayout.KeyboardSettingsPage(_keyboard, LocExtension.Get("Emulation.Keyboard.SpecialKeysOnlyHint"));
     }
 
     private UIElement CreateMouseView(IReadOnlyList<EmulationSettingsControlField> fields)
@@ -110,8 +107,7 @@ internal sealed class EmulationInputSettingsController
             visualizer.Loaded += (_, _) => visualization.Start();
             visualizer.Unloaded += (_, _) => visualization.Stop();
         }
-        return EmulationSettingsLayout.MouseSettingsPage(fields, null, _mouse,
-            visualizer: visualizer);
+        return EmulationSettingsLayout.MouseSettingsPage(fields, null, _mouse, visualizer: visualizer);
     }
 
     private UIElement CreateControllersView(IReadOnlyList<EmulationSettingsControlField> fields)
@@ -119,10 +115,7 @@ internal sealed class EmulationInputSettingsController
         _ports = _settings.ControllerPorts.Select(CreatePort).ToArray();
         _portDefinitions = _settings.ControllerPorts.ToDictionary(port => port.Number);
         var section = new EmulationControllerSettingsSection();
-        var view = fields.Count == 0
-            ? section.Build(_ports.Select(port => port.Settings).ToArray())
-            : section.Build(_ports.Select(port => port.Settings).ToArray(), fields,
-                LocExtension.Get("Emulation.Input.Behavior"), ControlVisualConstants.GameControllerGlyph);
+        var view = fields.Count == 0 ? section.Build(_ports.Select(port => port.Settings).ToArray()) : section.Build(_ports.Select(port => port.Settings).ToArray(), fields, LocExtension.Get("Emulation.Input.Behavior"), ControlVisualConstants.GameControllerGlyph);
         return view;
     }
 
@@ -130,8 +123,7 @@ internal sealed class EmulationInputSettingsController
     {
         var editor = new InputBindingEditor();
         editor.BindingsChanged += (_, _) => SettingsChanged?.Invoke(this, EventArgs.Empty);
-        editor.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"),
-            LocExtension.Get("Emulation.Input.Binding.Search"));
+        editor.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"), LocExtension.Get("Emulation.Input.Binding.Search"));
         if (set is null) return editor;
         editor.ConfigureCaptureSources(ToCaptureSources(set.Sources), set.PrefixKeyboardSource);
         editor.SetRows(set.Definitions, set.Values, _moduleId);
@@ -145,12 +137,10 @@ internal sealed class EmulationInputSettingsController
             LocExtension.Get("Emulation.Input.Actions"),
             LocExtension.Get("Emulation.Input.Binding.Search"),
             _moduleId ?? string.Empty, _machineId ?? string.Empty);
-        var choices = port.ControllerChoices.Select(choice => new EmulationControllerChoiceView(choice,
-            choice.InvariantDisplayValue ?? LocExtension.GetForModule(_moduleId, choice.DisplayResourceKey))).ToArray();
+        var choices = port.ControllerChoices.Select(choice => new EmulationControllerChoiceView(choice, choice.InvariantDisplayValue ?? LocExtension.GetForModule(_moduleId, choice.DisplayResourceKey))).ToArray();
         editor.Type.ItemsSource = choices;
         editor.Type.DisplayMemberPath = nameof(EmulationControllerChoiceView.DisplayName);
-        editor.Type.SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == port.SelectedControllerId)
-            ?? choices.FirstOrDefault();
+        editor.Type.SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == port.SelectedControllerId) ?? choices.FirstOrDefault();
         editor.PhysicalDeviceId = port.PhysicalDeviceId;
         editor.DeadZonePercent = port.DeadZonePercent;
         editor.Bindings.SetRows(port.Bindings.Definitions, port.Bindings.Values, _moduleId);
@@ -176,9 +166,7 @@ internal sealed class EmulationInputSettingsController
     {
         if (editor.Type.SelectedItem is not EmulationControllerChoiceView selected
             || selected.Choice.BindingDefinitions is null) return;
-        var current = preserveCurrentBindings
-            ? editor.Bindings.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal)
-            : new Dictionary<string, string>(StringComparer.Ordinal);
+        var current = preserveCurrentBindings ? editor.Bindings.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal) : new Dictionary<string, string>(StringComparer.Ordinal);
         editor.Bindings.SetRows(selected.Choice.BindingDefinitions, current, _moduleId);
         UpdateControllerVisuals(editor, preferredVisualId);
         UpdateControllerVisualProfile(editor);
@@ -190,18 +178,13 @@ internal sealed class EmulationInputSettingsController
     {
         var selectedChoice = (editor.Type.SelectedItem as EmulationControllerChoiceView)?.Choice;
         var profiles = ControllerArtworkCatalog.AvailableProfiles(selectedChoice?.CompatibleVisualIds);
-        var choices = profiles.Select(profile => new KeyValuePair<string, string>(
-            profile.VisualId,
-            LocExtension.Get(ControllerVisualResourceKeyPrefix + profile.VisualId))).ToArray();
+        var choices = profiles.Select(profile => new KeyValuePair<string, string>(profile.VisualId, LocExtension.Get(ControllerVisualResourceKeyPrefix + profile.VisualId))).ToArray();
         editor.Visual.ItemsSource = choices;
 
         var visualId = preferredVisualId;
         if (string.IsNullOrWhiteSpace(visualId)
             || choices.All(choice => !string.Equals(choice.Key, visualId, StringComparison.Ordinal)))
-            visualId = choices.Any(choice => string.Equals(
-                    choice.Key, selectedChoice?.DefaultVisualId, StringComparison.Ordinal))
-                ? selectedChoice?.DefaultVisualId
-                : choices.FirstOrDefault().Key;
+            visualId = choices.Any(choice => string.Equals(choice.Key, selectedChoice?.DefaultVisualId, StringComparison.Ordinal)) ? selectedChoice?.DefaultVisualId : choices.FirstOrDefault().Key;
 
         editor.Visual.SelectedValue = visualId;
         editor.Visual.IsEnabled = choices.Length > 1;
@@ -228,9 +211,7 @@ internal sealed class EmulationInputSettingsController
     private static EmulationInputBindingSet? ReadKeyboardBindings(EmulationInputBindingSet? original,
         InputBindingEditor? editor) => original is null || editor is null ? original : original with
     {
-        Values = editor.Rows.Select(row => (row.Id, Key: ParseKeyboardBinding(row.Binding)))
-            .Where(item => item.Key != EmulationKey.Unknown)
-            .ToDictionary(item => item.Id, item => item.Key.ToString(), StringComparer.Ordinal)
+        Values = editor.Rows.Select(row => (row.Id, Key: ParseKeyboardBinding(row.Binding))).Where(item => item.Key != EmulationKey.Unknown).ToDictionary(item => item.Id, item => item.Key.ToString(), StringComparer.Ordinal)
     };
 
     private static EmulationKey ParseKeyboardBinding(string binding)

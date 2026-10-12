@@ -16,9 +16,7 @@ public static class ExplorerWarningLocalizer
         {
             var match = pattern.Regex.Match(warning);
             if (!match.Success) continue;
-            var arguments = Enumerable.Range(1, match.Groups.Count - 1)
-                .Select(index => (object)match.Groups[index].Value)
-                .ToArray();
+            var arguments = Enumerable.Range(1, match.Groups.Count - 1).Select(index => (object)match.Groups[index].Value).ToArray();
             return LocExtension.Get(pattern.Key, arguments);
         }
 
@@ -26,8 +24,7 @@ public static class ExplorerWarningLocalizer
     }
 
     private static IReadOnlyList<ExplorerWarningPattern> BuildPatterns() =>
-        LocExtension.GetDefinedKeys("ExplorerWarnings", System.Globalization.CultureInfo.InvariantCulture)
-            .Where(key => key.StartsWith(Prefix, StringComparison.Ordinal))
+        LocExtension.GetDefinedKeys("ExplorerWarnings", System.Globalization.CultureInfo.InvariantCulture).Where(key => key.StartsWith(Prefix, StringComparison.Ordinal))
             .Select(key => new ExplorerWarningPattern(key, CreateRegex(LocExtension.GetInvariant(key))))
             .OrderByDescending(pattern => LiteralLength(LocExtension.GetInvariant(pattern.Key)))
             .ToArray();

@@ -31,16 +31,8 @@ public partial class UpdatesWindow : Window
     {
         InitializeComponent();
         _pendingInstallations = pendingInstallations;
-        _confirmCloseWithPending = confirmCloseWithPending ?? (() => MessageBox.Show(this,
-            LocExtension.Get("Updates.CloseWithPendingModulesConfirm"),
-            LocExtension.Get("Updates.Title"), MessageBoxButton.YesNo, MessageBoxImage.Question));
-        _controller = new UpdateOptionsController(
-            this,
-            UpdatesSection,
-            new ApplicationUpdateService(),
-            (key, arguments) => LocExtension.Get(key, arguments),
-            reportError ?? ShowLoggedError,
-            pendingInstallations: pendingInstallations);
+        _confirmCloseWithPending = confirmCloseWithPending ?? (() => MessageBox.Show(this, LocExtension.Get("Updates.CloseWithPendingModulesConfirm"), LocExtension.Get("Updates.Title"), MessageBoxButton.YesNo, MessageBoxImage.Question));
+        _controller = new UpdateOptionsController(this, UpdatesSection, new ApplicationUpdateService(), (key, arguments) => LocExtension.Get(key, arguments), reportError ?? ShowLoggedError, pendingInstallations: pendingInstallations);
         _pendingInstallations.Changed += PendingInstallationsChanged;
         Closing += WindowClosing;
         Closed += WindowClosed;
@@ -59,8 +51,7 @@ public partial class UpdatesWindow : Window
     {
         ErrorLog.Write(exception, "Managing updates");
         var detail = ExceptionDescriptionFunctions.Describe(exception);
-        MessageBox.Show(this, LocExtension.Get("Error.Unexpected", detail),
-            LocExtension.Get("Updates.Title"), MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show(this, LocExtension.Get("Error.Unexpected", detail), LocExtension.Get("Updates.Title"), MessageBoxButton.OK, MessageBoxImage.Error);
     }
 
     private async void FooterAction_Click(object sender, RoutedEventArgs e)
@@ -115,9 +106,7 @@ public partial class UpdatesWindow : Window
     private void RefreshFooterAction()
     {
         var pending = _pendingInstallations.Items.Count > 0;
-        FooterAction.Content = LocExtension.Get(pending
-            ? "Updates.FinishModuleInstallations"
-            : "Common.Close");
+        FooterAction.Content = LocExtension.Get(pending ? "Updates.FinishModuleInstallations" : "Common.Close");
         FinishInstallationHint.Visibility = pending ? Visibility.Visible : Visibility.Collapsed;
     }
 

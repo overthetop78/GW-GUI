@@ -41,11 +41,9 @@ internal sealed class EmulationControllerPortEditor
         Bindings.ConfigureCaptureSources(captureSources, prefixKeyboardSource);
     }
 
-    private void VisualizerLoaded(object sender, RoutedEventArgs args) =>
-        _visualizationController.Start();
+    private void VisualizerLoaded(object sender, RoutedEventArgs args) => _visualizationController.Start();
 
-    private void VisualizerUnloaded(object sender, RoutedEventArgs args) =>
-        _visualizationController.Stop();
+    private void VisualizerUnloaded(object sender, RoutedEventArgs args) => _visualizationController.Stop();
 
     internal int Number { get; }
     internal string ModuleId { get; }
@@ -68,6 +66,5 @@ internal sealed class EmulationControllerPortEditor
         Visualizer.Visibility = profile is null ? Visibility.Collapsed : Visibility.Visible;
     }
 
-    internal EmulationControllerPortSettings Settings =>
-        new(Number, Type, Visual, Visualizer, Bindings);
+    internal EmulationControllerPortSettings Settings => new(Number, Type, Visual, Visualizer, Bindings);
 }

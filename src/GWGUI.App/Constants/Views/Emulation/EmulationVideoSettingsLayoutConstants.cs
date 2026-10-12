@@ -6,8 +6,7 @@ internal static class EmulationVideoSettingsLayoutConstants
     internal const string TechnologyTabId = "Technology";
     internal const string ImageTabId = "Image";
     internal const string EffectsTabId = "Effects";
-    internal const string VideoTechnologyParametersAutomationId =
-        "VideoTechnologyParameters";
+    internal const string VideoTechnologyParametersAutomationId = "VideoTechnologyParameters";
     internal const string VideoShaderLoadingAutomationId = "VideoShaderLoading";
     internal const string EnabledAutomationIdSuffix = "Enabled";
     internal const string ArgbHexadecimalFormat = "X8";

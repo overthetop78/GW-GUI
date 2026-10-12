@@ -32,11 +32,7 @@ public sealed class OperationProfileController(
         }
         catch (InvalidOperationException)
         {
-            if (dialogs.Show(
-                    localize("Profile.Replace", []),
-                    localize("Profile.Title", []),
-                    UserDialogButtons.YesNo,
-                    UserDialogIcon.Question) != UserDialogResult.Yes)
+            if (dialogs.Show(localize("Profile.Replace", []), localize("Profile.Title", []), UserDialogButtons.YesNo, UserDialogIcon.Question) != UserDialogResult.Yes)
                 return null;
 
             return profiles.For(operation).Save(profile, true);

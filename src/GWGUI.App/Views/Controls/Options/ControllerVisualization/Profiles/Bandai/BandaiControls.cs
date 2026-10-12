@@ -16,8 +16,7 @@ internal static partial class ControllerArtworkCatalog
         new(EmulationControllerVisualControl.CLeft, ControllerVisualZoneShape.Ellipse, 13, 10, 8, 9),
         new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 77, 70, 8, 10),
         new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 69, 76, 9, 10),
-        new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle,
-            file == ControllerArtworkFileNames.BandaiWonderSwan ? 35 : 29, 67, 10, 9)
+        new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, file == ControllerArtworkFileNames.BandaiWonderSwan ? 35 : 29, 67, 10, 9)
     ]);
 
     // The HLE core exposes eight virtual commands, not the six-button physical protocol.

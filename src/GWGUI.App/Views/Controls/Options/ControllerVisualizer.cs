@@ -69,8 +69,7 @@ public sealed partial class ControllerVisualizer : FrameworkElement
     private ControllerVisualState? _visualState;
     private ControllerArtworkProfile? _artworkProfile;
     private IReadOnlyDictionary<EmulationControllerVisualControl, string>? _visualCommandIds;
-    private ControllerVisualInput Input =>
-        _visualState is null ? new ControllerVisualInput(_state) : new ControllerVisualInput(_visualState);
+    private ControllerVisualInput Input => _visualState is null ? new ControllerVisualInput(_state) : new ControllerVisualInput(_visualState);
 
     protected override void OnRender(DrawingContext drawingContext)
     {
@@ -145,8 +144,7 @@ public sealed partial class ControllerVisualizer : FrameworkElement
         DrawArtworkProfileOverlays(drawingContext, profile, bounds);
     }
 
-    private void UpdateHoveredVisualControl(Point position) =>
-        SetHoveredVisualControl(HitTestVisualZone(position)?.Control);
+    private void UpdateHoveredVisualControl(Point position) => SetHoveredVisualControl(HitTestVisualZone(position)?.Control);
 
     private void SetHoveredVisualControl(EmulationControllerVisualControl? control)
     {
@@ -172,15 +170,10 @@ public sealed partial class ControllerVisualizer : FrameworkElement
         return null;
     }
 
-    private bool HasVisualCommand(EmulationControllerVisualControl control) =>
-        _visualCommandIds?.ContainsKey(control) == true;
+    private bool HasVisualCommand(EmulationControllerVisualControl control) => _visualCommandIds?.ContainsKey(control) == true;
 
     private static Rect ZoneBounds(Rect artworkBounds, ControllerVisualZone zone) =>
-        new(
-            artworkBounds.X + artworkBounds.Width * zone.XPercent / 100d,
-            artworkBounds.Y + artworkBounds.Height * zone.YPercent / 100d,
-            artworkBounds.Width * zone.WidthPercent / 100d,
-            artworkBounds.Height * zone.HeightPercent / 100d);
+        new(artworkBounds.X + artworkBounds.Width * zone.XPercent / 100d, artworkBounds.Y + artworkBounds.Height * zone.YPercent / 100d, artworkBounds.Width * zone.WidthPercent / 100d, artworkBounds.Height * zone.HeightPercent / 100d);
 
     private static bool Contains(ControllerVisualZone zone, Rect bounds, Point point)
     {
@@ -207,12 +200,8 @@ public sealed partial class ControllerVisualizer : FrameworkElement
         var dy = point.Y - (bounds.Y + bounds.Height / 2d);
         if (Math.Abs(dx) < double.Epsilon && Math.Abs(dy) < double.Epsilon) return false;
         if (Math.Abs(dx) > Math.Abs(dy))
-            return dx < 0d
-                ? control == EmulationControllerVisualControl.DirectionLeft
-                : control == EmulationControllerVisualControl.DirectionRight;
-        return dy < 0d
-            ? control == EmulationControllerVisualControl.DirectionUp
-            : control == EmulationControllerVisualControl.DirectionDown;
+            return dx < 0d ? control == EmulationControllerVisualControl.DirectionLeft : control == EmulationControllerVisualControl.DirectionRight;
+        return dy < 0d ? control == EmulationControllerVisualControl.DirectionUp : control == EmulationControllerVisualControl.DirectionDown;
     }
 
     private (double Scale, double OffsetX, double OffsetY) CalculateLayout()
@@ -291,10 +280,8 @@ public sealed partial class ControllerVisualizer : FrameworkElement
     {
         var edge = new Pen(ColorBrush(Color.FromRgb(128, 131, 137)), 3);
         dc.DrawEllipse(ColorBrush(Color.FromRgb(17, 18, 21)), edge, new Point(x, y), 38, 38);
-        dc.DrawEllipse(pressed ? Accent() : ColorBrush(Color.FromRgb(45, 47, 51)), edge,
-            new Point(x + axisX * 16, y + axisY * 16), 23, 23);
-        dc.DrawEllipse(null, new Pen(ColorBrush(Color.FromArgb(80, 255, 255, 255)), 1),
-            new Point(x + axisX * 16, y + axisY * 16), 16, 16);
+        dc.DrawEllipse(pressed ? Accent() : ColorBrush(Color.FromRgb(45, 47, 51)), edge, new Point(x + axisX * 16, y + axisY * 16), 23, 23);
+        dc.DrawEllipse(null, new Pen(ColorBrush(Color.FromArgb(80, 255, 255, 255)), 1), new Point(x + axisX * 16, y + axisY * 16), 16, 16);
     }
 
     private void DrawShoulder(DrawingContext dc, Rect rect, string label, bool pressed)
@@ -330,8 +317,7 @@ public sealed partial class ControllerVisualizer : FrameworkElement
 
     private void DrawText(DrawingContext dc, string value, Point center, double size, Brush? brush = null)
     {
-        var text = new FormattedText(value, CultureInfo.CurrentUICulture, FlowDirection.LeftToRight,
-            new Typeface("Segoe UI"), size, brush ?? Text(), VisualTreeHelper.GetDpi(this).PixelsPerDip);
+        var text = new FormattedText(value, CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, new Typeface("Segoe UI"), size, brush ?? Text(), VisualTreeHelper.GetDpi(this).PixelsPerDip);
         dc.DrawText(text, new Point(center.X - text.Width / 2, center.Y - text.Height / 2));
     }
 

@@ -34,8 +34,7 @@ public sealed class TerminalPanelController
     public bool IsVisible => terminal.Visibility == Visibility.Visible;
     public double ActualHeight => terminalRow.ActualHeight;
 
-    public string GetCompleteText() =>
-        terminal.CommandTextBox.Text + Environment.NewLine + Environment.NewLine + terminal.OutputText;
+    public string GetCompleteText() => terminal.CommandTextBox.Text + Environment.NewLine + Environment.NewLine + terminal.OutputText;
 
     public void CopyToClipboard()
     {
@@ -75,9 +74,7 @@ public sealed class TerminalPanelController
 
         terminal.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
         splitter.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
-        terminalRow.Height = visible
-            ? new GridLength(Math.Max(100, state.Height))
-            : new GridLength(0);
+        terminalRow.Height = visible ? new GridLength(Math.Max(100, state.Height)) : new GridLength(0);
     }
 
     public void SelectTab(int tabIndex)
@@ -88,9 +85,7 @@ public sealed class TerminalPanelController
         var state = CurrentState();
         terminal.Visibility = state.Expanded ? Visibility.Visible : Visibility.Collapsed;
         splitter.Visibility = state.Expanded ? Visibility.Visible : Visibility.Collapsed;
-        terminalRow.Height = state.Expanded
-            ? new GridLength(Math.Max(100, state.Height))
-            : new GridLength(0);
+        terminalRow.Height = state.Expanded ? new GridLength(Math.Max(100, state.Height)) : new GridLength(0);
     }
 
     public void CaptureCurrent()
@@ -116,7 +111,5 @@ public sealed class TerminalPanelController
         return state;
     }
 
-    private double DisplayedHeight() => terminalRow.ActualHeight >= 100
-        ? terminalRow.ActualHeight
-        : terminalRow.Height.IsAbsolute ? terminalRow.Height.Value : 0;
+    private double DisplayedHeight() => terminalRow.ActualHeight >= 100 ? terminalRow.ActualHeight : terminalRow.Height.IsAbsolute ? terminalRow.Height.Value : 0;
 }

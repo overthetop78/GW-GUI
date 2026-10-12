@@ -137,17 +137,8 @@ internal sealed class MediaVisualizationController
         _selectedBlockSurface = null;
         _blockView.SetDocument(_blockRenderModel);
 
-        var positions = descriptor.Elements
-            .Where(element => element.Surface is 0 or null)
-            .Select(element => element.Position)
-            .Distinct()
-            .Order()
-            .ToArray();
-        _face0Progress.Configure(
-            descriptor.ProgressUnit,
-            0,
-            positions,
-            _localize(DiskImageResourceKeys.VisualSurface, [0]));
+        var positions = descriptor.Elements.Where(element => element.Surface is 0 or null).Select(element => element.Position).Distinct().Order().ToArray();
+        _face0Progress.Configure(descriptor.ProgressUnit, 0, positions, _localize(DiskImageResourceKeys.VisualSurface, [0]));
         _viewModel.ProgressVisibility = Visibility.Visible;
         _viewModel.Face0ProgressVisibility = positions.Length > 0 ? Visibility.Visible : Visibility.Collapsed;
         _viewModel.Face1ProgressVisibility = Visibility.Collapsed;
@@ -157,8 +148,7 @@ internal sealed class MediaVisualizationController
         foreach (var position in positions)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var range = _blockRenderModel.Ranges.FirstOrDefault(item =>
-                position >= item.Start && position < item.Start + item.Length);
+            var range = _blockRenderModel.Ranges.FirstOrDefault(item => position >= item.Start && position < item.Start + item.Length);
             await _visualizer.Dispatcher.InvokeAsync(() =>
             {
                 _face0Progress.SetState(position, TrackSegmentState.Success);
@@ -177,9 +167,7 @@ internal sealed class MediaVisualizationController
         var geometry = _sectorPresenter.BuildGeometryModel(image);
         if (showProgress)
         {
-            var cylindersBySurface = geometry.Surfaces.ToDictionary(
-                surface => surface.Index,
-                surface => (IReadOnlyList<int>)surface.Tracks.Select(track => track.Cylinder).ToArray());
+            var cylindersBySurface = geometry.Surfaces.ToDictionary(surface => surface.Index, surface => (IReadOnlyList<int>)surface.Tracks.Select(track => track.Cylinder).ToArray());
             _face0Progress.Configure(
                 MediaVisualizationLayoutConstants.FaceOne,
                 cylindersBySurface.GetValueOrDefault(MediaVisualizationLayoutConstants.FaceOne) ?? [],
@@ -196,10 +184,7 @@ internal sealed class MediaVisualizationController
         _sectorView.SetDocument(geometry, descriptor);
         _visualizer.ShowDocument(document, descriptor);
         var lastPresentation = System.Diagnostics.Stopwatch.GetTimestamp();
-        foreach (var position in geometry.Surfaces
-                     .SelectMany(surface => surface.Tracks.Select(track => (Surface: surface.Index, track.Cylinder)))
-                     .OrderBy(item => item.Cylinder)
-                     .ThenBy(item => item.Surface))
+        foreach (var position in geometry.Surfaces.SelectMany(surface => surface.Tracks.Select(track => (Surface: surface.Index, track.Cylinder))).OrderBy(item => item.Cylinder).ThenBy(item => item.Surface))
         {
             cancellationToken.ThrowIfCancellationRequested();
             var track = _sectorPresenter.AnalyzeTrack(image, position.Surface, position.Cylinder);
@@ -212,9 +197,7 @@ internal sealed class MediaVisualizationController
                 _visualizer.Overview.MarkSectorTrack(position.Surface, track);
                 if (showProgress)
                 {
-                    var progress = position.Surface == MediaVisualizationLayoutConstants.FaceOne
-                        ? _face0Progress
-                        : _face1Progress;
+                    var progress = position.Surface == MediaVisualizationLayoutConstants.FaceOne ? _face0Progress : _face1Progress;
                     progress.SetState(position.Cylinder, TrackSegmentState.Success);
                 }
             }, DispatcherPriority.Background, cancellationToken);
@@ -224,9 +207,7 @@ internal sealed class MediaVisualizationController
 
     internal void ConfigureSequentialProgress(SequentialMediaRenderModel model)
     {
-        var rowCount = model.Segments.Count >= MediaVisualizationLayoutConstants.MinimumSegmentCountForSplitProgress
-            ? MediaVisualizationLayoutConstants.SegmentProgressPageCount
-            : MediaVisualizationLayoutConstants.SingleProgressPageCount;
+        var rowCount = model.Segments.Count >= MediaVisualizationLayoutConstants.MinimumSegmentCountForSplitProgress ? MediaVisualizationLayoutConstants.SegmentProgressPageCount : MediaVisualizationLayoutConstants.SingleProgressPageCount;
         var rowSize = (model.Segments.Count + rowCount - 1) / rowCount;
         var firstCount = Math.Min(rowSize, model.Segments.Count);
         var secondCount = Math.Max(0, model.Segments.Count - firstCount);
@@ -265,8 +246,7 @@ internal sealed class MediaVisualizationController
         return remaining > TimeSpan.Zero ? remaining : TimeSpan.Zero;
     }
 
-    private void HandleSectorSelected(int surface, SectorMediaElement? sector) =>
-        _visualizer.SetInspectorModel(surface, sector is null ? null : _sectorPresenter.BuildInspectorModel(surface, sector));
+    private void HandleSectorSelected(int surface, SectorMediaElement? sector) => _visualizer.SetInspectorModel(surface, sector is null ? null : _sectorPresenter.BuildInspectorModel(surface, sector));
 
     private void HandleBlockRangeSelected(BlockMediaRange? range)
     {
@@ -280,18 +260,9 @@ internal sealed class MediaVisualizationController
         UpdateBlockInspector();
     }
 
-    private void UpdateBlockInspector() => _visualizer.SetInspectorModel(_blockRenderModel is null
-        ? null
-        : _blockPresenter.BuildInspectorModel(_blockRenderModel, _selectedBlockRange, _selectedBlockSurface));
+    private void UpdateBlockInspector() => _visualizer.SetInspectorModel(_blockRenderModel is null ? null : _blockPresenter.BuildInspectorModel(_blockRenderModel, _selectedBlockRange, _selectedBlockSurface));
 
-    private void HandleOpticalTrackSelected(OpticalMediaTrack? track) =>
-        _visualizer.SetInspectorModel(_opticalDocument is null || _opticalRenderModel is null
-            ? null
-            : _opticalPresenter.BuildInspectorModel(_opticalDocument, _opticalRenderModel, track));
+    private void HandleOpticalTrackSelected(OpticalMediaTrack? track) => _visualizer.SetInspectorModel(_opticalDocument is null || _opticalRenderModel is null ? null : _opticalPresenter.BuildInspectorModel(_opticalDocument, _opticalRenderModel, track));
 
-    private void HandleSequentialSegmentSelected(
-        GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment? segment) =>
-        _visualizer.SetInspectorModel(SequentialRenderModel is null
-            ? null
-            : _sequentialPresenter.BuildInspectorModel(SequentialRenderModel, segment));
+    private void HandleSequentialSegmentSelected(GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment? segment) => _visualizer.SetInspectorModel(SequentialRenderModel is null ? null : _sequentialPresenter.BuildInspectorModel(SequentialRenderModel, segment));
 }

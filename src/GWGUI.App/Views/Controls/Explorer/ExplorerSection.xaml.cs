@@ -62,8 +62,7 @@ public partial class ExplorerSection : UserControl
     public Button OpenImageButton => OpenButton;
     public CardSection HeaderCardControl => HeaderCardRoot;
     public DiskClassificationSelector ClassificationSelector => Classification;
-    public IReadOnlyList<ExplorerFormatChoice> FormatChoices =>
-        [new(null, LocExtension.Get("Explorer.Automatic")), .. _formats.Select(format => new ExplorerFormatChoice(format.Id, format.DisplayName))];
+    public IReadOnlyList<ExplorerFormatChoice> FormatChoices => [new(null, LocExtension.Get("Explorer.Automatic")), .. _formats.Select(format => new ExplorerFormatChoice(format.Id, format.DisplayName))];
     public void SetReadDiskRunning(bool running) => ReadDiskButton.Content = LocExtension.Get(running ? "Common.Stop" : "Explorer.ReadDisk");
     public string? SelectedFormatId => Classification.SelectedFormatId;
     public string? FormatIdForNewImage => AutomaticDetection.IsChecked == true ? null : SelectedFormatId;
@@ -88,9 +87,7 @@ public partial class ExplorerSection : UserControl
         Classification.SetAutomaticDetection(enabled);
         if (!enabled) return;
 
-        var formatId = _automaticDetectedFormatId
-            ?? _document?.PrimaryFormatId
-            ?? _mediaDocument?.Document.FormatId;
+        var formatId = _automaticDetectedFormatId ?? _document?.PrimaryFormatId ?? _mediaDocument?.Document.FormatId;
         if (string.IsNullOrWhiteSpace(formatId)) return;
 
         SelectDetectedFormat(formatId);

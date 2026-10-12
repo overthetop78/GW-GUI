@@ -15,12 +15,8 @@ internal readonly record struct PlasmaVideoShaderParameters(
     {
         var plasma = configuration.Plasma;
         return new PlasmaVideoShaderParameters(
-            new Vector4(configuration.DisplayTechnology == EmulationVideoDisplayTechnology.Plasma
-                ? 1f : 0f, plasma.CellStructure / 100f, plasma.Diffusion / 100f,
-                plasma.TemporalDithering / 100f),
-            new Vector4(plasma.PersistenceIntensity / 100f,
-                hasHistory ? 1f : 0f, Math.Abs(sequence % 4), averageLuminance),
-            new Vector4(plasma.BlackDepth / 100f, plasma.PhosphorIntensity / 100f,
-                plasma.GammaResponse / 100f, plasma.AutomaticBrightnessLimiter / 100f));
+            new Vector4(configuration.DisplayTechnology == EmulationVideoDisplayTechnology.Plasma ? 1f : 0f, plasma.CellStructure / 100f, plasma.Diffusion / 100f, plasma.TemporalDithering / 100f),
+            new Vector4(plasma.PersistenceIntensity / 100f, hasHistory ? 1f : 0f, Math.Abs(sequence % 4), averageLuminance),
+            new Vector4(plasma.BlackDepth / 100f, plasma.PhosphorIntensity / 100f, plasma.GammaResponse / 100f, plasma.AutomaticBrightnessLimiter / 100f));
     }
 }

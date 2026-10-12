@@ -17,13 +17,9 @@ internal static class FilterSampling
         return new FilterColor(source[offset], source[offset + 1], source[offset + 2]);
     }
 
-    internal static bool Similar(FilterColor first, FilterColor second) =>
-        MathF.Abs(first.Red - second.Red) * .299f
-        + MathF.Abs(first.Green - second.Green) * .587f
-        + MathF.Abs(first.Blue - second.Blue) * .114f < .035f;
+    internal static bool Similar(FilterColor first, FilterColor second) => MathF.Abs(first.Red - second.Red) * .299f + MathF.Abs(first.Green - second.Green) * .587f + MathF.Abs(first.Blue - second.Blue) * .114f < .035f;
 
-    internal static float Sinc(float value) => MathF.Abs(value) < .0001f
-        ? 1f : MathF.Sin(MathF.PI * value) / (MathF.PI * value);
+    internal static float Sinc(float value) => MathF.Abs(value) < .0001f ? 1f : MathF.Sin(MathF.PI * value) / (MathF.PI * value);
 
     internal static float BesselJ1(float value)
     {
@@ -38,6 +34,5 @@ internal static class FilterSampling
         return sum;
     }
 
-    internal static float Jinc(float value) => MathF.Abs(value) < .0001f
-        ? .5f : BesselJ1(value) / value;
+    internal static float Jinc(float value) => MathF.Abs(value) < .0001f ? .5f : BesselJ1(value) / value;
 }

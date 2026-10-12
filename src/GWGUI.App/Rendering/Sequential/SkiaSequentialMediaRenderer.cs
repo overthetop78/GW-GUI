@@ -37,15 +37,7 @@ public sealed class SkiaSequentialMediaRenderer
                 for (var laneIndex = 0; laneIndex < lanes.Length; laneIndex++)
                 {
                     var centerY = scaledMargin + (line * lanes.Length + laneIndex + .5f) * rowHeight;
-                    canvas.DrawRoundRect(
-                        new SKRect(
-                            scaledMargin,
-                            centerY - bandHeight / 2,
-                            scaledMargin + contentWidth,
-                            centerY + bandHeight / 2),
-                        bandHeight / 2,
-                        bandHeight / 2,
-                        tape);
+                    canvas.DrawRoundRect(new SKRect(scaledMargin, centerY - bandHeight / 2, scaledMargin + contentWidth, centerY + bandHeight / 2), bandHeight / 2, bandHeight / 2, tape);
                 }
             }
         }
@@ -130,14 +122,10 @@ public sealed class SkiaSequentialMediaRenderer
 
     private static Layout BuildLayout(SequentialMediaRenderModel model)
     {
-        var totalDuration = model.Duration
-            ?? model.Segments.Select(segment => segment.Start + segment.Duration).DefaultIfEmpty().Max();
+        var totalDuration = model.Duration ?? model.Segments.Select(segment => segment.Start + segment.Duration).DefaultIfEmpty().Max();
         if (totalDuration > TimeSpan.Zero)
         {
-            var timed = model.Segments.Select(segment => new LayoutSegment(
-                segment,
-                segment.Start.Ticks,
-                Math.Max(1, segment.Duration.Ticks))).ToArray();
+            var timed = model.Segments.Select(segment => new LayoutSegment(segment, segment.Start.Ticks, Math.Max(1, segment.Duration.Ticks))).ToArray();
             return new Layout(Math.Max(totalDuration.Ticks, timed.Max(item => item.Start + item.Length)), timed);
         }
 

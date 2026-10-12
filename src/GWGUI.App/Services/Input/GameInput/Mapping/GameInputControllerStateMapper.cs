@@ -145,12 +145,9 @@ internal static class GameInputControllerStateMapper
 
     private static float ToThumbAxis(float value) => Math.Clamp(value * 2f - 1f, -1f, 1f);
 
-    private static uint Set(uint result, GameInputGamepadButtons buttons,
-        GameInputGamepadButtons source, EmulationControllerButtonBit target) =>
-        (buttons & source) == 0 ? result : result | Bit(target);
+    private static uint Set(uint result, GameInputGamepadButtons buttons, GameInputGamepadButtons source, EmulationControllerButtonBit target) => (buttons & source) == 0 ? result : result | Bit(target);
 
     private static uint Bit(EmulationControllerButtonBit target) => 1u << (int)target;
     private static short Trigger(float value) => Axis(Math.Clamp(value, 0f, 1f));
-    private static short Axis(float value) =>
-        (short)Math.Round(Math.Clamp(value, -1f, 1f) * short.MaxValue);
+    private static short Axis(float value) => (short)Math.Round(Math.Clamp(value, -1f, 1f) * short.MaxValue);
 }

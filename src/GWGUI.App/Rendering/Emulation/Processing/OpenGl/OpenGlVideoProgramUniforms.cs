@@ -111,13 +111,10 @@ internal sealed class OpenGlVideoProgramUniforms
         var adjustments = configuration.Adjustments;
         _api.SetUniform(_adjustments,
             adjustments.Brightness / OpenGlVideoConstants.BrightnessUniformDivisor,
-            MathF.Pow(2f,
-                adjustments.Contrast / OpenGlVideoConstants.ContrastExponentDivisor),
+            MathF.Pow(2f, adjustments.Contrast / OpenGlVideoConstants.ContrastExponentDivisor),
             (float)EmulationImageAdjustmentFunctions.GammaExponent(adjustments.Gamma),
             1f + adjustments.Saturation / OpenGlVideoConstants.SaturationUniformDivisor);
-        _api.SetUniform(_processing,
-            adjustments.Sharpness / OpenGlVideoConstants.SharpnessUniformDivisor,
-            (float)configuration.Sampling, sourceWidth, sourceHeight);
+        _api.SetUniform(_processing, adjustments.Sharpness / OpenGlVideoConstants.SharpnessUniformDivisor, (float)configuration.Sampling, sourceWidth, sourceHeight);
         _api.SetUniform(_output, outputWidth, outputHeight, 0f, 0f);
 
         var crt = CrtVideoShaderParameters.From(configuration);
@@ -129,15 +126,13 @@ internal sealed class OpenGlVideoProgramUniforms
         Set(_crtPattern, crt.Pattern);
         Set(_crtPatternIntensity, crt.PatternIntensity);
 
-        var fixedPixel = FixedPixelVideoShaderParameters.From(
-            configuration, hasHistory, elapsedMilliseconds);
+        var fixedPixel = FixedPixelVideoShaderParameters.From(configuration, hasHistory, elapsedMilliseconds);
         Set(_fixedDisplay, fixedPixel.Display);
         Set(_fixedSpatial, fixedPixel.Spatial);
         Set(_fixedTechnology, fixedPixel.Technology);
         Set(_fixedTemporal, fixedPixel.Temporal);
 
-        var plasma = PlasmaVideoShaderParameters.From(
-            configuration, hasHistory, sequence, averageLuminance);
+        var plasma = PlasmaVideoShaderParameters.From(configuration, hasHistory, sequence, averageLuminance);
         Set(_plasmaEffect, plasma.Effect);
         Set(_plasmaTemporal, plasma.Temporal);
         Set(_plasmaDisplay, plasma.Display);
@@ -147,17 +142,14 @@ internal sealed class OpenGlVideoProgramUniforms
         Set(_vectorTemporal, vector.Temporal);
         Set(_vectorDisplay, vector.Display);
 
-        var segmentDisplay = SegmentDisplayVideoShaderParameters.From(
-            configuration, hasHistory, elapsedMilliseconds);
+        var segmentDisplay = SegmentDisplayVideoShaderParameters.From(configuration, hasHistory, elapsedMilliseconds);
         Set(_segmentGeometry, segmentDisplay.Geometry);
         Set(_segmentShape, segmentDisplay.Shape);
         Set(_segmentEmission, segmentDisplay.Emission);
         Set(_segmentOptical, segmentDisplay.Optical);
         Set(_segmentTemporal, segmentDisplay.Temporal);
 
-        Set(_general, new((float)configuration.DisplayTechnology, hasHistory ? 1f : 0f,
-            sequence % OpenGlVideoConstants.ShaderSequenceCycle,
-            (float)elapsedMilliseconds));
+        Set(_general, new((float)configuration.DisplayTechnology, hasHistory ? 1f : 0f, sequence % OpenGlVideoConstants.ShaderSequenceCycle, (float)elapsedMilliseconds));
         Set(_restoration, new(
             configuration.Restoration.Dedithering / OpenGlVideoConstants.PercentageDivisor,
             configuration.Restoration.Denoising / OpenGlVideoConstants.PercentageDivisor,
@@ -175,18 +167,14 @@ internal sealed class OpenGlVideoProgramUniforms
             (float)configuration.SignalSimulation.Standard,
             configuration.SignalSimulation.StandardIntensity
                 / OpenGlVideoConstants.PercentageDivisor));
-        Set(_signal2, new(0f, configuration.Temporal.BlackFrameInsertion ? 1f : 0f,
-            configuration.Temporal.InterlacingVisibility
-                / OpenGlVideoConstants.PercentageDivisor, 0f));
+        Set(_signal2, new(0f, configuration.Temporal.BlackFrameInsertion ? 1f : 0f, configuration.Temporal.InterlacingVisibility / OpenGlVideoConstants.PercentageDivisor, 0f));
         Set(_stylistic, new(
             configuration.Stylistic.Grain / OpenGlVideoConstants.PercentageDivisor,
             configuration.Stylistic.Vhs / OpenGlVideoConstants.PercentageDivisor,
             configuration.Stylistic.ChromaticAberration
                 / OpenGlVideoConstants.PercentageDivisor,
             configuration.Stylistic.Bloom / OpenGlVideoConstants.PercentageDivisor));
-        Set(_stylistic2, new(configuration.Stylistic.Sepia ? 1f : 0f, 0f,
-            configuration.Restoration.DetailRecovery
-                / OpenGlVideoConstants.PercentageDivisor, 0f));
+        Set(_stylistic2, new(configuration.Stylistic.Sepia ? 1f : 0f, 0f, configuration.Restoration.DetailRecovery / OpenGlVideoConstants.PercentageDivisor, 0f));
 
         var vfd = VfdVideoShaderParameters.From(configuration, hasHistory, elapsedMilliseconds);
         Set(_vfdDisplay, vfd.Display);
@@ -197,14 +185,12 @@ internal sealed class OpenGlVideoProgramUniforms
         Set(_ledMatrixEmission, ledMatrix.Emission);
         Set(_ledMatrixStructure, ledMatrix.Structure);
 
-        var dotMatrix = DotMatrixVideoShaderParameters.From(
-            configuration, hasHistory, elapsedMilliseconds);
+        var dotMatrix = DotMatrixVideoShaderParameters.From(configuration, hasHistory, elapsedMilliseconds);
         Set(_dotMatrixGeometry, dotMatrix.Geometry);
         Set(_dotMatrixEmission, dotMatrix.Emission);
         Set(_dotMatrixTemporal, dotMatrix.Temporal);
 
-        var ePaper = EPaperVideoShaderParameters.From(
-            configuration, hasHistory, elapsedMilliseconds);
+        var ePaper = EPaperVideoShaderParameters.From(configuration, hasHistory, elapsedMilliseconds);
         Set(_ePaperInkAndColor, ePaper.InkAndColor);
         Set(_ePaperSurface, ePaper.PaperSurface);
         Set(_ePaperTemporal, ePaper.Temporal);

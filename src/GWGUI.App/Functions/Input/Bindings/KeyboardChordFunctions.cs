@@ -28,8 +28,7 @@ public static class KeyboardChordFunctions
         return true;
     }
 
-    public static bool Matches(KeyboardChord chord, ModifierKeys modifiers, IReadOnlySet<Key> pressed) =>
-        modifiers == chord.Modifiers && chord.Keys.Count == pressed.Count && chord.Keys.All(pressed.Contains);
+    public static bool Matches(KeyboardChord chord, ModifierKeys modifiers, IReadOnlySet<Key> pressed) => modifiers == chord.Modifiers && chord.Keys.Count == pressed.Count && chord.Keys.All(pressed.Contains);
 
     public static bool Contains(KeyboardChord chord, Key key) => chord.Keys.Contains(key);
 
@@ -51,6 +50,5 @@ public static class KeyboardChordFunctions
         return string.Join("+", parts);
     }
 
-    public static bool IsModifierKey(Key key) => key is Key.LeftCtrl or Key.RightCtrl or Key.LeftShift or Key.RightShift
-        or Key.LeftAlt or Key.RightAlt or Key.LWin or Key.RWin;
+    public static bool IsModifierKey(Key key) => key is Key.LeftCtrl or Key.RightCtrl or Key.LeftShift or Key.RightShift or Key.LeftAlt or Key.RightAlt or Key.LWin or Key.RWin;
 }

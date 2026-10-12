@@ -174,8 +174,7 @@ internal sealed class MachineInputController : IDisposable
     internal bool HandleKeyDown(Key source, ModifierKeys modifiers)
     {
         if (!KeyboardChordFunctions.IsModifierKey(source)) _physicalKeys.Add(source);
-        var shortcut = EmulationShortcutFunctions.ResolveGlobal(_globalShortcuts, modifiers,
-            _physicalKeys, source, _activeShortcuts);
+        var shortcut = EmulationShortcutFunctions.ResolveGlobal(_globalShortcuts, modifiers, _physicalKeys, source, _activeShortcuts);
         if (shortcut.Category == EmulationShortcutMatchCategory.Global)
         {
             if (shortcut.ShouldExecute && shortcut.Action is not null
@@ -183,8 +182,7 @@ internal sealed class MachineInputController : IDisposable
             return true;
         }
         if (shortcut.Category == EmulationShortcutMatchCategory.ReservedForGlobal) return true;
-        var machineShortcut = _keyboardShortcuts.FirstOrDefault(binding =>
-            KeyboardChordFunctions.Matches(binding.Chord, modifiers, _physicalKeys));
+        var machineShortcut = _keyboardShortcuts.FirstOrDefault(binding => KeyboardChordFunctions.Matches(binding.Chord, modifiers, _physicalKeys));
         if (machineShortcut is not null)
         {
             _pressedShortcutKeys[source] = machineShortcut.EmulationKey;
@@ -201,8 +199,7 @@ internal sealed class MachineInputController : IDisposable
     internal bool HandleKeyUp(Key source, ModifierKeys modifiers)
     {
         _physicalKeys.Remove(source);
-        EmulationShortcutFunctions.ReleaseInactive(_activeShortcuts, _globalShortcuts,
-            modifiers, _physicalKeys);
+        EmulationShortcutFunctions.ReleaseInactive(_activeShortcuts, _globalShortcuts, modifiers, _physicalKeys);
         if (_pressedShortcutKeys.Remove(source, out var shortcutKey))
         {
             _keys.Remove(shortcutKey);
@@ -220,8 +217,7 @@ internal sealed class MachineInputController : IDisposable
         if (ReferenceEquals(args.OriginalSource, _view.DisplayHost)) RestoreFocus();
     }
 
-    private void MouseDown(object sender, MouseButtonEventArgs args)
-        => RequestPointerCapture();
+    private void MouseDown(object sender, MouseButtonEventArgs args) => RequestPointerCapture();
 
     internal void RequestPointerCapture()
     {
@@ -233,13 +229,11 @@ internal sealed class MachineInputController : IDisposable
         Publish();
     }
 
-    private void MouseMove(object sender, MouseEventArgs args) =>
-        _pointerCapture.ProcessMovement(_view.Screen, (x, y) => Publish(x, y));
+    private void MouseMove(object sender, MouseEventArgs args) => _pointerCapture.ProcessMovement(_view.Screen, (x, y) => Publish(x, y));
 
     private void MouseWheel(object sender, MouseWheelEventArgs args) => Publish(wheel: args.Delta);
 
-    private void LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs args)
-        => Deactivate();
+    private void LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs args) => Deactivate();
 
     internal void Deactivate()
     {
@@ -274,8 +268,7 @@ internal sealed class MachineInputController : IDisposable
     {
         if (message != WindowsInputMessages.MouseHorizontalWheel || !_pointerCapture.IsCaptured
             || !_inputView.IsMouseOver) return IntPtr.Zero;
-        var delta = unchecked((short)((wParam.ToInt64() >> WindowsInputMessages.WheelHighWordShift)
-            & WindowsInputMessages.UnsignedWordMask));
+        var delta = unchecked((short)((wParam.ToInt64() >> WindowsInputMessages.WheelHighWordShift) & WindowsInputMessages.UnsignedWordMask));
         if (delta != WindowsInputMessages.NeutralWheelDelta) Publish(horizontalWheel: delta);
         return IntPtr.Zero;
     }
@@ -306,8 +299,7 @@ internal sealed class MachineInputController : IDisposable
         machine.Input.SetInput(new EmulationInputSnapshot(keys, pointer, physical.Controllers));
     }
 
-    private static bool CanAcceptInput(IEmulatedMachine machine) =>
-        machine.State is EmulationMachineState.Running or EmulationMachineState.Paused;
+    private static bool CanAcceptInput(IEmulatedMachine machine) => machine.State is EmulationMachineState.Running or EmulationMachineState.Paused;
 
     private IntPtr NativeMessage(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
@@ -341,12 +333,10 @@ internal sealed class MachineInputController : IDisposable
                 _pointerCapture.ProcessMovement(_view.Screen, (x, y) => Publish(x, y));
                 break;
             case WindowsInputMessages.MouseWheel when _pointerCapture.IsCaptured:
-                Publish(wheel: unchecked((short)((wParam.ToInt64() >> WindowsInputMessages.WheelHighWordShift)
-                    & WindowsInputMessages.UnsignedWordMask)));
+                Publish(wheel: unchecked((short)((wParam.ToInt64() >> WindowsInputMessages.WheelHighWordShift) & WindowsInputMessages.UnsignedWordMask)));
                 break;
             case WindowsInputMessages.MouseHorizontalWheel when _pointerCapture.IsCaptured:
-                Publish(horizontalWheel: unchecked((short)((wParam.ToInt64()
-                    >> WindowsInputMessages.WheelHighWordShift) & WindowsInputMessages.UnsignedWordMask)));
+                Publish(horizontalWheel: unchecked((short)((wParam.ToInt64() >> WindowsInputMessages.WheelHighWordShift) & WindowsInputMessages.UnsignedWordMask)));
                 break;
             case WindowsInputMessages.SetCursor when _pointerCapture.IsCaptured:
                 RelativeMouseCapture.HideNativeCursor();

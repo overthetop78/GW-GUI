@@ -220,10 +220,7 @@ public sealed partial class ControllerVisualizer
                 new Point(455, 177),
                 new Point(495, 137),
                 new Point(415, 137),
-                new Point(
-                    455,
-                    97
-                )
+                new Point(455, 97)
             };
             var standardButtons = new[]
             {

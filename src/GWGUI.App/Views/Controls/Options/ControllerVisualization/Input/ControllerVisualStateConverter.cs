@@ -12,19 +12,9 @@ internal static class ControllerVisualStateConverter
     {
         if (source is null) return new ControllerVisualState();
 
-        var rawAxes = source.Controls
-            .Where(control => control.Type == GameInputControlType.Axis)
-            .GroupBy(control => control.Index)
-            .ToDictionary(group => group.Key, group => group.Last().Value);
-        var rawButtons = source.Controls
-            .Where(control => control.Type == GameInputControlType.Button && control.IsPressed)
-            .Select(control => control.Index)
-            .ToHashSet();
-        var labeled = source.Controls
-            .Where(control => control.Type == GameInputControlType.Button && control.IsPressed)
-            .Select(control => LabelControl(control.Label))
-            .Where(control => control is not null)
-            .Select(control => control!.Value)
+        var rawAxes = source.Controls.Where(control => control.Type == GameInputControlType.Axis).GroupBy(control => control.Index).ToDictionary(group => group.Key, group => group.Last().Value);
+        var rawButtons = source.Controls.Where(control => control.Type == GameInputControlType.Button && control.IsPressed).Select(control => control.Index).ToHashSet();
+        var labeled = source.Controls.Where(control => control.Type == GameInputControlType.Button && control.IsPressed).Select(control => LabelControl(control.Label)).Where(control => control is not null).Select(control => control!.Value)
             .ToHashSet();
         var standard = new HashSet<ControllerVisualControl>();
 
@@ -40,13 +30,7 @@ internal static class ControllerVisualStateConverter
         if (flight is { } flightValue)
         {
             AddFlightControls(standard, flightValue.Buttons);
-            AddDirectionControls(
-                standard,
-                flightValue.HatSwitch,
-                ControllerVisualControl.FlightHatUp,
-                ControllerVisualControl.FlightHatDown,
-                ControllerVisualControl.FlightHatLeft,
-                ControllerVisualControl.FlightHatRight);
+            AddDirectionControls(standard, flightValue.HatSwitch, ControllerVisualControl.FlightHatUp, ControllerVisualControl.FlightHatDown, ControllerVisualControl.FlightHatLeft, ControllerVisualControl.FlightHatRight);
         }
 
         var arcade = source.ArcadeStick;
@@ -59,8 +43,7 @@ internal static class ControllerVisualStateConverter
             standard.Add(ControllerVisualControl.SystemShare);
 
         var primarySwitchDirections = new HashSet<ControllerVisualControl>();
-        var primarySwitch = source.Controls.FirstOrDefault(
-            control => control.Type == GameInputControlType.Switch);
+        var primarySwitch = source.Controls.FirstOrDefault(control => control.Type == GameInputControlType.Switch);
         if (primarySwitch is not null)
             AddDirectionControls(
                 primarySwitchDirections,
@@ -73,18 +56,11 @@ internal static class ControllerVisualStateConverter
         float RawSigned(int index)
         {
             if (!rawAxes.TryGetValue(index, out var value)) return NeutralAxisValue;
-            return source.ControlsUseNormalizedAxes
-                ? Math.Clamp(
-                    value * NormalizedAxisScale - MaximumAxisValue,
-                    MinimumSignedAxisValue,
-                    MaximumAxisValue)
-                : Math.Clamp(value, MinimumSignedAxisValue, MaximumAxisValue);
+            return source.ControlsUseNormalizedAxes ? Math.Clamp(value * NormalizedAxisScale - MaximumAxisValue, MinimumSignedAxisValue, MaximumAxisValue) : Math.Clamp(value, MinimumSignedAxisValue, MaximumAxisValue);
         }
 
         float RawUnsigned(int index, float defaultValue = NeutralAxisValue) =>
-            rawAxes.TryGetValue(index, out var value)
-                ? Math.Clamp(value, NeutralAxisValue, MaximumAxisValue)
-                : defaultValue;
+            rawAxes.TryGetValue(index, out var value) ? Math.Clamp(value, NeutralAxisValue, MaximumAxisValue) : defaultValue;
 
         float GamepadAxis(
             Func<GameInputGamepadState, float> selector,
@@ -95,72 +71,35 @@ internal static class ControllerVisualStateConverter
             if (gamepad is not { } value) return RawSigned(rawIndex);
             var analog = Math.Clamp(selector(value), MinimumSignedAxisValue, MaximumAxisValue);
             if (Math.Abs(analog) > AnalogInputThreshold) return analog;
-            return DigitalAxis(
-                value.Buttons.HasFlag(negative),
-                value.Buttons.HasFlag(positive));
+            return DigitalAxis(value.Buttons.HasFlag(negative), value.Buttons.HasFlag(positive));
         }
 
         float Trigger(GameInputLabel label, bool left)
         {
             if (gamepad is { } value)
             {
-                var analog = Math.Clamp(
-                    left ? value.LeftTrigger : value.RightTrigger,
-                    NeutralAxisValue,
-                    MaximumAxisValue);
+                var analog = Math.Clamp(left ? value.LeftTrigger : value.RightTrigger, NeutralAxisValue, MaximumAxisValue);
                 if (analog > AnalogInputThreshold) return analog;
-                var flag = left
-                    ? GameInputGamepadButtons.LeftTriggerButton
-                    : GameInputGamepadButtons.RightTriggerButton;
+                var flag = left ? GameInputGamepadButtons.LeftTriggerButton : GameInputGamepadButtons.RightTriggerButton;
                 if (value.Buttons.HasFlag(flag)) return MaximumAxisValue;
             }
 
-            var labeledAxis = source.Controls.FirstOrDefault(control =>
-                control.Type == GameInputControlType.Axis && control.Label == label);
-            var axisValue = Math.Clamp(
-                labeledAxis?.Value ?? NeutralAxisValue,
-                NeutralAxisValue,
-                MaximumAxisValue);
+            var labeledAxis = source.Controls.FirstOrDefault(control => control.Type == GameInputControlType.Axis && control.Label == label);
+            var axisValue = Math.Clamp(labeledAxis?.Value ?? NeutralAxisValue, NeutralAxisValue, MaximumAxisValue);
             if (axisValue > AnalogInputThreshold) return axisValue;
-            var labeledControl = left
-                ? ControllerVisualControl.GamepadLeftTriggerLabel
-                : ControllerVisualControl.GamepadRightTriggerLabel;
+            var labeledControl = left ? ControllerVisualControl.GamepadLeftTriggerLabel : ControllerVisualControl.GamepadRightTriggerLabel;
             return labeled.Contains(labeledControl) ? MaximumAxisValue : NeutralAxisValue;
         }
 
-        var leftX = GamepadAxis(
-            value => value.LeftThumbstickX,
-            GameInputGamepadButtons.LeftThumbstickLeft,
-            GameInputGamepadButtons.LeftThumbstickRight,
-            GamepadLeftHorizontalAxisIndex);
-        var leftY = gamepad is null
-            ? RawSigned(GamepadLeftVerticalAxisIndex)
-            : -GamepadAxis(
-                value => value.LeftThumbstickY,
-                GameInputGamepadButtons.LeftThumbstickDown,
-                GameInputGamepadButtons.LeftThumbstickUp,
-                GamepadLeftVerticalAxisIndex);
-        var rightX = GamepadAxis(
-            value => value.RightThumbstickX,
-            GameInputGamepadButtons.RightThumbstickLeft,
-            GameInputGamepadButtons.RightThumbstickRight,
-            GamepadRightHorizontalAxisIndex);
-        var rightY = gamepad is null
-            ? RawSigned(GamepadRightVerticalAxisIndex)
-            : -GamepadAxis(
-                value => value.RightThumbstickY,
-                GameInputGamepadButtons.RightThumbstickDown,
-                GameInputGamepadButtons.RightThumbstickUp,
-                GamepadRightVerticalAxisIndex);
+        var leftX = GamepadAxis(value => value.LeftThumbstickX, GameInputGamepadButtons.LeftThumbstickLeft, GameInputGamepadButtons.LeftThumbstickRight, GamepadLeftHorizontalAxisIndex);
+        var leftY = gamepad is null ? RawSigned(GamepadLeftVerticalAxisIndex) : -GamepadAxis(value => value.LeftThumbstickY, GameInputGamepadButtons.LeftThumbstickDown, GameInputGamepadButtons.LeftThumbstickUp, GamepadLeftVerticalAxisIndex);
+        var rightX = GamepadAxis(value => value.RightThumbstickX, GameInputGamepadButtons.RightThumbstickLeft, GameInputGamepadButtons.RightThumbstickRight, GamepadRightHorizontalAxisIndex);
+        var rightY = gamepad is null ? RawSigned(GamepadRightVerticalAxisIndex) : -GamepadAxis(value => value.RightThumbstickY, GameInputGamepadButtons.RightThumbstickDown, GameInputGamepadButtons.RightThumbstickUp, GamepadRightVerticalAxisIndex);
         var arcadeX = arcade is { } currentArcade
-            ? DigitalAxis(
-                currentArcade.Buttons.HasFlag(GameInputArcadeStickButtons.Left),
-                currentArcade.Buttons.HasFlag(GameInputArcadeStickButtons.Right))
+            ? DigitalAxis(currentArcade.Buttons.HasFlag(GameInputArcadeStickButtons.Left), currentArcade.Buttons.HasFlag(GameInputArcadeStickButtons.Right))
             : leftX;
         var arcadeY = arcade is { } currentArcadeY
-            ? DigitalAxis(
-                currentArcadeY.Buttons.HasFlag(GameInputArcadeStickButtons.Up),
-                currentArcadeY.Buttons.HasFlag(GameInputArcadeStickButtons.Down))
+            ? DigitalAxis(currentArcadeY.Buttons.HasFlag(GameInputArcadeStickButtons.Up), currentArcadeY.Buttons.HasFlag(GameInputArcadeStickButtons.Down))
             : leftY;
 
         return new ControllerVisualState
@@ -298,12 +237,7 @@ internal static class ControllerVisualStateConverter
             target.Add(right);
     }
 
-    private static float DigitalAxis(bool negative, bool positive) =>
-        negative == positive
-            ? NeutralAxisValue
-            : negative
-                ? MinimumSignedAxisValue
-                : MaximumAxisValue;
+    private static float DigitalAxis(bool negative, bool positive) => negative == positive ? NeutralAxisValue : negative ? MinimumSignedAxisValue : MaximumAxisValue;
 
     private static void Add<TButtons>(
         ISet<ControllerVisualControl> target,

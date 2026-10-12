@@ -61,8 +61,7 @@ internal static class EmulationImageRestorationSettingsBlock
             HorizontalAlignment = HorizontalAlignment.Center,
             Margin = new Thickness(6, 0, 6, 0)
         };
-        column.Children.Add(Label(labelResourceKey
-            ?? EmulationVideoProcessingCatalog.ParameterResourceKeys[id]));
+        column.Children.Add(Label(labelResourceKey ?? EmulationVideoProcessingCatalog.ParameterResourceKeys[id]));
         var slider = new Slider
         {
             Orientation = Orientation.Vertical,
@@ -102,8 +101,7 @@ internal static class EmulationImageRestorationSettingsBlock
             MinWidth = 0
         };
         AutomationProperties.SetAutomationId(column, "Video.Dedithering.Block");
-        column.Children.Add(Label(EmulationResourceKeys.VideoParameterDedithering,
-            HorizontalAlignment.Left));
+        column.Children.Add(Label(EmulationResourceKeys.VideoParameterDedithering, HorizontalAlignment.Left));
         var slider = new Slider
         {
             Minimum = 0,
@@ -164,11 +162,8 @@ internal static class EmulationImageRestorationSettingsBlock
         Action<EmulationDeinterlacingMode> changed)
     {
         var column = new StackPanel { Width = 220 };
-        column.Children.Add(Label(EmulationResourceKeys.VideoParameterDeinterlacing,
-            HorizontalAlignment.Left));
-        var choices = EmulationVideoProcessingCatalog.DeinterlacingResourceKeys
-            .Select(choice => new Choice<EmulationDeinterlacingMode>(choice.Key,
-                LocExtension.Get(choice.Value))).ToArray();
+        column.Children.Add(Label(EmulationResourceKeys.VideoParameterDeinterlacing, HorizontalAlignment.Left));
+        var choices = EmulationVideoProcessingCatalog.DeinterlacingResourceKeys.Select(choice => new Choice<EmulationDeinterlacingMode>(choice.Key, LocExtension.Get(choice.Value))).ToArray();
         var selector = new ComboBox
         {
             ItemsSource = choices,
@@ -195,9 +190,7 @@ internal static class EmulationImageRestorationSettingsBlock
         Margin = new Thickness(0, 0, 0, 6)
     };
 
-    private static int ClosestDeditheringStep(int value) =>
-        Math.Clamp((int)Math.Round(value / 100d * (DeditheringValues.Length - 1)),
-            0, DeditheringValues.Length - 1);
+    private static int ClosestDeditheringStep(int value) => Math.Clamp((int)Math.Round(value / 100d * (DeditheringValues.Length - 1)), 0, DeditheringValues.Length - 1);
 
     private sealed record Choice<T>(T Value, string DisplayName) where T : struct, Enum;
 }

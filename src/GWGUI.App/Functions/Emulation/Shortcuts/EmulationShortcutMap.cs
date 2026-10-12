@@ -35,7 +35,5 @@ internal static class EmulationShortcutMap
     internal static IReadOnlyList<GlobalShortcutBinding> GlobalShortcuts(
         IReadOnlyDictionary<string, string>? mappings) => mappings is null
         ? []
-        : mappings.Select(mapping => KeyboardChordFunctions.TryParse(mapping.Value, out var chord)
-                ? new GlobalShortcutBinding(mapping.Key, chord) : null)
-            .Where(binding => binding is not null).Cast<GlobalShortcutBinding>().ToArray();
+        : mappings.Select(mapping => KeyboardChordFunctions.TryParse(mapping.Value, out var chord) ? new GlobalShortcutBinding(mapping.Key, chord) : null).Where(binding => binding is not null).Cast<GlobalShortcutBinding>().ToArray();
 }

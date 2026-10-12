@@ -12,8 +12,7 @@ public sealed class ExplorerFolderItem
         Entry = entry;
         Depth = depth;
         IsSyntheticName = isSyntheticName;
-        Children = children.Where(child => child.Kind == FileSystemEntryKind.Directory)
-            .Select(child => new ExplorerFolderItem(child.Name, child, depth + 1, child.Children)).ToArray();
+        Children = children.Where(child => child.Kind == FileSystemEntryKind.Directory).Select(child => new ExplorerFolderItem(child.Name, child, depth + 1, child.Children)).ToArray();
     }
 
     public string Name { get; }

@@ -10,10 +10,6 @@ internal readonly record struct LedMatrixVideoShaderParameters(
         EmulationVideoProcessingConfiguration configuration)
     {
         var value = configuration.LedMatrix;
-        return new(
-            new((float)value.Color, value.Brightness / 100f,
-                value.BlackDepth / 100f, (float)value.Shape),
-            new(value.CellSize / 100f, value.CellGap / 100f,
-                value.Diffusion / 100f, value.HaloRadius / 100f));
+        return new(new((float)value.Color, value.Brightness / 100f, value.BlackDepth / 100f, (float)value.Shape), new(value.CellSize / 100f, value.CellGap / 100f, value.Diffusion / 100f, value.HaloRadius / 100f));
     }
 }

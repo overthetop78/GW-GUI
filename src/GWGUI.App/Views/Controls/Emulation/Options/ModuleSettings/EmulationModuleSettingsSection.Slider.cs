@@ -11,8 +11,7 @@ internal sealed partial class EmulationModuleSettingsSection
     private FrameworkElement CreateSlider(EmulationSettingsField field)
     {
         var range = field.NumericRange ?? throw new ArgumentException(nameof(field));
-        var value = double.TryParse(field.Value, NumberStyles.Float, CultureInfo.InvariantCulture,
-            out var parsed) ? parsed : range.Minimum;
+        var value = double.TryParse(field.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out var parsed) ? parsed : range.Minimum;
         var slider = new Slider
         {
             Minimum = range.Minimum,
@@ -34,8 +33,7 @@ internal sealed partial class EmulationModuleSettingsSection
         UpdateLabel();
         var savedValue = slider.Value;
         slider.ValueChanged += (_, _) => UpdateLabel();
-        slider.AddHandler(Thumb.DragCompletedEvent, new DragCompletedEventHandler(
-            async (_, _) => await SaveValueAsync()));
+        slider.AddHandler(Thumb.DragCompletedEvent, new DragCompletedEventHandler(async (_, _) => await SaveValueAsync()));
         slider.PreviewMouseLeftButtonUp += async (_, _) =>
         {
             if (!slider.IsMouseCaptureWithin) await SaveValueAsync();
@@ -49,8 +47,7 @@ internal sealed partial class EmulationModuleSettingsSection
         row.Children.Add(label);
         return row;
 
-        void UpdateLabel() => label.Text = slider.Value.ToString(
-            EmulationSliderConstants.NumericFormat, CultureInfo.CurrentCulture) + range.UnitSuffix;
+        void UpdateLabel() => label.Text = slider.Value.ToString(EmulationSliderConstants.NumericFormat, CultureInfo.CurrentCulture) + range.UnitSuffix;
 
         async Task SaveValueAsync()
         {

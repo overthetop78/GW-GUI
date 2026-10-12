@@ -16,12 +16,10 @@ internal sealed class FilterMotionBlur
             Reset();
             return;
         }
-        var compatible = _history is not null && _width == width && _height == height
-            && sequence > _sequence;
+        var compatible = _history is not null && _width == width && _height == height && sequence > _sequence;
         if (compatible)
             for (var index = 0; index < colors.Length; index++)
-                colors[index] = Math.Clamp(colors[index] * (1f - amount)
-                    + _history![index] * amount, 0f, 1f);
+                colors[index] = Math.Clamp(colors[index] * (1f - amount) + _history![index] * amount, 0f, 1f);
         _history = colors.ToArray();
         _width = width;
         _height = height;

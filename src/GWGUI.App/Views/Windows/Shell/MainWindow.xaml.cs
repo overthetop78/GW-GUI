@@ -409,10 +409,7 @@ public partial class MainWindow : Window
             RefreshExplorerFormats();
             ScpDecoderCombo.ItemsSource = new[]
             {
-                new ScpDecoderChoice(
-                null,
-                LocExtension.Get("Visual.Automatic")
-            )
+                new ScpDecoderChoice(null, LocExtension.Get("Visual.Automatic"))
             }.Concat(_fluxDecoders.Decoders.Select(x => new ScpDecoderChoice(x.Id, DecoderName(x.Id)))).ToArray();
             ScpDecoderCombo.SelectedIndex = 0;
         },

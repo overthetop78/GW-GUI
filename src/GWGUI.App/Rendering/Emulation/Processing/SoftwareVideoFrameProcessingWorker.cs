@@ -35,8 +35,7 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
         }
     }
 
-    internal SoftwareVideoFrameProcessingWorker(IEmulationVideoProcessingPipeline pipeline) =>
-        _pipeline = pipeline;
+    internal SoftwareVideoFrameProcessingWorker(IEmulationVideoProcessingPipeline pipeline) => _pipeline = pipeline;
 
     internal void Submit(EmulationVideoProcessingConfiguration configuration,
         VideoFrame frame, EmulationVideoProcessingSize outputSize,
@@ -45,8 +44,7 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
         lock (_gate)
         {
             if (_disposed) return;
-            _pending = new WorkItem(configuration, frame, outputSize,
-                configurationVersion, completed);
+            _pending = new WorkItem(configuration, frame, outputSize, configurationVersion, completed);
             if (_running) return;
             _running = true;
             _processingTask = Task.Run(ProcessPending);
@@ -90,12 +88,8 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
             try
             {
                 if (resetHistory) _pipeline.ResetTemporalHistory();
-                var processed = _pipeline.Process(work.Configuration, work.Frame,
-                    new EmulationVideoProcessingSize(work.Frame.Width, work.Frame.Height),
-                    work.OutputSize);
-                result = new(work.Frame, processed,
-                    EmulationVideoPixelFunctions.ToBgra32(processed),
-                    work.ConfigurationVersion, null);
+                var processed = _pipeline.Process(work.Configuration, work.Frame, new EmulationVideoProcessingSize(work.Frame.Width, work.Frame.Height), work.OutputSize);
+                result = new(work.Frame, processed, EmulationVideoPixelFunctions.ToBgra32(processed), work.ConfigurationVersion, null);
             }
             catch (Exception error)
             {

@@ -24,8 +24,7 @@ public partial class DiskClassificationSelector : UserControl
     public bool AutomaticDetection => Automatic.IsChecked == true;
     public string? SelectedMachine => (Machine.SelectedItem as DiskMachineChoice)?.DisplayName;
     public string? SelectedFormatId => (Format.SelectedItem as DiskFormatChoice)?.Format.Id;
-    public string? SelectedProtectionId => Protection.SelectedItem is DiskProtection protection && !string.IsNullOrWhiteSpace(protection.Id)
-        ? protection.Id : null;
+    public string? SelectedProtectionId => Protection.SelectedItem is DiskProtection protection && !string.IsNullOrWhiteSpace(protection.Id) ? protection.Id : null;
 
     public void SetAutomaticDetection(bool enabled)
     {
@@ -65,21 +64,13 @@ public partial class DiskClassificationSelector : UserControl
         }
     }
 
-    public void ApplyDetection(string? detectedFormatId, string? detectedProtectionId)
-        => ApplyDetection(detectedFormatId, detectedProtectionId, detectedFormatId is null ? [] : [detectedFormatId]);
+    public void ApplyDetection(string? detectedFormatId, string? detectedProtectionId) => ApplyDetection(detectedFormatId, detectedProtectionId, detectedFormatId is null ? [] : [detectedFormatId]);
 
     public void ApplyDetection(string? detectedFormatId, string? detectedProtectionId, IEnumerable<string> detectedFormatIds)
     {
-        var resolved = detectedFormatIds
-            .Select(_catalog.ResolveFormat)
-            .Where(format => format is not null)
-            .Cast<DiskFormat>()
-            .DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        var resolved = detectedFormatIds.Select(_catalog.ResolveFormat).Where(format => format is not null).Cast<DiskFormat>().DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase).ToArray();
         _detectedFormatIds = resolved.Select(format => format.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        _detectedFormatByMachine = resolved
-            .GroupBy(format => format.Family, StringComparer.OrdinalIgnoreCase)
-            .ToDictionary(group => group.Key, group => group.First().Id, StringComparer.OrdinalIgnoreCase);
+        _detectedFormatByMachine = resolved.GroupBy(format => format.Family, StringComparer.OrdinalIgnoreCase).ToDictionary(group => group.Key, group => group.First().Id, StringComparer.OrdinalIgnoreCase);
         if (!AutomaticDetection)
         {
             _updating = true;
@@ -112,9 +103,7 @@ public partial class DiskClassificationSelector : UserControl
     {
         var formats = _catalog.FormatsFor(SelectedMachine).Select(format => new DiskFormatChoice(format, _detectedFormatIds.Contains(format.Id))).ToArray();
         Format.ItemsSource = formats;
-        Format.SelectedItem = formats.FirstOrDefault(item => item.Format.Id.Equals(selectedId, StringComparison.OrdinalIgnoreCase))
-            ?? formats.FirstOrDefault(item => item.Format.IsCommon)
-            ?? formats.FirstOrDefault();
+        Format.SelectedItem = formats.FirstOrDefault(item => item.Format.Id.Equals(selectedId, StringComparison.OrdinalIgnoreCase)) ?? formats.FirstOrDefault(item => item.Format.IsCommon) ?? formats.FirstOrDefault();
     }
 
     private void RefreshMachines(string? selectedMachine = null)
@@ -131,8 +120,7 @@ public partial class DiskClassificationSelector : UserControl
             ? []
             : new[] { new DiskProtection("", SelectedMachine ?? "", new HashSet<string>(), "—") }.Concat(compatible).ToArray();
         Protection.ItemsSource = protections;
-        Protection.SelectedItem = protections.FirstOrDefault(item => item.Id.Equals(selectedId, StringComparison.OrdinalIgnoreCase))
-            ?? protections.FirstOrDefault();
+        Protection.SelectedItem = protections.FirstOrDefault(item => item.Id.Equals(selectedId, StringComparison.OrdinalIgnoreCase)) ?? protections.FirstOrDefault();
         ProtectionPanel.Visibility = compatible.Count == 0 ? Visibility.Collapsed : Visibility.Visible;
     }
 

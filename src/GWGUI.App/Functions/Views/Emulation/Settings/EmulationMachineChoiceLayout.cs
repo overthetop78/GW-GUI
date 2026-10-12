@@ -23,8 +23,7 @@ internal static class EmulationMachineChoiceLayout
         image.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
         image.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
         image.SetValue(Image.StretchProperty, Stretch.Uniform);
-        image.SetValue(FrameworkElement.MarginProperty,
-            new Thickness(0, 0, EmulationMachineChoiceVisualConstants.ImageNameSpacing, 0));
+        image.SetValue(FrameworkElement.MarginProperty, new Thickness(0, 0, EmulationMachineChoiceVisualConstants.ImageNameSpacing, 0));
         text.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
         var row = new FrameworkElementFactory(typeof(DockPanel));
         row.AppendChild(image);
@@ -35,8 +34,7 @@ internal static class EmulationMachineChoiceLayout
             Binding = new Binding(nameof(EmulationMachineChoice.HasSavedConfiguration)),
             Value = true
         };
-        configured.Setters.Add(new Setter(TextBlock.ForegroundProperty,
-            new SolidColorBrush(EmulationMachineChoiceVisualConstants.ConfiguredForeground), "Text"));
+        configured.Setters.Add(new Setter(TextBlock.ForegroundProperty, new SolidColorBrush(EmulationMachineChoiceVisualConstants.ConfiguredForeground), "Text"));
         configured.Setters.Add(new Setter(TextBlock.FontWeightProperty, FontWeights.Bold, "Text"));
 
         var template = new DataTemplate(typeof(EmulationMachineChoice)) { VisualTree = row };
@@ -46,8 +44,7 @@ internal static class EmulationMachineChoiceLayout
 
     internal static Style CreateListItemContainerStyle()
     {
-        var style = new Style(typeof(ListBoxItem),
-            (Style)Application.Current.FindResource(typeof(ListBoxItem)));
+        var style = new Style(typeof(ListBoxItem), (Style)Application.Current.FindResource(typeof(ListBoxItem)));
         style.Setters.Add(new Setter(Control.HorizontalContentAlignmentProperty, HorizontalAlignment.Stretch));
         style.Setters.Add(new Setter(FrameworkElement.MarginProperty, new Thickness(0, 0, 0, 6)));
         style.Setters.Add(new Setter(Control.PaddingProperty, new Thickness(12, 10, 12, 10)));
@@ -63,12 +60,9 @@ internal static class EmulationMachineChoiceLayout
 
     private static void AddConfiguredSetters(SetterBaseCollection setters)
     {
-        setters.Add(new Setter(Control.BackgroundProperty,
-            new SolidColorBrush(EmulationMachineChoiceVisualConstants.ConfiguredBackground)));
-        setters.Add(new Setter(Control.ForegroundProperty,
-            new SolidColorBrush(EmulationMachineChoiceVisualConstants.ConfiguredForeground)));
-        setters.Add(new Setter(Control.BorderBrushProperty,
-            new SolidColorBrush(EmulationMachineChoiceVisualConstants.ConfiguredBorder)));
+        setters.Add(new Setter(Control.BackgroundProperty, new SolidColorBrush(EmulationMachineChoiceVisualConstants.ConfiguredBackground)));
+        setters.Add(new Setter(Control.ForegroundProperty, new SolidColorBrush(EmulationMachineChoiceVisualConstants.ConfiguredForeground)));
+        setters.Add(new Setter(Control.BorderBrushProperty, new SolidColorBrush(EmulationMachineChoiceVisualConstants.ConfiguredBorder)));
         setters.Add(new Setter(Control.FontWeightProperty, FontWeights.Bold));
     }
 }

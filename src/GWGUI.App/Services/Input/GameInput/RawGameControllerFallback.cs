@@ -39,10 +39,7 @@ internal static class RawGameControllerFallback
     {
         try
         {
-            var devices = RawGameController.RawGameControllers
-                .Select((controller, index) => Describe(controller, index))
-                .Where(device => device is not null)
-                .Cast<RawDevice>()
+            var devices = RawGameController.RawGameControllers.Select((controller, index) => Describe(controller, index)).Where(device => device is not null).Cast<RawDevice>()
                 .OrderBy(device => device.Descriptor.ProductName, StringComparer.CurrentCultureIgnoreCase)
                 .ThenBy(device => device.Descriptor.Id, StringComparer.Ordinal)
                 .ToArray();
@@ -56,11 +53,8 @@ internal static class RawGameControllerFallback
 
     private static IReadOnlyList<RawDevice> DisambiguateDuplicateNames(IReadOnlyList<RawDevice> devices)
     {
-        var duplicates = devices.GroupBy(device => device.Descriptor.ProductName,
-                StringComparer.CurrentCultureIgnoreCase)
-            .Where(group => group.Count() > 1)
-            .ToDictionary(group => group.Key, group => group.OrderBy(device => device.Descriptor.Id,
-                StringComparer.Ordinal).ToArray(), StringComparer.CurrentCultureIgnoreCase);
+        var duplicates = devices.GroupBy(device => device.Descriptor.ProductName, StringComparer.CurrentCultureIgnoreCase).Where(group => group.Count() > 1)
+            .ToDictionary(group => group.Key, group => group.OrderBy(device => device.Descriptor.Id, StringComparer.Ordinal).ToArray(), StringComparer.CurrentCultureIgnoreCase);
         if (duplicates.Count == 0) return devices;
         return devices.Select(device =>
         {
@@ -80,10 +74,7 @@ internal static class RawGameControllerFallback
         IReadOnlyList<GameInputDeviceDescriptor> gameInput)
     {
         var fallback = DistinctFallback(gameInput);
-        return gameInput.Concat(fallback.Select(device => device.Descriptor))
-            .OrderBy(device => device.ProductName, StringComparer.CurrentCultureIgnoreCase)
-            .ThenBy(device => device.Id, StringComparer.Ordinal)
-            .ToArray();
+        return gameInput.Concat(fallback.Select(device => device.Descriptor)).OrderBy(device => device.ProductName, StringComparer.CurrentCultureIgnoreCase).ThenBy(device => device.Id, StringComparer.Ordinal).ToArray();
     }
 
     internal static IReadOnlyList<EmulationControllerState> ReadAll(
@@ -96,8 +87,7 @@ internal static class RawGameControllerFallback
     {
         RawDevice? device;
         lock (Sync)
-            device = _devices.FirstOrDefault(item =>
-                string.Equals(item.Descriptor.Id, deviceId, StringComparison.OrdinalIgnoreCase));
+            device = _devices.FirstOrDefault(item => string.Equals(item.Descriptor.Id, deviceId, StringComparison.OrdinalIgnoreCase));
         if (device is null)
         {
             state = GameInputLiveState.Empty(deviceId);
@@ -110,9 +100,7 @@ internal static class RawGameControllerFallback
     internal static string? GetName(string deviceId)
     {
         lock (Sync)
-            return _devices.FirstOrDefault(item =>
-                string.Equals(item.Descriptor.Id, deviceId, StringComparison.OrdinalIgnoreCase))
-                ?.Descriptor.ProductName;
+            return _devices.FirstOrDefault(item => string.Equals(item.Descriptor.Id, deviceId, StringComparison.OrdinalIgnoreCase)) ?.Descriptor.ProductName;
     }
 
     private static IReadOnlyList<RawDevice> DistinctFallback(
@@ -126,13 +114,8 @@ internal static class RawGameControllerFallback
     internal static IReadOnlyList<T> DistinctFallback<T>(IReadOnlyList<GameInputDeviceDescriptor> gameInput,
         IReadOnlyList<T> snapshot, Func<T, GameInputDeviceDescriptor> describe)
     {
-        var remainingByVidPid = gameInput
-            .Where(device => device.VendorId != 0 || device.ProductId != 0)
-            .GroupBy(device => (device.VendorId, device.ProductId))
-            .ToDictionary(group => group.Key, group => group.Count());
-        var remainingByName = gameInput
-            .GroupBy(device => Normalize(device.ProductName), StringComparer.OrdinalIgnoreCase)
-            .ToDictionary(group => group.Key, group => group.Count(), StringComparer.OrdinalIgnoreCase);
+        var remainingByVidPid = gameInput.Where(device => device.VendorId != 0 || device.ProductId != 0).GroupBy(device => (device.VendorId, device.ProductId)).ToDictionary(group => group.Key, group => group.Count());
+        var remainingByName = gameInput.GroupBy(device => Normalize(device.ProductName), StringComparer.OrdinalIgnoreCase).ToDictionary(group => group.Key, group => group.Count(), StringComparer.OrdinalIgnoreCase);
         var result = new List<T>();
         foreach (var device in snapshot)
         {
@@ -163,35 +146,22 @@ internal static class RawGameControllerFallback
             counts[normalized] = count - 1;
     }
 
-    private static string Normalize(string value) =>
-        string.Join(' ', value.Split((char[]?)null,
-            StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries));
+    private static string Normalize(string value) => string.Join(' ', value.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries));
 
     private static RawDevice? Describe(RawGameController controller, int index)
     {
         var id = controller.NonRoamableId?.TrimEnd('\0');
         if (string.IsNullOrWhiteSpace(id))
             id = $"{controller.HardwareVendorId:X4}:{controller.HardwareProductId:X4}:{index}";
-        var database = GameControllerNameDatabase.FindEntry(
-            controller.HardwareVendorId, controller.HardwareProductId);
-        var productName = GameInputDeviceModelCatalog.ResolveProductName(
-            controller.HardwareVendorId, controller.HardwareProductId,
-            controller.DisplayName, database?.Name, controller.DisplayName);
-        var controls = Enumerable.Range(0, controller.AxisCount)
-                .Select(axis => new GameInputControlDescriptor(
-                    GameInputControlType.Axis, axis, GameInputLabel.None))
-            .Concat(Enumerable.Range(0, controller.ButtonCount)
-                .Select(button => new GameInputControlDescriptor(
-                    GameInputControlType.Button, button, GameInputLabel.None)))
-            .Concat(Enumerable.Range(0, controller.SwitchCount)
-                .Select(item => new GameInputControlDescriptor(
-                    GameInputControlType.Switch, item, GameInputLabel.None,
-                    GameInputSwitchKind.EightWay)))
+        var database = GameControllerNameDatabase.FindEntry(controller.HardwareVendorId, controller.HardwareProductId);
+        var productName = GameInputDeviceModelCatalog.ResolveProductName(controller.HardwareVendorId, controller.HardwareProductId, controller.DisplayName, database?.Name, controller.DisplayName);
+        var controls = Enumerable.Range(0, controller.AxisCount).Select(axis => new GameInputControlDescriptor(GameInputControlType.Axis, axis, GameInputLabel.None))
+            .Concat(Enumerable.Range(0, controller.ButtonCount).Select(button => new GameInputControlDescriptor(GameInputControlType.Button, button, GameInputLabel.None)))
+            .Concat(Enumerable.Range(0, controller.SwitchCount).Select(item => new GameInputControlDescriptor(GameInputControlType.Switch, item, GameInputLabel.None, GameInputSwitchKind.EightWay)))
             .ToArray();
         var supported = GameInputKind.Controller;
         var deviceId = "rawgamecontroller:" + id;
-        var visual = GameInputDeviceModelCatalog.ResolveVisualModel(
-            controller.HardwareVendorId, controller.HardwareProductId, productName, supported);
+        var visual = GameInputDeviceModelCatalog.ResolveVisualModel(controller.HardwareVendorId, controller.HardwareProductId, productName, supported);
         if (ControllerVisualProfileStore.TryGet(deviceId, out var profile))
         {
             productName = ControllerVisualProfileStore.DisplayName(profile.Model, profile.DisplayName);
@@ -232,11 +202,7 @@ internal static class RawGameControllerFallback
         return new RawDevice(controller, descriptor, database);
     }
 
-    private static GameInputStandardCapabilities EmptyCapabilities() => new(
-        GameInputGamepadButtons.None, 0, 0, false, false, false, false,
-        false, false, false, 0,
-        new Dictionary<GameInputKind, IReadOnlyList<byte>>(),
-        new Dictionary<GameInputKind, IReadOnlyList<byte>>());
+    private static GameInputStandardCapabilities EmptyCapabilities() => new(GameInputGamepadButtons.None, 0, 0, false, false, false, false, false, false, false, 0, new Dictionary<GameInputKind, IReadOnlyList<byte>>(), new Dictionary<GameInputKind, IReadOnlyList<byte>>());
 
     private static EmulationControllerState ReadState(RawDevice device)
     {
@@ -268,15 +234,10 @@ internal static class RawGameControllerFallback
         if (!TryRead(device, out var buttons, out var switches, out var axes, out var timestamp))
             return GameInputLiveState.Empty(device.Descriptor.Id);
         var controls = new List<GameInputControlValue>();
-        controls.AddRange(axes.Select((value, index) => new GameInputControlValue(
-            GameInputControlType.Axis, index, GameInputLabel.None, (float)value)));
-        controls.AddRange(buttons.Select((value, index) => new GameInputControlValue(
-            GameInputControlType.Button, index, GameInputLabel.None, value ? 1f : 0f)));
-        controls.AddRange(switches.Select((value, index) => new GameInputControlValue(
-            GameInputControlType.Switch, index, GameInputLabel.None, 0f, Convert(value))));
-        return new GameInputLiveState(
-            device.Descriptor.Id, timestamp, GameInputKind.Controller,
-            controls, [], GameInputSystemButtons.None, null, null, null, null, true);
+        controls.AddRange(axes.Select((value, index) => new GameInputControlValue(GameInputControlType.Axis, index, GameInputLabel.None, (float)value)));
+        controls.AddRange(buttons.Select((value, index) => new GameInputControlValue(GameInputControlType.Button, index, GameInputLabel.None, value ? 1f : 0f)));
+        controls.AddRange(switches.Select((value, index) => new GameInputControlValue(GameInputControlType.Switch, index, GameInputLabel.None, 0f, Convert(value))));
+        return new GameInputLiveState(device.Descriptor.Id, timestamp, GameInputKind.Controller, controls, [], GameInputSystemButtons.None, null, null, null, null, true);
     }
 
     private static bool TryRead(RawDevice device, out bool[] buttons,
@@ -333,9 +294,7 @@ internal static class RawGameControllerFallback
         var axisText = sign == '\0' ? value : value[1..];
         if (axisText.Length > 1 && axisText[0] == 'a' &&
             int.TryParse(axisText.AsSpan(1), out var axis) && axis < axes.Count)
-            return sign == '-' ? (axes[axis] < .25 ? 1f : 0f)
-                : sign == '+' ? (axes[axis] > .75 ? 1f : 0f)
-                : (float)axes[axis];
+            return sign == '-' ? (axes[axis] < .25 ? 1f : 0f) : sign == '+' ? (axes[axis] > .75 ? 1f : 0f) : (float)axes[axis];
         if (value.Length > 3 && value[0] == 'h')
         {
             var parts = value[1..].Split('.');
@@ -346,11 +305,7 @@ internal static class RawGameControllerFallback
         return 0f;
     }
 
-    private static bool HatMatches(GameControllerSwitchPosition position, int mask) =>
-        (mask & 1) != 0 && HasDirection(position, "Up") ||
-        (mask & 2) != 0 && HasDirection(position, "Right") ||
-        (mask & 4) != 0 && HasDirection(position, "Down") ||
-        (mask & 8) != 0 && HasDirection(position, "Left");
+    private static bool HatMatches(GameControllerSwitchPosition position, int mask) => (mask & 1) != 0 && HasDirection(position, "Up") || (mask & 2) != 0 && HasDirection(position, "Right") || (mask & 4) != 0 && HasDirection(position, "Down") || (mask & 8) != 0 && HasDirection(position, "Left");
 
     private static short MappedAxis(GameControllerDatabaseEntry? entry,
         IReadOnlyList<double> axes, string name)
@@ -366,15 +321,13 @@ internal static class RawGameControllerFallback
         IReadOnlyList<double> axes, IReadOnlyList<bool> buttons, string name)
     {
         if (entry is null || !entry.Mappings.TryGetValue(name, out var source)) return 0;
-        return (byte)Math.Clamp(Math.Round(ReadMappedValue(source, buttons, [], axes) * byte.MaxValue),
-            byte.MinValue, byte.MaxValue);
+        return (byte)Math.Clamp(Math.Round(ReadMappedValue(source, buttons, [], axes) * byte.MaxValue), byte.MinValue, byte.MaxValue);
     }
 
     private static short Axis(IReadOnlyList<double> axes, int index)
     {
         if (index >= axes.Count) return 0;
-        return (short)Math.Clamp(Math.Round((axes[index] * 2d - 1d) * short.MaxValue),
-            short.MinValue, short.MaxValue);
+        return (short)Math.Clamp(Math.Round((axes[index] * 2d - 1d) * short.MaxValue), short.MinValue, short.MaxValue);
     }
 
     private static void AddSwitches(IDictionary<string, float> values,

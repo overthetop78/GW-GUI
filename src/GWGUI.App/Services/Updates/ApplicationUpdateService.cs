@@ -34,8 +34,7 @@ internal sealed class ApplicationUpdateService
         _catalogUri = catalogUri ?? new Uri(UpdateEndpoints.ApplicationCatalogUrl);
         _installedState = installedState ?? ReadInstalledState;
         _planBuilder = planBuilder ?? new UpdatePlanBuilder();
-        _packagePreparation = packagePreparation ?? new UpdatePackagePreparationService(
-            _httpClient, _installedState, applicationDirectory, archiveValidator, workingRootDirectory);
+        _packagePreparation = packagePreparation ?? new UpdatePackagePreparationService(_httpClient, _installedState, applicationDirectory, archiveValidator, workingRootDirectory);
     }
 
     internal Task<PreparedUpdateLaunch> PrepareAsync(UpdatePlan plan,
@@ -51,25 +50,18 @@ internal sealed class ApplicationUpdateService
         IReadOnlyDictionary<string, string>? selections = null,
         CancellationToken cancellationToken = default)
     {
-        using var response = await _httpClient.GetAsync(_catalogUri, HttpCompletionOption.ResponseHeadersRead,
-            cancellationToken).ConfigureAwait(false);
+        using var response = await _httpClient.GetAsync(_catalogUri, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
         await using var content = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-        var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(content, JsonOptions, cancellationToken)
-            .ConfigureAwait(false) ?? throw new InvalidDataException("The update catalog is empty.");
+        var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(content, JsonOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidDataException("The update catalog is empty.");
         return _planBuilder.Search(catalog, _installedState(), UpdateSearchScope.Application, selections);
     }
 
     internal static InstalledUpdateState ReadInstalledState()
     {
-        var installedModules = EmulationModuleRegistry.Packages.Select(package => new InstalledModuleVersion(
-            package.Manifest.Id,
-            package.Manifest.ModuleVersion,
-            package.Manifest.HostApiMinimum,
-            package.Manifest.HostApiMaximum));
+        var installedModules = EmulationModuleRegistry.Packages.Select(package => new InstalledModuleVersion(package.Manifest.Id, package.Manifest.ModuleVersion, package.Manifest.HostApiMinimum, package.Manifest.HostApiMaximum));
 
-        return new InstalledUpdateState(ReadApplicationVersion(), EmulationHostApi.CurrentVersion.ToString(2),
-            installedModules.OrderBy(module => module.Id, StringComparer.OrdinalIgnoreCase).ToArray());
+        return new InstalledUpdateState(ReadApplicationVersion(), EmulationHostApi.CurrentVersion.ToString(2), installedModules.OrderBy(module => module.Id, StringComparer.OrdinalIgnoreCase).ToArray());
     }
 
     internal static string ReadApplicationVersion()

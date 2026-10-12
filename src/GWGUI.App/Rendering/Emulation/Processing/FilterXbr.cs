@@ -21,8 +21,7 @@ internal static class FilterXbr
         EvaluateCorner(-1, -1, fractionX, fractionY);
         EvaluateCorner(-1, 1, fractionX, fractionY);
         for (var channel = 0; channel < 3; channel++)
-            result[channel] = SoftwareEmulationVideoProcessingPipeline.SrgbToLinear(
-                Lerp(center[channel], candidate[channel], bestBlend));
+            result[channel] = SoftwareEmulationVideoProcessingPipeline.SrgbToLinear(Lerp(center[channel], candidate[channel], bestBlend));
 
         void EvaluateCorner(int directionX, int directionY, float fx, float fy)
         {
@@ -42,8 +41,7 @@ internal static class FilterXbr
             var i5 = LumaAt(directionX, 2 * directionY);
             var i4 = LumaAt(2 * directionX, directionY);
             var b = LumaAt(0, -directionY);
-            var edge = Distance(e, c, g, i, h5, f4, hl, fl)
-                < Distance(hl, d, i5, fl, i4, b, e, i);
+            var edge = Distance(e, c, g, i, h5, f4, hl, fl) < Distance(hl, d, i5, fl, i4, b, e, i);
             if (!edge) return;
             var towardX = directionX > 0 ? fx : 1f - fx;
             var towardY = directionY > 0 ? fy : 1f - fy;
@@ -53,8 +51,7 @@ internal static class FilterXbr
             candidate = MathF.Abs(e - fl) <= MathF.Abs(e - hl) ? f : h;
         }
 
-        float LumaAt(int offsetX, int offsetY) => Luma(Read(source, width, height,
-            centerX + offsetX, centerY + offsetY));
+        float LumaAt(int offsetX, int offsetY) => Luma(Read(source, width, height, centerX + offsetX, centerY + offsetY));
     }
 
     private static FilterColor Read(float[] source, int width, int height, int x, int y)
@@ -68,12 +65,9 @@ internal static class FilterXbr
             SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]));
     }
 
-    private static float Luma(FilterColor color) => YWeight
-        * (0.299f * color[0] + 0.587f * color[1] + 0.114f * color[2]);
+    private static float Luma(FilterColor color) => YWeight * (0.299f * color[0] + 0.587f * color[1] + 0.114f * color[2]);
 
-    private static float Distance(float a, float b, float c, float d,
-        float e, float f, float g, float h) => MathF.Abs(a - b) + MathF.Abs(a - c)
-        + MathF.Abs(d - e) + MathF.Abs(d - f) + 4f * MathF.Abs(g - h);
+    private static float Distance(float a, float b, float c, float d, float e, float f, float g, float h) => MathF.Abs(a - b) + MathF.Abs(a - c) + MathF.Abs(d - e) + MathF.Abs(d - f) + 4f * MathF.Abs(g - h);
 
     private static float SmoothStep(float edge0, float edge1, float value)
     {
@@ -81,8 +75,7 @@ internal static class FilterXbr
         return t * t * (3f - 2f * t);
     }
 
-    private static float Lerp(float start, float end, float amount) =>
-        start + (end - start) * amount;
+    private static float Lerp(float start, float end, float amount) => start + (end - start) * amount;
 
     internal const string OpenGlShader = """
         vec3 xbrPointAt(vec2 center, vec2 offset)

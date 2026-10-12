@@ -58,13 +58,10 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
         GWGUI.VideoPresentation.Services.VideoPresentationProfileStore? profiles = null,
         Action<Exception>? showError = null)
     {
-        FlowDirection = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft
-            ? FlowDirection.RightToLeft
-            : FlowDirection.LeftToRight;
+        FlowDirection = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         _module = module;
         _profiles = profiles ?? EmulationVideoPresentationProfiles.Store;
-        _showError = showError ?? (error => ControlErrorPresenter.ShowEmulation(this, error,
-            ControlErrorContexts.EmulationConfigurationManagement, LocExtension.GetForModule(_module, _module.DisplayResourceKey)));
+        _showError = showError ?? (error => ControlErrorPresenter.ShowEmulation(this, error, ControlErrorContexts.EmulationConfigurationManagement, LocExtension.GetForModule(_module, _module.DisplayResourceKey)));
         _machines.ItemContainerStyle = EmulationMachineChoiceLayout.CreateListItemContainerStyle();
         _machines.ItemTemplate = EmulationMachineChoiceLayout.CreateTemplate();
         var choices = module.Machines.Select(CreateMachineChoice).ToArray();
@@ -82,8 +79,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
         }
         if (module is IEmulationFirmwareManager firmwareManager)
         {
-            _firmwareManagement = new EmulationFirmwareManagementController(_module, firmwareManager,
-                () => _configuration, SetConfiguration);
+            _firmwareManagement = new EmulationFirmwareManagementController(_module, firmwareManager, () => _configuration, SetConfiguration);
             _firmwareManagement.ConfigurationChanged += async (_, _) => await ExecuteUserChangeAsync();
         }
         if (module is IEmulationInputSettingsManager inputManager)
@@ -104,8 +100,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
                 profile with { Processing = _videoProcessing.Configuration });
             if (!_saved.Any(item => item.Id == _configuration.Id))
                 EmulationConfigurationDraftStore.Set(_module.Id, _configuration);
-            VideoConfigurationChanged?.Invoke(this,
-                new EmulationConfigurationSavedEventArgs(_configuration));
+            VideoConfigurationChanged?.Invoke(this, new EmulationConfigurationSavedEventArgs(_configuration));
             await ExecuteAsync(SaveVideoProfileAsync);
         };
         Content = BuildEditor();
@@ -117,8 +112,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
     internal event EventHandler<EmulationMachineEditingContext>? EditingContextChanged;
     internal IEmulationConfiguration CurrentConfiguration => _configuration;
 
-    private async void EmulatorConfigurationChanged(object? sender, EventArgs args) =>
-        await ExecuteUserChangeAsync();
+    private async void EmulatorConfigurationChanged(object? sender, EventArgs args) => await ExecuteUserChangeAsync();
 
     internal void SetVideoShaderLoading(string moduleId, Guid configurationId, bool isLoading)
     {
@@ -152,19 +146,14 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
     }
 
     private EmulationMachineChoice CreateMachineChoice(EmulationMachineDefinition machine) =>
-        new(machine, LocExtension.GetForModule(_module, machine.DisplayResourceKey),
-            _saved.Any(configuration => configuration.MachineId == machine.Id),
-            EmulationAssetFunctions.Load(_module, machine.ImageResourceName));
+        new(machine, LocExtension.GetForModule(_module, machine.DisplayResourceKey), _saved.Any(configuration => configuration.MachineId == machine.Id), EmulationAssetFunctions.Load(_module, machine.ImageResourceName));
 
     private async Task ReloadAsync()
     {
         _saved = await _module.LoadConfigurationsAsync();
         var machineId = _configuration.MachineId;
-        var selected = _saved.FirstOrDefault(item => item.Id == _configuration.Id)
-            ?? _saved.FirstOrDefault(item => item.MachineId == machineId);
-        _configuration = selected
-            ?? (EmulationConfigurationDraftStore.TryGet(_module.Id, machineId, out var draft)
-                ? draft : _module.CreateConfiguration(machineId));
+        var selected = _saved.FirstOrDefault(item => item.Id == _configuration.Id) ?? _saved.FirstOrDefault(item => item.MachineId == machineId);
+        _configuration = selected ?? (EmulationConfigurationDraftStore.TryGet(_module.Id, machineId, out var draft) ? draft : _module.CreateConfiguration(machineId));
         var choices = _module.Machines.Select(CreateMachineChoice).ToArray();
         _machines.ItemsSource = choices;
         SelectMachine(machineId);

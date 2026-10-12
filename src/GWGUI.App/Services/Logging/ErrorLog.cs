@@ -13,24 +13,19 @@ public static class ErrorLog
     internal static event Action<string>? EntryWritten;
     internal static event Action<string>? WarningWritten;
 
-    public static string? Write(Exception exception, string context, string? directory = null) =>
-        WriteEntry(exception.ToString(), context, "errors", directory, true);
+    public static string? Write(Exception exception, string context, string? directory = null) => WriteEntry(exception.ToString(), context, "errors", directory, true);
 
-    internal static string? WriteWithoutPublishing(Exception exception, string context, string? directory = null) =>
-        WriteEntry(exception.ToString(), context, "errors", directory, false);
+    internal static string? WriteWithoutPublishing(Exception exception, string context, string? directory = null) => WriteEntry(exception.ToString(), context, "errors", directory, false);
 
-    public static string? WriteInformation(string message, string context, string? directory = null) =>
-        WriteEntry(message, context, "information", directory, true);
+    public static string? WriteInformation(string message, string context, string? directory = null) => WriteEntry(message, context, "information", directory, true);
 
-    public static string? WriteWarning(string message, string context, string? directory = null) =>
-        WriteEntry(message, context, WarningFilePrefix, directory, true, warning: true);
+    public static string? WriteWarning(string message, string context, string? directory = null) => WriteEntry(message, context, WarningFilePrefix, directory, true, warning: true);
 
     private static string? WriteEntry(string detail, string context, string prefix, string? directory,
         bool publish, bool warning = false)
     {
         var assembly = Assembly.GetEntryAssembly();
-        var entry = new StringBuilder()
-            .AppendLine("================================================================================")
+        var entry = new StringBuilder().AppendLine("================================================================================")
             .AppendLine($"Time: {DateTimeOffset.Now:O}")
             .AppendLine($"Context: {context}")
             .AppendLine($"Application: {assembly?.GetName().Name} {assembly?.GetName().Version}")

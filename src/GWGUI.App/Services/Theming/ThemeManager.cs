@@ -22,9 +22,7 @@ public static class ThemeManager
         var dark = requested == AppTheme.Dark || requested == AppTheme.System && systemUsesDarkTheme;
         IsDark = dark;
         var windowColor = ParseColor(dark ? ThemeConstants.DarkWindow : ThemeConstants.LightWindow);
-        var accent = systemAccent.A == 0
-            ? ParseColor(ThemeConstants.DefaultAccent)
-            : Color.FromRgb(systemAccent.R, systemAccent.G, systemAccent.B);
+        var accent = systemAccent.A == 0 ? ParseColor(ThemeConstants.DefaultAccent) : Color.FromRgb(systemAccent.R, systemAccent.G, systemAccent.B);
         Set("AccentBrush", EnsureTextContrast(accent, windowColor, dark));
         Set("WindowBrush", windowColor);
         Set("CardBrush", dark ? "#23262E" : "#FFFFFF");
@@ -62,8 +60,7 @@ public static class ThemeManager
     {
         var firstLuminance = Luminance(first);
         var secondLuminance = Luminance(second);
-        return (Math.Max(firstLuminance, secondLuminance) + ThemeConstants.ContrastOffset)
-            / (Math.Min(firstLuminance, secondLuminance) + ThemeConstants.ContrastOffset);
+        return (Math.Max(firstLuminance, secondLuminance) + ThemeConstants.ContrastOffset) / (Math.Min(firstLuminance, secondLuminance) + ThemeConstants.ContrastOffset);
     }
 
     private static Color EnsureTextContrast(Color color, Color background, bool dark)
@@ -78,23 +75,14 @@ public static class ThemeManager
         return target;
     }
 
-    private static Color Blend(Color source, Color target, double amount) => Color.FromRgb(
-        (byte)Math.Round(source.R + (target.R - source.R) * amount),
-        (byte)Math.Round(source.G + (target.G - source.G) * amount),
-        (byte)Math.Round(source.B + (target.B - source.B) * amount));
+    private static Color Blend(Color source, Color target, double amount) => Color.FromRgb((byte)Math.Round(source.R + (target.R - source.R) * amount), (byte)Math.Round(source.G + (target.G - source.G) * amount), (byte)Math.Round(source.B + (target.B - source.B) * amount));
 
-    private static double Luminance(Color color) =>
-        ThemeConstants.RedLuminance * Linear(color.R)
-        + ThemeConstants.GreenLuminance * Linear(color.G)
-        + ThemeConstants.BlueLuminance * Linear(color.B);
+    private static double Luminance(Color color) => ThemeConstants.RedLuminance * Linear(color.R) + ThemeConstants.GreenLuminance * Linear(color.G) + ThemeConstants.BlueLuminance * Linear(color.B);
 
     private static double Linear(byte value)
     {
         var component = value / 255d;
-        return component <= ThemeConstants.SrgbThreshold
-            ? component / 12.92
-            : Math.Pow((component + ThemeConstants.SrgbOffset) / ThemeConstants.SrgbDivisor,
-                ThemeConstants.SrgbExponent);
+        return component <= ThemeConstants.SrgbThreshold ? component / 12.92 : Math.Pow((component + ThemeConstants.SrgbOffset) / ThemeConstants.SrgbDivisor, ThemeConstants.SrgbExponent);
     }
 
     private static Color ParseColor(string value) => (Color)ColorConverter.ConvertFromString(value);

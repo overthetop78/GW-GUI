@@ -33,35 +33,25 @@ internal sealed class MachineCommandBar
         Action restoreFocus)
     {
         _restoreFocus = restoreFocus;
-        _power = Command(MachineCommandGlyphConstants.Power, EmulationResourceKeys.Power,
-            actions.TogglePower, showError, false);
+        _power = Command(MachineCommandGlyphConstants.Power, EmulationResourceKeys.Power, actions.TogglePower, showError, false);
         _power.Foreground = Brushes.LimeGreen;
-        _pause = Command(MachineCommandGlyphConstants.Pause, EmulationResourceKeys.PauseResume,
-            actions.TogglePause, showError);
+        _pause = Command(MachineCommandGlyphConstants.Pause, EmulationResourceKeys.PauseResume, actions.TogglePause, showError);
         _pause.Foreground = Brushes.DarkOrange;
 
-        var softReset = Command(MachineCommandGlyphConstants.SoftReset,
-            EmulationResourceKeys.SoftReset, actions.SoftReset, showError);
+        var softReset = Command(MachineCommandGlyphConstants.SoftReset, EmulationResourceKeys.SoftReset, actions.SoftReset, showError);
         softReset.Foreground = new SolidColorBrush(Color.FromRgb(120, 160, 48));
-        var hardReset = Command(MachineCommandGlyphConstants.HardReset,
-            EmulationResourceKeys.HardReset, actions.HardReset, showError);
+        var hardReset = Command(MachineCommandGlyphConstants.HardReset, EmulationResourceKeys.HardReset, actions.HardReset, showError);
         hardReset.Foreground = new SolidColorBrush(Color.FromRgb(220, 92, 48));
 
         var left = new StackPanel { Orientation = Orientation.Horizontal };
         left.Children.Add(MachineView.CreateToolbarGroup(_power, _pause, softReset, hardReset));
-        _quickSave = Command(MachineCommandGlyphConstants.QuickSave, EmulationResourceKeys.QuickSave,
-            actions.QuickSave, showError);
-        _quickLoad = Command(MachineCommandGlyphConstants.QuickLoad, EmulationResourceKeys.QuickLoad,
-            actions.QuickLoad, showError);
+        _quickSave = Command(MachineCommandGlyphConstants.QuickSave, EmulationResourceKeys.QuickSave, actions.QuickSave, showError);
+        _quickLoad = Command(MachineCommandGlyphConstants.QuickLoad, EmulationResourceKeys.QuickLoad, actions.QuickLoad, showError);
         left.Children.Add(MachineView.CreateToolbarGroup(_quickSave, _quickLoad));
         left.Children.Add(MachineView.CreateToolbarGroup(
-            Command(MachineCommandGlyphConstants.CaptureScreen, EmulationResourceKeys.CaptureScreen,
-                actions.CaptureScreen, showError),
-            Command(MachineCommandGlyphConstants.Fullscreen, EmulationResourceKeys.Fullscreen,
-                actions.ToggleFullscreen, showError, false)));
-        var stateShortcuts = EmulationShortcutViewFunctions.CreateGroup(shortcuts,
-            (EmulationShortcutDefaults.QuickSave, EmulationResourceKeys.QuickSave),
-            (EmulationShortcutDefaults.QuickLoad, EmulationResourceKeys.QuickLoad));
+            Command(MachineCommandGlyphConstants.CaptureScreen, EmulationResourceKeys.CaptureScreen, actions.CaptureScreen, showError),
+            Command(MachineCommandGlyphConstants.Fullscreen, EmulationResourceKeys.Fullscreen, actions.ToggleFullscreen, showError, false)));
+        var stateShortcuts = EmulationShortcutViewFunctions.CreateGroup(shortcuts, (EmulationShortcutDefaults.QuickSave, EmulationResourceKeys.QuickSave), (EmulationShortcutDefaults.QuickLoad, EmulationResourceKeys.QuickLoad));
         left.Children.Add(stateShortcuts);
         DockPanel.SetDock(left, Dock.Left);
         host.Children.Add(left);
@@ -76,16 +66,12 @@ internal sealed class MachineCommandBar
             (EmulationShortcutDefaults.ReleaseMouse, EmulationResourceKeys.ReleaseMouse));
         right.Children.Add(displayShortcuts);
         if (actions.OpenCoreOptions is not null)
-            right.Children.Add(MachineView.CreateToolbarGroup(
-                Command(MachineCommandGlyphConstants.CoreOptions,
-                    "Emulation.Core.NameOptions", actions.OpenCoreOptions, showError)));
-        _audio = Command(MachineCommandGlyphConstants.Audio, EmulationResourceKeys.Audio,
-            actions.ToggleAudio, showError);
+            right.Children.Add(MachineView.CreateToolbarGroup(Command(MachineCommandGlyphConstants.CoreOptions, "Emulation.Core.NameOptions", actions.OpenCoreOptions, showError)));
+        _audio = Command(MachineCommandGlyphConstants.Audio, EmulationResourceKeys.Audio, actions.ToggleAudio, showError);
         var statusItems = new List<UIElement> { _audio };
         if (actions.SwitchControllerPointer is not null)
         {
-            _controllerPointer = Command(MachineCommandGlyphConstants.Pointer,
-                EmulationResourceKeys.SwitchControllerPointer, actions.SwitchControllerPointer, showError);
+            _controllerPointer = Command(MachineCommandGlyphConstants.Pointer, EmulationResourceKeys.SwitchControllerPointer, actions.SwitchControllerPointer, showError);
             _controllerPointer.Foreground = Brushes.LimeGreen;
             statusItems.Add(_controllerPointer);
         }
@@ -117,8 +103,7 @@ internal sealed class MachineCommandBar
         host.Children.Add(rendererGroup);
         host.SizeChanged += (_, args) =>
         {
-            var visibility = args.NewSize.Width >= MachinePresentationConstants.WideToolbarMinimumWidth
-                ? Visibility.Visible : Visibility.Collapsed;
+            var visibility = args.NewSize.Width >= MachinePresentationConstants.WideToolbarMinimumWidth ? Visibility.Visible : Visibility.Collapsed;
             stateShortcuts.Visibility = visibility;
             displayShortcuts.Visibility = visibility;
         };
@@ -159,9 +144,7 @@ internal sealed class MachineCommandBar
     internal void SetControllerPointerMode(bool pointerMode)
     {
         if (_controllerPointer is null) return;
-        ((TextBlock)_controllerPointer.Content).Text = pointerMode
-            ? MachineCommandGlyphConstants.Pointer
-            : MachineCommandGlyphConstants.Controller;
+        ((TextBlock)_controllerPointer.Content).Text = pointerMode ? MachineCommandGlyphConstants.Pointer : MachineCommandGlyphConstants.Controller;
         _controllerPointer.Foreground = Brushes.LimeGreen;
     }
 
@@ -169,10 +152,8 @@ internal sealed class MachineCommandBar
     {
         PointerStatus.Foreground = pointerCaptured ? Brushes.LimeGreen : Brushes.LightGray;
         ControllerStatus.Foreground = controllerAvailable ? Brushes.LimeGreen : Brushes.LightGray;
-        AutomationProperties.SetItemStatus(PointerStatus, LocExtension.Get(pointerCaptured
-            ? "Emulation.Value.Enabled" : "Emulation.Value.Disabled"));
-        AutomationProperties.SetItemStatus(ControllerStatus, LocExtension.Get(controllerAvailable
-            ? "Emulation.Value.Enabled" : "Emulation.Value.Disabled"));
+        AutomationProperties.SetItemStatus(PointerStatus, LocExtension.Get(pointerCaptured ? "Emulation.Value.Enabled" : "Emulation.Value.Disabled"));
+        AutomationProperties.SetItemStatus(ControllerStatus, LocExtension.Get(controllerAvailable ? "Emulation.Value.Enabled" : "Emulation.Value.Disabled"));
     }
 
     private void UpdateSavedStateButtons()

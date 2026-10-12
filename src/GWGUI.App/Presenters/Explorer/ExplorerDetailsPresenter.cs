@@ -119,11 +119,7 @@ public static class ExplorerDetailsPresenter
                 rows.Add(new("Explorer.Faces", faceCount.ToString()));
         }
         if (descriptor.Origin != MediaVolumeOrigins.OpticalTrack)
-            rows.Add(new(
-                "Visual.PartitionTableLabel",
-                string.IsNullOrWhiteSpace(descriptor.PartitionTable)
-                    ? LocExtension.Get("Visual.PartitionTable.None")
-                    : descriptor.PartitionTable.ToUpperInvariant()));
+            rows.Add(new("Visual.PartitionTableLabel", string.IsNullOrWhiteSpace(descriptor.PartitionTable) ? LocExtension.Get("Visual.PartitionTable.None") : descriptor.PartitionTable.ToUpperInvariant()));
         if (descriptor.PartitionNumber is { } partitionNumber)
             rows.Add(new("Visual.PartitionNumberLabel", partitionNumber.ToString()));
         if (!string.IsNullOrWhiteSpace(descriptor.PartitionType))
@@ -171,12 +167,7 @@ public static class ExplorerDetailsPresenter
                 rows.Add(new("Explorer.TextEncoding", TextEncoding(item.Definition.TextEncoding)));
             rows.Add(new("Explorer.Preview", LocExtension.Get($"Explorer.Preview.{item.Definition.PreviewKind}")));
         }
-        rows.AddRange(
-        [
-            new("Explorer.Size", item.SizeText),
-            new("Explorer.Modified", item.ModifiedText),
-            new("Explorer.Comment", string.IsNullOrWhiteSpace(item.Entry.Comment) ? "\u2014" : item.Entry.Comment)
-        ]);
+        rows.AddRange([new("Explorer.Size", item.SizeText), new("Explorer.Modified", item.ModifiedText), new("Explorer.Comment", string.IsNullOrWhiteSpace(item.Entry.Comment) ? "\u2014" : item.Entry.Comment)]);
         if (item.Definition.ExecutionKind != ExplorerExecutionKind.None)
             rows.Add(new("Explorer.Execution", LocExtension.Get($"Explorer.Execution.{item.Definition.ExecutionKind}")));
         if (item.Entry.Kind == GWGUI.MediaEngine.Enums.FileSystemEntryKind.Directory)
@@ -186,14 +177,11 @@ public static class ExplorerDetailsPresenter
         AddMetadataRow(rows, item.Entry.Metadata, "partialRecordCount", "Explorer.PartialRecords");
         AddMetadataRow(rows, item.Entry.Metadata, "baudRates", "Explorer.BaudRates", "baud");
         if (item.Entry.Metadata.TryGetValue("endRecordPresent", out var endRecordPresent))
-            rows.Add(new("Explorer.EndRecord", bool.TryParse(endRecordPresent, out var present) && present
-                ? LocExtension.Get("Controllers.Yes")
-                : LocExtension.Get("Controllers.No")));
+            rows.Add(new("Explorer.EndRecord", bool.TryParse(endRecordPresent, out var present) && present ? LocExtension.Get("Controllers.Yes") : LocExtension.Get("Controllers.No")));
         return new(item.Name, item.IconCategory, rows, false, item.Tone);
     }
 
-    private static string? ReadMetadata(IReadOnlyDictionary<string, string> metadata, string key) =>
-        metadata.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value) ? value : null;
+    private static string? ReadMetadata(IReadOnlyDictionary<string, string> metadata, string key) => metadata.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value) ? value : null;
 
     private static string? SystemName(string? systemId) => systemId switch
     {

@@ -29,11 +29,7 @@ internal static partial class EmulationSettingsLayout
             compatibilityFields.Add(settings.Precision);
         if (settings.Fpu is not null)
             compatibilityFields.Add(settings.Fpu);
-        var root = compatibilityFields.Count == 0
-            ? SingleColumnPage(processorCard)
-            : TwoColumnPage(processorCard,
-                IconCard(SettingsFieldGrid(compatibilityFields.ToArray()),
-                    LocExtension.Get("Emulation.Cpu.Compatibility"), CompatibilityIcon));
+        var root = compatibilityFields.Count == 0 ? SingleColumnPage(processorCard) : TwoColumnPage(processorCard, IconCard(SettingsFieldGrid(compatibilityFields.ToArray()), LocExtension.Get("Emulation.Cpu.Compatibility"), CompatibilityIcon));
 
         var speedFields = new List<EmulationSettingsControlField>
         {
@@ -41,8 +37,7 @@ internal static partial class EmulationSettingsLayout
         };
         if (settings.CpuSpeed is not null)
             speedFields.Add(settings.CpuSpeed);
-        var acceleration = IconCard(SettingsFieldGrid(speedFields.Count, speedFields.ToArray()),
-            LocExtension.Get("Emulation.Cpu.Acceleration"), AccelerationIcon);
+        var acceleration = IconCard(SettingsFieldGrid(speedFields.Count, speedFields.ToArray()), LocExtension.Get("Emulation.Cpu.Acceleration"), AccelerationIcon);
         acceleration.Margin = new Thickness(0, 10, 0, 0);
         Grid.SetRow(acceleration, 1);
         Grid.SetColumnSpan(acceleration, 2);

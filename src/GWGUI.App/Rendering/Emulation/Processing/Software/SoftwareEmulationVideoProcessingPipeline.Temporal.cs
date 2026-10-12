@@ -33,22 +33,15 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
             return;
         }
 
-        var compatibleHistory = _fixedPixelHistory is not null
-            && _historyWidth == width && _historyHeight == height
-            && timestamp >= _historyTimestamp;
+        var compatibleHistory = _fixedPixelHistory is not null && _historyWidth == width && _historyHeight == height && timestamp >= _historyTimestamp;
         if (compatibleHistory)
         {
-            var elapsedMilliseconds = Math.Max(0.001,
-                (timestamp - _historyTimestamp).TotalMilliseconds);
-            var response = FilterFixedPixelResponse.BlendFactor(
-                configuration.FixedPixel.ResponseTimeMilliseconds, elapsedMilliseconds);
+            var elapsedMilliseconds = Math.Max(0.001, (timestamp - _historyTimestamp).TotalMilliseconds);
+            var response = FilterFixedPixelResponse.BlendFactor(configuration.FixedPixel.ResponseTimeMilliseconds, elapsedMilliseconds);
             for (var index = 0; index < colors.Length; index++)
             {
-                var responded = FilterFixedPixelResponse.Apply(
-                    _fixedPixelHistory![index], colors[index], response);
-                colors[index] = FilterFixedPixelPersistence.Apply(
-                    responded, _fixedPixelHistory[index],
-                    configuration.FixedPixel.PersistenceIntensity);
+                var responded = FilterFixedPixelResponse.Apply(_fixedPixelHistory![index], colors[index], response);
+                colors[index] = FilterFixedPixelPersistence.Apply(responded, _fixedPixelHistory[index], configuration.FixedPixel.PersistenceIntensity);
             }
         }
 
@@ -74,12 +67,9 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
             ResetVectorHistory();
             return;
         }
-        var compatibleHistory = _vectorHistory is not null
-            && _vectorHistoryWidth == width && _vectorHistoryHeight == height
-            && sequence >= _vectorHistorySequence;
+        var compatibleHistory = _vectorHistory is not null && _vectorHistoryWidth == width && _vectorHistoryHeight == height && sequence >= _vectorHistorySequence;
         if (compatibleHistory)
-            FilterVectorPersistence.Apply(colors, _vectorHistory!,
-                configuration.Vector.PersistenceIntensity);
+            FilterVectorPersistence.Apply(colors, _vectorHistory!, configuration.Vector.PersistenceIntensity);
         _vectorHistory = colors.ToArray();
         _vectorHistoryWidth = width;
         _vectorHistoryHeight = height;
@@ -102,19 +92,13 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
             ResetDotMatrixHistory();
             return;
         }
-        var compatibleHistory = _dotMatrixHistory is not null
-            && _dotMatrixHistoryWidth == width && _dotMatrixHistoryHeight == height
-            && timestamp >= _dotMatrixHistoryTimestamp;
+        var compatibleHistory = _dotMatrixHistory is not null && _dotMatrixHistoryWidth == width && _dotMatrixHistoryHeight == height && timestamp >= _dotMatrixHistoryTimestamp;
         if (compatibleHistory)
         {
-            var elapsedMilliseconds = Math.Max(0.001,
-                (timestamp - _dotMatrixHistoryTimestamp).TotalMilliseconds);
-            var response = FilterDotMatrixResponse.BlendFactor(
-                configuration.DotMatrix.ResponseTimeMilliseconds, elapsedMilliseconds);
-            var reflective = configuration.DotMatrix.Palette is EmulationDotMatrixPalette.Green
-                or EmulationDotMatrixPalette.Gray;
-            var background = configuration.DotMatrix.Palette == EmulationDotMatrixPalette.Green
-                ? (.16f, .25f, .075f) : (.64f, .68f, .62f);
+            var elapsedMilliseconds = Math.Max(0.001, (timestamp - _dotMatrixHistoryTimestamp).TotalMilliseconds);
+            var response = FilterDotMatrixResponse.BlendFactor(configuration.DotMatrix.ResponseTimeMilliseconds, elapsedMilliseconds);
+            var reflective = configuration.DotMatrix.Palette is EmulationDotMatrixPalette.Green or EmulationDotMatrixPalette.Gray;
+            var background = configuration.DotMatrix.Palette == EmulationDotMatrixPalette.Green ? (.16f, .25f, .075f) : (.64f, .68f, .62f);
             for (var index = 0; index < colors.Length; index++)
             {
                 var responded = Lerp(_dotMatrixHistory![index], colors[index], response);
@@ -150,24 +134,17 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
             ResetSegmentDisplayHistory();
             return;
         }
-        var compatibleHistory = _segmentDisplayHistory is not null
-            && _segmentDisplayHistoryWidth == width && _segmentDisplayHistoryHeight == height
-            && timestamp >= _segmentDisplayHistoryTimestamp;
+        var compatibleHistory = _segmentDisplayHistory is not null && _segmentDisplayHistoryWidth == width && _segmentDisplayHistoryHeight == height && timestamp >= _segmentDisplayHistoryTimestamp;
         if (compatibleHistory)
         {
-            var elapsedMilliseconds = Math.Max(0.001,
-                (timestamp - _segmentDisplayHistoryTimestamp).TotalMilliseconds);
-            var response = FilterSegmentDisplayResponse.BlendFactor(
-                configuration.SegmentDisplay.ResponseTimeMilliseconds, elapsedMilliseconds);
-            var persistence = FilterSegmentDisplayPersistence.Decay(
-                configuration.SegmentDisplay.PersistenceMilliseconds, elapsedMilliseconds);
+            var elapsedMilliseconds = Math.Max(0.001, (timestamp - _segmentDisplayHistoryTimestamp).TotalMilliseconds);
+            var response = FilterSegmentDisplayResponse.BlendFactor(configuration.SegmentDisplay.ResponseTimeMilliseconds, elapsedMilliseconds);
+            var persistence = FilterSegmentDisplayPersistence.Decay(configuration.SegmentDisplay.PersistenceMilliseconds, elapsedMilliseconds);
             for (var index = 0; index < colors.Length; index++)
             {
                 var previous = _segmentDisplayHistory![index];
                 var target = colors[index];
-                colors[index] = target >= previous
-                    ? Lerp(previous, target, response)
-                    : MathF.Max(target, previous * persistence);
+                colors[index] = target >= previous ? Lerp(previous, target, response) : MathF.Max(target, previous * persistence);
             }
         }
         _segmentDisplayHistory = colors.ToArray();
@@ -192,14 +169,11 @@ internal sealed partial class SoftwareEmulationVideoProcessingPipeline : IEmulat
             ResetEPaperHistory();
             return;
         }
-        var compatibleHistory = _ePaperHistory is not null
-            && _ePaperHistoryWidth == width && _ePaperHistoryHeight == height
-            && timestamp >= _ePaperHistoryTimestamp;
+        var compatibleHistory = _ePaperHistory is not null && _ePaperHistoryWidth == width && _ePaperHistoryHeight == height && timestamp >= _ePaperHistoryTimestamp;
         if (compatibleHistory)
         {
             var elapsedMilliseconds = (timestamp - _ePaperHistoryTimestamp).TotalMilliseconds;
-            var response = FilterEPaperRefreshTime.BlendFactor(elapsedMilliseconds,
-                configuration.EPaper.RefreshTimeMilliseconds);
+            var response = FilterEPaperRefreshTime.BlendFactor(elapsedMilliseconds, configuration.EPaper.RefreshTimeMilliseconds);
             var ghosting = FilterEPaperGhosting.BlendFactor(configuration.EPaper.Ghosting);
             for (var index = 0; index < colors.Length; index++)
             {

@@ -74,8 +74,7 @@ public partial class ScpDiskView : UserControl, IMediaVisualizationView
     internal ScpRenderRequest CreateRenderRequest(int width, int height)
     {
         var center = new SKPoint(width / 2f + _panX * width / (float)Math.Max(1, Canvas.ActualWidth), height / 2f + _panY * height / (float)Math.Max(1, Canvas.ActualHeight));
-        return new(_image, _head, SelectedTrack, SelectedRevolutionIndex, width, height, center, _zoom,
-            LocExtension.Get("Visual.SideNoData", _head), LocExtension.Get("Visual.Side", _head), _mediaCategory);
+        return new(_image, _head, SelectedTrack, SelectedRevolutionIndex, width, height, center, _zoom, LocExtension.Get("Visual.SideNoData", _head), LocExtension.Get("Visual.Side", _head), _mediaCategory);
     }
 
     internal void PanBy(double x, double y)
@@ -89,8 +88,7 @@ public partial class ScpDiskView : UserControl, IMediaVisualizationView
     }
 
     private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e) { SetZoom(_zoom * (e.Delta > 0 ? 1.12f : .89f), true); e.Handled = true; }
-    private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        => SelectTrackAt(e.GetPosition(Canvas));
+    private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => SelectTrackAt(e.GetPosition(Canvas));
 
     private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
     {

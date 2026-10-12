@@ -12,13 +12,8 @@ internal readonly record struct EPaperVideoShaderParameters(
     {
         var value = configuration.EPaper;
         return new(
-            new Vector4((float)value.ColorMode, value.Contrast / 100f,
-                value.Dithering / 100f, value.ColorSaturation / 100f),
-            new Vector4(value.InkDensity / 100f, value.PaperBrightness / 100f,
-                value.PaperWarmth / 100f, value.SurfaceTexture / 100f),
-            new Vector4(value.EdgeSoftness / 100f,
-                FilterEPaperRefreshTime.BlendFactor(elapsedMilliseconds,
-                    value.RefreshTimeMilliseconds),
-                FilterEPaperGhosting.BlendFactor(value.Ghosting), hasHistory ? 1f : 0f));
+            new Vector4((float)value.ColorMode, value.Contrast / 100f, value.Dithering / 100f, value.ColorSaturation / 100f),
+            new Vector4(value.InkDensity / 100f, value.PaperBrightness / 100f, value.PaperWarmth / 100f, value.SurfaceTexture / 100f),
+            new Vector4(value.EdgeSoftness / 100f, FilterEPaperRefreshTime.BlendFactor(elapsedMilliseconds, value.RefreshTimeMilliseconds), FilterEPaperGhosting.BlendFactor(value.Ghosting), hasHistory ? 1f : 0f));
     }
 }

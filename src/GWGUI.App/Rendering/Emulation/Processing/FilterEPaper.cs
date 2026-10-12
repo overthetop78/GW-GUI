@@ -107,12 +107,9 @@ internal static class FilterEPaper
             if (configuration.ColorMode == EmulationEPaperColorMode.Color4096)
                 level = FilterEPaperColorSaturation.Apply(level, configuration.ColorSaturation);
             var pigment = FilterEPaperInkDensity.Apply(level, paper, configuration.InkDensity);
-            colors[index] = FilterEPaperSurfaceTexture.Apply(pigment.Red, x, y,
-                configuration.SurfaceTexture);
-            colors[index + 1] = FilterEPaperSurfaceTexture.Apply(pigment.Green, x, y,
-                configuration.SurfaceTexture);
-            colors[index + 2] = FilterEPaperSurfaceTexture.Apply(pigment.Blue, x, y,
-                configuration.SurfaceTexture);
+            colors[index] = FilterEPaperSurfaceTexture.Apply(pigment.Red, x, y, configuration.SurfaceTexture);
+            colors[index + 1] = FilterEPaperSurfaceTexture.Apply(pigment.Green, x, y, configuration.SurfaceTexture);
+            colors[index + 2] = FilterEPaperSurfaceTexture.Apply(pigment.Blue, x, y, configuration.SurfaceTexture);
         }
     }
 }

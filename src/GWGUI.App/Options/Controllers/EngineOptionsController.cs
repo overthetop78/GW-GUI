@@ -42,6 +42,5 @@ internal sealed class EngineOptionsController
 
     private static int Index(OperationEngine engine) => engine == OperationEngine.Internal ? 0 : 1;
 
-    private static OperationEngine Engine(int index) =>
-        index == 0 ? OperationEngine.Internal : OperationEngine.GreaseweazleHostTools;
+    private static OperationEngine Engine(int index) => index == 0 ? OperationEngine.Internal : OperationEngine.GreaseweazleHostTools;
 }

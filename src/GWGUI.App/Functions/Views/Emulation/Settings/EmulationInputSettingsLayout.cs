@@ -63,13 +63,11 @@ internal static partial class EmulationSettingsLayout
         settings.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         settings.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
-        var mouse = IconCard(SettingsFields(1, mouseFields.ToArray()),
-            LocExtension.Get("Emulation.Tab.Mouse"), EmulationInputSettingsConstants.MouseIcon);
+        var mouse = IconCard(SettingsFields(1, mouseFields.ToArray()), LocExtension.Get("Emulation.Tab.Mouse"), EmulationInputSettingsConstants.MouseIcon);
         mouse.Margin = new Thickness(0, 0, 5, 0);
         if (analogFields is not null && analogFields.Count > 0)
         {
-            var analog = IconCard(SettingsFields(1, analogFields.ToArray()),
-                LocExtension.Get("Emulation.Mouse.Analog"), EmulationInputSettingsConstants.ControllerIcon);
+            var analog = IconCard(SettingsFields(1, analogFields.ToArray()), LocExtension.Get("Emulation.Mouse.Analog"), EmulationInputSettingsConstants.ControllerIcon);
             analog.Margin = new Thickness(5, 0, 0, 0);
             Grid.SetColumn(analog, 1);
             settings.Children.Add(analog);
@@ -80,8 +78,7 @@ internal static partial class EmulationSettingsLayout
         }
         settings.Children.Add(mouse);
 
-        var bindings = InputBindings(editor, LocExtension.Get("Emulation.Mouse.Actions"),
-            LocExtension.Get("Emulation.Input.Capture.Hint"));
+        var bindings = InputBindings(editor, LocExtension.Get("Emulation.Mouse.Actions"), LocExtension.Get("Emulation.Input.Capture.Hint"));
         var mapping = new Grid { Margin = new Thickness(0, 10, 0, 0) };
         mapping.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(3, GridUnitType.Star) });
         mapping.Children.Add(bindings);

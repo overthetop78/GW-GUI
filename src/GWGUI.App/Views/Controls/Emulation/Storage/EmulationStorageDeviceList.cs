@@ -94,9 +94,7 @@ public sealed class EmulationStorageDeviceList : UserControl
             row.Children.Add(Cell(device.Identifier, FontWeights.SemiBold));
             AddCell(row, TypeLabel(device.Type), 1);
             AddCell(row, device.Model, 2);
-            var support = string.IsNullOrWhiteSpace(device.SupportPath)
-                ? LocExtension.Get(EmulationResourceKeys.NotUsed)
-                : SupportSummary(device.SupportPath);
+            var support = string.IsNullOrWhiteSpace(device.SupportPath) ? LocExtension.Get(EmulationResourceKeys.NotUsed) : SupportSummary(device.SupportPath);
             var supportText = Cell(support);
             if (string.IsNullOrWhiteSpace(device.SupportPath))
                 supportText.SetResourceReference(ForegroundProperty, "MutedTextBrush");
@@ -117,8 +115,7 @@ public sealed class EmulationStorageDeviceList : UserControl
                     MinWidth = EmulationStorageDeviceListConstants.ConfigureButtonMinimumWidth,
                     Tag = device
                 };
-                configure.Click += (_, _) => ConfigureRequested?.Invoke(this,
-                    new EmulationStorageDeviceEventArgs(device));
+                configure.Click += (_, _) => ConfigureRequested?.Invoke(this, new EmulationStorageDeviceEventArgs(device));
                 actions.Children.Add(configure);
             }
             var remove = new Button

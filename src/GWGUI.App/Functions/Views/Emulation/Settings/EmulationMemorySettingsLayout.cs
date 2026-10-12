@@ -15,8 +15,7 @@ internal static partial class EmulationSettingsLayout
         mainMemory.Children.Add(SettingsFieldGrid(settings.MainMemory.ToArray()));
         mainMemory.Children.Add(InformationBanner(settings.MainMemoryHint));
 
-        var mainCard = IconCard(mainMemory, LocExtension.Get("Emulation.Memory.Main"),
-            EmulationMemorySettingsConstants.MainMemoryIcon);
+        var mainCard = IconCard(mainMemory, LocExtension.Get("Emulation.Memory.Main"), EmulationMemorySettingsConstants.MainMemoryIcon);
         Grid root;
         if (settings.MemoryExtensions.Count == 0)
         {
@@ -27,9 +26,7 @@ internal static partial class EmulationSettingsLayout
             var extensions = new StackPanel();
             extensions.Children.Add(SettingsFieldGrid(settings.MemoryExtensions.ToArray()));
             extensions.Children.Add(InformationBanner(settings.MemoryExtensionsHint));
-            root = TwoColumnPage(mainCard,
-                IconCard(extensions, LocExtension.Get("Emulation.Memory.Extensions"),
-                    EmulationMemorySettingsConstants.MemoryExtensionsIcon));
+            root = TwoColumnPage(mainCard, IconCard(extensions, LocExtension.Get("Emulation.Memory.Extensions"), EmulationMemorySettingsConstants.MemoryExtensionsIcon));
         }
         root.Children.Add(MemorySummaryCard(settings.TotalMemory));
         return root;

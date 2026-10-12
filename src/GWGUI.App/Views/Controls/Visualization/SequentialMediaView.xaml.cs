@@ -69,19 +69,10 @@ public partial class SequentialMediaView : UserControl, IMediaVisualizationView
         _renderPixelWidth = Math.Max(1, e.Info.Width);
         _renderPixelHeight = Math.Max(1, e.Info.Height);
         var filtered = FilteredModel();
-        _renderer.Render(
-            e.Surface.Canvas,
-            filtered,
-            _selectedSegment,
-            Math.Min(_preparedSegmentCount, filtered?.Segments.Count ?? 0),
-            SequentialMediaRenderConstants.DefaultWrappedLineCount,
-            e.Info.Width,
-            e.Info.Height,
-            _zoom);
+        _renderer.Render(e.Surface.Canvas, filtered, _selectedSegment, Math.Min(_preparedSegmentCount, filtered?.Segments.Count ?? 0), SequentialMediaRenderConstants.DefaultWrappedLineCount, e.Info.Width, e.Info.Height, _zoom);
     }
 
-    private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        => SelectAt(e.GetPosition(Canvas));
+    private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => SelectAt(e.GetPosition(Canvas));
 
     private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
     {
@@ -115,13 +106,7 @@ public partial class SequentialMediaView : UserControl, IMediaVisualizationView
         var filtered = FilteredModel();
         var scaleX = _renderPixelWidth / Math.Max(1, Canvas.ActualWidth);
         var scaleY = _renderPixelHeight / Math.Max(1, Canvas.ActualHeight);
-        var segment = _renderer.HitTest(
-            filtered,
-            SequentialMediaRenderConstants.DefaultWrappedLineCount,
-            _renderPixelWidth,
-            _renderPixelHeight,
-            new SKPoint((float)(pointer.X * scaleX), (float)(pointer.Y * scaleY)),
-            _zoom);
+        var segment = _renderer.HitTest(filtered, SequentialMediaRenderConstants.DefaultWrappedLineCount, _renderPixelWidth, _renderPixelHeight, new SKPoint((float)(pointer.X * scaleX), (float)(pointer.Y * scaleY)), _zoom);
         if (segment is null) return;
         _selectedSegment = segment;
         UpdateSelectionLabel();
@@ -182,21 +167,16 @@ public partial class SequentialMediaView : UserControl, IMediaVisualizationView
         var face = SelectedValue(FaceSelector);
         var track = SelectedValue(TrackSelector);
         var channel = SelectedValue(ChannelSelector);
-        var segments = _model.Segments.Where(segment =>
-            (face is null || segment.FaceNumber == face) &&
-            (track is null || segment.TrackNumber == track) &&
-            (channel is null || segment.ChannelNumber == channel)).ToArray();
+        var segments = _model.Segments.Where(segment => (face is null || segment.FaceNumber == face) && (track is null || segment.TrackNumber == track) && (channel is null || segment.ChannelNumber == channel)).ToArray();
         return _model with { Segments = segments };
     }
 
-    private static int? SelectedValue(ComboBox selector) =>
-        selector.SelectedItem is KeyValuePair<int?, string> choice ? choice.Key : null;
+    private static int? SelectedValue(ComboBox selector) => selector.SelectedItem is KeyValuePair<int?, string> choice ? choice.Key : null;
 
     private static void SetChoices(ComboBox selector, IEnumerable<int> values, string resourceKey)
     {
         var choices = new List<KeyValuePair<int?, string>> { new(null, LocExtension.Get("Visual.All")) };
-        choices.AddRange(values.Distinct().Order().Select(value =>
-            new KeyValuePair<int?, string>(value, LocExtension.Get(resourceKey, value))));
+        choices.AddRange(values.Distinct().Order().Select(value => new KeyValuePair<int?, string>(value, LocExtension.Get(resourceKey, value))));
         selector.ItemsSource = choices;
         selector.SelectedIndex = 0;
     }

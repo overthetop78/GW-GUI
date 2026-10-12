@@ -8,11 +8,9 @@ internal static class GameControllerNameDatabase
     private const string ResourceName = "GWGUI.App.Assets.Input.gamecontrollerdb.txt";
     private static readonly Lazy<IReadOnlyDictionary<uint, GameControllerDatabaseEntry>> Entries = new(Load);
 
-    internal static string? Find(ushort vendorId, ushort productId) =>
-        FindEntry(vendorId, productId)?.Name;
+    internal static string? Find(ushort vendorId, ushort productId) => FindEntry(vendorId, productId)?.Name;
 
-    internal static GameControllerDatabaseEntry? FindEntry(ushort vendorId, ushort productId) =>
-        Entries.Value.GetValueOrDefault(((uint)vendorId << 16) | productId);
+    internal static GameControllerDatabaseEntry? FindEntry(ushort vendorId, ushort productId) => Entries.Value.GetValueOrDefault(((uint)vendorId << 16) | productId);
 
     private static IReadOnlyDictionary<uint, GameControllerDatabaseEntry> Load()
     {
@@ -44,8 +42,7 @@ internal static class GameControllerNameDatabase
                     continue;
                 mappings.TryAdd(target, field[(separator + 1)..].Trim());
             }
-            result.TryAdd(((uint)vendorId << 16) | productId,
-                new GameControllerDatabaseEntry(fields[0].Trim(), mappings));
+            result.TryAdd(((uint)vendorId << 16) | productId, new GameControllerDatabaseEntry(fields[0].Trim(), mappings));
         }
         return result;
     }

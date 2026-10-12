@@ -25,8 +25,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
             return FramedGroup(EmulationResourceKeys.VideoGwGuiProcessing, selectors);
         if (_displayOwnsFrames)
         {
-            return SideBySideGroups(_displaySettings,
-                FramedGroup(EmulationResourceKeys.VideoGwGuiProcessing, selectors));
+            return SideBySideGroups(_displaySettings, FramedGroup(EmulationResourceKeys.VideoGwGuiProcessing, selectors));
         }
         var grid = new Grid();
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
@@ -59,8 +58,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         };
         for (var index = 0; index < groups.Length; index++)
         {
-            groups[index].Margin = new Thickness(index == 0 ? 0 : 6, 0,
-                index == groups.Length - 1 ? 0 : 6, 0);
+            groups[index].Margin = new Thickness(index == 0 ? 0 : 6, 0, index == groups.Length - 1 ? 0 : 6, 0);
             Grid.SetColumn(groups[index], index);
             grid.Children.Add(groups[index]);
         }
@@ -118,8 +116,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
             Height = 4,
             Margin = new Thickness(0, 7, 0, 0)
         });
-        AutomationProperties.SetAutomationId(loading,
-            EmulationVideoSettingsLayoutConstants.VideoShaderLoadingAutomationId);
+        AutomationProperties.SetAutomationId(loading, EmulationVideoSettingsLayoutConstants.VideoShaderLoadingAutomationId);
         return loading;
     }
 
@@ -200,8 +197,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
             Margin = new Thickness(12)
         };
         if (frameContent)
-            container.SetResourceReference(StyleProperty,
-                ControlVisualConstants.CardStyleResource);
+            container.SetResourceReference(StyleProperty, ControlVisualConstants.CardStyleResource);
         var scroller = new ScrollViewer
         {
             Content = container,
@@ -250,8 +246,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         {
             var child = children[index];
             if (child is FrameworkElement element)
-                element.Margin = new Thickness(index % 2 == 0 ? 0 : 8, 0,
-                    index % 2 == 0 ? 8 : 0, 0);
+                element.Margin = new Thickness(index % 2 == 0 ? 0 : 8, 0, index % 2 == 0 ? 8 : 0, 0);
             Grid.SetColumn(child, index % 2);
             Grid.SetRow(child, index / 2);
             grid.Children.Add(child);
@@ -276,8 +271,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
             var field = children[index];
             var cell = index - 1;
             if (field is FrameworkElement element)
-                element.Margin = new Thickness(cell % 2 == 0 ? 0 : 10, 2,
-                    cell % 2 == 0 ? 10 : 0, 6);
+                element.Margin = new Thickness(cell % 2 == 0 ? 0 : 10, 2, cell % 2 == 0 ? 10 : 0, 6);
             columns[cell % 2].Children.Add(field);
         }
         fields.Children.Add(columns[0]);

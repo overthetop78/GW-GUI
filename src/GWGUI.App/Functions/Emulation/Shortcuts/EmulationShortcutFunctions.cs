@@ -14,11 +14,8 @@ internal static class EmulationShortcutFunctions
     {
         var exact = bindings.FirstOrDefault(binding => KeyboardChordFunctions.Matches(binding.Chord, modifiers, pressedKeys));
         if (exact is not null)
-            return new EmulationShortcutMatch(EmulationShortcutMatchCategory.Global, exact.Action,
-                !activeActions.Contains(exact.Action));
-        return bindings.Any(binding => binding.Chord.Modifiers == modifiers && KeyboardChordFunctions.Contains(binding.Chord, source))
-            ? new EmulationShortcutMatch(EmulationShortcutMatchCategory.ReservedForGlobal)
-            : new EmulationShortcutMatch(EmulationShortcutMatchCategory.None);
+            return new EmulationShortcutMatch(EmulationShortcutMatchCategory.Global, exact.Action, !activeActions.Contains(exact.Action));
+        return bindings.Any(binding => binding.Chord.Modifiers == modifiers && KeyboardChordFunctions.Contains(binding.Chord, source)) ? new EmulationShortcutMatch(EmulationShortcutMatchCategory.ReservedForGlobal) : new EmulationShortcutMatch(EmulationShortcutMatchCategory.None);
     }
 
     internal static void ReleaseInactive(ISet<string> activeActions,
@@ -31,9 +28,7 @@ internal static class EmulationShortcutFunctions
         });
     }
 
-    internal static bool HasConflict(IEnumerable<GlobalShortcutBinding> bindings) => bindings
-        .GroupBy(binding => KeyboardChordFunctions.Format(binding.Chord.Modifiers, binding.Chord.Keys),
-            StringComparer.OrdinalIgnoreCase)
+    internal static bool HasConflict(IEnumerable<GlobalShortcutBinding> bindings) => bindings.GroupBy(binding => KeyboardChordFunctions.Format(binding.Chord.Modifiers, binding.Chord.Keys), StringComparer.OrdinalIgnoreCase)
         .Any(group => group.Skip(EmulationShortcutConstants.UniqueChordBindingCount).Any());
 
     private static void RemoveWhere(this ISet<string> values, Func<string, bool> predicate)

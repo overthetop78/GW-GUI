@@ -41,8 +41,7 @@ public partial class InputBindingEditor : UserControl
         AddHandler(PreviewKeyUpEvent, new KeyEventHandler(CaptureKeyUp), true);
         AddHandler(PreviewMouseDownEvent, new MouseButtonEventHandler(CaptureMouseDown), true);
         AddHandler(PreviewMouseWheelEvent, new MouseWheelEventHandler(CaptureMouseWheel), true);
-        _controllerCaptureTimer = new DispatcherTimer(ControllerCaptureConstants.PollingInterval, DispatcherPriority.Input,
-            CaptureControllerInput, Dispatcher);
+        _controllerCaptureTimer = new DispatcherTimer(ControllerCaptureConstants.PollingInterval, DispatcherPriority.Input, CaptureControllerInput, Dispatcher);
         _controllerCaptureTimer.Stop();
         Loaded += (_, _) => AttachWindowHook();
         Unloaded += (_, _) => { CancelCapture(); DetachWindowHook(); };
@@ -71,17 +70,14 @@ public partial class InputBindingEditor : UserControl
         _rows.Clear();
         foreach (var definition in definitions)
             _rows.Add(new InputBindingRow(definition.Id,
-                definition.InvariantDisplayValue ?? (moduleId is null
-                    ? LocExtension.Get(definition.DisplayResourceKey)
-                    : LocExtension.GetForModule(moduleId, definition.DisplayResourceKey)),
+                definition.InvariantDisplayValue ?? (moduleId is null ? LocExtension.Get(definition.DisplayResourceKey) : LocExtension.GetForModule(moduleId, definition.DisplayResourceKey)),
                 values?.GetValueOrDefault(definition.Id) ?? definition.DefaultBinding, definition.DefaultBinding));
         ValidateBindings();
     }
 
     internal bool SelectAndStartCapture(string bindingId, Button? button = null)
     {
-        var row = _rows.FirstOrDefault(item =>
-            string.Equals(item.Id, bindingId, StringComparison.Ordinal));
+        var row = _rows.FirstOrDefault(item => string.Equals(item.Id, bindingId, StringComparison.Ordinal));
         if (row is null) return false;
         BindingsList.SelectedItem = row;
         BindingsList.ScrollIntoView(row);
@@ -91,8 +87,7 @@ public partial class InputBindingEditor : UserControl
 
     public void SetReservedBindings(IEnumerable<string> bindings)
     {
-        _reservedBindings = bindings.Where(value => !string.IsNullOrWhiteSpace(value))
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        _reservedBindings = bindings.Where(value => !string.IsNullOrWhiteSpace(value)).ToHashSet(StringComparer.OrdinalIgnoreCase);
         ValidateBindings();
     }
 }

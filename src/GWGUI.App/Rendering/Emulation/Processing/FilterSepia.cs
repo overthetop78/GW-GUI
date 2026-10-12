@@ -20,12 +20,9 @@ internal static class FilterSepia
             var red = colors[index];
             var green = colors[index + 1];
             var blue = colors[index + 2];
-            colors[index] = Math.Clamp((red * 0.393f + green * 0.769f + blue * 0.189f)
-                * 1.08f, 0f, 1f);
-            colors[index + 1] = Math.Clamp((red * 0.349f + green * 0.686f + blue * 0.168f)
-                * 0.92f, 0f, 1f);
-            colors[index + 2] = Math.Clamp((red * 0.272f + green * 0.534f + blue * 0.131f)
-                * 0.68f, 0f, 1f);
+            colors[index] = Math.Clamp((red * 0.393f + green * 0.769f + blue * 0.189f) * 1.08f, 0f, 1f);
+            colors[index + 1] = Math.Clamp((red * 0.349f + green * 0.686f + blue * 0.168f) * 0.92f, 0f, 1f);
+            colors[index + 2] = Math.Clamp((red * 0.272f + green * 0.534f + blue * 0.131f) * 0.68f, 0f, 1f);
         }
     }
 }

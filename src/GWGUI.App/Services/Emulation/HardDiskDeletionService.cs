@@ -18,9 +18,7 @@ internal static class HardDiskDeletionService
         var handles = HardDiskDeletionFile.Open(members);
         try
         {
-            if (MessageBox.Show(LocExtension.Get("Emulation.Hdd.DeleteConfirm", string.Join(Environment.NewLine, members)),
-                    LocExtension.Get("Emulation.Hdd.Delete"), MessageBoxButton.YesNo,
-                    MessageBoxImage.Warning, MessageBoxResult.No) != MessageBoxResult.Yes) return false;
+            if (MessageBox.Show(LocExtension.Get("Emulation.Hdd.DeleteConfirm", string.Join(Environment.NewLine, members)), LocExtension.Get("Emulation.Hdd.Delete"), MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) != MessageBoxResult.Yes) return false;
             var confirmedMembers = HardDiskImageSetResolver.Resolve(fullPath);
             if (!members.SequenceEqual(confirmedMembers, StringComparer.OrdinalIgnoreCase))
                 throw new IOException("The disk image set changed while deletion was being confirmed.");
@@ -44,26 +42,19 @@ internal static class HardDiskDeletionService
                 throw new IOException(LocExtension.Get("Emulation.Hdd.Link"));
     }
 
-    private static void ShowUsers(IReadOnlyList<string> users) => MessageBox.Show(
-        LocExtension.Get("Emulation.Hdd.InUse", string.Join(Environment.NewLine, users)),
-        LocExtension.Get("Emulation.Hdd.Delete"), MessageBoxButton.OK, MessageBoxImage.Information);
+    private static void ShowUsers(IReadOnlyList<string> users) => MessageBox.Show(LocExtension.Get("Emulation.Hdd.InUse", string.Join(Environment.NewLine, users)), LocExtension.Get("Emulation.Hdd.Delete"), MessageBoxButton.OK, MessageBoxImage.Information);
 
     private static async Task<IReadOnlyList<string>> FindUsersAsync(IReadOnlyList<string> paths,
         IEmulationConfiguration current)
     {
         var users = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase);
-        var dependencies = new DiskImageDependencyIndex(image =>
-            new FileStream(image, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete),
-            HardDiskDeletionFile.ResolveReferencePath,
-            ResolveInventoryReference);
+        var dependencies = new DiskImageDependencyIndex(image => new FileStream(image, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete), HardDiskDeletionFile.ResolveReferencePath, ResolveInventoryReference);
         foreach (var module in EmulationModuleRegistry.Modules)
         {
             if (module is not IEmulationStorageSettingsManager manager) continue;
             var savedConfigurations = (await module.LoadConfigurationsAsync()).ToArray();
             var savedIds = savedConfigurations.Select(item => item.Id).ToHashSet();
-            var configurations = savedConfigurations
-                .Concat(EmulationConfigurationDraftStore.All.Where(item => item.ModuleId == module.Id
-                    && !savedIds.Contains(item.Id)))
+            var configurations = savedConfigurations.Concat(EmulationConfigurationDraftStore.All.Where(item => item.ModuleId == module.Id && !savedIds.Contains(item.Id)))
                 .Where(item => item.Id != current.Id || item.ModuleId != current.ModuleId)
                 .GroupBy(item => item.Id)
                 .Select(group => group.First());
@@ -91,8 +82,7 @@ internal static class HardDiskDeletionService
         {
             try
             {
-                using var stream = new FileStream(path, FileMode.Open, FileAccess.Read,
-                    FileShare.ReadWrite | FileShare.Delete);
+                using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
                 if (!DiskImageDependencyReader.ReadIdentities(stream).Contains(reference)) continue;
                 matches.Add(Path.GetFullPath(path));
             }
@@ -130,8 +120,7 @@ internal static class HardDiskDeletionService
     private static Task<bool> UsesAsync(IEnumerable<EmulationMedia> media, IReadOnlyList<string> candidates,
         DiskImageDependencyIndex dependencies)
     {
-        var paths = media.Where(item => item.Type == EmulationMediaType.HardDisk && !string.IsNullOrWhiteSpace(item.Path))
-            .Select(item => item.Path).ToArray();
+        var paths = media.Where(item => item.Type == EmulationMediaType.HardDisk && !string.IsNullOrWhiteSpace(item.Path)).Select(item => item.Path).ToArray();
         return Task.Run(() => paths.Any(image => candidates.Any(candidate => dependencies.Uses(image, candidate))));
     }
 }

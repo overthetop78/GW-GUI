@@ -75,8 +75,7 @@ public sealed class HardwareSelectionController(
         if (Selected is not { } selected) return true;
         var currentSettings = settings();
         var drive = currentSettings.Drives.FirstOrDefault(item => item.Id == selected.Drive.Id);
-        return drive is not null && currentSettings.Controllers.Any(item => item.IsAvailable
-            && string.Equals(item.UsbId, drive.ControllerUsbId, StringComparison.OrdinalIgnoreCase));
+        return drive is not null && currentSettings.Controllers.Any(item => item.IsAvailable && string.Equals(item.UsbId, drive.ControllerUsbId, StringComparison.OrdinalIgnoreCase));
     }
 
     private void UpdateStatus()
@@ -84,9 +83,7 @@ public sealed class HardwareSelectionController(
         var selected = Selected;
         var enabled = SelectionIsAvailable();
         viewModel.HardwareText = selected is null ? localize("Hardware.NotConfigured", []) : selected.Label;
-        viewModel.HardwareBrush = new SolidColorBrush(selected?.Available == true
-            ? Color.FromRgb(63, 171, 91)
-            : Color.FromRgb(136, 136, 136));
+        viewModel.HardwareBrush = new SolidColorBrush(selected?.Available == true ? Color.FromRgb(63, 171, 91) : Color.FromRgb(136, 136, 136));
         setHardwareActionsEnabled(enabled);
     }
 }

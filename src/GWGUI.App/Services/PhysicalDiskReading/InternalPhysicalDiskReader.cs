@@ -24,23 +24,13 @@ public sealed class InternalPhysicalDiskReader(Func<IGreaseweazleReadDevice> dev
         CancellationToken cancellationToken = default)
     {
         var fluxService = new FloppyFluxAcquisitionService();
-        var registry = new MediaAcquisitionProviderRegistry(
-            [new GreaseweazleMediaAcquisitionProvider(deviceFactory)]);
-        var acquisitionProgress = new Progress<MediaAcquisitionProgress>(value =>
-            ReportProgress(value, options.Tracks, fluxService, progress));
-        var acquisition = await registry.AcquireAsync(
-            MediaKind.Floppy,
-            options.PortName,
-            CreateOptions(options),
-            acquisitionProgress,
-            cancellationToken).ConfigureAwait(false);
-        return await PhysicalDiskReadService.CreateDefault()
-            .ReadAsync(acquisition, outputPath, progress, cancellationToken)
-            .ConfigureAwait(false);
+        var registry = new MediaAcquisitionProviderRegistry([new GreaseweazleMediaAcquisitionProvider(deviceFactory)]);
+        var acquisitionProgress = new Progress<MediaAcquisitionProgress>(value => ReportProgress(value, options.Tracks, fluxService, progress));
+        var acquisition = await registry.AcquireAsync(MediaKind.Floppy, options.PortName, CreateOptions(options), acquisitionProgress, cancellationToken).ConfigureAwait(false);
+        return await PhysicalDiskReadService.CreateDefault().ReadAsync(acquisition, outputPath, progress, cancellationToken).ConfigureAwait(false);
     }
 
-    public static InternalPhysicalDiskReader CreateDefault() => new(
-        () => new GreaseweazleProtocolClient(new WindowsGreaseweazleSerialTransport()));
+    public static InternalPhysicalDiskReader CreateDefault() => new(() => new GreaseweazleProtocolClient(new WindowsGreaseweazleSerialTransport()));
 
     private static IReadOnlyDictionary<string, string> CreateOptions(PhysicalDiskReadOptions options)
     {
@@ -83,25 +73,10 @@ public sealed class InternalPhysicalDiskReader(Func<IGreaseweazleReadDevice> dev
         if (value.AcquiredUnit is not null)
         {
             var track = fluxService.CreateTrack(value.AcquiredUnit);
-            acquiredTrack = ScpTrackContractMapper.FromScpTrack(
-                track,
-                ScpFormatConstants.ResolutionStepNanoseconds
-                * (ScpFormatConstants.InternalCaptureResolution + ScpFormatConstants.ResolutionIndexOffset));
+            acquiredTrack = ScpTrackContractMapper.FromScpTrack(track, ScpFormatConstants.ResolutionStepNanoseconds * (ScpFormatConstants.InternalCaptureResolution + ScpFormatConstants.ResolutionIndexOffset));
         }
-        progress?.Report(new PhysicalDiskReadOperationProgress(
-            PhysicalDiskReadStage.Acquiring,
-            value.CompletedUnits,
-            value.TotalUnits,
-            cylinder,
-            head,
-            value.Attempt,
-            tracks,
-            acquiredTrack));
+        progress?.Report(new PhysicalDiskReadOperationProgress(PhysicalDiskReadStage.Acquiring, value.CompletedUnits, value.TotalUnits, cylinder, head, value.Attempt, tracks, acquiredTrack));
     }
 
-    private static int ReadPosition(IReadOnlyDictionary<string, string> metadata, string key) =>
-        metadata.TryGetValue(key, out var value)
-        && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)
-            ? parsed
-            : 0;
+    private static int ReadPosition(IReadOnlyDictionary<string, string> metadata, string key) => metadata.TryGetValue(key, out var value) && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : 0;
 }

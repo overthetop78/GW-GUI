@@ -11,8 +11,7 @@ internal static class MachineCaptureFunctions
     {
         ArgumentNullException.ThrowIfNull(snapshot);
         Directory.CreateDirectory(captureFolder);
-        var stem = MachinePresentationConstants.CaptureStem + MachinePresentationConstants.FileNameSeparator
-            + timestamp.ToString(MachinePresentationConstants.CaptureTimestampFormat, CultureInfo.InvariantCulture);
+        var stem = MachinePresentationConstants.CaptureStem + MachinePresentationConstants.FileNameSeparator + timestamp.ToString(MachinePresentationConstants.CaptureTimestampFormat, CultureInfo.InvariantCulture);
         var path = UniquePath(captureFolder, stem, MachinePresentationConstants.CaptureFileExtension);
         var encoder = new PngBitmapEncoder();
         encoder.Frames.Add(BitmapFrame.Create(snapshot));

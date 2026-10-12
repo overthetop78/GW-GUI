@@ -72,13 +72,11 @@ internal sealed partial class EmulationModuleSettingsSection
         var declared = field.Choices?.Select(ChoiceView) ?? Enumerable.Empty<EmulationSettingsChoiceView>();
         if (field.ChoiceSource != EmulationSettingsChoiceSource.AudioOutputDevices)
             return declared.ToArray();
-        var devices = WasapiAudioOutput.GetOutputDevices().Select(device => new EmulationSettingsChoiceView(
-            new EmulationSettingsChoice(device.Id, string.Empty, device.Name), device.Name));
+        var devices = WasapiAudioOutput.GetOutputDevices().Select(device => new EmulationSettingsChoiceView(new EmulationSettingsChoice(device.Id, string.Empty, device.Name), device.Name));
         return declared.Concat(devices).DistinctBy(choice => choice.Choice.Id).ToArray();
     }
 
-    private EmulationSettingsChoiceView ChoiceView(EmulationSettingsChoice choice) =>
-        new(choice, choice.InvariantDisplayValue ?? LocExtension.GetForModule(_module, choice.DisplayResourceKey));
+    private EmulationSettingsChoiceView ChoiceView(EmulationSettingsChoice choice) => new(choice, choice.InvariantDisplayValue ?? LocExtension.GetForModule(_module, choice.DisplayResourceKey));
 
     private CheckBox CreateToggle(EmulationSettingsField field)
     {
@@ -104,8 +102,7 @@ internal sealed partial class EmulationModuleSettingsSection
         var browse = new Button { Content = LocExtension.Get(ControlVisualConstants.BrowseResource), MinWidth = 90 };
         browse.Click += async (_, _) =>
         {
-            var currentDirectory = File.Exists(path.Text) ? Path.GetDirectoryName(path.Text)
-                : Directory.Exists(path.Text) ? path.Text : null;
+            var currentDirectory = File.Exists(path.Text) ? Path.GetDirectoryName(path.Text) : Directory.Exists(path.Text) ? path.Text : null;
             var dialog = new OpenFileDialog
             {
                 InitialDirectory = currentDirectory ?? DefaultFolder(field.DefaultFolderCategory),
@@ -153,20 +150,14 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private string DefaultFolder(EmulationDefaultFolderCategory? category)
     {
-        var moduleFolder = _module.Id.Length == 0 ? _module.Id
-            : char.ToUpperInvariant(_module.Id[0]) + _module.Id[1..];
+        var moduleFolder = _module.Id.Length == 0 ? _module.Id : char.ToUpperInvariant(_module.Id[0]) + _module.Id[1..];
         return category switch
         {
-            EmulationDefaultFolderCategory.Floppy => Path.Combine(StoragePaths.EmulationStorageDirectory,
-                StoragePathConstants.FloppiesDirectory, moduleFolder),
-            EmulationDefaultFolderCategory.CompactDisc => Path.Combine(StoragePaths.EmulationStorageDirectory,
-                StoragePathConstants.CompactDiscsDirectory, moduleFolder),
-            EmulationDefaultFolderCategory.HardDisk => Path.Combine(StoragePaths.EmulationStorageDirectory,
-                StoragePathConstants.HardDisksDirectory, moduleFolder),
-            EmulationDefaultFolderCategory.Cartridge => Path.Combine(StoragePaths.EmulationStorageDirectory,
-                StoragePathConstants.CartridgesDirectory, moduleFolder),
-            EmulationDefaultFolderCategory.Cassette => Path.Combine(StoragePaths.EmulationStorageDirectory,
-                StoragePathConstants.CassettesDirectory, moduleFolder),
+            EmulationDefaultFolderCategory.Floppy => Path.Combine(StoragePaths.EmulationStorageDirectory, StoragePathConstants.FloppiesDirectory, moduleFolder),
+            EmulationDefaultFolderCategory.CompactDisc => Path.Combine(StoragePaths.EmulationStorageDirectory, StoragePathConstants.CompactDiscsDirectory, moduleFolder),
+            EmulationDefaultFolderCategory.HardDisk => Path.Combine(StoragePaths.EmulationStorageDirectory, StoragePathConstants.HardDisksDirectory, moduleFolder),
+            EmulationDefaultFolderCategory.Cartridge => Path.Combine(StoragePaths.EmulationStorageDirectory, StoragePathConstants.CartridgesDirectory, moduleFolder),
+            EmulationDefaultFolderCategory.Cassette => Path.Combine(StoragePaths.EmulationStorageDirectory, StoragePathConstants.CassettesDirectory, moduleFolder),
             EmulationDefaultFolderCategory.State => Path.Combine(StoragePaths.EmulationStateDirectory, moduleFolder),
             EmulationDefaultFolderCategory.Capture => Path.Combine(StoragePaths.EmulationCaptureDirectory, moduleFolder),
             EmulationDefaultFolderCategory.Firmware => _firmwareManagement?.GetFirmwareDirectory()

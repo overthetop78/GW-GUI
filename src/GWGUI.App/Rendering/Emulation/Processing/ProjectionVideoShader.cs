@@ -40,8 +40,7 @@ internal static class ProjectionVideoShader
                 return clamp(color,vec3(0.0),vec3(1.0));
             }
             """;
-        return Dependencies + body.Replace("OUT_SIZE", veldrid ? "Parameters.Output.xy" : "Output.xy")
-            .Replace("OPTICS", veldrid ? "Parameters.Projection" : "Projection")
+        return Dependencies + body.Replace("OUT_SIZE", veldrid ? "Parameters.Output.xy" : "Output.xy").Replace("OPTICS", veldrid ? "Parameters.Projection" : "Projection")
             .Replace("SCREEN", veldrid ? "Parameters.ProjectionScreen" : "ProjectionScreen")
             .Replace("SAMPLE", veldrid ? "raw" : "extraRaw");
     }

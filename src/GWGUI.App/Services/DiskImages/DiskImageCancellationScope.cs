@@ -47,8 +47,7 @@ public sealed class DiskImageCancellationScope : IDisposable
     public bool IsCurrentScp(CancellationTokenSource source) => ReferenceEquals(_scp, source);
     public bool IsCurrentInspector(CancellationTokenSource source) => ReferenceEquals(_inspector, source);
 
-    public Task EnterVisualizationConversionAsync(CancellationToken cancellationToken) =>
-        _visualizationConversionGate.WaitAsync(cancellationToken);
+    public Task EnterVisualizationConversionAsync(CancellationToken cancellationToken) => _visualizationConversionGate.WaitAsync(cancellationToken);
 
     public void ExitVisualizationConversion() => _visualizationConversionGate.Release();
 

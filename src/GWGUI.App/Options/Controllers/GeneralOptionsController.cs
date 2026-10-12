@@ -46,9 +46,7 @@ internal sealed class GeneralOptionsController
         StoragePaths.ConfigureEmulationStateDirectory(settings.EmulationStateFolder);
         StoragePaths.ConfigureEmulationCaptureDirectory(settings.EmulationCaptureFolder);
         section.Languages.ItemsSource = UiLanguageCatalog.Available;
-        section.Languages.SelectedItem = UiLanguageCatalog.Available.FirstOrDefault(language =>
-            string.Equals(language.Code, settings.Language, StringComparison.OrdinalIgnoreCase))
-            ?? UiLanguageCatalog.Fallback;
+        section.Languages.SelectedItem = UiLanguageCatalog.Available.FirstOrDefault(language => string.Equals(language.Code, settings.Language, StringComparison.OrdinalIgnoreCase)) ?? UiLanguageCatalog.Fallback;
         section.Themes.SelectedIndex = (int)settings.Theme;
 
         section.LanguageChanged += LanguageChanged;

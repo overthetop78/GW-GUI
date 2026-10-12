@@ -12,8 +12,7 @@ public sealed partial class EmulationSection
         var category = MediaFolderCategory(device.MediaType);
         return _settings.EmulationMediaFolders.FirstOrDefault(item =>
             string.Equals(item.ModuleId, selected.Module.Id, StringComparison.Ordinal)
-            && string.Equals(item.MachineId, selected.Configuration.MachineId,
-                StringComparison.Ordinal)
+            && string.Equals(item.MachineId, selected.Configuration.MachineId, StringComparison.Ordinal)
             && item.Category == category)?.Folder;
     }
 
@@ -23,8 +22,7 @@ public sealed partial class EmulationSection
         var category = MediaFolderCategory(device.MediaType);
         var existing = _settings.EmulationMediaFolders.FirstOrDefault(item =>
             string.Equals(item.ModuleId, selected.Module.Id, StringComparison.Ordinal)
-            && string.Equals(item.MachineId, selected.Configuration.MachineId,
-                StringComparison.Ordinal)
+            && string.Equals(item.MachineId, selected.Configuration.MachineId, StringComparison.Ordinal)
             && item.Category == category);
         if (existing is null)
         {

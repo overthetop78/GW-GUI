@@ -145,8 +145,7 @@ public sealed class ScpInspectorController : IDisposable
         var decoderId = (_section.Header.DecoderCombo.SelectedItem as ScpDecoderChoice)?.Id;
         try
         {
-            var models = await Task.Run(() => tracks.Select(item =>
-                (item.Key, Model: _presenter.BuildCommonModel(image, item.Value, decoderId))).ToArray(), cancellation.Token);
+            var models = await Task.Run(() => tracks.Select(item => (item.Key, Model: _presenter.BuildCommonModel(image, item.Value, decoderId))).ToArray(), cancellation.Token);
             if (cancellation.IsCancellationRequested || !_cancellation.IsCurrentInspector(cancellation)) return;
             foreach (var item in models) _section.SetInspectorModel(item.Key, item.Model);
         }

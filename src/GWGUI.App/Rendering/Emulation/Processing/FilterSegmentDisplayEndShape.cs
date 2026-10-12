@@ -38,17 +38,12 @@ internal static class FilterSegmentDisplayEndShape
         var position = Math.Clamp(rawPosition, 0f, 1f);
         var nearestX = line.StartX + position * dx;
         var nearestY = line.StartY + position * dy;
-        var perpendicular = MathF.Sqrt((x - nearestX) * (x - nearestX)
-            + (y - nearestY) * (y - nearestY));
+        var perpendicular = MathF.Sqrt((x - nearestX) * (x - nearestX) + (y - nearestY) * (y - nearestY));
         if (shape == EmulationSegmentEndShape.Rounded) return perpendicular;
         var rawNearestX = line.StartX + rawPosition * dx;
         var rawNearestY = line.StartY + rawPosition * dy;
-        var sideDistance = MathF.Sqrt((x - rawNearestX) * (x - rawNearestX)
-            + (y - rawNearestY) * (y - rawNearestY));
-        var extension = MathF.Max(0f, MathF.Abs(rawPosition - .5f) - .5f)
-            * MathF.Sqrt(lengthSquared);
-        return shape == EmulationSegmentEndShape.Straight
-            ? MathF.Max(sideDistance, extension)
-            : MathF.Max(sideDistance, (extension + sideDistance) * .70710678f);
+        var sideDistance = MathF.Sqrt((x - rawNearestX) * (x - rawNearestX) + (y - rawNearestY) * (y - rawNearestY));
+        var extension = MathF.Max(0f, MathF.Abs(rawPosition - .5f) - .5f) * MathF.Sqrt(lengthSquared);
+        return shape == EmulationSegmentEndShape.Straight ? MathF.Max(sideDistance, extension) : MathF.Max(sideDistance, (extension + sideDistance) * .70710678f);
     }
 }

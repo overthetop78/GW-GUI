@@ -24,19 +24,15 @@ internal static partial class GameInputDeviceMonitor
                 InitializationFailed = false;
             }
         }, ShutdownTimeout))
-            throw new TimeoutException(
-                LocExtension.Get(ErrorDescriptionResourceKeys.GameInputWorkerStopTimeout));
+            throw new TimeoutException(LocExtension.Get(ErrorDescriptionResourceKeys.GameInputWorkerStopTimeout));
     }
 
     internal static IReadOnlyList<GameInputDeviceDescriptor> GetConnectedControllerDetailsCached()
     {
         GameInputDeviceDescriptor[] gameInput;
         lock (Sync)
-            gameInput = Devices.Values.Where(entry => entry.IsController)
-                .Select(entry => entry.Descriptor).ToArray();
-        return InitializationFailed
-            ? RawGameControllerFallback.MergeDescriptors(gameInput)
-            : gameInput;
+            gameInput = Devices.Values.Where(entry => entry.IsController).Select(entry => entry.Descriptor).ToArray();
+        return InitializationFailed ? RawGameControllerFallback.MergeDescriptors(gameInput) : gameInput;
     }
 
     internal static IReadOnlyList<EmulationControllerState> ReadAll() => Worker.Invoke(() =>
@@ -46,22 +42,17 @@ internal static partial class GameInputDeviceMonitor
         EmulationControllerState[] gameInput;
         lock (Sync)
         {
-            var entries = Devices.Values.Where(entry => entry.IsController)
-                .OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();
+            var entries = Devices.Values.Where(entry => entry.IsController).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();
             descriptors = entries.Select(entry => entry.Descriptor).ToArray();
             gameInput = entries.Select(Read).ToArray();
         }
-        return gameInput.Concat(InitializationFailed
-                ? RawGameControllerFallback.ReadAll(descriptors)
-                : [])
-            .Select(ControllerAnalogDeadZoneFunctions.ApplyConfigured).ToArray();
+        return gameInput.Concat(InitializationFailed ? RawGameControllerFallback.ReadAll(descriptors) : []).Select(ControllerAnalogDeadZoneFunctions.ApplyConfigured).ToArray();
     });
 
     internal static IReadOnlyList<GameControllerDevice> GetConnectedDevices() => Worker.Invoke(() =>
     {
         EnsureInitialized();
-        return GetConnectedControllerDetailsCached()
-            .Select(device => new GameControllerDevice(device.Id, device.ProductName)).ToArray();
+        return GetConnectedControllerDetailsCached().Select(device => new GameControllerDevice(device.Id, device.ProductName)).ToArray();
     });
 
     internal static IReadOnlyList<GameInputDeviceDescriptor> GetConnectedControllerDetails() => Worker.Invoke(() =>
@@ -78,8 +69,7 @@ internal static partial class GameInputDeviceMonitor
             if (Devices.TryGetValue(deviceId, out var entry) && entry.IsController)
                 state = ReadDetailed(entry);
             else if (InitializationFailed)
-                state = RawGameControllerFallback.TryReadDetailed(deviceId, out var fallback)
-                    ? fallback : GameInputLiveState.Empty(deviceId);
+                state = RawGameControllerFallback.TryReadDetailed(deviceId, out var fallback) ? fallback : GameInputLiveState.Empty(deviceId);
             else state = GameInputLiveState.Empty(deviceId);
         return ControllerAnalogDeadZoneFunctions.ApplyConfigured(state);
     });
@@ -91,17 +81,13 @@ internal static partial class GameInputDeviceMonitor
         var result = new List<GameInputLiveState>();
         lock (Sync)
         {
-            var entries = Devices.Values.Where(entry => entry.IsController)
-                .OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();
+            var entries = Devices.Values.Where(entry => entry.IsController).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();
             gameInputDescriptors = entries.Select(entry => entry.Descriptor).ToArray();
             result.AddRange(entries.Select(ReadDetailed));
         }
-        foreach (var descriptor in InitializationFailed
-                     ? RawGameControllerFallback.MergeDescriptors(gameInputDescriptors)
-                     : gameInputDescriptors)
+        foreach (var descriptor in InitializationFailed ? RawGameControllerFallback.MergeDescriptors(gameInputDescriptors) : gameInputDescriptors)
         {
-            if (result.Any(state => string.Equals(state.DeviceId, descriptor.Id,
-                    StringComparison.OrdinalIgnoreCase))) continue;
+            if (result.Any(state => string.Equals(state.DeviceId, descriptor.Id, StringComparison.OrdinalIgnoreCase))) continue;
             if (RawGameControllerFallback.TryReadDetailed(descriptor.Id, out var state))
                 result.Add(state);
         }
@@ -163,13 +149,7 @@ internal static partial class GameInputDeviceMonitor
         _gameInput?.SetFocusPolicy(policy);
     });
 
-    internal static bool SetRumble(
-        string deviceId,
-        float lowFrequency,
-        float highFrequency,
-        float leftTrigger,
-        float rightTrigger) => Worker.Invoke(() => SetRumbleCore(
-            deviceId, lowFrequency, highFrequency, leftTrigger, rightTrigger));
+    internal static bool SetRumble(string deviceId, float lowFrequency, float highFrequency, float leftTrigger, float rightTrigger) => Worker.Invoke(() => SetRumbleCore(deviceId, lowFrequency, highFrequency, leftTrigger, rightTrigger));
 
     private static unsafe bool SetRumbleCore(
         string deviceId,
@@ -205,8 +185,6 @@ internal static partial class GameInputDeviceMonitor
     {
         EnsureInitialized();
         lock (Sync)
-            return GameInputPhysicalInputReader.Read(
-                _gameInput, Devices.Values.ToArray(), PreviousMouse, InitializationFailed,
-                Read, IsInteropFailure, Release);
+            return GameInputPhysicalInputReader.Read(_gameInput, Devices.Values.ToArray(), PreviousMouse, InitializationFailed, Read, IsInteropFailure, Release);
     });
 }

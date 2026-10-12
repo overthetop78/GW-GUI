@@ -72,26 +72,21 @@ internal static class FilterScaleFx
             return default;
 
         var continuation = MathF.Min(Distance(diagonal, horizontal), Distance(diagonal, vertical));
-        var weight = Math.Clamp((CandidateThreshold - junction) / CandidateThreshold, 0f, 1f)
-            * Math.Clamp((centerGap + continuation) / MathF.Max(junction, 0.001f), 0f, 1f);
+        var weight = Math.Clamp((CandidateThreshold - junction) / CandidateThreshold, 0f, 1f) * Math.Clamp((centerGap + continuation) / MathF.Max(junction, 0.001f), 0f, 1f);
         if (weight <= DifferenceThreshold) return default;
 
-        var candidate = Distance(center, horizontal) <= Distance(center, vertical)
-            ? horizontal : vertical;
+        var candidate = Distance(center, horizontal) <= Distance(center, vertical) ? horizontal : vertical;
         return new Corner(candidate, weight, true);
     }
 
-    private static Color CornerOrCenter(Corner corner, Color center) =>
-        corner.Active ? corner.Color : center;
+    private static Color CornerOrCenter(Corner corner, Color center) => corner.Active ? corner.Color : center;
 
     private static Color SelectMid(Color center, Color axial, Corner first, Corner second)
     {
         if (first.Active && second.Active && Distance(first.Color, second.Color) < CandidateThreshold)
-            return Distance(axial, first.Color) <= Distance(axial, second.Color)
-                ? first.Color : second.Color;
+            return Distance(axial, first.Color) <= Distance(axial, second.Color) ? first.Color : second.Color;
         var corner = first.Strength >= second.Strength ? first : second;
-        return corner.Active && Distance(corner.Color, axial) < CandidateThreshold * 0.5f
-            ? axial : center;
+        return corner.Active && Distance(corner.Color, axial) < CandidateThreshold * 0.5f ? axial : center;
     }
 
     // Compuphase perceptual RGB metric used by ScaleFX pass 0.
@@ -101,8 +96,7 @@ internal static class FilterScaleFx
         var red = first.Red - second.Red;
         var green = first.Green - second.Green;
         var blue = first.Blue - second.Blue;
-        return MathF.Sqrt((2f + redMean) * red * red + 4f * green * green
-            + (3f - redMean) * blue * blue) / 3f;
+        return MathF.Sqrt((2f + redMean) * red * red + 4f * green * green + (3f - redMean) * blue * blue) / 3f;
     }
 
     private readonly record struct Color(float Red, float Green, float Blue);

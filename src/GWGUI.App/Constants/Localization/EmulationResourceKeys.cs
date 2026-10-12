@@ -7,8 +7,7 @@ public static class EmulationResourceKeys
     public const string VideoCrtGroupMask = "Emulation.Video.Crt.Group.Mask";
     public const string VideoCrtGroupGeometry = "Emulation.Video.Crt.Group.Geometry";
     public const string VideoCrtGroupScanlines = "Emulation.Video.Crt.Group.Scanlines";
-    public const string VideoCrtGroupInterference =
-        "Emulation.Video.Crt.Group.Interference";
+    public const string VideoCrtGroupInterference = "Emulation.Video.Crt.Group.Interference";
     public const string Power = "Emulation.Shortcut.Power";
     public const string PauseResume = "Emulation.Shortcut.PauseResume";
     public const string SoftReset = "Emulation.Shortcut.SoftReset";
@@ -129,15 +128,12 @@ public static class EmulationResourceKeys
     public const string VideoParameterMotionBlur = "Emulation.Video.Parameter.MotionBlur";
     public const string VideoParameterFlicker = "Emulation.Video.Parameter.Flicker";
     public const string VideoParameterInterlacing = "Emulation.Video.Parameter.Interlacing";
-    public const string VideoParameterInterlacingVisibility =
-        "Emulation.Video.Parameter.InterlacingVisibility";
+    public const string VideoParameterInterlacingVisibility = "Emulation.Video.Parameter.InterlacingVisibility";
     public const string VideoParameterBlackFrameInsertion = "Emulation.Video.Parameter.BlackFrameInsertion";
-    public const string VideoTemporalCadenceAutomatic =
-        "Emulation.Video.Temporal.CadenceAutomatic";
+    public const string VideoTemporalCadenceAutomatic = "Emulation.Video.Temporal.CadenceAutomatic";
     public const string VideoParameterGrain = "Emulation.Video.Parameter.Grain";
     public const string VideoParameterVhs = "Emulation.Video.Parameter.Vhs";
-    public const string VideoParameterChromaticAberration =
-        "Emulation.Video.Parameter.ChromaticAberration";
+    public const string VideoParameterChromaticAberration = "Emulation.Video.Parameter.ChromaticAberration";
     public const string VideoParameterBloom = "Emulation.Video.Parameter.Bloom";
     public const string VideoParameterSepia = "Emulation.Video.Parameter.Sepia";
     public const string VideoParameterVfdColor = "Emulation.Video.Parameter.VfdColor";

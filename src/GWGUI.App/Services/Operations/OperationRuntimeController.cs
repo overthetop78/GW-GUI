@@ -68,8 +68,7 @@ public sealed class OperationRuntimeController
 
     public void Report(GwOutputLine line)
     {
-        AppendText(line.Text + Environment.NewLine,
-            line.Stream == GwOutputStream.Error ? Brushes.IndianRed : null);
+        AppendText(line.Text + Environment.NewLine, line.Stream == GwOutputStream.Error ? Brushes.IndianRed : null);
         _progress.Accept(line.Text);
     }
 

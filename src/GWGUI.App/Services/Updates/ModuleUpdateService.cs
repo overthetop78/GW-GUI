@@ -43,10 +43,7 @@ internal sealed class ModuleUpdateService
                 $"Installed module(s) {string.Join(", ", legacyModules)} have no update source. " +
                 "Reinstall each module from a ZIP archive or a direct module catalog URL.");
         var packages = _installedModules();
-        var installedState = new InstalledUpdateState(
-            ReadApplicationVersion(),
-            EmulationHostApi.CurrentVersion.ToString(2),
-            packages.Select(ToInstalledVersion).ToArray());
+        var installedState = new InstalledUpdateState(ReadApplicationVersion(), EmulationHostApi.CurrentVersion.ToString(2), packages.Select(ToInstalledVersion).ToArray());
         var rows = new List<AvailableComponentUpdate>();
         var items = new List<UpdatePlanItem>();
         var issues = new List<string>();
@@ -54,12 +51,10 @@ internal sealed class ModuleUpdateService
         foreach (var package in packages.OrderBy(package => package.Manifest.Id, StringComparer.OrdinalIgnoreCase))
         {
             cancellationToken.ThrowIfCancellationRequested();
-            using var response = await _httpClient.GetAsync(package.Manifest.UpdateCatalogUrl,
-                HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+            using var response = await _httpClient.GetAsync(package.Manifest.UpdateCatalogUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             await using var content = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-            var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(content, JsonOptions, cancellationToken)
-                .ConfigureAwait(false) ?? throw new InvalidDataException(
+            var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(content, JsonOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidDataException(
                     $"The update catalog for module '{package.Manifest.Id}' is empty.");
             _catalogValidator.Validate(catalog, package.Manifest.Id);
             var result = _planBuilder.Search(catalog, installedState, UpdateSearchScope.Modules, selections);
@@ -86,8 +81,7 @@ internal sealed class ModuleUpdateService
                 var root = document.RootElement;
                 if (root.TryGetProperty("updateCatalogUrl", out var source)
                     && !string.IsNullOrWhiteSpace(source.GetString())) continue;
-                var id = root.TryGetProperty("id", out var idProperty) && !string.IsNullOrWhiteSpace(idProperty.GetString())
-                    ? idProperty.GetString()! : Path.GetFileName(directory);
+                var id = root.TryGetProperty("id", out var idProperty) && !string.IsNullOrWhiteSpace(idProperty.GetString()) ? idProperty.GetString()! : Path.GetFileName(directory);
                 legacy.Add(id);
             }
             catch (JsonException)
@@ -98,11 +92,7 @@ internal sealed class ModuleUpdateService
         return legacy.Order(StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
-    private static InstalledModuleVersion ToInstalledVersion(LoadedEmulationModule package) => new(
-        package.Manifest.Id,
-        package.Manifest.ModuleVersion,
-        package.Manifest.HostApiMinimum,
-        package.Manifest.HostApiMaximum);
+    private static InstalledModuleVersion ToInstalledVersion(LoadedEmulationModule package) => new(package.Manifest.Id, package.Manifest.ModuleVersion, package.Manifest.HostApiMinimum, package.Manifest.HostApiMaximum);
 
     private static string ReadApplicationVersion()
     {

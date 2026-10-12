@@ -34,13 +34,10 @@ internal sealed class EmulationCoreManagementPanel : UserControl
         Search.Content = localize(EmulationCoreManagementConstants.SearchResource, []);
         Download.Content = localize(EmulationCoreManagementConstants.DownloadResource, []);
         Cancel.Content = localize(EmulationCoreManagementConstants.CancelResource, []);
-        AutomationProperties.SetName(Emulators,
-            localize(EmulationCoreManagementConstants.EmulatorResource, []));
+        AutomationProperties.SetName(Emulators, localize(EmulationCoreManagementConstants.EmulatorResource, []));
         AutomationProperties.SetName(Search, localize(EmulationCoreManagementConstants.SearchResource, []));
-        AutomationProperties.SetName(Versions,
-            localize(EmulationCoreManagementConstants.VersionsFoundResource, [0]));
-        AutomationProperties.SetName(Download,
-            localize(EmulationCoreManagementConstants.DownloadResource, []));
+        AutomationProperties.SetName(Versions, localize(EmulationCoreManagementConstants.VersionsFoundResource, [0]));
+        AutomationProperties.SetName(Download, localize(EmulationCoreManagementConstants.DownloadResource, []));
         AutomationProperties.SetName(Status, localize(EmulationCoreManagementConstants.EmulatorResource, []));
         AutomationProperties.SetLiveSetting(Status, AutomationLiveSetting.Assertive);
 
@@ -129,8 +126,6 @@ internal sealed class EmulationCoreManagementPanel : UserControl
     internal void SetStatus(string text, bool isError = false)
     {
         Status.Text = text;
-        Status.Foreground = isError
-            ? new SolidColorBrush(EmulationCoreManagementConstants.ErrorText)
-            : (Brush)FindResource(ControlVisualConstants.MutedTextBrushResource);
+        Status.Foreground = isError ? new SolidColorBrush(EmulationCoreManagementConstants.ErrorText) : (Brush)FindResource(ControlVisualConstants.MutedTextBrushResource);
     }
 }

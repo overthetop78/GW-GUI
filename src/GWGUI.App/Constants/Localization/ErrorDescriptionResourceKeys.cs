@@ -36,6 +36,5 @@ internal static class ErrorDescriptionResourceKeys
     internal const string FileSystemAnodeBlockAllocationFailed = "Error.Description.FileSystem.AnodeBlockAllocationFailed";
     internal const string FileSystemSeekError = "Error.Description.FileSystem.SeekError";
     internal const string FileSystemAnodeOperationFailed = "Error.Description.FileSystem.AnodeOperationFailed";
-    internal const string FileSystemAnodeBitmapIndexBlockMissing =
-        "Error.Description.FileSystem.AnodeBitmapIndexBlockMissing";
+    internal const string FileSystemAnodeBitmapIndexBlockMissing = "Error.Description.FileSystem.AnodeBitmapIndexBlockMissing";
 }

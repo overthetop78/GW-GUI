@@ -16,14 +16,10 @@ internal static class FilterVfdGlass
         var amount = setting / 100f;
         for (var index = 0; index < colors.Length; index += 3)
         {
-            var luminance = colors[index] * 0.2126f + colors[index + 1] * 0.7152f
-                + colors[index + 2] * 0.0722f;
-            colors[index] = colors[index] * 0.28f * (1f - amount)
-                + (0.025f + luminance * 0.08f) * amount;
-            colors[index + 1] = colors[index + 1] * 0.28f * (1f - amount)
-                + (0.055f + luminance * 0.12f) * amount;
-            colors[index + 2] = colors[index + 2] * 0.28f * (1f - amount)
-                + (0.065f + luminance * 0.13f) * amount;
+            var luminance = colors[index] * 0.2126f + colors[index + 1] * 0.7152f + colors[index + 2] * 0.0722f;
+            colors[index] = colors[index] * 0.28f * (1f - amount) + (0.025f + luminance * 0.08f) * amount;
+            colors[index + 1] = colors[index + 1] * 0.28f * (1f - amount) + (0.055f + luminance * 0.12f) * amount;
+            colors[index + 2] = colors[index + 2] * 0.28f * (1f - amount) + (0.065f + luminance * 0.13f) * amount;
         }
     }
 }

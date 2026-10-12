@@ -8,10 +8,8 @@ internal static class FilterFixedPixel
     internal static void Apply(float[] colors, int sourceWidth, int sourceHeight,
         int outputWidth, int outputHeight, EmulationFixedPixelVideoConfiguration configuration)
     {
-        FilterFixedPixelSubpixels.Apply(colors, sourceWidth, outputWidth, outputHeight,
-            configuration.Subpixels, configuration.MonochromePalette, configuration.GridIntensity);
-        FilterFixedPixelGrid.Apply(colors, sourceWidth, sourceHeight, outputWidth, outputHeight,
-            configuration.GridIntensity, configuration.PixelGap);
+        FilterFixedPixelSubpixels.Apply(colors, sourceWidth, outputWidth, outputHeight, configuration.Subpixels, configuration.MonochromePalette, configuration.GridIntensity);
+        FilterFixedPixelGrid.Apply(colors, sourceWidth, sourceHeight, outputWidth, outputHeight, configuration.GridIntensity, configuration.PixelGap);
 
         switch (configuration.Technology)
         {

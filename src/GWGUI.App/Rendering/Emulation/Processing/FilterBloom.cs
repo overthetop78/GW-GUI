@@ -44,8 +44,7 @@ internal static class FilterBloom
                             samples++;
                         }
                     }
-                    colors[output + channel] = Math.Clamp(source[output + channel]
-                        + light / samples * amount, 0f, 1f);
+                    colors[output + channel] = Math.Clamp(source[output + channel] + light / samples * amount, 0f, 1f);
                 }
             }
         }

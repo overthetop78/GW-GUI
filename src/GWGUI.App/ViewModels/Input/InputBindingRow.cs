@@ -42,15 +42,13 @@ public sealed class InputBindingRow(string id, string label, string binding, str
             return GameInputControllerReader.GetControllerName(deviceId) ?? deviceId;
         }
     }
-    public Visibility ControllerDeviceNameVisibility => string.IsNullOrWhiteSpace(ControllerDeviceName)
-        ? Visibility.Collapsed : Visibility.Visible;
+    public Visibility ControllerDeviceNameVisibility => string.IsNullOrWhiteSpace(ControllerDeviceName) ? Visibility.Collapsed : Visibility.Visible;
     public IReadOnlyList<InputBindingPart> BindingParts
     {
         get
         {
             var parts = _binding.Split('+', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-            return parts.Select((part, index) => new InputBindingPart(DisplayPart(part),
-                index < parts.Length - 1 ? Visibility.Visible : Visibility.Collapsed)).ToArray();
+            return parts.Select((part, index) => new InputBindingPart(DisplayPart(part), index < parts.Length - 1 ? Visibility.Visible : Visibility.Collapsed)).ToArray();
         }
     }
 
@@ -146,6 +144,5 @@ public sealed class InputBindingRow(string id, string label, string binding, str
         return device is null ? inputName : $"{device}{separator}{inputName}";
     }
 
-    private void OnChanged([CallerMemberName] string? property = null) =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+    private void OnChanged([CallerMemberName] string? property = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
 }

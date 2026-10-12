@@ -42,8 +42,7 @@ internal static class EmulationTemporalEffectsSettingsBlock
         var choices = new StackPanel { Margin = new Thickness(0, 12, 0, 0) };
 
         var interlacing = new StackPanel();
-        var interlacingToggle = Toggle(EmulationVideoProcessingCatalog.Interlacing,
-            temporal.Interlacing > 0);
+        var interlacingToggle = Toggle(EmulationVideoProcessingCatalog.Interlacing, temporal.Interlacing > 0);
         var visibility = HorizontalIntensity(
             EmulationVideoProcessingCatalog.InterlacingVisibility,
             temporal.InterlacingVisibility,
@@ -64,8 +63,7 @@ internal static class EmulationTemporalEffectsSettingsBlock
         choices.Children.Add(interlacing);
 
         var blackFrames = new StackPanel { Margin = new Thickness(0, 12, 0, 0) };
-        var blackFrameToggle = Toggle(EmulationVideoProcessingCatalog.BlackFrameInsertion,
-            temporal.BlackFrameInsertion);
+        var blackFrameToggle = Toggle(EmulationVideoProcessingCatalog.BlackFrameInsertion, temporal.BlackFrameInsertion);
         blackFrameToggle.Checked += (_, _) =>
             changed(current => current with { BlackFrameInsertion = true });
         blackFrameToggle.Unchecked += (_, _) =>
@@ -126,8 +124,7 @@ internal static class EmulationTemporalEffectsSettingsBlock
             HorizontalAlignment = HorizontalAlignment.Center,
             Margin = new Thickness(0)
         };
-        slider.ValueChanged += (_, _) =>
-            value.Text = ((int)slider.Value).ToString(CultureInfo.CurrentCulture);
+        slider.ValueChanged += (_, _) => value.Text = ((int)slider.Value).ToString(CultureInfo.CurrentCulture);
         return value;
     }
 
@@ -136,8 +133,7 @@ internal static class EmulationTemporalEffectsSettingsBlock
         Text = LocExtension.Get(EmulationVideoProcessingCatalog.ParameterResourceKeys[id]),
         TextAlignment = alignment,
         TextWrapping = TextWrapping.Wrap,
-        HorizontalAlignment = alignment == TextAlignment.Center
-            ? HorizontalAlignment.Center : HorizontalAlignment.Stretch,
+        HorizontalAlignment = alignment == TextAlignment.Center ? HorizontalAlignment.Center : HorizontalAlignment.Stretch,
         Margin = new Thickness(0, 0, 0, 6)
     };
 

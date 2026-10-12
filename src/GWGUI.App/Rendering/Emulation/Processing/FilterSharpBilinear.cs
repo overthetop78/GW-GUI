@@ -2,9 +2,7 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal static class FilterSharpBilinear
 {
-        internal static float Sample(float[] source, int width, int height,
-        float x, float y, float scaleX, float scaleY, int channel) =>
-        FilterBilinear.Sample(source, width, height, SharpCoordinate(x, scaleX), SharpCoordinate(y, scaleY), channel);
+        internal static float Sample(float[] source, int width, int height, float x, float y, float scaleX, float scaleY, int channel) => FilterBilinear.Sample(source, width, height, SharpCoordinate(x, scaleX), SharpCoordinate(y, scaleY), channel);
 
     private static float SharpCoordinate(float coordinate, float scale)
     {

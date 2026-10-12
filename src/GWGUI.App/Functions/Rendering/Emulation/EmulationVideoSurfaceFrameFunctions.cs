@@ -12,9 +12,7 @@ internal static class EmulationVideoSurfaceFrameFunctions
         VideoFrame frame,
         EmulationVideoProcessingSize outputSize)
     {
-        var processed = pipeline.Process(configuration, frame,
-            new EmulationVideoProcessingSize(frame.Width, frame.Height), outputSize);
-        return new EmulationVideoSurfaceFrame(
-            processed, EmulationVideoPixelFunctions.ToBgra32(processed));
+        var processed = pipeline.Process(configuration, frame, new EmulationVideoProcessingSize(frame.Width, frame.Height), outputSize);
+        return new EmulationVideoSurfaceFrame(processed, EmulationVideoPixelFunctions.ToBgra32(processed));
     }
 }

@@ -5,21 +5,17 @@ namespace GWGUI.App.Functions.Input.Controllers;
 
 internal static class ControllerAnalogDeadZoneFunctions
 {
-    internal static EmulationControllerState ApplyConfigured(EmulationControllerState state) =>
-        Apply(state, ControllerAnalogDeadZoneProfileStore.Get(state.DeviceId));
+    internal static EmulationControllerState ApplyConfigured(EmulationControllerState state) => Apply(state, ControllerAnalogDeadZoneProfileStore.Get(state.DeviceId));
 
-    internal static GameInputLiveState ApplyConfigured(GameInputLiveState state) =>
-        Apply(state, ControllerAnalogDeadZoneProfileStore.Get(state.DeviceId));
+    internal static GameInputLiveState ApplyConfigured(GameInputLiveState state) => Apply(state, ControllerAnalogDeadZoneProfileStore.Get(state.DeviceId));
 
     internal static EmulationControllerState Apply(
         EmulationControllerState state,
         ControllerAnalogDeadZoneProfile profile)
     {
         profile = profile.Normalize();
-        var left = ApplyStick(state.LeftX / (float)short.MaxValue,
-            state.LeftY / (float)short.MaxValue, profile);
-        var right = ApplyStick(state.RightX / (float)short.MaxValue,
-            state.RightY / (float)short.MaxValue, profile);
+        var left = ApplyStick(state.LeftX / (float)short.MaxValue, state.LeftY / (float)short.MaxValue, profile);
+        var right = ApplyStick(state.RightX / (float)short.MaxValue, state.RightY / (float)short.MaxValue, profile);
         var leftTrigger = ApplyTrigger(state.LeftTrigger / (float)short.MaxValue, profile.TriggerPercent);
         var rightTrigger = ApplyTrigger(state.RightTrigger / (float)short.MaxValue, profile.TriggerPercent);
         var buttons = ApplyTriggerButtons(state.Buttons, leftTrigger, rightTrigger, profile.TriggerPercent);
@@ -47,8 +43,7 @@ internal static class ControllerAnalogDeadZoneFunctions
         var rightTrigger = ApplyTrigger(gamepad.RightTrigger, profile.TriggerPercent);
         if (profile.TriggerPercent > 0)
         {
-            gamepad.Buttons &= ~(GameInputGamepadButtons.LeftTriggerButton |
-                                 GameInputGamepadButtons.RightTriggerButton);
+            gamepad.Buttons &= ~(GameInputGamepadButtons.LeftTriggerButton | GameInputGamepadButtons.RightTriggerButton);
             if (leftTrigger > 0f) gamepad.Buttons |= GameInputGamepadButtons.LeftTriggerButton;
             if (rightTrigger > 0f) gamepad.Buttons |= GameInputGamepadButtons.RightTriggerButton;
         }
@@ -82,9 +77,7 @@ internal static class ControllerAnalogDeadZoneFunctions
     {
         value = Math.Clamp(value, 0f, 1f);
         var deadZone = deadZonePercent / 100f;
-        return value <= deadZone + .0001f
-            ? 0f
-            : Math.Clamp((value - deadZone) / (1f - deadZone), 0f, 1f);
+        return value <= deadZone + .0001f ? 0f : Math.Clamp((value - deadZone) / (1f - deadZone), 0f, 1f);
     }
 
     private static uint ApplyTriggerButtons(uint buttons, float left, float right, int deadZonePercent)
@@ -97,6 +90,5 @@ internal static class ControllerAnalogDeadZoneFunctions
         return buttons;
     }
 
-    private static short ToShort(float value) =>
-        (short)Math.Round(Math.Clamp(value, -1f, 1f) * short.MaxValue);
+    private static short ToShort(float value) => (short)Math.Round(Math.Clamp(value, -1f, 1f) * short.MaxValue);
 }

@@ -19,8 +19,7 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
         ArgumentNullException.ThrowIfNull(document);
         if (document.Representation is not BlockMediaImageRepresentation blocks)
             throw new ArgumentException("A block media representation is required.", nameof(document));
-        var logicalLength = blocks.LogicalLength
-            ?? throw new InvalidDataException("A block media representation must declare its logical length.");
+        var logicalLength = blocks.LogicalLength ?? throw new InvalidDataException("A block media representation must declare its logical length.");
         var cartridge = document.MediaKind == MediaKind.Cartridge;
 
         var boundaries = new SortedSet<long> { 0, logicalLength };
@@ -42,15 +41,9 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
             var start = points[index];
             var end = points[index + 1];
             if (end <= start) continue;
-            var sourceRange = blocks.Ranges.FirstOrDefault(item =>
-                item.Address <= start && item.Address + item.Length >= end);
-            var volume = document.Volumes.FirstOrDefault(item =>
-                item.Start <= start && item.Start + item.Length >= end);
-            var state = sourceRange is null || sourceRange.Kind == MediaDataRangeKind.Unavailable
-                ? BlockMediaRangeState.Unknown
-                : volume?.PartitionTable is PartitionTableIds.Mbr or PartitionTableIds.Gpt
-                    ? BlockMediaRangeState.Allocated
-                    : BlockMediaRangeState.Available;
+            var sourceRange = blocks.Ranges.FirstOrDefault(item => item.Address <= start && item.Address + item.Length >= end);
+            var volume = document.Volumes.FirstOrDefault(item => item.Start <= start && item.Start + item.Length >= end);
+            var state = sourceRange is null || sourceRange.Kind == MediaDataRangeKind.Unavailable ? BlockMediaRangeState.Unknown : volume?.PartitionTable is PartitionTableIds.Mbr or PartitionTableIds.Gpt ? BlockMediaRangeState.Allocated : BlockMediaRangeState.Available;
             AddRange(ranges, new BlockMediaRange(
                 start / blocks.LogicalBlockSize,
                 (end - start) / blocks.LogicalBlockSize,
@@ -62,18 +55,8 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
                 mergeAdjacent: !cartridge);
         }
 
-        var geometry = blocks.Geometry is null
-            ? null
-            : new BlockMediaGeometry(
-                blocks.Geometry.Cylinders,
-                blocks.Geometry.Heads,
-                blocks.Geometry.SectorsPerTrack);
-        return new(
-            blocks.LogicalBlockCount,
-            ranges,
-            geometry,
-            cartridge ? BlockMediaShape.Cartridge : BlockMediaShape.Circular,
-            blocks.LogicalBlockSize);
+        var geometry = blocks.Geometry is null ? null : new BlockMediaGeometry(blocks.Geometry.Cylinders, blocks.Geometry.Heads, blocks.Geometry.SectorsPerTrack);
+        return new(blocks.LogicalBlockCount, ranges, geometry, cartridge ? BlockMediaShape.Cartridge : BlockMediaShape.Circular, blocks.LogicalBlockSize);
     }
 
     public MediaInspectorModel BuildInspectorModel(BlockMediaRenderModel model, BlockMediaRange? range, int? surface = null)
@@ -93,8 +76,7 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
             ];
         var sections = new List<MediaInspectorSection>
         {
-            new(Localize("Visual.SummaryTab"), ControlVisualConstants.InformationGlyph,
-                summaryEntries)
+            new(Localize("Visual.SummaryTab"), ControlVisualConstants.InformationGlyph, summaryEntries)
         };
 
         if (range is not null)
@@ -102,8 +84,7 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
             var entries = cartridge
                 ? new List<MediaInspectorEntry>
                 {
-                    new(Localize("Visual.SizeLabel"), StorageSizeFormatter.FormatBytes(
-                        checked(range.Length * model.LogicalBlockSize))),
+                    new(Localize("Visual.SizeLabel"), StorageSizeFormatter.FormatBytes(checked(range.Length * model.LogicalBlockSize))),
                     new(Localize("Visual.StateLabel"), Localize("Visual.BlockState." + range.State))
                 }
                 :
@@ -111,10 +92,7 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
                     new(Localize("Visual.StartLabel"), range.Start.ToString("N0"), "LBA"),
                     new(Localize("Visual.LengthLabel"), range.Length.ToString("N0"), Localize("Visual.BlocksUnit")),
                     new(Localize("Visual.StateLabel"), Localize("Visual.BlockState." + range.State)),
-                    new(Localize("Visual.PartitionTableLabel"),
-                        string.IsNullOrWhiteSpace(range.PartitionTable)
-                            ? Localize("Visual.PartitionTable.None")
-                            : range.PartitionTable.ToUpperInvariant())
+                    new(Localize("Visual.PartitionTableLabel"), string.IsNullOrWhiteSpace(range.PartitionTable) ? Localize("Visual.PartitionTable.None") : range.PartitionTable.ToUpperInvariant())
                 ];
             if (!cartridge)
             {
@@ -152,8 +130,7 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
     private static string? CartridgeBankLabel(IReadOnlyDictionary<string, string> metadata, long address)
     {
         if (!metadata.TryGetValue("bankSize", out var bankSizeText)
-            || !long.TryParse(bankSizeText, System.Globalization.NumberStyles.None,
-                System.Globalization.CultureInfo.InvariantCulture, out var bankSize)
+            || !long.TryParse(bankSizeText, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var bankSize)
             || bankSize <= 0
             || address % bankSize != 0)
             return null;

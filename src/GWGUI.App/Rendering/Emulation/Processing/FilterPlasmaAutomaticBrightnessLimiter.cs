@@ -16,8 +16,7 @@ internal static class FilterPlasmaAutomaticBrightnessLimiter
         if (setting <= 0 || colors.Length == 0) return;
         var average = 0f;
         for (var index = 0; index < colors.Length; index += 3)
-            average += colors[index] * 0.2126f + colors[index + 1] * 0.7152f
-                + colors[index + 2] * 0.0722f;
+            average += colors[index] * 0.2126f + colors[index + 1] * 0.7152f + colors[index + 2] * 0.0722f;
         average /= colors.Length / 3f;
         var load = SmoothStep(0.28f, 0.78f, average);
         var gain = 1f - setting / 100f * 0.42f * load;

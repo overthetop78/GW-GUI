@@ -29,8 +29,7 @@ internal static class GameInputPhysicalInputReader
             if ((entry.InputKinds & GameInputKind.Keyboard) != 0)
                 ReadKeyboard(gameInput, entry, keys, isInteropFailure, release);
             if ((entry.InputKinds & GameInputKind.Mouse) != 0)
-                ReadMouse(gameInput, entry, previousMouse, ref deltaX, ref deltaY,
-                    ref wheelX, ref wheelY, ref mouseButtons, isInteropFailure, release);
+                ReadMouse(gameInput, entry, previousMouse, ref deltaX, ref deltaY, ref wheelX, ref wheelY, ref mouseButtons, isInteropFailure, release);
         }
 
         var pointer = new EmulationPointerState(Clamp(deltaX), Clamp(deltaY), Clamp(wheelY),
@@ -39,14 +38,9 @@ internal static class GameInputPhysicalInputReader
             mouseButtons.HasFlag(GameInputMouseButtons.Middle),
             mouseButtons.HasFlag(GameInputMouseButtons.Button4),
             mouseButtons.HasFlag(GameInputMouseButtons.Button5), Clamp(wheelX));
-        var controllers = devices.Where(entry => entry.IsController)
-            .OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();
+        var controllers = devices.Where(entry => entry.IsController).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();
         var descriptors = controllers.Select(entry => entry.Descriptor).ToArray();
-        var controllerStates = controllers.Select(readController)
-            .Concat(initializationFailed
-                ? RawGameControllerFallback.ReadAll(descriptors)
-                : [])
-            .Select(ControllerAnalogDeadZoneFunctions.ApplyConfigured).ToArray();
+        var controllerStates = controllers.Select(readController).Concat(initializationFailed ? RawGameControllerFallback.ReadAll(descriptors) : []).Select(ControllerAnalogDeadZoneFunctions.ApplyConfigured).ToArray();
         return new GameInputPhysicalState(keys, pointer, controllerStates);
     }
 

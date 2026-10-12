@@ -16,11 +16,9 @@ internal static class EmulationVideoSnapshotFunctions
         return Task.Run<BitmapSource?>(() =>
         {
             using var pipeline = new SoftwareEmulationVideoProcessingPipeline();
-            var processed = pipeline.Process(configuration, frame,
-                new EmulationVideoProcessingSize(frame.Width, frame.Height), outputSize);
+            var processed = pipeline.Process(configuration, frame, new EmulationVideoProcessingSize(frame.Width, frame.Height), outputSize);
             var pixels = EmulationVideoPixelFunctions.ToBgra32(processed);
-            var bitmap = BitmapSource.Create(processed.Width, processed.Height,
-                96, 96, PixelFormats.Bgra32, null, pixels, processed.Width * 4);
+            var bitmap = BitmapSource.Create(processed.Width, processed.Height, 96, 96, PixelFormats.Bgra32, null, pixels, processed.Width * 4);
             bitmap.Freeze();
             return bitmap;
         });

@@ -51,9 +51,7 @@ internal sealed class TagOptionsController
     {
         RefreshPreview();
         RefreshPresets();
-        _section.TagVariables.ItemsSource = TagVariableDefinitions.All
-            .Select(item => new TagVariableOption(item.Token, Localize(item.Key)))
-            .ToArray();
+        _section.TagVariables.ItemsSource = TagVariableDefinitions.All.Select(item => new TagVariableOption(item.Token, Localize(item.Key))).ToArray();
     }
 
     public void ApplyTo(AppSettings settings)
@@ -104,21 +102,17 @@ internal sealed class TagOptionsController
         RefreshPreview();
     }
 
-    private void RefreshPreview() =>
-        _section.TagPreview.Text = Localize("Options.TagPatternPreview", TagPatternFormatter.CreateExample(_section.TagPattern.Text, _exampleIndex));
+    private void RefreshPreview() => _section.TagPreview.Text = Localize("Options.TagPatternPreview", TagPatternFormatter.CreateExample(_section.TagPattern.Text, _exampleIndex));
 
     private void RefreshPresets()
     {
         var current = _section.TagPattern.Text;
-        var presets = TagPresetDefinitions.All
-            .Select(item => new TagPresetOption(Localize(item.Key), item.Pattern))
-            .ToArray();
+        var presets = TagPresetDefinitions.All.Select(item => new TagPresetOption(Localize(item.Key), item.Pattern)).ToArray();
         _refreshingPresets = true;
         try
         {
             _section.TagPresets.ItemsSource = presets;
-            _section.TagPresets.SelectedItem = presets.FirstOrDefault(item =>
-                string.Equals(item.Pattern, current, StringComparison.OrdinalIgnoreCase));
+            _section.TagPresets.SelectedItem = presets.FirstOrDefault(item => string.Equals(item.Pattern, current, StringComparison.OrdinalIgnoreCase));
         }
         finally
         {
@@ -126,17 +120,9 @@ internal sealed class TagOptionsController
         }
     }
 
-    private void RefreshRecentPatterns() =>
-        _section.RecentTagPatternsList.ItemsSource = Enumerable.Range(0, 5)
-            .Select(index => new RecentTagPatternOption(
-                index + 1,
-                index < _settings.Conversion.RecentCustomTagPatterns.Count
-                    ? _settings.Conversion.RecentCustomTagPatterns[index]
-                    : null))
-            .ToArray();
+    private void RefreshRecentPatterns() => _section.RecentTagPatternsList.ItemsSource = Enumerable.Range(0, 5).Select(index => new RecentTagPatternOption(index + 1, index < _settings.Conversion.RecentCustomTagPatterns.Count ? _settings.Conversion.RecentCustomTagPatterns[index] : null)).ToArray();
 
-    private static bool IsPreset(string pattern) => TagPresetDefinitions.All.Any(item =>
-        string.Equals(item.Pattern, pattern, StringComparison.OrdinalIgnoreCase));
+    private static bool IsPreset(string pattern) => TagPresetDefinitions.All.Any(item => string.Equals(item.Pattern, pattern, StringComparison.OrdinalIgnoreCase));
 
     private string Localize(string key, params object[] arguments) => _localize(key, arguments);
 }

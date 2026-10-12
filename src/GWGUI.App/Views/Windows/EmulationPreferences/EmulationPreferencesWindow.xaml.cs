@@ -70,8 +70,7 @@ public partial class EmulationPreferencesWindow : Window
     {
         ErrorLog.Write(exception, context);
         var detail = ExceptionDescriptionFunctions.Describe(exception);
-        MessageBox.Show(this, LocExtension.Get("Error.Unexpected", detail),
-            LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning);
+        MessageBox.Show(this, LocExtension.Get("Error.Unexpected", detail), LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning);
     }
 
     private void Close_Click(object sender, RoutedEventArgs e) => BeginClose();
@@ -103,8 +102,7 @@ public partial class EmulationPreferencesWindow : Window
                     await Dispatcher.InvokeAsync(() =>
                     {
                         if (IsLoaded)
-                            MessageBox.Show(this, LocExtension.Get("Error.SaveFailed", detail),
-                                LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show(this, LocExtension.Get("Error.SaveFailed", detail), LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Warning);
                     }).Task.ConfigureAwait(false);
             }
             catch (Exception dialogException)

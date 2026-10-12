@@ -44,12 +44,7 @@ public sealed class WindowPlacementController
     {
         if (window.WindowState == WindowState.Maximized) return;
         var area = MonitorWorkAreaFunctions.Get(window);
-        var placement = WindowPlacementPolicy.ConstrainToWorkArea(
-            new(window.Width, window.Height, window.Left, window.Top),
-            area.Left,
-            area.Top,
-            area.Width,
-            area.Height);
+        var placement = WindowPlacementPolicy.ConstrainToWorkArea(new(window.Width, window.Height, window.Left, window.Top), area.Left, area.Top, area.Width, area.Height);
 
         window.Width = placement.Width;
         window.Height = placement.Height;

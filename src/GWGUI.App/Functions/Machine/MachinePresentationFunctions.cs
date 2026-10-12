@@ -16,10 +16,7 @@ internal static class MachinePresentationFunctions
     internal static string Status(VideoFrame frame, double expectedFramesPerSecond,
         double measuredFramesPerSecond)
     {
-        var frequency = expectedFramesPerSecond > MachinePresentationConstants.EmptyMeasurement
-            ? expectedFramesPerSecond
-            : measuredFramesPerSecond;
-        return string.Format(CultureInfo.CurrentCulture, MachinePresentationConstants.StatusFormat,
-            frame.Width, frame.Height, frequency, measuredFramesPerSecond);
+        var frequency = expectedFramesPerSecond > MachinePresentationConstants.EmptyMeasurement ? expectedFramesPerSecond : measuredFramesPerSecond;
+        return string.Format(CultureInfo.CurrentCulture, MachinePresentationConstants.StatusFormat, frame.Width, frame.Height, frequency, measuredFramesPerSecond);
     }
 }

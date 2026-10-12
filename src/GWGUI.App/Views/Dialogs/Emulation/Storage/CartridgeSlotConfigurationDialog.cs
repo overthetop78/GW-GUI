@@ -17,9 +17,7 @@ public sealed class CartridgeSlotConfigurationDialog : Window
     private readonly CheckBox _option = new();
     private readonly Dictionary<string, ComboBox> _options = new(StringComparer.Ordinal);
 
-    public CartridgeSlotSettings Settings => new(_option.IsChecked == true,
-        _options.ToDictionary(item => item.Key,
-            item => ((EmulationSettingsChoiceView)item.Value.SelectedItem).Choice.Id, StringComparer.Ordinal));
+    public CartridgeSlotSettings Settings => new(_option.IsChecked == true, _options.ToDictionary(item => item.Key, item => ((EmulationSettingsChoiceView)item.Value.SelectedItem).Choice.Id, StringComparer.Ordinal));
 
     public CartridgeSlotConfigurationDialog(string identifier, string machineName,
         CartridgeSlotSettings settings, string optionLabel, string? optionHint,
@@ -43,18 +41,14 @@ public sealed class CartridgeSlotConfigurationDialog : Window
         {
             if (field.Editor != EmulationSettingsEditor.Selection || field.Choices is not { Count: > 0 })
                 throw new ArgumentException(nameof(configurationFields));
-            var choices = field.Choices.Select(choice => new EmulationSettingsChoiceView(choice,
-                choice.InvariantDisplayValue ?? LocExtension.GetForModule(moduleId ?? string.Empty,
-                    choice.DisplayResourceKey))).ToArray();
-            var value = settings.Options?.TryGetValue(field.Id, out var selectedValue) == true
-                ? selectedValue : field.Value;
+            var choices = field.Choices.Select(choice => new EmulationSettingsChoiceView(choice, choice.InvariantDisplayValue ?? LocExtension.GetForModule(moduleId ?? string.Empty, choice.DisplayResourceKey))).ToArray();
+            var value = settings.Options?.TryGetValue(field.Id, out var selectedValue) == true ? selectedValue : field.Value;
             var control = new ComboBox { ItemsSource = choices,
                 SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == value) ?? choices[0] };
             _options[field.Id] = control;
             body.Children.Add(EmulationSettingsLayout.BoundedForm(1, new EmulationSettingsControlField(
                 LocExtension.GetForModule(moduleId ?? string.Empty, field.LabelResourceKey), control,
-                field.ExplanationResourceKey is null ? null : LocExtension.GetForModule(
-                    moduleId ?? string.Empty, field.ExplanationResourceKey))));
+                field.ExplanationResourceKey is null ? null : LocExtension.GetForModule(moduleId ?? string.Empty, field.ExplanationResourceKey))));
         }
         Content = StorageDialogUi.DialogLayout(
             StorageDialogUi.DialogHeader(IconGlyphs.Controller, Title,

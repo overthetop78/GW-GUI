@@ -30,6 +30,5 @@ internal static class StorageSizeFormatter
         return $"{mebibytes.ToString(mebibytes % 1 == 0 ? "0" : "0.##", CultureInfo.CurrentCulture)} {MebibyteUnit}";
     }
 
-    private static bool UsesFrenchBinaryUnits =>
-        CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr";
+    private static bool UsesFrenchBinaryUnits => CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr";
 }

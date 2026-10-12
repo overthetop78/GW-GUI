@@ -20,8 +20,7 @@ public sealed class InMemoryProfileStore : IProfileStore<OperationProfile>
         profiles.AddRange(suppliedProfiles);
     }
 
-    public IReadOnlyList<OperationProfile> GetAll() =>
-        profiles.OrderByDescending(profile => profile.IsSystem).ThenBy(profile => profile.Name).ToArray();
+    public IReadOnlyList<OperationProfile> GetAll() => profiles.OrderByDescending(profile => profile.IsSystem).ThenBy(profile => profile.Name).ToArray();
 
     public OperationProfile Save(OperationProfile profile, bool replaceExisting = false)
     {

@@ -55,8 +55,7 @@ public partial class App : Application
         settings.PreviousGwExecutablePath = StoragePaths.NormalizeHostToolsPath(settings.PreviousGwExecutablePath);
         using (var httpClient = new HttpClient())
         {
-            var installations = new GwInstallationManager(httpClient, StoragePaths.HostToolsDirectory)
-                .Detect(settings.GwExecutablePath);
+            var installations = new GwInstallationManager(httpClient, StoragePaths.HostToolsDirectory).Detect(settings.GwExecutablePath);
             var configuredInstallation = installations.FirstOrDefault(installation =>
                 !string.IsNullOrWhiteSpace(settings.GwExecutablePath)
                 && string.Equals(installation.ExecutablePath, Path.GetFullPath(settings.GwExecutablePath), StringComparison.OrdinalIgnoreCase));
@@ -64,9 +63,7 @@ public partial class App : Application
                 settings.InstalledHostToolsVersion = configuredInstallation.Version;
             if (!string.IsNullOrWhiteSpace(settings.InstalledHostToolsVersion))
             {
-                var managedInstallation = installations.FirstOrDefault(installation =>
-                    installation.Managed
-                    && string.Equals(installation.Version, settings.InstalledHostToolsVersion, StringComparison.OrdinalIgnoreCase));
+                var managedInstallation = installations.FirstOrDefault(installation => installation.Managed && string.Equals(installation.Version, settings.InstalledHostToolsVersion, StringComparison.OrdinalIgnoreCase));
                 if (managedInstallation is not null) settings.GwExecutablePath = managedInstallation.ExecutablePath;
             }
         }
@@ -138,8 +135,7 @@ public partial class App : Application
     {
         ErrorLog.Write(e.Exception, "WPF dispatcher");
         var detail = ExceptionDescriptionFunctions.Describe(e.Exception);
-        MessageBox.Show(WpfDialogOwner.Resolve(), LocExtension.Get("Error.Unexpected", detail),
-            LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show(WpfDialogOwner.Resolve(), LocExtension.Get("Error.Unexpected", detail), LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Error);
         e.Handled = true;
     }
 

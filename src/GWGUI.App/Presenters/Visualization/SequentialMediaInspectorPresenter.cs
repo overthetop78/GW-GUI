@@ -80,9 +80,7 @@ public sealed class SequentialMediaInspectorPresenter(Func<string, object[], str
         }
 
         return new(
-            Localize(model.FormatId?.Equals(TapeImageFormatIds.AtariCas, StringComparison.OrdinalIgnoreCase) == true
-                ? "Visual.CassetteInspectorTitle"
-                : "Visual.SequentialInspectorTitle"),
+            Localize(model.FormatId?.Equals(TapeImageFormatIds.AtariCas, StringComparison.OrdinalIgnoreCase) == true ? "Visual.CassetteInspectorTitle" : "Visual.SequentialInspectorTitle"),
             segment is null ? null : $"{segment.Start:g} · {segment.Duration:g}",
             sections);
     }

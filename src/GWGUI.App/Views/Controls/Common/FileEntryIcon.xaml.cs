@@ -45,9 +45,7 @@ public partial class FileEntryIcon : UserControl
         NativeIcon.Source = source;
         NativeIcon.Visibility = Tone == ExplorerEntryTone.Default ? Visibility.Visible : Visibility.Collapsed;
         TintedIcon.Visibility = Tone == ExplorerEntryTone.Default ? Visibility.Collapsed : Visibility.Visible;
-        TintedIcon.Fill = Tone == ExplorerEntryTone.Executable
-            ? new SolidColorBrush(Color.FromRgb(24, 134, 75))
-            : TryFindResource("MutedTextBrush") as Brush ?? SystemColors.GrayTextBrush;
+        TintedIcon.Fill = Tone == ExplorerEntryTone.Executable ? new SolidColorBrush(Color.FromRgb(24, 134, 75)) : TryFindResource("MutedTextBrush") as Brush ?? SystemColors.GrayTextBrush;
         TintedIcon.OpacityMask = new ImageBrush(source) { Stretch = Stretch.Uniform };
     }
 
@@ -61,10 +59,7 @@ public partial class FileEntryIcon : UserControl
             var info = Application.GetResourceStream(uri) ?? throw new FileNotFoundException(uri.ToString());
             using var stream = info.Stream;
             var decoder = new IconBitmapDecoder(stream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-            var frame = decoder.Frames
-                .OrderBy(candidate => Math.Abs(candidate.PixelWidth - cacheSize))
-                .ThenByDescending(candidate => candidate.PixelWidth)
-                .First();
+            var frame = decoder.Frames.OrderBy(candidate => Math.Abs(candidate.PixelWidth - cacheSize)).ThenByDescending(candidate => candidate.PixelWidth).First();
             frame.Freeze();
             Cache[(fileName, cacheSize)] = frame;
             return frame;

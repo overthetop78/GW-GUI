@@ -14,8 +14,7 @@ internal interface IEmulationVideoSurface : IDisposable
     Task<BitmapSource?> CaptureSnapshotAsync() => Task.FromResult(Snapshot);
     EmulationVideoRenderer Renderer { get; }
     IntPtr InputHandle { get; }
-    EmulationVideoProcessingConfiguration VideoProcessing =>
-        EmulationVideoProcessingConfigurationFunctions.Normalize(null);
+    EmulationVideoProcessingConfiguration VideoProcessing => EmulationVideoProcessingConfigurationFunctions.Normalize(null);
     void SetVideoProcessing(EmulationVideoProcessingConfiguration configuration);
     void Present(VideoFrame frame);
     void ResetHistory() { }

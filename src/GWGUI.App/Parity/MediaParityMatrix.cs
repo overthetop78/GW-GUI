@@ -16,14 +16,7 @@ public sealed class MediaParityMatrix(IEnumerable<MediaParityRow> rows)
             row.TargetContainer.Equals(target, StringComparison.OrdinalIgnoreCase));
     }
 
-    public bool IsValidated(
-        string sourceContainer,
-        string formatId,
-        string targetContainer,
-        MediaParityOperation operation) =>
-        Find(sourceContainer, formatId, targetContainer)?.IsValidatedFor(operation) == true;
+    public bool IsValidated(string sourceContainer, string formatId, string targetContainer, MediaParityOperation operation) => Find(sourceContainer, formatId, targetContainer)?.IsValidatedFor(operation) == true;
 
-    private static string Normalize(string extension) => extension.StartsWith('.')
-        ? extension.ToLowerInvariant()
-        : "." + extension.ToLowerInvariant();
+    private static string Normalize(string extension) => extension.StartsWith('.') ? extension.ToLowerInvariant() : "." + extension.ToLowerInvariant();
 }

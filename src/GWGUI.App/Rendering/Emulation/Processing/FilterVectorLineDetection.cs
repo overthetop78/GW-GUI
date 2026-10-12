@@ -20,9 +20,7 @@ internal static class FilterVectorLineDetection
         for (var pixel = 0; pixel < luminance.Length; pixel++)
         {
             var index = pixel * 3;
-            luminance[pixel] = colors[index] * RedLuminance
-                + colors[index + 1] * GreenLuminance
-                + colors[index + 2] * BlueLuminance;
+            luminance[pixel] = colors[index] * RedLuminance + colors[index + 1] * GreenLuminance + colors[index + 2] * BlueLuminance;
         }
         var emission = new float[width * height];
         var threshold = setting / 100f;
@@ -41,16 +39,13 @@ internal static class FilterVectorLineDetection
                 + Sample(luminance, width, height, x - 1, y + 1)
                 + 2f * Sample(luminance, width, height, x, y + 1)
                 + Sample(luminance, width, height, x + 1, y + 1);
-            var magnitude = Math.Clamp(MathF.Sqrt(
-                gradientX * gradientX + gradientY * gradientY) / 4f, 0f, 1f);
-            emission[y * width + x] = SmoothStep(threshold,
-                Math.Min(1f, threshold + 0.1f), magnitude);
+            var magnitude = Math.Clamp(MathF.Sqrt(gradientX * gradientX + gradientY * gradientY) / 4f, 0f, 1f);
+            emission[y * width + x] = SmoothStep(threshold, Math.Min(1f, threshold + 0.1f), magnitude);
         }
         return emission;
     }
 
-    private static float Sample(float[] values, int width, int height, int x, int y) =>
-        values[Math.Clamp(y, 0, height - 1) * width + Math.Clamp(x, 0, width - 1)];
+    private static float Sample(float[] values, int width, int height, int x, int y) => values[Math.Clamp(y, 0, height - 1) * width + Math.Clamp(x, 0, width - 1)];
 
     private static float SmoothStep(float start, float end, float value)
     {

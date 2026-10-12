@@ -31,8 +31,7 @@ internal static class FilterVhs
             var jitter = (((hash & 15) / 7.5f) - 1f) * amount * 2f;
             var shift = (int)MathF.Round(wobble + jitter);
             var dropout = (hash & 127) > 122 ? amount * 0.42f : 0f;
-            var headSwitching = y > height * 0.88f
-                ? MathF.Sin(y * 0.73f + sequence * 0.43f) * amount * 0.16f : 0f;
+            var headSwitching = y > height * 0.88f ? MathF.Sin(y * 0.73f + sequence * 0.43f) * amount * 0.16f : 0f;
             for (var x = 0; x < width; x++)
             {
                 var output = (y * width + x) * 3;
@@ -41,17 +40,14 @@ internal static class FilterVhs
                 var left = (y * width + Math.Max(0, centerX - 2)) * 3;
                 var right = (y * width + Math.Min(width - 1, centerX + 2)) * 3;
                 var centerY = Luminance(source, center);
-                var blurredY = (Luminance(source, left) + centerY * 2f
-                    + Luminance(source, right)) * 0.25f;
+                var blurredY = (Luminance(source, left) + centerY * 2f + Luminance(source, right)) * 0.25f;
                 var luminance = Lerp(centerY, blurredY, amount * 0.72f);
                 for (var channel = 0; channel < 3; channel++)
                 {
                     var chroma = source[center + channel] - centerY;
                     var delayedChroma = source[left + channel] - Luminance(source, left);
-                    chroma = Lerp(chroma, delayedChroma, amount * 0.68f)
-                        * (1f - amount * 0.28f);
-                    colors[output + channel] = Math.Clamp((luminance + chroma)
-                        * (1f - dropout) + headSwitching, 0f, 1f);
+                    chroma = Lerp(chroma, delayedChroma, amount * 0.68f) * (1f - amount * 0.28f);
+                    colors[output + channel] = Math.Clamp((luminance + chroma) * (1f - dropout) + headSwitching, 0f, 1f);
                 }
             }
         }
@@ -59,6 +55,5 @@ internal static class FilterVhs
 
     private static float Lerp(float from, float to, float amount) => from + (to - from) * amount;
 
-    private static float Luminance(float[] source, int index) => source[index] * 0.299f
-        + source[index + 1] * 0.587f + source[index + 2] * 0.114f;
+    private static float Luminance(float[] source, int index) => source[index] * 0.299f + source[index + 1] * 0.587f + source[index + 2] * 0.114f;
 }

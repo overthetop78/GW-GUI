@@ -33,8 +33,7 @@ internal sealed class EmulationConfigurationTable : UserControl
         Content = root;
     }
 
-    internal void RefreshLocalizedContent()
-        => BuildHeaders();
+    internal void RefreshLocalizedContent() => BuildHeaders();
 
     internal void SetRows(IReadOnlyList<EmulationConfigurationTableRow> rows)
     {
@@ -50,8 +49,7 @@ internal sealed class EmulationConfigurationTable : UserControl
         {
             _headers.ColumnDefinitions.Add(new ColumnDefinition());
             var label = new TextBlock { Text = LocExtension.Get(resourceKey) };
-            label.SetResourceReference(FrameworkElement.StyleProperty,
-                EmulationConfigurationTableConstants.TableHeaderTextStyleResource);
+            label.SetResourceReference(FrameworkElement.StyleProperty, EmulationConfigurationTableConstants.TableHeaderTextStyleResource);
             var cell = new Border
             {
                 BorderThickness = EmulationConfigurationTableConstants.HeaderSeparatorThickness,
@@ -113,9 +111,7 @@ internal sealed class EmulationConfigurationTable : UserControl
                 Text = glyph,
                 FontFamily = ControlVisualConstants.IconFont,
                 VerticalAlignment = VerticalAlignment.Center,
-                Margin = hasPreviousGlyph
-                    ? EmulationConfigurationTableConstants.GlyphSpacingMargin
-                    : default
+                Margin = hasPreviousGlyph ? EmulationConfigurationTableConstants.GlyphSpacingMargin : default
             });
             hasPreviousGlyph = true;
         }
@@ -153,8 +149,7 @@ internal sealed class EmulationConfigurationTable : UserControl
         return panel;
     }
 
-    private void RequestEdit(EmulationConfigurationTableRow row)
-        => EditRequested?.Invoke(row);
+    private void RequestEdit(EmulationConfigurationTableRow row) => EditRequested?.Invoke(row);
 
     private static void AddCell(Grid row, UIElement content)
     {

@@ -26,8 +26,7 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
         _cache.IsChecked == true, _ignoreErrors.IsChecked == true,
         _options.ToDictionary(item => item.Key, item => item.Value switch
         {
-            CheckBox { Tag: EmulationSettingsField definition } toggle => toggle.IsChecked == true
-                ? definition.EnabledValue : definition.DisabledValue,
+            CheckBox { Tag: EmulationSettingsField definition } toggle => toggle.IsChecked == true ? definition.EnabledValue : definition.DisabledValue,
             ComboBox { SelectedItem: EmulationSettingsChoiceView choice } => choice.Choice.Id,
             Slider slider => slider.Value.ToString(CultureInfo.InvariantCulture),
             _ => string.Empty
@@ -50,9 +49,7 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
         _speed.ItemsSource = (speeds ?? []).Select(speed =>
             new StorageDialogChoice(speed,
                 $"{speed}×")).ToArray();
-        _speed.SelectedItem = _speed.Items.OfType<StorageDialogChoice>()
-            .FirstOrDefault(choice => choice.Value == settings.Speed)
-            ?? _speed.Items.OfType<StorageDialogChoice>().FirstOrDefault();
+        _speed.SelectedItem = _speed.Items.OfType<StorageDialogChoice>().FirstOrDefault(choice => choice.Value == settings.Speed) ?? _speed.Items.OfType<StorageDialogChoice>().FirstOrDefault();
         _cache.IsChecked = settings.CacheImage;
         _ignoreErrors.IsChecked = settings.IgnoreErrors;
         var entries = new List<(string Label, FrameworkElement Control)>
@@ -63,8 +60,7 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
                 new TextBox { Text = modelName, IsReadOnly = true })
         };
         if (speeds is { Count: > 0 })
-            entries.Add((LocExtension.Get(EmulationResourceKeys.CompactDiscSpeed),
-                _speed));
+            entries.Add((LocExtension.Get(EmulationResourceKeys.CompactDiscSpeed), _speed));
         if (!string.IsNullOrWhiteSpace(cacheLabel)) entries.Add((cacheLabel, _cache));
         if (!string.IsNullOrWhiteSpace(ignoreErrorsLabel))
             entries.Add((ignoreErrorsLabel, _ignoreErrors));
@@ -78,17 +74,14 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
                 control = new CheckBox { IsChecked = field.Value == field.EnabledValue, Tag = field };
             else if (field.NumericRange is { } range)
             {
-                var value = double.TryParse(field.Value, NumberStyles.Float, CultureInfo.InvariantCulture,
-                    out var parsed) ? parsed : range.Minimum;
+                var value = double.TryParse(field.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out var parsed) ? parsed : range.Minimum;
                 control = new Slider { Minimum = range.Minimum, Maximum = range.Maximum,
                     TickFrequency = range.Step, SmallChange = range.Step, LargeChange = range.Step,
                     IsSnapToTickEnabled = true, Value = Math.Clamp(value, range.Minimum, range.Maximum) };
             }
             else
             {
-                var choices = (field.Choices ?? []).Select(choice => new EmulationSettingsChoiceView(choice,
-                    choice.InvariantDisplayValue ?? LocExtension.GetForModule(moduleId ?? string.Empty,
-                        choice.DisplayResourceKey))).ToArray();
+                var choices = (field.Choices ?? []).Select(choice => new EmulationSettingsChoiceView(choice, choice.InvariantDisplayValue ?? LocExtension.GetForModule(moduleId ?? string.Empty, choice.DisplayResourceKey))).ToArray();
                 control = new ComboBox { ItemsSource = choices,
                     SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == field.Value) ?? choices.FirstOrDefault() };
             }
@@ -111,10 +104,8 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
             }
             body.Children.Add(EmulationSettingsLayout.BoundedForm(1, new EmulationSettingsControlField(
                 LocExtension.GetForModule(moduleId ?? string.Empty, field.LabelResourceKey), presentation,
-                field.ExplanationResourceKey is null ? null
-                    : LocExtension.GetForModule(moduleId ?? string.Empty, field.ExplanationResourceKey),
-                field.DetailedExplanationResourceKey is null ? null
-                    : LocExtension.GetForModule(moduleId ?? string.Empty, field.DetailedExplanationResourceKey))));
+                field.ExplanationResourceKey is null ? null : LocExtension.GetForModule(moduleId ?? string.Empty, field.ExplanationResourceKey),
+                field.DetailedExplanationResourceKey is null ? null : LocExtension.GetForModule(moduleId ?? string.Empty, field.DetailedExplanationResourceKey))));
         }
         body.Children.Add(StorageDialogUi.Info(LocExtension.Get(EmulationResourceKeys.StorageRuntimeHint)));
         Content = StorageDialogUi.DialogLayout(
@@ -123,7 +114,6 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
             StorageDialogUi.Card(LocExtension.Get(EmulationResourceKeys.CompactDiscDevice),
                 new ScrollViewer { Content = body, MaxHeight = SystemParameters.WorkArea.Height * 0.65, VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
                     HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled }),
-            StorageDialogUi.Footer(this,
-                LocExtension.Get(EmulationResourceKeys.CommonSave)));
+            StorageDialogUi.Footer(this, LocExtension.Get(EmulationResourceKeys.CommonSave)));
     }
 }

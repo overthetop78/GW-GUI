@@ -43,10 +43,8 @@ public sealed partial class EmulationSection : UserControl
 
     public EmulationSection()
     {
-        AutomationProperties.SetName(_open,
-            LocExtension.Get(ControlVisualConstants.OpenMachineResource));
-        AutomationProperties.SetName(_machines,
-            LocExtension.Get(ControlVisualConstants.MachinesResource));
+        AutomationProperties.SetName(_open, LocExtension.Get(ControlVisualConstants.OpenMachineResource));
+        AutomationProperties.SetName(_machines, LocExtension.Get(ControlVisualConstants.MachinesResource));
         _open.Content = LocExtension.Get(ControlVisualConstants.OpenMachineResource);
         _open.Click += OpenSelectedMachine;
         _selectorToggle.Click += ToggleSelector;
@@ -80,8 +78,7 @@ public sealed partial class EmulationSection : UserControl
         foreach (var item in _openMachines)
         {
             if (item.Value.Header is not StackPanel header) continue;
-            var title = header.Children.OfType<TextBlock>().FirstOrDefault(text =>
-                !Equals(text.FontFamily, ControlVisualConstants.IconFont));
+            var title = header.Children.OfType<TextBlock>().FirstOrDefault(text => !Equals(text.FontFamily, ControlVisualConstants.IconFont));
             var machine = item.Value.Tag as EmulationMachineRuntime;
             if (title is not null && machine is not null) title.Text = RuntimeDisplayName(machine);
         }

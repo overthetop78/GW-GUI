@@ -18,8 +18,7 @@ internal static class FilterPlasmaBlackDepth
         var intensity = setting / 100f;
         for (var index = 0; index < colors.Length; index += 3)
         {
-            var luminance = colors[index] * 0.2126f + colors[index + 1] * 0.7152f
-                + colors[index + 2] * 0.0722f;
+            var luminance = colors[index] * 0.2126f + colors[index + 1] * 0.7152f + colors[index + 2] * 0.0722f;
             var shadow = SmoothStep(0f, 0.24f, luminance);
             var factor = 1f + (0.28f + 0.72f * shadow - 1f) * intensity;
             colors[index] *= factor;

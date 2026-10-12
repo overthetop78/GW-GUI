@@ -9,17 +9,13 @@ internal static class EmulationSettingsValuePresentationFunctions
 {
     internal static string? ScaledFrequency(long? nominalHz, string? scale)
     {
-        if (nominalHz is null || !double.TryParse(scale?.TrimEnd('%'), NumberStyles.Float,
-            CultureInfo.InvariantCulture, out var percentage) || !double.IsFinite(percentage)) return null;
+        if (nominalHz is null || !double.TryParse(scale?.TrimEnd('%'), NumberStyles.Float, CultureInfo.InvariantCulture, out var percentage) || !double.IsFinite(percentage)) return null;
         return $"{nominalHz.Value / 1_000_000d * percentage / 100d:0.####} MHz";
     }
     internal static string DisplayValue(EmulationSettingsField field, IEmulationModule? module = null)
     {
-        var choice = field.Choices?.FirstOrDefault(value => value.Id == field.Value)
-            ?? field.Choices?.FirstOrDefault();
-        return choice?.InvariantDisplayValue ?? (choice is null ? field.Value ?? string.Empty
-            : (module is null ? LocExtension.Get(choice.DisplayResourceKey)
-                : LocExtension.GetForModule(module, choice.DisplayResourceKey)));
+        var choice = field.Choices?.FirstOrDefault(value => value.Id == field.Value) ?? field.Choices?.FirstOrDefault();
+        return choice?.InvariantDisplayValue ?? (choice is null ? field.Value ?? string.Empty : (module is null ? LocExtension.Get(choice.DisplayResourceKey) : LocExtension.GetForModule(module, choice.DisplayResourceKey)));
     }
     internal static long DefaultNumericValue(EmulationSettingsField field)
     {
@@ -28,8 +24,7 @@ internal static class EmulationSettingsValuePresentationFunctions
         if (field.Editor == EmulationSettingsEditor.Information
             && field.NumericValue is { } information) return information;
         var selected = field.Choices?.FirstOrDefault(choice => choice.Id == field.Value);
-        return MemoryBytes(selected?.InvariantDisplayValue ?? field.Value)
-            ?? selected?.NumericValue ?? 0;
+        return MemoryBytes(selected?.InvariantDisplayValue ?? field.Value) ?? selected?.NumericValue ?? 0;
     }
 
     internal static long? MemoryBytes(string? display)
@@ -37,8 +32,7 @@ internal static class EmulationSettingsValuePresentationFunctions
         if (string.IsNullOrWhiteSpace(display)) return null;
         foreach (var (unit, multiplier) in MemoryUnits)
             if (display.EndsWith(unit, StringComparison.OrdinalIgnoreCase)
-                && double.TryParse(display[..^unit.Length].Trim(), NumberStyles.Float,
-                    CultureInfo.InvariantCulture, out var number)
+                && double.TryParse(display[..^unit.Length].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out var number)
                 && double.IsFinite(number) && number >= 0 && number <= long.MaxValue / multiplier)
                 return checked((long)(number * multiplier));
         return null;

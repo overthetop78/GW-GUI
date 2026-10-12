@@ -91,30 +91,25 @@ public sealed partial class EmulationPreferencesSection : UserControl
         finally { _loadingConfigurations = false; }
     }
 
-    internal static void RaiseConfigurationSaved(object sender, EmulationConfigurationSavedEventArgs args) =>
-        ConfigurationSaved?.Invoke(sender, args);
+    internal static void RaiseConfigurationSaved(object sender, EmulationConfigurationSavedEventArgs args) => ConfigurationSaved?.Invoke(sender, args);
 
-    internal static void RaiseVideoConfigurationChanged(object sender, EmulationConfigurationSavedEventArgs args) =>
-        VideoConfigurationChanged?.Invoke(sender, args);
+    internal static void RaiseVideoConfigurationChanged(object sender, EmulationConfigurationSavedEventArgs args) => VideoConfigurationChanged?.Invoke(sender, args);
 
     internal void RefreshLocalizedContent()
     {
-        var shortcutValues = _shortcuts.Rows.ToDictionary(row => row.Id, row => row.Binding,
-            StringComparer.Ordinal);
+        var shortcutValues = _shortcuts.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal);
         foreach (var (tab, resourceKey) in _localizedTabs)
         {
             var text = LocExtension.Get(resourceKey);
             if (tab.Header is MainTabHeader header) header.Text = text;
         }
         _shortcuts.SetRows(GlobalShortcutDefinitions(), shortcutValues);
-        _shortcuts.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"),
-            LocExtension.Get("Emulation.Input.Binding.Search"));
+        _shortcuts.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"), LocExtension.Get("Emulation.Input.Binding.Search"));
         _configurationBrandLabel.Text = LocExtension.Get("Emulation.Configuration.Brand");
         _configurationTable.RefreshLocalizedContent();
         if (_configurationsLoaded)
         {
-            _configurationRows = EmulationConfigurationTablePresenter.CreateRows(
-                _configurationRows.Select(row => (row.Module, row.Configuration)));
+            _configurationRows = EmulationConfigurationTablePresenter.CreateRows(_configurationRows.Select(row => (row.Module, row.Configuration)));
             RebuildConfigurationBrands();
             FilterConfigurationTable();
             _ = ReloadConfigurationsAsync();

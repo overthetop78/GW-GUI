@@ -51,8 +51,7 @@ internal sealed class MachineVideoPresenter : IDisposable
         _machine = machine;
         _videoProcessing = EmulationVideoProcessingConfigurationFunctions.Normalize(videoProcessing);
         _surface = CreateSurface(renderer);
-        _gpuWorker = Task.Factory.StartNew(ProcessGpuFrames, CancellationToken.None,
-            TaskCreationOptions.LongRunning, TaskScheduler.Default);
+        _gpuWorker = Task.Factory.StartNew(ProcessGpuFrames, CancellationToken.None, TaskCreationOptions.LongRunning, TaskScheduler.Default);
         _view.SetVideoView(_surface.View);
         _shaderPrepared = _surface.Renderer == EmulationVideoRenderer.Wpf;
         _displayHost.SizeChanged += DisplayHostSizeChanged;
@@ -70,10 +69,7 @@ internal sealed class MachineVideoPresenter : IDisposable
     internal EmulationVideoProcessingConfiguration VideoProcessing => _videoProcessing;
     internal System.Windows.Media.Imaging.BitmapSource? Snapshot => _surface.Snapshot;
     internal Task<System.Windows.Media.Imaging.BitmapSource?> CaptureSnapshotAsync() =>
-        _presentationEnabled ? _surface.CaptureSnapshotAsync()
-            : EmulationVideoSnapshotFunctions.CreateAsync(_machine.Video.LatestFrame,
-                _videoProcessing, new EmulationVideoProcessingSize(
-                    Math.Max(1, (int)_view.Screen.ActualWidth), Math.Max(1, (int)_view.Screen.ActualHeight)));
+        _presentationEnabled ? _surface.CaptureSnapshotAsync() : EmulationVideoSnapshotFunctions.CreateAsync(_machine.Video.LatestFrame, _videoProcessing, new EmulationVideoProcessingSize(Math.Max(1, (int)_view.Screen.ActualWidth), Math.Max(1, (int)_view.Screen.ActualHeight)));
     internal double MeasuredFramesPerSecond => _measuredFramesPerSecond;
     internal bool IsShaderLoading => _shaderLoading;
     internal event EventHandler<VideoFrame>? FramePresented;
@@ -115,9 +111,7 @@ internal sealed class MachineVideoPresenter : IDisposable
     {
         var normalized = EmulationVideoProcessingConfigurationFunctions.Normalize(configuration);
         if (_videoProcessing == normalized) return;
-        var rebuildsShader = _surface.Renderer != EmulationVideoRenderer.Wpf
-            && (_videoProcessing.Sampling != normalized.Sampling
-                || _videoProcessing.DisplayTechnology != normalized.DisplayTechnology);
+        var rebuildsShader = _surface.Renderer != EmulationVideoRenderer.Wpf && (_videoProcessing.Sampling != normalized.Sampling || _videoProcessing.DisplayTechnology != normalized.DisplayTechnology);
         _videoProcessing = normalized;
         lock (_surfaceGate) _surface.SetVideoProcessing(normalized);
         if (rebuildsShader)
@@ -128,8 +122,7 @@ internal sealed class MachineVideoPresenter : IDisposable
         RequestCurrentFrame();
     }
 
-    internal void SetVisible(bool visible) =>
-        _view.VideoHost.Visibility = visible ? Visibility.Visible : Visibility.Hidden;
+    internal void SetVisible(bool visible) => _view.VideoHost.Visibility = visible ? Visibility.Visible : Visibility.Hidden;
 
     internal void SetDisplayHost(FrameworkElement displayHost)
     {
@@ -147,8 +140,7 @@ internal sealed class MachineVideoPresenter : IDisposable
         var ratio = aspectRatio ?? (frame is { Width: > 0, Height: > 0 }
             ? FrameAspectRatio(frame)
             : MachinePresentationConstants.DefaultAspectRatio);
-        var fitted = EmulationVideoLayoutFunctions.Fit(_displayHost.ActualWidth,
-            _displayHost.ActualHeight, (float)ratio);
+        var fitted = EmulationVideoLayoutFunctions.Fit(_displayHost.ActualWidth, _displayHost.ActualHeight, (float)ratio);
         if (fitted.IsEmpty) return;
         if (double.IsNaN(_view.Screen.Width) || Math.Abs(_view.Screen.Width - fitted.Width) >= 0.5d)
             _view.Screen.Width = fitted.Width;
@@ -201,8 +193,7 @@ internal sealed class MachineVideoPresenter : IDisposable
 
     private void DisplayHostSizeChanged(object sender, SizeChangedEventArgs args) => FitScreen();
 
-    private void VideoHostVisibilityChanged(object sender, DependencyPropertyChangedEventArgs args) =>
-        UpdatePresentationVisibility();
+    private void VideoHostVisibilityChanged(object sender, DependencyPropertyChangedEventArgs args) => UpdatePresentationVisibility();
     private void VideoHostLoaded(object sender, RoutedEventArgs args) => UpdatePresentationVisibility();
     private void VideoHostUnloaded(object sender, RoutedEventArgs args) => SetPresentationEnabled(false);
     private void HostWindowStateChanged(object? sender, EventArgs args) => UpdatePresentationVisibility();
@@ -217,8 +208,7 @@ internal sealed class MachineVideoPresenter : IDisposable
             _hostWindow = window;
             if (window is not null) window.StateChanged += HostWindowStateChanged;
         }
-        SetPresentationEnabled(_view.VideoHost.IsLoaded && _view.VideoHost.IsVisible
-            && window?.WindowState != WindowState.Minimized);
+        SetPresentationEnabled(_view.VideoHost.IsLoaded && _view.VideoHost.IsVisible && window?.WindowState != WindowState.Minimized);
     }
 
     private void SetPresentationEnabled(bool enabled)
@@ -377,10 +367,7 @@ internal sealed class MachineVideoPresenter : IDisposable
         FramePresented?.Invoke(this, frame);
     }
 
-    internal static double FrameAspectRatio(VideoFrame frame) =>
-        frame.AspectRatio > 0 && float.IsFinite(frame.AspectRatio)
-            ? frame.AspectRatio
-            : frame.Width / (double)frame.Height;
+    internal static double FrameAspectRatio(VideoFrame frame) => frame.AspectRatio > 0 && float.IsFinite(frame.AspectRatio) ? frame.AspectRatio : frame.Width / (double)frame.Height;
     private void NotifyFrameCompleted(VideoFrame frame)
     {
         Interlocked.Exchange(ref _latestCompletedFrame, frame);
@@ -413,8 +400,7 @@ internal sealed class MachineVideoPresenter : IDisposable
         var now = Stopwatch.GetTimestamp();
         var elapsed = Stopwatch.GetElapsedTime(_frameWindowStarted, now);
         if (elapsed < TimeSpan.FromSeconds(MachinePresentationConstants.FrameRateWindowSeconds)) return;
-        var frames = Interlocked.Exchange(ref _framesInWindow,
-            MachinePresentationConstants.InactiveFramePending);
+        var frames = Interlocked.Exchange(ref _framesInWindow, MachinePresentationConstants.InactiveFramePending);
         _measuredFramesPerSecond = frames / elapsed.TotalSeconds;
         _frameWindowStarted = now;
     }

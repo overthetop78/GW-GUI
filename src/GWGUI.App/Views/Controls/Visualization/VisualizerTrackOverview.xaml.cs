@@ -33,15 +33,8 @@ public partial class VisualizerTrackOverview : UserControl
     {
         ArgumentNullException.ThrowIfNull(cylinders);
         var surfaces = cylinders.Keys.Order().ToArray();
-        var elements = cylinders
-            .SelectMany(pair => pair.Value.Select(cylinder => new MediaVisualizationElement(cylinder, pair.Key)))
-            .ToArray();
-        Configure(new MediaVisualizationDescriptor(
-            MediaRepresentationKind.Flux,
-            surfaces,
-            MediaVisualizationProgressUnit.Track,
-            MediaVisualizationDirection.Ascending,
-            elements));
+        var elements = cylinders.SelectMany(pair => pair.Value.Select(cylinder => new MediaVisualizationElement(cylinder, pair.Key))).ToArray();
+        Configure(new MediaVisualizationDescriptor(MediaRepresentationKind.Flux, surfaces, MediaVisualizationProgressUnit.Track, MediaVisualizationDirection.Ascending, elements));
     }
 
     public void Configure(MediaVisualizationDescriptor descriptor)
@@ -53,27 +46,15 @@ public partial class VisualizerTrackOverview : UserControl
         _sequentialLocations.Clear();
         _sequentialLayout = false;
 
-        var surfaces = descriptor.Surfaces.Count > 0
-            ? descriptor.Surfaces
-            : descriptor.Elements.Where(element => element.Surface.HasValue).Select(element => element.Surface!.Value).Distinct().Order().ToArray();
+        var surfaces = descriptor.Surfaces.Count > 0 ? descriptor.Surfaces : descriptor.Elements.Where(element => element.Surface.HasValue).Select(element => element.Surface!.Value).Distinct().Order().ToArray();
 
         foreach (var surface in surfaces)
         {
-            var positions = descriptor.Elements
-                .Where(element => element.Surface == surface)
-                .Select(element => element.Position)
-                .Distinct()
-                .Order()
-                .ToArray();
+            var positions = descriptor.Elements.Where(element => element.Surface == surface).Select(element => element.Position).Distinct().Order().ToArray();
             AddStrip(descriptor.ProgressUnit, surface, positions, SurfaceLabel(descriptor.RepresentationKind, surface));
         }
 
-        var unassignedPositions = descriptor.Elements
-            .Where(element => element.Surface is null)
-            .Select(element => element.Position)
-            .Distinct()
-            .Order()
-            .ToArray();
+        var unassignedPositions = descriptor.Elements.Where(element => element.Surface is null).Select(element => element.Position).Distinct().Order().ToArray();
         if (unassignedPositions.Length > 0)
         {
             var unassignedSurface = surfaces.DefaultIfEmpty(-1).Max() + 1;
@@ -189,11 +170,7 @@ public partial class VisualizerTrackOverview : UserControl
             ? SectorMediaElementState.WithoutData
             : sectors.Any(sector => sector.State == SectorMediaElementState.Dead)
                 ? SectorMediaElementState.Dead
-                : sectors.Any(sector => sector.State == SectorMediaElementState.Degraded)
-                    ? SectorMediaElementState.Degraded
-                    : sectors.Any(sector => sector.State == SectorMediaElementState.WithData)
-                        ? SectorMediaElementState.WithData
-                        : SectorMediaElementState.WithoutData;
+                : sectors.Any(sector => sector.State == SectorMediaElementState.Degraded) ? SectorMediaElementState.Degraded : sectors.Any(sector => sector.State == SectorMediaElementState.WithData) ? SectorMediaElementState.WithData : SectorMediaElementState.WithoutData;
         var color = SkiaSectorMediaRenderer.ColorFor(state);
         return Color.FromRgb(color.Red, color.Green, color.Blue);
     }

@@ -19,13 +19,11 @@ internal sealed class WpfVideoSurface : IEmulationVideoSurface
     private long _configurationVersion;
     private bool _disposed;
     private WriteableBitmap? _bitmap;
-    private EmulationVideoProcessingConfiguration _videoProcessing =
-        EmulationVideoProcessingConfigurationFunctions.Normalize(null);
+    private EmulationVideoProcessingConfiguration _videoProcessing = EmulationVideoProcessingConfigurationFunctions.Normalize(null);
 
     internal WpfVideoSurface(IEmulationVideoProcessingPipeline? videoProcessingPipeline = null)
     {
-        var pipeline = videoProcessingPipeline
-            ?? EmulationVideoProcessingPipelineFactory.Create(EmulationVideoRenderer.Wpf);
+        var pipeline = videoProcessingPipeline ?? EmulationVideoProcessingPipelineFactory.Create(EmulationVideoRenderer.Wpf);
         if (pipeline.Renderer != EmulationVideoRenderer.Wpf)
             throw new ArgumentException(nameof(videoProcessingPipeline));
         if (videoProcessingPipeline is not null || Application.Current is null)
@@ -47,15 +45,12 @@ internal sealed class WpfVideoSurface : IEmulationVideoSurface
 
     public void Present(VideoFrame frame)
     {
-        var outputSize = new EmulationVideoProcessingSize(
-            _image.ActualWidth > 0 ? (int)Math.Round(_image.ActualWidth) : frame.Width,
-            _image.ActualHeight > 0 ? (int)Math.Round(_image.ActualHeight) : frame.Height);
+        var outputSize = new EmulationVideoProcessingSize(_image.ActualWidth > 0 ? (int)Math.Round(_image.ActualWidth) : frame.Width, _image.ActualHeight > 0 ? (int)Math.Round(_image.ActualHeight) : frame.Height);
         var configuration = _videoProcessing;
         var version = Interlocked.Read(ref _configurationVersion);
         if (_worker is null)
         {
-            var surfaceFrame = EmulationVideoSurfaceFrameFunctions.Process(
-                _synchronousPipeline!, configuration, frame, outputSize);
+            var surfaceFrame = EmulationVideoSurfaceFrameFunctions.Process(_synchronousPipeline!, configuration, frame, outputSize);
             UpdateBitmap(surfaceFrame.Frame, surfaceFrame.Bgra32Pixels);
             return;
         }
@@ -101,10 +96,8 @@ internal sealed class WpfVideoSurface : IEmulationVideoSurface
         if (_bitmap is null || _bitmap.PixelWidth != processed.Width
             || _bitmap.PixelHeight != processed.Height)
         {
-            _bitmap = new WriteableBitmap(
-                processed.Width, processed.Height, 96, 96, PixelFormats.Bgra32, null);
+            _bitmap = new WriteableBitmap(processed.Width, processed.Height, 96, 96, PixelFormats.Bgra32, null);
             _image.Source = _bitmap;
         }
-        _bitmap.WritePixels(
-            new Int32Rect(0, 0, processed.Width, processed.Height), pixels, pitch, 0);
+        _bitmap.WritePixels(new Int32Rect(0, 0, processed.Width, processed.Height), pixels, pitch, 0);
     }}

@@ -63,12 +63,10 @@ internal static class EmulationPlasmaSettingsBlock
         var card = new Border
         {
             Child = content,
-            Margin = new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6,
-                column == 0 ? 6 : 0, row == 0 ? 6 : 0)
+            Margin = new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6, column == 0 ? 6 : 0, row == 0 ? 6 : 0)
         };
         AutomationProperties.SetAutomationId(card, titleResourceKey);
-        card.SetResourceReference(FrameworkElement.StyleProperty,
-            ControlVisualConstants.CardStyleResource);
+        card.SetResourceReference(FrameworkElement.StyleProperty, ControlVisualConstants.CardStyleResource);
         Grid.SetRow(card, row);
         Grid.SetColumn(card, column);
         groups.Children.Add(card);

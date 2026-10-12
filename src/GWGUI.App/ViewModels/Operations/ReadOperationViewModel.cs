@@ -51,17 +51,11 @@ public sealed class ReadOperationViewModel : INotifyPropertyChanged
     public bool TryAdvanceSequence()
     {
         if (!AutoNumber || !SequenceFormatter.TryParse(SequenceValue, SequenceKind, out var value)) return false;
-        SequenceValue = SequenceKind == SequenceKind.Numeric
-            ? (value + 1).ToString()
-            : SequenceFormatter.Format(value + 1, SequenceKind, 1);
+        SequenceValue = SequenceKind == SequenceKind.Numeric ? (value + 1).ToString() : SequenceFormatter.Format(value + 1, SequenceKind, 1);
         return true;
     }
 
-    public IReadOnlyList<EnabledOption> BuildOptions() =>
-        AllOptions()
-            .Where(option => option.Enabled)
-            .Select(option => option.ToEnabledOption())
-            .ToArray();
+    public IReadOnlyList<EnabledOption> BuildOptions() => AllOptions().Where(option => option.Enabled).Select(option => option.ToEnabledOption()).ToArray();
 
     public void ResetOptionalSettings()
     {

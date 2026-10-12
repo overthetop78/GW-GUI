@@ -17,11 +17,7 @@ public sealed class PhysicalDiskReadService(
     FluxDecoderRegistry decoders,
     DiskImageExplorer explorer)
 {
-    public static PhysicalDiskReadService CreateDefault() => new(
-        new FloppyFluxAcquisitionService(),
-        new ScpWriter(),
-        new FluxDecoderRegistry(),
-        DiskImageExplorer.CreateDefault());
+    public static PhysicalDiskReadService CreateDefault() => new(new FloppyFluxAcquisitionService(), new ScpWriter(), new FluxDecoderRegistry(), DiskImageExplorer.CreateDefault());
 
     public async Task<PhysicalDiskReadResult> ReadAsync(
         MediaAcquisitionResult acquisition,
@@ -32,25 +28,13 @@ public sealed class PhysicalDiskReadService(
         ArgumentNullException.ThrowIfNull(acquisition);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
         var image = acquisitionService.CreateScpImage(acquisition);
-        var tracks = image.Tracks.Select(track => new PhysicalDiskTrackAddress(
-            track.Cylinder,
-            track.Head,
-            track.Cylinder,
-            track.Head)).ToArray();
+        var tracks = image.Tracks.Select(track => new PhysicalDiskTrackAddress(track.Cylinder, track.Head, track.Cylinder, track.Head)).ToArray();
 
-        progress?.Report(new(
-            PhysicalDiskReadStage.Saving,
-            tracks.Length,
-            tracks.Length,
-            tracks: tracks));
+        progress?.Report(new(PhysicalDiskReadStage.Saving, tracks.Length, tracks.Length, tracks: tracks));
         await writer.WriteAsync(outputPath, image, cancellationToken).ConfigureAwait(false);
 
         var diagnostics = DecodeTracks(image, progress, cancellationToken);
-        progress?.Report(new(
-            PhysicalDiskReadStage.Exploring,
-            tracks.Length,
-            tracks.Length,
-            tracks: tracks));
+        progress?.Report(new(PhysicalDiskReadStage.Exploring, tracks.Length, tracks.Length, tracks: tracks));
         var document = await explorer.ExploreScpAsync(outputPath, image, cancellationToken).ConfigureAwait(false);
         return new(outputPath, acquisition, diagnostics, document);
     }
@@ -75,14 +59,8 @@ public sealed class PhysicalDiskReadService(
                 image.Tracks.Count,
                 track.Cylinder,
                 track.Head,
-                tracks: image.Tracks.Select(item => new PhysicalDiskTrackAddress(
-                    item.Cylinder,
-                    item.Head,
-                    item.Cylinder,
-                    item.Head)).ToArray(),
-                acquiredTrack: ScpTrackContractMapper.FromScpTrack(
-                    track,
-                    image.Header.ResolutionNanoseconds)));
+                tracks: image.Tracks.Select(item => new PhysicalDiskTrackAddress(item.Cylinder, item.Head, item.Cylinder, item.Head)).ToArray(),
+                acquiredTrack: ScpTrackContractMapper.FromScpTrack(track, image.Header.ResolutionNanoseconds)));
         }
         return diagnostics;
     }

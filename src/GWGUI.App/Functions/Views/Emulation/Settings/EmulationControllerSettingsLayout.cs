@@ -39,9 +39,7 @@ internal static partial class EmulationSettingsLayout
             var legacyContent = new Grid();
             legacyContent.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             legacyContent.RowDefinitions.Add(new RowDefinition());
-            var selectors = SettingsFields(2,
-                (LocExtension.Get("Emulation.Controller.Type"), port.Type),
-                (LocExtension.Get("Emulation.Controller.Visual"), port.Visual));
+            var selectors = SettingsFields(2, (LocExtension.Get("Emulation.Controller.Type"), port.Type), (LocExtension.Get("Emulation.Controller.Visual"), port.Visual));
             selectors.Margin = new Thickness(10, 10, 10, 4);
             legacyContent.Children.Add(selectors);
             var portContent = new Grid { ClipToBounds = true };
@@ -91,8 +89,7 @@ internal static partial class EmulationSettingsLayout
         if (hasMultitap)
         {
             root.RowDefinitions.Insert(0, new RowDefinition { Height = GridLength.Auto });
-            var multitap = IconCard(BoundedForm(2, globalOptions!.ToArray()),
-                LocExtension.Get(EmulationControllerSettingsConstants.MultitapResourceKey), IconGlyphs.Controller);
+            var multitap = IconCard(BoundedForm(2, globalOptions!.ToArray()), LocExtension.Get(EmulationControllerSettingsConstants.MultitapResourceKey), IconGlyphs.Controller);
             multitap.Margin = new Thickness(0, 0, 0, 10);
             root.Children.Add(multitap);
         }
@@ -129,10 +126,8 @@ internal static partial class EmulationSettingsLayout
         IReadOnlyList<EmulationSettingsControlField> behaviors,
         string? behaviorTitle = null, string? behaviorGlyph = null)
     {
-        if (behaviors.Any(field => field.Definition?.AppliesToControllerIds is not null
-                || field.Definition?.IsGlobalControllerOption == true))
-            return ControllerSettingsPage(ports, deviceOptionsFactory: port => DeviceOptions(port,
-                behaviors.Where(field => field.Definition?.IsGlobalControllerOption != true).ToArray()),
+        if (behaviors.Any(field => field.Definition?.AppliesToControllerIds is not null || field.Definition?.IsGlobalControllerOption == true))
+            return ControllerSettingsPage(ports, deviceOptionsFactory: port => DeviceOptions(port, behaviors.Where(field => field.Definition?.IsGlobalControllerOption != true).ToArray()),
                 globalOptions: behaviors.Where(field => field.Definition?.IsGlobalControllerOption == true).ToArray());
         var panel = new StackPanel();
         foreach (var behavior in behaviors)
@@ -159,8 +154,7 @@ internal static partial class EmulationSettingsLayout
             row.Children.Add(behavior.Control);
             panel.Children.Add(row);
         }
-        return ControllerSettingsPage(ports,
-            new EmulationSettingsControlField(string.Empty, panel), behaviorTitle, behaviorGlyph);
+        return ControllerSettingsPage(ports, new EmulationSettingsControlField(string.Empty, panel), behaviorTitle, behaviorGlyph);
     }
 
     private static FrameworkElement DeviceOptions(EmulationControllerPortSettings port,

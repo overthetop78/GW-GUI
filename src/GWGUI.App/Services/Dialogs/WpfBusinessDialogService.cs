@@ -28,9 +28,7 @@ public sealed class WpfBusinessDialogService(Window owner) : IBusinessDialogServ
     public IReadOnlyList<ConversionConflictDecision>? ResolveConversionConflicts(IReadOnlyList<ConversionOutput> outputs)
     {
         var dialog = new ConversionConflictWindow(outputs) { Owner = owner };
-        return dialog.ShowDialog() == true
-            ? dialog.Rows.Select(row => new ConversionConflictDecision(row.Output, row.Choice)).ToArray()
-            : null;
+        return dialog.ShowDialog() == true ? dialog.Rows.Select(row => new ConversionConflictDecision(row.Output, row.Choice)).ToArray() : null;
     }
 
     public MissingHardwareChoice ResolveMissingHardware(IReadOnlyList<ControllerSettings> controllers)

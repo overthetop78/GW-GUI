@@ -29,8 +29,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
                 SetCrt(_configuration.Crt with { ColorMode = value });
                 RebuildContent();
             }, EmulationVideoProcessingCatalog.CrtColorMode));
-        panel.Children.Add(FramedGroup(EmulationResourceKeys.VideoCrtGroupColor,
-            color, compact: true));
+        panel.Children.Add(FramedGroup(EmulationResourceKeys.VideoCrtGroupColor, color, compact: true));
         var beam = new StackPanel();
         AddIntensity(beam, EmulationVideoProcessingCatalog.CrtBeamWidth, crt.BeamWidth,
             value => SetCrt(_configuration.Crt with { BeamWidth = value }));
@@ -40,8 +39,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
             value => SetCrt(_configuration.Crt with { BeamDiffusion = value }));
         AddIntensity(beam, EmulationVideoProcessingCatalog.CrtHaloIntensity, crt.HaloIntensity,
             value => SetCrt(_configuration.Crt with { HaloIntensity = value }));
-        panel.Children.Add(FramedGroup(EmulationResourceKeys.VideoCrtGroupBeam,
-            beam, compact: true));
+        panel.Children.Add(FramedGroup(EmulationResourceKeys.VideoCrtGroupBeam, beam, compact: true));
         var mask = new StackPanel();
         mask.Children.Add(ChoiceField(ParameterKey(EmulationVideoProcessingCatalog.CrtMask),
             EmulationVideoProcessingCatalog.CrtMaskResourceKeys, crt.Mask,
@@ -57,8 +55,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
         AddIntensity(mask, EmulationVideoProcessingCatalog.CrtMaskIntensity, crt.MaskIntensity,
             value => SetCrt(_configuration.Crt with { MaskIntensity = value }));
         }
-        panel.Children.Add(FramedGroup(EmulationResourceKeys.VideoCrtGroupMask,
-            mask, compact: true));
+        panel.Children.Add(FramedGroup(EmulationResourceKeys.VideoCrtGroupMask, mask, compact: true));
         var geometry = new StackPanel();
         AddSlider(geometry, EmulationVideoProcessingCatalog.CrtHorizontalCurvature,
             crt.HorizontalCurvature, -100, 100,
@@ -70,8 +67,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
             value => SetCrt(_configuration.Crt with { Trapezoid = value }));
         AddIntensity(geometry, EmulationVideoProcessingCatalog.CrtVignette, crt.Vignette,
             value => SetCrt(_configuration.Crt with { Vignette = value }));
-        panel.Children.Add(FramedGroup(EmulationResourceKeys.VideoCrtGroupGeometry,
-            geometry, compact: true));
+        panel.Children.Add(FramedGroup(EmulationResourceKeys.VideoCrtGroupGeometry, geometry, compact: true));
         var scanlines = new StackPanel();
         AddToggle(scanlines, EmulationVideoProcessingCatalog.CrtScanlinesEnabled, crt.ScanlinesEnabled, value =>
         {
@@ -79,8 +75,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
             RebuildContent();
         });
         if (crt.ScanlinesEnabled) AddScanlineFields(scanlines, crt);
-        panel.Children.Add(FramedGroup(EmulationResourceKeys.VideoCrtGroupScanlines,
-            scanlines, compact: true));
+        panel.Children.Add(FramedGroup(EmulationResourceKeys.VideoCrtGroupScanlines, scanlines, compact: true));
         var pattern = new StackPanel();
         AddToggle(pattern, EmulationVideoProcessingCatalog.CrtPatternEnabled, crt.PatternEnabled, value =>
         {
@@ -88,8 +83,7 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
             RebuildContent();
         });
         if (crt.PatternEnabled) AddPatternFields(pattern, crt);
-        panel.Children.Add(FramedGroup(EmulationResourceKeys.VideoCrtGroupInterference,
-            pattern, compact: true));
+        panel.Children.Add(FramedGroup(EmulationResourceKeys.VideoCrtGroupInterference, pattern, compact: true));
         return panel;
     }
 
@@ -125,40 +119,22 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
             value => SetCrt(_configuration.Crt with { PatternIntensity = value }));
     }
 
-    private FrameworkElement CreateFixedPixelPanel() =>
-        EmulationFixedPixelSettingsBlock.Create(_configuration.FixedPixel,
-            update => SetFixedPixel(update(_configuration.FixedPixel)), RebuildContent);
+    private FrameworkElement CreateFixedPixelPanel() => EmulationFixedPixelSettingsBlock.Create(_configuration.FixedPixel, update => SetFixedPixel(update(_configuration.FixedPixel)), RebuildContent);
 
-    private FrameworkElement CreatePlasmaPanel() =>
-        EmulationPlasmaSettingsBlock.Create(_configuration.Plasma,
-            update => SetPlasma(update(_configuration.Plasma)));
+    private FrameworkElement CreatePlasmaPanel() => EmulationPlasmaSettingsBlock.Create(_configuration.Plasma, update => SetPlasma(update(_configuration.Plasma)));
 
-    private FrameworkElement CreateVectorPanel() =>
-        EmulationVectorSettingsBlock.Create(_configuration.Vector,
-            update => SetVector(update(_configuration.Vector)));
+    private FrameworkElement CreateVectorPanel() => EmulationVectorSettingsBlock.Create(_configuration.Vector, update => SetVector(update(_configuration.Vector)));
 
-    private FrameworkElement CreateVfdPanel() =>
-        EmulationVfdSettingsBlock.Create(_configuration.Vfd,
-            update => SetVfd(update(_configuration.Vfd)), RebuildContent);
+    private FrameworkElement CreateVfdPanel() => EmulationVfdSettingsBlock.Create(_configuration.Vfd, update => SetVfd(update(_configuration.Vfd)), RebuildContent);
 
-    private FrameworkElement CreateLedMatrixPanel() =>
-        EmulationLedMatrixSettingsBlock.Create(_configuration.LedMatrix,
-            update => SetLedMatrix(update(_configuration.LedMatrix)));
+    private FrameworkElement CreateLedMatrixPanel() => EmulationLedMatrixSettingsBlock.Create(_configuration.LedMatrix, update => SetLedMatrix(update(_configuration.LedMatrix)));
 
-    private FrameworkElement CreateDotMatrixPanel() =>
-        EmulationDotMatrixSettingsBlock.Create(_configuration.DotMatrix,
-            update => SetDotMatrix(update(_configuration.DotMatrix)));
+    private FrameworkElement CreateDotMatrixPanel() => EmulationDotMatrixSettingsBlock.Create(_configuration.DotMatrix, update => SetDotMatrix(update(_configuration.DotMatrix)));
 
-    private FrameworkElement CreateSegmentDisplayPanel() =>
-        EmulationSegmentDisplaySettingsBlock.Create(_configuration.SegmentDisplay,
-            update => SetSegmentDisplay(update(_configuration.SegmentDisplay)));
+    private FrameworkElement CreateSegmentDisplayPanel() => EmulationSegmentDisplaySettingsBlock.Create(_configuration.SegmentDisplay, update => SetSegmentDisplay(update(_configuration.SegmentDisplay)));
 
-    private FrameworkElement CreateEPaperPanel() =>
-        EmulationEPaperSettingsBlock.Create(_configuration.EPaper,
-            update => SetEPaper(update(_configuration.EPaper)), RebuildContent);
+    private FrameworkElement CreateEPaperPanel() => EmulationEPaperSettingsBlock.Create(_configuration.EPaper, update => SetEPaper(update(_configuration.EPaper)), RebuildContent);
 
-    private FrameworkElement CreateProjectionPanel() =>
-        EmulationProjectionSettingsBlock.Create(_configuration.Projection,
-            update => SetProjection(update(_configuration.Projection)));
+    private FrameworkElement CreateProjectionPanel() => EmulationProjectionSettingsBlock.Create(_configuration.Projection, update => SetProjection(update(_configuration.Projection)));
 
 }
