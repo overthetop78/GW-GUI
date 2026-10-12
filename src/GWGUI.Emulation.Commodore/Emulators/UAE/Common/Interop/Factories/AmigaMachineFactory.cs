@@ -160,8 +160,7 @@ internal abstract class AmigaMachineFactory : MachineFactory
         ((int)NativeKickstartVersion.Kickstart12, (int)NativeKickstartRevision.Kickstart12) or ((int)NativeKickstartVersion.Kickstart13, (int)NativeKickstartRevision.Kickstart13) or ((int)NativeKickstartVersion.Kickstart204, (int)NativeKickstartRevision.Kickstart204) => GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A500,
         ((int)NativeKickstartVersion.Kickstart204, (int)NativeKickstartRevision.Kickstart205A600) or ((int)NativeKickstartVersion.Kickstart31, (int)NativeKickstartRevision.Kickstart31A600) => GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A600,
         ((int)NativeKickstartVersion.Kickstart31, (int)NativeKickstartRevision.Kickstart31Cd32) => GWGUI.Emulation.Commodore.Common.Machines.AmigaCD32.Constants.ModelConstants.CD32,
-        ((int)NativeKickstartVersion.Kickstart30, (int)NativeKickstartRevision.Kickstart30) or ((int)NativeKickstartVersion.Kickstart31, (int)NativeKickstartRevision.Kickstart31A1200) when model.Equals(GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A3000, StringComparison.OrdinalIgnoreCase)
-            || model.Equals(GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A4000, StringComparison.OrdinalIgnoreCase) => GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A4000,
+        ((int)NativeKickstartVersion.Kickstart30, (int)NativeKickstartRevision.Kickstart30) or ((int)NativeKickstartVersion.Kickstart31, (int)NativeKickstartRevision.Kickstart31A1200)when model.Equals(GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A3000, StringComparison.OrdinalIgnoreCase) || model.Equals(GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A4000, StringComparison.OrdinalIgnoreCase) => GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A4000,
         ((int)NativeKickstartVersion.Kickstart30, (int)NativeKickstartRevision.Kickstart30) or ((int)NativeKickstartVersion.Kickstart31, (int)NativeKickstartRevision.Kickstart31A1200) => GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A1200,
         _ => model.ToUpperInvariant() switch
         {
@@ -171,8 +170,7 @@ internal abstract class AmigaMachineFactory : MachineFactory
             GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A3000 or GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A4000 => GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A4000,
             GWGUI.Emulation.Commodore.Common.Machines.AmigaCD32.Constants.ModelConstants.CD32 => GWGUI.Emulation.Commodore.Common.Machines.AmigaCD32.Constants.ModelConstants.CD32,
             _ => GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A500
-        }
-    };
+        }};
 
     internal static string? PrepareContentPath(MachineConfiguration configuration, string sessionDirectory,
         IReadOnlyList<MediaConfiguration>? resolvedMedia = null, bool createHardwareConfiguration = false)

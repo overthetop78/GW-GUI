@@ -34,8 +34,16 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private readonly Dictionary<string, bool> _optionVisibility = new(StringComparer.Ordinal);
     internal ExternalDiskControl DiskControl { get; } = new();
 
-    internal ExternalHostCallbacks(string systemDirectory, string contentDirectory,
-        string saveDirectory, IReadOnlyDictionary<string, string>? options, string? pathOption = null, IReadOnlyDictionary<uint, EmulationKey?>? keyboardOverrides = null, IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>>? keyboardExpansions = null, IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>>? keyboardToggleExpansions = null)
+    internal ExternalHostCallbacks(
+        string systemDirectory,
+        string contentDirectory,
+        string saveDirectory,
+        IReadOnlyDictionary<string, string>? options,
+        string? pathOption = null,
+        IReadOnlyDictionary<uint, EmulationKey?>? keyboardOverrides = null,
+        IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>>? keyboardExpansions = null,
+        IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>>? keyboardToggleExpansions = null
+    )
     {
         _keyboardMap = CreateKeyboardMap(keyboardOverrides);
         _keyboardExpansions = keyboardExpansions ?? new Dictionary<EmulationKey, IReadOnlyList<EmulationKey>>();
@@ -53,7 +61,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
                 _options[option.Key] = option.Value;
                 _configuredOptionKeys.Add(option.Key);
             }
-
+    
         Environment = HandleEnvironment;
         Video = HandleVideo;
         AudioSample = HandleAudioSample;

@@ -119,14 +119,16 @@ private static string Value(IReadOnlyDictionary<string, string> values, string k
             string.Format(SettingsValueConstants.FrequencyLabelFormat, prefix, FormatMhz(frequency)), (long)Math.Round(frequency * ClockConstants.HertzPerMegahertz));
     }
 
-    private static string CpuFrequencyValue(IReadOnlyDictionary<string, string> options, CpuCompatibility compatibility,
-        IReadOnlyList<EmulationSettingsChoice> choices)
+    private static string CpuFrequencyValue(IReadOnlyDictionary<string, string> options, CpuCompatibility compatibility, IReadOnlyList<EmulationSettingsChoice> choices)
     {
         var throttle = Value(options, SettingsConstants.OptionCpuThrottle, SettingsValueConstants.NominalCpuThrottle);
         var multiplier = Value(options, SettingsConstants.OptionCpuMultiplier, SettingsValueConstants.AutomaticCpuMultiplier);
-        var expected = compatibility is CpuCompatibility.MemoryExact or CpuCompatibility.Exact ? string.Join(SettingsValueConstants.CpuSpeedSelectionSeparator, SettingsValueConstants.NominalCpuThrottle, multiplier) : string.Join(SettingsValueConstants.CpuSpeedSelectionSeparator, throttle, SettingsValueConstants.AutomaticCpuMultiplier);
+        var expected = compatibility is CpuCompatibility.MemoryExact or CpuCompatibility.Exact
+            ? string.Join(SettingsValueConstants.CpuSpeedSelectionSeparator, SettingsValueConstants.NominalCpuThrottle, multiplier)
+            : string.Join(SettingsValueConstants.CpuSpeedSelectionSeparator, throttle, SettingsValueConstants.AutomaticCpuMultiplier);
         return choices.Any(choice => choice.Id == expected)
-            ? expected : choices.FirstOrDefault(choice => choice.Id == SettingsValueConstants.NominalCpuSpeedSelection)?.Id ?? choices[BufferConstants.FirstCollectionIndex].Id;
+            ? expected
+            : choices.FirstOrDefault(choice => choice.Id == SettingsValueConstants.NominalCpuSpeedSelection)?.Id ?? choices[BufferConstants.FirstCollectionIndex].Id;
     }
 
     private static double NominalCpuFrequencyMhz(AmigaModel model, bool ntsc) => model.Id switch

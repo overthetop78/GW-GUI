@@ -8,40 +8,54 @@ internal static class AmigaStorageSettingsFunctions
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
     {
         var model = ModelCatalog.Get(configuration.Model);
-        var devices = Enumerable.Range(BufferConstants.FirstCollectionIndex, model.MaximumFloppyDrives)
-            .Select(index => new EmulationMediaDevice(
-                new EmulationMediaSlot(EmulationMediaCategory.FloppyDrive, index),
-                EmulationMediaType.Floppy, [StorageSettingsFunctionsConstants.Adf, StorageSettingsFunctionsConstants.Adz, StorageSettingsFunctionsConstants.Dms, StorageSettingsFunctionsConstants.Fdi, StorageSettingsFunctionsConstants.Ipf, StorageSettingsFunctionsConstants.Scp],
-                IsRemovable: true,
-                DisplayLabel: string.Format(StorageSettingsFunctionsConstants.FloppyDriveLabelFormat, index),
-                FloppyOptions: FloppyOptions(configuration, index),
-                IsPermanent: index == BufferConstants.FirstCollectionIndex && model.HasBuiltInFloppyDrive,
-                ConfigurationKind: EmulationStorageConfigurationKind.FloppyDrive))
-            .Concat(model.SupportsHardDrives
-                ? Enumerable.Range(BufferConstants.FirstCollectionIndex, model.MaximumHardDrives).Select(index => new EmulationMediaDevice(
-                    new EmulationMediaSlot(EmulationMediaCategory.HardDisk, index),
-                    EmulationMediaType.HardDisk, AmigaHardDiskFormats.All.Select(format => format.Extension).ToArray(), false,
-                    DisplayLabel: string.Format(StorageSettingsFunctionsConstants.HardDriveLabelFormat, index),
-                    ImageDirectory: configuration.HardDiskDirectory, HardDiskFormats: AmigaHardDiskFormats.All,
-                    ConfigurationKind: EmulationStorageConfigurationKind.HardDiskDrive)) : [])
-            .Concat(model.HasCdDrive
-                ? [new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
-                    [StorageSettingsFunctionsConstants.Cue, StorageSettingsFunctionsConstants.Ccd, StorageSettingsFunctionsConstants.Chd, StorageSettingsFunctionsConstants.Nrg, StorageSettingsFunctionsConstants.Mds, StorageSettingsFunctionsConstants.Iso], DisplayLabel: StorageSettingsFunctionsConstants.CD0,
-                    IsPermanent: true)] : [])
-            .ToArray();
+        var devices = Enumerable.Range(BufferConstants.FirstCollectionIndex, model.MaximumFloppyDrives).Select(index => new EmulationMediaDevice(
+            new EmulationMediaSlot(EmulationMediaCategory.FloppyDrive, index),
+            EmulationMediaType.Floppy,
+            [
+            StorageSettingsFunctionsConstants.Adf,
+            StorageSettingsFunctionsConstants.Adz,
+            StorageSettingsFunctionsConstants.Dms,
+            StorageSettingsFunctionsConstants.Fdi,
+            StorageSettingsFunctionsConstants.Ipf,
+            StorageSettingsFunctionsConstants.Scp
+        ],
+            IsRemovable: true,
+            DisplayLabel: string.Format(StorageSettingsFunctionsConstants.FloppyDriveLabelFormat, index),
+            FloppyOptions: FloppyOptions(configuration, index),
+            IsPermanent: index == BufferConstants.FirstCollectionIndex && model.HasBuiltInFloppyDrive,
+            ConfigurationKind: EmulationStorageConfigurationKind.FloppyDrive
+        )).Concat(model.SupportsHardDrives
+            ? Enumerable.Range(BufferConstants.FirstCollectionIndex, model.MaximumHardDrives).Select(index => new EmulationMediaDevice(
+            new EmulationMediaSlot(EmulationMediaCategory.HardDisk, index),
+            EmulationMediaType.HardDisk,
+            AmigaHardDiskFormats.All.Select(format => format.Extension).ToArray(),
+            false,
+            DisplayLabel: string.Format(StorageSettingsFunctionsConstants.HardDriveLabelFormat, index),
+            ImageDirectory: configuration.HardDiskDirectory,
+            HardDiskFormats: AmigaHardDiskFormats.All,
+            ConfigurationKind: EmulationStorageConfigurationKind.HardDiskDrive
+        ))
+            : []).Concat(model.HasCdDrive
+            ? [new EmulationMediaDevice(
+            EmulationMediaSlot.Cd0,
+            EmulationMediaType.CompactDisc,
+            [
+            StorageSettingsFunctionsConstants.Cue,
+            StorageSettingsFunctionsConstants.Ccd,
+            StorageSettingsFunctionsConstants.Chd,
+            StorageSettingsFunctionsConstants.Nrg,
+            StorageSettingsFunctionsConstants.Mds,
+            StorageSettingsFunctionsConstants.Iso
+        ],
+            DisplayLabel: StorageSettingsFunctionsConstants.CD0,
+            IsPermanent: true
+        )]
+            : []).ToArray();
         var mounted = EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
         var options = configuration.Options ?? new Dictionary<string, string>();
-        var floppyCount = Count(options, StorageSettingsFunctionsConstants.GwguiFloppyDriveCount,
-            model.HasBuiltInFloppyDrive ? (int)DriveCapacity.SingleDrive : (int)DriveCapacity.None, model.MaximumFloppyDrives);
-        var hardDriveCount = model.SupportsHardDrives
-            ? Count(options, StorageSettingsFunctionsConstants.GwguiHardDriveCount, (int)DriveCapacity.None, model.MaximumHardDrives) : (int)DriveCapacity.None;
-        var configured = configuration.ConfiguredMediaSlots ?? Enumerable.Range(BufferConstants.FirstCollectionIndex, floppyCount)
-            .Select(index => new EmulationMediaSlot(EmulationMediaCategory.FloppyDrive, index))
-            .Concat(Enumerable.Range(BufferConstants.FirstCollectionIndex, hardDriveCount)
-                .Select(index => new EmulationMediaSlot(EmulationMediaCategory.HardDisk, index)))
-            .Concat(model.HasCdDrive ? [EmulationMediaSlot.Cd0] : [])
-            .Concat(mounted.Select(media => media.Slot))
-            .Distinct().ToArray();
+        var floppyCount = Count(options, StorageSettingsFunctionsConstants.GwguiFloppyDriveCount, model.HasBuiltInFloppyDrive ? (int)DriveCapacity.SingleDrive : (int)DriveCapacity.None, model.MaximumFloppyDrives);
+        var hardDriveCount = model.SupportsHardDrives ? Count(options, StorageSettingsFunctionsConstants.GwguiHardDriveCount, (int)DriveCapacity.None, model.MaximumHardDrives) : (int)DriveCapacity.None;
+        var configured = configuration.ConfiguredMediaSlots ?? Enumerable.Range(BufferConstants.FirstCollectionIndex, floppyCount).Select(index => new EmulationMediaSlot(EmulationMediaCategory.FloppyDrive, index)).Concat(Enumerable.Range(BufferConstants.FirstCollectionIndex, hardDriveCount).Select(index => new EmulationMediaSlot(EmulationMediaCategory.HardDisk, index))).Concat(model.HasCdDrive ? [EmulationMediaSlot.Cd0] : []).Concat(mounted.Select(media => media.Slot)).Distinct().ToArray();
         var settings = configured.Select(slot => DeviceSettings(options, slot)).ToArray();
         return new EmulationStorageSettings(devices, configured, mounted, settings);
     }

@@ -2,19 +2,29 @@ namespace GWGUI.Emulation.Commodore.Common.Machines.Common.Functions;
 
 internal static class KeyboardBindingFunctions
 {
-    internal static IReadOnlySet<EmulationKey> Expand(IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> momentary, IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> toggles, ISet<EmulationKey> activeToggles, ISet<EmulationKey> previousSources)
+    internal static IReadOnlySet<EmulationKey> Expand(
+        IReadOnlySet<EmulationKey> keys,
+        IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> momentary,
+        IReadOnlyDictionary<EmulationKey, IReadOnlyList<EmulationKey>> toggles,
+        ISet<EmulationKey> activeToggles,
+        ISet<EmulationKey> previousSources
+    )
     {
         foreach (var key in toggles.Keys)
             if (keys.Contains(key) && !previousSources.Contains(key))
-                if (!activeToggles.Remove(key)) activeToggles.Add(key);
+                if (!activeToggles.Remove(key))
+                    activeToggles.Add(key);
         previousSources.Clear();
         foreach (var key in toggles.Keys)
-            if (keys.Contains(key)) previousSources.Add(key);
+            if (keys.Contains(key))
+                previousSources.Add(key);
         var expanded = new HashSet<EmulationKey>(keys.Where(key => !momentary.ContainsKey(key) && !toggles.ContainsKey(key)));
         foreach (var key in keys)
-            if (momentary.TryGetValue(key, out var chord)) expanded.UnionWith(chord);
+            if (momentary.TryGetValue(key, out var chord))
+                expanded.UnionWith(chord);
         foreach (var key in activeToggles)
-            if (toggles.TryGetValue(key, out var chord)) expanded.UnionWith(chord);
+            if (toggles.TryGetValue(key, out var chord))
+                expanded.UnionWith(chord);
         return expanded;
     }
 
