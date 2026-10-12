@@ -4,7 +4,13 @@ internal static class KeyboardDictionary
 {
     private static readonly IReadOnlyList<EmulationKey> X68000Keys = Array.AsReadOnly(new[] { EmulationKey.Help, EmulationKey.Undo, EmulationKey.Break, EmulationKey.SharpXf1, EmulationKey.SharpXf2, EmulationKey.SharpXf3, EmulationKey.SharpXf4, EmulationKey.SharpXf5, EmulationKey.SharpOption1, EmulationKey.SharpOption2, EmulationKey.SharpSymbol, EmulationKey.SharpRegister, EmulationKey.SharpKana, EmulationKey.SharpRoman, EmulationKey.SharpCode, EmulationKey.SharpHiragana, EmulationKey.SharpFullWidth, EmulationKey.SharpKeypadEquals });
     private static readonly IReadOnlyList<EmulationKey> X1Keys = Array.AsReadOnly(new[] { EmulationKey.Break, EmulationKey.SharpGraph, EmulationKey.SharpCopy, EmulationKey.SharpKeypadEquals });
-    private static readonly IReadOnlyDictionary<EmulationKey, EmulationKey> X68000Defaults = new Dictionary<EmulationKey, EmulationKey> { [EmulationKey.Help] = EmulationKey.Insert, [EmulationKey.Undo] = EmulationKey.Home, [EmulationKey.SharpOption1] = EmulationKey.LeftAlt, [EmulationKey.SharpOption2] = EmulationKey.RightAlt };
+    private static readonly IReadOnlyDictionary<EmulationKey, EmulationKey> X68000Defaults = new Dictionary<EmulationKey, EmulationKey>
+    {
+        [EmulationKey.Help] = EmulationKey.Insert,
+        [EmulationKey.Undo] = EmulationKey.Home,
+        [EmulationKey.SharpOption1] = EmulationKey.LeftAlt,
+        [EmulationKey.SharpOption2] = EmulationKey.RightAlt
+    };
     private static readonly IReadOnlyDictionary<EmulationKey, EmulationKey> X1Defaults = new Dictionary<EmulationKey, EmulationKey> { [EmulationKey.SharpGraph] = EmulationKey.LeftAlt };
 
     internal static IReadOnlyList<EmulationKey> Keys(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.X68000 ? X68000Keys : X1Keys;

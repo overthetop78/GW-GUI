@@ -18,27 +18,36 @@ internal static partial class ConfigurationFunctions
     internal static void Validate(MachineConfiguration configuration)
     {
         ArgumentNullException.ThrowIfNull(configuration);
-        if (configuration.Id == Guid.Empty || configuration.SchemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion || !IsCompatible(configuration.Model, configuration.Core)) throw new ArgumentException(nameof(configuration));
+        if (configuration.Id == Guid.Empty || configuration.SchemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion || !IsCompatible(configuration.Model, configuration.Core))
+            throw new ArgumentException(nameof(configuration));
         CoreOptionValidationFunctions.Validate(configuration);
         InputSettingsFunctions.Validate(configuration);
         var availableSlots = AvailableSlots(configuration.Model);
-        if (configuration.ConfiguredSlots.Distinct().Count() != configuration.ConfiguredSlots.Count || configuration.ConfiguredSlots.Any(slot => !availableSlots.Contains(slot))) throw new ArgumentException(nameof(configuration.ConfiguredSlots));
-        if (configuration.Media.Select(media => media.Slot).Distinct().Count() != configuration.Media.Count) throw new ArgumentException(nameof(configuration.Media));
+        if (configuration.ConfiguredSlots.Distinct().Count() != configuration.ConfiguredSlots.Count || configuration.ConfiguredSlots.Any(slot => !availableSlots.Contains(slot)))
+            throw new ArgumentException(nameof(configuration.ConfiguredSlots));
+        if (configuration.Media.Select(media => media.Slot).Distinct().Count() != configuration.Media.Count)
+            throw new ArgumentException(nameof(configuration.Media));
         foreach (var media in configuration.Media)
         {
-            if (!configuration.ConfiguredSlots.Contains(media.Slot) || string.IsNullOrWhiteSpace(media.Path)) throw new ArgumentException(nameof(configuration.Media));
+            if (!configuration.ConfiguredSlots.Contains(media.Slot) || string.IsNullOrWhiteSpace(media.Path))
+                throw new ArgumentException(nameof(configuration.Media));
             var category = media.Slot == EmulationMediaSlot.HardDisk0 ? MediaCategory.HardDisk : MediaCategory.Floppy;
-            if (media.Category != category) throw new ArgumentException(nameof(configuration.Media));
+            if (media.Category != category)
+                throw new ArgumentException(nameof(configuration.Media));
         }
+    
         var roles = new HashSet<FirmwareCategory>();
         foreach (var firmware in configuration.Firmwares)
         {
-            if (!FirmwareFunctions.Roles(configuration.Model).Contains(firmware.Category) || !roles.Add(firmware.Category) || string.IsNullOrWhiteSpace(firmware.Path)) throw new ArgumentException(nameof(configuration.Firmwares));
+            if (!FirmwareFunctions.Roles(configuration.Model).Contains(firmware.Category) || !roles.Add(firmware.Category) || string.IsNullOrWhiteSpace(firmware.Path))
+                throw new ArgumentException(nameof(configuration.Firmwares));
         }
+    
         var ports = new HashSet<int>();
         foreach (var controller in configuration.Input.Controllers ?? [])
         {
-            if (controller.Port < ControllerConstants.FirstPort || controller.Port >= ControllerPortCount(configuration.Model) || !ports.Add(controller.Port) || controller.DeadZonePercent is < ControllerConstants.MinimumDeadZonePercent or > ControllerConstants.MaximumDeadZonePercent) throw new ArgumentException(nameof(configuration.Input));
+            if (controller.Port < ControllerConstants.FirstPort || controller.Port >= ControllerPortCount(configuration.Model) || !ports.Add(controller.Port) || controller.DeadZonePercent is < ControllerConstants.MinimumDeadZonePercent or > ControllerConstants.MaximumDeadZonePercent)
+                throw new ArgumentException(nameof(configuration.Input));
         }
     }
 }

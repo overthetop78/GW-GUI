@@ -2,7 +2,18 @@ namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;
 
 internal sealed class KeyboardState
 {
-    private static readonly EmulationKey[] ComposeKeys = [EmulationKey.SharpXf1, EmulationKey.SharpXf2, EmulationKey.SharpXf3, EmulationKey.SharpXf4, EmulationKey.SharpXf5, EmulationKey.SharpKana, EmulationKey.SharpRoman, EmulationKey.SharpCode, EmulationKey.SharpHiragana, EmulationKey.SharpFullWidth];
+    private static readonly EmulationKey[] ComposeKeys = [
+        EmulationKey.SharpXf1,
+        EmulationKey.SharpXf2,
+        EmulationKey.SharpXf3,
+        EmulationKey.SharpXf4,
+        EmulationKey.SharpXf5,
+        EmulationKey.SharpKana,
+        EmulationKey.SharpRoman,
+        EmulationKey.SharpCode,
+        EmulationKey.SharpHiragana,
+        EmulationKey.SharpFullWidth
+    ];
     private readonly IReadOnlyDictionary<EmulationKey, uint> _map;
     private readonly bool _supportsCompose;
     private HashSet<uint> _previous = [];

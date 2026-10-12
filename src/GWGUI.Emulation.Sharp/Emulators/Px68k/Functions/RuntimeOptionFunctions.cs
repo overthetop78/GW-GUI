@@ -31,6 +31,11 @@ internal static class RuntimeOptionFunctions
     }
 
     private static string JoystickType(PeripheralCategory peripheral) => peripheral switch
-    { PeripheralCategory.None or PeripheralCategory.Joystick => RuntimeOptionConstants.StandardJoystick, PeripheralCategory.CpsfMd => RuntimeOptionConstants.CpsfMd, PeripheralCategory.CpsfSfc => RuntimeOptionConstants.CpsfSfc, PeripheralCategory.CyberstickDigital => RuntimeOptionConstants.CyberstickDigital, PeripheralCategory.CyberstickAnalog => RuntimeOptionConstants.CyberstickAnalog, _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
-    };
+    {
+        PeripheralCategory.None or PeripheralCategory.Joystick => RuntimeOptionConstants.StandardJoystick,
+        PeripheralCategory.CpsfMd => RuntimeOptionConstants.CpsfMd,
+        PeripheralCategory.CpsfSfc => RuntimeOptionConstants.CpsfSfc,
+        PeripheralCategory.CyberstickDigital => RuntimeOptionConstants.CyberstickDigital,
+        PeripheralCategory.CyberstickAnalog => RuntimeOptionConstants.CyberstickAnalog,
+        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))};
 }

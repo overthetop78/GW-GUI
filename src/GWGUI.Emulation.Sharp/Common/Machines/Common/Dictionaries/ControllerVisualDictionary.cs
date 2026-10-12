@@ -2,7 +2,14 @@ namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Dictionaries;
 
 internal static class ControllerVisualDictionary
 {
-    internal static IReadOnlyList<string> VisualIds(PeripheralCategory peripheral) => peripheral switch { PeripheralCategory.None => [], PeripheralCategory.Joystick => [EmulationControllerVisualIds.SegaControlStick, EmulationControllerVisualIds.MasterSystem, EmulationControllerVisualIds.SegaSg1000Joystick, EmulationControllerVisualIds.SegaSg1000Ii], PeripheralCategory.X1Joystick or PeripheralCategory.CpsfSfc => [EmulationControllerVisualIds.NintendoSuperFamicomPad, EmulationControllerVisualIds.NintendoSuperNesPad], PeripheralCategory.CpsfMd => [EmulationControllerVisualIds.MegaDrive6, EmulationControllerVisualIds.SegaArcadePowerStick6], PeripheralCategory.CyberstickDigital or PeripheralCategory.CyberstickAnalog => [EmulationControllerVisualIds.SharpCyberstick], _ => throw new ArgumentOutOfRangeException(nameof(peripheral)) };
+    internal static IReadOnlyList<string> VisualIds(PeripheralCategory peripheral) => peripheral switch
+    {
+        PeripheralCategory.None => [],
+        PeripheralCategory.Joystick => [EmulationControllerVisualIds.SegaControlStick, EmulationControllerVisualIds.MasterSystem, EmulationControllerVisualIds.SegaSg1000Joystick, EmulationControllerVisualIds.SegaSg1000Ii],
+        PeripheralCategory.X1Joystick or PeripheralCategory.CpsfSfc => [EmulationControllerVisualIds.NintendoSuperFamicomPad, EmulationControllerVisualIds.NintendoSuperNesPad],
+        PeripheralCategory.CpsfMd => [EmulationControllerVisualIds.MegaDrive6, EmulationControllerVisualIds.SegaArcadePowerStick6],
+        PeripheralCategory.CyberstickDigital or PeripheralCategory.CyberstickAnalog => [EmulationControllerVisualIds.SharpCyberstick],
+        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))};
     internal static string? DefaultVisualId(PeripheralCategory peripheral) => VisualIds(peripheral).FirstOrDefault();
 
     internal static IReadOnlyDictionary<EmulationControllerVisualControl, string> Commands(PeripheralCategory peripheral)

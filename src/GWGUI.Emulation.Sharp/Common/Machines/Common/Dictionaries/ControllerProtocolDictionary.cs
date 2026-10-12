@@ -16,11 +16,19 @@ internal static class ControllerProtocolDictionary
     internal static IReadOnlyList<NativeInputAction> Actions(MachineModel model, PeripheralCategory peripheral)
     {
         var family = ConfigurationFunctions.Family(model);
-        if (peripheral == PeripheralCategory.None) return [];
-        if (family == MachineFamily.X1 && peripheral != PeripheralCategory.X1Joystick || family == MachineFamily.X68000 && peripheral == PeripheralCategory.X1Joystick) throw new ArgumentOutOfRangeException(nameof(peripheral));
-        var count = peripheral switch { PeripheralCategory.Joystick => ControllerConstants.JoystickButtonCount, PeripheralCategory.X1Joystick => ControllerConstants.X1JoystickButtonCount, PeripheralCategory.CpsfMd or PeripheralCategory.CpsfSfc or PeripheralCategory.CyberstickDigital or PeripheralCategory.CyberstickAnalog => ControllerConstants.ExtendedJoystickButtonCount, _ => throw new ArgumentOutOfRangeException(nameof(peripheral)) };
+        if (peripheral == PeripheralCategory.None)
+            return[];
+        if (family == MachineFamily.X1 && peripheral != PeripheralCategory.X1Joystick || family == MachineFamily.X68000 && peripheral == PeripheralCategory.X1Joystick)
+            throw new ArgumentOutOfRangeException(nameof(peripheral));
+        var count = peripheral switch
+        {
+            PeripheralCategory.Joystick => ControllerConstants.JoystickButtonCount,
+            PeripheralCategory.X1Joystick => ControllerConstants.X1JoystickButtonCount,
+            PeripheralCategory.CpsfMd or PeripheralCategory.CpsfSfc or PeripheralCategory.CyberstickDigital or PeripheralCategory.CyberstickAnalog => ControllerConstants.ExtendedJoystickButtonCount,
+            _ => throw new ArgumentOutOfRangeException(nameof(peripheral))};
         var commands = Directions.Concat(Buttons.Take(count));
-        if (peripheral == PeripheralCategory.CyberstickAnalog) commands = commands.Concat(new[] { ControllerCommand.ThrottleIncrease, ControllerCommand.ThrottleDecrease });
+        if (peripheral == PeripheralCategory.CyberstickAnalog)
+            commands = commands.Concat(new[] { ControllerCommand.ThrottleIncrease, ControllerCommand.ThrottleDecrease });
         return commands.Select(command => new NativeInputAction(command)).ToArray();
     }
 }
