@@ -13,8 +13,7 @@ public sealed class CoreProvider
         _installationDirectory = installationDirectory;
     }
 
-    public async Task<string?> FindInstalledPathAsync(Emulator core,
-        CancellationToken cancellationToken = default)
+    public async Task<string?> FindInstalledPathAsync(Emulator core, CancellationToken cancellationToken = default)
     {
         var installation = await new CoreReleaseService(_client, _installationDirectory).GetActiveInstallationAsync(core, cancellationToken).ConfigureAwait(false);
         return installation?.LibraryPath;

@@ -31,25 +31,21 @@ internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry
         return true;
     }
 
-    public override async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(
-        EmulatorManagementContext context, CancellationToken cancellationToken)
+    public override async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
         var version = installation is null ? null : Path.GetFileName(installation.VersionDirectory);
         return new EmulationEmulatorInstallation(Definition, version);
     }
 
-    public override async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
-        EmulatorManagementContext context, CancellationToken cancellationToken)
+    public override async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        return releases.Select(item => new EmulationEmulatorRelease(item.Id,
-            $"{item.DeclaredVersion} · {item.PublishedUtc.LocalDateTime:g}", item.DeclaredVersion)).ToArray();
+        return releases.Select(item => new EmulationEmulatorRelease(item.Id, $"{item.DeclaredVersion} · {item.PublishedUtc.LocalDateTime:g}", item.DeclaredVersion)).ToArray();
     }
 
-    public override async ValueTask<string> InstallAsync(EmulatorManagementContext context,
-        EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
+    public override async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
         if (!_availableReleases.TryGetValue(release.Id, out var selected) || selected.Emulator != Emulator)
             throw new ArgumentException(nameof(release));

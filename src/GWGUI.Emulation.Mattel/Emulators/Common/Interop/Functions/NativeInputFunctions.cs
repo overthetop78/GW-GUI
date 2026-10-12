@@ -18,8 +18,7 @@ internal static class NativeInputFunctions
             [ControllerCommand.Key9] = (8192, 8192)
         };
 
-    internal static short State(EmulationInputSnapshot snapshot, uint port, uint device, uint index, uint id,
-        Emulator emulator)
+    internal static short State(EmulationInputSnapshot snapshot, uint port, uint device, uint index, uint id, Emulator emulator)
     {
         if (emulator != Emulator.FreeIntv || port >= snapshot.Controllers.Count) return InputConstants.InactiveState;
         var controller = snapshot.Controllers[checked((int)port)];

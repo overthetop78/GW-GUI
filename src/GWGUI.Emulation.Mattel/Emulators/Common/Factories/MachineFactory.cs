@@ -11,14 +11,10 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public EmulationEmulatorDefinition Definition => CoreCatalog.GetDefinition(CatalogEntry);
 
     public abstract bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode);
-    public abstract ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(
-        EmulatorManagementContext context, CancellationToken cancellationToken);
-    public abstract ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
-        EmulatorManagementContext context, CancellationToken cancellationToken);
-    public abstract ValueTask<string> InstallAsync(EmulatorManagementContext context,
-        EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken);
-    public abstract ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken);
+    public abstract ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
+    public abstract ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
+    public abstract ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken);
+    public abstract ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
 
     protected abstract IEmulatorCore CreateCore(MachineConfiguration configuration, EmulatorCreationContext context);
     protected abstract bool RequiresMediaRestart(EmulationMediaSlot slot, string? path);

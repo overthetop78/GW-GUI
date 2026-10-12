@@ -16,7 +16,7 @@ namespace GWGUI.Emulation.Mattel.Common.Services;
 [SupportedOSPlatform(ProcessCoreConstants.Windows)]
 internal sealed partial class ProcessCore : IEmulatorCore
 {
-private Process StartHostProcess(string pipeName, string videoMapName)
+    private Process StartHostProcess(string pipeName, string videoMapName)
     {
         var startInfo = new ProcessStartInfo(_hostExecutablePath)
         {
