@@ -230,10 +230,7 @@ public static partial class EmulationVideoProcessingCatalog
         IReadOnlySet<EmulationVideoDisplayTechnology>> IncompatibleTechnologies { get; }
         = Enum.GetValues<EmulationVideoDisplayTechnology>().ToDictionary(
             technology => technology,
-            technology => (IReadOnlySet<EmulationVideoDisplayTechnology>)Enum
-                .GetValues<EmulationVideoDisplayTechnology>()
-                .Where(other => other != technology)
-                .ToHashSet());
+            technology => (IReadOnlySet<EmulationVideoDisplayTechnology>)Enum.GetValues<EmulationVideoDisplayTechnology>().Where(other => other != technology).ToHashSet());
 
     public static IReadOnlyDictionary<string, string> CompatibilityResourceKeys { get; } =
         new Dictionary<string, string>(StringComparer.Ordinal)
@@ -259,11 +256,9 @@ public static partial class EmulationVideoProcessingCatalog
         Add(VfdColor, VfdPersistence, EmulationVideoDisplayTechnology.Vfd);
         Add(LedMatrixColor, LedMatrixBlackDepth, EmulationVideoDisplayTechnology.LedMatrix);
         Add(DotMatrixPalette, DotMatrixPersistence, EmulationVideoDisplayTechnology.DotMatrix);
-        Add(SegmentDisplayLayout, SegmentDisplayPersistence,
-            EmulationVideoDisplayTechnology.SegmentDisplay);
+        Add(SegmentDisplayLayout, SegmentDisplayPersistence, EmulationVideoDisplayTechnology.SegmentDisplay);
         Add(EPaperColorMode, EPaperEdgeSoftness, EmulationVideoDisplayTechnology.EPaper);
-        Add(ProjectionOpticalBlur, ProjectionVignette,
-            EmulationVideoDisplayTechnology.Projection);
+        Add(ProjectionOpticalBlur, ProjectionVignette, EmulationVideoDisplayTechnology.Projection);
         return result;
 
         void Add(string first, string last, EmulationVideoDisplayTechnology technology)

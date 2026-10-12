@@ -24,9 +24,7 @@ public sealed class VideoPresentationProfileStore(
             var path = ProfilePath(module, id);
             EmulationVideoPresentationProfile profile;
             if (_files.Exists(path))
-                profile = (JsonSerializer.Deserialize<EmulationVideoPresentationProfile>(
-                    _files.Read(path), JsonOptions)
-                    ?? throw new InvalidDataException(path)).Normalize();
+                profile = (JsonSerializer.Deserialize<EmulationVideoPresentationProfile>(_files.Read(path), JsonOptions) ?? throw new InvalidDataException(path)).Normalize();
             else
                 profile = new EmulationVideoPresentationProfile().Normalize();
             _profiles[(module, id)] = profile;
@@ -109,9 +107,7 @@ public sealed class VideoPresentationProfileStore(
         ArgumentException.ThrowIfNullOrWhiteSpace(module);
         // Encoding the module ID prevents paths escaping the host-owned directory.
         var key = Convert.ToHexString(System.Text.Encoding.UTF8.GetBytes(module));
-        return Path.Combine(directory, key,
-            id.ToString(VideoPresentationStorageConstants.IdentifierFormat)
-                + VideoPresentationStorageConstants.FileExtension);
+        return Path.Combine(directory, key, id.ToString(VideoPresentationStorageConstants.IdentifierFormat) + VideoPresentationStorageConstants.FileExtension);
     }
 
     private void Write(string path, EmulationVideoPresentationProfile profile)
