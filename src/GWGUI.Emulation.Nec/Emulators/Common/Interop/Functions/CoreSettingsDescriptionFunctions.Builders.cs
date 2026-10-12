@@ -15,7 +15,22 @@ internal static partial class CoreSettingsDescriptionFunctions
 
     private static EmulationSettingsField Number(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Number, value, ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id));
 
-    internal static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block, string label, string value, IEnumerable<EmulationSettingsChoice> choices, bool isEnabled = true) => new(id, tab, block, label, EmulationSettingsEditor.Selection, value, choices.ToArray(), IsEnabled: isEnabled, ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id));
+    internal static EmulationSettingsField Select(string id,
+        EmulationMachineTab tab,
+        string block,
+        string label,
+        string value,
+        IEnumerable<EmulationSettingsChoice> choices,
+        bool isEnabled = true) => new(id,
+        tab,
+        block,
+        label,
+        EmulationSettingsEditor.Selection,
+        value,
+        choices.ToArray(),
+        IsEnabled: isEnabled,
+        ExplanationResourceKey: ShortHelp(id),
+        DetailedExplanationResourceKey: DetailedHelp(id));
 
     private static EmulationSettingsField FirmwarePath(string? value) => new(
         SettingsConstants.FirmwarePath, EmulationMachineTab.Rom,
