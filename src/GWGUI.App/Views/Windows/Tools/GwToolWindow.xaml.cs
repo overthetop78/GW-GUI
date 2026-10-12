@@ -29,7 +29,17 @@ public partial class GwToolWindow : Window
     private readonly Func<string, string, bool> _confirm;
     private readonly Action<Exception, string> _logError;
 
-    public GwToolWindow(string executable, string verb, string? device = null, string? drive = null, IGreaseweazleRunner? runner = null, IGwCommandBuilder? commandBuilder = null, ConsoleLogSession? consoleLog = null, Func<string, string, bool>? confirm = null, Action<Exception, string>? logError = null)
+    public GwToolWindow(
+        string executable,
+        string verb,
+        string? device = null,
+        string? drive = null,
+        IGreaseweazleRunner? runner = null,
+        IGwCommandBuilder? commandBuilder = null,
+        ConsoleLogSession? consoleLog = null,
+        Func<string, string, bool>? confirm = null,
+        Action<Exception, string>? logError = null
+    )
     {
         InitializeComponent();
         _executable = executable;
@@ -42,7 +52,8 @@ public partial class GwToolWindow : Window
         _confirm = confirm ?? ((message, title) => MessageBox.Show(this, message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes);
         _logError = logError ?? ((exception, context) => ErrorLog.Write(exception, context));
         Heading.Text = Title = TitleFor(verb);
-        CreateParameters(); UpdateCommand();
+        CreateParameters();
+        UpdateCommand();
     }
 
     protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
@@ -60,18 +71,47 @@ public partial class GwToolWindow : Window
     {
         switch (_verb)
         {
-            case "rpm": AddField("nr", L("Tool.Field.Measurements"), "1"); break;
-            case "seek": AddField("cylinder", L("Tool.Field.Cylinder"), "0"); AddCheck("force", L("Tool.Field.Extreme")); AddCheck("motor-on", L("Tool.Field.MotorOn")); break;
-            case "pin": AddField("pin", L("Tool.Field.Pin"), "26"); AddCheck("set", L("Tool.Field.SetPin")); AddCheck("high", L("Tool.Field.High")); break;
+            case "rpm":
+                AddField("nr", L("Tool.Field.Measurements"), "1");
+                break;
+            case "seek":
+                AddField("cylinder", L("Tool.Field.Cylinder"), "0");
+                AddCheck("force", L("Tool.Field.Extreme"));
+                AddCheck("motor-on", L("Tool.Field.MotorOn"));
+                break;
+            case "pin":
+                AddField("pin", L("Tool.Field.Pin"), "26");
+                AddCheck("set", L("Tool.Field.SetPin"));
+                AddCheck("high", L("Tool.Field.High"));
+                break;
             case "delays":
-                AddOptionalField("select", L("Tool.Field.Select"), "10"); AddOptionalField("step", L("Tool.Field.Step"), "3000"); AddOptionalField("settle", L("Tool.Field.Settle"), "15"); AddOptionalField("motor", L("Tool.Field.Motor"), "750"); AddOptionalField("watchdog", L("Tool.Field.Watchdog"), "10000"); AddOptionalField("pre-write", L("Tool.Field.PreWrite"), "15"); AddOptionalField("post-write", L("Tool.Field.PostWrite"), "15"); AddOptionalField("index-mask", L("Tool.Field.IndexMask"), "15"); break;
+                AddOptionalField("select", L("Tool.Field.Select"), "10");
+                AddOptionalField("step", L("Tool.Field.Step"), "3000");
+                AddOptionalField("settle", L("Tool.Field.Settle"), "15");
+                AddOptionalField("motor", L("Tool.Field.Motor"), "750");
+                AddOptionalField("watchdog", L("Tool.Field.Watchdog"), "10000");
+                AddOptionalField("pre-write", L("Tool.Field.PreWrite"), "15");
+                AddOptionalField("post-write", L("Tool.Field.PostWrite"), "15");
+                AddOptionalField("index-mask", L("Tool.Field.IndexMask"), "15");
+                break;
             case "align":
-                AddField("tracks", L("Tool.Field.AlignTracks"), "c=40:h=0-1"); AddField("revs", L("Read.Revolutions"), "3"); AddField("reads", L("Tool.Field.AlignReads"), "10");
-                AddOptionalField("format", L("Tool.Field.AlignFormat"), "ibm.720"); AddOptionalField("diskdefs", L("Advanced.DiskDefs"), "diskdefs.cfg");
-                AddCheck("raw", L("Tool.Field.AlignRaw")); AddOptionalField("fake-index", L("Advanced.FakeIndex"), "300rpm"); AddCheck("hard-sectors", L("Advanced.HardSectors"));
-                AddOptionalField("adjust-speed", L("Advanced.AdjustSpeed"), "300rpm"); AddOptionalField("pll", L("Advanced.Pll"), "period=5:phase=60");
-                AddOptionalField("densel", L("Advanced.DensityPin"), "H"); AddCheck("gen-tg43", L("Advanced.Tg43")); AddCheck("reverse", L("Advanced.Reverse")); break;
-            case "update": AddCheck("bootloader", L("Tool.Field.Bootloader")); break;
+                AddField("tracks", L("Tool.Field.AlignTracks"), "c=40:h=0-1");
+                AddField("revs", L("Read.Revolutions"), "3");
+                AddField("reads", L("Tool.Field.AlignReads"), "10");
+                AddOptionalField("format", L("Tool.Field.AlignFormat"), "ibm.720");
+                AddOptionalField("diskdefs", L("Advanced.DiskDefs"), "diskdefs.cfg");
+                AddCheck("raw", L("Tool.Field.AlignRaw"));
+                AddOptionalField("fake-index", L("Advanced.FakeIndex"), "300rpm");
+                AddCheck("hard-sectors", L("Advanced.HardSectors"));
+                AddOptionalField("adjust-speed", L("Advanced.AdjustSpeed"), "300rpm");
+                AddOptionalField("pll", L("Advanced.Pll"), "period=5:phase=60");
+                AddOptionalField("densel", L("Advanced.DensityPin"), "H");
+                AddCheck("gen-tg43", L("Advanced.Tg43"));
+                AddCheck("reverse", L("Advanced.Reverse"));
+                break;
+            case "update":
+                AddCheck("bootloader", L("Tool.Field.Bootloader"));
+                break;
         }
     }
 

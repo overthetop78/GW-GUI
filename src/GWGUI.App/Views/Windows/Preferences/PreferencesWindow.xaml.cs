@@ -75,41 +75,35 @@ public partial class PreferencesWindow : Window
     public ObservableCollection<ProfileOptionRow> WriteProfiles => _profileOptionsController.Write;
     public ObservableCollection<ProfileOptionRow> ConvertProfiles => _profileOptionsController.Convert;
     public ObservableCollection<LogOptionRow> LogOptions => _loggingOptionsController.Options;
-    public PreferencesWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null, IGwInstallationManager? hostTools = null, PreferencesSection section = PreferencesSection.General, ISettingsStore? settingsStore = null, string? dataDirectory = null, Func<string?, bool>? fileExists = null, Action<Exception>? reportSaveError = null)
+    public PreferencesWindow(
+        AppSettings settings,
+        IHardwareRegistry? hardwareRegistry = null,
+        IGwInstallationManager? hostTools = null,
+        PreferencesSection section = PreferencesSection.General,
+        ISettingsStore? settingsStore = null,
+        string? dataDirectory = null,
+        Func<string?, bool>? fileExists = null,
+        Action<Exception>? reportSaveError = null
+    )
     {
         InitializeComponent();
         ConnectSections();
         _settings = settings;
         var directory = dataDirectory ?? StoragePaths.DataDirectory;
         _reportSaveError = reportSaveError ?? (error => ShowLoggedError(error, "Saving Preferences", "Error.Title", MessageBoxImage.Warning));
-        _generalOptionsController = new GeneralOptionsController(
-            this,
-            GeneralSection,
-            settings,
-            () => _initializing,
-            SaveFromEditorAsync,
-            RefreshLocalizedContent,
-            (key, arguments) => LocExtension.Get(key, arguments));
+        _generalOptionsController = new GeneralOptionsController(this, GeneralSection, settings, () => _initializing, SaveFromEditorAsync, RefreshLocalizedContent, (key, arguments) => LocExtension.Get(key, arguments));
         _profileState = new ProfileOptionsState(settings.Profiles);
-        _profileOptionsController = new ProfileOptionsController(
-            this,
-            ProfilesSection,
-            _profileState,
-            SaveFromEditorAsync,
-            (key, arguments) => LocExtension.Get(key, arguments));
-        _tagOptionsController = new TagOptionsController(
-            GeneralSection,
-            settings,
-            () => _initializing,
-            SaveFromEditorAsync,
-            (key, arguments) => LocExtension.Get(key, arguments));
+        _profileOptionsController = new ProfileOptionsController(this, ProfilesSection, _profileState, SaveFromEditorAsync, (key, arguments) => LocExtension.Get(key, arguments));
+        _tagOptionsController = new TagOptionsController(GeneralSection, settings, () => _initializing, SaveFromEditorAsync, (key, arguments) => LocExtension.Get(key, arguments));
         _loggingOptionsController = new LoggingOptionsController(
             LogsSection,
             settings,
             () => _initializing,
             SaveFromEditorAsync,
             key => LocExtension.Get(key),
-            exception => ShowLoggedError(exception, "Opening Logs folder", "Error.Title", MessageBoxImage.Warning), Path.Combine(directory, "Logs"));
+            exception => ShowLoggedError(exception, "Opening Logs folder", "Error.Title", MessageBoxImage.Warning),
+            Path.Combine(directory, "Logs")
+        );
         _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(directory, "settings.json"));
         var managedRoot = Path.Combine(directory, "Greaseweazle");
         var hostToolsManager = hostTools ?? new GwInstallationManager(new HttpClient(), managedRoot);
@@ -120,26 +114,16 @@ public partial class PreferencesWindow : Window
             hostToolsManager,
             SaveFromEditorAsync,
             exception => ShowLoggedError(exception, "Managing Host Tools", "HostTools.Title", MessageBoxImage.Error),
-            (key, arguments) => LocExtension.Get(key, arguments), fileExists);
+            (key, arguments) => LocExtension.Get(key, arguments),
+            fileExists
+        );
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), new GreaseweazleRunner());
         _hardwareState = new HardwareOptionsState(settings);
         _controllers = _hardwareState.Controllers;
         _unconfiguredControllers = _hardwareState.UnconfiguredControllers;
         _drives = _hardwareState.Drives;
-        _hardwareOptionsController = new HardwareOptionsController(
-            this,
-            HardwareSection,
-            _hardwareState,
-            Hardware,
-            _hardwareRegistry,
-            () => _hostToolsOptionsController.CurrentPath,
-            SaveFromEditorAsync,
-            ShowLoggedError);
-        _engineOptionsController = new EngineOptionsController(
-            EnginesSection,
-            settings.Engines,
-            () => _initializing,
-            SaveFromEditorAsync);
+        _hardwareOptionsController = new HardwareOptionsController(this, HardwareSection, _hardwareState, Hardware, _hardwareRegistry, () => _hostToolsOptionsController.CurrentPath, SaveFromEditorAsync, ShowLoggedError);
+        _engineOptionsController = new EngineOptionsController(EnginesSection, settings.Engines, () => _initializing, SaveFromEditorAsync);
         _hardwareOptionsController.Initialize();
         Navigation.SelectedIndex = section switch
         {

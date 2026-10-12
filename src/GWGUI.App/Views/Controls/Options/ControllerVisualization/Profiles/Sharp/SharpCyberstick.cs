@@ -4,5 +4,23 @@ namespace GWGUI.App.Views.Controls.Options.ControllerVisualization;
 
 internal static partial class ControllerArtworkCatalog
 {
-    private static ProfileDefinition CreateSharpCyberstick() => new(ControllerArtworkFileNames.SharpCyberstick, [new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.JoystickDirection, 73d, 28d, 23d, 55d), new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.JoystickDirection, 73d, 28d, 23d, 55d), new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.JoystickDirection, 73d, 28d, 23d, 55d), new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.JoystickDirection, 73d, 28d, 23d, 55d), new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 40d, 46d, 7d, 17d), new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 47d, 46d, 7d, 17d), new(EmulationControllerVisualControl.TertiaryAction, ControllerVisualZoneShape.Ellipse, 54d, 46d, 7d, 17d), new(EmulationControllerVisualControl.QuaternaryAction, ControllerVisualZoneShape.Ellipse, 23d, 34d, 3d, 12d), new(EmulationControllerVisualControl.LeftShoulder, ControllerVisualZoneShape.Ellipse, 85d, 6d, 4d, 9d), new(EmulationControllerVisualControl.RightShoulder, ControllerVisualZoneShape.RoundedRectangle, 92d, 10d, 4d, 15d), new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.Ellipse, 60d, 39d, 4d, 9d), new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.Ellipse, 35d, 40d, 5d, 10d), new(EmulationControllerVisualControl.RightStickUp, ControllerVisualZoneShape.JoystickDirection, 2d, 28d, 28d, 33d), new(EmulationControllerVisualControl.RightStickDown, ControllerVisualZoneShape.JoystickDirection, 2d, 28d, 28d, 33d)]);
+    private static ProfileDefinition CreateSharpCyberstick() => new(
+        ControllerArtworkFileNames.SharpCyberstick,
+        [
+        new(EmulationControllerVisualControl.DirectionUp, ControllerVisualZoneShape.JoystickDirection, 73d, 28d, 23d, 55d),
+        new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.JoystickDirection, 73d, 28d, 23d, 55d),
+        new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.JoystickDirection, 73d, 28d, 23d, 55d),
+        new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.JoystickDirection, 73d, 28d, 23d, 55d),
+        new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 40d, 46d, 7d, 17d),
+        new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 47d, 46d, 7d, 17d),
+        new(EmulationControllerVisualControl.TertiaryAction, ControllerVisualZoneShape.Ellipse, 54d, 46d, 7d, 17d),
+        new(EmulationControllerVisualControl.QuaternaryAction, ControllerVisualZoneShape.Ellipse, 23d, 34d, 3d, 12d),
+        new(EmulationControllerVisualControl.LeftShoulder, ControllerVisualZoneShape.Ellipse, 85d, 6d, 4d, 9d),
+        new(EmulationControllerVisualControl.RightShoulder, ControllerVisualZoneShape.RoundedRectangle, 92d, 10d, 4d, 15d),
+        new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.Ellipse, 60d, 39d, 4d, 9d),
+        new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.Ellipse, 35d, 40d, 5d, 10d),
+        new(EmulationControllerVisualControl.RightStickUp, ControllerVisualZoneShape.JoystickDirection, 2d, 28d, 28d, 33d),
+        new(EmulationControllerVisualControl.RightStickDown, ControllerVisualZoneShape.JoystickDirection, 2d, 28d, 28d, 33d)
+    ]
+    );
 }

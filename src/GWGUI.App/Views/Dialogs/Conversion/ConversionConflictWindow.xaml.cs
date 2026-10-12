@@ -24,6 +24,13 @@ public partial class ConversionConflictWindow : Window
 {
     public ObservableCollection<ConversionConflictRow> Rows { get; }
     public ConversionConflictWindow(IEnumerable<ConversionOutput> outputs) { InitializeComponent(); Rows = new(outputs.Select(x => new ConversionConflictRow(x))); DataContext = this; }
-    private void ApplyAll_Click(object sender, RoutedEventArgs e) { if (sender is Button { Tag: string value } && Enum.TryParse<ConversionConflictChoice>(value, out var choice)) foreach (var row in Rows) row.SelectedChoice = row.Choices.Single(x => x.Value == choice); DataContext = null; DataContext = this; }
+    private void ApplyAll_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button { Tag: string value } && Enum.TryParse<ConversionConflictChoice>(value, out var choice))
+            foreach (var row in Rows)
+                row.SelectedChoice = row.Choices.Single(x => x.Value == choice);
+        DataContext = null;
+        DataContext = this;
+    }
     private void Continue_Click(object sender, RoutedEventArgs e) => DialogResult = true;
 }
