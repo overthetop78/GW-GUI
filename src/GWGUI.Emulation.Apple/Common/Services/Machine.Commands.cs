@@ -147,10 +147,7 @@ private MachineConfiguration CurrentConfiguration() =>
         _core.HardReset();
     }
 
-    private bool NeedsMediaRestart(EmulationMediaSlot slot, string? path = null) =>
-        Configuration.Core == Emulator.MiniVmac || slot == EmulationMediaSlot.HardDisk0 ||
-        path is not null && string.Equals(System.IO.Path.GetExtension(path),
-            SessionMediaConstants.PlaylistExtension, StringComparison.OrdinalIgnoreCase);
+    private bool NeedsMediaRestart(EmulationMediaSlot slot, string? path = null) => _runtimePolicy?.RequiresMediaRestart(slot, path) == true;
 
     private void RestartCore(MachineConfiguration configuration)
     {

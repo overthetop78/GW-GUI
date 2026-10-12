@@ -281,3 +281,4 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-12 08:17:20 | 49:21:36 | -41:21:36 | Reprise. Panasonic : installation officielle et validation native du BIOS local. |
 | 2026-10-12 09:09:55 | 50:14:11 | -42:14:11 | Reprise. Apple : descriptions par adaptateur et invariants numériques. |
 | 2026-10-12 17:31:27 | 58:35:43 | -50:35:43 | Reprise. Apple : initialisation et validation par adaptateur ; registre neutre. |
+| 2026-10-12 17:50:19 | 58:54:35 | -50:54:35 | Reprise. Apple : règles de session par adaptateur. |

@@ -39,19 +39,6 @@ internal static class RuntimeFunctions
     }
 }
 
-internal static class RuntimeOptionFunctions
-{
-    internal static bool RequiresRestart(Emulator emulator, string key) =>
-                emulator == Emulator.AppleWin && key is
-            GWGUI.Emulation.Apple.Emulators.AppleWin.Constants.OptionConstants.Machine or
-            GWGUI.Emulation.Apple.Emulators.AppleWin.Constants.OptionConstants.Slot3 or
-            GWGUI.Emulation.Apple.Emulators.AppleWin.Constants.OptionConstants.Slot4 or
-            GWGUI.Emulation.Apple.Emulators.AppleWin.Constants.OptionConstants.Slot5 or
-            GWGUI.Emulation.Apple.Emulators.AppleWin.Constants.OptionConstants.Slot7 or
-            GWGUI.Emulation.Apple.Emulators.AppleWin.Constants.OptionConstants.VideoRefreshRate or
-            GWGUI.Emulation.Apple.Emulators.AppleWin.Constants.OptionConstants.VideoStyle;
-}
-
 internal static class MessageFunctions
 {
     internal static Exception Translate(Exception error, MachineConfiguration configuration)

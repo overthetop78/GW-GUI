@@ -11,6 +11,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly object _gate = new();
     private IEmulatorCore _core;
     private readonly Func<IEmulatorCore>? _coreFactory;
+    private readonly IEmulatorRuntimePolicy? _runtimePolicy;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
     private readonly ConcurrentQueue<MachineCommand> _commands = new();
@@ -30,6 +31,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     {
         Id = id;
         Configuration = configuration;
+        _runtimePolicy = new Engine().Adapter(configuration) as IEmulatorRuntimePolicy;
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
         _core = core;
         _coreFactory = coreFactory;
@@ -107,7 +109,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             option.CurrentValue,
             option.Values.Select(value => new EmulationOptionValue(value.Value, value.Label)).ToArray(),
             option.IsVisible,
-            RuntimeOptionFunctions.RequiresRestart(Configuration.Core, option.Key)))
+            _runtimePolicy?.RequiresOptionRestart(option.Key) == true))
         .ToArray();
     VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;
     double IEmulationVideo.FramesPerSecond => _core.FramesPerSecond;
