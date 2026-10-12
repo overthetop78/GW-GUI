@@ -12,10 +12,7 @@ internal static class CoreHostFunctions
     internal static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
     internal static string CreatePipeName() => CoreHostConstants.PipePrefix + Guid.NewGuid().ToString(CoreHostConstants.UniqueNameFormat);
     internal static string CreateVideoMapName() => CoreHostConstants.VideoMapPrefix + Guid.NewGuid().ToString(CoreHostConstants.UniqueNameFormat);
-    internal static void WriteRequestHeader(
-        BinaryWriter writer,
-        HostCommand command
-    )
+    internal static void WriteRequestHeader(BinaryWriter writer, HostCommand command)
     {
         writer.Write(CoreHostConstants.ProtocolVersion);
         writer.Write((byte)command);
@@ -27,10 +24,7 @@ internal static class CoreHostFunctions
         return (HostCommand)reader.ReadByte();
     }
 
-    internal static void WriteResponseHeader(
-        BinaryWriter writer,
-        HostResponseStatus status
-    )
+    internal static void WriteResponseHeader(BinaryWriter writer, HostResponseStatus status)
     {
         writer.Write(CoreHostConstants.ProtocolVersion);
         writer.Write((byte)status);
@@ -69,11 +63,7 @@ internal static class CoreHostFunctions
     }
 
     [SupportedOSPlatform(CoreHostFunctionsConstants.Windows)]
-    internal static void WriteResizableSharedFrame(
-        BinaryWriter writer,
-        VideoFrame? frame,
-        SharedVideoWriter video
-    )
+    internal static void WriteResizableSharedFrame(BinaryWriter writer, VideoFrame? frame, SharedVideoWriter video)
     {
         writer.Write(frame is not null);
         if (frame is null)
@@ -97,12 +87,7 @@ internal static class CoreHostFunctions
     }
 
     [SupportedOSPlatform(CoreHostFunctionsConstants.Windows)]
-    internal static VideoFrame? ReadResizableSharedFrame(
-        BinaryReader reader,
-        ref MemoryMappedFile? memory,
-        ref MemoryMappedViewAccessor? view,
-        ref string? activeName
-    )
+    internal static VideoFrame? ReadResizableSharedFrame(BinaryReader reader, ref MemoryMappedFile? memory, ref MemoryMappedViewAccessor? view, ref string? activeName)
     {
         if (!reader.ReadBoolean())
             return null;

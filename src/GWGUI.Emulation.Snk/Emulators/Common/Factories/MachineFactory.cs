@@ -15,12 +15,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public Emulator Emulator => CatalogEntry.Emulator;
     public string EmulatorId => CatalogEntry.Id;
     public string EmulatorKey => Emulator.ToString();
-    public EmulationEmulatorDefinition Definition => new(
-        CatalogEntry.Id,
-        CatalogEntry.LibraryName,
-        CatalogEntry.DescriptionResourceKey ?? $"Emulation.Emulator.{CatalogEntry.Id}.Description",
-        CatalogEntry.Models.Select(model => model.ToString()).ToHashSet(StringComparer.Ordinal)
-    );
+    public EmulationEmulatorDefinition Definition => new(CatalogEntry.Id, CatalogEntry.LibraryName, CatalogEntry.DescriptionResourceKey ?? $"Emulation.Emulator.{CatalogEntry.Id}.Description", CatalogEntry.Models.Select(model => model.ToString()).ToHashSet(StringComparer.Ordinal));
 
     public abstract bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode);
     public abstract ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
@@ -48,10 +43,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     }
 
     public virtual IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options;
-    public Machine Create(
-        MachineConfiguration configuration,
-        EmulatorCreationContext context
-    )
+    public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
         ConfigurationFunctions.Validate(configuration);
         if (configuration.Core != Emulator || !CatalogEntry.Models.Contains(configuration.Model))

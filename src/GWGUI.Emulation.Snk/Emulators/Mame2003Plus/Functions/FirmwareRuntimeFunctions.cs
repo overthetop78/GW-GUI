@@ -33,11 +33,7 @@ internal static class FirmwareRuntimeFunctions
     internal static IReadOnlyList<FirmwareCategory> Roles => [FirmwareCategory.SystemBios];
 
     private static bool IsCompatible(ZipArchive archive) => BiosFiles.Values.Any(file => archive.GetEntry(file)?.Length == BiosRomBytes) && archive.GetEntry(SoundRom)?.Length == BiosRomBytes && archive.GetEntry(FixedRom)?.Length == BiosRomBytes && archive.GetEntry(ZoomRom)?.Length == ZoomRomBytes;
-    internal static ValueTask<EmulationFirmwareCandidate> Inspect(
-        string path,
-        MachineModel model,
-        CancellationToken cancellationToken
-    )
+    internal static ValueTask<EmulationFirmwareCandidate> Inspect(string path, MachineModel model, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var absolute = Path.GetFullPath(path);
@@ -58,10 +54,7 @@ internal static class FirmwareRuntimeFunctions
         return ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible ? null : FirmwareFunctions.Field(FirmwareCategory.SystemBios)));
     }
 
-    internal static void Prepare(
-        MachineConfiguration configuration,
-        string systemDirectory
-    )
+    internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
     {
         if (configuration.Model is not (MachineModel.NeoGeoMvs or MachineModel.NeoGeoAes))
             throw new ArgumentException(nameof(configuration));

@@ -10,20 +10,14 @@ internal sealed class SessionContentDirectory : IDisposable
     private readonly string _sourceRoot;
     private readonly HashSet<string> _files = new(StringComparer.OrdinalIgnoreCase);
     private bool _disposed;
-    internal SessionContentDirectory(
-        string sessionDirectory,
-        string sourceRoot
-    )
+    internal SessionContentDirectory(string sessionDirectory, string sourceRoot)
     {
         _sourceRoot = Path.GetFullPath(sourceRoot);
         _directory = Path.Combine(Path.GetFullPath(sessionDirectory), CoreDirectoryConstants.ContentDirectoryName, Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(_directory);
     }
 
-    internal string AddFile(
-        string sourcePath,
-        string? relativeDestination = null
-    )
+    internal string AddFile(string sourcePath, string? relativeDestination = null)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
         var source = Path.GetFullPath(sourcePath);
@@ -40,10 +34,7 @@ internal sealed class SessionContentDirectory : IDisposable
         return destination;
     }
 
-    internal string AddText(
-        string relativeDestination,
-        string text
-    )
+    internal string AddText(string relativeDestination, string text)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
         var destination = Path.GetFullPath(Path.Combine(_directory, relativeDestination));

@@ -49,10 +49,7 @@ internal static class MediaRuntimeFunctions
     }
 
     private static MediaConfiguration? InsertedCard(MachineConfiguration configuration) => configuration.Media.SingleOrDefault(media => media.Slot == EmulationMediaSlot.MemoryCard0 && media.IsInserted);
-    private static string ValidateCard(
-        MachineConfiguration configuration,
-        MediaConfiguration card
-    )
+    private static string ValidateCard(MachineConfiguration configuration, MediaConfiguration card)
     {
         if (configuration.Family != MachineFamily.NeoGeoCartridge)
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(configuration));
@@ -77,11 +74,7 @@ internal static class MediaRuntimeFunctions
         return driver;
     }
 
-    internal static LoadedContent? Prepare(
-        MachineConfiguration configuration,
-        string sessionDirectory,
-        IReadOnlySet<string> supportedExtensions
-    )
+    internal static LoadedContent? Prepare(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
         var paths = InitialContentPaths(configuration);
         if (paths.Count == 0)
@@ -142,10 +135,7 @@ internal static class MediaRuntimeFunctions
         }
     }
 
-    internal static PreparedMemoryCard? PrepareMemoryCard(
-        MachineConfiguration configuration,
-        LoadedContent? content
-    )
+    internal static PreparedMemoryCard? PrepareMemoryCard(MachineConfiguration configuration, LoadedContent? content)
     {
         var card = InsertedCard(configuration);
         if (card is null)

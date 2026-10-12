@@ -23,10 +23,7 @@ internal static class ConfigurationStoreFunctions
         configuration.ConfiguredSlots,
         StorePath(configuration.InitialContent, pathBase)
     );
-    internal static MachineConfiguration FromDocument(
-        ConfigurationDocument document,
-        string pathBase
-    )
+    internal static MachineConfiguration FromDocument(ConfigurationDocument document, string pathBase)
     {
         if (document.SchemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion || document.Id == Guid.Empty)
             throw new InvalidDataException();
@@ -50,10 +47,7 @@ internal static class ConfigurationStoreFunctions
         );
     }
 
-    internal static string? StorePath(
-        string? path,
-        string pathBase
-    )
+    internal static string? StorePath(string? path, string pathBase)
     {
         if (string.IsNullOrWhiteSpace(path))
             return path;
@@ -62,21 +56,14 @@ internal static class ConfigurationStoreFunctions
         return IsInsideBase(relative) ? relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator) : fullPath;
     }
 
-    internal static string? ResolvePath(
-        string? path,
-        string pathBase
-    )
+    internal static string? ResolvePath(string? path, string pathBase)
     {
         if (string.IsNullOrWhiteSpace(path) || Path.IsPathFullyQualified(path))
             return path;
         return Path.GetFullPath(Path.Combine(pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));
     }
 
-    internal static async Task WriteDocumentAtomicallyAsync(
-        string path,
-        ConfigurationDocument document,
-        CancellationToken cancellationToken
-    )
+    internal static async Task WriteDocumentAtomicallyAsync(string path, ConfigurationDocument document, CancellationToken cancellationToken)
     {
         var fullPath = Path.GetFullPath(path);
         Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);

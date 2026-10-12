@@ -44,11 +44,7 @@ internal static class MediaRuntimeFunctions
         return "\"" + value + "\"";
     }
 
-    internal static LoadedContent? Prepare(
-        MachineConfiguration configuration,
-        string sessionDirectory,
-        IReadOnlySet<string> supportedExtensions
-    )
+    internal static LoadedContent? Prepare(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
         if (configuration.Model != MachineModel.NeoGeoMvs)
             throw new ArgumentException(nameof(configuration));
@@ -107,10 +103,7 @@ internal static class MediaRuntimeFunctions
         }
     }
 
-    internal static PreparedMemoryCard? PrepareMemoryCard(
-        MachineConfiguration configuration,
-        LoadedContent? content
-    )
+    internal static PreparedMemoryCard? PrepareMemoryCard(MachineConfiguration configuration, LoadedContent? content)
     {
         var card = InsertedCard(configuration);
         if (card is null)

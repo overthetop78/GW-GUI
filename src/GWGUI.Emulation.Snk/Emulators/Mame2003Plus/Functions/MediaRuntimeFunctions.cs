@@ -71,11 +71,7 @@ internal static class MediaRuntimeFunctions
         return path is null ? [] : [ContentFunctions.Validate(path, RuntimeOptionConstants.CartridgeExtensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase))];
     }
 
-    internal static LoadedContent? Prepare(
-        MachineConfiguration configuration,
-        string sessionDirectory,
-        IReadOnlySet<string> supportedExtensions
-    )
+    internal static LoadedContent? Prepare(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
         if (configuration.Model is not (MachineModel.NeoGeoMvs or MachineModel.NeoGeoAes))
             throw new ArgumentException(nameof(configuration));

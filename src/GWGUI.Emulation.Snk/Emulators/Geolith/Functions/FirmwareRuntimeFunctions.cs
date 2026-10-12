@@ -43,11 +43,7 @@ internal static class FirmwareRuntimeFunctions
         _ => []
     };
     internal static bool Required(MachineModel model, FirmwareCategory role) => role == FirmwareCategory.SystemBios && Roles(model).Contains(role) || model == MachineModel.NeoGeoCd && role == FirmwareCategory.AuxiliaryBios;
-    internal static ValueTask<EmulationFirmwareCandidate> Inspect(
-        string path,
-        MachineModel model,
-        CancellationToken cancellationToken
-    )
+    internal static ValueTask<EmulationFirmwareCandidate> Inspect(string path, MachineModel model, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var absolute = Path.GetFullPath(path);
@@ -88,10 +84,7 @@ internal static class FirmwareRuntimeFunctions
         return ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, compatibility, role is FirmwareCategory selected ? FirmwareFunctions.Field(selected) : null));
     }
 
-    internal static void Prepare(
-        MachineConfiguration configuration,
-        string systemDirectory
-    )
+    internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
     {
         var options = RuntimeOptionFunctions.Prepare(configuration);
         var cd = ConfigurationFunctions.Family(configuration.Model) == MachineFamily.NeoGeoCd;
@@ -132,11 +125,7 @@ internal static class FirmwareRuntimeFunctions
             FirmwareCopy.CopyVerified(configuration, FirmwareCategory.AuxiliaryBios, Path.Combine(systemDirectory, TrackballArchive));
     }
 
-    private static void Require(
-        ZipArchive archive,
-        string name,
-        long length
-    )
+    private static void Require(ZipArchive archive, string name, long length)
     {
         if (archive.GetEntry(name)?.Length != length)
             throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);

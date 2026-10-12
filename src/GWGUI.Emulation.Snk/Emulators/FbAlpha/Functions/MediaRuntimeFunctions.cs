@@ -18,11 +18,7 @@ internal static class MediaRuntimeFunctions
         return path is null ? [] : [ContentFunctions.Validate(path, extensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase))];
     }
 
-    internal static LoadedContent? Prepare(
-        MachineConfiguration configuration,
-        string sessionDirectory,
-        IReadOnlySet<string> supportedExtensions
-    )
+    internal static LoadedContent? Prepare(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
         var paths = InitialContentPaths(configuration);
         var extensions = configuration.Model == MachineModel.NeoGeoCdz ? RuntimeOptionConstants.CdExtensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase) : supportedExtensions;

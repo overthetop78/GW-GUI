@@ -25,11 +25,7 @@ internal static class MediaRuntimeFunctions
         return[ContentFunctions.Validate(path, device.AcceptedExtensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase))];
     }
 
-    internal static LoadedContent? Prepare(
-        MachineConfiguration configuration,
-        string sessionDirectory,
-        IReadOnlySet<string> supportedExtensions
-    )
+    internal static LoadedContent? Prepare(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
         var paths = InitialContentPaths(configuration);
         return paths.Count == 0 ? null : ContentFunctions.Create(paths[0], NeedsFullPath, supportedExtensions);
@@ -43,10 +39,7 @@ internal static class MediaRuntimeFunctions
         return configuration.Media.SingleOrDefault(item => item.Slot == slot && item.IsInserted)?.Path;
     }
 
-    internal static PreparedMemoryCard? PrepareMemoryCard(
-        MachineConfiguration configuration,
-        string saveDirectory
-    )
+    internal static PreparedMemoryCard? PrepareMemoryCard(MachineConfiguration configuration, string saveDirectory)
     {
         var card = configuration.Media.SingleOrDefault(item => item.Slot == EmulationMediaSlot.MemoryCard0 && item.IsInserted);
         if (card is null)

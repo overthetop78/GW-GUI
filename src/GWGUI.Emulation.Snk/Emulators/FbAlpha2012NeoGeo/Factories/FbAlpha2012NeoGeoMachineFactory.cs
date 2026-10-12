@@ -20,21 +20,14 @@ internal sealed class FbAlpha2012NeoGeoMachineFactory() : LibretroMachineFactory
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices;
     public override IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => NativeMedia.InitialContentPaths(configuration);
     public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);
-    public override bool IsDeferredOption(
-        MachineConfiguration configuration,
-        string key
-    )
+    public override bool IsDeferredOption(MachineConfiguration configuration, string key)
     {
         var path = configuration.InitialContent ?? configuration.Media.FirstOrDefault(media => media.Slot == EmulationMediaSlot.Cartridge0 && media.IsInserted)?.Path;
         var driver = path is null ? null : Path.GetFileNameWithoutExtension(path);
         return !string.IsNullOrEmpty(driver) && key.StartsWith(RuntimeOptionConstants.DipSwitchPrefix + driver + "_", StringComparison.Ordinal);
     }
 
-    internal override bool LoadContent(
-        MachineConfiguration configuration,
-        ExternalCoreExports exports,
-        LoadedContent? content
-    )
+    internal override bool LoadContent(MachineConfiguration configuration, ExternalCoreExports exports, LoadedContent? content)
     {
         var loaded = exports.LoadGame(content?.GameInfo ?? nint.Zero);
         if (loaded)

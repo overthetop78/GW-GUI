@@ -1,15 +1,7 @@
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
 internal static class NativeInputFunctions
 {
-    internal static short State(
-        EmulationInputSnapshot snapshot,
-        IReadOnlyDictionary<ControllerCommand, uint> buttonIds,
-        ulong capabilities,
-        uint port,
-        uint device,
-        uint index,
-        uint id
-    )
+    internal static short State(EmulationInputSnapshot snapshot, IReadOnlyDictionary<ControllerCommand, uint> buttonIds, ulong capabilities, uint port, uint device, uint index, uint id)
     {
         var baseDevice = device & InputConstants.DeviceMask;
         if (baseDevice >= sizeof(ulong) * 8 || (capabilities & (1UL << checked((int)baseDevice))) == 0)

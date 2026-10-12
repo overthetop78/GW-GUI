@@ -29,10 +29,7 @@ internal static class FirmwareRuntimeFunctions
         MachineModel.NeoGeoCd => "neocd",
         MachineModel.NeoGeoCdz => "neocdz",
         _ => throw new ArgumentOutOfRangeException(nameof(model))};
-    private static string? SelectBios(
-        ZipArchive archive,
-        MachineModel model
-    )
+    private static string? SelectBios(ZipArchive archive, MachineModel model)
     {
         if (model is MachineModel.NeoGeoPocket or MachineModel.NeoGeoPocketColor)
             return archive.GetEntry(model == MachineModel.NeoGeoPocket ? "ngp_bios.ngp" : "ngpcbios.rom")?.Length == PocketBiosBytes ? string.Empty : null;
@@ -51,11 +48,7 @@ internal static class FirmwareRuntimeFunctions
         return alternatives.FirstOrDefault(bios => archive.GetEntry(bios.FileName)?.Length == bios.Length).Id;
     }
 
-    internal static ValueTask<EmulationFirmwareCandidate> Inspect(
-        string path,
-        MachineModel model,
-        CancellationToken cancellationToken
-    )
+    internal static ValueTask<EmulationFirmwareCandidate> Inspect(string path, MachineModel model, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var absolute = Path.GetFullPath(path);
@@ -76,10 +69,7 @@ internal static class FirmwareRuntimeFunctions
         return ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible ? null : FirmwareFunctions.Field(FirmwareCategory.SystemBios)));
     }
 
-    internal static void Prepare(
-        MachineConfiguration configuration,
-        string systemDirectory
-    )
+    internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
     {
         var directory = Path.Combine(systemDirectory, RuntimeOptionConstants.NativeSystemDirectory, BiosDirectory);
         Directory.CreateDirectory(directory);

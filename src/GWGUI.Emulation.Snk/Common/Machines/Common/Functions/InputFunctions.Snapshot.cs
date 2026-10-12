@@ -1,10 +1,7 @@
 namespace GWGUI.Emulation.Snk.Common.Machines.Common.Functions;
 internal static class InputSnapshotFunctions
 {
-    internal static EmulationInputSnapshot Apply(
-        EmulationInputSnapshot snapshot,
-        MachineConfiguration configuration
-    )
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, MachineConfiguration configuration)
     {
         var input = configuration.Input;
         var model = configuration.Model;
@@ -59,12 +56,7 @@ internal static class InputSnapshotFunctions
     }
 
     private static short Axis(float value) => (short)(Math.Clamp(value, -1f, 1f) * short.MaxValue);
-    private static float Magnitude(
-        string mapping,
-        EmulationControllerState controller,
-        EmulationInputSnapshot snapshot,
-        int deadZone
-    )
+    private static float Magnitude(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot, int deadZone)
     {
         if (!mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase))
             return IsPressed(mapping, controller, snapshot) ? 1f : 0f;
@@ -74,11 +66,7 @@ internal static class InputSnapshotFunctions
         return value <= (float)deadZone / InputMappingConstants.PercentScale ? 0f : Math.Clamp(value, 0f, 1f);
     }
 
-    private static bool IsPressed(
-        string mapping,
-        EmulationControllerState controller,
-        EmulationInputSnapshot snapshot
-    )
+    private static bool IsPressed(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
         if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
             return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key);

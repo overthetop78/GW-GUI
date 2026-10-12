@@ -55,10 +55,7 @@ internal static class InputSettingsFunctions
         return new(null, null, ports);
     }
 
-    internal static MachineConfiguration Apply(
-        MachineConfiguration configuration,
-        EmulationInputSettings settings
-    )
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         var count = ConfigurationFunctions.ControllerPortCount(configuration);
         if (settings.Keyboard is not null || settings.Mouse is not null || settings.ControllerPorts.Count != count || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, count)))

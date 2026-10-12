@@ -27,8 +27,7 @@ internal static class CoreOptionFunctions
     {
         if (localized.Count == CoreOptionConstants.NoEntries) return english;
         var localByKey = localized.ToDictionary(option => option.Key, StringComparer.Ordinal);
-        return english.Select(option => localByKey.TryGetValue(option.Key, out var local) ? local with { DefaultValue = option.DefaultValue }
-            : option).ToArray();
+        return english.Select(option => localByKey.TryGetValue(option.Key, out var local) ? local with { DefaultValue = option.DefaultValue } : option).ToArray();
     }
 
     internal static IReadOnlyList<CoreOptionCategory> MergeLocalizedCategories( IReadOnlyList<CoreOptionCategory> english, IReadOnlyList<CoreOptionCategory> localized)

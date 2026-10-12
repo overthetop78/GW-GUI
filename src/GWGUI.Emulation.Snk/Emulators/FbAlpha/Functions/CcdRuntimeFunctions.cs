@@ -27,10 +27,7 @@ internal static class CcdRuntimeFunctions
             throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
     }
 
-    internal static void ValidateSizes(
-        long imageBytes,
-        long subchannelBytes
-    )
+    internal static void ValidateSizes(long imageBytes, long subchannelBytes)
     {
         if (imageBytes <= 0 || imageBytes % OpticalSectorConstants.RawSectorSize != 0 || subchannelBytes <= 0 || subchannelBytes % OpticalSectorConstants.SubchannelSize != 0 || subchannelBytes > int.MaxValue - (OpticalSectorConstants.SubchannelSize - 1))
             throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);

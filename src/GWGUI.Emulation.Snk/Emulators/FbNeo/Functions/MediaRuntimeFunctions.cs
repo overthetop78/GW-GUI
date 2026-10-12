@@ -19,10 +19,7 @@ internal static class MediaRuntimeFunctions
     private const int MemoryCardStride = 2;
     private const int MemoryCardDataByteOffset = 1;
     internal sealed record PreparedMemoryCard(string SourcePath, string RuntimePath, bool IsReadOnly);
-    internal static PreparedMemoryCard? PrepareMemoryCard(
-        MachineConfiguration configuration,
-        string saveDirectory
-    )
+    internal static PreparedMemoryCard? PrepareMemoryCard(MachineConfiguration configuration, string saveDirectory)
     {
         var card = configuration.Media.SingleOrDefault(media => media.Slot == EmulationMediaSlot.MemoryCard0 && media.IsInserted);
         if (card is null)
@@ -79,11 +76,7 @@ internal static class MediaRuntimeFunctions
         return path is null ? [] : [ContentFunctions.Validate(path, extensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase))];
     }
 
-    internal static LoadedContent? Prepare(
-        MachineConfiguration configuration,
-        string sessionDirectory,
-        IReadOnlySet<string> supportedExtensions
-    )
+    internal static LoadedContent? Prepare(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
         var paths = InitialContentPaths(configuration);
         var extensions = configuration.Model == MachineModel.NeoGeoCdz ? RuntimeOptionConstants.CdExtensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase) : supportedExtensions;

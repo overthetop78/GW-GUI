@@ -60,11 +60,7 @@ internal static class FirmwareRuntimeFunctions
     };
     internal static IReadOnlyList<FirmwareCategory> Roles => [FirmwareCategory.SystemBios];
 
-    internal static ValueTask<EmulationFirmwareCandidate> Inspect(
-        string path,
-        MachineModel model,
-        CancellationToken cancellationToken
-    )
+    internal static ValueTask<EmulationFirmwareCandidate> Inspect(string path, MachineModel model, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var absolute = Path.GetFullPath(path);
@@ -85,10 +81,7 @@ internal static class FirmwareRuntimeFunctions
         return ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible ? null : FirmwareFunctions.Field(FirmwareCategory.SystemBios)));
     }
 
-    internal static void Prepare(
-        MachineConfiguration configuration,
-        string systemDirectory
-    )
+    internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
     {
         var directory = Path.Combine(systemDirectory, NativeDirectory);
         Directory.CreateDirectory(directory);
@@ -106,11 +99,7 @@ internal static class FirmwareRuntimeFunctions
             throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
     }
 
-    private static bool Valid(
-        ZipArchive archive,
-        MachineModel model,
-        string? mode
-    )
+    private static bool Valid(ZipArchive archive, MachineModel model, string? mode)
     {
         bool Has(string name, int length) => archive.GetEntry(name)?.Length == length;
         if (model is MachineModel.NeoGeoPocket or MachineModel.NeoGeoPocketColor)

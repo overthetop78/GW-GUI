@@ -23,10 +23,7 @@ internal sealed class FbNeoMachineFactory() : LibretroMachineFactory(EmulatorCon
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices(configuration.Model);
     public override IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => NativeMedia.InitialContentPaths(configuration);
     public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);
-    public override bool IsDeferredOption(
-        MachineConfiguration configuration,
-        string key
-    )
+    public override bool IsDeferredOption(MachineConfiguration configuration, string key)
     {
         var slot = configuration.Family == MachineFamily.NeoGeoCd ? EmulationMediaSlot.Cd0 : EmulationMediaSlot.Cartridge0;
         var path = configuration.InitialContent ?? configuration.Media.FirstOrDefault(media => media.Slot == slot && media.IsInserted)?.Path;
@@ -36,11 +33,7 @@ internal sealed class FbNeoMachineFactory() : LibretroMachineFactory(EmulatorCon
         return !string.IsNullOrEmpty(driver) && key.StartsWith(RuntimeOptionConstants.DipSwitchPrefix + driver + "-", StringComparison.Ordinal);
     }
 
-    internal override bool LoadContent(
-        MachineConfiguration configuration,
-        ExternalCoreExports exports,
-        LoadedContent? content
-    )
+    internal override bool LoadContent(MachineConfiguration configuration, ExternalCoreExports exports, LoadedContent? content)
     {
         var loaded = configuration.Family switch
         {

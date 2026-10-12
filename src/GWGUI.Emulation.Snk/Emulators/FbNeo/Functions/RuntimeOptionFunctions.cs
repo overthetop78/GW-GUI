@@ -51,10 +51,7 @@ internal static class RuntimeOptionFunctions
         }).ToArray();
     }
 
-    private static bool IsApplicable(
-        MachineConfiguration configuration,
-        string key
-    )
+    private static bool IsApplicable(MachineConfiguration configuration, string key)
     {
         if (key.StartsWith(RuntimeOptionConstants.DebugOptionPrefix, StringComparison.Ordinal))
             return false;

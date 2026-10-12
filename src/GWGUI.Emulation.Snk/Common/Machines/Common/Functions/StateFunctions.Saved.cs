@@ -8,11 +8,7 @@ namespace GWGUI.Emulation.Snk.Common.Machines.Common.Functions;
 internal static class SavedStateFunctions
 {
     internal static SavedStateHeader CreateHeader(MachineConfiguration configuration, IEmulatorCore core, ReadOnlySpan<byte> state) => new(StateConstants.CurrentFormatVersion, core.Emulator, core.CoreName, core.CoreVersion, core.CoreSha256, configuration.Model, ConfigurationHash(configuration), ContentHash(configuration), HashBytes(state));
-    internal static void Validate(
-        SavedStateHeader header,
-        MachineConfiguration configuration,
-        IEmulatorCore core
-    )
+    internal static void Validate(SavedStateHeader header, MachineConfiguration configuration, IEmulatorCore core)
     {
         if (header.FormatVersion != StateConstants.CurrentFormatVersion)
             throw Invalid(ErrorCode.StateIncompatible, ErrorMessages.StateIncompatible);

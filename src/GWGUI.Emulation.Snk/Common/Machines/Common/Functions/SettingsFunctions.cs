@@ -41,10 +41,7 @@ internal static class SettingsDescriptionFunctions
     }
 
     internal static IReadOnlyList<CoreOption> RelevantOptions(MachineConfiguration configuration) => CoreOptionValidationFunctions.ForConfiguration(configuration).Where(option => option.IsVisible && option.Category is not null).ToArray();
-    private static void AddHardware(
-        List<EmulationSettingsBlock> blocks,
-        MachineConfiguration configuration
-    )
+    private static void AddHardware(List<EmulationSettingsBlock> blocks, MachineConfiguration configuration)
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
         var cpu = new List<EmulationSettingsField>
@@ -83,23 +80,14 @@ internal static class SettingsDescriptionFunctions
                 ));
     }
 
-    private static string Memory(long bytes) => bytes >= SettingsConstants.BytesPerKibibyte 
-        ? $"{(bytes / SettingsConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture)} {SettingsConstants.KibibyteUnit}" 
-        : $"{bytes.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.ByteUnit}";
+    private static string Memory(long bytes) => bytes >= SettingsConstants.BytesPerKibibyte ? $"{(bytes / SettingsConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture)} {SettingsConstants.KibibyteUnit}" : $"{bytes.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.ByteUnit}";
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
-    private static EmulationSettingsField Native(
-        MachineConfiguration configuration,
-        CoreOption option,
-        EmulationMachineTab tab,
-        string block
-    )
+    private static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
     {
         var resource = option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}.");
         var choices = option.Values.Select(choice => new EmulationSettingsChoice(
                 choice.Value,
-                choice.FrameSkipRatio is null
-                    ? CommonChoiceResource(choice.Value) ?? choice.ResourceKey ?? throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}.")
-                    : string.Empty,
+                choice.FrameSkipRatio is null ? CommonChoiceResource(choice.Value) ?? choice.ResourceKey ?? throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}.") : string.Empty,
                 choice.FrameSkipRatio is FrameSkipRatio ratio ? SettingsChoiceFunctions.Format(ratio) : null
             )).ToArray();
         var enabled = option.Values.FirstOrDefault(choice => CommonChoiceResource(choice.Value) == SettingsConstants.ResourceEnabled)?.Value;

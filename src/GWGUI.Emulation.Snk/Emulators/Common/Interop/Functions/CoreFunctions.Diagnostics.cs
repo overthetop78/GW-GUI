@@ -93,10 +93,7 @@ internal static class CoreDiagnosticFunctions
         }
     }
 
-    private static long RvaToFileOffset(
-        PEHeaders headers,
-        int rva
-    )
+    private static long RvaToFileOffset(PEHeaders headers, int rva)
     {
         foreach (var section in headers.SectionHeaders)
         {
