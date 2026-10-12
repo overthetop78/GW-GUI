@@ -28,8 +28,7 @@ internal sealed class CommodoreVisualizationPolicy : SectorImageVisualizationPol
     {
         if (!image.FormatId.StartsWith(DiskImageFormatIds.Commodore1581, StringComparison.OrdinalIgnoreCase))
             return base.CreateTrackSectors(image, items);
-        return items.Select(item => item.Block).GroupBy(block => block.LogicalBlock / Commodore1581Geometry.LogicalBlocksPerPhysicalSector)
-            .OrderBy(group => group.Key).Select(group =>
+        return items.Select(item => item.Block).GroupBy(block => block.LogicalBlock / Commodore1581Geometry.LogicalBlocksPerPhysicalSector).OrderBy(group => group.Key).Select(group =>
             {
                 var halves = group.OrderBy(block => block.LogicalBlock).ToArray();
                 var data = halves.SelectMany(block => block.Data).Take(Commodore1581Geometry.PhysicalSectorSize).ToArray();

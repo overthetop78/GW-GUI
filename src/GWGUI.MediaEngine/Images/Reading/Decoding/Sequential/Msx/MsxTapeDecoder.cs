@@ -95,21 +95,14 @@ public sealed class MsxTapeDecoder : ISequentialMediaDecoder
             if (segment.Kind != SequentialSegmentKind.DataBlock) continue;
             var data = await ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false);
             if (data is null) continue;
-            var sourcePosition = TryReadLong(segment.Metadata, "sourceSegmentPosition", out var parsedPosition)
-                ? parsedPosition
-                : segment.Position;
+            var sourcePosition = TryReadLong(segment.Metadata, "sourceSegmentPosition", out var parsedPosition) ? parsedPosition : segment.Position;
             var fileType = IdentifyFileType(data);
             blocks.Add(CreateBlock(blocks.Count, data, [sourcePosition], "tsx", fileType, fileType is null ? null : true));
             consumed.Add(sourcePosition);
         }
         var result = Result(sourceRepresentation, blocks, consumed, "No MSX data block could be expanded from the TSX image.");
         if (signal.Diagnostics.Count == 0) return result;
-        return new SequentialDecodeResult(
-            result.DecoderId,
-            result.Confidence,
-            result.Blocks,
-            result.UndecodedSegments,
-            [.. result.Diagnostics, .. signal.Diagnostics]);
+        return new SequentialDecodeResult(result.DecoderId, result.Confidence, result.Blocks, result.UndecodedSegments, [.. result.Diagnostics, .. signal.Diagnostics]);
     }
 
     private static async Task<SequentialDecodeResult> DecodeWaveAsync(
@@ -123,9 +116,7 @@ public sealed class MsxTapeDecoder : ISequentialMediaDecoder
         var consumed = new HashSet<long>();
         var validFrames = 0;
         var testedFrames = 0;
-        foreach (var segment in (representation.Segments ?? [])
-                     .Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0)
-                     .OrderBy(segment => segment.Position))
+        foreach (var segment in (representation.Segments ?? []).Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0).OrderBy(segment => segment.Position))
         {
             cancellationToken.ThrowIfCancellationRequested();
             var pcm = await ReadRangeAsync(segment.DataRange, cancellationToken).ConfigureAwait(false);
@@ -146,17 +137,10 @@ public sealed class MsxTapeDecoder : ISequentialMediaDecoder
             if (decoded.Bytes.Count > 0) consumed.Add(segment.Position);
         }
         var fileType = IdentifyFileType(allBytes);
-        var blocks = allBytes.Count == 0
-            ? Array.Empty<SequentialDecodedBlock>()
-            : [CreateBlock(0, allBytes.ToArray(), consumed.ToArray(), "wav-fsk", fileType, testedFrames > 0 && validFrames == testedFrames)];
+        var blocks = allBytes.Count == 0 ? Array.Empty<SequentialDecodedBlock>() : [CreateBlock(0, allBytes.ToArray(), consumed.ToArray(), "wav-fsk", fileType, testedFrames > 0 && validFrames == testedFrames)];
         var undecoded = (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray();
         var confidence = testedFrames == 0 ? 0 : validFrames / (double)testedFrames;
-        return new SequentialDecodeResult(
-            IdValue,
-            confidence,
-            blocks,
-            undecoded,
-            blocks.Length == 0 ? ["No complete MSX FSK serial frame was found in the selected WAV channel."] : []);
+        return new SequentialDecodeResult(IdValue, confidence, blocks, undecoded, blocks.Length == 0 ? ["No complete MSX FSK serial frame was found in the selected WAV channel."] : []);
     }
 
     private static SequentialDecodeResult Result(
@@ -214,9 +198,7 @@ public sealed class MsxTapeDecoder : ISequentialMediaDecoder
     private static bool TryReadLong(IReadOnlyDictionary<string, string> metadata, string key, out long value)
     {
         value = 0;
-        return metadata.TryGetValue(key, out var text)
-            && long.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value)
-            && value >= 0;
+        return metadata.TryGetValue(key, out var text) && long.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value) && value >= 0;
     }
 
     private const string IdValue = MsxCasConstants.DecoderId;

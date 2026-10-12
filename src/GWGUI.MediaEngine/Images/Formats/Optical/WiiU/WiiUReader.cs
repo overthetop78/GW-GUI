@@ -44,15 +44,11 @@ public sealed class WiiUReader : IMediaImageReader
         {
             if (!WiiUFormat.IsWudLengthCompatible(context.Length))
                 return false;
-            var header = await context.ReadHeaderAsync(WiiUFormat.WuxHeaderSize, cancellationToken)
-                .ConfigureAwait(false);
+            var header = await context.ReadHeaderAsync(WiiUFormat.WuxHeaderSize, cancellationToken).ConfigureAwait(false);
             return !WiiUFormat.TryReadWuxHeader(header.Span, context.Length, out _);
         }
 
-        if (!WiiUFormat.TryReadWuxHeader(
-                (await context.ReadHeaderAsync(WiiUFormat.WuxHeaderSize, cancellationToken).ConfigureAwait(false)).Span,
-                context.Length,
-                out var wux))
+        if (!WiiUFormat.TryReadWuxHeader((await context.ReadHeaderAsync(WiiUFormat.WuxHeaderSize, cancellationToken).ConfigureAwait(false)).Span, context.Length, out var wux))
             return false;
         return await TryReadIndexTableAsync(context, wux, cancellationToken).ConfigureAwait(false) is not null;
     }
@@ -67,16 +63,14 @@ public sealed class WiiUReader : IMediaImageReader
             throw new InvalidDataException("The selected source is not a Nintendo Wii U image.");
 
         var isWux = context.Extension.Equals(DiskImageFileExtensions.Wux, StringComparison.OrdinalIgnoreCase);
-        var headerBytes = await context.ReadHeaderAsync(WiiUFormat.WuxHeaderSize, cancellationToken)
-            .ConfigureAwait(false);
+        var headerBytes = await context.ReadHeaderAsync(WiiUFormat.WuxHeaderSize, cancellationToken).ConfigureAwait(false);
         WiiUWuxHeader wux = default;
         uint[]? indexTable = null;
         if (isWux)
         {
             if (!WiiUFormat.TryReadWuxHeader(headerBytes.Span, context.Length, out wux))
                 throw new InvalidDataException("The Nintendo Wii U WUX header is invalid.");
-            indexTable = await TryReadIndexTableAsync(context, wux, cancellationToken).ConfigureAwait(false)
-                ?? throw new InvalidDataException("The Nintendo Wii U WUX index table is invalid.");
+            indexTable = await TryReadIndexTableAsync(context, wux, cancellationToken).ConfigureAwait(false) ?? throw new InvalidDataException("The Nintendo Wii U WUX index table is invalid.");
         }
         else if (!WiiUFormat.IsWudLengthCompatible(context.Length)
             || WiiUFormat.TryReadWuxHeader(headerBytes.Span, context.Length, out _))
@@ -84,9 +78,7 @@ public sealed class WiiUReader : IMediaImageReader
             throw new InvalidDataException("The Nintendo Wii U WUD image is not aligned to optical sectors.");
         }
 
-        var source = isWux
-            ? new WiiUWuxRandomAccessData(context.Source.PrimaryPath, wux, indexTable!) as global::GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData
-            : new FileRandomAccessData(context.Source.PrimaryPath);
+        var source = isWux ? new WiiUWuxRandomAccessData(context.Source.PrimaryPath, wux, indexTable!) as global::GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData : new FileRandomAccessData(context.Source.PrimaryPath);
         var logicalLength = isWux ? wux.UncompressedSize : context.Length;
         var logicalBlockSize = WiiUFormat.OpticalSectorSize;
         var metadata = new Dictionary<string, string>(StringComparer.Ordinal)
@@ -107,10 +99,7 @@ public sealed class WiiUReader : IMediaImageReader
             context.Source,
             DiskImageFormatIds.NintendoWiiU,
             MediaKind.Optical,
-            new BlockMediaImageRepresentation(
-                logicalLength,
-                logicalBlockSize,
-                [new MediaDataRange(0, logicalLength, MediaDataRangeKind.Stored, source)]),
+            new BlockMediaImageRepresentation(logicalLength, logicalBlockSize, [new MediaDataRange(0, logicalLength, MediaDataRangeKind.Stored, source)]),
             [new MediaVolumeDescriptor(0, logicalLength, MediaVolumeOrigins.DirectVolume, name: WiiUMetadataConstants.VolumeName)],
             [],
             metadata);
@@ -121,11 +110,7 @@ public sealed class WiiUReader : IMediaImageReader
         WiiUWuxHeader header,
         CancellationToken cancellationToken)
     {
-        var bytes = await context.ReadAsync(
-                header.IndexOffset,
-                checked(header.EntryCount * sizeof(uint)),
-                cancellationToken)
-            .ConfigureAwait(false);
+        var bytes = await context.ReadAsync(header.IndexOffset, checked(header.EntryCount * sizeof(uint)), cancellationToken).ConfigureAwait(false);
         var indexes = new uint[header.EntryCount];
         for (var index = 0; index < indexes.Length; index++)
         {

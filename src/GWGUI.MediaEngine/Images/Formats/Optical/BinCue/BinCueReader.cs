@@ -47,8 +47,7 @@ public sealed class BinCueReader : IMediaImageReader
         try
         {
             var sheet = await cueSheets.ReadAsync(context.Source.PrimaryPath, cancellationToken).ConfigureAwait(false);
-            var cueDirectory = Path.GetDirectoryName(Path.GetFullPath(context.Source.PrimaryPath))
-                ?? Directory.GetCurrentDirectory();
+            var cueDirectory = Path.GetDirectoryName(Path.GetFullPath(context.Source.PrimaryPath)) ?? Directory.GetCurrentDirectory();
             foreach (var file in sheet.Files)
             {
                 var path = ResolveAssociatedPath(cueDirectory, file.DeclaredPath);
@@ -73,8 +72,7 @@ public sealed class BinCueReader : IMediaImageReader
         CancellationToken cancellationToken)
     {
         var sheet = await cueSheets.ReadAsync(context.Source.PrimaryPath, cancellationToken).ConfigureAwait(false);
-        var cueDirectory = Path.GetDirectoryName(Path.GetFullPath(context.Source.PrimaryPath))
-            ?? Directory.GetCurrentDirectory();
+        var cueDirectory = Path.GetDirectoryName(Path.GetFullPath(context.Source.PrimaryPath)) ?? Directory.GetCurrentDirectory();
         var associatedPaths = new List<string>();
         var tracks = new List<OpticalTrackDescriptor>();
         long firstSector = 0;
@@ -134,24 +132,15 @@ public sealed class BinCueReader : IMediaImageReader
                     sheet.CatalogNumber,
                     declaration.Isrc,
                     storedPregapSectors: storedPregap,
-                    storedPregapSourceOffset: storedPregap > 0
-                        ? checked((start - storedPregap) * sectorSize)
-                        : null));
+                    storedPregapSourceOffset: storedPregap > 0 ? checked((start - storedPregap) * sectorSize) : null));
                 firstSector = checked(firstSector + end - start);
             }
 
             associatedPaths.Add(path);
         }
 
-        var sourceDescriptor = new MediaSourceDescriptor(
-            context.Source.PrimaryPath,
-            associatedPaths,
-            context.Source.KnownLength,
-            context.Source.RequestedFormatId);
-        var representation = new OpticalMediaImageRepresentation(
-            tracks.Sum(track => checked(track.SectorCount * track.UserDataLength)),
-            tracks,
-            associatedFiles: [context.Source.PrimaryPath, .. associatedPaths]);
+        var sourceDescriptor = new MediaSourceDescriptor(context.Source.PrimaryPath, associatedPaths, context.Source.KnownLength, context.Source.RequestedFormatId);
+        var representation = new OpticalMediaImageRepresentation(tracks.Sum(track => checked(track.SectorCount * track.UserDataLength)), tracks, associatedFiles: [context.Source.PrimaryPath, .. associatedPaths]);
         return new MediaImageDocument(
             sourceDescriptor,
             OpticalImageFormatIds.BinCue,

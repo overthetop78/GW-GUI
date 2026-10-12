@@ -6,8 +6,7 @@ namespace GWGUI.MediaEngine.Contracts.Explorer;
 /// <summary>Convertit les volumes entre la lecture interne et les données échangées par MediaEngine.</summary>
 public static class FileSystemVolumeMapper
 {
-    public static FileSystemVolume ConvertVolume(GWGUI.MediaFileSystems.FileSystemVolume volume, string formatId) =>
-        ConvertVolume(volume, GWGUI.MediaFileSystems.Exploration.FileSystemEntryAnalyzer.AnalyzeEntries(formatId, volume));
+    public static FileSystemVolume ConvertVolume(GWGUI.MediaFileSystems.FileSystemVolume volume, string formatId) => ConvertVolume(volume, GWGUI.MediaFileSystems.Exploration.FileSystemEntryAnalyzer.AnalyzeEntries(formatId, volume));
 
     public static FileSystemVolume ConvertVolume(
         GWGUI.MediaFileSystems.FileSystemVolume volume,
@@ -88,10 +87,7 @@ public static class FileSystemVolumeMapper
             entry.Metadata)
         {
             Analysis = entry.Analysis is { } analysis
-                ? new FileSystemEntryAnalysis(
-                    analysis.CategoryId, analysis.IconId, analysis.TypeResourceKey,
-                    analysis.Extension, analysis.ExecutionKindId, analysis.ContentFormatId,
-                    analysis.TextEncodingId, analysis.PreviewKindId)
+                ? new FileSystemEntryAnalysis(analysis.CategoryId, analysis.IconId, analysis.TypeResourceKey, analysis.Extension, analysis.ExecutionKindId, analysis.ContentFormatId, analysis.TextEncodingId, analysis.PreviewKindId)
                 : null
         };
 }

@@ -28,12 +28,7 @@ public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
     public IReadOnlySet<string> FormatIds => SupportedFormats;
     public IReadOnlySet<string> MachineIds => SupportedMachines;
 
-    public bool CanEncode(SequentialEncodeRequest request) =>
-        SupportedFormats.Contains(request.TargetFormatId)
-        && SupportedMachines.Contains(request.MachineId)
-        && request.Blocks.Count > 0
-        && request.Blocks.All(block => block.Data.Length is > 0 and <= 2048)
-        && request.RetainedSegments.Count == 0;
+    public bool CanEncode(SequentialEncodeRequest request) => SupportedFormats.Contains(request.TargetFormatId) && SupportedMachines.Contains(request.MachineId) && request.Blocks.Count > 0 && request.Blocks.All(block => block.Data.Length is > 0 and <= 2048) && request.RetainedSegments.Count == 0;
 
     public Task<SequentialMediaImageRepresentation> EncodeAsync(
         SequentialEncodeRequest request,
@@ -44,9 +39,7 @@ public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
         cancellationToken.ThrowIfCancellationRequested();
 
         var records = BuildRecords(request.Blocks);
-        return Task.FromResult(request.TargetFormatId.Equals(TapeImageFormatIds.Tzx, StringComparison.OrdinalIgnoreCase)
-            ? EncodeTzx(records)
-            : EncodePcm(records, ReadSampleRate(request.Parameters)));
+        return Task.FromResult(request.TargetFormatId.Equals(TapeImageFormatIds.Tzx, StringComparison.OrdinalIgnoreCase) ? EncodeTzx(records) : EncodePcm(records, ReadSampleRate(request.Parameters)));
     }
 
     private static IReadOnlyList<byte[]> BuildRecords(IReadOnlyList<SequentialDecodedBlock> blocks)
@@ -75,16 +68,12 @@ public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
         return records;
     }
 
-    private static bool HasSameFileName(SequentialDecodedBlock block, string fileName) =>
-        block.Metadata.TryGetValue("fileName", out var candidate)
-        && string.Equals(candidate, fileName, StringComparison.Ordinal);
+    private static bool HasSameFileName(SequentialDecodedBlock block, string fileName) => block.Metadata.TryGetValue("fileName", out var candidate) && string.Equals(candidate, fileName, StringComparison.Ordinal);
 
     private static byte[] BuildRecord(byte sync, ReadOnlySpan<byte> data)
     {
         var segmentCount = Math.Max(1, (data.Length + AmstradCpcTapeConstants.SegmentDataLength - 1) / AmstradCpcTapeConstants.SegmentDataLength);
-        var encoded = new byte[1
-            + segmentCount * (AmstradCpcTapeConstants.SegmentDataLength + AmstradCpcTapeConstants.SegmentCrcLength)
-            + AmstradCpcTapeConstants.TrailerByteCount];
+        var encoded = new byte[1 + segmentCount * (AmstradCpcTapeConstants.SegmentDataLength + AmstradCpcTapeConstants.SegmentCrcLength) + AmstradCpcTapeConstants.TrailerByteCount];
         encoded[0] = sync;
         for (var segmentIndex = 0; segmentIndex < segmentCount; segmentIndex++)
         {
@@ -93,9 +82,7 @@ public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
             var destinationOffset = 1 + segmentIndex * (AmstradCpcTapeConstants.SegmentDataLength + AmstradCpcTapeConstants.SegmentCrcLength);
             if (count > 0) data.Slice(offset, count).CopyTo(encoded.AsSpan(destinationOffset));
             var segmentData = encoded.AsSpan(destinationOffset, AmstradCpcTapeConstants.SegmentDataLength);
-            BinaryPrimitives.WriteUInt16BigEndian(
-                encoded.AsSpan(destinationOffset + AmstradCpcTapeConstants.SegmentDataLength),
-                unchecked((ushort)~ComputeCrc(segmentData)));
+            BinaryPrimitives.WriteUInt16BigEndian(encoded.AsSpan(destinationOffset + AmstradCpcTapeConstants.SegmentDataLength), unchecked((ushort)~ComputeCrc(segmentData)));
         }
         encoded.AsSpan(encoded.Length - AmstradCpcTapeConstants.TrailerByteCount).Fill(AmstradCpcTapeConstants.TrailerByte);
         return encoded;
@@ -134,12 +121,7 @@ public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
             AddPulses(samples, ref level, AmstradCpcTapeConstants.ZeroPulseTStates, 2, sampleRate);
             foreach (var value in record)
                 for (var bit = 7; bit >= 0; bit--)
-                    AddPulses(
-                        samples,
-                        ref level,
-                        (value & (1 << bit)) == 0 ? AmstradCpcTapeConstants.ZeroPulseTStates : AmstradCpcTapeConstants.OnePulseTStates,
-                        2,
-                        sampleRate);
+                    AddPulses(samples, ref level, (value & (1 << bit)) == 0 ? AmstradCpcTapeConstants.ZeroPulseTStates : AmstradCpcTapeConstants.OnePulseTStates, 2, sampleRate);
         }
         for (var index = 0; index < sampleRate; index++) samples.Add(0);
 
@@ -198,8 +180,7 @@ public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
     private static void WriteName(Span<byte> header, string name)
     {
         var bytes = System.Text.Encoding.Latin1.GetBytes(name);
-        bytes.AsSpan(0, Math.Min(bytes.Length, AmstradCpcTapeConstants.FileNameLength))
-            .CopyTo(header[AmstradCpcTapeConstants.FileNameOffset..]);
+        bytes.AsSpan(0, Math.Min(bytes.Length, AmstradCpcTapeConstants.FileNameLength)).CopyTo(header[AmstradCpcTapeConstants.FileNameOffset..]);
     }
 
     private static ushort ComputeCrc(ReadOnlySpan<byte> data)
@@ -209,35 +190,23 @@ public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
         {
             crc ^= (ushort)(value << 8);
             for (var bit = 0; bit < 8; bit++)
-                crc = (ushort)((crc & 0x8000) != 0
-                    ? (crc << 1) ^ AmstradCpcTapeConstants.CrcPolynomial
-                    : crc << 1);
+                crc = (ushort)((crc & 0x8000) != 0 ? (crc << 1) ^ AmstradCpcTapeConstants.CrcPolynomial : crc << 1);
         }
         return crc;
     }
 
     private static int ReadSampleRate(IReadOnlyDictionary<string, string> metadata) =>
-        metadata.TryGetValue("sampleRate", out var value)
-        && int.TryParse(value, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var sampleRate)
-        && sampleRate >= 8000
-            ? sampleRate
-            : DefaultSampleRate;
+        metadata.TryGetValue("sampleRate", out var value) && int.TryParse(value, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var sampleRate) && sampleRate >= 8000 ? sampleRate : DefaultSampleRate;
 
-    private static string ReadText(IReadOnlyDictionary<string, string> metadata, string key, string defaultValue) =>
-        metadata.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value) ? value : defaultValue;
+    private static string ReadText(IReadOnlyDictionary<string, string> metadata, string key, string defaultValue) => metadata.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value) ? value : defaultValue;
 
     private static byte ReadByte(IReadOnlyDictionary<string, string> metadata, string key, byte defaultValue) =>
-        metadata.TryGetValue(key, out var value)
-        && byte.TryParse(value, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var parsed)
-            ? parsed : defaultValue;
+        metadata.TryGetValue(key, out var value) && byte.TryParse(value, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var parsed) ? parsed : defaultValue;
 
     private static ushort ReadUInt16(IReadOnlyDictionary<string, string> metadata, string key, ushort defaultValue = 0) =>
-        metadata.TryGetValue(key, out var value)
-        && ushort.TryParse(value, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var parsed)
-            ? parsed : defaultValue;
+        metadata.TryGetValue(key, out var value) && ushort.TryParse(value, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var parsed) ? parsed : defaultValue;
 
-    private static bool ReadBoolean(IReadOnlyDictionary<string, string> metadata, string key, bool defaultValue) =>
-        metadata.TryGetValue(key, out var value) && bool.TryParse(value, out var parsed) ? parsed : defaultValue;
+    private static bool ReadBoolean(IReadOnlyDictionary<string, string> metadata, string key, bool defaultValue) => metadata.TryGetValue(key, out var value) && bool.TryParse(value, out var parsed) ? parsed : defaultValue;
 
     private static void WriteUInt24(Span<byte> destination, int value)
     {

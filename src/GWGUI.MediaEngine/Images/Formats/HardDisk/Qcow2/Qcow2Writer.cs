@@ -54,10 +54,7 @@ public sealed class Qcow2Writer : IMediaImageWriter
             || document.Representation is not BlockMediaImageRepresentation blocks)
             throw new InvalidDataException("The media document cannot be written as a supported QCOW2 image.");
         var version = SelectVersion(document);
-        await files.WriteAsync(
-            outputPath,
-            (output, token) => WriteContainerAsync(blocks, version, output, token),
-            cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(outputPath, (output, token) => WriteContainerAsync(blocks, version, output, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 
@@ -103,9 +100,7 @@ public sealed class Qcow2Writer : IMediaImageWriter
         for (long tableIndex = 0; tableIndex < l2TableCount; tableIndex++)
         {
             var tableOffset = checked((l2Cluster + tableIndex) * clusterSize);
-            BinaryPrimitives.WriteUInt64BigEndian(
-                l1.AsSpan(checked((int)tableIndex * 8), 8),
-                (ulong)tableOffset | HardDiskFormatConstants.Qcow2CopiedFlag);
+            BinaryPrimitives.WriteUInt64BigEndian(l1.AsSpan(checked((int)tableIndex * 8), 8), (ulong)tableOffset | HardDiskFormatConstants.Qcow2CopiedFlag);
         }
         await WriteAtAsync(output, checked(l1Cluster * clusterSize), l1, cancellationToken).ConfigureAwait(false);
 
@@ -121,11 +116,7 @@ public sealed class Qcow2Writer : IMediaImageWriter
                 data.AsSpan().Clear();
                 var address = checked(virtualCluster * clusterSize);
                 var logicalLength = (int)Math.Min(clusterSize, blocks.Capacity - address);
-                await BlockMediaDataReader.ReadExactlyAsync(
-                    blocks,
-                    address,
-                    data.AsMemory(0, logicalLength),
-                    cancellationToken).ConfigureAwait(false);
+                await BlockMediaDataReader.ReadExactlyAsync(blocks, address, data.AsMemory(0, logicalLength), cancellationToken).ConfigureAwait(false);
                 ulong entry;
                 if (data.AsSpan(0, logicalLength).IndexOfAnyExcept((byte)0) < 0)
                 {
@@ -150,23 +141,14 @@ public sealed class Qcow2Writer : IMediaImageWriter
         for (long blockIndex = 0; blockIndex < refcountBlockCount; blockIndex++)
         {
             var blockOffset = checked((refcountBlocksCluster + blockIndex) * clusterSize);
-            BinaryPrimitives.WriteUInt64BigEndian(
-                refcountTable.AsSpan(checked((int)blockIndex * 8), 8),
-                (ulong)blockOffset);
+            BinaryPrimitives.WriteUInt64BigEndian(refcountTable.AsSpan(checked((int)blockIndex * 8), 8), (ulong)blockOffset);
         }
         for (long clusterIndex = 0; clusterIndex < usedClusterCount; clusterIndex++)
             BinaryPrimitives.WriteUInt16BigEndian(refcountBlocks.AsSpan(checked((int)clusterIndex * 2), 2), 1);
         await WriteAtAsync(output, checked(refcountTableCluster * clusterSize), refcountTable, cancellationToken).ConfigureAwait(false);
         await WriteAtAsync(output, checked(refcountBlocksCluster * clusterSize), refcountBlocks, cancellationToken).ConfigureAwait(false);
 
-        var header = CreateHeader(
-            version,
-            clusterBits,
-            blocks.Capacity,
-            l1Size,
-            checked(l1Cluster * clusterSize),
-            checked(refcountTableCluster * clusterSize),
-            checked((uint)refcountTableClusters));
+        var header = CreateHeader(version, clusterBits, blocks.Capacity, l1Size, checked(l1Cluster * clusterSize), checked(refcountTableCluster * clusterSize), checked((uint)refcountTableClusters));
         await WriteAtAsync(output, 0, header, cancellationToken).ConfigureAwait(false);
     }
 
@@ -179,9 +161,7 @@ public sealed class Qcow2Writer : IMediaImageWriter
         long refcountTableOffset,
         uint refcountTableClusters)
     {
-        var headerSize = version == HardDiskFormatConstants.Qcow2Version3
-            ? HardDiskFormatConstants.Qcow2Version3HeaderSize
-            : HardDiskFormatConstants.Qcow2Version2HeaderSize;
+        var headerSize = version == HardDiskFormatConstants.Qcow2Version3 ? HardDiskFormatConstants.Qcow2Version3HeaderSize : HardDiskFormatConstants.Qcow2Version2HeaderSize;
         var header = new byte[headerSize];
         BinaryPrimitives.WriteUInt32BigEndian(header.AsSpan(0, 4), HardDiskFormatConstants.Qcow2Magic);
         BinaryPrimitives.WriteUInt32BigEndian(header.AsSpan(4, 4), version);

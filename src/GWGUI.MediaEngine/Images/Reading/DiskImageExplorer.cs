@@ -93,11 +93,7 @@ public sealed class DiskImageExplorer
             {
                 var scpImage = ProtectedTrackScpImageAdapter.Create(flux.Image, document.Metadata);
                 scpImageLoaded?.Invoke(scpImage);
-                var explored = await scpExploration.ExploreAutomaticallyAsync(
-                    path,
-                    scpImage,
-                    progress,
-                    cancellationToken).ConfigureAwait(false);
+                var explored = await scpExploration.ExploreAutomaticallyAsync(path, scpImage, progress, cancellationToken).ConfigureAwait(false);
                 return formatId is null ? explored : explored.SelectFormat(formatId) ?? documents.CreateUnknown(path);
             }
 
@@ -105,18 +101,9 @@ public sealed class DiskImageExplorer
             scpImageLoaded?.Invoke(presentationImage);
             try
             {
-                var decoded = await scpExploration.ReadAsync(
-                    flux.Image,
-                    formatId,
-                    progress,
-                    cancellationToken).ConfigureAwait(false);
+                var decoded = await scpExploration.ReadAsync(flux.Image, formatId, progress, cancellationToken).ConfigureAwait(false);
                 var decodedResult = formatId is null ? ReadAutomatically(decoded) : ReadExplicitly(decoded, formatId);
-                return documents.Create(
-                    path,
-                    decodedResult.Image,
-                    decodedResult.Detected,
-                    [decodedResult.Image],
-                    presentationImage);
+                return documents.Create(path, decodedResult.Image, decodedResult.Detected, [decodedResult.Image], presentationImage);
             }
             catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
             {
@@ -144,9 +131,7 @@ public sealed class DiskImageExplorer
     /// <summary>Reads through the common chain and retries without a downstream sector-format hint when necessary.</summary>
     private async Task<MediaImageDocument> ReadDocumentAsync(string path, string? formatId, CancellationToken cancellationToken)
     {
-        var containerFormatId = Path.GetExtension(path).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase)
-            ? null
-            : formatId;
+        var containerFormatId = Path.GetExtension(path).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) ? null : formatId;
         var source = new MediaSourceDescriptor(path, [], RequestedFormatId: containerFormatId);
         try
         {
@@ -163,10 +148,7 @@ public sealed class DiskImageExplorer
     {
         var candidates = new[] { image }.Concat(interpretations.AdditionalImageCandidates(image));
         var detected = fileSystems.ReadDistinctCandidates(candidates)
-            .Select(candidate => new ExploredFileSystem(
-                candidate.Match.ReaderId,
-                (SectorImage)candidate.Image,
-                FileSystemVolumeMapper.ConvertVolume(candidate.Match.Volume, ((SectorImage)candidate.Image).FormatId)))
+            .Select(candidate => new ExploredFileSystem(candidate.Match.ReaderId, (SectorImage)candidate.Image, FileSystemVolumeMapper.ConvertVolume(candidate.Match.Volume, ((SectorImage)candidate.Image).FormatId)))
             .ToArray();
         return (image, detected);
     }
@@ -177,8 +159,7 @@ public sealed class DiskImageExplorer
         var selectedImage = image.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase) ? image : image.WithFormatId(formatId);
         if (fileSystems.TryRead(selectedImage, formatId, out var match))
         {
-            return (selectedImage, [new(match.ReaderId, selectedImage,
-                FileSystemVolumeMapper.ConvertVolume(match.Volume, selectedImage.FormatId))]);
+            return (selectedImage, [new(match.ReaderId, selectedImage, FileSystemVolumeMapper.ConvertVolume(match.Volume, selectedImage.FormatId))]);
         }
         return (selectedImage, []);
     }

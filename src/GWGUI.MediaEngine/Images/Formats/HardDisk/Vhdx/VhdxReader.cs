@@ -57,13 +57,8 @@ public sealed class VhdxReader : IMediaImageReader
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
         if (source.Length != context.Length) throw new InvalidDataException("The VHDX length changed after recognition.");
         var ranges = await ReadBatRangesAsync(context, source, structures, cancellationToken).ConfigureAwait(false);
-        var representation = new BlockMediaImageRepresentation(
-            structures.VirtualDiskSize,
-            structures.LogicalSectorSize,
-            ranges);
-        var variant = (structures.FileParametersFlags & HardDiskFormatConstants.VhdxFileParametersLeaveBlocksAllocated) != 0
-            ? HardDiskImageVariant.Fixed
-            : HardDiskImageVariant.Dynamic;
+        var representation = new BlockMediaImageRepresentation(structures.VirtualDiskSize, structures.LogicalSectorSize, ranges);
+        var variant = (structures.FileParametersFlags & HardDiskFormatConstants.VhdxFileParametersLeaveBlocksAllocated) != 0 ? HardDiskImageVariant.Fixed : HardDiskImageVariant.Dynamic;
         return new MediaImageDocument(
             context.Source,
             HardDiskImageFormatIds.Vhdx,
@@ -105,14 +100,7 @@ public sealed class VhdxReader : IMediaImageReader
         var metadata = await ReadMetadataAsync(context, metadataRegion, cancellationToken).ConfigureAwait(false);
         if ((metadata.FileParametersFlags & HardDiskFormatConstants.VhdxFileParametersHasParent) != 0)
             throw new NotSupportedException("Differencing VHDX images require a parent resolver that is not registered.");
-        return new VhdxStructures(
-            batRegion,
-            metadata.BlockSize,
-            metadata.FileParametersFlags,
-            metadata.VirtualDiskSize,
-            metadata.LogicalSectorSize,
-            metadata.PhysicalSectorSize,
-            metadata.Page83Id);
+        return new VhdxStructures(batRegion, metadata.BlockSize, metadata.FileParametersFlags, metadata.VirtualDiskSize, metadata.LogicalSectorSize, metadata.PhysicalSectorSize, metadata.Page83Id);
     }
 
     private static async ValueTask<VhdxHeader?> TryReadHeaderAsync(
@@ -125,9 +113,7 @@ public sealed class VhdxReader : IMediaImageReader
         if (!header[..4].SequenceEqual(VhdxFormat.HeaderSignature.Span)) return null;
         if (!HasValidCrc(header, 4)) return null;
         if (BinaryPrimitives.ReadUInt16LittleEndian(header[66..68]) != 1) return null;
-        return new VhdxHeader(
-            BinaryPrimitives.ReadUInt64LittleEndian(header[8..16]),
-            new Guid(header[48..64]));
+        return new VhdxHeader(BinaryPrimitives.ReadUInt64LittleEndian(header[8..16]), new Guid(header[48..64]));
     }
 
     private static VhdxHeader SelectHeader(VhdxHeader? first, VhdxHeader? second)
@@ -238,13 +224,7 @@ public sealed class VhdxReader : IMediaImageReader
             throw new InvalidDataException("The VHDX sector size is unsupported.");
         if (virtualSize == 0 || virtualSize > long.MaxValue || virtualSize % logicalSectorSize != 0)
             throw new InvalidDataException("The VHDX virtual disk size is invalid.");
-        return new VhdxMetadata(
-            checked((int)blockSize.Value),
-            fileFlags.Value,
-            (long)virtualSize.Value,
-            checked((int)logicalSectorSize.Value),
-            checked((int)physicalSectorSize.Value),
-            page83Id.Value);
+        return new VhdxMetadata(checked((int)blockSize.Value), fileFlags.Value, (long)virtualSize.Value, checked((int)logicalSectorSize.Value), checked((int)physicalSectorSize.Value), page83Id.Value);
     }
 
     private static async Task<IReadOnlyList<MediaDataRange>> ReadBatRangesAsync(
@@ -315,8 +295,7 @@ public sealed class VhdxReader : IMediaImageReader
         if (ranges.Count > 0)
         {
             var previous = ranges[^1];
-            var sourceContinues = kind != MediaDataRangeKind.Stored
-                || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
+            var sourceContinues = kind != MediaDataRangeKind.Stored || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
             if (previous.Kind == kind && previous.Address + previous.Length == address && sourceContinues)
             {
                 ranges[^1] = new MediaDataRange(previous.Address, previous.Length + length, kind, previous.Source, previous.SourceOffset);

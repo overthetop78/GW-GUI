@@ -47,8 +47,7 @@ public sealed class AmstradCprReader : IMediaImageReader
 
     async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
-        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read,
-            64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
         var header = new byte[HeaderLength];
         await input.ReadExactlyAsync(header, cancellationToken).ConfigureAwait(false);
         if (!header.AsSpan(0, 4).SequenceEqual(RiffSignature) || !header.AsSpan(8, 4).SequenceEqual(FormSignature))
@@ -85,15 +84,7 @@ public sealed class AmstradCprReader : IMediaImageReader
 
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
         var capacity = checked((banks.Keys.Max() + 1L) * BankLength);
-        var ranges = banks.Values.OrderBy(bank => bank.Number)
-            .Where(bank => bank.Length > 0)
-            .Select(bank => new MediaDataRange(
-                bank.Number * (long)BankLength,
-                bank.Length,
-                MediaDataRangeKind.Stored,
-                source,
-                bank.SourceOffset))
-            .ToArray();
+        var ranges = banks.Values.OrderBy(bank => bank.Number).Where(bank => bank.Length > 0).Select(bank => new MediaDataRange(bank.Number * (long)BankLength, bank.Length, MediaDataRangeKind.Stored, source, bank.SourceOffset)).ToArray();
         var metadata = new Dictionary<string, string>(StringComparer.Ordinal)
         {
             ["systemId"] = "amstrad",
@@ -107,14 +98,7 @@ public sealed class AmstradCprReader : IMediaImageReader
             metadata[$"bank.{bank.Number}.length"] = bank.Length.ToString(System.Globalization.CultureInfo.InvariantCulture);
         }
         var volume = new MediaVolumeDescriptor(0, capacity, MediaVolumeOrigins.DirectVolume, name: "Amstrad cartridge");
-        return new MediaImageDocument(
-            context.Source,
-            DiskImageFormatIds.AmstradCpr,
-            MediaKind.Cartridge,
-            new BlockMediaImageRepresentation(capacity, 1, ranges),
-            [volume],
-            diagnostics,
-            metadata);
+        return new MediaImageDocument(context.Source, DiskImageFormatIds.AmstradCpr, MediaKind.Cartridge, new BlockMediaImageRepresentation(capacity, 1, ranges), [volume], diagnostics, metadata);
     }
 
     private static bool TryParseBankId(string id, out int bankNumber)

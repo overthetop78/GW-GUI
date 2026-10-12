@@ -24,8 +24,7 @@ public sealed record MediaWritePlan
         RepresentationKind = representationKind;
         DataUnits = new ReadOnlyCollection<MediaPhysicalDataUnit>(dataUnits.ToArray());
         WriteOrder = new ReadOnlyCollection<int>(writeOrder.ToArray());
-        Constraints = new ReadOnlyDictionary<string, string>(
-            new Dictionary<string, string>(constraints, StringComparer.Ordinal));
+        Constraints = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(constraints, StringComparer.Ordinal));
     }
 
     public MediaKind MediaKind { get; }

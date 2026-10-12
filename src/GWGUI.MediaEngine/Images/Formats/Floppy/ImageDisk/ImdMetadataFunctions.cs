@@ -72,21 +72,11 @@ internal static class ImdMetadataFunctions
                         data = new byte[size];
                     }
 
-                    sectors.Add(new ImdSector(
-                        sectorElement.GetProperty("Cylinder").GetByte(),
-                        sectorElement.GetProperty("Head").GetByte(),
-                        sectorElement.GetProperty("Number").GetByte(),
-                        size,
-                        recordType,
-                        data));
+                    sectors.Add(new ImdSector(sectorElement.GetProperty("Cylinder").GetByte(), sectorElement.GetProperty("Head").GetByte(), sectorElement.GetProperty("Number").GetByte(), size, recordType, data));
                     logicalBlock++;
                 }
 
-                tracks.Add(new ImdTrack(
-                    mode,
-                    trackElement.GetProperty("Cylinder").GetByte(),
-                    trackElement.GetProperty("Head").GetByte(),
-                    sectors));
+                tracks.Add(new ImdTrack(mode, trackElement.GetProperty("Cylinder").GetByte(), trackElement.GetProperty("Head").GetByte(), sectors));
             }
 
             if (logicalBlock != image.BlockCount)

@@ -79,8 +79,7 @@ public sealed class AmstradRomReader : IMediaImageReader
         for (var bank = 0; bank < bankCount; bank++)
         {
             var length = (int)Math.Min(BankLength, dataLength - bank * (long)BankLength);
-            ranges.Add(new MediaDataRange(bank * (long)BankLength, length, MediaDataRangeKind.Stored, source,
-                headerLength + bank * (long)BankLength));
+            ranges.Add(new MediaDataRange(bank * (long)BankLength, length, MediaDataRangeKind.Stored, source, headerLength + bank * (long)BankLength));
             metadata[$"bank.{bank}.length"] = length.ToString(System.Globalization.CultureInfo.InvariantCulture);
         }
         var capacity = bankCount * (long)BankLength;
@@ -88,14 +87,7 @@ public sealed class AmstradRomReader : IMediaImageReader
             ? Array.Empty<string>()
             : new[] { "The last CPC ROM bank is incomplete and is exposed without invented padding." };
         var volume = new MediaVolumeDescriptor(0, capacity, MediaVolumeOrigins.DirectVolume, name: "Amstrad ROM");
-        return Task.FromResult(new MediaImageDocument(
-            context.Source,
-            DiskImageFormatIds.AmstradRom,
-            MediaKind.Cartridge,
-            new BlockMediaImageRepresentation(capacity, 1, ranges),
-            [volume],
-            diagnostics,
-            metadata));
+        return Task.FromResult(new MediaImageDocument(context.Source, DiskImageFormatIds.AmstradRom, MediaKind.Cartridge, new BlockMediaImageRepresentation(capacity, 1, ranges), [volume], diagnostics, metadata));
     }
 
     private static bool HasValidAmsdosHeader(ReadOnlySpan<byte> header)

@@ -124,23 +124,14 @@ public sealed class FluxContainerConversionService(
         if (source.Header.Revolutions != 1 || source.Tracks.Any(track => track.Revolutions.Count != 1))
             throw new NotSupportedException("HFE v1 ne peut pas conserver plusieurs révolutions SCP séparées.");
         var scale = checked((uint)(source.Header.ResolutionNanoseconds / HfeFormat.TickNanoseconds));
-        var values = source.Tracks.SelectMany(track =>
-            track.Revolutions[0].FluxIntervals
-                .Append(track.Revolutions[0].IndexTimeTicks)
-                .Select(value => checked(value * scale)));
+        var values = source.Tracks.SelectMany(track => track.Revolutions[0].FluxIntervals.Append(track.Revolutions[0].IndexTimeTicks).Select(value => checked(value * scale)));
         var bitCellTicks = FluxBitCellConverter.GreatestCommonDivisor(values);
         if (bitCellTicks == 0)
             throw new InvalidDataException("Le SCP ne contient aucun timing représentable.");
         var bitRate = CalculateBitRate(bitCellTicks);
         var tracks = source.Tracks.Select(track => ToHfeTrack(track, scale, bitCellTicks)).ToArray();
         EnsureHfeTrackLengthsAreExact(tracks, source.Header);
-        var image = new HfeImage(
-            HfeFormat.Revision,
-            tracks.Max(track => track.Cylinder) + 1,
-            tracks.Max(track => track.Head) + 1,
-            ScpHfeEncodingResolver.Resolve(source.Header.DiskType),
-            bitRate,
-            tracks);
+        var image = new HfeImage(HfeFormat.Revision, tracks.Max(track => track.Cylinder) + 1, tracks.Max(track => track.Head) + 1, ScpHfeEncodingResolver.Resolve(source.Header.DiskType), bitRate, tracks);
         await hfeWriter.WriteAsync(image, outputPath, cancellationToken).ConfigureAwait(false);
         var target = await hfeReader.ReadAsync(outputPath, cancellationToken).ConfigureAwait(false);
         HfeFluxParityValidator.Validate(image, target);
@@ -151,11 +142,7 @@ public sealed class FluxContainerConversionService(
         var indexTime = checked((uint)(track.Bits.Count * (long)track.BitCellTicks));
         var intervals = FluxBitCellConverter.ToIntervals(track.Bits, track.BitCellTicks);
         var revolution = new ScpRevolution(indexTime, checked((uint)intervals.Count), intervals);
-        return new ScpTrack(
-            ScpFormatConstants.ToTrackNumber(track.Cylinder, track.Head),
-            track.Cylinder,
-            track.Head,
-            [revolution]);
+        return new ScpTrack(ScpFormatConstants.ToTrackNumber(track.Cylinder, track.Head), track.Cylinder, track.Head, [revolution]);
     }
 
     private static HfeTrack ToHfeTrack(ScpTrack track, uint scale, uint bitCellTicks)
@@ -185,14 +172,11 @@ public sealed class FluxContainerConversionService(
 
     private static ushort CalculateBitRate(uint bitCellTicks)
     {
-        var value = HfeFormat.NanosecondsPerSecond /
-            (HfeFormat.BitsPerDataBit * HfeFormat.TickNanoseconds * 1000L * bitCellTicks);
+        var value = HfeFormat.NanosecondsPerSecond / (HfeFormat.BitsPerDataBit * HfeFormat.TickNanoseconds * 1000L * bitCellTicks);
         if (value is < 1 or > ushort.MaxValue)
             throw new NotSupportedException("Le timing SCP ne possède pas de bitrate HFE v1 valide.");
         return checked((ushort)value);
     }
 
-    private static string Normalize(string extension) => extension.StartsWith('.')
-        ? extension.ToLowerInvariant()
-        : "." + extension.ToLowerInvariant();
+    private static string Normalize(string extension) => extension.StartsWith('.') ? extension.ToLowerInvariant() : "." + extension.ToLowerInvariant();
 }

@@ -21,8 +21,7 @@ public sealed class MediaConversionRequest
         OutputPath = outputPath;
         TargetFormatId = targetFormatId;
         Progress = progress;
-        Options = new ReadOnlyDictionary<string, string>(
-            new Dictionary<string, string>(options ?? new Dictionary<string, string>(), StringComparer.Ordinal));
+        Options = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(options ?? new Dictionary<string, string>(), StringComparer.Ordinal));
     }
 
     public MediaImageDocument Source { get; }

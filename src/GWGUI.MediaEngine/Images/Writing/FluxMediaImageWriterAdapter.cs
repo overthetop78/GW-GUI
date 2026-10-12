@@ -48,7 +48,6 @@ internal sealed class FluxMediaImageWriterAdapter : MediaImageWriterAdapter<Prot
         Func<ProtectedTrackImage, IReadOnlyDictionary<string, string>, string, string, CancellationToken, Task<IReadOnlyList<string>>> write)
     {
         ArgumentNullException.ThrowIfNull(write);
-        return (image, document, path, formatId, token) =>
-            write(image, document.Metadata, path, formatId, token);
+        return (image, document, path, formatId, token) => write(image, document.Metadata, path, formatId, token);
     }
 }

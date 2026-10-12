@@ -72,8 +72,7 @@ public sealed class VocWriter : IMediaImageWriter
             pcm[index] = (byte)Math.Clamp(value + 128, 0, 255);
         }
 
-        await files.WriteAsync(outputPath, (output, token) => WriteVocAsync(output, pcm, timeConstant, token), cancellationToken)
-            .ConfigureAwait(false);
+        await files.WriteAsync(outputPath, (output, token) => WriteVocAsync(output, pcm, timeConstant, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 
@@ -99,9 +98,7 @@ public sealed class VocWriter : IMediaImageWriter
     {
         ranges = [];
         if (document.Representation is not SequentialMediaImageRepresentation { Segments: { Count: > 0 } segments }) return false;
-        var selected = segments.Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber is null or 0)
-            .Select(segment => segment.DataRange)
-            .ToArray();
+        var selected = segments.Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber is null or 0).Select(segment => segment.DataRange).ToArray();
         if (selected.Length == 0 || selected.Any(range => range is not { Kind: MediaDataRangeKind.Stored, Source: not null })) return false;
         ranges = selected.Select(range => range!).ToArray();
         return true;

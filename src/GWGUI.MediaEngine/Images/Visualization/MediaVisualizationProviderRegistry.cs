@@ -18,9 +18,7 @@ public sealed class MediaVisualizationProviderRegistry
     public IMediaVisualizationProvider? Resolve(MediaImageDocument document)
     {
         ArgumentNullException.ThrowIfNull(document);
-        return providers.FirstOrDefault(provider =>
-            provider.RepresentationKinds.Contains(document.Representation.RepresentationKind) &&
-            provider.CanProvide(document));
+        return providers.FirstOrDefault(provider => provider.RepresentationKinds.Contains(document.Representation.RepresentationKind) && provider.CanProvide(document));
     }
 
     public MediaVisualizationDescriptor CreateDescriptor(MediaImageDocument document)

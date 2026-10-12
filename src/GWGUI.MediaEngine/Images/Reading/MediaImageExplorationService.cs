@@ -19,10 +19,7 @@ public sealed class MediaImageExplorationService(
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
 
-        reportProgress?.Invoke(new(
-            MediaExplorationProgressStage.ReadingMedia,
-            Path.GetFileName(path),
-            58));
+        reportProgress?.Invoke(new(MediaExplorationProgressStage.ReadingMedia, Path.GetFileName(path), 58));
 
         var source = new MediaSourceDescriptor(path, [], RequestedFormatId: requestedFormatId);
         MediaImageDocument document;
@@ -38,18 +35,10 @@ public sealed class MediaImageExplorationService(
         }
 
         cancellationToken.ThrowIfCancellationRequested();
-        reportProgress?.Invoke(new(
-            MediaExplorationProgressStage.ReadingFileSystem,
-            document.FormatId,
-            78,
-            document.MediaKind));
+        reportProgress?.Invoke(new(MediaExplorationProgressStage.ReadingFileSystem, document.FormatId, 78, document.MediaKind));
 
         var explored = await explorer.ExploreAsync(document, cancellationToken).ConfigureAwait(false);
-        reportProgress?.Invoke(new(
-            MediaExplorationProgressStage.RecognizingFiles,
-            explored.FirstFileName ?? document.FormatId,
-            94,
-            document.MediaKind));
+        reportProgress?.Invoke(new(MediaExplorationProgressStage.RecognizingFiles, explored.FirstFileName ?? document.FormatId, 94, document.MediaKind));
         return explored;
     }
 

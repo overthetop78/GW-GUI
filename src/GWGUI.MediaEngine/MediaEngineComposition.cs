@@ -31,10 +31,7 @@ public sealed class MediaEngineComposition
         Visualization = visualization;
         FloppyFluxAcquisitionService = new FloppyFluxAcquisitionService();
         FloppyMediaWritePlanningService = new FloppyMediaWritePlanningService(DiskImageExplorer.CreateDefault());
-        ConversionService = new MediaConversionService(
-            conversion.Registry,
-            writing.Registry,
-            writing.WritingService);
+        ConversionService = new MediaConversionService(conversion.Registry, writing.Registry, writing.WritingService);
         OpticalConversionService = conversion.CreateOpticalImageConverter(writing);
         SequentialConversionService = conversion.CreateSequentialMediaConverter(writing);
     }
@@ -65,8 +62,7 @@ public sealed class MediaEngineComposition
     {
         var recognition = MediaRecognitionComposition.CreateDefault();
         var sequentialMedia = SequentialMediaComposition.CreateDefault();
-        var mediaFileSystems = FileSystemsMediaExplorer.CreateDefault(
-            [new SequentialContentDecoderAdapter(sequentialMedia.Decoders)]);
+        var mediaFileSystems = FileSystemsMediaExplorer.CreateDefault([new SequentialContentDecoderAdapter(sequentialMedia.Decoders)]);
         var explorer = new MediaExplorer(mediaFileSystems);
         var decoding = new ScpSectorDecodingComposition(recognition.ScpReader, new FileSystemRegistry());
         var conversion = new MediaConversionComposition(recognition, decoding, sequentialMedia);

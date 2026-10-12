@@ -33,8 +33,7 @@ internal sealed class AppleIIScpSectorReconstructor(AppleScpSectorDecoder decode
         if (prodosOrder) return CreateProDosImage(candidates);
         var sectorsPerTrack = candidates.Keys.Any(address => address.Number >= AppleIIGcrFormat.FiveAndThreeSectorsPerTrack) ? AppleIIGcrFormat.SixAndTwoSectorsPerTrack : AppleIIGcrFormat.FiveAndThreeSectorsPerTrack;
         var blocks = candidates.Where(pair => pair.Key.Cylinder < AppleIIGeometry.MaximumReconstructedTrackCount && pair.Key.Number >= 0 && pair.Key.Number < sectorsPerTrack)
-            .Select(pair => AppleScpSectorDecoder.Select(
-                pair.Key.Cylinder * sectorsPerTrack + (sectorsPerTrack == AppleIIGeometry.SectorsPerTrack ? AppleIIGeometry.PhysicalToDos[pair.Key.Number] : pair.Key.Number), pair.Key, pair.Value)).ToArray();
+            .Select(pair => AppleScpSectorDecoder.Select(pair.Key.Cylinder * sectorsPerTrack + (sectorsPerTrack == AppleIIGeometry.SectorsPerTrack ? AppleIIGeometry.PhysicalToDos[pair.Key.Number] : pair.Key.Number), pair.Key, pair.Value)).ToArray();
         if (blocks.Length == 0) throw ScpReconstructionExceptions.NoUsableSectors(AppleIIGcrFormat.StructureDescriptionName);
         var formatId = sectorsPerTrack == AppleIIGeometry.Dos32SectorsPerTrack ? DiskImageFormatIds.AppleIIDos32 : DiskImageFormatIds.AppleIIDos33;
         return new(formatId, AppleIIGeometry.SectorSize, Math.Max(AppleIIGeometry.TrackCount, blocks.Max(block => block.Address.Cylinder) + 1), DiskGeometryConstants.SingleSidedHeadCount, sectorsPerTrack, blocks);

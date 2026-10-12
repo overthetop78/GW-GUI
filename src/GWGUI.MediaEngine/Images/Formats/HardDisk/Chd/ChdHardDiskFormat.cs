@@ -6,8 +6,7 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Chd;
 /// <summary>Declares the autonomous, uncompressed CHD V5 hard disk profile supported by MediaEngine.</summary>
 internal static class ChdHardDiskFormat
 {
-    public static readonly ReadOnlyMemory<byte> Signature =
-        System.Text.Encoding.ASCII.GetBytes(ChdConstants.Signature);
+    public static readonly ReadOnlyMemory<byte> Signature = System.Text.Encoding.ASCII.GetBytes(ChdConstants.Signature);
 
     public static readonly IReadOnlySet<string> Extensions =
         new[] { DiskImageFileExtensions.Chd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);

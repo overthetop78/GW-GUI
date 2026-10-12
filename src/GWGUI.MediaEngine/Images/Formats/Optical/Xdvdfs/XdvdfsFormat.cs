@@ -28,9 +28,7 @@ internal static class XdvdfsFormat
     public static readonly IReadOnlySet<string> Extensions =
         new[] { DiskImageFileExtensions.Iso }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
-    public static bool IsLengthCompatible(long length) =>
-        length >= checked((long)(VolumeDescriptorSector + 1) * SectorSize)
-        && length % SectorSize == 0;
+    public static bool IsLengthCompatible(long length) => length >= checked((long)(VolumeDescriptorSector + 1) * SectorSize) && length % SectorSize == 0;
 
     public static int AlignFour(int value) => checked((value + 3) & ~3);
 }

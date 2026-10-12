@@ -60,11 +60,7 @@ public sealed class SequentialMediaConversionService
             foreach (var extension in writer.ProducedFileExtensions)
                 destinations.Add(new MediaConversionDestination(formatId, extension, writer.Id, writer.ProducesMultipleFiles));
         }
-        return destinations
-            .Distinct()
-            .OrderBy(destination => destination.FormatId, StringComparer.OrdinalIgnoreCase)
-            .ThenBy(destination => destination.Extension, StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        return destinations.Distinct().OrderBy(destination => destination.FormatId, StringComparer.OrdinalIgnoreCase).ThenBy(destination => destination.Extension, StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
     public async Task<SequentialMediaConversionPlan> PlanAsync(
@@ -79,8 +75,7 @@ public sealed class SequentialMediaConversionService
         if (source.MediaKind != MediaKind.Tape || source.Representation is not SequentialMediaImageRepresentation)
             throw new NotSupportedException("The source is not a sequential tape image.");
 
-        var resolvedMachineId = ResolveMachineId(source, machineId)
-            ?? throw new InvalidOperationException("The sequential source requires an explicit machine selection.");
+        var resolvedMachineId = ResolveMachineId(source, machineId) ?? throw new InvalidOperationException("The sequential source requires an explicit machine selection.");
         var decoded = await decoders.DecodeAsync(source, resolvedMachineId, cancellationToken).ConfigureAwait(false);
         var selectedParameters = parameters ?? new Dictionary<string, string>(StringComparer.Ordinal);
         var request = SelectEncodableRequest(decoded, targetFormatId, resolvedMachineId, selectedParameters)
@@ -90,25 +85,12 @@ public sealed class SequentialMediaConversionService
         var losses = new List<string>();
         if (decoded.UndecodedSegments.Count > 0 && request.RetainedSegments.Count == 0)
             losses.Add($"{decoded.UndecodedSegments.Count} source segment(s) cannot be represented by the selected target format.");
-        if (encoded.Segments?.Any(segment =>
-                segment.Metadata.TryGetValue("reconstructedSignal", out var reconstructed)
-                && bool.TryParse(reconstructed, out var isReconstructed)
-                && isReconstructed) == true)
+        if (encoded.Segments?.Any(segment => segment.Metadata.TryGetValue("reconstructedSignal", out var reconstructed) && bool.TryParse(reconstructed, out var isReconstructed) && isReconstructed) == true)
             losses.Add("The target signal timing is a standard reconstruction rather than the original recording timing.");
 
         var metadata = BuildTargetMetadata(selectedParameters, encoded);
-        var target = new MediaImageDocument(
-            source.Source,
-            targetFormatId,
-            MediaKind.Tape,
-            encoded,
-            [],
-            decoded.Diagnostics,
-            metadata);
-        return new SequentialMediaConversionPlan(
-            target,
-            decoded.Diagnostics.Distinct(StringComparer.Ordinal).ToArray(),
-            losses.Distinct(StringComparer.Ordinal).ToArray());
+        var target = new MediaImageDocument(source.Source, targetFormatId, MediaKind.Tape, encoded, [], decoded.Diagnostics, metadata);
+        return new SequentialMediaConversionPlan(target, decoded.Diagnostics.Distinct(StringComparer.Ordinal).ToArray(), losses.Distinct(StringComparer.Ordinal).ToArray());
     }
 
     public async Task<MediaConversionResult> ConvertAsync(
@@ -119,15 +101,7 @@ public sealed class SequentialMediaConversionService
         IReadOnlyDictionary<string, string>? parameters = null,
         bool acceptLosses = false,
         CancellationToken cancellationToken = default)
-        => await ConvertAsync(
-            sourcePath,
-            outputPath,
-            targetFormatId,
-            null,
-            machineId,
-            parameters,
-            acceptLosses,
-            cancellationToken).ConfigureAwait(false);
+        => await ConvertAsync(sourcePath, outputPath, targetFormatId, null, machineId, parameters, acceptLosses, cancellationToken).ConfigureAwait(false);
 
     public async Task<MediaConversionResult> ConvertAsync(
         string sourcePath,
@@ -149,17 +123,8 @@ public sealed class SequentialMediaConversionService
         if (writers.Resolve(plan.TargetDocument, targetFormatId, extension) is null)
             throw new NotSupportedException(
                 $"No writer accepts sequential target '{targetFormatId}' with extension '{extension}'.");
-        var produced = await writing.WriteAsync(
-            plan.TargetDocument,
-            outputPath,
-            targetFormatId,
-            progress,
-            cancellationToken).ConfigureAwait(false);
-        progress?.Invoke(new(
-            MediaExplorationProgressStage.ReadingMedia,
-            targetFormatId,
-            100,
-            plan.TargetDocument.MediaKind));
+        var produced = await writing.WriteAsync(plan.TargetDocument, outputPath, targetFormatId, progress, cancellationToken).ConfigureAwait(false);
+        progress?.Invoke(new(MediaExplorationProgressStage.ReadingMedia, targetFormatId, 100, plan.TargetDocument.MediaKind));
         return new MediaConversionResult(produced, plan.Diagnostics, plan.Losses);
     }
 
@@ -169,12 +134,7 @@ public sealed class SequentialMediaConversionService
         string machineId,
         IReadOnlyDictionary<string, string> parameters)
     {
-        var preserving = new SequentialEncodeRequest(
-            targetFormatId,
-            machineId,
-            decoded.Blocks,
-            decoded.UndecodedSegments,
-            parameters);
+        var preserving = new SequentialEncodeRequest(targetFormatId, machineId, decoded.Blocks, decoded.UndecodedSegments, parameters);
         if (encoders.FindCompatible(preserving).Count == 1) return preserving;
         var lossy = new SequentialEncodeRequest(targetFormatId, machineId, decoded.Blocks, [], parameters);
         return encoders.FindCompatible(lossy).Count == 1 ? lossy : null;
@@ -183,10 +143,7 @@ public sealed class SequentialMediaConversionService
     private string? ResolveMachineId(MediaImageDocument source, string? requestedMachineId)
     {
         if (!string.IsNullOrWhiteSpace(requestedMachineId)) return requestedMachineId;
-        var machineIds = decoders.FindCompatible(source)
-            .SelectMany(decoder => decoder.MachineIds)
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        var machineIds = decoders.FindCompatible(source).SelectMany(decoder => decoder.MachineIds).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
         return machineIds.Length == 1 ? machineIds[0] : null;
     }
 

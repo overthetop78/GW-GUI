@@ -41,17 +41,14 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
             if (address.Cylinder >= MacintoshGcrGeometry.CylinderCount || address.Head >= heads) continue;
             var sectorsPerTrack = MacintoshGcrGeometry.Sectors(address.Cylinder);
             if (address.Number < 0 || address.Number >= sectorsPerTrack) continue;
-            var priorCylinderBlocks = Enumerable.Range(0, address.Cylinder)
-                .Sum(cylinder => MacintoshGcrGeometry.Sectors(cylinder) * heads);
+            var priorCylinderBlocks = Enumerable.Range(0, address.Cylinder).Sum(cylinder => MacintoshGcrGeometry.Sectors(cylinder) * heads);
             var logical = priorCylinderBlocks + address.Head * sectorsPerTrack + address.Number;
             blocks.Add(AppleScpSectorDecoder.Select(logical, address, pair.Value));
         }
         if (blocks.Count == 0) throw ScpReconstructionExceptions.NoUsableSectors(AppleIwmGcrFormat.StructureDescriptionName);
         var count = MacintoshGcrGeometry.SingleSidedBlockCount * heads;
         var provisional = new SectorImage(DiskImageFormatIds.AppleMacGcr, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.CylinderCount, heads, MacintoshGcrGeometry.MaximumSectorsPerTrack, blocks, capacity: count * (long)MacintoshGcrGeometry.BlockSize, logicalBlockCount: count);
-        var formatId = requestedFormatId?.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) == true
-            ? requestedFormatId
-            : DiskImageFormatIds.AppleMacGcr;
+        var formatId = requestedFormatId?.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) == true ? requestedFormatId : DiskImageFormatIds.AppleMacGcr;
         if (requestedFormatId is null && blocks.Any(block => block.Tag is { Count: >= 6 } tag && tag[4] == 0 && tag[5] == 1))
             formatId = DiskImageFormatIds.AppleLisaOffice;
         if (requestedFormatId is null && TryFlattenPayload(provisional, out var payload) &&
@@ -63,11 +60,7 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
                 formatId = DiskImageFormatIds.AppleLisaMacWorks;
             var signature = (mdb.Data[0] << BitPrimitives.BitsPerByte) | mdb.Data[1];
             if (!formatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase))
-                formatId = signature == 0xd2d7
-                    ? DiskImageFormatIds.AppleMacMfs
-                    : signature == 0x4244
-                        ? DiskImageFormatIds.AppleMacHfs
-                        : DiskImageFormatIds.AppleIIProDos;
+                formatId = signature == 0xd2d7 ? DiskImageFormatIds.AppleMacMfs : signature == 0x4244 ? DiskImageFormatIds.AppleMacHfs : DiskImageFormatIds.AppleIIProDos;
         }
         return new(formatId, MacintoshGcrGeometry.BlockSize, MacintoshGcrGeometry.CylinderCount, heads, MacintoshGcrGeometry.MaximumSectorsPerTrack, blocks, capacity: count * (long)MacintoshGcrGeometry.BlockSize, logicalBlockCount: count);
     }

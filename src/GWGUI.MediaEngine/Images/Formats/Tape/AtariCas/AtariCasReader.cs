@@ -19,8 +19,7 @@ public sealed class AtariCasReader : IMediaImageReader
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Tape }.ToFrozenSet();
     private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
         new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
-    private static readonly IReadOnlyList<ReadOnlyMemory<byte>> Signatures =
-        [System.Text.Encoding.ASCII.GetBytes(AtariCasConstants.FileMarkerChunk)];
+    private static readonly IReadOnlyList<ReadOnlyMemory<byte>> Signatures = [System.Text.Encoding.ASCII.GetBytes(AtariCasConstants.FileMarkerChunk)];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => AtariCasFormat.Extensions;
@@ -36,8 +35,7 @@ public sealed class AtariCasReader : IMediaImageReader
         if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId)) return false;
         if (context.Length < AtariCasConstants.ChunkHeaderSize) return false;
         var header = new byte[AtariCasConstants.IdentifierLength];
-        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read,
-            AtariCasConstants.ChunkHeaderSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read, AtariCasConstants.ChunkHeaderSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
         await input.ReadExactlyAsync(header, cancellationToken).ConfigureAwait(false);
         return header.AsSpan().SequenceEqual(System.Text.Encoding.ASCII.GetBytes(AtariCasConstants.FileMarkerChunk));
     }
@@ -45,8 +43,7 @@ public sealed class AtariCasReader : IMediaImageReader
     async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
-        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read,
-            64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
         var segments = new List<SequentialMediaSegment>();
         var diagnostics = new List<string>();
         var currentBaud = AtariCasConstants.DefaultBaudRate;
@@ -81,9 +78,7 @@ public sealed class AtariCasReader : IMediaImageReader
                 [AtariCasConstants.ChunkIdMetadataKey] = id,
                 [AtariCasConstants.AuxiliaryMetadataKey] = auxiliary.ToString(System.Globalization.CultureInfo.InvariantCulture)
             };
-            MediaDataRange? range = length == 0
-                ? null
-                : new MediaDataRange(dataOffset, length, MediaDataRangeKind.Stored, source, dataOffset);
+            MediaDataRange? range = length == 0 ? null : new MediaDataRange(dataOffset, length, MediaDataRangeKind.Stored, source, dataOffset);
             if (id == AtariCasConstants.FileMarkerChunk)
             {
                 var nameBytes = new byte[length];
@@ -91,8 +86,7 @@ public sealed class AtariCasReader : IMediaImageReader
                 var internalName = System.Text.Encoding.ASCII.GetString(nameBytes).TrimEnd('\0', ' ');
                 metadata["name"] = internalName;
                 if (!string.IsNullOrWhiteSpace(internalName)) internalNames.Add(internalName);
-                segments.Add(new SequentialMediaSegment(position++, SequentialSegmentKind.TapeMark, length: length == 0 ? null : length,
-                    dataRange: range, metadata: metadata));
+                segments.Add(new SequentialMediaSegment(position++, SequentialSegmentKind.TapeMark, length: length == 0 ? null : length, dataRange: range, metadata: metadata));
             }
             else if (id == AtariCasConstants.BaudRateChunk)
             {
@@ -117,8 +111,7 @@ public sealed class AtariCasReader : IMediaImageReader
                 }
                 var duration = currentBaud > 0 ? TimeSpan.FromSeconds(length * 10d / currentBaud) : (TimeSpan?)null;
                 metadata[AtariCasConstants.BaudRateMetadataKey] = currentBaud.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                segments.Add(new SequentialMediaSegment(position++, SequentialSegmentKind.DataBlock, length, elapsed, duration,
-                    direction: SequentialTravelDirection.Forward, dataRange: range, metadata: metadata));
+                segments.Add(new SequentialMediaSegment(position++, SequentialSegmentKind.DataBlock, length, elapsed, duration, direction: SequentialTravelDirection.Forward, dataRange: range, metadata: metadata));
                 if (duration is { } dataDuration) elapsed += dataDuration;
                 input.Position = dataOffset + length;
             }
@@ -146,8 +139,7 @@ public sealed class AtariCasReader : IMediaImageReader
             }
             else
             {
-                segments.Add(new SequentialMediaSegment(position++, SequentialSegmentKind.Unknown, length: length == 0 ? null : length,
-                    dataRange: range, metadata: metadata));
+                segments.Add(new SequentialMediaSegment(position++, SequentialSegmentKind.Unknown, length: length == 0 ? null : length, dataRange: range, metadata: metadata));
                 input.Position = dataOffset + length;
                 diagnostics.Add($"Atari CAS chunk '{id}' was retained without interpretation.");
             }
@@ -165,13 +157,6 @@ public sealed class AtariCasReader : IMediaImageReader
         };
         if (internalNames.Count > 0)
             documentMetadata[AtariCasConstants.InternalNameMetadataKey] = string.Join("; ", internalNames.Distinct(StringComparer.Ordinal));
-        return new MediaImageDocument(
-            context.Source,
-            TapeImageFormatIds.AtariCas,
-            MediaKind.Tape,
-            representation,
-            [],
-            diagnostics,
-            documentMetadata);
+        return new MediaImageDocument(context.Source, TapeImageFormatIds.AtariCas, MediaKind.Tape, representation, [], diagnostics, documentMetadata);
     }
 }

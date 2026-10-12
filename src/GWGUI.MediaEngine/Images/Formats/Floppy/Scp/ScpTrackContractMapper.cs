@@ -15,14 +15,7 @@ public static class ScpTrackContractMapper
         {
             var revolution = track.Revolutions[number];
             var durationNanoseconds = checked((long)revolution.IndexTimeTicks * resolutionNanoseconds);
-            revolutions.Add(new RevolutionData(
-                number,
-                startNanoseconds,
-                durationNanoseconds,
-                resolutionNanoseconds,
-                revolution.DeclaredFluxCount,
-                revolution.Origin.ToString(),
-                revolution.FluxIntervals.ToArray()));
+            revolutions.Add(new RevolutionData(number, startNanoseconds, durationNanoseconds, resolutionNanoseconds, revolution.DeclaredFluxCount, revolution.Origin.ToString(), revolution.FluxIntervals.ToArray()));
             startNanoseconds = checked(startNanoseconds + durationNanoseconds);
         }
 

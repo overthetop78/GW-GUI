@@ -31,9 +31,7 @@ public sealed class RuntimeImageFormatCatalog : IImageFormatCatalog
 
     public IReadOnlyList<DiskFormat> GetCompatibleOutputs(string sourceExtension)
     {
-        var normalized = sourceExtension.StartsWith('.')
-            ? sourceExtension.ToLowerInvariant()
-            : "." + sourceExtension.ToLowerInvariant();
+        var normalized = sourceExtension.StartsWith('.') ? sourceExtension.ToLowerInvariant() : "." + sourceExtension.ToLowerInvariant();
         return Formats.Where(format => format.CompatibleSourceExtensions?.Contains(normalized) == true).ToArray();
     }
 }

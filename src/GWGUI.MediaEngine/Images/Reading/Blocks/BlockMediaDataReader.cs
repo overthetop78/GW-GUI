@@ -39,10 +39,7 @@ internal static class BlockMediaDataReader
             switch (range.Kind)
             {
                 case MediaDataRangeKind.Stored:
-                    await range.Source!.ReadExactlyAsync(
-                        checked(range.SourceOffset + offsetInRange),
-                        slice,
-                        cancellationToken).ConfigureAwait(false);
+                    await range.Source!.ReadExactlyAsync(checked(range.SourceOffset + offsetInRange), slice, cancellationToken).ConfigureAwait(false);
                     break;
                 case MediaDataRangeKind.Zero:
                 case MediaDataRangeKind.Unallocated:

@@ -38,8 +38,7 @@ public static class FskSerialFunctions
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(stopBits);
         AppendPcmBit(samples, ref level, sampleRate, baudRate, zeroFrequency, oneFrequency, false);
         for (var bit = 0; bit < dataBits; bit++)
-            AppendPcmBit(samples, ref level, sampleRate, baudRate, zeroFrequency, oneFrequency,
-                (value & 1 << bit) != 0);
+            AppendPcmBit(samples, ref level, sampleRate, baudRate, zeroFrequency, oneFrequency, (value & 1 << bit) != 0);
         for (var stop = 0; stop < stopBits; stop++)
             AppendPcmBit(samples, ref level, sampleRate, baudRate, zeroFrequency, oneFrequency, true);
     }
@@ -70,8 +69,7 @@ public static class FskSerialFunctions
         {
             var bits = new List<bool>();
             for (var start = phase; start + samplesPerBit <= samples.Count; start = (int)Math.Round(start + samplesPerBit))
-                bits.Add(ClassifyTone(samples, start, Math.Min(samples.Count, (int)Math.Round(start + samplesPerBit)), sampleRate,
-                    zeroFrequency, oneFrequency));
+                bits.Add(ClassifyTone(samples, start, Math.Min(samples.Count, (int)Math.Round(start + samplesPerBit)), sampleRate, zeroFrequency, oneFrequency));
             var candidate = DecodeFrames(bits, dataBits, stopBits);
             if (candidate.ValidFrames > best.ValidFrames
                 || candidate.ValidFrames == best.ValidFrames && candidate.Bytes.Count > best.Bytes.Count)

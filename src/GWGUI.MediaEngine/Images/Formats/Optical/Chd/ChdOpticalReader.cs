@@ -52,14 +52,8 @@ public sealed class ChdOpticalReader : IMediaImageReader
         CancellationToken cancellationToken)
     {
         var layout = await ReadLayoutAsync(context, cancellationToken).ConfigureAwait(false);
-        var logicalData = new ChdUncompressedRandomAccessData(
-            new FileRandomAccessData(context.Source.PrimaryPath),
-            layout.LogicalBytes,
-            layout.HunkBytes,
-            layout.StoredHunks);
-        var tracks = layout.IsDvd
-            ? CreateDvdTracks(layout, logicalData)
-            : CreateCdTracks(layout, logicalData);
+        var logicalData = new ChdUncompressedRandomAccessData(new FileRandomAccessData(context.Source.PrimaryPath), layout.LogicalBytes, layout.HunkBytes, layout.StoredHunks);
+        var tracks = layout.IsDvd ? CreateDvdTracks(layout, logicalData) : CreateCdTracks(layout, logicalData);
         var logicalLength = tracks.Sum(track => checked(track.SectorCount * track.UserDataLength));
         return new MediaImageDocument(
             context.Source,
@@ -88,20 +82,7 @@ public sealed class ChdOpticalReader : IMediaImageReader
         if (layout.UnitBytes != OpticalSectorConstants.Data2048Size
             || layout.LogicalBytes % OpticalSectorConstants.Data2048Size != 0)
             throw new InvalidDataException("The CHD DVD data is not arranged as complete 2048-byte units.");
-        return
-        [
-            new OpticalTrackDescriptor(
-                1,
-                1,
-                OpticalTrackMode.DvdData2048,
-                0,
-                layout.LogicalBytes / OpticalSectorConstants.Data2048Size,
-                OpticalSectorConstants.Data2048Size,
-                0,
-                OpticalSectorConstants.Data2048Size,
-                source,
-                0)
-        ];
+        return [new OpticalTrackDescriptor(1, 1, OpticalTrackMode.DvdData2048, 0, layout.LogicalBytes / OpticalSectorConstants.Data2048Size, OpticalSectorConstants.Data2048Size, 0, OpticalSectorConstants.Data2048Size, source, 0)];
     }
 
     private static IReadOnlyList<OpticalTrackDescriptor> CreateCdTracks(
@@ -143,14 +124,10 @@ public sealed class ChdOpticalReader : IMediaImageReader
                 declaration.PregapFrames,
                 declaration.PostgapFrames,
                 subchannelSource: declaration.SubchannelSize == 0 ? null : source,
-                subchannelSourceOffset: declaration.SubchannelSize == 0
-                    ? 0
-                    : checked(trackSourceOffset + declaration.DataSize),
+                subchannelSourceOffset: declaration.SubchannelSize == 0 ? 0 : checked(trackSourceOffset + declaration.DataSize),
                 subchannelBytesPerSector: declaration.SubchannelSize,
                 storedPregapSectors: declaration.PregapStored ? declaration.PregapFrames : 0,
-                storedPregapSourceOffset: declaration.PregapStored
-                    ? checked(chdFrameOffset * ChdConstants.CdFrameSize)
-                    : null,
+                storedPregapSourceOffset: declaration.PregapStored ? checked(chdFrameOffset * ChdConstants.CdFrameSize) : null,
                 subchannelStride: declaration.SubchannelSize == 0 ? 0 : ChdConstants.CdFrameSize));
             physicalFrameOffset = checked(physicalFrameOffset + declaration.FrameCount);
             chdFrameOffset = checked(chdFrameOffset + AlignTrackFrames(declaration.FrameCount));
@@ -245,10 +222,7 @@ public sealed class ChdOpticalReader : IMediaImageReader
     {
         if (!text.StartsWith(ChdConstants.CdTrackMetadataPrefix, StringComparison.Ordinal))
             throw new InvalidDataException("A CHD optical track metadata record is invalid.");
-        var values = text.Split(' ', StringSplitOptions.RemoveEmptyEntries)
-            .Select(token => token.Split(':', 2))
-            .Where(parts => parts.Length == 2)
-            .ToDictionary(parts => parts[0], parts => parts[1], StringComparer.Ordinal);
+        var values = text.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(token => token.Split(':', 2)).Where(parts => parts.Length == 2).ToDictionary(parts => parts[0], parts => parts[1], StringComparer.Ordinal);
         var required = tag == ChdConstants.CdTrackMetadata2Tag
             ? new[] { "TRACK", "TYPE", "SUBTYPE", "FRAMES", "PREGAP", "PGTYPE", "PGSUB", "POSTGAP" }
             : new[] { "TRACK", "TYPE", "SUBTYPE", "FRAMES" };
@@ -264,22 +238,10 @@ public sealed class ChdOpticalReader : IMediaImageReader
             "RW" or "RW_RAW" => OpticalSectorConstants.SubchannelSize,
             _ => throw new NotSupportedException($"Unsupported CHD subchannel type '{values["SUBTYPE"]}'.")
         };
-        var pregap = tag == ChdConstants.CdTrackMetadata2Tag
-            ? ParseNonNegativeLong(values["PREGAP"], "pregap")
-            : 0;
-        var postgap = tag == ChdConstants.CdTrackMetadata2Tag
-            ? ParseNonNegativeLong(values["POSTGAP"], "postgap")
-            : 0;
+        var pregap = tag == ChdConstants.CdTrackMetadata2Tag ? ParseNonNegativeLong(values["PREGAP"], "pregap") : 0;
+        var postgap = tag == ChdConstants.CdTrackMetadata2Tag ? ParseNonNegativeLong(values["POSTGAP"], "postgap") : 0;
         var pregapStored = tag == ChdConstants.CdTrackMetadata2Tag && values["PGTYPE"].StartsWith('V');
-        return new ChdOpticalTrackMetadata(
-            trackNumber,
-            mode,
-            dataSize,
-            subchannelSize,
-            frameCount,
-            pregap,
-            postgap,
-            pregapStored);
+        return new ChdOpticalTrackMetadata(trackNumber, mode, dataSize, subchannelSize, frameCount, pregap, postgap, pregapStored);
     }
 
     private static (OpticalTrackMode Mode, int DataSize) ParseTrackType(string type) => type switch
@@ -302,9 +264,7 @@ public sealed class ChdOpticalReader : IMediaImageReader
         _ => (0, dataSize)
     };
 
-    private static long AlignTrackFrames(long frames) =>
-        checked((frames + ChdConstants.CdTrackFrameAlignment - 1) / ChdConstants.CdTrackFrameAlignment
-            * ChdConstants.CdTrackFrameAlignment);
+    private static long AlignTrackFrames(long frames) => checked((frames + ChdConstants.CdTrackFrameAlignment - 1) / ChdConstants.CdTrackFrameAlignment * ChdConstants.CdTrackFrameAlignment);
 
     private static int ReadPositiveInt(ReadOnlySpan<byte> value, string name)
     {

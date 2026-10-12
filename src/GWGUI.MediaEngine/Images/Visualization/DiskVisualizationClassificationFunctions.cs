@@ -19,9 +19,7 @@ public static class DiskVisualizationClassificationFunctions
     private static string? ResolveDecoder(string? machine, bool automaticDetection)
     {
         if (automaticDetection && string.IsNullOrWhiteSpace(machine)) return null;
-        return machine is not null && DiskVisualizationDefaults.DecoderByMachine.TryGetValue(machine, out var decoder)
-            ? decoder
-            : DiskVisualizationDefaults.IsoMfmDecoder;
+        return machine is not null && DiskVisualizationDefaults.DecoderByMachine.TryGetValue(machine, out var decoder) ? decoder : DiskVisualizationDefaults.IsoMfmDecoder;
     }
 
     private static DiskMediaCategory ResolveMediaCategory(string? machine, string? formatId)

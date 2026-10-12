@@ -29,19 +29,10 @@ internal sealed class ScpAutomaticImageExplorer(IScpReader scpReader, ScpCandida
         {
             cancellationToken.ThrowIfCancellationRequested();
             var candidate = registrations[index];
-            progress?.Report(new(
-                ScpExplorationProgressKind.CandidateStarted,
-                candidate.DisplayName,
-                index,
-                registrations.Count));
+            progress?.Report(new(ScpExplorationProgressKind.CandidateStarted, candidate.DisplayName, index, registrations.Count));
             var inspection = await inspector.InspectAsync(candidate, path, progress, cancellationToken).ConfigureAwait(false);
             inspections.Add(inspection);
-            progress?.Report(new(
-                ScpExplorationProgressKind.CandidateCompleted,
-                candidate.DisplayName,
-                index + 1,
-                registrations.Count,
-                inspection.Image is not null));
+            progress?.Report(new(ScpExplorationProgressKind.CandidateCompleted, candidate.DisplayName, index + 1, registrations.Count, inspection.Image is not null));
         }
         for (var index = 0; index < inspections.Count; index++)
         {
@@ -61,21 +52,11 @@ internal sealed class ScpAutomaticImageExplorer(IScpReader scpReader, ScpCandida
         }
         if (ranking.BestFileSystem is null)
         {
-            return documents.Create(
-                path,
-                ranking.BestRecognized ?? ranking.BestDecoded,
-                ranking.Detected,
-                CredibleImages(ranking, ranking.Detected),
-                scpImage);
+            return documents.Create(path, ranking.BestRecognized ?? ranking.BestDecoded, ranking.Detected, CredibleImages(ranking, ranking.Detected), scpImage);
         }
         var primaryIdentity = FileSystemInterpretationIdentity.Create(ranking.BestFileSystem.FormatId, ranking.BestFileSystem.Volume);
         var ordered = new[] { ranking.BestFileSystem }.Concat(ranking.Detected.Where(match => FileSystemInterpretationIdentity.Create(match.FormatId, match.Volume) != primaryIdentity && FileSystemAlternativePolicy.IsCredible(match.Volume))).ToArray();
-        return documents.Create(
-            path,
-            ranking.BestRecognized ?? ranking.BestDecoded,
-            ordered,
-            CredibleImages(ranking, ordered),
-            scpImage);
+        return documents.Create(path, ranking.BestRecognized ?? ranking.BestDecoded, ordered, CredibleImages(ranking, ordered), scpImage);
     }
 
     /// <summary>Explore une capture déjà en mémoire sans relire le fichier qui vient d'être produit.</summary>
@@ -94,13 +75,9 @@ internal sealed class ScpAutomaticImageExplorer(IScpReader scpReader, ScpCandida
         ScpCandidateRanker.Result ranking,
         IEnumerable<ExploredFileSystem> detected)
     {
-        var recognizedFormatIds = detected
-            .Select(match => match.FormatId)
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var recognizedFormatIds = detected.Select(match => match.FormatId).ToHashSet(StringComparer.OrdinalIgnoreCase);
         if (ranking.BestDecoded is null) return [];
-        return ranking.DecodedImages
-            .Where(image => !recognizedFormatIds.Contains(image.FormatId))
-            .GroupBy(image => FileSystemInterpretationIdentity.FormatFamily(image.FormatId), StringComparer.OrdinalIgnoreCase)
+        return ranking.DecodedImages.Where(image => !recognizedFormatIds.Contains(image.FormatId)).GroupBy(image => FileSystemInterpretationIdentity.FormatFamily(image.FormatId), StringComparer.OrdinalIgnoreCase)
             .Select(group => group.First())
             .ToArray();
     }

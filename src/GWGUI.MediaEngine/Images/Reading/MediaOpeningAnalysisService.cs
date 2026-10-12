@@ -30,10 +30,7 @@ public sealed class MediaOpeningAnalysisService(
         Action<ScpImage>? scpImageLoaded = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
-        progress?.Invoke(new(
-            MediaExplorationProgressStage.ReadingMedia,
-            Path.GetFileName(path),
-            12));
+        progress?.Invoke(new(MediaExplorationProgressStage.ReadingMedia, Path.GetFileName(path), 12));
 
         var source = new MediaSourceDescriptor(path, [], RequestedFormatId: requestedFormatId);
         MediaImageDocument document;
@@ -52,28 +49,13 @@ public sealed class MediaOpeningAnalysisService(
         if (!includeFileSystems)
             return new(document, null, null);
 
-        progress?.Invoke(new(
-            MediaExplorationProgressStage.ReadingFileSystem,
-            document.FormatId,
-            45,
-            document.MediaKind));
+        progress?.Invoke(new(MediaExplorationProgressStage.ReadingFileSystem, document.FormatId, 45, document.MediaKind));
 
-        var diskTask = diskExplorer.ExploreAsync(
-            document,
-            requestedFormatId,
-            scpProgress,
-            cancellationToken,
-            scpImageLoaded);
-        var mediaTask = document.Representation is FluxMediaImageRepresentation
-            ? ExploreDecodedFluxAsync(document, diskTask, cancellationToken)
-            : mediaExplorer.ExploreAsync(document, cancellationToken).AsTask();
+        var diskTask = diskExplorer.ExploreAsync(document, requestedFormatId, scpProgress, cancellationToken, scpImageLoaded);
+        var mediaTask = document.Representation is FluxMediaImageRepresentation ? ExploreDecodedFluxAsync(document, diskTask, cancellationToken) : mediaExplorer.ExploreAsync(document, cancellationToken).AsTask();
         await Task.WhenAll(diskTask, mediaTask).ConfigureAwait(false);
 
-        progress?.Invoke(new(
-            MediaExplorationProgressStage.RecognizingFiles,
-            document.FormatId,
-            94,
-            document.MediaKind));
+        progress?.Invoke(new(MediaExplorationProgressStage.RecognizingFiles, document.FormatId, 94, document.MediaKind));
         return new(document, await diskTask.ConfigureAwait(false), await mediaTask.ConfigureAwait(false));
     }
 
@@ -83,16 +65,7 @@ public sealed class MediaOpeningAnalysisService(
         CancellationToken cancellationToken)
     {
         var decoded = await diskTask.ConfigureAwait(false);
-        var document = decoded.Image.FormatId.Equals(DiskImageFormatIds.Unknown, StringComparison.OrdinalIgnoreCase)
-            ? source
-            : new MediaImageDocument(
-                source.Source,
-                decoded.Image.FormatId,
-                source.MediaKind,
-                new SectorMediaImageRepresentation(decoded.Image),
-                [],
-                source.Diagnostics,
-                source.Metadata);
+        var document = decoded.Image.FormatId.Equals(DiskImageFormatIds.Unknown, StringComparison.OrdinalIgnoreCase) ? source : new MediaImageDocument(source.Source, decoded.Image.FormatId, source.MediaKind, new SectorMediaImageRepresentation(decoded.Image), [], source.Diagnostics, source.Metadata);
         return await mediaExplorer.ExploreAsync(document, cancellationToken).ConfigureAwait(false);
     }
 }

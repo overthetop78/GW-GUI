@@ -14,9 +14,7 @@ internal static class CenturionMfmDescriptions
         CenturionMfmFormat.StructureDescriptionName,
         FluxStructureKind.FormatData,
         null,
-        key is null
-            ? CenturionMfmFormat.UnavailableCrcDescription
-            : key == CenturionMfmFormat.SupportedDataKey ? CenturionMfmFormat.UnavailableCrcDescription : CenturionMfmFormat.UnsupportedKeyDescription(key.Value)
+        key is null ? CenturionMfmFormat.UnavailableCrcDescription : key == CenturionMfmFormat.SupportedDataKey ? CenturionMfmFormat.UnavailableCrcDescription : CenturionMfmFormat.UnsupportedKeyDescription(key.Value)
     );
     /// <summary>Décrit une marque de données sans en-tête associé.</summary>
     /// <returns>Description de la marque non appariée.</returns>

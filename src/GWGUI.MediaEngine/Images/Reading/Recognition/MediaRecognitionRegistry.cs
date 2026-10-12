@@ -90,12 +90,7 @@ public sealed class MediaRecognitionRegistry
             registrationOrder++;
         }
 
-        return candidates
-            .OrderByDescending(item => item.Candidate.Confidence)
-            .ThenByDescending(item => item.EvidenceCount)
-            .ThenBy(item => item.RegistrationOrder)
-            .Select(item => item.Candidate)
-            .ToArray();
+        return candidates.OrderByDescending(item => item.Candidate.Confidence).ThenByDescending(item => item.EvidenceCount).ThenBy(item => item.RegistrationOrder).Select(item => item.Candidate).ToArray();
     }
 
     private static async ValueTask<bool> MatchesSignatureAsync(IMediaImageReader reader, MediaRecognitionContext context, CancellationToken cancellationToken)

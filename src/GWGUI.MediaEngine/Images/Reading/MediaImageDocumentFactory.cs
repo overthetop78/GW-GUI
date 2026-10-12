@@ -13,8 +13,7 @@ internal static class MediaImageDocumentFactory
 {
     private static readonly IReadOnlyList<MediaVolumeDescriptor> EmptyVolumes = [];
     private static readonly IReadOnlyList<string> EmptyDiagnostics = [];
-    private static readonly IReadOnlyDictionary<string, string> EmptyMetadata =
-        new Dictionary<string, string>(StringComparer.Ordinal);
+    private static readonly IReadOnlyDictionary<string, string> EmptyMetadata = new Dictionary<string, string>(StringComparer.Ordinal);
 
     public static MediaImageDocument CreateFloppySector(
         MediaSourceDescriptor source,
@@ -23,12 +22,7 @@ internal static class MediaImageDocumentFactory
     {
         ArgumentNullException.ThrowIfNull(image);
 
-        return Create(
-            source,
-            image.FormatId,
-            MediaKind.Floppy,
-            new SectorMediaImageRepresentation(image),
-            metadata);
+        return Create(source, image.FormatId, MediaKind.Floppy, new SectorMediaImageRepresentation(image), metadata);
     }
 
     public static MediaImageDocument CreateFloppyFlux(
@@ -39,12 +33,7 @@ internal static class MediaImageDocumentFactory
     {
         ArgumentNullException.ThrowIfNull(image);
 
-        return Create(
-            source,
-            formatId,
-            MediaKind.Floppy,
-            new FluxMediaImageRepresentation(image),
-            metadata);
+        return Create(source, formatId, MediaKind.Floppy, new FluxMediaImageRepresentation(image), metadata);
     }
 
     private static MediaImageDocument Create(
@@ -53,12 +42,5 @@ internal static class MediaImageDocumentFactory
         MediaKind mediaKind,
         IMediaImageRepresentation representation,
         IReadOnlyDictionary<string, string>? metadata = null)
-        => new(
-            source,
-            formatId,
-            mediaKind,
-            representation,
-            EmptyVolumes,
-            EmptyDiagnostics,
-            metadata ?? EmptyMetadata);
+        => new(source, formatId, mediaKind, representation, EmptyVolumes, EmptyDiagnostics, metadata ?? EmptyMetadata);
 }

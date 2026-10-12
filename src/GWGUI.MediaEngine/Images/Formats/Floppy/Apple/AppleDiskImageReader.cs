@@ -51,12 +51,7 @@ public sealed class AppleDiskImageReader : IMediaImageReader
         DiskImageFileExtensions.Po,
         DiskImageFileExtensions.Woz
     }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures =
-    [
-        TwoImgFormat.SignatureBytes.ToArray(),
-        WozFormat.Version1Signature.ToArray(),
-        WozFormat.Version2Signature.ToArray()
-    ];
+    private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures = [TwoImgFormat.SignatureBytes.ToArray(), WozFormat.Version1Signature.ToArray(), WozFormat.Version2Signature.ToArray()];
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Floppy }.ToFrozenSet();
     private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Sectors }.ToFrozenSet();
 
@@ -119,16 +114,12 @@ public sealed class AppleDiskImageReader : IMediaImageReader
         if (DiskCopyReader.HasPrivateWord(container))
         {
             var diskCopy = DiskCopyReader.ReadDetailed(container);
-            return MediaImageDocumentFactory.CreateFloppySector(
-                context.Source,
-                diskCopy.Image,
-                DiskCopyMetadataFunctions.Create(diskCopy));
+            return MediaImageDocumentFactory.CreateFloppySector(context.Source, diskCopy.Image, DiskCopyMetadataFunctions.Create(diskCopy));
         }
 
         var image = AppleContainerRouter.Read(container, context.Extension, context.RequestedFormatId);
         return MediaImageDocumentFactory.CreateFloppySector(context.Source, image);
     }
 
-    private static bool SupportsFormatId(string formatId)
-        => SupportedFormatIds.Contains(formatId) || AppleDiskImageFormatFamilies.Contains(formatId);
+    private static bool SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId) || AppleDiskImageFormatFamilies.Contains(formatId);
 }

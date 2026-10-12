@@ -31,8 +31,7 @@ public sealed class CueTrackDeclaration
         PostgapSectors = postgapSectors;
         Flags = new ReadOnlyCollection<string>((flags ?? []).ToArray());
         Isrc = isrc;
-        Metadata = new ReadOnlyDictionary<string, string>(
-            new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase));
+        Metadata = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase));
     }
 
     public int Number { get; }

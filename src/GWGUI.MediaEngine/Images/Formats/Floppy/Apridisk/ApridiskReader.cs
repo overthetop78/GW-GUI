@@ -34,8 +34,7 @@ public sealed class ApridiskReader : IMediaImageReader
 
     public ApridiskReader() : this(File.ReadAllBytesAsync) { }
 
-    internal ApridiskReader(Func<string, CancellationToken, Task<byte[]>> readBytes) =>
-        this.readBytes = readBytes ?? throw new ArgumentNullException(nameof(readBytes));
+    internal ApridiskReader(Func<string, CancellationToken, Task<byte[]>> readBytes) => this.readBytes = readBytes ?? throw new ArgumentNullException(nameof(readBytes));
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => SupportedExtensions;
@@ -45,8 +44,7 @@ public sealed class ApridiskReader : IMediaImageReader
     IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentations;
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default) =>
-        Read(await readBytes(path, cancellationToken).ConfigureAwait(false), cancellationToken);
+    public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default) => Read(await readBytes(path, cancellationToken).ConfigureAwait(false), cancellationToken);
 
     async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {

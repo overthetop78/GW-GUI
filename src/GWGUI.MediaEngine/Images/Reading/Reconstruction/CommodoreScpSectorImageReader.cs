@@ -138,9 +138,7 @@ public sealed class CommodoreScpSectorImageReader(
         var maxTrack = candidates.Keys.Max(key => key.Track);
         var is1571 = requestedFormat == DiskImageFormatIds.Commodore1571 || maxTrack > Commodore1541Geometry.ExtendedTrackCount || scp.Tracks.Any(track => track.Head == 1);
         var hasExtendedData = candidates.Where(candidate => candidate.Key.Track > Commodore1541Geometry.StandardTrackCount && candidate.Key.Track <= Commodore1541Geometry.ExtendedTrackCount).SelectMany(candidate => candidate.Value).Any(candidate => candidate.Sector.Data?.Any(value => value != 0) == true);
-        var tracksPerSide = is1571 
-            ? Commodore1541Geometry.StandardTrackCount 
-            : maxTrack > Commodore1541Geometry.StandardTrackCount && hasExtendedData ? Commodore1541Geometry.ExtendedTrackCount : Commodore1541Geometry.StandardTrackCount;
+        var tracksPerSide = is1571 ? Commodore1541Geometry.StandardTrackCount : maxTrack > Commodore1541Geometry.StandardTrackCount && hasExtendedData ? Commodore1541Geometry.ExtendedTrackCount : Commodore1541Geometry.StandardTrackCount;
         var sides = is1571 ? Commodore1571Geometry.SideCount : DiskGeometryConstants.SingleSidedHeadCount;
         var count = Commodore1541Geometry.BlocksPerSide(tracksPerSide) * sides;
         var blocks = new List<SectorBlock>();

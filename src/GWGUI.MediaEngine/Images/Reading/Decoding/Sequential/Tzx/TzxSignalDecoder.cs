@@ -61,10 +61,7 @@ public sealed class TzxSignalDecoder
         }
 
         var logicalLength = timeline.Sum(segment => segment.Length ?? 0);
-        return new SequentialSignalDecodeResult(
-            new SequentialMediaImageRepresentation(logicalLength, elapsed == TimeSpan.Zero ? null : elapsed, timeline),
-            sourceSegments,
-            diagnostics);
+        return new SequentialSignalDecodeResult(new SequentialMediaImageRepresentation(logicalLength, elapsed == TimeSpan.Zero ? null : elapsed, timeline), sourceSegments, diagnostics);
     }
 
     private static void DecodeStandard(
@@ -78,14 +75,11 @@ public sealed class TzxSignalDecoder
         var pause = BinaryPrimitives.ReadUInt16LittleEndian(payload);
         var dataLength = BinaryPrimitives.ReadUInt16LittleEndian(payload.AsSpan(2));
         Require(payload, 4 + dataLength, TzxConstants.StandardSpeedData);
-        var pilotCount = dataLength > 0 && payload[4] < 0x80
-            ? TzxConstants.StandardHeaderPilotPulseCount
-            : TzxConstants.StandardDataPilotPulseCount;
+        var pilotCount = dataLength > 0 && payload[4] < 0x80 ? TzxConstants.StandardHeaderPilotPulseCount : TzxConstants.StandardDataPilotPulseCount;
         AddPulse(output, ref position, ref elapsed, TzxConstants.StandardPilotPulseTStates, pilotCount, source.Position, "pilot");
         AddPulse(output, ref position, ref elapsed, TzxConstants.StandardSyncFirstPulseTStates, 1, source.Position, "sync");
         AddPulse(output, ref position, ref elapsed, TzxConstants.StandardSyncSecondPulseTStates, 1, source.Position, "sync");
-        AddData(output, ref position, ref elapsed, source, payload, 4, dataLength, TzxConstants.FullLastByteBitCount,
-            TzxConstants.StandardZeroPulseTStates, TzxConstants.StandardOnePulseTStates);
+        AddData(output, ref position, ref elapsed, source, payload, 4, dataLength, TzxConstants.FullLastByteBitCount, TzxConstants.StandardZeroPulseTStates, TzxConstants.StandardOnePulseTStates);
         AddPause(output, ref position, ref elapsed, pause, source.Position);
     }
 
@@ -122,11 +116,7 @@ public sealed class TzxSignalDecoder
         ref TimeSpan elapsed)
     {
         Require(payload, 4, TzxConstants.PureTone);
-        AddPulse(output, ref position, ref elapsed,
-            BinaryPrimitives.ReadUInt16LittleEndian(payload),
-            BinaryPrimitives.ReadUInt16LittleEndian(payload.AsSpan(2)),
-            source.Position,
-            "tone");
+        AddPulse(output, ref position, ref elapsed, BinaryPrimitives.ReadUInt16LittleEndian(payload), BinaryPrimitives.ReadUInt16LittleEndian(payload.AsSpan(2)), source.Position, "tone");
     }
 
     private static void AddPulseSequence(
@@ -139,8 +129,7 @@ public sealed class TzxSignalDecoder
         Require(payload, 1, TzxConstants.PulseSequence);
         Require(payload, 1 + payload[0] * 2, TzxConstants.PulseSequence);
         for (var index = 0; index < payload[0]; index++)
-            AddPulse(output, ref position, ref elapsed,
-                BinaryPrimitives.ReadUInt16LittleEndian(payload.AsSpan(1 + index * 2)), 1, source.Position, "sequence");
+            AddPulse(output, ref position, ref elapsed, BinaryPrimitives.ReadUInt16LittleEndian(payload.AsSpan(1 + index * 2)), 1, source.Position, "sequence");
     }
 
     private static void DecodePureData(
@@ -257,13 +246,11 @@ public sealed class TzxSignalDecoder
     {
         if (milliseconds == 0)
         {
-            output.Add(new SequentialMediaSegment(position++, SequentialSegmentKind.TapeMark,
-                metadata: SourceMetadata(sourcePosition, "stop")));
+            output.Add(new SequentialMediaSegment(position++, SequentialSegmentKind.TapeMark, metadata: SourceMetadata(sourcePosition, "stop")));
             return;
         }
         var duration = TimeSpan.FromMilliseconds(milliseconds);
-        output.Add(new SequentialMediaSegment(position++, SequentialSegmentKind.Silence, start: elapsed, duration: duration,
-            direction: SequentialTravelDirection.Forward, metadata: SourceMetadata(sourcePosition, "pause")));
+        output.Add(new SequentialMediaSegment(position++, SequentialSegmentKind.Silence, start: elapsed, duration: duration, direction: SequentialTravelDirection.Forward, metadata: SourceMetadata(sourcePosition, "pause")));
         elapsed += duration;
     }
 
@@ -304,8 +291,7 @@ public sealed class TzxSignalDecoder
     private static bool TryBlockId(SequentialMediaSegment segment, out byte id)
     {
         id = 0;
-        return segment.Metadata.TryGetValue(TzxConstants.BlockIdMetadataKey, out var text)
-            && byte.TryParse(text, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out id);
+        return segment.Metadata.TryGetValue(TzxConstants.BlockIdMetadataKey, out var text) && byte.TryParse(text, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out id);
     }
 
     private static int ReadUInt24(ReadOnlySpan<byte> value) => value[0] | value[1] << 8 | value[2] << 16;

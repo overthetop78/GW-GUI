@@ -166,9 +166,7 @@ internal static class DiskCopyReader
     private static (bool? Data, bool? Tags) InspectChecksums(ReadOnlySpan<byte> container, ReadOnlySpan<byte> payload, ReadOnlySpan<byte> tags)
     {
         var storedDataChecksum = BinaryPrimitives.ReadUInt32BigEndian(container.Slice(DiskCopyLayout.DataChecksumOffset));
-        var dataValid = storedDataChecksum == DiskCopyFormat.MissingChecksum
-            ? (bool?)null
-            : storedDataChecksum == CalculateChecksum(payload);
+        var dataValid = storedDataChecksum == DiskCopyFormat.MissingChecksum ? (bool?)null : storedDataChecksum == CalculateChecksum(payload);
 
         var storedTagChecksum = BinaryPrimitives.ReadUInt32BigEndian(container.Slice(DiskCopyLayout.TagChecksumOffset));
         if (storedTagChecksum == DiskCopyFormat.MissingChecksum)

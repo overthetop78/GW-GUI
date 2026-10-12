@@ -41,9 +41,7 @@ public sealed class MsxTapeEncoder : ISequentialMediaEncoder
         if (!CanEncode(request))
             throw new InvalidDataException("MSX tape encoding requires validated byte groups without retained undecoded segments.");
         cancellationToken.ThrowIfCancellationRequested();
-        return Task.FromResult(request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
-            ? EncodeWave(request.Blocks, request.Parameters)
-            : EncodeCas(request.Blocks));
+        return Task.FromResult(request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase) ? EncodeWave(request.Blocks, request.Parameters) : EncodeCas(request.Blocks));
     }
 
     private static SequentialMediaImageRepresentation EncodeCas(IReadOnlyList<SequentialDecodedBlock> blocks)
@@ -91,12 +89,8 @@ public sealed class MsxTapeEncoder : ISequentialMediaEncoder
         var level = MsxCasConstants.PcmAmplitude;
         for (var blockIndex = 0; blockIndex < blocks.Count; blockIndex++)
         {
-            var longHeader = blockIndex == 0
-                || blocks[blockIndex].Metadata.ContainsKey(MsxCasConstants.FileTypeMetadataKey);
-            PcmSampleFunctions.AppendSilence(
-                samples,
-                sampleRate,
-                longHeader ? MsxCasConstants.LongSilenceSeconds : MsxCasConstants.ShortSilenceSeconds);
+            var longHeader = blockIndex == 0 || blocks[blockIndex].Metadata.ContainsKey(MsxCasConstants.FileTypeMetadataKey);
+            PcmSampleFunctions.AppendSilence(samples, sampleRate, longHeader ? MsxCasConstants.LongSilenceSeconds : MsxCasConstants.ShortSilenceSeconds);
             FskSerialFunctions.AppendPcmCarrier(
                 samples,
                 ref level,
@@ -147,8 +141,6 @@ public sealed class MsxTapeEncoder : ISequentialMediaEncoder
     private static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate)
     {
         sampleRate = 0;
-        return parameters.TryGetValue("sampleRate", out var text)
-            && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out sampleRate)
-            && sampleRate >= 8000;
+        return parameters.TryGetValue("sampleRate", out var text) && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out sampleRate) && sampleRate >= 8000;
     }
 }

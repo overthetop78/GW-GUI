@@ -36,13 +36,7 @@ public sealed class GdiWriter : IMediaImageWriter
             || optical.FaceCount is not null)
             return false;
         var numbers = new HashSet<int>();
-        return optical.Tracks!.All(track =>
-            numbers.Add(track.TrackNumber)
-            && track.FirstSector >= 0
-            && track.StoredPregapSectors == 0
-            && !track.HasSubchannels
-            && GetTrackSectorSize(track) is > 0
-            && track.SectorCount > 0);
+        return optical.Tracks!.All(track => numbers.Add(track.TrackNumber) && track.FirstSector >= 0 && track.StoredPregapSectors == 0 && !track.HasSubchannels && GetTrackSectorSize(track) is > 0 && track.SectorCount > 0);
     }
 
     public async Task<IReadOnlyList<string>> WriteAsync(
@@ -112,10 +106,7 @@ public sealed class GdiWriter : IMediaImageWriter
         {
             cancellationToken.ThrowIfCancellationRequested();
             var count = (int)Math.Min(buffer.Length, total - copied);
-            await track.DataSource.ReadExactlyAsync(
-                checked(track.SourceOffset + copied),
-                buffer.AsMemory(0, count),
-                cancellationToken).ConfigureAwait(false);
+            await track.DataSource.ReadExactlyAsync(checked(track.SourceOffset + copied), buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
             await output.WriteAsync(buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
             copied += count;
         }

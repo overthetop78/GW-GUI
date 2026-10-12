@@ -43,9 +43,7 @@ public sealed class DiskImageRecognitionRegistry
     /// <exception cref="IOException">Le fichier ne peut pas être consulté ou lu.</exception>
     /// <exception cref="UnauthorizedAccessException">L'accès au fichier est refusé.</exception>
     public Task<SectorImage> ReadAsync(string path, string? requestedFormatId, CancellationToken cancellationToken)
-        => readingService is null
-            ? ReadAsync(new DiskImageRecognitionContext(path, requestedFormatId), cancellationToken)
-            : ReadThroughCommonChainAsync(path, requestedFormatId, cancellationToken);
+        => readingService is null ? ReadAsync(new DiskImageRecognitionContext(path, requestedFormatId), cancellationToken) : ReadThroughCommonChainAsync(path, requestedFormatId, cancellationToken);
 
     private async Task<SectorImage> ReadThroughCommonChainAsync(
         string path,

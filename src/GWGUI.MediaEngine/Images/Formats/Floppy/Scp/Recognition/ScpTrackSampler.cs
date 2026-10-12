@@ -12,9 +12,6 @@ internal static class ScpTrackSampler
         var readable = tracks.Where(track => track.Revolutions.Count > 0).ToArray();
         if (readable.Length <= MaximumTrackCount) return readable;
 
-        return Enumerable.Range(0, MaximumTrackCount)
-            .Select(index => readable[index * (readable.Length - 1) / (MaximumTrackCount - 1)])
-            .DistinctBy(track => track.TrackNumber)
-            .ToArray();
+        return Enumerable.Range(0, MaximumTrackCount).Select(index => readable[index * (readable.Length - 1) / (MaximumTrackCount - 1)]).DistinctBy(track => track.TrackNumber).ToArray();
     }
 }

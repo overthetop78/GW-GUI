@@ -22,7 +22,5 @@ public static class ConversionFidelity
 
     public static bool PreservesOriginalProtection(ConversionFidelityLevel level) => level == ConversionFidelityLevel.PreservedFlux;
 
-    private static string Normalize(string extension) => extension.StartsWith('.')
-        ? extension.ToLowerInvariant()
-        : "." + extension.ToLowerInvariant();
+    private static string Normalize(string extension) => extension.StartsWith('.') ? extension.ToLowerInvariant() : "." + extension.ToLowerInvariant();
 }

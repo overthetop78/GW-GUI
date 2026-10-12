@@ -54,10 +54,7 @@ public sealed class VdiWriter : IMediaImageWriter
             || document.Representation is not BlockMediaImageRepresentation blocks)
             throw new InvalidDataException("The media document cannot be written as a complete VDI image.");
         var fixedImage = SelectVariant(document, blocks) == HardDiskImageVariant.Fixed;
-        await files.WriteAsync(
-            outputPath,
-            (output, token) => WriteContainerAsync(blocks, fixedImage, output, token),
-            cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(outputPath, (output, token) => WriteContainerAsync(blocks, fixedImage, output, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 
@@ -84,11 +81,7 @@ public sealed class VdiWriter : IMediaImageWriter
             block.AsSpan().Clear();
             var address = checked((long)logicalBlock * blockSize);
             var logicalLength = (int)Math.Min(blockSize, blocks.Capacity - address);
-            await BlockMediaDataReader.ReadExactlyAsync(
-                blocks,
-                address,
-                block.AsMemory(0, logicalLength),
-                cancellationToken).ConfigureAwait(false);
+            await BlockMediaDataReader.ReadExactlyAsync(blocks, address, block.AsMemory(0, logicalLength), cancellationToken).ConfigureAwait(false);
             if (!fixedImage && block.AsSpan(0, logicalLength).IndexOfAnyExcept((byte)0) < 0)
             {
                 map[logicalBlock] = HardDiskFormatConstants.VdiDiscardedBlock;
@@ -122,8 +115,7 @@ public sealed class VdiWriter : IMediaImageWriter
         BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0x40, 4), HardDiskFormatConstants.VdiSignature);
         BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0x44, 4), HardDiskFormatConstants.VdiVersion1_1);
         BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0x48, 4), 0x180);
-        BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0x4C, 4),
-            fixedImage ? HardDiskFormatConstants.VdiFixedImageType : HardDiskFormatConstants.VdiDynamicImageType);
+        BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0x4C, 4), fixedImage ? HardDiskFormatConstants.VdiFixedImageType : HardDiskFormatConstants.VdiDynamicImageType);
         System.Text.Encoding.ASCII.GetBytes("GW GUI MediaEngine").CopyTo(header, 0x54);
         BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0x154, 4), HardDiskFormatConstants.VdiHeaderSize);
         BinaryPrimitives.WriteUInt32LittleEndian(header.AsSpan(0x158, 4), (uint)dataOffset);
@@ -150,9 +142,7 @@ public sealed class VdiWriter : IMediaImageWriter
             && Enum.TryParse<HardDiskImageVariant>(value, true, out var variant)
             && variant is HardDiskImageVariant.Fixed or HardDiskImageVariant.Dynamic)
             return variant;
-        return blocks.Ranges.Any(range => range.Kind is MediaDataRangeKind.Zero or MediaDataRangeKind.Unallocated)
-            ? HardDiskImageVariant.Dynamic
-            : HardDiskImageVariant.Fixed;
+        return blocks.Ranges.Any(range => range.Kind is MediaDataRangeKind.Zero or MediaDataRangeKind.Unallocated) ? HardDiskImageVariant.Dynamic : HardDiskImageVariant.Fixed;
     }
 
     private static bool HasCompleteReadableCoverage(BlockMediaImageRepresentation blocks)

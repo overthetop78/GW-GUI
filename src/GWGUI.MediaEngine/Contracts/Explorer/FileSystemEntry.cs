@@ -48,8 +48,7 @@ public sealed record FileSystemEntry : IFileSystemEntryView
         SyntheticName = syntheticName;
         LinkTarget = linkTarget;
         Diagnostics = Array.AsReadOnly((diagnostics ?? []).ToArray());
-        Metadata = new System.Collections.ObjectModel.ReadOnlyDictionary<string, string>(
-            new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
+        Metadata = new System.Collections.ObjectModel.ReadOnlyDictionary<string, string>(new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
     }
 
     /// <summary>Nom décodé de l'entrée.</summary>

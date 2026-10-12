@@ -87,9 +87,7 @@ public sealed class VdiReader : IMediaImageReader
             if (candidate.Capacity <= header.DiskSize) geometry = candidate;
         }
         var representation = new BlockMediaImageRepresentation(header.DiskSize, header.SectorSize, ranges, geometry);
-        var variant = header.ImageType == HardDiskFormatConstants.VdiFixedImageType
-            ? HardDiskImageVariant.Fixed
-            : HardDiskImageVariant.Dynamic;
+        var variant = header.ImageType == HardDiskFormatConstants.VdiFixedImageType ? HardDiskImageVariant.Fixed : HardDiskImageVariant.Dynamic;
         return new MediaImageDocument(
             context.Source,
             HardDiskImageFormatIds.Vdi,
@@ -172,8 +170,7 @@ public sealed class VdiReader : IMediaImageReader
         if (ranges.Count > 0)
         {
             var previous = ranges[^1];
-            var sourceContinues = kind != MediaDataRangeKind.Stored
-                || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
+            var sourceContinues = kind != MediaDataRangeKind.Stored || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
             if (previous.Kind == kind && previous.Address + previous.Length == address && sourceContinues)
             {
                 ranges[^1] = new MediaDataRange(previous.Address, previous.Length + length, kind, previous.Source, previous.SourceOffset);

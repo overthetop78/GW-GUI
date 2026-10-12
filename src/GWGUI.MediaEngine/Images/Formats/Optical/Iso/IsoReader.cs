@@ -37,9 +37,7 @@ public sealed class IsoReader : IMediaImageReader
         cancellationToken.ThrowIfCancellationRequested();
         if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId))
             return ValueTask.FromResult(false);
-        return ValueTask.FromResult(
-            IsoFormat.Extensions.Contains(context.Extension)
-            && IsoFormat.IsLengthCompatible(context.Length));
+        return ValueTask.FromResult(IsoFormat.Extensions.Contains(context.Extension) && IsoFormat.IsLengthCompatible(context.Length));
     }
 
     Task<MediaImageDocument> IMediaImageReader.ReadAsync(
@@ -54,22 +52,8 @@ public sealed class IsoReader : IMediaImageReader
         if (source.Length != context.Length)
             throw new InvalidDataException("The ISO image length changed after recognition.");
         var sectorCount = context.Length / IsoFormat.SectorSize;
-        var track = new OpticalTrackDescriptor(
-            1,
-            1,
-            OpticalTrackMode.Mode1Data2048,
-            0,
-            sectorCount,
-            IsoFormat.SectorSize,
-            0,
-            IsoFormat.SectorSize,
-            source,
-            0,
-            [new OpticalTrackIndex(1, 0)]);
-        var representation = new OpticalMediaImageRepresentation(
-            context.Length,
-            [track],
-            associatedFiles: [context.Source.PrimaryPath]);
+        var track = new OpticalTrackDescriptor(1, 1, OpticalTrackMode.Mode1Data2048, 0, sectorCount, IsoFormat.SectorSize, 0, IsoFormat.SectorSize, source, 0, [new OpticalTrackIndex(1, 0)]);
+        var representation = new OpticalMediaImageRepresentation(context.Length, [track], associatedFiles: [context.Source.PrimaryPath]);
         return Task.FromResult(new MediaImageDocument(
             context.Source,
             OpticalImageFormatIds.Iso,

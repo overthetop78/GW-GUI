@@ -22,13 +22,7 @@ internal static class ProtectedTrackHfeImageAdapter
         var bitRate = ReadUInt16(metadata, HfeMetadataKeys.BitRate) ?? bitRates[0];
         if (bitRate != bitRates[0])
             throw new InvalidDataException("The HFE metadata bit rate does not match the represented track timing.");
-        return new HfeImage(
-            ReadByte(metadata, HfeMetadataKeys.Revision) ?? HfeFormat.Revision,
-            tracks.Max(track => track.Cylinder) + 1,
-            tracks.Max(track => track.Head) + 1,
-            ResolveEncoding(metadata),
-            bitRate,
-            tracks);
+        return new HfeImage(ReadByte(metadata, HfeMetadataKeys.Revision) ?? HfeFormat.Revision, tracks.Max(track => track.Cylinder) + 1, tracks.Max(track => track.Head) + 1, ResolveEncoding(metadata), bitRate, tracks);
     }
 
     private static HfeTrack ToHfeTrack(ProtectedTrack track)
@@ -42,9 +36,7 @@ internal static class ProtectedTrackHfeImageAdapter
         if (revolution.ResolutionNanoseconds % HfeFormat.TickNanoseconds != 0)
             throw new NotSupportedException("The flux timing resolution cannot be expressed in HFE ticks.");
         var scale = checked((uint)(revolution.ResolutionNanoseconds / HfeFormat.TickNanoseconds));
-        var values = revolution.Flux.FluxIntervals
-            .Append(revolution.Flux.IndexTimeTicks)
-            .Select(value => checked(value * scale));
+        var values = revolution.Flux.FluxIntervals.Append(revolution.Flux.IndexTimeTicks).Select(value => checked(value * scale));
         var bitCellTicks = FluxBitCellConverter.GreatestCommonDivisor(values);
         if (bitCellTicks == 0) throw new InvalidDataException("The flux track does not contain representable timing.");
         var intervals = revolution.Flux.FluxIntervals.Select(value => checked(value * scale)).ToArray();
@@ -94,22 +86,13 @@ internal static class ProtectedTrackHfeImageAdapter
     private static ushort CalculateBitRate(uint bitCellTicks)
     {
         if (bitCellTicks == 0) throw new InvalidDataException("The HFE bit-cell duration cannot be zero.");
-        var value = HfeFormat.NanosecondsPerSecond /
-                    (HfeFormat.BitsPerDataBit * HfeFormat.TickNanoseconds * 1000L * bitCellTicks);
+        var value = HfeFormat.NanosecondsPerSecond / (HfeFormat.BitsPerDataBit * HfeFormat.TickNanoseconds * 1000L * bitCellTicks);
         if (value is < 1 or > ushort.MaxValue)
             throw new NotSupportedException($"The calculated HFE bit rate '{value}' is invalid.");
         return checked((ushort)value);
     }
 
-    private static byte? ReadByte(IReadOnlyDictionary<string, string> metadata, string key)
-        => metadata.TryGetValue(key, out var value) &&
-           byte.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var parsed)
-            ? parsed
-            : null;
+    private static byte? ReadByte(IReadOnlyDictionary<string, string> metadata, string key) => metadata.TryGetValue(key, out var value) && byte.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var parsed) ? parsed : null;
 
-    private static ushort? ReadUInt16(IReadOnlyDictionary<string, string> metadata, string key)
-        => metadata.TryGetValue(key, out var value) &&
-           ushort.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var parsed)
-            ? parsed
-            : null;
+    private static ushort? ReadUInt16(IReadOnlyDictionary<string, string> metadata, string key) => metadata.TryGetValue(key, out var value) && ushort.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var parsed) ? parsed : null;
 }

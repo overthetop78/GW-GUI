@@ -43,8 +43,7 @@ public sealed class FamicomFdsReader : IMediaImageReader
 
         if (context.Length >= FamicomFdsConstants.HeaderLength)
         {
-            var header = await context.ReadHeaderAsync(FamicomFdsConstants.HeaderLength, cancellationToken)
-                .ConfigureAwait(false);
+            var header = await context.ReadHeaderAsync(FamicomFdsConstants.HeaderLength, cancellationToken).ConfigureAwait(false);
             if (header.Span[..FamicomFdsConstants.Signature.Length].SequenceEqual(FamicomFdsConstants.Signature))
                 return IsHeaderedLength(context.Length, header.Span);
         }
@@ -61,11 +60,8 @@ public sealed class FamicomFdsReader : IMediaImageReader
             || context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId))
             throw new InvalidDataException("The selected source is not a Famicom Disk System image.");
 
-        var header = context.Length >= FamicomFdsConstants.HeaderLength
-            ? (await context.ReadHeaderAsync(FamicomFdsConstants.HeaderLength, cancellationToken).ConfigureAwait(false)).ToArray()
-            : [];
-        var headered = header.Length == FamicomFdsConstants.HeaderLength
-            && header.AsSpan(0, FamicomFdsConstants.Signature.Length).SequenceEqual(FamicomFdsConstants.Signature);
+        var header = context.Length >= FamicomFdsConstants.HeaderLength ? (await context.ReadHeaderAsync(FamicomFdsConstants.HeaderLength, cancellationToken).ConfigureAwait(false)).ToArray() : [];
+        var headered = header.Length == FamicomFdsConstants.HeaderLength && header.AsSpan(0, FamicomFdsConstants.Signature.Length).SequenceEqual(FamicomFdsConstants.Signature);
         var headerLength = headered ? FamicomFdsConstants.HeaderLength : 0;
         var dataLength = checked(context.Length - headerLength);
         if (dataLength <= 0 || dataLength % FamicomFdsConstants.SideLength != 0)
@@ -93,20 +89,13 @@ public sealed class FamicomFdsReader : IMediaImageReader
         for (var side = 0; side < sideCount; side++)
         {
             var address = checked(side * (long)FamicomFdsConstants.SideLength);
-            ranges.Add(new MediaDataRange(
-                address,
-                FamicomFdsConstants.SideLength,
-                MediaDataRangeKind.Stored,
-                source,
-                checked(headerLength + address)));
+            ranges.Add(new MediaDataRange(address, FamicomFdsConstants.SideLength, MediaDataRangeKind.Stored, source, checked(headerLength + address)));
             metadata[$"{FamicomFdsConstants.SideNamePrefix}{side}{FamicomFdsConstants.SideNameSuffix}"] =
                 string.Format(CultureInfo.InvariantCulture, FamicomFdsConstants.SideNameFormat, side);
         }
 
         var capacity = checked((long)sideCount * FamicomFdsConstants.SideLength);
-        var diagnostics = headered && declaredSideCount == 0
-            ? ["The FDS header does not declare a side count; the count was taken from the stored data."]
-            : Array.Empty<string>();
+        var diagnostics = headered && declaredSideCount == 0 ? ["The FDS header does not declare a side count; the count was taken from the stored data."] : Array.Empty<string>();
         return new MediaImageDocument(
             context.Source,
             DiskImageFormatIds.NintendoFamicomDisk,
@@ -117,9 +106,7 @@ public sealed class FamicomFdsReader : IMediaImageReader
             metadata);
     }
 
-    private static bool IsHeaderlessLength(long length)
-        => length >= FamicomFdsConstants.SideLength
-            && length % FamicomFdsConstants.SideLength == 0;
+    private static bool IsHeaderlessLength(long length) => length >= FamicomFdsConstants.SideLength && length % FamicomFdsConstants.SideLength == 0;
 
     private static bool IsHeaderedLength(long length, ReadOnlySpan<byte> header)
     {
@@ -130,7 +117,6 @@ public sealed class FamicomFdsReader : IMediaImageReader
             return false;
         var sideCount = dataLength / FamicomFdsConstants.SideLength;
         var declaredSideCount = header[FamicomFdsConstants.SideCountOffset];
-        return sideCount >= FamicomFdsConstants.MinimumSideCount
-            && (declaredSideCount == 0 || declaredSideCount == sideCount);
+        return sideCount >= FamicomFdsConstants.MinimumSideCount && (declaredSideCount == 0 || declaredSideCount == sideCount);
     }
 }

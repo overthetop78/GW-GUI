@@ -61,8 +61,7 @@ public sealed class SimhTapeReader : IMediaImageReader
         bool createSegments,
         CancellationToken cancellationToken)
     {
-        await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read,
-            64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
         if (stream.Length < SimhTapeConstants.WordSize)
             throw new InvalidDataException("A SIMH tape image must contain at least one object word.");
         var source = createSegments ? new FileRandomAccessData(path) : null;
@@ -102,8 +101,7 @@ public sealed class SimhTapeReader : IMediaImageReader
 
             var length = word & SimhTapeConstants.RecordLengthMask;
             if (length == 0) throw new InvalidDataException("A SIMH data record cannot have zero length.");
-            var paddedLength = (length + SimhTapeConstants.RecordAlignment - 1)
-                & ~(uint)(SimhTapeConstants.RecordAlignment - 1);
+            var paddedLength = (length + SimhTapeConstants.RecordAlignment - 1) & ~(uint)(SimhTapeConstants.RecordAlignment - 1);
             if (stream.Length - stream.Position < paddedLength + SimhTapeConstants.WordSize)
                 throw new InvalidDataException("A SIMH data record exceeds the image boundary.");
             var dataOffset = stream.Position;

@@ -6,8 +6,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.Chd;
 /// <summary>Declares the autonomous CHD V5 optical profile classified by optical metadata.</summary>
 internal static class ChdOpticalFormat
 {
-    public static readonly ReadOnlyMemory<byte> Signature =
-        System.Text.Encoding.ASCII.GetBytes(ChdConstants.Signature);
+    public static readonly ReadOnlyMemory<byte> Signature = System.Text.Encoding.ASCII.GetBytes(ChdConstants.Signature);
 
     public static readonly IReadOnlySet<string> Extensions =
         new[] { DiskImageFileExtensions.Chd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);

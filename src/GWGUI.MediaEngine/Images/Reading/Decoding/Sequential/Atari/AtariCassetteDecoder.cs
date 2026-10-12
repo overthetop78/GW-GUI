@@ -24,10 +24,7 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
     public bool CanDecode(MediaImageDocument document, string? machineId = null)
     {
         ArgumentNullException.ThrowIfNull(document);
-        return document.MediaKind == MediaKind.Tape
-            && SupportedFormats.Contains(document.FormatId)
-            && (machineId is null || SupportedMachines.Contains(machineId))
-            && document.Representation is SequentialMediaImageRepresentation;
+        return document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;
     }
 
     public async Task<SequentialDecodeResult> DecodeAsync(
@@ -38,9 +35,7 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
         if (!CanDecode(document, machineId))
             throw new InvalidDataException("The media document is not compatible with the Atari cassette decoder.");
         var representation = (SequentialMediaImageRepresentation)document.Representation;
-        return document.FormatId.Equals(TapeImageFormatIds.AtariCas, StringComparison.OrdinalIgnoreCase)
-            ? await DecodeCasAsync(document, representation, cancellationToken).ConfigureAwait(false)
-            : await DecodeWaveAsync(document, representation, cancellationToken).ConfigureAwait(false);
+        return document.FormatId.Equals(TapeImageFormatIds.AtariCas, StringComparison.OrdinalIgnoreCase) ? await DecodeCasAsync(document, representation, cancellationToken).ConfigureAwait(false) : await DecodeWaveAsync(document, representation, cancellationToken).ConfigureAwait(false);
     }
 
     private async Task<SequentialDecodeResult> DecodeCasAsync(
@@ -128,11 +123,7 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
         }
         FlushLogicalFile(false);
 
-        var pulseSegments = (representation.Segments ?? [])
-            .Where(segment => segment.Kind == Enums.SequentialSegmentKind.Pulse
-                && segment.Duration is not null
-                && segment.Metadata.ContainsKey("signal"))
-            .OrderBy(segment => segment.Position)
+        var pulseSegments = (representation.Segments ?? []).Where(segment => segment.Kind == Enums.SequentialSegmentKind.Pulse && segment.Duration is not null && segment.Metadata.ContainsKey("signal")).OrderBy(segment => segment.Position)
             .ToArray();
         if (pulseSegments.Length > 0)
         {
@@ -143,18 +134,13 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
                 var mark = pulse.Metadata["signal"].Equals("mark", StringComparison.OrdinalIgnoreCase);
                 for (var index = 0; index < bitCount; index++) bits.Add(mark);
             }
-            var decoded = FskSerialFunctions.DecodeFrames(
-                bits,
-                AtariCasConstants.SerialDataBitCount,
-                AtariCasConstants.SerialFrameBitCount - AtariCasConstants.SerialDataBitCount - 1);
+            var decoded = FskSerialFunctions.DecodeFrames(bits, AtariCasConstants.SerialDataBitCount, AtariCasConstants.SerialFrameBitCount - AtariCasConstants.SerialDataBitCount - 1);
             if (decoded.Bytes.Count > 0)
             {
                 var positions = pulseSegments.Select(segment => segment.Position).ToArray();
                 blocks.Add(CreateBlock(blocks.Count, decoded.Bytes.ToArray(), positions, "cas-fsk"));
                 foreach (var positionValue in positions) consumed.Add(positionValue);
-                foreach (var fskChunk in (representation.Segments ?? []).Where(segment =>
-                    segment.Metadata.TryGetValue(AtariCasConstants.ChunkIdMetadataKey, out var id)
-                    && id == AtariCasConstants.FskChunk))
+                foreach (var fskChunk in (representation.Segments ?? []).Where(segment => segment.Metadata.TryGetValue(AtariCasConstants.ChunkIdMetadataKey, out var id) && id == AtariCasConstants.FskChunk))
                     consumed.Add(fskChunk.Position);
             }
         }
@@ -197,14 +183,11 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
         var dataLength = recordType switch
         {
             AtariCasConstants.FullRecordType => AtariCasConstants.RecordDataLength,
-            AtariCasConstants.PartialRecordType => Math.Min(
-                (int)record.Span[AtariCasConstants.PartialRecordLengthOffset],
-                AtariCasConstants.RecordDataLength),
+            AtariCasConstants.PartialRecordType => Math.Min((int)record.Span[AtariCasConstants.PartialRecordLengthOffset], AtariCasConstants.RecordDataLength),
             _ => 0
         };
         data = record.Slice(AtariCasConstants.RecordDataOffset, dataLength);
-        checksumValid = CalculateSioChecksum(record.Span[..AtariCasConstants.RecordChecksumOffset])
-            == record.Span[AtariCasConstants.RecordChecksumOffset];
+        checksumValid = CalculateSioChecksum(record.Span[..AtariCasConstants.RecordChecksumOffset]) == record.Span[AtariCasConstants.RecordChecksumOffset];
         return true;
     }
 
@@ -224,9 +207,7 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
         if (!PcmSampleFunctions.TryGetProfile(document.Metadata, out var channels, out var sampleRate, out var bitsPerSample, out var blockAlign))
             return new SequentialDecodeResult(Id, 0, [], representation.Segments ?? [], ["The WAV PCM profile is incomplete or incompatible."]);
 
-        var sampleSegments = (representation.Segments ?? [])
-            .Where(segment => segment.Kind == Enums.SequentialSegmentKind.Samples && segment.ChannelNumber == 0 && segment.DataRange?.Source is not null)
-            .OrderBy(segment => segment.Position)
+        var sampleSegments = (representation.Segments ?? []).Where(segment => segment.Kind == Enums.SequentialSegmentKind.Samples && segment.ChannelNumber == 0 && segment.DataRange?.Source is not null).OrderBy(segment => segment.Position)
             .ToArray();
         if (sampleSegments.Length == 0)
             return new SequentialDecodeResult(Id, 0, [], representation.Segments ?? [], ["The WAV image has no readable PCM sample segment."]);
@@ -258,9 +239,7 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
             if (decoded.Bytes.Count > 0) sourcePositions.Add(segment.Position);
         }
 
-        var blocks = bytes.Count == 0
-            ? Array.Empty<SequentialDecodedBlock>()
-            : [CreateBlock(0, bytes.ToArray(), sourcePositions, "wav-fsk")];
+        var blocks = bytes.Count == 0 ? Array.Empty<SequentialDecodedBlock>() : [CreateBlock(0, bytes.ToArray(), sourcePositions, "wav-fsk")];
         var consumed = sourcePositions.ToHashSet();
         var undecoded = (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray();
         var confidence = testedFrames == 0 ? 0 : validFrames / (double)testedFrames;

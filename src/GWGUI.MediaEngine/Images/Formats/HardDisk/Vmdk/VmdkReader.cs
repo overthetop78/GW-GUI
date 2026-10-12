@@ -21,8 +21,7 @@ public sealed class VmdkReader : IMediaImageReader
         new[] { MediaKind.HardDisk }.ToFrozenSet();
     private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
         new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
-    private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures =
-        [VmdkFormat.SparseSignature, VmdkFormat.DescriptorSignature];
+    private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures = [VmdkFormat.SparseSignature, VmdkFormat.DescriptorSignature];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => VmdkFormat.Extensions;
@@ -50,10 +49,7 @@ public sealed class VmdkReader : IMediaImageReader
         }
     }
 
-    Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
-        => ReadDocumentAsync(context, true, cancellationToken);
+    Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken) => ReadDocumentAsync(context, true, cancellationToken);
 
     private static async Task<MediaImageDocument> ReadDocumentAsync(
         MediaRecognitionContext context,
@@ -62,9 +58,7 @@ public sealed class VmdkReader : IMediaImageReader
     {
         if (context.Length < 4) throw new InvalidDataException("The file is too short to contain a VMDK image.");
         var signature = await context.ReadAsync(0, 4, cancellationToken).ConfigureAwait(false);
-        return signature.Span.SequenceEqual(VmdkFormat.SparseSignature.Span)
-            ? await ReadSparseAsync(context, includeRanges, cancellationToken).ConfigureAwait(false)
-            : await ReadDescriptorAsync(context, includeRanges, cancellationToken).ConfigureAwait(false);
+        return signature.Span.SequenceEqual(VmdkFormat.SparseSignature.Span) ? await ReadSparseAsync(context, includeRanges, cancellationToken).ConfigureAwait(false) : await ReadDescriptorAsync(context, includeRanges, cancellationToken).ConfigureAwait(false);
     }
 
     private static async Task<MediaImageDocument> ReadDescriptorAsync(
@@ -139,10 +133,7 @@ public sealed class VmdkReader : IMediaImageReader
             var descriptorLength = checked(descriptorSize * HardDiskFormatConstants.LegacyLogicalSectorSize);
             if (descriptorLength > 4 * 1_024 * 1_024 || descriptorLength > int.MaxValue)
                 throw new InvalidDataException("The embedded VMDK descriptor is too large.");
-            var descriptor = await context.ReadAsync(
-                checked((long)descriptorOffset * HardDiskFormatConstants.LegacyLogicalSectorSize),
-                (int)descriptorLength,
-                cancellationToken).ConfigureAwait(false);
+            var descriptor = await context.ReadAsync(checked((long)descriptorOffset * HardDiskFormatConstants.LegacyLogicalSectorSize), (int)descriptorLength, cancellationToken).ConfigureAwait(false);
             var descriptorText = System.Text.Encoding.UTF8.GetString(descriptor.Span).TrimEnd('\0');
             if (ContainsAssignedValue(descriptorText, "parentFileNameHint"))
                 throw new NotSupportedException("A VMDK parent chain requires a parent resolver that is not registered.");
@@ -165,10 +156,7 @@ public sealed class VmdkReader : IMediaImageReader
         {
             var tableSector = BinaryPrimitives.ReadUInt32LittleEndian(directory.Span.Slice(directoryIndex * 4, 4));
             if (tableSector == 0) throw new InvalidDataException($"VMDK grain table {directoryIndex} is missing.");
-            var table = await context.ReadAsync(
-                checked((long)tableSector * HardDiskFormatConstants.LegacyLogicalSectorSize),
-                checked((int)entriesPerTable * 4),
-                cancellationToken).ConfigureAwait(false);
+            var table = await context.ReadAsync(checked((long)tableSector * HardDiskFormatConstants.LegacyLogicalSectorSize), checked((int)entriesPerTable * 4), cancellationToken).ConfigureAwait(false);
             for (var tableIndex = 0; tableIndex < entriesPerTable && grainIndex < grainCount; tableIndex++, grainIndex++)
             {
                 var grainSector = BinaryPrimitives.ReadUInt32LittleEndian(table.Span.Slice(tableIndex * 4, 4));
@@ -187,10 +175,7 @@ public sealed class VmdkReader : IMediaImageReader
                 var sourceOffset = checked((long)grainSector * HardDiskFormatConstants.LegacyLogicalSectorSize);
                 if (sourceOffset > context.Length - length)
                     throw new InvalidDataException($"VMDK grain {grainIndex} points outside the file.");
-                AddRange(ranges, address, length,
-                    includeRanges ? MediaDataRangeKind.Stored : MediaDataRangeKind.Unavailable,
-                    source,
-                    includeRanges ? sourceOffset : 0);
+                AddRange(ranges, address, length, includeRanges ? MediaDataRangeKind.Stored : MediaDataRangeKind.Unavailable, source, includeRanges ? sourceOffset : 0);
             }
         }
         return CreateDocument(context.Source, capacity, ranges, HardDiskImageVariant.Sparse, null);
@@ -233,22 +218,18 @@ public sealed class VmdkReader : IMediaImageReader
         var suffix = line[(secondQuote + 1)..].Trim();
         long offset = 0;
         if (suffix.Length != 0
-            && !long.TryParse(suffix, System.Globalization.NumberStyles.None,
-                System.Globalization.CultureInfo.InvariantCulture, out offset))
+            && !long.TryParse(suffix, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out offset))
             throw new InvalidDataException("The VMDK extent offset is invalid.");
         if (offset < 0) throw new InvalidDataException("The VMDK extent offset is invalid.");
         return new VmdkExtent(prefix[0], sectors, prefix[2], line[(firstQuote + 1)..secondQuote], offset);
     }
 
-    private static bool ContainsAssignedValue(string descriptor, string name)
-        => descriptor.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            .Any(line => line.StartsWith(name + "=", StringComparison.OrdinalIgnoreCase));
+    private static bool ContainsAssignedValue(string descriptor, string name) => descriptor.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Any(line => line.StartsWith(name + "=", StringComparison.OrdinalIgnoreCase));
 
     private static string ReadAssignedValue(string descriptor, string name)
     {
         var prefix = name + "=";
-        var line = descriptor.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            .FirstOrDefault(candidate => candidate.StartsWith(prefix, StringComparison.OrdinalIgnoreCase));
+        var line = descriptor.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).FirstOrDefault(candidate => candidate.StartsWith(prefix, StringComparison.OrdinalIgnoreCase));
         if (line is null) throw new InvalidDataException($"The VMDK descriptor has no {name} value.");
         return line[prefix.Length..].Trim().Trim('"');
     }
@@ -264,8 +245,7 @@ public sealed class VmdkReader : IMediaImageReader
         if (ranges.Count > 0)
         {
             var previous = ranges[^1];
-            var sourceContinues = kind != MediaDataRangeKind.Stored
-                || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
+            var sourceContinues = kind != MediaDataRangeKind.Stored || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
             if (previous.Kind == kind && previous.Address + previous.Length == address && sourceContinues)
             {
                 ranges[^1] = new MediaDataRange(previous.Address, previous.Length + length, kind, previous.Source, previous.SourceOffset);

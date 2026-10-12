@@ -20,8 +20,7 @@ public sealed class XdvdfsWriter : IMediaImageWriter
     private readonly IAtomicImageFileWriter files;
     private readonly OpticalSectorReader sectors = new();
 
-    public XdvdfsWriter(IAtomicImageFileWriter? files = null) =>
-        this.files = files ?? new AtomicImageFileWriter();
+    public XdvdfsWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
 
     public string Id => MediaImageWriterIds.OpticalXboxXdvdfs;
     public IReadOnlySet<string> FormatIds => SupportedFormatIds;

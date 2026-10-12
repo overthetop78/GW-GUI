@@ -57,9 +57,7 @@ public sealed class AppleNibbleConversionService
         await using var stream = new FileStream(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Read, ScpFormatConstants.SignatureLength, FileOptions.Asynchronous | FileOptions.SequentialScan);
         var signature = new byte[ScpFormatConstants.SignatureLength];
         var read = await stream.ReadAsync(signature, cancellationToken).ConfigureAwait(false);
-        return read == signature.Length && signature.AsSpan().SequenceEqual(ScpFormatConstants.FileSignature) 
-            ? await _scpReader.ReadAsync(sourcePath, null, cancellationToken).ConfigureAwait(false) 
-            : await _appleReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        return read == signature.Length && signature.AsSpan().SequenceEqual(ScpFormatConstants.FileSignature) ? await _scpReader.ReadAsync(sourcePath, null, cancellationToken).ConfigureAwait(false) : await _appleReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>Vérifie que l'extension de sortie correspond à un Writer disponible.</summary>

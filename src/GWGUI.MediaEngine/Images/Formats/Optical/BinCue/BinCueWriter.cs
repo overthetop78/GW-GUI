@@ -39,10 +39,7 @@ public sealed class BinCueWriter : IMediaImageWriter
             || optical.LayerCount is not null
             || optical.FaceCount is not null)
             return false;
-        if (optical.Tracks.Any(track => track.SessionNumber != 1
-            || track.HasSubchannels
-            || !IsSupportedMode(track.Mode)
-            || track.StoredPregapSectors > 0 && track.StoredPregapSourceOffset is null))
+        if (optical.Tracks.Any(track => track.SessionNumber != 1 || track.HasSubchannels || !IsSupportedMode(track.Mode) || track.StoredPregapSectors > 0 && track.StoredPregapSourceOffset is null))
             return false;
         var catalogs = optical.Tracks.Select(track => track.CatalogNumber).Distinct(StringComparer.Ordinal).ToArray();
         return catalogs.Length == 1;
@@ -69,16 +66,10 @@ public sealed class BinCueWriter : IMediaImageWriter
             var binaryName = $"{baseName}.track{track.TrackNumber:D2}{DiskImageFileExtensions.Bin}";
             var binaryPath = Path.Combine(directory, binaryName);
             files.Add(binaryPath, (output, token) => WriteTrackAsync(track, output, token));
-            cueFiles.Add(new CueFileDescriptor(
-                binaryName,
-                CueFileKind.Binary,
-                [CreateTrackDeclaration(track)]));
+            cueFiles.Add(new CueFileDescriptor(binaryName, CueFileKind.Binary, [CreateTrackDeclaration(track)]));
         }
 
-        var sheet = new CueSheetDocument(
-            cueFiles,
-            optical.Tracks![0].CatalogNumber,
-            SelectCueMetadata(document.Metadata));
+        var sheet = new CueSheetDocument(cueFiles, optical.Tracks![0].CatalogNumber, SelectCueMetadata(document.Metadata));
         files.Add(fullCuePath, (output, token) => cueSheets.WriteAsync(sheet, output, token));
         await AtomicMediaFileSetWriter.WriteAsync(files, cancellationToken).ConfigureAwait(false);
         return files.Keys.ToArray();
@@ -90,17 +81,8 @@ public sealed class BinCueWriter : IMediaImageWriter
         if (track.StoredPregapSectors > 0)
             indexes.Add(new OpticalTrackIndex(0, 0));
         indexes.Add(new OpticalTrackIndex(1, track.StoredPregapSectors));
-        indexes.AddRange(track.Indexes
-            .Where(index => index.Number > 1)
-            .Select(index => new OpticalTrackIndex(index.Number, checked(track.StoredPregapSectors + index.RelativeSector))));
-        return new CueTrackDeclaration(
-            track.TrackNumber,
-            track.Mode,
-            indexes,
-            track.PregapSectors,
-            track.PostgapSectors,
-            track.Flags,
-            track.Isrc);
+        indexes.AddRange(track.Indexes.Where(index => index.Number > 1).Select(index => new OpticalTrackIndex(index.Number, checked(track.StoredPregapSectors + index.RelativeSector))));
+        return new CueTrackDeclaration(track.TrackNumber, track.Mode, indexes, track.PregapSectors, track.PostgapSectors, track.Flags, track.Isrc);
     }
 
     private static IReadOnlyDictionary<string, string> SelectCueMetadata(IReadOnlyDictionary<string, string> metadata)
@@ -119,18 +101,8 @@ public sealed class BinCueWriter : IMediaImageWriter
         CancellationToken cancellationToken)
     {
         if (track.StoredPregapSectors > 0)
-            await CopyAsync(
-                track.DataSource,
-                track.StoredPregapSourceOffset!.Value,
-                checked(track.StoredPregapSectors * track.StoredSectorSize),
-                output,
-                cancellationToken).ConfigureAwait(false);
-        await CopyAsync(
-            track.DataSource,
-            track.SourceOffset,
-            checked(track.SectorCount * track.StoredSectorSize),
-            output,
-            cancellationToken).ConfigureAwait(false);
+            await CopyAsync(track.DataSource, track.StoredPregapSourceOffset!.Value, checked(track.StoredPregapSectors * track.StoredSectorSize), output, cancellationToken).ConfigureAwait(false);
+        await CopyAsync(track.DataSource, track.SourceOffset, checked(track.SectorCount * track.StoredSectorSize), output, cancellationToken).ConfigureAwait(false);
     }
 
     private static async Task CopyAsync(
@@ -153,10 +125,5 @@ public sealed class BinCueWriter : IMediaImageWriter
         }
     }
 
-    private static bool IsSupportedMode(OpticalTrackMode mode) => mode is
-        OpticalTrackMode.Audio
-        or OpticalTrackMode.Mode1Data2048
-        or OpticalTrackMode.Mode1Raw2352
-        or OpticalTrackMode.Mode2Data2336
-        or OpticalTrackMode.Mode2Raw2352;
+    private static bool IsSupportedMode(OpticalTrackMode mode) => mode is OpticalTrackMode.Audio or OpticalTrackMode.Mode1Data2048 or OpticalTrackMode.Mode1Raw2352 or OpticalTrackMode.Mode2Data2336 or OpticalTrackMode.Mode2Raw2352;
 }

@@ -135,10 +135,7 @@ public sealed class UefWriter : IMediaImageWriter
         while (completed < range.Length)
         {
             var count = (int)Math.Min(buffer.Length, range.Length - completed);
-            await range.Source!.ReadExactlyAsync(
-                range.SourceOffset + completed,
-                buffer.AsMemory(0, count),
-                cancellationToken).ConfigureAwait(false);
+            await range.Source!.ReadExactlyAsync(range.SourceOffset + completed, buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
             await output.WriteAsync(buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
             completed += count;
         }

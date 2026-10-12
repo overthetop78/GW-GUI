@@ -21,9 +21,7 @@ public sealed class IbmRawConversionService(
         CancellationToken cancellationToken = default
     )
     {
-        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) 
-            ? await scpReader.ReadAsync(sourcePath, formatId, cancellationToken).ConfigureAwait(false) 
-            : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) ? await scpReader.ReadAsync(sourcePath, formatId, cancellationToken).ConfigureAwait(false) : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         await ConvertAsync(image, outputPath, formatId, cancellationToken).ConfigureAwait(false);
     }
 

@@ -12,11 +12,9 @@ public static class BuiltInDiskDefinitions
         "ucsd.ibm.mfm"
     };
 
-    public static bool Supports(string? formatId) =>
-        !string.IsNullOrWhiteSpace(formatId) && DefinedFormats.Contains(formatId);
+    public static bool Supports(string? formatId) => !string.IsNullOrWhiteSpace(formatId) && DefinedFormats.Contains(formatId);
 
-    public static string FilePath =>
-        Path.Combine(AppContext.BaseDirectory, "Assets", "DiskDefinitions", "built-in.cfg");
+    public static string FilePath => Path.Combine(AppContext.BaseDirectory, "Assets", "DiskDefinitions", "built-in.cfg");
 
     public static void AddArgumentIfRequired(List<string> arguments, string? formatId, IReadOnlyList<EnabledOption>? options)
     {

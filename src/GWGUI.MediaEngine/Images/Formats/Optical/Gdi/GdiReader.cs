@@ -27,8 +27,7 @@ public sealed class GdiReader : IMediaImageReader
     {
     }
 
-    internal GdiReader(GdiDescriptorReader descriptors) =>
-        this.descriptors = descriptors ?? throw new ArgumentNullException(nameof(descriptors));
+    internal GdiReader(GdiDescriptorReader descriptors) => this.descriptors = descriptors ?? throw new ArgumentNullException(nameof(descriptors));
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => GdiConstants.Extensions;
@@ -63,12 +62,9 @@ public sealed class GdiReader : IMediaImageReader
         CancellationToken cancellationToken)
     {
         var descriptor = await descriptors.ReadAsync(context.Source.PrimaryPath, cancellationToken).ConfigureAwait(false);
-        var directory = Path.GetDirectoryName(Path.GetFullPath(context.Source.PrimaryPath))
-            ?? Directory.GetCurrentDirectory();
+        var directory = Path.GetDirectoryName(Path.GetFullPath(context.Source.PrimaryPath)) ?? Directory.GetCurrentDirectory();
         ValidateAssociatedFiles(context.Source.PrimaryPath, descriptor);
-        var sources = descriptor.Tracks
-            .Select(track => ResolveDataPath(directory, track.FileName))
-            .Distinct(StringComparer.OrdinalIgnoreCase)
+        var sources = descriptor.Tracks.Select(track => ResolveDataPath(directory, track.FileName)).Distinct(StringComparer.OrdinalIgnoreCase)
             .ToDictionary(path => path, path => new FileRandomAccessData(path), StringComparer.OrdinalIgnoreCase);
 
         var tracks = new List<OpticalTrackDescriptor>(descriptor.Tracks.Count);
@@ -94,18 +90,7 @@ public sealed class GdiReader : IMediaImageReader
             }
             var mode = ResolveMode(declaration);
             var (userOffset, userLength) = ResolveUserDataWindow(mode, declaration.SectorSize);
-            tracks.Add(new OpticalTrackDescriptor(
-                1,
-                declaration.Number,
-                mode,
-                declaration.Lba,
-                sectorCount,
-                declaration.SectorSize,
-                userOffset,
-                userLength,
-                source,
-                declaration.FileOffset,
-                [new OpticalTrackIndex(1, 0)]));
+            tracks.Add(new OpticalTrackDescriptor(1, declaration.Number, mode, declaration.Lba, sectorCount, declaration.SectorSize, userOffset, userLength, source, declaration.FileOffset, [new OpticalTrackIndex(1, 0)]));
         }
 
         var associatedPaths = sources.Keys.ToArray();
@@ -122,29 +107,14 @@ public sealed class GdiReader : IMediaImageReader
             metadata[prefix + GdiConstants.ControlMetadataSuffix] = declaration.Control.ToString(CultureInfo.InvariantCulture);
             metadata[prefix + GdiConstants.SectorSizeMetadataSuffix] = declaration.SectorSize.ToString(CultureInfo.InvariantCulture);
         }
-        var sourceDescriptor = new MediaSourceDescriptor(
-            context.Source.PrimaryPath,
-            associatedPaths,
-            context.Source.KnownLength,
-            context.Source.RequestedFormatId);
-        var representation = new OpticalMediaImageRepresentation(
-            tracks.Sum(track => checked(track.SectorCount * track.UserDataLength)),
-            tracks,
-            associatedFiles: [context.Source.PrimaryPath, .. associatedPaths]);
-        return new MediaImageDocument(
-            sourceDescriptor,
-            GdiConstants.FormatId,
-            MediaKind.Optical,
-            representation,
-            [],
-            [],
-            metadata);
+        var sourceDescriptor = new MediaSourceDescriptor(context.Source.PrimaryPath, associatedPaths, context.Source.KnownLength, context.Source.RequestedFormatId);
+        var representation = new OpticalMediaImageRepresentation(tracks.Sum(track => checked(track.SectorCount * track.UserDataLength)), tracks, associatedFiles: [context.Source.PrimaryPath, .. associatedPaths]);
+        return new MediaImageDocument(sourceDescriptor, GdiConstants.FormatId, MediaKind.Optical, representation, [], [], metadata);
     }
 
     private static void ValidateAssociatedFiles(string descriptorPath, GdiDescriptor descriptor)
     {
-        var directory = Path.GetDirectoryName(Path.GetFullPath(descriptorPath))
-            ?? Directory.GetCurrentDirectory();
+        var directory = Path.GetDirectoryName(Path.GetFullPath(descriptorPath)) ?? Directory.GetCurrentDirectory();
         foreach (var track in descriptor.Tracks)
         {
             var path = ResolveDataPath(directory, track.FileName);
@@ -154,20 +124,14 @@ public sealed class GdiReader : IMediaImageReader
 
     private static string ResolveDataPath(string directory, string fileName)
     {
-        var root = Path.GetFullPath(directory).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
-            + Path.DirectorySeparatorChar;
+        var root = Path.GetFullPath(directory).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + Path.DirectorySeparatorChar;
         var path = Path.GetFullPath(Path.Combine(directory, fileName));
         if (!path.StartsWith(root, StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException("A GDI track file must remain inside the descriptor directory.");
         return path;
     }
 
-    private static OpticalTrackMode ResolveMode(GdiTrackDeclaration declaration) =>
-        declaration.Control == GdiConstants.AudioControl
-            ? OpticalTrackMode.Audio
-            : declaration.SectorSize == GdiConstants.DataSectorSize
-                ? OpticalTrackMode.Mode1Data2048
-                : OpticalTrackMode.Mode1Raw2352;
+    private static OpticalTrackMode ResolveMode(GdiTrackDeclaration declaration) => declaration.Control == GdiConstants.AudioControl ? OpticalTrackMode.Audio : declaration.SectorSize == GdiConstants.DataSectorSize ? OpticalTrackMode.Mode1Data2048 : OpticalTrackMode.Mode1Raw2352;
 
     private static (int Offset, int Length) ResolveUserDataWindow(OpticalTrackMode mode, int sectorSize) => mode switch
     {

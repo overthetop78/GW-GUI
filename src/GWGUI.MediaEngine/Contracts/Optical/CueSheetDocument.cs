@@ -18,8 +18,7 @@ public sealed class CueSheetDocument
 
         Files = new ReadOnlyCollection<CueFileDescriptor>(files.ToArray());
         CatalogNumber = catalogNumber;
-        Metadata = new ReadOnlyDictionary<string, string>(
-            new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase));
+        Metadata = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase));
     }
 
     public IReadOnlyList<CueFileDescriptor> Files { get; }

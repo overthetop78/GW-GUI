@@ -46,8 +46,7 @@ public sealed class Cp2Reader : IMediaImageReader
 
     IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentationKinds;
 
-    bool IMediaImageReader.SupportsFormatId(string formatId)
-        => formatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase);
+    bool IMediaImageReader.SupportsFormatId(string formatId) => formatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase);
 
     /// <summary>Lit, valide et reconstruit une image sectorielle depuis un conteneur CP2.</summary>
     /// <param name="path">Chemin du conteneur CP2 à lire.</param>

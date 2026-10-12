@@ -42,10 +42,7 @@ public sealed class TzxSignalEncoder : ISequentialMediaEncoder
 
         var ordered = new List<OrderedItem>();
         ordered.AddRange(request.RetainedSegments.Select(segment => new OrderedItem(segment.Position, segment, null)));
-        ordered.AddRange(request.Blocks.Select((block, index) => new OrderedItem(
-            block.SourceSegmentPositions.Count == 0 ? long.MaxValue - request.Blocks.Count + index : block.SourceSegmentPositions.Min(),
-            null,
-            block)));
+        ordered.AddRange(request.Blocks.Select((block, index) => new OrderedItem(block.SourceSegmentPositions.Count == 0 ? long.MaxValue - request.Blocks.Count + index : block.SourceSegmentPositions.Min(), null, block)));
 
         var output = new List<SequentialMediaSegment>();
         foreach (var item in ordered.OrderBy(item => item.Position).ThenBy(item => item.Block is null ? 0 : 1))
@@ -83,8 +80,7 @@ public sealed class TzxSignalEncoder : ISequentialMediaEncoder
             return segment.Length is null && segment.DataRange is null
                 || segment.DataRange is { Kind: MediaDataRangeKind.Stored, Source: not null } range && range.Length == segment.Length;
         if (segment.Kind == SequentialSegmentKind.Pulse)
-            return TryReadUInt16(segment.Metadata, "pulseTStates", out _)
-                && (!segment.Metadata.ContainsKey("pulseCount") || TryReadUInt16(segment.Metadata, "pulseCount", out _));
+            return TryReadUInt16(segment.Metadata, "pulseTStates", out _) && (!segment.Metadata.ContainsKey("pulseCount") || TryReadUInt16(segment.Metadata, "pulseCount", out _));
         return segment.Kind == SequentialSegmentKind.Silence
             && segment.Duration is { } duration
             && duration.TotalMilliseconds is >= 1 and <= ushort.MaxValue;
@@ -135,22 +131,15 @@ public sealed class TzxSignalEncoder : ISequentialMediaEncoder
         return payload;
     }
 
-    private static SequentialMediaSegment Clone(SequentialMediaSegment source, long position) =>
-        new(position, source.Kind, source.Length, source.Start, source.Duration, source.FaceNumber, source.TrackNumber,
-            source.ChannelNumber, source.Direction, source.DataRange, source.Metadata);
+    private static SequentialMediaSegment Clone(SequentialMediaSegment source, long position) => new(position, source.Kind, source.Length, source.Start, source.Duration, source.FaceNumber, source.TrackNumber, source.ChannelNumber, source.Direction, source.DataRange, source.Metadata);
 
     private static ushort ReadUInt16(IReadOnlyDictionary<string, string> metadata, string key, ushort defaultValue = 0) =>
-        metadata.TryGetValue(key, out var text)
-        && ushort.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var value)
-            ? value
-            : defaultValue;
+        metadata.TryGetValue(key, out var text) && ushort.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var value) ? value : defaultValue;
 
     private static bool TryReadUInt16(IReadOnlyDictionary<string, string> metadata, string key, out ushort value)
     {
         value = 0;
-        return metadata.TryGetValue(key, out var text)
-            && ushort.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value)
-            && value > 0;
+        return metadata.TryGetValue(key, out var text) && ushort.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value) && value > 0;
     }
 
     private sealed record OrderedItem(long Position, SequentialMediaSegment? Segment, SequentialDecodedBlock? Block);

@@ -13,10 +13,7 @@ public sealed class OpticalSectorReader
         ArgumentNullException.ThrowIfNull(track);
         ValidateRelativeSector(track, relativeSector);
         var sector = new byte[track.StoredSectorSize];
-        await track.DataSource.ReadExactlyAsync(
-            checked(track.SourceOffset + relativeSector * track.StoredSectorSize),
-            sector,
-            cancellationToken).ConfigureAwait(false);
+        await track.DataSource.ReadExactlyAsync(checked(track.SourceOffset + relativeSector * track.StoredSectorSize), sector, cancellationToken).ConfigureAwait(false);
         return sector;
     }
 
@@ -28,10 +25,7 @@ public sealed class OpticalSectorReader
         ArgumentNullException.ThrowIfNull(track);
         ValidateRelativeSector(track, relativeSector);
         var data = new byte[track.UserDataLength];
-        await track.DataSource.ReadExactlyAsync(
-            checked(track.SourceOffset + relativeSector * track.StoredSectorSize + track.UserDataOffset),
-            data,
-            cancellationToken).ConfigureAwait(false);
+        await track.DataSource.ReadExactlyAsync(checked(track.SourceOffset + relativeSector * track.StoredSectorSize + track.UserDataOffset), data, cancellationToken).ConfigureAwait(false);
         return data;
     }
 
@@ -46,10 +40,7 @@ public sealed class OpticalSectorReader
             return null;
 
         var data = new byte[track.SubchannelBytesPerSector];
-        await track.SubchannelSource.ReadExactlyAsync(
-            checked(track.SubchannelSourceOffset + relativeSector * track.SubchannelStride),
-            data,
-            cancellationToken).ConfigureAwait(false);
+        await track.SubchannelSource.ReadExactlyAsync(checked(track.SubchannelSourceOffset + relativeSector * track.SubchannelStride), data, cancellationToken).ConfigureAwait(false);
         return data;
     }
 

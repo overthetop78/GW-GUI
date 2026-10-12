@@ -13,21 +13,16 @@ internal sealed class ConversionCompatibilityValidator(IImageFormatCatalog catal
 
     public IReadOnlyList<ImageExtension> ResolveExtensions(DiskFormat format, ConversionSelection selection)
     {
-        var requested = selection.ExplicitExtensions.Count == 0
-            ? format.Extensions.Where(extension => extension.IsDefault).Select(extension => extension.Extension)
-            : selection.ExplicitExtensions;
+        var requested = selection.ExplicitExtensions.Count == 0 ? format.Extensions.Where(extension => extension.IsDefault).Select(extension => extension.Extension) : selection.ExplicitExtensions;
         return requested.Select(extension =>
-            format.Extensions.FirstOrDefault(candidate =>
-                string.Equals(candidate.Extension, extension, StringComparison.OrdinalIgnoreCase))
+            format.Extensions.FirstOrDefault(candidate => string.Equals(candidate.Extension, extension, StringComparison.OrdinalIgnoreCase))
             ?? throw new InvalidOperationException($"Extension '{extension}' is not valid for '{format.DisplayName}'."))
             .ToArray();
     }
 
     public static void EnsureDistinctOutputs(IReadOnlyList<ConversionOutput> outputs)
     {
-        var duplicate = outputs
-            .GroupBy(output => output.OutputPath, StringComparer.OrdinalIgnoreCase)
-            .FirstOrDefault(group => group.Count() > 1);
+        var duplicate = outputs.GroupBy(output => output.OutputPath, StringComparer.OrdinalIgnoreCase).FirstOrDefault(group => group.Count() > 1);
         if (duplicate is not null)
             throw new ConversionOutputCollisionException(duplicate.Key);
     }

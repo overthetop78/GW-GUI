@@ -21,9 +21,7 @@ public sealed class AmigaAdfConversionService(
         CancellationToken cancellationToken = default
     )
     {
-        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) 
-            ? await scpReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false) 
-            : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) ? await scpReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false) : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         await ConvertAsync(image, outputPath, formatId, cancellationToken).ConfigureAwait(false);
     }
 
@@ -34,9 +32,7 @@ public sealed class AmigaAdfConversionService(
         CancellationToken cancellationToken = default
     )
     {
-        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) 
-            ? await scpReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false) 
-            : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) ? await scpReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false) : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         if (!image.FormatId.Equals(DiskImageFormatIds.AmigaDos, StringComparison.OrdinalIgnoreCase) && !image.FormatId.Equals(DiskImageFormatIds.AmigaDosHighDensity, StringComparison.OrdinalIgnoreCase))
             throw AmigaAdfWriterExceptions.FormatMismatch(image.FormatId, DiskImageFormatIds.AmigaDos);
         await writer.WriteAsync(image, outputPath, cancellationToken).ConfigureAwait(false);

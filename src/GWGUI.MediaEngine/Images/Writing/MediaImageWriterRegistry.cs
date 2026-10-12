@@ -25,10 +25,7 @@ public sealed class MediaImageWriterRegistry
         ArgumentException.ThrowIfNullOrWhiteSpace(targetFormatId);
         ArgumentException.ThrowIfNullOrWhiteSpace(targetExtension);
         var extension = MediaFileExtensionFunctions.Normalize(targetExtension);
-        return writers.Where(writer =>
-                writer.FormatIds.Contains(targetFormatId, StringComparer.OrdinalIgnoreCase) &&
-                writer.ProducedFileExtensions.Contains(extension, StringComparer.OrdinalIgnoreCase))
-            .ToArray();
+        return writers.Where(writer => writer.FormatIds.Contains(targetFormatId, StringComparer.OrdinalIgnoreCase) && writer.ProducedFileExtensions.Contains(extension, StringComparer.OrdinalIgnoreCase)).ToArray();
     }
 
     public IMediaImageWriter? Resolve(MediaImageDocument document, string targetFormatId, string targetExtension)
@@ -41,6 +38,5 @@ public sealed class MediaImageWriterRegistry
             writer.CanWrite(document, targetFormatId, MediaFileExtensionFunctions.Normalize(targetExtension)));
     }
 
-    public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) =>
-        Resolve(document, targetFormatId, targetExtension) is not null;
+    public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) => Resolve(document, targetFormatId, targetExtension) is not null;
 }

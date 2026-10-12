@@ -60,10 +60,7 @@ public sealed class ChdHardDiskWriter : IMediaImageWriter
             || blocks.Geometry is null)
             throw new InvalidDataException("The media document cannot be written as an autonomous uncompressed CHD hard disk image with explicit geometry.");
 
-        await files.WriteAsync(
-            outputPath,
-            (output, token) => WriteContainerAsync(blocks, blocks.Geometry, output, token),
-            cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(outputPath, (output, token) => WriteContainerAsync(blocks, blocks.Geometry, output, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 
@@ -93,27 +90,15 @@ public sealed class ChdHardDiskWriter : IMediaImageWriter
             hunk.AsSpan().Clear();
             var logicalOffset = checked(hunkIndex * hunkBytes);
             var logicalLength = (int)Math.Min(hunkBytes, blocks.Capacity - logicalOffset);
-            await BlockMediaDataReader.ReadExactlyAsync(
-                blocks,
-                logicalOffset,
-                hunk.AsMemory(0, logicalLength),
-                cancellationToken).ConfigureAwait(false);
+            await BlockMediaDataReader.ReadExactlyAsync(blocks, logicalOffset, hunk.AsMemory(0, logicalLength), cancellationToken).ConfigureAwait(false);
             hash.AppendData(hunk, 0, logicalLength);
             var fileOffset = checked(dataOffset + hunkIndex * hunkBytes);
-            BinaryPrimitives.WriteUInt32BigEndian(
-                map.AsSpan(checked((int)hunkIndex * 4), 4),
-                checked((uint)(fileOffset / hunkBytes)));
+            BinaryPrimitives.WriteUInt32BigEndian(map.AsSpan(checked((int)hunkIndex * 4), 4), checked((uint)(fileOffset / hunkBytes)));
             output.Position = fileOffset;
             await output.WriteAsync(hunk, cancellationToken).ConfigureAwait(false);
         }
 
-        var metadata = System.Text.Encoding.ASCII.GetBytes(string.Format(
-            CultureInfo.InvariantCulture,
-            ChdConstants.HardDiskMetadataFormat,
-            geometry.Cylinders,
-            geometry.Heads,
-            geometry.SectorsPerTrack,
-            geometry.SectorSize));
+        var metadata = System.Text.Encoding.ASCII.GetBytes(string.Format(CultureInfo.InvariantCulture, ChdConstants.HardDiskMetadataFormat, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, geometry.SectorSize));
         if (metadata.Length > ChdConstants.MetadataLengthMask)
             throw new InvalidDataException("The CHD hard disk metadata is too large.");
         var metadataOffset = checked(dataOffset + hunkCount * hunkBytes);
@@ -129,13 +114,7 @@ public sealed class ChdHardDiskWriter : IMediaImageWriter
 
         output.Position = mapOffset;
         await output.WriteAsync(map, cancellationToken).ConfigureAwait(false);
-        var header = CreateHeader(
-            blocks.Capacity,
-            mapOffset,
-            metadataOffset,
-            hunkBytes,
-            blocks.LogicalBlockSize,
-            hash.GetHashAndReset());
+        var header = CreateHeader(blocks.Capacity, mapOffset, metadataOffset, hunkBytes, blocks.LogicalBlockSize, hash.GetHashAndReset());
         output.Position = 0;
         await output.WriteAsync(header, cancellationToken).ConfigureAwait(false);
     }
@@ -161,8 +140,7 @@ public sealed class ChdHardDiskWriter : IMediaImageWriter
         return header;
     }
 
-    private static long Align(long value, int alignment)
-        => checked((value + alignment - 1) / alignment * alignment);
+    private static long Align(long value, int alignment) => checked((value + alignment - 1) / alignment * alignment);
 
     private static bool HasCompleteReadableCoverage(BlockMediaImageRepresentation blocks)
     {

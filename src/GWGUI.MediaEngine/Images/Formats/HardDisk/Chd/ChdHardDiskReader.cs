@@ -79,11 +79,7 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
             context.Source,
             HardDiskImageFormatIds.Chd,
             MediaKind.HardDisk,
-            new BlockMediaImageRepresentation(
-                layout.LogicalBytes,
-                layout.UnitBytes,
-                ranges,
-                layout.Geometry),
+            new BlockMediaImageRepresentation(layout.LogicalBytes, layout.UnitBytes, ranges, layout.Geometry),
             [],
             [],
             new Dictionary<string, string>(StringComparer.Ordinal)
@@ -100,10 +96,7 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
     {
         if (context.Length < ChdConstants.Version5HeaderSize)
             throw new InvalidDataException("The file is too short to contain a CHD V5 header.");
-        var headerMemory = await context.ReadAsync(
-            0,
-            ChdConstants.Version5HeaderSize,
-            cancellationToken).ConfigureAwait(false);
+        var headerMemory = await context.ReadAsync(0, ChdConstants.Version5HeaderSize, cancellationToken).ConfigureAwait(false);
         var header = headerMemory.Span;
         if (!header[..ChdHardDiskFormat.Signature.Length].SequenceEqual(ChdHardDiskFormat.Signature.Span))
             throw new InvalidDataException("The CHD signature is missing.");
@@ -162,10 +155,7 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
             if (offset < ChdConstants.Version5HeaderSize
                 || offset > context.Length - ChdConstants.MetadataHeaderSize)
                 throw new InvalidDataException("A CHD metadata header is outside the file.");
-            var headerMemory = await context.ReadAsync(
-                offset,
-                ChdConstants.MetadataHeaderSize,
-                cancellationToken).ConfigureAwait(false);
+            var headerMemory = await context.ReadAsync(offset, ChdConstants.MetadataHeaderSize, cancellationToken).ConfigureAwait(false);
             var header = headerMemory.Span;
             var tag = BinaryPrimitives.ReadUInt32BigEndian(header[..4]);
             var lengthAndFlags = BinaryPrimitives.ReadUInt32BigEndian(header[4..8]);
@@ -203,8 +193,7 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
         if (ranges.Count > 0)
         {
             var previous = ranges[^1];
-            var sourceContinues = kind != MediaDataRangeKind.Stored
-                || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
+            var sourceContinues = kind != MediaDataRangeKind.Stored || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
             if (previous.Kind == kind && previous.Address + previous.Length == address && sourceContinues)
             {
                 ranges[^1] = new MediaDataRange(previous.Address, previous.Length + length, kind, previous.Source, previous.SourceOffset);

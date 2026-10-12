@@ -43,9 +43,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
             }
             foreach (var window in ScpTrackDecodeWindowFactory.Create(track))
             {
-                var decoded = decoderId == FluxCodecIds.AppleMacGcr
-                    ? DecodeMacTrack(track, window.Flux)
-                    : decoders.Decode(decoderId, window.Flux);
+                var decoded = decoderId == FluxCodecIds.AppleMacGcr ? DecodeMacTrack(track, window.Flux) : decoders.Decode(decoderId, window.Flux);
                 foreach (var sector in decoded.Sectors)
                 {
                     if (sector.Data is not { Count: var length } || length != size) continue;
@@ -97,17 +95,14 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
         foreach (var factor in factors)
         {
             var candidate = _macDecoder.DecodeAtBitCell(revolution, initial * factor);
-            var plausible = candidate.Sectors.Where(sector => sector.Data?.Count == AppleIwmGcrFormat.SectorByteCount &&
-                sector.Cylinder == track.Cylinder && sector.Head == track.Head &&
-                sector.Number >= 0 && sector.Number < expected).ToArray() ?? [];
+            var plausible = candidate.Sectors.Where(sector => sector.Data?.Count == AppleIwmGcrFormat.SectorByteCount && sector.Cylinder == track.Cylinder && sector.Head == track.Head && sector.Number >= 0 && sector.Number < expected).ToArray() ?? [];
             var score = plausible.Select(sector => sector.Number).Distinct().Count() * AppleScpReconstructionDefinitions.DistinctSectorScoreWeight + plausible.Count(sector => sector.IntegrityValid == true) * AppleScpReconstructionDefinitions.ValidSectorScoreWeight + plausible.Length;
             if (score > bestScore)
             {
                 best = candidate;
                 bestScore = score;
             }
-            if (plausible.Where(sector => sector.IntegrityValid == true).Select(sector => sector.Number)
-                    .Distinct().Count() == expected) break;
+            if (plausible.Where(sector => sector.IntegrityValid == true).Select(sector => sector.Number).Distinct().Count() == expected) break;
         }
         return best ?? _macDecoder.Decode(revolution);
     }

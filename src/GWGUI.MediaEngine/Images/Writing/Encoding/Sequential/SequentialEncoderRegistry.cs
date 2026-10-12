@@ -36,8 +36,5 @@ public sealed class SequentialEncoderRegistry
         };
     }
 
-    public Task<SequentialMediaImageRepresentation> EncodeAsync(
-        SequentialEncodeRequest request,
-        CancellationToken cancellationToken = default) =>
-        GetRequired(request).EncodeAsync(request, cancellationToken);
+    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default) => GetRequired(request).EncodeAsync(request, cancellationToken);
 }

@@ -47,9 +47,7 @@ internal static class EpsonQx10SectorImageBuilder
             }
         }
 
-        var blockSize = sizes.GroupBy(size => size).OrderByDescending(group =>
-            geometry.AllTracks.Where(track => track.SectorSize == group.Key).Sum(track => track.Count)).First().Key;
-        return new(formatId, blockSize, geometry.Cylinders, geometry.Heads, maximumSectors, blocks,
-            allowVariableBlockSize: sizes.Count > 1, capacity: capacity, logicalBlockCount: logical);
+        var blockSize = sizes.GroupBy(size => size).OrderByDescending(group => geometry.AllTracks.Where(track => track.SectorSize == group.Key).Sum(track => track.Count)).First().Key;
+        return new(formatId, blockSize, geometry.Cylinders, geometry.Heads, maximumSectors, blocks, allowVariableBlockSize: sizes.Count > 1, capacity: capacity, logicalBlockCount: logical);
     }
 }

@@ -27,11 +27,7 @@ internal static class AppleIIGcrCodec
             volume,
             cylinder,
             sector,
-            ComputeAddressChecksum(
-                volume,
-                cylinder,
-                sector
-            )
+            ComputeAddressChecksum(volume, cylinder, sector)
         };
         for (var index = 0; index < values.Length; index++)
         {

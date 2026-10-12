@@ -12,10 +12,7 @@ public static class GwVisualizationPolicy
             return capabilities.ImageExtensions.Contains(extension.ToLowerInvariant()) && capabilities.ImageExtensions.Contains(".scp");
         if (detection.Format is null) return false;
         if (extension.Equals(".atr", StringComparison.OrdinalIgnoreCase))
-            return detection.Format.Id is "atari.90" or "atari.130"
-                && capabilities.FormatIds.Contains(detection.Format.Id)
-                && capabilities.ImageExtensions.Contains(".img")
-                && capabilities.ImageExtensions.Contains(".scp");
+            return detection.Format.Id is "atari.90" or "atari.130" && capabilities.FormatIds.Contains(detection.Format.Id) && capabilities.ImageExtensions.Contains(".img") && capabilities.ImageExtensions.Contains(".scp");
 
         var gwFormat = GwFormatArgument.FromCatalogId(detection.Format.Id);
         return !extension.Equals(".scp", StringComparison.OrdinalIgnoreCase)

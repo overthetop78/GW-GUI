@@ -37,8 +37,7 @@ public sealed class SequentialMediaSegment
         ChannelNumber = channelNumber;
         Direction = direction;
         DataRange = dataRange;
-        Metadata = new ReadOnlyDictionary<string, string>(
-            new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
+        Metadata = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
     }
 
     public long Position { get; }

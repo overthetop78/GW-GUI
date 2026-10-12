@@ -37,9 +37,5 @@ public sealed class SequentialDecoderRegistry
         };
     }
 
-    public Task<SequentialDecodeResult> DecodeAsync(
-        MediaImageDocument document,
-        string? machineId = null,
-        CancellationToken cancellationToken = default) =>
-        GetRequired(document, machineId).DecodeAsync(document, machineId, cancellationToken);
+    public Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default) => GetRequired(document, machineId).DecodeAsync(document, machineId, cancellationToken);
 }

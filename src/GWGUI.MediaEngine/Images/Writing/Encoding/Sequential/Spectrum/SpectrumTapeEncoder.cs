@@ -57,9 +57,7 @@ public sealed class SpectrumTapeEncoder : ISequentialMediaEncoder
         foreach (var block in request.Blocks)
         {
             var data = block.Data.Span;
-            var pilotCount = data[0] == SpectrumTapConstants.HeaderFlag
-                ? SpectrumTapConstants.HeaderPilotPulseCount
-                : SpectrumTapConstants.DataPilotPulseCount;
+            var pilotCount = data[0] == SpectrumTapConstants.HeaderFlag ? SpectrumTapConstants.HeaderPilotPulseCount : SpectrumTapConstants.DataPilotPulseCount;
             AddPulses(samples, ref level, SpectrumTapConstants.PilotPulseTStates, pilotCount, sampleRate);
             AddPulses(samples, ref level, SpectrumTapConstants.SyncFirstPulseTStates, 1, sampleRate);
             AddPulses(samples, ref level, SpectrumTapConstants.SyncSecondPulseTStates, 1, sampleRate);
@@ -112,8 +110,7 @@ public sealed class SpectrumTapeEncoder : ISequentialMediaEncoder
                 [SpectrumTapConstants.BlockMetadataKey] = bool.TrueString,
                 ["flag"] = bytes[0].ToString("x2", System.Globalization.CultureInfo.InvariantCulture),
                 ["checksumValid"] = bool.TrueString,
-                ["header"] = (bytes.Length == SpectrumTapConstants.HeaderBlockLength && bytes[0] == SpectrumTapConstants.HeaderFlag)
-                    .ToString(System.Globalization.CultureInfo.InvariantCulture)
+                ["header"] = (bytes.Length == SpectrumTapConstants.HeaderBlockLength && bytes[0] == SpectrumTapConstants.HeaderFlag).ToString(System.Globalization.CultureInfo.InvariantCulture)
             });
     }
 
@@ -130,8 +127,6 @@ public sealed class SpectrumTapeEncoder : ISequentialMediaEncoder
     private static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate)
     {
         sampleRate = 0;
-        return parameters.TryGetValue("sampleRate", out var text)
-            && int.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out sampleRate)
-            && sampleRate >= 8000;
+        return parameters.TryGetValue("sampleRate", out var text) && int.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out sampleRate) && sampleRate >= 8000;
     }
 }

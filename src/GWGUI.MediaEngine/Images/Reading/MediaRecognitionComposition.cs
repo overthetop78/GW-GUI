@@ -64,9 +64,7 @@ public sealed class MediaRecognitionComposition
     {
         ScpReader = scpReader;
         Readers = readers;
-        SupportedExtensions = readers
-            .SelectMany(reader => reader.Extensions)
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+        SupportedExtensions = readers.SelectMany(reader => reader.Extensions).ToFrozenSet(StringComparer.OrdinalIgnoreCase);
         Registry = new MediaRecognitionRegistry(readers);
         ReadingService = new MediaImageReadingService(Registry);
     }

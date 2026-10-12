@@ -57,8 +57,7 @@ public sealed class WiiUWriter : IMediaImageWriter
             throw new InvalidDataException("The Nintendo Wii U document cannot be written as a WUD or WUX image.");
         var readable = (IMediaBlockRepresentation)blocks;
 
-        if (NormalizeExtension(Path.GetExtension(outputPath))
-            .Equals(DiskImageFileExtensions.Wux, StringComparison.OrdinalIgnoreCase))
+        if (NormalizeExtension(Path.GetExtension(outputPath)).Equals(DiskImageFileExtensions.Wux, StringComparison.OrdinalIgnoreCase))
         {
             await WriteWuxAsync(outputPath, blocks.Capacity, readable, cancellationToken).ConfigureAwait(false);
             return [outputPath];
@@ -96,13 +95,7 @@ public sealed class WiiUWriter : IMediaImageWriter
         var temporaryPath = Path.GetTempFileName();
         try
         {
-            await using (var temporary = new FileStream(
-                temporaryPath,
-                FileMode.Create,
-                FileAccess.Write,
-                FileShare.None,
-                64 * 1024,
-                FileOptions.Asynchronous | FileOptions.SequentialScan))
+            await using (var temporary = new FileStream(temporaryPath, FileMode.Create, FileAccess.Write, FileShare.None, 64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan))
             {
                 var buffer = new byte[chunkSize];
                 var uniqueChunk = 0u;
@@ -112,8 +105,7 @@ public sealed class WiiUWriter : IMediaImageWriter
                     Array.Clear(buffer);
                     var offset = checked((long)chunk * chunkSize);
                     var count = (int)Math.Min(chunkSize, logicalLength - offset);
-                    await blocks.ReadExactlyAsync(offset, buffer.AsMemory(0, count), cancellationToken)
-                        .ConfigureAwait(false);
+                    await blocks.ReadExactlyAsync(offset, buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
                     var hash = Convert.ToHexString(SHA256.HashData(buffer));
                     if (!knownChunks.TryGetValue(hash, out var storedChunk))
                     {
@@ -139,13 +131,7 @@ public sealed class WiiUWriter : IMediaImageWriter
                 var padding = WiiUFormat.Align(written, chunkSize) - written;
                 await WriteZerosAsync(output, padding, token).ConfigureAwait(false);
 
-                await using var temporary = new FileStream(
-                    temporaryPath,
-                    FileMode.Open,
-                    FileAccess.Read,
-                    FileShare.Read,
-                    64 * 1024,
-                    FileOptions.Asynchronous | FileOptions.SequentialScan);
+                await using var temporary = new FileStream(temporaryPath, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
                 await temporary.CopyToAsync(output, 256 * 1024, token).ConfigureAwait(false);
             }, cancellationToken).ConfigureAwait(false);
         }

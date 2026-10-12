@@ -16,10 +16,7 @@ internal sealed class GdiDescriptorReader
     public GdiDescriptor Parse(IEnumerable<string> lines)
     {
         ArgumentNullException.ThrowIfNull(lines);
-        var meaningful = lines
-            .Select(line => line.Trim())
-            .Where(line => line.Length != 0 && !line.StartsWith('#'))
-            .ToArray();
+        var meaningful = lines.Select(line => line.Trim()).Where(line => line.Length != 0 && !line.StartsWith('#')).ToArray();
         if (meaningful.Length < 2)
             throw new InvalidDataException("A GDI descriptor must contain a track count and at least one track.");
         if (!int.TryParse(meaningful[0], NumberStyles.None, CultureInfo.InvariantCulture, out var declaredCount)

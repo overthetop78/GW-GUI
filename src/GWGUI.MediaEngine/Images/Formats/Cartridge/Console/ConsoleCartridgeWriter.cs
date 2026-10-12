@@ -48,11 +48,8 @@ public sealed class ConsoleCartridgeWriter : IMediaImageWriter
             [DiskImageFormatIds.BandaiWonderSwan] = Extensions(DiskImageFileExtensions.Ws, DiskImageFileExtensions.Wsc)
         }.ToFrozenDictionary(StringComparer.OrdinalIgnoreCase);
 
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        FormatExtensions.Keys.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedExtensions =
-        FormatExtensions.Values.SelectMany(static extensions => extensions)
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormatIds = FormatExtensions.Keys.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedExtensions = FormatExtensions.Values.SelectMany(static extensions => extensions).ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
         new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
 
@@ -112,6 +109,5 @@ public sealed class ConsoleCartridgeWriter : IMediaImageWriter
             ? extension.ToLowerInvariant()
             : $".{extension.ToLowerInvariant()}";
 
-    private static IReadOnlySet<string> Extensions(params string[] extensions) =>
-        extensions.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static IReadOnlySet<string> Extensions(params string[] extensions) => extensions.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 }

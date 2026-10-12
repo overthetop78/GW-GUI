@@ -30,19 +30,7 @@ public sealed class OpticalMediaVisualizationProvider : IMediaVisualizationProvi
         var surfaces = optical.FaceCount is { } faceCount ? Enumerable.Range(0, faceCount).ToArray() : [];
         var layers = optical.LayerCount is { } layerCount ? Enumerable.Range(0, layerCount).ToArray() : null;
         var knownSurface = surfaces.Length == 1 ? 0 : (int?)null;
-        var elements = optical.Tracks?.Select(track =>
-            new MediaVisualizationElement(
-                track.FirstSector,
-                knownSurface,
-                track.SectorCount,
-                track.SessionNumber,
-                track.TrackNumber)).ToArray() ?? [];
-        return new(
-            MediaRepresentationKind.OpticalTracks,
-            surfaces,
-            MediaVisualizationProgressUnit.OpticalTrack,
-            MediaVisualizationDirection.Ascending,
-            elements,
-            layers);
+        var elements = optical.Tracks?.Select(track => new MediaVisualizationElement(track.FirstSector, knownSurface, track.SectorCount, track.SessionNumber, track.TrackNumber)).ToArray() ?? [];
+        return new(MediaRepresentationKind.OpticalTracks, surfaces, MediaVisualizationProgressUnit.OpticalTrack, MediaVisualizationDirection.Ascending, elements, layers);
     }
 }

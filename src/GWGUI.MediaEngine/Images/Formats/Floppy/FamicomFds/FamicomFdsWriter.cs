@@ -30,10 +30,7 @@ public sealed class FamicomFdsWriter : IMediaImageWriter
     public IReadOnlySet<string> ProducedFileExtensions => SupportedExtensions;
     public bool ProducesMultipleFiles => false;
 
-    public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension)
-        => SupportedFormatIds.Contains(targetFormatId)
-            && SupportedExtensions.Contains(targetExtension)
-            && TryGetSides(document, out _, out _);
+    public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) => SupportedFormatIds.Contains(targetFormatId) && SupportedExtensions.Contains(targetExtension) && TryGetSides(document, out _, out _);
 
     public async Task<IReadOnlyList<string>> WriteAsync(
         MediaImageDocument document,
@@ -45,8 +42,7 @@ public sealed class FamicomFdsWriter : IMediaImageWriter
             || !TryGetSides(document, out var sides, out var headered))
             throw new InvalidDataException("The block document does not contain complete Famicom Disk System sides.");
 
-        await files.WriteAsync(outputPath, (output, token) => WriteFdsAsync(output, document, sides, headered, token), cancellationToken)
-            .ConfigureAwait(false);
+        await files.WriteAsync(outputPath, (output, token) => WriteFdsAsync(output, document, sides, headered, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 
@@ -60,13 +56,7 @@ public sealed class FamicomFdsWriter : IMediaImageWriter
         if (headered)
         {
             var header = new byte[FamicomFdsConstants.HeaderLength];
-            await using var input = new FileStream(
-                document.Source.PrimaryPath,
-                FileMode.Open,
-                FileAccess.Read,
-                FileShare.Read,
-                FamicomFdsConstants.HeaderLength,
-                FileOptions.Asynchronous | FileOptions.RandomAccess);
+            await using var input = new FileStream(document.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read, FamicomFdsConstants.HeaderLength, FileOptions.Asynchronous | FileOptions.RandomAccess);
             await input.ReadExactlyAsync(header, cancellationToken).ConfigureAwait(false);
             if (!header.AsSpan(0, FamicomFdsConstants.Signature.Length).SequenceEqual(FamicomFdsConstants.Signature))
                 throw new InvalidDataException("The source FDS header is missing.");
@@ -81,8 +71,7 @@ public sealed class FamicomFdsWriter : IMediaImageWriter
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 var count = (int)Math.Min(buffer.Length, side.Length - completed);
-                await side.Source!.ReadExactlyAsync(side.SourceOffset + completed, buffer.AsMemory(0, count), cancellationToken)
-                    .ConfigureAwait(false);
+                await side.Source!.ReadExactlyAsync(side.SourceOffset + completed, buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
                 await output.WriteAsync(buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
                 completed += count;
             }

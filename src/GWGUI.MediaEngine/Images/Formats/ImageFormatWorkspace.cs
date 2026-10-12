@@ -31,9 +31,7 @@ public sealed class ImageFormatWorkspace
     {
         var discovered = DiskDefsFormatReader.Read(path);
         var formatIds = Capabilities.FormatIds.Concat(discovered).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        var extensions = Capabilities.ImageExtensions.Count > 0
-            ? Capabilities.ImageExtensions
-            : ImageFormatFallbackExtensions.All;
+        var extensions = Capabilities.ImageExtensions.Count > 0 ? Capabilities.ImageExtensions : ImageFormatFallbackExtensions.All;
 
         Capabilities = new GwFormatCapabilities(formatIds, extensions);
         Rebuild();
@@ -41,9 +39,7 @@ public sealed class ImageFormatWorkspace
 
     public void Rebuild()
     {
-        Catalog = new CapabilityAwareImageFormatCatalog(
-            new BuiltInImageFormatCatalog(_localize),
-            Capabilities);
+        Catalog = new CapabilityAwareImageFormatCatalog(new BuiltInImageFormatCatalog(_localize), Capabilities);
         Detector = new ImageFormatDetector(Catalog);
     }
 }

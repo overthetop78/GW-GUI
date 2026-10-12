@@ -35,9 +35,7 @@ internal sealed record ScpSectorImageCandidate(
         string? formatId,
         IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
         CancellationToken cancellationToken) =>
-        ProgressiveReadAsync is null
-            ? ReadAsync(path, formatId, cancellationToken)
-            : ProgressiveReadAsync(path, formatId, progress, cancellationToken);
+        ProgressiveReadAsync is null ? ReadAsync(path, formatId, cancellationToken) : ProgressiveReadAsync(path, formatId, progress, cancellationToken);
 
     public Task<SectorImage> ReadWithProgressAsync(
         ProtectedTrackImage image,

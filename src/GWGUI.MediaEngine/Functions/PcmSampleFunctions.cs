@@ -69,7 +69,6 @@ internal static class PcmSampleFunctions
     private static bool TryReadInt(IReadOnlyDictionary<string, string> metadata, string key, out int value)
     {
         value = 0;
-        return metadata.TryGetValue(key, out var text)
-            && int.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value);
+        return metadata.TryGetValue(key, out var text) && int.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value);
     }
 }

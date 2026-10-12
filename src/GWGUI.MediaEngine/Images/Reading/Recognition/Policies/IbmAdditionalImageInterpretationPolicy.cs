@@ -22,11 +22,7 @@ internal sealed class IbmAdditionalImageInterpretationPolicy : IAdditionalImageI
         var fatMedia = image.TryGetBlock(FatBootSectorLayout.FirstFatLogicalBlock, out var fat) && fat.Data.Count > FatBootSectorLayout.FatMediaDescriptorDataOffset ? fat.Data[FatBootSectorLayout.FatMediaDescriptorDataOffset] : FatBootSectorLayout.UnknownMediaDescriptor;
         if (!IbmDosDiskProbe.TryIdentify(boot.Data.ToArray(), fatMedia, false, out var geometry)) yield break;
         var physicalFormatId = DiskImageFormatIds.IbmFromCapacity(image.Capacity);
-        var formatId = geometry.FormatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) && supportedFormatIds.Contains(geometry.FormatId)
-            ? geometry.FormatId
-            : supportedFormatIds.Contains(physicalFormatId)
-                ? physicalFormatId
-                : DiskImageFormatIds.IbmScan;
+        var formatId = geometry.FormatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) && supportedFormatIds.Contains(geometry.FormatId) ? geometry.FormatId : supportedFormatIds.Contains(physicalFormatId) ? physicalFormatId : DiskImageFormatIds.IbmScan;
         yield return image.WithFormatId(formatId);
     }
 }

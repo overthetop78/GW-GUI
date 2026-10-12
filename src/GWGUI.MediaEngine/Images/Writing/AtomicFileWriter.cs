@@ -19,8 +19,7 @@ internal static class AtomicFileWriter
             $".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp");
         try
         {
-            await File.WriteAllBytesAsync(temporaryPath, content.ToArray(), cancellationToken)
-                .ConfigureAwait(false);
+            await File.WriteAllBytesAsync(temporaryPath, content.ToArray(), cancellationToken).ConfigureAwait(false);
             File.Move(temporaryPath, fullPath, true);
         }
         finally

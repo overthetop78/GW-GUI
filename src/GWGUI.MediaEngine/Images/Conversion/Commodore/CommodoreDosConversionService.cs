@@ -26,9 +26,7 @@ public sealed class CommodoreDosConversionService(
         var extension = Path.GetExtension(sourcePath);
         var image = extension.Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) 
             ? await scpReader.ReadAsync(sourcePath, formatId, cancellationToken).ConfigureAwait(false) 
-            : extension.Equals(DiskImageFileExtensions.D71, StringComparison.OrdinalIgnoreCase) 
-            ? await d71Reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false) 
-            : await d64Reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+            : extension.Equals(DiskImageFileExtensions.D71, StringComparison.OrdinalIgnoreCase) ? await d71Reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false) : await d64Reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         if (!image.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException($"Commodore source format '{image.FormatId}' cannot be written as '{formatId}' without a geometry transformation.");
         var errorMapMode = image.AvailableBlocks.All(block => block.DiagnosticCode.HasValue) ? CommodoreDosErrorMapMode.Preserve : CommodoreDosErrorMapMode.None;

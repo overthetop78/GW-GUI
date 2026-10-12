@@ -50,16 +50,12 @@ public sealed class AtariCassetteEncoder : ISequentialMediaEncoder
         }
         else
         {
-            output.Add(new SequentialMediaSegment(
-                output.Count,
-                SequentialSegmentKind.TapeMark,
-                metadata: ChunkMetadata(AtariCasConstants.FileMarkerChunk, 0)));
+            output.Add(new SequentialMediaSegment(output.Count, SequentialSegmentKind.TapeMark, metadata: ChunkMetadata(AtariCasConstants.FileMarkerChunk, 0)));
         }
 
         var pending = new List<OrderedItem>();
         pending.AddRange(retained.Select(segment => new OrderedItem(segment.Position, segment, null)));
-        pending.AddRange(request.Blocks.Select((block, index) =>
-            new OrderedItem(block.SourceSegmentPositions.Count == 0 ? long.MaxValue - request.Blocks.Count + index : block.SourceSegmentPositions.Min(), null, block)));
+        pending.AddRange(request.Blocks.Select((block, index) => new OrderedItem(block.SourceSegmentPositions.Count == 0 ? long.MaxValue - request.Blocks.Count + index : block.SourceSegmentPositions.Min(), null, block)));
         var elapsed = TimeSpan.Zero;
         var blockIndex = 0;
         foreach (var item in pending.OrderBy(item => item.Position).ThenBy(item => item.Block is null ? 0 : 1))
@@ -72,10 +68,7 @@ public sealed class AtariCassetteEncoder : ISequentialMediaEncoder
             }
 
             var block = item.Block!;
-            output.Add(new SequentialMediaSegment(
-                output.Count,
-                SequentialSegmentKind.Carrier,
-                metadata: ChunkMetadata(AtariCasConstants.BaudRateChunk, AtariCasConstants.DefaultBaudRate)));
+            output.Add(new SequentialMediaSegment(output.Count, SequentialSegmentKind.Carrier, metadata: ChunkMetadata(AtariCasConstants.BaudRateChunk, AtariCasConstants.DefaultBaudRate)));
             var markMilliseconds = blockIndex++ == 0 ? initialMark : subsequentMark;
             var duration = TimeSpan.FromSeconds(block.Data.Length * AtariCasConstants.SerialFrameBitCount / (double)AtariCasConstants.DefaultBaudRate);
             var data = block.Data.ToArray();
@@ -96,23 +89,9 @@ public sealed class AtariCassetteEncoder : ISequentialMediaEncoder
         return Task.FromResult(new SequentialMediaImageRepresentation(logicalLength, elapsed == TimeSpan.Zero ? null : elapsed, output));
     }
 
-    private static bool IsFileMarker(SequentialMediaSegment segment) =>
-        segment.Metadata.TryGetValue(AtariCasConstants.ChunkIdMetadataKey, out var chunkId)
-        && chunkId == AtariCasConstants.FileMarkerChunk;
+    private static bool IsFileMarker(SequentialMediaSegment segment) => segment.Metadata.TryGetValue(AtariCasConstants.ChunkIdMetadataKey, out var chunkId) && chunkId == AtariCasConstants.FileMarkerChunk;
 
-    private static SequentialMediaSegment Clone(SequentialMediaSegment source, long position) =>
-        new(
-            position,
-            source.Kind,
-            source.Length,
-            source.Start,
-            source.Duration,
-            source.FaceNumber,
-            source.TrackNumber,
-            source.ChannelNumber,
-            source.Direction,
-            source.DataRange,
-            source.Metadata);
+    private static SequentialMediaSegment Clone(SequentialMediaSegment source, long position) => new(position, source.Kind, source.Length, source.Start, source.Duration, source.FaceNumber, source.TrackNumber, source.ChannelNumber, source.Direction, source.DataRange, source.Metadata);
 
     private static IReadOnlyDictionary<string, string> ChunkMetadata(string chunkId, int auxiliary, int? baudRate = null)
     {

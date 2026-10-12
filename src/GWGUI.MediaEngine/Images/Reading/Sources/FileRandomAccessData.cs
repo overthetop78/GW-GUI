@@ -26,13 +26,7 @@ public sealed class FileRandomAccessData : IMediaRandomAccessData
             throw new ArgumentOutOfRangeException(nameof(destination), "The requested range exceeds the file data source.");
         if (destination.IsEmpty) return;
 
-        await using var stream = new FileStream(
-            Path,
-            FileMode.Open,
-            FileAccess.Read,
-            FileShare.Read,
-            64 * 1024,
-            FileOptions.Asynchronous | FileOptions.RandomAccess);
+        await using var stream = new FileStream(Path, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.RandomAccess);
         stream.Seek(offset, SeekOrigin.Begin);
 
         var totalRead = 0;

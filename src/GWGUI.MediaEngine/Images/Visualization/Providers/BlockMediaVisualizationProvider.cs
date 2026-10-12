@@ -48,12 +48,7 @@ public sealed class BlockMediaVisualizationProvider : IMediaVisualizationProvide
         var elements = new MediaVisualizationElement[points.Length - 1];
         for (var index = 0; index < elements.Length; index++)
             elements[index] = new MediaVisualizationElement(points[index], 0, points[index + 1] - points[index]);
-        return new(
-            MediaRepresentationKind.Blocks,
-            [0],
-            MediaVisualizationProgressUnit.BlockRange,
-            MediaVisualizationDirection.Ascending,
-            elements);
+        return new(MediaRepresentationKind.Blocks, [0], MediaVisualizationProgressUnit.BlockRange, MediaVisualizationDirection.Ascending, elements);
     }
 
     private static long ResolveVisualLength(MediaImageDocument document, BlockMediaImageRepresentation blocks)

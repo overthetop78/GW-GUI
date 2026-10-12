@@ -164,8 +164,7 @@ public sealed class CueSheetReader
             throw new InvalidDataException($"Duplicate CUE metadata '{key}'.");
     }
 
-    private static TrackBuilder RequireTrack(TrackBuilder? track) =>
-        track ?? throw new InvalidDataException("The command requires a preceding TRACK declaration.");
+    private static TrackBuilder RequireTrack(TrackBuilder? track) => track ?? throw new InvalidDataException("The command requires a preceding TRACK declaration.");
 
     private static string RequireValue(string value, string command)
     {
@@ -225,8 +224,7 @@ public sealed class CueSheetReader
         public CueFileKind Kind { get; } = kind;
         public List<TrackBuilder> Tracks { get; } = [];
 
-        public CueFileDescriptor Build() =>
-            new(DeclaredPath, Kind, Tracks.Select(track => track.Build()).ToArray());
+        public CueFileDescriptor Build() => new(DeclaredPath, Kind, Tracks.Select(track => track.Build()).ToArray());
     }
 
     private sealed class TrackBuilder(int number, OpticalTrackMode mode)
@@ -240,7 +238,6 @@ public sealed class CueSheetReader
         public string? Isrc { get; set; }
         public Dictionary<string, string> Metadata { get; } = new(StringComparer.OrdinalIgnoreCase);
 
-        public CueTrackDeclaration Build() =>
-            new(Number, Mode, Indexes, PregapSectors, PostgapSectors, Flags, Isrc, Metadata);
+        public CueTrackDeclaration Build() => new(Number, Mode, Indexes, PregapSectors, PostgapSectors, Flags, Isrc, Metadata);
     }
 }

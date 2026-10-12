@@ -94,13 +94,7 @@ public sealed class WavePcmRandomAccessData : IMediaRandomAccessData
         if (offset > Length || destination.Length > Length - offset)
             throw new ArgumentOutOfRangeException(nameof(destination), "The requested range exceeds the WAVE PCM data.");
         if (destination.IsEmpty) return;
-        await using var stream = new FileStream(
-            path,
-            FileMode.Open,
-            FileAccess.Read,
-            FileShare.Read,
-            64 * 1024,
-            FileOptions.Asynchronous | FileOptions.RandomAccess);
+        await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.RandomAccess);
         stream.Seek(checked(dataOffset + offset), SeekOrigin.Begin);
         var totalRead = 0;
         while (totalRead < destination.Length)

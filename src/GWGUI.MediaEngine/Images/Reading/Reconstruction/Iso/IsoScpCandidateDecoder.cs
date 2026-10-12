@@ -27,9 +27,7 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
     {
         var fullPath = Path.GetFullPath(path);
         var file = new FileInfo(fullPath);
-        var fingerprint = file.Exists
-            ? new CaptureFingerprint(fullPath, file.Length, file.LastWriteTimeUtc)
-            : new CaptureFingerprint(fullPath, -1, DateTime.MinValue);
+        var fingerprint = file.Exists ? new CaptureFingerprint(fullPath, file.Length, file.LastWriteTimeUtc) : new CaptureFingerprint(fullPath, -1, DateTime.MinValue);
         var decoderKey = string.Join('\0', decoderIds);
         CacheEntry entry;
         lock (cacheGate)
@@ -138,8 +136,7 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
         foreach (var window in ScpTrackDecodeWindowFactory.Create(track))
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var result = decoderIds.Select(decoder => decoders.Decode(decoder, window.Flux))
-                .OrderByDescending(Score).First();
+            var result = decoderIds.Select(decoder => decoders.Decode(decoder, window.Flux)).OrderByDescending(Score).First();
             foreach (var sector in result.Sectors)
             {
                 if (sector.Data is null || sector.Number < 0) continue;

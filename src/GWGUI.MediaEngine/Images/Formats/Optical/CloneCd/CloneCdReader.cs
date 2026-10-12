@@ -89,10 +89,7 @@ public sealed class CloneCdReader : IMediaImageReader
             var indexZero = declaration.Indexes.SingleOrDefault(item => item.Number == 0);
             var storedPregap = indexZero is null ? 0 : start - indexZero.RelativeSector;
             if (storedPregap < 0) throw new InvalidDataException($"CloneCD track {declaration.Number} has INDEX 0 after INDEX 1.");
-            var session = descriptor.TocEntries
-                .Where(entry => entry.Point == declaration.Number)
-                .Select(entry => entry.SessionNumber)
-                .FirstOrDefault();
+            var session = descriptor.TocEntries.Where(entry => entry.Point == declaration.Number).Select(entry => entry.SessionNumber).FirstOrDefault();
             if (session <= 0) session = 1;
             var (userOffset, userLength) = GetUserDataWindow(declaration.Mode);
             tracks.Add(new OpticalTrackDescriptor(
@@ -114,21 +111,12 @@ public sealed class CloneCdReader : IMediaImageReader
                 subchannelSourceOffset: subchannels is null ? 0 : checked(start * CloneCdConstants.SubchannelSize),
                 subchannelBytesPerSector: subchannels is null ? 0 : CloneCdConstants.SubchannelSize,
                 storedPregapSectors: storedPregap,
-                storedPregapSourceOffset: storedPregap > 0
-                    ? checked((start - storedPregap) * CloneCdConstants.RawSectorSize)
-                    : null));
+                storedPregapSourceOffset: storedPregap > 0 ? checked((start - storedPregap) * CloneCdConstants.RawSectorSize) : null));
         }
 
         var associatedPaths = subchannels is null ? new[] { imagePath } : new[] { imagePath, subPath };
-        var source = new MediaSourceDescriptor(
-            context.Source.PrimaryPath,
-            associatedPaths,
-            context.Source.KnownLength,
-            context.Source.RequestedFormatId);
-        var representation = new OpticalMediaImageRepresentation(
-            tracks.Sum(track => checked(track.SectorCount * track.UserDataLength)),
-            tracks,
-            associatedFiles: [context.Source.PrimaryPath, .. associatedPaths]);
+        var source = new MediaSourceDescriptor(context.Source.PrimaryPath, associatedPaths, context.Source.KnownLength, context.Source.RequestedFormatId);
+        var representation = new OpticalMediaImageRepresentation(tracks.Sum(track => checked(track.SectorCount * track.UserDataLength)), tracks, associatedFiles: [context.Source.PrimaryPath, .. associatedPaths]);
         return new MediaImageDocument(
             source,
             OpticalImageFormatIds.CloneCd,

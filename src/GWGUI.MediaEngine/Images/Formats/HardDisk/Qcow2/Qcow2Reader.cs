@@ -47,8 +47,7 @@ public sealed class Qcow2Reader : IMediaImageReader
         }
     }
 
-    Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
-        => ReadDocumentAsync(context, true, cancellationToken);
+    Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken) => ReadDocumentAsync(context, true, cancellationToken);
 
     private static async Task<MediaImageDocument> ReadDocumentAsync(
         MediaRecognitionContext context,
@@ -102,23 +101,14 @@ public sealed class Qcow2Reader : IMediaImageReader
             }
             ValidateClusterOffset(dataOffset, header.ClusterSize, context.Length, "L2 data");
             await refcounts.RequireAllocatedAsync(dataOffset, cancellationToken).ConfigureAwait(false);
-            AddRange(
-                ranges,
-                address,
-                length,
-                includeRanges ? MediaDataRangeKind.Stored : MediaDataRangeKind.Unavailable,
-                source,
-                includeRanges ? dataOffset : 0);
+            AddRange(ranges, address, length, includeRanges ? MediaDataRangeKind.Stored : MediaDataRangeKind.Unavailable, source, includeRanges ? dataOffset : 0);
         }
 
         return new MediaImageDocument(
             context.Source,
             HardDiskImageFormatIds.Qcow2,
             MediaKind.HardDisk,
-            new BlockMediaImageRepresentation(
-                header.VirtualSize,
-                HardDiskFormatConstants.LegacyLogicalSectorSize,
-                ranges),
+            new BlockMediaImageRepresentation(header.VirtualSize, HardDiskFormatConstants.LegacyLogicalSectorSize, ranges),
             [],
             [],
             new Dictionary<string, string>(StringComparer.Ordinal)
@@ -135,10 +125,7 @@ public sealed class Qcow2Reader : IMediaImageReader
     {
         if (context.Length < HardDiskFormatConstants.Qcow2Version2HeaderSize)
             throw new InvalidDataException("The file is too short to contain a QCOW2 header.");
-        var memory = await context.ReadAsync(
-            0,
-            (int)Math.Min(context.Length, HardDiskFormatConstants.Qcow2Version3HeaderSize),
-            cancellationToken).ConfigureAwait(false);
+        var memory = await context.ReadAsync(0, (int)Math.Min(context.Length, HardDiskFormatConstants.Qcow2Version3HeaderSize), cancellationToken).ConfigureAwait(false);
         var header = memory.Span;
         if (BinaryPrimitives.ReadUInt32BigEndian(header[..4]) != HardDiskFormatConstants.Qcow2Magic)
             throw new InvalidDataException("The QCOW2 signature is missing.");
@@ -195,14 +182,7 @@ public sealed class Qcow2Reader : IMediaImageReader
         }
         if (refcountOrder != HardDiskFormatConstants.Qcow2DefaultRefcountOrder)
             throw new NotSupportedException($"QCOW2 refcount order {refcountOrder} is unsupported.");
-        return new Qcow2Header(
-            version,
-            clusterSize,
-            (long)virtualSizeUnsigned,
-            l1Size,
-            l1Offset,
-            refcountOffset,
-            refcountClusters);
+        return new Qcow2Header(version, clusterSize, (long)virtualSizeUnsigned, l1Size, l1Offset, refcountOffset, refcountClusters);
     }
 
     private static long GetClusterOffset(ulong entry, int clusterSize, string table)
@@ -232,8 +212,7 @@ public sealed class Qcow2Reader : IMediaImageReader
         if (ranges.Count > 0)
         {
             var previous = ranges[^1];
-            var sourceContinues = kind != MediaDataRangeKind.Stored
-                || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
+            var sourceContinues = kind != MediaDataRangeKind.Stored || ReferenceEquals(previous.Source, source) && previous.SourceOffset + previous.Length == sourceOffset;
             if (previous.Kind == kind && previous.Address + previous.Length == address && sourceContinues)
             {
                 ranges[^1] = new MediaDataRange(previous.Address, previous.Length + length, kind, previous.Source, previous.SourceOffset);
@@ -284,8 +263,7 @@ public sealed class Qcow2Reader : IMediaImageReader
             var tableIndex = clusterIndex / entriesPerBlock;
             if (tableIndex >= table.Length / sizeof(ulong))
                 throw new InvalidDataException("The QCOW2 refcount table does not cover a referenced cluster.");
-            var blockOffset = (long)(BinaryPrimitives.ReadUInt64BigEndian(
-                table.Span.Slice(checked((int)tableIndex * 8), 8)) & HardDiskFormatConstants.Qcow2ClusterOffsetMask);
+            var blockOffset = (long)(BinaryPrimitives.ReadUInt64BigEndian(table.Span.Slice(checked((int)tableIndex * 8), 8)) & HardDiskFormatConstants.Qcow2ClusterOffsetMask);
             if (blockOffset == 0) throw new InvalidDataException("A referenced QCOW2 cluster has no refcount block.");
             ValidateClusterOffset(blockOffset, header.ClusterSize, context.Length, "refcount block");
             if (!blocks.TryGetValue(blockOffset, out var block))

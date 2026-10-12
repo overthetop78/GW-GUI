@@ -25,11 +25,7 @@ public sealed class MsxCasWriter : IMediaImageWriter
     public IReadOnlySet<string> ProducedFileExtensions => MsxCasFormat.Extensions;
     public bool ProducesMultipleFiles => false;
 
-    public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) =>
-        SupportedFormatIds.Contains(targetFormatId)
-        && MsxCasFormat.Extensions.Contains(targetExtension)
-        && document.MediaKind == MediaKind.Tape
-        && TryGetParts(document, out _);
+    public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) => SupportedFormatIds.Contains(targetFormatId) && MsxCasFormat.Extensions.Contains(targetExtension) && document.MediaKind == MediaKind.Tape && TryGetParts(document, out _);
 
     public async Task<IReadOnlyList<string>> WriteAsync(
         MediaImageDocument document,
@@ -91,10 +87,7 @@ public sealed class MsxCasWriter : IMediaImageWriter
         while (completed < range.Length)
         {
             var count = (int)Math.Min(buffer.Length, range.Length - completed);
-            await range.Source!.ReadExactlyAsync(
-                range.SourceOffset + completed,
-                buffer.AsMemory(0, count),
-                cancellationToken).ConfigureAwait(false);
+            await range.Source!.ReadExactlyAsync(range.SourceOffset + completed, buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
             await output.WriteAsync(buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
             completed += count;
         }

@@ -15,14 +15,9 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
             return;
         }
 
-        var curatedFormats = curated.Formats
-            .Select(format => ApplyPhysicalCapabilities(format, capabilities))
-            .ToList();
+        var curatedFormats = curated.Formats.Select(format => ApplyPhysicalCapabilities(format, capabilities)).ToList();
         var known = curatedFormats.Select(format => format.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        curatedFormats.AddRange(capabilities.FormatIds
-            .Where(id => !known.Contains(id))
-            .Order(StringComparer.OrdinalIgnoreCase)
-            .Select(id => CreateDiscoveredFormat(id, capabilities.ImageExtensions))
+        curatedFormats.AddRange(capabilities.FormatIds.Where(id => !known.Contains(id)).Order(StringComparer.OrdinalIgnoreCase).Select(id => CreateDiscoveredFormat(id, capabilities.ImageExtensions))
             .Where(format => format.Extensions.Count > 0));
         Formats = curatedFormats;
     }
@@ -80,8 +75,7 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
             _ => null
         };
         if (known is not null) return known;
-        var words = Regex.Split(token.Replace('_', '-'), "[-]+").Where(word => word.Length > 0)
-            .Select(word => CultureInfo.InvariantCulture.TextInfo.ToTitleCase(word.ToLowerInvariant()));
+        var words = Regex.Split(token.Replace('_', '-'), "[-]+").Where(word => word.Length > 0).Select(word => CultureInfo.InvariantCulture.TextInfo.ToTitleCase(word.ToLowerInvariant()));
         return string.Join(" ", words);
     }
 

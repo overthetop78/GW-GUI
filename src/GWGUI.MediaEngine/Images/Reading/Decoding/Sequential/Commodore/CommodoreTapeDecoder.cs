@@ -24,11 +24,7 @@ public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
     public IReadOnlySet<string> FormatIds => SupportedFormats;
     public IReadOnlySet<string> MachineIds => SupportedMachines;
 
-    public bool CanDecode(MediaImageDocument document, string? machineId = null) =>
-        document.MediaKind == MediaKind.Tape
-        && SupportedFormats.Contains(document.FormatId)
-        && (machineId is null || SupportedMachines.Contains(machineId))
-        && document.Representation is SequentialMediaImageRepresentation;
+    public bool CanDecode(MediaImageDocument document, string? machineId = null) => document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;
 
     public async Task<SequentialDecodeResult> DecodeAsync(
         MediaImageDocument document,
@@ -48,9 +44,7 @@ public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
         SequentialMediaImageRepresentation representation,
         CancellationToken cancellationToken)
     {
-        var clockRate = TryReadInt(document.Metadata, CommodoreTapConstants.ClockRateMetadataKey, out var storedClock)
-            ? storedClock
-            : CommodoreTapConstants.DefaultC64PalClockRate;
+        var clockRate = TryReadInt(document.Metadata, CommodoreTapConstants.ClockRateMetadataKey, out var storedClock) ? storedClock : CommodoreTapConstants.DefaultC64PalClockRate;
         var pulses = new List<Pulse>();
         foreach (var segment in (representation.Segments ?? []).OrderBy(segment => segment.Position))
         {
@@ -73,17 +67,10 @@ public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
         CancellationToken cancellationToken)
     {
         if (!PcmSampleFunctions.TryGetProfile(document.Metadata, out var channels, out var sampleRate, out var bitsPerSample, out var blockAlign))
-            return new SequentialDecodeResult(
-                CommodoreTapConstants.DecoderId,
-                0,
-                [],
-                representation.Segments ?? [],
-                ["The WAV PCM profile is incomplete or incompatible."]);
+            return new SequentialDecodeResult(CommodoreTapConstants.DecoderId, 0, [], representation.Segments ?? [], ["The WAV PCM profile is incomplete or incompatible."]);
 
         var pulses = new List<Pulse>();
-        foreach (var segment in (representation.Segments ?? [])
-                     .Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0)
-                     .OrderBy(segment => segment.Position))
+        foreach (var segment in (representation.Segments ?? []).Where(segment => segment.Kind == SequentialSegmentKind.Samples && segment.ChannelNumber == 0).OrderBy(segment => segment.Position))
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (segment.DataRange is not { Source: not null, Length: <= int.MaxValue } range) continue;
@@ -125,8 +112,7 @@ public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
                 continue;
             }
 
-            var sourcePositions = pulses.Skip(blockStart).Take(scan - blockStart)
-                .Select(pulse => pulse.SourcePosition).Distinct().ToArray();
+            var sourcePositions = pulses.Skip(blockStart).Take(scan - blockStart).Select(pulse => pulse.SourcePosition).Distinct().ToArray();
             foreach (var position in sourcePositions) consumed.Add(position);
             blocks.Add(new SequentialDecodedBlock(
                 blocks.Count,
@@ -141,24 +127,16 @@ public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
                 }));
         }
 
-        var undecoded = (representation.Segments ?? [])
-            .Where(segment => !consumed.Contains(segment.Position))
-            .ToArray();
+        var undecoded = (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray();
         var confidence = blocks.Count == 0 ? 0 : blocks.Count(block => block.IntegrityValid == true) / (double)blocks.Count;
-        return new SequentialDecodeResult(
-            CommodoreTapConstants.DecoderId,
-            confidence,
-            blocks,
-            undecoded,
-            blocks.Count == 0 ? ["No standard Commodore ROM byte frame was recognized."] : []);
+        return new SequentialDecodeResult(CommodoreTapConstants.DecoderId, confidence, blocks, undecoded, blocks.Count == 0 ? ["No standard Commodore ROM byte frame was recognized."] : []);
     }
 
     private static bool TryDecodeByte(IReadOnlyList<Pulse> pulses, ref int offset, out byte value, out bool parityValid)
     {
         value = 0;
         parityValid = false;
-        var required = 2 + (CommodoreTapConstants.DataBitsPerByte + CommodoreTapConstants.ParityBitsPerByte)
-            * CommodoreTapConstants.PulsesPerBit;
+        var required = 2 + (CommodoreTapConstants.DataBitsPerByte + CommodoreTapConstants.ParityBitsPerByte) * CommodoreTapConstants.PulsesPerBit;
         if (offset + required > pulses.Count
             || !IsPulse(pulses[offset].Cycles, CommodoreTapConstants.LongPulseCycles)
             || !IsPulse(pulses[offset + 1].Cycles, CommodoreTapConstants.MediumPulseCycles))
@@ -206,23 +184,19 @@ public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
         {
             var sign = samples[index] >= 0;
             if (sign == previousSign) continue;
-            var cycles = checked((int)Math.Round(
-                (index - previousCrossing) * (double)CommodoreTapConstants.DefaultC64PalClockRate / sampleRate));
+            var cycles = checked((int)Math.Round((index - previousCrossing) * (double)CommodoreTapConstants.DefaultC64PalClockRate / sampleRate));
             if (cycles > 0) pulses.Add(new Pulse(cycles, sourcePosition));
             previousCrossing = index;
             previousSign = sign;
         }
     }
 
-    private static bool IsPulse(int actual, int expected) =>
-        Math.Abs(actual - expected) <= expected * CommodoreTapConstants.PulseToleranceRatio;
+    private static bool IsPulse(int actual, int expected) => Math.Abs(actual - expected) <= expected * CommodoreTapConstants.PulseToleranceRatio;
 
     private static bool TryReadInt(IReadOnlyDictionary<string, string> metadata, string key, out int value)
     {
         value = 0;
-        return metadata.TryGetValue(key, out var text)
-            && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value)
-            && value > 0;
+        return metadata.TryGetValue(key, out var text) && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out value) && value > 0;
     }
 
     private readonly record struct Pulse(int Cycles, long SourcePosition);

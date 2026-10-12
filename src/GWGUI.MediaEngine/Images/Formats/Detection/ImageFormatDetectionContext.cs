@@ -11,13 +11,7 @@ internal sealed record ImageFormatDetectionContext(
     Func<string, Stream> OpenRead)
 {
     public DetectedImageFormat Result(string? formatId, FormatConfidence confidence, string explanationKey) =>
-        new(
-            Extension,
-            Catalog.Formats.FirstOrDefault(format => format.Id.Equals(formatId, StringComparison.OrdinalIgnoreCase)),
-            formatId is null ? FormatConfidence.Ambiguous : confidence,
-            Candidates,
-            explanationKey);
+        new(Extension, Catalog.Formats.FirstOrDefault(format => format.Id.Equals(formatId, StringComparison.OrdinalIgnoreCase)), formatId is null ? FormatConfidence.Ambiguous : confidence, Candidates, explanationKey);
 
-    public DetectedImageFormat Ambiguous(string explanationKey) =>
-        new(Extension, null, FormatConfidence.Ambiguous, Candidates, explanationKey);
+    public DetectedImageFormat Ambiguous(string explanationKey) => new(Extension, null, FormatConfidence.Ambiguous, Candidates, explanationKey);
 }

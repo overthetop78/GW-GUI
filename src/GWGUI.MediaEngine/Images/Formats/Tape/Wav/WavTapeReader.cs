@@ -20,8 +20,7 @@ public sealed class WavTapeReader : IMediaImageReader
         new[] { MediaKind.Tape }.ToFrozenSet();
     private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
         new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
-    private static readonly IReadOnlyList<ReadOnlyMemory<byte>> RiffSignatures =
-        [System.Text.Encoding.ASCII.GetBytes(WavConstants.RiffIdentifier)];
+    private static readonly IReadOnlyList<ReadOnlyMemory<byte>> RiffSignatures = [System.Text.Encoding.ASCII.GetBytes(WavConstants.RiffIdentifier)];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => WavTapeFormat.Extensions;
@@ -38,8 +37,7 @@ public sealed class WavTapeReader : IMediaImageReader
         if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId)) return false;
         if (context.Length < WavConstants.RiffHeaderSize) return false;
         var header = new byte[WavConstants.RiffHeaderSize];
-        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read,
-            WavConstants.RiffHeaderSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read, WavConstants.RiffHeaderSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
         await input.ReadExactlyAsync(header, cancellationToken).ConfigureAwait(false);
         return IsWaveHeader(header);
     }
@@ -47,8 +45,7 @@ public sealed class WavTapeReader : IMediaImageReader
     async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
-        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read,
-            64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
         var header = new byte[WavConstants.RiffHeaderSize];
         await input.ReadExactlyAsync(header, cancellationToken).ConfigureAwait(false);
         if (!IsWaveHeader(header)) throw new InvalidDataException("The RIFF/WAVE signature is missing.");
@@ -146,9 +143,7 @@ public sealed class WavTapeReader : IMediaImageReader
             });
     }
 
-    private static bool IsWaveHeader(ReadOnlySpan<byte> header) =>
-        header[..4].SequenceEqual(System.Text.Encoding.ASCII.GetBytes(WavConstants.RiffIdentifier))
-        && header.Slice(8, 4).SequenceEqual(System.Text.Encoding.ASCII.GetBytes(WavConstants.WaveIdentifier));
+    private static bool IsWaveHeader(ReadOnlySpan<byte> header) => header[..4].SequenceEqual(System.Text.Encoding.ASCII.GetBytes(WavConstants.RiffIdentifier)) && header.Slice(8, 4).SequenceEqual(System.Text.Encoding.ASCII.GetBytes(WavConstants.WaveIdentifier));
 
     private sealed record Chunk(string Id, long Offset, uint Length);
 }

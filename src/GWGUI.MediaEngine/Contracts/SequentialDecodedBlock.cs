@@ -21,8 +21,7 @@ public sealed class SequentialDecodedBlock
         Data = data;
         SourceSegmentPositions = new ReadOnlyCollection<long>(sourceSegmentPositions.ToArray());
         IntegrityValid = integrityValid;
-        Metadata = new ReadOnlyDictionary<string, string>(
-            new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
+        Metadata = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
     }
 
     public long Position { get; }

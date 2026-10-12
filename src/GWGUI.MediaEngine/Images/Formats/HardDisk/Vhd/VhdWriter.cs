@@ -65,12 +65,7 @@ public sealed class VhdWriter : IMediaImageWriter
             throw new InvalidDataException("The media document cannot be written as a complete VHD image.");
 
         var variant = SelectVariant(document, blocks);
-        await files.WriteAsync(
-            outputPath,
-            variant == HardDiskImageVariant.Dynamic
-                ? (output, token) => WriteDynamicAsync(blocks, output, token)
-                : (output, token) => WriteFixedAsync(blocks, output, token),
-            cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(outputPath, variant == HardDiskImageVariant.Dynamic ? (output, token) => WriteDynamicAsync(blocks, output, token) : (output, token) => WriteFixedAsync(blocks, output, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 
@@ -84,9 +79,7 @@ public sealed class VhdWriter : IMediaImageWriter
             && variant is HardDiskImageVariant.Fixed or HardDiskImageVariant.Dynamic)
             return variant;
 
-        return blocks.Ranges.Any(range => range.Kind is MediaDataRangeKind.Zero or MediaDataRangeKind.Unallocated)
-            ? HardDiskImageVariant.Dynamic
-            : HardDiskImageVariant.Fixed;
+        return blocks.Ranges.Any(range => range.Kind is MediaDataRangeKind.Zero or MediaDataRangeKind.Unallocated) ? HardDiskImageVariant.Dynamic : HardDiskImageVariant.Fixed;
     }
 
     private static async Task WriteFixedAsync(
@@ -112,11 +105,7 @@ public sealed class VhdWriter : IMediaImageWriter
         var batLength = checked((int)maximumEntries * sizeof(uint));
         var paddedBatLength = Align(batLength, HardDiskFormatConstants.LegacyLogicalSectorSize);
         var uniqueId = Guid.NewGuid();
-        var footer = CreateFooter(
-            blocks,
-            HardDiskFormatConstants.VhdDynamicDiskType,
-            HardDiskFormatConstants.VhdFooterSize,
-            uniqueId);
+        var footer = CreateFooter(blocks, HardDiskFormatConstants.VhdDynamicDiskType, HardDiskFormatConstants.VhdFooterSize, uniqueId);
         var header = CreateDynamicHeader(maximumEntries, blockSize);
 
         await output.WriteAsync(footer, cancellationToken).ConfigureAwait(false);
@@ -137,11 +126,7 @@ public sealed class VhdWriter : IMediaImageWriter
             data.AsSpan().Clear();
             var address = checked((long)blockIndex * blockSize);
             var logicalLength = (int)Math.Min(blockSize, blocks.Capacity - address);
-            await BlockMediaDataReader.ReadExactlyAsync(
-                blocks,
-                address,
-                data.AsMemory(0, logicalLength),
-                cancellationToken).ConfigureAwait(false);
+            await BlockMediaDataReader.ReadExactlyAsync(blocks, address, data.AsMemory(0, logicalLength), cancellationToken).ConfigureAwait(false);
             if (data.AsSpan(0, logicalLength).IndexOfAnyExcept((byte)0) < 0) continue;
 
             if (output.Position % HardDiskFormatConstants.LegacyLogicalSectorSize != 0)
@@ -152,8 +137,7 @@ public sealed class VhdWriter : IMediaImageWriter
             bat[blockIndex] = (uint)sectorOffset;
 
             bitmap.AsSpan().Clear();
-            var logicalSectorCount = (logicalLength + HardDiskFormatConstants.LegacyLogicalSectorSize - 1)
-                / HardDiskFormatConstants.LegacyLogicalSectorSize;
+            var logicalSectorCount = (logicalLength + HardDiskFormatConstants.LegacyLogicalSectorSize - 1) / HardDiskFormatConstants.LegacyLogicalSectorSize;
             for (var sectorIndex = 0; sectorIndex < logicalSectorCount; sectorIndex++)
                 bitmap[sectorIndex / 8] |= (byte)(0x80 >> (sectorIndex % 8));
             await output.WriteAsync(bitmap, cancellationToken).ConfigureAwait(false);
@@ -180,11 +164,7 @@ public sealed class VhdWriter : IMediaImageWriter
         while (address < blocks.Capacity)
         {
             var count = (int)Math.Min(buffer.Length, blocks.Capacity - address);
-            await BlockMediaDataReader.ReadExactlyAsync(
-                blocks,
-                address,
-                buffer.AsMemory(0, count),
-                cancellationToken).ConfigureAwait(false);
+            await BlockMediaDataReader.ReadExactlyAsync(blocks, address, buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
             await output.WriteAsync(buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
             address += count;
         }

@@ -30,10 +30,7 @@ public sealed class AmstradRomWriter : IMediaImageWriter
     public IReadOnlySet<string> ProducedFileExtensions => SupportedExtensions;
     public bool ProducesMultipleFiles => false;
 
-    public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) =>
-        SupportedFormatIds.Contains(targetFormatId)
-        && SupportedExtensions.Contains(targetExtension)
-        && TryGetBanks(document, out _);
+    public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) => SupportedFormatIds.Contains(targetFormatId) && SupportedExtensions.Contains(targetExtension) && TryGetBanks(document, out _);
 
     public async Task<IReadOnlyList<string>> WriteAsync(
         MediaImageDocument document,
@@ -44,8 +41,7 @@ public sealed class AmstradRomWriter : IMediaImageWriter
         if (!CanWrite(document, targetFormatId, Path.GetExtension(outputPath).ToLowerInvariant())
             || !TryGetBanks(document, out var banks))
             throw new InvalidDataException("The block document does not contain contiguous CPC ROM banks.");
-        await files.WriteAsync(outputPath, (output, token) => WriteBanksAsync(output, banks, token), cancellationToken)
-            .ConfigureAwait(false);
+        await files.WriteAsync(outputPath, (output, token) => WriteBanksAsync(output, banks, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 
@@ -58,8 +54,7 @@ public sealed class AmstradRomWriter : IMediaImageWriter
             while (completed < bank.Length)
             {
                 var count = (int)Math.Min(buffer.Length, bank.Length - completed);
-                await bank.Source!.ReadExactlyAsync(bank.SourceOffset + completed, buffer.AsMemory(0, count), cancellationToken)
-                    .ConfigureAwait(false);
+                await bank.Source!.ReadExactlyAsync(bank.SourceOffset + completed, buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
                 await output.WriteAsync(buffer.AsMemory(0, count), cancellationToken).ConfigureAwait(false);
                 completed += count;
             }

@@ -109,18 +109,8 @@ public sealed class UefReader : IMediaImageReader
                 faceNumber = payload[0];
             }
 
-            var range = length == 0
-                ? null
-                : new MediaDataRange(payloadOffset, length, MediaDataRangeKind.Stored, source, payloadOffset);
-            segments.Add(new SequentialMediaSegment(
-                position++,
-                SegmentKind(id),
-                length == 0 ? null : length,
-                duration: duration,
-                faceNumber: faceNumber,
-                direction: SequentialTravelDirection.Forward,
-                dataRange: range,
-                metadata: metadata));
+            var range = length == 0 ? null : new MediaDataRange(payloadOffset, length, MediaDataRangeKind.Stored, source, payloadOffset);
+            segments.Add(new SequentialMediaSegment(position++, SegmentKind(id), length == 0 ? null : length, duration: duration, faceNumber: faceNumber, direction: SequentialTravelDirection.Forward, dataRange: range, metadata: metadata));
             if (!UefConstants.UnderstoodTapeChunks.Contains(id))
                 diagnostics.Add($"UEF chunk 0x{id:x4} was retained without interpretation.");
             offset = checked(payloadOffset + (int)length);
@@ -155,8 +145,7 @@ public sealed class UefReader : IMediaImageReader
 
     private static async Task<byte[]> ReadLogicalHeaderAsync(string path, CancellationToken cancellationToken)
     {
-        await using var input = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read,
-            UefConstants.HeaderSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var input = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, UefConstants.HeaderSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
         var first = new byte[2];
         if (await input.ReadAsync(first, cancellationToken).ConfigureAwait(false) != first.Length) return [];
         input.Position = 0;
@@ -178,8 +167,7 @@ public sealed class UefReader : IMediaImageReader
 
     private static async Task<byte[]> ReadLogicalBytesAsync(string path, bool gzip, CancellationToken cancellationToken)
     {
-        await using var input = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read,
-            64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var input = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
         if (!gzip)
         {
             if (input.Length > UefConstants.MaximumDecompressedLength)
@@ -202,14 +190,7 @@ public sealed class UefReader : IMediaImageReader
         return output.ToArray();
     }
 
-    private static bool IsSupportedHeader(ReadOnlySpan<byte> header) =>
-        header.Length >= UefConstants.HeaderSize
-        && header[..UefConstants.SignatureLength].SequenceEqual(Signature)
-        && header[11] == UefConstants.SupportedMajorVersion
-        && header[10] <= UefConstants.SupportedMinorVersion;
+    private static bool IsSupportedHeader(ReadOnlySpan<byte> header) => header.Length >= UefConstants.HeaderSize && header[..UefConstants.SignatureLength].SequenceEqual(Signature) && header[11] == UefConstants.SupportedMajorVersion && header[10] <= UefConstants.SupportedMinorVersion;
 
-    private static bool IsGzip(ReadOnlySpan<byte> header) =>
-        header.Length >= 2
-        && header[0] == UefConstants.GzipIdentificationFirst
-        && header[1] == UefConstants.GzipIdentificationSecond;
+    private static bool IsGzip(ReadOnlySpan<byte> header) => header.Length >= 2 && header[0] == UefConstants.GzipIdentificationFirst && header[1] == UefConstants.GzipIdentificationSecond;
 }

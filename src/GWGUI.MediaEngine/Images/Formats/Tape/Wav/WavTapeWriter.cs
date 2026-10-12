@@ -20,8 +20,7 @@ public sealed class WavTapeWriter : IMediaImageWriter
         new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
-    public WavTapeWriter(IAtomicImageFileWriter? files = null) =>
-        this.files = files ?? new AtomicImageFileWriter();
+    public WavTapeWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
 
     public string Id => MediaImageWriterIds.TapeWav;
     public IReadOnlySet<string> FormatIds => SupportedFormatIds;
@@ -32,11 +31,7 @@ public sealed class WavTapeWriter : IMediaImageWriter
     public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension)
     {
         ArgumentNullException.ThrowIfNull(document);
-        return SupportedFormatIds.Contains(targetFormatId)
-            && WavTapeFormat.Extensions.Contains(targetExtension)
-            && document.MediaKind == MediaKind.Tape
-            && TryGetProfile(document, out _)
-            && TryGetDataRanges(document, out _);
+        return SupportedFormatIds.Contains(targetFormatId) && WavTapeFormat.Extensions.Contains(targetExtension) && document.MediaKind == MediaKind.Tape && TryGetProfile(document, out _) && TryGetDataRanges(document, out _);
     }
 
     public async Task<IReadOnlyList<string>> WriteAsync(
@@ -53,10 +48,7 @@ public sealed class WavTapeWriter : IMediaImageWriter
         var dataLength = ranges.Sum(range => range.Length);
         if (dataLength > uint.MaxValue || dataLength + WavConstants.RiffHeaderSize + WavConstants.ChunkHeaderSize + WavConstants.PcmFormatChunkSize > uint.MaxValue + 8L)
             throw new NotSupportedException("The WAV output exceeds the RIFF 32-bit length limit.");
-        await files.WriteAsync(
-            outputPath,
-            (output, token) => WriteWaveAsync(output, profile, ranges, dataLength, token),
-            cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(outputPath, (output, token) => WriteWaveAsync(output, profile, ranges, dataLength, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 
@@ -118,9 +110,7 @@ public sealed class WavTapeWriter : IMediaImageWriter
             || segments.Count == 0
             || segments.Any(segment => segment.Kind != SequentialSegmentKind.Samples || segment.DataRange?.Source is null))
             return false;
-        var selected = segments.Where(segment => segment.ChannelNumber is null or 0)
-            .Select(segment => segment.DataRange!)
-            .ToArray();
+        var selected = segments.Where(segment => segment.ChannelNumber is null or 0).Select(segment => segment.DataRange!).ToArray();
         if (selected.Length == 0 || selected.Any(range => range.Kind != MediaDataRangeKind.Stored)) return false;
         ranges = selected;
         return true;
@@ -129,19 +119,16 @@ public sealed class WavTapeWriter : IMediaImageWriter
     private static bool TryReadUInt16(IReadOnlyDictionary<string, string> values, string key, out ushort value)
     {
         value = 0;
-        return values.TryGetValue(key, out var text)
-            && ushort.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value);
+        return values.TryGetValue(key, out var text) && ushort.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value);
     }
 
     private static bool TryReadUInt32(IReadOnlyDictionary<string, string> values, string key, out uint value)
     {
         value = 0;
-        return values.TryGetValue(key, out var text)
-            && uint.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value);
+        return values.TryGetValue(key, out var text) && uint.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out value);
     }
 
-    private static void WriteIdentifier(Span<byte> destination, int offset, string value) =>
-        System.Text.Encoding.ASCII.GetBytes(value, destination[offset..]);
+    private static void WriteIdentifier(Span<byte> destination, int offset, string value) => System.Text.Encoding.ASCII.GetBytes(value, destination[offset..]);
 
     private readonly record struct PcmProfile(ushort Channels, uint SampleRate, ushort BitsPerSample, ushort BlockAlign);
 }

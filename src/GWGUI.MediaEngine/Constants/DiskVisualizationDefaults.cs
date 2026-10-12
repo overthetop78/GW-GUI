@@ -24,6 +24,5 @@ internal static class DiskVisualizationDefaults
     internal static readonly IReadOnlySet<string> ThreeHalfMachines =
         new HashSet<string>(["Atari ST", "Amiga", "IBM PC", "Apple Macintosh", "MSX"], StringComparer.OrdinalIgnoreCase);
 
-    internal static readonly IReadOnlySet<string> FiveQuarterMachines =
-        new HashSet<string>(["Apple II", "Commodore", "Acorn", "Acorn / BBC Micro"], StringComparer.OrdinalIgnoreCase);
+    internal static readonly IReadOnlySet<string> FiveQuarterMachines = new HashSet<string>(["Apple II", "Commodore", "Acorn", "Acorn / BBC Micro"], StringComparer.OrdinalIgnoreCase);
 }

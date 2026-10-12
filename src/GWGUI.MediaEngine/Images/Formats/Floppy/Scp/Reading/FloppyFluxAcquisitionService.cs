@@ -51,8 +51,7 @@ public sealed class FloppyFluxAcquisitionService
         var cylinder = ReadInt(unit.Metadata, MediaPhysicalMetadataKeys.Cylinder);
         var head = ReadInt(unit.Metadata, MediaPhysicalMetadataKeys.Head);
         var trackData = MediaFluxTrackDataFunctions.Deserialize(unit.Data.Span);
-        var resolutionNanoseconds = ScpFormatConstants.ResolutionStepNanoseconds
-            * (ScpFormatConstants.InternalCaptureResolution + ScpFormatConstants.ResolutionIndexOffset);
+        var resolutionNanoseconds = ScpFormatConstants.ResolutionStepNanoseconds * (ScpFormatConstants.InternalCaptureResolution + ScpFormatConstants.ResolutionIndexOffset);
         var revolutions = trackData.Revolutions.Select(revolution =>
         {
             var intervals = ConvertNanoseconds(revolution.FluxIntervalsNanoseconds, resolutionNanoseconds);
@@ -81,8 +80,7 @@ public sealed class FloppyFluxAcquisitionService
         return result;
     }
 
-    private static uint ConvertNanoseconds(uint nanoseconds, int resolutionNanoseconds) =>
-        checked((uint)Math.Max(1, Math.Round(nanoseconds / (double)resolutionNanoseconds)));
+    private static uint ConvertNanoseconds(uint nanoseconds, int resolutionNanoseconds) => checked((uint)Math.Max(1, Math.Round(nanoseconds / (double)resolutionNanoseconds)));
 
     private static int ReadInt(IReadOnlyDictionary<string, string> metadata, string key) =>
         metadata.TryGetValue(key, out var value)

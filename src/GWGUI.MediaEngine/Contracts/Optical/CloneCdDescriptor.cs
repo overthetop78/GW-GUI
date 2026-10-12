@@ -28,10 +28,7 @@ public sealed class CloneCdDescriptor
         TocEntries = new ReadOnlyCollection<CloneCdTocEntry>(tocEntries.ToArray());
         Tracks = new ReadOnlyCollection<CueTrackDeclaration>(tracks.ToArray());
         Sessions = new ReadOnlyDictionary<int, IReadOnlyDictionary<string, int>>(
-            sessions.ToDictionary(
-                pair => pair.Key,
-                pair => (IReadOnlyDictionary<string, int>)new ReadOnlyDictionary<string, int>(
-                    new Dictionary<string, int>(pair.Value, StringComparer.OrdinalIgnoreCase))));
+            sessions.ToDictionary(pair => pair.Key, pair => (IReadOnlyDictionary<string, int>)new ReadOnlyDictionary<string, int>(new Dictionary<string, int>(pair.Value, StringComparer.OrdinalIgnoreCase))));
     }
 
     public int Version { get; }

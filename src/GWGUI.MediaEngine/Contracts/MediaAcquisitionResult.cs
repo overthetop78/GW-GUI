@@ -19,8 +19,7 @@ public sealed record MediaAcquisitionResult
         MediaKind = mediaKind;
         RepresentationKind = representationKind;
         DataUnits = new ReadOnlyCollection<MediaPhysicalDataUnit>(dataUnits.OrderBy(unit => unit.Position).ToArray());
-        Metadata = new ReadOnlyDictionary<string, string>(
-            new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
+        Metadata = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
         HardwareDiagnostics = new ReadOnlyCollection<string>((hardwareDiagnostics ?? []).ToArray());
     }
 

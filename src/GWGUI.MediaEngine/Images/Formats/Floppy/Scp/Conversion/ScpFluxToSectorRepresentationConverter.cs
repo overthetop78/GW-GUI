@@ -36,13 +36,7 @@ internal sealed class ScpFluxToSectorRepresentationConverter : IMediaRepresentat
 
     public IReadOnlySet<MediaRepresentationKind> TargetRepresentationKinds => TargetKinds;
 
-    public bool CanConvert(
-        MediaImageDocument source,
-        string targetFormatId,
-        MediaRepresentationKind targetRepresentationKind)
-        => source.Representation is FluxMediaImageRepresentation &&
-           targetRepresentationKind == MediaRepresentationKind.Sectors &&
-           targetFormatIds.Contains(targetFormatId);
+    public bool CanConvert(MediaImageDocument source, string targetFormatId, MediaRepresentationKind targetRepresentationKind) => source.Representation is FluxMediaImageRepresentation && targetRepresentationKind == MediaRepresentationKind.Sectors && targetFormatIds.Contains(targetFormatId);
 
     public async Task<MediaRepresentationConversionResult> ConvertAsync(
         MediaImageDocument source,
@@ -64,16 +58,9 @@ internal sealed class ScpFluxToSectorRepresentationConverter : IMediaRepresentat
             $"Converting c={string.Join(',', flux.Tracks.Select(track => track.Cylinder).Distinct().Order())}:h={string.Join(',', flux.Tracks.Select(track => track.Head).Distinct().Order())}",
             0,
             source.MediaKind));
-        var image = await reader.ReadAsync(
-            flux.Image,
-            targetFormatId,
-            progress is null ? null : new ConversionProgressRelay(progress, source.MediaKind),
-            cancellationToken).ConfigureAwait(false);
+        var image = await reader.ReadAsync(flux.Image, targetFormatId, progress is null ? null : new ConversionProgressRelay(progress, source.MediaKind), cancellationToken).ConfigureAwait(false);
         var document = MediaImageDocumentFactory.CreateFloppySector(source.Source, image);
-        return new MediaRepresentationConversionResult(
-            document,
-            [],
-            ["Physical flux timing and protection information is not preserved in the sector representation."]);
+        return new MediaRepresentationConversionResult(document, [], ["Physical flux timing and protection information is not preserved in the sector representation."]);
     }
 
     private sealed class ConversionProgressRelay(

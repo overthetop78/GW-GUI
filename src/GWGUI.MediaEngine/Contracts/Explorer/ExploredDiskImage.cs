@@ -29,15 +29,8 @@ public sealed record ExploredDiskImage : IImageDisquette
         Metadata = metadata;
         FileSystemRecognized = fileSystemRecognized;
         DetectedFileSystems = (detectedFileSystems ?? []).ToArray();
-        DetectedSectorImages = (detectedSectorImages ?? [])
-            .GroupBy(item => item.FormatId, StringComparer.OrdinalIgnoreCase)
-            .Select(group => group.First())
-            .ToArray();
-        DetectedImageFormatIds = DetectedFileSystems
-            .Select(item => item.FormatId)
-            .Concat(DetectedSectorImages.Select(item => item.FormatId))
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        DetectedSectorImages = (detectedSectorImages ?? []).GroupBy(item => item.FormatId, StringComparer.OrdinalIgnoreCase).Select(group => group.First()).ToArray();
+        DetectedImageFormatIds = DetectedFileSystems.Select(item => item.FormatId).Concat(DetectedSectorImages.Select(item => item.FormatId)).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
         PrimaryFormatId = primaryFormatId ?? DetectedFileSystems.FirstOrDefault()?.FormatId ?? image.FormatId;
         ScpImage = scpImage;
         TypeImage = Path.GetExtension(sourcePath).TrimStart('.').ToUpperInvariant();
@@ -45,13 +38,7 @@ public sealed record ExploredDiskImage : IImageDisquette
         TailleImage = scpImage?.FileSize ?? (File.Exists(sourcePath) ? new FileInfo(sourcePath).Length : image.Capacity);
         MetadonneesImage = DiskImageContractData.CreateMetadata(sourcePath, image, scpImage);
         Pistes = DiskImageContractData.CreateTracks(image, scpImage);
-        FormatsDetectes = DiskImageContractData.CreateFormats(
-            image,
-            volume,
-            metadata,
-            fileSystemRecognized,
-            DetectedFileSystems,
-            DetectedSectorImages);
+        FormatsDetectes = DiskImageContractData.CreateFormats(image, volume, metadata, fileSystemRecognized, DetectedFileSystems, DetectedSectorImages);
         Diagnostics = DiskImageContractData.CreateDiagnostics(DetectedFileSystems.SelectMany(item => item.Volume.Warnings).Concat(volume.Warnings).Distinct(StringComparer.Ordinal));
     }
 
@@ -96,47 +83,19 @@ public sealed record ExploredDiskImage : IImageDisquette
     public ExploredDiskImage? SelectFormat(string formatId)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(formatId);
-        var selectedFileSystem = DetectedFileSystems.FirstOrDefault(item =>
-            string.Equals(item.FormatId, formatId, StringComparison.OrdinalIgnoreCase));
+        var selectedFileSystem = DetectedFileSystems.FirstOrDefault(item => string.Equals(item.FormatId, formatId, StringComparison.OrdinalIgnoreCase));
         if (selectedFileSystem is not null)
         {
-            return new ExploredDiskImage(
-                SourcePath,
-                selectedFileSystem.Image,
-                selectedFileSystem.Volume,
-                Metadata,
-                true,
-                DetectedFileSystems,
-                DetectedSectorImages,
-                selectedFileSystem.FormatId,
-                ScpImage);
+            return new ExploredDiskImage(SourcePath, selectedFileSystem.Image, selectedFileSystem.Volume, Metadata, true, DetectedFileSystems, DetectedSectorImages, selectedFileSystem.FormatId, ScpImage);
         }
 
-        var selectedImage = DetectedSectorImages.FirstOrDefault(item =>
-            string.Equals(item.FormatId, formatId, StringComparison.OrdinalIgnoreCase));
+        var selectedImage = DetectedSectorImages.FirstOrDefault(item => string.Equals(item.FormatId, formatId, StringComparison.OrdinalIgnoreCase));
         if (selectedImage is null)
         {
             return null;
         }
 
-        var volume = new FileSystemVolume(
-            Path.GetFileNameWithoutExtension(SourcePath),
-            selectedImage.FormatId,
-            selectedImage.Capacity,
-            0,
-            null,
-            null,
-            [],
-            []);
-        return new ExploredDiskImage(
-            SourcePath,
-            selectedImage,
-            volume,
-            Metadata,
-            false,
-            DetectedFileSystems,
-            DetectedSectorImages,
-            selectedImage.FormatId,
-            ScpImage);
+        var volume = new FileSystemVolume(Path.GetFileNameWithoutExtension(SourcePath), selectedImage.FormatId, selectedImage.Capacity, 0, null, null, [], []);
+        return new ExploredDiskImage(SourcePath, selectedImage, volume, Metadata, false, DetectedFileSystems, DetectedSectorImages, selectedImage.FormatId, ScpImage);
     }
 }

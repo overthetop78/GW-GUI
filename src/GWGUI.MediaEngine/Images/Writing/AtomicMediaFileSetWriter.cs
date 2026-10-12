@@ -21,13 +21,7 @@ internal static class AtomicMediaFileSetWriter
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 Directory.CreateDirectory(Path.GetDirectoryName(output.Path) ?? Directory.GetCurrentDirectory());
-                await using var stream = new FileStream(
-                    output.TemporaryPath,
-                    FileMode.CreateNew,
-                    FileAccess.Write,
-                    FileShare.None,
-                    64 * 1_024,
-                    FileOptions.Asynchronous);
+                await using var stream = new FileStream(output.TemporaryPath, FileMode.CreateNew, FileAccess.Write, FileShare.None, 64 * 1_024, FileOptions.Asynchronous);
                 await output.Write(stream, cancellationToken).ConfigureAwait(false);
             }
 

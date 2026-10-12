@@ -76,16 +76,6 @@ public sealed class OpticalMediaImageRepresentation : IMediaOpticalRepresentatio
     {
         const int sectorSize = 2048;
         var length = checked(track.SectorCount * sectorSize);
-        return new OpticalTrackDescriptor(
-            track.SessionNumber,
-            track.TrackNumber,
-            OpticalTrackMode.Mode1Data2048,
-            track.FirstSector,
-            track.SectorCount,
-            sectorSize,
-            0,
-            sectorSize,
-            new UnavailableRandomAccessData(length),
-            0);
+        return new OpticalTrackDescriptor(track.SessionNumber, track.TrackNumber, OpticalTrackMode.Mode1Data2048, track.FirstSector, track.SectorCount, sectorSize, 0, sectorSize, new UnavailableRandomAccessData(length), 0);
     }
 }

@@ -53,10 +53,7 @@ public sealed class IsoWriter : IMediaImageWriter
             throw new InvalidDataException("The optical document cannot be written as a lossless single-track ISO image.");
 
         var track = optical.Tracks![0];
-        await files.WriteAsync(
-            outputPath,
-            (output, token) => WriteTrackAsync(track, output, token),
-            cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(outputPath, (output, token) => WriteTrackAsync(track, output, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 

@@ -46,13 +46,9 @@ public sealed class AppleDiskImageWriter
         var extension = Path.GetExtension(path);
         if (!Outputs.TryGetValue(extension, out var output))
             throw AppleDiskImageWriterExceptions.UnsupportedExtension(extension);
-        var tracks = image.FormatId.Equals(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase) 
-            ? _encoder.Encode(image, output.MaximumBits, cancellationToken) 
-            : _standardEncoder.Encode(image, output.MaximumBits, cancellationToken);
+        var tracks = image.FormatId.Equals(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase) ? _encoder.Encode(image, output.MaximumBits, cancellationToken) : _standardEncoder.Encode(image, output.MaximumBits, cancellationToken);
         if (_writeBytes is not null)
-            return extension.Equals(DiskImageFileExtensions.Nib, StringComparison.OrdinalIgnoreCase) 
-                ? NibWriter.WriteAsync(tracks, path, cancellationToken, _writeBytes) 
-                : WozWriter.WriteAsync(tracks, path, cancellationToken, _writeBytes);
+            return extension.Equals(DiskImageFileExtensions.Nib, StringComparison.OrdinalIgnoreCase) ? NibWriter.WriteAsync(tracks, path, cancellationToken, _writeBytes) : WozWriter.WriteAsync(tracks, path, cancellationToken, _writeBytes);
         return output.Write(tracks, path, cancellationToken);
     }
 }

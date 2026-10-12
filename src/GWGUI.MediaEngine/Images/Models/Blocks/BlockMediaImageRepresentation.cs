@@ -14,10 +14,7 @@ public sealed class BlockMediaImageRepresentation : IMediaBlockRepresentation, I
         : this(
             logicalLength,
             1,
-            ranges?.Select(range => new MediaDataRange(
-                range.Address,
-                range.Length,
-                MediaDataRangeKind.Unavailable)).ToArray()
+            ranges?.Select(range => new MediaDataRange(range.Address, range.Length, MediaDataRangeKind.Unavailable)).ToArray()
                 ?? throw new ArgumentNullException(nameof(ranges)))
     {
     }
@@ -73,6 +70,5 @@ public sealed class BlockMediaImageRepresentation : IMediaBlockRepresentation, I
 
     public HardDiskGeometry? Geometry { get; }
 
-    ValueTask IMediaBlockRepresentation.ReadExactlyAsync(long address, Memory<byte> destination, CancellationToken cancellationToken)
-        => BlockMediaDataReader.ReadExactlyAsync(this, address, destination, cancellationToken);
+    ValueTask IMediaBlockRepresentation.ReadExactlyAsync(long address, Memory<byte> destination, CancellationToken cancellationToken) => BlockMediaDataReader.ReadExactlyAsync(this, address, destination, cancellationToken);
 }

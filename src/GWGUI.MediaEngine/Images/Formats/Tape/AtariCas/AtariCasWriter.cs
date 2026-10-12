@@ -19,8 +19,7 @@ public sealed class AtariCasWriter : IMediaImageWriter
         new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
-    public AtariCasWriter(IAtomicImageFileWriter? files = null) =>
-        this.files = files ?? new AtomicImageFileWriter();
+    public AtariCasWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
 
     public string Id => MediaImageWriterIds.TapeAtariCas;
     public IReadOnlySet<string> FormatIds => SupportedFormatIds;
@@ -31,10 +30,7 @@ public sealed class AtariCasWriter : IMediaImageWriter
     public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension)
     {
         ArgumentNullException.ThrowIfNull(document);
-        return SupportedFormatIds.Contains(targetFormatId)
-            && AtariCasFormat.Extensions.Contains(targetExtension)
-            && document.MediaKind == MediaKind.Tape
-            && TryGetChunks(document, out _);
+        return SupportedFormatIds.Contains(targetFormatId) && AtariCasFormat.Extensions.Contains(targetExtension) && document.MediaKind == MediaKind.Tape && TryGetChunks(document, out _);
     }
 
     public async Task<IReadOnlyList<string>> WriteAsync(
@@ -84,8 +80,7 @@ public sealed class AtariCasWriter : IMediaImageWriter
     private static bool TryReadAuxiliary(IReadOnlyDictionary<string, string> metadata, out ushort auxiliary)
     {
         auxiliary = 0;
-        return !metadata.TryGetValue(AtariCasConstants.AuxiliaryMetadataKey, out var text)
-            || ushort.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out auxiliary);
+        return !metadata.TryGetValue(AtariCasConstants.AuxiliaryMetadataKey, out var text) || ushort.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out auxiliary);
     }
 
     private static async Task WriteChunkAsync(Stream output, CasChunk chunk, CancellationToken cancellationToken)

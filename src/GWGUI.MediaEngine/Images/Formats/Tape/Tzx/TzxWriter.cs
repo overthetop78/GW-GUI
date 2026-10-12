@@ -29,10 +29,7 @@ public sealed class TzxWriter : IMediaImageWriter
     public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension)
     {
         ArgumentNullException.ThrowIfNull(document);
-        return SupportedFormats.Contains(targetFormatId)
-            && TzxFormat.Extensions.Contains(targetExtension)
-            && document.MediaKind == MediaKind.Tape
-            && TryGetBlocks(document, out _);
+        return SupportedFormats.Contains(targetFormatId) && TzxFormat.Extensions.Contains(targetExtension) && document.MediaKind == MediaKind.Tape && TryGetBlocks(document, out _);
     }
 
     public async Task<IReadOnlyList<string>> WriteAsync(
@@ -105,10 +102,7 @@ public sealed class TzxWriter : IMediaImageWriter
     }
 
     private static byte ReadVersion(IReadOnlyDictionary<string, string> metadata, string key, byte defaultValue) =>
-        metadata.TryGetValue(key, out var text)
-        && byte.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var value)
-            ? value
-            : defaultValue;
+        metadata.TryGetValue(key, out var text) && byte.TryParse(text, System.Globalization.NumberStyles.None, System.Globalization.CultureInfo.InvariantCulture, out var value) ? value : defaultValue;
 
     private sealed record TzxBlock(byte Id, MediaDataRange? Range);
 }

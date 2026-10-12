@@ -67,12 +67,7 @@ public sealed class MediaRecognitionContext
         return await ReadAsync(0, (int)Length, cancellationToken).ConfigureAwait(false);
     }
 
-    private Task<byte[]> GetPageAsync(long pageIndex, CancellationToken cancellationToken)
-        => pages.GetOrAdd(
-            pageIndex,
-            index => new Lazy<Task<byte[]>>(
-                () => ReadPageAsync(index, cancellationToken),
-                LazyThreadSafetyMode.ExecutionAndPublication)).Value;
+    private Task<byte[]> GetPageAsync(long pageIndex, CancellationToken cancellationToken) => pages.GetOrAdd(pageIndex, index => new Lazy<Task<byte[]>>(() => ReadPageAsync(index, cancellationToken), LazyThreadSafetyMode.ExecutionAndPublication)).Value;
 
     private async Task<byte[]> ReadPageAsync(long pageIndex, CancellationToken cancellationToken)
     {

@@ -13,8 +13,7 @@ public sealed record MediaPhysicalDataUnit
         ArgumentOutOfRangeException.ThrowIfNegative(position);
         Position = position;
         Data = data;
-        Metadata = new ReadOnlyDictionary<string, string>(
-            new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
+        Metadata = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
     }
 
     public long Position { get; }

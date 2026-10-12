@@ -15,13 +15,10 @@ internal static class IsoSectorImageBuilder
     {
         if (candidates.Count == 0) throw IsoScpReconstructionExceptions.NoAddressedCandidates();
 
-        var sectorSize = candidates.Values.SelectMany(value => value)
-            .GroupBy(value => value.Sector.Data!.Count).OrderByDescending(group => group.Count()).First().Key;
+        var sectorSize = candidates.Values.SelectMany(value => value).GroupBy(value => value.Sector.Data!.Count).OrderByDescending(group => group.Count()).First().Key;
         var cylinders = candidates.Keys.Max(address => address.Cylinder) + 1;
         var heads = candidates.Keys.Max(address => address.Head) + 1;
-        var sectorsPerTrack = candidates.Keys.GroupBy(address => (address.Cylinder, address.Head))
-            .Select(group => group.Select(item => item.Number).Distinct().Count())
-            .GroupBy(count => count).OrderByDescending(group => group.Count()).ThenByDescending(group => group.Key).First().Key;
+        var sectorsPerTrack = candidates.Keys.GroupBy(address => (address.Cylinder, address.Head)).Select(group => group.Select(item => item.Number).Distinct().Count()).GroupBy(count => count).OrderByDescending(group => group.Count()).ThenByDescending(group => group.Key).First().Key;
         var sectorOrder = candidates.Keys.Select(address => address.Number).Distinct().OrderBy(number => number).ToArray();
         return new(sectorSize, cylinders, heads, sectorsPerTrack, sectorOrder, sectorOrder.Length > 0 && sectorOrder[0] == 0);
     }

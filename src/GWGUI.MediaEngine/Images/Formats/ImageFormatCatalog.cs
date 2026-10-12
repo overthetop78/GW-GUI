@@ -104,10 +104,7 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
                 F("atarist.880", "Atari ST", "Atari ST — 880 KiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-880", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".msa", ".hfe"),
                 FloppyDensity.DoubleDensity
             ),
-            D(
-                F("atarist.1440", "Atari ST", "Atari ST — 1.44 MiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-1440", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".hfe"),
-                FloppyDensity.HighDensity
-            ),
+            D(F("atarist.1440", "Atari ST", "Atari ST — 1.44 MiB", [E(".st", "Extension.st", "Atari ST image", true)], false, "ST-1440", FloppyFormFactor.ThreeAndHalfInch, true, true, ".scp", ".st", ".hfe"), FloppyDensity.HighDensity),
             F("atari.90", "Atari 8-bit", "Atari 8-bit — 90 KiB", [E(".atr", "Extension.atr", "Atari ATR image", true)], true, "ATARI8-90", FloppyFormFactor.FiveAndQuarterInch, true, true, ".scp", ".atr", ".hfe"),
             F("atari.130", "Atari 8-bit", "Atari 8-bit — 130 KiB", [E(".atr", "Extension.atr", "Atari ATR image", true)], true, "ATARI8-130", FloppyFormFactor.FiveAndQuarterInch, true, true, ".scp", ".atr", ".hfe"),
             F("atari.140", "Atari 8-bit", "Atari 8-bit — 140 KiB", [E(".atr", "Extension.atr", "Atari ATR image", true)], false, "ATARI8-140", FloppyFormFactor.FiveAndQuarterInch, false, false, ".atr"),
@@ -283,19 +280,7 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
                 FloppyDensity.DoubleDensity
             ),
             new("acorn.dfs.atom", "Acorn Atom", "Acorn Atom DOS — 100 KiB", [new(".dsk", "Atom DSK", true)], false, Set(".dsk", ".scp", ".hfe"), "ACORN-ATOM-DOS", FloppyFormFactor.FiveAndQuarterInch, true, true),
-            new(
-                "apricot.pcxi.315",
-                "ACT Apricot",
-                "ACT Apricot PC/Xi — ApriDisk 315 KiB",
-                [new(".dsk", "ApriDisk", true)],
-                false,
-                Set(".dsk"),
-                "APRICOT-PCXI-315",
-                FloppyFormFactor.ThreeAndHalfInch,
-                true,
-                true,
-                FloppyDensity.DoubleDensity
-            ),
+            new("apricot.pcxi.315", "ACT Apricot", "ACT Apricot PC/Xi — ApriDisk 315 KiB", [new(".dsk", "ApriDisk", true)], false, Set(".dsk"), "APRICOT-PCXI-315", FloppyFormFactor.ThreeAndHalfInch, true, true, FloppyDensity.DoubleDensity),
             new("acorn.dfs.ss", "Acorn / BBC Micro", "BBC DFS — 100 KiB", [new(".ssd", "SSD", true)], true, Set(".scp", ".ssd", ".img", ".hfe"), "BBC-DFS-SS", FloppyFormFactor.FiveAndQuarterInch, true, true),
             new("acorn.dfs.ss80", "Acorn / BBC Micro", "BBC DFS — 200 KiB", [new(".ssd", "SSD", true)], true, Set(".scp", ".ssd", ".img", ".hfe"), "BBC-DFS-SS80", FloppyFormFactor.FiveAndQuarterInch, true, true),
             new("acorn.dfs.ds", "Acorn / BBC Micro", "BBC DFS — 200 KiB (DS)", [new(".dsd", "DSD", true)], true, Set(".scp", ".dsd", ".img", ".hfe"), "BBC-DFS-DS", FloppyFormFactor.FiveAndQuarterInch, true, true),
@@ -303,31 +288,9 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             new("amstrad.cpc", "Amstrad", "Amstrad CPC — 3″", [new(".dsk", "DSK", true), new(".edsk", "Extended DSK")], true, Set(".scp", ".dsk", ".edsk", ".hfe"), "AMSTRAD-CPC", FloppyFormFactor.ThreeInch, true, true),
             new("amstrad.pcw", "Amstrad", "Amstrad PCW — 3″", [new(".dsk", "DSK", true), new(".edsk", "Extended DSK")], true, Set(".scp", ".dsk", ".edsk", ".hfe"), "AMSTRAD-PCW", FloppyFormFactor.ThreeInch, true, true),
             new(DiskImageFormatIds.AmstradCpr, "Amstrad", T("Format.amstrad.cpr", "CPR"), [new(".cpr", "CPR", true)], true, Set(".cpr", ".rom", ".bin"), "AMSTRAD-CPR", FloppyFormFactor.Unknown, false, false),
-            new(
-                DiskImageFormatIds.AmstradRom,
-                "Amstrad",
-                T("Format.amstrad.rom", "Amstrad CPC ROM"),
-                [new(".rom", "ROM", true), new(".bin", "BIN")],
-                true,
-                Set(".cpr", ".rom", ".bin"),
-                "AMSTRAD-ROM",
-                FloppyFormFactor.Unknown,
-                false,
-                false
-            ),
+            new(DiskImageFormatIds.AmstradRom, "Amstrad", T("Format.amstrad.rom", "Amstrad CPC ROM"), [new(".rom", "ROM", true), new(".bin", "BIN")], true, Set(".cpr", ".rom", ".bin"), "AMSTRAD-ROM", FloppyFormFactor.Unknown, false, false),
             Cartridge(DiskImageFormatIds.NintendoNes, "Nintendo", "Format.nintendo.nes", "Nintendo NES", [DiskImageFileExtensions.Nes], "NINTENDO-NES"),
-            F(
-                DiskImageFormatIds.NintendoFamicomDisk,
-                "Nintendo",
-                "Nintendo Famicom Disk System",
-                [new(DiskImageFileExtensions.Fds, "FDS", true)],
-                true,
-                "NINTENDO-FDS",
-                FloppyFormFactor.Unknown,
-                false,
-                false,
-                DiskImageFileExtensions.Fds
-            ),
+            F(DiskImageFormatIds.NintendoFamicomDisk, "Nintendo", "Nintendo Famicom Disk System", [new(DiskImageFileExtensions.Fds, "FDS", true)], true, "NINTENDO-FDS", FloppyFormFactor.Unknown, false, false, DiskImageFileExtensions.Fds),
             new(
                 OpticalImageFormatIds.Gdi,
                 "Sega",

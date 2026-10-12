@@ -42,11 +42,7 @@ public sealed class CueSheetWriter
                     writer,
                     $"{CueSheetConstants.Indent}{CueSheetConstants.Track} {track.Number:D2} {mode}",
                     cancellationToken).ConfigureAwait(false);
-                await WriteMetadataAsync(
-                    writer,
-                    track.Metadata,
-                    CueSheetConstants.Indent + CueSheetConstants.Indent,
-                    cancellationToken).ConfigureAwait(false);
+                await WriteMetadataAsync(writer, track.Metadata, CueSheetConstants.Indent + CueSheetConstants.Indent, cancellationToken).ConfigureAwait(false);
                 if (track.Flags.Count > 0)
                     await WriteLineAsync(
                         writer,
@@ -102,8 +98,7 @@ public sealed class CueSheetWriter
         }
     }
 
-    private static Task WriteLineAsync(StreamWriter writer, string value, CancellationToken cancellationToken) =>
-        writer.WriteLineAsync(value.AsMemory(), cancellationToken);
+    private static Task WriteLineAsync(StreamWriter writer, string value, CancellationToken cancellationToken) => writer.WriteLineAsync(value.AsMemory(), cancellationToken);
 
     private static string FormatMode(OpticalTrackMode mode) => mode switch
     {

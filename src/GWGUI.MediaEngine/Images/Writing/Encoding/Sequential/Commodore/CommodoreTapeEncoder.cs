@@ -41,9 +41,7 @@ public sealed class CommodoreTapeEncoder : ISequentialMediaEncoder
             throw new InvalidDataException("Commodore tape encoding requires validated blocks without retained undecoded segments.");
         cancellationToken.ThrowIfCancellationRequested();
         var cycles = EncodePulseCycles(request.Blocks);
-        return Task.FromResult(request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
-            ? EncodeWave(cycles, request.Parameters)
-            : EncodeTap(cycles));
+        return Task.FromResult(request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase) ? EncodeWave(cycles, request.Parameters) : EncodeTap(cycles));
     }
 
     private static IReadOnlyList<int> EncodePulseCycles(IReadOnlyList<SequentialDecodedBlock> blocks)
@@ -102,8 +100,7 @@ public sealed class CommodoreTapeEncoder : ISequentialMediaEncoder
         var level = CommodoreTapConstants.PcmAmplitude;
         foreach (var pulseCycles in cycles)
         {
-            var sampleCount = Math.Max(1, (int)Math.Round(
-                pulseCycles * (double)sampleRate / CommodoreTapConstants.DefaultC64PalClockRate));
+            var sampleCount = Math.Max(1, (int)Math.Round(pulseCycles * (double)sampleRate / CommodoreTapConstants.DefaultC64PalClockRate));
             for (var sample = 0; sample < sampleCount; sample++) samples.Add(level);
             level = (short)-level;
         }
@@ -142,8 +139,6 @@ public sealed class CommodoreTapeEncoder : ISequentialMediaEncoder
     private static bool TryReadSampleRate(IReadOnlyDictionary<string, string> parameters, out int sampleRate)
     {
         sampleRate = 0;
-        return parameters.TryGetValue("sampleRate", out var text)
-            && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out sampleRate)
-            && sampleRate >= 8000;
+        return parameters.TryGetValue("sampleRate", out var text) && int.TryParse(text, NumberStyles.None, CultureInfo.InvariantCulture, out sampleRate) && sampleRate >= 8000;
     }
 }

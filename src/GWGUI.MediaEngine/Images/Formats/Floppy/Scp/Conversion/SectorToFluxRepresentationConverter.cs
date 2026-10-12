@@ -57,14 +57,7 @@ internal sealed class SectorToFluxRepresentationConverter : IMediaRepresentation
 
         cancellationToken.ThrowIfCancellationRequested();
         var image = conversion.Create(sectors.Image, cancellationToken);
-        var document = MediaImageDocumentFactory.CreateFloppyFlux(
-            source.Source,
-            DiskImageFormatIds.RawScp,
-            ScpProtectedTrackImageAdapter.Create(image),
-            ScpMetadataFunctions.Create(image));
-        return Task.FromResult(new MediaRepresentationConversionResult(
-            document,
-            [],
-            ["The generated flux is reconstructed from sectors and does not contain the original physical capture."]));
+        var document = MediaImageDocumentFactory.CreateFloppyFlux(source.Source, DiskImageFormatIds.RawScp, ScpProtectedTrackImageAdapter.Create(image), ScpMetadataFunctions.Create(image));
+        return Task.FromResult(new MediaRepresentationConversionResult(document, [], ["The generated flux is reconstructed from sectors and does not contain the original physical capture."]));
     }
 }

@@ -63,10 +63,7 @@ internal sealed class ChdUncompressedRandomAccessData : IMediaRandomAccessData
             }
             else
             {
-                await source.ReadExactlyAsync(
-                    checked((long)storedHunk * hunkSize + offsetInHunk),
-                    target,
-                    cancellationToken).ConfigureAwait(false);
+                await source.ReadExactlyAsync(checked((long)storedHunk * hunkSize + offsetInHunk), target, cancellationToken).ConfigureAwait(false);
             }
             completed += length;
         }

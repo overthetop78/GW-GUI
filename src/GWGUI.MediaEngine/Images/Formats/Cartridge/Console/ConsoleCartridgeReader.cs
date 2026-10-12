@@ -60,10 +60,8 @@ public sealed class ConsoleCartridgeReader : IMediaImageReader
             [DiskImageFileExtensions.Wsc] = DiskImageFormatIds.BandaiWonderSwan
         }.ToFrozenDictionary(StringComparer.OrdinalIgnoreCase);
 
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        ExtensionFormats.Values.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedExtensions =
-        ExtensionFormats.Keys.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormatIds = ExtensionFormats.Values.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedExtensions = ExtensionFormats.Keys.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
         new[] { MediaKind.Cartridge }.ToFrozenSet();
     private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
@@ -85,8 +83,7 @@ public sealed class ConsoleCartridgeReader : IMediaImageReader
             return ValueTask.FromResult(false);
         if (context.RequestedFormatId is null)
             return ValueTask.FromResult(true);
-        return ValueTask.FromResult(SupportedFormatIds.Contains(context.RequestedFormatId)
-            && ExtensionFormats[context.Extension].Equals(context.RequestedFormatId, StringComparison.OrdinalIgnoreCase));
+        return ValueTask.FromResult(SupportedFormatIds.Contains(context.RequestedFormatId) && ExtensionFormats[context.Extension].Equals(context.RequestedFormatId, StringComparison.OrdinalIgnoreCase));
     }
 
     Task<MediaImageDocument> IMediaImageReader.ReadAsync(
@@ -101,8 +98,7 @@ public sealed class ConsoleCartridgeReader : IMediaImageReader
             throw new InvalidDataException("The selected cartridge extension does not match its format.");
 
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
-        var bankCount = checked((int)((context.Length + ConsoleCartridgeConstants.BankLength - 1)
-            / ConsoleCartridgeConstants.BankLength));
+        var bankCount = checked((int)((context.Length + ConsoleCartridgeConstants.BankLength - 1) / ConsoleCartridgeConstants.BankLength));
         var capacity = checked((long)bankCount * ConsoleCartridgeConstants.BankLength);
         var ranges = new List<MediaDataRange>(bankCount);
         var metadata = new Dictionary<string, string>(StringComparer.Ordinal)
@@ -127,14 +123,7 @@ public sealed class ConsoleCartridgeReader : IMediaImageReader
         }
 
         var volume = new MediaVolumeDescriptor(0, capacity, MediaVolumeOrigins.DirectVolume, DisplayName(formatId));
-        return Task.FromResult(new MediaImageDocument(
-            context.Source,
-            formatId,
-            MediaKind.Cartridge,
-            new BlockMediaImageRepresentation(capacity, ConsoleCartridgeConstants.BankLength, ranges),
-            [volume],
-            [],
-            metadata));
+        return Task.FromResult(new MediaImageDocument(context.Source, formatId, MediaKind.Cartridge, new BlockMediaImageRepresentation(capacity, ConsoleCartridgeConstants.BankLength, ranges), [volume], [], metadata));
     }
 
     private static string SystemFor(string formatId) => formatId switch

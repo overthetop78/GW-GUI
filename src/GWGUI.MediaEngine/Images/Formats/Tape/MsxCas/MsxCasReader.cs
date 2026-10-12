@@ -35,9 +35,7 @@ public sealed class MsxCasReader : IMediaImageReader
         var separators = await FindSeparatorsAsync(context.Source.PrimaryPath, cancellationToken).ConfigureAwait(false);
         if (separators.Count == 0) return false;
         if (context.RequestedFormatId is not null) return true;
-        return separators[0] == 0
-            && await HasKnownFileTypeMarkerAsync(context.Source.PrimaryPath, MsxCasConstants.SeparatorLength, cancellationToken)
-                .ConfigureAwait(false);
+        return separators[0] == 0 && await HasKnownFileTypeMarkerAsync(context.Source.PrimaryPath, MsxCasConstants.SeparatorLength, cancellationToken).ConfigureAwait(false);
     }
 
     async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
@@ -51,11 +49,7 @@ public sealed class MsxCasReader : IMediaImageReader
 
         if (separators[0] > 0)
         {
-            segments.Add(new SequentialMediaSegment(
-                position++,
-                SequentialSegmentKind.Unknown,
-                separators[0],
-                dataRange: new MediaDataRange(0, separators[0], MediaDataRangeKind.Stored, source, 0)));
+            segments.Add(new SequentialMediaSegment(position++, SequentialSegmentKind.Unknown, separators[0], dataRange: new MediaDataRange(0, separators[0], MediaDataRangeKind.Stored, source, 0)));
             diagnostics.Add("Bytes before the first MSX CAS separator were retained without interpretation.");
         }
 
@@ -66,12 +60,7 @@ public sealed class MsxCasReader : IMediaImageReader
                 position++,
                 SequentialSegmentKind.TapeMark,
                 MsxCasConstants.SeparatorLength,
-                dataRange: new MediaDataRange(
-                    separatorOffset,
-                    MsxCasConstants.SeparatorLength,
-                    MediaDataRangeKind.Stored,
-                    source,
-                    separatorOffset),
+                dataRange: new MediaDataRange(separatorOffset, MsxCasConstants.SeparatorLength, MediaDataRangeKind.Stored, source, separatorOffset),
                 metadata: new Dictionary<string, string>(StringComparer.Ordinal)
                 {
                     [MsxCasConstants.SeparatorMetadataKey] = bool.TrueString
@@ -115,8 +104,7 @@ public sealed class MsxCasReader : IMediaImageReader
 
     private static async Task<IReadOnlyList<long>> FindSeparatorsAsync(string path, CancellationToken cancellationToken)
     {
-        await using var input = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read,
-            64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var input = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
         var separator = MsxCasConstants.Separator.ToArray();
         var result = new List<long>();
         var buffer = new byte[64 * 1024];
@@ -143,11 +131,7 @@ public sealed class MsxCasReader : IMediaImageReader
         return result;
     }
 
-    private static async Task<bool> HasKnownFileTypeMarkerAsync(
-        string path,
-        long offset,
-        CancellationToken cancellationToken) =>
-        await ReadFileTypeMarkerAsync(path, offset, MsxCasConstants.FileTypeMarkerLength, cancellationToken).ConfigureAwait(false) is not null;
+    private static async Task<bool> HasKnownFileTypeMarkerAsync(string path, long offset, CancellationToken cancellationToken) => await ReadFileTypeMarkerAsync(path, offset, MsxCasConstants.FileTypeMarkerLength, cancellationToken).ConfigureAwait(false) is not null;
 
     private static async Task<string?> ReadFileTypeMarkerAsync(
         string path,
@@ -157,8 +141,7 @@ public sealed class MsxCasReader : IMediaImageReader
     {
         if (available < MsxCasConstants.FileTypeMarkerLength) return null;
         var marker = new byte[MsxCasConstants.FileTypeMarkerLength];
-        await using var input = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read,
-            MsxCasConstants.FileTypeMarkerLength, FileOptions.Asynchronous | FileOptions.RandomAccess);
+        await using var input = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, MsxCasConstants.FileTypeMarkerLength, FileOptions.Asynchronous | FileOptions.RandomAccess);
         input.Position = offset;
         await input.ReadExactlyAsync(marker, cancellationToken).ConfigureAwait(false);
         if (marker.All(value => value == MsxCasConstants.BinaryFileMarker)) return "binary";

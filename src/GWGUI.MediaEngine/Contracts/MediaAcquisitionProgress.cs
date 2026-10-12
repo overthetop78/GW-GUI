@@ -20,8 +20,7 @@ public sealed record MediaAcquisitionProgress
         TotalUnits = totalUnits;
         Attempt = attempt;
         AcquiredUnit = acquiredUnit;
-        Metadata = new ReadOnlyDictionary<string, string>(
-            new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
+        Metadata = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>(metadata ?? new Dictionary<string, string>(), StringComparer.Ordinal));
     }
 
     public int CompletedUnits { get; }

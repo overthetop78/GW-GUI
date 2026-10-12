@@ -56,10 +56,7 @@ public sealed class RawHardDiskWriter : IMediaImageWriter
             || document.Representation is not BlockMediaImageRepresentation blocks)
             throw new InvalidDataException("The media document cannot be written as a complete raw hard disk image.");
 
-        await files.WriteAsync(
-            outputPath,
-            (output, token) => WriteRangesAsync(blocks, output, token),
-            cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(outputPath, (output, token) => WriteRangesAsync(blocks, output, token), cancellationToken).ConfigureAwait(false);
         return [outputPath];
     }
 
@@ -95,10 +92,7 @@ public sealed class RawHardDiskWriter : IMediaImageWriter
                 var destination = buffer.AsMemory(0, count);
                 if (range.Kind == MediaDataRangeKind.Stored)
                 {
-                    await range.Source!.ReadExactlyAsync(
-                        checked(range.SourceOffset + written),
-                        destination,
-                        cancellationToken).ConfigureAwait(false);
+                    await range.Source!.ReadExactlyAsync(checked(range.SourceOffset + written), destination, cancellationToken).ConfigureAwait(false);
                 }
                 else
                 {

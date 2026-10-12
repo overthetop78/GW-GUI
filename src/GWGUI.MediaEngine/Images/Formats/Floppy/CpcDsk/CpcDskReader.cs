@@ -82,10 +82,7 @@ public sealed class CpcDskReader : IMediaImageReader
             maximumSectors = Math.Max(maximumSectors, result.Track.Sectors.Count);
         }
         if (blocks.Count == 0) throw CpcDskExceptions.NoSectors();
-        var logicalBlocks = blocks
-            .OrderBy(block => block.Address.Cylinder)
-            .ThenBy(block => block.Address.Head)
-            .ThenBy(block => block.Address.Number)
+        var logicalBlocks = blocks.OrderBy(block => block.Address.Cylinder).ThenBy(block => block.Address.Head).ThenBy(block => block.Address.Number)
             .Select((block, logicalBlock) => block with { LogicalBlock = logicalBlock })
             .ToArray();
         var dominantSize = sectorSizes.OrderByDescending(item => item.Value).First().Key;

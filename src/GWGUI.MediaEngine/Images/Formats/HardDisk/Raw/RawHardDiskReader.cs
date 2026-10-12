@@ -60,10 +60,7 @@ public sealed class RawHardDiskReader : IMediaImageReader
         if (source.Length != context.Length)
             throw new InvalidDataException("The raw image length changed after recognition.");
 
-        var representation = new BlockMediaImageRepresentation(
-            context.Length,
-            logicalBlockSize,
-            [new MediaDataRange(0, context.Length, MediaDataRangeKind.Stored, source)]);
+        var representation = new BlockMediaImageRepresentation(context.Length, logicalBlockSize, [new MediaDataRange(0, context.Length, MediaDataRangeKind.Stored, source)]);
         return new MediaImageDocument(
             context.Source,
             HardDiskImageFormatIds.Raw,

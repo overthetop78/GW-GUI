@@ -43,10 +43,7 @@ public sealed class SequentialContentDecoderAdapter : IMediaFileSystemReader
             throw new InvalidDataException("The requested volume is not decoded sequential media content.");
 
         var compatible = decoders.FindCompatible(decoded);
-        var results = compatible
-            .Select(decoder => decoder.DecodeAsync(decoded).GetAwaiter().GetResult())
-            .OrderByDescending(result => result.Blocks.Count > 0)
-            .ThenByDescending(result => result.Confidence)
+        var results = compatible.Select(decoder => decoder.DecodeAsync(decoded).GetAwaiter().GetResult()).OrderByDescending(result => result.Blocks.Count > 0).ThenByDescending(result => result.Confidence)
             .ThenByDescending(result => result.Blocks.Count)
             .ToArray();
         var selected = results.FirstOrDefault();
@@ -56,15 +53,9 @@ public sealed class SequentialContentDecoderAdapter : IMediaFileSystemReader
         foreach (var segment in selected?.UndecodedSegments ?? [])
             diagnostics.Add($"Undecoded {segment.Kind} segment at position {segment.Position}.");
 
-        var blocks = selected?.Blocks
-            .Select(block => new MediaSequentialDecodedBlock(
-                block.Position, block.Data, block.IntegrityValid, block.Metadata))
-            .ToArray() ?? [];
+        var blocks = selected?.Blocks.Select(block => new MediaSequentialDecodedBlock(block.Position, block.Data, block.IntegrityValid, block.Metadata)).ToArray() ?? [];
         var content = new DecodedContent(selected?.DecoderId, blocks, diagnostics);
-        var volumeName = document.Metadata.TryGetValue(AtariCasConstants.InternalNameMetadataKey, out var internalName)
-            && !string.IsNullOrWhiteSpace(internalName)
-                ? internalName.Trim()
-                : string.Empty;
+        var volumeName = document.Metadata.TryGetValue(AtariCasConstants.InternalNameMetadataKey, out var internalName) && !string.IsNullOrWhiteSpace(internalName) ? internalName.Trim() : string.Empty;
         return fileSystems.Read(document, volume, content, volumeName);
     }
 

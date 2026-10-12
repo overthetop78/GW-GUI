@@ -49,26 +49,14 @@ public sealed class FloppyMediaWritePlanningService(DiskImageExplorer explorer)
     public MediaWritePlan CreatePlan(IReadOnlyList<EncodedDiskTrack> tracks)
     {
         ArgumentNullException.ThrowIfNull(tracks);
-        var units = tracks.OrderBy(track => track.Cylinder).ThenBy(track => track.Head)
-            .Select((track, index) => CreateUnit(
-                track.Cylinder,
-                track.Head,
-                track.Track.Revolution,
-                EncodedTrackTiming.TickNanoseconds,
-                index))
-            .ToArray();
+        var units = tracks.OrderBy(track => track.Cylinder).ThenBy(track => track.Head).Select((track, index) => CreateUnit(track.Cylinder, track.Head, track.Track.Revolution, EncodedTrackTiming.TickNanoseconds, index)).ToArray();
         return CreatePlan(units);
     }
 
     private static MediaWritePlan CreatePlan(IReadOnlyList<MediaPhysicalDataUnit> units)
     {
         if (units.Count == 0) throw new InvalidDataException("The floppy image produced no physical track to write.");
-        return new MediaWritePlan(
-            MediaKind.Floppy,
-            MediaRepresentationKind.Flux,
-            units,
-            Enumerable.Range(0, units.Count).ToArray(),
-            new Dictionary<string, string>(StringComparer.Ordinal));
+        return new MediaWritePlan(MediaKind.Floppy, MediaRepresentationKind.Flux, units, Enumerable.Range(0, units.Count).ToArray(), new Dictionary<string, string>(StringComparer.Ordinal));
     }
 
     private static MediaPhysicalDataUnit CreateUnit(
@@ -79,10 +67,7 @@ public sealed class FloppyMediaWritePlanningService(DiskImageExplorer explorer)
         int position)
     {
         var intervals = revolution.FluxIntervals.Select(interval => checked(interval * sourceTickNanoseconds)).ToArray();
-        var track = new MediaFluxTrackData(
-            [new MediaFluxRevolutionData(
-                checked(revolution.IndexTimeTicks * sourceTickNanoseconds),
-                intervals)]);
+        var track = new MediaFluxTrackData([new MediaFluxRevolutionData(checked(revolution.IndexTimeTicks * sourceTickNanoseconds), intervals)]);
         return new MediaPhysicalDataUnit(
             position,
             MediaFluxTrackDataFunctions.Serialize(track),

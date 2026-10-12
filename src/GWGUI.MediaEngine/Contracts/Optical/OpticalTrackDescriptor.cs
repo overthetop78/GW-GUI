@@ -119,6 +119,5 @@ public sealed class OpticalTrackDescriptor : IMediaOpticalTrack
     public bool HasSubchannels => SubchannelSource is not null;
     public bool IsAudio => Mode == OpticalTrackMode.Audio;
 
-    public ValueTask<byte[]> ReadUserDataAsync(long relativeSector, CancellationToken cancellationToken = default) =>
-        SectorReader.ReadUserDataAsync(this, relativeSector, cancellationToken);
+    public ValueTask<byte[]> ReadUserDataAsync(long relativeSector, CancellationToken cancellationToken = default) => SectorReader.ReadUserDataAsync(this, relativeSector, cancellationToken);
 }

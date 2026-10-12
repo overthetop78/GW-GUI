@@ -38,11 +38,8 @@ public sealed class FileSystemMigrationService
         var blank = BlankSectorImageFactory.Create(target.FormatId);
         var plan = fileSystems.CreatePlan(FileSystemVolumeMapper.ToFileSystemsVolume(source), target.FileSystemId);
         var (filled, report) = fileSystems.Inject(plan, blank, acceptMetadataLoss);
-        var blocks = filled.AvailableBlocks.Select(block => new SectorBlock(block.LogicalBlock,
-            new SectorAddress(block.Address.Cylinder, block.Address.Head, block.Address.Number), block.Data));
-        var image = new SectorImage(filled.FormatId, filled.BlockSize, filled.Cylinders, filled.Heads,
-            filled.SectorsPerTrack, blocks, capacity: filled.Capacity,
-            logicalBlockCount: filled.LogicalBlockCount);
+        var blocks = filled.AvailableBlocks.Select(block => new SectorBlock(block.LogicalBlock, new SectorAddress(block.Address.Cylinder, block.Address.Head, block.Address.Number), block.Data));
+        var image = new SectorImage(filled.FormatId, filled.BlockSize, filled.Cylinders, filled.Heads, filled.SectorsPerTrack, blocks, capacity: filled.Capacity, logicalBlockCount: filled.LogicalBlockCount);
         return new(image, ConvertReport(report));
     }
 
@@ -55,10 +52,7 @@ public sealed class FileSystemMigrationService
         return result;
     }
 
-    private static MigrationValidationReport ConvertReport(FileSystemsReport report) =>
-        new(report.Losses.Select(loss => new MigrationLoss(
-            Enum.Parse<MigrationLossKind>(loss.Kind.ToString()), loss.Path, loss.IsBlocking, loss.Detail)),
-            report.MetadataLossAccepted);
+    private static MigrationValidationReport ConvertReport(FileSystemsReport report) => new(report.Losses.Select(loss => new MigrationLoss(Enum.Parse<MigrationLossKind>(loss.Kind.ToString()), loss.Path, loss.IsBlocking, loss.Detail)), report.MetadataLossAccepted);
 
     private static async Task WriteImageAsync(SectorImage image, string outputPath,
         string formatId, CancellationToken cancellationToken)
@@ -71,8 +65,7 @@ public sealed class FileSystemMigrationService
         if (Fat12TargetGeometryCatalog.TryResolve(formatId, out _))
         {
             var linear = new LinearSectorImageWriter();
-            var fatWriter = new Fat12TargetImageWriter(new AtariStWriter(linear),
-                new IbmRawImageWriter(linear), new MsxRawImageWriter(linear));
+            var fatWriter = new Fat12TargetImageWriter(new AtariStWriter(linear), new IbmRawImageWriter(linear), new MsxRawImageWriter(linear));
             await fatWriter.WriteAsync(image, outputPath, formatId, cancellationToken).ConfigureAwait(false);
             return;
         }
@@ -92,14 +85,11 @@ public sealed class FileSystemMigrationService
         }
         var suffix = Path.GetExtension(outputPath);
         if ((formatId is DiskImageFormatIds.Commodore1541 or DiskImageFormatIds.Commodore1571) &&
-            suffix.Equals(formatId == DiskImageFormatIds.Commodore1541
-                ? DiskImageFileExtensions.D64 : DiskImageFileExtensions.D71, StringComparison.OrdinalIgnoreCase))
-            await new CommodoreDosContainerWriter().WriteAsync(image, outputPath,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
+            suffix.Equals(formatId == DiskImageFormatIds.Commodore1541 ? DiskImageFileExtensions.D64 : DiskImageFileExtensions.D71, StringComparison.OrdinalIgnoreCase))
+            await new CommodoreDosContainerWriter().WriteAsync(image, outputPath, cancellationToken: cancellationToken).ConfigureAwait(false);
         else if (formatId == DiskImageFormatIds.Commodore1581 &&
             suffix.Equals(DiskImageFileExtensions.D81, StringComparison.OrdinalIgnoreCase))
-            await new D81Writer(new LinearSectorImageWriter()).WriteAsync(image, outputPath,
-                cancellationToken).ConfigureAwait(false);
+            await new D81Writer(new LinearSectorImageWriter()).WriteAsync(image, outputPath, cancellationToken).ConfigureAwait(false);
         else throw new InvalidDataException($"The Commodore DOS migration target '{formatId}' cannot be written to '{suffix}'.");
     }
 }

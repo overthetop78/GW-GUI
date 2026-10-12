@@ -47,8 +47,7 @@ public sealed class SpectrumTapReader : IMediaImageReader
         var blockCount = await ValidateAsync(context.Source.PrimaryPath, requireChecksums: false, cancellationToken).ConfigureAwait(false);
         if (blockCount == 0) throw new InvalidDataException("The Spectrum TAP image contains no block.");
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
-        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read,
-            64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var input = new FileStream(context.Source.PrimaryPath, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
         var segments = new List<SequentialMediaSegment>(blockCount);
         var diagnostics = new List<string>();
         var lengthBytes = new byte[SpectrumTapConstants.LengthFieldSize];
@@ -73,8 +72,7 @@ public sealed class SpectrumTapReader : IMediaImageReader
                     [SpectrumTapConstants.BlockMetadataKey] = bool.TrueString,
                     ["flag"] = data[0].ToString("x2", System.Globalization.CultureInfo.InvariantCulture),
                     ["checksumValid"] = checksumValid.ToString(System.Globalization.CultureInfo.InvariantCulture),
-                    ["header"] = (length == SpectrumTapConstants.HeaderBlockLength && data[0] == SpectrumTapConstants.HeaderFlag)
-                        .ToString(System.Globalization.CultureInfo.InvariantCulture)
+                    ["header"] = (length == SpectrumTapConstants.HeaderBlockLength && data[0] == SpectrumTapConstants.HeaderFlag).ToString(System.Globalization.CultureInfo.InvariantCulture)
                 }));
             index++;
         }
@@ -91,8 +89,7 @@ public sealed class SpectrumTapReader : IMediaImageReader
 
     private static async Task<int> ValidateAsync(string path, bool requireChecksums, CancellationToken cancellationToken)
     {
-        await using var input = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read,
-            64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var input = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, 64 * 1024, FileOptions.Asynchronous | FileOptions.SequentialScan);
         var lengthBytes = new byte[SpectrumTapConstants.LengthFieldSize];
         var buffer = new byte[64 * 1024];
         var blocks = 0;

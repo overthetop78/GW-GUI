@@ -26,11 +26,7 @@ public sealed class SpectrumTapWriter : IMediaImageWriter
     public IReadOnlySet<string> ProducedFileExtensions => SpectrumTapFormat.Extensions;
     public bool ProducesMultipleFiles => false;
 
-    public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) =>
-        SupportedFormats.Contains(targetFormatId)
-        && SpectrumTapFormat.Extensions.Contains(targetExtension)
-        && document.MediaKind == MediaKind.Tape
-        && TryGetBlocks(document, out _);
+    public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) => SupportedFormats.Contains(targetFormatId) && SpectrumTapFormat.Extensions.Contains(targetExtension) && document.MediaKind == MediaKind.Tape && TryGetBlocks(document, out _);
 
     public async Task<IReadOnlyList<string>> WriteAsync(
         MediaImageDocument document,

@@ -26,9 +26,7 @@ public sealed class AtariStConversionService(
         var sourceExtension = Path.GetExtension(sourcePath);
         var image = sourceExtension.Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase) 
             ? await scpReader.ReadAsync(sourcePath, formatId, cancellationToken).ConfigureAwait(false) 
-            : sourceExtension.Equals(DiskImageFileExtensions.Msa, StringComparison.OrdinalIgnoreCase) 
-            ? await msaReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false) 
-            : await stReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+            : sourceExtension.Equals(DiskImageFileExtensions.Msa, StringComparison.OrdinalIgnoreCase) ? await msaReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false) : await stReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         var transformed = AtariStGeometryTransformer.Transform(image, formatId, sourceExtension.Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase));
         if (Path.GetExtension(outputPath).Equals(DiskImageFileExtensions.Msa, StringComparison.OrdinalIgnoreCase))
             await msaWriter.WriteAsync(transformed, outputPath, cancellationToken).ConfigureAwait(false);

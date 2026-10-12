@@ -17,9 +17,7 @@ public sealed class ImageFormatDetector(IImageFormatCatalog catalog, Func<string
     public DetectedImageFormat Detect(string filePath, long? knownLength = null)
     {
         var extension = Path.GetExtension(filePath).ToLowerInvariant();
-        var candidates = catalog.Formats
-            .Where(format => format.Extensions.Any(item => item.Extension.Equals(extension, StringComparison.OrdinalIgnoreCase)))
-            .ToArray();
+        var candidates = catalog.Formats.Where(format => format.Extensions.Any(item => item.Extension.Equals(extension, StringComparison.OrdinalIgnoreCase))).ToArray();
 
         var context = new ImageFormatDetectionContext(catalog, filePath, knownLength, extension, candidates, openRead ?? File.OpenRead);
         foreach (var rule in Rules)
