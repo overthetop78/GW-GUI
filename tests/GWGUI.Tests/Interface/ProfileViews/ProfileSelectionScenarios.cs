@@ -12,13 +12,11 @@ internal static class ProfileSelectionScenarios
         {
             case 0:
                 using (var read = new GWGUI.Tests.Interface.ReadViews.ReadOperationScenarios.Context())
-                    Verify(read.View.ProfileBlock, OperationKind.Read, read.Controller.ProfileChanged, read.Controller.ResetProfile,
-                        read.Model.Read.Tracks, value => read.Model.Read.ExpertArguments = value, () => read.Model.Read.ExpertArguments);
+                    Verify(read.View.ProfileBlock, OperationKind.Read, read.Controller.ProfileChanged, read.Controller.ResetProfile, read.Model.Read.Tracks, value => read.Model.Read.ExpertArguments = value, () => read.Model.Read.ExpertArguments);
                 break;
             case 1:
                 var write = new GWGUI.Tests.Interface.WriteViews.WriteOperationScenarios.Context();
-                Verify(write.View.ProfileBlock, OperationKind.Write, write.Controller.ProfileChanged, write.Controller.ResetProfile,
-                    write.Model.Write.Tracks, value => write.Model.Write.ExpertArguments = value, () => write.Model.Write.ExpertArguments);
+                Verify(write.View.ProfileBlock, OperationKind.Write, write.Controller.ProfileChanged, write.Controller.ResetProfile, write.Model.Write.Tracks, value => write.Model.Write.ExpertArguments = value, () => write.Model.Write.ExpertArguments);
                 break;
             default:
                 var convert = new GWGUI.Tests.Interface.ConversionViews.ConversionOperationScenarios.Context();

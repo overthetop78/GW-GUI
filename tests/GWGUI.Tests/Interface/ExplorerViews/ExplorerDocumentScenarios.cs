@@ -152,9 +152,7 @@ internal static class ExplorerDocumentScenarios
             new DiskFormat("test.second", "second-family", "second-format", [new(".two", "two", true)])
         };
         section.SetFormats(formats, null);
-        var image = new ExploredDiskImage(first.SourcePath, firstImage, first.Volume, first.Metadata,
-            detectedFileSystems: [new("first-reader", firstImage, first.Volume), new("second-reader", secondImage, second.Volume)],
-            scpImage: first.ScpImage);
+        var image = new ExploredDiskImage(first.SourcePath, firstImage, first.Volume, first.Metadata, detectedFileSystems: [new("first-reader", firstImage, first.Volume), new("second-reader", secondImage, second.Volume)], scpImage: first.ScpImage);
         section.Clear(); section.Display(image);
         Assert.Equal(new string?[] { null, "test.first", "test.second" }, section.FormatChoices.Select(item => item.Id));
         Assert.Equal("test.first", section.SelectedFormatId);

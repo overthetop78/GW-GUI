@@ -84,8 +84,7 @@ internal static class RuntimeOptionScenarios
         };
         foreach (var expected in expectedFields)
         {
-            var actual = SettingsDescriptionFunctions.Create(new MachineConfiguration(expected.Key)).SelectMany(block => block.Fields).Where(field => field.DefaultFolderCategory == EmulationDefaultFolderCategory.Firmware)
-                .Select(field => field.Id).ToArray();
+            var actual = SettingsDescriptionFunctions.Create(new MachineConfiguration(expected.Key)).SelectMany(block => block.Fields).Where(field => field.DefaultFolderCategory == EmulationDefaultFolderCategory.Firmware) .Select(field => field.Id).ToArray();
             Assert.Equal(expected.Value, actual);
         }
 

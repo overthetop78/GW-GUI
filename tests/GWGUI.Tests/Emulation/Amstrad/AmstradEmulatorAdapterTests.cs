@@ -307,10 +307,8 @@ public sealed class AmstradEmulatorAdapterTests
 
         callbacks.InputPoll();
 
-        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter
-            + 10 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerX));
-        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter
-            - 5 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerY));
+        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter + 10 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerX));
+        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter - 5 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerY));
         Assert.Equal(1, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerPressed));
 
         callbacks.Input = EmulationInputSnapshot.Empty with
@@ -318,15 +316,12 @@ public sealed class AmstradEmulatorAdapterTests
             Pointer = EmulationInputSnapshot.Empty.Pointer with { DeltaX = -4, DeltaY = 3 }
         };
         callbacks.InputPoll();
-        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter
-            + 6 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerX));
-        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter
-            - 2 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerY));
+        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter + 6 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerX));
+        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter - 2 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerY));
 
         callbacks.Input = EmulationInputSnapshot.Empty;
         callbacks.InputPoll();
-        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter
-            + 6 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerX));
+        Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter + 6 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerX));
     }
 
     [Theory]

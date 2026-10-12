@@ -255,8 +255,7 @@ public sealed class SegaMachineLifecycleTests
                 configuration = Assert.IsType<MachineConfiguration>(((IEmulationFirmwareManager)module).UseFirmware(configuration, candidate));
             }
 
-            var runtime = await module.CreateRuntimeAsync(configuration,
-                new EmulationRuntimeServices(Path.Combine(root, "sessions"), Path.Combine(root, "states"), Path.Combine(root, "converted"), hostPath, (_, _) => new SilentAudioOutput()));
+            var runtime = await module.CreateRuntimeAsync(configuration, new EmulationRuntimeServices(Path.Combine(root, "sessions"), Path.Combine(root, "states"), Path.Combine(root, "converted"), hostPath, (_, _) => new SilentAudioOutput()));
             await using var machine = runtime.CreateMachine(runtime.MountedMedia);
             var frame = new TaskCompletionSource<VideoFrame>(TaskCreationOptions.RunContinuationsAsynchronously);
             machine.Video.FrameReady += OnFrame;
@@ -643,9 +642,7 @@ public sealed class SegaMachineLifecycleTests
         Directory.CreateDirectory(root);
         using var callbacks = new GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks(system, content, save, null);
         var pointers = new List<nint>();
-        var definitionSize = (FlycastHostConstants.CoreOptionV1PointerFieldsBeforeValues
-            + FlycastHostConstants.MaximumCoreOptionValues * FlycastHostConstants.CoreOptionValueFieldCount
-            + FlycastHostConstants.CoreOptionTerminatorFieldCount) * IntPtr.Size;
+        var definitionSize = (FlycastHostConstants.CoreOptionV1PointerFieldsBeforeValues + FlycastHostConstants.MaximumCoreOptionValues * FlycastHostConstants.CoreOptionValueFieldCount + FlycastHostConstants.CoreOptionTerminatorFieldCount) * IntPtr.Size;
         var definitions = Marshal.AllocHGlobal(definitionSize * 2);
         try
         {

@@ -102,8 +102,7 @@ internal static class MachineConfigurationMappingScenarios
     }
     public static void Media()
     {
-        var mapped = GWGUI.Emulation.Commodore.Common.Machines.Common.Functions.EmulationMediaConversionFunctions.ToCommon([
-            new("disk-a", AmigaMediaCategory.Floppy), new("hard-disk", AmigaMediaCategory.HardDrive), new("disk-b", AmigaMediaCategory.Floppy)]);
+        var mapped = GWGUI.Emulation.Commodore.Common.Machines.Common.Functions.EmulationMediaConversionFunctions.ToCommon([ new("disk-a", AmigaMediaCategory.Floppy), new("hard-disk", AmigaMediaCategory.HardDrive), new("disk-b", AmigaMediaCategory.Floppy)]);
         Assert.Equal(new[] { EmulationMediaSlot.Floppy0, EmulationMediaSlot.HardDisk0, EmulationMediaSlot.Floppy1 }, mapped.Select(item => item.Slot));
         Assert.Equal(Path.GetFullPath("disk-b"), mapped[2].Path);
         var original = new EmulationMedia("virtual", EmulationMediaSlot.Floppy1, EmulationMediaType.Floppy, true, false);

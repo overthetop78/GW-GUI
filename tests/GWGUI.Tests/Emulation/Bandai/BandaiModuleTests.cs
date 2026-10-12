@@ -121,9 +121,7 @@ public sealed class BandaiModuleTests
         foreach (var model in Enum.GetValues<MachineModel>())
         {
             var configuration = new MachineConfiguration(model);
-            var nativeFields = SettingsDescriptionFunctions.Create(configuration).SelectMany(block => block.Fields)
-                .Where(field => field.Id.StartsWith("wswan_", StringComparison.Ordinal)
-                    || field.Id.StartsWith("playdiaemu_", StringComparison.Ordinal));
+            var nativeFields = SettingsDescriptionFunctions.Create(configuration).SelectMany(block => block.Fields) .Where(field => field.Id.StartsWith("wswan_", StringComparison.Ordinal) || field.Id.StartsWith("playdiaemu_", StringComparison.Ordinal));
             _ = new MachineConfiguration(model, options: nativeFields.ToDictionary(field => field.Id, field => field.Value!));
         }
     }

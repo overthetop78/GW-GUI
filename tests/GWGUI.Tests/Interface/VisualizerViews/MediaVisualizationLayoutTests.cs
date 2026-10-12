@@ -172,12 +172,7 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
         header.SetFormats(new BuiltInImageFormatCatalog(key => key).Formats);
         header.ApplyDetection(DiskImageFormatIds.AmigaDos, null, [DiskImageFormatIds.AmigaDos]);
         header.ConfigureRevolutions(3);
-        var fluxDescriptor = new MediaVisualizationDescriptor(
-            MediaRepresentationKind.Flux,
-            [0, 1],
-            MediaVisualizationProgressUnit.Track,
-            MediaVisualizationDirection.Ascending,
-            [new MediaVisualizationElement(0, 0), new MediaVisualizationElement(0, 1)]);
+        var fluxDescriptor = new MediaVisualizationDescriptor( MediaRepresentationKind.Flux, [0, 1], MediaVisualizationProgressUnit.Track, MediaVisualizationDirection.Ascending, [new MediaVisualizationElement(0, 0), new MediaVisualizationElement(0, 1)]);
         header.DisplayDocument(Document("capture.scp"), fluxDescriptor);
         header.Measure(new Size(1900, 80));
         header.Arrange(new Rect(0, 0, 1900, 80));

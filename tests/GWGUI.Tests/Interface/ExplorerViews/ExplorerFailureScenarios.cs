@@ -46,16 +46,7 @@ internal static class ExplorerFailureScenarios
             [new GWGUI.MediaEngine.Images.Formats.Floppy.Scp.ScpTrack(0, 0, 0, [new GWGUI.MediaEngine.Images.Formats.Floppy.Scp.ScpRevolution(8_000_000, 3, [80, 120, 160])])],
             source.ScpImage.ChecksumValid,
             source.ScpImage.FileSize);
-        return new GWGUI.MediaEngine.Contracts.Explorer.ExploredDiskImage(
-            source.SourcePath,
-            source.Image,
-            source.Volume,
-            source.Metadata,
-            source.FileSystemRecognized,
-            source.DetectedFileSystems,
-            source.DetectedSectorImages,
-            source.PrimaryFormatId,
-            scp);
+        return new GWGUI.MediaEngine.Contracts.Explorer.ExploredDiskImage( source.SourcePath, source.Image, source.Volume, source.Metadata, source.FileSystemRecognized, source.DetectedFileSystems, source.DetectedSectorImages, source.PrimaryFormatId, scp);
     }
 
     public static void Clear()

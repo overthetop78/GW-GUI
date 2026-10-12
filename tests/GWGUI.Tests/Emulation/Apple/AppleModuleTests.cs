@@ -139,9 +139,7 @@ public sealed class AppleModuleTests
     [Fact]
     public void SingleDiskFrontendRejectsMultipleMountedImages()
     {
-        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.MacintoshII,
-            media: [new("floppy.dsk", MediaCategory.Floppy, EmulationMediaSlot.Floppy0),
-                new("disk.img", MediaCategory.HardDisk, EmulationMediaSlot.HardDisk0)]));
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.MacintoshII, media: [new("floppy.dsk", MediaCategory.Floppy, EmulationMediaSlot.Floppy0), new("disk.img", MediaCategory.HardDisk, EmulationMediaSlot.HardDisk0)]));
     }
 
     [Fact]
