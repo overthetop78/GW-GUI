@@ -10,8 +10,7 @@ internal static class VideoFunctions
     internal static void CopyRows(nint source, byte[] destination, int height, int pitch)
     {
         for (var row = VideoConstants.FirstRow; row < height; row++)
-            Marshal.Copy(nint.Add(source, checked(row * pitch)), destination,
-                checked(row * pitch), pitch);
+            Marshal.Copy(nint.Add(source, checked(row * pitch)), destination, checked(row * pitch), pitch);
     }
 
     internal static TimeSpan Timestamp(long startTimestamp) => Stopwatch.GetElapsedTime(startTimestamp);

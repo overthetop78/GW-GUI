@@ -31,8 +31,7 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         Core = core ?? Emulator.B2;
         Firmwares = firmwares?.ToArray() ?? [];
         Media = media?.ToArray() ?? [];
-        var selectedOptions = options is null ? new Dictionary<string, string>(StringComparer.Ordinal)
-            : new Dictionary<string, string>(options, StringComparer.Ordinal);
+        var selectedOptions = options is null ? new Dictionary<string, string>(StringComparer.Ordinal) : new Dictionary<string, string>(options, StringComparer.Ordinal);
         if (B2ModelFunctions.GetModels(model).Count > 0)
         {
             selectedOptions.TryAdd(OptionConstants.Model, B2ModelFunctions.DefaultValue(model));

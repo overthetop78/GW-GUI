@@ -90,8 +90,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             ControllerPortFunctions.Configure(_exports, _callbacks, configuration);
             _exports.GetSystemAvInfo(out var avInfo);
             _callbacks.ApplySystemAvInfo(avInfo);
-            Region = _exports.GetRegion() == ExternalCoreInteropConstants.NativeBooleanTrue
-                ? EmulationVideoStandard.Pal : EmulationVideoStandard.Ntsc;
+            Region = _exports.GetRegion() == ExternalCoreInteropConstants.NativeBooleanTrue ? EmulationVideoStandard.Pal : EmulationVideoStandard.Ntsc;
             completed = true;
         }
         finally

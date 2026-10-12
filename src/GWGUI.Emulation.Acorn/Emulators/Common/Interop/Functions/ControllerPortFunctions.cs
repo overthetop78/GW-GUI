@@ -23,7 +23,6 @@ internal static class ControllerPortFunctions
         if (!ControllerFunctions.Peripherals(configuration.Model).Contains(peripheral))
             throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(peripheral));
         // b2 polls analog axes and joypad buttons directly rather than publishing controller descriptors.
-        exports.SetControllerPortDevice(checked((uint)port), peripheral == PeripheralCategory.None
-            ? CoreLifecycleConstants.NoDevice : CoreLifecycleConstants.DefaultJoypadDevice);
+        exports.SetControllerPortDevice(checked((uint)port), peripheral == PeripheralCategory.None ? CoreLifecycleConstants.NoDevice : CoreLifecycleConstants.DefaultJoypadDevice);
     }
 }

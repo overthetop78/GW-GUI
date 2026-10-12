@@ -8,8 +8,7 @@ internal static class ConfigurationFunctions
 {
     internal static bool SupportsRuntime(MachineModel model) => B2ModelFunctions.GetModels(model).Count > 0;
 
-    internal static int ControllerPortCount(MachineModel model) => SupportsRuntime(model)
-        ? BbcMicroModelConstants.TwoPorts : ControllerPortConstants.MinimumControllerPort;
+    internal static int ControllerPortCount(MachineModel model) => SupportsRuntime(model) ? BbcMicroModelConstants.TwoPorts : ControllerPortConstants.MinimumControllerPort;
 
     internal static void Validate(MachineConfiguration configuration)
     {

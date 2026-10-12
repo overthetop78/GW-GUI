@@ -78,11 +78,9 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         return ValueTask.CompletedTask;
     }
 
-    public ValueTask SoftResetAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(() => ResetCore(), cancellationToken);
+    public ValueTask SoftResetAsync(CancellationToken cancellationToken = default) => QueueCommand(() => ResetCore(), cancellationToken);
 
-    public ValueTask HardResetAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(() => ResetCore(), cancellationToken);
+    public ValueTask HardResetAsync(CancellationToken cancellationToken = default) => QueueCommand(() => ResetCore(), cancellationToken);
 
     public async ValueTask StopAsync(CancellationToken cancellationToken = default)
     {
@@ -111,15 +109,11 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
         }
     }
 
-    public void SetInput(EmulationInputSnapshot snapshot) =>
-        _input.Update(InputSnapshotFunctions.Apply(snapshot, Configuration.Input));
+    public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(InputSnapshotFunctions.Apply(snapshot, Configuration.Input));
 
-    public void SetControllerPortDevice(int port, PeripheralCategory peripheral) =>
-        QueueCommand(() => _core.SetControllerPortDevice(port, peripheral), CancellationToken.None)
-            .AsTask().GetAwaiter().GetResult();
+    public void SetControllerPortDevice(int port, PeripheralCategory peripheral) => QueueCommand(() => _core.SetControllerPortDevice(port, peripheral), CancellationToken.None).AsTask().GetAwaiter().GetResult();
 
-    ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) =>
-        ValueTask.FromResult(false);
+    ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) => ValueTask.FromResult(false);
 
     public void SetAudioMuted(bool muted)
     {
@@ -145,17 +139,13 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
             _mountedMedia.RemoveAll(item => item.Slot == slot);
         }, cancellationToken);
 
-    public ValueTask SelectDiskAsync(int index, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => _core.SelectDisk(index), cancellationToken);
+    public ValueTask SelectDiskAsync(int index, CancellationToken cancellationToken = default) => QueueCommand(() => _core.SelectDisk(index), cancellationToken);
 
-    public ValueTask SaveStateAsync(string path, CancellationToken cancellationToken = default) =>
-        throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateUnavailable);
+    public ValueTask SaveStateAsync(string path, CancellationToken cancellationToken = default) => throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateUnavailable);
 
-    public ValueTask LoadStateAsync(string path, CancellationToken cancellationToken = default) =>
-        throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateUnavailable);
+    public ValueTask LoadStateAsync(string path, CancellationToken cancellationToken = default) => throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateUnavailable);
 
-    public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => _core.SetOption(key, value), cancellationToken);
+    public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) => QueueCommand(() => _core.SetOption(key, value), cancellationToken);
 
 
 }

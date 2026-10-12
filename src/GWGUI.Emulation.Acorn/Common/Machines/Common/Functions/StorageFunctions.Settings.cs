@@ -11,8 +11,7 @@ internal static class StorageSettingsFunctions
                 StorageSettingsFunctionsConstants.FloppyExtensions, RequiresMachineRecreation: true,
                 DisplayLabel: StorageSettingsFunctionsConstants.DriveLabel,
                 ImageDirectory: configuration.Folders.Floppies, IsPermanent: true)] : [];
-        return new EmulationStorageSettings(devices, devices.Select(device => device.Slot).ToArray(),
-            configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
+        return new EmulationStorageSettings(devices, devices.Select(device => device.Slot).ToArray(), configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
     }
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration,
@@ -22,13 +21,11 @@ internal static class StorageSettingsFunctions
         if (settings.ConfiguredSlots.Any(slot => !available.Contains(slot))
             || settings.MountedMedia.Any(media => !settings.ConfiguredSlots.Contains(media.Slot)
                 || !available.Contains(media.Slot) || media.Type != EmulationMediaType.Floppy
-                || !StorageSettingsFunctionsConstants.FloppyExtensions.Contains(Path.GetExtension(media.Path),
-                    StringComparer.OrdinalIgnoreCase)))
+                || !StorageSettingsFunctionsConstants.FloppyExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase)))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
         var result = configuration with
         {
-            Media = settings.MountedMedia.Select(media =>
-                EmulationMediaConversionFunctions.ToAcorn(media, configuration.Media)).ToArray()
+            Media = settings.MountedMedia.Select(media => EmulationMediaConversionFunctions.ToAcorn(media, configuration.Media)).ToArray()
         };
         ConfigurationFunctions.Validate(result);
         return result;

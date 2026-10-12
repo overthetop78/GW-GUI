@@ -12,12 +12,9 @@ internal static class RuntimeFunctions
         _ => null
     };
 
-    internal static int RegionValue(EmulationVideoStandard? region) =>
-        region is null ? RuntimeConstants.MissingRegionValue : (int)region.Value;
+    internal static int RegionValue(EmulationVideoStandard? region) => region is null ? RuntimeConstants.MissingRegionValue : (int)region.Value;
 
-    internal static EmulationVideoStandard? ReadRegion(int value) =>
-        value == RuntimeConstants.MissingRegionValue || value is not ((int)EmulationVideoStandard.Ntsc) and not ((int)EmulationVideoStandard.Pal)
-            ? null : (EmulationVideoStandard)value;
+    internal static EmulationVideoStandard? ReadRegion(int value) => value == RuntimeConstants.MissingRegionValue || value is not ((int)EmulationVideoStandard.Ntsc) and not ((int)EmulationVideoStandard.Pal) ? null : (EmulationVideoStandard)value;
 
     internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed)
     {
@@ -31,8 +28,7 @@ internal static class RuntimeFunctions
     internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulatorCore core)
     {
         var frame = core.LatestVideoFrame;
-        var geometry = frame is null ? null
-            : new RuntimeGeometry(frame.Width, frame.Height, frame.Pitch, frame.AspectRatio);
+        var geometry = frame is null ? null : new RuntimeGeometry(frame.Width, frame.Height, frame.Pitch, frame.AspectRatio);
         // b2 does not publish drive activity through the Libretro LED interface.
         return new RuntimeStatus(configuration.Model, core.Region, core.FramesPerSecond, core.SampleRate,
             geometry, core.CoreName, new Dictionary<EmulationMediaSlot, bool>(),
@@ -43,8 +39,7 @@ internal static class RuntimeFunctions
 
 internal static class RuntimeOptionFunctions
 {
-    internal static bool RequiresRestart(Emulator emulator, string key) =>
-        emulator == Emulator.B2 && key is OptionConstants.Model or OptionConstants.AutoBoot;
+    internal static bool RequiresRestart(Emulator emulator, string key) => emulator == Emulator.B2 && key is OptionConstants.Model or OptionConstants.AutoBoot;
 }
 
 internal static class MessageFunctions
@@ -53,16 +48,14 @@ internal static class MessageFunctions
     {
         var context = new EmulationMachineMessageContext(configuration.MachineId);
         if (error is not EmulationException coreError)
-            return EmulationErrorService.Translate(error, EmulationMessageCategory.Machine,
-                EmulationMessageCode.MachineStartFailed, context);
+            return EmulationErrorService.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, context);
         if (coreError.IsLocalized)
             return EmulationErrorService.TranslateLocalized(error, Category(coreError.Category), context);
         if (coreError.Code == ErrorCode.ContentRequired)
             return new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media,
                 EmulationMessageCode.RequiredMediaMissing, EmulationMessageSeverity.Error,
                 EmulationMessageTarget.Dialog,
-                new EmulationRequiredMachineMediaMessageContext(configuration.MachineId,
-                    [EmulationMediaCategory.FloppyDrive])), error);
+                new EmulationRequiredMachineMediaMessageContext(configuration.MachineId, [EmulationMediaCategory.FloppyDrive])), error);
         return EmulationErrorService.Translate(error, Category(coreError.Category), MessageCode(coreError.Code), context);
     }
 

@@ -8,14 +8,11 @@ public sealed class ConfigurationStore
 {
     private readonly string _directory;
     private readonly string _pathBase;
-    private static readonly SemaphoreSlim SaveGate = new(
-        ConfigurationStoreConstants.InitialWriterCount,
-        ConfigurationStoreConstants.MaximumWriterCount);
+    private static readonly SemaphoreSlim SaveGate = new(ConfigurationStoreConstants.InitialWriterCount, ConfigurationStoreConstants.MaximumWriterCount);
 
     public ConfigurationStore(string directory, string? pathBase = null)
     {
-        _directory = Path.GetFullPath(
-            string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);
+        _directory = Path.GetFullPath(string.IsNullOrWhiteSpace(directory) ? throw new ArgumentException(nameof(directory)) : directory);
         _pathBase = Path.GetFullPath(pathBase ?? directory);
     }
 
@@ -50,11 +47,8 @@ public sealed class ConfigurationStore
         try
         {
             var document = ConfigurationStoreFunctions.ToDocument(configuration, _pathBase);
-            var machineDirectory = Path.Combine(_directory,
-                configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
-            await ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(
-                Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document,
-                cancellationToken).ConfigureAwait(false);
+            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
+            await ConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(Path.Combine(machineDirectory, ConfigurationStoreConstants.MachineFileName), document, cancellationToken).ConfigureAwait(false);
         }
         finally
         {
@@ -65,15 +59,11 @@ public sealed class ConfigurationStore
     public void Delete(Guid id)
     {
         if (id == Guid.Empty) throw new ArgumentException(nameof(id));
-        var machineDirectory = Path.Combine(_directory,
-            id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
+        var machineDirectory = Path.Combine(_directory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat));
         if (Directory.Exists(machineDirectory))
             Directory.Delete(machineDirectory, ConfigurationStoreConstants.RecursiveDirectoryDelete);
     }
 
-    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory)
-        .Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName))
-        .Where(File.Exists)
-        .Order(StringComparer.OrdinalIgnoreCase);
+    private IEnumerable<string> ConfigurationPaths() => Directory.EnumerateDirectories(_directory).Select(directory => Path.Combine(directory, ConfigurationStoreConstants.MachineFileName)).Where(File.Exists).Order(StringComparer.OrdinalIgnoreCase);
 }
 

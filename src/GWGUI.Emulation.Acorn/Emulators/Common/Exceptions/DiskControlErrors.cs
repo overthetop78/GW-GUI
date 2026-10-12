@@ -12,7 +12,6 @@ internal static class DiskControlErrors
     internal static string ReplaceFailed => ContentUnsupported();
     internal static string MediaMissing => ExceptionText.Get("Emulation.Acorn.Error.ContentNotFound");
 
-    private static string ContentUnsupported() =>
-        ExceptionText.Get("Emulation.Acorn.Error.ContentUnsupported");
+    private static string ContentUnsupported() => ExceptionText.Get("Emulation.Acorn.Error.ContentUnsupported");
 }
 

@@ -7,7 +7,6 @@ internal static class SessionMediaErrors
     internal static string PlaylistEmpty => ContentUnsupported();
     internal static string ExplicitSaveRequired => ContentUnsupported();
 
-    private static string ContentUnsupported() =>
-        ExceptionText.Get("Emulation.Acorn.Error.ContentUnsupported");
+    private static string ContentUnsupported() => ExceptionText.Get("Emulation.Acorn.Error.ContentUnsupported");
 }
 

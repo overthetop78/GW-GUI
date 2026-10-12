@@ -7,11 +7,8 @@ internal static class BbcMicroInputSettingsFunctions
 {
     internal static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration)
     {
-        var keys = configuration.Model == MachineModel.BbcMaster128
-            ? BbcMicroKeyboardConstants.MasterSpecialKeys : BbcMicroKeyboardConstants.SpecialKeys;
-        return keys.Select(key => new InputBindingDefinition(key.ToString(), ResourceKey(key),
-            BbcMicroKeyboardDictionary.DefaultHostKeys.TryGetValue(key, out var physicalKey)
-                ? physicalKey.ToString() : string.Empty)).ToArray();
+        var keys = configuration.Model == MachineModel.BbcMaster128 ? BbcMicroKeyboardConstants.MasterSpecialKeys : BbcMicroKeyboardConstants.SpecialKeys;
+        return keys.Select(key => new InputBindingDefinition(key.ToString(), ResourceKey(key), BbcMicroKeyboardDictionary.DefaultHostKeys.TryGetValue(key, out var physicalKey) ? physicalKey.ToString() : string.Empty)).ToArray();
     }
 
     private static string ResourceKey(EmulationKey key) => key switch

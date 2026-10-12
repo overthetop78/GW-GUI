@@ -2,9 +2,7 @@ namespace GWGUI.Emulation.Acorn.Emulators.Common.Exceptions;
 
 internal static class ErrorMessages
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(ErrorMessages).Assembly,
-        "GWGUI.Emulation.Acorn.Resources.Emulation");
+    private static readonly EmulationModuleLocalization Localization = new(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Acorn.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();
     internal static string RequiredFirmwareMissing => FirmwareMissing();
@@ -48,12 +46,9 @@ internal static class ErrorMessages
     internal static string StateUnavailable => StateInvalidText();
     internal static string StateSaveFailed => StateInvalidText();
     internal static string StateLoadFailed => StateInvalidText();
-    internal static string StateIncompatible =>
-        Text("Emulation.Acorn.Error.StateIncompatible");
-    internal static string MachineInvalidState =>
-        Text("Emulation.Acorn.Error.Unexpected");
-    internal static string MachineStopped =>
-        Text("Emulation.Acorn.Error.Unexpected");
+    internal static string StateIncompatible => Text("Emulation.Acorn.Error.StateIncompatible");
+    internal static string MachineInvalidState => Text("Emulation.Acorn.Error.Unexpected");
+    internal static string MachineStopped => Text("Emulation.Acorn.Error.Unexpected");
 
     private static string FirmwareMissing() => Text("Emulation.Acorn.Error.FirmwareMissing");
     private static string FirmwareInvalid() => Text("Emulation.Acorn.Error.FirmwareInvalid");
@@ -66,10 +61,7 @@ internal static class ErrorMessages
 
     private static string Text(string resourceKey)
     {
-        return Localization.TryGetString(resourceKey, System.Globalization.CultureInfo.CurrentUICulture,
-            out var value)
-            ? value
-            : resourceKey;
+        return Localization.TryGetString(resourceKey, System.Globalization.CultureInfo.CurrentUICulture, out var value) ? value : resourceKey;
     }
 }
 

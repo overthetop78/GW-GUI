@@ -10,14 +10,12 @@ internal static class SessionMediaFunctions
     {
         var source = ContentFunctions.Validate(configuration.Path, supportedExtensions);
         var runtimeDirectory = Path.Combine(sessionDirectory, SessionMediaConstants.SessionDirectoryName,
-            string.Format(CultureInfo.InvariantCulture, SessionMediaConstants.SessionInstanceNameFormat,
-                configuration.Slot, Guid.NewGuid().ToString(SessionMediaConstants.UniqueNameFormat)));
+            string.Format(CultureInfo.InvariantCulture, SessionMediaConstants.SessionInstanceNameFormat, configuration.Slot, Guid.NewGuid().ToString(SessionMediaConstants.UniqueNameFormat)));
         Directory.CreateDirectory(runtimeDirectory);
         var runtimePath = Path.Combine(runtimeDirectory, Path.GetFileName(source));
         File.Copy(source, runtimePath);
         var attributes = File.GetAttributes(runtimePath);
-        File.SetAttributes(runtimePath, configuration.IsReadOnly
-            ? attributes | FileAttributes.ReadOnly : attributes & ~FileAttributes.ReadOnly);
+        File.SetAttributes(runtimePath, configuration.IsReadOnly ? attributes | FileAttributes.ReadOnly : attributes & ~FileAttributes.ReadOnly);
         return new SessionMedia(configuration, runtimePath, [source], [runtimePath], !configuration.IsReadOnly);
     }
 

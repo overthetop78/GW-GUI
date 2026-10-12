@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;
 
 internal static class CoreOptionFunctions
 {
-    internal static IReadOnlyList<CoreOption> CopyLegacyDefinitions(nint definitions) =>
-        CopyDefinitions(definitions, versionTwo: false, []);
+    internal static IReadOnlyList<CoreOption> CopyLegacyDefinitions(nint definitions) => CopyDefinitions(definitions, versionTwo: false, []);
 
     internal static IReadOnlyList<CoreOption> CopyVersionTwoDefinitions(
         nint options, out IReadOnlyList<CoreOptionCategory> categories)
@@ -55,14 +54,11 @@ internal static class CoreOptionFunctions
             var key = CopyString(variable.Key);
             if (key is null) break;
             var definition = CopyString(variable.Value) ?? string.Empty;
-            var parts = definition.Split(CoreOptionConstants.LegacyDefinitionSeparator,
-                CoreOptionConstants.LegacyDefinitionPartLimit, StringSplitOptions.TrimEntries);
+            var parts = definition.Split(CoreOptionConstants.LegacyDefinitionSeparator, CoreOptionConstants.LegacyDefinitionPartLimit, StringSplitOptions.TrimEntries);
             var name = parts.ElementAtOrDefault(CoreOptionConstants.LegacyNamePartIndex) ?? key;
             // b2 includes the literal vertical bar in its backslash key label.
             var encodedValues = parts.ElementAtOrDefault(CoreOptionConstants.LegacyValuesPartIndex) ?? string.Empty;
-            var values = System.Text.RegularExpressions.Regex.Split(encodedValues,
-                    CoreOptionConstants.LegacyValueSeparatorPattern)
-                .Select(value => value.Trim()).Where(value => value.Length > CoreOptionConstants.NoEntries)
+            var values = System.Text.RegularExpressions.Regex.Split(encodedValues, CoreOptionConstants.LegacyValueSeparatorPattern).Select(value => value.Trim()).Where(value => value.Length > CoreOptionConstants.NoEntries)
                 .Select(value => new CoreOptionValue(value, value)).ToArray();
             var defaultValue = values.FirstOrDefault()?.Value ?? string.Empty;
             result.Add(new(key, name, null, null, defaultValue, defaultValue, values));
@@ -81,8 +77,7 @@ internal static class CoreOptionFunctions
             var current = categories + index * size;
             var key = StringAt(current, CoreOptionConstants.KeyPointerIndex);
             if (key is null) break;
-            result.Add(new(key, StringAt(current, CoreOptionConstants.NamePointerIndex) ?? key,
-                StringAt(current, CoreOptionConstants.DescriptionPointerIndex)));
+            result.Add(new(key, StringAt(current, CoreOptionConstants.NamePointerIndex) ?? key, StringAt(current, CoreOptionConstants.DescriptionPointerIndex)));
         }
         return result;
     }
@@ -91,14 +86,10 @@ internal static class CoreOptionFunctions
         IReadOnlyList<CoreOptionCategory> categories)
     {
         if (definitions == nint.Zero) return [];
-        var prefix = versionTwo
-            ? CoreOptionConstants.VersionTwoDefinitionPointerCountBeforeValues
-            : CoreOptionConstants.LegacyDefinitionPointerCount;
-        var size = (prefix + CoreOptionConstants.MaximumValues * CoreOptionConstants.ValuePointerCount
-            + CoreOptionConstants.DefaultValuePointerCount) * IntPtr.Size;
+        var prefix = versionTwo ? CoreOptionConstants.VersionTwoDefinitionPointerCountBeforeValues : CoreOptionConstants.LegacyDefinitionPointerCount;
+        var size = (prefix + CoreOptionConstants.MaximumValues * CoreOptionConstants.ValuePointerCount + CoreOptionConstants.DefaultValuePointerCount) * IntPtr.Size;
         var valuesOffset = prefix * IntPtr.Size;
-        var defaultOffset = valuesOffset + CoreOptionConstants.MaximumValues
-            * CoreOptionConstants.ValuePointerCount * IntPtr.Size;
+        var defaultOffset = valuesOffset + CoreOptionConstants.MaximumValues * CoreOptionConstants.ValuePointerCount * IntPtr.Size;
         var categoryKeys = categories.Select(category => category.Key).ToHashSet(StringComparer.Ordinal);
         var result = new List<CoreOption>();
         for (var index = CoreOptionConstants.FirstEntryIndex;
@@ -108,16 +99,13 @@ internal static class CoreOptionFunctions
             var key = StringAt(current, CoreOptionConstants.KeyPointerIndex);
             if (key is null) break;
             var name = StringAt(current, CoreOptionConstants.NamePointerIndex) ?? key;
-            var descriptionIndex = versionTwo
-                ? CoreOptionConstants.VersionTwoDescriptionPointerIndex
-                : CoreOptionConstants.DescriptionPointerIndex;
+            var descriptionIndex = versionTwo ? CoreOptionConstants.VersionTwoDescriptionPointerIndex : CoreOptionConstants.DescriptionPointerIndex;
             var description = StringAt(current, descriptionIndex);
             var category = versionTwo ? StringAt(current, CoreOptionConstants.CategoryKeyPointerIndex) : null;
             if (category is not null && !categoryKeys.Contains(category)) category = null;
             var values = CopyValues(current + valuesOffset);
             var declaredDefault = CopyString(Marshal.ReadIntPtr(current, defaultOffset));
-            var defaultValue = declaredDefault is not null && values.Any(value => value.Value == declaredDefault)
-                ? declaredDefault : values.FirstOrDefault()?.Value ?? string.Empty;
+            var defaultValue = declaredDefault is not null && values.Any(value => value.Value == declaredDefault) ? declaredDefault : values.FirstOrDefault()?.Value ?? string.Empty;
             result.Add(new(key, name, description, category, defaultValue, defaultValue, values, true,
                 versionTwo ? StringAt(current, CoreOptionConstants.CategorizedNamePointerIndex) : null,
                 versionTwo ? StringAt(current, CoreOptionConstants.CategorizedDescriptionPointerIndex) : null));
@@ -140,14 +128,11 @@ internal static class CoreOptionFunctions
         return result;
     }
 
-    private static nint PointerAt(nint structure, int pointerIndex) =>
-        Marshal.ReadIntPtr(structure, pointerIndex * IntPtr.Size);
+    private static nint PointerAt(nint structure, int pointerIndex) => Marshal.ReadIntPtr(structure, pointerIndex * IntPtr.Size);
 
-    private static string? StringAt(nint structure, int pointerIndex) =>
-        CopyString(PointerAt(structure, pointerIndex));
+    private static string? StringAt(nint structure, int pointerIndex) => CopyString(PointerAt(structure, pointerIndex));
 
-    private static string? CopyString(nint pointer) =>
-        pointer == nint.Zero ? null : Marshal.PtrToStringUTF8(pointer);
+    private static string? CopyString(nint pointer) => pointer == nint.Zero ? null : Marshal.PtrToStringUTF8(pointer);
 }
 
 
