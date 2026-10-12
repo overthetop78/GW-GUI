@@ -23,8 +23,7 @@ internal sealed partial class ExternalCore
                 var firstPage = bytes[position++];
                 var lastPage = bytes[position++];
                 if (lastPage < firstPage) throw InvalidContent();
-                position += (lastPage - firstPage + 1) * MediaRuntimeConstants.WordsPerPage
-                    * MediaRuntimeConstants.BytesPerWord + MediaRuntimeConstants.SegmentChecksumBytes;
+                position += (lastPage - firstPage + 1) * MediaRuntimeConstants.WordsPerPage * MediaRuntimeConstants.BytesPerWord + MediaRuntimeConstants.SegmentChecksumBytes;
                 if (position > bytes.Length) throw InvalidContent();
             }
         }
@@ -32,10 +31,8 @@ internal sealed partial class ExternalCore
         _content = ContentFunctions.Create(source, _info.NeedsFullPath, _info.Extensions);
     }
 
-    public void InsertMedia(MediaConfiguration media) =>
-        throw new NotSupportedException(ErrorMessages.DynamicMediaUnsupported);
-    public void EjectMedia(EmulationMediaSlot slot) =>
-        throw new NotSupportedException(ErrorMessages.DynamicMediaUnsupported);
+    public void InsertMedia(MediaConfiguration media) => throw new NotSupportedException(ErrorMessages.DynamicMediaUnsupported);
+    public void EjectMedia(EmulationMediaSlot slot) => throw new NotSupportedException(ErrorMessages.DynamicMediaUnsupported);
     public void SelectDisk(int index) => throw new NotSupportedException(ErrorMessages.DynamicMediaUnsupported);
     public DiskStatus GetDiskStatus() => RequireCallbacks().DiskControl.GetStatus();
     public void SaveMediaChanges(EmulationMediaSlot slot)
@@ -44,8 +41,6 @@ internal sealed partial class ExternalCore
             throw new ArgumentOutOfRangeException(nameof(slot));
     }
     public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) => false;
-    private MachineConfiguration RequireConfiguration() => _configuration
-        ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
-    private static EmulationException InvalidContent() => new(ErrorCategory.Content,
-        ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
+    private MachineConfiguration RequireConfiguration() => _configuration ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
+    private static EmulationException InvalidContent() => new(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
 }

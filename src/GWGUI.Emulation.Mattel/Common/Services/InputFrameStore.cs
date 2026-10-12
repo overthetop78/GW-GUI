@@ -14,8 +14,7 @@ internal sealed class InputFrameStore
         do
         {
             current = Volatile.Read(ref _pending);
-        } while (!ReferenceEquals(Interlocked.CompareExchange(ref _pending,
-                     InputFunctions.Accumulate(current, frozen), current), current));
+        } while (!ReferenceEquals(Interlocked.CompareExchange(ref _pending, InputFunctions.Accumulate(current, frozen), current), current));
     }
 
     internal void Poll()
@@ -24,8 +23,7 @@ internal sealed class InputFrameStore
         do
         {
             current = Volatile.Read(ref _pending);
-        } while (!ReferenceEquals(Interlocked.CompareExchange(ref _pending,
-                     InputFunctions.ConsumeRelativePointer(current), current), current));
+        } while (!ReferenceEquals(Interlocked.CompareExchange(ref _pending, InputFunctions.ConsumeRelativePointer(current), current), current));
         Interlocked.Exchange(ref _polled, current);
     }
 

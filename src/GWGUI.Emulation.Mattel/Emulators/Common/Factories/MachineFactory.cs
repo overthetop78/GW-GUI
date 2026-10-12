@@ -23,11 +23,9 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     protected abstract IEmulatorCore CreateCore(MachineConfiguration configuration, EmulatorCreationContext context);
     protected abstract bool RequiresMediaRestart(EmulationMediaSlot slot, string? path);
 
-    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) =>
-        configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
+    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
 
-    public virtual IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) =>
-        configuration.Options;
+    public virtual IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options;
 
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
@@ -40,8 +38,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
         try
         {
             var machine = new Machine(id, configuration, core,
-                Path.Combine(context.SessionsDirectory,
-                    id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), RequiresMediaRestart,
+                Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), RequiresMediaRestart,
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
                 coreFactory: () => CreateCore(configuration, context));

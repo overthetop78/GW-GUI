@@ -5,7 +5,6 @@ internal static class EmulationPeripheralConversionFunctions
     internal static PeripheralCategory ToMattel(EmulationPeripheralCategory peripheral,MachineModel model)
     {
         _=ConfigurationFunctions.Family(model);
-        return peripheral is EmulationPeripheralCategory.Automatic or EmulationPeripheralCategory.RetroPad or EmulationPeripheralCategory.Joystick
-            ? PeripheralCategory.Intellivision : throw new ArgumentOutOfRangeException(nameof(peripheral));
+        return peripheral is EmulationPeripheralCategory.Automatic or EmulationPeripheralCategory.RetroPad or EmulationPeripheralCategory.Joystick ? PeripheralCategory.Intellivision : throw new ArgumentOutOfRangeException(nameof(peripheral));
     }
 }

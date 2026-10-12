@@ -46,8 +46,7 @@ internal static class NativeInputFunctions
         Carry(ControllerCommand.Clear, Joypad.LeftTrigger);
         Carry(ControllerCommand.Enter, Joypad.RightTrigger);
         if (id == InputConstants.JoypadMaskId) return unchecked((short)buttons);
-        return id < InputConstants.MaximumJoypadButtonCount && (buttons & (1u << (int)id)) != 0
-            ? InputConstants.ActiveState : InputConstants.InactiveState;
+        return id < InputConstants.MaximumJoypadButtonCount && (buttons & (1u << (int)id)) != 0 ? InputConstants.ActiveState : InputConstants.InactiveState;
 
         void Carry(ControllerCommand command, Joypad carrier)
         {
@@ -55,6 +54,5 @@ internal static class NativeInputFunctions
         }
     }
 
-    private static bool Pressed(EmulationControllerState controller, ControllerCommand command) =>
-        (controller.Buttons & (1u << (int)command)) != 0;
+    private static bool Pressed(EmulationControllerState controller, ControllerCommand command) => (controller.Buttons & (1u << (int)command)) != 0;
 }

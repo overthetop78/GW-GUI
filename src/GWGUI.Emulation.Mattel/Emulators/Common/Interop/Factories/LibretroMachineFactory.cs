@@ -5,8 +5,7 @@ namespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Factories;
 internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry)
     : GWGUI.Emulation.Mattel.Emulators.Common.Factories.MachineFactory(catalogEntry)
 {
-    private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
-        new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
+    private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
     public override bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -35,8 +34,7 @@ internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry
     public override async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(
         EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory)
-            .GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
         var version = installation is null ? null : Path.GetFileName(installation.VersionDirectory);
         return new EmulationEmulatorInstallation(Definition, version);
     }
@@ -44,8 +42,7 @@ internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry
     public override async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
         EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory)
-            .GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id,
             $"{item.DeclaredVersion} · {item.PublishedUtc.LocalDateTime:g}", item.DeclaredVersion)).ToArray();
@@ -56,17 +53,12 @@ internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry
     {
         if (!_availableReleases.TryGetValue(release.Id, out var selected) || selected.Emulator != Emulator)
             throw new ArgumentException(nameof(release));
-        var adapter = progress is null ? null : new Progress<CoreInstallProgress>(value =>
-            progress.Report(value.Fraction ?? 0));
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory)
-            .InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
+        var adapter = progress is null ? null : new Progress<CoreInstallProgress>(value => progress.Report(value.Fraction ?? 0));
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;
     }
 
-    public override async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken) =>
-        await new CoreProvider(context.HttpClient, context.CoreDirectory)
-            .FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
+    public override async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => await new CoreProvider(context.HttpClient, context.CoreDirectory).FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
 
     protected override IEmulatorCore CreateCore(MachineConfiguration configuration, EmulatorCreationContext context)
     {

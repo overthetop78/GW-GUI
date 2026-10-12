@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Mattel.Common.Machines.Common.Dictionaries;
 
 internal static class ControllerVisualDictionary
 {
-    internal static string? VisualId(PeripheralCategory peripheral) =>
-        peripheral == PeripheralCategory.Intellivision ? EmulationControllerVisualIds.MattelIntellivisionController : null;
+    internal static string? VisualId(PeripheralCategory peripheral) => peripheral == PeripheralCategory.Intellivision ? EmulationControllerVisualIds.MattelIntellivisionController : null;
 
     internal static IReadOnlyDictionary<EmulationControllerVisualControl, string> Commands(PeripheralCategory peripheral)
     {
@@ -22,8 +21,7 @@ internal static class ControllerVisualDictionary
             [EmulationControllerVisualControl.Key0] = nameof(ControllerCommand.Key0)
         };
         for (var number = 1; number <= 9; number++)
-            commands[Enum.Parse<EmulationControllerVisualControl>("Key" + number)] =
-                Enum.Parse<ControllerCommand>("Key" + number).ToString();
+            commands[Enum.Parse<EmulationControllerVisualControl>("Key" + number)] = Enum.Parse<ControllerCommand>("Key" + number).ToString();
         return commands;
     }
 }

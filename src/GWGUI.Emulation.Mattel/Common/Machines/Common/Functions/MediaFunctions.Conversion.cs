@@ -18,8 +18,7 @@ internal static class EmulationMediaConversionFunctions
         };
         var existing = mountedMedia.FirstOrDefault(item => item.Slot == media.Slot);
         return existing is null
-            ? new MediaConfiguration(media.Path, category, media.Slot,
-                IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted)
+            ? new MediaConfiguration(media.Path, category, media.Slot, IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted)
             : existing with { Path = media.Path, Category = category, IsReadOnly = media.IsReadOnly, IsInserted = media.IsInserted };
     }
 }

@@ -15,8 +15,7 @@ internal static class EnvironmentConstants
     internal const uint NoRotation = 0;
     internal const uint EnglishLanguage = 0;
     internal const ulong JoypadCapability = 1UL << 1;
-    internal const ulong SupportedInputCapabilities = (1UL << 1) | (1UL << 2)
-        | (1UL << 3) | (1UL << 4) | (1UL << 5);
+    internal const ulong SupportedInputCapabilities = (1UL << 1) | (1UL << 2) | (1UL << 3) | (1UL << 4) | (1UL << 5);
     internal const string UnknownCommandDiagnosticResourceKey = "Emulation.Mattel.Error.UnknownEnvironmentCommand";
     internal const string NativeLogArgumentMarker = "<native-argument>";
     internal const string NativeLogConversionCharacters = "diuoxXfFeEgGaAcspn";

@@ -59,10 +59,8 @@ private void OnVideo(nint data, uint width, uint height, nuint pitch)
         _input.Poll();
         BeginFrame();
     }
-    private short OnInputState(uint port, uint device, uint index, uint id) =>
-        NativeInputFunctions.State(_input.Polled, port, device, index, id, _emulator);
-    private void OnSetLedState(int led, int state) =>
-        _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;
+    private short OnInputState(uint port, uint device, uint index, uint id) => NativeInputFunctions.State(_input.Polled, port, device, index, id, _emulator);
+    private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;
     private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;
     private bool OnSetSensorState(uint port, uint action, uint rate) => false;
     private float OnGetSensorInput(uint port, uint id) => EnvironmentConstants.NoSensorInput;

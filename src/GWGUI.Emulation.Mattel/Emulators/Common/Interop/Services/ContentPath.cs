@@ -6,9 +6,7 @@ internal sealed class ContentPath : IDisposable
 {
     internal ContentPath(string value, bool useWindowsAnsi)
     {
-        Pointer = useWindowsAnsi && OperatingSystem.IsWindows()
-            ? Marshal.StringToCoTaskMemAnsi(value)
-            : Marshal.StringToCoTaskMemUTF8(value);
+        Pointer = useWindowsAnsi && OperatingSystem.IsWindows() ? Marshal.StringToCoTaskMemAnsi(value) : Marshal.StringToCoTaskMemUTF8(value);
     }
 
     internal nint Pointer { get; private set; }

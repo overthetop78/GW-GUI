@@ -2,10 +2,8 @@ namespace GWGUI.Emulation.Mattel.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore
 {
-    private ExternalCoreExports RequireExports() => _exports ??
-        throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
-    private ExternalHostCallbacks RequireCallbacks() => _callbacks ??
-        throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
+    private ExternalCoreExports RequireExports() => _exports ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
+    private ExternalHostCallbacks RequireCallbacks() => _callbacks ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
 
     private void DisposeNativeResources()
     {
@@ -24,8 +22,7 @@ internal sealed partial class ExternalCore
         _supportsSaveStates = false;
         try
         {
-            CoreLifecycleFunctions.Cleanup(exports, gameLoaded, initialized,
-                () => callbacks?.Dispose(), () => library?.Dispose());
+            CoreLifecycleFunctions.Cleanup(exports, gameLoaded, initialized, () => callbacks?.Dispose(), () => library?.Dispose());
         }
         finally
         {

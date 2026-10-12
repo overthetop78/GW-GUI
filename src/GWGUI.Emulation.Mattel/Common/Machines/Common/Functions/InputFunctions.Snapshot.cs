@@ -10,8 +10,7 @@ internal static class InputSnapshotFunctions
             ExtendedButton1 = false, ExtendedButton2 = false };
         for (var port = ControllerConstants.FirstPort; port < controllers.Length; port++)
         {
-            var binding = input.Controllers?.FirstOrDefault(item => item.Port == port)
-                ?? new ControllerBinding(port, InputSettingsFunctions.DefaultPeripheral(model));
+            var binding = input.Controllers?.FirstOrDefault(item => item.Port == port) ?? new ControllerBinding(port, InputSettingsFunctions.DefaultPeripheral(model));
             var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
             uint buttons = 0;
             float horizontal = 0, vertical = 0;
@@ -49,8 +48,7 @@ internal static class InputSnapshotFunctions
     private static bool IsPressed(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
         if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
-            return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key)
-                && snapshot.Keys.Contains(key);
+            return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key);
         if (mapping.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
             return mapping[InputMappingConstants.MousePrefix.Length..] switch
             {
@@ -60,7 +58,6 @@ internal static class InputSnapshotFunctions
                 "WheelLeft" => snapshot.Pointer.HorizontalWheel < 0, "WheelRight" => snapshot.Pointer.HorizontalWheel > 0,
                 _ => false
             };
-        return mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)
-            && EmulationInputMappingFunctions.IsControllerSourcePressed(mapping, controller);
+        return mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase) && EmulationInputMappingFunctions.IsControllerSourcePressed(mapping, controller);
     }
 }

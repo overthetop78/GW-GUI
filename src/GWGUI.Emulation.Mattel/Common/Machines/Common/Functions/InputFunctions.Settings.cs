@@ -2,11 +2,9 @@ namespace GWGUI.Emulation.Mattel.Common.Machines.Common.Functions;
 
 internal static class InputSettingsFunctions
 {
-    internal static IReadOnlyList<PeripheralCategory> Peripherals(Emulator core) => core == Emulator.FreeIntv
-        ? [PeripheralCategory.Intellivision] : throw new ArgumentOutOfRangeException(nameof(core));
+    internal static IReadOnlyList<PeripheralCategory> Peripherals(Emulator core) => core == Emulator.FreeIntv ? [PeripheralCategory.Intellivision] : throw new ArgumentOutOfRangeException(nameof(core));
     internal static PeripheralCategory DefaultPeripheral(MachineModel model) => PeripheralCategory.Intellivision;
-    internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) =>
-        new Dictionary<string, string>();
+    internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) => new Dictionary<string, string>();
 
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
@@ -40,8 +38,7 @@ internal static class InputSettingsFunctions
         {
             if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var peripheral) || !Peripherals(configuration.Core).Contains(peripheral))
                 throw new ArgumentException(nameof(settings));
-            return new ControllerBinding(port.Number - 1, peripheral, port.PhysicalDeviceId,
-                new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId);
+            return new ControllerBinding(port.Number - 1, peripheral, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId);
         }).ToArray();
         var result = configuration with { Input = new(settings.Keyboard?.Values, controllers) };
         ConfigurationFunctions.Validate(result);

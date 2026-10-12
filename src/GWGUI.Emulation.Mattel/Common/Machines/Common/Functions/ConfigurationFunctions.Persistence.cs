@@ -14,9 +14,7 @@ internal static class ConfigurationStoreFunctions
         WriteIndented = ConfigurationStoreConstants.WriteIndentedJson
     };
 
-    internal static ConfigurationDocument Deserialize(JsonElement root) =>
-        root.Deserialize<ConfigurationDocument>(JsonOptions)
-        ?? throw new InvalidDataException();
+    internal static ConfigurationDocument Deserialize(JsonElement root) => root.Deserialize<ConfigurationDocument>(JsonOptions) ?? throw new InvalidDataException();
 
     internal static ConfigurationDocument ToDocument(MachineConfiguration configuration,
         string pathBase) => new(
@@ -72,18 +70,13 @@ internal static class ConfigurationStoreFunctions
         if (string.IsNullOrWhiteSpace(path)) return path;
         var fullPath = Path.GetFullPath(path);
         var relative = Path.GetRelativePath(pathBase, fullPath);
-        return IsInsideBase(relative)
-            ? relative.Replace(Path.DirectorySeparatorChar,
-                ConfigurationStoreConstants.StoredDirectorySeparator)
-            : fullPath;
+        return IsInsideBase(relative) ? relative.Replace(Path.DirectorySeparatorChar, ConfigurationStoreConstants.StoredDirectorySeparator) : fullPath;
     }
 
     internal static string? ResolvePath(string? path, string pathBase)
     {
         if (string.IsNullOrWhiteSpace(path) || Path.IsPathFullyQualified(path)) return path;
-        return Path.GetFullPath(Path.Combine(pathBase,
-            path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator,
-                Path.DirectorySeparatorChar)));
+        return Path.GetFullPath(Path.Combine(pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));
     }
 
     internal static async Task WriteDocumentAtomicallyAsync(string path, ConfigurationDocument document,
@@ -91,17 +84,12 @@ internal static class ConfigurationStoreFunctions
     {
         var fullPath = Path.GetFullPath(path);
         Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
-        var temporaryPath = fullPath + ConfigurationStoreConstants.TemporaryNameSeparator
-            + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat)
-            + ConfigurationStoreConstants.TemporaryFileSuffix;
+        var temporaryPath = fullPath + ConfigurationStoreConstants.TemporaryNameSeparator + Guid.NewGuid().ToString(ConfigurationStoreConstants.MachineIdentifierFormat) + ConfigurationStoreConstants.TemporaryFileSuffix;
         try
         {
-            await using (var stream = new FileStream(temporaryPath, FileMode.Create, FileAccess.Write,
-                             FileShare.None, ConfigurationStoreConstants.WriteBufferSize,
-                             FileOptions.Asynchronous | FileOptions.WriteThrough))
+            await using (var stream = new FileStream(temporaryPath, FileMode.Create, FileAccess.Write, FileShare.None, ConfigurationStoreConstants.WriteBufferSize, FileOptions.Asynchronous | FileOptions.WriteThrough))
             {
-                await JsonSerializer.SerializeAsync(stream, document, JsonOptions,
-                    cancellationToken).ConfigureAwait(false);
+                await JsonSerializer.SerializeAsync(stream, document, JsonOptions, cancellationToken).ConfigureAwait(false);
                 await stream.FlushAsync(cancellationToken).ConfigureAwait(false);
             }
             ConfigurationFileAccessFunctions.ReplaceFile(temporaryPath, fullPath);
@@ -115,16 +103,11 @@ internal static class ConfigurationStoreFunctions
     private static bool IsInsideBase(string relative) =>
         !Path.IsPathFullyQualified(relative)
         && !string.Equals(relative, ConfigurationStoreConstants.ParentDirectoryName, StringComparison.Ordinal)
-        && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar,
-            StringComparison.Ordinal)
-        && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.AltDirectorySeparatorChar,
-            StringComparison.Ordinal);
+        && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal)
+        && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.AltDirectorySeparatorChar, StringComparison.Ordinal);
 
-    private static FolderConfiguration StoreFolders(FolderConfiguration folders, string pathBase) =>
-        new(StorePath(folders.Shared, pathBase), StorePath(folders.Cartridges, pathBase),
-            StorePath(folders.Saves, pathBase), StorePath(folders.States, pathBase), StorePath(folders.Captures, pathBase));
+    private static FolderConfiguration StoreFolders(FolderConfiguration folders, string pathBase) => new(StorePath(folders.Shared, pathBase), StorePath(folders.Cartridges, pathBase), StorePath(folders.Saves, pathBase), StorePath(folders.States, pathBase), StorePath(folders.Captures, pathBase));
 
     private static FolderConfiguration ResolveFolders(FolderConfiguration folders, string pathBase) =>
-        new(ResolvePath(folders.Shared, pathBase), ResolvePath(folders.Cartridges, pathBase),
-            ResolvePath(folders.Saves, pathBase), ResolvePath(folders.States, pathBase), ResolvePath(folders.Captures, pathBase));
+        new(ResolvePath(folders.Shared, pathBase), ResolvePath(folders.Cartridges, pathBase), ResolvePath(folders.Saves, pathBase), ResolvePath(folders.States, pathBase), ResolvePath(folders.Captures, pathBase));
 }

@@ -32,6 +32,5 @@ internal static class InputFunctions
             }
         };
 
-    private static int SaturatingAdd(int left, int right) =>
-        (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
+    private static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
 }

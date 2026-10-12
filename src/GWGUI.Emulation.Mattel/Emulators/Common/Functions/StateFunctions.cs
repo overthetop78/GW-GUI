@@ -55,46 +55,37 @@ internal static class StateFileFunctions
         }
         catch (EndOfStreamException error)
         {
-            throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid,
-                ErrorMessages.StateInvalid, error);
+            throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid, ErrorMessages.StateInvalid, error);
         }
         catch (JsonException error)
         {
-            throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid,
-                ErrorMessages.StateInvalid, error);
+            throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid, ErrorMessages.StateInvalid, error);
         }
     }
 
     private static StateFile ReadOnce(string path)
     {
-        using var stream = new FileStream(path, FileMode.Open, FileAccess.Read,
-            FileShare.ReadWrite | FileShare.Delete);
+        using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
         Span<byte> magic = stackalloc byte[StateConstants.Magic.Length];
         stream.ReadExactly(magic);
         if (!magic.SequenceEqual(StateConstants.Magic))
-            throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid,
-                ErrorMessages.StateInvalid);
+            throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid, ErrorMessages.StateInvalid);
         Span<byte> headerLengthBytes = stackalloc byte[StateConstants.HeaderLengthSize];
         stream.ReadExactly(headerLengthBytes);
         var headerLength = BinaryPrimitives.ReadInt32LittleEndian(headerLengthBytes);
         if (headerLength is <= StateConstants.EmptyLength or > StateConstants.MaximumHeaderLength)
-            throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid,
-                ErrorMessages.StateInvalid);
+            throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid, ErrorMessages.StateInvalid);
         var headerBytes = GC.AllocateUninitializedArray<byte>(headerLength);
         stream.ReadExactly(headerBytes);
-        var header = JsonSerializer.Deserialize<SavedStateHeader>(headerBytes,
-            StateConstants.JsonOptions);
+        var header = JsonSerializer.Deserialize<SavedStateHeader>(headerBytes, StateConstants.JsonOptions);
         if (header is null || !SavedStateFunctions.IsHeaderValid(header))
-            throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid,
-                ErrorMessages.StateInvalid);
+            throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid, ErrorMessages.StateInvalid);
         using var payload = new MemoryStream();
         stream.CopyTo(payload);
         var state = payload.ToArray();
         SavedStateFunctions.ValidatePayloadSize(state.Length);
-        if (!string.Equals(header.StateSha256, SavedStateFunctions.HashBytes(state),
-                StringComparison.OrdinalIgnoreCase))
-            throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid,
-                ErrorMessages.StateInvalid);
+        if (!string.Equals(header.StateSha256, SavedStateFunctions.HashBytes(state), StringComparison.OrdinalIgnoreCase))
+            throw SavedStateFunctions.Invalid(ErrorCode.StateInvalid, ErrorMessages.StateInvalid);
         return new StateFile(header, state);
     }
 }
