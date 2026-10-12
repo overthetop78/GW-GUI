@@ -4,62 +4,21 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.emuscv.Description"><value>Super Cassette Vision konsolları.</value></data>
-  <data name="Emulation.Emulator.pd777.Description"><value>Emulates Cassette Vision konsolları.</value></data>
-  <data name="Emulation.Epoch.Memory.Display"><value>Video hafıza</value></data>
-  <data name="Emulation.Epoch.Video.Native"><value>Konsol video</value></data>
-  <data name="Emulation.Epoch.Controls.Native"><value>Konsol kontrolleri</value></data>
-  <data name="Emulation.Epoch.Firmware.ScvConsole"><value>Super Cassette Vision BIOS</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display"><value>Ekran alanı</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Help"><value>Konsol tarafından kullanılan ekran alanı seçin.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Value0"><value>Otomatik</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect"><value>Pixel şekli</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Help"><value>dikdörtgen veya kare piksel seçin.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value0"><value>Otomatik</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value1"><value>Rectangular piksel</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value2"><value>Square piksel</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution"><value>Çıkış çözümü</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Help"><value>Simülasyon tarafından yaratılan çözümü seçin.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value0"><value>Otomatik</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value1"><value>Low Low Low</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value2"><value>Medium Medium Medium</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value3"><value>Yüksek yüksek</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette"><value>Renk paleti</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Help"><value>Konsol renk paletini seçin.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value0"><value>Otomatik</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value1"><value>Standart palet</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value2"><value>Orijinal NTSCte palet</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps"><value>Yenileme oranı</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Help"><value>Konsol yenileme oranını seçin.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Value0"><value>Otomatik</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory"><value>Tüm video hafızasını göster</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Help"><value>Gösterilen görüntüdeki tüm video hafızasını ekleyin.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value0"><value>Otomatik</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value1"><value>Etkin</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value2"><value>Devre dışı</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs"><value>Gösteriye basılmış düğmeler</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Help"><value>Şu anda düğmeleri görüntüleyin.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value0"><value>Otomatik</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value1"><value>Etkin</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value2"><value>Devre dışı</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language"><value>Emulator arayüzü dil dili</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Help"><value>Uygulamalı arayüzün dilini seçin.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value0"><value>Otomatik</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value1"><value>Japonca dil</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value2"><value>Fransız Fransızca</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value3"><value>İngilizce dil dili</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios"><value>BIOS checksum</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Help"><value>Donanımı yüklediğinizde BIOS checksum'u onaylayın.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value0"><value>Otomatik</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value1"><value>Etkin</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value2"><value>Devre dışı</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart"><value>Başlangıçta konsol klavyesini göster</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Help"><value>Yönelme başladığında konsol klavyesini görüntüler.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value0"><value>Otomatik</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value1"><value>Etkin</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value2"><value>Devre dışı</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch"><value>Show course seçimi</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Help"><value>Bunu değiştirirken seçilmiş dersi göster.</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value0"><value>Devre dışı</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value1"><value>Etkin</value></data>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>Emulates SUPER CASSETTE VISION Konsollar.</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>Emulates CASSETTE VISION Konsollar.</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>Video hafıza</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>Konsol video</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>Konsol kontrolleri</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>Ekran alanı</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>Pixel şekli</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>Renk paleti</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>Yenileme oranı</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>Full video hafıza</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>Ekran kontrolörü</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>Doğrulama BIOS checksum</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>Başlangıçtaki Ekran klavye</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>Ekran dersi seçimi</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>Rectangular</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek</value></data>
 </root>

@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Error.StateIncompatible"><value>Uložený stav Epoch je neslučitelný se stávajícím strojem.</value></data>
-  <data name="Emulation.Epoch.Error.Unexpected"><value>Nastala neočekávaná chyba emulace Epochu.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>Chybí požadovaný firmware Epoch.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>Systém ROM je neplatný nebo neslučitelný.</value></data>
-  <data name="Emulation.Epoch.Error.ContentNotFound"><value>Nakonfigurovaná média Epoch nebyla nalezena.</value></data>
-  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>Tento stroj nepodporuje vybraná média.</value></data>
-  <data name="Emulation.Epoch.Error.OptionInvalid"><value>Volba Epoch má neplatnou hodnotu.</value></data>
-  <data name="Emulation.Epoch.Error.CoreNotFound"><value>Požadované jádro Epoch nebylo nalezeno.</value></data>
-  <data name="Emulation.Epoch.Error.CoreRejected"><value>Zvolené jádro Epoch nebylo možné načíst.</value></data>
-  <data name="Emulation.Epoch.Error.StateInvalid"><value>Uložený stav Epoch je neplatný.</value></data>
-  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>Spustitelná stezka Epoch je nedostupná.</value></data>
-  <data name="Emulation.Epoch.Error.Details"><value>Podrobnosti: {0}</value></data>
-  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>Komunikace s hostitelem Epochu selhala.</value></data>
-  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>Příkaz neznámého prostředí: {0}</value></data>
+  <data name="Emulation.Epoch.Error.StateIncompatible" xml:space="preserve"><value>Uložený stav Epoch je neslučitelný se stávajícím strojem.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected" xml:space="preserve"><value>Nastala neočekávaná chyba emulace emulace.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing" xml:space="preserve"><value>Chybí požadovaný firmware Epoch.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid" xml:space="preserve"><value>Systém ROM je neplatná nebo neslučitelná.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound" xml:space="preserve"><value>Nakonfigurovaná epochová média nebyla nalezena.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported" xml:space="preserve"><value>Tento stroj nepodporuje zvolená média.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid" xml:space="preserve"><value>Volba Epoch má neplatnou hodnotu.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound" xml:space="preserve"><value>Požadované jádro Epoch nebylo nalezeno.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected" xml:space="preserve"><value>Zvolené jádro Epoch nebylo možné načíst.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid" xml:space="preserve"><value>Epoch uložený stav je neplatný.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing" xml:space="preserve"><value>Cesta emulatoru není k dispozici.</value></data>
+  <data name="Emulation.Epoch.Error.Details" xml:space="preserve"><value>Podrobnosti: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikace s hostitelem Epochu selhala.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Neznámý příkaz prostředí: {0}</value></data>
 </root>

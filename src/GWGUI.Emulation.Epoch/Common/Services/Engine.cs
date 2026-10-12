@@ -8,7 +8,7 @@ public sealed class Engine
 
     public Engine()
     {
-        var adapters = CoreCatalog.CreateAdapters();
+        var adapters = EmulatorCatalog.CreateAdapters();
         _adapters = adapters.ToDictionary(adapter => adapter.EmulatorId, StringComparer.Ordinal);
     }
 
@@ -17,11 +17,12 @@ public sealed class Engine
         ArgumentNullException.ThrowIfNull(configuration);
         ArgumentNullException.ThrowIfNull(context);
         ConfigurationFunctions.Validate(configuration);
-        return _adapters.TryGetValue(CoreCatalog.Get(configuration.Core).Id, out var adapter) ? adapter.Create(configuration, context) : throw new ArgumentOutOfRangeException(nameof(configuration));
+        return _adapters.TryGetValue(EmulatorCatalog.GetDefinition(configuration.Core).Id, out var adapter) ? adapter.Create(configuration, context) : throw new ArgumentOutOfRangeException(nameof(configuration));
     }
 
-    internal IEmulatorAdapter Adapter(MachineConfiguration configuration) => _adapters[CoreCatalog.Get(configuration.Core).Id];
-    internal IEmulatorAdapter Adapter(Emulator emulator) => Adapter(CoreCatalog.Get(emulator).Id);
+    internal IEmulatorAdapter Adapter(MachineConfiguration configuration) => _adapters[EmulatorCatalog.GetDefinition(configuration.Core).Id];
+    internal Emulator DefaultEmulator(MachineModel model) => EmulatorCatalog.DefaultEmulator(model);
+    internal IEmulatorAdapter Adapter(Emulator emulator) => Adapter(EmulatorCatalog.GetDefinition(emulator).Id);
 
     internal IEmulatorAdapter Adapter(string emulatorId) => _adapters.TryGetValue(emulatorId, out var adapter) ? adapter : throw new ArgumentOutOfRangeException(nameof(emulatorId));
 

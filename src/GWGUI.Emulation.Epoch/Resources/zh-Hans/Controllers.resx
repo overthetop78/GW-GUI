@@ -4,28 +4,26 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Input.FireLeft"><value>左键射击</value></data>
-  <data name="Emulation.Epoch.Input.FireRight"><value>右键射击</value></data>
-  <data name="Emulation.Epoch.Input.Enter"><value>确认</value></data>
-  <data name="Emulation.Epoch.Input.Clear"><value>清除</value></data>
-  <data name="Emulation.Epoch.Input.Power"><value>电源按钮</value></data>
-  <data name="Emulation.Epoch.Input.Reset"><value>重置按钮</value></data>
-  <data name="Emulation.Epoch.Input.LeverLeft"><value>将杠杆移到左边</value></data>
-  <data name="Emulation.Epoch.Input.LeverRight"><value>将杠杆移到右边</value></data>
-  <data name="Emulation.Epoch.Input.CourseIncrease"><value>选择下一个游戏课程</value></data>
-  <data name="Emulation.Epoch.Input.CourseDecrease"><value>选择上一个游戏课程</value></data>
-  <data name="Emulation.Epoch.Input.GunFire"><value>轻炮触发器</value></data>
-  <data name="Emulation.Epoch.Input.GunReload"><value>轻炮重装</value></data>
-  <data name="Emulation.Epoch.Input.GunXDecrease"><value>用轻炮瞄准左边</value></data>
-  <data name="Emulation.Epoch.Input.GunXIncrease"><value>用轻炮瞄准右边</value></data>
-  <data name="Emulation.Epoch.Input.GunYDecrease"><value>向上瞄准轻炮</value></data>
-  <data name="Emulation.Epoch.Input.GunYIncrease"><value>向下瞄准轻炮</value></data>
-  <data name="Emulation.Epoch.Input.Paddle1Decrease"><value>划道1:逆时针转弯</value></data>
-  <data name="Emulation.Epoch.Input.Paddle1Increase"><value>划道1:顺时针转弯</value></data>
-  <data name="Emulation.Epoch.Input.Paddle2Decrease"><value>第2行:逆时针转弯</value></data>
-  <data name="Emulation.Epoch.Input.Paddle2Increase"><value>划板2:顺时针转弯</value></data>
-  <data name="Emulation.Epoch.Input.Paddle3Decrease"><value>3:逆时针转弯</value></data>
-  <data name="Emulation.Epoch.Input.Paddle3Increase"><value>3:顺时针转弯</value></data>
-  <data name="Emulation.Epoch.Input.Paddle4Decrease"><value>划道4:逆时针转弯</value></data>
-  <data name="Emulation.Epoch.Input.Paddle4Increase"><value>平面 4: 顺时针转弯</value></data>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>左侧按钮</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>右侧按钮</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>电源按钮</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>重置按钮</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>将杠杆移到左边</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>将杠杆移到右边</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>选择下一场游戏课程</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>选择上一个游戏课程</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>轻炮触发器</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>轻型枪重装</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>划道1:逆时针转弯</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>划道1:顺时针转弯</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>平面 2: 逆时针转弯</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>划出2:顺时针</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>3号平板板:逆时针转弯</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>3号平板板:顺时针转弯</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>平面 4: 逆时针转弯</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>平面 4: 顺时针转弯</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>瞄准左手的枪</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>瞄准右手枪</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>瞄准枪向上</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>瞄准下方的枪</value></data>
 </root>

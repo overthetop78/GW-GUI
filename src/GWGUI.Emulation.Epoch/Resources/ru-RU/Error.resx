@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Error.StateIncompatible"><value>Сохраненное состояние Epoch несовместимо с текущей машиной.</value></data>
-  <data name="Emulation.Epoch.Error.Unexpected"><value>Неожиданная ошибка эмуляции Epoch.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>Требуемая прошивка Epoch отсутствует.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>Система ROM является недействительной или несовместимой.</value></data>
-  <data name="Emulation.Epoch.Error.ContentNotFound"><value>Настроенных носителей Epoch обнаружено не было.</value></data>
-  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>Данная машина не поддерживает выбранные носители.</value></data>
-  <data name="Emulation.Epoch.Error.OptionInvalid"><value>Опцион Epoch имеет недействительное значение.</value></data>
-  <data name="Emulation.Epoch.Error.CoreNotFound"><value>Требуемое ядро Epoch найдено не было.</value></data>
-  <data name="Emulation.Epoch.Error.CoreRejected"><value>Выбранное ядро Epoch не могло быть загружено.</value></data>
-  <data name="Emulation.Epoch.Error.StateInvalid"><value>Epoch сохраненное состояние является недействительным.</value></data>
-  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>Исполняемый путь хоста Epoch недоступен.</value></data>
-  <data name="Emulation.Epoch.Error.Details"><value>Подробности: {0}</value></data>
-  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>Связь с хостом Epoch не удалось.</value></data>
-  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>Неизвестная команда окружения: {0}</value></data>
+  <data name="Emulation.Epoch.Error.StateIncompatible" xml:space="preserve"><value>Сохраненное состояние Эпохи несовместимо с текущей машиной.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected" xml:space="preserve"><value>Произошла неожиданная ошибка эмуляции Эпохи.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing" xml:space="preserve"><value>Не хватает необходимого прошивки Epoch.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM является недействительным или несовместимым.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound" xml:space="preserve"><value>Настроенные СМИ эпохи не найдены.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported" xml:space="preserve"><value>Данная машина не поддерживает выбранные носители.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid" xml:space="preserve"><value>Опцион эпохи имеет недействительное значение.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound" xml:space="preserve"><value>Необходимый ядро эпохи не найдено.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected" xml:space="preserve"><value>Выбранное ядро Эпохи не могло быть загружено.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid" xml:space="preserve"><value>Спасенное государством государство недействительно.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing" xml:space="preserve"><value>Путь программы эмулятора недоступен.</value></data>
+  <data name="Emulation.Epoch.Error.Details" xml:space="preserve"><value>Подробности: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure" xml:space="preserve"><value>Общение с хозяином Эпохи провалилось.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Неизвестная команда окружения: {0}</value></data>
 </root>

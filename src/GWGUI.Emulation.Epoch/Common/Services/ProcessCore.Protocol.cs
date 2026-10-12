@@ -13,7 +13,7 @@ using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Epoch.Common.Services;
 
-[SupportedOSPlatform(ProcessCoreConstants.Windows)]
+[SupportedOSPlatform(CoreHostConstants.Windows)]
 internal sealed partial class ProcessCore : IEmulatorCore
 {
     private void Request(HostCommand command, Action<BinaryWriter>? write = null, Action<BinaryReader>? read = null, bool allowUninitialized = false)

@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Epoch.Emulators.Common.Contracts;
+using GWGUI.Emulation.Epoch.Emulators.Common.Functions;
 namespace GWGUI.Emulation.Epoch.Emulators.PD777.Constants;
 
 internal static class EmulatorConstants

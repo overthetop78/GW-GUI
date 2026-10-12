@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Epoch.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants;
 using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions;

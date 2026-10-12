@@ -4,28 +4,26 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Input.FireLeft"><value>Linker brandknop</value></data>
-  <data name="Emulation.Epoch.Input.FireRight"><value>Rechter brandknop</value></data>
-  <data name="Emulation.Epoch.Input.Enter"><value>Bevestigen</value></data>
-  <data name="Emulation.Epoch.Input.Clear"><value>Wissen</value></data>
-  <data name="Emulation.Epoch.Input.Power"><value>Vermogensknop</value></data>
-  <data name="Emulation.Epoch.Input.Reset"><value>Knop resetten</value></data>
-  <data name="Emulation.Epoch.Input.LeverLeft"><value>Beweeg de hendel naar links</value></data>
-  <data name="Emulation.Epoch.Input.LeverRight"><value>Beweeg de hendel naar rechts</value></data>
-  <data name="Emulation.Epoch.Input.CourseIncrease"><value>Selecteer de volgende spelcursus</value></data>
-  <data name="Emulation.Epoch.Input.CourseDecrease"><value>Selecteer de vorige spelcursus</value></data>
-  <data name="Emulation.Epoch.Input.GunFire"><value>Lichtpistool trigger</value></data>
-  <data name="Emulation.Epoch.Input.GunReload"><value>Licht geweer herladen</value></data>
-  <data name="Emulation.Epoch.Input.GunXDecrease"><value>Richt links met het lichtpistool</value></data>
-  <data name="Emulation.Epoch.Input.GunXIncrease"><value>Richt rechts met het lichtpistool</value></data>
-  <data name="Emulation.Epoch.Input.GunYDecrease"><value>Richt naar boven met het lichtpistool</value></data>
-  <data name="Emulation.Epoch.Input.GunYIncrease"><value>Richt naar beneden met het lichtpistool</value></data>
-  <data name="Emulation.Epoch.Input.Paddle1Decrease"><value>Paddle 1: draai tegen de klok in</value></data>
-  <data name="Emulation.Epoch.Input.Paddle1Increase"><value>Paddle 1: draai met de klok mee</value></data>
-  <data name="Emulation.Epoch.Input.Paddle2Decrease"><value>Paddle 2: draai tegen de klok in</value></data>
-  <data name="Emulation.Epoch.Input.Paddle2Increase"><value>Peddel 2: draai met de klok mee</value></data>
-  <data name="Emulation.Epoch.Input.Paddle3Decrease"><value>Paddle 3: draai tegen de klok in</value></data>
-  <data name="Emulation.Epoch.Input.Paddle3Increase"><value>Peddel 3: draai met de klok mee</value></data>
-  <data name="Emulation.Epoch.Input.Paddle4Decrease"><value>Paddle 4: draai tegen de klok in</value></data>
-  <data name="Emulation.Epoch.Input.Paddle4Increase"><value>Paddle 4: draai met de klok mee</value></data>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>Linkerzijknop</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>Rechterkantknop</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>Vermogensknop</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>Knop resetten</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>Beweeg de hendel naar links</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>Beweeg de hendel naar rechts</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>Selecteer de volgende spelcursus</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>Selecteer de vorige spelcursus</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>Lichte gun trekker</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>Lichte revolver herladen</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>Paddle 1: draai tegen de klok in</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>Paddle 1: draai met de klok mee</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>Peddel 2: draai tegen de klok in</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>Peddel 2: draai met de klok mee</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>Peddel 3: draai tegen de klok in</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>Peddel 3: draai met de klok mee</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>Paddelaar 4: draai tegen de klok in</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>Paddle 4: draai met de klok mee</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>Richt op het pistool.</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>Richt het wapen goed.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>Richt het pistool naar boven.</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>Richt het pistool naar beneden.</value></data>
 </root>

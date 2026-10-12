@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Epoch.Emulators.Common.Constants;
+using GWGUI.Emulation.Epoch.Emulators.Common.Exceptions;
 using System.IO;
 using System.Diagnostics;
 using System.Reflection.PortableExecutable;

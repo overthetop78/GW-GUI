@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Epoch.Emulators.Common.Contracts;
+using GWGUI.Emulation.Epoch.Emulators.Common.Enums;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Contracts;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;

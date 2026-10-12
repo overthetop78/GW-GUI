@@ -1,5 +1,4 @@
 using System.Globalization;
-using ConsoleOptions = GWGUI.Emulation.Epoch.Emulators.EmuSCV.Constants.OptionConstants;
 
 namespace GWGUI.Emulation.Epoch.Common.Machines.Common.Functions;
 
@@ -9,16 +8,8 @@ internal static class SettingsDescriptionFunctions
     {
         var blocks = new List<EmulationSettingsBlock> { Audio(configuration) };
         AddHardware(blocks, configuration);
-        foreach (var group in RelevantOptions(configuration).GroupBy(option => NativeTab(option.Key)))
-        {
-            var resource = group.Key switch
-            {
-                EmulationMachineTab.Controllers => SettingsConstants.ResourceNativeControls,
-                EmulationMachineTab.Rom => SettingsConstants.ResourceFirmware,
-                _ => SettingsConstants.ResourceNativeVideo
-            };
-            blocks.Add(Block(group.Key, resource, group.Select(option => Native(configuration, option, group.Key, resource)).ToArray()));
-        }
+        if (new Engine().Adapter(configuration) is IEmulatorSettings settings)
+            blocks.AddRange(settings.DescribeSettings(configuration));
         var firmwareFields = FirmwareFunctions.Roles(configuration.Model).Select(role => new EmulationSettingsField(
             FirmwareFunctions.Field(role), EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware,
             "Emulation.Epoch.Firmware.ScvConsole", EmulationSettingsEditor.Path,
@@ -27,16 +18,6 @@ internal static class SettingsDescriptionFunctions
             blocks.Add(new(SettingsConstants.ResourceFirmware + ".File", EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware, firmwareFields));
         return blocks;
     }
-
-    internal static IReadOnlyList<CoreOption> RelevantOptions(MachineConfiguration configuration) => CoreOptionValidationFunctions.ForCore(configuration.Core).Where(option => option.Key != ConsoleOptions.OptionConsole).ToArray();
-
-    private static EmulationMachineTab NativeTab(string key) => key switch
-    {
-        ConsoleOptions.OptionCheckbios => EmulationMachineTab.Rom,
-        ConsoleOptions.OptionDisplayinputs or ConsoleOptions.OptionKeyboardatstart or ConsoleOptions.OptionLanguage
-            or Emulators.PD777.Constants.OptionConstants.OptionAnnounceCourseSwitch => EmulationMachineTab.Controllers,
-        _ => EmulationMachineTab.Video
-    };
 
     private static void AddHardware(List<EmulationSettingsBlock> blocks, MachineConfiguration configuration)
     {
@@ -66,17 +47,28 @@ internal static class SettingsDescriptionFunctions
 
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
 
-    private static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
+    internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
     {
-        var resource = SettingsConstants.NativeOptionResourcePrefix + option.Key;
-        var choices = option.Values.Select((choice, index) => new EmulationSettingsChoice(choice.Value, string.Format(CultureInfo.InvariantCulture, SettingsConstants.NativeChoiceResourceFormat, resource, index))).ToArray();
+        var resource = option.ResourceKey ?? throw new InvalidOperationException(option.Key);
+        var choices = option.Values.Select(choice => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? string.Empty, InvariantChoice(choice))).ToArray();
         var toggle = option.Values.Count == 2 && option.Values.All(choice => choice.Value is "enabled" or "disabled");
         return new(option.Key, tab, block, resource, toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection,
             configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), choices,
-            ExplanationResourceKey: resource + SettingsConstants.HelpResourceSuffix,
+            ExplanationResourceKey: option.ExplanationResourceKey,
             EnabledValue: toggle ? "enabled" : EmulationSettingConstants.Enabled,
             DisabledValue: toggle ? "disabled" : EmulationSettingConstants.Disabled,
-            RequiresRestart: RuntimeOptionFunctions.RequiresRestart(configuration.Core, option.Key));
+            RequiresRestart: false);
+    }
+
+    internal static string ChoiceLabel(CoreOptionValue choice) => choice.ResourceKey ?? InvariantChoice(choice) ?? choice.Label;
+
+    private static string? InvariantChoice(CoreOptionValue choice)
+    {
+        if (choice.InvariantDisplayValue is { } text) return text;
+        if (choice.FrequencyHz is not { } frequency) return null;
+        return choice.VideoStandard is { } standard
+            ? EmulationVideoFunctions.FormatTiming(standard, frequency)
+            : $"{frequency.ToString(CultureInfo.CurrentCulture)} {SettingsConstants.HertzUnit}";
     }
 
     private static EmulationSettingsBlock Audio(MachineConfiguration configuration) => Block(EmulationMachineTab.Audio,

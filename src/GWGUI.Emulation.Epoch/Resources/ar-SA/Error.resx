@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Error.StateIncompatible"><value>The Epoch الدولة المنقذة لا تتوافق مع الآلة الحالية.</value></data>
-  <data name="Emulation.Epoch.Error.Unexpected"><value>وحدث خطأ غير متوقع في الاختراع قدره Epoch.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>a مطلوب Epoch firmware مفقود.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>نظام ROM غير صحيح أو متعارض.</value></data>
-  <data name="Emulation.Epoch.Error.ContentNotFound"><value>تم تشكيله Epoch لم يعثر على وسائل الإعلام.</value></data>
-  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>هذه الآلة لا تدعم وسائل الإعلام المختارة</value></data>
-  <data name="Emulation.Epoch.Error.OptionInvalid"><value>ألف Epoch الخيار له قيمة غير صحيحة.</value></data>
-  <data name="Emulation.Epoch.Error.CoreNotFound"><value>لم يتم العثور على النواة المطلوبة من Epoch.</value></data>
-  <data name="Emulation.Epoch.Error.CoreRejected"><value>لا يمكن تحميل نواة Epoch المختارة.</value></data>
-  <data name="Emulation.Epoch.Error.StateInvalid"><value>The Epoch save state is invalid.</value></data>
-  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>إن الطريق الذي يمكن تنفيذه هو مضيف Epoch غير متاح.</value></data>
-  <data name="Emulation.Epoch.Error.Details"><value>التفاصيل: {0}</value></data>
-  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>وفشلت الاتصالات مع المضيف البالغ Epoch.</value></data>
-  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>{0}</value></data>
+  <data name="Emulation.Epoch.Error.StateIncompatible" xml:space="preserve"><value>ولاية (إيبوش) المنقذة لا تتوافق مع الآلة الحالية</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected" xml:space="preserve"><value>حدث خطأ غير متوقع في الاختناق</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing" xml:space="preserve"><value>(إيبوش) مطلوبة مفقودة</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid" xml:space="preserve"><value>النظام ROM غير صحيح أو غير متوافق</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound" xml:space="preserve"><value>لم يتم العثور على وسائل الإعلام المُشكلة</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported" xml:space="preserve"><value>هذه الآلة لا تدعم وسائل الإعلام المختارة</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid" xml:space="preserve"><value>خيار (إيبوك) له قيمة غير صحيحة</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound" xml:space="preserve"><value>ولم يعثر على النواة المطلوبة من Epoch.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected" xml:space="preserve"><value>لا يمكن تحميل نواة (إيبوش) المختارة</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid" xml:space="preserve"><value>ولاية (إيبوش) المنقذة غير صحيحة</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing" xml:space="preserve"><value>مسار برنامج الحفز غير متاح</value></data>
+  <data name="Emulation.Epoch.Error.Details" xml:space="preserve"><value>التفاصيل: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure" xml:space="preserve"><value>الاتصالات مع مضيف (إيبوش) فشلت</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>قيادة بيئة غير معروفة: {0}</value></data>
 </root>

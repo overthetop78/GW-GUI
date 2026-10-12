@@ -4,62 +4,21 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.emuscv.Description"><value>模拟Super Cassette Vision控制台.</value></data>
-  <data name="Emulation.Emulator.pd777.Description"><value>模拟Cassette Vision控制台.</value></data>
-  <data name="Emulation.Epoch.Memory.Display"><value>视频内存</value></data>
-  <data name="Emulation.Epoch.Video.Native"><value>控制台视频</value></data>
-  <data name="Emulation.Epoch.Controls.Native"><value>控制台控件</value></data>
-  <data name="Emulation.Epoch.Firmware.ScvConsole"><value>Super Cassette Vision BIOS</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display"><value>显示区域</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Help"><value>选择控制台使用的显示区域。</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Value0"><value>自动的</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect"><value>像素形状</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Help"><value>选择长方形或平方像素。</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value0"><value>自动的</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value1"><value>矩形像素</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value2"><value>平方像素</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution"><value>输出分辨率</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Help"><value>选择模拟器生成的分辨率。</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value0"><value>自动的</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value1"><value>低级</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value2"><value>中号</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value3"><value>高档</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette"><value>彩色调色板</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Help"><value>选择控制台的调色板。</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value0"><value>自动的</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value1"><value>标准调色板</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value2"><value>原始 NTSC 调色板</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps"><value>刷新率</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Help"><value>选择控制台刷新率 。</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Value0"><value>自动的</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory"><value>显示全部视频内存</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Help"><value>在显示的图像中包含整个视频内存 。</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value0"><value>自动的</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value1"><value>已启用</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value2"><value>已禁用</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs"><value>显示按下按钮</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Help"><value>显示当前按下的按钮 。</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value0"><value>自动的</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value1"><value>已启用</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value2"><value>已禁用</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language"><value>模拟界面语言</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Help"><value>选择模拟器界面的语言。</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value0"><value>自动的</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value1"><value>日语</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value2"><value>法语</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value3"><value>英语</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios"><value>校验 BIOS 校对和</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Help"><value>装入控制台固件时验证 BIOS 校验和 。</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value0"><value>自动的</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value1"><value>已启用</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value2"><value>已禁用</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart"><value>启动时显示控制台键盘</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Help"><value>当模拟器启动时显示控制台键盘 。</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value0"><value>自动的</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value1"><value>已启用</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value2"><value>已禁用</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch"><value>显示课程选择</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Help"><value>更改时显示所选课程 。</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value0"><value>已禁用</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value1"><value>已启用</value></data>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>模拟 SUPER CASSETTE VISION 控制台 控制台 控制台</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>模拟 CASSETTE VISION 控制台 控制台 控制台</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>视频内存</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>控制台视频</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>控制台控制</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>显示区域</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>像素形状</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>彩色调色板</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>刷新率</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>显示完整的视频内存</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>显示控制器状态</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>校验 BIOS 校验和</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>启动时显示密钥盘</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>显示课程选择</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>矩形</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>低级</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>高档</value></data>
 </root>

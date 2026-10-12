@@ -4,9 +4,11 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Model.CassetteVision"><value>Cassette Vision</value></data>
-  <data name="Emulation.Epoch.Model.CassetteVisionJr"><value>Cassette Vision Jr.</value></data>
-  <data name="Emulation.Epoch.Model.SuperCassetteVision"><value>Super Cassette Vision</value></data>
-  <data name="Emulation.Epoch.Model.SuperCassetteVisionYeno"><value>Yeno Super Cassette Vision</value></data>
-  <data name="Emulation.Epoch.Model.SuperCassetteVisionLady"><value>Super Cassette Vision Lady</value></data>
+  <data name="Emulation.Epoch.Model.CassetteVision" xml:space="preserve"><value>Cassette Vision</value></data>
+  <data name="Emulation.Epoch.Model.CassetteVisionJr" xml:space="preserve"><value>Cassette Vision Jr.</value></data>
+  <data name="Emulation.Epoch.Model.SuperCassetteVision" xml:space="preserve"><value>Super Cassette Vision</value></data>
+  <data name="Emulation.Epoch.Model.SuperCassetteVisionYeno" xml:space="preserve"><value>Yeno Super Cassette Vision</value></data>
+  <data name="Emulation.Epoch.Model.SuperCassetteVisionLady" xml:space="preserve"><value>Super Cassette Vision Lady</value></data>
+  <data name="Emulation.Epoch.Cpu.PD777" xml:space="preserve"><value>PD777</value></data>
+  <data name="Emulation.Epoch.Cpu.UPD7801" xml:space="preserve"><value>NEC µPD7801</value></data>
 </root>

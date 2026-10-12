@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants;
 using System.IO;
 
 namespace GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions;
@@ -10,7 +11,7 @@ internal static class FirmwareRuntimeFunctions
         var firmware = configuration.Firmwares.SingleOrDefault(value => value.Category == FirmwareCategory.Console);
         if (firmware is null || !File.Exists(firmware.Path))
             throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareMissing, ErrorMessages.RequiredFirmwareMissing);
-        if (new FileInfo(firmware.Path).Length != MediaRuntimeConstants.ConsoleFirmwareBytes)
+        if (new FileInfo(firmware.Path).Length != FirmwareConstants.ConsoleFirmwareBytes)
             throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
         var source = Path.GetFullPath(firmware.Path);
         var destination = Path.Combine(systemDirectory, MediaRuntimeConstants.ConsoleFirmwareFileName);

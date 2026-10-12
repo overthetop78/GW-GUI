@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>Chọn vùng hiển thị của ảnh giao tiếp.</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>Chọn hình chữ nhật hay điểm ảnh vuông.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>Chọn độ phân giải vẽ nội bộ.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>Chọn bảng màu bàn điều khiển.</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>Chọn tốc độ cập nhật bàn điều khiển.</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>Hiển thị bộ nhớ video ngoài ảnh truyền hình.</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>Hiển thị tình trạng điều khiển hiện thời trên ảnh.</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>Chọn ngôn ngữ của màn hình giả lập.</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>Kiểm tra bàn điều khiển BIOS trước khi bắt đầu.</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>Hiển thị bàn phím bàn điều khiển khi bắt đầu tạo ra.</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>Hiển thị khóa chơi đã chọn khi nó thay đổi.</value></data>
+</root>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>Επιλέξτε την ορατή περιοχή της εικόνας της κονσόλας.</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>Επιλέξτε ορθογώνια ή τετράγωνα εικονοστοιχεία.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>Επιλέξτε την εσωτερική ανάλυση αποτύπωσης.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>Επιλέξτε την παλέτα χρωμάτων κονσόλας.</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>Επιλέξτε τον ρυθμό ανανέωσης της κονσόλας.</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>Εμφάνιση μνήμης βίντεο πέρα από την εικόνα της τηλεόρασης.</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>Εμφάνιση της τρέχουσας κατάστασης ελέγχου πάνω από την εικόνα.</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>Επιλέξτε τη γλώσσα των οθονών εξομοιωτών.</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>Επαλήθευση της κονσόλας BIOS checkum πριν από την έναρξη.</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>Εμφάνιση του πληκτρολογίου κονσόλας όταν ξεκινά η εξομοίωση.</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>Εμφάνιση της επιλεγμένης πορείας παιχνιδιού όταν αλλάζει.</value></data>
+</root>

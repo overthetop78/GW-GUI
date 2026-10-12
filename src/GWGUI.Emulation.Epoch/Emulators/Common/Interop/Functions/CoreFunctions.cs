@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Dictionaries;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services;
 using System.Globalization;
 using System.Runtime.InteropServices;
 

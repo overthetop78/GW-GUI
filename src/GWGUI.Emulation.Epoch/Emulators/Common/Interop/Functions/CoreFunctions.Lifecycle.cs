@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Contracts;
 namespace GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions;
 
 internal static class CoreLifecycleFunctions

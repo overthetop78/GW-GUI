@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Error.StateIncompatible"><value>Epoch ที่บันทึกไว้รัฐไม่ เข้ากันได้กับเครื่องปัจจุบัน</value></data>
-  <data name="Emulation.Epoch.Error.Unexpected"><value>เกิดข้อผิดพลาดในการปั๊ม Epoch ที่ไม่คาดคิดขึ้น</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>มาตรา Epoch ยูนิแวร์หายไป</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>ระบบ ROM ใช้งานไม่ได้หรือเข้ากันไม่ได้</value></data>
-  <data name="Emulation.Epoch.Error.ContentNotFound"><value>ไม่พบสื่อที่ปรับแต่งค่า Epoch</value></data>
-  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>เครื่องนี้ไม่รองรับสื่อที่เลือก</value></data>
-  <data name="Emulation.Epoch.Error.OptionInvalid"><value>ตัวเลือก Epoch มีค่าที่ไม่ถูกต้อง</value></data>
-  <data name="Emulation.Epoch.Error.CoreNotFound"><value>ไม่พบแกน Epoch ที่ต้องการ</value></data>
-  <data name="Emulation.Epoch.Error.CoreRejected"><value>ไม่สามารถเรียกใช้แกน Epoch ที่เลือกไว้ได้</value></data>
-  <data name="Emulation.Epoch.Error.StateInvalid"><value>Epoch บันทึกสถานะไม่ถูกต้อง</value></data>
-  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>ไม่สามารถประมวลผลพาธของโฮสต์ Epoch ได้</value></data>
-  <data name="Emulation.Epoch.Error.Details"><value>รายละเอียด: {0}</value></data>
-  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>การสื่อสารกับโฮสต์ Epoch ล้มเหลว</value></data>
-  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>ไม่รู้จักคําสั่งสภาพแวดล้อม: {0}</value></data>
+  <data name="Emulation.Epoch.Error.StateIncompatible" xml:space="preserve"><value>กรมลาดตะเวณรักษาได้ ขัดแย้งกับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected" xml:space="preserve"><value>เกิดข้อผิดพลาดในการถอดเสียง Epoch ที่ไม่คาดคิดขึ้น</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing" xml:space="preserve"><value>เครื่องปรับอากาศที่ขาดไป</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid" xml:space="preserve"><value>ระบบ ROM ไม่สมบูรณ์หรือเข้ากันไม่ได้</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound" xml:space="preserve"><value>ไม่พบสื่อที่ปรับแต่งค่า Epoch</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported" xml:space="preserve"><value>เครื่องนี้ไม่รองรับสื่อที่เลือก</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid" xml:space="preserve"><value>ตัวเลือก Epoch มีค่าที่ใช้ไม่ได้</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound" xml:space="preserve"><value>ไม่พบแกนอีพอชที่ต้องการ</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected" xml:space="preserve"><value>ไม่สามารถเรียกใช้แกน Epoch ที่เลือกไว้ได้</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid" xml:space="preserve"><value>สภาวะประหยัดของอีพอชไม่ถูกต้อง</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing" xml:space="preserve"><value>ไม่มีพาธไปยังโปรแกรมจําลอง</value></data>
+  <data name="Emulation.Epoch.Error.Details" xml:space="preserve"><value>รายละเอียด: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure" xml:space="preserve"><value>การติดต่อกับเจ้าบ้านอีโปชล้มเหลว</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>ไม่รู้จักคําสั่งสภาพแวดล้อม: {0}</value></data>
 </root>

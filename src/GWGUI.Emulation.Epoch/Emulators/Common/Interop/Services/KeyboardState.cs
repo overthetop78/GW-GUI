@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services;

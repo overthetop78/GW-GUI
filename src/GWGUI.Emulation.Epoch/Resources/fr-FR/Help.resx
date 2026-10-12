@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>Sélectionnez la zone visible de l'image de la console.</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>Sélectionnez des pixels rectangulaires ou carrés.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>Sélectionnez la résolution de rendu interne.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>Sélectionnez la palette de couleurs de la console.</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>Sélectionnez le taux de rafraîchissement de la console.</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>Affichez la mémoire vidéo au-delà de l'image de la télévision.</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>Afficher l’état actuel des manettes sur l’image.</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>Sélectionnez la langue des écrans d'émulateur.</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>Vérifier l’empreinte du BIOS de la console avant le démarrage.</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>Afficher le pavé numérique de la console au démarrage de l’émulation.</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>Afficher le parcours de jeu sélectionné lors de son changement.</value></data>
+</root>

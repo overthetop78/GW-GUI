@@ -1,16 +1,10 @@
 using System.Globalization;
-using ConsoleOptions = GWGUI.Emulation.Epoch.Emulators.EmuSCV.Constants.OptionConstants;
 
 namespace GWGUI.Emulation.Epoch.Common.Machines.Common.Functions;
 
 internal static class CoreOptionValidationFunctions
 {
-    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core switch
-    {
-        Emulator.EmuSCV => Emulators.EmuSCV.Dictionaries.EmuSCVOptionCatalog.All,
-        Emulator.PD777 => Emulators.PD777.Dictionaries.PD777OptionCatalog.All,
-        _ => throw new ArgumentOutOfRangeException(nameof(core))
-    };
+    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];
 
     internal static void Validate(MachineConfiguration configuration)
     {
@@ -27,8 +21,7 @@ internal static class CoreOptionValidationFunctions
             };
             if (!valid) throw new ArgumentException(nameof(configuration.Options));
         }
-        if (configuration.Core == Emulator.EmuSCV && configuration.Options.TryGetValue(ConsoleOptions.OptionConsole, out var console)
-            && console != MediaRuntimeConstants.ConsoleModel(configuration.Model))
-            throw new ArgumentException(nameof(configuration.Options));
+        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidator validator)
+            validator.ValidateConfiguration(configuration);
     }
 }

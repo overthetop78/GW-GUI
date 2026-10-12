@@ -4,62 +4,21 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.emuscv.Description"><value>Emula le console Super Cassette Vision.</value></data>
-  <data name="Emulation.Emulator.pd777.Description"><value>Emulates Cassette Vision console.</value></data>
-  <data name="Emulation.Epoch.Memory.Display"><value>Memoria video</value></data>
-  <data name="Emulation.Epoch.Video.Native"><value>Console video</value></data>
-  <data name="Emulation.Epoch.Controls.Native"><value>Console di controllo</value></data>
-  <data name="Emulation.Epoch.Firmware.ScvConsole"><value>Super Cassette Vision BIOS</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display"><value>Area di visualizzazione</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Help"><value>Selezionare l'area di visualizzazione utilizzata dalla console.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Value0"><value>Automatico</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect"><value>Forma del pixel</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Help"><value>Selezionare pixel rettangolari o quadrati.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value0"><value>Automatico</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value1"><value>pixel rettangolari</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value2"><value>pixel quadrati</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution"><value>Risoluzione di uscita</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Help"><value>Selezionare la risoluzione generata dall'emulatore.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value0"><value>Automatico</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value1"><value>Basso</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value2"><value>Mezzo</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value3"><value>Alto.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette"><value>tavolozza di colori</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Help"><value>Selezionare la tavolozza dei colori della console.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value0"><value>Automatico</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value1"><value>tavolozza standard</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value2"><value>Originale NTSC tavolo</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps"><value>Tasso di rifrazione</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Help"><value>Selezionare la frequenza di aggiornamento della console.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Value0"><value>Automatico</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory"><value>Mostra tutta la memoria video</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Help"><value>Includere l'intera memoria video nell'immagine visualizzata.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value0"><value>Automatico</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value1"><value>Attivato</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value2"><value>Disattivato</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs"><value>Mostra i pulsanti stampati</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Help"><value>Visualizza i pulsanti attualmente premuti.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value0"><value>Automatico</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value1"><value>Attivato</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value2"><value>Disattivato</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language"><value>Lingua di interfaccia emulatore</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Help"><value>Selezionare la lingua dell'interfaccia emulatore.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value0"><value>Automatico</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value1"><value>lingua giapponese</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value2"><value>Francese</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value3"><value>Lingua inglese</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios"><value>Verificare BIOS checksum</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Help"><value>Verificare il controllo BIOS quando si carica il firmware della console.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value0"><value>Automatico</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value1"><value>Attivato</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value2"><value>Disattivato</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart"><value>Mostra la tastiera della console all'avvio</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Help"><value>Visualizzare il tastierino della console quando l'emulatore inizia.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value0"><value>Automatico</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value1"><value>Attivato</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value2"><value>Disattivato</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch"><value>Mostra la selezione dei corsi</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Help"><value>Visualizzare il corso selezionato durante la modifica.</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value0"><value>Disattivato</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value1"><value>Attivato</value></data>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>Emulates SUPER CASSETTE VISION Console.</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>Emulates CASSETTE VISION Console.</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>Video memoria</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>Console video</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>Comandi di console</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>Area di visualizzazione</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>Forma del pixel</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>Colori tavolozza</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>Tasso di rifrazione</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>Visualizza la memoria video completa</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>Stato del controller di visualizzazione</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>Verifica BIOS checksum</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>Visualizzare la tastiera all'avvio</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>Selezione dei corsi di visualizzazione</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>Rettangolare</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>Basso</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>Alto</value></data>
 </root>

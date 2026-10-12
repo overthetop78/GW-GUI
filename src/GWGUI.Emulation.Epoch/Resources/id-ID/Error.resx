@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Error.StateIncompatible"><value>Epoch negara yang disimpan tidak kompatibel dengan mesin saat ini.</value></data>
-  <data name="Emulation.Epoch.Error.Unexpected"><value>Kesalahan emulasi Epoch yang tak terduga terjadi.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>Sebuah firmware Epoch yang diperlukan hilang.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>Sistem ROM tidak valid atau tidak kompatibel.</value></data>
-  <data name="Emulation.Epoch.Error.ContentNotFound"><value>Media Epoch yang dikonfigurasi tidak ditemukan.</value></data>
-  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>Mesin ini tidak mendukung media yang dipilih.</value></data>
-  <data name="Emulation.Epoch.Error.OptionInvalid"><value>Sebuah opsi Epoch memiliki nilai yang tidak valid.</value></data>
-  <data name="Emulation.Epoch.Error.CoreNotFound"><value>Inti Epoch yang diperlukan tidak ditemukan.</value></data>
-  <data name="Emulation.Epoch.Error.CoreRejected"><value>Inti Epoch yang dipilih tidak dapat dimuat.</value></data>
-  <data name="Emulation.Epoch.Error.StateInvalid"><value>Epoch negara yang disimpan tidak valid.</value></data>
-  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>Path executable Epoch host tidak tersedia.</value></data>
-  <data name="Emulation.Epoch.Error.Details"><value>Rincian: {0}</value></data>
-  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>Komunikasi dengan tuan rumah Epoch gagal.</value></data>
-  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>Perintah lingkungan tak dikenal: {0}</value></data>
+  <data name="Emulation.Epoch.Error.StateIncompatible" xml:space="preserve"><value>Epoch negara yang disimpan tidak kompatibel dengan mesin saat ini.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected" xml:space="preserve"><value>Terjadi galat Epoch emulasi yang tak terduga.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing" xml:space="preserve"><value>Sebuah firmware Epoch yang diperlukan hilang.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid" xml:space="preserve"><value>Sistem ROM tidak valid atau tidak kompatibel.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound" xml:space="preserve"><value>Media Epoch yang dikonfigurasi tidak ditemukan.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported" xml:space="preserve"><value>Mesin ini tidak mendukung media yang dipilih.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid" xml:space="preserve"><value>Sebuah opsi Epoch memiliki nilai yang tidak valid.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound" xml:space="preserve"><value>Inti Epoch yang diperlukan tidak ditemukan.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected" xml:space="preserve"><value>Inti Epoch yang dipilih tidak dapat dimuat.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid" xml:space="preserve"><value>Epoch negara yang disimpan tidak valid.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing" xml:space="preserve"><value>Path program emulator tidak tersedia.</value></data>
+  <data name="Emulation.Epoch.Error.Details" xml:space="preserve"><value>Rincian: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikasi dengan Epoch host gagal.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Perintah lingkungan tidak dikenal: {0}</value></data>
 </root>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>Selecione a área visível da imagem do console.</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>Selecione pixels retangulares ou quadrados.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>Selecione a resolução de renderização interna.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>Selecione a paleta de cores do console.</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>Selecione a taxa de atualização do console.</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>Mostrar memória de vídeo para além da imagem da televisão.</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>Mostra o estado do controlador actual sobre a imagem.</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>Selecione a linguagem das telas do emulador.</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>Verificar a consola BIOS checksum antes de começar.</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>Mostra o teclado da consola quando iniciar a emulação.</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>Mostra o curso de jogo seleccionado quando mudar.</value></data>
+</root>

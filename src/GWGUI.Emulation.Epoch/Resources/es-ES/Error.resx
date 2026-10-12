@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Error.StateIncompatible"><value>El estado salvado Epoch es incompatible con la máquina actual.</value></data>
-  <data name="Emulation.Epoch.Error.Unexpected"><value>Se produjo un error inesperado de emulación Epoch.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>Falta un firmware de Epoch requerido.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>El sistema ROM es inválido o incompatible.</value></data>
-  <data name="Emulation.Epoch.Error.ContentNotFound"><value>No se encontró el medio Epoch configurado.</value></data>
-  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>Esta máquina no admite los medios seleccionados.</value></data>
-  <data name="Emulation.Epoch.Error.OptionInvalid"><value>Una opción Epoch tiene un valor inválido.</value></data>
-  <data name="Emulation.Epoch.Error.CoreNotFound"><value>No se encontró el núcleo necesario Epoch.</value></data>
-  <data name="Emulation.Epoch.Error.CoreRejected"><value>El núcleo Epoch seleccionado no se puede cargar.</value></data>
-  <data name="Emulation.Epoch.Error.StateInvalid"><value>El estado salvado Epoch es inválido.</value></data>
-  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>El camino ejecutable Epoch host es indisponible.</value></data>
-  <data name="Emulation.Epoch.Error.Details"><value>Detalles: {0}</value></data>
-  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>La comunicación con el anfitrión Epoch falló.</value></data>
-  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>desconocido medio ambiente comando: {0}</value></data>
+  <data name="Emulation.Epoch.Error.StateIncompatible" xml:space="preserve"><value>El estado salvado de la época es incompatible con la máquina actual.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected" xml:space="preserve"><value>Se produjo un error inesperado de emulación de Época.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing" xml:space="preserve"><value>Falta un firmware de Epoch requerido.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid" xml:space="preserve"><value>El sistema ROM es inválido o incompatible.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound" xml:space="preserve"><value>No se encontró el medio de Epoch configurado.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported" xml:space="preserve"><value>Esta máquina no admite los medios seleccionados.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid" xml:space="preserve"><value>Una opción Epoch tiene un valor inválido.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound" xml:space="preserve"><value>No se encontró el núcleo necesario de la época.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected" xml:space="preserve"><value>El núcleo seleccionado de la época no se podía cargar.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid" xml:space="preserve"><value>El estado salvado de la época es inválido.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing" xml:space="preserve"><value>El camino del programa emulador no está disponible.</value></data>
+  <data name="Emulation.Epoch.Error.Details" xml:space="preserve"><value>Detalles: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure" xml:space="preserve"><value>La comunicación con el anfitrión Epoch falló.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Unknown environment command: {0}</value></data>
 </root>

@@ -20,14 +20,11 @@ internal static class SettingsConstants
     internal const int BytesPerKibibyte = 1024;
     internal const double HertzPerMegahertz = 1_000_000;
     internal const double HertzPerKilohertz = 1_000;
+    internal const string HertzUnit = "Hz";
     internal const string MegahertzUnit = "MHz", KilohertzUnit = "kHz", ByteUnit = "B", KibibyteUnit = "KiB";
     internal const string ResourceFirmware = "Emulation.Firmware.Rom.System";
     internal const string ResourceNativeVideo = "Emulation.Epoch.Video.Native";
     internal const string ResourceNativeControls = "Emulation.Epoch.Controls.Native";
-    internal const string ResourceNativeSystem = "Emulation.Epoch.System.Native";
-    internal const string NativeOptionResourcePrefix = "Emulation.Epoch.Option.";
-    internal const string NativeChoiceResourceFormat = "{0}.Value{1}";
-    internal const string HelpResourceSuffix = ".Help";
     internal const string ResourceAudio = "Emulation.Audio";
     internal const string ResourceAudioEnabled = "Emulation.Audio.Enabled";
     internal const string ResourceAudioOutput = "Emulation.Audio.Output";

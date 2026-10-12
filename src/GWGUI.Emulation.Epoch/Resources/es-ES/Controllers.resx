@@ -4,28 +4,26 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Input.FireLeft"><value>Botón de fuego izquierdo</value></data>
-  <data name="Emulation.Epoch.Input.FireRight"><value>Botón de fuego derecho</value></data>
-  <data name="Emulation.Epoch.Input.Enter"><value>Confirmación</value></data>
-  <data name="Emulation.Epoch.Input.Clear"><value>Despejado</value></data>
-  <data name="Emulation.Epoch.Input.Power"><value>Botón de encendido</value></data>
-  <data name="Emulation.Epoch.Input.Reset"><value>Reiniciar el botón</value></data>
-  <data name="Emulation.Epoch.Input.LeverLeft"><value>Mueva la palanca a la izquierda</value></data>
-  <data name="Emulation.Epoch.Input.LeverRight"><value>Mueve la palanca a la derecha</value></data>
-  <data name="Emulation.Epoch.Input.CourseIncrease"><value>Seleccione el siguiente curso del juego</value></data>
-  <data name="Emulation.Epoch.Input.CourseDecrease"><value>Seleccione el curso anterior del juego</value></data>
-  <data name="Emulation.Epoch.Input.GunFire"><value>Disparo de pistola de luz</value></data>
-  <data name="Emulation.Epoch.Input.GunReload"><value>Recarga de arma ligera</value></data>
-  <data name="Emulation.Epoch.Input.GunXDecrease"><value>Apunta a la izquierda con el arma ligera</value></data>
-  <data name="Emulation.Epoch.Input.GunXIncrease"><value>Apunta a la derecha con el arma ligera</value></data>
-  <data name="Emulation.Epoch.Input.GunYDecrease"><value>Apunte hacia arriba con el arma ligera</value></data>
-  <data name="Emulation.Epoch.Input.GunYIncrease"><value>Apunte hacia abajo con el arma ligera</value></data>
-  <data name="Emulation.Epoch.Input.Paddle1Decrease"><value>Paleta 1: girar en sentido contrario</value></data>
-  <data name="Emulation.Epoch.Input.Paddle1Increase"><value>Paleta 1: girar el reloj</value></data>
-  <data name="Emulation.Epoch.Input.Paddle2Decrease"><value>Pasillo 2: girar en sentido contrario</value></data>
-  <data name="Emulation.Epoch.Input.Paddle2Increase"><value>Pasillo 2: girar el reloj</value></data>
-  <data name="Emulation.Epoch.Input.Paddle3Decrease"><value>Paleta 3: girar en sentido contrario</value></data>
-  <data name="Emulation.Epoch.Input.Paddle3Increase"><value>Paleta 3: girar el reloj</value></data>
-  <data name="Emulation.Epoch.Input.Paddle4Decrease"><value>Paleta 4: girar en sentido contrario</value></data>
-  <data name="Emulation.Epoch.Input.Paddle4Increase"><value>Pasillo 4: girar el reloj</value></data>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>Botón lateral izquierdo</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>Botón lateral derecho</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>Botón de encendido</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>Reiniciar el botón</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>Mueva la palanca a la izquierda</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>Mueva la palanca a la derecha</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>Seleccione el siguiente curso de juego</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>Seleccione el curso de juego anterior</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>Disparo de arma de fuego ligero</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>Recarga de arma de fuego</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>Paleta 1: girar en sentido contrario</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>Paleta 1: girar el reloj</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>Paleta 2: girar en sentido contrario</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>Paleta 2: girar el reloj</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>Paleta 3: girar en sentido contrario</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>Paleta 3: girar el reloj</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>Paleta 4: girar el contrarreloj</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>Paleta 4: girar el reloj</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>Apunta el arma izquierda.</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>Apunta el arma derecha.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>Apunten el arma hacia arriba.</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>Apunte el arma hacia abajo.</value></data>
 </root>

@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Error.StateIncompatible"><value>המדינה Epoch הצילה אינה תואמת למכונה הנוכחית.</value></data>
-  <data name="Emulation.Epoch.Error.Unexpected"><value>טעות חיקוי בלתי צפויה של Epoch התרחשה.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>קושחה Epoch הנדרשת נעדר.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>המערכת ROM היא בלתי חוקית או לא מתאימה.</value></data>
-  <data name="Emulation.Epoch.Error.ContentNotFound"><value>התקשורת של Epoch לא נמצאה.</value></data>
-  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>מכונה זו אינה תומכת בתקשורת שנבחרה.</value></data>
-  <data name="Emulation.Epoch.Error.OptionInvalid"><value>אפשרות Epoch יש ערך לא חוקי.</value></data>
-  <data name="Emulation.Epoch.Error.CoreNotFound"><value>הליבה Epoch הנדרשת לא נמצאה.</value></data>
-  <data name="Emulation.Epoch.Error.CoreRejected"><value>הליבה Epoch הנבחר לא יכול להיות טעון.</value></data>
-  <data name="Emulation.Epoch.Error.StateInvalid"><value>המדינה Epoch הצילה היא בלתי נסבלת.</value></data>
-  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>הנתיב המתואם של חברת Epoch אינו זמין.</value></data>
-  <data name="Emulation.Epoch.Error.Details"><value>תגית: {0}</value></data>
-  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>התקשורת עם מארח Epoch נכשלה.</value></data>
-  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>ארכיון תגיות: {0}</value></data>
+  <data name="Emulation.Epoch.Error.StateIncompatible" xml:space="preserve"><value>המדינה הנמשכת של אפרוכיה אינה עולה בקנה אחד עם המכונה הנוכחית.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected" xml:space="preserve"><value>טעות של חיקוי בלתי צפויה התרחשה.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing" xml:space="preserve"><value>קושחה נדרשת חסרה.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid" xml:space="preserve"><value>המערכת ROM הוא לא חוקי או לא עקבי.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound" xml:space="preserve"><value>התקשורת המפוחדת לא נמצאה.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported" xml:space="preserve"><value>מכונה זו אינה תומכת בתקשורת הנבחרת.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid" xml:space="preserve"><value>לאופציה של אפרוכ יש ערך לא חוקי.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound" xml:space="preserve"><value>הליבה הנדרשת לא נמצאה.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected" xml:space="preserve"><value>לא ניתן לטעון את הליבה של ה-Efoch.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid" xml:space="preserve"><value>המדינה הננצלת של אפרוכ היא בלתי נסבלת.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing" xml:space="preserve"><value>מסלול התוכנה של חיקוי אינו זמין.</value></data>
+  <data name="Emulation.Epoch.Error.Details" xml:space="preserve"><value>פרטים: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure" xml:space="preserve"><value>התקשורת עם המארחת של אפרוכ נכשלה.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>פיקוד הסביבה הלא ידוע: {0}</value></data>
 </root>

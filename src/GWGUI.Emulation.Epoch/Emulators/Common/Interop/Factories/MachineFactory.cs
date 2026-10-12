@@ -1,3 +1,8 @@
+using GWGUI.Emulation.Epoch.Emulators.Common.Contracts;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Dictionaries;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Services;
 using System.IO;
 
 namespace GWGUI.Emulation.Epoch.Emulators.Common.Interop.Factories;
@@ -80,7 +85,8 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
                 Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
                 audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
                 saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
-                coreFactory: () => new ProcessCore(context.HostExecutablePath, context.CorePath, Emulator));
+                coreFactory: () => new ProcessCore(context.HostExecutablePath, context.CorePath, Emulator),
+                inputMapper: this as IEmulatorInputMapper);
             completed = true;
             return machine;
         }

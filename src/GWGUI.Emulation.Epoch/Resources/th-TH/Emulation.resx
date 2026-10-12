@@ -4,62 +4,21 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.emuscv.Description"><value>จําลอง คอนโซล Super Cassette Vision เล่ม</value></data>
-  <data name="Emulation.Emulator.pd777.Description"><value>จําลอง คอนโซล Cassette Vision เล่ม</value></data>
-  <data name="Emulation.Epoch.Memory.Display"><value>หน่วยความจําของภาพวิดีโอ</value></data>
-  <data name="Emulation.Epoch.Video.Native"><value>Console วิดีโอ</value></data>
-  <data name="Emulation.Epoch.Controls.Native"><value>ตัวควบคุมคอนโซล</value></data>
-  <data name="Emulation.Epoch.Firmware.ScvConsole"><value>Super Cassette Vision BIOS</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display"><value>พื้นที่แสดง</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Help"><value>เลือกพื้นที่การแสดงผลที่ใช้กับคอนโซล</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect"><value>รูปหลายเหลี่ยม</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Help"><value>เลือกสี่เหลี่ยมหรือตารางพิกเซล</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value1"><value>พิกเซลรูปสี่เหลี่ยม</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value2"><value>พิกเซลสี่เหลี่ยม</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution"><value>ความละเอียดพิมพ์ออก</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Help"><value>เลือกความละเอียดที่ถูกสร้างโดยตัวจําลอง</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value1"><value>ต่ํา</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value2"><value>สื่อ</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value3"><value>สูง</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette"><value>จานสี</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Help"><value>เลือกจานสีของคอนโซล</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value1"><value>จานสีมาตรฐาน</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value2"><value>จานสี NTSC เดิม</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps"><value>อัตราการรีเฟรช</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Help"><value>เลือกอัตราการรีเฟรชของคอนโซล</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory"><value>แสดงหน่วยความจําของภาพทั้งหมด</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Help"><value>รวมหน่วยความจําทั้งหมดของภาพที่แสดงผล</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value1"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value2"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs"><value>แสดงปุ่มกด</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Help"><value>แสดงปุ่มที่กดอยู่ในปัจจุบัน</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value1"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value2"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language"><value>ภาษาอินเทอร์เฟสของตัวจําลอง</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Help"><value>เลือกภาษาของส่วนติดต่อผู้ใช้แบบจําลอง</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value1"><value>ภาษาญี่ปุ่น</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value2"><value>ฝรั่งเศส</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value3"><value>ภาษาอังกฤษName</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios"><value>ตรวจสอบ BIOS Checkum</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Help"><value>ตรวจสอบ BIOS Checkum เมื่อโหลดแผงควบคุมคอนโซล</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value1"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value2"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart"><value>แสดงปุ่มผุดของคอนโซลเมื่อเริ่มการทํางาน</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Help"><value>แสดงปุ่มพิมพ์คอนโซลเมื่อเริ่มโปรแกรมจําลอง</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value0"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value1"><value>เปิดใช้งาน</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value2"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch"><value>แสดงการเลือกหลักสูตร</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Help"><value>แสดงพาธที่เลือกไว้เมื่อเปลี่ยนแปลงมัน</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value0"><value>ปิดการใช้งาน</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value1"><value>เปิดใช้งาน</value></data>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>จําลอง SUPER CASSETTE VISION คอนโซล</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>จําลอง CASSETTE VISION คอนโซล</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>หน่วยความจําวีดิทัศน์</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>คลิปวิดีโอ</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>ควบคุมคอนโซล</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>พื้นที่แสดง</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>รูปทรงพิกเซล</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>จานสี</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>อัตราการรีเฟรช</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>แสดงหน่วยความจําของภาพเต็ม</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>สถานะตัวควบคุมการแสดงผล</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>ตรวจสอบ BIOS Checkum</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>แสดงปุ่มพิมพ์เมื่อเริ่มโปรแกรม</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>แสดงการเลือกหลักสูตร</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>สี่เหลี่ยม</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>ต่ํา</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>สูง</value></data>
 </root>

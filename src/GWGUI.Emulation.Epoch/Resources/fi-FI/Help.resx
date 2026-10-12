@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>Valitse konsolikuvan näkyvä alue.</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>Valitse suorakulmaiset tai neliöpikselit.</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>Valitse sisäinen renderointiresoluutio.</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>Valitse konsolin väripaletti.</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>Valitse konsolin päivitysnopeus.</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>Näytä videomuistia televisiokuvan ulkopuolella.</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>Näytä nykyinen ohjaimen tila kuvan päällä.</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>Valitse emulaattorinäytön kieli.</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>Varmista konsoli BIOS tarkistussumma ennen aloitusta.</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>Näytä konsolin näppäimistö, kun emulointi alkaa.</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>Näytä valittu pelin kurssi, kun se muuttuu.</value></data>
+</root>

@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions;
 using System.IO;
 using System.IO.Compression;
 using System.Globalization;

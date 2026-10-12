@@ -2,10 +2,7 @@ namespace GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants;
 
 internal static class MediaRuntimeConstants
 {
-    internal const int ConsoleFirmwareBytes = 4096;
     internal const string ConsoleFirmwareFileName = "upd7801g.s01";
-    internal const string ConsoleFirmwareMd5 = "635a978fd40db9a18ee44eff449fc126";
-    internal const string ConsoleFirmwareFieldPrefix = "epoch_firmware_";
     internal static readonly IReadOnlyList<string> ScvCartridgeExtensions = [".cart", ".bin", ".rom", ".0", ".zip"];
     internal static readonly IReadOnlyList<string> PdCartridgeExtensions = [PdProgramExtension, PdPatternExtension, ".zip"];
     internal const string PdProgramExtension = ".bin777";

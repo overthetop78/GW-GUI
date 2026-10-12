@@ -4,62 +4,21 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.emuscv.Description"><value>Emuluje Super Cassette Vision konzole.</value></data>
-  <data name="Emulation.Emulator.pd777.Description"><value>Emuluje konzole Cassette Vision.</value></data>
-  <data name="Emulation.Epoch.Memory.Display"><value>Video paměť</value></data>
-  <data name="Emulation.Epoch.Video.Native"><value>Konzolové video</value></data>
-  <data name="Emulation.Epoch.Controls.Native"><value>Kontroly konzole</value></data>
-  <data name="Emulation.Epoch.Firmware.ScvConsole"><value>Super Cassette Vision BIOS</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display"><value>Plocha zobrazení</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Help"><value>Zvolte plochu displeje, kterou konzola používá.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Value0"><value>Automatický</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect"><value>Tvar pixelů</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Help"><value>Vyberte pravoúhlé nebo čtvercové pixely.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value0"><value>Automatický</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value1"><value>Obdélníkové pixely</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value2"><value>Čtvercové pixely</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution"><value>Rozlišení výstupu</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Help"><value>Zvolte rozlišení vygenerované emulátorem.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value0"><value>Automatický</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value1"><value>Nízká</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value2"><value>Střední</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value3"><value>Vysoká</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette"><value>Barevná paleta</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Help"><value>Vyberte barevnou paletu konzole.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value0"><value>Automatický</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value1"><value>Standardní paleta</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value2"><value>Original NTSC paletta</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps"><value>Obnovená sazba</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Help"><value>Zvolte obnovovací rychlost konzole.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Value0"><value>Automatický</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory"><value>Zobrazit všechny paměti videa</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Help"><value>Zahrňte celou paměť videa do zobrazeného obrazu.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value0"><value>Automatický</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value1"><value>Povoleno</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value2"><value>Zakázáno</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs"><value>Zobrazit stisknutá tlačítka</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Help"><value>Zobrazit tlačítka, která jsou v současné době stisknuta.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value0"><value>Automatický</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value1"><value>Povoleno</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value2"><value>Zakázáno</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language"><value>Jazyk rozhraní emulátoru</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Help"><value>Vyberte jazyk rozhraní emulátoru.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value0"><value>Automatický</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value1"><value>japonský jazyk</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value2"><value>Francouzština</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value3"><value>Anglický jazyk</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios"><value>Ověřit kontrolní součet BIOS</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Help"><value>Při načítání firmwaru konzole ověřte kontrolní součet BIOS.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value0"><value>Automatický</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value1"><value>Povoleno</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value2"><value>Zakázáno</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart"><value>Zobrazit klávesnici konzole při spuštění</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Help"><value>Zobrazit klávesnici konzole při spuštění emulátoru.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value0"><value>Automatický</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value1"><value>Povoleno</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value2"><value>Zakázáno</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch"><value>Zobrazit výběr kursů</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Help"><value>Zobrazit zvolený kurz při jeho změně.</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value0"><value>Zakázáno</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value1"><value>Povoleno</value></data>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>Emuláty SUPER CASSETTE VISION konzole.</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>Emuláty CASSETTE VISION konzole.</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>Video paměť</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>Konzolové video</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>Ovládání konzole</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>Zobrazení plochy</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>Pixel tvar</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>Barevná paleta</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>Míra obnovy</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>Zobrazit plnou paměť videa</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>Stav displej regulátoru</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>Ověřit BIOS kontrolní součet</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>Zobrazit klávesnici při spuštění</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>Zobrazit výběr kursů</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>Obdélníkový</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>Nízká</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>Vysoká</value></data>
 </root>

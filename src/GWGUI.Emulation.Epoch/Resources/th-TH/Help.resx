@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Epoch.Help.DisplayArea" xml:space="preserve"><value>เลือกพื้นที่ที่มองเห็นของภาพจากคอนโซล</value></data>
+  <data name="Emulation.Epoch.Help.PixelAspect" xml:space="preserve"><value>เลือกสี่เหลี่ยมหรือสี่เหลี่ยมพิกเซล</value></data>
+  <data name="Emulation.Epoch.Help.Resolution" xml:space="preserve"><value>เลือกความละเอียดการแสดงผลภายใน</value></data>
+  <data name="Emulation.Epoch.Help.ColorPalette" xml:space="preserve"><value>เลือกจานสีของคอนโซล</value></data>
+  <data name="Emulation.Epoch.Help.RefreshRate" xml:space="preserve"><value>เลือกอัตราการรีเฟรชของคอนโซล</value></data>
+  <data name="Emulation.Epoch.Help.ShowVideoMemory" xml:space="preserve"><value>แสดงหน่วยความจําของภาพทางโทรทัศน์</value></data>
+  <data name="Emulation.Epoch.Help.ShowInputs" xml:space="preserve"><value>แสดงสถานะตัวควบคุมปัจจุบันอยู่เหนือภาพ</value></data>
+  <data name="Emulation.Epoch.Help.Language" xml:space="preserve"><value>เลือกภาษาของหน้าจอจําลอง</value></data>
+  <data name="Emulation.Epoch.Help.ValidateFirmware" xml:space="preserve"><value>ตรวจสอบคอนโซล BIOS เช็คคัมก่อนเริ่ม</value></data>
+  <data name="Emulation.Epoch.Help.ShowKeypadAtStart" xml:space="preserve"><value>แสดงปุ่มเปิดคอนโซลเมื่อเริ่มการจําลอง</value></data>
+  <data name="Emulation.Epoch.Help.AnnounceCourseSwitch" xml:space="preserve"><value>แสดงหลักสูตรเกมที่เลือกไว้เมื่อมีการเปลี่ยนแปลง</value></data>
+</root>

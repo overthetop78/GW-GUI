@@ -4,62 +4,21 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.emuscv.Description"><value>Tốc độ Super Cassette Vision bộ điều khiển.</value></data>
-  <data name="Emulation.Emulator.pd777.Description"><value>Tính toán bảng điều khiển của Cassette Vision.</value></data>
-  <data name="Emulation.Epoch.Memory.Display"><value>Bộ nhớ phim</value></data>
-  <data name="Emulation.Epoch.Video.Native"><value>Video bàn điều khiển</value></data>
-  <data name="Emulation.Epoch.Controls.Native"><value>Điều khiển bàn điều khiển</value></data>
-  <data name="Emulation.Epoch.Firmware.ScvConsole"><value>Super Cassette Vision BIOS</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display"><value>Vùng hiển thị</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Help"><value>Chọn khu vực hiển thị được dùng bởi bàn điều khiển.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect"><value>Hình điểm ảnh</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Help"><value>Chọn hình chữ nhật hay điểm ảnh vuông.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value1"><value>Điểm ảnh hình chữ nhật</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value2"><value>điểm ảnh vuông</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution"><value>Độ phân giải xuất</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Help"><value>Chọn độ phân giải tạo bởi trình giả lập.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value1"><value>Thấp</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value2"><value>Vừa</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value3"><value>Cao</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette"><value>Bảng màu</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Help"><value>Chọn bảng màu bàn điều khiển.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value1"><value>Bảng màu chuẩn</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value2"><value>Bảng màu NTSC gốc</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps"><value>Tốc độ cập nhật</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Help"><value>Chọn tốc độ cập nhật bàn điều khiển.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory"><value>Hiển thị mọi bộ nhớ phim</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Help"><value>Gồm toàn bộ bộ bộ nhớ phim trong ảnh đã hiển thị.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value1"><value>Đã bật</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value2"><value>Đã tắt</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs"><value>Hiện nút bấm</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Help"><value>Hiển thị các nút bấm hiện thời.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value1"><value>Đã bật</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value2"><value>Đã tắt</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language"><value>Ngôn ngữ giao diện giả lập</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Help"><value>Chọn ngôn ngữ của giao diện giả lập.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value1"><value>ngôn ngữ Nhật</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value2"><value>PhápName</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value3"><value>Tiếng Anh</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios"><value>Kiểm tra BIOS tổng kiểm tra</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Help"><value>Kiểm tra tổng kiểm tra BIOS khi nạp phần mềm điều khiển.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value1"><value>Đã bật</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value2"><value>Đã tắt</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart"><value>Hiện bảng điều khiển bàn điều khiển khi khởi chạy</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Help"><value>Hiển thị bảng điều khiển bàn phím khi chương trình giả lập bắt đầu.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value0"><value>Tự động</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value1"><value>Đã bật</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value2"><value>Đã tắt</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch"><value>Hiện phần chọn lộ trình</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Help"><value>Hiển thị đường dẫn đã chọn khi thay đổi nó.</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value0"><value>Đã tắt</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value1"><value>Đã bật</value></data>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>Tính SUPER CASSETTE VISION - Máy điều khiển.</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>Tính CASSETTE VISION - Máy điều khiển.</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>Bộ nhớ phim</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>Video bàn điều khiển</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>Điều khiển bàn điều khiển</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>Vùng hiển thị</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>Hình điểm ảnh</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>Bảng màu</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>Tần số cập nhật</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>Hiển thị bộ nhớ phim đầy đủ</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>Trạng thái điều khiển hiển thị</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>Kiểm tra BIOS checksum</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>Hiển thị bàn phím khi khởi chạy</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>Hiển thị phần chọn trình đơn</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>Hình chữ nhật</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>Thấp</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>Cao</value></data>
 </root>

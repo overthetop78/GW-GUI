@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Error.StateIncompatible"><value>Epoch-lagringstilstanden er ikke kompatibel med den aktuelle maskinen.</value></data>
-  <data name="Emulation.Epoch.Error.Unexpected"><value>En uventet Epoch- emuleringsfeil oppstod.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>En nødvendig Epoch firmware mangler.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>Systemets ROM er ugyldig eller uforenlig.</value></data>
-  <data name="Emulation.Epoch.Error.ContentNotFound"><value>De konfigurerte Epoch-mediene ble ikke funnet.</value></data>
-  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>Denne maskinen støtter ikke det valgte mediet.</value></data>
-  <data name="Emulation.Epoch.Error.OptionInvalid"><value>Et Epoch-alternativ har en ugyldig verdi.</value></data>
-  <data name="Emulation.Epoch.Error.CoreNotFound"><value>Den nødvendige Epoch kjernen ble ikke funnet.</value></data>
-  <data name="Emulation.Epoch.Error.CoreRejected"><value>Den valgte Epoch-kjernen kunne ikke lastes.</value></data>
-  <data name="Emulation.Epoch.Error.StateInvalid"><value>Epoch lagret tilstand er ugyldig.</value></data>
-  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>Epoch-vertens kjørbare sti er utilgjengelig.</value></data>
-  <data name="Emulation.Epoch.Error.Details"><value>Detaljer: {0}</value></data>
-  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>Kommunikasjon med Epoch-verten mislyktes.</value></data>
-  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>Ukjent miljøkommando: {0}</value></data>
+  <data name="Emulation.Epoch.Error.StateIncompatible" xml:space="preserve"><value>Epoch-lagringstilstanden er ikke kompatibel med den aktuelle maskinen.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected" xml:space="preserve"><value>En uventet Epoch emuleringsfeil oppstod.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing" xml:space="preserve"><value>En nødvendig Epoch-fastvare mangler.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid" xml:space="preserve"><value>Systemet ROM er ugyldig eller inkompatibel.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound" xml:space="preserve"><value>De konfigurerte Epoch-mediene ble ikke funnet.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported" xml:space="preserve"><value>Denne maskinen støtter ikke de valgte mediene.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid" xml:space="preserve"><value>Et Epoch-alternativ har en ugyldig verdi.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound" xml:space="preserve"><value>Den nødvendige Epoch kjernen ble ikke funnet.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected" xml:space="preserve"><value>Den valgte Epoch-kjernen kunne ikke lastes.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid" xml:space="preserve"><value>Epoch- lagret tilstand er ugyldig.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing" xml:space="preserve"><value>Emulatorprogrammets vei er utilgjengelig.</value></data>
+  <data name="Emulation.Epoch.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure" xml:space="preserve"><value>Kommunikasjon med Epoch-verten mislyktes.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Ukjend miljøkommando: {0}</value></data>
 </root>

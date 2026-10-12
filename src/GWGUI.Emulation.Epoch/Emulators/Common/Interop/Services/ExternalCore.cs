@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions;
 using System.IO;
 using System.Security.Cryptography;
 using ConsoleOptions = GWGUI.Emulation.Epoch.Emulators.EmuSCV.Constants.OptionConstants;

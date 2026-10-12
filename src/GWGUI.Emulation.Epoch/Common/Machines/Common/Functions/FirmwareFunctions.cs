@@ -5,9 +5,9 @@ namespace GWGUI.Emulation.Epoch.Common.Machines.Common.Functions;
 
 internal static class FirmwareFunctions
 {
-    internal static string Field(FirmwareCategory role) => MediaRuntimeConstants.ConsoleFirmwareFieldPrefix + role;
+    internal static string Field(FirmwareCategory role) => FirmwareConstants.ConsoleFirmwareFieldPrefix + role;
     internal static bool IsField(string field) => field == Field(FirmwareCategory.Console);
-    internal static IReadOnlyList<FirmwareCategory> Roles(MachineModel model) => ConfigurationFunctions.DefaultEmulator(model) == Emulator.EmuSCV ? [FirmwareCategory.Console] : [];
+    internal static IReadOnlyList<FirmwareCategory> Roles(MachineModel model) => model is MachineModel.SuperCassetteVision or MachineModel.SuperCassetteVisionYeno or MachineModel.SuperCassetteVisionLady ? [FirmwareCategory.Console] : [];
 
     internal static IReadOnlyList<FirmwareConfiguration> Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
@@ -28,11 +28,11 @@ internal static class FirmwareFunctions
         string? hash = null;
         try
         {
-            if (Roles(model).Count > 0 && new FileInfo(absolute).Length == MediaRuntimeConstants.ConsoleFirmwareBytes)
+            if (Roles(model).Count > 0 && new FileInfo(absolute).Length == FirmwareConstants.ConsoleFirmwareBytes)
             {
                 var bytes = await File.ReadAllBytesAsync(absolute, cancellationToken).ConfigureAwait(false);
                 hash = Convert.ToHexString(SHA256.HashData(bytes));
-                compatibility = Convert.ToHexString(MD5.HashData(bytes)).Equals(MediaRuntimeConstants.ConsoleFirmwareMd5, StringComparison.OrdinalIgnoreCase) ? EmulationFirmwareCompatibility.Compatible : EmulationFirmwareCompatibility.PartiallyCompatible;
+                compatibility = Convert.ToHexString(MD5.HashData(bytes)).Equals(FirmwareConstants.ConsoleFirmwareMd5, StringComparison.OrdinalIgnoreCase) ? EmulationFirmwareCompatibility.Compatible : EmulationFirmwareCompatibility.PartiallyCompatible;
             }
         }
         catch (IOException) { }

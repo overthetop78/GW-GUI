@@ -4,62 +4,21 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.emuscv.Description"><value>Emulálja a Super Cassette Vision konzolokat.</value></data>
-  <data name="Emulation.Emulator.pd777.Description"><value>Emulálja a Cassette Vision konzolokat.</value></data>
-  <data name="Emulation.Epoch.Memory.Display"><value>Videómemória</value></data>
-  <data name="Emulation.Epoch.Video.Native"><value>Konzol videó</value></data>
-  <data name="Emulation.Epoch.Controls.Native"><value>Konzolok kezelőszerve</value></data>
-  <data name="Emulation.Epoch.Firmware.ScvConsole"><value>Super Cassette Vision BIOS</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display"><value>Megjelenítési terület</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Help"><value>Válassza ki a konzol által használt kijelzőterületet.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Value0"><value>Automatikus</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect"><value>Pixel alakú</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Help"><value>Válassza ki a téglalap vagy négyzetes pixelt.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value0"><value>Automatikus</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value1"><value>Négyszögletes pixelek</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value2"><value>Négyzetes pixelek</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution"><value>Kimeneti felbontás</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Help"><value>Válassza ki az emulátor által generált felbontást.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value0"><value>Automatikus</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value1"><value>Alacsony</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value2"><value>Közepes</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value3"><value>Magas</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette"><value>Színpaletta</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Help"><value>Válassza ki a konzol színpaletta.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value0"><value>Automatikus</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value1"><value>Szabványos paletta</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value2"><value>Eredeti NTSC paletta</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps"><value>Frissítési árfolyam</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Help"><value>Válassza ki a konzol frissítési sebességét.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Value0"><value>Automatikus</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory"><value>Az összes videomemória megjelenítése</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Help"><value>A megjelenített képben szerepeljen a teljes videó memória.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value0"><value>Automatikus</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value1"><value>Engedélyezett</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value2"><value>Letiltva</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs"><value>Nyomott gombok megjelenítése</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Help"><value>Megjeleníti a jelenleg nyomott gombokat.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value0"><value>Automatikus</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value1"><value>Engedélyezett</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value2"><value>Letiltva</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language"><value>Emulátor interfész nyelve</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Help"><value>Válassza ki az emulátor felület nyelvét.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value0"><value>Automatikus</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value1"><value>Japán nyelv</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value2"><value>Francia</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value3"><value>Angol nyelv</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios"><value>A BIOS ellenőrző összeg ellenőrzése</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Help"><value>A konzol firmware betöltésekor ellenőrizze a BIOS ellenőrző összeget.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value0"><value>Automatikus</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value1"><value>Engedélyezett</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value2"><value>Letiltva</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart"><value>A konzol billentyűzetének megjelenítése indításkor</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Help"><value>Az emulátor elkezdésekor jelenítse meg a konzol billentyűzetét.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value0"><value>Automatikus</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value1"><value>Engedélyezett</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value2"><value>Letiltva</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch"><value>A pályaválasztás megjelenítése</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Help"><value>Megjeleníti a kijelölt útvonalat, amikor megváltoztatja azt.</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value0"><value>Letiltva</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value1"><value>Engedélyezett</value></data>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>Emulátok SUPER CASSETTE VISION - A konzolok.</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>Emulátok CASSETTE VISION - A konzolok.</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>Videómemória</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>Konzol videó</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>Konzolok kezelőszerve</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>A kijelző területe</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>Pixel alakú</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>Színpaletta</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>Frissített vámtétel</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>Teljes videómemória megjelenítése</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>A vezérlőállapot megjelenítése</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>Ellenőrzés BIOS ellenőrző összeg</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>A billentyűzet megjelenítése indításkor</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>A kurzus kiválasztása</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>Téglalap alakú</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>Alacsony</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>Magas</value></data>
 </root>

@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Epoch.Emulators.Common.Contracts;
+using GWGUI.Emulation.Epoch.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Epoch.Emulators.Common.Functions;
 using GWGUI.Emulation.Epoch.Common.Interfaces;
 using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Factories;
 

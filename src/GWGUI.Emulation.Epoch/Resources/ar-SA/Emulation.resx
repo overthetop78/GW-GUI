@@ -4,62 +4,21 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.emuscv.Description"><value>Conoles Super Cassette Vision.</value></data>
-  <data name="Emulation.Emulator.pd777.Description"><value>Conoles Cassette Vision.</value></data>
-  <data name="Emulation.Epoch.Memory.Display"><value>ذاكرة الفيديو</value></data>
-  <data name="Emulation.Epoch.Video.Native"><value>فيديو كونسول</value></data>
-  <data name="Emulation.Epoch.Controls.Native"><value>ضوابط Console</value></data>
-  <data name="Emulation.Epoch.Firmware.ScvConsole"><value>Super Cassette Vision BIOS</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display"><value>مجال التصويب</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Help"><value>إختارْ منطقةَ العرضِ مستعملة من قِبل القنصلِ.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_display.Value0"><value>تلقائي</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect"><value>شكل البكسل</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Help"><value>اختيار الترفي أو المزمار المربع.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value0"><value>تلقائي</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value1"><value>أكاذيب متحركة</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_pixelaspect.Value2"><value>بيكسلز ميداني</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution"><value>قرار بشأن النواتج</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Help"><value>اختيار القرار الذي يولده المرشد.</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value0"><value>تلقائي</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value1"><value>منخفض</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value2"><value>متوسطة</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_resolution.Value3"><value>عالية</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette"><value>شاحبة كولور</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Help"><value>إختاري لون النسيان</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value0"><value>تلقائي</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value1"><value>شاحبة قياسية</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_palette.Value2"><value>الشاليت الأصلي NTSC</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps"><value>معدل التجديد</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Help"><value>إختار معدل إعادة تجديد الضمادات</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_fps.Value0"><value>تلقائي</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory"><value>اعرض كل ذاكرة الفيديو</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Help"><value>إدراج كامل ذاكرة الفيديو في الصورة المُعرضة</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value0"><value>تلقائي</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value1"><value>التمكين</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayfullmemory.Value2"><value>معطل</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs"><value>أزرار مضغطة</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Help"><value>اعرضي الأزرار التي تضغط حالياً</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value0"><value>تلقائي</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value1"><value>التمكين</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_displayinputs.Value2"><value>معطل</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language"><value>لغة الوصل بينية</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Help"><value>إختار لغة الواجهة الإبتدائية</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value0"><value>تلقائي</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value1"><value>اللغة اليابانية</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value2"><value>الفرنسية</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_language.Value3"><value>اللغة الإنكليزية</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios"><value>التصديق على BIOS شيكوم</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Help"><value>تحقق من مبلغ BIOS عند تحميل البرمجيات العقارية</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value0"><value>تلقائي</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value1"><value>التمكين</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_checkbios.Value2"><value>معطل</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart"><value>مُفتاح عرض (بول) في البداية</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Help"><value>اعرض لوحة المفاتيح عندما يبدأ المرشد</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value0"><value>تلقائي</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value1"><value>التمكين</value></data>
-  <data name="Emulation.Epoch.Option.emuscv_keyboardatstart.Value2"><value>معطل</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch"><value>اختيار مسارات العرض</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Help"><value>اعرض المسار المختار عند تغييره</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value0"><value>معطل</value></data>
-  <data name="Emulation.Epoch.Option.pd777_announce_course_switch.Value1"><value>التمكين</value></data>
+  <data name="Emulation.Emulator.emuscv.Description" xml:space="preserve"><value>المواد SUPER CASSETTE VISION -أقنعة</value></data>
+  <data name="Emulation.Emulator.pd777.Description" xml:space="preserve"><value>المواد CASSETTE VISION -أقنعة</value></data>
+  <data name="Emulation.Epoch.Memory.Display" xml:space="preserve"><value>ذكرى فيديو</value></data>
+  <data name="Emulation.Epoch.Video.Native" xml:space="preserve"><value>شريط فيديو كونسول</value></data>
+  <data name="Emulation.Epoch.Controls.Native" xml:space="preserve"><value>ضوابط Console</value></data>
+  <data name="Emulation.Epoch.Setting.DisplayArea" xml:space="preserve"><value>مجال التصويب</value></data>
+  <data name="Emulation.Epoch.Setting.PixelAspect" xml:space="preserve"><value>شكل بيكسيل</value></data>
+  <data name="Emulation.Epoch.Setting.ColorPalette" xml:space="preserve"><value>شاحبة اللون</value></data>
+  <data name="Emulation.Epoch.Setting.RefreshRate" xml:space="preserve"><value>معدل التجديد</value></data>
+  <data name="Emulation.Epoch.Setting.ShowVideoMemory" xml:space="preserve"><value>?"? ?"?</value></data>
+  <data name="Emulation.Epoch.Setting.ShowInputs" xml:space="preserve"><value>جهاز التحكم بالتصرفات</value></data>
+  <data name="Emulation.Epoch.Setting.ValidateFirmware" xml:space="preserve"><value>التصديق BIOS شيك</value></data>
+  <data name="Emulation.Epoch.Setting.ShowKeypadAtStart" xml:space="preserve"><value>اعرض لوحة المفاتيح في البداية</value></data>
+  <data name="Emulation.Epoch.Setting.AnnounceCourseSwitch" xml:space="preserve"><value>اختيار مسارات الشرح</value></data>
+  <data name="Emulation.Epoch.Value.Rectangular" xml:space="preserve"><value>Rectangular</value></data>
+  <data name="Emulation.Epoch.Value.Low" xml:space="preserve"><value>منخفض</value></data>
+  <data name="Emulation.Epoch.Value.High" xml:space="preserve"><value>عالية</value></data>
 </root>

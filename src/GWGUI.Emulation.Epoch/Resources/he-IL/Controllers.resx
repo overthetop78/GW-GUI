@@ -4,28 +4,26 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Input.FireLeft"><value>כפתור אש שמאל</value></data>
-  <data name="Emulation.Epoch.Input.FireRight"><value>כפתור אש</value></data>
-  <data name="Emulation.Epoch.Input.Enter"><value>אישור</value></data>
-  <data name="Emulation.Epoch.Input.Clear"><value>המונחים Clear</value></data>
-  <data name="Emulation.Epoch.Input.Power"><value>כפתור Power</value></data>
-  <data name="Emulation.Epoch.Input.Reset"><value>איפוס כפתור</value></data>
-  <data name="Emulation.Epoch.Input.LeverLeft"><value>Moving the lever to the left</value></data>
-  <data name="Emulation.Epoch.Input.LeverRight"><value>Moving the lever to the right</value></data>
-  <data name="Emulation.Epoch.Input.CourseIncrease"><value>Select the Next Game Course</value></data>
-  <data name="Emulation.Epoch.Input.CourseDecrease"><value>בחר את קורס המשחק הקודם</value></data>
-  <data name="Emulation.Epoch.Input.GunFire"><value>אקדחים קלים</value></data>
-  <data name="Emulation.Epoch.Input.GunReload"><value>אקדחים קלים</value></data>
-  <data name="Emulation.Epoch.Input.GunXDecrease"><value>Aim to the left with the light gun</value></data>
-  <data name="Emulation.Epoch.Input.GunXIncrease"><value>Aim to the right with the light gun</value></data>
-  <data name="Emulation.Epoch.Input.GunYDecrease"><value>עקבו אחרי The Light Gun</value></data>
-  <data name="Emulation.Epoch.Input.GunYIncrease"><value>Aim Downs with the Light Gun</value></data>
-  <data name="Emulation.Epoch.Input.Paddle1Decrease"><value>פאדל 1: הפוך נגד השעון</value></data>
-  <data name="Emulation.Epoch.Input.Paddle1Increase"><value>פאדל 1: הפוך שעון חכם</value></data>
-  <data name="Emulation.Epoch.Input.Paddle2Decrease"><value>פאדל 2: הפוך נגד השעון</value></data>
-  <data name="Emulation.Epoch.Input.Paddle2Increase"><value>פאדל 2: הפוך שעון חכם</value></data>
-  <data name="Emulation.Epoch.Input.Paddle3Decrease"><value>פאדל 3: הפוך נגד השעון</value></data>
-  <data name="Emulation.Epoch.Input.Paddle3Increase"><value>פאדל 3: הפוך שעון חכם</value></data>
-  <data name="Emulation.Epoch.Input.Paddle4Decrease"><value>פאדל 4: הפוך נגד השעון</value></data>
-  <data name="Emulation.Epoch.Input.Paddle4Increase"><value>פאדל 4: הפוך שעון חכם</value></data>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>כפתור צד שמאל</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>כפתור צד</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>כפתור Power</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>איפוס כפתור</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>הזיזו את המנוף לשמאל</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>הזיזו את המנוף ימינה</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>בחר את המשחק הבא</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>בחר את המשחק הקודם</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>אקדחים קלים</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>אקדחים קלים</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>פאדל: הפוך את הדלפק</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>פאדל: להפוך את השעון חכם</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>פאדל 2: הפוך את הדלפק</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>פאדל 2: הפוך השעון</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>פאדל 3: הפוך את הדלפק</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>פאדל 3: הפוך שעון חכם</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>פאדל 4: הפוך את הדלפק</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>פאדל 4: הפוך שעון חכם</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>« « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « «</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>תמניח את האקדח נכון.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>תענישו את האקדח למעלה.</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>תענישו את האקדח מטה.</value></data>
 </root>

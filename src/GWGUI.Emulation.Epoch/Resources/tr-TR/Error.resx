@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Error.StateIncompatible"><value>Epoch kurtarılmış devlet mevcut makine ile uyumlu değildir.</value></data>
-  <data name="Emulation.Epoch.Error.Unexpected"><value>Beklenmeyen bir Epoch emulation hatası meydana geldi.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>Gerekli bir Epoch adaptörü eksik.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>Sistem ROM geçersiz veya uyumsuzdur.</value></data>
-  <data name="Emulation.Epoch.Error.ContentNotFound"><value>yapılandırılmış Epoch medyası bulunamadı.</value></data>
-  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>Bu makine seçilmiş medyayı desteklemiyor.</value></data>
-  <data name="Emulation.Epoch.Error.OptionInvalid"><value>Epoch seçeneğinin geçersiz bir değeri vardır.</value></data>
-  <data name="Emulation.Epoch.Error.CoreNotFound"><value>Gerekli Epoch çekirdeği bulunamadı.</value></data>
-  <data name="Emulation.Epoch.Error.CoreRejected"><value>Seçilen Epoch çekirdeği yüklenemezdi.</value></data>
-  <data name="Emulation.Epoch.Error.StateInvalid"><value>Epoch kurtarılmış devlet geçersizdir.</value></data>
-  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>Epoch host executable yolu mevcut değildir.</value></data>
-  <data name="Emulation.Epoch.Error.Details"><value>Detaylar: {0}</value></data>
-  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>Epoch ev sahibi ile iletişim başarısız oldu.</value></data>
-  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>Bilinmeyen çevre komutları: {0}</value></data>
+  <data name="Emulation.Epoch.Error.StateIncompatible" xml:space="preserve"><value>Epoch kurtarılmış devlet mevcut makine ile uyumlu değildir.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected" xml:space="preserve"><value>Beklenmeyen bir Epoch emulation hatası meydana geldi.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing" xml:space="preserve"><value>Gerekli bir Epoch adaptörü eksik.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid" xml:space="preserve"><value>Sistem sistemi ROM geçersiz veya uyumlu.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound" xml:space="preserve"><value>yapılandırılmış Epoch medyası bulunamadı.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported" xml:space="preserve"><value>Bu makine seçilmiş medyayı desteklemiyor.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid" xml:space="preserve"><value>Epoch seçeneğinin geçersiz bir değeri vardır.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound" xml:space="preserve"><value>Gerekli Epoch çekirdeği bulunamadı.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected" xml:space="preserve"><value>Seçilen Epoch çekirdeği yüklenemezdi.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid" xml:space="preserve"><value>Epoch kurtarılmış devlet geçersizdir.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing" xml:space="preserve"><value>Simülasyon programı yolu mevcut değildir.</value></data>
+  <data name="Emulation.Epoch.Error.Details" xml:space="preserve"><value>Detaylar: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure" xml:space="preserve"><value>Epoch ev sahibi olan iletişim başarısız oldu.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Bilinmeyen çevre komutu: {0}</value></data>
 </root>

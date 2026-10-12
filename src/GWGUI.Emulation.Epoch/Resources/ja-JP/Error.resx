@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Error.StateIncompatible"><value>Epoch 保存状態は、現在のマシンと互換性がありません。</value></data>
-  <data name="Emulation.Epoch.Error.Unexpected"><value>予期しないEpochエミュレーションエラーが発生しました。</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>必要なEpochファームウェアが不足しています。</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>システム ROM は無効または非互換です。</value></data>
-  <data name="Emulation.Epoch.Error.ContentNotFound"><value>設定されたEpochメディアが見つかりませんでした。</value></data>
-  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>選択したメディアに対応していません。</value></data>
-  <data name="Emulation.Epoch.Error.OptionInvalid"><value>Epoch オプションには無効な値があります。</value></data>
-  <data name="Emulation.Epoch.Error.CoreNotFound"><value>必須のEpochコアが見つかりませんでした。</value></data>
-  <data name="Emulation.Epoch.Error.CoreRejected"><value>選択したEpochコアがロードできませんでした。</value></data>
-  <data name="Emulation.Epoch.Error.StateInvalid"><value>Epoch保存状態が無効です。</value></data>
-  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>Epoch ホスト実行可能なパスは利用できません。</value></data>
-  <data name="Emulation.Epoch.Error.Details"><value>詳細情報: {0}</value></data>
-  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>Epoch ホストとの通信が失敗しました。</value></data>
-  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>不明な環境コマンド: {0}</value></data>
+  <data name="Emulation.Epoch.Error.StateIncompatible" xml:space="preserve"><value>Epoch 保存状態は、現在のマシンと互換性がありません。</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected" xml:space="preserve"><value>予期しないエポックエミュレーションエラーが発生しました。</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing" xml:space="preserve"><value>必要なEpochファームウェアが不足しています。</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid" xml:space="preserve"><value>システム ROM 無効または非互換です。</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound" xml:space="preserve"><value>設定されたEpochメディアが見つかりませんでした。</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported" xml:space="preserve"><value>選択したメディアに対応していません。</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid" xml:space="preserve"><value>Epoch オプションには、無効な値があります。</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound" xml:space="preserve"><value>必須のEpochコアが見つかりませんでした。</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected" xml:space="preserve"><value>選択したEpochコアは読み込まれません。</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid" xml:space="preserve"><value>保存状態が無効です。</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing" xml:space="preserve"><value>エミュレータプログラムパスは利用できません。</value></data>
+  <data name="Emulation.Epoch.Error.Details" xml:space="preserve"><value>詳細情報: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure" xml:space="preserve"><value>Epoch ホストとの通信が失敗しました。</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知の環境コマンド: {0}</value></data>
 </root>

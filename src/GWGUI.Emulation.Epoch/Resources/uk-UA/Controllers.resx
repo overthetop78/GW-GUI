@@ -4,28 +4,26 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Input.FireLeft"><value>Кнопка лівого вогню</value></data>
-  <data name="Emulation.Epoch.Input.FireRight"><value>Клацніть правою кнопкою вогню</value></data>
-  <data name="Emulation.Epoch.Input.Enter"><value>Підтвердити</value></data>
-  <data name="Emulation.Epoch.Input.Clear"><value>Зареєструватися</value></data>
-  <data name="Emulation.Epoch.Input.Power"><value>Кнопка живлення</value></data>
-  <data name="Emulation.Epoch.Input.Reset"><value>Відновити кнопку</value></data>
-  <data name="Emulation.Epoch.Input.LeverLeft"><value>Перемістити важіль зліва</value></data>
-  <data name="Emulation.Epoch.Input.LeverRight"><value>Перемістити важіль праворуч</value></data>
-  <data name="Emulation.Epoch.Input.CourseIncrease"><value>Виберіть наступний ігровий курс</value></data>
-  <data name="Emulation.Epoch.Input.CourseDecrease"><value>Виберіть попередній ігровий курс</value></data>
-  <data name="Emulation.Epoch.Input.GunFire"><value>Запуск пістолета світла</value></data>
-  <data name="Emulation.Epoch.Input.GunReload"><value>Перезавантаження пістолета</value></data>
-  <data name="Emulation.Epoch.Input.GunXDecrease"><value>Aim зліва з світловим пістолетом</value></data>
-  <data name="Emulation.Epoch.Input.GunXIncrease"><value>Aim вправо з легкою гарматою</value></data>
-  <data name="Emulation.Epoch.Input.GunYDecrease"><value>Анім вгору з легкою гарматою</value></data>
-  <data name="Emulation.Epoch.Input.GunYIncrease"><value>Aim Downwards з легкою гарматою</value></data>
-  <data name="Emulation.Epoch.Input.Paddle1Decrease"><value>Paddle 1: поворот проти годинникової стрілки</value></data>
-  <data name="Emulation.Epoch.Input.Paddle1Increase"><value>Підсвічник 1: покрокова</value></data>
-  <data name="Emulation.Epoch.Input.Paddle2Decrease"><value>Paddle 2: поворот проти годинникової стрілки</value></data>
-  <data name="Emulation.Epoch.Input.Paddle2Increase"><value>Підсвічник 2: годинниковою стрілкою</value></data>
-  <data name="Emulation.Epoch.Input.Paddle3Decrease"><value>Paddle 3: поворот проти годинникової стрілки</value></data>
-  <data name="Emulation.Epoch.Input.Paddle3Increase"><value>Підсвічник 3: годинниковою стрілкою</value></data>
-  <data name="Emulation.Epoch.Input.Paddle4Decrease"><value>Paddle 4: поворот проти годинникової стрілки</value></data>
-  <data name="Emulation.Epoch.Input.Paddle4Increase"><value>Paddle 4: годинниковою стрілкою</value></data>
+  <data name="Emulation.Epoch.Input.FireLeft" xml:space="preserve"><value>Кнопка лівої сторони</value></data>
+  <data name="Emulation.Epoch.Input.FireRight" xml:space="preserve"><value>Кнопка правої сторони</value></data>
+  <data name="Emulation.Epoch.Input.Power" xml:space="preserve"><value>Кнопка живлення</value></data>
+  <data name="Emulation.Epoch.Input.Reset" xml:space="preserve"><value>Замінити кнопку</value></data>
+  <data name="Emulation.Epoch.Input.LeverLeft" xml:space="preserve"><value>Перемістити важіль зліва</value></data>
+  <data name="Emulation.Epoch.Input.LeverRight" xml:space="preserve"><value>Перемістити важіль вправо</value></data>
+  <data name="Emulation.Epoch.Input.CourseIncrease" xml:space="preserve"><value>Виберіть наступний ігровий курс</value></data>
+  <data name="Emulation.Epoch.Input.CourseDecrease" xml:space="preserve"><value>Виберіть попередній курс гри</value></data>
+  <data name="Emulation.Epoch.Input.GunFire" xml:space="preserve"><value>Теплий пусковий рушій</value></data>
+  <data name="Emulation.Epoch.Input.GunReload" xml:space="preserve"><value>Перевантаження пістолета</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Decrease" xml:space="preserve"><value>1: поворот проти годинникової стрілки</value></data>
+  <data name="Emulation.Epoch.Input.Paddle1Increase" xml:space="preserve"><value>1: годинниковий годинник</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Decrease" xml:space="preserve"><value>Paddle 2: поворот проти годинникової стрілки</value></data>
+  <data name="Emulation.Epoch.Input.Paddle2Increase" xml:space="preserve"><value>Підсвічник 2: годинниковий годинник</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Decrease" xml:space="preserve"><value>Paddle 3: поворот проти годинникової стрілки</value></data>
+  <data name="Emulation.Epoch.Input.Paddle3Increase" xml:space="preserve"><value>3: годинниковий годинник</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Decrease" xml:space="preserve"><value>Paddle 4: поворот проти годинникової стрілки</value></data>
+  <data name="Emulation.Epoch.Input.Paddle4Increase" xml:space="preserve"><value>Paddle 4: годинниковий годинник</value></data>
+  <data name="Emulation.Epoch.Input.GunXDecrease" xml:space="preserve"><value>Анім гармати зліва.</value></data>
+  <data name="Emulation.Epoch.Input.GunXIncrease" xml:space="preserve"><value>Анім пістолет правий.</value></data>
+  <data name="Emulation.Epoch.Input.GunYDecrease" xml:space="preserve"><value>Анім гармати вгору.</value></data>
+  <data name="Emulation.Epoch.Input.GunYIncrease" xml:space="preserve"><value>Анім гармати внизу.</value></data>
 </root>

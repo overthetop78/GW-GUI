@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Epoch.Error.StateIncompatible"><value>Epoch збережений стан несумісний з поточною машиною.</value></data>
-  <data name="Emulation.Epoch.Error.Unexpected"><value>Несподівана Epoch помилка емульсії.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareMissing"><value>Необхідна прошивка Epoch відсутня.</value></data>
-  <data name="Emulation.Epoch.Error.FirmwareInvalid"><value>Система ROM недійсна або несумісна.</value></data>
-  <data name="Emulation.Epoch.Error.ContentNotFound"><value>Не знайдено налаштовуваний Epoch media.</value></data>
-  <data name="Emulation.Epoch.Error.ContentUnsupported"><value>Ця машина не підтримує вибрані медіа.</value></data>
-  <data name="Emulation.Epoch.Error.OptionInvalid"><value>Опція Epoch має недійсне значення.</value></data>
-  <data name="Emulation.Epoch.Error.CoreNotFound"><value>Не знайдено обов’язкове ядро Epoch.</value></data>
-  <data name="Emulation.Epoch.Error.CoreRejected"><value>Вибране ядро Epoch не може бути завантажено.</value></data>
-  <data name="Emulation.Epoch.Error.StateInvalid"><value>Epoch збережений стан недійсним.</value></data>
-  <data name="Emulation.Epoch.Error.HostExecutableMissing"><value>Epoch хост виконуваний шлях є недоступним.</value></data>
-  <data name="Emulation.Epoch.Error.Details"><value>Детальніше: {0}</value></data>
-  <data name="Emulation.Epoch.Error.HostProtocolFailure"><value>Зв'язок з Epoch не вдалося.</value></data>
-  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand"><value>Невідомі команди середовища: {0}</value></data>
+  <data name="Emulation.Epoch.Error.StateIncompatible" xml:space="preserve"><value>Вода, що зберігається, не сумісна з поточною машиною.</value></data>
+  <data name="Emulation.Epoch.Error.Unexpected" xml:space="preserve"><value>Несподівана помилка епоха емульсії.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareMissing" xml:space="preserve"><value>Прошивка Epoch відсутня.</value></data>
+  <data name="Emulation.Epoch.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM недійсний або несумісний.</value></data>
+  <data name="Emulation.Epoch.Error.ContentNotFound" xml:space="preserve"><value>Не знайдено настрочених Epoch media.</value></data>
+  <data name="Emulation.Epoch.Error.ContentUnsupported" xml:space="preserve"><value>Ця машина не підтримує вибрані медіа.</value></data>
+  <data name="Emulation.Epoch.Error.OptionInvalid" xml:space="preserve"><value>Опція Епоха має недійсне значення.</value></data>
+  <data name="Emulation.Epoch.Error.CoreNotFound" xml:space="preserve"><value>Не знайдено обов’язкове ядро Епоха.</value></data>
+  <data name="Emulation.Epoch.Error.CoreRejected" xml:space="preserve"><value>Вибраний ядро Epoch не можна завантажити.</value></data>
+  <data name="Emulation.Epoch.Error.StateInvalid" xml:space="preserve"><value>Недійсний стан епоха.</value></data>
+  <data name="Emulation.Epoch.Error.HostExecutableMissing" xml:space="preserve"><value>Шлях програми емулятора не доступний.</value></data>
+  <data name="Emulation.Epoch.Error.Details" xml:space="preserve"><value>Детальніше: {0}</value></data>
+  <data name="Emulation.Epoch.Error.HostProtocolFailure" xml:space="preserve"><value>Зв'язок з емпочем не вдалося.</value></data>
+  <data name="Emulation.Epoch.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Невідомий командний простір: {0}</value></data>
 </root>

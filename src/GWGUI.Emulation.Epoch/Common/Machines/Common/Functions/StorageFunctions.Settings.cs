@@ -5,9 +5,7 @@ namespace GWGUI.Emulation.Epoch.Common.Machines.Common.Functions;
 internal static class StorageSettingsFunctions
 {
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration) => new(
-        [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge,
-            configuration.Core == Emulator.EmuSCV ? MediaRuntimeConstants.ScvCartridgeExtensions : MediaRuntimeConstants.PdCartridgeExtensions,
-            RequiresMachineRecreation: true, ImageDirectory: configuration.Folders.Cartridges, IsPermanent: true)],
+        new Engine().Adapter(configuration) is IEmulatorStorageSettings storage ? storage.DescribeStorage(configuration) : [],
         configuration.ConfiguredSlots, configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)

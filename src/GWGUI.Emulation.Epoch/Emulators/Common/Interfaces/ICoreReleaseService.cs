@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Epoch.Emulators.Common.Contracts;
 namespace GWGUI.Emulation.Epoch.Emulators.Common.Interfaces;
 
 public interface ICoreReleaseService
