@@ -68,8 +68,7 @@ internal static class CoreHostFunctions
     }
 
     [SupportedOSPlatform(CoreHostFunctionsConstants.Windows)]
-    internal static void WriteResizableSharedFrame(BinaryWriter writer, VideoFrame? frame,
-        SharedVideoWriter video)
+    internal static void WriteResizableSharedFrame(BinaryWriter writer, VideoFrame? frame, SharedVideoWriter video)
     {
         writer.Write(frame is not null);
         if (frame is null) return;
@@ -92,8 +91,7 @@ internal static class CoreHostFunctions
     }
 
     [SupportedOSPlatform(CoreHostFunctionsConstants.Windows)]
-    internal static VideoFrame? ReadResizableSharedFrame(BinaryReader reader,
-        ref MemoryMappedFile? memory, ref MemoryMappedViewAccessor? view, ref string? activeName)
+    internal static VideoFrame? ReadResizableSharedFrame(BinaryReader reader, ref MemoryMappedFile? memory, ref MemoryMappedViewAccessor? view, ref string? activeName)
     {
         if (!reader.ReadBoolean()) return null;
         var mapName = reader.ReadString();

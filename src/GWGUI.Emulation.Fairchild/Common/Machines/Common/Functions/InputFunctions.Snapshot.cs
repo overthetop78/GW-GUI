@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Fairchild.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
 {
-    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration input,
-        MachineModel model, Emulator core)
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model, Emulator core)
     {
         var controllers = new EmulationControllerState[ControllerConstants.PortCount];
         for (var port = ControllerConstants.FirstPort; port < controllers.Length; port++)

@@ -27,9 +27,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private bool _disposed;
     private readonly ExternalCoreVirtualFileSystem _virtualFileSystem;
 
-    internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory,
-        string assetsDirectory,
-        IReadOnlyDictionary<string, string> configuredOptions)
+    internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions)
     {
         if (!Enum.IsDefined(emulator)) throw new ArgumentOutOfRangeException(nameof(emulator));
         Directory.CreateDirectory(systemDirectory);

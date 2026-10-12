@@ -9,8 +9,7 @@ internal static class FirmwareFunctions
     internal static bool IsField(string field) => Enum.GetValues<FirmwareCategory>().Any(role => field == Field(role));
     internal static IReadOnlyList<FirmwareCategory> Roles(MachineModel model) => Enum.IsDefined(model) ? [FirmwareCategory.Bios1, FirmwareCategory.Bios2] : throw new ArgumentOutOfRangeException(nameof(model));
 
-    internal static IReadOnlyList<FirmwareConfiguration> Apply(MachineConfiguration configuration,
-        IReadOnlyDictionary<string, string?> values)
+    internal static IReadOnlyList<FirmwareConfiguration> Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var result = configuration.Firmwares.ToList();
         foreach (var role in Roles(configuration.Model))
@@ -22,8 +21,7 @@ internal static class FirmwareFunctions
         return result;
     }
 
-    internal static async ValueTask<EmulationFirmwareCandidate> ScanFileAsync(string path, MachineModel model,
-        CancellationToken cancellationToken)
+    internal static async ValueTask<EmulationFirmwareCandidate> ScanFileAsync(string path, MachineModel model, CancellationToken cancellationToken)
     {
         var absolute = Path.GetFullPath(path);
         var compatibility = EmulationFirmwareCompatibility.Incompatible;

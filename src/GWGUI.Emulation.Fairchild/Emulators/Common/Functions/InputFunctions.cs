@@ -16,8 +16,7 @@ internal static class InputFunctions
         if (id == InputConstants.JoypadMaskId) return unchecked((short)(controller.Buttons & ushort.MaxValue));
         return id < InputConstants.MaximumJoypadButtonCount && (controller.Buttons & (1u << checked((int)id))) != 0 ? InputConstants.ActiveState : InputConstants.InactiveState;
     }
-    internal static EmulationInputSnapshot Accumulate(EmulationInputSnapshot current,
-        EmulationInputSnapshot update) => new(new HashSet<EmulationKey>(update.Keys), update.Pointer with
+    internal static EmulationInputSnapshot Accumulate(EmulationInputSnapshot current, EmulationInputSnapshot update) => new(new HashSet<EmulationKey>(update.Keys), update.Pointer with
     {
         DeltaX = SaturatingAdd(current.Pointer.DeltaX, update.Pointer.DeltaX),
         DeltaY = SaturatingAdd(current.Pointer.DeltaY, update.Pointer.DeltaY),
