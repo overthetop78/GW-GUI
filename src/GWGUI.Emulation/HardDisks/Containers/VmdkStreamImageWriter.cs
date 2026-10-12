@@ -3,7 +3,6 @@ using System.IO.Compression;
 using System.Text;
 
 namespace GWGUI.Emulation.HardDisks.Containers;
-
 /// <summary>Autonomous streamOptimized VMDK, 64 KiB zlib grains, trailing tables and footer.</summary>
 public static class VmdkStreamImageWriter
 {
@@ -11,14 +10,17 @@ public static class VmdkStreamImageWriter
     private const int GrainBytes = 65536;
     private const int EntriesPerTable = 512;
     private const int DataStartSector = 128;
-
     public static void Validate(long capacity)
     {
         if (capacity < 512 || capacity > MaximumCapacity || capacity % 512 != 0)
             throw new ArgumentOutOfRangeException(nameof(capacity));
     }
 
-    public static void Write(Stream destination, long capacity, Action<Stream>? initialize = null)
+    public static void Write(
+        Stream destination,
+        long capacity,
+        Action<Stream>? initialize = null
+    )
     {
         ContainerValidation.Validate(destination, capacity);
         Validate(capacity);
@@ -57,7 +59,7 @@ public static class VmdkStreamImageWriter
             compressed.CopyTo(destination);
             Pad(destination);
         }
-    
+
         foreach (var(group, table)in groups)
         {
             destination.Write(Marker(4, 1));
@@ -67,7 +69,7 @@ public static class VmdkStreamImageWriter
                 Put32(bytes, index * 4, table[index]);
             destination.Write(bytes);
         }
-    
+
         destination.Write(Marker((ulong)(directory.Length / 512), 2));
         var directorySector = (ulong)(destination.Position / 512);
         destination.Write(directory);
@@ -77,26 +79,48 @@ public static class VmdkStreamImageWriter
         destination.Flush();
     }
 
-    private static byte[] Header(long capacity, ulong directorySector)
+    private static byte[] Header(
+        long capacity,
+        ulong directorySector
+    )
     {
-        var header = new byte[512]; "KDMV"u8.CopyTo(header);
-        Put32(header, 4, 3); Put32(header, 8, 0x30001);
-        Put64(header, 12, (ulong)(capacity / 512)); Put64(header, 20, GrainBytes / 512);
-        Put64(header, 28, 1); Put64(header, 36, 20); Put32(header, 44, EntriesPerTable);
-        Put64(header, 56, directorySector); Put64(header, 64, DataStartSector);
-        header[73] = 10; header[74] = 32; header[75] = 13; header[76] = 10;
+        var header = new byte[512];
+        "KDMV"u8.CopyTo(header);
+        Put32(header, 4, 3);
+        Put32(header, 8, 0x30001);
+        Put64(header, 12, (ulong)(capacity / 512));
+        Put64(header, 20, GrainBytes / 512);
+        Put64(header, 28, 1);
+        Put64(header, 36, 20);
+        Put32(header, 44, EntriesPerTable);
+        Put64(header, 56, directorySector);
+        Put64(header, 64, DataStartSector);
+        header[73] = 10;
+        header[74] = 32;
+        header[75] = 13;
+        header[76] = 10;
         BinaryPrimitives.WriteUInt16LittleEndian(header.AsSpan(77), 1);
         return header;
     }
-    private static byte[] Marker(ulong sectors, uint type)
+
+    private static byte[] Marker(
+        ulong sectors,
+        uint type
+    )
     {
-        var marker = new byte[512]; Put64(marker, 0, sectors); Put32(marker, 12, type); return marker;
+        var marker = new byte[512];
+        Put64(marker, 0, sectors);
+        Put32(marker, 12, type);
+        return marker;
     }
+
     private static void Pad(Stream stream)
     {
         var padding = (int)((512 - stream.Position % 512) % 512);
-        if (padding != 0) stream.Write(new byte[padding]);
+        if (padding != 0)
+            stream.Write(new byte[padding]);
     }
+
     private static void Put32(Span<byte> bytes, int offset, uint value) => BinaryPrimitives.WriteUInt32LittleEndian(bytes[offset..], value);
     private static void Put64(Span<byte> bytes, int offset, ulong value) => BinaryPrimitives.WriteUInt64LittleEndian(bytes[offset..], value);
 }
