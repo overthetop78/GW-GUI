@@ -10,8 +10,7 @@ internal static class StLegacyOptionFunctions
     {
         var result = new Dictionary<string, string>(options, StringComparer.Ordinal);
         if (storage is not null)
-            result[StLegacyOptionConstants.HardDriveWriteProtectionOption] = storage.Configuration.IsReadOnly
-                ? StLegacyOptionConstants.WriteProtectionEnabled : StLegacyOptionConstants.WriteProtectionDisabled;
+            result[StLegacyOptionConstants.HardDriveWriteProtectionOption] = storage.Configuration.IsReadOnly ? StLegacyOptionConstants.WriteProtectionEnabled : StLegacyOptionConstants.WriteProtectionDisabled;
         return result;
     }
     private static readonly IReadOnlyDictionary<string, string> GenericToNative =
@@ -38,31 +37,25 @@ internal static class StLegacyOptionFunctions
 
     internal static IReadOnlyDictionary<string, string> Apply(MachineConfiguration configuration)
     {
-        var showDriveActivity = configuration.Options.GetValueOrDefault(
-            MachineOptionConstants.DriveActivity, MachineOptionFunctionsConstants.False);
+        var showDriveActivity = configuration.Options.GetValueOrDefault(MachineOptionConstants.DriveActivity, MachineOptionFunctionsConstants.False);
         var result = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal)
         {
             [StLegacyOptionConstants.MachineType] = MachineTypeFor(configuration.Model),
             [StLegacyOptionConstants.DisableMouse] = MachineOptionFunctionsConstants.False,
             [StLegacyOptionConstants.StartInMouseMode] = MachineOptionFunctionsConstants.False,
             [StLegacyOptionConstants.DisableKeyboard] = MachineOptionFunctionsConstants.False,
-            [StLegacyOptionConstants.TwoJoysticks] = SecondJoystick(configuration)
-                ? MachineOptionFunctionsConstants.True : MachineOptionFunctionsConstants.False,
+            [StLegacyOptionConstants.TwoJoysticks] = SecondJoystick(configuration) ? MachineOptionFunctionsConstants.True : MachineOptionFunctionsConstants.False,
             [StLegacyOptionConstants.DriveActivity] = showDriveActivity,
-            [StLegacyOptionConstants.InputStatusDisplay] = string.Equals(showDriveActivity,
-                MachineOptionFunctionsConstants.True, StringComparison.OrdinalIgnoreCase)
-                ? MachineOptionFunctionsConstants.Value1 : MachineOptionFunctionsConstants.Value0,
+            [StLegacyOptionConstants.InputStatusDisplay] = string.Equals(showDriveActivity, MachineOptionFunctionsConstants.True, StringComparison.OrdinalIgnoreCase) ? MachineOptionFunctionsConstants.Value1 : MachineOptionFunctionsConstants.Value0,
             [StLegacyOptionConstants.AutoloadConfiguration] = MachineOptionFunctionsConstants.False
         };
         Copy(result, MachineOptionConstants.MainMemory, StLegacyOptionConstants.RamSize, RamValue);
         Copy(result, MachineOptionConstants.Frequency, StLegacyOptionConstants.CpuFrequency, CpuFrequencyValue);
         Copy(result, VideoAudioSettingsConstants.StandardOption, StLegacyOptionConstants.HighResolution,
-            value => string.Equals(value, MachineOptionFunctionsConstants.Monochrome,
-                StringComparison.OrdinalIgnoreCase) ? MachineOptionFunctionsConstants.True : MachineOptionFunctionsConstants.False);
+            value => string.Equals(value, MachineOptionFunctionsConstants.Monochrome, StringComparison.OrdinalIgnoreCase) ? MachineOptionFunctionsConstants.True : MachineOptionFunctionsConstants.False);
         Copy(result, VideoAudioSettingsConstants.StandardOption, StLegacyOptionConstants.RefreshRate, RefreshRateValue);
         Copy(result, MachineOptionConstants.Crop, StLegacyOptionConstants.CropOverscan,
-            value => string.Equals(value, MachineOptionFunctionsConstants.Enabled,
-                StringComparison.OrdinalIgnoreCase) ? MachineOptionFunctionsConstants.True : MachineOptionFunctionsConstants.False);
+            value => string.Equals(value, MachineOptionFunctionsConstants.Enabled, StringComparison.OrdinalIgnoreCase) ? MachineOptionFunctionsConstants.True : MachineOptionFunctionsConstants.False);
         Copy(result, MachineOptionConstants.Frames, StLegacyOptionConstants.FrameSkip, value => value);
         Copy(result, MachineOptionConstants.PointerSpeed, StLegacyOptionConstants.MouseSpeed, MouseSpeedValue);
         ApplyFloppySettings(configuration, result);
@@ -100,8 +93,7 @@ internal static class StLegacyOptionFunctions
         };
     }
 
-    private static string? CpuFrequencyValue(string value) =>
-        value is MachineOptionFunctionsConstants.Value8 or MachineOptionFunctionsConstants.Value16 ? value : null;
+    private static string? CpuFrequencyValue(string value) => value is MachineOptionFunctionsConstants.Value8 or MachineOptionFunctionsConstants.Value16 ? value : null;
 
     private static string RefreshRateValue(string value) => value.ToUpperInvariant() switch
     {
@@ -131,14 +123,11 @@ internal static class StLegacyOptionFunctions
     private static void ApplyFloppySettings(MachineConfiguration configuration,
         IDictionary<string, string> result)
     {
-        var slot = configuration.Media.FirstOrDefault(media => media.Category == MediaCategory.Floppy
-            && media.IsInserted)?.Slot ?? EmulationMediaSlot.Floppy0;
+        var slot = configuration.Media.FirstOrDefault(media => media.Category == MediaCategory.Floppy && media.IsInserted)?.Slot ?? EmulationMediaSlot.Floppy0;
         if (configuration.Options.TryGetValue(MachineOptionConstants.FloppySpeedPrefix + slot, out var speed))
-            result[StLegacyOptionConstants.FastFloppy] = speed == MachineOptionFunctionsConstants.Value100
-                ? MachineOptionFunctionsConstants.False : MachineOptionFunctionsConstants.True;
+            result[StLegacyOptionConstants.FastFloppy] = speed == MachineOptionFunctionsConstants.Value100 ? MachineOptionFunctionsConstants.False : MachineOptionFunctionsConstants.True;
         if (configuration.Options.TryGetValue(MachineOptionConstants.FloppyWriteProtectionPrefix + slot, out var protection)
             && bool.TryParse(protection, out var protectedMedia))
-            result[StLegacyOptionConstants.FloppyWriteProtection] = protectedMedia
-                ? MachineOptionFunctionsConstants.On : MachineOptionFunctionsConstants.Off;
+            result[StLegacyOptionConstants.FloppyWriteProtection] = protectedMedia ? MachineOptionFunctionsConstants.On : MachineOptionFunctionsConstants.Off;
     }
 }

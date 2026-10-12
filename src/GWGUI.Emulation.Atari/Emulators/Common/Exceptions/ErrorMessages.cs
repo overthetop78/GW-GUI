@@ -2,9 +2,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Exceptions;
 
 internal static class ErrorMessages
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(Modules.AtariEmulationModule).Assembly,
-        "GWGUI.Emulation.Atari.Resources.Emulation");
+    private static readonly EmulationModuleLocalization Localization = new(typeof(Modules.AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();
     internal static string RequiredFirmwareMissing => FirmwareMissing();
@@ -51,12 +49,9 @@ internal static class ErrorMessages
     internal static string StateUnavailable => StateInvalidText();
     internal static string StateSaveFailed => StateInvalidText();
     internal static string StateLoadFailed => StateInvalidText();
-    internal static string StateIncompatible =>
-        Text("Emulation.Atari.Error.StateIncompatible");
-    internal static string MachineInvalidState =>
-        Text("Emulation.Atari.Error.Unexpected");
-    internal static string MachineStopped =>
-        Text("Emulation.Atari.Error.Unexpected");
+    internal static string StateIncompatible => Text("Emulation.Atari.Error.StateIncompatible");
+    internal static string MachineInvalidState => Text("Emulation.Atari.Error.Unexpected");
+    internal static string MachineStopped => Text("Emulation.Atari.Error.Unexpected");
 
     private static string FirmwareMissing() => Text("Emulation.Atari.Error.FirmwareMissing");
     private static string FirmwareInvalid() => Text("Emulation.Atari.Error.FirmwareInvalid");
@@ -69,9 +64,6 @@ internal static class ErrorMessages
 
     private static string Text(string resourceKey)
     {
-        return Localization.TryGetString(resourceKey, System.Globalization.CultureInfo.CurrentUICulture,
-            out var value)
-            ? value
-            : resourceKey;
+        return Localization.TryGetString(resourceKey, System.Globalization.CultureInfo.CurrentUICulture, out var value) ? value : resourceKey;
     }
 }

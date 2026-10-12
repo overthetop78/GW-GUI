@@ -7,6 +7,5 @@ internal static class SessionMediaErrors
     internal static string PlaylistEmpty => ContentUnsupported();
     internal static string ExplicitSaveRequired => ContentUnsupported();
 
-    private static string ContentUnsupported() =>
-        ExceptionText.Get("Emulation.Atari.Error.ContentUnsupported");
+    private static string ContentUnsupported() => ExceptionText.Get("Emulation.Atari.Error.ContentUnsupported");
 }

@@ -10,10 +10,8 @@ internal static class EmulatorConstants
     internal const bool SupportsCartridgeRegion = true;
     internal const string CartridgeExtension = "a26";
     internal const string BinaryExtension = "bin";
-    internal static readonly IReadOnlySet<string> CartridgeExtensions =
-        new HashSet<string>([CartridgeExtension, BinaryExtension], StringComparer.OrdinalIgnoreCase);
+    internal static readonly IReadOnlySet<string> CartridgeExtensions = new HashSet<string>([CartridgeExtension, BinaryExtension], StringComparer.OrdinalIgnoreCase);
 
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(
-        Emulator.Stella2014, Id, LibraryName, LibraryFile, SourceUrl, InspectedRevision, MachineModel.Atari2600)
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.Stella2014, Id, LibraryName, LibraryFile, SourceUrl, InspectedRevision, MachineModel.Atari2600)
         with { DescriptionResourceKey = Atari2600ModelConstants.EmulatorDescriptionResourceKey };
 }

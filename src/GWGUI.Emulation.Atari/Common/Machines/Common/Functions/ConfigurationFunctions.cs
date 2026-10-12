@@ -62,8 +62,7 @@ internal static class ConfigurationFunctions
         }
     }
 
-    private static bool IsFirmwareCompatible(MachineModel model, FirmwareCategory category)
-        => CompatibilityFunctions.IsFirmwareCompatible(CompatibilityCatalog.Get(model), category);
+    private static bool IsFirmwareCompatible(MachineModel model, FirmwareCategory category) => CompatibilityFunctions.IsFirmwareCompatible(CompatibilityCatalog.Get(model), category);
 
     private static void ValidateMedia(MachineModel model, IReadOnlyList<MediaConfiguration> media)
     {
@@ -79,8 +78,7 @@ internal static class ConfigurationFunctions
         }
     }
 
-    private static bool IsMediaCompatible(MachineModel model, MediaCategory category, EmulationMediaSlot slot)
-        => CompatibilityFunctions.IsMediaCompatible(CompatibilityCatalog.Get(model), category, slot);
+    private static bool IsMediaCompatible(MachineModel model, MediaCategory category, EmulationMediaSlot slot) => CompatibilityFunctions.IsMediaCompatible(CompatibilityCatalog.Get(model), category, slot);
 
     private static void ValidateInput(MachineModel model, InputConfiguration input)
     {

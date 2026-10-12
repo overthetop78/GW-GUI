@@ -33,8 +33,6 @@ internal static class FirmwareSelectionFunctions
     {
         bool Matches(FirmwareConfiguration item) =>
             string.Equals(FieldId(model, item.Category), fieldId, StringComparison.Ordinal);
-        return firmwares.Where(item => !Matches(item))
-            .Concat(selected is null ? [] : [selected])
-            .ToArray();
+        return firmwares.Where(item => !Matches(item)).Concat(selected is null ? [] : [selected]).ToArray();
     }
 }

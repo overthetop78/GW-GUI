@@ -28,12 +28,9 @@ private void OnVideo(nint data, uint width, uint height, nuint pitch)
         var pixels = _videoBuffers.Rent(length);
         VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));
         if (_emulator is Emulator.Hatari or Emulator.Hatari2014 && !_usesNativeLedInterface)
-            EmulationMediaActivityFunctions.CaptureHatariOverlay(pixels.AsSpan(BufferConstants.FirstBufferIndex, length),
-                checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _ledStates);
+            EmulationMediaActivityFunctions.CaptureHatariOverlay(pixels.AsSpan(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _ledStates);
         else if (_emulator == Emulator.Atari800)
-            EmulationMediaActivityFunctions.CaptureAtari800Overlay(
-                pixels.AsSpan(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height),
-                checked((int)pitch), _pixelFormat, _ledStates);
+            EmulationMediaActivityFunctions.CaptureAtari800Overlay(pixels.AsSpan(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _ledStates);
         LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length),
             checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio,
             ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));
@@ -67,8 +64,7 @@ private void OnVideo(nint data, uint width, uint height, nuint pitch)
         _keyboard.Publish(_input.Polled.Keys, _keyboardEvent);
     }
     private short OnInputState(uint port, uint device, uint index, uint id) => _input.State(port, device, index, id);
-    private void OnSetLedState(int led, int state) =>
-        _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;
+    private void OnSetLedState(int led, int state) => _ledStates[led] = state != ExternalCoreInteropConstants.InactiveState;
     private void OnFileRead(string path, long length)
     {
         if (length > 0 && _emulator == Emulator.VirtualJaguar && _opticalActivityPaths.Contains(path))

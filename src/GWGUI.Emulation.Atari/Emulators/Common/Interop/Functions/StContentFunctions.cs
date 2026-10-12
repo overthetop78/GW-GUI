@@ -7,10 +7,7 @@ internal static class StContentFunctions
     internal static StContent? Prepare(MachineConfiguration configuration,
         string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
-        var media = configuration.Media.Where(item => item.IsInserted)
-            .OrderBy(item => item.MountOrder)
-            .ThenBy(item => item.Path, StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        var media = configuration.Media.Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ThenBy(item => item.Path, StringComparer.OrdinalIgnoreCase).ToArray();
         if (media.Length > StContentConstants.MaximumPrimaryContentCount)
         {
             var hardDisk = media.SingleOrDefault(item => item.Category == MediaCategory.HardDisk);
@@ -25,8 +22,7 @@ internal static class StContentFunctions
         var selected = media[StContentConstants.FirstContentIndex];
         if (selected.Category == MediaCategory.Floppy)
         {
-            var sessionMedia = ScpMediaFunctions.Prepare(configuration, selected, sessionDirectory,
-                supportedExtensions);
+            var sessionMedia = ScpMediaFunctions.Prepare(configuration, selected, sessionDirectory, supportedExtensions);
             return new StContent(selected, sessionMedia.RuntimePath, sessionMedia, null);
         }
         if (selected.Category is MediaCategory.HardDisk or MediaCategory.Directory)
@@ -37,6 +33,5 @@ internal static class StContentFunctions
         throw new InvalidDataException(StContentErrors.ContentTypeUnsupported);
     }
 
-    internal static void Cleanup(StContent? content) =>
-        StStorageFunctions.Cleanup(content?.Storage);
+    internal static void Cleanup(StContent? content) => StStorageFunctions.Cleanup(content?.Storage);
 }

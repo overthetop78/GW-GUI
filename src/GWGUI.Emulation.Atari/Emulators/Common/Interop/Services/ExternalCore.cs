@@ -79,8 +79,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             _mediaAdapter.PrepareSystemDirectory(configuration, systemDirectory);
             _library = new ExternalCoreLibrary(_corePath);
             _exports = CoreFunctions.ResolveExports(_library);
-            var configuredOptions = _mediaAdapter.PrepareOptions(
-                _mediaAdapter.GetConfiguredOptions(configuration));
+            var configuredOptions = _mediaAdapter.PrepareOptions(_mediaAdapter.GetConfiguredOptions(configuration));
             _callbacks = new ExternalHostCallbacks(Emulator,
                 systemDirectory,
                 Path.Combine(absoluteSession, CoreDirectoryConstants.ContentDirectoryName),
@@ -97,8 +96,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             media = _preparedContent?.Configuration;
             if (_preparedContent?.ActivityPaths is { } activityPaths)
                 _callbacks.TrackOpticalMedia(activityPaths);
-            var runtimeOptions = _mediaAdapter.PrepareOptions(
-                _preparedContent?.RuntimeOptions ?? configuration.Options);
+            var runtimeOptions = _mediaAdapter.PrepareOptions(_preparedContent?.RuntimeOptions ?? configuration.Options);
             foreach (var option in runtimeOptions)
                 if (!configuration.Options.TryGetValue(option.Key, out var configuredValue)
                     || !string.Equals(configuredValue, option.Value, StringComparison.Ordinal))
@@ -106,13 +104,9 @@ internal sealed partial class ExternalCore : IEmulatorCore
 
             if (media is not null)
             {
-                _content = ContentFunctions.Create(_preparedContent!.RuntimePath,
-                    _preparedContent.NeedsFullPath, _info.Extensions,
-                    Emulator == Emulator.Atari800);
+                _content = ContentFunctions.Create(_preparedContent!.RuntimePath, _preparedContent.NeedsFullPath, _info.Extensions, Emulator == Emulator.Atari800);
             }
-            CoreLifecycleFunctions.Load(_exports, _callbacks, configuration,
-                _content?.GameInfo ?? nint.Zero,
-                () => _mediaAdapter.ConfigureControllers(_exports, _callbacks, configuration));
+            CoreLifecycleFunctions.Load(_exports, _callbacks, configuration, _content?.GameInfo ?? nint.Zero, () => _mediaAdapter.ConfigureControllers(_exports, _callbacks, configuration));
             _gameLoaded = true;
             if (_preparedContent?.BootMedia is { } bootFloppy)
             {
@@ -145,12 +139,10 @@ internal sealed partial class ExternalCore : IEmulatorCore
         RequireExports().Run();
     }
     public void HardReset() => RequireExports().Reset();
-    public void SetInput(EmulationInputSnapshot snapshot) =>
-        RequireCallbacks().Input = _mediaAdapter.PrepareInput(snapshot);
+    public void SetInput(EmulationInputSnapshot snapshot) => RequireCallbacks().Input = _mediaAdapter.PrepareInput(snapshot);
     public void SetControllerPortDevice(int port, PeripheralCategory peripheral)
     {
-        var configuration = _configuration ??
-            throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
+        var configuration = _configuration ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
         _mediaAdapter.ConfigureController(RequireExports(), RequireCallbacks(), configuration, port, peripheral);
     }
     public void SetOption(string key, string value)

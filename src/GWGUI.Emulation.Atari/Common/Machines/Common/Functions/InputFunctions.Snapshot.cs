@@ -13,14 +13,12 @@ internal static class InputSnapshotFunctions
         };
         var withDeadZones = ControllerFunctions.ApplyDeadZones(mappedKeyboard, configuration?.Controllers);
         if (configuration?.Controllers is not { Count: > 0 }) return withDeadZones with { Controllers = [] };
-        var count = Math.Max(withDeadZones.Controllers.Count,
-            configuration.Controllers.Max(binding => binding.Port) + 1);
+        var count = Math.Max(withDeadZones.Controllers.Count, configuration.Controllers.Max(binding => binding.Port) + 1);
         var controllers = Enumerable.Repeat(EmulationControllerState.Empty, count).ToArray();
         foreach (var binding in configuration.Controllers)
         {
             if (binding.Port < 0 || binding.Port >= controllers.Length) continue;
-            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId,
-                withDeadZones.Controllers, binding.Port);
+            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, withDeadZones.Controllers, binding.Port);
             if (binding.Mappings is not { Count: > 0 })
             {
                 controllers[binding.Port] = EmulationControllerState.Empty;
@@ -30,10 +28,8 @@ internal static class InputSnapshotFunctions
             foreach (var mapping in binding.Mappings)
             {
                 var target = ResolveButton(model, mapping.Key);
-                var mappingController = ControllerForSource(
-                    mapping.Value, withDeadZones.Controllers, source);
-                if (target >= 0 && IsPressed(mapping.Value, mappingController,
-                        withDeadZones.Keys, withDeadZones.Pointer))
+                var mappingController = ControllerForSource(mapping.Value, withDeadZones.Controllers, source);
+                if (target >= 0 && IsPressed(mapping.Value, mappingController, withDeadZones.Keys, withDeadZones.Pointer))
                     buttons |= 1u << target;
             }
             controllers[binding.Port] = source with { Buttons = buttons };
@@ -44,12 +40,10 @@ internal static class InputSnapshotFunctions
     private static bool IsPressed(string sourceName, EmulationControllerState controller,
         IReadOnlySet<EmulationKey> keys, EmulationPointerState pointer)
     {
-        if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Keyboard,
-                out var keyboardSource)
+        if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Keyboard, out var keyboardSource)
             && Enum.TryParse<EmulationKey>(keyboardSource, true, out var key))
             return keys.Contains(key);
-        if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Mouse,
-                out var mouseSource))
+        if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Mouse, out var mouseSource))
             return PhysicalMouse(pointer).GetValueOrDefault(mouseSource);
         return EmulationInputMappingFunctions.IsControllerSourcePressed(sourceName, controller);
     }
@@ -84,9 +78,7 @@ internal static class InputSnapshotFunctions
         EmulationControllerState fallback)
     {
         var deviceId = EmulationInputMappingFunctions.ParseControllerDeviceId(source);
-        return deviceId is null ? fallback : controllers.FirstOrDefault(controller =>
-            string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase))
-            ?? fallback;
+        return deviceId is null ? fallback : controllers.FirstOrDefault(controller => string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase)) ?? fallback;
     }
 
     private static int ResolveButton(MachineModel model, string action)

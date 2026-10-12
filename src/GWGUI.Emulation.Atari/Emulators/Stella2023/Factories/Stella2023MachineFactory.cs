@@ -8,6 +8,5 @@ internal sealed class Stella2023MachineFactory() : MachineFactory(EmulatorConsta
     internal override IReadOnlySet<string> CartridgeExtensions => EmulatorConstants.CartridgeExtensions;
     internal override bool SupportsCartridgeRegion => EmulatorConstants.SupportsCartridgeRegion;
 
-    public override IReadOnlyDictionary<string, string> PrepareOptions(
-        IReadOnlyDictionary<string, string> options) => Stella2023OptionFunctions.ToNative(options);
+    public override IReadOnlyDictionary<string, string> PrepareOptions(IReadOnlyDictionary<string, string> options) => Stella2023OptionFunctions.ToNative(options);
 }

@@ -15,9 +15,7 @@ internal sealed class CassetteInputController
 
     internal CassetteInputController(MachineConfiguration configuration)
     {
-        _automaticReturnFrames = CassetteBootFunctions.RequiresDelayedReturn(configuration)
-            ? AutomaticReturnDelayFrames
-            : -1;
+        _automaticReturnFrames = CassetteBootFunctions.RequiresDelayedReturn(configuration) ? AutomaticReturnDelayFrames : -1;
     }
 
     internal void SetPhysicalInput(EmulationInputSnapshot snapshot)

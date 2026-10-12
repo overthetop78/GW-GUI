@@ -10,8 +10,6 @@ internal static class EmulatorConstants
     internal const string CartridgeExtension = "a52";
     internal const string BinaryExtension = "bin";
     internal const bool SupportsCartridgeRegion = false;
-    internal static readonly IReadOnlySet<string> CartridgeExtensions =
-        new HashSet<string>([CartridgeExtension, BinaryExtension], StringComparer.OrdinalIgnoreCase);
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(
-        Emulator.A5200, Id, LibraryName, LibraryFile, SourceUrl, InspectedRevision, MachineModel.Atari5200);
+    internal static readonly IReadOnlySet<string> CartridgeExtensions = new HashSet<string>([CartridgeExtension, BinaryExtension], StringComparer.OrdinalIgnoreCase);
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.A5200, Id, LibraryName, LibraryFile, SourceUrl, InspectedRevision, MachineModel.Atari5200);
 }

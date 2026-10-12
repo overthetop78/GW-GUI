@@ -16,16 +16,14 @@ internal static partial class SettingsDescriptionFunctions
             .Select(value => new EmulationSettingsChoice(value.ToString(), string.Empty, $"{value} %", value));
         blocks.Add(Block(SettingsDescriptionFunctionsConstants.Mouse, EmulationMachineTab.Mouse, SettingsDescriptionFunctionsConstants.ResourceTabMouse, SettingsDescriptionFunctionsConstants.Value, 1,
             Select(MouseSettingsConstants.SpeedOptionKey, EmulationMachineTab.Mouse, SettingsDescriptionFunctionsConstants.Mouse,
-                SettingsDescriptionFunctionsConstants.ResourceMouseSpeed, Value(configuration, MouseSettingsConstants.SpeedOptionKey,
-                    MouseSettingsConstants.DefaultSpeedPercent.ToString()), choices)));
+                SettingsDescriptionFunctionsConstants.ResourceMouseSpeed, Value(configuration, MouseSettingsConstants.SpeedOptionKey, MouseSettingsConstants.DefaultSpeedPercent.ToString()), choices)));
     }
 
     private static void AddGeneralFolders(MachineConfiguration configuration,
         CompatibilityDefinition compatibility, ICollection<EmulationSettingsBlock> blocks)
     {
         var supportsHardDisk = EightBitSettingsCatalog.SupportsComputerOptions(configuration.Model)
-            || compatibility.Media.Any(rule => rule.Availability == MediaAvailability.Available
-                && rule.Category is MediaCategory.HardDisk or MediaCategory.Directory);
+            || compatibility.Media.Any(rule => rule.Availability == MediaAvailability.Available && rule.Category is MediaCategory.HardDisk or MediaCategory.Directory);
         if (!supportsHardDisk) return;
         blocks.Add(Block(SettingsDescriptionFunctionsConstants.DefaultFolders, EmulationMachineTab.General, SettingsDescriptionFunctionsConstants.ResourceFolderDefault, SettingsDescriptionFunctionsConstants.Value2, 1,
             new EmulationSettingsField(SettingsConstants.HardDiskFolder, EmulationMachineTab.General,
@@ -59,13 +57,11 @@ internal static partial class SettingsDescriptionFunctions
                     model.CpuFrequenciesMhz.Select(HardwareSettingsFunctions.FrequencyMhz))),
             Block(SettingsDescriptionFunctionsConstants.MainMemory, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.ResourceMemoryMain, SettingsDescriptionFunctionsConstants.Value4, 2,
                 Select(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.MainMemory, SettingsDescriptionFunctionsConstants.ResourceMemoryMain,
-                    Value(configuration, SettingsConstants.MainMemory,
-                        ((long)model.DefaultMainMemoryKib * HardwareSettingsConstants.BytesPerKibibyte).ToString()),
+                    Value(configuration, SettingsConstants.MainMemory, ((long)model.DefaultMainMemoryKib * HardwareSettingsConstants.BytesPerKibibyte).ToString()),
                     model.MainMemoryKib.Select(HardwareSettingsFunctions.MemoryKib))),
             Block(SettingsDescriptionFunctionsConstants.ExtensionMemory, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.ResourceMemoryExtensions, SettingsDescriptionFunctionsConstants.Value4, 1,
                 Select(SettingsConstants.AlternateMemory, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.ExtensionMemory, SettingsDescriptionFunctionsConstants.ResourceMemoryExtensions,
-                    Value(configuration, SettingsConstants.AlternateMemory,
-                        ((long)model.DefaultAlternateMemoryMib * HardwareSettingsConstants.BytesPerMebibyte).ToString()),
+                    Value(configuration, SettingsConstants.AlternateMemory, ((long)model.DefaultAlternateMemoryMib * HardwareSettingsConstants.BytesPerMebibyte).ToString()),
                     model.AlternateMemoryMib.Select(HardwareSettingsFunctions.MemoryMib))),
             Block(SettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom, SettingsDescriptionFunctionsConstants.ResourceFirmwareRomSystem, SettingsDescriptionFunctionsConstants.Value5, 1,
                 Path(SettingsConstants.SystemFirmware, EmulationMachineTab.Rom, SettingsDescriptionFunctionsConstants.Firmware,
@@ -80,23 +76,18 @@ internal static partial class SettingsDescriptionFunctions
                     SettingsDescriptionFunctionsConstants.True, SettingsDescriptionFunctionsConstants.False)),
             Block(SettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video, SettingsDescriptionFunctionsConstants.ResourceVideoSettingsDisplay, SettingsDescriptionFunctionsConstants.Value7, 2,
                 Select(VideoAudioSettingsConstants.StandardOption, EmulationMachineTab.Video, SettingsDescriptionFunctionsConstants.Video,
-                    SettingsDescriptionFunctionsConstants.ResourceVideoStandard, Value(configuration, VideoAudioSettingsConstants.StandardOption,
-                        VideoAudioSettingsConstants.Automatic), StStandards(model)),
+                    SettingsDescriptionFunctionsConstants.ResourceVideoStandard, Value(configuration, VideoAudioSettingsConstants.StandardOption, VideoAudioSettingsConstants.Automatic), StStandards(model)),
                 Select(SettingsConstants.Region, EmulationMachineTab.Video, SettingsDescriptionFunctionsConstants.Video, SettingsDescriptionFunctionsConstants.ResourceAtariVideoRegion,
                     Value(configuration, SettingsConstants.Region, model.DefaultRegion.ToString()),
                     model.Regions.Select(HardwareSettingsFunctions.StRegionChoice)),
                 Select(VideoAudioSettingsConstants.ResolutionOption, EmulationMachineTab.Video, SettingsDescriptionFunctionsConstants.Video,
-                    SettingsDescriptionFunctionsConstants.ResourceVideoResolution, Value(configuration, VideoAudioSettingsConstants.ResolutionOption,
-                        VideoAudioSettingsConstants.Automatic), AutomaticAndNative()),
+                    SettingsDescriptionFunctionsConstants.ResourceVideoResolution, Value(configuration, VideoAudioSettingsConstants.ResolutionOption, VideoAudioSettingsConstants.Automatic), AutomaticAndNative()),
                 Select(VideoAudioSettingsConstants.AspectRatioOption, EmulationMachineTab.Video, SettingsDescriptionFunctionsConstants.Video,
-                    SettingsDescriptionFunctionsConstants.ResourceVideoAspectRatio, Value(configuration, VideoAudioSettingsConstants.AspectRatioOption,
-                        VideoAudioSettingsConstants.Automatic), AspectRatios()),
+                    SettingsDescriptionFunctionsConstants.ResourceVideoAspectRatio, Value(configuration, VideoAudioSettingsConstants.AspectRatioOption, VideoAudioSettingsConstants.Automatic), AspectRatios()),
                 Toggle(VideoAudioSettingsConstants.CropOption, EmulationMachineTab.Video, SettingsDescriptionFunctionsConstants.Video,
-                    SettingsDescriptionFunctionsConstants.ResourceVideoCrop, Value(configuration, VideoAudioSettingsConstants.CropOption,
-                        VideoAudioSettingsConstants.Disabled) == VideoAudioSettingsConstants.Enabled),
+                    SettingsDescriptionFunctionsConstants.ResourceVideoCrop, Value(configuration, VideoAudioSettingsConstants.CropOption, VideoAudioSettingsConstants.Disabled) == VideoAudioSettingsConstants.Enabled),
                 Select(VideoAudioSettingsConstants.FrameSkipOption, EmulationMachineTab.Video, SettingsDescriptionFunctionsConstants.Video,
-                    SettingsDescriptionFunctionsConstants.ResourceVideoFrameSkip, Value(configuration, VideoAudioSettingsConstants.FrameSkipOption,
-                        VideoAudioSettingsConstants.MinimumFrameSkip.ToString()), FrameSkips())),
+                    SettingsDescriptionFunctionsConstants.ResourceVideoFrameSkip, Value(configuration, VideoAudioSettingsConstants.FrameSkipOption, VideoAudioSettingsConstants.MinimumFrameSkip.ToString()), FrameSkips())),
             Audio(configuration, true)
         ];
     }

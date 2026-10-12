@@ -5,11 +5,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Exceptions;
 
 internal static class ExceptionText
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari.Resources.Emulation");
+    private static readonly EmulationModuleLocalization Localization = new(typeof(AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari.Resources.Emulation");
 
-    internal static string Get(string resourceKey) =>
-        Localization.TryGetString(resourceKey, CultureInfo.CurrentUICulture, out var value)
-            ? value
-            : resourceKey;
+    internal static string Get(string resourceKey) => Localization.TryGetString(resourceKey, CultureInfo.CurrentUICulture, out var value) ? value : resourceKey;
 }

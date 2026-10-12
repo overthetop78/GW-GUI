@@ -28,8 +28,7 @@ internal static class EmulationMediaActivityFunctions
         [0x00, 0x02, 0x06, 0x0a, 0x0e, 0x02, 0x00]
     ];
 
-    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromRuntimeStatus(
-        RuntimeStatus status) => status.MediaActivity;
+    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromRuntimeStatus(RuntimeStatus status) => status.MediaActivity;
 
     internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(Emulator emulator,
         IReadOnlyDictionary<int, bool> ledStates) => emulator switch
@@ -97,8 +96,7 @@ internal static class EmulationMediaActivityFunctions
                     ledStates[drive] = true;
                     break;
                 }
-        ledStates[4] = MatchesGlyph(pixels, diskVisible ? cassetteWithDiskX : cassetteWithoutDiskX,
-            y, pitch, pixelFormat, Atari800CassetteGlyph);
+        ledStates[4] = MatchesGlyph(pixels, diskVisible ? cassetteWithDiskX : cassetteWithoutDiskX, y, pitch, pixelFormat, Atari800CassetteGlyph);
         return true;
     }
 
@@ -128,9 +126,7 @@ internal static class EmulationMediaActivityFunctions
     private static uint Pixel(ReadOnlySpan<byte> pixels, int x, int y, int pitch, EmulationPixelFormat format)
     {
         var offset = y * pitch + x * (format == EmulationPixelFormat.Xrgb8888 ? 4 : 2);
-        return format == EmulationPixelFormat.Xrgb8888
-            ? (uint)(pixels[offset] | pixels[offset + 1] << 8 | pixels[offset + 2] << 16 | pixels[offset + 3] << 24)
-            : (uint)(pixels[offset] | pixels[offset + 1] << 8);
+        return format == EmulationPixelFormat.Xrgb8888 ? (uint)(pixels[offset] | pixels[offset + 1] << 8 | pixels[offset + 2] << 16 | pixels[offset + 3] << 24) : (uint)(pixels[offset] | pixels[offset + 1] << 8);
     }
 
     private static bool IsActive(ReadOnlySpan<byte> pixels, int centerX, int pitch)

@@ -26,8 +26,7 @@ internal sealed class FrameTimer : IDisposable
     {
         var remaining = target - Stopwatch.GetTimestamp();
         if (remaining <= 0) return;
-        var dueTime = -Math.Max(1L, (long)Math.Ceiling(
-            remaining * 10_000_000d / Stopwatch.Frequency));
+        var dueTime = -Math.Max(1L, (long)Math.Ceiling(remaining * 10_000_000d / Stopwatch.Frequency));
         if (!SetWaitableTimer(_timer.SafeWaitHandle, ref dueTime, 0, nint.Zero, nint.Zero, false))
             throw new Win32Exception(Marshal.GetLastWin32Error());
         if (WaitHandle.WaitAny(_waitHandles) == 1) cancellationToken.ThrowIfCancellationRequested();

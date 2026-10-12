@@ -20,8 +20,7 @@ internal static class TosHeaderReader
         var file = new FileInfo(path);
         if (file.Length > int.MaxValue) return null;
         var bytes = new byte[(int)file.Length];
-        await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read,
-            FirmwareConstants.FileBufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
+        await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read, FirmwareConstants.FileBufferSize, FileOptions.Asynchronous | FileOptions.SequentialScan);
         await stream.ReadExactlyAsync(bytes, cancellationToken).ConfigureAwait(false);
         if (bytes.Length < HeaderLength ||
             bytes[BranchOpcodeOffset] != ExpectedBranchOpcode ||
@@ -30,11 +29,7 @@ internal static class TosHeaderReader
 
         var headerVersion = $"{bytes[VersionMajorOffset]:X}.{bytes[VersionMinorOffset]:X2}";
         var text = System.Text.Encoding.ASCII.GetString(bytes);
-        var variant = text.Contains(TosHeaderReaderConstants.EmuTOS, StringComparison.OrdinalIgnoreCase)
-            ? TosVariant.EmuTos
-            : text.Contains(TosHeaderReaderConstants.KAOS, StringComparison.OrdinalIgnoreCase)
-                ? TosVariant.KaosTos
-                : TosVariant.Atari;
+        var variant = text.Contains(TosHeaderReaderConstants.EmuTOS, StringComparison.OrdinalIgnoreCase) ? TosVariant.EmuTos : text.Contains(TosHeaderReaderConstants.KAOS, StringComparison.OrdinalIgnoreCase) ? TosVariant.KaosTos : TosVariant.Atari;
         var version = variant switch
         {
             TosVariant.EmuTos => FindVersion(text, TosHeaderReaderConstants.EmuTOS, headerVersion),
@@ -45,18 +40,14 @@ internal static class TosHeaderReader
         return new(version, RegionForCountryCode(countryCode), variant, file.Length);
     }
 
-    private static bool IsKnownBranchDisplacement(byte displacement) =>
-        displacement is OriginalTosBranchDisplacement or LaterTosBranchDisplacement;
+    private static bool IsKnownBranchDisplacement(byte displacement) => displacement is OriginalTosBranchDisplacement or LaterTosBranchDisplacement;
 
     private static string FindVersion(string text, string product, string fallback)
     {
-        var productVersion = System.Text.RegularExpressions.Regex.Match(text,
-            System.Text.RegularExpressions.Regex.Escape(product) + TosHeaderReaderConstants.Value09016Version090913,
-            System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+        var productVersion = System.Text.RegularExpressions.Regex.Match(text, System.Text.RegularExpressions.Regex.Escape(product) + TosHeaderReaderConstants.Value09016Version090913, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
         if (productVersion.Success) return productVersion.Groups[TosHeaderReaderConstants.Version].Value;
 
-        var standaloneVersion = System.Text.RegularExpressions.Regex.Match(text,
-            TosHeaderReaderConstants.Value09Version009090209);
+        var standaloneVersion = System.Text.RegularExpressions.Regex.Match(text, TosHeaderReaderConstants.Value09Version009090209);
         return standaloneVersion.Success ? standaloneVersion.Groups[TosHeaderReaderConstants.Version].Value : fallback;
     }
 

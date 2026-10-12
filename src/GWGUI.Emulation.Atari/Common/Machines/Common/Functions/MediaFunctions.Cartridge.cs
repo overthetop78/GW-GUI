@@ -20,9 +20,7 @@ internal static class CartridgeFunctions
                 new Dictionary<string, string>
                 {
                     [ErrorContextConstants.Extension] = extension,
-                    [ErrorContextConstants.SupportedExtensions] = string.Join(
-                        MediaConstants.ExtensionListSeparator,
-                        acceptedExtensions.Order(StringComparer.OrdinalIgnoreCase))
+                    [ErrorContextConstants.SupportedExtensions] = string.Join(MediaConstants.ExtensionListSeparator, acceptedExtensions.Order(StringComparer.OrdinalIgnoreCase))
                 });
 
         var path = ContentFunctions.Validate(media.Path, reportedExtensions);

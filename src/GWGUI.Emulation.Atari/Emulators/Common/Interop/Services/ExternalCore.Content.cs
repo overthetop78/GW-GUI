@@ -8,19 +8,14 @@ internal sealed partial class ExternalCore : IEmulatorCore
 {
 private void ReplaceCartridge(MediaConfiguration media)
     {
-        var configuration = _configuration ??
-            throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
+        var configuration = _configuration ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
         var exports = RequireExports();
-        var cartridgeExtensions = _mediaAdapter.CartridgeExtensions ??
-            throw CartridgeExceptions.UnsupportedCore();
-        var prepared = CartridgeFunctions.Prepare(configuration, media, Emulator, cartridgeExtensions,
-            _info.NeedsFullPath, _info.Extensions);
+        var cartridgeExtensions = _mediaAdapter.CartridgeExtensions ?? throw CartridgeExceptions.UnsupportedCore();
+        var prepared = CartridgeFunctions.Prepare(configuration, media, Emulator, cartridgeExtensions, _info.NeedsFullPath, _info.Extensions);
         CartridgeFunctions.ValidateNoUnsupportedMetadata(media);
-        foreach (var option in _mediaAdapter.PrepareOptions(
-                     CartridgeFunctions.GetMediaOptions(media, _mediaAdapter.SupportsCartridgeRegion)))
+        foreach (var option in _mediaAdapter.PrepareOptions(CartridgeFunctions.GetMediaOptions(media, _mediaAdapter.SupportsCartridgeRegion)))
             RequireCallbacks().SetOption(option.Key, option.Value);
-        var candidate = ContentFunctions.Create(prepared.RuntimePath,
-            prepared.NeedsFullPath, _info.Extensions);
+        var candidate = ContentFunctions.Create(prepared.RuntimePath, prepared.NeedsFullPath, _info.Extensions);
         var previousContent = _content;
         if (_gameLoaded)
         {
@@ -47,13 +42,10 @@ private void ReplaceCartridge(MediaConfiguration media)
 
     private void ReplacePreparedContent(MediaConfiguration media)
     {
-        var configuration = _configuration ??
-            throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
-        var prepared = _mediaAdapter.PrepareContent(configuration, media,
-            _sessionDirectory ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized), _info)
+        var configuration = _configuration ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
+        var prepared = _mediaAdapter.PrepareContent(configuration, media, _sessionDirectory ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized), _info)
             ?? throw new NotSupportedException(ErrorMessages.ContentLoadFailed);
-        var candidate = ContentFunctions.Create(prepared.RuntimePath,
-            prepared.NeedsFullPath, _info.Extensions);
+        var candidate = ContentFunctions.Create(prepared.RuntimePath, prepared.NeedsFullPath, _info.Extensions);
         var exports = RequireExports();
         var previousContent = _content;
         if (_gameLoaded)
@@ -78,19 +70,16 @@ private void ReplaceCartridge(MediaConfiguration media)
         MediaRuntimeFunctions.Register(_mountedMedia, media with { IsInserted = true });
     }
 
-    private ExternalCoreExports RequireExports() => _exports ??
-        throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
+    private ExternalCoreExports RequireExports() => _exports ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
 
-    private ExternalHostCallbacks RequireCallbacks() => _callbacks ??
-        throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
+    private ExternalHostCallbacks RequireCallbacks() => _callbacks ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
 
     private void DisposeNativeResources()
     {
         var exports = _exports;
         var callbacks = _callbacks;
         var library = _library;
-        CoreLifecycleFunctions.Cleanup(exports, _gameLoaded, _nativeInitialized,
-            () => callbacks?.Dispose(), () => library?.Dispose());
+        CoreLifecycleFunctions.Cleanup(exports, _gameLoaded, _nativeInitialized, () => callbacks?.Dispose(), () => library?.Dispose());
         _gameLoaded = false;
         _supportsSaveStates = false;
         _nativeInitialized = false;

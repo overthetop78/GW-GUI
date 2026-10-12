@@ -22,17 +22,14 @@ internal static class ConfigurationSummaryFunctions
         }
 
         if (configuration.Firmwares.Count > 0)
-            details.Add(string.Join(MachineConfigurationConstants.FirmwareSeparator,
-                configuration.Firmwares.Select(Firmware)));
+            details.Add(string.Join(MachineConfigurationConstants.FirmwareSeparator, configuration.Firmwares.Select(Firmware)));
         details.Add($"Core {configuration.Core}");
         return new EmulationConfigurationSummary(model.DisplayResourceKey, details);
     }
 
     private static string Firmware(FirmwareConfiguration firmware)
     {
-        var role = firmware.Category == FirmwareCategory.Tos
-            ? MachineConfigurationConstants.TosLabel
-            : firmware.Category.ToString();
+        var role = firmware.Category == FirmwareCategory.Tos ? MachineConfigurationConstants.TosLabel : firmware.Category.ToString();
         var version = FirmwareVersion(firmware);
         return $"{role} {(version ?? ShortName(firmware.Path))}";
     }
@@ -64,14 +61,9 @@ internal static class ConfigurationSummaryFunctions
     private static string ShortName(string path)
     {
         var name = Path.GetFileNameWithoutExtension(path);
-        return name.Length <= ConfigurationSummaryFunctionsConstants.MaximumShortNameLength
-            ? name
-            : name[..ConfigurationSummaryFunctionsConstants.TruncatedShortNameLength]
-              + ConfigurationSummaryFunctionsConstants.Ellipsis;
+        return name.Length <= ConfigurationSummaryFunctionsConstants.MaximumShortNameLength ? name : name[..ConfigurationSummaryFunctionsConstants.TruncatedShortNameLength] + ConfigurationSummaryFunctionsConstants.Ellipsis;
     }
-    private static long LongOption(IReadOnlyDictionary<string, string> options, string key) =>
-        options.TryGetValue(key, out var value) && long.TryParse(value, NumberStyles.Integer,
-            CultureInfo.InvariantCulture, out var parsed) ? parsed : 0;
+    private static long LongOption(IReadOnlyDictionary<string, string> options, string key) => options.TryGetValue(key, out var value) && long.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : 0;
     private static string FormatMemory(long bytes) => bytes < 1024 * 1024
         ? $"{bytes / 1024d:0.#} KiB"
         : $"{bytes / 1024d / 1024d:0.##} MiB";

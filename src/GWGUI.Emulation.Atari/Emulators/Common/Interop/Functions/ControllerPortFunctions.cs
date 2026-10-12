@@ -9,8 +9,7 @@ internal static class ControllerPortFunctions
         for (var port = ControllerPortConstants.MinimumControllerPort; port < portCount; port++)
         {
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
-            exports.SetControllerPortDevice((uint)port, ResolveDevice(callbacks.ControllerPorts, port,
-                binding?.Peripheral ?? PeripheralCategory.Automatic, configuration.Core));
+            exports.SetControllerPortDevice((uint)port, ResolveDevice(callbacks.ControllerPorts, port, binding?.Peripheral ?? PeripheralCategory.Automatic, configuration.Core));
         }
     }
 
@@ -22,8 +21,7 @@ internal static class ControllerPortFunctions
 
         var devices = port < ports.Count ? ports[port].Devices : [];
         if (core is Emulator.Stella2023 or Emulator.Stella or Emulator.Stella2014 && peripheral is not PeripheralCategory.None)
-            return devices.FirstOrDefault(device =>
-                       device.Description.Contains(ControllerPortFunctionsConstants.Automatic, StringComparison.OrdinalIgnoreCase))?.Id
+            return devices.FirstOrDefault(device => device.Description.Contains(ControllerPortFunctionsConstants.Automatic, StringComparison.OrdinalIgnoreCase))?.Id
                    ?? devices.FirstOrDefault()?.Id
                    ?? CoreLifecycleConstants.DefaultJoypadDevice;
         var name = peripheral switch
@@ -44,8 +42,7 @@ internal static class ControllerPortFunctions
             PeripheralCategory.Joy2BPlus => ControllerDeviceConstants.Joy2B,
             _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
         };
-        var selected = devices.FirstOrDefault(device =>
-            device.Description.Contains(name, StringComparison.OrdinalIgnoreCase));
+        var selected = devices.FirstOrDefault(device => device.Description.Contains(name, StringComparison.OrdinalIgnoreCase));
         if (selected is not null)
             return selected.Id;
         // Several cores expose the physical emulated controller only as a generic
@@ -57,10 +54,8 @@ internal static class ControllerPortFunctions
             or PeripheralCategory.BoosterGrip or PeripheralCategory.GenesisController
             or PeripheralCategory.Joy2BPlus)
             return devices.FirstOrDefault(device =>
-                       device.Description.Contains(CoreLifecycleConstants.JoypadDeviceName,
-                           StringComparison.OrdinalIgnoreCase)
-                       || device.Description.Contains(CoreLifecycleConstants.JoystickDeviceName,
-                           StringComparison.OrdinalIgnoreCase))?.Id
+                       device.Description.Contains(CoreLifecycleConstants.JoypadDeviceName, StringComparison.OrdinalIgnoreCase)
+                       || device.Description.Contains(CoreLifecycleConstants.JoystickDeviceName, StringComparison.OrdinalIgnoreCase))?.Id
                    ?? devices.FirstOrDefault()?.Id
                    ?? CoreLifecycleConstants.DefaultJoypadDevice;
         if (peripheral == PeripheralCategory.Automatic)
@@ -76,7 +71,6 @@ internal static class ControllerPortFunctions
             throw new ArgumentOutOfRangeException(nameof(port), ErrorMessages.InvalidControllerPort);
         if (!ControllerFunctions.Peripherals(configuration.Model).Contains(peripheral))
             throw new InvalidDataException(ErrorMessages.UnsupportedControllerDevice);
-        exports.SetControllerPortDevice(checked((uint)port), ResolveDevice(callbacks.ControllerPorts, port,
-            peripheral, configuration.Core));
+        exports.SetControllerPortDevice(checked((uint)port), ResolveDevice(callbacks.ControllerPorts, port, peripheral, configuration.Core));
     }
 }

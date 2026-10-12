@@ -7,8 +7,7 @@ namespace GWGUI.Emulation.Atari.Emulators.VirtualJaguar.Functions;
 
 internal static class JaguarCdFunctions
 {
-    internal static bool IsSupported(IReadOnlySet<string> reportedExtensions) =>
-        JaguarCdConstants.CompleteDiscExtensions.Any(reportedExtensions.Contains);
+    internal static bool IsSupported(IReadOnlySet<string> reportedExtensions) => JaguarCdConstants.CompleteDiscExtensions.Any(reportedExtensions.Contains);
 
     internal static PreparedJaguarCd Prepare(
         MachineConfiguration machine,
@@ -30,8 +29,7 @@ internal static class JaguarCdFunctions
         var activityPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { Path.GetFullPath(path) };
         if (extension.Equals(JaguarCdConstants.CueExtension, StringComparison.OrdinalIgnoreCase))
             foreach (var track in ValidateCueTracks(path)) activityPaths.Add(track);
-        return new PreparedJaguarCd(media, path,
-            needsFullPath || JaguarCdConstants.RequiresFullPath, activityPaths);
+        return new PreparedJaguarCd(media, path, needsFullPath || JaguarCdConstants.RequiresFullPath, activityPaths);
     }
 
     internal static void RejectForStandardJaguar(
@@ -42,9 +40,7 @@ internal static class JaguarCdFunctions
             throw new ArgumentException(JaguarCdErrors.ModelRequired, nameof(media));
     }
 
-    internal static EmulationException Unsupported(string message) =>
-        new(ErrorCategory.Content, ErrorCode.ContentUnsupported,
-            message);
+    internal static EmulationException Unsupported(string message) => new(ErrorCategory.Content, ErrorCode.ContentUnsupported, message);
 
     private static IReadOnlyList<string> ValidateCueTracks(string cuePath)
     {
@@ -53,8 +49,7 @@ internal static class JaguarCdFunctions
         foreach (var line in File.ReadLines(cuePath))
         {
             var trimmed = line.Trim();
-            if (!trimmed.StartsWith(JaguarCdConstants.CueFileDirective,
-                    StringComparison.OrdinalIgnoreCase)) continue;
+            if (!trimmed.StartsWith(JaguarCdConstants.CueFileDirective, StringComparison.OrdinalIgnoreCase)) continue;
             var firstQuote = trimmed.IndexOf(JaguarCdConstants.CueQuotedPathDelimiter);
             var lastQuote = trimmed.LastIndexOf(JaguarCdConstants.CueQuotedPathDelimiter);
             if (firstQuote == JaguarCdConstants.MissingCueDelimiterIndex || lastQuote <= firstQuote) continue;

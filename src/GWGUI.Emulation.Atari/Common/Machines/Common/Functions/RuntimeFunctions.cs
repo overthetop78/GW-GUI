@@ -12,13 +12,9 @@ internal static class RuntimeFunctions
         _ => null
     };
 
-    internal static int RegionValue(EmulationVideoStandard? region) =>
-        region is null ? RuntimeConstants.MissingRegionValue : (int)region.Value;
+    internal static int RegionValue(EmulationVideoStandard? region) => region is null ? RuntimeConstants.MissingRegionValue : (int)region.Value;
 
-    internal static EmulationVideoStandard? ReadRegion(int value) =>
-        value == RuntimeConstants.MissingRegionValue || value is not ((int)EmulationVideoStandard.Ntsc) and not ((int)EmulationVideoStandard.Pal)
-            ? null
-            : (EmulationVideoStandard)value;
+    internal static EmulationVideoStandard? ReadRegion(int value) => value == RuntimeConstants.MissingRegionValue || value is not ((int)EmulationVideoStandard.Ntsc) and not ((int)EmulationVideoStandard.Pal) ? null : (EmulationVideoStandard)value;
 
     internal static HostProcessState ProcessState(Process? process, bool connectionFailed, bool disposed)
     {
@@ -32,9 +28,7 @@ internal static class RuntimeFunctions
     internal static RuntimeStatus Status(MachineConfiguration configuration, IEmulatorCore core)
     {
         var frame = core.LatestVideoFrame;
-        var geometry = frame is null
-            ? null
-            : new RuntimeGeometry(frame.Width, frame.Height, frame.Pitch, frame.AspectRatio);
+        var geometry = frame is null ? null : new RuntimeGeometry(frame.Width, frame.Height, frame.Pitch, frame.AspectRatio);
         return new RuntimeStatus(configuration.Model, core.Region, core.FramesPerSecond, core.SampleRate,
             geometry, core.CoreName, EmulationMediaActivityFunctions.FromLedStates(configuration.Core, core.LedStates),
             new Dictionary<int, bool>(core.LedStates), core.BufferedAudioFrames, core.AudioOverrunCount,
@@ -64,8 +58,7 @@ internal static class RuntimeOptionFunctions
         EightBitSettingsConstants.PokeyStereoOptionKey
     };
 
-    internal static bool RequiresRestart(Emulator emulator, string key) =>
-        emulator == Emulator.Atari800 && RestartRequired.Contains(key);
+    internal static bool RequiresRestart(Emulator emulator, string key) => emulator == Emulator.Atari800 && RestartRequired.Contains(key);
 }
 
 internal static class MessageFunctions
@@ -73,21 +66,12 @@ internal static class MessageFunctions
     internal static Exception Translate(Exception error, MachineConfiguration configuration)
     {
         if (error is not EmulationException atariError)
-            return EmulationErrorService.Translate(error,
-                EmulationMessageCategory.Machine,
-                EmulationMessageCode.MachineStartFailed,
-                new EmulationMachineMessageContext(configuration.MachineId));
+            return EmulationErrorService.Translate(error, EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, new EmulationMachineMessageContext(configuration.MachineId));
         if (atariError.IsLocalized)
-            return EmulationErrorService.TranslateLocalized(error,
-                Category(atariError.Category),
-                new EmulationMachineMessageContext(configuration.MachineId));
+            return EmulationErrorService.TranslateLocalized(error, Category(atariError.Category), new EmulationMachineMessageContext(configuration.MachineId));
         if (atariError.Code != ErrorCode.ContentRequired)
-            return EmulationErrorService.Translate(error,
-                Category(atariError.Category), MessageCode(atariError.Code),
-                new EmulationMachineMessageContext(configuration.MachineId));
-        var required = CompatibilityCatalog.Get(configuration.Model).Media
-            .Where(rule => rule.Availability == MediaAvailability.Available
-                && rule.Category != MediaCategory.Directory)
+            return EmulationErrorService.Translate(error, Category(atariError.Category), MessageCode(atariError.Code), new EmulationMachineMessageContext(configuration.MachineId));
+        var required = CompatibilityCatalog.Get(configuration.Model).Media.Where(rule => rule.Availability == MediaAvailability.Available && rule.Category != MediaCategory.Directory)
             .Select(rule => rule.Category switch
             {
                 MediaCategory.Floppy => EmulationMediaCategory.FloppyDrive,
@@ -139,38 +123,25 @@ public static class ShortcutFunctions
         bool statesAvailable, bool quickStateExists)
     {
         var rules = ShortcutConstants.CommonActions.Select(Available).ToList();
-        rules.Add(new ShortcutRule(EmulationShortcutActions.QuickSave,
-            Availability(statesAvailable)));
-        rules.Add(new ShortcutRule(EmulationShortcutActions.QuickLoad,
-            Availability(statesAvailable && quickStateExists)));
+        rules.Add(new ShortcutRule(EmulationShortcutActions.QuickSave, Availability(statesAvailable)));
+        rules.Add(new ShortcutRule(EmulationShortcutActions.QuickLoad, Availability(statesAvailable && quickStateExists)));
 
-        var removable = CompatibilityCatalog.Get(configuration.Model).Media
-            .Any(rule => rule.Availability == MediaAvailability.Available && IsRemovable(rule.Category));
+        var removable = CompatibilityCatalog.Get(configuration.Model).Media.Any(rule => rule.Availability == MediaAvailability.Available && IsRemovable(rule.Category));
         rules.Add(new ShortcutRule(EmulationShortcutActions.InsertMedia, Availability(removable)));
-        rules.Add(new ShortcutRule(EmulationShortcutActions.EjectMedia,
-            Availability(configuration.Media.Any(media => media.IsInserted && IsEjectable(media.Category)))));
-        rules.Add(new ShortcutRule(EmulationShortcutActions.NextMedia,
-            Availability(configuration.Media.Count(media => IsDiskSelectable(media.Category)) >
-                         ShortcutConstants.MinimumMediaForSelection)));
+        rules.Add(new ShortcutRule(EmulationShortcutActions.EjectMedia, Availability(configuration.Media.Any(media => media.IsInserted && IsEjectable(media.Category)))));
+        rules.Add(new ShortcutRule(EmulationShortcutActions.NextMedia, Availability(configuration.Media.Count(media => IsDiskSelectable(media.Category)) > ShortcutConstants.MinimumMediaForSelection)));
         return rules;
     }
 
-    public static bool IsAvailable(IReadOnlyList<ShortcutRule> rules, string action) =>
-        rules.FirstOrDefault(rule => string.Equals(rule.Action, action, StringComparison.Ordinal))?.Availability ==
-        ShortcutAvailability.Available;
+    public static bool IsAvailable(IReadOnlyList<ShortcutRule> rules, string action) => rules.FirstOrDefault(rule => string.Equals(rule.Action, action, StringComparison.Ordinal))?.Availability == ShortcutAvailability.Available;
 
-    private static ShortcutRule Available(string action) =>
-        new(action, ShortcutAvailability.Available);
+    private static ShortcutRule Available(string action) => new(action, ShortcutAvailability.Available);
 
-    private static ShortcutAvailability Availability(bool available) => available
-        ? ShortcutAvailability.Available
-        : ShortcutAvailability.Unavailable;
+    private static ShortcutAvailability Availability(bool available) => available ? ShortcutAvailability.Available : ShortcutAvailability.Unavailable;
 
-    private static bool IsRemovable(MediaCategory category) => category is MediaCategory.Floppy or
-        MediaCategory.Cassette or MediaCategory.Cartridge or MediaCategory.CompactDisc;
+    private static bool IsRemovable(MediaCategory category) => category is MediaCategory.Floppy or MediaCategory.Cassette or MediaCategory.Cartridge or MediaCategory.CompactDisc;
 
     private static bool IsDiskSelectable(MediaCategory category) => category == MediaCategory.Floppy;
 
-    private static bool IsEjectable(MediaCategory category) =>
-        category is MediaCategory.Floppy or MediaCategory.Cassette;
+    private static bool IsEjectable(MediaCategory category) => category is MediaCategory.Floppy or MediaCategory.Cassette;
 }

@@ -50,14 +50,10 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public IEmulationAudio Audio => this;
     public IEmulationSavedStates SavedStates => this;
     public IEmulationRuntime Runtime => this;
-    public IEmulationCassetteTransport? CassetteTransport =>
-        Configuration.Core == Emulator.Atari800 ? this : null;
-    bool IEmulationInput.SupportsPointerCapture =>
-        CompatibilityCatalog.Get(Configuration.Model).VisibleTabs.Contains(SettingsTab.Mouse);
+    public IEmulationCassetteTransport? CassetteTransport => Configuration.Core == Emulator.Atari800 ? this : null;
+    bool IEmulationInput.SupportsPointerCapture => CompatibilityCatalog.Get(Configuration.Model).VisibleTabs.Contains(SettingsTab.Mouse);
     bool IEmulationInput.CapturePointerOnClick => Configuration.Input?.CaptureMouse ?? true;
-    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings =>
-        Configuration.Input?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(),
-            StringComparer.Ordinal) ?? new Dictionary<string, string>();
+    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings => Configuration.Input?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>();
     bool IEmulationInput.SupportsControllerPointerSwitch => false;
     bool IEmulationInput.ControllerPointerMode => false;
     public EmulationMachineState State { get; private set; } = EmulationMachineState.Created;
@@ -74,23 +70,13 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public RuntimeStatus RuntimeStatus => RuntimeFunctions.Status(Configuration, _core);
     public event EventHandler<VideoFrame>? VideoFrameReady;
     public event EventHandler<AudioChunk>? AudioChunkReady;
-    EmulationCassetteState IEmulationCassetteTransport.State => CassetteStateFunctions.From(
-        _mountedMedia.Any(media => media.Category == MediaCategory.Cassette && media.IsInserted),
-        ((IEmulationRuntime)this).MediaActivity.GetValueOrDefault(EmulationMediaSlot.Cassette0));
-    EmulationCassetteCommand? IEmulationCassetteTransport.ActiveOperation =>
-        ((IEmulationCassetteTransport)this).State == EmulationCassetteState.Playing
-            ? EmulationCassetteCommand.Play
-            : null;
-    IReadOnlySet<EmulationCassetteCommand> IEmulationCassetteTransport.AvailableCommands =>
-        CassetteInputController.AvailableCommands;
-    IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedMedia
-        .Select(EmulationMediaConversionFunctions.ToCommon).OfType<EmulationMedia>().ToArray();
-    ValueTask IEmulationMedia.InsertAsync(EmulationMedia media, CancellationToken cancellationToken) =>
-        InsertMediaAsync(EmulationMediaConversionFunctions.ToAtari(media, _mountedMedia), cancellationToken);
-    ValueTask IEmulationMedia.EjectAsync(EmulationMediaSlot slot, CancellationToken cancellationToken) =>
-        EjectMediaAsync(slot, cancellationToken);
-    ValueTask IEmulationMedia.SelectDiskAsync(EmulationMediaSlot slot, int index,
-        CancellationToken cancellationToken) => SelectDiskAsync(index, cancellationToken);
+    EmulationCassetteState IEmulationCassetteTransport.State => CassetteStateFunctions.From(_mountedMedia.Any(media => media.Category == MediaCategory.Cassette && media.IsInserted), ((IEmulationRuntime)this).MediaActivity.GetValueOrDefault(EmulationMediaSlot.Cassette0));
+    EmulationCassetteCommand? IEmulationCassetteTransport.ActiveOperation => ((IEmulationCassetteTransport)this).State == EmulationCassetteState.Playing ? EmulationCassetteCommand.Play : null;
+    IReadOnlySet<EmulationCassetteCommand> IEmulationCassetteTransport.AvailableCommands => CassetteInputController.AvailableCommands;
+    IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedMedia.Select(EmulationMediaConversionFunctions.ToCommon).OfType<EmulationMedia>().ToArray();
+    ValueTask IEmulationMedia.InsertAsync(EmulationMedia media, CancellationToken cancellationToken) => InsertMediaAsync(EmulationMediaConversionFunctions.ToAtari(media, _mountedMedia), cancellationToken);
+    ValueTask IEmulationMedia.EjectAsync(EmulationMediaSlot slot, CancellationToken cancellationToken) => EjectMediaAsync(slot, cancellationToken);
+    ValueTask IEmulationMedia.SelectDiskAsync(EmulationMediaSlot slot, int index, CancellationToken cancellationToken) => SelectDiskAsync(index, cancellationToken);
     AudioChunk? IEmulationAudio.LatestChunk => LatestAudioChunk;
     int IEmulationAudio.SampleRate => _core.SampleRate;
     bool IEmulationAudio.IsMuted => IsAudioMuted;
@@ -106,8 +92,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     string IEmulationRuntime.EmulatorName => CoreName;
     string IEmulationRuntime.EmulatorVersion => CoreVersion;
     IReadOnlySet<string> IEmulationRuntime.SupportedContentExtensions => SupportedContentExtensions;
-    IReadOnlyDictionary<EmulationMediaSlot, bool> IEmulationRuntime.MediaActivity =>
-        EmulationMediaActivityFunctions.FromRuntimeStatus(RuntimeStatus);
+    IReadOnlyDictionary<EmulationMediaSlot, bool> IEmulationRuntime.MediaActivity => EmulationMediaActivityFunctions.FromRuntimeStatus(RuntimeStatus);
     IReadOnlyList<EmulationOption> IEmulationRuntime.AvailableOptions => AvailableOptions
         .Select(option => new EmulationOption(
             option.Key,
@@ -128,10 +113,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         remove => VideoFrameReady -= value;
     }
     bool IEmulationSavedStates.IsSupported => SupportsSaveStates;
-    ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) =>
-        SaveStateAsync(path, cancellationToken);
-    ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) =>
-        LoadStateAsync(path, cancellationToken);
-    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) =>
-        SetControllerPortDevice(port, EmulationPeripheralConversionFunctions.ToAtari(peripheral));
+    ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) => SaveStateAsync(path, cancellationToken);
+    ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) => LoadStateAsync(path, cancellationToken);
+    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => SetControllerPortDevice(port, EmulationPeripheralConversionFunctions.ToAtari(peripheral));
 }

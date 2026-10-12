@@ -7,8 +7,7 @@ internal static class ControllerFunctions
 {
     internal static short ApplyDeadZone(short value, int percent)
     {
-        var threshold = ControllerConstants.MaximumAxisMagnitude * percent /
-                        ControllerConstants.PercentageDivisor;
+        var threshold = ControllerConstants.MaximumAxisMagnitude * percent / ControllerConstants.PercentageDivisor;
         return Math.Abs((int)value) <= threshold ? ControllerConstants.NeutralAxis : value;
     }
 
@@ -50,9 +49,7 @@ internal static class ControllerFunctions
                 PeripheralCategory.None, PeripheralCategory.Automatic,
                 PeripheralCategory.Joystick
             };
-        return new HashSet<PeripheralCategory>(HardwareModelCatalog.Get(model).Ports
-            .Where(port => port.Capability != HardwarePortCapability.Keyboard)
-            .Select(port => FromCapability(port.Capability)).Append(PeripheralCategory.None)
+        return new HashSet<PeripheralCategory>(HardwareModelCatalog.Get(model).Ports.Where(port => port.Capability != HardwarePortCapability.Keyboard).Select(port => FromCapability(port.Capability)).Append(PeripheralCategory.None)
             .Append(PeripheralCategory.Automatic));
     }
 

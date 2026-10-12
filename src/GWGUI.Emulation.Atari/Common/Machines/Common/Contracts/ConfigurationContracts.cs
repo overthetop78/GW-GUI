@@ -58,8 +58,7 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         Model = model;
         Family = ConfigurationFunctions.GetFamily(model);
         Core = core ?? ConfigurationFunctions.GetCore(model);
-        if (!EmulatorCatalog.GetAll(model.ToString()).Any(entry =>
-                entry.Id == EmulatorCatalog.Get(Core).Id))
+        if (!EmulatorCatalog.GetAll(model.ToString()).Any(entry => entry.Id == EmulatorCatalog.Get(Core).Id))
             throw new ArgumentException(nameof(core));
         Firmwares = firmwares?.ToArray() ?? [];
         Media = media?.ToArray() ?? [];

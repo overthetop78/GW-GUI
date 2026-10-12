@@ -9,8 +9,7 @@ internal static class InputFunctions
     {
         Controllers = snapshot.Controllers.Select(state =>
         {
-            var buttons = state.Buttons & ~((1u << LynxInputConstants.ButtonACommand)
-                | (1u << LynxInputConstants.ButtonBCommand));
+            var buttons = state.Buttons & ~((1u << LynxInputConstants.ButtonACommand) | (1u << LynxInputConstants.ButtonBCommand));
             if ((state.Buttons & (1u << LynxInputConstants.ButtonACommand)) != 0)
                 buttons |= 1u << InputConstants.OutsideButton;
             if ((state.Buttons & (1u << LynxInputConstants.ButtonBCommand)) != 0)

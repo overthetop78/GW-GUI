@@ -9,8 +9,7 @@ internal static class ScpMediaFunctions
 {
     private static readonly MediaEngineComposition MediaEngine = MediaEngineComposition.CreateDefault();
 
-    internal static bool IsScp(string path) => Path.GetExtension(path).Equals(
-        DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase);
+    internal static bool IsScp(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase);
 
     internal static SessionMedia Prepare(MachineConfiguration configuration,
         MediaConfiguration media, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
@@ -28,13 +27,9 @@ internal static class ScpMediaFunctions
                 $"SCP conversion is not supported for Atari family '{configuration.Family}'.")
         };
         var runtimeDirectory = Path.Combine(sessionDirectory, SessionMediaConstants.SessionDirectoryName,
-            string.Format(CultureInfo.InvariantCulture, SessionMediaConstants.SessionInstanceNameFormat,
-                media.Slot, Guid.NewGuid().ToString(SessionMediaConstants.UniqueNameFormat)));
+            string.Format(CultureInfo.InvariantCulture, SessionMediaConstants.SessionInstanceNameFormat, media.Slot, Guid.NewGuid().ToString(SessionMediaConstants.UniqueNameFormat)));
         Directory.CreateDirectory(runtimeDirectory);
-        var runtimeName = string.Format(CultureInfo.InvariantCulture,
-            SessionMediaConstants.RuntimeFileNameFormat,
-            SessionMediaConstants.RuntimeFileNumberOffset,
-            Path.GetFileNameWithoutExtension(media.Path) + extension);
+        var runtimeName = string.Format(CultureInfo.InvariantCulture, SessionMediaConstants.RuntimeFileNameFormat, SessionMediaConstants.RuntimeFileNumberOffset, Path.GetFileNameWithoutExtension(media.Path) + extension);
         var runtimePath = Path.Combine(runtimeDirectory, runtimeName);
         var converter = MediaEngine.Conversion.AtariScpRuntimeConverter;
         if (configuration.Family == MachineFamily.St)

@@ -10,7 +10,6 @@ internal static class EmulatorConstants
     internal static readonly IReadOnlySet<string> CartridgeExtensions = new HashSet<string>(
         [AtariLynxModelConstants.LnxExtension, AtariLynxModelConstants.LyxExtension,
             AtariLynxModelConstants.ObjectExtension], StringComparer.OrdinalIgnoreCase);
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(
-        Emulator.Handy, Id, LibraryName, LibraryFile, SourceUrl, InspectedRevision, MachineModel.Lynx)
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.Handy, Id, LibraryName, LibraryFile, SourceUrl, InspectedRevision, MachineModel.Lynx)
         with { DescriptionResourceKey = AtariLynxModelConstants.EmulatorDescriptionResourceKey };
 }

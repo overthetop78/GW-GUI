@@ -5,13 +5,8 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 public static class FirmwareFunctions
 {
     public static IReadOnlyList<T> Values<T>(params T[] values) => Array.AsReadOnly(values);
-    public static IReadOnlyDictionary<string, FirmwareDefinition> Index(
-        IEnumerable<FirmwareDefinition> definitions) =>
-        definitions.ToDictionary(definition => definition.Id, StringComparer.Ordinal);
-    public static bool IsValidFingerprint(FirmwareFingerprint fingerprint) =>
-        fingerprint.Algorithm == FirmwareHashAlgorithm.Md5 &&
-        fingerprint.Value.Length == FirmwareConstants.Md5HexLength &&
-        fingerprint.Value.All(Uri.IsHexDigit);
+    public static IReadOnlyDictionary<string, FirmwareDefinition> Index(IEnumerable<FirmwareDefinition> definitions) => definitions.ToDictionary(definition => definition.Id, StringComparer.Ordinal);
+    public static bool IsValidFingerprint(FirmwareFingerprint fingerprint) => fingerprint.Algorithm == FirmwareHashAlgorithm.Md5 && fingerprint.Value.Length == FirmwareConstants.Md5HexLength && fingerprint.Value.All(Uri.IsHexDigit);
     public static string TosId(string version) => FirmwareConstants.TosIdPrefix + version;
 
     public static FirmwareDefinition Tos(string version, IReadOnlyList<MachineModel> models,
@@ -52,9 +47,7 @@ public static class FirmwareFunctions
     public static FirmwareDefinition Embedded(string id, FirmwareCategory category,
         FirmwareProvision provision, IReadOnlyList<MachineModel> models,
         IReadOnlyList<StRegion> noRegions,
-        IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(
-        id, category, null, null, null, provision, FirmwareDistribution.NoExternalFile,
-        FirmwareEvidence.VirtualJaguarCoreInformation, models, noRegions, noFingerprints);
+        IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id, category, null, null, null, provision, FirmwareDistribution.NoExternalFile, FirmwareEvidence.VirtualJaguarCoreInformation, models, noRegions, noFingerprints);
 
     public static FirmwareDefinition JaguarCd(string id, string fileName,
         IReadOnlyList<StRegion> noRegions, IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(
@@ -65,9 +58,7 @@ public static class FirmwareFunctions
 
     public static FirmwareDefinition None(string id, MachineModel model,
         FirmwareEvidence evidence, IReadOnlyList<StRegion> noRegions,
-        IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(
-        id, null, null, null, null, FirmwareProvision.NotUsed,
-        FirmwareDistribution.NoExternalFile, evidence, Values(model), noRegions, noFingerprints);
+        IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id, null, null, null, null, FirmwareProvision.NotUsed, FirmwareDistribution.NoExternalFile, evidence, Values(model), noRegions, noFingerprints);
 }
 
 public static class FirmwareRuntimeFunctions
@@ -92,8 +83,7 @@ public static class FirmwareRuntimeFunctions
 
     public static void ClearManagedFirmwareFiles(string systemDirectory)
     {
-        foreach (var fileName in FirmwareCatalog.All.Select(definition => definition.ExpectedFileName)
-                     .Where(fileName => fileName is not null).Distinct(StringComparer.OrdinalIgnoreCase))
+        foreach (var fileName in FirmwareCatalog.All.Select(definition => definition.ExpectedFileName).Where(fileName => fileName is not null).Distinct(StringComparer.OrdinalIgnoreCase))
         {
             var path = Path.Combine(systemDirectory, fileName!);
             if (File.Exists(path)) File.Delete(path);
@@ -103,41 +93,29 @@ public static class FirmwareRuntimeFunctions
     public static void ValidateRequiredFirmware(MachineConfiguration configuration)
     {
         var configuredCategories = configuration.Firmwares.Select(firmware => firmware.Category).ToHashSet();
-        var requiredCategories = FirmwareCatalog.ForModel(configuration.Model)
-            .Where(definition => definition.RequiresExternalFile && definition.Category is not null)
-            .Select(definition => definition.Category!.Value)
-            .Distinct();
+        var requiredCategories = FirmwareCatalog.ForModel(configuration.Model).Where(definition => definition.RequiresExternalFile && definition.Category is not null).Select(definition => definition.Category!.Value).Distinct();
         foreach (var category in requiredCategories.Where(category => !configuredCategories.Contains(category)))
-            throw new FileNotFoundException(string.Format(CultureInfo.InvariantCulture,
-                ErrorMessages.RequiredFirmwareMissing, category, configuration.Model));
+            throw new FileNotFoundException(string.Format(CultureInfo.InvariantCulture, ErrorMessages.RequiredFirmwareMissing, category, configuration.Model));
     }
 
     public static FirmwareDefinition ResolveDefinition(MachineModel model, FirmwareCategory category,
         string sourcePath)
     {
-        var definitions = FirmwareCatalog.ForModel(model)
-            .Where(definition => definition.Category == category && definition.ExpectedFileName is not null)
-            .ToArray();
-        var expectedFileNames = definitions.Select(definition => definition.ExpectedFileName!)
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        var definitions = FirmwareCatalog.ForModel(model).Where(definition => definition.Category == category && definition.ExpectedFileName is not null).ToArray();
+        var expectedFileNames = definitions.Select(definition => definition.ExpectedFileName!).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
         if (expectedFileNames.Length == FirmwareRuntimeConstants.SingleDefinitionCount)
             return definitions[FirmwareRuntimeConstants.FirstDefinitionIndex];
 
         var md5 = ComputeMd5(sourcePath);
-        var identified = definitions.FirstOrDefault(definition => definition.Fingerprints.Any(fingerprint =>
-            string.Equals(fingerprint.Value, md5, StringComparison.OrdinalIgnoreCase)));
+        var identified = definitions.FirstOrDefault(definition => definition.Fingerprints.Any(fingerprint => string.Equals(fingerprint.Value, md5, StringComparison.OrdinalIgnoreCase)));
         if (identified is not null) return identified;
-        var named = definitions.FirstOrDefault(definition => string.Equals(definition.ExpectedFileName,
-            Path.GetFileName(sourcePath), StringComparison.OrdinalIgnoreCase));
-        return named ?? throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture,
-            ErrorMessages.FirmwareIdentityAmbiguous, category, sourcePath));
+        var named = definitions.FirstOrDefault(definition => string.Equals(definition.ExpectedFileName, Path.GetFileName(sourcePath), StringComparison.OrdinalIgnoreCase));
+        return named ?? throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, ErrorMessages.FirmwareIdentityAmbiguous, category, sourcePath));
     }
 
     public static void ValidateReadableFile(FirmwareCategory category, string sourcePath)
     {
-        if (!File.Exists(sourcePath)) throw new FileNotFoundException(string.Format(CultureInfo.InvariantCulture,
-            ErrorMessages.FirmwareFileMissing, category, sourcePath), sourcePath);
+        if (!File.Exists(sourcePath)) throw new FileNotFoundException(string.Format(CultureInfo.InvariantCulture, ErrorMessages.FirmwareFileMissing, category, sourcePath), sourcePath);
         try
         {
             using var stream = new FileStream(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -145,8 +123,7 @@ public static class FirmwareRuntimeFunctions
         }
         catch (Exception error) when (error is IOException or UnauthorizedAccessException)
         {
-            throw new IOException(string.Format(CultureInfo.InvariantCulture,
-                ErrorMessages.FirmwareFileUnreadable, category, sourcePath), error);
+            throw new IOException(string.Format(CultureInfo.InvariantCulture, ErrorMessages.FirmwareFileUnreadable, category, sourcePath), error);
         }
     }
 

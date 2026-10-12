@@ -25,14 +25,9 @@ public static class CompatibilityCatalog
             CompatibilityFunctions.Create(MachineModel.Jaguar),
             CompatibilityFunctions.Create(MachineModel.JaguarCd));
 
-    private static readonly IReadOnlyDictionary<MachineModel, CompatibilityDefinition> ByModel =
-        CompatibilityFunctions.Index(Definitions);
+    private static readonly IReadOnlyDictionary<MachineModel, CompatibilityDefinition> ByModel = CompatibilityFunctions.Index(Definitions);
 
     public static IReadOnlyList<CompatibilityDefinition> All => Definitions;
 
-    public static CompatibilityDefinition Get(MachineModel model) =>
-        ByModel.TryGetValue(model, out var definition)
-            ? definition
-            : throw new ArgumentOutOfRangeException(nameof(model), model,
-                ErrorMessages.UnknownCompatibilityModel);
+    public static CompatibilityDefinition Get(MachineModel model) => ByModel.TryGetValue(model, out var definition) ? definition : throw new ArgumentOutOfRangeException(nameof(model), model, ErrorMessages.UnknownCompatibilityModel);
 }

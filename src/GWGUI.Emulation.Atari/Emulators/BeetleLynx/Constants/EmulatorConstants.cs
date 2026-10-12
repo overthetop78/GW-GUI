@@ -3,8 +3,7 @@ namespace GWGUI.Emulation.Atari.Emulators.BeetleLynx.Constants;
 internal static class EmulatorConstants
 {
     internal static readonly IReadOnlySet<string> CartridgeExtensions =
-        new HashSet<string>([AtariLynxModelConstants.LnxExtension, AtariLynxModelConstants.LyxExtension,
-            AtariLynxModelConstants.BllExtension, AtariLynxModelConstants.ObjectExtension], StringComparer.OrdinalIgnoreCase);
+        new HashSet<string>([AtariLynxModelConstants.LnxExtension, AtariLynxModelConstants.LyxExtension, AtariLynxModelConstants.BllExtension, AtariLynxModelConstants.ObjectExtension], StringComparer.OrdinalIgnoreCase);
 
     internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(
         Emulator.BeetleLynx, "beetle-lynx", "Beetle Lynx", "mednafen_lynx_libretro.dll",

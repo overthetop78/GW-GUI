@@ -5,9 +5,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 internal static partial class SettingsDescriptionFunctions
 {
 
-    private static EmulationSettingsBlock Block(string id, EmulationMachineTab tab, string title,
-        string icon, int columns, params EmulationSettingsField[] fields) =>
-        new(id, tab, title, fields, icon, columns);
+    private static EmulationSettingsBlock Block(string id, EmulationMachineTab tab, string title, string icon, int columns, params EmulationSettingsField[] fields) => new(id, tab, title, fields, icon, columns);
 
     private static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block,
         string label, string value, IEnumerable<string> choices, bool isEnabled = true) =>
@@ -70,17 +68,13 @@ internal static partial class SettingsDescriptionFunctions
             ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id),
             NumericValue: numericValue);
 
-    private static string? ShortHelp(string id) => SettingsHelpDictionary.Resources.TryGetValue(id, out var resource)
-        ? resource + ".Short" : null;
+    private static string? ShortHelp(string id) => SettingsHelpDictionary.Resources.TryGetValue(id, out var resource) ? resource + ".Short" : null;
 
-    private static string? DetailedHelp(string id) => SettingsHelpDictionary.Resources.TryGetValue(id, out var resource)
-        ? resource + ".Detailed" : null;
+    private static string? DetailedHelp(string id) => SettingsHelpDictionary.Resources.TryGetValue(id, out var resource) ? resource + ".Detailed" : null;
 
-    private static string Value(MachineConfiguration configuration, string key, string fallback) =>
-        configuration.Options.GetValueOrDefault(key) ?? fallback;
+    private static string Value(MachineConfiguration configuration, string key, string fallback) => configuration.Options.GetValueOrDefault(key) ?? fallback;
 
-    private static bool Enabled(MachineConfiguration configuration, string key) =>
-        Value(configuration, key, EightBitSettingsConstants.Disabled) == EightBitSettingsConstants.Enabled;
+    private static bool Enabled(MachineConfiguration configuration, string key) => Value(configuration, key, EightBitSettingsConstants.Disabled) == EightBitSettingsConstants.Enabled;
 
     private static EmulationSettingsField HardwareMemory(MachineConfiguration configuration,
         HardwareModelDefinition model)
@@ -92,7 +86,6 @@ internal static partial class SettingsDescriptionFunctions
         var choices = new[] { 320L, 576L, 1088L }.Select(value =>
             HardwareSettingsFunctions.MemoryKib((int)value)).ToArray();
         return Select(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.MainMemory,
-            SettingsDescriptionFunctionsConstants.ResourceMemoryMain, Value(configuration, SettingsConstants.MainMemory,
-                model.MainMemoryBytes.ToString()), choices);
+            SettingsDescriptionFunctionsConstants.ResourceMemoryMain, Value(configuration, SettingsConstants.MainMemory, model.MainMemoryBytes.ToString()), choices);
     }
 }

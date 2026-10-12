@@ -5,13 +5,11 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Factories;
 
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaAdapter
 {
-    private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
-        new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
+    private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
     public EmulatorCatalogEntry CatalogEntry { get; } = catalogEntry;
     public Emulator Emulator => CatalogEntry.Emulator;
-    public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) =>
-        PrepareOptions(GetConfiguredOptions(configuration));
+    public IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => PrepareOptions(GetConfiguredOptions(configuration));
 
     public string EmulatorId => CatalogEntry.Id;
     public string EmulatorKey => Emulator.ToString();
@@ -19,8 +17,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     internal virtual IReadOnlySet<string>? CartridgeExtensions => null;
     internal virtual bool SupportsCartridgeRegion => CartridgeConstants.SupportsRegionByDefault;
     internal bool SupportsCartridge => CartridgeExtensions is not null;
-    public virtual IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) =>
-        CartridgeExtensions;
+    public virtual IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => CartridgeExtensions;
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -49,8 +46,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(
         EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory)
-            .GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
         var version = installation is null ? null : Path.GetFileName(installation.VersionDirectory);
         return new EmulationEmulatorInstallation(Definition, version);
     }
@@ -58,8 +54,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
         EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory)
-            .GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
+        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id,
             $"{item.DeclaredVersion} · {item.PublishedUtc.LocalDateTime:g}", item.DeclaredVersion)).ToArray();
@@ -70,42 +65,26 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     {
         if (!_availableReleases.TryGetValue(release.Id, out var selected) || selected.Emulator != Emulator)
             throw new ArgumentException(nameof(release));
-        var adapter = progress is null ? null : new Progress<CoreInstallProgress>(value =>
-            progress.Report(value.Fraction ?? 0));
-        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory)
-            .InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
+        var adapter = progress is null ? null : new Progress<CoreInstallProgress>(value => progress.Report(value.Fraction ?? 0));
+        var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).InstallAsync(selected, adapter, cancellationToken).ConfigureAwait(false);
         return installation.LibraryPath;
     }
 
-    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken) =>
-        await new CoreProvider(context.HttpClient, context.CoreDirectory)
-            .FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
+    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => await new CoreProvider(context.HttpClient, context.CoreDirectory).FindInstalledPathAsync(Emulator, cancellationToken).ConfigureAwait(false);
 
-    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) =>
-        configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon)
-            .OfType<EmulationMedia>().ToArray();
+    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).OfType<EmulationMedia>().ToArray();
 
-    public virtual MediaConfiguration? SelectPrimaryMedia(MachineConfiguration configuration) =>
-        configuration.Media.Where(item => item.IsInserted)
-            .OrderBy(item => item.MountOrder)
-            .ThenBy(item => item.Path, StringComparer.OrdinalIgnoreCase)
-            .FirstOrDefault();
+    public virtual MediaConfiguration? SelectPrimaryMedia(MachineConfiguration configuration) => configuration.Media.Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ThenBy(item => item.Path, StringComparer.OrdinalIgnoreCase).FirstOrDefault();
 
-    public virtual IReadOnlyDictionary<string, string> GetConfiguredOptions(MachineConfiguration configuration) =>
-        configuration.Options;
+    public virtual IReadOnlyDictionary<string, string> GetConfiguredOptions(MachineConfiguration configuration) => configuration.Options;
 
-    public virtual void PrepareSystemDirectory(MachineConfiguration configuration, string systemDirectory) =>
-        FirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, systemDirectory);
+    public virtual void PrepareSystemDirectory(MachineConfiguration configuration, string systemDirectory) => FirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, systemDirectory);
 
-    public virtual IReadOnlyDictionary<string, string> PrepareOptions(
-        IReadOnlyDictionary<string, string> options) => options;
+    public virtual IReadOnlyDictionary<string, string> PrepareOptions(IReadOnlyDictionary<string, string> options) => options;
 
     public virtual EmulationInputSnapshot PrepareInput(EmulationInputSnapshot snapshot) => snapshot;
 
-    public virtual void ConfigureController(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration, int port, PeripheralCategory peripheral) =>
-        ControllerPortFunctions.ConfigurePort(exports, callbacks, configuration, port, peripheral);
+    public virtual void ConfigureController(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration, int port, PeripheralCategory peripheral) => ControllerPortFunctions.ConfigurePort(exports, callbacks, configuration, port, peripheral);
 
     public void ConfigureControllers(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
         MachineConfiguration configuration)
@@ -114,8 +93,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
         for (var port = ControllerPortConstants.MinimumControllerPort; port < portCount; port++)
         {
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
-            ConfigureController(exports, callbacks, configuration, port,
-                binding?.Peripheral ?? PeripheralCategory.Automatic);
+            ConfigureController(exports, callbacks, configuration, port, binding?.Peripheral ?? PeripheralCategory.Automatic);
         }
     }
 
@@ -125,21 +103,15 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
         if (media is null) return null;
         if (CartridgeExtensions is { } cartridgeExtensions)
         {
-            var cartridge = CartridgeFunctions.Prepare(configuration, media, Emulator, cartridgeExtensions,
-                coreInfo.NeedsFullPath, coreInfo.Extensions);
+            var cartridge = CartridgeFunctions.Prepare(configuration, media, Emulator, cartridgeExtensions, coreInfo.NeedsFullPath, coreInfo.Extensions);
             CartridgeFunctions.ValidateNoUnsupportedMetadata(media);
-            return new EmulatorPreparedContent(media, cartridge.RuntimePath, cartridge.NeedsFullPath,
-                CartridgeFunctions.ApplyOptions(configuration.Options, cartridge.Configuration,
-                    SupportsCartridgeRegion),
-                State: cartridge);
+            return new EmulatorPreparedContent(media, cartridge.RuntimePath, cartridge.NeedsFullPath, CartridgeFunctions.ApplyOptions(configuration.Options, cartridge.Configuration, SupportsCartridgeRegion), State: cartridge);
         }
         var prepared = SessionMediaFunctions.Prepare(media, sessionDirectory, coreInfo.Extensions);
-        return new EmulatorPreparedContent(media, prepared.RuntimePath, coreInfo.NeedsFullPath,
-            configuration.Options, prepared);
+        return new EmulatorPreparedContent(media, prepared.RuntimePath, coreInfo.NeedsFullPath, configuration.Options, prepared);
     }
 
-    public virtual SessionMedia? PrepareInsertedMedia(MachineConfiguration configuration,
-        MediaConfiguration media, string sessionDirectory, ExternalCoreInfo coreInfo) => null;
+    public virtual SessionMedia? PrepareInsertedMedia(MachineConfiguration configuration, MediaConfiguration media, string sessionDirectory, ExternalCoreInfo coreInfo) => null;
 
     public virtual void ValidatePreparedContent(EmulatorPreparedContent? preparedContent,
         bool diskControlAvailable) { }
@@ -152,8 +124,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
 
     public virtual bool SupportsEjection(EmulationMediaSlot slot) => !SupportsCartridge;
 
-    public virtual Exception ContentLoadException(string message) =>
-        new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, message);
+    public virtual Exception ContentLoadException(string message) => new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, message);
 
     public virtual void CleanupPreparedContent(EmulatorPreparedContent? preparedContent) { }
 
@@ -165,11 +136,9 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
         if (configuration.Core != Emulator)
             throw new ArgumentException(nameof(configuration));
         var machineId = Guid.NewGuid();
-        var core = new ProcessCore(context.HostExecutablePath, context.CorePath, Emulator,
-            hostCommand: CoreHostConstants.CommandLineArgument);
+        var core = new ProcessCore(context.HostExecutablePath, context.CorePath, Emulator, hostCommand: CoreHostConstants.CommandLineArgument);
         return new Machine(machineId, configuration, core,
-            Path.Combine(context.SessionsDirectory,
-                machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
+            Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
             audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
             saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration));
     }

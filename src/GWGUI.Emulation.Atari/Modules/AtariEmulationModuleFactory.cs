@@ -7,10 +7,6 @@ public sealed class AtariEmulationModuleFactory : IEmulationModuleFactory
     public IEmulationModule Create(EmulationModuleContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
-        return new AtariEmulationModule(
-            Path.Combine(context.ModuleDirectory, "Configurations"),
-            context.DataDirectory,
-            context.HttpClient,
-            Path.Combine(context.ModuleDirectory, "Core"));
+        return new AtariEmulationModule(Path.Combine(context.ModuleDirectory, "Configurations"), context.DataDirectory, context.HttpClient, Path.Combine(context.ModuleDirectory, "Core"));
     }
 }

@@ -11,18 +11,12 @@ internal static class OptionFunctions
         var result = new Dictionary<string, string>(ToNative(configuration.Options), StringComparer.Ordinal)
         {
             [OptionConstants.MachineType] = MachineType(configuration.Model),
-            [OptionConstants.MemorySize] = MemorySize(configuration.Options.GetValueOrDefault(
-                SettingsConstants.MainMemory, ((long)model.DefaultMainMemoryKib *
-                    OptionConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture))),
-            [OptionConstants.CpuClock] = configuration.Options.GetValueOrDefault(
-                SettingsConstants.CpuFrequency, model.DefaultCpuFrequencyMhz.ToString(CultureInfo.InvariantCulture)),
-            [OptionConstants.Cpu] = Cpu(configuration.Options.GetValueOrDefault(
-                SettingsConstants.Cpu, model.DefaultCpu.ToString())),
-            [OptionConstants.Fpu] = Fpu(configuration.Options.GetValueOrDefault(
-                SettingsConstants.Fpu, model.DefaultFpu.ToString()))
+            [OptionConstants.MemorySize] = MemorySize(configuration.Options.GetValueOrDefault(SettingsConstants.MainMemory, ((long)model.DefaultMainMemoryKib * OptionConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture))),
+            [OptionConstants.CpuClock] = configuration.Options.GetValueOrDefault(SettingsConstants.CpuFrequency, model.DefaultCpuFrequencyMhz.ToString(CultureInfo.InvariantCulture)),
+            [OptionConstants.Cpu] = Cpu(configuration.Options.GetValueOrDefault(SettingsConstants.Cpu, model.DefaultCpu.ToString())),
+            [OptionConstants.Fpu] = Fpu(configuration.Options.GetValueOrDefault(SettingsConstants.Fpu, model.DefaultFpu.ToString()))
         };
-        result.TryAdd(OptionConstants.Tos, configuration.Firmwares.Any(item => item.Category == FirmwareCategory.Tos)
-            ? OptionConstants.UserTos : OptionConstants.InternalTos);
+        result.TryAdd(OptionConstants.Tos, configuration.Firmwares.Any(item => item.Category == FirmwareCategory.Tos) ? OptionConstants.UserTos : OptionConstants.InternalTos);
         result.TryAdd(OptionConstants.HostKeyboard, OptionConstants.Enabled);
         result.TryAdd(OptionConstants.HostMouse, OptionConstants.Enabled);
         if (configuration.Media.FirstOrDefault(item => item.IsInserted && item.Category == MediaCategory.Floppy)
@@ -30,11 +24,9 @@ internal static class OptionFunctions
         {
             result[OptionConstants.ReadOnlyFloppy] = floppy.IsReadOnly ? OptionConstants.Enabled : OptionConstants.Disabled;
             if (configuration.Options.TryGetValue(MachineOptionConstants.FloppySpeedPrefix + floppy.Slot, out var speed))
-                result[OptionConstants.FastFloppy] = int.Parse(speed, CultureInfo.InvariantCulture)
-                    == OptionConstants.NormalFloppySpeedPercent ? OptionConstants.Disabled : OptionConstants.Enabled;
+                result[OptionConstants.FastFloppy] = int.Parse(speed, CultureInfo.InvariantCulture) == OptionConstants.NormalFloppySpeedPercent ? OptionConstants.Disabled : OptionConstants.Enabled;
         }
-        if (configuration.Media.FirstOrDefault(item => item.IsInserted &&
-                item.Category is MediaCategory.HardDisk or MediaCategory.Directory) is { } storage)
+        if (configuration.Media.FirstOrDefault(item => item.IsInserted && item.Category is MediaCategory.HardDisk or MediaCategory.Directory) is { } storage)
             result[OptionConstants.ReadOnlyHardDisk] = storage.IsReadOnly ? OptionConstants.Enabled : OptionConstants.Disabled;
         return result;
     }
@@ -46,20 +38,15 @@ internal static class OptionFunctions
         Convert(result, SettingsConstants.CpuFrequency, OptionConstants.CpuClock, value => value);
         Convert(result, SettingsConstants.Cpu, OptionConstants.Cpu, Cpu);
         Convert(result, SettingsConstants.Fpu, OptionConstants.Fpu, Fpu);
-        Convert(result, SettingsConstants.CpuPrecision, OptionConstants.CpuCycleExact, value =>
-            value == nameof(StCpuPrecision.CycleExact) ? OptionConstants.Enabled : OptionConstants.Disabled);
-        Convert(result, MachineOptionConstants.DriveActivity, OptionConstants.StatusBar, value =>
-            bool.Parse(value) ? OptionConstants.DriveLights : OptionConstants.Disabled);
+        Convert(result, SettingsConstants.CpuPrecision, OptionConstants.CpuCycleExact, value => value == nameof(StCpuPrecision.CycleExact) ? OptionConstants.Enabled : OptionConstants.Disabled);
+        Convert(result, MachineOptionConstants.DriveActivity, OptionConstants.StatusBar, value => bool.Parse(value) ? OptionConstants.DriveLights : OptionConstants.Disabled);
         Convert(result, SettingsDescriptionFunctionsConstants.FastBoot, OptionConstants.FastBoot, Boolean);
-        Convert(result, MachineOptionConstants.Crop, OptionConstants.Borders, value =>
-            value == VideoAudioSettingsConstants.Enabled ? OptionConstants.Disabled : OptionConstants.DefaultBorders);
+        Convert(result, MachineOptionConstants.Crop, OptionConstants.Borders, value => value == VideoAudioSettingsConstants.Enabled ? OptionConstants.Disabled : OptionConstants.DefaultBorders);
         Convert(result, MachineOptionConstants.PointerSpeed, OptionConstants.MouseSpeed, MouseSpeed);
-        Convert(result, MachineValues.ResetType, OptionConstants.SoftReset, value =>
-            value == MachineValues.Value0 ? OptionConstants.Enabled : OptionConstants.Disabled);
+        Convert(result, MachineValues.ResetType, OptionConstants.SoftReset, value => value == MachineValues.Value0 ? OptionConstants.Enabled : OptionConstants.Disabled);
         if (result.Remove(VideoAudioSettingsConstants.StandardOption, out var standard))
         {
-            result[OptionConstants.Monitor] = standard == MachineOptionFunctionsConstants.Monochrome
-                ? OptionConstants.MonochromeMonitor : OptionConstants.ColourMonitor;
+            result[OptionConstants.Monitor] = standard == MachineOptionFunctionsConstants.Monochrome ? OptionConstants.MonochromeMonitor : OptionConstants.ColourMonitor;
             if (standard == MachineOptionFunctionsConstants.NTSC)
                 result[OptionConstants.EmutosFramerate] = OptionConstants.NtscFramerate;
             else if (standard == MachineOptionFunctionsConstants.PAL)
@@ -75,8 +62,7 @@ internal static class OptionFunctions
     }
 
     private static string Boolean(string value) => bool.Parse(value) ? OptionConstants.Enabled : OptionConstants.Disabled;
-    private static string MemorySize(string value) =>
-        (long.Parse(value, CultureInfo.InvariantCulture) / OptionConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture);
+    private static string MemorySize(string value) => (long.Parse(value, CultureInfo.InvariantCulture) / OptionConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture);
     private static string Cpu(string value) => Enum.Parse<StCpu>(value) switch
     {
         StCpu.Motorola68000 => OptionConstants.Cpu68000,

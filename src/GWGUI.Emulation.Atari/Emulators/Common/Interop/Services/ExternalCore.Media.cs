@@ -8,8 +8,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
 {
 public void InsertMedia(MediaConfiguration media)
     {
-        var configuration = _configuration ??
-            throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
+        var configuration = _configuration ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
         _mediaAdapter.ValidateInsertion(configuration, media);
         if (media.Category == MediaCategory.CompactDisc)
         {
@@ -23,10 +22,8 @@ public void InsertMedia(MediaConfiguration media)
         }
         if (!_mediaAdapter.SupportsDiskControl(media))
             throw new NotSupportedException(ErrorMessages.HatariFloppyRequired);
-        var sessionDirectory = _sessionDirectory ??
-            throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
-        var preparedMedia = _mediaAdapter.PrepareInsertedMedia(configuration, media, sessionDirectory, _info)
-            ?? throw new NotSupportedException(ErrorMessages.HatariFloppyRequired);
+        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
+        var preparedMedia = _mediaAdapter.PrepareInsertedMedia(configuration, media, sessionDirectory, _info) ?? throw new NotSupportedException(ErrorMessages.HatariFloppyRequired);
         RequireCallbacks().DiskControl.Insert(preparedMedia.RuntimePath);
         MediaRuntimeFunctions.Register(_mountedMedia, media with { IsInserted = true });
         _sessionMedia.Add(preparedMedia);
@@ -49,8 +46,7 @@ public void InsertMedia(MediaConfiguration media)
 
     public void SaveMediaChanges(EmulationMediaSlot slot)
     {
-        var media = _sessionMedia.LastOrDefault(item => item.Configuration.Slot == slot) ??
-            throw new InvalidOperationException(SessionMediaErrors.ExplicitSaveRequired);
+        var media = _sessionMedia.LastOrDefault(item => item.Configuration.Slot == slot) ?? throw new InvalidOperationException(SessionMediaErrors.ExplicitSaveRequired);
         SessionMediaFunctions.Save(media);
     }
 
@@ -61,23 +57,20 @@ public void InsertMedia(MediaConfiguration media)
         return RequireCallbacks().DiskControl.GetStatus();
     }
 
-    public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) =>
-        _sessionMedia.LastOrDefault(item => item.Configuration.Slot == slot)?.RequiresExplicitSave == true;
+    public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) => _sessionMedia.LastOrDefault(item => item.Configuration.Slot == slot)?.RequiresExplicitSave == true;
 
     public byte[] SaveState()
     {
         var exports = RequireExports();
         var size = exports.GetSerializedSize();
         if (size == nuint.Zero || size > SavedStateConstants.MaximumStateSize)
-            throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid,
-                ErrorMessages.StateSizeInvalid);
+            throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateSizeInvalid);
         var state = GC.AllocateUninitializedArray<byte>(checked((int)size));
         var buffer = Marshal.AllocHGlobal(state.Length);
         try
         {
             if (!exports.Serialize(buffer, size))
-                throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid,
-                    ErrorMessages.StateSaveFailed);
+                throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateSaveFailed);
             Marshal.Copy(buffer, state, BufferConstants.FirstBufferIndex, state.Length);
             return state;
         }
@@ -90,16 +83,14 @@ public void InsertMedia(MediaConfiguration media)
     public void LoadState(ReadOnlySpan<byte> state)
     {
         if (state.IsEmpty || state.Length > SavedStateConstants.MaximumStateSize)
-            throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid,
-                ErrorMessages.StateSizeInvalid);
+            throw new EmulationException(ErrorCategory.State, ErrorCode.StateInvalid, ErrorMessages.StateSizeInvalid);
         var bytes = state.ToArray();
         var buffer = Marshal.AllocHGlobal(bytes.Length);
         try
         {
             Marshal.Copy(bytes, BufferConstants.FirstBufferIndex, buffer, bytes.Length);
             if (!RequireExports().Unserialize(buffer, (nuint)bytes.Length))
-                throw new EmulationException(ErrorCategory.State, ErrorCode.StateIncompatible,
-                    ErrorMessages.StateLoadFailed);
+                throw new EmulationException(ErrorCategory.State, ErrorCode.StateIncompatible, ErrorMessages.StateLoadFailed);
         }
         finally
         {

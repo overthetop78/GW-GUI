@@ -15,8 +15,7 @@ public static class Atari2600ModelCatalog
                 HardwareModelFunctions.Values(
                     new HardwarePortDefinition(HardwarePortCapability.Joystick, Atari2600ModelConstants.TwoPorts),
                     new HardwarePortDefinition(HardwarePortCapability.Paddle, Atari2600ModelConstants.TwoPorts),
-                    new HardwarePortDefinition(HardwarePortCapability.DrivingController,
-                        Atari2600ModelConstants.TwoPorts)),
+                    new HardwarePortDefinition(HardwarePortCapability.DrivingController, Atari2600ModelConstants.TwoPorts)),
                 HardwareModelFunctions.Values<FirmwareCategory>(),
                 HardwareModelFunctions.Values(MediaCategory.Cartridge)));
 }

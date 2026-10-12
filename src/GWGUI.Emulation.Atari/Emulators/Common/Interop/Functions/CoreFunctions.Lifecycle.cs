@@ -6,11 +6,9 @@ internal static class CoreLifecycleFunctions
         MachineConfiguration configuration, nint gameInfo, Action? configureControllers = null)
     {
         if (gameInfo == nint.Zero && !callbacks.SupportsNoGame)
-            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentRequired,
-                ErrorMessages.ContentRequired);
+            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentRequired, ErrorMessages.ContentRequired);
         if (!exports.LoadGame(gameInfo))
-            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported,
-                ErrorMessages.ContentLoadFailed);
+            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
         callbacks.ConfigureInput(configuration.Input);
         if (configureControllers is null)
             ControllerPortFunctions.Configure(exports, callbacks, configuration);

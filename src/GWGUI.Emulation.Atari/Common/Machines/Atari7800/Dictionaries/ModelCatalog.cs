@@ -10,14 +10,11 @@ public static class Atari7800ModelCatalog
                 HardwareModelFunctions.Values(HardwareCpu.Sally6502C),
                 HardwareModelFunctions.Values(HardwareRegion.Ntsc, HardwareRegion.Pal),
                 HardwareModelFunctions.Values(HardwareVideoCapability.Maria),
-                HardwareModelFunctions.Values(HardwareAudioCapability.Tia,
-                    HardwareAudioCapability.CartridgePokey),
+                HardwareModelFunctions.Values(HardwareAudioCapability.Tia, HardwareAudioCapability.CartridgePokey),
                 HardwareModelFunctions.Values(HardwareStorageCapability.Cartridge),
                 HardwareModelFunctions.Values(
-                    new HardwarePortDefinition(HardwarePortCapability.ProLineController,
-                        Atari7800ModelConstants.TwoPorts),
-                    new HardwarePortDefinition(HardwarePortCapability.LightGun,
-                        Atari7800ModelConstants.TwoPorts)),
+                    new HardwarePortDefinition(HardwarePortCapability.ProLineController, Atari7800ModelConstants.TwoPorts),
+                    new HardwarePortDefinition(HardwarePortCapability.LightGun, Atari7800ModelConstants.TwoPorts)),
                 HardwareModelFunctions.Values(FirmwareCategory.Atari7800Bios),
                 HardwareModelFunctions.Values(MediaCategory.Cartridge)));
 }

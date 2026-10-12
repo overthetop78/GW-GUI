@@ -47,11 +47,7 @@ internal static partial class StorageSettingsFunctions
     {
         var models = new List<FloppyDriveModelChoice>
         {
-            new(
-                StorageSettingsFunctionsConstants.Atarist720,
-                StorageSettingsFunctionsConstants.FormatAtarist720,
-                BlankImageSize: 737_280
-            )
+            new(StorageSettingsFunctionsConstants.Atarist720, StorageSettingsFunctionsConstants.FormatAtarist720, BlankImageSize: 737_280)
         };
         if (StModelCatalog.Get(model).Storage.Contains(StStorageCapability.FloppyHighDensity))
             models.Add(new FloppyDriveModelChoice(StorageSettingsFunctionsConstants.Atarist1440, StorageSettingsFunctionsConstants.FormatAtarist1440, BlankImageSize: 1_474_560));

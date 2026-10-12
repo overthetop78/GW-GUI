@@ -30,14 +30,11 @@ internal static class HardwareModelFunctions
         IReadOnlyList<HardwarePortDefinition> ports,
         IReadOnlyList<FirmwareCategory> firmware,
         IReadOnlyList<MediaCategory> media) =>
-        new(model, stableModelId, displayNameResourceKey, emulator, cpus, cpuFrequencyHz,
-            mainMemoryBytes, regions, video, audio, storage, ports, firmware, media);
+        new(model, stableModelId, displayNameResourceKey, emulator, cpus, cpuFrequencyHz, mainMemoryBytes, regions, video, audio, storage, ports, firmware, media);
 
-    internal static bool IsFirmwareCompatible(HardwareModelDefinition definition, FirmwareCategory category) =>
-        definition.Firmware.Contains(category);
+    internal static bool IsFirmwareCompatible(HardwareModelDefinition definition, FirmwareCategory category) => definition.Firmware.Contains(category);
 
-    internal static bool IsMediaCompatible(HardwareModelDefinition definition, MediaCategory category,
-        EmulationMediaSlot slot) => definition.Media.Contains(category) && IsSlotCompatible(category, slot);
+    internal static bool IsMediaCompatible(HardwareModelDefinition definition, MediaCategory category, EmulationMediaSlot slot) => definition.Media.Contains(category) && IsSlotCompatible(category, slot);
 
     private static bool IsSlotCompatible(MediaCategory category, EmulationMediaSlot slot) => category switch
     {

@@ -4,17 +4,14 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static class EmulationMediaConversionFunctions
 {
-    internal static EmulationMedia? ToCommon(MediaConfiguration media) => media.Category == MediaCategory.Directory
-        ? null
-        : new EmulationMedia(media.Path, media.Slot, ToType(media.Category), media.IsReadOnly, media.IsInserted);
+    internal static EmulationMedia? ToCommon(MediaConfiguration media) => media.Category == MediaCategory.Directory ? null : new EmulationMedia(media.Path, media.Slot, ToType(media.Category), media.IsReadOnly, media.IsInserted);
 
     internal static MediaConfiguration ToAtari(EmulationMedia media,
         IReadOnlyList<MediaConfiguration> mountedMedia)
     {
         var existing = mountedMedia.FirstOrDefault(item => item.Slot == media.Slot);
         return existing is null
-            ? new MediaConfiguration(media.Path, ToAtariCategory(media.Type), media.Slot,
-                IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted)
+            ? new MediaConfiguration(media.Path, ToAtariCategory(media.Type), media.Slot, IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted)
             : existing with
             {
                 Path = media.Path,

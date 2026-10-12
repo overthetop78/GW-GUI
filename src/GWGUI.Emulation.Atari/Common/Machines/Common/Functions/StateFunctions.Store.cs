@@ -8,8 +8,7 @@ internal static class StateStoreFunctions
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(stateRoot);
         if (configurationId == Guid.Empty) throw new ArgumentException(nameof(configurationId));
-        return Path.Combine(Path.GetFullPath(stateRoot), StateStoreConstants.AtariDirectoryName,
-            configurationId.ToString(StateStoreConstants.MachineIdentifierFormat));
+        return Path.Combine(Path.GetFullPath(stateRoot), StateStoreConstants.AtariDirectoryName, configurationId.ToString(StateStoreConstants.MachineIdentifierFormat));
     }
 
     internal static string ValidateStateName(string name)
@@ -19,8 +18,7 @@ internal static class StateStoreFunctions
         if (normalized.Length > StateStoreConstants.MaximumStateNameLength
             || string.Equals(normalized, StateStoreConstants.CurrentDirectoryName, StringComparison.Ordinal)
             || string.Equals(normalized, StateStoreConstants.ParentDirectoryName, StringComparison.Ordinal)
-            || string.Equals(normalized, StateStoreConstants.QuickStateName,
-                StringComparison.OrdinalIgnoreCase)
+            || string.Equals(normalized, StateStoreConstants.QuickStateName, StringComparison.OrdinalIgnoreCase)
             || normalized.EndsWith(StateStoreConstants.CurrentDirectoryName, StringComparison.Ordinal)
             || normalized.IndexOfAny(Path.GetInvalidFileNameChars()) >= BufferConstants.FirstBufferIndex
             || normalized.Contains(Path.DirectorySeparatorChar)
@@ -36,12 +34,9 @@ internal static class StateStoreFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(category))
     };
 
-    internal static void WriteBytesAtomically(string path, byte[] bytes) =>
-        WriteAtomically(path, stream => stream.Write(bytes));
+    internal static void WriteBytesAtomically(string path, byte[] bytes) => WriteAtomically(path, stream => stream.Write(bytes));
 
-    internal static void WriteMetadataAtomically(string path, StoredStateMetadata metadata) =>
-        WriteAtomically(path, stream => JsonSerializer.Serialize(stream, metadata,
-            StateStoreConstants.JsonOptions));
+    internal static void WriteMetadataAtomically(string path, StoredStateMetadata metadata) => WriteAtomically(path, stream => JsonSerializer.Serialize(stream, metadata, StateStoreConstants.JsonOptions));
 
     internal static void WriteAtomically(string path, Action<Stream> write)
     {
@@ -51,8 +46,7 @@ internal static class StateStoreFunctions
         var temporaryPath = fullPath + StateStoreConstants.TemporaryFileExtension;
         try
         {
-            using (var stream = new FileStream(temporaryPath, FileMode.Create, FileAccess.Write, FileShare.None,
-                       StateStoreConstants.CopyBufferSize, FileOptions.WriteThrough))
+            using (var stream = new FileStream(temporaryPath, FileMode.Create, FileAccess.Write, FileShare.None, StateStoreConstants.CopyBufferSize, FileOptions.WriteThrough))
             {
                 write(stream);
                 stream.Flush(flushToDisk: true);
@@ -73,11 +67,8 @@ internal static class StateStoreFunctions
         {
             try
             {
-                using var stream = new FileStream(path, FileMode.Open, FileAccess.Read,
-                    FileShare.ReadWrite | FileShare.Delete);
-                return JsonSerializer.Deserialize<StoredStateMetadata>(stream,
-                           StateStoreConstants.JsonOptions)
-                       ?? throw new InvalidDataException(ErrorMessages.StateInvalid);
+                using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+                return JsonSerializer.Deserialize<StoredStateMetadata>(stream, StateStoreConstants.JsonOptions) ?? throw new InvalidDataException(ErrorMessages.StateInvalid);
             }
             catch (IOException) when (retry + StateStoreConstants.NextRetryCount
                                       < StateStoreConstants.MetadataReadRetryCount)
@@ -88,12 +79,9 @@ internal static class StateStoreFunctions
         throw new FileNotFoundException(path);
     }
 
-    internal static string MetadataPath(string machineDirectory, string stem) =>
-        Path.Combine(machineDirectory, stem + StateStoreConstants.MetadataFileExtension);
+    internal static string MetadataPath(string machineDirectory, string stem) => Path.Combine(machineDirectory, stem + StateStoreConstants.MetadataFileExtension);
 
-    internal static string StatePath(string machineDirectory, string stem) =>
-        Path.Combine(machineDirectory, stem + StateStoreConstants.StateFileExtension);
+    internal static string StatePath(string machineDirectory, string stem) => Path.Combine(machineDirectory, stem + StateStoreConstants.StateFileExtension);
 
-    internal static string CapturePath(string machineDirectory, string stem) =>
-        Path.Combine(machineDirectory, stem + StateStoreConstants.CaptureFileExtension);
+    internal static string CapturePath(string machineDirectory, string stem) => Path.Combine(machineDirectory, stem + StateStoreConstants.CaptureFileExtension);
 }
