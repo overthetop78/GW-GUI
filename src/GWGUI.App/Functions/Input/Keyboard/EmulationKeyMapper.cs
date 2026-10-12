@@ -29,6 +29,7 @@ public static class EmulationKeyMapper
         }
         result = key switch
         {
+            Key.F11 => EmulationKey.F11, Key.F12 => EmulationKey.F12,
             Key.Back => EmulationKey.Backspace, Key.Tab => EmulationKey.Tab, Key.Enter => EmulationKey.Return,
             Key.Escape => EmulationKey.Escape, Key.Space => EmulationKey.Space, Key.Left => EmulationKey.Left,
             Key.Right => EmulationKey.Right, Key.Up => EmulationKey.Up, Key.Down => EmulationKey.Down,

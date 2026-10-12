@@ -43,6 +43,7 @@
     <InternalsVisibleTo Include="GWGUI.Emulation.Snk" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Thomson" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Watara" />
+    <InternalsVisibleTo Include="GWGUI.Emulation.Wenquxing" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Amstrad" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Sega" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Nintendo" />

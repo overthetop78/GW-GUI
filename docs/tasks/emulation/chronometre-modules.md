@@ -268,3 +268,10 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-12 03:39:16 | 44:43:32 | -36:43:32 | Reprise. Watara : matériel et entrée publique du module. |
 | 2026-10-12 03:43:20 | 44:47:36 | -36:47:36 | Reprise. Watara : visuels et intégration App. |
 | 2026-10-12 03:53:52 | 44:58:08 | -36:58:08 | Reprise. Watara : validation du parcours livré. |
+| 2026-10-12 04:10:10 | 45:14:26 | -37:14:26 | Reprise. Wenquxing : qualification du cœur et des cinq modèles. |
+| 2026-10-12 04:18:57 | 45:23:13 | -37:23:13 | Reprise. Wenquxing : configuration et persistance du firmware. |
+| 2026-10-12 04:25:39 | 45:29:55 | -37:29:55 | Reprise. Wenquxing : commandes spéciales et clavier commun. |
+| 2026-10-12 04:35:22 | 45:39:38 | -37:39:38 | Reprise. Wenquxing : adaptateur natif WQXEmu. |
+| 2026-10-12 04:52:47 | 45:57:03 | -37:57:03 | Reprise. Wenquxing : catalogues et descriptions publiques. |
+| 2026-10-12 05:02:03 | 46:06:19 | -38:06:19 | Reprise. Wenquxing : visuels des cinq modèles et intégration. |
+| 2026-10-12 05:06:43 | 46:10:59 | -38:10:59 | Reprise. Wenquxing : contrôle des visuels et intégration. |

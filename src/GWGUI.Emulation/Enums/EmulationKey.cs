@@ -31,5 +31,8 @@ public enum EmulationKey
     CommodoreLineFeed, Commodore40_80Display, CommodoreNoScroll, CommodoreAsciiDinCaps,
     CommodoreOffReverse, CommodoreNormalGraphic, CommodoreKeypadClearEntry,
     CommodoreRepeat,
-    ThomsonStop, ThomsonAccent, ThomsonRaz, ThomsonBasic
+    ThomsonStop, ThomsonAccent, ThomsonRaz, ThomsonBasic,
+    F11, F12,
+    WenquxingDictionary, WenquxingCard, WenquxingCalculator, WenquxingMemo, WenquxingData,
+    WenquxingClock, WenquxingNetwork, WenquxingPower, WenquxingInputMethod, WenquxingHelp
 }
