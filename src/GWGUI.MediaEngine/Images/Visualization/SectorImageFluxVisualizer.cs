@@ -18,10 +18,7 @@ public sealed class SectorImageFluxVisualizer
     }
 
     /// <summary>Crée un visualiseur avec ses deux registres injectés.</summary>
-    internal SectorImageFluxVisualizer(
-        FluxEncoderRegistry? encoders,
-        SectorImageVisualizationPolicyRegistry policies
-    )
+    internal SectorImageFluxVisualizer(FluxEncoderRegistry? encoders, SectorImageVisualizationPolicyRegistry policies)
     {
         trackEncoder = new(encoders ?? new FluxEncoderRegistry(), policies);
     }
@@ -34,10 +31,7 @@ public sealed class SectorImageFluxVisualizer
     /// <returns>Image SCP utilisable par les composants de visualisation.</returns>
     /// <exception cref = "NotSupportedException">Aucune politique ou aucun encodeur ne prend le format en charge.</exception>
     /// <exception cref = "InvalidDataException">L'image ne produit aucune piste.</exception>
-    public ScpImage Create(
-        SectorImage image,
-        CancellationToken cancellationToken = default
-    )
+    public ScpImage Create(SectorImage image, CancellationToken cancellationToken = default)
     {
         var tracks = trackEncoder.Encode(image, cancellationToken).Select(item => new ScpTrack(ScpFormatConstants.ToTrackNumber(item.Cylinder, item.Head), item.Cylinder, item.Head, [new ScpRevolution(item.Track.Revolution, (uint)item.Track.Revolution.FluxIntervals.Count)])).ToArray();
         var start = tracks.Min(track => track.TrackNumber);

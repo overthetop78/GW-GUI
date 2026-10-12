@@ -50,8 +50,7 @@ public sealed class ConsoleCartridgeWriter : IMediaImageWriter
 
     private static readonly IReadOnlySet<string> SupportedFormatIds = FormatExtensions.Keys.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedExtensions = FormatExtensions.Values.SelectMany(static extensions => extensions).ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
 
     public string Id => MediaImageWriterIds.ConsoleCartridge;
     public IReadOnlySet<string> FormatIds => SupportedFormatIds;
@@ -72,11 +71,7 @@ public sealed class ConsoleCartridgeWriter : IMediaImageWriter
             && storedLength > 0 && storedLength <= blocks.Capacity;
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
@@ -104,10 +99,7 @@ public sealed class ConsoleCartridgeWriter : IMediaImageWriter
         return [outputPath];
     }
 
-    private static string NormalizeExtension(string extension) =>
-        extension.StartsWith(".", StringComparison.Ordinal)
-            ? extension.ToLowerInvariant()
-            : $".{extension.ToLowerInvariant()}";
+    private static string NormalizeExtension(string extension) => extension.StartsWith(".", StringComparison.Ordinal) ? extension.ToLowerInvariant() : $".{extension.ToLowerInvariant()}";
 
     private static IReadOnlySet<string> Extensions(params string[] extensions) => extensions.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 }

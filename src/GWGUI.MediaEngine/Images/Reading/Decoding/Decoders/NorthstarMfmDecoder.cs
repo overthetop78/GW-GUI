@@ -49,10 +49,7 @@ public sealed class NorthstarMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Lit l'octet d'identité et en dépaquette l'adresse.</summary>
-    internal static NorthstarMfmIdentity? TryDecodeIdentity(
-        FluxBitstream stream,
-        int offset
-    )
+    internal static NorthstarMfmIdentity? TryDecodeIdentity(FluxBitstream stream, int offset)
     {
         if (!FluxBitReader.TryDecodeMfmByte(stream, offset, out var packed))
             return null;
@@ -61,11 +58,7 @@ public sealed class NorthstarMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Lit la charge utile et le checksum d'un bloc complet.</summary>
-    internal static NorthstarMfmBlock? TryDecodeBlock(
-        FluxBitstream stream,
-        int offset,
-        NorthstarMfmIdentity identity
-    )
+    internal static NorthstarMfmBlock? TryDecodeBlock(FluxBitstream stream, int offset, NorthstarMfmIdentity identity)
     {
         var data = TryDecodeMfmBytes(stream, offset + NorthstarMfmFormat.IdentityBitCount, NorthstarMfmFormat.SectorSize);
         if (data is null || !FluxBitReader.TryDecodeMfmByte(stream, offset + NorthstarMfmFormat.IdentityBitCount + NorthstarMfmFormat.PayloadBitCount, out var storedChecksum))
@@ -74,11 +67,7 @@ public sealed class NorthstarMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Tente de décoder une suite d'octets MFM.</summary>
-    private static byte[]? TryDecodeMfmBytes(
-        FluxBitstream stream,
-        int offset,
-        int count
-    )
+    private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         if (offset + count * NorthstarMfmFormat.EncodedByteBitCount > stream.Bits.Length)
             return null;

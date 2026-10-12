@@ -92,14 +92,7 @@ internal static class MicropolisChecksum
 }
 
 /// <summary>Représente les champs d'un record Micropolis complet.</summary>
-internal sealed record MicropolisMfmRecord(
-    byte Cylinder,
-    byte Sector,
-    byte[] Data,
-    byte StoredChecksum,
-    byte[] Trailer,
-    byte[] Bytes
-)
+internal sealed record MicropolisMfmRecord(byte Cylinder, byte Sector, byte[] Data, byte StoredChecksum, byte[] Trailer, byte[] Bytes)
 {
     /// <summary>Indique si le checksum stocké correspond au contenu du record.</summary>
     public bool ChecksumValid => MicropolisChecksum.Compute(Bytes.Skip(MicropolisMfmFormat.ChecksumDataOffset).Take(MicropolisMfmFormat.ChecksumDataLength)) == StoredChecksum;
@@ -120,11 +113,7 @@ internal sealed record MicropolisMfmRecord(
     }
 
     /// <summary>Crée les octets d'un record à encoder.</summary>
-    public static MicropolisMfmRecord Create(
-        byte cylinder,
-        byte sector,
-        IReadOnlyList<byte> data
-    )
+    public static MicropolisMfmRecord Create(byte cylinder, byte sector, IReadOnlyList<byte> data)
     {
         var bytes = new byte[MicropolisMfmFormat.RecordByteCount];
         bytes[MicropolisMfmFormat.AddressMarkOffset] = MicropolisMfmFormat.AddressMark;

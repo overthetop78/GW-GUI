@@ -14,10 +14,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.Gdi;
 /// <summary>Écrit un descripteur GDI et un fichier de données par piste optique.</summary>
 public sealed class GdiWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { GdiConstants.FormatId }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { GdiConstants.FormatId }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
 
     public string Id => MediaImageWriterIds.OpticalGdi;
     public IReadOnlySet<string> FormatIds => SupportedFormatIds;
@@ -39,11 +37,7 @@ public sealed class GdiWriter : IMediaImageWriter
         return optical.Tracks!.All(track => numbers.Add(track.TrackNumber) && track.FirstSector >= 0 && track.StoredPregapSectors == 0 && !track.HasSubchannels && GetTrackSectorSize(track) is > 0 && track.SectorCount > 0);
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var descriptorPath = Path.GetFullPath(outputPath);
         if (!CanWrite(document, targetFormatId, Path.GetExtension(descriptorPath))
@@ -71,10 +65,7 @@ public sealed class GdiWriter : IMediaImageWriter
         return files.Keys.ToArray();
     }
 
-    private static async Task WriteDescriptorAsync(
-        Stream output,
-        IReadOnlyList<GdiOutputEntry> entries,
-        CancellationToken cancellationToken)
+    private static async Task WriteDescriptorAsync(Stream output, IReadOnlyList<GdiOutputEntry> entries, CancellationToken cancellationToken)
     {
         await using var writer = new StreamWriter(output, new UTF8Encoding(false), 1024, leaveOpen: true);
         await writer.WriteLineAsync(entries.Count.ToString(CultureInfo.InvariantCulture).AsMemory(), cancellationToken).ConfigureAwait(false);
@@ -93,11 +84,7 @@ public sealed class GdiWriter : IMediaImageWriter
         await writer.FlushAsync(cancellationToken).ConfigureAwait(false);
     }
 
-    private static async Task CopyTrackAsync(
-        OpticalTrackDescriptor track,
-        Stream output,
-        int sectorSize,
-        CancellationToken cancellationToken)
+    private static async Task CopyTrackAsync(OpticalTrackDescriptor track, Stream output, int sectorSize, CancellationToken cancellationToken)
     {
         var buffer = new byte[64 * DataSizeConstants.BytesPerKibibyte];
         var total = checked(track.SectorCount * sectorSize);
@@ -122,10 +109,7 @@ public sealed class GdiWriter : IMediaImageWriter
 
     private static string Quote(string value) => $"\"{value.Replace("\"", "\\\"")}\"";
 
-    private static string NormalizeExtension(string extension) =>
-        extension.StartsWith(".", StringComparison.Ordinal)
-            ? extension.ToLowerInvariant()
-            : $".{extension.ToLowerInvariant()}";
+    private static string NormalizeExtension(string extension) => extension.StartsWith(".", StringComparison.Ordinal) ? extension.ToLowerInvariant() : $".{extension.ToLowerInvariant()}";
 
     private sealed record GdiOutputEntry(int Number, long Lba, int Control, int SectorSize, string FileName);
 }

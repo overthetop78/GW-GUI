@@ -5,12 +5,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Contains one protocol block decoded from sequential media and the source segments that produced it.</summary>
 public sealed class SequentialDecodedBlock
 {
-    public SequentialDecodedBlock(
-        long position,
-        ReadOnlyMemory<byte> data,
-        IReadOnlyList<long> sourceSegmentPositions,
-        bool? integrityValid,
-        IReadOnlyDictionary<string, string>? metadata = null)
+    public SequentialDecodedBlock(long position, ReadOnlyMemory<byte> data, IReadOnlyList<long> sourceSegmentPositions, bool? integrityValid, IReadOnlyDictionary<string, string>? metadata = null)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(position);
         ArgumentNullException.ThrowIfNull(sourceSegmentPositions);

@@ -148,10 +148,7 @@ internal static class Td0AdvancedDecompressor
             }
         }
 
-        private void Connect(
-            int child,
-            int branch
-        )
+        private void Connect(int child, int branch)
         {
             if (child < nodeCount)
                 parent[child] = parent[child + 1] = branch;

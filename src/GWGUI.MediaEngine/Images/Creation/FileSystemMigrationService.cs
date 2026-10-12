@@ -22,8 +22,7 @@ public sealed class FileSystemMigrationService
 {
     private readonly FileSystemsMigrationService fileSystems = new();
 
-    public MigrationValidationReport Validate(FileSystemVolume source, string targetFormatId,
-        bool acceptMetadataLoss = false)
+    public MigrationValidationReport Validate(FileSystemVolume source, string targetFormatId, bool acceptMetadataLoss = false)
     {
         var target = FileSystemMigrationTargetCatalog.Get(targetFormatId);
         var blank = BlankSectorImageFactory.Create(target.FormatId);
@@ -31,8 +30,7 @@ public sealed class FileSystemMigrationService
         return ConvertReport(fileSystems.Validate(plan, blank, acceptMetadataLoss));
     }
 
-    public MigrationResult CreateImage(FileSystemVolume source, string targetFormatId,
-        bool acceptMetadataLoss = false)
+    public MigrationResult CreateImage(FileSystemVolume source, string targetFormatId, bool acceptMetadataLoss = false)
     {
         var target = FileSystemMigrationTargetCatalog.Get(targetFormatId);
         var blank = BlankSectorImageFactory.Create(target.FormatId);
@@ -43,9 +41,7 @@ public sealed class FileSystemMigrationService
         return new(image, ConvertReport(report));
     }
 
-    public async Task<MigrationResult> WriteAsync(FileSystemVolume source, string outputPath,
-        string targetFormatId, bool acceptMetadataLoss = false,
-        CancellationToken cancellationToken = default)
+    public async Task<MigrationResult> WriteAsync(FileSystemVolume source, string outputPath, string targetFormatId, bool acceptMetadataLoss = false, CancellationToken cancellationToken = default)
     {
         var result = CreateImage(source, targetFormatId, acceptMetadataLoss);
         await WriteImageAsync(result.Image, outputPath, targetFormatId, cancellationToken).ConfigureAwait(false);
@@ -54,8 +50,7 @@ public sealed class FileSystemMigrationService
 
     private static MigrationValidationReport ConvertReport(FileSystemsReport report) => new(report.Losses.Select(loss => new MigrationLoss(Enum.Parse<MigrationLossKind>(loss.Kind.ToString()), loss.Path, loss.IsBlocking, loss.Detail)), report.MetadataLossAccepted);
 
-    private static async Task WriteImageAsync(SectorImage image, string outputPath,
-        string formatId, CancellationToken cancellationToken)
+    private static async Task WriteImageAsync(SectorImage image, string outputPath, string formatId, CancellationToken cancellationToken)
     {
         if (formatId.StartsWith(DiskImageFormatIds.AmigaPrefix, StringComparison.OrdinalIgnoreCase))
         {

@@ -8,11 +8,7 @@ public sealed class MsaWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWrite
 {
     private readonly GWGUI.MediaEngine.Interfaces.IAtomicImageFileWriter files = fileSystem ?? new GWGUI.MediaEngine.Interfaces.AtomicImageFileWriter();
     /// <summary>Écrit l'en-tête puis chaque piste sous forme brute ou compressée selon la représentation la plus courte.</summary>
-    public async Task WriteAsync(
-        SectorImage image,
-        string path,
-        CancellationToken cancellationToken = default
-    )
+    public async Task WriteAsync(SectorImage image, string path, CancellationToken cancellationToken = default)
     {
         if (!AtariStGeometry.TryFromFormatId(image.FormatId, out var geometry) || image.BlockSize != AtariStGeometry.SectorSize || image.Cylinders != geometry.Cylinders || image.Heads != geometry.Heads || image.SectorsPerTrack != geometry.SectorsPerTrack)
             throw MsaExceptions.UnsupportedSectorImage(image);
@@ -47,12 +43,7 @@ public sealed class MsaWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWrite
     }
 
     /// <summary>Assemble une piste complète dans l'ordre logique Atari ST.</summary>
-    private static byte[] BuildTrack(
-        SectorImage image,
-        AtariStGeometry geometry,
-        int cylinder,
-        int head
-    )
+    private static byte[] BuildTrack(SectorImage image, AtariStGeometry geometry, int cylinder, int head)
     {
         var track = new byte[geometry.SectorsPerTrack * AtariStGeometry.SectorSize];
         for (var sector = 0; sector < geometry.SectorsPerTrack; sector++)

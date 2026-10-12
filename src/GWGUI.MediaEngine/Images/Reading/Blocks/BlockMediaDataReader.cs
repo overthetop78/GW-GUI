@@ -7,11 +7,7 @@ namespace GWGUI.MediaEngine.Images.Reading.Blocks;
 /// <summary>Reads logical byte ranges from a block media representation.</summary>
 internal static class BlockMediaDataReader
 {
-    public static async ValueTask ReadExactlyAsync(
-        BlockMediaImageRepresentation image,
-        long address,
-        Memory<byte> destination,
-        CancellationToken cancellationToken = default)
+    public static async ValueTask ReadExactlyAsync(BlockMediaImageRepresentation image, long address, Memory<byte> destination, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(image);
         ArgumentOutOfRangeException.ThrowIfNegative(address);

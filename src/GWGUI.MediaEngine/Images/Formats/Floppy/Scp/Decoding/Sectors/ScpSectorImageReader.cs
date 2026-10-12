@@ -12,11 +12,7 @@ internal sealed class ScpSectorImageReader(ScpCandidateRegistry candidates, File
     public Task<SectorImage> ReadAsync(string path, string? formatId, CancellationToken cancellationToken) =>
         ReadAsync(path, formatId, null, cancellationToken);
 
-    public async Task<SectorImage> ReadAsync(
-        string path,
-        string? formatId,
-        IProgress<ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    public async Task<SectorImage> ReadAsync(string path, string? formatId, IProgress<ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var selected = candidates.Selected(formatId);
         if (selected is not null) return await selected.ReadWithProgressAsync(path, formatId, progress, cancellationToken).ConfigureAwait(false);
@@ -24,11 +20,7 @@ internal sealed class ScpSectorImageReader(ScpCandidateRegistry candidates, File
     }
 
     /// <summary>Lit une représentation de flux commune avec les candidats qui ne dépendent pas du conteneur SCP.</summary>
-    public async Task<SectorImage> ReadAsync(
-        ProtectedTrackImage image,
-        string? formatId,
-        IProgress<ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    public async Task<SectorImage> ReadAsync(ProtectedTrackImage image, string? formatId, IProgress<ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(image);
         var selected = candidates.Selected(formatId);
@@ -50,11 +42,7 @@ internal sealed class ScpSectorImageReader(ScpCandidateRegistry candidates, File
     }
 
     /// <summary>Conserve le premier décodage, retourne la première reconnaissance de système de fichiers et poursuit après les rejets prévus.</summary>
-    private async Task<SectorImage> ReadDefaultAsync(
-        string path,
-        string? formatId,
-        IProgress<ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    private async Task<SectorImage> ReadDefaultAsync(string path, string? formatId, IProgress<ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         SectorImage? firstDecoded = null;
         var failures = new List<ScpCandidateFailure>();

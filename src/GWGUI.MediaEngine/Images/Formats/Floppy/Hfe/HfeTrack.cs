@@ -13,8 +13,7 @@ public sealed record HfeTrack
     {
     }
 
-    internal HfeTrack(int cylinder, int head, IReadOnlyList<bool> bits, uint bitCellTicks,
-        IReadOnlyList<TrackTimingSegment> timing, IReadOnlyList<TrackFeature> features, FluxRevolution revolution)
+    internal HfeTrack(int cylinder, int head, IReadOnlyList<bool> bits, uint bitCellTicks, IReadOnlyList<TrackTimingSegment> timing, IReadOnlyList<TrackFeature> features, FluxRevolution revolution)
     {
         Cylinder = cylinder;
         Head = head;

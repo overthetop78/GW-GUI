@@ -21,13 +21,10 @@ public sealed class AmstradCprReader : IMediaImageReader
     private const int MaximumBankCount = 32;
     private static readonly byte[] RiffSignature = System.Text.Encoding.ASCII.GetBytes("RIFF");
     private static readonly byte[] FormSignature = System.Text.Encoding.ASCII.GetBytes("AMS!");
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { DiskImageFormatIds.AmstradCpr }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedExtensions =
-        new[] { DiskImageFileExtensions.Cpr }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { DiskImageFormatIds.AmstradCpr }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedExtensions = new[] { DiskImageFileExtensions.Cpr }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Cartridge }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => SupportedExtensions;

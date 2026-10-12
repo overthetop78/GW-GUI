@@ -19,11 +19,7 @@ public sealed class AppleNibbleConversionService
     private readonly AppleScpSectorImageReader _scpReader;
     private readonly AppleDiskImageWriter _writer;
     /// <summary>Crée le service avec ses façades de lecture et d'écriture injectées.</summary>
-    public AppleNibbleConversionService(
-        AppleDiskImageReader appleReader,
-        AppleScpSectorImageReader scpReader,
-        AppleDiskImageWriter writer
-    )
+    public AppleNibbleConversionService(AppleDiskImageReader appleReader, AppleScpSectorImageReader scpReader, AppleDiskImageWriter writer)
     {
         _appleReader = appleReader ?? throw new ArgumentNullException(nameof(appleReader));
         _scpReader = scpReader ?? throw new ArgumentNullException(nameof(scpReader));
@@ -35,11 +31,7 @@ public sealed class AppleNibbleConversionService
     /// <summary>Indique que le format visible peut nécessiter un convertisseur externe si la source réelle n'est pas représentable.</summary>
     public static bool IsCatalogAliasTarget(string formatId, string extension) => OutputExtensions.Contains(extension) && (formatId.Equals(DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase));
     /// <summary>Lit, valide puis convertit la source sans créer la sortie avant la fin des validations.</summary>
-    public async Task ConvertAsync(
-        string sourcePath,
-        string outputPath,
-        CancellationToken cancellationToken = default
-    )
+    public async Task ConvertAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {
         ValidateOutput(outputPath);
         var image = await ReadSourceAsync(sourcePath, cancellationToken).ConfigureAwait(false);
@@ -49,10 +41,7 @@ public sealed class AppleNibbleConversionService
     }
 
     /// <summary>Reconnaît une signature SCP certaine, sinon délègue le contenu au routeur Apple.</summary>
-    private async Task<SectorImage> ReadSourceAsync(
-        string sourcePath,
-        CancellationToken cancellationToken
-    )
+    private async Task<SectorImage> ReadSourceAsync(string sourcePath, CancellationToken cancellationToken)
     {
         await using var stream = new FileStream(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Read, ScpFormatConstants.SignatureLength, FileOptions.Asynchronous | FileOptions.SequentialScan);
         var signature = new byte[ScpFormatConstants.SignatureLength];

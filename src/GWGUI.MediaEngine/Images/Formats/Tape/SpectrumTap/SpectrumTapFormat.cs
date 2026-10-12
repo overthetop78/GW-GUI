@@ -7,8 +7,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.SpectrumTap;
 internal static class SpectrumTapFormat
 {
     public static string FormatId => TapeImageFormatIds.SpectrumTap;
-    public static readonly IReadOnlySet<string> Extensions =
-        new[] { DiskImageFileExtensions.Tap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public static readonly IReadOnlySet<string> Extensions = new[] { DiskImageFileExtensions.Tap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     public static bool CanRead => true;
     public static bool CanWrite => true;
 }

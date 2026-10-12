@@ -5,10 +5,7 @@ namespace GWGUI.MediaEngine.Images.Reading.Optical;
 /// <summary>Reads stored or user-data sectors through a container-independent optical track descriptor.</summary>
 public sealed class OpticalSectorReader
 {
-    public async ValueTask<byte[]> ReadStoredSectorAsync(
-        OpticalTrackDescriptor track,
-        long relativeSector,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<byte[]> ReadStoredSectorAsync(OpticalTrackDescriptor track, long relativeSector, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(track);
         ValidateRelativeSector(track, relativeSector);
@@ -17,10 +14,7 @@ public sealed class OpticalSectorReader
         return sector;
     }
 
-    public async ValueTask<byte[]> ReadUserDataAsync(
-        OpticalTrackDescriptor track,
-        long relativeSector,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<byte[]> ReadUserDataAsync(OpticalTrackDescriptor track, long relativeSector, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(track);
         ValidateRelativeSector(track, relativeSector);
@@ -29,10 +23,7 @@ public sealed class OpticalSectorReader
         return data;
     }
 
-    public async ValueTask<byte[]?> ReadSubchannelAsync(
-        OpticalTrackDescriptor track,
-        long relativeSector,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<byte[]?> ReadSubchannelAsync(OpticalTrackDescriptor track, long relativeSector, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(track);
         ValidateRelativeSector(track, relativeSector);

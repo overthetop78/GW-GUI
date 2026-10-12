@@ -24,8 +24,7 @@ public sealed class MediaVisualizationProviderRegistry
     public MediaVisualizationDescriptor CreateDescriptor(MediaImageDocument document)
     {
         ArgumentNullException.ThrowIfNull(document);
-        var provider = Resolve(document) ?? throw new NotSupportedException(
-            $"No visualization provider supports representation '{document.Representation.RepresentationKind}' for format '{document.FormatId}'.");
+        var provider = Resolve(document) ?? throw new NotSupportedException($"No visualization provider supports representation '{document.Representation.RepresentationKind}' for format '{document.FormatId}'.");
         return provider.CreateDescriptor(document);
     }
 }

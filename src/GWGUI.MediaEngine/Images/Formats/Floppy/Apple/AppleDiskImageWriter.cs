@@ -20,11 +20,7 @@ public sealed class AppleDiskImageWriter
     /// <summary>Crée la façade avec le service d'encodage fourni ou le service par défaut.</summary>
     /// <param name = "encoder">Service d'encodage RWTS18 optionnel.</param>
     /// <param name = "standardEncoder">Service d'encodage Apple II GCR standard optionnel.</param>
-    public AppleDiskImageWriter(
-        AppleRwts18TrackEncodingService? encoder = null,
-        AppleIITrackEncodingService? standardEncoder = null,
-        Func<string, byte[], CancellationToken, Task>? writeBytes = null
-    )
+    public AppleDiskImageWriter(AppleRwts18TrackEncodingService? encoder = null, AppleIITrackEncodingService? standardEncoder = null, Func<string, byte[], CancellationToken, Task>? writeBytes = null)
     {
         _encoder = encoder ?? new();
         _standardEncoder = standardEncoder ?? new();
@@ -37,11 +33,7 @@ public sealed class AppleDiskImageWriter
     /// <param name = "image">Image Apple II source.</param>
     /// <param name = "path">Chemin NIB ou WOZ de destination.</param>
     /// <param name = "cancellationToken">Jeton d'annulation propagé à l'encodage et à l'écriture.</param>
-    public Task WriteAsync(
-        SectorImage image,
-        string path,
-        CancellationToken cancellationToken = default
-    )
+    public Task WriteAsync(SectorImage image, string path, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(path);
         if (!Outputs.TryGetValue(extension, out var output))

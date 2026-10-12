@@ -68,19 +68,13 @@ public sealed class AtrReader : IMediaImageReader
     /// <exception cref = "IOException">Une erreur d'entrÃ©e-sortie survient pendant la lecture.</exception>
     /// <exception cref = "InvalidDataException">L'en-tÃªte, la taille dÃ©clarÃ©e ou la disposition des secteurs est invalide.</exception>
     /// <exception cref = "OperationCanceledException">Le jeton d'annulation demande l'arrÃªt de la lecture.</exception>
-    public async Task<SectorImage> ReadAsync(
-        string path,
-        CancellationToken cancellationToken = default
-    )
+    public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var data = await ReadValidatedContainerAsync(path, cancellationToken, readBytes).ConfigureAwait(false);
         return Read(data, cancellationToken);
     }
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken
-    )
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !((IMediaImageReader)this).SupportsFormatId(context.RequestedFormatId))
             return false;
@@ -96,10 +90,7 @@ public sealed class AtrReader : IMediaImageReader
         }
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken
-    )
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var data = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
         var bytes = data.ToArray();
@@ -108,10 +99,7 @@ public sealed class AtrReader : IMediaImageReader
         return MediaImageDocumentFactory.CreateFloppySector(context.Source, image);
     }
 
-    private static SectorImage Read(
-        byte[] data,
-        CancellationToken cancellationToken
-    )
+    private static SectorImage Read(byte[] data, CancellationToken cancellationToken)
     {
         var sectorSize = BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.SectorSizeOffset));
         var payloadLength = GetUsablePayloadLength(data, sectorSize);
@@ -172,11 +160,7 @@ public sealed class AtrReader : IMediaImageReader
     /// <exception cref = "IOException">Une erreur d'entrÃ©e-sortie survient pendant la lecture.</exception>
     /// <exception cref = "InvalidDataException">Le fichier ne respecte pas la disposition ATR attendue.</exception>
     /// <exception cref = "OperationCanceledException">Le jeton d'annulation demande l'arrÃªt de la lecture.</exception>
-    internal static async Task<byte[]> ReadValidatedContainerAsync(
-        string path,
-        CancellationToken cancellationToken,
-        Func<string, CancellationToken, Task<byte[]>>? readBytes = null
-    )
+    internal static async Task<byte[]> ReadValidatedContainerAsync(string path, CancellationToken cancellationToken, Func<string, CancellationToken, Task<byte[]>>? readBytes = null)
     {
         var data = await (readBytes ?? File.ReadAllBytesAsync)(path, cancellationToken).ConfigureAwait(false);
         ValidateContainer(data);
@@ -204,10 +188,7 @@ public sealed class AtrReader : IMediaImageReader
             throw AtrExceptions.TruncatedPayload(observedPayloadLength, bootAreaLength, sectorSize);
     }
 
-    private static int GetUsablePayloadLength(
-        byte[] data,
-        int sectorSize
-    )
+    private static int GetUsablePayloadLength(byte[] data, int sectorSize)
     {
         var observedPayloadLength = data.Length - AtrLayout.HeaderSize;
         var paragraphCount = ((long)BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountHighOffset)) << 16) | BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.ParagraphCountLowOffset));
@@ -223,12 +204,7 @@ public sealed class AtrReader : IMediaImageReader
         return data.AsSpan(AtrLayout.HeaderSize + standardPayloadLength).IndexOfAnyExcept((byte)0) < 0 ? standardPayloadLength : observedPayloadLength;
     }
 
-    private static bool LooksLikeTruncatedSingleDensityBootImage(
-        byte[] data,
-        int sectorSize,
-        long declaredPayloadLength,
-        int observedPayloadLength
-    )
+    private static bool LooksLikeTruncatedSingleDensityBootImage(byte[] data, int sectorSize, long declaredPayloadLength, int observedPayloadLength)
     {
         if (sectorSize != AtrLayout.SingleDensitySectorSize || observedPayloadLength < AtrLayout.SingleDensitySectorSize || observedPayloadLength >= AtrLayout.StandardSectorCount * AtrLayout.SingleDensitySectorSize || declaredPayloadLength <= observedPayloadLength || declaredPayloadLength > AtrLayout.StandardSectorCount * AtrLayout.SingleDensitySectorSize)
             return false;
@@ -236,12 +212,7 @@ public sealed class AtrReader : IMediaImageReader
         return bootSectorCount > 0 && bootSectorCount * AtrLayout.SingleDensitySectorSize <= observedPayloadLength;
     }
 
-    private static bool LooksLikeMislabeledEnhancedDensityImage(
-        byte[] data,
-        int sectorSize,
-        long declaredPayloadLength,
-        int observedPayloadLength
-    )
+    private static bool LooksLikeMislabeledEnhancedDensityImage(byte[] data, int sectorSize, long declaredPayloadLength, int observedPayloadLength)
     {
         if (sectorSize != AtrLayout.SingleDensitySectorSize || observedPayloadLength != AtrLayout.EnhancedDensitySectorCount * AtrLayout.SingleDensitySectorSize || declaredPayloadLength != AtrLayout.ExtendedSingleDensitySectorCount * AtrLayout.SingleDensitySectorSize)
             return false;
@@ -256,12 +227,7 @@ public sealed class AtrReader : IMediaImageReader
         return data[vtocOffset] == 2 && managedSectorCount == enhancedDensityUsableSectorCount || data[vtocOffset] == 3 && managedSectorCount == xfPlusManagedSectorCount;
     }
 
-    private static bool LooksLikeExternallyPaddedImage(
-        byte[] data,
-        int sectorSize,
-        long declaredPayloadLength,
-        int observedPayloadLength
-    )
+    private static bool LooksLikeExternallyPaddedImage(byte[] data, int sectorSize, long declaredPayloadLength, int observedPayloadLength)
     {
         var bootAreaLength = AtrLayout.GetBootAreaLength(sectorSize);
         if (declaredPayloadLength <= 0 || declaredPayloadLength >= observedPayloadLength || declaredPayloadLength > int.MaxValue || declaredPayloadLength < bootAreaLength || (declaredPayloadLength - bootAreaLength) % sectorSize != 0)
@@ -269,11 +235,7 @@ public sealed class AtrReader : IMediaImageReader
         return IsExternalPadding(data.AsSpan(AtrLayout.HeaderSize + (int)declaredPayloadLength));
     }
 
-    private static bool LooksLikeHeaderInclusivePayloadLength(
-        int sectorSize,
-        long declaredPayloadLength,
-        int observedPayloadLength
-    )
+    private static bool LooksLikeHeaderInclusivePayloadLength(int sectorSize, long declaredPayloadLength, int observedPayloadLength)
     {
         var bootAreaLength = AtrLayout.GetBootAreaLength(sectorSize);
         return declaredPayloadLength == observedPayloadLength + AtrLayout.HeaderSize && declaredPayloadLength <= int.MaxValue && declaredPayloadLength >= bootAreaLength && (declaredPayloadLength - bootAreaLength) % sectorSize == 0;

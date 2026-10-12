@@ -5,10 +5,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Contains one ordered neutral data unit acquired from or prepared for a physical medium.</summary>
 public sealed record MediaPhysicalDataUnit
 {
-    public MediaPhysicalDataUnit(
-        long position,
-        ReadOnlyMemory<byte> data,
-        IReadOnlyDictionary<string, string>? metadata = null)
+    public MediaPhysicalDataUnit(long position, ReadOnlyMemory<byte> data, IReadOnlyDictionary<string, string>? metadata = null)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(position);
         Position = position;

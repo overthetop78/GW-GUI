@@ -15,10 +15,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.Uef;
 /// <summary>Writes retained UEF chunks directly or through explicitly requested gzip compression.</summary>
 public sealed class UefWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.Uef }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.Uef }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public UefWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
@@ -35,11 +33,7 @@ public sealed class UefWriter : IMediaImageWriter
         && TryGetProfile(document, out _)
         && TryGetChunks(document, out _);
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension)
@@ -63,11 +57,7 @@ public sealed class UefWriter : IMediaImageWriter
         return [outputPath];
     }
 
-    private static async Task WriteLogicalAsync(
-        Stream output,
-        UefProfile profile,
-        IReadOnlyList<UefChunk> chunks,
-        CancellationToken cancellationToken)
+    private static async Task WriteLogicalAsync(Stream output, UefProfile profile, IReadOnlyList<UefChunk> chunks, CancellationToken cancellationToken)
     {
         var header = new byte[UefConstants.HeaderSize];
         System.Text.Encoding.ASCII.GetBytes(UefConstants.Signature, header);

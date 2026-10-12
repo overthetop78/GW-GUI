@@ -50,17 +50,7 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
         var extensions = preferred is null ? Array.Empty<ImageExtension>() : [new ImageExtension(preferred, preferred.TrimStart('.').ToUpperInvariant(), true)];
         var sources = new HashSet<string>(supported.Select(Normalize), StringComparer.OrdinalIgnoreCase);
         var tag = Regex.Replace(id.ToUpperInvariant(), "[^A-Z0-9]+", "-").Trim('-');
-        return new DiskFormat(
-            id,
-            family,
-            detail is null ? family : $"{family} — {detail}",
-            extensions,
-            false,
-            sources,
-            tag,
-            FloppyFormFactor.Unknown,
-            SupportsPhysicalRead: true,
-            SupportsPhysicalWrite: true);
+        return new DiskFormat(id, family, detail is null ? family : $"{family} — {detail}", extensions, false, sources, tag, FloppyFormFactor.Unknown, SupportsPhysicalRead: true, SupportsPhysicalWrite: true);
     }
 
     private static string FriendlyToken(string token)

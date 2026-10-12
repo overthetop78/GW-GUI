@@ -6,12 +6,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Maps one logical media range to stored data or to an explicit non-stored state.</summary>
 public sealed class MediaDataRange
 {
-    public MediaDataRange(
-        long address,
-        long length,
-        MediaDataRangeKind kind,
-        IMediaRandomAccessData? source = null,
-        long sourceOffset = 0)
+    public MediaDataRange(long address, long length, MediaDataRangeKind kind, IMediaRandomAccessData? source = null, long sourceOffset = 0)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(address);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);

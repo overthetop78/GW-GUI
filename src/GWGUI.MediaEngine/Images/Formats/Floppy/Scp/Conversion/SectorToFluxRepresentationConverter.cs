@@ -12,10 +12,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Conversion;
 /// <summary>Reconstructs an SCP flux document from an encodable sector representation.</summary>
 internal sealed class SectorToFluxRepresentationConverter : IMediaRepresentationConverter
 {
-    private static readonly IReadOnlySet<MediaRepresentationKind> SourceKinds =
-        new HashSet<MediaRepresentationKind> { MediaRepresentationKind.Sectors };
-    private static readonly IReadOnlySet<MediaRepresentationKind> TargetKinds =
-        new HashSet<MediaRepresentationKind> { MediaRepresentationKind.Flux };
+    private static readonly IReadOnlySet<MediaRepresentationKind> SourceKinds = new HashSet<MediaRepresentationKind> { MediaRepresentationKind.Sectors };
+    private static readonly IReadOnlySet<MediaRepresentationKind> TargetKinds = new HashSet<MediaRepresentationKind> { MediaRepresentationKind.Flux };
     private readonly SectorImageScpConversionService conversion;
 
     public SectorToFluxRepresentationConverter(SectorImageScpConversionService conversion)
@@ -30,10 +28,7 @@ internal sealed class SectorToFluxRepresentationConverter : IMediaRepresentation
 
     public IReadOnlySet<MediaRepresentationKind> TargetRepresentationKinds => TargetKinds;
 
-    public bool CanConvert(
-        MediaImageDocument source,
-        string targetFormatId,
-        MediaRepresentationKind targetRepresentationKind)
+    public bool CanConvert(MediaImageDocument source, string targetFormatId, MediaRepresentationKind targetRepresentationKind)
         => source.Representation is SectorMediaImageRepresentation sectors &&
            (targetFormatId.Equals(DiskImageFormatIds.RawScp, StringComparison.OrdinalIgnoreCase) ||
             targetFormatId.Equals(DiskImageFormatIds.RawHfe, StringComparison.OrdinalIgnoreCase)) &&
@@ -52,8 +47,7 @@ internal sealed class SectorToFluxRepresentationConverter : IMediaRepresentation
         ArgumentNullException.ThrowIfNull(options);
         if (!CanConvert(source, targetFormatId, targetRepresentationKind) ||
             source.Representation is not SectorMediaImageRepresentation sectors)
-            throw new NotSupportedException(
-                $"Sector format '{source.FormatId}' cannot be reconstructed as flux for '{targetFormatId}'.");
+            throw new NotSupportedException($"Sector format '{source.FormatId}' cannot be reconstructed as flux for '{targetFormatId}'.");
 
         cancellationToken.ThrowIfCancellationRequested();
         var image = conversion.Create(sectors.Image, cancellationToken);

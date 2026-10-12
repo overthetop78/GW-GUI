@@ -8,11 +8,7 @@ using GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 namespace GWGUI.MediaEngine.Images.Conversion.Flux;
 
 /// <summary>Convertit directement les conteneurs de flux sans construire d'image sectorielle.</summary>
-public sealed class FluxContainerConversionService(
-    ScpReader scpReader,
-    ScpWriter scpWriter,
-    HfeReader hfeReader,
-    HfeWriter hfeWriter)
+public sealed class FluxContainerConversionService(ScpReader scpReader, ScpWriter scpWriter, HfeReader hfeReader, HfeWriter hfeWriter)
 {
     public static bool CanConvert(string sourcePath, string formatId, string targetExtension)
     {
@@ -28,10 +24,7 @@ public sealed class FluxContainerConversionService(
                formatId.Equals(DiskImageFormatIds.RawHfe, StringComparison.OrdinalIgnoreCase);
     }
 
-    public async Task ConvertAsync(
-        string sourcePath,
-        string outputPath,
-        CancellationToken cancellationToken = default)
+    public async Task ConvertAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {
         var source = Normalize(Path.GetExtension(sourcePath));
         var target = Normalize(Path.GetExtension(outputPath));
@@ -58,10 +51,7 @@ public sealed class FluxContainerConversionService(
         throw new NotSupportedException($"La conversion de flux {source} vers {target} n'est pas prise en charge.");
     }
 
-    private async Task CopyScpAsync(
-        string sourcePath,
-        string outputPath,
-        CancellationToken cancellationToken)
+    private async Task CopyScpAsync(string sourcePath, string outputPath, CancellationToken cancellationToken)
     {
         var bytes = await File.ReadAllBytesAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         var source = await scpReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
@@ -73,10 +63,7 @@ public sealed class FluxContainerConversionService(
             throw new InvalidDataException("Le conteneur SCP n'a pas été copié à l'identique.");
     }
 
-    private async Task CopyHfeAsync(
-        string sourcePath,
-        string outputPath,
-        CancellationToken cancellationToken)
+    private async Task CopyHfeAsync(string sourcePath, string outputPath, CancellationToken cancellationToken)
     {
         var bytes = await File.ReadAllBytesAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         var source = await hfeReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
@@ -88,10 +75,7 @@ public sealed class FluxContainerConversionService(
             throw new InvalidDataException("Le conteneur HFE n'a pas été copié à l'identique.");
     }
 
-    private async Task ConvertHfeToScpAsync(
-        string sourcePath,
-        string outputPath,
-        CancellationToken cancellationToken)
+    private async Task ConvertHfeToScpAsync(string sourcePath, string outputPath, CancellationToken cancellationToken)
     {
         var source = await hfeReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         var tracks = source.Tracks.Select(ToScpTrack).OrderBy(track => track.TrackNumber).ToArray();
@@ -115,10 +99,7 @@ public sealed class FluxContainerConversionService(
         HfeScpParityValidator.Validate(source, target);
     }
 
-    private async Task ConvertScpToHfeAsync(
-        string sourcePath,
-        string outputPath,
-        CancellationToken cancellationToken)
+    private async Task ConvertScpToHfeAsync(string sourcePath, string outputPath, CancellationToken cancellationToken)
     {
         var source = await scpReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         if (source.Header.Revolutions != 1 || source.Tracks.Any(track => track.Revolutions.Count != 1))
@@ -154,9 +135,7 @@ public sealed class FluxContainerConversionService(
         return new HfeTrack(track.Cylinder, track.Head, bits, bitCellTicks);
     }
 
-    private static void EnsureHfeTrackLengthsAreExact(
-        IReadOnlyList<HfeTrack> tracks,
-        ScpHeader header)
+    private static void EnsureHfeTrackLengthsAreExact(IReadOnlyList<HfeTrack> tracks, ScpHeader header)
     {
         if (tracks.Any(track => track.Bits.Count % HfeFormat.BitsPerByte != 0))
             throw new NotSupportedException("HFE v1 imposerait un remplissage à la fin d'une piste SCP.");

@@ -5,12 +5,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Reports neutral progress while physical media data units are acquired.</summary>
 public sealed record MediaAcquisitionProgress
 {
-    public MediaAcquisitionProgress(
-        int completedUnits,
-        int totalUnits,
-        int attempt,
-        MediaPhysicalDataUnit? acquiredUnit = null,
-        IReadOnlyDictionary<string, string>? metadata = null)
+    public MediaAcquisitionProgress(int completedUnits, int totalUnits, int attempt, MediaPhysicalDataUnit? acquiredUnit = null, IReadOnlyDictionary<string, string>? metadata = null)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(completedUnits);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(totalUnits);

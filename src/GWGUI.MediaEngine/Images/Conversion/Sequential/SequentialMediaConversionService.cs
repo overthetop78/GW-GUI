@@ -19,12 +19,7 @@ public sealed class SequentialMediaConversionService
     private readonly MediaImageWriterRegistry writers;
     private readonly MediaImageWritingService writing;
 
-    public SequentialMediaConversionService(
-        MediaImageReadingService reading,
-        SequentialDecoderRegistry decoders,
-        SequentialEncoderRegistry encoders,
-        MediaImageWriterRegistry writers,
-        MediaImageWritingService writing)
+    public SequentialMediaConversionService(MediaImageReadingService reading, SequentialDecoderRegistry decoders, SequentialEncoderRegistry encoders, MediaImageWriterRegistry writers, MediaImageWritingService writing)
     {
         ArgumentNullException.ThrowIfNull(reading);
         ArgumentNullException.ThrowIfNull(decoders);
@@ -79,8 +74,7 @@ public sealed class SequentialMediaConversionService
         var decoded = await decoders.DecodeAsync(source, resolvedMachineId, cancellationToken).ConfigureAwait(false);
         var selectedParameters = parameters ?? new Dictionary<string, string>(StringComparer.Ordinal);
         var request = SelectEncodableRequest(decoded, targetFormatId, resolvedMachineId, selectedParameters)
-            ?? throw new NotSupportedException(
-                $"No sequential encoder can convert '{source.FormatId}' to '{targetFormatId}' for '{resolvedMachineId}'.");
+            ?? throw new NotSupportedException($"No sequential encoder can convert '{source.FormatId}' to '{targetFormatId}' for '{resolvedMachineId}'.");
         var encoded = await encoders.EncodeAsync(request, cancellationToken).ConfigureAwait(false);
         var losses = new List<string>();
         if (decoded.UndecodedSegments.Count > 0 && request.RetainedSegments.Count == 0)
@@ -121,18 +115,13 @@ public sealed class SequentialMediaConversionService
             throw new InvalidOperationException("The sequential conversion has declared information losses that were not accepted.");
         var extension = Path.GetExtension(outputPath);
         if (writers.Resolve(plan.TargetDocument, targetFormatId, extension) is null)
-            throw new NotSupportedException(
-                $"No writer accepts sequential target '{targetFormatId}' with extension '{extension}'.");
+            throw new NotSupportedException($"No writer accepts sequential target '{targetFormatId}' with extension '{extension}'.");
         var produced = await writing.WriteAsync(plan.TargetDocument, outputPath, targetFormatId, progress, cancellationToken).ConfigureAwait(false);
         progress?.Invoke(new(MediaExplorationProgressStage.ReadingMedia, targetFormatId, 100, plan.TargetDocument.MediaKind));
         return new MediaConversionResult(produced, plan.Diagnostics, plan.Losses);
     }
 
-    private SequentialEncodeRequest? SelectEncodableRequest(
-        SequentialDecodeResult decoded,
-        string targetFormatId,
-        string machineId,
-        IReadOnlyDictionary<string, string> parameters)
+    private SequentialEncodeRequest? SelectEncodableRequest(SequentialDecodeResult decoded, string targetFormatId, string machineId, IReadOnlyDictionary<string, string> parameters)
     {
         var preserving = new SequentialEncodeRequest(targetFormatId, machineId, decoded.Blocks, decoded.UndecodedSegments, parameters);
         if (encoders.FindCompatible(preserving).Count == 1) return preserving;
@@ -147,9 +136,7 @@ public sealed class SequentialMediaConversionService
         return machineIds.Length == 1 ? machineIds[0] : null;
     }
 
-    private static IReadOnlyDictionary<string, string> BuildTargetMetadata(
-        IReadOnlyDictionary<string, string> parameters,
-        SequentialMediaImageRepresentation representation)
+    private static IReadOnlyDictionary<string, string> BuildTargetMetadata(IReadOnlyDictionary<string, string> parameters, SequentialMediaImageRepresentation representation)
     {
         var metadata = new Dictionary<string, string>(parameters, StringComparer.Ordinal);
         var samples = representation.Segments?.FirstOrDefault(segment => segment.Kind == SequentialSegmentKind.Samples);
@@ -163,10 +150,7 @@ public sealed class SequentialMediaConversionService
         return metadata;
     }
 
-    private static void CopyMetadata(
-        IReadOnlyDictionary<string, string> source,
-        IDictionary<string, string> destination,
-        string key)
+    private static void CopyMetadata(IReadOnlyDictionary<string, string> source, IDictionary<string, string> destination, string key)
     {
         if (source.TryGetValue(key, out var value)) destination[key] = value;
     }

@@ -14,12 +14,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.Iso;
 /// <summary>Reads a headerless optical ISO as one continuous 2048-byte data track.</summary>
 public sealed class IsoReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { OpticalImageFormatIds.Iso }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.Optical }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { OpticalImageFormatIds.Iso }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Optical }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => IsoFormat.Extensions;
@@ -30,9 +27,7 @@ public sealed class IsoReader : IMediaImageReader
 
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId))
@@ -40,9 +35,7 @@ public sealed class IsoReader : IMediaImageReader
         return ValueTask.FromResult(IsoFormat.Extensions.Contains(context.Extension) && IsoFormat.IsLengthCompatible(context.Length));
     }
 
-    Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (!IsoFormat.IsLengthCompatible(context.Length))

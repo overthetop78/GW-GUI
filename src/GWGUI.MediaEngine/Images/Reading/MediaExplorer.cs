@@ -9,9 +9,7 @@ public sealed class MediaExplorer(FileSystemsMediaExplorer fileSystems)
 {
     public ExploredMediaImage Explore(MediaImageDocument document) => ExploreAsync(document).AsTask().GetAwaiter().GetResult();
 
-    public async ValueTask<ExploredMediaImage> ExploreAsync(
-        MediaImageDocument document,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<ExploredMediaImage> ExploreAsync(MediaImageDocument document, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         var result = await fileSystems.ExploreAsync(document, cancellationToken).ConfigureAwait(false);

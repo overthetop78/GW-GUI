@@ -12,8 +12,7 @@ namespace GWGUI.MediaEngine.Images.Visualization.Providers;
 /// <summary>Builds progressive visualization data from the declared 64-bit ranges of block media.</summary>
 public sealed class BlockMediaVisualizationProvider : IMediaVisualizationProvider
 {
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
 
     public IReadOnlySet<MediaRepresentationKind> RepresentationKinds => SupportedKinds;
 

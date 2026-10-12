@@ -13,10 +13,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.AtariCas;
 /// <summary>Writes retained Atari CAS chunks in their original order without interpreting unknown payloads.</summary>
 public sealed class AtariCasWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.AtariCas }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.AtariCas }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public AtariCasWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
@@ -33,11 +31,7 @@ public sealed class AtariCasWriter : IMediaImageWriter
         return SupportedFormatIds.Contains(targetFormatId) && AtariCasFormat.Extensions.Contains(targetExtension) && document.MediaKind == MediaKind.Tape && TryGetChunks(document, out _);
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension) || !TryGetChunks(document, out var chunks))

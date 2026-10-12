@@ -6,11 +6,7 @@ namespace GWGUI.MediaEngine.Images.Visualization;
 
 public static class DiskVisualizationClassificationFunctions
 {
-    public static DiskVisualizationClassification Resolve(
-        string? machine,
-        string? formatId,
-        string? protectionId,
-        bool automaticDetection)
+    public static DiskVisualizationClassification Resolve(string? machine, string? formatId, string? protectionId, bool automaticDetection)
     {
         var decoderId = protectionId ?? ResolveDecoder(machine, automaticDetection);
         return new(decoderId, ResolveMediaCategory(machine, formatId));

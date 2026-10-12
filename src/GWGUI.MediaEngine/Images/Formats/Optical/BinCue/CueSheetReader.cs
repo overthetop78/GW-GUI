@@ -8,9 +8,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
 /// <summary>Parses the supported CUE commands without resolving or reading referenced track files.</summary>
 public sealed class CueSheetReader
 {
-    public async Task<CueSheetDocument> ReadAsync(
-        string path,
-        CancellationToken cancellationToken = default)
+    public async Task<CueSheetDocument> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         var lines = await File.ReadAllLinesAsync(path, cancellationToken).ConfigureAwait(false);

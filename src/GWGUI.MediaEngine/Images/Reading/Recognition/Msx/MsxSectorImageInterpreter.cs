@@ -8,10 +8,7 @@ namespace GWGUI.MediaEngine.Images.Reading.Recognition.Msx;
 internal sealed class MsxSectorImageInterpreter
 {
     /// <summary>Tente de créer une interprétation MSX sans modifier le contenu sectoriel.</summary>
-    public bool TryInterpret(
-        SectorImage image,
-        out SectorImage interpretation
-    )
+    public bool TryInterpret(SectorImage image, out SectorImage interpretation)
     {
         interpretation = image;
         if (image.FormatId.StartsWith(DiskImageFormatIds.MsxPrefix, StringComparison.OrdinalIgnoreCase) || image.BlockSize != FatBootSectorLayout.SectorSize || !image.TryGetBlock(FatBootSectorLayout.BootLogicalBlock, out var boot) || boot.Data.Count != FatBootSectorLayout.SectorSize || !MsxBootSectorProbe.LooksLikeMsx(boot.Data.ToArray()))

@@ -9,11 +9,7 @@ internal sealed class ChdUncompressedRandomAccessData : IMediaRandomAccessData
     private readonly int hunkSize;
     private readonly IReadOnlyList<uint> storedHunks;
 
-    public ChdUncompressedRandomAccessData(
-        IMediaRandomAccessData source,
-        long logicalLength,
-        int hunkSize,
-        IReadOnlyList<uint> storedHunks)
+    public ChdUncompressedRandomAccessData(IMediaRandomAccessData source, long logicalLength, int hunkSize, IReadOnlyList<uint> storedHunks)
     {
         ArgumentNullException.ThrowIfNull(source);
         ArgumentNullException.ThrowIfNull(storedHunks);
@@ -38,10 +34,7 @@ internal sealed class ChdUncompressedRandomAccessData : IMediaRandomAccessData
 
     public long Length { get; }
 
-    public async ValueTask ReadExactlyAsync(
-        long offset,
-        Memory<byte> destination,
-        CancellationToken cancellationToken = default)
+    public async ValueTask ReadExactlyAsync(long offset, Memory<byte> destination, CancellationToken cancellationToken = default)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(offset);
         if (offset > Length || destination.Length > Length - offset)

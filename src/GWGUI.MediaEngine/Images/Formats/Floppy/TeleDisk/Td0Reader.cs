@@ -43,10 +43,7 @@ public sealed class Td0Reader : IMediaImageReader
     /// <summary>Lit un conteneur TeleDisk et reconstruit son image sectorielle.</summary>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default) => (await ReadDetailedAsync(path, cancellationToken).ConfigureAwait(false)).SectorImage;
     /// <summary>Lit un conteneur TeleDisk en conservant ses en-têtes, son commentaire, ses cartes et ses états sectoriels.</summary>
-    public async Task<Td0Image> ReadDetailedAsync(
-        string path,
-        CancellationToken cancellationToken = default
-    )
+    public async Task<Td0Image> ReadDetailedAsync(string path, CancellationToken cancellationToken = default)
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
         return ReadDetailed(data, cancellationToken);
@@ -55,10 +52,7 @@ public sealed class Td0Reader : IMediaImageReader
     /// <summary>Analyse les octets d'un conteneur TeleDisk non compressé.</summary>
     internal static SectorImage Read(ReadOnlySpan<byte> data) => ReadDetailed(data).SectorImage;
     /// <summary>Analyse un conteneur TeleDisk en conservant toutes les informations réinscriptibles.</summary>
-    public static Td0Image ReadDetailed(
-        ReadOnlySpan<byte> data,
-        CancellationToken cancellationToken = default
-    )
+    public static Td0Image ReadDetailed(ReadOnlySpan<byte> data, CancellationToken cancellationToken = default)
     {
         if (data.Length < Td0Layout.HeaderSize)
             throw Td0Exceptions.Truncated(Td0Section.ImageHeader, 0, Td0Layout.HeaderSize, data.Length);
@@ -118,10 +112,7 @@ public sealed class Td0Reader : IMediaImageReader
         return new(header, comment, tracks, BuildSectorImage(tracks));
     }
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken
-    )
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !((IMediaImageReader)this).SupportsFormatId(context.RequestedFormatId))
             return false;
@@ -131,21 +122,14 @@ public sealed class Td0Reader : IMediaImageReader
         return signature.Span.SequenceEqual(Td0Format.UncompressedSignature) || signature.Span.SequenceEqual(Td0Format.AdvancedCompressionSignature);
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken
-    )
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var data = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
         var image = ReadDetailed(data.Span, cancellationToken).SectorImage;
         return MediaImageDocumentFactory.CreateFloppySector(context.Source, image);
     }
 
-    private static Td0Comment? ReadComment(
-        ReadOnlySpan<byte> data,
-        ref int offset,
-        byte trackDensity
-    )
+    private static Td0Comment? ReadComment(ReadOnlySpan<byte> data, ref int offset, byte trackDensity)
     {
         if ((trackDensity & Td0Layout.CommentPresentMask) == 0)
             return null;
@@ -172,10 +156,7 @@ public sealed class Td0Reader : IMediaImageReader
         );
     }
 
-    private static Td0Sector ReadSector(
-        ReadOnlySpan<byte> data,
-        ref int offset
-    )
+    private static Td0Sector ReadSector(ReadOnlySpan<byte> data, ref int offset)
     {
         EnsureAvailable(data, offset, Td0Layout.SectorHeaderSize, Td0Section.SectorHeader);
         var sectorHeader = data.Slice(offset, Td0Layout.SectorHeaderSize);
@@ -231,12 +212,7 @@ public sealed class Td0Reader : IMediaImageReader
         return new(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks, capacity: ordered.LongLength * blockSize, logicalBlockCount: ordered.Length);
     }
 
-    private static void EnsureAvailable(
-        ReadOnlySpan<byte> data,
-        int offset,
-        int count,
-        Td0Section section
-    )
+    private static void EnsureAvailable(ReadOnlySpan<byte> data, int offset, int count, Td0Section section)
     {
         if (offset < 0 || count < 0 || offset > data.Length - count)
             throw Td0Exceptions.Truncated(section, offset, count, Math.Max(0, data.Length - offset));

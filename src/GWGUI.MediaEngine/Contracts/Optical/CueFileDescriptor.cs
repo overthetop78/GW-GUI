@@ -6,10 +6,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Associates one CUE source file declaration with its ordered tracks.</summary>
 public sealed class CueFileDescriptor
 {
-    public CueFileDescriptor(
-        string declaredPath,
-        CueFileKind kind,
-        IReadOnlyList<CueTrackDeclaration> tracks)
+    public CueFileDescriptor(string declaredPath, CueFileKind kind, IReadOnlyList<CueTrackDeclaration> tracks)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(declaredPath);
         ArgumentNullException.ThrowIfNull(tracks);

@@ -3,9 +3,7 @@ namespace GWGUI.MediaEngine.Images.Writing;
 /// <summary>Publishes a related set of output files as one recoverable operation.</summary>
 internal static class AtomicMediaFileSetWriter
 {
-    public static async Task WriteAsync(
-        IReadOnlyDictionary<string, Func<Stream, CancellationToken, Task>> files,
-        CancellationToken cancellationToken = default)
+    public static async Task WriteAsync(IReadOnlyDictionary<string, Func<Stream, CancellationToken, Task>> files, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(files);
         if (files.Count == 0) throw new ArgumentException("At least one output file is required.", nameof(files));
@@ -56,9 +54,7 @@ internal static class AtomicMediaFileSetWriter
         }
     }
 
-    private static PendingOutput CreateOutput(
-        string path,
-        Func<Stream, CancellationToken, Task> write)
+    private static PendingOutput CreateOutput(string path, Func<Stream, CancellationToken, Task> write)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         ArgumentNullException.ThrowIfNull(write);
@@ -66,18 +62,10 @@ internal static class AtomicMediaFileSetWriter
         var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();
         var name = Path.GetFileName(fullPath);
         var transaction = Guid.NewGuid().ToString("N");
-        return new PendingOutput(
-            fullPath,
-            Path.Combine(directory, $".{name}.{transaction}.tmp"),
-            Path.Combine(directory, $".{name}.{transaction}.bak"),
-            write);
+        return new PendingOutput(fullPath, Path.Combine(directory, $".{name}.{transaction}.tmp"), Path.Combine(directory, $".{name}.{transaction}.bak"), write);
     }
 
-    private sealed class PendingOutput(
-        string path,
-        string temporaryPath,
-        string backupPath,
-        Func<Stream, CancellationToken, Task> write)
+    private sealed class PendingOutput(string path, string temporaryPath, string backupPath, Func<Stream, CancellationToken, Task> write)
     {
         public string Path { get; } = path;
         public string TemporaryPath { get; } = temporaryPath;

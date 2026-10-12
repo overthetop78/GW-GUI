@@ -5,11 +5,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Contains the neutral outcome of writing data units to a physical medium.</summary>
 public sealed record MediaPhysicalWriteResult
 {
-    public MediaPhysicalWriteResult(
-        int completedUnits,
-        int totalUnits,
-        bool cancelled,
-        IReadOnlyList<string>? diagnostics = null)
+    public MediaPhysicalWriteResult(int completedUnits, int totalUnits, bool cancelled, IReadOnlyList<string>? diagnostics = null)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(completedUnits);
         ArgumentOutOfRangeException.ThrowIfNegative(totalUnits);

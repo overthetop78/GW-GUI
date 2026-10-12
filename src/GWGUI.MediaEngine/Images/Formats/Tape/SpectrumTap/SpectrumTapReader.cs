@@ -14,11 +14,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.SpectrumTap;
 /// <summary>Reads a structurally complete Spectrum TAP stream and validates every block checksum.</summary>
 public sealed class SpectrumTapReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.SpectrumTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.SpectrumTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Tape }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormats;
     IReadOnlySet<string> IMediaImageReader.Extensions => SpectrumTapFormat.Extensions;

@@ -13,10 +13,7 @@ public sealed class OpticalImageConversionService
     private readonly MediaImageWriterRegistry writers;
     private readonly MediaImageWritingService writing;
 
-    public OpticalImageConversionService(
-        MediaImageReadingService reading,
-        MediaImageWriterRegistry writers,
-        MediaImageWritingService writing)
+    public OpticalImageConversionService(MediaImageReadingService reading, MediaImageWriterRegistry writers, MediaImageWritingService writing)
     {
         ArgumentNullException.ThrowIfNull(reading);
         ArgumentNullException.ThrowIfNull(writers);
@@ -41,12 +38,7 @@ public sealed class OpticalImageConversionService
 
     public async Task<IReadOnlyList<string>> ConvertAsync(string sourcePath, string outputPath, string targetFormatId, CancellationToken cancellationToken = default) => await ConvertAsync(sourcePath, outputPath, targetFormatId, null, cancellationToken).ConfigureAwait(false);
 
-    public async Task<IReadOnlyList<string>> ConvertAsync(
-        string sourcePath,
-        string outputPath,
-        string targetFormatId,
-        Action<MediaExplorationProgress>? progress,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> ConvertAsync(string sourcePath, string outputPath, string targetFormatId, Action<MediaExplorationProgress>? progress, CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sourcePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);

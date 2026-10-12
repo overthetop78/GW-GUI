@@ -14,12 +14,9 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Vhd;
 /// <summary>Reads autonomous fixed and dynamic VHD images and exposes their logical block ranges.</summary>
 public sealed class VhdReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Vhd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.HardDisk }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Vhd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.HardDisk }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures = [VhdFormat.FooterSignature];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
@@ -36,9 +33,7 @@ public sealed class VhdReader : IMediaImageReader
 
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId))
             return false;
@@ -54,9 +49,7 @@ public sealed class VhdReader : IMediaImageReader
         }
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var footer = await ReadFooterAsync(context, cancellationToken).ConfigureAwait(false);
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
@@ -99,9 +92,7 @@ public sealed class VhdReader : IMediaImageReader
             });
     }
 
-    private static async ValueTask<VhdFooter> ReadFooterAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    private static async ValueTask<VhdFooter> ReadFooterAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.Length < HardDiskFormatConstants.VhdFooterSize)
             throw new InvalidDataException("The file is too short to contain a VHD footer.");
@@ -131,11 +122,7 @@ public sealed class VhdReader : IMediaImageReader
             new Guid(footer[68..84], bigEndian: true));
     }
 
-    private static async Task<IReadOnlyList<MediaDataRange>> ReadDynamicRangesAsync(
-        MediaRecognitionContext context,
-        FileRandomAccessData source,
-        VhdFooter footer,
-        CancellationToken cancellationToken)
+    private static async Task<IReadOnlyList<MediaDataRange>> ReadDynamicRangesAsync(MediaRecognitionContext context, FileRandomAccessData source, VhdFooter footer, CancellationToken cancellationToken)
     {
         if (footer.DataOffset > (ulong)(context.Length - HardDiskFormatConstants.VhdDynamicHeaderSize))
             throw new InvalidDataException("The VHD dynamic header offset is outside the file.");
@@ -223,13 +210,7 @@ public sealed class VhdReader : IMediaImageReader
 
     private static int Align(int value, int alignment) => checked((value + alignment - 1) / alignment * alignment);
 
-    private static void AddRange(
-        List<MediaDataRange> ranges,
-        long address,
-        long length,
-        MediaDataRangeKind kind,
-        FileRandomAccessData? source = null,
-        long sourceOffset = 0)
+    private static void AddRange(List<MediaDataRange> ranges, long address, long length, MediaDataRangeKind kind, FileRandomAccessData? source = null, long sourceOffset = 0)
     {
         if (ranges.Count > 0)
         {
@@ -245,12 +226,5 @@ public sealed class VhdReader : IMediaImageReader
         ranges.Add(new MediaDataRange(address, length, kind, source, sourceOffset));
     }
 
-    private sealed record VhdFooter(
-        ulong DataOffset,
-        long CurrentSize,
-        ushort Cylinders,
-        byte Heads,
-        byte SectorsPerTrack,
-        uint DiskType,
-        Guid UniqueId);
+    private sealed record VhdFooter(ulong DataOffset, long CurrentSize, ushort Cylinders, byte Heads, byte SectorsPerTrack, uint DiskType, Guid UniqueId);
 }

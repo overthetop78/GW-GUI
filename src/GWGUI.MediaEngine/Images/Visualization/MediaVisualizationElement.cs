@@ -3,15 +3,7 @@ namespace GWGUI.MediaEngine.Images.Visualization;
 /// <summary>Identifies one element in the order used to prepare a media visualization.</summary>
 public sealed record MediaVisualizationElement
 {
-    public MediaVisualizationElement(
-        long position,
-        int? surface = null,
-        long? length = null,
-        int? sessionNumber = null,
-        int? trackNumber = null,
-        int? layerNumber = null,
-        int? faceNumber = null,
-        int? channelNumber = null)
+    public MediaVisualizationElement(long position, int? surface = null, long? length = null, int? sessionNumber = null, int? trackNumber = null, int? layerNumber = null, int? faceNumber = null, int? channelNumber = null)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(position);
         if (surface is < 0) throw new ArgumentOutOfRangeException(nameof(surface));

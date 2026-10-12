@@ -6,22 +6,12 @@ using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Conversion;
 /// <summary>Convertit les sources UCSD p-System en image IMG sectorielle brute.</summary>
-public sealed class UcsdImgConversionService(
-    IsoScpSectorImageReader scpReader,
-    UcsdRawImageReader rawReader,
-    Td0Reader td0Reader,
-    LinearSectorImageWriter writer,
-    Td0Writer td0Writer
-)
+public sealed class UcsdImgConversionService(IsoScpSectorImageReader scpReader, UcsdRawImageReader rawReader, Td0Reader td0Reader, LinearSectorImageWriter writer, Td0Writer td0Writer)
 {
     /// <summary>Indique si la cible est une image UCSD IBM MFM brute.</summary>
     public static bool CanCreate(string formatId, string extension) => formatId.Equals(DiskImageFormatIds.UcsdIbmMfm, StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase));
     /// <summary>Reconstruit ou relit la source, puis écrit les secteurs selon la géométrie UCSD explicite.</summary>
-    public async Task ConvertAsync(
-        string sourcePath,
-        string outputPath,
-        CancellationToken cancellationToken = default
-    )
+    public async Task ConvertAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
     {
         var image = await ReadSourceAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         if (Path.GetExtension(outputPath).Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase))
@@ -34,10 +24,7 @@ public sealed class UcsdImgConversionService(
     }
 
     /// <summary>Sélectionne le Reader correspondant au conteneur source sans modifier son contenu sectoriel.</summary>
-    private async Task<SectorImage> ReadSourceAsync(
-        string sourcePath,
-        CancellationToken cancellationToken
-    )
+    private async Task<SectorImage> ReadSourceAsync(string sourcePath, CancellationToken cancellationToken)
     {
         var extension = Path.GetExtension(sourcePath);
         if (extension.Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase))

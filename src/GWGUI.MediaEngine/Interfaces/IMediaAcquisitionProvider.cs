@@ -15,10 +15,5 @@ public interface IMediaAcquisitionProvider
 
     bool CanAcquire(MediaKind mediaKind, string deviceId);
 
-    Task<MediaAcquisitionResult> AcquireAsync(
-        MediaKind mediaKind,
-        string deviceId,
-        IReadOnlyDictionary<string, string> options,
-        IProgress<MediaAcquisitionProgress>? progress = null,
-        CancellationToken cancellationToken = default);
+    Task<MediaAcquisitionResult> AcquireAsync(MediaKind mediaKind, string deviceId, IReadOnlyDictionary<string, string> options, IProgress<MediaAcquisitionProgress>? progress = null, CancellationToken cancellationToken = default);
 }

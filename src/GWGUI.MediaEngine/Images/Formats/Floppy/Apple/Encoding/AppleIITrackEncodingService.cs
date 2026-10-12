@@ -16,11 +16,7 @@ public sealed class AppleIITrackEncodingService
     /// <summary>Indique si le format utilise le GCR Apple II 5,25 pouces standard.</summary>
     public static bool Supports(string formatId) => formatId.Equals(DiskImageFormatIds.AppleIIDos32, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIDos33, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIGcr, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIAppleDos113, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIAppleDos140, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIProDos140, StringComparison.OrdinalIgnoreCase) || formatId.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase);
     /// <summary>Encode toutes les pistes standard et valide chaque secteur attendu.</summary>
-    public IReadOnlyList<IReadOnlyList<bool>> Encode(
-        SectorImage image,
-        int maximumBits,
-        CancellationToken cancellationToken = default
-    )
+    public IReadOnlyList<IReadOnlyList<bool>> Encode(SectorImage image, int maximumBits, CancellationToken cancellationToken = default)
     {
         if (!Supports(image.FormatId))
             throw AppleIITrackEncodingExceptions.UnsupportedSource(image.FormatId);
@@ -55,11 +51,7 @@ public sealed class AppleIITrackEncodingService
     }
 
     /// <summary>Rassemble les secteurs DOS en utilisant leur véritable adresse physique.</summary>
-    private static IReadOnlyList<TrackSector> CreateDosSectors(
-        SectorImage image,
-        int cylinder,
-        int sectorsPerTrack
-    )
+    private static IReadOnlyList<TrackSector> CreateDosSectors(SectorImage image, int cylinder, int sectorsPerTrack)
     {
         var blocks = image.AvailableBlocks.Where(block => block.Address.Cylinder == cylinder && block.Address.Head == AppleIIGcrFormat.LogicalHead).ToDictionary(block => block.Address.Number);
         var sectors = new List<TrackSector>(sectorsPerTrack);
@@ -74,10 +66,7 @@ public sealed class AppleIITrackEncodingService
     }
 
     /// <summary>Découpe les huit blocs ProDOS en seize secteurs physiques de 256 octets.</summary>
-    private static IReadOnlyList<TrackSector> CreateProDosSectors(
-        SectorImage image,
-        int cylinder
-    )
+    private static IReadOnlyList<TrackSector> CreateProDosSectors(SectorImage image, int cylinder)
     {
         var sectors = new TrackSector[AppleIIGeometry.SectorsPerTrack];
         for (var blockNumber = 0; blockNumber < AppleIIGeometry.ProDosBlocksPerTrack; blockNumber++)

@@ -44,11 +44,7 @@ public sealed class AppleScpSectorImageReader
     public async Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
         => await ReadAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
 
-    public async Task<SectorImage> ReadAsync(
-        string path,
-        string? formatId,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken = default)
+    public async Task<SectorImage> ReadAsync(string path, string? formatId, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)
     {
         var scp = await _scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         if (formatId?.StartsWith(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase) == true)
@@ -72,10 +68,7 @@ public sealed class AppleScpSectorImageReader
     }
 
     /// <summary>Reconstruit l'ordre ProDOS et n'accepte le profil SOS que si son marqueur d'amorçage est présent.</summary>
-    private SectorImage ReadSos(
-        ScpImage scp,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    private SectorImage ReadSos(ScpImage scp, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var image = _appleII.Decode(scp, true, cancellationToken, progress);
         var payload = Enumerable.Range(0, image.BlockCount).SelectMany(logicalBlock => image.GetBlock(logicalBlock).ToArray()).ToArray();
@@ -88,10 +81,7 @@ public sealed class AppleScpSectorImageReader
     /// <param name="cancellationToken">Jeton permettant d'annuler les tentatives de reconstruction.</param>
     /// <returns>La reconstruction réussie possédant la meilleure proportion de blocs disponibles.</returns>
     /// <exception cref="InvalidDataException">Les reconstructeurs Macintosh/Lisa, Apple II et RWTS18 ont tous rejeté la capture.</exception>
-    private SectorImage DetectAutomatically(
-        ScpImage scp,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    private SectorImage DetectAutomatically(ScpImage scp, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var candidates = new List<SectorImage>(3);
         var rejections = new List<(string Identity, InvalidDataException Error)>(3);

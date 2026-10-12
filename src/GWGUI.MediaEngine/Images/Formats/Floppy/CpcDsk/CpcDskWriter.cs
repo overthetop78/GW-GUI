@@ -6,11 +6,7 @@ public sealed class CpcDskWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWr
 {
     private readonly GWGUI.MediaEngine.Interfaces.IAtomicImageFileWriter files = fileSystem ?? new GWGUI.MediaEngine.Interfaces.AtomicImageFileWriter();
     /// <summary>Valide puis écrit atomiquement le modèle de conteneur fourni.</summary>
-    public async Task WriteAsync(
-        CpcDskImage image,
-        string path,
-        CancellationToken cancellationToken = default
-    )
+    public async Task WriteAsync(CpcDskImage image, string path, CancellationToken cancellationToken = default)
     {
         var bytes = Build(image);
         await files.WriteAsync(path, (stream, token) => stream.WriteAsync(bytes, token).AsTask(), cancellationToken).ConfigureAwait(false);
@@ -46,11 +42,7 @@ public sealed class CpcDskWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWr
         return output;
     }
 
-    private static byte[] SerializeTrack(
-        CpcDskTrack track,
-        int expectedIndex,
-        CpcDskContainerKind kind
-    )
+    private static byte[] SerializeTrack(CpcDskTrack track, int expectedIndex, CpcDskContainerKind kind)
     {
         if (track.Index != expectedIndex)
             throw CpcDskExceptions.InvalidContainer($"track index {track.Index} appears at position {expectedIndex}");

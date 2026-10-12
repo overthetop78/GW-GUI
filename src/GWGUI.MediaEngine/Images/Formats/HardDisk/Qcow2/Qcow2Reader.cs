@@ -14,12 +14,9 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Qcow2;
 /// <summary>Reads autonomous unencrypted and uncompressed QCOW2 version 2 and 3 images.</summary>
 public sealed class Qcow2Reader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Qcow2 }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.HardDisk }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Qcow2 }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.HardDisk }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => Qcow2Format.Extensions;
@@ -49,10 +46,7 @@ public sealed class Qcow2Reader : IMediaImageReader
 
     Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken) => ReadDocumentAsync(context, true, cancellationToken);
 
-    private static async Task<MediaImageDocument> ReadDocumentAsync(
-        MediaRecognitionContext context,
-        bool includeRanges,
-        CancellationToken cancellationToken)
+    private static async Task<MediaImageDocument> ReadDocumentAsync(MediaRecognitionContext context, bool includeRanges, CancellationToken cancellationToken)
     {
         var header = await ReadHeaderAsync(context, cancellationToken).ConfigureAwait(false);
         var refcounts = await Qcow2RefcountReader.CreateAsync(context, header, cancellationToken).ConfigureAwait(false);
@@ -119,9 +113,7 @@ public sealed class Qcow2Reader : IMediaImageReader
             });
     }
 
-    private static async ValueTask<Qcow2Header> ReadHeaderAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    private static async ValueTask<Qcow2Header> ReadHeaderAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.Length < HardDiskFormatConstants.Qcow2Version2HeaderSize)
             throw new InvalidDataException("The file is too short to contain a QCOW2 header.");
@@ -201,13 +193,7 @@ public sealed class Qcow2Reader : IMediaImageReader
             throw new InvalidDataException($"The QCOW2 {structure} cluster is outside the file.");
     }
 
-    private static void AddRange(
-        List<MediaDataRange> ranges,
-        long address,
-        long length,
-        MediaDataRangeKind kind,
-        FileRandomAccessData? source = null,
-        long sourceOffset = 0)
+    private static void AddRange(List<MediaDataRange> ranges, long address, long length, MediaDataRangeKind kind, FileRandomAccessData? source = null, long sourceOffset = 0)
     {
         if (ranges.Count > 0)
         {
@@ -222,14 +208,7 @@ public sealed class Qcow2Reader : IMediaImageReader
         ranges.Add(new MediaDataRange(address, length, kind, source, sourceOffset));
     }
 
-    private sealed record Qcow2Header(
-        uint Version,
-        int ClusterSize,
-        long VirtualSize,
-        uint L1Size,
-        long L1TableOffset,
-        long RefcountTableOffset,
-        uint RefcountTableClusters);
+    private sealed record Qcow2Header(uint Version, int ClusterSize, long VirtualSize, uint L1Size, long L1TableOffset, long RefcountTableOffset, uint RefcountTableClusters);
 
     private sealed class Qcow2RefcountReader
     {
@@ -245,10 +224,7 @@ public sealed class Qcow2Reader : IMediaImageReader
             this.table = table;
         }
 
-        public static async Task<Qcow2RefcountReader> CreateAsync(
-            MediaRecognitionContext context,
-            Qcow2Header header,
-            CancellationToken cancellationToken)
+        public static async Task<Qcow2RefcountReader> CreateAsync(MediaRecognitionContext context, Qcow2Header header, CancellationToken cancellationToken)
         {
             var length = checked((int)header.RefcountTableClusters * header.ClusterSize);
             var table = await context.ReadAsync(header.RefcountTableOffset, length, cancellationToken).ConfigureAwait(false);

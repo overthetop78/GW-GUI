@@ -6,9 +6,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp;
 /// <summary>Builds an SCP container model from the common protected-track representation.</summary>
 internal static class ProtectedTrackScpImageAdapter
 {
-    public static ScpImage Create(
-        ProtectedTrackImage image,
-        IReadOnlyDictionary<string, string> metadata)
+    public static ScpImage Create(ProtectedTrackImage image, IReadOnlyDictionary<string, string> metadata)
     {
         ArgumentNullException.ThrowIfNull(image);
         ArgumentNullException.ThrowIfNull(metadata);
@@ -30,10 +28,7 @@ internal static class ProtectedTrackScpImageAdapter
                 track.Revolutions.Take(revolutionCount).Select(revolution => ConvertRevolution(revolution, resolutionNanoseconds)).ToArray()))
             .OrderBy(track => track.TrackNumber)
             .ToArray();
-        var flags = ReadByte(metadata, ScpMetadataKeys.Flags) is { } rawFlags
-            ? (ScpFlags)rawFlags
-            : ScpFlags.IndexAligned | ScpFlags.ThirdPartyCreator |
-              (image.WriteProtected ? ScpFlags.None : ScpFlags.Writable);
+        var flags = ReadByte(metadata, ScpMetadataKeys.Flags) is { } rawFlags ? (ScpFlags)rawFlags : ScpFlags.IndexAligned | ScpFlags.ThirdPartyCreator | (image.WriteProtected ? ScpFlags.None : ScpFlags.Writable);
         flags &= ~(ScpFlags.Footer | ScpFlags.Extended);
         var header = new ScpHeader(
             ReadByte(metadata, ScpMetadataKeys.Version) ?? ScpWriterDefaults.Version,
@@ -50,9 +45,7 @@ internal static class ProtectedTrackScpImageAdapter
         return new ScpImage(header, tracks, true, ScpWriterDefaults.InitialFileSize);
     }
 
-    private static byte ResolveResolution(
-        IReadOnlyDictionary<string, string> metadata,
-        int? resolutionNanoseconds)
+    private static byte ResolveResolution(IReadOnlyDictionary<string, string> metadata, int? resolutionNanoseconds)
     {
         var stored = ReadByte(metadata, ScpMetadataKeys.Resolution);
         if (stored.HasValue) return stored.Value;
@@ -63,9 +56,7 @@ internal static class ProtectedTrackScpImageAdapter
         return index is < byte.MinValue or > byte.MaxValue ? ScpFormatConstants.InternalCaptureResolution : checked((byte)index);
     }
 
-    private static ScpRevolution ConvertRevolution(
-        TrackFluxRevolution source,
-        int targetResolutionNanoseconds)
+    private static ScpRevolution ConvertRevolution(TrackFluxRevolution source, int targetResolutionNanoseconds)
     {
         var intervals = source.Flux.FluxIntervals.Select(interval => ConvertTicks(interval, source.ResolutionNanoseconds, targetResolutionNanoseconds)).ToArray();
         var indexTime = ConvertTicks(source.Flux.IndexTimeTicks, source.ResolutionNanoseconds, targetResolutionNanoseconds);

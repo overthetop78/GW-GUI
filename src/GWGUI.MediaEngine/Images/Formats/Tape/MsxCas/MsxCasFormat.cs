@@ -7,8 +7,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.MsxCas;
 internal static class MsxCasFormat
 {
     public static string FormatId => TapeImageFormatIds.MsxCas;
-    public static readonly IReadOnlySet<string> Extensions =
-        new[] { DiskImageFileExtensions.Cas }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public static readonly IReadOnlySet<string> Extensions = new[] { DiskImageFileExtensions.Cas }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     public static bool CanRead => true;
     public static bool CanWrite => true;
     public static bool PreservesTiming => false;

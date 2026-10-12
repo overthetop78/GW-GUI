@@ -6,11 +6,7 @@ using System.IO;
 namespace GWGUI.MediaEngine.Images.Visualization;
 public static class MediaIconSelector
 {
-    public static string Select(
-        MediaKind? mediaKind,
-        string path,
-        DiskFormat? format = null
-    )
+    public static string Select(MediaKind? mediaKind, string path, DiskFormat? format = null)
     {
         var extension = Path.GetExtension(path).ToLowerInvariant();
         return mediaKind switch

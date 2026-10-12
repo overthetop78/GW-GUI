@@ -17,11 +17,8 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Acorn;
 /// <summary>Decodes Acorn cassette filing system blocks from UEF byte streams or compatible PCM FSK signals.</summary>
 public sealed class AcornTapeDecoder : ISequentialMediaDecoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.Uef, TapeImageFormatIds.Wav }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.AcornBbc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Uef, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.AcornBbc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => UefConstants.DecoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
@@ -33,10 +30,7 @@ public sealed class AcornTapeDecoder : ISequentialMediaDecoder
         return document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;
     }
 
-    public async Task<SequentialDecodeResult> DecodeAsync(
-        MediaImageDocument document,
-        string? machineId = null,
-        CancellationToken cancellationToken = default)
+    public async Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default)
     {
         if (!CanDecode(document, machineId))
             throw new InvalidDataException("The media document is not compatible with the Acorn cassette decoder.");
@@ -44,9 +38,7 @@ public sealed class AcornTapeDecoder : ISequentialMediaDecoder
         return document.FormatId.Equals(TapeImageFormatIds.Uef, StringComparison.OrdinalIgnoreCase) ? await DecodeUefAsync(representation, cancellationToken).ConfigureAwait(false) : await DecodeWaveAsync(document, representation, cancellationToken).ConfigureAwait(false);
     }
 
-    private static async Task<SequentialDecodeResult> DecodeUefAsync(
-        SequentialMediaImageRepresentation representation,
-        CancellationToken cancellationToken)
+    private static async Task<SequentialDecodeResult> DecodeUefAsync(SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)
     {
         var blocks = new List<SequentialDecodedBlock>();
         var consumed = new HashSet<long>();
@@ -65,10 +57,7 @@ public sealed class AcornTapeDecoder : ISequentialMediaDecoder
         return CreateResult(representation, blocks, consumed, "No valid Acorn cassette block was found in the UEF byte streams.");
     }
 
-    private static async Task<SequentialDecodeResult> DecodeWaveAsync(
-        MediaImageDocument document,
-        SequentialMediaImageRepresentation representation,
-        CancellationToken cancellationToken)
+    private static async Task<SequentialDecodeResult> DecodeWaveAsync(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)
     {
         if (!PcmSampleFunctions.TryGetProfile(document.Metadata, out var channels, out var sampleRate, out var bitsPerSample, out var blockAlign))
             return new SequentialDecodeResult(UefConstants.DecoderId, 0, [], representation.Segments ?? [], ["The WAV PCM profile is incomplete or incompatible."]);
@@ -108,11 +97,7 @@ public sealed class AcornTapeDecoder : ISequentialMediaDecoder
 
     private static IReadOnlyList<SequentialDecodedBlock> DecodeBlocks(IReadOnlyList<byte> bytes, long sourcePosition, string sourceKind, int firstPosition) => DecodeBlocks(bytes, [sourcePosition], sourceKind, firstPosition);
 
-    private static IReadOnlyList<SequentialDecodedBlock> DecodeBlocks(
-        IReadOnlyList<byte> bytes,
-        IReadOnlyList<long> sourcePositions,
-        string sourceKind,
-        int firstPosition)
+    private static IReadOnlyList<SequentialDecodedBlock> DecodeBlocks(IReadOnlyList<byte> bytes, IReadOnlyList<long> sourcePositions, string sourceKind, int firstPosition)
     {
         var blocks = new List<SequentialDecodedBlock>();
         for (var offset = 0; offset < bytes.Count; offset++)
@@ -177,11 +162,7 @@ public sealed class AcornTapeDecoder : ISequentialMediaDecoder
         return blocks;
     }
 
-    private static SequentialDecodeResult CreateResult(
-        SequentialMediaImageRepresentation representation,
-        IReadOnlyList<SequentialDecodedBlock> blocks,
-        IReadOnlySet<long> consumed,
-        string emptyDiagnostic)
+    private static SequentialDecodeResult CreateResult(SequentialMediaImageRepresentation representation, IReadOnlyList<SequentialDecodedBlock> blocks, IReadOnlySet<long> consumed, string emptyDiagnostic)
     {
         var undecoded = (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray();
         var confidence = blocks.Count == 0 ? 0 : blocks.Count(block => block.IntegrityValid == true) / (double)blocks.Count;

@@ -20,6 +20,5 @@ internal static class GdiConstants
     public const string LbaMetadataSuffix = ".lba";
     public const string ControlMetadataSuffix = ".control";
     public const string SectorSizeMetadataSuffix = ".sectorSize";
-    public static readonly IReadOnlySet<string> Extensions =
-        new[] { DiskImageFileExtensions.Gdi }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public static readonly IReadOnlySet<string> Extensions = new[] { DiskImageFileExtensions.Gdi }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 }

@@ -11,8 +11,5 @@ public interface ISequentialMediaDecoder
 
     bool CanDecode(MediaImageDocument document, string? machineId = null);
 
-    Task<SequentialDecodeResult> DecodeAsync(
-        MediaImageDocument document,
-        string? machineId = null,
-        CancellationToken cancellationToken = default);
+    Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default);
 }

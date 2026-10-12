@@ -25,11 +25,7 @@ public sealed class AtariScpSectorImageReader(IScpReader scpReader, FluxDecoderR
     public Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
         => ReadAsync(path, formatId, null, cancellationToken);
 
-    public Task<SectorImage> ReadAsync(
-        string path,
-        string? formatId,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken = default)
+    public Task<SectorImage> ReadAsync(string path, string? formatId, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)
     {
         if (formatId is not null &&
             !formatId.StartsWith(DiskImageFormatIds.AtariPrefix, StringComparison.OrdinalIgnoreCase) &&

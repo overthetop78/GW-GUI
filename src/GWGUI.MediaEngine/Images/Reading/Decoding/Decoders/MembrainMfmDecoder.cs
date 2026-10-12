@@ -81,10 +81,7 @@ public sealed class MembrainMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Lit et valide les six octets d'un en-tête Membrain.</summary>
-    internal static MembrainMfmHeader? TryDecodeHeader(
-        FluxBitstream stream,
-        int offset
-    )
+    internal static MembrainMfmHeader? TryDecodeHeader(FluxBitstream stream, int offset)
     {
         var bytes = TryDecodeMfmBytes(stream, offset, MembrainMfmFormat.HeaderByteCount);
         if (bytes is null || bytes[MembrainMfmFormat.HeaderMarkOffset] != MembrainMfmFormat.HeaderAddressMark)
@@ -95,11 +92,7 @@ public sealed class MembrainMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Recherche une marque de données Membrain dans la plage indiquée.</summary>
-    internal static int FindDataMark(
-        FluxBitstream stream,
-        int start,
-        int end
-    )
+    internal static int FindDataMark(FluxBitstream stream, int start, int end)
     {
         for (var offset = Math.Max(0, start); offset + MembrainMfmFormat.DataPatternBitCount <= end; offset++)
         {
@@ -113,10 +106,7 @@ public sealed class MembrainMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Lit la charge utile et valide le CRC d'un bloc de données Membrain.</summary>
-    internal static MembrainMfmData? TryDecodeData(
-        FluxBitstream stream,
-        int offset
-    )
+    internal static MembrainMfmData? TryDecodeData(FluxBitstream stream, int offset)
     {
         var bytes = TryDecodeMfmBytes(stream, offset, MembrainMfmFormat.DataBlockByteCount);
         if (bytes is null || !MembrainMfmFormat.IsDataAddressMark(bytes[1]))
@@ -127,11 +117,7 @@ public sealed class MembrainMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Ajoute les marques de données qui n'ont été associées à aucun en-tête.</summary>
-    internal static void CollectUnpairedDataMarks(
-        FluxBitstream stream,
-        IReadOnlySet<int> pairedOffsets,
-        ICollection<FluxStructure> structures
-    )
+    internal static void CollectUnpairedDataMarks(FluxBitstream stream, IReadOnlySet<int> pairedOffsets, ICollection<FluxStructure> structures)
     {
         for (var offset = 0; offset + MembrainMfmFormat.DataPatternBitCount <= stream.Bits.Length; offset++)
         {
@@ -145,11 +131,7 @@ public sealed class MembrainMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Tente de décoder une suite d'octets MFM.</summary>
-    private static byte[]? TryDecodeMfmBytes(
-        FluxBitstream stream,
-        int offset,
-        int count
-    )
+    private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         if (offset + count * MembrainMfmFormat.EncodedByteBitCount > stream.Bits.Length)
             return null;

@@ -12,10 +12,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.Tzx;
 /// <summary>Writes retained TZX blocks verbatim after validating that every payload remains accessible.</summary>
 public sealed class TzxWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.Tzx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Tzx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public TzxWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
@@ -32,11 +30,7 @@ public sealed class TzxWriter : IMediaImageWriter
         return SupportedFormats.Contains(targetFormatId) && TzxFormat.Extensions.Contains(targetExtension) && document.MediaKind == MediaKind.Tape && TryGetBlocks(document, out _);
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension) || !TryGetBlocks(document, out var blocks))

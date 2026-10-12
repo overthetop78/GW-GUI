@@ -13,10 +13,7 @@ public sealed class UnavailableRandomAccessData : IMediaRandomAccessData
 
     public long Length { get; }
 
-    public ValueTask ReadExactlyAsync(
-        long offset,
-        Memory<byte> destination,
-        CancellationToken cancellationToken = default)
+    public ValueTask ReadExactlyAsync(long offset, Memory<byte> destination, CancellationToken cancellationToken = default)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(offset);
         cancellationToken.ThrowIfCancellationRequested();

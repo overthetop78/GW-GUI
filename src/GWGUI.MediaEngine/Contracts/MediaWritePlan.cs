@@ -6,12 +6,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Describes neutral data units and constraints to be consumed by a physical media writer.</summary>
 public sealed record MediaWritePlan
 {
-    public MediaWritePlan(
-        MediaKind mediaKind,
-        MediaRepresentationKind representationKind,
-        IReadOnlyList<MediaPhysicalDataUnit> dataUnits,
-        IReadOnlyList<int> writeOrder,
-        IReadOnlyDictionary<string, string> constraints)
+    public MediaWritePlan(MediaKind mediaKind, MediaRepresentationKind representationKind, IReadOnlyList<MediaPhysicalDataUnit> dataUnits, IReadOnlyList<int> writeOrder, IReadOnlyDictionary<string, string> constraints)
     {
         ArgumentNullException.ThrowIfNull(dataUnits);
         ArgumentNullException.ThrowIfNull(writeOrder);

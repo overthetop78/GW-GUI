@@ -8,9 +8,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Hfe;
 /// <summary>Builds an HFE v1 container model from the common protected-track representation.</summary>
 internal static class ProtectedTrackHfeImageAdapter
 {
-    public static HfeImage Create(
-        ProtectedTrackImage image,
-        IReadOnlyDictionary<string, string> metadata)
+    public static HfeImage Create(ProtectedTrackImage image, IReadOnlyDictionary<string, string> metadata)
     {
         ArgumentNullException.ThrowIfNull(image);
         ArgumentNullException.ThrowIfNull(metadata);

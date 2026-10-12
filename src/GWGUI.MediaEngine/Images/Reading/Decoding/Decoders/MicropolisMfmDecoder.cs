@@ -48,21 +48,14 @@ public sealed class MicropolisMfmDecoder : IFluxDecoder
     }
 
     /// <summary>Lit et valide un record Micropolis complet.</summary>
-    internal static MicropolisMfmRecord? TryDecodeRecord(
-        FluxBitstream stream,
-        int offset
-    )
+    internal static MicropolisMfmRecord? TryDecodeRecord(FluxBitstream stream, int offset)
     {
         var bytes = TryDecodeMfmBytes(stream, offset, MicropolisMfmFormat.RecordByteCount);
         return bytes is null ? null : MicropolisMfmRecord.Parse(bytes);
     }
 
     /// <summary>Tente de décoder une suite d'octets MFM.</summary>
-    private static byte[]? TryDecodeMfmBytes(
-        FluxBitstream stream,
-        int offset,
-        int count
-    )
+    private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         if (offset + count * MicropolisMfmFormat.EncodedByteBitCount > stream.Bits.Length)
             return null;

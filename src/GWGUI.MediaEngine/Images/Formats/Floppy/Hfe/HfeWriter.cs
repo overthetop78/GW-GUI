@@ -8,18 +8,12 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Hfe;
 public sealed class HfeWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWriter? fileSystem = null)
 {
     private readonly GWGUI.MediaEngine.Interfaces.IAtomicImageFileWriter files = fileSystem ?? new GWGUI.MediaEngine.Interfaces.AtomicImageFileWriter();
-    public Task WriteAsync(
-        IReadOnlyList<EncodedDiskTrack> tracks,
-        string path,
-        CancellationToken cancellationToken = default)
+    public Task WriteAsync(IReadOnlyList<EncodedDiskTrack> tracks, string path, CancellationToken cancellationToken = default)
     {
         return WriteBytesAsync(Build(tracks), path, cancellationToken);
     }
 
-    public Task WriteAsync(
-        HfeImage image,
-        string path,
-        CancellationToken cancellationToken = default)
+    public Task WriteAsync(HfeImage image, string path, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(image);
         return WriteBytesAsync(Build(image), path, cancellationToken);
@@ -64,10 +58,7 @@ public sealed class HfeWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWrite
         return BuildHeader(image).Concat(trackList).Concat(trackData).ToArray();
     }
 
-    private static void AppendTrackData(
-        ICollection<byte> destination,
-        IReadOnlyList<byte[]> packed,
-        int sideLength)
+    private static void AppendTrackData(ICollection<byte> destination, IReadOnlyList<byte[]> packed, int sideLength)
     {
         var sideBlockCount = (sideLength + HfeLayout.SideChunkSize - 1) / HfeLayout.SideChunkSize;
         for (var block = 0; block < sideBlockCount; block++)
@@ -103,10 +94,7 @@ public sealed class HfeWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWrite
         return header;
     }
 
-    private async Task WriteBytesAsync(
-        byte[] bytes,
-        string path,
-        CancellationToken cancellationToken)
+    private async Task WriteBytesAsync(byte[] bytes, string path, CancellationToken cancellationToken)
     {
         await files.WriteAsync(path, (stream, token) => stream.WriteAsync(bytes, token).AsTask(), cancellationToken).ConfigureAwait(false);
     }
@@ -126,8 +114,7 @@ public sealed class HfeWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWrite
             throw new InvalidDataException("Une piste HFE est hors de la géométrie déclarée.");
         var duplicate = image.Tracks.GroupBy(track => (track.Cylinder, track.Head)).FirstOrDefault(group => group.Count() > 1);
         if (duplicate is not null)
-            throw new InvalidDataException(
-                $"La piste HFE {duplicate.Key.Cylinder}/{duplicate.Key.Head} est dupliquée.");
+            throw new InvalidDataException($"La piste HFE {duplicate.Key.Cylinder}/{duplicate.Key.Head} est dupliquée.");
     }
 
     private static byte ResolveEncoding(IEnumerable<EncodedDiskTrack> tracks)
@@ -140,8 +127,7 @@ public sealed class HfeWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFileWrite
             FluxCodecIds.IsoMfm => HfeFormat.IsoMfmEncoding,
             FluxCodecIds.AmigaMfm => HfeFormat.AmigaMfmEncoding,
             FluxCodecIds.IsoFm => HfeFormat.IsoFmEncoding,
-            _ => throw new NotSupportedException(
-                $"L'encodage {ids[0]} n'est pas encore pris en charge par le Writer HFE.")
+            _ => throw new NotSupportedException($"L'encodage {ids[0]} n'est pas encore pris en charge par le Writer HFE.")
         };
     }
 

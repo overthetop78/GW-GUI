@@ -14,11 +14,8 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Spectrum;
 /// <summary>Validates Spectrum blocks retained in TAP or TZX and detects standard Spectrum pulses in PCM WAV.</summary>
 public sealed class SpectrumTapeDecoder : ISequentialMediaDecoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.SpectrumTap, TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Spectrum }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.SpectrumTap, TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Spectrum }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => SpectrumTapConstants.DecoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
@@ -26,10 +23,7 @@ public sealed class SpectrumTapeDecoder : ISequentialMediaDecoder
 
     public bool CanDecode(MediaImageDocument document, string? machineId = null) => document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;
 
-    public async Task<SequentialDecodeResult> DecodeAsync(
-        MediaImageDocument document,
-        string? machineId = null,
-        CancellationToken cancellationToken = default)
+    public async Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default)
     {
         if (!CanDecode(document, machineId))
             throw new InvalidDataException("The media document is not compatible with the Spectrum tape decoder.");
@@ -37,10 +31,7 @@ public sealed class SpectrumTapeDecoder : ISequentialMediaDecoder
         return document.FormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase) ? await DecodeWaveAsync(document, representation, cancellationToken).ConfigureAwait(false) : await DecodeStructuredAsync(document.FormatId, representation, cancellationToken).ConfigureAwait(false);
     }
 
-    private async Task<SequentialDecodeResult> DecodeStructuredAsync(
-        string formatId,
-        SequentialMediaImageRepresentation representation,
-        CancellationToken cancellationToken)
+    private async Task<SequentialDecodeResult> DecodeStructuredAsync(string formatId, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)
     {
         var blocks = new List<SequentialDecodedBlock>();
         var consumed = new HashSet<long>();
@@ -67,10 +58,7 @@ public sealed class SpectrumTapeDecoder : ISequentialMediaDecoder
         return new SequentialDecodeResult(Id, confidence, blocks, (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray(), blocks.Count == 0 ? ["No complete Spectrum data block was found."] : []);
     }
 
-    private async Task<SequentialDecodeResult> DecodeWaveAsync(
-        MediaImageDocument document,
-        SequentialMediaImageRepresentation representation,
-        CancellationToken cancellationToken)
+    private async Task<SequentialDecodeResult> DecodeWaveAsync(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)
     {
         if (!PcmSampleFunctions.TryGetProfile(document.Metadata, out var channels, out var sampleRate, out var bitsPerSample, out var blockAlign))
             return new SequentialDecodeResult(Id, 0, [], representation.Segments ?? [], ["The WAV PCM profile is incomplete or incompatible."]);

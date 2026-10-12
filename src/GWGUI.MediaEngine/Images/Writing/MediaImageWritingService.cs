@@ -21,12 +21,7 @@ public sealed class MediaImageWritingService
 
     public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default) => await WriteAsync(document, outputPath, targetFormatId, null, cancellationToken).ConfigureAwait(false);
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        Action<MediaExplorationProgress>? progress,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, Action<MediaExplorationProgress>? progress, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
@@ -45,11 +40,7 @@ public sealed class MediaImageWritingService
         return produced.ToArray();
     }
 
-    private static async Task ReportInputUnitsAsync(
-        MediaImageDocument document,
-        string targetFormatId,
-        Action<MediaExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    private static async Task ReportInputUnitsAsync(MediaImageDocument document, string targetFormatId, Action<MediaExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         if (progress is null) return;
 
@@ -75,9 +66,7 @@ public sealed class MediaImageWritingService
             cancellationToken.ThrowIfCancellationRequested();
             var element = descriptor.Elements[index];
             ReadElement(document, element);
-            var detail = descriptor.ProgressUnit == MediaVisualizationProgressUnit.Track && element.Surface is int surface
-                ? $"T{element.Position}.{surface}"
-                : targetFormatId;
+            var detail = descriptor.ProgressUnit == MediaVisualizationProgressUnit.Track && element.Surface is int surface ? $"T{element.Position}.{surface}" : targetFormatId;
             progress(new(MediaExplorationProgressStage.ReadingMedia, detail, 60d + 35d * (index + 1) / descriptor.Elements.Count, document.MediaKind));
             await Task.Yield();
         }

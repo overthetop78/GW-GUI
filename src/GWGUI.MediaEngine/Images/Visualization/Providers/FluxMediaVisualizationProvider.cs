@@ -10,8 +10,7 @@ namespace GWGUI.MediaEngine.Images.Visualization.Providers;
 /// <summary>Builds visualization traversal data from preserved flux tracks without decoding sectors.</summary>
 public sealed class FluxMediaVisualizationProvider : IMediaVisualizationProvider
 {
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedKinds =
-        new[] { MediaRepresentationKind.Flux }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedKinds = new[] { MediaRepresentationKind.Flux }.ToFrozenSet();
 
     public IReadOnlySet<MediaRepresentationKind> RepresentationKinds => SupportedKinds;
 

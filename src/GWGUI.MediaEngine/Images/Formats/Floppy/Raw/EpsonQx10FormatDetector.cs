@@ -14,10 +14,7 @@ internal static class EpsonQx10FormatDetector
     /// <param name = "sectors">Descripteurs des secteurs possédant des données observables.</param>
     /// <param name = "formatId">Identifiant Epson détecté lorsque la méthode retourne <see langword="true"/>.</param>
     /// <returns><see langword="true"/> lorsqu'une disposition Epson prise en charge correspond à toutes les pistes ; sinon <see langword="false"/>.</returns>
-    public static bool TryDetect(
-        IReadOnlyCollection<EpsonQx10SectorDescriptor> sectors,
-        out string formatId
-    )
+    public static bool TryDetect(IReadOnlyCollection<EpsonQx10SectorDescriptor> sectors, out string formatId)
     {
         formatId = string.Empty;
         var tracks = sectors.GroupBy(sector => (sector.Cylinder, sector.Head)).Select(group => new DetectedTrack(group.Key.Cylinder, group.Key.Head, group.Select(sector => new DetectedSector(sector.Number, sector.Size)).ToArray())).ToArray();
@@ -39,10 +36,7 @@ internal static class EpsonQx10FormatDetector
     }
 
     /// <summary>Vérifie que toutes les pistes correspondent à la disposition demandée.</summary>
-    private static bool MatchesAll(
-        IEnumerable<DetectedTrack> tracks,
-        string formatId
-    )
+    private static bool MatchesAll(IEnumerable<DetectedTrack> tracks, string formatId)
     {
         var geometry = EpsonQx10GeometryCatalog.Resolve(formatId);
         return tracks.All(track => track.Cylinder < geometry.Cylinders && track.Head < geometry.Heads && Matches(track, geometry.Track(track.Cylinder, track.Head)));

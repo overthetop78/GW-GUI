@@ -14,12 +14,9 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Vdi;
 /// <summary>Reads autonomous fixed and dynamic VDI 1.1 images.</summary>
 public sealed class VdiReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Vdi }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.HardDisk }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Vdi }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.HardDisk }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => VdiFormat.Extensions;
@@ -47,9 +44,7 @@ public sealed class VdiReader : IMediaImageReader
         }
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var header = await ReadHeaderAsync(context, cancellationToken).ConfigureAwait(false);
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
@@ -102,9 +97,7 @@ public sealed class VdiReader : IMediaImageReader
             });
     }
 
-    private static async ValueTask<VdiHeader> ReadHeaderAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    private static async ValueTask<VdiHeader> ReadHeaderAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.Length < HardDiskFormatConstants.VdiHeaderSize)
             throw new InvalidDataException("The file is too short to contain a VDI header.");
@@ -159,13 +152,7 @@ public sealed class VdiReader : IMediaImageReader
             new Guid(header[0x188..0x198]));
     }
 
-    private static void AddRange(
-        List<MediaDataRange> ranges,
-        long address,
-        long length,
-        MediaDataRangeKind kind,
-        FileRandomAccessData? source = null,
-        long sourceOffset = 0)
+    private static void AddRange(List<MediaDataRange> ranges, long address, long length, MediaDataRangeKind kind, FileRandomAccessData? source = null, long sourceOffset = 0)
     {
         if (ranges.Count > 0)
         {

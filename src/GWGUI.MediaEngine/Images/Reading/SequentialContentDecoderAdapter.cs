@@ -59,9 +59,6 @@ public sealed class SequentialContentDecoderAdapter : IMediaFileSystemReader
         return fileSystems.Read(document, volume, content, volumeName);
     }
 
-    private sealed record DecodedContent(
-        string? DecoderId,
-        IReadOnlyList<MediaSequentialDecodedBlock> Blocks,
-        IReadOnlyList<string> Diagnostics) : IMediaSequentialContent;
+    private sealed record DecodedContent(string? DecoderId, IReadOnlyList<MediaSequentialDecodedBlock> Blocks, IReadOnlyList<string> Diagnostics) : IMediaSequentialContent;
 }
 

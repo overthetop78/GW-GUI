@@ -32,10 +32,7 @@ internal sealed class WiiUWuxRandomAccessData : IMediaRandomAccessData
 
     public long Length { get; }
 
-    public async ValueTask ReadExactlyAsync(
-        long offset,
-        Memory<byte> destination,
-        CancellationToken cancellationToken = default)
+    public async ValueTask ReadExactlyAsync(long offset, Memory<byte> destination, CancellationToken cancellationToken = default)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(offset);
         if (offset > Length || destination.Length > Length - offset)
@@ -61,11 +58,7 @@ internal sealed class WiiUWuxRandomAccessData : IMediaRandomAccessData
         }
     }
 
-    private static async Task ReadExactlyFromStreamAsync(
-        FileStream stream,
-        Memory<byte> destination,
-        long offset,
-        CancellationToken cancellationToken)
+    private static async Task ReadExactlyFromStreamAsync(FileStream stream, Memory<byte> destination, long offset, CancellationToken cancellationToken)
     {
         var totalRead = 0;
         while (totalRead < destination.Length)

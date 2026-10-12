@@ -69,13 +69,7 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
     /// <param name = "dataOffset">Position du premier symbole GCR.</param>
     /// <param name = "headers">Collection recevant l'en-tête.</param>
     /// <param name = "decodedBytes">Collection recevant les octets décodés.</param>
-    private static void CollectHeader(
-        IReadOnlyList<bool> bits,
-        int syncOffset,
-        int dataOffset,
-        ICollection<CommodoreGcrHeaderBlock> headers,
-        List<byte> decodedBytes
-    )
+    private static void CollectHeader(IReadOnlyList<bool> bits, int syncOffset, int dataOffset, ICollection<CommodoreGcrHeaderBlock> headers, List<byte> decodedBytes)
     {
         var decoded = CommodoreGcrCodec.TryDecodeBytes(bits, dataOffset, CommodoreGcrFormat.HeaderByteCount);
         if (decoded is null)
@@ -105,13 +99,7 @@ public sealed class CommodoreGcrDecoder : IFluxDecoder
     /// <param name = "dataOffset">Position du premier symbole GCR.</param>
     /// <param name = "dataBlocks">Collection recevant le bloc.</param>
     /// <param name = "decodedBytes">Collection recevant les octets décodés.</param>
-    private static void CollectData(
-        IReadOnlyList<bool> bits,
-        int syncOffset,
-        int dataOffset,
-        ICollection<CommodoreGcrDataBlock> dataBlocks,
-        List<byte> decodedBytes
-    )
+    private static void CollectData(IReadOnlyList<bool> bits, int syncOffset, int dataOffset, ICollection<CommodoreGcrDataBlock> dataBlocks, List<byte> decodedBytes)
     {
         var decoded = CommodoreGcrCodec.TryDecodeBytes(bits, dataOffset, CommodoreGcrFormat.DataRecordByteCount);
         if (decoded is null)

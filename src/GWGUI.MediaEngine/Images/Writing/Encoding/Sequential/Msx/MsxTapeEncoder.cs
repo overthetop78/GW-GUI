@@ -15,11 +15,8 @@ namespace GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Msx;
 /// <summary>Writes validated MSX byte groups as CAS data or reconstructs their standard FSK waveform.</summary>
 public sealed class MsxTapeEncoder : ISequentialMediaEncoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.MsxCas, TapeImageFormatIds.Wav }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Msx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.MsxCas, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Msx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => MsxCasConstants.EncoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
@@ -34,9 +31,7 @@ public sealed class MsxTapeEncoder : ISequentialMediaEncoder
         && (!request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
             || TryReadSampleRate(request.Parameters, out _));
 
-    public Task<SequentialMediaImageRepresentation> EncodeAsync(
-        SequentialEncodeRequest request,
-        CancellationToken cancellationToken = default)
+    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
         if (!CanEncode(request))
             throw new InvalidDataException("MSX tape encoding requires validated byte groups without retained undecoded segments.");
@@ -80,9 +75,7 @@ public sealed class MsxTapeEncoder : ISequentialMediaEncoder
         return new SequentialMediaImageRepresentation(logicalLength, segments: segments);
     }
 
-    private static SequentialMediaImageRepresentation EncodeWave(
-        IReadOnlyList<SequentialDecodedBlock> blocks,
-        IReadOnlyDictionary<string, string> parameters)
+    private static SequentialMediaImageRepresentation EncodeWave(IReadOnlyList<SequentialDecodedBlock> blocks, IReadOnlyDictionary<string, string> parameters)
     {
         TryReadSampleRate(parameters, out var sampleRate);
         var samples = new List<short>();

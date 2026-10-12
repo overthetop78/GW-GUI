@@ -25,8 +25,7 @@ internal static class XdvdfsFormat
 
     public static readonly byte[] Magic = Encoding.ASCII.GetBytes("MICROSOFT*XBOX*MEDIA");
 
-    public static readonly IReadOnlySet<string> Extensions =
-        new[] { DiskImageFileExtensions.Iso }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public static readonly IReadOnlySet<string> Extensions = new[] { DiskImageFileExtensions.Iso }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public static bool IsLengthCompatible(long length) => length >= checked((long)(VolumeDescriptorSector + 1) * SectorSize) && length % SectorSize == 0;
 

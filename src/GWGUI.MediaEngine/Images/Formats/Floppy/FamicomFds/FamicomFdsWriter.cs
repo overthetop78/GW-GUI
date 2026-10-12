@@ -14,12 +14,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.FamicomFds;
 /// <summary>Réécrit les faces Famicom Disk System sans compléter une face absente.</summary>
 public sealed class FamicomFdsWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { DiskImageFormatIds.NintendoFamicomDisk }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedExtensions =
-        new[] { DiskImageFileExtensions.Fds }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { DiskImageFormatIds.NintendoFamicomDisk }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedExtensions = new[] { DiskImageFileExtensions.Fds }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public FamicomFdsWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
@@ -32,11 +29,7 @@ public sealed class FamicomFdsWriter : IMediaImageWriter
 
     public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) => SupportedFormatIds.Contains(targetFormatId) && SupportedExtensions.Contains(targetExtension) && TryGetSides(document, out _, out _);
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         if (!CanWrite(document, targetFormatId, Path.GetExtension(outputPath).ToLowerInvariant())
             || !TryGetSides(document, out var sides, out var headered))
@@ -46,12 +39,7 @@ public sealed class FamicomFdsWriter : IMediaImageWriter
         return [outputPath];
     }
 
-    private static async Task WriteFdsAsync(
-        Stream output,
-        MediaImageDocument document,
-        IReadOnlyList<MediaDataRange> sides,
-        bool headered,
-        CancellationToken cancellationToken)
+    private static async Task WriteFdsAsync(Stream output, MediaImageDocument document, IReadOnlyList<MediaDataRange> sides, bool headered, CancellationToken cancellationToken)
     {
         if (headered)
         {
@@ -78,10 +66,7 @@ public sealed class FamicomFdsWriter : IMediaImageWriter
         }
     }
 
-    private static bool TryGetSides(
-        MediaImageDocument document,
-        out IReadOnlyList<MediaDataRange> sides,
-        out bool headered)
+    private static bool TryGetSides(MediaImageDocument document, out IReadOnlyList<MediaDataRange> sides, out bool headered)
     {
         sides = [];
         headered = false;

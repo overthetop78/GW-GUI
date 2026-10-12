@@ -11,11 +11,7 @@ namespace GWGUI.MediaEngine.Contracts.Explorer;
 internal static class DiskImageContractData
 {
     private static readonly IReadOnlyDictionary<string, string> EmptyParameters = new Dictionary<string, string>();
-    public static IMetadonneesImage CreateMetadata(
-        string sourcePath,
-        SectorImage image,
-        ScpImage? scp
-    )
+    public static IMetadonneesImage CreateMetadata(string sourcePath, SectorImage image, ScpImage? scp)
     {
         if (scp is not null)
         {
@@ -46,10 +42,7 @@ internal static class DiskImageContractData
         return new MetadataData(null, null, null, null, null, null, image.Cylinders * image.Heads, image.Heads, false, null, null, null, new Dictionary<string, string> { ["extension"] = Path.GetExtension(sourcePath) });
     }
 
-    public static IReadOnlyList<IPiste> CreateTracks(
-        SectorImage image,
-        ScpImage? scp
-    )
+    public static IReadOnlyList<IPiste> CreateTracks(SectorImage image, ScpImage? scp)
     {
         if (scp is not null)
         {
@@ -59,10 +52,7 @@ internal static class DiskImageContractData
         return Enumerable.Range(0, image.Cylinders).SelectMany(cylinder => Enumerable.Range(0, image.Heads).Select(head => FromSectorTrack(image, cylinder, head))).ToArray();
     }
 
-    public static IPiste FromScpTrack(
-        ScpTrack track,
-        int resolutionNanoseconds
-    )
+    public static IPiste FromScpTrack(ScpTrack track, int resolutionNanoseconds)
     {
         return ScpTrackContractMapper.FromScpTrack(track, resolutionNanoseconds);
     }
@@ -108,12 +98,7 @@ internal static class DiskImageContractData
         return warnings.Select(warning => (IDiagnostic)new DiagnosticData("warning", warning, EmptyParameters, null, null, null, null)).ToArray();
     }
 
-    private static IFormatDetecte CreateFormat(
-        SectorImage image,
-        FileSystemVolume? volume,
-        DiskImageMetadata metadata,
-        DiskSystemResolver resolver
-    )
+    private static IFormatDetecte CreateFormat(SectorImage image, FileSystemVolume? volume, DiskImageMetadata metadata, DiskSystemResolver resolver)
     {
         var sectors = Enumerable.Range(0, image.BlockCount).Select(logicalBlock => CreateSector(image, logicalBlock)).ToArray();
         var entries = volume?.Entries.Select(CreateEntry).ToArray() ?? [];
@@ -157,10 +142,7 @@ internal static class DiskImageContractData
         );
     }
 
-    private static ISecteur CreateSector(
-        SectorImage image,
-        int logicalBlock
-    )
+    private static ISecteur CreateSector(SectorImage image, int logicalBlock)
     {
         if (!image.TryGetBlock(logicalBlock, out var block))
         {
@@ -213,20 +195,13 @@ internal static class DiskImageContractData
         );
     }
 
-    private static IPiste FromSectorTrack(
-        SectorImage image,
-        int cylinder,
-        int head
-    )
+    private static IPiste FromSectorTrack(SectorImage image, int cylinder, int head)
     {
         var sectors = image.AvailableBlocks.Where(block => block.Address.Cylinder == cylinder && block.Address.Head == head).OrderBy(block => block.Address.Number).Select(block => (ISecteurSource)new SourceSectorData(block.Address.Number, block.Data.Count, block.Data.ToArray())).ToArray();
         return new TrackData(null, cylinder, head, [], sectors);
     }
 
-    private static SectorAddress AddressFor(
-        SectorImage image,
-        int logicalBlock
-    )
+    private static SectorAddress AddressFor(SectorImage image, int logicalBlock)
     {
         var track = logicalBlock / image.SectorsPerTrack;
         var cylinder = track / image.Heads;

@@ -12,8 +12,7 @@ internal static class NibWriter
     public static Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken = default) =>
         WriteAsync(tracks, path, cancellationToken, File.WriteAllBytesAsync);
 
-    internal static async Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken,
-        Func<string, byte[], CancellationToken, Task> writeBytes)
+    internal static async Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken, Func<string, byte[], CancellationToken, Task> writeBytes)
     {
         if (tracks.Count == 0) throw NibExceptions.InvalidTrackCount(tracks.Count);
         for (var track = 0; track < tracks.Count; track++) if (tracks[track].Count > NibLayout.MaximumTrackBitCount) throw NibExceptions.TrackTooLong(track, tracks[track].Count, NibLayout.MaximumTrackBitCount);

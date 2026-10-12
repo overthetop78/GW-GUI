@@ -8,9 +8,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.CloneCd;
 /// <summary>Parses the documented CloneCD INI sections used to describe sessions, TOC entries, and tracks.</summary>
 public sealed class CloneCdDescriptorReader
 {
-    public async Task<CloneCdDescriptor> ReadAsync(
-        string path,
-        CancellationToken cancellationToken = default)
+    public async Task<CloneCdDescriptor> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         var lines = await File.ReadAllLinesAsync(path, cancellationToken).ConfigureAwait(false);
@@ -120,17 +118,9 @@ public sealed class CloneCdDescriptorReader
         return new CueTrackDeclaration(trackNumber, mode, indexes, flags: flags, isrc: isrc);
     }
 
-    private static Dictionary<string, string> RequireSection(
-        IReadOnlyDictionary<string, Dictionary<string, string>> sections,
-        string name) =>
-        sections.TryGetValue(name, out var section)
-            ? section
-            : throw new InvalidDataException($"Required CCD section [{name}] is missing.");
+    private static Dictionary<string, string> RequireSection(IReadOnlyDictionary<string, Dictionary<string, string>> sections, string name) => sections.TryGetValue(name, out var section) ? section : throw new InvalidDataException($"Required CCD section [{name}] is missing.");
 
-    private static int ReadInteger(IReadOnlyDictionary<string, string> values, string key) =>
-        values.TryGetValue(key, out var value)
-            ? ParseInteger(value)
-            : throw new InvalidDataException($"Required CCD property '{key}' is missing.");
+    private static int ReadInteger(IReadOnlyDictionary<string, string> values, string key) => values.TryGetValue(key, out var value) ? ParseInteger(value) : throw new InvalidDataException($"Required CCD property '{key}' is missing.");
 
     private static int ParseInteger(string value)
     {

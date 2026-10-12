@@ -5,11 +5,7 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding.Definitions;
 internal static class IsoMfmPllSelector
 {
     /// <summary>Décode les facteurs dans leur ordre défini et conserve le premier meilleur score.</summary>
-    public static FluxDecodeResult Select(
-        FluxRevolution revolution,
-        double centre,
-        Func<FluxBitstream, FluxDecodeResult> decode
-    )
+    public static FluxDecodeResult Select(FluxRevolution revolution, double centre, Func<FluxBitstream, FluxDecodeResult> decode)
     {
         FluxDecodeResult? best = null;
         var bestScore = int.MinValue;

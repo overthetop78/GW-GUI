@@ -8,11 +8,7 @@ public sealed class DecRx02Writer(IAtomicImageFileWriter? fileWriter = null)
 {
     private readonly IAtomicImageFileWriter files = fileWriter ?? new AtomicImageFileWriter();
     /// <summary>Valide la géométrie, sépare chaque bloc en deux secteurs puis écrit atomiquement le dump.</summary>
-    public async Task WriteAsync(
-        SectorImage image,
-        string path,
-        CancellationToken cancellationToken = default
-    )
+    public async Task WriteAsync(SectorImage image, string path, CancellationToken cancellationToken = default)
     {
         if (!image.FormatId.Equals(DiskImageFormatIds.DecRx02, StringComparison.OrdinalIgnoreCase) || image.BlockSize != DecRx02Geometry.LogicalBlockSize || image.BlockCount != DecRx02Geometry.LogicalBlockCount || image.Cylinders != DecRx02Geometry.TrackCount || image.Heads != DecRx02Geometry.HeadCount)
             throw new InvalidDataException("The sector image does not use the DEC RX02 geometry.");

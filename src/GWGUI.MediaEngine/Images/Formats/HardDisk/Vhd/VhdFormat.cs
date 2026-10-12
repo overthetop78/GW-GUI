@@ -9,8 +9,7 @@ internal static class VhdFormat
 {
     public static readonly ReadOnlyMemory<byte> FooterSignature = System.Text.Encoding.ASCII.GetBytes(HardDiskFormatConstants.VhdFooterCookie);
     public static readonly ReadOnlyMemory<byte> DynamicHeaderSignature = System.Text.Encoding.ASCII.GetBytes(HardDiskFormatConstants.VhdDynamicHeaderCookie);
-    public static readonly IReadOnlySet<string> Extensions =
-        new[] { DiskImageFileExtensions.Vhd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public static readonly IReadOnlySet<string> Extensions = new[] { DiskImageFileExtensions.Vhd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     public static readonly IReadOnlySet<HardDiskImageVariant> Variants = new[]
     {
         HardDiskImageVariant.Fixed,

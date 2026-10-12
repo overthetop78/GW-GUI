@@ -9,11 +9,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection;
 internal sealed class ScpCandidateInspector(FileSystemRegistry fileSystems, DiskImageInterpretationService interpretations)
 {
     /// <summary>Inspecte un candidat, relit les images normalisées avec le même Reader et conserve son diagnostic de rejet.</summary>
-    public async Task<ScpCandidateInspection> InspectAsync(
-        ScpSectorImageCandidate candidate,
-        string path,
-        IProgress<ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    public async Task<ScpCandidateInspection> InspectAsync(ScpSectorImageCandidate candidate, string path, IProgress<ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         try
         {

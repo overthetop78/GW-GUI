@@ -14,12 +14,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.CloneCd;
 /// <summary>Reads a CloneCD descriptor, mandatory raw IMG data, and optional SUB data as one optical document.</summary>
 public sealed class CloneCdReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { OpticalImageFormatIds.CloneCd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.Optical }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { OpticalImageFormatIds.CloneCd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Optical }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
     private readonly CloneCdDescriptorReader descriptors;
 
     public CloneCdReader(CloneCdDescriptorReader? descriptors = null)
@@ -36,9 +33,7 @@ public sealed class CloneCdReader : IMediaImageReader
 
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId))
             return false;
@@ -54,9 +49,7 @@ public sealed class CloneCdReader : IMediaImageReader
         }
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var descriptor = await descriptors.ReadAsync(context.Source.PrimaryPath, cancellationToken).ConfigureAwait(false);
         var imagePath = Path.GetFullPath(Path.ChangeExtension(context.Source.PrimaryPath, DiskImageFileExtensions.Img));
@@ -133,9 +126,7 @@ public sealed class CloneCdReader : IMediaImageReader
             });
     }
 
-    private static long GetIndexOne(CueTrackDeclaration track) =>
-        track.Indexes.SingleOrDefault(index => index.Number == 1)?.RelativeSector
-        ?? throw new InvalidDataException($"CloneCD track {track.Number} does not contain INDEX 1.");
+    private static long GetIndexOne(CueTrackDeclaration track) => track.Indexes.SingleOrDefault(index => index.Number == 1)?.RelativeSector ?? throw new InvalidDataException($"CloneCD track {track.Number} does not contain INDEX 1.");
 
     private static (int Offset, int Length) GetUserDataWindow(OpticalTrackMode mode) => mode switch
     {

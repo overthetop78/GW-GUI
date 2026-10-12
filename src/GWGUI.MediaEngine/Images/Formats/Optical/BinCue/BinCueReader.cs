@@ -15,12 +15,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
 /// <summary>Resolves a CUE sheet and its binary track files into one optical media document.</summary>
 public sealed class BinCueReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { OpticalImageFormatIds.BinCue }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.Optical }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { OpticalImageFormatIds.BinCue }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Optical }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
     private readonly CueSheetReader cueSheets;
 
     public BinCueReader(CueSheetReader? cueSheets = null)
@@ -37,9 +34,7 @@ public sealed class BinCueReader : IMediaImageReader
 
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId))
             return false;
@@ -67,9 +62,7 @@ public sealed class BinCueReader : IMediaImageReader
         }
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var sheet = await cueSheets.ReadAsync(context.Source.PrimaryPath, cancellationToken).ConfigureAwait(false);
         var cueDirectory = Path.GetDirectoryName(Path.GetFullPath(context.Source.PrimaryPath)) ?? Directory.GetCurrentDirectory();
@@ -162,9 +155,7 @@ public sealed class BinCueReader : IMediaImageReader
         return Path.GetFullPath(Path.Combine(cueDirectory, declaredPath));
     }
 
-    private static long GetIndexOnePosition(CueTrackDeclaration track) =>
-        track.Indexes.SingleOrDefault(index => index.Number == 1)?.RelativeSector
-        ?? throw new InvalidDataException($"CUE track {track.Number} does not contain INDEX 01.");
+    private static long GetIndexOnePosition(CueTrackDeclaration track) => track.Indexes.SingleOrDefault(index => index.Number == 1)?.RelativeSector ?? throw new InvalidDataException($"CUE track {track.Number} does not contain INDEX 01.");
 
     private static long GetStoredPregap(CueTrackDeclaration track, long indexOne)
     {

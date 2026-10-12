@@ -5,10 +5,7 @@ namespace GWGUI.MediaEngine.Images.Conversion;
 /// <summary>Reports the files, diagnostics, and declared information losses produced by a conversion.</summary>
 public sealed class MediaConversionResult
 {
-    public MediaConversionResult(
-        IReadOnlyList<string> producedFiles,
-        IReadOnlyList<string> diagnostics,
-        IReadOnlyList<string> losses)
+    public MediaConversionResult(IReadOnlyList<string> producedFiles, IReadOnlyList<string> diagnostics, IReadOnlyList<string> losses)
     {
         ArgumentNullException.ThrowIfNull(producedFiles);
         ArgumentNullException.ThrowIfNull(diagnostics);

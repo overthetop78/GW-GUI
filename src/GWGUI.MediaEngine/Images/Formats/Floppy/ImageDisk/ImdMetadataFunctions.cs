@@ -33,9 +33,7 @@ internal static class ImdMetadataFunctions
         };
     }
 
-    public static ImdImage? Restore(
-        SectorImage image,
-        IReadOnlyDictionary<string, string> metadata)
+    public static ImdImage? Restore(SectorImage image, IReadOnlyDictionary<string, string> metadata)
     {
         ArgumentNullException.ThrowIfNull(image);
         ArgumentNullException.ThrowIfNull(metadata);

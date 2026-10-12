@@ -14,14 +14,7 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
         {
             Density = density
         };
-        DiskFormat Cartridge(
-            string id,
-            string family,
-            string key,
-            string fallback,
-            IReadOnlyList<string> extensions,
-            string tag
-        )
+        DiskFormat Cartridge(string id, string family, string key, string fallback, IReadOnlyList<string> extensions, string tag)
         {
             var normalized = extensions.Select(Normalize).ToArray();
             return new(

@@ -56,11 +56,7 @@ public sealed class DiskImageExplorer
         => await ExploreAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
 
     /// <summary>Explore l'image et publie les unités réelles de l'analyse SCP lorsqu'elle s'applique.</summary>
-    public async Task<ExploredDiskImage> ExploreAsync(
-        string path,
-        string? formatId,
-        IProgress<ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    public async Task<ExploredDiskImage> ExploreAsync(string path, string? formatId, IProgress<ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         if (!File.Exists(path)) throw new FileNotFoundException($"L'image de média '{path}' n'existe pas.", path);
         MediaImageDocument document;
@@ -118,10 +114,7 @@ public sealed class DiskImageExplorer
     }
 
     /// <summary>Explore une capture SCP déjà acquise en mémoire tout en conservant son chemin de destination.</summary>
-    public Task<ExploredDiskImage> ExploreScpAsync(
-        string path,
-        ScpImage image,
-        CancellationToken cancellationToken = default)
+    public Task<ExploredDiskImage> ExploreScpAsync(string path, ScpImage image, CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         ArgumentNullException.ThrowIfNull(image);

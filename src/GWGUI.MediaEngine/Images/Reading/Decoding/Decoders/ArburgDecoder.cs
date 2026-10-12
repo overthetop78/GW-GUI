@@ -121,12 +121,7 @@ public sealed class ArburgDecoder : IFluxDecoder
     /// <param name = "blockSize">Taille physique attendue.</param>
     /// <param name = "usefulSize">Nombre d'octets utiles couverts par le checksum.</param>
     /// <returns>Données utiles, validité et position finale, ou <see langword="null"/> si le codage est invalide ou tronqué.</returns>
-    private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeSystemBlock(
-        FluxBitstream stream,
-        int start,
-        int blockSize,
-        int usefulSize
-    )
+    private static (byte[] Data, bool Valid, int EndOffset)? TryDecodeSystemBlock(FluxBitstream stream, int start, int blockSize, int usefulSize)
     {
         var decoded = ArburgSystemCodec.Decode(stream, start, blockSize);
         return decoded is null ? null : (decoded.Value.Bytes.Take(usefulSize).ToArray(), ArburgChecksum.IsValid(decoded.Value.Bytes, usefulSize), decoded.Value.EndOffset);
@@ -137,11 +132,7 @@ public sealed class ArburgDecoder : IFluxDecoder
     /// <param name = "offset">Position du premier bit suivant la marque.</param>
     /// <param name = "count">Nombre d'octets physiques attendus.</param>
     /// <returns>Octets encodés, ou <see langword="null"/> si une cellule FM est invalide ou tronquée.</returns>
-    private static byte[]? TryDecodeFmBytes(
-        FluxBitstream stream,
-        int offset,
-        int count
-    )
+    private static byte[]? TryDecodeFmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];
         for (var index = 0; index < count; index++)
@@ -156,12 +147,7 @@ public sealed class ArburgDecoder : IFluxDecoder
     /// <param name = "blockSize">Taille physique attendue.</param>
     /// <param name = "usefulSize">Nombre d'octets utiles couverts par le checksum.</param>
     /// <returns>Données utiles et validité, ou <see langword="null"/> si le codage FM est invalide ou tronqué.</returns>
-    private static (byte[] Data, bool Valid)? TryDecodeFmBlock(
-        FluxBitstream stream,
-        int offset,
-        int blockSize,
-        int usefulSize
-    )
+    private static (byte[] Data, bool Valid)? TryDecodeFmBlock(FluxBitstream stream, int offset, int blockSize, int usefulSize)
     {
         var encoded = TryDecodeFmBytes(stream, offset, blockSize);
         if (encoded is null)

@@ -15,12 +15,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.Gdi;
 /// <summary>Lit un descripteur Dreamcast GDI et toutes ses pistes associées.</summary>
 public sealed class GdiReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { GdiConstants.FormatId }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.Optical }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { GdiConstants.FormatId }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Optical }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
     private readonly GdiDescriptorReader descriptors;
 
     public GdiReader() : this(new GdiDescriptorReader())
@@ -32,15 +29,12 @@ public sealed class GdiReader : IMediaImageReader
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => GdiConstants.Extensions;
     IReadOnlyList<ReadOnlyMemory<byte>> IMediaImageReader.Signatures => [];
-    IReadOnlySet<string> IMediaImageReader.AssociatedFileExtensions =>
-        new[] { DiskImageFileExtensions.Bin, DiskImageFileExtensions.Raw }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    IReadOnlySet<string> IMediaImageReader.AssociatedFileExtensions => new[] { DiskImageFileExtensions.Bin, DiskImageFileExtensions.Raw }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     IReadOnlySet<MediaKind> IMediaImageReader.MediaKinds => SupportedMediaKinds;
     IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentationKinds;
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId))
             return false;
@@ -57,9 +51,7 @@ public sealed class GdiReader : IMediaImageReader
         }
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var descriptor = await descriptors.ReadAsync(context.Source.PrimaryPath, cancellationToken).ConfigureAwait(false);
         var directory = Path.GetDirectoryName(Path.GetFullPath(context.Source.PrimaryPath)) ?? Directory.GetCurrentDirectory();

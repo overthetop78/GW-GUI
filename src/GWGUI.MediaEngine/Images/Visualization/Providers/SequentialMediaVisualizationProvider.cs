@@ -10,8 +10,7 @@ namespace GWGUI.MediaEngine.Images.Visualization.Providers;
 /// <summary>Builds progressive visualization data from explicitly described sequential segments and lanes.</summary>
 public sealed class SequentialMediaVisualizationProvider : IMediaVisualizationProvider
 {
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedKinds =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedKinds = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
 
     public IReadOnlySet<MediaRepresentationKind> RepresentationKinds => SupportedKinds;
 

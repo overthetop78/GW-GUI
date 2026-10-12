@@ -11,11 +11,7 @@ internal static class Apple35RawImageReader
     /// <summary>Géométrie linéaire Macintosh MFM de 1,44 Mio.</summary>
     private static readonly LinearSectorImageGeometry MacintoshGeometry = new(MacintoshMfmGeometry.SectorSize, MacintoshMfmGeometry.CylinderCount, MacintoshMfmGeometry.HeadCount, MacintoshMfmGeometry.SectorsPerTrack);
     /// <summary>Applique les sondes Lisa, Macintosh et ProDOS à la disposition de capacité déjà validée.</summary>
-    public static AppleRawImageReadResult Read(
-        ReadOnlyMemory<byte> data,
-        string extension,
-        AppleRawImageLayout layout
-    )
+    public static AppleRawImageReadResult Read(ReadOnlyMemory<byte> data, string extension, AppleRawImageLayout layout)
     {
         if (layout == AppleRawImageLayoutCatalog.Apple400K && AppleRawImageProbe.LooksLikeLisaOffice(data.Span))
             return new(MacintoshGcrSectorImageBuilder.Create(data, DiskImageFormatIds.AppleLisaRaw, MacintoshGcrGeometry.ForHeads(MacintoshGcrGeometry.SingleSidedHeadCount)), AppleRawImageMatchKind.ValidatedStructure);
@@ -30,11 +26,7 @@ internal static class Apple35RawImageReader
     }
 
     /// <summary>Construit une image Macintosh GCR zonée pour 400/800 Kio ou une image MFM linéaire pour 1,44 Mio.</summary>
-    private static AppleRawImageReadResult ReadMacintosh(
-        ReadOnlyMemory<byte> data,
-        AppleRawImageLayout layout,
-        MacintoshFileSystemKind fileSystem
-    )
+    private static AppleRawImageReadResult ReadMacintosh(ReadOnlyMemory<byte> data, AppleRawImageLayout layout, MacintoshFileSystemKind fileSystem)
     {
         if (layout == AppleRawImageLayoutCatalog.Macintosh1440K)
             return new(LinearSectorImageBuilder.Create(data, DiskImageFormatIds.Mac1440, MacintoshGeometry), AppleRawImageMatchKind.ValidatedStructure);

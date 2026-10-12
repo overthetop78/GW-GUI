@@ -57,11 +57,7 @@ public sealed class CommodoreGcrTrackEncoder : TrackEncoderBase
         CommodoreGcrFormat.DataMark
     }.Concat(data).Append(CommodoreGcrChecksum.Calculate(data)).ToArray();
     /// <summary>Lit un attribut de requête dont la valeur doit tenir dans un octet.</summary>
-    private static byte ReadByteAttribute(
-        TrackEncodeRequest request,
-        string name,
-        byte fallback
-    )
+    private static byte ReadByteAttribute(TrackEncodeRequest request, string name, byte fallback)
     {
         var value = Attribute(request, name, fallback);
         ValidateByte(name, value);
@@ -69,10 +65,7 @@ public sealed class CommodoreGcrTrackEncoder : TrackEncoderBase
     }
 
     /// <summary>Valide une valeur avant sa conversion en octet.</summary>
-    private static void ValidateByte(
-        string field,
-        int value
-    )
+    private static void ValidateByte(string field, int value)
     {
         if (value is < 0 || value > CommodoreGcrFormat.MaximumByteValue)
             throw TrackEncodingExceptions.FormatValueOutOfRange("Commodore GCR", field, value, CommodoreGcrFormat.MaximumByteValue);

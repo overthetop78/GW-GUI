@@ -26,12 +26,7 @@ internal sealed class DiskImageDocumentFactory(DiskImageMetadataFactory metadata
     /// <param name="detected">Systèmes de fichiers détectés dans leur ordre.</param>
     /// <param name="detectedImages">Images sectorielles réellement décodées pendant l'exploration.</param>
     /// <returns>Document reconnu ou document physique de repli.</returns>
-    public ExploredDiskImage Create(
-        string path,
-        SectorImage image,
-        IReadOnlyList<ExploredFileSystem> detected,
-        IReadOnlyList<SectorImage>? detectedImages = null,
-        ScpImage? scpImage = null)
+    public ExploredDiskImage Create(string path, SectorImage image, IReadOnlyList<ExploredFileSystem> detected, IReadOnlyList<SectorImage>? detectedImages = null, ScpImage? scpImage = null)
     {
         var images = detectedImages ?? detected.Select(item => item.Image).ToArray();
         var primaryImage = detected.Count > 0 ? detected[0].Image : image;

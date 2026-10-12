@@ -7,18 +7,10 @@ using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Conversion.Apple;
 /// <summary>Convertit les captures SCP et images Apple sectorielles vers D13, DO, DSK, PO ou 2MG.</summary>
-public sealed class AppleSectorConversionService(
-    AppleDiskImageReader imageReader,
-    AppleScpSectorImageReader scpReader,
-    AppleRawImageWriter rawWriter,
-    TwoImgWriter twoImgWriter
-)
+public sealed class AppleSectorConversionService(AppleDiskImageReader imageReader, AppleScpSectorImageReader scpReader, AppleRawImageWriter rawWriter, TwoImgWriter twoImgWriter)
 {
     /// <summary>Indique si le format et l'extension forment une cible sectorielle Apple cohérente.</summary>
-    public static bool CanCreate(
-        string formatId,
-        string extension
-    )
+    public static bool CanCreate(string formatId, string extension)
     {
         if (extension.Equals(DiskImageFileExtensions.TwoMg, StringComparison.OrdinalIgnoreCase))
             return IsSupportedFormat(formatId);
@@ -32,12 +24,7 @@ public sealed class AppleSectorConversionService(
     }
 
     /// <summary>Reconstruit ou relit l'image source puis l'écrit dans le conteneur Apple demandé.</summary>
-    public async Task ConvertAsync(
-        string sourcePath,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default
-    )
+    public async Task ConvertAsync(string sourcePath, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var outputExtension = Path.GetExtension(outputPath);
         if (!CanCreate(targetFormatId, outputExtension))
@@ -51,11 +38,7 @@ public sealed class AppleSectorConversionService(
     }
 
     /// <summary>Lit une capture par son reconstructeur ou un conteneur par le routeur Apple commun.</summary>
-    private async Task<SectorImage> ReadSourceAsync(
-        string sourcePath,
-        string targetFormatId,
-        CancellationToken cancellationToken
-    )
+    private async Task<SectorImage> ReadSourceAsync(string sourcePath, string targetFormatId, CancellationToken cancellationToken)
     {
         if (Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase))
             return await scpReader.ReadAsync(sourcePath, targetFormatId, cancellationToken).ConfigureAwait(false);

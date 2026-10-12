@@ -16,13 +16,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.WiiU;
 /// <summary>Écrit une image Wii U logique complète au format WUD.</summary>
 public sealed class WiiUWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { DiskImageFormatIds.NintendoWiiU }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedExtensions =
-        new[] { DiskImageFileExtensions.Wud, DiskImageFileExtensions.Wux }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { DiskImageFormatIds.NintendoWiiU }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedExtensions = new[] { DiskImageFileExtensions.Wud, DiskImageFileExtensions.Wux }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public WiiUWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
@@ -44,11 +40,7 @@ public sealed class WiiUWriter : IMediaImageWriter
             && HasCompleteReadableCoverage(blocks);
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentException.ThrowIfNullOrWhiteSpace(outputPath);
@@ -79,11 +71,7 @@ public sealed class WiiUWriter : IMediaImageWriter
         return [outputPath];
     }
 
-    private async Task WriteWuxAsync(
-        string outputPath,
-        long logicalLength,
-        IMediaBlockRepresentation blocks,
-        CancellationToken cancellationToken)
+    private async Task WriteWuxAsync(string outputPath, long logicalLength, IMediaBlockRepresentation blocks, CancellationToken cancellationToken)
     {
         var chunkSize = WiiUFormat.DefaultWuxSectorSize;
         var chunkCount = checked((logicalLength + chunkSize - 1) / chunkSize);
@@ -149,10 +137,7 @@ public sealed class WiiUWriter : IMediaImageWriter
         }
     }
 
-    private static async Task WriteIndexTableAsync(
-        Stream output,
-        IReadOnlyList<uint> indexes,
-        CancellationToken cancellationToken)
+    private static async Task WriteIndexTableAsync(Stream output, IReadOnlyList<uint> indexes, CancellationToken cancellationToken)
     {
         var entriesPerBuffer = 16 * 1024;
         var bytes = new byte[entriesPerBuffer * sizeof(uint)];
@@ -167,10 +152,7 @@ public sealed class WiiUWriter : IMediaImageWriter
         }
     }
 
-    private static async Task WriteZerosAsync(
-        Stream output,
-        long length,
-        CancellationToken cancellationToken)
+    private static async Task WriteZerosAsync(Stream output, long length, CancellationToken cancellationToken)
     {
         var zeros = new byte[64 * 1024];
         while (length > 0)
@@ -196,8 +178,5 @@ public sealed class WiiUWriter : IMediaImageWriter
         return expected == blocks.Capacity;
     }
 
-    private static string NormalizeExtension(string extension) =>
-        extension.StartsWith(".", StringComparison.Ordinal)
-            ? extension.ToLowerInvariant()
-            : $".{extension.ToLowerInvariant()}";
+    private static string NormalizeExtension(string extension) => extension.StartsWith(".", StringComparison.Ordinal) ? extension.ToLowerInvariant() : $".{extension.ToLowerInvariant()}";
 }

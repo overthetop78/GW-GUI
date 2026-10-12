@@ -19,11 +19,7 @@ public sealed class BlockMediaImageRepresentation : IMediaBlockRepresentation, I
     {
     }
 
-    public BlockMediaImageRepresentation(
-        long logicalLength,
-        int logicalBlockSize,
-        IReadOnlyList<MediaDataRange> ranges,
-        HardDiskGeometry? geometry = null)
+    public BlockMediaImageRepresentation(long logicalLength, int logicalBlockSize, IReadOnlyList<MediaDataRange> ranges, HardDiskGeometry? geometry = null)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(logicalLength);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(logicalBlockSize);

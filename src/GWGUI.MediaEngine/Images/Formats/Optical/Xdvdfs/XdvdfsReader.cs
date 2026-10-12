@@ -19,12 +19,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.Xdvdfs;
 /// <summary>Lit les images de jeu Xbox dont le système de fichiers est XDVDFS/XISO.</summary>
 public sealed class XdvdfsReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> FormatIds =
-        new[] { OpticalImageFormatIds.XboxXdvdfs }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> MediaKinds =
-        new[] { MediaKind.Optical }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> Representations =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> FormatIds = new[] { OpticalImageFormatIds.XboxXdvdfs }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> MediaKinds = new[] { MediaKind.Optical }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> Representations = new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => FormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => XdvdfsFormat.Extensions;
@@ -34,8 +31,7 @@ public sealed class XdvdfsReader : IMediaImageReader
     IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => Representations;
     bool IMediaImageReader.SupportsFormatId(string formatId) => FormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context, CancellationToken cancellationToken)
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (!XdvdfsFormat.Extensions.Contains(context.Extension)
@@ -47,8 +43,7 @@ public sealed class XdvdfsReader : IMediaImageReader
         return await TryReadDescriptorAsync(context, cancellationToken).ConfigureAwait(false) is not null;
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context, CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (!XdvdfsFormat.IsLengthCompatible(context.Length))
@@ -72,8 +67,7 @@ public sealed class XdvdfsReader : IMediaImageReader
         return new MediaImageDocument(context.Source, OpticalImageFormatIds.XboxXdvdfs, MediaKind.Optical, representation, [volume], [], metadata);
     }
 
-    private static async ValueTask<(uint RootSector, uint RootSize)?> TryReadDescriptorAsync(
-        MediaRecognitionContext context, CancellationToken cancellationToken)
+    private static async ValueTask<(uint RootSector, uint RootSize)?> TryReadDescriptorAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var offset = checked((long)XdvdfsFormat.VolumeDescriptorSector * XdvdfsFormat.SectorSize);
         var descriptor = await context.ReadAsync(offset, XdvdfsFormat.VolumeDescriptorLength, cancellationToken).ConfigureAwait(false);

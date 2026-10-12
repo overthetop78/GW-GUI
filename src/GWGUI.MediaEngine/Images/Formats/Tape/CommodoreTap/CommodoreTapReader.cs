@@ -15,11 +15,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.CommodoreTap;
 /// <summary>Reads Commodore TAP timing records as pulses while preserving their exact source ranges.</summary>
 public sealed class CommodoreTapReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.CommodoreTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.CommodoreTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Tape }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private static readonly IReadOnlyList<ReadOnlyMemory<byte>> Signatures = [System.Text.Encoding.ASCII.GetBytes(CommodoreTapConstants.C64Signature), System.Text.Encoding.ASCII.GetBytes(CommodoreTapConstants.C16Signature)];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;

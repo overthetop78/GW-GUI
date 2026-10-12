@@ -16,9 +16,7 @@ public sealed class SequentialDecoderRegistry
         this.decoders = decoders.ToArray();
     }
 
-    public IReadOnlyList<ISequentialMediaDecoder> FindCompatible(
-        MediaImageDocument document,
-        string? machineId = null)
+    public IReadOnlyList<ISequentialMediaDecoder> FindCompatible(MediaImageDocument document, string? machineId = null)
     {
         ArgumentNullException.ThrowIfNull(document);
         return decoders.Where(decoder => decoder.CanDecode(document, machineId)).ToArray();
@@ -30,10 +28,8 @@ public sealed class SequentialDecoderRegistry
         return compatible.Count switch
         {
             1 => compatible[0],
-            0 => throw new NotSupportedException(
-                $"No sequential decoder accepts format '{document.FormatId}' for machine '{machineId ?? "unspecified"}'."),
-            _ => throw new InvalidOperationException(
-                $"Multiple sequential decoders accept format '{document.FormatId}' for machine '{machineId ?? "unspecified"}'; an explicit machine is required.")
+            0 => throw new NotSupportedException($"No sequential decoder accepts format '{document.FormatId}' for machine '{machineId ?? "unspecified"}'."),
+            _ => throw new InvalidOperationException($"Multiple sequential decoders accept format '{document.FormatId}' for machine '{machineId ?? "unspecified"}'; an explicit machine is required.")
         };
     }
 

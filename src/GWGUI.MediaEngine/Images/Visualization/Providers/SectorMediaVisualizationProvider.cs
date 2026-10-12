@@ -10,8 +10,7 @@ namespace GWGUI.MediaEngine.Images.Visualization.Providers;
 /// <summary>Builds visualization traversal data directly from sector geometry without synthesizing flux.</summary>
 public sealed class SectorMediaVisualizationProvider : IMediaVisualizationProvider
 {
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedKinds =
-        new[] { MediaRepresentationKind.Sectors }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedKinds = new[] { MediaRepresentationKind.Sectors }.ToFrozenSet();
 
     public IReadOnlySet<MediaRepresentationKind> RepresentationKinds => SupportedKinds;
 

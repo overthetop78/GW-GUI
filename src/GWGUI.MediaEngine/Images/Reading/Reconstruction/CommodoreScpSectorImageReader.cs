@@ -16,10 +16,7 @@ namespace GWGUI.MediaEngine.Images.Reading.Reconstruction;
 /// <summary>Reconstruit les images sectorielles Commodore GCR et 1581 MFM depuis une capture SCP.</summary>
 /// <param name = "scpReader">Lecteur utilisé pour analyser le conteneur SCP.</param>
 /// <param name = "decoders">Registre fournissant les décodeurs Commodore GCR et ISO MFM.</param>
-public sealed class CommodoreScpSectorImageReader(
-    IScpReader scpReader,
-    FluxDecoderRegistry decoders
-)
+public sealed class CommodoreScpSectorImageReader(IScpReader scpReader, FluxDecoderRegistry decoders)
 {
     /// <summary>Lit la capture et sélectionne la reconstruction Commodore adaptée.</summary>
     /// <param name = "path">Chemin de la capture SCP à reconstruire.</param>
@@ -28,12 +25,7 @@ public sealed class CommodoreScpSectorImageReader(
     /// <returns>L'image sectorielle Commodore reconstruite.</returns>
     /// <exception cref = "InvalidDataException">Aucun secteur du format Commodore sélectionné ne peut être reconstruit.</exception>
     public async Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default) => await ReadAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
-    public async Task<SectorImage> ReadAsync(
-        string path,
-        string? formatId,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken = default
-    )
+    public async Task<SectorImage> ReadAsync(string path, string? formatId, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         if (formatId == DiskImageFormatIds.Commodore1581)
@@ -44,11 +36,7 @@ public sealed class CommodoreScpSectorImageReader(
     }
 
     /// <summary>Reconstruit les secteurs GCR zonés d'une disquette Commodore 900.</summary>
-    private SectorImage Read900(
-        ScpImage scp,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken
-    )
+    private SectorImage Read900(ScpImage scp, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var candidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
         var completed = 0;
@@ -104,12 +92,7 @@ public sealed class CommodoreScpSectorImageReader(
     /// <param name = "cancellationToken">Jeton permettant d'annuler le décodage.</param>
     /// <returns>L'image 1541 ou 1571 reconstruite.</returns>
     /// <exception cref = "InvalidDataException">Aucun secteur Commodore GCR n'a été décodé.</exception>
-    private SectorImage ReadGcr(
-        ScpImage scp,
-        string? requestedFormat,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken
-    )
+    private SectorImage ReadGcr(ScpImage scp, string? requestedFormat, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var candidates = new Dictionary<(int Track, int Sector), List<(DecodedSector Sector, int Revolution)>>();
         var completed = 0;
@@ -162,11 +145,7 @@ public sealed class CommodoreScpSectorImageReader(
     /// <param name = "cancellationToken">Jeton permettant d'annuler le décodage.</param>
     /// <returns>L'image 1581 reconstruite en blocs logiques de 256 octets.</returns>
     /// <exception cref = "InvalidDataException">Aucun secteur MFM n'a été décodé ou tous les candidats sortent de la géométrie physique 1581.</exception>
-    private SectorImage Read1581(
-        ScpImage scp,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken
-    )
+    private SectorImage Read1581(ScpImage scp, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var candidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();
         var completed = 0;

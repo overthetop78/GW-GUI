@@ -11,10 +11,7 @@ public sealed class MediaConversionService
     private readonly MediaImageWriterRegistry writers;
     private readonly MediaImageWritingService writingService;
 
-    public MediaConversionService(
-        MediaRepresentationConverterRegistry converters,
-        MediaImageWriterRegistry writers,
-        MediaImageWritingService writingService)
+    public MediaConversionService(MediaRepresentationConverterRegistry converters, MediaImageWriterRegistry writers, MediaImageWritingService writingService)
     {
         ArgumentNullException.ThrowIfNull(converters);
         ArgumentNullException.ThrowIfNull(writers);
@@ -38,9 +35,7 @@ public sealed class MediaConversionService
             .ToArray();
     }
 
-    public async Task<MediaConversionResult> ConvertAsync(
-        MediaConversionRequest request,
-        CancellationToken cancellationToken = default)
+    public async Task<MediaConversionResult> ConvertAsync(MediaConversionRequest request, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
         cancellationToken.ThrowIfCancellationRequested();
@@ -58,8 +53,7 @@ public sealed class MediaConversionService
         {
             var targetRepresentationKinds = writers.FindTargetCandidates(request.TargetFormatId, extension).SelectMany(writer => writer.RepresentationKinds).Distinct().ToArray();
             if (targetRepresentationKinds.Length == 0)
-                throw new NotSupportedException(
-                    $"No media image writer is registered for target '{request.TargetFormatId}' and extension '{extension}'.");
+                throw new NotSupportedException($"No media image writer is registered for target '{request.TargetFormatId}' and extension '{extension}'.");
 
             MediaRepresentationConversionResult? conversion = null;
             foreach (var targetRepresentationKind in targetRepresentationKinds)
@@ -73,8 +67,7 @@ public sealed class MediaConversionService
             }
 
             if (conversion is null)
-                throw new NotSupportedException(
-                    $"No representation converter can prepare '{document.Representation.RepresentationKind}' for target '{request.TargetFormatId}' and extension '{extension}'.");
+                throw new NotSupportedException($"No representation converter can prepare '{document.Representation.RepresentationKind}' for target '{request.TargetFormatId}' and extension '{extension}'.");
 
             document = conversion.Document;
             diagnostics.AddRange(conversion.Diagnostics);

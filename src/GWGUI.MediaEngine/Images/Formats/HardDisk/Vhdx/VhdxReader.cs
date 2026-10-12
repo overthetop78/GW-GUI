@@ -15,12 +15,9 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Vhdx;
 /// <summary>Reads autonomous VHDX images after validating their active structures.</summary>
 public sealed class VhdxReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Vhdx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.HardDisk }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Vhdx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.HardDisk }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures = [VhdxFormat.FileSignature];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
@@ -49,9 +46,7 @@ public sealed class VhdxReader : IMediaImageReader
         }
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var structures = await ReadStructuresAsync(context, cancellationToken).ConfigureAwait(false);
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
@@ -74,9 +69,7 @@ public sealed class VhdxReader : IMediaImageReader
             });
     }
 
-    private static async Task<VhdxStructures> ReadStructuresAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    private static async Task<VhdxStructures> ReadStructuresAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.Length < HardDiskFormatConstants.VhdxRegionTable2Offset + HardDiskFormatConstants.VhdxRegionTableSize)
             throw new InvalidDataException("The file is too short to contain mandatory VHDX structures.");
@@ -103,10 +96,7 @@ public sealed class VhdxReader : IMediaImageReader
         return new VhdxStructures(batRegion, metadata.BlockSize, metadata.FileParametersFlags, metadata.VirtualDiskSize, metadata.LogicalSectorSize, metadata.PhysicalSectorSize, metadata.Page83Id);
     }
 
-    private static async ValueTask<VhdxHeader?> TryReadHeaderAsync(
-        MediaRecognitionContext context,
-        long offset,
-        CancellationToken cancellationToken)
+    private static async ValueTask<VhdxHeader?> TryReadHeaderAsync(MediaRecognitionContext context, long offset, CancellationToken cancellationToken)
     {
         var memory = await context.ReadAsync(offset, HardDiskFormatConstants.VhdxHeaderSize, cancellationToken).ConfigureAwait(false);
         var header = memory.Span;
@@ -124,10 +114,7 @@ public sealed class VhdxReader : IMediaImageReader
         return first.SequenceNumber >= second.SequenceNumber ? first : second;
     }
 
-    private static async ValueTask<Dictionary<Guid, VhdxRegion>> TryReadRegionTableAsync(
-        MediaRecognitionContext context,
-        long offset,
-        CancellationToken cancellationToken)
+    private static async ValueTask<Dictionary<Guid, VhdxRegion>> TryReadRegionTableAsync(MediaRecognitionContext context, long offset, CancellationToken cancellationToken)
     {
         var memory = await context.ReadAsync(offset, HardDiskFormatConstants.VhdxRegionTableSize, cancellationToken).ConfigureAwait(false);
         var table = memory.Span;
@@ -156,10 +143,7 @@ public sealed class VhdxReader : IMediaImageReader
         return regions;
     }
 
-    private static async Task<VhdxMetadata> ReadMetadataAsync(
-        MediaRecognitionContext context,
-        VhdxRegion region,
-        CancellationToken cancellationToken)
+    private static async Task<VhdxMetadata> ReadMetadataAsync(MediaRecognitionContext context, VhdxRegion region, CancellationToken cancellationToken)
     {
         var header = await context.ReadAsync(region.Offset, 64 * 1_024, cancellationToken).ConfigureAwait(false);
         if (!header.Span[..8].SequenceEqual(VhdxFormat.MetadataTableSignature.Span))
@@ -227,11 +211,7 @@ public sealed class VhdxReader : IMediaImageReader
         return new VhdxMetadata(checked((int)blockSize.Value), fileFlags.Value, (long)virtualSize.Value, checked((int)logicalSectorSize.Value), checked((int)physicalSectorSize.Value), page83Id.Value);
     }
 
-    private static async Task<IReadOnlyList<MediaDataRange>> ReadBatRangesAsync(
-        MediaRecognitionContext context,
-        FileRandomAccessData source,
-        VhdxStructures structures,
-        CancellationToken cancellationToken)
+    private static async Task<IReadOnlyList<MediaDataRange>> ReadBatRangesAsync(MediaRecognitionContext context, FileRandomAccessData source, VhdxStructures structures, CancellationToken cancellationToken)
     {
         var payloadBlockCount = checked((structures.VirtualDiskSize + structures.BlockSize - 1) / structures.BlockSize);
         var chunkRatio = checked((1L << 23) * structures.LogicalSectorSize / structures.BlockSize);
@@ -284,13 +264,7 @@ public sealed class VhdxReader : IMediaImageReader
 
     private static bool IsPowerOfTwo(uint value) => value != 0 && (value & (value - 1)) == 0;
 
-    private static void AddRange(
-        List<MediaDataRange> ranges,
-        long address,
-        long length,
-        MediaDataRangeKind kind,
-        FileRandomAccessData? source = null,
-        long sourceOffset = 0)
+    private static void AddRange(List<MediaDataRange> ranges, long address, long length, MediaDataRangeKind kind, FileRandomAccessData? source = null, long sourceOffset = 0)
     {
         if (ranges.Count > 0)
         {
@@ -307,19 +281,6 @@ public sealed class VhdxReader : IMediaImageReader
 
     private sealed record VhdxHeader(ulong SequenceNumber, Guid LogGuid);
     private sealed record VhdxRegion(long Offset, uint Length);
-    private sealed record VhdxMetadata(
-        int BlockSize,
-        uint FileParametersFlags,
-        long VirtualDiskSize,
-        int LogicalSectorSize,
-        int PhysicalSectorSize,
-        Guid Page83Id);
-    private sealed record VhdxStructures(
-        VhdxRegion BatRegion,
-        int BlockSize,
-        uint FileParametersFlags,
-        long VirtualDiskSize,
-        int LogicalSectorSize,
-        int PhysicalSectorSize,
-        Guid Page83Id);
+    private sealed record VhdxMetadata(int BlockSize, uint FileParametersFlags, long VirtualDiskSize, int LogicalSectorSize, int PhysicalSectorSize, Guid Page83Id);
+    private sealed record VhdxStructures(VhdxRegion BatRegion, int BlockSize, uint FileParametersFlags, long VirtualDiskSize, int LogicalSectorSize, int PhysicalSectorSize, Guid Page83Id);
 }

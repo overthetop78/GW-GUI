@@ -20,16 +20,7 @@ internal static class FluxStructureDescriptions
     /// <summary>Construit l'identité technique commune d'une structure.</summary>
     /// <param name = "codec">Nom du codec.</param><param name = "kind">Type de structure.</param><param name = "cylinder">Cylindre.</param><param name = "head">Face.</param><param name = "sector">Secteur.</param><param name = "size">Taille en octets.</param><param name = "mark">Marque éventuelle.</param><param name = "variant">Variante éventuelle.</param>
     /// <returns>Description de l'identité technique.</returns>
-    public static string Identity(
-        string codec,
-        FluxStructureKind kind,
-        int cylinder,
-        int head,
-        int sector,
-        int size,
-        byte? mark,
-        string? variant
-    )
+    public static string Identity(string codec, FluxStructureKind kind, int cylinder, int head, int sector, int size, byte? mark, string? variant)
     {
         var markText = mark is null ? string.Empty : $", mark {mark.Value:X2}";
         var variantText = string.IsNullOrWhiteSpace(variant) ? string.Empty : $", {variant}";

@@ -5,10 +5,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Contains the understood structure and metadata of one parsed CUE sheet.</summary>
 public sealed class CueSheetDocument
 {
-    public CueSheetDocument(
-        IReadOnlyList<CueFileDescriptor> files,
-        string? catalogNumber = null,
-        IReadOnlyDictionary<string, string>? metadata = null)
+    public CueSheetDocument(IReadOnlyList<CueFileDescriptor> files, string? catalogNumber = null, IReadOnlyDictionary<string, string>? metadata = null)
     {
         ArgumentNullException.ThrowIfNull(files);
         if (files.Count == 0) throw new ArgumentException("A CUE sheet requires at least one file declaration.", nameof(files));

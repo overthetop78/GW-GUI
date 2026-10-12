@@ -14,10 +14,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.CommodoreTap;
 /// <summary>Writes pulse durations that are exactly representable by the selected Commodore TAP version.</summary>
 public sealed class CommodoreTapWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.CommodoreTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.CommodoreTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public CommodoreTapWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
@@ -35,11 +33,7 @@ public sealed class CommodoreTapWriter : IMediaImageWriter
         && TryGetProfile(document.Metadata, out var profile)
         && TryEncodeRecords(document, profile.Version, out _);
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!SupportedFormatIds.Contains(targetFormatId)

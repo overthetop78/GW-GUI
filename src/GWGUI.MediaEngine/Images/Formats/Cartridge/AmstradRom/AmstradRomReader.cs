@@ -20,13 +20,10 @@ public sealed class AmstradRomReader : IMediaImageReader
     {
         8192, 12101, 16383, 16384, 16512, 32768, 131072, 524288
     }.ToFrozenSet();
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { DiskImageFormatIds.AmstradRom }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedExtensions =
-        new[] { DiskImageFileExtensions.Rom, DiskImageFileExtensions.Bin }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { DiskImageFormatIds.AmstradRom }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedExtensions = new[] { DiskImageFileExtensions.Rom, DiskImageFileExtensions.Bin }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Cartridge }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => SupportedExtensions;
@@ -83,9 +80,7 @@ public sealed class AmstradRomReader : IMediaImageReader
             metadata[$"bank.{bank}.length"] = length.ToString(System.Globalization.CultureInfo.InvariantCulture);
         }
         var capacity = bankCount * (long)BankLength;
-        var diagnostics = dataLength % BankLength == 0
-            ? Array.Empty<string>()
-            : new[] { "The last CPC ROM bank is incomplete and is exposed without invented padding." };
+        var diagnostics = dataLength % BankLength == 0 ? Array.Empty<string>() : new[] { "The last CPC ROM bank is incomplete and is exposed without invented padding." };
         var volume = new MediaVolumeDescriptor(0, capacity, MediaVolumeOrigins.DirectVolume, name: "Amstrad ROM");
         return Task.FromResult(new MediaImageDocument(context.Source, DiskImageFormatIds.AmstradRom, MediaKind.Cartridge, new BlockMediaImageRepresentation(capacity, 1, ranges), [volume], diagnostics, metadata));
     }

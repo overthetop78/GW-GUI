@@ -19,11 +19,7 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
         => await DecodeAsync(path, decoderIds, null, cancellationToken).ConfigureAwait(false);
 
     /// <summary>Décode toutes les pistes et publie chaque piste réellement terminée.</summary>
-    public async Task<IsoSectorCandidateSet> DecodeAsync(
-        string path,
-        IReadOnlyList<string> decoderIds,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    public async Task<IsoSectorCandidateSet> DecodeAsync(string path, IReadOnlyList<string> decoderIds, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var fullPath = Path.GetFullPath(path);
         var file = new FileInfo(fullPath);
@@ -125,11 +121,7 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
         return new(candidates, physicalCandidates);
     }
 
-    private TrackCandidateSet DecodeTrack(
-        ProtectedTrack track,
-        IReadOnlyList<string> decoderIds,
-        CancellationToken cancellationToken,
-        Action<ScpTrackDecodeWindow> revolutionDecoded)
+    private TrackCandidateSet DecodeTrack(ProtectedTrack track, IReadOnlyList<string> decoderIds, CancellationToken cancellationToken, Action<ScpTrackDecodeWindow> revolutionDecoded)
     {
         var candidates = new Dictionary<SectorAddress, List<IsoSectorCandidate>>();
         var physicalCandidates = new Dictionary<SectorAddress, List<IsoSectorCandidate>>();
@@ -162,9 +154,7 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
         list.Add(new(sector, revolution));
     }
 
-    private static void MergeCandidates(
-        Dictionary<SectorAddress, List<IsoSectorCandidate>> destination,
-        IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> source)
+    private static void MergeCandidates(Dictionary<SectorAddress, List<IsoSectorCandidate>> destination, IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> source)
     {
         foreach (var (address, sourceCandidates) in source)
         {
@@ -176,7 +166,5 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
 
     private sealed record CacheEntry(CaptureFingerprint Fingerprint, Lazy<Task<IsoSectorCandidateSet>> Operation);
     private readonly record struct CaptureFingerprint(string Path, long Length, DateTime LastWriteTimeUtc);
-    private sealed record TrackCandidateSet(
-        IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> Addressed,
-        IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> Physical);
+    private sealed record TrackCandidateSet(IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> Addressed, IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> Physical);
 }

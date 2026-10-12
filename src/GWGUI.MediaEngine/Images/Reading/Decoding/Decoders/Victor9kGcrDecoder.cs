@@ -77,10 +77,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Décode et valide les six octets d'un en-tête Victor 9000.</summary>
-    internal static Victor9kHeader? TryDecodeHeader(
-        IReadOnlyList<bool> bits,
-        int markOffset
-    )
+    internal static Victor9kHeader? TryDecodeHeader(IReadOnlyList<bool> bits, int markOffset)
     {
         var bytes = CommodoreGcrCodec.TryDecodeBytes(bits, markOffset + Victor9kGcrFormat.EncodedDataStartBitOffset, Victor9kGcrFormat.HeaderByteCount, Victor9kGcrFormat.EncodedCellStride, out _);
         if (bytes is null)
@@ -90,11 +87,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Recherche la marque de données dans la plage fournie.</summary>
-    internal static int FindDataMark(
-        FluxBitstream stream,
-        int start,
-        int end
-    )
+    internal static int FindDataMark(FluxBitstream stream, int start, int end)
     {
         for (var offset = Math.Max(0, start); offset + Victor9kGcrFormat.MarkBitCount <= end; offset++)
             if (FluxBitReader.MatchBytes(stream, offset, Victor9kGcrFormat.DataMark))
@@ -103,10 +96,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Lit le préfixe, la charge utile et le checksum faible puis fort.</summary>
-    internal static Victor9kData? TryDecodeData(
-        IReadOnlyList<bool> bits,
-        int markOffset
-    )
+    internal static Victor9kData? TryDecodeData(IReadOnlyList<bool> bits, int markOffset)
     {
         var bytes = CommodoreGcrCodec.TryDecodeBytes(bits, markOffset + Victor9kGcrFormat.EncodedDataStartBitOffset, Victor9kGcrFormat.DecodedDataByteCount, Victor9kGcrFormat.EncodedCellStride, out var endOffset);
         if (bytes is null)
@@ -117,11 +107,7 @@ public sealed class Victor9kGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Ajoute les marques de données qui n'ont été associées à aucun en-tête.</summary>
-    internal static void CollectUnpairedDataMarks(
-        FluxBitstream stream,
-        IReadOnlySet<int> pairedOffsets,
-        ICollection<FluxStructure> structures
-    )
+    internal static void CollectUnpairedDataMarks(FluxBitstream stream, IReadOnlySet<int> pairedOffsets, ICollection<FluxStructure> structures)
     {
         for (var offset = 0; offset + Victor9kGcrFormat.MarkBitCount <= stream.Bits.Length; offset++)
         {

@@ -15,12 +15,7 @@ internal static class PcmSampleFunctions
         for (var index = 0; index < count; index++) samples.Add(0);
     }
 
-    public static bool TryGetProfile(
-        IReadOnlyDictionary<string, string> metadata,
-        out int channels,
-        out int sampleRate,
-        out int bitsPerSample,
-        out int blockAlign)
+    public static bool TryGetProfile(IReadOnlyDictionary<string, string> metadata, out int channels, out int sampleRate, out int bitsPerSample, out int blockAlign)
     {
         channels = sampleRate = bitsPerSample = blockAlign = 0;
         return TryReadInt(metadata, "channels", out channels)
@@ -33,12 +28,7 @@ internal static class PcmSampleFunctions
             && blockAlign == channels * (bitsPerSample / 8);
     }
 
-    public static IReadOnlyList<int> ExtractChannel(
-        ReadOnlySpan<byte> pcm,
-        int channels,
-        int bitsPerSample,
-        int blockAlign,
-        int channel)
+    public static IReadOnlyList<int> ExtractChannel(ReadOnlySpan<byte> pcm, int channels, int bitsPerSample, int blockAlign, int channel)
     {
         if (channel < 0 || channel >= channels) throw new ArgumentOutOfRangeException(nameof(channel));
         if (blockAlign <= 0 || pcm.Length % blockAlign != 0)

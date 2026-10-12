@@ -15,11 +15,8 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Msx;
 /// <summary>Validates MSX byte groups retained in CAS or TSX and decodes standard FSK serial frames from PCM WAV.</summary>
 public sealed class MsxTapeDecoder : ISequentialMediaDecoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.MsxCas, TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Msx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.MsxCas, TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Msx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => MsxCasConstants.DecoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
@@ -38,10 +35,7 @@ public sealed class MsxTapeDecoder : ISequentialMediaDecoder
                 && extension.Equals(DiskImageFileExtensions.Tsx, StringComparison.OrdinalIgnoreCase);
     }
 
-    public async Task<SequentialDecodeResult> DecodeAsync(
-        MediaImageDocument document,
-        string? machineId = null,
-        CancellationToken cancellationToken = default)
+    public async Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default)
     {
         if (!CanDecode(document, machineId))
             throw new InvalidDataException("The media document has no explicit MSX cassette context.");
@@ -53,9 +47,7 @@ public sealed class MsxTapeDecoder : ISequentialMediaDecoder
         return await DecodeWaveAsync(document, representation, cancellationToken).ConfigureAwait(false);
     }
 
-    private static async Task<SequentialDecodeResult> DecodeCasAsync(
-        SequentialMediaImageRepresentation representation,
-        CancellationToken cancellationToken)
+    private static async Task<SequentialDecodeResult> DecodeCasAsync(SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)
     {
         var blocks = new List<SequentialDecodedBlock>();
         var consumed = new HashSet<long>();
@@ -81,10 +73,7 @@ public sealed class MsxTapeDecoder : ISequentialMediaDecoder
         return Result(representation, blocks, consumed, "No structurally identified MSX CAS byte group was found.");
     }
 
-    private static async Task<SequentialDecodeResult> DecodeTsxAsync(
-        MediaImageDocument document,
-        SequentialMediaImageRepresentation sourceRepresentation,
-        CancellationToken cancellationToken)
+    private static async Task<SequentialDecodeResult> DecodeTsxAsync(MediaImageDocument document, SequentialMediaImageRepresentation sourceRepresentation, CancellationToken cancellationToken)
     {
         var signal = await new TzxSignalDecoder().DecodeAsync(document, cancellationToken).ConfigureAwait(false);
         var blocks = new List<SequentialDecodedBlock>();
@@ -105,10 +94,7 @@ public sealed class MsxTapeDecoder : ISequentialMediaDecoder
         return new SequentialDecodeResult(result.DecoderId, result.Confidence, result.Blocks, result.UndecodedSegments, [.. result.Diagnostics, .. signal.Diagnostics]);
     }
 
-    private static async Task<SequentialDecodeResult> DecodeWaveAsync(
-        MediaImageDocument document,
-        SequentialMediaImageRepresentation representation,
-        CancellationToken cancellationToken)
+    private static async Task<SequentialDecodeResult> DecodeWaveAsync(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)
     {
         if (!PcmSampleFunctions.TryGetProfile(document.Metadata, out var channels, out var sampleRate, out var bitsPerSample, out var blockAlign))
             return new SequentialDecodeResult(IdValue, 0, [], representation.Segments ?? [], ["The WAV PCM profile is incomplete or incompatible."]);
@@ -143,24 +129,14 @@ public sealed class MsxTapeDecoder : ISequentialMediaDecoder
         return new SequentialDecodeResult(IdValue, confidence, blocks, undecoded, blocks.Length == 0 ? ["No complete MSX FSK serial frame was found in the selected WAV channel."] : []);
     }
 
-    private static SequentialDecodeResult Result(
-        SequentialMediaImageRepresentation representation,
-        IReadOnlyList<SequentialDecodedBlock> blocks,
-        IReadOnlySet<long> consumed,
-        string emptyDiagnostic)
+    private static SequentialDecodeResult Result(SequentialMediaImageRepresentation representation, IReadOnlyList<SequentialDecodedBlock> blocks, IReadOnlySet<long> consumed, string emptyDiagnostic)
     {
         var undecoded = (representation.Segments ?? []).Where(segment => !consumed.Contains(segment.Position)).ToArray();
         var confidence = blocks.Count == 0 ? 0 : blocks.Count(block => block.IntegrityValid != false) / (double)blocks.Count;
         return new SequentialDecodeResult(IdValue, confidence, blocks, undecoded, blocks.Count == 0 ? [emptyDiagnostic] : []);
     }
 
-    private static SequentialDecodedBlock CreateBlock(
-        long position,
-        ReadOnlyMemory<byte> data,
-        IReadOnlyList<long> sourcePositions,
-        string sourceKind,
-        string? fileType,
-        bool? integrityValid)
+    private static SequentialDecodedBlock CreateBlock(long position, ReadOnlyMemory<byte> data, IReadOnlyList<long> sourcePositions, string sourceKind, string? fileType, bool? integrityValid)
     {
         var metadata = new Dictionary<string, string>(StringComparer.Ordinal)
         {

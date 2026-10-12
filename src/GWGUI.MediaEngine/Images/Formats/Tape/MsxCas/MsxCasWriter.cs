@@ -12,10 +12,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.MsxCas;
 /// <summary>Writes retained MSX CAS separators and byte groups without inventing tape timing.</summary>
 public sealed class MsxCasWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.MsxCas }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.MsxCas }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public MsxCasWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
@@ -27,11 +25,7 @@ public sealed class MsxCasWriter : IMediaImageWriter
 
     public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) => SupportedFormatIds.Contains(targetFormatId) && MsxCasFormat.Extensions.Contains(targetExtension) && document.MediaKind == MediaKind.Tape && TryGetParts(document, out _);
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension) || !TryGetParts(document, out var parts))

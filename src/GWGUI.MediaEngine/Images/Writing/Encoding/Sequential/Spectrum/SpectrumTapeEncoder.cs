@@ -14,11 +14,8 @@ namespace GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Spectrum;
 /// <summary>Encodes validated Spectrum blocks as TAP, standard TZX blocks, or explicit 16-bit mono PCM samples.</summary>
 public sealed class SpectrumTapeEncoder : ISequentialMediaEncoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.SpectrumTap, TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Spectrum }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.SpectrumTap, TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Spectrum }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => SpectrumTapConstants.EncoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
@@ -33,9 +30,7 @@ public sealed class SpectrumTapeEncoder : ISequentialMediaEncoder
         && (!request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
             || TryReadSampleRate(request.Parameters, out _));
 
-    public Task<SequentialMediaImageRepresentation> EncodeAsync(
-        SequentialEncodeRequest request,
-        CancellationToken cancellationToken = default)
+    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
         if (!CanEncode(request))
             throw new InvalidDataException("Spectrum encoding requires checksum-valid blocks and explicit WAV sample rate when WAV is selected.");

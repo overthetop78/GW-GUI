@@ -108,10 +108,7 @@ public sealed class SectorImage : IMediaSectorImage
     /// <param name = "block">Bloc trouvé lorsque la méthode retourne <see langword="true"/>.</param>
     /// <returns><see langword="true"/> si le bloc est disponible ; sinon <see langword="false"/>.</returns>
     public bool TryGetBlock(int logicalBlock, out SectorBlock block) => _blocks.TryGetValue(logicalBlock, out block!);
-    bool IMediaSectorImage.TryGetBlock(
-        int logicalBlock,
-        out IMediaSectorBlock block
-    )
+    bool IMediaSectorImage.TryGetBlock(int logicalBlock, out IMediaSectorBlock block)
     {
         if (_blocks.TryGetValue(logicalBlock, out var sector))
         {

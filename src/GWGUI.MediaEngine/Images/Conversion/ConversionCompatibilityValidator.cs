@@ -6,9 +6,7 @@ internal sealed class ConversionCompatibilityValidator(IImageFormatCatalog catal
     public DiskFormat ResolveFormat(string sourceExtension, string formatId)
     {
         var compatible = catalog.GetCompatibleOutputs(sourceExtension).ToDictionary(format => format.Id);
-        return compatible.TryGetValue(formatId, out var format)
-            ? format
-            : throw new InvalidOperationException($"Format '{formatId}' is incompatible with '{sourceExtension}'.");
+        return compatible.TryGetValue(formatId, out var format) ? format : throw new InvalidOperationException($"Format '{formatId}' is incompatible with '{sourceExtension}'.");
     }
 
     public IReadOnlyList<ImageExtension> ResolveExtensions(DiskFormat format, ConversionSelection selection)

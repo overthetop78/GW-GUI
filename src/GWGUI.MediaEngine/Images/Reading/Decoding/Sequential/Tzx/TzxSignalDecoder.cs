@@ -9,9 +9,7 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Tzx;
 /// <summary>Builds a temporal signal timeline from supported TZX blocks without interpreting machine files.</summary>
 public sealed class TzxSignalDecoder
 {
-    public async Task<SequentialSignalDecodeResult> DecodeAsync(
-        MediaImageDocument document,
-        CancellationToken cancellationToken = default)
+    public async Task<SequentialSignalDecodeResult> DecodeAsync(MediaImageDocument document, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         if (!document.FormatId.Equals(TapeImageFormatIds.Tzx, StringComparison.OrdinalIgnoreCase)
@@ -64,12 +62,7 @@ public sealed class TzxSignalDecoder
         return new SequentialSignalDecodeResult(new SequentialMediaImageRepresentation(logicalLength, elapsed == TimeSpan.Zero ? null : elapsed, timeline), sourceSegments, diagnostics);
     }
 
-    private static void DecodeStandard(
-        byte[] payload,
-        SequentialMediaSegment source,
-        List<SequentialMediaSegment> output,
-        ref long position,
-        ref TimeSpan elapsed)
+    private static void DecodeStandard(byte[] payload, SequentialMediaSegment source, List<SequentialMediaSegment> output, ref long position, ref TimeSpan elapsed)
     {
         Require(payload, 4, TzxConstants.StandardSpeedData);
         var pause = BinaryPrimitives.ReadUInt16LittleEndian(payload);
@@ -83,12 +76,7 @@ public sealed class TzxSignalDecoder
         AddPause(output, ref position, ref elapsed, pause, source.Position);
     }
 
-    private static void DecodeTurbo(
-        byte[] payload,
-        SequentialMediaSegment source,
-        List<SequentialMediaSegment> output,
-        ref long position,
-        ref TimeSpan elapsed)
+    private static void DecodeTurbo(byte[] payload, SequentialMediaSegment source, List<SequentialMediaSegment> output, ref long position, ref TimeSpan elapsed)
     {
         Require(payload, 18, TzxConstants.TurboSpeedData);
         var pilotPulse = BinaryPrimitives.ReadUInt16LittleEndian(payload);
@@ -108,23 +96,13 @@ public sealed class TzxSignalDecoder
         AddPause(output, ref position, ref elapsed, pause, source.Position);
     }
 
-    private static void AddRepeatedPulse(
-        byte[] payload,
-        SequentialMediaSegment source,
-        List<SequentialMediaSegment> output,
-        ref long position,
-        ref TimeSpan elapsed)
+    private static void AddRepeatedPulse(byte[] payload, SequentialMediaSegment source, List<SequentialMediaSegment> output, ref long position, ref TimeSpan elapsed)
     {
         Require(payload, 4, TzxConstants.PureTone);
         AddPulse(output, ref position, ref elapsed, BinaryPrimitives.ReadUInt16LittleEndian(payload), BinaryPrimitives.ReadUInt16LittleEndian(payload.AsSpan(2)), source.Position, "tone");
     }
 
-    private static void AddPulseSequence(
-        byte[] payload,
-        SequentialMediaSegment source,
-        List<SequentialMediaSegment> output,
-        ref long position,
-        ref TimeSpan elapsed)
+    private static void AddPulseSequence(byte[] payload, SequentialMediaSegment source, List<SequentialMediaSegment> output, ref long position, ref TimeSpan elapsed)
     {
         Require(payload, 1, TzxConstants.PulseSequence);
         Require(payload, 1 + payload[0] * 2, TzxConstants.PulseSequence);
@@ -132,12 +110,7 @@ public sealed class TzxSignalDecoder
             AddPulse(output, ref position, ref elapsed, BinaryPrimitives.ReadUInt16LittleEndian(payload.AsSpan(1 + index * 2)), 1, source.Position, "sequence");
     }
 
-    private static void DecodePureData(
-        byte[] payload,
-        SequentialMediaSegment source,
-        List<SequentialMediaSegment> output,
-        ref long position,
-        ref TimeSpan elapsed)
+    private static void DecodePureData(byte[] payload, SequentialMediaSegment source, List<SequentialMediaSegment> output, ref long position, ref TimeSpan elapsed)
     {
         Require(payload, 10, TzxConstants.PureData);
         var zero = BinaryPrimitives.ReadUInt16LittleEndian(payload);
@@ -150,12 +123,7 @@ public sealed class TzxSignalDecoder
         AddPause(output, ref position, ref elapsed, pause, source.Position);
     }
 
-    private static void DecodeDirectRecording(
-        byte[] payload,
-        SequentialMediaSegment source,
-        List<SequentialMediaSegment> output,
-        ref long position,
-        ref TimeSpan elapsed)
+    private static void DecodeDirectRecording(byte[] payload, SequentialMediaSegment source, List<SequentialMediaSegment> output, ref long position, ref TimeSpan elapsed)
     {
         Require(payload, 8, TzxConstants.DirectRecording);
         var sampleTStates = BinaryPrimitives.ReadUInt16LittleEndian(payload);
@@ -181,17 +149,7 @@ public sealed class TzxSignalDecoder
         AddPause(output, ref position, ref elapsed, pause, source.Position);
     }
 
-    private static void AddData(
-        List<SequentialMediaSegment> output,
-        ref long position,
-        ref TimeSpan elapsed,
-        SequentialMediaSegment source,
-        byte[] payload,
-        int dataOffset,
-        int dataLength,
-        byte usedBits,
-        ushort zeroPulse,
-        ushort onePulse)
+    private static void AddData(List<SequentialMediaSegment> output, ref long position, ref TimeSpan elapsed, SequentialMediaSegment source, byte[] payload, int dataOffset, int dataLength, byte usedBits, ushort zeroPulse, ushort onePulse)
     {
         if (dataLength == 0) return;
         if (usedBits is 0 or > TzxConstants.FullLastByteBitCount)
@@ -213,14 +171,7 @@ public sealed class TzxSignalDecoder
         elapsed += duration;
     }
 
-    private static void AddPulse(
-        List<SequentialMediaSegment> output,
-        ref long position,
-        ref TimeSpan elapsed,
-        ushort pulseTStates,
-        int count,
-        long sourcePosition,
-        string role)
+    private static void AddPulse(List<SequentialMediaSegment> output, ref long position, ref TimeSpan elapsed, ushort pulseTStates, int count, long sourcePosition, string role)
     {
         if (pulseTStates == 0 || count == 0) return;
         var duration = TStatesDuration((long)pulseTStates * count);
@@ -237,12 +188,7 @@ public sealed class TzxSignalDecoder
         elapsed += duration;
     }
 
-    private static void AddPause(
-        List<SequentialMediaSegment> output,
-        ref long position,
-        ref TimeSpan elapsed,
-        ushort milliseconds,
-        long sourcePosition)
+    private static void AddPause(List<SequentialMediaSegment> output, ref long position, ref TimeSpan elapsed, ushort milliseconds, long sourcePosition)
     {
         if (milliseconds == 0)
         {
@@ -254,12 +200,7 @@ public sealed class TzxSignalDecoder
         elapsed += duration;
     }
 
-    private static void AddPause(
-        byte[] payload,
-        SequentialMediaSegment source,
-        List<SequentialMediaSegment> output,
-        ref long position,
-        ref TimeSpan elapsed)
+    private static void AddPause(byte[] payload, SequentialMediaSegment source, List<SequentialMediaSegment> output, ref long position, ref TimeSpan elapsed)
     {
         Require(payload, 2, TzxConstants.Pause);
         AddPause(output, ref position, ref elapsed, BinaryPrimitives.ReadUInt16LittleEndian(payload), source.Position);

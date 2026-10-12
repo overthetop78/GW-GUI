@@ -4,11 +4,7 @@ using GWGUI.MediaEngine.Images.Models.Sectors;
 namespace GWGUI.MediaEngine.Images.Conversion.Fat12;
 public static class Fat12ReinterpretationPolicy
 {
-    public static Fat12TargetGeometry Validate(
-        SectorImage source,
-        string targetFormatId,
-        bool sourceIsHybrid = false
-    )
+    public static Fat12TargetGeometry Validate(SectorImage source, string targetFormatId, bool sourceIsHybrid = false)
     {
         ArgumentNullException.ThrowIfNull(source);
         ArgumentException.ThrowIfNullOrWhiteSpace(targetFormatId);

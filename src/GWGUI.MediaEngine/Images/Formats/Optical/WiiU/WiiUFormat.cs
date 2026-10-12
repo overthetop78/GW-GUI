@@ -20,16 +20,11 @@ internal static class WiiUFormat
         0x2e, 0xd0, 0x99, 0x10
     };
 
-    public static readonly IReadOnlySet<string> Extensions =
-        new[] { DiskImageFileExtensions.Wud, DiskImageFileExtensions.Wux }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public static readonly IReadOnlySet<string> Extensions = new[] { DiskImageFileExtensions.Wud, DiskImageFileExtensions.Wux }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public static bool IsWudLengthCompatible(long length) => length >= OpticalSectorSize && length % OpticalSectorSize == 0;
 
-    public static bool TryReadWuxHeader(
-        ReadOnlySpan<byte> bytes,
-        long sourceLength,
-        out WiiUWuxHeader header)
+    public static bool TryReadWuxHeader(ReadOnlySpan<byte> bytes, long sourceLength, out WiiUWuxHeader header)
     {
         header = default;
         if (bytes.Length < WuxHeaderSize || sourceLength < WuxHeaderSize)
@@ -71,10 +66,4 @@ internal static class WiiUFormat
     }
 }
 
-internal readonly record struct WiiUWuxHeader(
-    int SectorSize,
-    long UncompressedSize,
-    int EntryCount,
-    long IndexOffset,
-    long SectorArrayOffset,
-    long StoredSectorCount);
+internal readonly record struct WiiUWuxHeader(int SectorSize, long UncompressedSize, int EntryCount, long IndexOffset, long SectorArrayOffset, long StoredSectorCount);

@@ -23,11 +23,7 @@ public sealed class IsoScpSectorImageReader(IScpReader scpReader, FluxDecoderReg
         => await ReadAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
 
     /// <summary>Décode la capture en publiant la progression réelle de chaque piste.</summary>
-    public async Task<SectorImage> ReadAsync(
-        string path,
-        string? formatId,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    public async Task<SectorImage> ReadAsync(string path, string? formatId, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var policy = IsoScpSectorImagePolicyRegistry.Resolve(formatId);
         var candidates = await candidateDecoder.DecodeAsync(path, policy.DecoderIds, progress, cancellationToken).ConfigureAwait(false);
@@ -37,11 +33,7 @@ public sealed class IsoScpSectorImageReader(IScpReader scpReader, FluxDecoderReg
     }
 
     /// <summary>Décode une représentation de flux commune déjà chargée.</summary>
-    public async Task<SectorImage> ReadAsync(
-        ProtectedTrackImage image,
-        string? formatId,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    public async Task<SectorImage> ReadAsync(ProtectedTrackImage image, string? formatId, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var policy = IsoScpSectorImagePolicyRegistry.Resolve(formatId);
         var candidates = await candidateDecoder.DecodeAsync(image, policy.DecoderIds, progress, cancellationToken).ConfigureAwait(false);

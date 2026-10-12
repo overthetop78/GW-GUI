@@ -44,10 +44,7 @@ internal static class AppleIISectorImageBuilder
             pair.Value.IntegrityValid
         )).ToArray();
     /// <summary>Assemble deux secteurs physiques de 256 octets dans chaque bloc logique ProDOS de 512 octets.</summary>
-    private static SectorBlock[] CreateProDosBlocks(
-        IReadOnlyDictionary<(int Track, int Sector), DecodedSector> selected,
-        int trackCount
-    )
+    private static SectorBlock[] CreateProDosBlocks(IReadOnlyDictionary<(int Track, int Sector), DecodedSector> selected, int trackCount)
     {
         var blocks = new List<SectorBlock>();
         for (var track = 0; track < trackCount; track++)
@@ -66,11 +63,7 @@ internal static class AppleIISectorImageBuilder
     }
 
     /// <summary>Place les blocs disponibles Ã  leur position logique dans un tampon dense utilisÃ© uniquement par les sondes.</summary>
-    internal static DenseAppleSectorImage ToDense(
-        IEnumerable<SectorBlock> blocks,
-        int count,
-        int blockSize
-    )
+    internal static DenseAppleSectorImage ToDense(IEnumerable<SectorBlock> blocks, int count, int blockSize)
     {
         var data = new byte[count * blockSize];
         var present = new bool[count];

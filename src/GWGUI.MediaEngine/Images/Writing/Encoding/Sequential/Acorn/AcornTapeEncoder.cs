@@ -16,11 +16,8 @@ namespace GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Acorn;
 /// <summary>Rebuilds validated Acorn cassette blocks as UEF implicit data chunks or standard PCM FSK.</summary>
 public sealed class AcornTapeEncoder : ISequentialMediaEncoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.Uef, TapeImageFormatIds.Wav }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.AcornBbc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Uef, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.AcornBbc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => UefConstants.EncoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
@@ -38,9 +35,7 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
                 || TryReadSampleRate(request.Parameters, out _));
     }
 
-    public Task<SequentialMediaImageRepresentation> EncodeAsync(
-        SequentialEncodeRequest request,
-        CancellationToken cancellationToken = default)
+    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
         if (!CanEncode(request))
             throw new InvalidDataException("Acorn tape encoding requires validated CFS blocks with complete cassette metadata.");
@@ -80,9 +75,7 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
         return new SequentialMediaImageRepresentation(blocks.Sum(block => (long)block.Length), elapsed, segments);
     }
 
-    private static SequentialMediaImageRepresentation EncodeWave(
-        IReadOnlyList<byte[]> blocks,
-        IReadOnlyDictionary<string, string> parameters)
+    private static SequentialMediaImageRepresentation EncodeWave(IReadOnlyList<byte[]> blocks, IReadOnlyDictionary<string, string> parameters)
     {
         TryReadSampleRate(parameters, out var sampleRate);
         var samples = new List<short>();

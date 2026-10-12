@@ -17,12 +17,9 @@ public sealed class VocWriter : IMediaImageWriter
 {
     private const ushort Version = 0x0114;
     private static readonly byte[] Signature = System.Text.Encoding.ASCII.GetBytes("Creative Voice File\u001a");
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.Voc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
-    private static readonly IReadOnlySet<string> SupportedExtensions =
-        new[] { DiskImageFileExtensions.Voc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.Voc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedExtensions = new[] { DiskImageFileExtensions.Voc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private readonly IAtomicImageFileWriter files;
 
     public VocWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
@@ -40,11 +37,7 @@ public sealed class VocWriter : IMediaImageWriter
         && PcmSampleFunctions.TryGetProfile(document.Metadata, out _, out _, out _, out _)
         && TryGetRanges(document, out _);
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension)

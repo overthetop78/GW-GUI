@@ -6,11 +6,7 @@ namespace GWGUI.MediaEngine.Contracts.Explorer;
 /// <summary>Contains one recognized media document and the file-system exploration of its volumes.</summary>
 public sealed class ExploredMediaImage
 {
-    public ExploredMediaImage(
-        MediaImageDocument document,
-        IReadOnlyList<ExploredMediaVolume> volumes,
-        IReadOnlyList<string> diagnostics,
-        string? firstFileName = null)
+    public ExploredMediaImage(MediaImageDocument document, IReadOnlyList<ExploredMediaVolume> volumes, IReadOnlyList<string> diagnostics, string? firstFileName = null)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(volumes);

@@ -17,10 +17,7 @@ internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolic
     /// <param name = "formatId">Identifiant inutilisé lors de la sélection automatique.</param>
     /// <param name = "candidates">Candidats ISO regroupés par adresse logique et physique.</param>
     /// <returns>L'image sectorielle construite par la première famille dont les critères sont satisfaits.</returns>
-    public SectorImage Build(
-        string? formatId,
-        IsoSectorCandidateSet candidates
-    )
+    public SectorImage Build(string? formatId, IsoSectorCandidateSet candidates)
     {
         if (TryDetectEpsonFormat(candidates.Physical, out var epsonFormat))
             return EpsonQx10SectorImageBuilder.Create(epsonFormat, candidates.Physical);
@@ -41,10 +38,7 @@ internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolic
     }
 
     /// <summary>Écarte les candidats dépourvus de données puis appelle directement le détecteur Epson commun.</summary>
-    internal static bool TryDetectEpsonFormat(
-        IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> candidates,
-        out string formatId
-    )
+    internal static bool TryDetectEpsonFormat(IReadOnlyDictionary<SectorAddress, List<IsoSectorCandidate>> candidates, out string formatId)
     {
         var sectors = candidates.Select(DescribeEpsonSector).Where(descriptor => descriptor is not null).Select(descriptor => descriptor!.Value).ToArray();
         return EpsonQx10FormatDetector.TryDetect(sectors, out formatId);

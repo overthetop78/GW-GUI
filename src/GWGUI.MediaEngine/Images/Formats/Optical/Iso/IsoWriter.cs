@@ -13,10 +13,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.Iso;
 /// <summary>Writes one continuous 2048-byte optical data track without discarding optical structure.</summary>
 public sealed class IsoWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { OpticalImageFormatIds.Iso }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { OpticalImageFormatIds.Iso }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
     private readonly OpticalSectorReader sectors = new();
 
@@ -41,11 +39,7 @@ public sealed class IsoWriter : IMediaImageWriter
             && IsLosslessIsoProfile(optical);
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension)
@@ -79,10 +73,7 @@ public sealed class IsoWriter : IMediaImageWriter
             && track.Indexes.All(index => index.Number == 1 && index.RelativeSector == 0);
     }
 
-    private async Task WriteTrackAsync(
-        OpticalTrackDescriptor track,
-        Stream output,
-        CancellationToken cancellationToken)
+    private async Task WriteTrackAsync(OpticalTrackDescriptor track, Stream output, CancellationToken cancellationToken)
     {
         for (long sector = 0; sector < track.SectorCount; sector++)
         {

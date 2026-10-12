@@ -56,14 +56,7 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
 
     /// <summary>Exécute le traitement « Decode Five And Three » propre à ce format.</summary>
     /// <param name = "stream">Flux binaire à analyser.</param><param name = "trackBitLength">Longueur logique de la piste en bits.</param><param name = "structures">Structures auxquelles ajouter les blocs reconnus.</param><param name = "bytes">Octets auxquels ajouter les données décodées.</param><param name = "sectors">Secteurs auxquels ajouter les secteurs reconnus.</param><param name = "pairedData">Offsets en bits des données déjà associées à une adresse.</param>
-    private static void DecodeFiveAndThree(
-        FluxBitstream stream,
-        int trackBitLength,
-        List<FluxStructure> structures,
-        List<byte> bytes,
-        List<DecodedSector> sectors,
-        HashSet<int> pairedData
-    )
+    private static void DecodeFiveAndThree(FluxBitstream stream, int trackBitLength, List<FluxStructure> structures, List<byte> bytes, List<DecodedSector> sectors, HashSet<int> pairedData)
     {
         for (var offset = 0; offset < trackBitLength && offset + AppleIIGcrFormat.PrologueBitCount <= stream.Bits.Length; offset++)
         {
@@ -80,12 +73,7 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
     /// <summary>Décode les quatre valeurs 4-and-4 d'une adresse Apple II et contrôle leur checksum.</summary>
     /// <param name = "bits">Bits de la piste.</param><param name = "offset">Position du prologue d'adresse, en bits.</param><param name = "bytes">Collection des octets décodés.</param><param name = "appendDecodedBytes">Indique si les quatre valeurs doivent être ajoutées à la collection.</param>
     /// <returns>Adresse décodée, ou <see langword="null"/> lorsque le bloc est incomplet.</returns>
-    private static AppleAddressDecodeResult? DecodeAddress(
-        IReadOnlyList<bool> bits,
-        int offset,
-        List<byte> bytes,
-        bool appendDecodedBytes
-    )
+    private static AppleAddressDecodeResult? DecodeAddress(IReadOnlyList<bool> bits, int offset, List<byte> bytes, bool appendDecodedBytes)
     {
         var encoded = TryReadBytes(bits, offset + AppleIIGcrFormat.PrologueBitCount, AppleIIGcrFormat.EncodedAddressByteCount);
         if (encoded is null)
@@ -102,14 +90,7 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
     /// <summary>Recherche, associe et décode le bloc de données 6-and-2 suivant une adresse.</summary>
     /// <param name = "stream">Flux binaire à parcourir.</param><param name = "headerEnd">Position suivant l'adresse, en bits.</param><param name = "address">Adresse décodée.</param><param name = "structures">Collection recevant la structure de données.</param><param name = "bytes">Collection recevant les octets décodés.</param><param name = "pairedData">Positions des blocs déjà associés.</param>
     /// <returns>Résultat des données et position finale reconnue.</returns>
-    private static AppleDataDecodeResult FindAndDecodeSixAndTwoData(
-        FluxBitstream stream,
-        int headerEnd,
-        AppleAddressDecodeResult? address,
-        List<FluxStructure> structures,
-        List<byte> bytes,
-        HashSet<int> pairedData
-    )
+    private static AppleDataDecodeResult FindAndDecodeSixAndTwoData(FluxBitstream stream, int headerEnd, AppleAddressDecodeResult? address, List<FluxStructure> structures, List<byte> bytes, HashSet<int> pairedData)
     {
         var dataOffset = Find(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + AppleIIGcrFormat.DataSearchBitCount), AppleIIGcrFormat.DataPrologue);
         if (dataOffset < 0)
@@ -151,14 +132,7 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
     /// <summary>Recherche, associe et décode le bloc de données 5-and-3 suivant une adresse.</summary>
     /// <param name = "stream">Flux binaire à parcourir.</param><param name = "headerEnd">Position suivant l'adresse, en bits.</param><param name = "address">Adresse décodée.</param><param name = "structures">Collection recevant la structure de données.</param><param name = "bytes">Collection recevant les octets décodés.</param><param name = "pairedData">Positions des blocs déjà associés.</param>
     /// <returns>Résultat des données et position finale reconnue.</returns>
-    private static AppleDataDecodeResult FindAndDecodeFiveAndThreeData(
-        FluxBitstream stream,
-        int headerEnd,
-        AppleAddressDecodeResult? address,
-        List<FluxStructure> structures,
-        List<byte> bytes,
-        HashSet<int> pairedData
-    )
+    private static AppleDataDecodeResult FindAndDecodeFiveAndThreeData(FluxBitstream stream, int headerEnd, AppleAddressDecodeResult? address, List<FluxStructure> structures, List<byte> bytes, HashSet<int> pairedData)
     {
         var dataOffset = Find(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + AppleIIGcrFormat.DataSearchBitCount), AppleIIGcrFormat.DataPrologue);
         if (dataOffset < 0)
@@ -190,15 +164,7 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
 
     /// <summary>Ajoute le secteur et la structure d'adresse correspondant aux résultats décodés.</summary>
     /// <param name = "offset">Position de l'adresse, en bits.</param><param name = "headerEnd">Position suivant l'adresse, en bits.</param><param name = "address">Adresse décodée.</param><param name = "data">Données décodées.</param><param name = "variant">Variante de format éventuelle.</param><param name = "sectors">Collection recevant le secteur.</param><param name = "structures">Collection recevant la structure.</param>
-    private static void AddSectorAndAddress(
-        int offset,
-        int headerEnd,
-        AppleAddressDecodeResult? address,
-        AppleDataDecodeResult data,
-        string? variant,
-        List<DecodedSector> sectors,
-        List<FluxStructure> structures
-    )
+    private static void AddSectorAndAddress(int offset, int headerEnd, AppleAddressDecodeResult? address, AppleDataDecodeResult data, string? variant, List<DecodedSector> sectors, List<FluxStructure> structures)
     {
         var volume = address?.Volume ?? 0;
         var cylinder = address?.Cylinder ?? 0;
@@ -243,11 +209,7 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
     private sealed record AppleDataDecodeResult(byte[]? Data, bool? Valid, int StructureEnd);
     /// <summary>Exécute le traitement « Try Read Bytes » propre à ce format.</summary>
     /// <param name = "bits">Bits source.</param><param name = "offset">Offset de départ en bits.</param><param name = "count">Nombre d'octets à lire.</param><returns>Octets lus, ou <see langword="null"/> si la plage est incomplète.</returns>
-    private static byte[]? TryReadBytes(
-        IReadOnlyList<bool> bits,
-        int offset,
-        int count
-    )
+    private static byte[]? TryReadBytes(IReadOnlyList<bool> bits, int offset, int count)
     {
         if (offset + count * BitPrimitives.BitsPerByte > bits.Count)
             return null;
@@ -261,12 +223,7 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
 
     /// <summary>Recherche le prochain motif dans la plage indiquée.</summary>
     /// <param name = "stream">Flux binaire à parcourir.</param><param name = "start">Offset de départ inclus, en bits.</param><param name = "end">Offset de fin exclu, en bits.</param><param name = "mark">Motif à rechercher.</param><returns>Offset du motif en bits, ou <c>-1</c> s'il est absent.</returns>
-    private static int Find(
-        FluxBitstream stream,
-        int start,
-        int end,
-        uint mark
-    )
+    private static int Find(FluxBitstream stream, int start, int end, uint mark)
     {
         for (var offset = Math.Max(0, start); offset + AppleIIGcrFormat.PrologueBitCount <= end; offset++)
             if (FluxBitReader.Match(stream, offset, mark, AppleIIGcrFormat.PrologueBitCount))

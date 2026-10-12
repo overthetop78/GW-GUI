@@ -10,10 +10,8 @@ internal static class VmdkFormat
 {
     public static readonly ReadOnlyMemory<byte> SparseSignature = CreateSparseSignature();
     public static readonly ReadOnlyMemory<byte> DescriptorSignature = System.Text.Encoding.ASCII.GetBytes("# Disk DescriptorFile");
-    public static readonly IReadOnlySet<string> Extensions =
-        new[] { DiskImageFileExtensions.Vmdk }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    public static readonly IReadOnlySet<string> AssociatedExtensions =
-        new[] { DiskImageFileExtensions.Vmdk }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public static readonly IReadOnlySet<string> Extensions = new[] { DiskImageFileExtensions.Vmdk }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public static readonly IReadOnlySet<string> AssociatedExtensions = new[] { DiskImageFileExtensions.Vmdk }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     public static readonly IReadOnlySet<HardDiskImageVariant> Variants = new[]
     {
         HardDiskImageVariant.Fixed,

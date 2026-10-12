@@ -14,11 +14,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.Tzx;
 /// <summary>Reads and structurally validates TZX 1.20 blocks while retaining every complete payload.</summary>
 public sealed class TzxReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.Tzx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.Tzx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Tape }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private static readonly byte[] HeaderSignature = [.. System.Text.Encoding.ASCII.GetBytes(TzxConstants.Signature), TzxConstants.EndOfTextMarker];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;

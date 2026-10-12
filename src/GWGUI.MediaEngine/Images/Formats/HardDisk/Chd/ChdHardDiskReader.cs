@@ -16,12 +16,9 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Chd;
 /// <summary>Reads autonomous, uncompressed CHD V5 hard disk images with GDDD geometry metadata.</summary>
 public sealed partial class ChdHardDiskReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Chd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.HardDisk }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Chd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.HardDisk }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => ChdHardDiskFormat.Extensions;
@@ -49,9 +46,7 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
         }
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var layout = await ReadLayoutAsync(context, cancellationToken).ConfigureAwait(false);
         var source = new FileRandomAccessData(context.Source.PrimaryPath);
@@ -90,9 +85,7 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
             });
     }
 
-    private static async ValueTask<ChdLayout> ReadLayoutAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    private static async ValueTask<ChdLayout> ReadLayoutAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.Length < ChdConstants.Version5HeaderSize)
             throw new InvalidDataException("The file is too short to contain a CHD V5 header.");
@@ -141,10 +134,7 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
         return new ChdLayout(logicalBytes, hunkBytes, unitBytes, hunkCount, map, geometry);
     }
 
-    private static async ValueTask<HardDiskGeometry> ReadHardDiskMetadataAsync(
-        MediaRecognitionContext context,
-        long firstOffset,
-        CancellationToken cancellationToken)
+    private static async ValueTask<HardDiskGeometry> ReadHardDiskMetadataAsync(MediaRecognitionContext context, long firstOffset, CancellationToken cancellationToken)
     {
         if (firstOffset <= 0) throw new InvalidDataException("The CHD has no hard disk metadata.");
         var visited = new HashSet<long>();
@@ -182,13 +172,7 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
         throw new InvalidDataException("The CHD metadata does not classify the image as a hard disk.");
     }
 
-    private static void AddRange(
-        List<MediaDataRange> ranges,
-        long address,
-        long length,
-        MediaDataRangeKind kind,
-        FileRandomAccessData? source = null,
-        long sourceOffset = 0)
+    private static void AddRange(List<MediaDataRange> ranges, long address, long length, MediaDataRangeKind kind, FileRandomAccessData? source = null, long sourceOffset = 0)
     {
         if (ranges.Count > 0)
         {
@@ -206,11 +190,5 @@ public sealed partial class ChdHardDiskReader : IMediaImageReader
     [GeneratedRegex(@"^CYLS:(\d+),HEADS:(\d+),SECS:(\d+),BPS:(\d+)$", RegexOptions.CultureInvariant)]
     private static partial Regex HardDiskMetadataRegex();
 
-    private sealed record ChdLayout(
-        long LogicalBytes,
-        int HunkBytes,
-        int UnitBytes,
-        long HunkCount,
-        ReadOnlyMemory<byte> Map,
-        HardDiskGeometry Geometry);
+    private sealed record ChdLayout(long LogicalBytes, int HunkBytes, int UnitBytes, long HunkCount, ReadOnlyMemory<byte> Map, HardDiskGeometry Geometry);
 }

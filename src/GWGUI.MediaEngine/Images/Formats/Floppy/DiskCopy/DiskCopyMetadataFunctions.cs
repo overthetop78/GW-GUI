@@ -20,9 +20,7 @@ internal static class DiskCopyMetadataFunctions
         return metadata;
     }
 
-    public static DiskCopyImage? Restore(
-        SectorImage image,
-        IReadOnlyDictionary<string, string> metadata)
+    public static DiskCopyImage? Restore(SectorImage image, IReadOnlyDictionary<string, string> metadata)
     {
         ArgumentNullException.ThrowIfNull(image);
         ArgumentNullException.ThrowIfNull(metadata);

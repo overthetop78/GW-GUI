@@ -14,11 +14,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.MsxCas;
 /// <summary>Reads byte groups delimited by verified MSX CAS separators without reconstructing absent timing.</summary>
 public sealed class MsxCasReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.MsxCas }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.MsxCas }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Tape }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private static readonly IReadOnlyList<ReadOnlyMemory<byte>> Signatures = [MsxCasConstants.Separator.ToArray()];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
@@ -133,11 +131,7 @@ public sealed class MsxCasReader : IMediaImageReader
 
     private static async Task<bool> HasKnownFileTypeMarkerAsync(string path, long offset, CancellationToken cancellationToken) => await ReadFileTypeMarkerAsync(path, offset, MsxCasConstants.FileTypeMarkerLength, cancellationToken).ConfigureAwait(false) is not null;
 
-    private static async Task<string?> ReadFileTypeMarkerAsync(
-        string path,
-        long offset,
-        long available,
-        CancellationToken cancellationToken)
+    private static async Task<string?> ReadFileTypeMarkerAsync(string path, long offset, long available, CancellationToken cancellationToken)
     {
         if (available < MsxCasConstants.FileTypeMarkerLength) return null;
         var marker = new byte[MsxCasConstants.FileTypeMarkerLength];

@@ -7,15 +7,9 @@ using System.IO;
 namespace GWGUI.MediaEngine.Images.Reading;
 
 /// <summary>Loads one media document and explores its file-system content without presentation dependencies.</summary>
-public sealed class MediaImageExplorationService(
-    MediaImageReadingService reader,
-    MediaExplorer explorer)
+public sealed class MediaImageExplorationService(MediaImageReadingService reader, MediaExplorer explorer)
 {
-    public async Task<ExploredMediaImage> ExploreAsync(
-        string path,
-        string? requestedFormatId,
-        CancellationToken cancellationToken = default,
-        Action<MediaExplorationProgress>? reportProgress = null)
+    public async Task<ExploredMediaImage> ExploreAsync(string path, string? requestedFormatId, CancellationToken cancellationToken = default, Action<MediaExplorationProgress>? reportProgress = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
 
@@ -29,9 +23,7 @@ public sealed class MediaImageExplorationService(
         }
         catch (NotSupportedException) when (requestedFormatId is not null)
         {
-            document = await reader.ReadAsync(
-                source with { RequestedFormatId = null },
-                cancellationToken).ConfigureAwait(false);
+            document = await reader.ReadAsync(source with { RequestedFormatId = null }, cancellationToken).ConfigureAwait(false);
         }
 
         cancellationToken.ThrowIfCancellationRequested();

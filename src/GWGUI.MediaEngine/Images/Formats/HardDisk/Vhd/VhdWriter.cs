@@ -20,10 +20,8 @@ public sealed class VhdWriter : IMediaImageWriter
     private const uint CreatorHostOs = 0x5769326B;
     private const int DynamicTableOffset = HardDiskFormatConstants.VhdFooterSize + HardDiskFormatConstants.VhdDynamicHeaderSize;
     private static readonly DateTime VhdEpoch = new(2000, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Vhd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Vhd }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public VhdWriter(IAtomicImageFileWriter? files = null)
@@ -53,11 +51,7 @@ public sealed class VhdWriter : IMediaImageWriter
             && HasCompleteReadableCoverage(blocks);
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension)
@@ -69,9 +63,7 @@ public sealed class VhdWriter : IMediaImageWriter
         return [outputPath];
     }
 
-    private static HardDiskImageVariant SelectVariant(
-        MediaImageDocument document,
-        BlockMediaImageRepresentation blocks)
+    private static HardDiskImageVariant SelectVariant(MediaImageDocument document, BlockMediaImageRepresentation blocks)
     {
         if (document.FormatId.Equals(HardDiskImageFormatIds.Vhd, StringComparison.OrdinalIgnoreCase)
             && document.Metadata.TryGetValue("variant", out var value)
@@ -82,20 +74,14 @@ public sealed class VhdWriter : IMediaImageWriter
         return blocks.Ranges.Any(range => range.Kind is MediaDataRangeKind.Zero or MediaDataRangeKind.Unallocated) ? HardDiskImageVariant.Dynamic : HardDiskImageVariant.Fixed;
     }
 
-    private static async Task WriteFixedAsync(
-        BlockMediaImageRepresentation blocks,
-        Stream output,
-        CancellationToken cancellationToken)
+    private static async Task WriteFixedAsync(BlockMediaImageRepresentation blocks, Stream output, CancellationToken cancellationToken)
     {
         await WriteLogicalDataAsync(blocks, output, cancellationToken).ConfigureAwait(false);
         var footer = CreateFooter(blocks, HardDiskFormatConstants.VhdFixedDiskType, ulong.MaxValue, Guid.NewGuid());
         await output.WriteAsync(footer, cancellationToken).ConfigureAwait(false);
     }
 
-    private static async Task WriteDynamicAsync(
-        BlockMediaImageRepresentation blocks,
-        Stream output,
-        CancellationToken cancellationToken)
+    private static async Task WriteDynamicAsync(BlockMediaImageRepresentation blocks, Stream output, CancellationToken cancellationToken)
     {
         var blockSize = HardDiskFormatConstants.VhdDefaultDynamicBlockSize;
         var maximumEntriesLong = checked((blocks.Capacity + blockSize - 1) / blockSize);
@@ -154,10 +140,7 @@ public sealed class VhdWriter : IMediaImageWriter
         output.Position = end;
     }
 
-    private static async Task WriteLogicalDataAsync(
-        BlockMediaImageRepresentation blocks,
-        Stream output,
-        CancellationToken cancellationToken)
+    private static async Task WriteLogicalDataAsync(BlockMediaImageRepresentation blocks, Stream output, CancellationToken cancellationToken)
     {
         var buffer = new byte[64 * DataSizeConstants.BytesPerKibibyte];
         long address = 0;
@@ -170,11 +153,7 @@ public sealed class VhdWriter : IMediaImageWriter
         }
     }
 
-    private static byte[] CreateFooter(
-        BlockMediaImageRepresentation blocks,
-        uint diskType,
-        ulong dataOffset,
-        Guid uniqueId)
+    private static byte[] CreateFooter(BlockMediaImageRepresentation blocks, uint diskType, ulong dataOffset, Guid uniqueId)
     {
         var footer = new byte[HardDiskFormatConstants.VhdFooterSize];
         VhdFormat.FooterSignature.Span.CopyTo(footer);

@@ -62,10 +62,8 @@ public sealed class ConsoleCartridgeReader : IMediaImageReader
 
     private static readonly IReadOnlySet<string> SupportedFormatIds = ExtensionFormats.Values.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     private static readonly IReadOnlySet<string> SupportedExtensions = ExtensionFormats.Keys.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.Cartridge }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Cartridge }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => SupportedExtensions;
@@ -75,8 +73,7 @@ public sealed class ConsoleCartridgeReader : IMediaImageReader
     IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentations;
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context, CancellationToken cancellationToken)
+    ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (context.Length <= 0 || !SupportedExtensions.Contains(context.Extension))
@@ -86,8 +83,7 @@ public sealed class ConsoleCartridgeReader : IMediaImageReader
         return ValueTask.FromResult(SupportedFormatIds.Contains(context.RequestedFormatId) && ExtensionFormats[context.Extension].Equals(context.RequestedFormatId, StringComparison.OrdinalIgnoreCase));
     }
 
-    Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context, CancellationToken cancellationToken)
+    Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (!ExtensionFormats.TryGetValue(context.Extension, out var formatId)
@@ -116,10 +112,8 @@ public sealed class ConsoleCartridgeReader : IMediaImageReader
             var offset = bank * (long)ConsoleCartridgeConstants.BankLength;
             var length = (int)Math.Min(ConsoleCartridgeConstants.BankLength, context.Length - offset);
             ranges.Add(new MediaDataRange(offset, length, MediaDataRangeKind.Stored, source, offset));
-            metadata[$"{ConsoleCartridgeConstants.BankPrefix}{bank}{ConsoleCartridgeConstants.BankLengthSuffix}"] =
-                length.ToString(CultureInfo.InvariantCulture);
-            metadata[$"{ConsoleCartridgeConstants.BankPrefix}{bank}{ConsoleCartridgeConstants.BankNameSuffix}"] =
-                $"bank{bank:D2}";
+            metadata[$"{ConsoleCartridgeConstants.BankPrefix}{bank}{ConsoleCartridgeConstants.BankLengthSuffix}"] = length.ToString(CultureInfo.InvariantCulture);
+            metadata[$"{ConsoleCartridgeConstants.BankPrefix}{bank}{ConsoleCartridgeConstants.BankNameSuffix}"] = $"bank{bank:D2}";
         }
 
         var volume = new MediaVolumeDescriptor(0, capacity, MediaVolumeOrigins.DirectVolume, DisplayName(formatId));

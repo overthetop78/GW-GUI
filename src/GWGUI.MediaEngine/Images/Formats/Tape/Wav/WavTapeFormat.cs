@@ -8,8 +8,7 @@ internal static class WavTapeFormat
 {
     public static string FormatId => TapeImageFormatIds.Wav;
 
-    public static readonly IReadOnlySet<string> Extensions =
-        new[] { DiskImageFileExtensions.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public static readonly IReadOnlySet<string> Extensions = new[] { DiskImageFileExtensions.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public static bool CanRead => true;
 

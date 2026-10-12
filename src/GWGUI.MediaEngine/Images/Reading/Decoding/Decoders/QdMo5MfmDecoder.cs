@@ -88,10 +88,7 @@ public sealed class QdMo5MfmDecoder : IFluxDecoder
     }
 
     /// <summary>Lit le numéro de secteur et les treize octets réservés de l'en-tête.</summary>
-    internal static QdMo5MfmHeader? TryDecodeHeader(
-        FluxBitstream stream,
-        int offset
-    )
+    internal static QdMo5MfmHeader? TryDecodeHeader(FluxBitstream stream, int offset)
     {
         var bytes = TryDecodeMfmBytes(stream, offset + QdMo5MfmFormat.PhysicalMarkBitCount, QdMo5MfmFormat.SectorNumberByteCount + QdMo5MfmFormat.HeaderPaddingByteCount);
         if (bytes is null)
@@ -101,11 +98,7 @@ public sealed class QdMo5MfmDecoder : IFluxDecoder
     }
 
     /// <summary>Recherche les données jusqu'à la limite ou jusqu'au prochain en-tête.</summary>
-    internal static int FindNextData(
-        FluxBitstream stream,
-        int start,
-        int maximumDistance
-    )
+    internal static int FindNextData(FluxBitstream stream, int start, int maximumDistance)
     {
         var end = Math.Min(stream.Bits.Length - QdMo5MfmFormat.PhysicalMarkBitCount, start + maximumDistance);
         for (var offset = start; offset <= end; offset++)
@@ -123,10 +116,7 @@ public sealed class QdMo5MfmDecoder : IFluxDecoder
     }
 
     /// <summary>Lit le préfixe, la charge utile et le checksum stocké.</summary>
-    internal static QdMo5MfmData? TryDecodeData(
-        FluxBitstream stream,
-        int offset
-    )
+    internal static QdMo5MfmData? TryDecodeData(FluxBitstream stream, int offset)
     {
         var bytes = TryDecodeMfmBytes(stream, offset + QdMo5MfmFormat.PreambleBitCount, QdMo5MfmFormat.DataBytesAfterPreamble);
         if (bytes is null)
@@ -138,11 +128,7 @@ public sealed class QdMo5MfmDecoder : IFluxDecoder
     }
 
     /// <summary>Ajoute les marques de données qui n'ont été associées à aucun en-tête.</summary>
-    internal static void CollectUnpairedDataMarks(
-        FluxBitstream stream,
-        IReadOnlySet<int> pairedOffsets,
-        ICollection<FluxStructure> structures
-    )
+    internal static void CollectUnpairedDataMarks(FluxBitstream stream, IReadOnlySet<int> pairedOffsets, ICollection<FluxStructure> structures)
     {
         for (var offset = 0; offset + QdMo5MfmFormat.PhysicalMarkBitCount <= stream.Bits.Length; offset++)
         {
@@ -156,11 +142,7 @@ public sealed class QdMo5MfmDecoder : IFluxDecoder
     }
 
     /// <summary>Tente de décoder une suite d'octets MFM.</summary>
-    private static byte[]? TryDecodeMfmBytes(
-        FluxBitstream stream,
-        int offset,
-        int count
-    )
+    private static byte[]? TryDecodeMfmBytes(FluxBitstream stream, int offset, int count)
     {
         if (offset + count * QdMo5MfmFormat.EncodedByteBitCount > stream.Bits.Length)
             return null;

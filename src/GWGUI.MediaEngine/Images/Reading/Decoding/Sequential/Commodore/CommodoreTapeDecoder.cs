@@ -14,11 +14,8 @@ namespace GWGUI.MediaEngine.Images.Reading.Decoding.Sequential.Commodore;
 /// <summary>Recognizes standard Commodore ROM byte frames in TAP pulses or a selected PCM WAV channel.</summary>
 public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.CommodoreTap, TapeImageFormatIds.Wav }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Commodore }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.CommodoreTap, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Commodore }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => CommodoreTapConstants.DecoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
@@ -26,10 +23,7 @@ public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
 
     public bool CanDecode(MediaImageDocument document, string? machineId = null) => document.MediaKind == MediaKind.Tape && SupportedFormats.Contains(document.FormatId) && (machineId is null || SupportedMachines.Contains(machineId)) && document.Representation is SequentialMediaImageRepresentation;
 
-    public async Task<SequentialDecodeResult> DecodeAsync(
-        MediaImageDocument document,
-        string? machineId = null,
-        CancellationToken cancellationToken = default)
+    public async Task<SequentialDecodeResult> DecodeAsync(MediaImageDocument document, string? machineId = null, CancellationToken cancellationToken = default)
     {
         if (!CanDecode(document, machineId))
             throw new InvalidDataException("The media document is not compatible with the Commodore tape decoder.");
@@ -39,10 +33,7 @@ public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
         return DecodeTap(document, representation, cancellationToken);
     }
 
-    private static SequentialDecodeResult DecodeTap(
-        MediaImageDocument document,
-        SequentialMediaImageRepresentation representation,
-        CancellationToken cancellationToken)
+    private static SequentialDecodeResult DecodeTap(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)
     {
         var clockRate = TryReadInt(document.Metadata, CommodoreTapConstants.ClockRateMetadataKey, out var storedClock) ? storedClock : CommodoreTapConstants.DefaultC64PalClockRate;
         var pulses = new List<Pulse>();
@@ -61,10 +52,7 @@ public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
         return CreateResult(representation, pulses, "tap-pulses");
     }
 
-    private static async Task<SequentialDecodeResult> DecodeWaveAsync(
-        MediaImageDocument document,
-        SequentialMediaImageRepresentation representation,
-        CancellationToken cancellationToken)
+    private static async Task<SequentialDecodeResult> DecodeWaveAsync(MediaImageDocument document, SequentialMediaImageRepresentation representation, CancellationToken cancellationToken)
     {
         if (!PcmSampleFunctions.TryGetProfile(document.Metadata, out var channels, out var sampleRate, out var bitsPerSample, out var blockAlign))
             return new SequentialDecodeResult(CommodoreTapConstants.DecoderId, 0, [], representation.Segments ?? [], ["The WAV PCM profile is incomplete or incompatible."]);
@@ -82,10 +70,7 @@ public sealed class CommodoreTapeDecoder : ISequentialMediaDecoder
         return CreateResult(representation, pulses, "wav-pulses");
     }
 
-    private static SequentialDecodeResult CreateResult(
-        SequentialMediaImageRepresentation representation,
-        IReadOnlyList<Pulse> pulses,
-        string sourceKind)
+    private static SequentialDecodeResult CreateResult(SequentialMediaImageRepresentation representation, IReadOnlyList<Pulse> pulses, string sourceKind)
     {
         var blocks = new List<SequentialDecodedBlock>();
         var consumed = new HashSet<long>();

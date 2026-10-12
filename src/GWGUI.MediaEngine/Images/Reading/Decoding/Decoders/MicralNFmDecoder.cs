@@ -50,10 +50,7 @@ public sealed class MicralNFmDecoder : IFluxDecoder
     }
 
     /// <summary>Lit le numéro de secteur, le cylindre, la charge utile et le checksum d'un bloc.</summary>
-    internal static MicralNFmBlock? TryDecodeBlock(
-        FluxBitstream stream,
-        int offset
-    )
+    internal static MicralNFmBlock? TryDecodeBlock(FluxBitstream stream, int offset)
     {
         if (offset + MicralNFmFormat.BlockBitCount > stream.Bits.Length)
             return null;
@@ -66,11 +63,7 @@ public sealed class MicralNFmDecoder : IFluxDecoder
     }
 
     /// <summary>Tente de décoder une suite d'octets FM.</summary>
-    private static byte[]? TryDecodeFmBytes(
-        FluxBitstream stream,
-        int offset,
-        int count
-    )
+    private static byte[]? TryDecodeFmBytes(FluxBitstream stream, int offset, int count)
     {
         var result = new byte[count];
         for (var index = 0; index < count; index++)

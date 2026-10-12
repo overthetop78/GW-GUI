@@ -14,10 +14,8 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Qcow2;
 /// <summary>Writes autonomous QCOW2 version 2 and 3 images without compression or parents.</summary>
 public sealed class Qcow2Writer : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Qcow2 }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Qcow2 }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public Qcow2Writer(IAtomicImageFileWriter? files = null)
@@ -43,11 +41,7 @@ public sealed class Qcow2Writer : IMediaImageWriter
             && HasCompleteReadableCoverage(blocks);
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension)
@@ -58,11 +52,7 @@ public sealed class Qcow2Writer : IMediaImageWriter
         return [outputPath];
     }
 
-    private static async Task WriteContainerAsync(
-        BlockMediaImageRepresentation blocks,
-        uint version,
-        Stream output,
-        CancellationToken cancellationToken)
+    private static async Task WriteContainerAsync(BlockMediaImageRepresentation blocks, uint version, Stream output, CancellationToken cancellationToken)
     {
         var clusterBits = HardDiskFormatConstants.Qcow2DefaultClusterBits;
         var clusterSize = 1 << clusterBits;
@@ -152,14 +142,7 @@ public sealed class Qcow2Writer : IMediaImageWriter
         await WriteAtAsync(output, 0, header, cancellationToken).ConfigureAwait(false);
     }
 
-    private static byte[] CreateHeader(
-        uint version,
-        int clusterBits,
-        long virtualSize,
-        uint l1Size,
-        long l1Offset,
-        long refcountTableOffset,
-        uint refcountTableClusters)
+    private static byte[] CreateHeader(uint version, int clusterBits, long virtualSize, uint l1Size, long l1Offset, long refcountTableOffset, uint refcountTableClusters)
     {
         var headerSize = version == HardDiskFormatConstants.Qcow2Version3 ? HardDiskFormatConstants.Qcow2Version3HeaderSize : HardDiskFormatConstants.Qcow2Version2HeaderSize;
         var header = new byte[headerSize];
@@ -189,11 +172,7 @@ public sealed class Qcow2Writer : IMediaImageWriter
         return HardDiskFormatConstants.Qcow2Version3;
     }
 
-    private static async Task WriteAtAsync(
-        Stream output,
-        long offset,
-        ReadOnlyMemory<byte> data,
-        CancellationToken cancellationToken)
+    private static async Task WriteAtAsync(Stream output, long offset, ReadOnlyMemory<byte> data, CancellationToken cancellationToken)
     {
         output.Position = offset;
         await output.WriteAsync(data, cancellationToken).ConfigureAwait(false);

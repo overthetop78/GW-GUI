@@ -6,10 +6,7 @@ namespace GWGUI.MediaEngine.Images.Conversion;
 /// <summary>Contains an in-memory conversion result before the target image is written.</summary>
 public sealed class MediaRepresentationConversionResult
 {
-    public MediaRepresentationConversionResult(
-        MediaImageDocument document,
-        IReadOnlyList<string> diagnostics,
-        IReadOnlyList<string> losses)
+    public MediaRepresentationConversionResult(MediaImageDocument document, IReadOnlyList<string> diagnostics, IReadOnlyList<string> losses)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(diagnostics);

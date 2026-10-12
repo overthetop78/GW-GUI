@@ -6,21 +6,12 @@ using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Conversion.Apple;
 /// <summary>Convertit les images Apple Lisa Office et MacWorks vers DiskCopy 4.2.</summary>
-public sealed class LisaConversionService(
-    AppleDiskImageReader reader,
-    AppleScpSectorImageReader scpReader,
-    DiskCopyWriter writer
-)
+public sealed class LisaConversionService(AppleDiskImageReader reader, AppleScpSectorImageReader scpReader, DiskCopyWriter writer)
 {
     /// <summary>Indique si la cible est une image Lisa dans un conteneur DiskCopy.</summary>
     public static bool CanCreate(string formatId, string extension) => formatId.StartsWith(DiskImageFormatIds.AppleLisaPrefix, StringComparison.OrdinalIgnoreCase) && (extension.Equals(DiskImageFileExtensions.Image, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Dc42, StringComparison.OrdinalIgnoreCase));
     /// <summary>Lit une source Apple, conserve les métadonnées DiskCopy disponibles et écrit les données ainsi que leurs tags.</summary>
-    public async Task ConvertAsync(
-        string sourcePath,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default
-    )
+    public async Task ConvertAsync(string sourcePath, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var sourceExtension = Path.GetExtension(sourcePath);
         DiskCopyImage? diskCopy = null;

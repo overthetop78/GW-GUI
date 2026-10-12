@@ -8,11 +8,7 @@ public sealed class CoherentRawImageWriter(IAtomicImageFileWriter? fileWriter = 
 {
     private readonly IAtomicImageFileWriter files = fileWriter ?? new AtomicImageFileWriter();
     /// <summary>Valide chaque bloc et écrit atomiquement le dump BIN ou IMG.</summary>
-    public async Task WriteAsync(
-        SectorImage image,
-        string path,
-        CancellationToken cancellationToken = default
-    )
+    public async Task WriteAsync(SectorImage image, string path, CancellationToken cancellationToken = default)
     {
         ValidateImage(image);
         var bytes = new byte[checked(image.BlockCount * Commodore900Geometry.SectorSize)];

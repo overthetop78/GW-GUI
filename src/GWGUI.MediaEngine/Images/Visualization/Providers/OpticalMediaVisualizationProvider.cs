@@ -10,8 +10,7 @@ namespace GWGUI.MediaEngine.Images.Visualization.Providers;
 /// <summary>Builds progressive visualization data from explicitly described optical tracks and faces.</summary>
 public sealed class OpticalMediaVisualizationProvider : IMediaVisualizationProvider
 {
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedKinds =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedKinds = new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
 
     public IReadOnlySet<MediaRepresentationKind> RepresentationKinds => SupportedKinds;
 

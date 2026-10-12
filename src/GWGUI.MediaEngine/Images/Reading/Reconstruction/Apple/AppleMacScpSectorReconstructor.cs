@@ -25,11 +25,7 @@ internal sealed class AppleMacScpSectorReconstructor(AppleScpSectorDecoder decod
     /// <returns>L'image Macintosh ou Lisa reconstruite avec sa capacitÃ© et son nombre logique de blocs.</returns>
     /// <exception cref="InvalidDataException">Aucun secteur GCR Apple IWM n'a Ã©tÃ© dÃ©codÃ© ou aucun candidat ne respecte la gÃ©omÃ©trie zonÃ©e.</exception>
     /// <remarks>La capacitÃ© est exprimÃ©e en octets et dÃ©pend du nombre de faces dÃ©tectÃ© dans les adresses candidates.</remarks>
-    public SectorImage Decode(
-        ScpImage scp,
-        string? requestedFormatId,
-        CancellationToken cancellationToken,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress = null)
+    public SectorImage Decode(ScpImage scp, string? requestedFormatId, CancellationToken cancellationToken, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress = null)
     {
         var candidates = decoder.DecodeCandidates(scp, FluxCodecIds.AppleMacGcr, AppleIwmGcrFormat.SectorByteCount, cancellationToken, progress);
         if (candidates.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(AppleIwmGcrFormat.StructureDescriptionName);

@@ -87,10 +87,7 @@ public sealed class TycomFmDecoder : IFluxDecoder
     }
 
     /// <summary>Lit l'en-tête TYCOM et valide son CRC.</summary>
-    internal static TycomFmHeader? TryDecodeHeader(
-        FluxBitstream stream,
-        int offset
-    )
+    internal static TycomFmHeader? TryDecodeHeader(FluxBitstream stream, int offset)
     {
         var bytes = TryDecodeFmBytes(stream, offset + TycomFmFormat.MarkBitCount, TycomFmFormat.HeaderDecodedByteCount);
         if (bytes is null)
@@ -104,11 +101,7 @@ public sealed class TycomFmDecoder : IFluxDecoder
     }
 
     /// <summary>Recherche la prochaine marque de données et s'arrête devant un nouvel en-tête.</summary>
-    internal static TycomFmDataMark? FindNextDataMark(
-        FluxBitstream stream,
-        int start,
-        int maximumDistance
-    )
+    internal static TycomFmDataMark? FindNextDataMark(FluxBitstream stream, int start, int maximumDistance)
     {
         var end = Math.Min(stream.Bits.Length - TycomFmFormat.MarkBitCount, start + maximumDistance);
         for (var offset = start; offset <= end; offset++)
@@ -124,10 +117,7 @@ public sealed class TycomFmDecoder : IFluxDecoder
     }
 
     /// <summary>Lit la marque, la charge utile et le CRC d'un bloc de données.</summary>
-    internal static TycomFmData? TryDecodeData(
-        FluxBitstream stream,
-        TycomFmDataMark mark
-    )
+    internal static TycomFmData? TryDecodeData(FluxBitstream stream, TycomFmDataMark mark)
     {
         var bytes = TryDecodeFmBytes(stream, mark.Offset, TycomFmFormat.DataBlockByteCount);
         if (bytes is null || bytes[0] != mark.Definition.Mark)
@@ -138,11 +128,7 @@ public sealed class TycomFmDecoder : IFluxDecoder
     }
 
     /// <summary>Ajoute les marques de données qui n'ont été associées à aucun en-tête.</summary>
-    internal static void CollectUnpairedDataMarks(
-        FluxBitstream stream,
-        IReadOnlySet<int> pairedOffsets,
-        ICollection<FluxStructure> structures
-    )
+    internal static void CollectUnpairedDataMarks(FluxBitstream stream, IReadOnlySet<int> pairedOffsets, ICollection<FluxStructure> structures)
     {
         for (var offset = 0; offset + TycomFmFormat.MarkBitCount <= stream.Bits.Length; offset++)
         {
@@ -157,11 +143,7 @@ public sealed class TycomFmDecoder : IFluxDecoder
     }
 
     /// <summary>Tente de décoder une suite d'octets FM double largeur.</summary>
-    private static byte[]? TryDecodeFmBytes(
-        FluxBitstream stream,
-        int offset,
-        int count
-    )
+    private static byte[]? TryDecodeFmBytes(FluxBitstream stream, int offset, int count)
     {
         if (offset + count * TycomFmFormat.EncodedByteBitCount > stream.Bits.Length)
             return null;

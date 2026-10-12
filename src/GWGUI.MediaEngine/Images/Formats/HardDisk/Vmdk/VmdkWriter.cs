@@ -34,22 +34,13 @@ public sealed class VmdkWriter : IMediaImageWriter
     public IReadOnlySet<string> ProducedFileExtensions => VmdkFormat.Extensions;
     public bool ProducesMultipleFiles => true;
 
-    public bool CanWrite(
-        MediaImageDocument document,
-        string targetFormatId,
-        string targetExtension
-    )
+    public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension)
     {
         ArgumentNullException.ThrowIfNull(document);
         return SupportedFormatIds.Contains(targetFormatId) && VmdkFormat.Extensions.Contains(targetExtension) && document.MediaKind == MediaKind.HardDisk && document.Representation is BlockMediaImageRepresentation blocks && blocks.Capacity > 0 && blocks.LogicalBlockSize == HardDiskFormatConstants.LegacyLogicalSectorSize && HasCompleteReadableCoverage(blocks);
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default
-    )
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension) || document.Representation is not BlockMediaImageRepresentation blocks)
@@ -69,12 +60,7 @@ public sealed class VmdkWriter : IMediaImageWriter
         return[outputPath, flatPath];
     }
 
-    private static async Task WriteSparseAsync(
-        BlockMediaImageRepresentation blocks,
-        string fileName,
-        Stream output,
-        CancellationToken cancellationToken
-    )
+    private static async Task WriteSparseAsync(BlockMediaImageRepresentation blocks, string fileName, Stream output, CancellationToken cancellationToken)
     {
         var capacitySectors = blocks.Capacity / HardDiskFormatConstants.LegacyLogicalSectorSize;
         var grainSectors = HardDiskFormatConstants.VmdkDefaultGrainSectors;
@@ -158,13 +144,7 @@ public sealed class VmdkWriter : IMediaImageWriter
         output.Position = end;
     }
 
-    private static byte[] CreateDescriptor(
-        BlockMediaImageRepresentation blocks,
-        string createType,
-        string extentType,
-        string extentFileName,
-        string extentSuffix
-    )
+    private static byte[] CreateDescriptor(BlockMediaImageRepresentation blocks, string createType, string extentType, string extentFileName, string extentSuffix)
     {
         var capacitySectors = blocks.Capacity / HardDiskFormatConstants.LegacyLogicalSectorSize;
         var contentId = (uint)Random.Shared.NextInt64(1, uint.MaxValue);
@@ -176,11 +156,7 @@ public sealed class VmdkWriter : IMediaImageWriter
         return System.Text.Encoding.UTF8.GetBytes(text);
     }
 
-    private static async Task WriteLogicalDataAsync(
-        BlockMediaImageRepresentation blocks,
-        Stream output,
-        CancellationToken cancellationToken
-    )
+    private static async Task WriteLogicalDataAsync(BlockMediaImageRepresentation blocks, Stream output, CancellationToken cancellationToken)
     {
         var buffer = new byte[64 * DataSizeConstants.BytesPerKibibyte];
         long address = 0;
@@ -193,10 +169,7 @@ public sealed class VmdkWriter : IMediaImageWriter
         }
     }
 
-    private static HardDiskImageVariant SelectVariant(
-        MediaImageDocument document,
-        BlockMediaImageRepresentation blocks
-    )
+    private static HardDiskImageVariant SelectVariant(MediaImageDocument document, BlockMediaImageRepresentation blocks)
     {
         if (document.FormatId.Equals(HardDiskImageFormatIds.Vmdk, StringComparison.OrdinalIgnoreCase) && document.Metadata.TryGetValue("variant", out var value) && Enum.TryParse<HardDiskImageVariant>(value, true, out var variant) && variant is HardDiskImageVariant.Fixed or HardDiskImageVariant.Sparse)
             return variant;

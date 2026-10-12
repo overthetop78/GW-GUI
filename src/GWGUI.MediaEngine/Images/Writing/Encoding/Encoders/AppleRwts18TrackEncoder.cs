@@ -53,11 +53,7 @@ public sealed class AppleRwts18TrackEncoder : TrackEncoderBase
     }
 
     /// <summary>Valide une valeur entière avant son encodage dans un champ RWTS18.</summary>
-    private static void ValidateValue(
-        string field,
-        int value,
-        int maximum
-    )
+    private static void ValidateValue(string field, int value, int maximum)
     {
         if (value is < 0 || value > maximum)
             throw TrackEncodingExceptions.FormatValueOutOfRange("Apple II RWTS18", field, value, maximum);

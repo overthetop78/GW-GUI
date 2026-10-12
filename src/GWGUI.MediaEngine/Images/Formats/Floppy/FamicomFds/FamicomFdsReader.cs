@@ -15,14 +15,10 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.FamicomFds;
 /// <summary>Lit les faces de disquette Famicom Disk System avec ou sans en-tête FDS.</summary>
 public sealed class FamicomFdsReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { DiskImageFormatIds.NintendoFamicomDisk }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedExtensions =
-        new[] { DiskImageFileExtensions.Fds }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.Floppy }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { DiskImageFormatIds.NintendoFamicomDisk }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedExtensions = new[] { DiskImageFileExtensions.Fds }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Floppy }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => SupportedExtensions;
@@ -32,9 +28,7 @@ public sealed class FamicomFdsReader : IMediaImageReader
     IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentations;
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (!SupportedExtensions.Contains(context.Extension)
@@ -51,9 +45,7 @@ public sealed class FamicomFdsReader : IMediaImageReader
         return IsHeaderlessLength(context.Length);
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (!SupportedExtensions.Contains(context.Extension)
@@ -90,8 +82,7 @@ public sealed class FamicomFdsReader : IMediaImageReader
         {
             var address = checked(side * (long)FamicomFdsConstants.SideLength);
             ranges.Add(new MediaDataRange(address, FamicomFdsConstants.SideLength, MediaDataRangeKind.Stored, source, checked(headerLength + address)));
-            metadata[$"{FamicomFdsConstants.SideNamePrefix}{side}{FamicomFdsConstants.SideNameSuffix}"] =
-                string.Format(CultureInfo.InvariantCulture, FamicomFdsConstants.SideNameFormat, side);
+            metadata[$"{FamicomFdsConstants.SideNamePrefix}{side}{FamicomFdsConstants.SideNameSuffix}"] = string.Format(CultureInfo.InvariantCulture, FamicomFdsConstants.SideNameFormat, side);
         }
 
         var capacity = checked((long)sideCount * FamicomFdsConstants.SideLength);

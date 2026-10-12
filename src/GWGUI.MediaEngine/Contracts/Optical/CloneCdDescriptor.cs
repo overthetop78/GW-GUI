@@ -5,13 +5,7 @@ namespace GWGUI.MediaEngine.Contracts;
 /// <summary>Contains the validated CloneCD descriptor structure required to expose its raw image.</summary>
 public sealed class CloneCdDescriptor
 {
-    public CloneCdDescriptor(
-        int version,
-        int sessionCount,
-        string? catalogNumber,
-        IReadOnlyList<CloneCdTocEntry> tocEntries,
-        IReadOnlyList<CueTrackDeclaration> tracks,
-        IReadOnlyDictionary<int, IReadOnlyDictionary<string, int>> sessions)
+    public CloneCdDescriptor(int version, int sessionCount, string? catalogNumber, IReadOnlyList<CloneCdTocEntry> tocEntries, IReadOnlyList<CueTrackDeclaration> tracks, IReadOnlyDictionary<int, IReadOnlyDictionary<string, int>> sessions)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(version);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(sessionCount);

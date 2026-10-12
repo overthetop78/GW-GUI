@@ -13,10 +13,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.Xdvdfs;
 /// <summary>Réécrit une image XDVDFS sans perdre ses secteurs ni sa structure optique.</summary>
 public sealed class XdvdfsWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { OpticalImageFormatIds.XboxXdvdfs }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> Representations =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { OpticalImageFormatIds.XboxXdvdfs }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> Representations = new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
     private readonly OpticalSectorReader sectors = new();
 
@@ -40,11 +38,7 @@ public sealed class XdvdfsWriter : IMediaImageWriter
         && track[0].UserDataLength == XdvdfsFormat.SectorSize
         && track[0].SectorCount > XdvdfsFormat.VolumeDescriptorSector;
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         if (!CanWrite(document, targetFormatId, Path.GetExtension(outputPath))
             || document.Representation is not OpticalMediaImageRepresentation optical
@@ -64,8 +58,5 @@ public sealed class XdvdfsWriter : IMediaImageWriter
         return [outputPath];
     }
 
-    private static string NormalizeExtension(string extension) =>
-        extension.StartsWith(".", StringComparison.Ordinal)
-            ? extension.ToLowerInvariant()
-            : $".{extension.ToLowerInvariant()}";
+    private static string NormalizeExtension(string extension) => extension.StartsWith(".", StringComparison.Ordinal) ? extension.ToLowerInvariant() : $".{extension.ToLowerInvariant()}";
 }

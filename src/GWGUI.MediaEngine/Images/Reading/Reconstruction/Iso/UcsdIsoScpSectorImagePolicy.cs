@@ -15,10 +15,7 @@ internal sealed class UcsdIsoScpSectorImagePolicy : IIsoScpSectorImagePolicy
     /// <returns>L'image sectorielle UCSD construite selon sa géométrie logique.</returns>
     /// <exception cref = "ArgumentNullException"><paramref name = "formatId"/> est nul.</exception>
     /// <exception cref = "InvalidDataException">Aucun candidat physique ne permet de mesurer l'image.</exception>
-    public SectorImage Build(
-        string? formatId,
-        IsoSectorCandidateSet candidateSet
-    )
+    public SectorImage Build(string? formatId, IsoSectorCandidateSet candidateSet)
     {
         ArgumentNullException.ThrowIfNull(formatId);
         var candidates = candidateSet.Physical;

@@ -70,19 +70,13 @@ public sealed class MsaReader : IMediaImageReader
     /// <exception cref = "InvalidDataException">L'en-tÃªte, la gÃ©omÃ©trie, une piste ou une sÃ©quence RLE est invalide.</exception>
     /// <exception cref = "OverflowException">Un calcul de taille dÃ©passe la capacitÃ© d'un entier.</exception>
     /// <exception cref = "OperationCanceledException">L'opÃ©ration est annulÃ©e.</exception>
-    public async Task<SectorImage> ReadAsync(
-        string path,
-        CancellationToken cancellationToken = default
-    )
+    public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var source = await readBytes(path, cancellationToken).ConfigureAwait(false);
         return Read(source, cancellationToken);
     }
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken
-    )
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !((IMediaImageReader)this).SupportsFormatId(context.RequestedFormatId))
             return false;
@@ -92,19 +86,13 @@ public sealed class MsaReader : IMediaImageReader
         return BinaryPrimitives.ReadUInt16BigEndian(header.Span) == MsaFormat.Signature;
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken
-    )
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var source = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
         return MediaImageDocumentFactory.CreateFloppySector(context.Source, Read(source.ToArray(), cancellationToken));
     }
 
-    private static SectorImage Read(
-        byte[] source,
-        CancellationToken cancellationToken
-    )
+    private static SectorImage Read(byte[] source, CancellationToken cancellationToken)
     {
         if (source.Length < MsaLayout.HeaderSize || ReadWord(source, MsaLayout.SignatureOffset) != MsaFormat.Signature)
             throw MsaExceptions.InvalidHeader(source.Length);

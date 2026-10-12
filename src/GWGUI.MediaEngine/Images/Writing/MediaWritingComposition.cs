@@ -193,11 +193,7 @@ public sealed class MediaWritingComposition
         Func<SectorImage, MediaImageDocument, string, string, CancellationToken, Task<IReadOnlyList<string>>> write)
         => new(id, FormatIds(supports, extensions), extensions, (_, _, formatId, extension) => supports(formatId, extension), write);
 
-    private static FluxMediaImageWriterAdapter Flux(
-        string id,
-        string formatId,
-        string extension,
-        Func<ProtectedTrackImage, IReadOnlyDictionary<string, string>, string, CancellationToken, Task<IReadOnlyList<string>>> write)
+    private static FluxMediaImageWriterAdapter Flux(string id, string formatId, string extension, Func<ProtectedTrackImage, IReadOnlyDictionary<string, string>, string, CancellationToken, Task<IReadOnlyList<string>>> write)
         => new(
             id,
             [formatId],
@@ -215,75 +211,39 @@ public sealed class MediaWritingComposition
         return [outputPath];
     }
 
-    private static Task<IReadOnlyList<string>> WriteAppleSectorAsync(
-        AppleRawImageWriter raw,
-        TwoImgWriter twoImg,
-        SectorImage image,
-        string path,
-        string formatId,
-        CancellationToken cancellationToken)
+    private static Task<IReadOnlyList<string>> WriteAppleSectorAsync(AppleRawImageWriter raw, TwoImgWriter twoImg, SectorImage image, string path, string formatId, CancellationToken cancellationToken)
     {
         AppleSectorConversionValidationFunctions.Validate(image, formatId);
         return Path.GetExtension(path).Equals(DiskImageFileExtensions.TwoMg, StringComparison.OrdinalIgnoreCase) ? WriteSingleAsync(twoImg.WriteAsync(image, path, formatId, cancellationToken), path) : WriteSingleAsync(raw.WriteAsync(image, path, formatId, cancellationToken), path);
     }
 
-    private static Task<IReadOnlyList<string>> WriteMacintoshAsync(
-        MacintoshRawImageWriter raw,
-        DiskCopyWriter diskCopy,
-        SectorImage image,
-        MediaImageDocument document,
-        string path,
-        CancellationToken cancellationToken)
+    private static Task<IReadOnlyList<string>> WriteMacintoshAsync(MacintoshRawImageWriter raw, DiskCopyWriter diskCopy, SectorImage image, MediaImageDocument document, string path, CancellationToken cancellationToken)
         => Path.GetExtension(path).Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase)
             ? WriteSingleAsync(raw.WriteAsync(image, path, cancellationToken), path)
             : WriteSingleAsync(diskCopy.WriteAsync(image, path, DiskCopyMetadataFunctions.Restore(image, document.Metadata), cancellationToken), path);
 
-    private static Task<IReadOnlyList<string>> WriteAtariStAsync(
-        AtariStWriter st,
-        MsaWriter msa,
-        SectorImage image,
-        MediaImageDocument document,
-        string path,
-        string formatId,
-        CancellationToken cancellationToken)
+    private static Task<IReadOnlyList<string>> WriteAtariStAsync(AtariStWriter st, MsaWriter msa, SectorImage image, MediaImageDocument document, string path, string formatId, CancellationToken cancellationToken)
     {
         var sourceIsScp = Path.GetExtension(document.Source.PrimaryPath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase);
         var transformed = AtariStGeometryTransformer.Transform(image, formatId, sourceIsScp);
         return Path.GetExtension(path).Equals(DiskImageFileExtensions.Msa, StringComparison.OrdinalIgnoreCase) ? WriteSingleAsync(msa.WriteAsync(transformed, path, cancellationToken), path) : WriteSingleAsync(st.WriteAsync(transformed, path, cancellationToken), path);
     }
 
-    private static Task<IReadOnlyList<string>> WriteCommodoreDosAsync(
-        CommodoreDosContainerWriter writer,
-        SectorImage image,
-        string path,
-        string formatId,
-        CancellationToken cancellationToken)
+    private static Task<IReadOnlyList<string>> WriteCommodoreDosAsync(CommodoreDosContainerWriter writer, SectorImage image, string path, string formatId, CancellationToken cancellationToken)
     {
         if (!image.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase))
-            throw new InvalidDataException(
-                $"Commodore source format '{image.FormatId}' cannot be written as '{formatId}' without a geometry transformation.");
+            throw new InvalidDataException($"Commodore source format '{image.FormatId}' cannot be written as '{formatId}' without a geometry transformation.");
         var errorMapMode = image.AvailableBlocks.All(block => block.DiagnosticCode.HasValue) ? CommodoreDosErrorMapMode.Preserve : CommodoreDosErrorMapMode.None;
         return WriteSingleAsync(writer.WriteAsync(image, path, errorMapMode, cancellationToken), path);
     }
 
-    private static Task<IReadOnlyList<string>> WriteAmstradAsync(
-        CpcDskWriter writer,
-        SectorImage image,
-        string path,
-        CancellationToken cancellationToken)
+    private static Task<IReadOnlyList<string>> WriteAmstradAsync(CpcDskWriter writer, SectorImage image, string path, CancellationToken cancellationToken)
     {
         var kind = Path.GetExtension(path).Equals(DiskImageFileExtensions.Edsk, StringComparison.OrdinalIgnoreCase) ? CpcDskContainerKind.Extended : CpcDskContainerKind.Standard;
         return WriteSingleAsync(writer.WriteAsync(CpcDskImageBuilder.Build(image, kind), path, cancellationToken), path);
     }
 
-    private static Task<IReadOnlyList<string>> WriteEpsonAsync(
-        EpsonQx10RawImageWriter raw,
-        ImdWriter imd,
-        SectorImage image,
-        MediaImageDocument document,
-        string path,
-        string formatId,
-        CancellationToken cancellationToken)
+    private static Task<IReadOnlyList<string>> WriteEpsonAsync(EpsonQx10RawImageWriter raw, ImdWriter imd, SectorImage image, MediaImageDocument document, string path, string formatId, CancellationToken cancellationToken)
     {
         if (!image.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException($"Epson source format '{image.FormatId}' does not match '{formatId}'.");
@@ -292,12 +252,7 @@ public sealed class MediaWritingComposition
             : WriteSingleAsync(raw.WriteAsync(image, path, formatId, cancellationToken), path);
     }
 
-    private static Task<IReadOnlyList<string>> WriteUcsdAsync(
-        LinearSectorImageWriter linear,
-        Td0Writer td0,
-        SectorImage image,
-        string path,
-        CancellationToken cancellationToken)
+    private static Task<IReadOnlyList<string>> WriteUcsdAsync(LinearSectorImageWriter linear, Td0Writer td0, SectorImage image, string path, CancellationToken cancellationToken)
     {
         var source = image.WithFormatId(DiskImageFormatIds.UcsdIbmMfm);
         return Path.GetExtension(path).Equals(DiskImageFileExtensions.Td0, StringComparison.OrdinalIgnoreCase) ? WriteSingleAsync(td0.WriteAsync(source, path, cancellationToken), path) : WriteSingleAsync(linear.WriteAsync(source, path, UcsdIbmMfmGeometry.SectorGeometry, cancellationToken), path);

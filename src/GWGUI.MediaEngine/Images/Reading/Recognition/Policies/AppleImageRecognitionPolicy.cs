@@ -27,10 +27,7 @@ internal sealed class AppleImageRecognitionPolicy(AppleDiskImageReader reader) :
     /// <param name = "context">Contexte partagé du fichier à examiner.</param>
     /// <param name = "cancellationToken">Jeton permettant d'annuler la lecture du contenu.</param>
     /// <returns><see langword="true"/> lorsqu'une signature, un indice ou une demande explicite présélectionne le Reader ; sinon <see langword="false"/>.</returns>
-    public override async ValueTask<bool> CanReadAsync(
-        DiskImageRecognitionContext context,
-        CancellationToken cancellationToken
-    )
+    public override async ValueTask<bool> CanReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
         var bytes = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
         if (bytes.Span.StartsWith(TwoImgFormat.SignatureBytes) || DiskCopyReader.HasPrivateWord(bytes.Span) || bytes.Span.StartsWith(WozFormat.Version1Signature) || bytes.Span.StartsWith(WozFormat.Version2Signature))

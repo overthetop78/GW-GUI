@@ -51,8 +51,7 @@ internal static class BlankSectorImageFactory
         throw new ArgumentException($"Unsupported migration target format '{formatId}'.", nameof(formatId));
     }
 
-    private static SectorImage CreateLinearBlank(string formatId, int blockSize, int cylinders,
-        int heads, int sectorsPerTrack, SectorNumbering numbering)
+    private static SectorImage CreateLinearBlank(string formatId, int blockSize, int cylinders, int heads, int sectorsPerTrack, SectorNumbering numbering)
     {
         var geometry = new LinearSectorImageGeometry(blockSize, cylinders, heads, sectorsPerTrack, numbering);
         return LinearSectorImageBuilder.Create(new byte[geometry.Capacity], formatId, geometry);

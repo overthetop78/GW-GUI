@@ -12,12 +12,7 @@ public sealed class MsxRawImageWriter(LinearSectorImageWriter writer)
     }
 
     /// <summary>Écrit l'image MSX après validation stricte du profil cible.</summary>
-    public Task WriteAsync(
-        SectorImage image,
-        string path,
-        string formatId,
-        CancellationToken cancellationToken = default
-    )
+    public Task WriteAsync(SectorImage image, string path, string formatId, CancellationToken cancellationToken = default)
     {
         if (!MsxDiskGeometryCatalog.TryFromFormatId(formatId, out var geometry))
             throw MsxRawImageWriterExceptions.UnsupportedFormat(formatId);

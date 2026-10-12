@@ -7,22 +7,12 @@ using GWGUI.MediaEngine.Images.Models.Sectors;
 
 namespace GWGUI.MediaEngine.Images.Conversion.Apple;
 /// <summary>Convertit les images Macintosh entre SCP, brut et DiskCopy 4.2.</summary>
-public sealed class MacintoshConversionService(
-    AppleDiskImageReader reader,
-    AppleScpSectorImageReader scpReader,
-    MacintoshRawImageWriter rawWriter,
-    DiskCopyWriter diskCopyWriter
-)
+public sealed class MacintoshConversionService(AppleDiskImageReader reader, AppleScpSectorImageReader scpReader, MacintoshRawImageWriter rawWriter, DiskCopyWriter diskCopyWriter)
 {
     /// <summary>Indique si la cible est un IMG Macintosh ou un conteneur DiskCopy.</summary>
     public static bool CanCreate(string formatId, string extension) => IsMacintosh(formatId) && (extension.Equals(DiskImageFileExtensions.Img, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Image, StringComparison.OrdinalIgnoreCase) || extension.Equals(DiskImageFileExtensions.Dc42, StringComparison.OrdinalIgnoreCase));
     /// <summary>Lit la source une seule fois, préserve l'en-tête DiskCopy disponible et écrit la cible.</summary>
-    public async Task ConvertAsync(
-        string sourcePath,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default
-    )
+    public async Task ConvertAsync(string sourcePath, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var sourceBytes = await File.ReadAllBytesAsync(sourcePath, cancellationToken).ConfigureAwait(false);
         DiskCopyImage? diskCopy = DiskCopyReader.HasPrivateWord(sourceBytes) ? DiskCopyReader.ReadDetailed(sourceBytes) : null;

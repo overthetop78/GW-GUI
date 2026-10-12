@@ -15,12 +15,9 @@ namespace GWGUI.MediaEngine.Images.Formats.HardDisk.Vmdk;
 /// <summary>Reads autonomous monolithicFlat and uncompressed monolithicSparse VMDK images.</summary>
 public sealed class VmdkReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Vmdk }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.HardDisk }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Vmdk }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.HardDisk }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures = [VmdkFormat.SparseSignature, VmdkFormat.DescriptorSignature];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
@@ -51,20 +48,14 @@ public sealed class VmdkReader : IMediaImageReader
 
     Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken) => ReadDocumentAsync(context, true, cancellationToken);
 
-    private static async Task<MediaImageDocument> ReadDocumentAsync(
-        MediaRecognitionContext context,
-        bool includeRanges,
-        CancellationToken cancellationToken)
+    private static async Task<MediaImageDocument> ReadDocumentAsync(MediaRecognitionContext context, bool includeRanges, CancellationToken cancellationToken)
     {
         if (context.Length < 4) throw new InvalidDataException("The file is too short to contain a VMDK image.");
         var signature = await context.ReadAsync(0, 4, cancellationToken).ConfigureAwait(false);
         return signature.Span.SequenceEqual(VmdkFormat.SparseSignature.Span) ? await ReadSparseAsync(context, includeRanges, cancellationToken).ConfigureAwait(false) : await ReadDescriptorAsync(context, includeRanges, cancellationToken).ConfigureAwait(false);
     }
 
-    private static async Task<MediaImageDocument> ReadDescriptorAsync(
-        MediaRecognitionContext context,
-        bool includeRanges,
-        CancellationToken cancellationToken)
+    private static async Task<MediaImageDocument> ReadDescriptorAsync(MediaRecognitionContext context, bool includeRanges, CancellationToken cancellationToken)
     {
         if (context.Length > 4 * 1_024 * 1_024)
             throw new InvalidDataException("A text VMDK descriptor is unexpectedly large.");
@@ -89,9 +80,7 @@ public sealed class VmdkReader : IMediaImageReader
         var extentLength = new FileInfo(extentPath).Length;
         if (sourceOffset > extentLength || capacity > extentLength - sourceOffset)
             throw new InvalidDataException("The VMDK FLAT extent is shorter than its declared capacity.");
-        var ranges = includeRanges
-            ? new[] { new MediaDataRange(0, capacity, MediaDataRangeKind.Stored, new FileRandomAccessData(extentPath), sourceOffset) }
-            : new[] { new MediaDataRange(0, capacity, MediaDataRangeKind.Unavailable) };
+        var ranges = includeRanges ? new[] { new MediaDataRange(0, capacity, MediaDataRangeKind.Stored, new FileRandomAccessData(extentPath), sourceOffset) } : new[] { new MediaDataRange(0, capacity, MediaDataRangeKind.Unavailable) };
         var source = new MediaSourceDescriptor(
             context.Source.PrimaryPath,
             context.Source.AssociatedPaths.Concat([extentPath]).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
@@ -100,10 +89,7 @@ public sealed class VmdkReader : IMediaImageReader
         return CreateDocument(source, capacity, ranges, HardDiskImageVariant.Fixed, text);
     }
 
-    private static async Task<MediaImageDocument> ReadSparseAsync(
-        MediaRecognitionContext context,
-        bool includeRanges,
-        CancellationToken cancellationToken)
+    private static async Task<MediaImageDocument> ReadSparseAsync(MediaRecognitionContext context, bool includeRanges, CancellationToken cancellationToken)
     {
         if (context.Length < HardDiskFormatConstants.VmdkSparseHeaderSize)
             throw new InvalidDataException("The file is too short to contain a VMDK sparse header.");
@@ -181,12 +167,7 @@ public sealed class VmdkReader : IMediaImageReader
         return CreateDocument(context.Source, capacity, ranges, HardDiskImageVariant.Sparse, null);
     }
 
-    private static MediaImageDocument CreateDocument(
-        MediaSourceDescriptor source,
-        long capacity,
-        IReadOnlyList<MediaDataRange> ranges,
-        HardDiskImageVariant variant,
-        string? descriptor)
+    private static MediaImageDocument CreateDocument(MediaSourceDescriptor source, long capacity, IReadOnlyList<MediaDataRange> ranges, HardDiskImageVariant variant, string? descriptor)
         => new(
             source,
             HardDiskImageFormatIds.Vmdk,
@@ -234,13 +215,7 @@ public sealed class VmdkReader : IMediaImageReader
         return line[prefix.Length..].Trim().Trim('"');
     }
 
-    private static void AddRange(
-        List<MediaDataRange> ranges,
-        long address,
-        long length,
-        MediaDataRangeKind kind,
-        FileRandomAccessData? source = null,
-        long sourceOffset = 0)
+    private static void AddRange(List<MediaDataRange> ranges, long address, long length, MediaDataRangeKind kind, FileRandomAccessData? source = null, long sourceOffset = 0)
     {
         if (ranges.Count > 0)
         {

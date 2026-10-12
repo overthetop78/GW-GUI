@@ -17,10 +17,8 @@ public sealed class VhdxWriter : IMediaImageWriter
 {
     private const long MetadataRegionOffset = HardDiskFormatConstants.VhdxOneMebibyte;
     private const long BatRegionOffset = 2L * HardDiskFormatConstants.VhdxOneMebibyte;
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { HardDiskImageFormatIds.Vhdx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { HardDiskImageFormatIds.Vhdx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public VhdxWriter(IAtomicImageFileWriter? files = null)
@@ -46,11 +44,7 @@ public sealed class VhdxWriter : IMediaImageWriter
             && HasCompleteReadableCoverage(blocks);
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension)
@@ -62,11 +56,7 @@ public sealed class VhdxWriter : IMediaImageWriter
         return [outputPath];
     }
 
-    private static async Task WriteContainerAsync(
-        BlockMediaImageRepresentation blocks,
-        bool fixedImage,
-        Stream output,
-        CancellationToken cancellationToken)
+    private static async Task WriteContainerAsync(BlockMediaImageRepresentation blocks, bool fixedImage, Stream output, CancellationToken cancellationToken)
     {
         var blockSize = SelectBlockSize(blocks.Capacity);
         var payloadBlockCount = checked((blocks.Capacity + blockSize - 1) / blockSize);
@@ -197,11 +187,7 @@ public sealed class VhdxWriter : IMediaImageWriter
         BinaryPrimitives.WriteUInt32LittleEndian(structure.Slice(checksumOffset, 4), Crc32CFunctions.Compute(structure));
     }
 
-    private static async Task WriteAtAsync(
-        Stream output,
-        long offset,
-        ReadOnlyMemory<byte> data,
-        CancellationToken cancellationToken)
+    private static async Task WriteAtAsync(Stream output, long offset, ReadOnlyMemory<byte> data, CancellationToken cancellationToken)
     {
         output.Position = offset;
         await output.WriteAsync(data, cancellationToken).ConfigureAwait(false);

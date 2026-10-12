@@ -18,9 +18,5 @@ public interface IMediaImageWriter
 
     bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension);
 
-    Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default);
+    Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default);
 }

@@ -17,10 +17,7 @@ internal sealed class IbmPcIsoScpSectorImagePolicy(bool explicitlySelected) : II
     /// <param name = "formatId">Identifiant demandé ; la géométrie détectée détermine l'identifiant final.</param>
     /// <param name = "candidateSet">Candidats ISO regroupés par adresse logique et physique.</param>
     /// <returns>L'image sectorielle IBM associée à la géométrie mesurée ou détectée.</returns>
-    public SectorImage Build(
-        string? formatId,
-        IsoSectorCandidateSet candidateSet
-    )
+    public SectorImage Build(string? formatId, IsoSectorCandidateSet candidateSet)
     {
         if (explicitlySelected && formatId is not null && !formatId.StartsWith(DiskImageFormatIds.IbmPrefix, StringComparison.OrdinalIgnoreCase) && !formatId.Equals(DiskImageFormatIds.Mac1440, StringComparison.OrdinalIgnoreCase))
             throw ScpReconstructionExceptions.InvalidRequestedFormat(DiskImageFormatIds.IbmPrefix, formatId);

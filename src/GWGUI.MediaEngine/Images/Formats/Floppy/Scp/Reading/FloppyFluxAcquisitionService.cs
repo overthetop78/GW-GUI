@@ -61,9 +61,7 @@ public sealed class FloppyFluxAcquisitionService
         return new ScpTrack(ScpFormatConstants.ToTrackNumber(cylinder, head), cylinder, head, revolutions);
     }
 
-    private static IReadOnlyList<uint> ConvertNanoseconds(
-        IReadOnlyList<uint> intervalsNanoseconds,
-        int resolutionNanoseconds)
+    private static IReadOnlyList<uint> ConvertNanoseconds(IReadOnlyList<uint> intervalsNanoseconds, int resolutionNanoseconds)
     {
         var result = new uint[intervalsNanoseconds.Count];
         ulong sourceElapsed = 0;
@@ -83,10 +81,7 @@ public sealed class FloppyFluxAcquisitionService
     private static uint ConvertNanoseconds(uint nanoseconds, int resolutionNanoseconds) => checked((uint)Math.Max(1, Math.Round(nanoseconds / (double)resolutionNanoseconds)));
 
     private static int ReadInt(IReadOnlyDictionary<string, string> metadata, string key) =>
-        metadata.TryGetValue(key, out var value)
-        && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)
-            ? parsed
-            : throw new InvalidDataException($"Physical acquisition metadata '{key}' is missing or invalid.");
+        metadata.TryGetValue(key, out var value) && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : throw new InvalidDataException($"Physical acquisition metadata '{key}' is missing or invalid.");
 
     private static ScpDiskType ReadDiskType(IReadOnlyDictionary<string, string> metadata)
     {

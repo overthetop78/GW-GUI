@@ -15,11 +15,7 @@ internal static class AppleIIGcrCodec
     public static byte ComputeAddressChecksum(byte volume, byte cylinder, byte sector) => (byte)(volume ^ cylinder ^ sector);
     /// <summary>Encode volume, piste, secteur et checksum en représentation 4-and-4.</summary>
     /// <param name = "volume">Numéro du volume.</param><param name = "cylinder">Numéro de piste.</param><param name = "sector">Numéro de secteur.</param><returns>Les huit octets constituant l'adresse encodée.</returns>
-    public static byte[] EncodeAddress(
-        byte volume,
-        byte cylinder,
-        byte sector
-    )
+    public static byte[] EncodeAddress(byte volume, byte cylinder, byte sector)
     {
         var encoded = new byte[AppleIIGcrFormat.EncodedAddressByteCount];
         var values = new[]
@@ -41,10 +37,7 @@ internal static class AppleIIGcrCodec
 
     /// <summary>Décode un bloc de secteur Apple II 6-and-2 depuis un flux de bits.</summary>
     /// <param name = "bits">Bits de la piste.</param><param name = "offset">Position de lecture initiale, en bits.</param><returns>Données, validité du checksum et position finale, ou <see langword="null"/> en cas de bloc incomplet ou de symbole inconnu.</returns>
-    public static (byte[] Data, bool Valid, int EndOffset)? TryDecodeSixAndTwo(
-        IReadOnlyList<bool> bits,
-        int offset
-    )
+    public static (byte[] Data, bool Valid, int EndOffset)? TryDecodeSixAndTwo(IReadOnlyList<bool> bits, int offset)
     {
         var cursor = offset;
         var encoded = AppleBitLatch.TryReadBytes(bits, ref cursor, AppleIIGcrFormat.SixAndTwoEncodedByteCount);
@@ -85,10 +78,7 @@ internal static class AppleIIGcrCodec
 
     /// <summary>Décode un bloc de secteur Apple II 5-and-3 depuis un flux de bits.</summary>
     /// <param name = "bits">Bits de la piste.</param><param name = "offset">Position de lecture initiale, en bits.</param><returns>Données, validité du checksum et position finale, ou <see langword="null"/> en cas de bloc incomplet ou de symbole inconnu.</returns>
-    public static (byte[] Data, bool Valid, int EndOffset)? TryDecodeFiveAndThree(
-        IReadOnlyList<bool> bits,
-        int offset
-    )
+    public static (byte[] Data, bool Valid, int EndOffset)? TryDecodeFiveAndThree(IReadOnlyList<bool> bits, int offset)
     {
         var cursor = offset;
         var encoded = AppleBitLatch.TryReadBytes(bits, ref cursor, AppleIIGcrFormat.FiveAndThreeEncodedByteCount);

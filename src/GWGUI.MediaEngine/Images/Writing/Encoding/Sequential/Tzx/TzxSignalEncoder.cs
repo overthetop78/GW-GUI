@@ -13,11 +13,8 @@ namespace GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Tzx;
 /// <summary>Encodes validated data blocks and explicit pulse or pause segments as retained TZX blocks.</summary>
 public sealed class TzxSignalEncoder : ISequentialMediaEncoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.Tzx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Spectrum, DiskSystemIds.Msx }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Tzx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Spectrum, DiskSystemIds.Msx }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => TzxConstants.EncoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
@@ -32,9 +29,7 @@ public sealed class TzxSignalEncoder : ISequentialMediaEncoder
             && request.RetainedSegments.All(CanRetain);
     }
 
-    public Task<SequentialMediaImageRepresentation> EncodeAsync(
-        SequentialEncodeRequest request,
-        CancellationToken cancellationToken = default)
+    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
         if (!CanEncode(request))
             throw new InvalidDataException("TZX encoding requires validated blocks and retained TZX, pulse, or pause segments.");
@@ -77,13 +72,10 @@ public sealed class TzxSignalEncoder : ISequentialMediaEncoder
     private static bool CanRetain(SequentialMediaSegment segment)
     {
         if (segment.Metadata.ContainsKey(TzxConstants.BlockIdMetadataKey))
-            return segment.Length is null && segment.DataRange is null
-                || segment.DataRange is { Kind: MediaDataRangeKind.Stored, Source: not null } range && range.Length == segment.Length;
+            return segment.Length is null && segment.DataRange is null || segment.DataRange is { Kind: MediaDataRangeKind.Stored, Source: not null } range && range.Length == segment.Length;
         if (segment.Kind == SequentialSegmentKind.Pulse)
             return TryReadUInt16(segment.Metadata, "pulseTStates", out _) && (!segment.Metadata.ContainsKey("pulseCount") || TryReadUInt16(segment.Metadata, "pulseCount", out _));
-        return segment.Kind == SequentialSegmentKind.Silence
-            && segment.Duration is { } duration
-            && duration.TotalMilliseconds is >= 1 and <= ushort.MaxValue;
+        return segment.Kind == SequentialSegmentKind.Silence && segment.Duration is { } duration && duration.TotalMilliseconds is >= 1 and <= ushort.MaxValue;
     }
 
     private static SequentialMediaSegment CreateBlock(long position, byte id, byte[] payload)

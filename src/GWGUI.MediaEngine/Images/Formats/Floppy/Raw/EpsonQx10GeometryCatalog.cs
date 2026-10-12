@@ -80,12 +80,7 @@ internal readonly record struct EpsonQx10TrackGeometry(int FirstSector, int Coun
 /// <param name = "Cylinders">Nombre de cylindres.</param>
 /// <param name = "Heads">Nombre de faces.</param>
 /// <param name = "Track">Fonction retournant la disposition d'un cylindre et d'une face.</param>
-internal sealed record EpsonQx10Geometry(
-    string FormatId,
-    int Cylinders,
-    int Heads,
-    Func<int, int, EpsonQx10TrackGeometry> Track
-)
+internal sealed record EpsonQx10Geometry(string FormatId, int Cylinders, int Heads, Func<int, int, EpsonQx10TrackGeometry> Track)
 {
     /// <summary>Énumère les dispositions de toutes les pistes dans l'ordre cylindre-face.</summary>
     public IEnumerable<EpsonQx10TrackGeometry> AllTracks

@@ -15,8 +15,5 @@ internal sealed class RareEncodedVisualizationPolicy : SectorImageVisualizationP
 
     public override uint IndexTimeTicks(SectorImage image, int cylinder) => Resolve(image).IndexTimeTicks;
 
-    private static RareTrackEncodingProfile Resolve(SectorImage image) =>
-        RareTrackEncodingProfiles.TryResolve(image.FormatId, out var profile)
-            ? profile
-            : throw new InvalidOperationException($"Aucun profil d'encodage rare n'est associé au format '{image.FormatId}'.");
+    private static RareTrackEncodingProfile Resolve(SectorImage image) => RareTrackEncodingProfiles.TryResolve(image.FormatId, out var profile) ? profile : throw new InvalidOperationException($"Aucun profil d'encodage rare n'est associé au format '{image.FormatId}'.");
 }

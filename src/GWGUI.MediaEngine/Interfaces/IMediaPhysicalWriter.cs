@@ -14,10 +14,5 @@ public interface IMediaPhysicalWriter
 
     bool CanWrite(MediaWritePlan plan, string deviceId);
 
-    Task<MediaPhysicalWriteResult> WriteAsync(
-        MediaWritePlan plan,
-        string deviceId,
-        IReadOnlyDictionary<string, string> options,
-        IProgress<MediaPhysicalWriteProgress>? progress = null,
-        CancellationToken cancellationToken = default);
+    Task<MediaPhysicalWriteResult> WriteAsync(MediaWritePlan plan, string deviceId, IReadOnlyDictionary<string, string> options, IProgress<MediaPhysicalWriteProgress>? progress = null, CancellationToken cancellationToken = default);
 }

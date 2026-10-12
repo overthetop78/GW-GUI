@@ -15,32 +15,20 @@ internal static class MediaImageDocumentFactory
     private static readonly IReadOnlyList<string> EmptyDiagnostics = [];
     private static readonly IReadOnlyDictionary<string, string> EmptyMetadata = new Dictionary<string, string>(StringComparer.Ordinal);
 
-    public static MediaImageDocument CreateFloppySector(
-        MediaSourceDescriptor source,
-        SectorImage image,
-        IReadOnlyDictionary<string, string>? metadata = null)
+    public static MediaImageDocument CreateFloppySector(MediaSourceDescriptor source, SectorImage image, IReadOnlyDictionary<string, string>? metadata = null)
     {
         ArgumentNullException.ThrowIfNull(image);
 
         return Create(source, image.FormatId, MediaKind.Floppy, new SectorMediaImageRepresentation(image), metadata);
     }
 
-    public static MediaImageDocument CreateFloppyFlux(
-        MediaSourceDescriptor source,
-        string formatId,
-        ProtectedTrackImage image,
-        IReadOnlyDictionary<string, string>? metadata = null)
+    public static MediaImageDocument CreateFloppyFlux(MediaSourceDescriptor source, string formatId, ProtectedTrackImage image, IReadOnlyDictionary<string, string>? metadata = null)
     {
         ArgumentNullException.ThrowIfNull(image);
 
         return Create(source, formatId, MediaKind.Floppy, new FluxMediaImageRepresentation(image), metadata);
     }
 
-    private static MediaImageDocument Create(
-        MediaSourceDescriptor source,
-        string formatId,
-        MediaKind mediaKind,
-        IMediaImageRepresentation representation,
-        IReadOnlyDictionary<string, string>? metadata = null)
+    private static MediaImageDocument Create(MediaSourceDescriptor source, string formatId, MediaKind mediaKind, IMediaImageRepresentation representation, IReadOnlyDictionary<string, string>? metadata = null)
         => new(source, formatId, mediaKind, representation, EmptyVolumes, EmptyDiagnostics, metadata ?? EmptyMetadata);
 }

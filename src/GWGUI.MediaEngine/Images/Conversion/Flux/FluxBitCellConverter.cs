@@ -3,9 +3,7 @@ namespace GWGUI.MediaEngine.Images.Conversion.Flux;
 /// <summary>Convertit sans secteurs des cellules binaires et des intervalles de flux uniformes.</summary>
 internal static class FluxBitCellConverter
 {
-    public static IReadOnlyList<uint> ToIntervals(
-        IReadOnlyList<bool> bits,
-        uint bitCellTicks)
+    public static IReadOnlyList<uint> ToIntervals(IReadOnlyList<bool> bits, uint bitCellTicks)
     {
         ArgumentNullException.ThrowIfNull(bits);
         if (bitCellTicks == 0)
@@ -23,10 +21,7 @@ internal static class FluxBitCellConverter
         return intervals;
     }
 
-    public static IReadOnlyList<bool> ToBits(
-        IReadOnlyList<uint> intervals,
-        uint indexTimeTicks,
-        uint bitCellTicks)
+    public static IReadOnlyList<bool> ToBits(IReadOnlyList<uint> intervals, uint indexTimeTicks, uint bitCellTicks)
     {
         ArgumentNullException.ThrowIfNull(intervals);
         if (bitCellTicks == 0)

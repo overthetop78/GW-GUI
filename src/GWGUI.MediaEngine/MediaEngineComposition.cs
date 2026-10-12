@@ -17,12 +17,7 @@ namespace GWGUI.MediaEngine;
 /// <summary>Assembles the shared media engine services without implementing format algorithms.</summary>
 public sealed class MediaEngineComposition
 {
-    private MediaEngineComposition(
-        MediaRecognitionComposition recognition,
-        MediaExplorer explorer,
-        MediaConversionComposition conversion,
-        MediaWritingComposition writing,
-        MediaVisualizationComposition visualization)
+    private MediaEngineComposition(MediaRecognitionComposition recognition, MediaExplorer explorer, MediaConversionComposition conversion, MediaWritingComposition writing, MediaVisualizationComposition visualization)
     {
         Recognition = recognition;
         Explorer = explorer;

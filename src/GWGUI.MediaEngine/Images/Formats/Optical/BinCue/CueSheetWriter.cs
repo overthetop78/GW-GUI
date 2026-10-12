@@ -8,10 +8,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
 /// <summary>Writes the supported CUE commands as UTF-8 without changing their declared structure.</summary>
 public sealed class CueSheetWriter
 {
-    public async Task WriteAsync(
-        CueSheetDocument sheet,
-        Stream destination,
-        CancellationToken cancellationToken = default)
+    public async Task WriteAsync(CueSheetDocument sheet, Stream destination, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(sheet);
         ArgumentNullException.ThrowIfNull(destination);
@@ -30,65 +27,38 @@ public sealed class CueSheetWriter
                 CueFileKind.WavePcm => CueSheetConstants.WaveFile,
                 _ => throw new NotSupportedException($"Unsupported CUE file type '{file.Kind}'.")
             };
-            await WriteLineAsync(
-                writer,
-                $"{CueSheetConstants.File} {Quote(file.DeclaredPath)} {type}",
-                cancellationToken).ConfigureAwait(false);
+            await WriteLineAsync(writer, $"{CueSheetConstants.File} {Quote(file.DeclaredPath)} {type}", cancellationToken).ConfigureAwait(false);
 
             foreach (var track in file.Tracks)
             {
                 var mode = FormatMode(track.Mode);
-                await WriteLineAsync(
-                    writer,
-                    $"{CueSheetConstants.Indent}{CueSheetConstants.Track} {track.Number:D2} {mode}",
-                    cancellationToken).ConfigureAwait(false);
+                await WriteLineAsync(writer, $"{CueSheetConstants.Indent}{CueSheetConstants.Track} {track.Number:D2} {mode}", cancellationToken).ConfigureAwait(false);
                 await WriteMetadataAsync(writer, track.Metadata, CueSheetConstants.Indent + CueSheetConstants.Indent, cancellationToken).ConfigureAwait(false);
                 if (track.Flags.Count > 0)
-                    await WriteLineAsync(
-                        writer,
-                        $"{CueSheetConstants.Indent}{CueSheetConstants.Indent}{CueSheetConstants.Flags} {string.Join(' ', track.Flags)}",
-                        cancellationToken).ConfigureAwait(false);
+                    await WriteLineAsync(writer, $"{CueSheetConstants.Indent}{CueSheetConstants.Indent}{CueSheetConstants.Flags} {string.Join(' ', track.Flags)}", cancellationToken).ConfigureAwait(false);
                 if (track.Isrc is not null)
-                    await WriteLineAsync(
-                        writer,
-                        $"{CueSheetConstants.Indent}{CueSheetConstants.Indent}{CueSheetConstants.Isrc} {track.Isrc}",
-                        cancellationToken).ConfigureAwait(false);
+                    await WriteLineAsync(writer, $"{CueSheetConstants.Indent}{CueSheetConstants.Indent}{CueSheetConstants.Isrc} {track.Isrc}", cancellationToken).ConfigureAwait(false);
                 if (track.PregapSectors > 0)
-                    await WriteLineAsync(
-                        writer,
-                        $"{CueSheetConstants.Indent}{CueSheetConstants.Indent}{CueSheetConstants.Pregap} {FormatTime(track.PregapSectors)}",
-                        cancellationToken).ConfigureAwait(false);
+                    await WriteLineAsync(writer, $"{CueSheetConstants.Indent}{CueSheetConstants.Indent}{CueSheetConstants.Pregap} {FormatTime(track.PregapSectors)}", cancellationToken).ConfigureAwait(false);
                 foreach (var index in track.Indexes.OrderBy(item => item.Number))
                 {
                     if (index.RelativeSector < 0)
                         throw new InvalidDataException("A CUE INDEX position cannot be negative in an output sheet.");
-                    await WriteLineAsync(
-                        writer,
-                        $"{CueSheetConstants.Indent}{CueSheetConstants.Indent}{CueSheetConstants.Index} {index.Number:D2} {FormatTime(index.RelativeSector)}",
-                        cancellationToken).ConfigureAwait(false);
+                    await WriteLineAsync(writer, $"{CueSheetConstants.Indent}{CueSheetConstants.Indent}{CueSheetConstants.Index} {index.Number:D2} {FormatTime(index.RelativeSector)}", cancellationToken).ConfigureAwait(false);
                 }
                 if (track.PostgapSectors > 0)
-                    await WriteLineAsync(
-                        writer,
-                        $"{CueSheetConstants.Indent}{CueSheetConstants.Indent}{CueSheetConstants.Postgap} {FormatTime(track.PostgapSectors)}",
-                        cancellationToken).ConfigureAwait(false);
+                    await WriteLineAsync(writer, $"{CueSheetConstants.Indent}{CueSheetConstants.Indent}{CueSheetConstants.Postgap} {FormatTime(track.PostgapSectors)}", cancellationToken).ConfigureAwait(false);
             }
         }
 
         await writer.FlushAsync(cancellationToken).ConfigureAwait(false);
     }
 
-    private static async Task WriteMetadataAsync(
-        StreamWriter writer,
-        IReadOnlyDictionary<string, string> metadata,
-        string indent,
-        CancellationToken cancellationToken)
+    private static async Task WriteMetadataAsync(StreamWriter writer, IReadOnlyDictionary<string, string> metadata, string indent, CancellationToken cancellationToken)
     {
         foreach (var pair in metadata.OrderBy(pair => pair.Key, StringComparer.OrdinalIgnoreCase))
         {
-            var command = pair.Key.StartsWith(CueSheetConstants.Rem + ":", StringComparison.OrdinalIgnoreCase)
-                ? $"{CueSheetConstants.Rem} {pair.Key[(CueSheetConstants.Rem.Length + 1)..]}"
-                : pair.Key.ToUpperInvariant();
+            var command = pair.Key.StartsWith(CueSheetConstants.Rem + ":", StringComparison.OrdinalIgnoreCase) ? $"{CueSheetConstants.Rem} {pair.Key[(CueSheetConstants.Rem.Length + 1)..]}" : pair.Key.ToUpperInvariant();
             if (command is not CueSheetConstants.Title
                 and not CueSheetConstants.Performer
                 and not CueSheetConstants.Songwriter

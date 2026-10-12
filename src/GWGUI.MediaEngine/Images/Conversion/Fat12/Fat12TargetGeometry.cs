@@ -1,11 +1,6 @@
 namespace GWGUI.MediaEngine.Images.Conversion.Fat12;
 
-public readonly record struct Fat12TargetGeometry(
-    string FormatId,
-    int SectorSize,
-    int Cylinders,
-    int Heads,
-    int SectorsPerTrack)
+public readonly record struct Fat12TargetGeometry(string FormatId, int SectorSize, int Cylinders, int Heads, int SectorsPerTrack)
 {
     public int TotalSectors => checked(Cylinders * Heads * SectorsPerTrack);
 

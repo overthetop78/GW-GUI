@@ -15,12 +15,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.Alcohol;
 /// <summary>Reads validated autonomous version 1 CD MDS descriptors and their MDF track ranges.</summary>
 public sealed class AlcoholMdsReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { OpticalImageFormatIds.AlcoholMds }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.Optical }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { OpticalImageFormatIds.AlcoholMds }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Optical }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
     private static readonly IReadOnlyList<ReadOnlyMemory<byte>> SupportedSignatures = [AlcoholMdsFormat.HeaderSignature];
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
@@ -32,9 +29,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
 
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId)) return false;
         try
@@ -48,9 +43,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
         }
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var header = await ReadHeaderAsync(context, cancellationToken).ConfigureAwait(false);
         if (!AlcoholMdsFormat.IsSupportedVersion(header.MajorVersion))
@@ -128,10 +121,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
             });
     }
 
-    private static async Task<AlcoholMdsSessionBlock> ReadSessionAsync(
-        MediaRecognitionContext context,
-        ReadOnlyMemory<byte> memory,
-        CancellationToken cancellationToken)
+    private static async Task<AlcoholMdsSessionBlock> ReadSessionAsync(MediaRecognitionContext context, ReadOnlyMemory<byte> memory, CancellationToken cancellationToken)
     {
         var bytes = memory.Span;
         var start = BinaryPrimitives.ReadInt32LittleEndian(bytes[0..4]);
@@ -179,10 +169,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
         return new AlcoholMdsSessionBlock(number, start, resolvedEnd, firstTrack, lastTrack, tracks);
     }
 
-    private static async Task<string> ReadDataPathAsync(
-        MediaRecognitionContext context,
-        long footerOffset,
-        CancellationToken cancellationToken)
+    private static async Task<string> ReadDataPathAsync(MediaRecognitionContext context, long footerOffset, CancellationToken cancellationToken)
     {
         var footer = await ReadRangeAsync(context, footerOffset, AlcoholMdsConstants.TrackFooterSize, cancellationToken).ConfigureAwait(false);
         var nameOffset = BinaryPrimitives.ReadUInt32LittleEndian(footer.Span.Slice(AlcoholMdsConstants.FooterFileNameOffset, 4));
@@ -194,11 +181,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
         return Path.GetFullPath(Path.IsPathFullyQualified(name) ? name : Path.Combine(mdsDirectory, name));
     }
 
-    private static async Task<string> ReadNullTerminatedStringAsync(
-        MediaRecognitionContext context,
-        long offset,
-        bool wide,
-        CancellationToken cancellationToken)
+    private static async Task<string> ReadNullTerminatedStringAsync(MediaRecognitionContext context, long offset, bool wide, CancellationToken cancellationToken)
     {
         const int maximumBytes = 4096;
         if (offset < 0 || offset >= context.Length) throw new InvalidDataException("An MDS filename offset is outside the descriptor.");
@@ -219,9 +202,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
         return System.Text.Encoding.Latin1.GetString(bytes.Span[..terminator]);
     }
 
-    private static async ValueTask<MdsHeader> ReadHeaderAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    private static async ValueTask<MdsHeader> ReadHeaderAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var memory = await ReadRangeAsync(context, 0, AlcoholMdsConstants.HeaderSize, cancellationToken).ConfigureAwait(false);
         var bytes = memory.Span;
@@ -239,11 +220,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
             sessionsOffset);
     }
 
-    private static async ValueTask<ReadOnlyMemory<byte>> ReadRangeAsync(
-        MediaRecognitionContext context,
-        long offset,
-        int length,
-        CancellationToken cancellationToken)
+    private static async ValueTask<ReadOnlyMemory<byte>> ReadRangeAsync(MediaRecognitionContext context, long offset, int length, CancellationToken cancellationToken)
     {
         if (offset < 0 || length < 0 || offset > context.Length - length)
             throw new InvalidDataException("An MDS structure exceeds the descriptor file.");

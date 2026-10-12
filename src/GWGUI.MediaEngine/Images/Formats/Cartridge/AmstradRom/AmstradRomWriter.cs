@@ -14,12 +14,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Cartridge.AmstradRom;
 public sealed class AmstradRomWriter : IMediaImageWriter
 {
     private const int BankLength = 16 * 1024;
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { DiskImageFormatIds.AmstradRom }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedExtensions =
-        new[] { DiskImageFileExtensions.Rom, DiskImageFileExtensions.Bin }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { DiskImageFormatIds.AmstradRom }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedExtensions = new[] { DiskImageFileExtensions.Rom, DiskImageFileExtensions.Bin }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public AmstradRomWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
@@ -32,11 +29,7 @@ public sealed class AmstradRomWriter : IMediaImageWriter
 
     public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) => SupportedFormatIds.Contains(targetFormatId) && SupportedExtensions.Contains(targetExtension) && TryGetBanks(document, out _);
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         if (!CanWrite(document, targetFormatId, Path.GetExtension(outputPath).ToLowerInvariant())
             || !TryGetBanks(document, out var banks))

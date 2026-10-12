@@ -18,11 +18,8 @@ namespace GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Amstrad;
 public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
 {
     private const int DefaultSampleRate = 44100;
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav, TapeImageFormatIds.Voc }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Amstrad }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.Tzx, TapeImageFormatIds.Wav, TapeImageFormatIds.Voc }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Amstrad }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => AmstradCpcTapeConstants.EncoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
@@ -30,9 +27,7 @@ public sealed class AmstradCpcTapeEncoder : ISequentialMediaEncoder
 
     public bool CanEncode(SequentialEncodeRequest request) => SupportedFormats.Contains(request.TargetFormatId) && SupportedMachines.Contains(request.MachineId) && request.Blocks.Count > 0 && request.Blocks.All(block => block.Data.Length is > 0 and <= 2048) && request.RetainedSegments.Count == 0;
 
-    public Task<SequentialMediaImageRepresentation> EncodeAsync(
-        SequentialEncodeRequest request,
-        CancellationToken cancellationToken = default)
+    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
         if (!CanEncode(request))
             throw new InvalidDataException("CPC cassette encoding requires one or more decoded file blocks of at most 2048 bytes.");

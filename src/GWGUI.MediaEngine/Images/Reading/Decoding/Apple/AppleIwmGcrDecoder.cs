@@ -72,14 +72,7 @@ public abstract class AppleIwmGcrDecoder : IFluxDecoder
 
     /// <summary>Recherche le bloc de données apparié, lit ses tags et données puis valide son checksum.</summary>
     /// <param name = "stream">Flux à parcourir.</param><param name = "headerEnd">Position suivant l'adresse, en bits.</param><param name = "address">Adresse décodée.</param><param name = "structures">Collection recevant la structure.</param><param name = "bytes">Collection recevant les données décodées.</param><param name = "pairedData">Positions des marques déjà appariées.</param><returns>Résultat des données et position finale reconnue.</returns>
-    private static AppleIwmDataDecodeResult FindAndDecodeData(
-        FluxBitstream stream,
-        int headerEnd,
-        AppleIwmAddressDecodeResult? address,
-        List<FluxStructure> structures,
-        List<byte> bytes,
-        HashSet<int> pairedData
-    )
+    private static AppleIwmDataDecodeResult FindAndDecodeData(FluxBitstream stream, int headerEnd, AppleIwmAddressDecodeResult? address, List<FluxStructure> structures, List<byte> bytes, HashSet<int> pairedData)
     {
         var dataOffset = address?.Valid == true ? FindMark(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + AppleIwmGcrFormat.DataSearchBitCount), AppleIwmGcrFormat.DataMark) : -1;
         if (dataOffset < 0)
@@ -126,14 +119,7 @@ public abstract class AppleIwmGcrDecoder : IFluxDecoder
 
     /// <summary>Ajoute le secteur IWM et la structure décrivant son adresse.</summary>
     /// <param name = "offset">Position de l'adresse, en bits.</param><param name = "headerEnd">Position suivant l'adresse, en bits.</param><param name = "address">Adresse décodée.</param><param name = "data">Données décodées.</param><param name = "sectors">Collection recevant le secteur.</param><param name = "structures">Collection recevant la structure.</param>
-    private static void AddSectorAndAddress(
-        int offset,
-        int headerEnd,
-        AppleIwmAddressDecodeResult? address,
-        AppleIwmDataDecodeResult data,
-        List<DecodedSector> sectors,
-        List<FluxStructure> structures
-    )
+    private static void AddSectorAndAddress(int offset, int headerEnd, AppleIwmAddressDecodeResult? address, AppleIwmDataDecodeResult data, List<DecodedSector> sectors, List<FluxStructure> structures)
     {
         bool? integrity = address?.Valid == false || data.Valid == false ? false : data.Valid is null ? null : true;
         sectors.Add(new(
@@ -172,12 +158,7 @@ public abstract class AppleIwmGcrDecoder : IFluxDecoder
 
     /// <summary>Ajoute les marques de données qui n'ont été associées à aucune adresse.</summary>
     /// <param name = "stream">Flux à parcourir.</param><param name = "trackBitLength">Longueur logique de la piste, en bits.</param><param name = "pairedData">Positions déjà appariées.</param><param name = "structures">Collection recevant les structures.</param>
-    private static void AddUnpairedDataStructures(
-        FluxBitstream stream,
-        int trackBitLength,
-        HashSet<int> pairedData,
-        List<FluxStructure> structures
-    )
+    private static void AddUnpairedDataStructures(FluxBitstream stream, int trackBitLength, HashSet<int> pairedData, List<FluxStructure> structures)
     {
         for (var offset = 0; offset < trackBitLength && offset + AppleIwmGcrFormat.MarkBitCount <= stream.Bits.Length; offset++)
         {
@@ -196,11 +177,7 @@ public abstract class AppleIwmGcrDecoder : IFluxDecoder
     private sealed record AppleIwmDataDecodeResult(byte[]? Data, byte[]? Tag, bool? Valid, int StructureEnd);
     /// <summary>Exécute le traitement « Try Read Symbols » propre à ce format.</summary>
     /// <param name = "stream">Flux binaire source.</param><param name = "offset">Offset de départ en bits.</param><param name = "count">Nombre de symboles à lire.</param><returns>Symboles lus, ou <see langword="null"/> si la plage est incomplète.</returns>
-    private static byte[]? TryReadSymbols(
-        FluxBitstream stream,
-        int offset,
-        int count
-    )
+    private static byte[]? TryReadSymbols(FluxBitstream stream, int offset, int count)
     {
         if (offset + count * BitPrimitives.BitsPerByte > stream.Bits.Length)
             return null;
@@ -213,12 +190,7 @@ public abstract class AppleIwmGcrDecoder : IFluxDecoder
 
     /// <summary>Exécute le traitement « Find Mark » propre à ce format.</summary>
     /// <param name = "stream">Flux à parcourir.</param><param name = "start">Offset de départ inclus, en bits.</param><param name = "end">Offset de fin exclu, en bits.</param><param name = "mark">Marque recherchée.</param><returns>Offset de la marque en bits, ou <c>-1</c>.</returns>
-    private static int FindMark(
-        FluxBitstream stream,
-        int start,
-        int end,
-        IReadOnlyList<byte> mark
-    )
+    private static int FindMark(FluxBitstream stream, int start, int end, IReadOnlyList<byte> mark)
     {
         for (var offset = start; offset + mark.Count * BitPrimitives.BitsPerByte <= end; offset++)
             if (FluxBitReader.MatchBytes(stream, offset, mark))

@@ -9,12 +9,7 @@ public sealed class DiskCopyWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFile
 {
     private readonly GWGUI.MediaEngine.Interfaces.IAtomicImageFileWriter files = fileSystem ?? new GWGUI.MediaEngine.Interfaces.AtomicImageFileWriter();
     /// <summary>Écrit une image avec les métadonnées d'en-tête indiquées.</summary>
-    public async Task WriteAsync(
-        SectorImage image,
-        string path,
-        DiskCopyImage? source = null,
-        CancellationToken cancellationToken = default
-    )
+    public async Task WriteAsync(SectorImage image, string path, DiskCopyImage? source = null, CancellationToken cancellationToken = default)
     {
         var metadata = source ?? CreateMetadata(image, Path.GetFileNameWithoutExtension(path));
         var bytes = Build(image, metadata);
@@ -22,10 +17,7 @@ public sealed class DiskCopyWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFile
     }
 
     /// <summary>Sérialise l'en-tête, les blocs et leurs tags facultatifs.</summary>
-    internal static byte[] Build(
-        SectorImage image,
-        DiskCopyImage metadata
-    )
+    internal static byte[] Build(SectorImage image, DiskCopyImage metadata)
     {
         var blocks = image.AvailableBlocks.OrderBy(block => block.LogicalBlock).ToArray();
         if (blocks.Length != image.BlockCount || blocks.Select((block, index) => block.LogicalBlock == index).Any(valid => !valid))
@@ -53,10 +45,7 @@ public sealed class DiskCopyWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFile
     }
 
     /// <summary>Crée des métadonnées DiskCopy cohérentes pour une image sans en-tête source.</summary>
-    private static DiskCopyImage CreateMetadata(
-        SectorImage image,
-        string name
-    )
+    private static DiskCopyImage CreateMetadata(SectorImage image, string name)
     {
         var diskFormat = image.Capacity switch
         {
@@ -71,10 +60,7 @@ public sealed class DiskCopyWriter(GWGUI.MediaEngine.Interfaces.IAtomicImageFile
     }
 
     /// <summary>Écrit le nom Pascal DiskCopy sans dépasser son champ de 64 octets.</summary>
-    private static void WriteName(
-        Span<byte> container,
-        IReadOnlyList<byte> nameBytes
-    )
+    private static void WriteName(Span<byte> container, IReadOnlyList<byte> nameBytes)
     {
         var length = Math.Min(nameBytes.Count, DiskCopyLayout.MaximumNameLength);
         container[DiskCopyLayout.NameLengthOffset] = checked((byte)length);

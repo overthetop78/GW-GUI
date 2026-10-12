@@ -16,12 +16,9 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.WiiU;
 /// <summary>Lit les images de disque Nintendo Wii U WUD et WUX.</summary>
 public sealed class WiiUReader : IMediaImageReader
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { DiskImageFormatIds.NintendoWiiU }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds =
-        new[] { MediaKind.Optical }.ToFrozenSet();
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { DiskImageFormatIds.NintendoWiiU }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaKind> SupportedMediaKinds = new[] { MediaKind.Optical }.ToFrozenSet();
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Blocks }.ToFrozenSet();
 
     IReadOnlySet<string> IMediaImageReader.FormatIds => SupportedFormatIds;
     IReadOnlySet<string> IMediaImageReader.Extensions => WiiUFormat.Extensions;
@@ -31,9 +28,7 @@ public sealed class WiiUReader : IMediaImageReader
     IReadOnlySet<MediaRepresentationKind> IMediaImageReader.RepresentationKinds => SupportedRepresentations;
     bool IMediaImageReader.SupportsFormatId(string formatId) => SupportedFormatIds.Contains(formatId);
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (!WiiUFormat.Extensions.Contains(context.Extension)
@@ -53,9 +48,7 @@ public sealed class WiiUReader : IMediaImageReader
         return await TryReadIndexTableAsync(context, wux, cancellationToken).ConfigureAwait(false) is not null;
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken)
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (!WiiUFormat.Extensions.Contains(context.Extension)
@@ -105,10 +98,7 @@ public sealed class WiiUReader : IMediaImageReader
             metadata);
     }
 
-    private static async Task<uint[]?> TryReadIndexTableAsync(
-        MediaRecognitionContext context,
-        WiiUWuxHeader header,
-        CancellationToken cancellationToken)
+    private static async Task<uint[]?> TryReadIndexTableAsync(MediaRecognitionContext context, WiiUWuxHeader header, CancellationToken cancellationToken)
     {
         var bytes = await context.ReadAsync(header.IndexOffset, checked(header.EntryCount * sizeof(uint)), cancellationToken).ConfigureAwait(false);
         var indexes = new uint[header.EntryCount];

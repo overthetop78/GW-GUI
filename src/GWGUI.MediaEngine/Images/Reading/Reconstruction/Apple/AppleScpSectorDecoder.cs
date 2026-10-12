@@ -57,18 +57,8 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
         return result;
     }
 
-    private static void ReportTrack(
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        ScpTrack track,
-        int completed,
-        int total) =>
-        progress?.Report(new(
-            GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.TrackDecoded,
-            $"Apple · {track.Cylinder}:{track.Head}",
-            completed,
-            total,
-            Cylinder: track.Cylinder,
-            Head: track.Head));
+    private static void ReportTrack(IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, ScpTrack track, int completed, int total) =>
+        progress?.Report(new(GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.TrackDecoded, $"Apple · {track.Cylinder}:{track.Head}", completed, total, Cylinder: track.Cylinder, Head: track.Head));
 
     /// <summary>SÃ©lectionne le meilleur candidat d'une adresse selon son intÃ©gritÃ©.</summary>
     /// <param name="logical">NumÃ©ro de bloc logique Ã  attribuer au secteur sÃ©lectionnÃ©.</param>

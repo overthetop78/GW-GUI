@@ -29,10 +29,8 @@ public sealed class SequentialEncoderRegistry
         return compatible.Count switch
         {
             1 => compatible[0],
-            0 => throw new NotSupportedException(
-                $"No sequential encoder accepts format '{request.TargetFormatId}' for machine '{request.MachineId}'."),
-            _ => throw new InvalidOperationException(
-                $"Multiple sequential encoders accept format '{request.TargetFormatId}' for machine '{request.MachineId}'.")
+            0 => throw new NotSupportedException($"No sequential encoder accepts format '{request.TargetFormatId}' for machine '{request.MachineId}'."),
+            _ => throw new InvalidOperationException($"Multiple sequential encoders accept format '{request.TargetFormatId}' for machine '{request.MachineId}'.")
         };
     }
 

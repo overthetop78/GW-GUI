@@ -30,10 +30,7 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
     }
 
     /// <inheritdoc/>
-    public override IReadOnlyList<TrackSector> CreateTrackSectors(
-        SectorImage image,
-        IReadOnlyList<(SectorBlock Block, SectorAddress Address)> items
-    )
+    public override IReadOnlyList<TrackSector> CreateTrackSectors(SectorImage image, IReadOnlyList<(SectorBlock Block, SectorAddress Address)> items)
     {
         if ((image.FormatId.Equals(DiskImageFormatIds.AppleIIProDos, StringComparison.OrdinalIgnoreCase) || image.FormatId.Equals(DiskImageFormatIds.AppleIIISos, StringComparison.OrdinalIgnoreCase)) && image.Cylinders < DiskGeometryConstants.EightyTrackCylinderCount)
         {
@@ -57,10 +54,7 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
         ? new(address.Cylinder / LisaFileWareGeometry.HeadCount, address.Cylinder % LisaFileWareGeometry.HeadCount, address.Number) 
         : address;
     /// <inheritdoc/>
-    public override IReadOnlyDictionary<string, int>? TrackAttributes(
-        SectorImage image,
-        int sectorCount
-    )
+    public override IReadOnlyDictionary<string, int>? TrackAttributes(SectorImage image, int sectorCount)
     {
         if (image.FormatId.StartsWith(DiskImageFormatIds.AppleIIPrefix, StringComparison.OrdinalIgnoreCase))
             return new Dictionary<string, int>
@@ -82,10 +76,7 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
     }
 
     /// <inheritdoc/>
-    public override uint BitCellTicks(
-        SectorImage image,
-        int cylinder
-    )
+    public override uint BitCellTicks(SectorImage image, int cylinder)
     {
         var encoderId = EncoderId(image);
         if (encoderId.Equals(FluxCodecIds.AppleIIGcr, StringComparison.OrdinalIgnoreCase) || encoderId.Equals(FluxCodecIds.AppleRwts18, StringComparison.OrdinalIgnoreCase))
@@ -96,10 +87,7 @@ internal sealed class AppleVisualizationPolicy : SectorImageVisualizationPolicy
     }
 
     /// <inheritdoc/>
-    public override uint IndexTimeTicks(
-        SectorImage image,
-        int cylinder
-    )
+    public override uint IndexTimeTicks(SectorImage image, int cylinder)
     {
         var encoderId = EncoderId(image);
         if (encoderId.Equals(FluxCodecIds.AppleLisaFileWareGcr, StringComparison.OrdinalIgnoreCase))

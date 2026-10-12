@@ -23,10 +23,7 @@ public sealed class AmigaScpSectorImageReader(IScpReader scpReader, FluxDecoderR
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
         => await ReadAsync(path, null, cancellationToken).ConfigureAwait(false);
 
-    public async Task<SectorImage> ReadAsync(
-        string path,
-        IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken = default)
+    public async Task<SectorImage> ReadAsync(string path, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         var candidates = new Dictionary<SectorAddress, List<(DecodedSector Sector, int Revolution)>>();

@@ -18,9 +18,7 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape;
 /// <summary>Assembles the sequential media codecs shared by conversion and exploration.</summary>
 public sealed class SequentialMediaComposition
 {
-    private SequentialMediaComposition(
-        SequentialDecoderRegistry decoders,
-        SequentialEncoderRegistry encoders)
+    private SequentialMediaComposition(SequentialDecoderRegistry decoders, SequentialEncoderRegistry encoders)
     {
         Decoders = decoders;
         Encoders = encoders;

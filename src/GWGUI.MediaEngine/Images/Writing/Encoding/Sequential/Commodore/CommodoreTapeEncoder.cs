@@ -14,11 +14,8 @@ namespace GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Commodore;
 /// <summary>Encodes validated Commodore bytes into standard ROM pulse frames for TAP or PCM WAV output.</summary>
 public sealed class CommodoreTapeEncoder : ISequentialMediaEncoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.CommodoreTap, TapeImageFormatIds.Wav }
-            .ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Commodore }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.CommodoreTap, TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Commodore }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => CommodoreTapConstants.EncoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
@@ -33,9 +30,7 @@ public sealed class CommodoreTapeEncoder : ISequentialMediaEncoder
         && (!request.TargetFormatId.Equals(TapeImageFormatIds.Wav, StringComparison.OrdinalIgnoreCase)
             || TryReadSampleRate(request.Parameters, out _));
 
-    public Task<SequentialMediaImageRepresentation> EncodeAsync(
-        SequentialEncodeRequest request,
-        CancellationToken cancellationToken = default)
+    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
         if (!CanEncode(request))
             throw new InvalidDataException("Commodore tape encoding requires validated blocks without retained undecoded segments.");
@@ -91,9 +86,7 @@ public sealed class CommodoreTapeEncoder : ISequentialMediaEncoder
         return new SequentialMediaImageRepresentation(cycles.Count, elapsed, segments);
     }
 
-    private static SequentialMediaImageRepresentation EncodeWave(
-        IReadOnlyList<int> cycles,
-        IReadOnlyDictionary<string, string> parameters)
+    private static SequentialMediaImageRepresentation EncodeWave(IReadOnlyList<int> cycles, IReadOnlyDictionary<string, string> parameters)
     {
         TryReadSampleRate(parameters, out var sampleRate);
         var samples = new List<short>();

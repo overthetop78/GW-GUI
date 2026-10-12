@@ -45,10 +45,7 @@ public sealed class DiskImageRecognitionRegistry
     public Task<SectorImage> ReadAsync(string path, string? requestedFormatId, CancellationToken cancellationToken)
         => readingService is null ? ReadAsync(new DiskImageRecognitionContext(path, requestedFormatId), cancellationToken) : ReadThroughCommonChainAsync(path, requestedFormatId, cancellationToken);
 
-    private async Task<SectorImage> ReadThroughCommonChainAsync(
-        string path,
-        string? requestedFormatId,
-        CancellationToken cancellationToken)
+    private async Task<SectorImage> ReadThroughCommonChainAsync(string path, string? requestedFormatId, CancellationToken cancellationToken)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(path);
         var source = new MediaSourceDescriptor(path, [], RequestedFormatId: requestedFormatId);
@@ -58,15 +55,12 @@ public sealed class DiskImageRecognitionRegistry
             var document = await readingService!.ReadAsync(source, cancellationToken).ConfigureAwait(false);
             if (document.Representation is SectorMediaImageRepresentation sectors) return sectors.Image;
 
-            throw new NotSupportedException(
-                $"The legacy sector-image adapter cannot expose the '{document.Representation.RepresentationKind}' representation read from '{path}'.");
+            throw new NotSupportedException($"The legacy sector-image adapter cannot expose the '{document.Representation.RepresentationKind}' representation read from '{path}'.");
         }
         catch (AggregateException exception)
         {
             var context = new DiskImageRecognitionContext(path, requestedFormatId);
-            var failures = exception.InnerExceptions
-                .Select((failure, index) => new DiskImageRecognitionFailure($"common-reader-{index + 1}", failure))
-                .ToArray();
+            var failures = exception.InnerExceptions.Select((failure, index) => new DiskImageRecognitionFailure($"common-reader-{index + 1}", failure)).ToArray();
             throw DiskImageRecognitionExceptions.AllCandidatesRejected(context, failures);
         }
         catch (NotSupportedException exception)

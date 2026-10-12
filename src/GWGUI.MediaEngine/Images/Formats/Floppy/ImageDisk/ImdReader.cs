@@ -52,10 +52,7 @@ public sealed class ImdReader : IMediaImageReader
     /// <summary>Lit un fichier ImageDisk et construit son image sectorielle.</summary>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default) => (await ReadDetailedAsync(path, cancellationToken).ConfigureAwait(false)).SectorImage;
     /// <summary>Lit un fichier ImageDisk en conservant ses pistes, modes, cartes et états.</summary>
-    public async Task<ImdImage> ReadDetailedAsync(
-        string path,
-        CancellationToken cancellationToken = default
-    )
+    public async Task<ImdImage> ReadDetailedAsync(string path, CancellationToken cancellationToken = default)
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
         return ReadDetailed(data, cancellationToken);
@@ -64,10 +61,7 @@ public sealed class ImdReader : IMediaImageReader
     /// <summary>Analyse une séquence ImageDisk et construit son image sectorielle.</summary>
     internal static SectorImage Read(ReadOnlySpan<byte> data, CancellationToken cancellationToken = default) => ReadDetailed(data, cancellationToken).SectorImage;
     /// <summary>Analyse une séquence ImageDisk en conservant les informations réinscriptibles.</summary>
-    public static ImdImage ReadDetailed(
-        ReadOnlySpan<byte> data,
-        CancellationToken cancellationToken = default
-    )
+    public static ImdImage ReadDetailed(ReadOnlySpan<byte> data, CancellationToken cancellationToken = default)
     {
         var offset = FindTrackDataOffset(data, out var comment);
         var tracks = new List<ImdTrack>();
@@ -96,10 +90,7 @@ public sealed class ImdReader : IMediaImageReader
         return new(comment, tracks, BuildImage(tracks.SelectMany(track => track.Sectors).ToArray()));
     }
 
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken
-    )
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !((IMediaImageReader)this).SupportsFormatId(context.RequestedFormatId))
             return false;
@@ -109,20 +100,14 @@ public sealed class ImdReader : IMediaImageReader
         return signature.Span.SequenceEqual(ImdFormat.Signature);
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken
-    )
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var data = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
         var image = ReadDetailed(data.Span, cancellationToken);
         return MediaImageDocumentFactory.CreateFloppySector(context.Source, image.SectorImage, ImdMetadataFunctions.Create(image));
     }
 
-    private static int FindTrackDataOffset(
-        ReadOnlySpan<byte> data,
-        out string comment
-    )
+    private static int FindTrackDataOffset(ReadOnlySpan<byte> data, out string comment)
     {
         var commentEnd = data.IndexOf(ImdFormat.CommentTerminator);
         if (commentEnd < ImdFormat.SignatureLength || !data[..ImdFormat.SignatureLength].SequenceEqual(ImdFormat.Signature))
@@ -131,10 +116,7 @@ public sealed class ImdReader : IMediaImageReader
         return commentEnd + ImdLayout.MapEntrySize;
     }
 
-    private static ImdTrackHeader ReadTrackHeader(
-        ReadOnlySpan<byte> data,
-        ref int offset
-    )
+    private static ImdTrackHeader ReadTrackHeader(ReadOnlySpan<byte> data, ref int offset)
     {
         EnsureAvailable(data, offset, ImdLayout.TrackHeaderSize, ImdSection.TrackHeader);
         var header = data.Slice(offset, ImdLayout.TrackHeaderSize);
@@ -147,12 +129,7 @@ public sealed class ImdReader : IMediaImageReader
         return new(mode, header[ImdLayout.CylinderOffset], flags, (int)(flags & ImdHeadFlags.HeadMask), sectorCount, header[ImdLayout.SectorSizeCodeOffset]);
     }
 
-    private static byte[] ReadByteMap(
-        ReadOnlySpan<byte> data,
-        ref int offset,
-        int count,
-        ImdSection section
-    )
+    private static byte[] ReadByteMap(ReadOnlySpan<byte> data, ref int offset, int count, ImdSection section)
     {
         EnsureAvailable(data, offset, count, section);
         var map = data.Slice(offset, count).ToArray();
@@ -160,12 +137,7 @@ public sealed class ImdReader : IMediaImageReader
         return map;
     }
 
-    private static int[] ReadSectorSizes(
-        ReadOnlySpan<byte> data,
-        ref int offset,
-        int count,
-        byte sizeCode
-    )
+    private static int[] ReadSectorSizes(ReadOnlySpan<byte> data, ref int offset, int count, byte sizeCode)
     {
         if (sizeCode != ImdLayout.ExplicitSectorSizeCode)
         {
@@ -183,12 +155,7 @@ public sealed class ImdReader : IMediaImageReader
         return sizes;
     }
 
-    private static byte[] ReadSectorRecord(
-        ReadOnlySpan<byte> data,
-        ref int offset,
-        ImdSectorRecordType type,
-        int size
-    )
+    private static byte[] ReadSectorRecord(ReadOnlySpan<byte> data, ref int offset, ImdSectorRecordType type, int size)
     {
         if (!type.HasData())
             return new byte[size];
@@ -219,12 +186,7 @@ public sealed class ImdReader : IMediaImageReader
         return new(formatId, blockSize, cylinders, heads, sectorsPerTrack, blocks, sectors.Any(sector => sector.Size != blockSize), ordered.Sum(sector => (long)sector.Size), ordered.Length);
     }
 
-    private static void EnsureAvailable(
-        ReadOnlySpan<byte> data,
-        int offset,
-        int count,
-        ImdSection section
-    )
+    private static void EnsureAvailable(ReadOnlySpan<byte> data, int offset, int count, ImdSection section)
     {
         if (offset < 0 || count < 0 || offset > data.Length - count)
             throw ImdExceptions.TruncatedSection(section, offset, count, Math.Max(0, data.Length - offset));

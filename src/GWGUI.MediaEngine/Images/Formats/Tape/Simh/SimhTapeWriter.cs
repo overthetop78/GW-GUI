@@ -14,10 +14,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.Simh;
 /// <summary>Writes SIMH data records, even-byte padding, and metadata markers in source order.</summary>
 public sealed class SimhTapeWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.SimhTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.SimhTap }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public SimhTapeWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
@@ -34,11 +32,7 @@ public sealed class SimhTapeWriter : IMediaImageWriter
         return SupportedFormatIds.Contains(targetFormatId) && SimhTapeFormat.Extensions.Contains(targetExtension) && document.MediaKind == MediaKind.Tape && TryGetObjects(document, out _);
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension) || !TryGetObjects(document, out var objects))

@@ -10,10 +10,7 @@ internal sealed class ScpFamilyProbe(IScpReader scpReader, FluxDecoderRegistry d
 {
     public Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(string path, CancellationToken cancellationToken) => DetectAsync(path, null, cancellationToken);
 
-    public async Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(
-        string path,
-        IProgress<ScpExplorationProgress>? progress,
-        CancellationToken cancellationToken)
+    public async Task<IReadOnlySet<ScpFormatFamily>> DetectAsync(string path, IProgress<ScpExplorationProgress>? progress, CancellationToken cancellationToken)
     {
         var scp = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         var samples = ScpTrackSampler.Sample(scp.Tracks);
@@ -35,10 +32,7 @@ internal sealed class ScpFamilyProbe(IScpReader scpReader, FluxDecoderRegistry d
         return found;
     }
 
-    private async Task<bool> ProbeFamilyAsync(
-        ScpFamilyProbeDefinition definition,
-        IReadOnlyList<ScpTrack> samples,
-        CancellationToken cancellationToken)
+    private async Task<bool> ProbeFamilyAsync(ScpFamilyProbeDefinition definition, IReadOnlyList<ScpTrack> samples, CancellationToken cancellationToken)
     {
         var recognized = 0;
         await Parallel.ForEachAsync(

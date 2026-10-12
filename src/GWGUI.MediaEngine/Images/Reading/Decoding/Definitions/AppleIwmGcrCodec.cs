@@ -4,10 +4,7 @@ internal static class AppleIwmGcrCodec
 {
     /// <summary>Décode les symboles 6-and-2 en données taguées et reconstruit les quatre symboles de checksum.</summary>
     /// <param name = "symbols">Symboles décodés de la table GCR, sans identifiant de secteur ni checksum final.</param><param name = "checksum">Reçoit les quatre valeurs de checksum reconstruites.</param><returns>Douze octets de tags suivis des 512 octets sectoriels.</returns>
-    public static byte[] Decode(
-        ReadOnlySpan<byte> symbols,
-        out byte[] checksum
-    )
+    public static byte[] Decode(ReadOnlySpan<byte> symbols, out byte[] checksum)
     {
         var b1 = new byte[AppleIwmGcrFormat.GroupByteCount];
         var b2 = new byte[AppleIwmGcrFormat.GroupByteCount];

@@ -12,10 +12,8 @@ namespace GWGUI.MediaEngine.Images.Writing.Encoding.Sequential.Atari;
 /// <summary>Encodes validated Atari serial blocks as CAS data chunks while retaining unrelated source chunks.</summary>
 public sealed class AtariCassetteEncoder : ISequentialMediaEncoder
 {
-    private static readonly IReadOnlySet<string> SupportedFormats =
-        new[] { TapeImageFormatIds.AtariCas }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<string> SupportedMachines =
-        new[] { DiskSystemIds.Atari8Bit }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedFormats = new[] { TapeImageFormatIds.AtariCas }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<string> SupportedMachines = new[] { DiskSystemIds.Atari8Bit }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     public string Id => AtariCasConstants.EncoderId;
     public IReadOnlySet<string> FormatIds => SupportedFormats;
@@ -30,9 +28,7 @@ public sealed class AtariCassetteEncoder : ISequentialMediaEncoder
             && request.Blocks.All(block => block.IntegrityValid == true && block.Data.Length <= ushort.MaxValue);
     }
 
-    public Task<SequentialMediaImageRepresentation> EncodeAsync(
-        SequentialEncodeRequest request,
-        CancellationToken cancellationToken = default)
+    public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)
     {
         if (!CanEncode(request))
             throw new InvalidDataException("Atari CAS encoding requires checksum-valid blocks no larger than 65535 bytes.");

@@ -12,10 +12,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
 /// <summary>Writes one autonomous binary file per optical track and publishes its CUE descriptor last.</summary>
 public sealed class BinCueWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { OpticalImageFormatIds.BinCue }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds =
-        new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { OpticalImageFormatIds.BinCue }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentationKinds = new[] { MediaRepresentationKind.OpticalTracks }.ToFrozenSet();
     private readonly CueSheetWriter cueSheets;
 
     public BinCueWriter(CueSheetWriter? cueSheets = null)
@@ -45,11 +43,7 @@ public sealed class BinCueWriter : IMediaImageWriter
         return catalogs.Length == 1;
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var fullCuePath = Path.GetFullPath(outputPath);
         var extension = Path.GetExtension(fullCuePath).ToLowerInvariant();
@@ -95,22 +89,14 @@ public sealed class BinCueWriter : IMediaImageWriter
             .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.OrdinalIgnoreCase);
     }
 
-    private static async Task WriteTrackAsync(
-        OpticalTrackDescriptor track,
-        Stream output,
-        CancellationToken cancellationToken)
+    private static async Task WriteTrackAsync(OpticalTrackDescriptor track, Stream output, CancellationToken cancellationToken)
     {
         if (track.StoredPregapSectors > 0)
             await CopyAsync(track.DataSource, track.StoredPregapSourceOffset!.Value, checked(track.StoredPregapSectors * track.StoredSectorSize), output, cancellationToken).ConfigureAwait(false);
         await CopyAsync(track.DataSource, track.SourceOffset, checked(track.SectorCount * track.StoredSectorSize), output, cancellationToken).ConfigureAwait(false);
     }
 
-    private static async Task CopyAsync(
-        GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData source,
-        long sourceOffset,
-        long length,
-        Stream output,
-        CancellationToken cancellationToken)
+    private static async Task CopyAsync(GWGUI.MediaFileSystems.Interfaces.IMediaRandomAccessData source, long sourceOffset, long length, Stream output, CancellationToken cancellationToken)
     {
         var buffer = new byte[64 * DataSizeConstants.BytesPerKibibyte];
         long copied = 0;

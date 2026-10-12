@@ -14,10 +14,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Tape.Wav;
 /// <summary>Writes explicit interleaved integer PCM segments without resampling or mixing channels.</summary>
 public sealed class WavTapeWriter : IMediaImageWriter
 {
-    private static readonly IReadOnlySet<string> SupportedFormatIds =
-        new[] { TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations =
-        new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
+    private static readonly IReadOnlySet<string> SupportedFormatIds = new[] { TapeImageFormatIds.Wav }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    private static readonly IReadOnlySet<MediaRepresentationKind> SupportedRepresentations = new[] { MediaRepresentationKind.Sequential }.ToFrozenSet();
     private readonly IAtomicImageFileWriter files;
 
     public WavTapeWriter(IAtomicImageFileWriter? files = null) => this.files = files ?? new AtomicImageFileWriter();
@@ -34,11 +32,7 @@ public sealed class WavTapeWriter : IMediaImageWriter
         return SupportedFormatIds.Contains(targetFormatId) && WavTapeFormat.Extensions.Contains(targetExtension) && document.MediaKind == MediaKind.Tape && TryGetProfile(document, out _) && TryGetDataRanges(document, out _);
     }
 
-    public async Task<IReadOnlyList<string>> WriteAsync(
-        MediaImageDocument document,
-        string outputPath,
-        string targetFormatId,
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var extension = Path.GetExtension(outputPath).ToLowerInvariant();
         if (!CanWrite(document, targetFormatId, extension)
@@ -52,12 +46,7 @@ public sealed class WavTapeWriter : IMediaImageWriter
         return [outputPath];
     }
 
-    private static async Task WriteWaveAsync(
-        Stream output,
-        PcmProfile profile,
-        IReadOnlyList<MediaDataRange> ranges,
-        long dataLength,
-        CancellationToken cancellationToken)
+    private static async Task WriteWaveAsync(Stream output, PcmProfile profile, IReadOnlyList<MediaDataRange> ranges, long dataLength, CancellationToken cancellationToken)
     {
         var header = new byte[WavConstants.RiffHeaderSize + WavConstants.ChunkHeaderSize + WavConstants.PcmFormatChunkSize + WavConstants.ChunkHeaderSize];
         WriteIdentifier(header, 0, WavConstants.RiffIdentifier);

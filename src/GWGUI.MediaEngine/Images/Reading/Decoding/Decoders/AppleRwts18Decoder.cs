@@ -46,10 +46,7 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
 
     /// <summary>Lit et valide l'adresse RWTS18 suivant une marque reconnue.</summary>
     /// <param name = "bits">Bits de la piste.</param><param name = "offset">Position de la marque d'adresse, en bits.</param><returns>Adresse validée, ou <see langword="null"/> si un champ est invalide.</returns>
-    private static AppleRwts18Address? TryReadAddress(
-        IReadOnlyList<bool> bits,
-        int offset
-    )
+    private static AppleRwts18Address? TryReadAddress(IReadOnlyList<bool> bits, int offset)
     {
         var cursor = offset + AppleRwts18Format.AddressMarkBitCount;
         var address = AppleBitLatch.TryReadBytes(bits, ref cursor, AppleRwts18Format.AddressByteCount);
@@ -60,14 +57,7 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
 
     /// <summary>Ajoute les structures d'adresse et de données ainsi que le secteur RWTS18.</summary>
     /// <param name = "offset">Position de l'adresse, en bits.</param><param name = "address">Adresse validée.</param><param name = "data">Données éventuellement reconnues.</param><param name = "structures">Collection recevant les structures.</param><param name = "decodedBytes">Collection recevant les octets décodés.</param><param name = "sectors">Collection recevant le secteur.</param>
-    private static void AddSectorAndStructures(
-        int offset,
-        AppleRwts18Address address,
-        (byte[] Data, bool Valid, int StartOffset, int EndOffset)? data,
-        List<FluxStructure> structures,
-        List<byte> decodedBytes,
-        List<DecodedSector> sectors
-    )
+    private static void AddSectorAndStructures(int offset, AppleRwts18Address address, (byte[] Data, bool Valid, int StartOffset, int EndOffset)? data, List<FluxStructure> structures, List<byte> decodedBytes, List<DecodedSector> sectors)
     {
         structures.Add(new(
                 FluxStructureKind.AppleAddress,
@@ -116,10 +106,7 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
     private sealed record AppleRwts18Address(byte Track, byte Sector, int Cursor);
     /// <summary>Recherche et lit le bloc de données RWTS18 suivant une adresse.</summary>
     /// <param name = "bits">Bits de la piste.</param><param name = "offset">Position de recherche initiale, en bits.</param><returns>Données, validité et limites du bloc, ou <see langword="null"/> si aucun bloc n'est validé.</returns>
-    private static (byte[] Data, bool Valid, int StartOffset, int EndOffset)? TryReadData(
-        IReadOnlyList<bool> bits,
-        int offset
-    )
+    private static (byte[] Data, bool Valid, int StartOffset, int EndOffset)? TryReadData(IReadOnlyList<bool> bits, int offset)
     {
         var cursor = offset;
         var stream = AppleBitLatch.TryReadBytes(bits, ref cursor, AppleRwts18Format.DataReadWindowByteCount);
@@ -142,10 +129,7 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
 
     /// <summary>Convertit les symboles d'un enregistrement et valide son épilogue.</summary>
     /// <param name = "stream">Octets lus dans la fenêtre RWTS18.</param><param name = "start">Position de l'identifiant modifiable.</param><returns>Données et validité du checksum, ou <see langword="null"/> si les symboles ou l'épilogue sont invalides.</returns>
-    private static (byte[] Data, bool Valid)? TryDecodeDataRecord(
-        IReadOnlyList<byte> stream,
-        int start
-    )
+    private static (byte[] Data, bool Valid)? TryDecodeDataRecord(IReadOnlyList<byte> stream, int start)
     {
         var values = new byte[AppleRwts18Format.PayloadWithChecksumSymbolCount];
         for (var index = 0; index < values.Length; index++)

@@ -26,10 +26,7 @@ public sealed class MediaConversionComposition
 {
     private readonly MediaRecognitionComposition recognition;
 
-    internal MediaConversionComposition(
-        MediaRecognitionComposition recognition,
-        ScpSectorDecodingComposition scpDecoding,
-        SequentialMediaComposition sequentialMedia)
+    internal MediaConversionComposition(MediaRecognitionComposition recognition, ScpSectorDecodingComposition scpDecoding, SequentialMediaComposition sequentialMedia)
     {
         ArgumentNullException.ThrowIfNull(recognition);
         ArgumentNullException.ThrowIfNull(scpDecoding);

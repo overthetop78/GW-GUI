@@ -57,10 +57,7 @@ public sealed class ScpReader : IScpReader, IMediaImageReader
     /// <exception cref = "NotSupportedException">Le conteneur utilise une variante SCP non prise en charge.</exception>
     /// <exception cref = "OperationCanceledException"><paramref name = "cancellationToken"/> demande l'annulation de l'attente.</exception>
     public Task<ScpImage> ReadAsync(string path, CancellationToken cancellationToken = default) => _fileCache.GetOrAddAsync(path, ReadFileAsync, cancellationToken);
-    async ValueTask<bool> IMediaImageReader.CanReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken
-    )
+    async ValueTask<bool> IMediaImageReader.CanReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         if (context.RequestedFormatId is not null && !SupportedFormatIds.Contains(context.RequestedFormatId))
             return false;
@@ -70,10 +67,7 @@ public sealed class ScpReader : IScpReader, IMediaImageReader
         return signature.Span.SequenceEqual(ScpFormatConstants.FileSignature);
     }
 
-    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(
-        MediaRecognitionContext context,
-        CancellationToken cancellationToken
-    )
+    async Task<MediaImageDocument> IMediaImageReader.ReadAsync(MediaRecognitionContext context, CancellationToken cancellationToken)
     {
         var data = await context.ReadBytesAsync(cancellationToken).ConfigureAwait(false);
         cancellationToken.ThrowIfCancellationRequested();
@@ -170,12 +164,7 @@ public sealed class ScpReader : IScpReader, IMediaImageReader
     /// <returns>Piste interprétée ; chaque intervalle de flux est exprimé en pas temporels SCP.</returns>
     /// <exception cref = "InvalidDataException">La piste, un descripteur ou les données de flux sont incomplets ou incohérents.</exception>
     /// <exception cref = "OverflowException">Une taille, une position ou un intervalle de flux dépasse la plage numérique prise en charge.</exception>
-    private static ScpTrack ReadTrack(
-        ReadOnlySpan<byte> data,
-        int offset,
-        int expectedTrack,
-        ScpHeader header
-    )
+    private static ScpTrack ReadTrack(ReadOnlySpan<byte> data, int offset, int expectedTrack, ScpHeader header)
     {
         var descriptorSize = checked(ScpFormatConstants.TrackDescriptorHeaderSize + header.Revolutions * ScpFormatConstants.RevolutionDescriptorSize);
         ScpDataValidator.Require(data, offset, descriptorSize, ScpSection.TrackHeader, expectedTrack);

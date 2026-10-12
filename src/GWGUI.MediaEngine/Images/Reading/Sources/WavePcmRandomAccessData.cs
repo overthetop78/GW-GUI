@@ -85,10 +85,7 @@ public sealed class WavePcmRandomAccessData : IMediaRandomAccessData
         return new WavePcmRandomAccessData(fullPath, dataOffset, dataLength);
     }
 
-    public async ValueTask ReadExactlyAsync(
-        long offset,
-        Memory<byte> destination,
-        CancellationToken cancellationToken = default)
+    public async ValueTask ReadExactlyAsync(long offset, Memory<byte> destination, CancellationToken cancellationToken = default)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(offset);
         if (offset > Length || destination.Length > Length - offset)

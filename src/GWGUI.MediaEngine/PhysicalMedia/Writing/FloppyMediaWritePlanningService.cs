@@ -16,11 +16,7 @@ namespace GWGUI.MediaEngine.PhysicalMedia.Writing;
 /// <summary>Builds neutral physical floppy write plans from recognized images.</summary>
 public sealed class FloppyMediaWritePlanningService(DiskImageExplorer explorer)
 {
-    public async Task<MediaWritePlan> CreatePlanAsync(
-        string sourcePath,
-        string? formatId = null,
-        int scpRevolution = 0,
-        CancellationToken cancellationToken = default)
+    public async Task<MediaWritePlan> CreatePlanAsync(string sourcePath, string? formatId = null, int scpRevolution = 0, CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sourcePath);
         if (Path.GetExtension(sourcePath).Equals(".scp", StringComparison.OrdinalIgnoreCase))
@@ -59,12 +55,7 @@ public sealed class FloppyMediaWritePlanningService(DiskImageExplorer explorer)
         return new MediaWritePlan(MediaKind.Floppy, MediaRepresentationKind.Flux, units, Enumerable.Range(0, units.Count).ToArray(), new Dictionary<string, string>(StringComparer.Ordinal));
     }
 
-    private static MediaPhysicalDataUnit CreateUnit(
-        int cylinder,
-        int head,
-        GWGUI.MediaEngine.Images.Models.Flux.FluxRevolution revolution,
-        uint sourceTickNanoseconds,
-        int position)
+    private static MediaPhysicalDataUnit CreateUnit(int cylinder, int head, GWGUI.MediaEngine.Images.Models.Flux.FluxRevolution revolution, uint sourceTickNanoseconds, int position)
     {
         var intervals = revolution.FluxIntervals.Select(interval => checked(interval * sourceTickNanoseconds)).ToArray();
         var track = new MediaFluxTrackData([new MediaFluxRevolutionData(checked(revolution.IndexTimeTicks * sourceTickNanoseconds), intervals)]);

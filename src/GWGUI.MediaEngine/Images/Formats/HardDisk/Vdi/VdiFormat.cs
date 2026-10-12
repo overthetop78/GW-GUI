@@ -10,8 +10,7 @@ internal static class VdiFormat
 {
     public static readonly ReadOnlyMemory<byte> Signature = CreateSignature();
     public static readonly IReadOnlySet<uint> Versions = new[] { HardDiskFormatConstants.VdiVersion1_1 }.ToFrozenSet();
-    public static readonly IReadOnlySet<string> Extensions =
-        new[] { DiskImageFileExtensions.Vdi }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public static readonly IReadOnlySet<string> Extensions = new[] { DiskImageFileExtensions.Vdi }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
     public static readonly IReadOnlySet<HardDiskImageVariant> Variants = new[]
     {
         HardDiskImageVariant.Fixed,

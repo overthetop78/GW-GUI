@@ -86,28 +86,13 @@ internal sealed class GdiDescriptorReader
         return values;
     }
 
-    private static int ParsePositive(string value, string field) =>
-        int.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var result) && result > 0
-            ? result
-            : throw new InvalidDataException($"The GDI {field} is invalid.");
+    private static int ParsePositive(string value, string field) => int.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var result) && result > 0 ? result : throw new InvalidDataException($"The GDI {field} is invalid.");
 
-    private static int ParseNonNegative(string value, string field) =>
-        int.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var result) && result >= 0
-            ? result
-            : throw new InvalidDataException($"The GDI {field} is invalid.");
+    private static int ParseNonNegative(string value, string field) => int.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var result) && result >= 0 ? result : throw new InvalidDataException($"The GDI {field} is invalid.");
 
-    private static long ParseNonNegativeLong(string value, string field) =>
-        long.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var result) && result >= 0
-            ? result
-            : throw new InvalidDataException($"The GDI {field} is invalid.");
+    private static long ParseNonNegativeLong(string value, string field) => long.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out var result) && result >= 0 ? result : throw new InvalidDataException($"The GDI {field} is invalid.");
 }
 
 internal sealed record GdiDescriptor(IReadOnlyList<GdiTrackDeclaration> Tracks);
 
-internal sealed record GdiTrackDeclaration(
-    int Number,
-    long Lba,
-    int Control,
-    int SectorSize,
-    string FileName,
-    long FileOffset);
+internal sealed record GdiTrackDeclaration(int Number, long Lba, int Control, int SectorSize, string FileName, long FileOffset);
