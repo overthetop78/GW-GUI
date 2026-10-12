@@ -2,15 +2,9 @@ namespace GWGUI.Emulation.Microsoft.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
-    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) =>
-        type == ControllerType.Joystick
-            ? [EmulationControllerVisualIds.QuickShot,
-                EmulationControllerVisualIds.CompetitionPro5000,
-                EmulationControllerVisualIds.ZipstikSuperPro]
-            : null;
+    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type) => type == ControllerType.Joystick ? [EmulationControllerVisualIds.QuickShot, EmulationControllerVisualIds.CompetitionPro5000, EmulationControllerVisualIds.ZipstikSuperPro] : null;
 
-    private static string? DefaultVisualId(ControllerType type) =>
-        type == ControllerType.Joystick ? EmulationControllerVisualIds.QuickShot : null;
+    private static string? DefaultVisualId(ControllerType type) => type == ControllerType.Joystick ? EmulationControllerVisualIds.QuickShot : null;
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
         VisualCommandIds(ControllerType type) => type == ControllerType.Joystick
@@ -32,14 +26,7 @@ internal static partial class InputSettingsFunctions
         _ => $"Emulation.Controller.{type}"
     };
 
-    private static IReadOnlyDictionary<string, string> ToStrings(
-        IReadOnlyDictionary<string, EmulationKey>? values) => values?.ToDictionary(
-            item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal)
-        ?? new Dictionary<string, string>();
+    private static IReadOnlyDictionary<string, string> ToStrings(IReadOnlyDictionary<string, EmulationKey>? values) => values?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>();
 
-    private static IReadOnlyDictionary<string, EmulationKey> ToKeys(
-        IReadOnlyDictionary<string, string> values) => values
-        .Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _))
-        .ToDictionary(item => item.Key,
-            item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
+    private static IReadOnlyDictionary<string, EmulationKey> ToKeys(IReadOnlyDictionary<string, string> values) => values.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
 }

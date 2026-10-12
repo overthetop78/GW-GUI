@@ -10,12 +10,10 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
     IEmulationInputSettingsManager, IEmulationStorageSettingsManager,
     IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(MicrosoftEmulationModule).Assembly, "GWGUI.Emulation.Microsoft.Resources.Emulation");
+    private static readonly EmulationModuleLocalization Localization = new(typeof(MicrosoftEmulationModule).Assembly, "GWGUI.Emulation.Microsoft.Resources.Emulation");
     private readonly ConfigurationStore _store;
 
-    public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) =>
-        Localization.TryGetString(key, culture, out value);
+    public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) => Localization.TryGetString(key, culture, out value);
 
     public MicrosoftEmulationModule(string configurationDirectory, string pathBase,
         HttpClient httpClient, string coreDirectory)
@@ -28,8 +26,7 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
     public string BrandImageResourceName =>
         $"{EmulationModuleConstants.AssetResourcePrefix}.microsoft.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
-    public EmulationSettingsVisibility DefaultVisibility { get; } = new(
-        Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
+    public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -40,8 +37,7 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
     public EmulationMachineSettings Describe(string machineId, IEmulationConfiguration? configuration = null)
     {
         var model = ModelCatalog.Get(machineId);
-        var current = configuration as MachineConfiguration
-            ?? (MachineConfiguration)CreateConfiguration(machineId);
+        var current = configuration as MachineConfiguration ?? (MachineConfiguration)CreateConfiguration(machineId);
         var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
         {
             EmulationMachineTab.Rom => false,
@@ -52,18 +48,15 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
                 || model.SupportsCompactDiscDrive,
             _ => item.Value
         });
-        return new EmulationMachineSettings(machineId, new EmulationSettingsVisibility(tabs),
-            SettingsDescriptionFunctions.Create(current));
+        return new EmulationMachineSettings(machineId, new EmulationSettingsVisibility(tabs), SettingsDescriptionFunctions.Create(current));
     }
 
     public IEmulationConfiguration CreateConfiguration(string machineId)
     {
         var model = ModelCatalog.Get(machineId);
-        return new MachineConfiguration(model.Id, EmulatorCatalog.GetAll(model.Id)
-                .FirstOrDefault()?.Id ?? string.Empty,
+        return new MachineConfiguration(model.Id, EmulatorCatalog.GetAll(model.Id).FirstOrDefault()?.Id ?? string.Empty,
             Options: new Dictionary<string, string>(StringComparer.Ordinal),
-            Id: Guid.NewGuid(), Controllers: Enumerable.Repeat(ControllerType.Joystick,
-                model.ControllerPortCount).ToArray(), Input: new InputConfiguration(), Media: []);
+            Id: Guid.NewGuid(), Controllers: Enumerable.Repeat(ControllerType.Joystick, model.ControllerPortCount).ToArray(), Input: new InputConfiguration(), Media: []);
     }
 
     public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId)
@@ -88,9 +81,7 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
     {
         if (configuration is not MachineConfiguration current)
             throw new ArgumentException(nameof(configuration));
-        var options = new Dictionary<string, string>(
-            current.Options ?? new Dictionary<string, string>(StringComparer.Ordinal),
-            StringComparer.Ordinal);
+        var options = new Dictionary<string, string>(current.Options ?? new Dictionary<string, string>(StringComparer.Ordinal), StringComparer.Ordinal);
         foreach (var value in values)
         {
             if (value.Value is null) options.Remove(value.Key);
@@ -100,9 +91,7 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
     }
 
     public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) =>
-        new Dictionary<string, string>((configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration))).Options
-            ?? new Dictionary<string, string>(StringComparer.Ordinal), StringComparer.Ordinal);
+        new Dictionary<string, string>((configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration))).Options ?? new Dictionary<string, string>(StringComparer.Ordinal), StringComparer.Ordinal);
 
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration)
     {
@@ -110,38 +99,23 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
         return ConfigurationSummaryFunctions.Create(current);
     }
 
-    public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) =>
-        InputSettingsFunctions.Describe(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => InputSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
 
-    public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration,
-        EmulationInputSettings settings) => InputSettingsFunctions.Apply(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)), settings);
+    public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => InputSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
-    public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default) => SaveConfigurationAsync(configuration, cancellationToken);
+    public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => SaveConfigurationAsync(configuration, cancellationToken);
 
-    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) =>
-        StorageSettingsFunctions.Describe(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) => StorageSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
 
-    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration,
-        EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)), settings);
+    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
     public ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration,
         EmulationRuntimeServices services, CancellationToken cancellationToken = default) =>
-        ValueTask.FromException<EmulationMachineRuntime>(new NotSupportedException(
-            "The Microsoft machine adapter has not been added yet."));
+        ValueTask.FromException<EmulationMachineRuntime>(new NotSupportedException("The Microsoft machine adapter has not been added yet."));
 
-    public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(
-        CancellationToken cancellationToken = default) =>
-        (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
+    public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
 
-    public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default) => configuration is MachineConfiguration current
-        ? SaveValidatedAsync(current, cancellationToken)
-        : ValueTask.FromException(new ArgumentException(nameof(configuration)));
+    public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => configuration is MachineConfiguration current ? SaveValidatedAsync(current, cancellationToken) : ValueTask.FromException(new ArgumentException(nameof(configuration)));
 
     private ValueTask SaveValidatedAsync(MachineConfiguration configuration,
         CancellationToken cancellationToken)
@@ -173,8 +147,7 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
     {
         cancellationToken.ThrowIfCancellationRequested();
         _ = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
-        return ValueTask.FromException<IEmulationConfiguration>(
-            new NotSupportedException("No Microsoft emulator adapter is installed."));
+        return ValueTask.FromException<IEmulationConfiguration>(new NotSupportedException("No Microsoft emulator adapter is installed."));
     }
 
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
@@ -191,8 +164,7 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
     {
         cancellationToken.ThrowIfCancellationRequested();
         _ = ModelCatalog.Get(machineId);
-        return ValueTask.FromException<string>(
-            new NotSupportedException("No Microsoft emulator adapter is installed."));
+        return ValueTask.FromException<string>(new NotSupportedException("No Microsoft emulator adapter is installed."));
     }
 
     public ValueTask DeleteConfigurationAsync(Guid configurationId,

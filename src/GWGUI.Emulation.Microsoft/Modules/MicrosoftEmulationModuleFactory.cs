@@ -11,10 +11,6 @@ public sealed class MicrosoftEmulationModuleFactory : IEmulationModuleFactory
     {
         ArgumentNullException.ThrowIfNull(context);
         Directory.CreateDirectory(Path.Combine(context.ModuleDirectory, "Configurations"));
-        return new MicrosoftEmulationModule(
-            Path.Combine(context.ModuleDirectory, "Configurations"),
-            context.DataDirectory,
-            context.HttpClient,
-            Path.Combine(context.ModuleDirectory, "Core"));
+        return new MicrosoftEmulationModule(Path.Combine(context.ModuleDirectory, "Configurations"), context.DataDirectory, context.HttpClient, Path.Combine(context.ModuleDirectory, "Core"));
     }
 }

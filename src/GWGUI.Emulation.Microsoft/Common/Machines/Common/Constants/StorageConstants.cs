@@ -6,6 +6,5 @@ internal static class StorageSettingsFunctionsConstants
 {
     internal const string CompactDiscDriveLabel = "Optical disc";
 
-    internal static readonly IReadOnlyList<string> XboxExtensions =
-        [DiskImageFileExtensions.Iso];
+    internal static readonly IReadOnlyList<string> XboxExtensions = [DiskImageFileExtensions.Iso];
 }
