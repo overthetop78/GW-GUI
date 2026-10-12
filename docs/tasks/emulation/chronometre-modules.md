@@ -279,3 +279,4 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-12 06:45:08 | 47:49:24 | -39:49:24 | Reprise. Panasonic/3DO : descriptions, entrée publique et ressources. |
 | 2026-10-12 07:31:49 | 48:36:05 | -40:36:05 | Reprise. Classement des ressources et détourages des derniers modules. |
 | 2026-10-12 08:17:20 | 49:21:36 | -41:21:36 | Reprise. Panasonic : installation officielle et validation native du BIOS local. |
+| 2026-10-12 09:09:55 | 50:14:11 | -42:14:11 | Reprise. Apple : descriptions par adaptateur et invariants numériques. |

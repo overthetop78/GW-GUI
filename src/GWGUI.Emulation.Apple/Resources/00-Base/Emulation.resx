@@ -36,11 +36,7 @@
   <data name="Emulation.Apple.Value.MonochromeWhite" xml:space="preserve"><value>Monochrome (White)</value></data>
   <data name="Emulation.Apple.Setting.VideoMode" xml:space="preserve"><value>Video Mode</value></data>
   <data name="Emulation.Apple.Value.HalfScanlines" xml:space="preserve"><value>Half Scanlines</value></data>
-  <data name="Emulation.Apple.Value.560By192" xml:space="preserve"><value>560 x 192</value></data>
-  <data name="Emulation.Apple.Value.280By192" xml:space="preserve"><value>280 x 192</value></data>
   <data name="Emulation.Apple.Setting.VideoStyle" xml:space="preserve"><value>Video Style</value></data>
-  <data name="Emulation.Apple.Value.60Hz" xml:space="preserve"><value>60Hz</value></data>
-  <data name="Emulation.Apple.Value.50Hz" xml:space="preserve"><value>50Hz</value></data>
   <data name="Emulation.Apple.Setting.VideoRefreshRate" xml:space="preserve"><value>Video Refresh Rate</value></data>
   <data name="Emulation.Apple.Value.First" xml:space="preserve"><value>First</value></data>
   <data name="Emulation.Apple.Value.Previous" xml:space="preserve"><value>Previous</value></data>

@@ -1,12 +1,14 @@
+using static GWGUI.Emulation.Apple.Common.Machines.Common.Functions.SettingsDescriptionFunctions;
 using GWGUI.Emulation.Apple.Emulators.AppleWin.Dictionaries;
 using AppleWinOptions = GWGUI.Emulation.Apple.Emulators.AppleWin.Constants.OptionConstants;
 
-namespace GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
+namespace GWGUI.Emulation.Apple.Emulators.AppleWin.Functions;
 
-internal static partial class SettingsDescriptionFunctions
+internal static class SettingsDescriptionFunctions
 {
-    private static void AddAppleII(List<EmulationSettingsBlock> blocks, MachineConfiguration configuration)
+    internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
     {
+        var blocks = new List<EmulationSettingsBlock>();
         CoreOption Option(string key) => AppleWinOptionCatalog.All.Single(option => option.Key == key);
         blocks.Add(Block(EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware,
             new EmulationSettingsField(SettingsConstants.Firmware, EmulationMachineTab.Rom,
@@ -24,5 +26,6 @@ internal static partial class SettingsDescriptionFunctions
         blocks.Add(Block(EmulationMachineTab.Storage, StorageSettingsFunctionsConstants.ResourcePlaylist,
             Native(configuration, Option(AppleWinOptions.PlaylistStart), EmulationMachineTab.Storage),
             Native(configuration, Option(AppleWinOptions.FloppyMultidrive), EmulationMachineTab.Storage)));
+        return blocks;
     }
 }

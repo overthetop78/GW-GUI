@@ -114,14 +114,14 @@ internal static class AppleWinOptionCatalog
             "Half Scanlines", "Half Scanlines",
             [
                 new("Half Scanlines", "Half Scanlines", ResourceKey: SettingsChoiceConstants.ValueHalfScanlines),
-                new("560 x 192", "560 x 192", ResourceKey: SettingsChoiceConstants.Value560By192),
-                new("280 x 192", "280 x 192", ResourceKey: SettingsChoiceConstants.Value280By192),
+                new("560 x 192", "560 x 192", InvariantDisplayValue: GWGUI.Emulation.Apple.Common.Machines.Common.Functions.SettingsDescriptionFunctions.Resolution(560, 192)),
+                new("280 x 192", "280 x 192", InvariantDisplayValue: GWGUI.Emulation.Apple.Common.Machines.Common.Functions.SettingsDescriptionFunctions.Resolution(280, 192)),
             ], ResourceKey: SettingsTextConstants.SettingVideoStyle),
         new(OptionConstants.VideoRefreshRate, "Video Refresh Rate", null, "system",
             "60Hz", "60Hz",
             [
-                new("60Hz", "60Hz", ResourceKey: SettingsChoiceConstants.Value60Hz),
-                new("50Hz", "50Hz", ResourceKey: SettingsChoiceConstants.Value50Hz),
+                new("60Hz", "60Hz", InvariantDisplayValue: EmulationVideoFunctions.FormatFrequency(60)),
+                new("50Hz", "50Hz", InvariantDisplayValue: EmulationVideoFunctions.FormatFrequency(50)),
             ], ResourceKey: SettingsTextConstants.SettingVideoRefreshRate),
         new(OptionConstants.DiskControlDrive, "Disk Control Drive", null, "disk_control",
             "Drive 1", "Drive 1",

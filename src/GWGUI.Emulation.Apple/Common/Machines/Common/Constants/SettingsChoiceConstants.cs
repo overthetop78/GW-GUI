@@ -2,10 +2,6 @@ namespace GWGUI.Emulation.Apple.Common.Machines.Common.Constants;
 
 internal static class SettingsChoiceConstants
 {
-    internal const string Value280By192 = "Emulation.Apple.Value.280By192";
-    internal const string Value50Hz = "Emulation.Apple.Value.50Hz";
-    internal const string Value560By192 = "Emulation.Apple.Value.560By192";
-    internal const string Value60Hz = "Emulation.Apple.Value.60Hz";
     internal const string ValueBWTV = "Emulation.Apple.Value.BWTV";
     internal const string ValueColorCompositeIdealized = "Emulation.Apple.Value.ColorCompositeIdealized";
     internal const string ValueColorCompositeMonitor = "Emulation.Apple.Value.ColorCompositeMonitor";

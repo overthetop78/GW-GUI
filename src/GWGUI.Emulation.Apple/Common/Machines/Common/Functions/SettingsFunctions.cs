@@ -19,8 +19,7 @@ internal static partial class SettingsDescriptionFunctions
                     $"{hardware.MainMemoryBytes / SettingsConstants.Kibibyte} KiB")),
             Audio(configuration)
         };
-        if (configuration.Family == MachineFamily.AppleII) AddAppleII(blocks, configuration);
-        else AddMacintosh(blocks, configuration);
+        if (new Engine().Adapter(configuration) is IEmulatorSettings settings) blocks.AddRange(settings.DescribeSettings(configuration));
         return blocks;
     }
 
@@ -49,21 +48,23 @@ internal static partial class SettingsDescriptionFunctions
             values.Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture),
                 string.Empty, $"{value} {unit}")).ToArray());
 
-    private static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option,
+    internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option,
         EmulationMachineTab tab)
     {
         var resource = option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}.");
         var value = configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue);
         var choices = option.Values.Select((choice, index) => new EmulationSettingsChoice(choice.Value,
-            choice.ResourceKey ?? throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}.")))
+            choice.ResourceKey ?? (choice.InvariantDisplayValue is not null ? string.Empty : throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}.")), choice.InvariantDisplayValue))
             .ToArray();
         return new(option.Key, tab, tab.ToString(), resource, EmulationSettingsEditor.Selection, value, choices,
-            RequiresRestart: RuntimeOptionFunctions.RequiresRestart(configuration.Core, option.Key));
+            RequiresRestart: false);
     }
 
-    private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string resource, string value) =>
+    internal static string Resolution(int width, int height) => $"{width} × {height}";
+
+    internal static EmulationSettingsField Information(string id, EmulationMachineTab tab, string resource, string value) =>
         new(id, tab, tab.ToString(), resource, EmulationSettingsEditor.Information, value, IsEnabled: false);
 
-    private static EmulationSettingsBlock Block(EmulationMachineTab tab, string resource,
+    internal static EmulationSettingsBlock Block(EmulationMachineTab tab, string resource,
         params EmulationSettingsField[] fields) => new(resource, tab, resource, fields);
 }
