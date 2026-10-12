@@ -9,7 +9,4 @@ public static class ControllerConstants
     internal const int MaximumAxisMagnitude = short.MaxValue;
     internal const int PercentageDivisor = 100;
     internal const short NeutralAxis = 0;
-    internal const uint TriggerAnalogIndex = 2;
-    internal const uint LeftTriggerId = 12;
-    internal const uint RightTriggerId = 13;
 }

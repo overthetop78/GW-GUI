@@ -1,5 +1,5 @@
 
-namespace GWGUI.Emulation.Apple.Emulators.Common.Functions;
+namespace GWGUI.Emulation.Apple.Common.Functions;
 
 internal static class AudioFunctions
 {

@@ -1,6 +1,7 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Apple.Common.Services;
+namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;
 
 internal sealed class InputFrameStore
 {

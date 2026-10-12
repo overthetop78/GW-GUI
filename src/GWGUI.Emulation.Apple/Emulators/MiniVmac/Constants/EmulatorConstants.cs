@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Contracts;
+using GWGUI.Emulation.Apple.Emulators.Common.Functions;
 namespace GWGUI.Emulation.Apple.Emulators.MiniVmac.Constants;
 
 internal static class EmulatorConstants

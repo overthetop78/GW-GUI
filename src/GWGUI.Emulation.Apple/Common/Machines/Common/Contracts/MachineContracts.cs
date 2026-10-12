@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interop;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Apple.Common.Machines.Common.Contracts;

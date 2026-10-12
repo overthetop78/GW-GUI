@@ -1,6 +1,7 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
+namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
 
 internal static class KeyboardFunctions
 {

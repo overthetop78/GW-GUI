@@ -1,5 +1,5 @@
-using static GWGUI.Emulation.Apple.Common.Machines.Common.Functions.SettingsDescriptionFunctions;
 using GWGUI.Emulation.Apple.Emulators.MiniVmac.Dictionaries;
+using static GWGUI.Emulation.Apple.Common.Machines.Common.Functions.SettingsDescriptionFunctions;
 using MiniVmacConstants = GWGUI.Emulation.Apple.Emulators.MiniVmac.Constants.EmulatorConstants;
 using MiniVmacOptions = GWGUI.Emulation.Apple.Emulators.MiniVmac.Constants.OptionConstants;
 

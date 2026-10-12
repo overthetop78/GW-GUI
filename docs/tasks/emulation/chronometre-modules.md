@@ -283,3 +283,4 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-12 17:31:27 | 58:35:43 | -50:35:43 | Reprise. Apple : initialisation et validation par adaptateur ; registre neutre. |
 | 2026-10-12 17:50:19 | 58:54:35 | -50:54:35 | Reprise. Apple : règles de session par adaptateur. |
 | 2026-10-12 18:05:05 | 59:09:21 | -51:09:21 | Reprise. Apple : préparation et inspection du firmware par adaptateur. |
+| 2026-10-12 18:26:19 | 59:30:35 | -51:30:35 | Reprise. Apple : supports, transport neutre et imports regroupés. |

@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Constants;
+using GWGUI.Emulation.Apple.Emulators.Common.Contracts;
 using System.IO;
 namespace GWGUI.Emulation.Apple.Emulators.Common.Functions;
 

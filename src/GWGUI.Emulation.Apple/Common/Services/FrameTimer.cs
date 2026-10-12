@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 
-namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;
+namespace GWGUI.Emulation.Apple.Common.Services;
 
 internal sealed class FrameTimer : IDisposable
 {

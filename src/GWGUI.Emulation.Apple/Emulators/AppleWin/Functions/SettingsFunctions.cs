@@ -1,5 +1,5 @@
-using static GWGUI.Emulation.Apple.Common.Machines.Common.Functions.SettingsDescriptionFunctions;
 using GWGUI.Emulation.Apple.Emulators.AppleWin.Dictionaries;
+using static GWGUI.Emulation.Apple.Common.Machines.Common.Functions.SettingsDescriptionFunctions;
 using AppleWinOptions = GWGUI.Emulation.Apple.Emulators.AppleWin.Constants.OptionConstants;
 
 namespace GWGUI.Emulation.Apple.Emulators.AppleWin.Functions;

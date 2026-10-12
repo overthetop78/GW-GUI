@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Contracts;
 namespace GWGUI.Emulation.Apple.Emulators.Common.Interfaces;
 
 public interface ICoreReleaseService

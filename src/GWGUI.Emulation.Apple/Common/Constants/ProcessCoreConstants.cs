@@ -1,6 +1,6 @@
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Apple.Emulators.Common.Constants;
+namespace GWGUI.Emulation.Apple.Common.Constants;
 
 
 internal static class ProcessCoreConstants

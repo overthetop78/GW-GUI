@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Contracts;
 namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
 
 internal static class CoreLifecycleFunctions

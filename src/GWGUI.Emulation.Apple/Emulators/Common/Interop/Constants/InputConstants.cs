@@ -21,6 +21,8 @@ internal static class InputConstants
     internal const uint JoypadMaskId = 256;
     internal const uint LeftAnalogIndex = 0;
     internal const uint RightAnalogIndex = 1;
+    internal const uint TriggerAnalogIndex = 2;
+    internal const uint JoypadLeftTriggerId = 12;
     internal const uint AnalogXId = 0;
     internal const uint AnalogYId = 1;
     internal const uint MaximumJoypadButtonCount = 32;

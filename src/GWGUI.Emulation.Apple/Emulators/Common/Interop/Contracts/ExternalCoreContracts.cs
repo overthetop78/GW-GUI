@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interop;
 namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Contracts;
 
 internal sealed record ExternalCoreExports(

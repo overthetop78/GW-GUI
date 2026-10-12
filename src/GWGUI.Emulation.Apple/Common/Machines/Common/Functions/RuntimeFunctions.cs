@@ -4,12 +4,6 @@ namespace GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
 
 internal static class RuntimeFunctions
 {
-    internal static EmulationVideoStandard? Region(uint nativeRegion) => nativeRegion switch
-    {
-        RuntimeConstants.NativeNtscRegion => EmulationVideoStandard.Ntsc,
-        RuntimeConstants.NativePalRegion => EmulationVideoStandard.Pal,
-        _ => null
-    };
 
     internal static int RegionValue(EmulationVideoStandard? region) =>
         region is null ? RuntimeConstants.MissingRegionValue : (int)region.Value;

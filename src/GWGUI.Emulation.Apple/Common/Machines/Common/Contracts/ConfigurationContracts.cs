@@ -30,7 +30,7 @@ public sealed record MachineConfiguration : IEmulationConfiguration
     {
         if (!Enum.IsDefined(model)) throw new ArgumentOutOfRangeException(nameof(model));
         Model = model;
-        Core = core ?? HardwareModelCatalog.Get(model).Emulator;
+        Core = core ?? ConfigurationFunctions.DefaultEmulator(model);
         if (!Enum.IsDefined(Core)) throw new ArgumentOutOfRangeException(nameof(core));
         Firmwares = firmwares?.ToArray() ?? [];
         Media = media?.ToArray() ?? [];

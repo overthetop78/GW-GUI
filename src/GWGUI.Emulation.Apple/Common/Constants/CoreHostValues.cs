@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Apple.Emulators.Common.Constants;
+namespace GWGUI.Emulation.Apple.Common.Constants;
 
 
 // Unique to GWGUI.Emulation.Apple.

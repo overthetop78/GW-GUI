@@ -1,5 +1,5 @@
-using GWGUI.Emulation.Apple.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Apple.Emulators.MiniVmac.Enums;
+using GWGUI.Emulation.Apple.Common.Machines.Common.Enums;
 
 namespace GWGUI.Emulation.Apple.Emulators.MiniVmac.Contracts;
 

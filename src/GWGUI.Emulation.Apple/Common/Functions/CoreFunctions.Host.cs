@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interop;
 using System.IO;
 using System.Globalization;
 using System.IO.MemoryMappedFiles;
@@ -6,7 +7,7 @@ using System.Runtime.Versioning;
 using System.Text.Json;
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Apple.Emulators.Common.Functions;
+namespace GWGUI.Emulation.Apple.Common.Functions;
 
 internal static class CoreHostFunctions
 {

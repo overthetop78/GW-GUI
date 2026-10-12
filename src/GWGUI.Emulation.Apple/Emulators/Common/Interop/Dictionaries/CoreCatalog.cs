@@ -1,5 +1,7 @@
-using GWGUI.Emulation.Apple.Common.Interfaces;
+using GWGUI.Emulation.Apple.Emulators.Common.Contracts;
+using GWGUI.Emulation.Apple.Emulators.Common.Functions;
 using GWGUI.Emulation.Apple.Emulators.Common.Interop.Factories;
+using GWGUI.Emulation.Apple.Common.Interfaces;
 
 namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Dictionaries;
 

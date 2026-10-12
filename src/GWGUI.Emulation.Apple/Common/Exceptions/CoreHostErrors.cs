@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Apple.Emulators.Common.Exceptions;
+namespace GWGUI.Emulation.Apple.Common.Exceptions;
 
 internal static class CoreHostErrors
 {

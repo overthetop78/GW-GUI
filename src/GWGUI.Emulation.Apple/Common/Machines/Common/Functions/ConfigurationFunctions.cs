@@ -8,9 +8,15 @@ namespace GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
 
 internal static class ConfigurationFunctions
 {
-    internal static bool SupportsRuntime(MachineModel model) => model is MachineModel.AppleII
-        or MachineModel.AppleIIPlus or MachineModel.AppleIIJPlus or MachineModel.AppleIIe
-        or MachineModel.AppleIIeEnhanced or MachineModel.MacintoshII;
+    internal static bool SupportsRuntime(MachineModel model) => new Engine().Adapters(model.ToString()).Count > 0;
+
+    internal static Emulator DefaultEmulator(MachineModel model)
+    {
+        var preferred = HardwareModelCatalog.Get(model).Emulator;
+        var adapters = new Engine().Adapters(model.ToString());
+        var adapter = adapters.FirstOrDefault(item => string.Equals(item.EmulatorKey, preferred.ToString(), StringComparison.Ordinal)) ?? adapters.FirstOrDefault();
+        return adapter is null ? preferred : Enum.Parse<Emulator>(adapter.EmulatorKey);
+    }
 
     internal static int ControllerPortCount(MachineModel model) => model is MachineModel.AppleII
         or MachineModel.AppleIIPlus or MachineModel.AppleIIJPlus or MachineModel.AppleIIe
@@ -23,7 +29,9 @@ internal static class ConfigurationFunctions
         if (configuration.Id == Guid.Empty || !Enum.IsDefined(configuration.Model))
             throw new ArgumentException(nameof(configuration));
         var hardware = HardwareModelCatalog.Get(configuration.Model);
-        if (configuration.Core != hardware.Emulator) throw new ArgumentException(nameof(configuration.Core));
+        var engine = new Engine();
+        var selectedAdapter = engine.Adapter(configuration);
+        if (!selectedAdapter.Definition.MachineIds.Contains(configuration.MachineId) && (engine.Adapters(configuration.MachineId).Count > 0 || configuration.Core != hardware.Emulator)) throw new ArgumentException(nameof(configuration.Core));
         var firmwareRoles = new HashSet<FirmwareCategory>();
         foreach (var firmware in configuration.Firmwares)
             if (!firmwareRoles.Add(firmware.Category)
@@ -46,6 +54,6 @@ internal static class ConfigurationFunctions
                 || controller.Peripheral is not (PeripheralCategory.None or PeripheralCategory.Automatic
                     or PeripheralCategory.AnalogJoystick))
                 throw new ArgumentException(nameof(configuration.Input));
-        if (new Engine().Adapter(configuration) is IEmulatorConfiguration adapter) adapter.ValidateConfiguration(configuration);
+        if (selectedAdapter is IEmulatorConfiguration adapter) adapter.ValidateConfiguration(configuration);
     }
 }

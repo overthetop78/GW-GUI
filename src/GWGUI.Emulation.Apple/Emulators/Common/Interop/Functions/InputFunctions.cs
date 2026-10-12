@@ -1,6 +1,7 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Apple.Emulators.Common.Functions;
+namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
 
 internal static class InputFunctions
 {
@@ -43,8 +44,8 @@ internal static class InputFunctions
             (InputConstants.LeftAnalogIndex, InputConstants.AnalogYId) => controller.LeftY,
             (InputConstants.RightAnalogIndex, InputConstants.AnalogXId) => controller.RightX,
             (InputConstants.RightAnalogIndex, InputConstants.AnalogYId) => controller.RightY,
-            (ControllerConstants.TriggerAnalogIndex, ControllerConstants.LeftTriggerId) => controller.LeftTrigger,
-            (ControllerConstants.TriggerAnalogIndex, ControllerConstants.RightTriggerId) => controller.RightTrigger,
+            (InputConstants.TriggerAnalogIndex, InputConstants.JoypadLeftTriggerId) => controller.LeftTrigger,
+            (InputConstants.TriggerAnalogIndex, InputConstants.JoypadRightTriggerId) => controller.RightTrigger,
             _ => InputConstants.InactiveState
         };
     }

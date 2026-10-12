@@ -1,8 +1,14 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Contracts;
+using GWGUI.Emulation.Apple.Emulators.Common.Functions;
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Dictionaries;
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;
 using System.IO;
 
 namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Factories;
 
-internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
+internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorMediaAdapter
 {
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
         new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
@@ -11,6 +17,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public Emulator Emulator => CatalogEntry.Emulator;
     public string EmulatorId => CatalogEntry.Id;
     public string EmulatorKey => Emulator.ToString();
+    public IReadOnlyList<string> GetMediaDependencies(string path) => MediaDependencyFunctions.GetPaths(path);
     public EmulationEmulatorDefinition Definition => CoreCatalog.GetDefinition(CatalogEntry);
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)

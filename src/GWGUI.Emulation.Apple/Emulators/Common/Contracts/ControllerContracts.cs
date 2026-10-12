@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interop;
 namespace GWGUI.Emulation.Apple.Emulators.Common.Contracts;
 
 internal sealed record ControllerDevice(string Description, uint Id);

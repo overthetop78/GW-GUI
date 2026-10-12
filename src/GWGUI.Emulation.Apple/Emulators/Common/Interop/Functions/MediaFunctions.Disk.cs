@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Interop;
 using System.IO;
 using System.Runtime.InteropServices;
 

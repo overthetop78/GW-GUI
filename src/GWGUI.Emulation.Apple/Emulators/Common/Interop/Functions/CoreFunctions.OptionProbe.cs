@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;
 using System.IO;
 
 namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;

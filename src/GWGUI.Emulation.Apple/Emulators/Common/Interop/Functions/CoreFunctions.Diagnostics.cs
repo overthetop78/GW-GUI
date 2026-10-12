@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Constants;
+using GWGUI.Emulation.Apple.Emulators.Common.Exceptions;
 using System.IO;
 using System.Diagnostics;
 using System.Reflection.PortableExecutable;

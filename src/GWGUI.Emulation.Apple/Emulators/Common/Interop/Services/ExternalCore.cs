@@ -1,3 +1,8 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Contracts;
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Interop;
 using System.IO;
 using System.Security.Cryptography;
 using AppleWinOptions = GWGUI.Emulation.Apple.Emulators.AppleWin.Constants.OptionConstants;

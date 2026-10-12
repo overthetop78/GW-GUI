@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
 namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore

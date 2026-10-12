@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Factories;
 using GWGUI.Emulation.Apple.Emulators.MiniVmac.Constants;
 
 namespace GWGUI.Emulation.Apple.Emulators.MiniVmac.Factories;

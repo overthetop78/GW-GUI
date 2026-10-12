@@ -77,14 +77,15 @@ internal static class SavedStateFunctions
     private static IReadOnlyList<StateContentEntry> ContentEntries(
         MachineConfiguration configuration)
     {
+        var mediaAdapter = new Engine().Adapter(configuration) as IEmulatorMediaAdapter;
         var entries = configuration.Firmwares
             .OrderBy(firmware => firmware.Category)
             .Select(firmware => new StateContentEntry(StateConstants.FirmwareCategory,
-                firmware.Category.ToString(), HashPath(firmware.Path)))
+                firmware.Category.ToString(), HashPath(firmware.Path, mediaAdapter)))
             .Concat(configuration.Media.OrderBy(MediaOrder)
                 .ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
                 .Select(media => new StateContentEntry(StateConstants.MediaCategory,
-                    $"{media.Category}:{media.Slot}", HashPath(media.Path))))
+                    $"{media.Category}:{media.Slot}", HashPath(media.Path, mediaAdapter))))
             .ToArray();
         return entries;
     }
@@ -122,12 +123,10 @@ internal static class SavedStateFunctions
         input.CaptureMouse,
         input.ReleaseMouseKey.ToString());
 
-    private static string HashPath(string path)
+    private static string HashPath(string path, IEmulatorMediaAdapter? adapter)
     {
-        if (string.Equals(Path.GetExtension(path), SessionMediaConstants.PlaylistExtension,
-                StringComparison.OrdinalIgnoreCase))
-            return HashBytes(Encoding.UTF8.GetBytes(string.Join(Environment.NewLine,
-                SessionMediaFunctions.ReadSourcePaths(path).Select(HashFile).Prepend(HashFile(path)))));
+        var dependencies = adapter?.GetMediaDependencies(path);
+        if (dependencies is { Count: > 0 }) return HashBytes(Encoding.UTF8.GetBytes(string.Join(Environment.NewLine, dependencies.Select(HashFile))));
         if (File.Exists(path)) return HashFile(path);
         if (!Directory.Exists(path)) throw new FileNotFoundException(ErrorMessages.ContentFileMissing, path);
         using var hash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);

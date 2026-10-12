@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Interop;
 using System.IO;
 using GWGUI.Emulation;
 using System.Globalization;

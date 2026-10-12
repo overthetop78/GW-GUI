@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Constants;
+using GWGUI.Emulation.Apple.Emulators.Common.Contracts;
+using GWGUI.Emulation.Apple.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Interop;
 using System.IO;
 using System.Globalization;
 using System.IO.Compression;

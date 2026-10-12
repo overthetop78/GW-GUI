@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Interop;
 using MiniVmacConstants = GWGUI.Emulation.Apple.Emulators.MiniVmac.Constants.EmulatorConstants;
 
 namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;

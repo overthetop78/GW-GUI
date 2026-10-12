@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Interop;
 using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Services;

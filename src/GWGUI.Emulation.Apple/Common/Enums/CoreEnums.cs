@@ -1,4 +1,5 @@
-namespace GWGUI.Emulation.Apple.Emulators.Common.Enums;
+using GWGUI.Emulation.Interop;
+namespace GWGUI.Emulation.Apple.Common.Enums;
 
 internal enum HostCommand : byte
 {
