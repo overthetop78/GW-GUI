@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Watara.Common.Machines.Common.Constants;
-
 internal static class SettingsConstants
 {
     internal const string AudioEnabled = "watara_audio_enabled", AudioOutput = "gwgui_watara_audio_output", AudioLatency = "gwgui_watara_audio_latency";

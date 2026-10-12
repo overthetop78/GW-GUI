@@ -1,7 +1,6 @@
 using System.IO;
 
 namespace GWGUI.Emulation.Watara.Emulators.Potator.Functions;
-
 internal static class MediaRuntimeFunctions
 {
     private const string BinExtension = ".bin";
@@ -14,6 +13,7 @@ internal static class MediaRuntimeFunctions
             BinExtension or SupervisionExtension => MediaCategory.Cartridge,
             _ => throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog))};
     }
+
     internal static IReadOnlyList<string> InitialContentPaths(MachineConfiguration configuration) => configuration.Media.Where(media => media.IsInserted).Select(media => Path.GetFullPath(media.Path)).ToArray();
     internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineConfiguration configuration) => [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, [BinExtension, SupervisionExtension], RequiresMachineRecreation: true)];
 }

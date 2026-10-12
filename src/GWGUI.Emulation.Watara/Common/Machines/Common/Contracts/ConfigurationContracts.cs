@@ -2,9 +2,17 @@ using System.Text.Json.Serialization;
 using GWGUI.Emulation.Watara.Common.Machines.Common.Functions;
 
 namespace GWGUI.Emulation.Watara.Common.Machines.Common.Contracts;
-
-internal sealed record ConfigurationDocument(int SchemaVersion, Guid Id, MachineModel Model, Emulator Core, IReadOnlyList<MediaConfiguration> Media, IReadOnlyDictionary<string, string> Options, InputConfiguration Input, bool AudioEnabled, IReadOnlyList<EmulationMediaSlot> ConfiguredSlots);
-
+internal sealed record ConfigurationDocument(
+    int SchemaVersion,
+    Guid Id,
+    MachineModel Model,
+    Emulator Core,
+    IReadOnlyList<MediaConfiguration> Media,
+    IReadOnlyDictionary<string, string> Options,
+    InputConfiguration Input,
+    bool AudioEnabled,
+    IReadOnlyList<EmulationMediaSlot> ConfiguredSlots
+);
 public sealed record MachineConfiguration : IEmulationConfiguration
 {
     [JsonConstructor]
@@ -18,9 +26,20 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         InputConfiguration input,
         bool audioEnabled,
         IReadOnlyList<EmulationMediaSlot> configuredSlots
-    ) : this(model, media, options, input, id, schemaVersion, audioEnabled, core, configuredSlots)
+    ) : this(
+        model,
+        media,
+        options,
+        input,
+        id,
+        schemaVersion,
+        audioEnabled,
+        core,
+        configuredSlots
+    )
     {
     }
+
     public MachineConfiguration(
         MachineModel model,
         IReadOnlyList<MediaConfiguration>? media = null,
@@ -44,6 +63,7 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         ConfiguredSlots = configuredSlots?.ToArray() ?? [EmulationMediaSlot.Cartridge0];
         ConfigurationFunctions.Validate(this);
     }
+
     public string ModuleId => EmulationModuleConstants.ModuleId;
     public string MachineId => Model.ToString();
     public int SchemaVersion { get; init; }

@@ -2,7 +2,6 @@ using System.Globalization;
 using GWGUI.Emulation.Watara.Emulators.Potator.Enums;
 
 namespace GWGUI.Emulation.Watara.Emulators.Potator.Dictionaries;
-
 internal static class SettingsDictionary
 {
     internal static readonly IReadOnlyList<EmulationSettingsChoice> Palettes = [
@@ -37,8 +36,14 @@ internal static class SettingsDictionary
         new("virtual_boy", string.Empty, "Virtual Boy"),
         new("tvlink", string.Empty, "TV-Link"),
         new("tvlink_inverted", string.Empty, "TV-Link Inverted"),
+
     ];
-    internal static readonly IReadOnlyDictionary<FrameSkipMode, string> FrameSkipValues = new Dictionary<FrameSkipMode, string> { [FrameSkipMode.Disabled] = "disabled", [FrameSkipMode.Automatic] = "auto", [FrameSkipMode.Manual] = "manual" };
+    internal static readonly IReadOnlyDictionary<FrameSkipMode, string> FrameSkipValues = new Dictionary<FrameSkipMode, string>
+    {
+        [FrameSkipMode.Disabled] = "disabled",
+        [FrameSkipMode.Automatic] = "auto",
+        [FrameSkipMode.Manual] = "manual"
+    };
     internal static IReadOnlyList<EmulationSettingsChoice> Ghosting => Enumerable.Range(0, 9).Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture), string.Empty, value.ToString(CultureInfo.InvariantCulture))).ToArray();
     internal static IReadOnlyList<EmulationSettingsChoice> Thresholds => Enumerable.Range(0, 16).Select(index => (15 + index * 3).ToString(CultureInfo.InvariantCulture)).Select(value => new EmulationSettingsChoice(value, string.Empty, value + " %")).ToArray();
     internal static IReadOnlyList<EmulationSettingsChoice> FrameSkip => [

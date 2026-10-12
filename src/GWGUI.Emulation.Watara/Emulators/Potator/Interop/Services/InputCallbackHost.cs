@@ -1,21 +1,44 @@
 using GWGUI.Emulation.Interop;
 
 namespace GWGUI.Emulation.Watara.Emulators.Potator.Interop.Services;
-
 internal sealed class InputCallbackHost
 {
-    private enum NativeButton : uint { B = 0, Select = 2, Start = 3, Up = 4, Down = 5, Left = 6, Right = 7, A = 8 }
+    private enum NativeButton : uint
+    {
+        B = 0,
+        Select = 2,
+        Start = 3,
+        Up = 4,
+        Down = 5,
+        Left = 6,
+        Right = 7,
+        A = 8
+    }
+
     private const uint JoypadDevice = 1;
     private const uint DeviceMask = 255;
     private EmulationInputSnapshot _input = EmulationInputSnapshot.Empty;
-    internal InputCallbackHost() { PollCallback = OnPoll; StateCallback = OnState; }
+    internal InputCallbackHost()
+    {
+        PollCallback = OnPoll;
+        StateCallback = OnState;
+    }
+
     internal ExternalCoreApi.InputPollCallback PollCallback { get; }
     internal ExternalCoreApi.InputStateCallback StateCallback { get; }
     internal Exception? Failure { get; private set; }
-    internal void Update(EmulationInputSnapshot input) => _input = input;
-    private void OnPoll() { }
 
-    private short OnState(uint port, uint device, uint index, uint id)
+    internal void Update(EmulationInputSnapshot input) => _input = input;
+    private void OnPoll()
+    {
+    }
+
+    private short OnState(
+        uint port,
+        uint device,
+        uint index,
+        uint id
+    )
     {
         try
         {
@@ -44,5 +67,9 @@ internal sealed class InputCallbackHost
         }
     }
 
-    internal void Release() { _input = EmulationInputSnapshot.Empty; Failure = null; }
+    internal void Release()
+    {
+        _input = EmulationInputSnapshot.Empty;
+        Failure = null;
+    }
 }
