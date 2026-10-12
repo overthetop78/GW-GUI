@@ -1,12 +1,10 @@
 using System.IO;
-
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Collections.Concurrent;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Commodore.Emulators.Common.Interop.Services;
-
 internal sealed partial class ExternalHostCallbacks : IDisposable
 {
     private readonly IReadOnlyDictionary<uint, EmulationKey> _keyboardMap;
@@ -61,7 +59,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
                 _options[option.Key] = option.Value;
                 _configuredOptionKeys.Add(option.Key);
             }
-    
+
         Environment = HandleEnvironment;
         Video = HandleVideo;
         AudioSample = HandleAudioSample;
@@ -77,6 +75,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal string SaveDirectory { get; }
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }
+
     private readonly Queue<AudioChunk> _audioChunks = new();
     private readonly object _audioGate = new();
     private int _bufferedAudioFrames;
@@ -94,12 +93,19 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
                 {
                     DeltaX = SaturatingAdd(_pendingInput.Pointer.DeltaX, value.Pointer.DeltaX),
                     DeltaY = SaturatingAdd(_pendingInput.Pointer.DeltaY, value.Pointer.DeltaY),
-                    Wheel = SaturatingAdd(_pendingInput.Pointer.Wheel, value.Pointer.Wheel)
+                    Wheel = SaturatingAdd(
+                        _pendingInput.Pointer.Wheel,
+                        value.Pointer.Wheel
+                    )
                 };
-                _pendingInput = value with { Pointer = pointer };
+                _pendingInput = value with
+                {
+                    Pointer = pointer
+                };
             }
         }
     }
+
     internal ExternalCoreApi.EnvironmentCallback Environment { get; }
     internal ExternalCoreApi.VideoCallback Video { get; }
     internal ExternalCoreApi.AudioSampleCallback AudioSample { get; }
@@ -114,27 +120,37 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal IReadOnlyList<IReadOnlyList<ControllerDevice>> ControllerPorts { get; private set; } = [];
     internal IReadOnlyList<CoreOption> OptionCatalog { get; private set; } = [];
     internal IReadOnlyList<string> Diagnostics => _diagnostics.ToArray();
+
     internal IReadOnlyDictionary<int, bool> LedStates
     {
         get
         {
             var now = Stopwatch.GetTimestamp();
-            return _ledStates.Keys.Concat(_ledActivityUntil.Keys).Distinct()
-                .ToDictionary(key => key, key => _ledStates.GetValueOrDefault(key)
-                    || _ledActivityUntil.GetValueOrDefault(key) > now);
+            return _ledStates.Keys.Concat(_ledActivityUntil.Keys).Distinct().ToDictionary(key => key, key => _ledStates.GetValueOrDefault(key) || _ledActivityUntil.GetValueOrDefault(key) > now);
         }
     }
-    internal int BufferedAudioFrames { get { lock (_audioGate) return _bufferedAudioFrames; } }
+
+    internal int BufferedAudioFrames
+    {
+        get
+        {
+            lock (_audioGate)
+                return _bufferedAudioFrames;
+        }
+    }
+
     internal long AudioOverrunCount { get; private set; }
 
-    internal void SetOption(string key, string value)
+    internal void SetOption(
+        string key,
+        string value
+    )
     {
         if (!OptionCatalog.Any(option => option.Key.Equals(key, StringComparison.Ordinal)))
             throw new ArgumentOutOfRangeException(nameof(key), key, CoreExceptions.UnknownCoreOption());
         var option = OptionCatalog.First(item => item.Key.Equals(key, StringComparison.Ordinal));
         if (option.Values.Count > BufferConstants.EmptyCollectionCount && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(value), value,
-                CoreExceptions.InvalidOptionValue(value, key));
+            throw new ArgumentOutOfRangeException(nameof(value), value, CoreExceptions.InvalidOptionValue(value, key));
         _options[key] = value;
         Interlocked.Exchange(ref _optionsUpdated, ExternalHostCallbacksConstants.OptionsChangedState);
         _updateOptionsDisplay?.Invoke();
@@ -142,8 +158,10 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
 
     public void Dispose()
     {
-        if (_disposed) return;
-        foreach (var pointer in _nativeStrings.Values) Marshal.FreeCoTaskMem(pointer);
+        if (_disposed)
+            return;
+        foreach (var pointer in _nativeStrings.Values)
+            Marshal.FreeCoTaskMem(pointer);
         _nativeStrings.Clear();
         lock (_inputGate)
         {
@@ -151,6 +169,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             _previousKeyboardToggleSources.Clear();
             _previousKeys = new HashSet<EmulationKey>();
         }
+
         _disposed = true;
     }
 }

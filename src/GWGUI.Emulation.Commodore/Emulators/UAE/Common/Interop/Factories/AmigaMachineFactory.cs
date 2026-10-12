@@ -6,21 +6,19 @@ using Cd32Models = GWGUI.Emulation.Commodore.Common.Machines.AmigaCD32.Constants
 using CdtvModels = GWGUI.Emulation.Commodore.Common.Machines.CommodoreCDTV.Constants.ModelConstants;
 
 namespace GWGUI.Emulation.Commodore.Emulators.UAE.Common.Interop.Factories;
-
 internal abstract class AmigaMachineFactory : MachineFactory
 {
-    internal override MediaCategory InferMediaCategory(MachineConfiguration configuration, string path) => Directory.Exists(path)
-        ? MediaCategory.HardDrive
+    internal override MediaCategory InferMediaCategory(MachineConfiguration configuration, string path) => Directory.Exists(path) 
+        ? MediaCategory.HardDrive 
         : Path.GetExtension(path).ToLowerInvariant() switch
     {
         StorageSettingsFunctionsConstants.Hdf or StorageSettingsFunctionsConstants.Hdz => MediaCategory.HardDrive,
         StorageSettingsFunctionsConstants.Cue or StorageSettingsFunctionsConstants.Ccd or StorageSettingsFunctionsConstants.Chd or StorageSettingsFunctionsConstants.Nrg or StorageSettingsFunctionsConstants.Mds or StorageSettingsFunctionsConstants.Iso => MediaCategory.CompactDisc,
         UaeFirmwareConstants.Lha or UaeFirmwareConstants.Slave or UaeFirmwareConstants.Info => MediaCategory.WhdLoad,
         UaeFirmwareConstants.Uae => MediaCategory.Configuration,
-            _ => MediaCategory.Floppy
-        };
-    public override IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(Model model, MachineConfiguration configuration) =>
-        AmigaSettingsDescriptionFunctions.Create((AmigaModel)model, configuration).Where(block => block.Tab != EmulationMachineTab.Rom).ToArray();
+        _ => MediaCategory.Floppy
+    };
+    public override IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(Model model, MachineConfiguration configuration) => AmigaSettingsDescriptionFunctions.Create((AmigaModel)model, configuration).Where(block => block.Tab != EmulationMachineTab.Rom).ToArray();
     public override EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => AmigaStorageSettingsFunctions.Describe(configuration);
     public override MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => AmigaStorageSettingsFunctions.Apply(configuration, settings);
     public override MachineConfiguration ApplyBackendSettings(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values) => AmigaSettingsApplicationFunctions.Apply(configuration, values);
@@ -28,16 +26,20 @@ internal abstract class AmigaMachineFactory : MachineFactory
     public override void ValidateConfiguration(MachineConfiguration configuration) => AmigaConfigurationValidationFunctions.ValidateForSave(configuration);
     public override IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration) => AmigaInputSettingsFunctions.KeyboardDefinitions(configuration);
     public override MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration) => AmigaInputSettingsFunctions.Apply(configuration);
-    public override IReadOnlyList<EmulationFirmwareCandidate> ScanFirmware(MachineConfiguration configuration, string directory, CancellationToken cancellationToken) =>
-        AmigaFirmwareFunctions.Scan(configuration.Model, directory, cancellationToken);
-    public override ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) =>
-        AmigaRuntimeMediaFunctions.PrepareMediaAsync(media, conversionDirectory);
-    public override Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory) =>
-        AmigaRuntimeMediaFunctions.PrepareConfigurationAsync(configuration, conversionDirectory);
+    public override IReadOnlyList<EmulationFirmwareCandidate> ScanFirmware(MachineConfiguration configuration, string directory, CancellationToken cancellationToken) => AmigaFirmwareFunctions.Scan(configuration.Model, directory, cancellationToken);
+    public override ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) => AmigaRuntimeMediaFunctions.PrepareMediaAsync(media, conversionDirectory);
+    public override Task<MachineConfiguration> PrepareRuntimeConfigurationAsync(MachineConfiguration configuration, string conversionDirectory) => AmigaRuntimeMediaFunctions.PrepareConfigurationAsync(configuration, conversionDirectory);
     public override IReadOnlySet<EmulationKey> SoftResetKeys { get; } = new HashSet<EmulationKey>
-        { EmulationKey.LeftControl, EmulationKey.LeftAmiga, EmulationKey.RightAmiga };
+    {
+        EmulationKey.LeftControl,
+        EmulationKey.LeftAmiga,
+        EmulationKey.RightAmiga
+    };
 
-    public override IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(MachineConfiguration configuration, IReadOnlyDictionary<int, bool> ledStates)
+    public override IReadOnlyDictionary<EmulationMediaSlot, bool> MediaActivity(
+        MachineConfiguration configuration,
+        IReadOnlyDictionary<int, bool> ledStates
+    )
     {
         var activity = new Dictionary<EmulationMediaSlot, bool>();
         for (var index = BufferConstants.FirstCollectionIndex; index < UaeMediaConstants.FloppyDriveCount; index++)
@@ -49,32 +51,47 @@ internal abstract class AmigaMachineFactory : MachineFactory
 
     protected static IReadOnlySet<string> SupportedMachines { get; } = new HashSet<string>(StringComparer.Ordinal)
     {
-        AmigaModels.A500, AmigaModels.A500PLUS, AmigaModels.A600, AmigaModels.A1000,
-        AmigaModels.A1200, AmigaModels.A2000, AmigaModels.A3000, AmigaModels.A4000,
-        Cd32Models.CD32, CdtvModels.CDTV
+        AmigaModels.A500,
+        AmigaModels.A500PLUS,
+        AmigaModels.A600,
+        AmigaModels.A1000,
+        AmigaModels.A1200,
+        AmigaModels.A2000,
+        AmigaModels.A3000,
+        AmigaModels.A4000,
+        Cd32Models.CD32,
+        CdtvModels.CDTV
     };
 
-    public override IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) =>
-    [
-        new(SettingsConstants.KickstartPath, SettingsResourceKeys.FirmwareRomKickstart, true,
+    public override IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => [
+        new(
+            SettingsConstants.KickstartPath,
+            SettingsResourceKeys.FirmwareRomKickstart,
+            true,
             SettingsHelpResourceKeys.FirmwareSystem + SettingsValueConstants.ShortHelpSuffix,
-            SettingsHelpResourceKeys.FirmwareSystem + SettingsValueConstants.DetailedHelpSuffix),
-        new(SettingsConstants.ExtendedRomPath, SettingsResourceKeys.FirmwareRomExtended, false,
+            SettingsHelpResourceKeys.FirmwareSystem + SettingsValueConstants.DetailedHelpSuffix
+        ),
+        new(
+            SettingsConstants.ExtendedRomPath,
+            SettingsResourceKeys.FirmwareRomExtended,
+            false,
             SettingsHelpResourceKeys.FirmwareExtendedRom + SettingsValueConstants.ShortHelpSuffix,
-            SettingsHelpResourceKeys.FirmwareExtendedRom + SettingsValueConstants.DetailedHelpSuffix),
-        new(SettingsConstants.RomKeyPath, SettingsResourceKeys.FirmwareRomKey, false,
+            SettingsHelpResourceKeys.FirmwareExtendedRom + SettingsValueConstants.DetailedHelpSuffix
+        ),
+        new(
+            SettingsConstants.RomKeyPath,
+            SettingsResourceKeys.FirmwareRomKey,
+            false,
             SettingsHelpResourceKeys.FirmwareRomKey + SettingsValueConstants.ShortHelpSuffix,
-            SettingsHelpResourceKeys.FirmwareRomKey + SettingsValueConstants.DetailedHelpSuffix)
+            SettingsHelpResourceKeys.FirmwareRomKey + SettingsValueConstants.DetailedHelpSuffix
+        )
     ];
-
-    public override IReadOnlyList<EmulationMediaDevice> GetMediaDevices(MachineConfiguration configuration) =>
-        AmigaStorageSettingsFunctions.Describe(configuration).AvailableDevices;
-
-    internal override int ControllerPortCount(MachineConfiguration configuration) =>
-        configuration.Input?.ParallelJoystickAdapterEnabled == true
-            ? ControllerPortConstants.FourControllerPorts : base.ControllerPortCount(configuration);
-
-    internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory)
+    public override IReadOnlyList<EmulationMediaDevice> GetMediaDevices(MachineConfiguration configuration) => AmigaStorageSettingsFunctions.Describe(configuration).AvailableDevices;
+    internal override int ControllerPortCount(MachineConfiguration configuration) => configuration.Input?.ParallelJoystickAdapterEnabled == true ? ControllerPortConstants.FourControllerPorts : base.ControllerPortCount(configuration);
+    internal override void PrepareFirmware(
+        MachineConfiguration configuration,
+        string systemDirectory
+    )
     {
         var kickstart = configuration.FirmwarePath(SettingsConstants.KickstartPath);
         File.Copy(kickstart, Path.Combine(systemDirectory, ResolveKickstartFileName(configuration.Model, kickstart)), true);
@@ -82,46 +99,43 @@ internal abstract class AmigaMachineFactory : MachineFactory
         if (!string.IsNullOrWhiteSpace(extended))
             File.Copy(extended, Path.Combine(systemDirectory, ExtendedRomFileName(configuration.Model, extended)), true);
         var key = configuration.FirmwarePath(SettingsConstants.RomKeyPath);
-        if (!string.IsNullOrWhiteSpace(key)) File.Copy(key, Path.Combine(systemDirectory, UaeFirmwareConstants.RomKey), true);
-        foreach (var disk in ExternalCore.ResolveConfiguredMedia(configuration)
-                     .Where(item => item.Category == MediaCategory.HardDrive && !Directory.Exists(item.Path)))
+        if (!string.IsNullOrWhiteSpace(key))
+            File.Copy(key, Path.Combine(systemDirectory, UaeFirmwareConstants.RomKey), true);
+        foreach (var disk in ExternalCore.ResolveConfiguredMedia(configuration).Where(item => item.Category == MediaCategory.HardDrive && !Directory.Exists(item.Path)))
         {
-            var format = AmigaHardDiskFormats.All.FirstOrDefault(item => string.Equals(item.Extension,
-                Path.GetExtension(disk.Path), StringComparison.OrdinalIgnoreCase))
-                ?? throw new InvalidDataException(CoreExceptions.UnsupportedHardDiskExtension());
+            var format = AmigaHardDiskFormats.All.FirstOrDefault(item => string.Equals(item.Extension, Path.GetExtension(disk.Path), StringComparison.OrdinalIgnoreCase)) ?? throw new InvalidDataException(CoreExceptions.UnsupportedHardDiskExtension());
             GWGUI.Emulation.HardDisks.HardDiskImageValidation.ValidateExisting(disk.Path, format);
         }
     }
 
     internal virtual string ExtendedRomFileName(string model, string path) => ResolveExtendedRomFileName(model, path);
-    internal override string? PrepareContent(MachineConfiguration configuration, string session, IReadOnlyList<MediaConfiguration> media) =>
-        PrepareContentPath(configuration, session, media);
-    internal override string ConvertMediaPath(string path, string conversionDirectory) =>
-        AmigaRuntimeMediaFunctions.ConvertScpPathAsync(path, conversionDirectory).GetAwaiter().GetResult();
-
-    private static readonly IReadOnlyDictionary<string, string> KnownKickstartNames =
-        new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-        {
-            [FirmwareCatalogConstants.Hash0B8442C311CA] = UaeFirmwareConstants.Kick31034A1000,
-            [FirmwareCatalogConstants.Hash1FA1F93D3D7B] = UaeFirmwareConstants.Kick32034A1000,
-            [FirmwareCatalogConstants.Hash85AD74194E87] = UaeFirmwareConstants.Kick33180A500,
-            [FirmwareCatalogConstants.Hash82A21C1890CA] = UaeFirmwareConstants.Kick34005A500,
-            [FirmwareCatalogConstants.HashDC10D7BDD1B6] = UaeFirmwareConstants.Kick37175A500,
-            [FirmwareCatalogConstants.Hash465646C9B672] = UaeFirmwareConstants.Kick37350A600,
-            [FirmwareCatalogConstants.HashE40A5DFB3D01] = UaeFirmwareConstants.Kick40063A600,
-            [FirmwareCatalogConstants.HashB7CC148386AA] = UaeFirmwareConstants.Kick39106A1200,
-            [FirmwareCatalogConstants.Hash646773759326] = UaeFirmwareConstants.Kick40068A1200,
-            [FirmwareCatalogConstants.Hash9B8BDD5A3FD3] = UaeFirmwareConstants.Kick39106A4000,
-            [FirmwareCatalogConstants.Hash9BDEDDE6A4F3] = UaeFirmwareConstants.Kick40068A4000,
-            [FirmwareCatalogConstants.HashF2F241BF0941] = UaeFirmwareConstants.Kick40060CD32,
-            [FirmwareCatalogConstants.Hash5F8924D013DD] = UaeFirmwareConstants.Kick40060CD32
-        };
-    internal static string ResolveKickstartFileName(string model, string sourcePath)
+    internal override string? PrepareContent(MachineConfiguration configuration, string session, IReadOnlyList<MediaConfiguration> media) => PrepareContentPath(configuration, session, media);
+    internal override string ConvertMediaPath(string path, string conversionDirectory) => AmigaRuntimeMediaFunctions.ConvertScpPathAsync(path, conversionDirectory).GetAwaiter().GetResult();
+    private static readonly IReadOnlyDictionary<string, string> KnownKickstartNames = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+    {
+        [FirmwareCatalogConstants.Hash0B8442C311CA] = UaeFirmwareConstants.Kick31034A1000,
+        [FirmwareCatalogConstants.Hash1FA1F93D3D7B] = UaeFirmwareConstants.Kick32034A1000,
+        [FirmwareCatalogConstants.Hash85AD74194E87] = UaeFirmwareConstants.Kick33180A500,
+        [FirmwareCatalogConstants.Hash82A21C1890CA] = UaeFirmwareConstants.Kick34005A500,
+        [FirmwareCatalogConstants.HashDC10D7BDD1B6] = UaeFirmwareConstants.Kick37175A500,
+        [FirmwareCatalogConstants.Hash465646C9B672] = UaeFirmwareConstants.Kick37350A600,
+        [FirmwareCatalogConstants.HashE40A5DFB3D01] = UaeFirmwareConstants.Kick40063A600,
+        [FirmwareCatalogConstants.HashB7CC148386AA] = UaeFirmwareConstants.Kick39106A1200,
+        [FirmwareCatalogConstants.Hash646773759326] = UaeFirmwareConstants.Kick40068A1200,
+        [FirmwareCatalogConstants.Hash9B8BDD5A3FD3] = UaeFirmwareConstants.Kick39106A4000,
+        [FirmwareCatalogConstants.Hash9BDEDDE6A4F3] = UaeFirmwareConstants.Kick40068A4000,
+        [FirmwareCatalogConstants.HashF2F241BF0941] = UaeFirmwareConstants.Kick40060CD32,
+        [FirmwareCatalogConstants.Hash5F8924D013DD] = UaeFirmwareConstants.Kick40060CD32
+    };
+    internal static string ResolveKickstartFileName(
+        string model,
+        string sourcePath
+    )
     {
         using var stream = File.OpenRead(sourcePath);
         var md5 = Convert.ToHexString(MD5.HashData(stream));
-        if (KnownKickstartNames.TryGetValue(md5, out var knownName)) return knownName;
-
+        if (KnownKickstartNames.TryGetValue(md5, out var knownName))
+            return knownName;
         stream.Position = FirmwareCatalogConstants.StreamStart;
         Span<byte> header = stackalloc byte[FirmwareCatalogConstants.KickstartHeaderSize];
         if (stream.Read(header) == header.Length)
@@ -146,14 +160,11 @@ internal abstract class AmigaMachineFactory : MachineFactory
         };
     }
 
-    internal static string ResolveExtendedRomFileName(string model, string sourcePath) =>
-        model.ToUpperInvariant() switch
-        {
-            GWGUI.Emulation.Commodore.Common.Machines.AmigaCD32.Constants.ModelConstants.CD32 => UaeFirmwareConstants.Kick40060CD32Ext,
-            GWGUI.Emulation.Commodore.Common.Machines.CommodoreCDTV.Constants.ModelConstants.CDTV => UaeFirmwareConstants.Kick34005CDTV,
-            _ => Path.GetFileName(sourcePath)
-        };
-
+    internal static string ResolveExtendedRomFileName(string model, string sourcePath) => model.ToUpperInvariant() switch
+    {
+        GWGUI.Emulation.Commodore.Common.Machines.AmigaCD32.Constants.ModelConstants.CD32 => UaeFirmwareConstants.Kick40060CD32Ext,
+        GWGUI.Emulation.Commodore.Common.Machines.CommodoreCDTV.Constants.ModelConstants.CDTV => UaeFirmwareConstants.Kick34005CDTV,
+        _ => Path.GetFileName(sourcePath)};
     private static string ResolveKickstartSuffix(string model, int version, int revision) => (version, revision) switch
     {
         ((int)NativeKickstartVersion.Kickstart11Ntsc or (int)NativeKickstartVersion.Kickstart11Pal, (int)NativeKickstartRevision.Kickstart11) => GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A1000,
@@ -171,41 +182,50 @@ internal abstract class AmigaMachineFactory : MachineFactory
             GWGUI.Emulation.Commodore.Common.Machines.AmigaCD32.Constants.ModelConstants.CD32 => GWGUI.Emulation.Commodore.Common.Machines.AmigaCD32.Constants.ModelConstants.CD32,
             _ => GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A500
         }};
-
-    internal static string? PrepareContentPath(MachineConfiguration configuration, string sessionDirectory,
-        IReadOnlyList<MediaConfiguration>? resolvedMedia = null, bool createHardwareConfiguration = false)
+    internal static string? PrepareContentPath(
+        MachineConfiguration configuration,
+        string sessionDirectory,
+        IReadOnlyList<MediaConfiguration>? resolvedMedia = null,
+        bool createHardwareConfiguration = false
+    )
     {
         var media = resolvedMedia ?? ExternalCore.ResolveConfiguredMedia(configuration);
-        if (media.Count == BufferConstants.EmptyCollectionCount && !createHardwareConfiguration) return null;
-        if (media.Count == UaeContentConstants.SingleContentCount
-            && (!createHardwareConfiguration || media[BufferConstants.FirstCollectionIndex].Category is MediaCategory.Configuration or MediaCategory.WhdLoad))
+        if (media.Count == BufferConstants.EmptyCollectionCount && !createHardwareConfiguration)
+            return null;
+        if (media.Count == UaeContentConstants.SingleContentCount && (!createHardwareConfiguration || media[BufferConstants.FirstCollectionIndex].Category is MediaCategory.Configuration or MediaCategory.WhdLoad))
             return Path.GetFullPath(media[BufferConstants.FirstCollectionIndex].Path);
         var model = (AmigaModel)ModelCatalog.Get(configuration.Model);
-        var lines = new List<string> { UaeConfigurationConstants.ConfigurationVersion };
+        var lines = new List<string>
+        {
+            UaeConfigurationConstants.ConfigurationVersion
+        };
         var options = configuration.Options;
         string Value(string key, string fallback) => options?.GetValueOrDefault(key) ?? fallback;
-        void Add(string key, string value)
+        void Add(
+            string key,
+            string value
+        )
         {
-            if (value.IndexOfAny(UaeConfigurationConstants.InvalidConfigurationCharacters) >= BufferConstants.FirstCollectionIndex) throw new InvalidDataException(key);
+            if (value.IndexOfAny(UaeConfigurationConstants.InvalidConfigurationCharacters) >= BufferConstants.FirstCollectionIndex)
+                throw new InvalidDataException(key);
             lines.Add(string.Concat(key, UaeConfigurationConstants.AssignmentSeparator, value));
         }
+
         Add(UaeConfigurationConstants.Cpu, Value(SettingsConstants.OptionCpuModel, ((int)model.DefaultCpu).ToString(CultureInfo.InvariantCulture)));
         Add(UaeConfigurationConstants.ChipsetConfiguration, model.Chipset.ToLowerInvariant());
-        Add(UaeConfigurationConstants.ChipMemory, Value(SettingsConstants.OptionChipmemSize,
-            (model.ChipMemoryKib / UaeConfigurationConstants.ChipMemoryUnitKib).ToString(CultureInfo.InvariantCulture)));
-        Add(UaeConfigurationConstants.SlowMemory, Value(SettingsConstants.OptionBogomemSize,
-            (model.SlowMemoryKib / UaeConfigurationConstants.SlowMemoryUnitKib).ToString(CultureInfo.InvariantCulture)));
-        Add(UaeConfigurationConstants.FastMemory, Value(SettingsConstants.OptionFastmemSize,
-            model.FastMemoryMib.ToString(CultureInfo.InvariantCulture)));
-        Add(UaeConfigurationConstants.Z3Memory, Value(SettingsConstants.OptionZ3memSize,
-            SettingsValueConstants.DisabledMemory));
+        Add(UaeConfigurationConstants.ChipMemory, Value(SettingsConstants.OptionChipmemSize, (model.ChipMemoryKib / UaeConfigurationConstants.ChipMemoryUnitKib).ToString(CultureInfo.InvariantCulture)));
+        Add(UaeConfigurationConstants.SlowMemory, Value(SettingsConstants.OptionBogomemSize, (model.SlowMemoryKib / UaeConfigurationConstants.SlowMemoryUnitKib).ToString(CultureInfo.InvariantCulture)));
+        Add(UaeConfigurationConstants.FastMemory, Value(SettingsConstants.OptionFastmemSize, model.FastMemoryMib.ToString(CultureInfo.InvariantCulture)));
+        Add(UaeConfigurationConstants.Z3Memory, Value(SettingsConstants.OptionZ3memSize, SettingsValueConstants.DisabledMemory));
         Add(UaeConfigurationConstants.KickstartConfiguration, Path.GetFullPath(configuration.FirmwarePath(SettingsConstants.KickstartPath)));
         if (!string.IsNullOrWhiteSpace(configuration.FirmwarePath(SettingsConstants.ExtendedRomPath)))
             Add(UaeConfigurationConstants.ExtendedRomConfiguration, Path.GetFullPath(configuration.FirmwarePath(SettingsConstants.ExtendedRomPath)));
-        Add(UaeConfigurationConstants.NtScConfiguration,
-            Value(SettingsConstants.OptionVideoStandard, SettingsValueConstants.PAL)
-                .StartsWith(SettingsValueConstants.NTSC, StringComparison.OrdinalIgnoreCase)
-                ? UaeConfigurationConstants.Enabled : UaeConfigurationConstants.Disabled);
+        Add(
+            UaeConfigurationConstants.NtScConfiguration,
+            Value(SettingsConstants.OptionVideoStandard, SettingsValueConstants.PAL).StartsWith(SettingsValueConstants.NTSC, StringComparison.OrdinalIgnoreCase)
+                ? UaeConfigurationConstants.Enabled
+                : UaeConfigurationConstants.Disabled
+        );
         var floppy = BufferConstants.FirstCollectionIndex;
         var hardDrive = BufferConstants.FirstCollectionIndex;
         foreach (var item in media)
@@ -214,9 +234,11 @@ internal abstract class AmigaMachineFactory : MachineFactory
             switch (item.Category)
             {
                 case MediaCategory.Floppy:
-                    if (floppy >= UaeConfigurationConstants.MaximumFloppyDrives) throw new InvalidDataException(path);
+                    if (floppy >= UaeConfigurationConstants.MaximumFloppyDrives)
+                        throw new InvalidDataException(path);
                     var floppyIndex = item.SlotIndex ?? floppy++;
-                    if (floppyIndex >= UaeConfigurationConstants.MaximumFloppyDrives) throw new InvalidDataException(path);
+                    if (floppyIndex >= UaeConfigurationConstants.MaximumFloppyDrives)
+                        throw new InvalidDataException(path);
                     Add(UaeConfigurationConstants.FloppyPrefix + floppyIndex, path);
                     break;
                 case MediaCategory.CompactDisc:
@@ -225,18 +247,22 @@ internal abstract class AmigaMachineFactory : MachineFactory
                 case MediaCategory.HardDrive:
                     var access = item.IsReadOnly ? UaeConfigurationConstants.ReadOnly : UaeConfigurationConstants.ReadWrite;
                     var drive = UaeConfigurationConstants.HardDrivePrefix + hardDrive++;
-                    Add(Directory.Exists(path) ? UaeConfigurationConstants.FileSystemPrefix : UaeConfigurationConstants.HardfilePrefix,
-                        Directory.Exists(path) ? string.Format(UaeConfigurationConstants.DirectoryMountFormat, access, drive, path)
-                            : string.Format(UaeConfigurationConstants.HardfileMountFormat, access, drive, path, UaeConfigurationConstants.HardfileGeometry));
+                    Add(
+                        Directory.Exists(path) ? UaeConfigurationConstants.FileSystemPrefix : UaeConfigurationConstants.HardfilePrefix,
+                        Directory.Exists(path)
+                            ? string.Format(UaeConfigurationConstants.DirectoryMountFormat, access, drive, path)
+                            : string.Format(UaeConfigurationConstants.HardfileMountFormat, access, drive, path, UaeConfigurationConstants.HardfileGeometry)
+                    );
                     break;
-                default: throw new InvalidDataException(path);
+                default:
+                    throw new InvalidDataException(path);
             }
         }
+
         var content = Path.Combine(sessionDirectory, CoreDirectoryConstants.ContentDirectoryName);
         Directory.CreateDirectory(content);
         var configurationPath = Path.Combine(content, UaeConfigurationConstants.ConfigurationFile);
         File.WriteAllLines(configurationPath, lines, new System.Text.UTF8Encoding(false));
         return configurationPath;
     }
-
 }

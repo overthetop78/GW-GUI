@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Commodore.Common.Machines.Common.Functions;
-
 internal static class KeyboardBindingFunctions
 {
     internal static IReadOnlySet<EmulationKey> Expand(
@@ -28,7 +27,11 @@ internal static class KeyboardBindingFunctions
         return expanded;
     }
 
-    internal static InputConfiguration Normalize(InputConfiguration? input, IReadOnlyDictionary<EmulationKey, EmulationKey> defaults, IReadOnlyDictionary<EmulationKey, EmulationKey> legacyTargets)
+    internal static InputConfiguration Normalize(
+        InputConfiguration? input,
+        IReadOnlyDictionary<EmulationKey, EmulationKey> defaults,
+        IReadOnlyDictionary<EmulationKey, EmulationKey> legacyTargets
+    )
     {
         input ??= new InputConfiguration();
         var result = defaults.ToDictionary(item => item.Key.ToString(), item => item.Value.ToString(), StringComparer.Ordinal);
@@ -37,10 +40,16 @@ internal static class KeyboardBindingFunctions
             foreach (var item in source)
             {
                 var target = Enum.TryParse<EmulationKey>(item.Key, true, out var key) ? legacyTargets.GetValueOrDefault(key, key).ToString() : item.Key;
-                if (target != item.Key && source.ContainsKey(target)) continue;
+                if (target != item.Key && source.ContainsKey(target))
+                    continue;
                 result[target] = item.Value;
             }
+
         var mappings = result.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
-        return input with { KeyboardBindings = result, KeyboardMappings = mappings };
+        return input with
+        {
+            KeyboardBindings = result,
+            KeyboardMappings = mappings
+        };
     }
 }

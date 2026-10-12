@@ -2,7 +2,6 @@ using ModelConstants = GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.
 using GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Contracts;
 
 namespace GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Dictionaries;
-
 using CommonModelConstants = GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.HardwareConstants;
 using FamilyModelConstants = GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants;
 
@@ -24,7 +23,6 @@ internal static class ModelCatalog
         DriveCapacity.FourDrives,
         ControllerPortCount: CommonModelConstants.StandardControllerPorts
     );
-
     internal static AmigaModel A500PLUS { get; } = new(
         FamilyModelConstants.A500PLUS,
         FamilyModelConstants.Amiga500Plus,
@@ -41,7 +39,6 @@ internal static class ModelCatalog
         DriveCapacity.FourDrives,
         ControllerPortCount: CommonModelConstants.StandardControllerPorts
     );
-
     internal static AmigaModel A600 { get; } = new(
         FamilyModelConstants.A600,
         FamilyModelConstants.Amiga600,
@@ -58,7 +55,6 @@ internal static class ModelCatalog
         DriveCapacity.FourDrives,
         ControllerPortCount: CommonModelConstants.StandardControllerPorts
     );
-
     internal static AmigaModel A1000 { get; } = new(
         FamilyModelConstants.A1000,
         FamilyModelConstants.Amiga1000,
@@ -75,7 +71,6 @@ internal static class ModelCatalog
         DriveCapacity.DualDrives,
         ControllerPortCount: CommonModelConstants.StandardControllerPorts
     );
-
     internal static AmigaModel A1200 { get; } = new(
         FamilyModelConstants.A1200,
         FamilyModelConstants.Amiga1200,
@@ -92,7 +87,6 @@ internal static class ModelCatalog
         DriveCapacity.FourDrives,
         ControllerPortCount: CommonModelConstants.StandardControllerPorts
     );
-
     internal static AmigaModel A2000 { get; } = new(
         FamilyModelConstants.A2000,
         FamilyModelConstants.Amiga2000,
@@ -109,7 +103,6 @@ internal static class ModelCatalog
         DriveCapacity.EightDrives,
         ControllerPortCount: CommonModelConstants.StandardControllerPorts
     );
-
     internal static AmigaModel A3000 { get; } = new(
         FamilyModelConstants.A3000,
         FamilyModelConstants.Amiga3000,
@@ -126,7 +119,6 @@ internal static class ModelCatalog
         DriveCapacity.EightDrives,
         ControllerPortCount: CommonModelConstants.StandardControllerPorts
     );
-
     internal static AmigaModel A4000 { get; } = new(
         FamilyModelConstants.A4000,
         FamilyModelConstants.Amiga4000,
@@ -143,16 +135,5 @@ internal static class ModelCatalog
         DriveCapacity.EightDrives,
         ControllerPortCount: CommonModelConstants.StandardControllerPorts
     );
-
-    internal static IReadOnlyList<AmigaModel> All { get; } =
-    [
-        A500,
-        A500PLUS,
-        A600,
-        A1000,
-        A1200,
-        A2000,
-        A3000,
-        A4000
-    ];
+    internal static IReadOnlyList<AmigaModel> All { get; } = [A500, A500PLUS, A600, A1000, A1200, A2000, A3000, A4000];
 }
