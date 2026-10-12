@@ -5,7 +5,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 
     public static class Pfs3Constants
     {
-            public const uint MAX_FILE_SIZE = 0xffffffff;
+        public const uint MAX_FILE_SIZE = 0xffffffff;
         public const uint ULONG_MAX = UInt32.MaxValue;
 
         public static string deldirname = new string(new[] { (char)7 }.Concat(".DELDIR".ToArray()).ToArray());

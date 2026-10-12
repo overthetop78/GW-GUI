@@ -72,8 +72,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 //  * If only a partial path is found, a pointer to the unparsed part
 //  * will be stored in g->unparsed.
 //  */
-         public static async Task<bool> FindObject(Pfs3ObjectInfo directory, string objectname,
-             Pfs3ObjectInfo obj, Pfs3GlobalData g)
+        public static async Task<bool> FindObject(Pfs3ObjectInfo directory, string objectname, Pfs3ObjectInfo obj, Pfs3GlobalData g)
          {
              var filename = await GetFullPath(directory, objectname, obj, g);
 

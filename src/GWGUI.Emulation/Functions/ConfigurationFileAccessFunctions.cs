@@ -10,9 +10,7 @@ public static class ConfigurationFileAccessFunctions
 
     public static string ReadAllText(string path) => WithFileLock(path, () => File.ReadAllText(path));
 
-    public static void ReplaceFile(string source, string target,
-        int retryCount = DefaultReplacementRetryCount,
-        int retryDelayMilliseconds = DefaultReplacementRetryDelayMilliseconds) =>
+    public static void ReplaceFile(string source, string target, int retryCount = DefaultReplacementRetryCount, int retryDelayMilliseconds = DefaultReplacementRetryDelayMilliseconds) =>
         WithFileLock(target, () =>
         {
             for (var attempt = 0; attempt < retryCount; attempt++)

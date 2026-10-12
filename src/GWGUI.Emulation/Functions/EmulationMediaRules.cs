@@ -37,9 +37,7 @@ public static class EmulationMediaRules
         return media;
     }
 
-    public static IReadOnlyList<EmulationMedia> Replace(
-        IReadOnlyList<EmulationMedia> media,
-        EmulationMedia replacement)
+    public static IReadOnlyList<EmulationMedia> Replace(IReadOnlyList<EmulationMedia> media, EmulationMedia replacement)
     {
         ArgumentNullException.ThrowIfNull(media);
         Validate([replacement]);
@@ -48,9 +46,7 @@ public static class EmulationMediaRules
         return Validate(result);
     }
 
-    public static IReadOnlyList<EmulationMedia> Eject(
-        IReadOnlyList<EmulationMedia> media,
-        EmulationMediaSlot slot)
+    public static IReadOnlyList<EmulationMedia> Eject(IReadOnlyList<EmulationMedia> media, EmulationMediaSlot slot)
     {
         ArgumentNullException.ThrowIfNull(media);
         var existing = media.SingleOrDefault(item => item.Slot == slot);

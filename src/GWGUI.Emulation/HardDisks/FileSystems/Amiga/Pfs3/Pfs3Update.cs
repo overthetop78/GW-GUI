@@ -175,8 +175,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 #endif
             if (index.IndexBlock.index[indexoffset] != blk.oldblocknr)
             {
-                throw new IOException(
-                    $"Pfs3Update anode block at index offset {indexoffset} doesn't have expected old block nr {blk.oldblocknr} but instead block nr {index.IndexBlock.index[indexoffset]}");
+                throw new IOException($"Pfs3Update anode block at index offset {indexoffset} doesn't have expected old block nr {blk.oldblocknr} but instead block nr {index.IndexBlock.index[indexoffset]}");
             }
 
             index.IndexBlock.index[indexoffset] = (int)newblocknr;
@@ -215,8 +214,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 #endif
                 if (superblk.IndexBlock.index[temp >> 16] != blk.oldblocknr)
                 {
-                    throw new IOException(
-                        $"Pfs3Update index block in super block at index offset {temp >> 16} doesn't have expected old block nr {blk.oldblocknr} but instead block nr {superblk.IndexBlock.index[temp >> 16]}");
+                    throw new IOException($"Pfs3Update index block in super block at index offset {temp >> 16} doesn't have expected old block nr {blk.oldblocknr} but instead block nr {superblk.IndexBlock.index[temp >> 16]}");
                 }
 
                 superblk.IndexBlock.index[temp >> 16] = (int)newblocknr;
@@ -296,8 +294,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             var indexBlockBlk = indexblock.IndexBlock;
             if (indexBlockBlk.index[temp >> 16] != blk.oldblocknr)
             {
-                throw new IOException(
-                    $"Pfs3Update bitmap block at index offset {temp >> 16} doesn't have expected old block nr {blk.oldblocknr} but instead block nr {indexBlockBlk.index[temp >> 16]}");
+                throw new IOException($"Pfs3Update bitmap block at index offset {temp >> 16} doesn't have expected old block nr {blk.oldblocknr} but instead block nr {indexBlockBlk.index[temp >> 16]}");
             }
 
             indexBlockBlk.index[temp >> 16] = (int)newblocknr;
@@ -344,8 +341,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 #endif
             if (g.RootBlock.Extension != blk.oldblocknr)
             {
-                throw new IOException(
-                    $"Pfs3Update root extension block doesn't have expected old block nr {blk.oldblocknr} but instead block nr {g.RootBlock.Extension}");
+                throw new IOException($"Pfs3Update root extension block doesn't have expected old block nr {blk.oldblocknr} but instead block nr {g.RootBlock.Extension}");
             }
 
             g.RootBlock.Extension = newblocknr;

@@ -12,8 +12,7 @@ internal sealed class DifferencingParentChain<T> : IDisposable where T : Virtual
     internal T ImmediateParent => layers[0];
     internal SparseStream Content => contents[^1];
 
-    internal DifferencingParentChain(IReadOnlyList<Stream> images, Func<Stream, T> open,
-        Func<T, Guid> uniqueId, Func<T, Guid> parentId, Action<long> validateCapacity)
+    internal DifferencingParentChain(IReadOnlyList<Stream> images, Func<Stream, T> open, Func<T, Guid> uniqueId, Func<T, Guid> parentId, Action<long> validateCapacity)
     {
         if (images.Count is < 1 or > 64 || images.Distinct(ReferenceEqualityComparer.Instance).Count() != images.Count)
             throw new ArgumentException("A parent chain requires one to 64 distinct streams.", nameof(images));

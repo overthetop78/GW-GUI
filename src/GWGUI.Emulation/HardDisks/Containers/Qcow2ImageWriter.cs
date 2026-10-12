@@ -17,8 +17,7 @@ public static class Qcow2ImageWriter
             throw new ArgumentOutOfRangeException(nameof(capacity), "The L1 table exceeds 32 MiB.");
     }
 
-    public static void Write(Stream destination, long capacity, Action<Stream>? initialize = null,
-        int version = 3, int clusterBits = 16)
+    public static void Write(Stream destination, long capacity, Action<Stream>? initialize = null, int version = 3, int clusterBits = 16)
     {
         Validate(capacity, version, clusterBits);
         ContainerValidation.Validate(destination, capacity);

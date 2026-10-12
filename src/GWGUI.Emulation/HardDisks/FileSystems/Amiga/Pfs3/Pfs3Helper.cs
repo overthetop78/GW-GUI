@@ -12,8 +12,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             return await Mount(stream, partitionBlock.Sectors, partitionBlock.BlocksPerTrack, partitionBlock.Surfaces, partitionBlock.LowCyl, partitionBlock.HighCyl, partitionBlock.NumBuffer, partitionBlock.BlockSize, partitionBlock.Mask);
         }
 
-        public static async Task<Pfs3GlobalData> Mount(Stream stream, uint sectors, uint blocksPerTrack, uint surfaces, uint lowCyl,
-            uint highCyl, uint numBuffer, uint blockSize, uint mask)
+        public static async Task<Pfs3GlobalData> Mount(Stream stream, uint sectors, uint blocksPerTrack, uint surfaces, uint lowCyl, uint highCyl, uint numBuffer, uint blockSize, uint mask)
         {
             var g = Pfs3Init.CreateGlobalData(sectors, blocksPerTrack, surfaces, lowCyl, highCyl, numBuffer, mask);
             g.stream = stream;

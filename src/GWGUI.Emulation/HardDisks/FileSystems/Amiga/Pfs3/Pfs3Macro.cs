@@ -8,10 +8,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 
     public static class Pfs3Macro
     {
-        public static bool IsSameOI(
-            Pfs3ObjectInfo oi1,
-            Pfs3ObjectInfo oi2
-        )
+        public static bool IsSameOI(Pfs3ObjectInfo oi1, Pfs3ObjectInfo oi2)
         {
             return oi1.file?.direntry != null && oi2.file?.direntry != null && oi1.file.direntry.Equals(oi2.file.direntry) && oi1.file.dirblock.blocknr == oi2.file.dirblock.blocknr;
         }
@@ -64,10 +61,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 ;	ULONG divide (ULONG d0, UWORD d1)
 ;-----------------------------------------------------------------------------
 */
-        public static uint divide(
-            uint d0,
-            ushort d1
-        )
+        public static uint divide(uint d0, ushort d1)
         {
             uint q = d0 / d1;
             /* NOTE: I doubt anything depends on this, but lets simulate 68k divu overflow anyway - Piru */
@@ -138,27 +132,18 @@ BPTR
         public static bool IsBitmapIndexBlock(Pfs3CachedBlock blk) => blk.blk.id == Pfs3Constants.BMIBLKID;
         public static bool IsDeldir(Pfs3CachedBlock blk) => blk.blk.id == Pfs3Constants.DELDIRID;
         public static bool IsSuperBlock(Pfs3CachedBlock blk) => blk.blk.id == Pfs3Constants.SBLKID;
-        public static void MinRemove(
-            IPfs3Entry node,
-            Pfs3GlobalData g
-        )
+        public static void MinRemove(IPfs3Entry node, Pfs3GlobalData g)
         {
             var volume = g.currentvolume;
             volume.fileentries.Remove(node);
         }
 
-        public static void MinRemove(
-            Pfs3AnodeChain anodechain,
-            Pfs3GlobalData g
-        )
+        public static void MinRemove(Pfs3AnodeChain anodechain, Pfs3GlobalData g)
         {
             g.currentvolume.anodechainlist.Remove(anodechain);
         }
 
-        public static void MinRemove(
-            Pfs3CachedBlock node,
-            Pfs3GlobalData g
-        )
+        public static void MinRemove(Pfs3CachedBlock node, Pfs3GlobalData g)
         {
 #if DEBUG
             Pfs3Logger.Instance.Debug($"Macro: MinRemove CachedBlock block nr {node.blocknr} ({node.GetHashCode()})");
@@ -260,10 +245,7 @@ BPTR
         /// </summary>
         /// <param name = "node"></param>
         /// <param name = "g"></param>
-        public static void MinRemoveLru(
-            Pfs3CachedBlock node,
-            Pfs3GlobalData g
-        )
+        public static void MinRemoveLru(Pfs3CachedBlock node, Pfs3GlobalData g)
         {
 #if DEBUG
             Pfs3Logger.Instance.Debug($"Macro: MinRemoveLru CachedBlock block nr {node.blocknr} ({node.GetHashCode()})");
@@ -295,20 +277,13 @@ BPTR
         /// <param name = "list"></param>
         /// <param name = "node"></param>
         /// <typeparam name = "T"></typeparam>
-        public static void MinAddHead<T>(
-            LinkedList<T> list,
-            T node
-        )
+        public static void MinAddHead<T>(LinkedList<T> list, T node)
         {
             // #define MinAddHead(list, node)  AddHead((struct List *)(list), (struct Node *)(node))
             list.AddFirst(node);
         }
 
-        public static void AddToIndexes(
-            IDictionary<uint, Pfs3CachedBlock> byBlockNr,
-            IDictionary<uint, Pfs3CachedBlock> bySeqNr,
-            Pfs3CachedBlock node
-        )
+        public static void AddToIndexes(IDictionary<uint, Pfs3CachedBlock> byBlockNr, IDictionary<uint, Pfs3CachedBlock> bySeqNr, Pfs3CachedBlock node)
         {
             var seqBlock = node.blk as IPfs3SeqBlock;
             if (seqBlock is null)
@@ -328,10 +303,7 @@ BPTR
         }
 
         public static bool IsMinListEmpty<T>(LinkedList<T> list) => list.Count == 0;
-        public static async Task<Pfs3CachedBlock> GetAnodeBlock(
-            ushort seqnr,
-            Pfs3GlobalData g
-        )
+        public static async Task<Pfs3CachedBlock> GetAnodeBlock(ushort seqnr, Pfs3GlobalData g)
         {
             // #define GetAnodeBlock(a, b) (g->getanodeblock)(a,b)
             // g->getanodeblock = big_GetAnodeBlock;
@@ -357,29 +329,19 @@ BPTR
             };
         }
 
-        public static bool InPartition(
-            uint blk,
-            Pfs3GlobalData g
-        )
+        public static bool InPartition(uint blk, Pfs3GlobalData g)
         {
             return blk >= g.firstblock && blk <= g.lastblock;
         }
 
-        public static void Hash(
-            Pfs3CachedBlock blk,
-            LinkedList<Pfs3CachedBlock>[] list,
-            int mask
-        )
+        public static void Hash(Pfs3CachedBlock blk, LinkedList<Pfs3CachedBlock>[] list, int mask)
         {
             // #define Hash(blk, list, mask)                           \
             //             MinAddHead(&list[(blk->blocknr/2)&mask], blk)
             MinAddHead(list[(blk.blocknr / 2) & mask], blk);
         }
 
-        public static void Hash(
-            Pfs3CachedBlock blk,
-            IDictionary<uint, Pfs3CachedBlock> list
-        )
+        public static void Hash(Pfs3CachedBlock blk, IDictionary<uint, Pfs3CachedBlock> list)
         {
             list.Add(blk.blocknr, blk);
         }
@@ -387,12 +349,7 @@ BPTR
         /*
          * Hashing macros
          */
-        public static void ReHash(
-            Pfs3CachedBlock blk,
-            LinkedList<Pfs3CachedBlock>[] list,
-            int mask,
-            Pfs3GlobalData g
-        )
+        public static void ReHash(Pfs3CachedBlock blk, LinkedList<Pfs3CachedBlock>[] list, int mask, Pfs3GlobalData g)
         {
             // #define ReHash(blk, list, mask)                         \
             // {                                                       \
@@ -403,10 +360,7 @@ BPTR
             MinAddHead(list[(blk.blocknr / 2) & mask], blk);
         }
 
-        public static bool IsEmptyDBlk(
-            Pfs3CachedBlock blk,
-            Pfs3GlobalData g
-        )
+        public static bool IsEmptyDBlk(Pfs3CachedBlock blk, Pfs3GlobalData g)
         {
             // #define FIRSTENTRY(blok) ((struct Pfs3DirEntry*)((blok)->blk.entries))
             // #define IsEmptyDBlk(blk) (FIRSTENTRY(blk)->next == 0)
@@ -414,10 +368,7 @@ BPTR
             return blk.dirblock.DirEntries.Count == 0;
         }
 
-        public static bool IsUpdateNeeded(
-            int rtbf_threshold,
-            Pfs3GlobalData g
-        )
+        public static bool IsUpdateNeeded(int rtbf_threshold, Pfs3GlobalData g)
         {
             /* checks if update is needed now */
             // #define IsUpdateNeeded(rtbf_threshold)                              \

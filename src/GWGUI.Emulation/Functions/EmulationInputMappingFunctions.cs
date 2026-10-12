@@ -46,8 +46,7 @@ public static class EmulationInputMappingFunctions
             [EmulationInputMappingConstants.PaddleRight2] = EmulationInputMappingConstants.PaddleRight2Index
         };
 
-    public static IReadOnlySet<EmulationKey> MapKeyboard(IReadOnlySet<EmulationKey> keys,
-        IReadOnlyDictionary<string, EmulationKey>? mappings)
+    public static IReadOnlySet<EmulationKey> MapKeyboard(IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, EmulationKey>? mappings)
     {
         if (mappings is null || mappings.Count == 0) return new HashSet<EmulationKey>(keys);
         var result = new HashSet<EmulationKey>();
@@ -67,8 +66,7 @@ public static class EmulationInputMappingFunctions
         return controlSeparator <= EmulationInputMappingConstants.ControllerPrefix.Length ? null : source[EmulationInputMappingConstants.ControllerPrefix.Length..controlSeparator];
     }
 
-    public static EmulationControllerState ResolveController(string? deviceId,
-        IReadOnlyList<EmulationControllerState> controllers, int fallbackIndex)
+    public static EmulationControllerState ResolveController(string? deviceId, IReadOnlyList<EmulationControllerState> controllers, int fallbackIndex)
     {
         if (!string.IsNullOrWhiteSpace(deviceId))
         {
@@ -78,8 +76,7 @@ public static class EmulationInputMappingFunctions
         return fallbackIndex >= 0 && fallbackIndex < controllers.Count ? controllers[fallbackIndex] : EmulationControllerState.Empty;
     }
 
-    public static EmulationControllerState ResolveSourceController(string source,
-        IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)
+    public static EmulationControllerState ResolveSourceController(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)
     {
         var deviceId = ParseControllerDeviceId(source);
         return deviceId is null ? fallback : ResolveController(deviceId, controllers, -1);
@@ -113,10 +110,7 @@ public static class EmulationInputMappingFunctions
 
     public static bool IsControllerSourcePressed(string source, EmulationControllerState controller) => IsControllerSourcePressed(source, controller, ControllerSourceValue(source, controller));
 
-    public static bool IsControllerSourcePressed(
-        string source,
-        EmulationControllerState controller,
-        float value)
+    public static bool IsControllerSourcePressed(string source, EmulationControllerState controller, float value)
     {
         var name = SourceControlName(source);
         if (ControllerButtons.ContainsKey(name))

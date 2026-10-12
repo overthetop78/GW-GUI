@@ -33,8 +33,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             SetBitmapExtensionBlockOffsets(rootBlock.BitmapExtensionBlocks, rootBlock.BitmapExtensionBlocksOffset);
         }
 
-        public static uint SetBitmapBlockOffsets(
-            IEnumerable<FastFileSystemBitmapBlock> bitmapBlocks, uint startOffset)
+        public static uint SetBitmapBlockOffsets(IEnumerable<FastFileSystemBitmapBlock> bitmapBlocks, uint startOffset)
         {
             var offset = startOffset;
             foreach (var bitmapBlock in bitmapBlocks)
@@ -45,8 +44,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             return offset;
         }
 
-        public static void SetBitmapExtensionBlockOffsets(IEnumerable<FastFileSystemBitmapExtensionBlock> bitmapExtensionBlocks,
-            uint startOffset)
+        public static void SetBitmapExtensionBlockOffsets(IEnumerable<FastFileSystemBitmapExtensionBlock> bitmapExtensionBlocks, uint startOffset)
         {
             var bitmapExtensionBlocksList = bitmapExtensionBlocks.ToList();
 

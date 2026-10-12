@@ -18,8 +18,7 @@ public static class LinuxSwapVolumeFormatter
             throw new ArgumentException("Invalid or duplicate swap bad-page index.", nameof(badPages));
     }
 
-    public static void Format(Stream volume, string label, int pageBytes = 4096, bool bigEndian = false,
-        Guid? uuid = null, IReadOnlyList<uint>? badPages = null)
+    public static void Format(Stream volume, string label, int pageBytes = 4096, bool bigEndian = false, Guid? uuid = null, IReadOnlyList<uint>? badPages = null)
     {
         var pages = badPages?.ToArray() ?? [];
         Validate(volume.Length, label, pageBytes, pages);

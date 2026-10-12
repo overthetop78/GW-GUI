@@ -53,8 +53,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// </summary>
         /// <param name="volume"></param>
         /// <param name="outputPath"></param>
-        public static async Task ExtractVolume(FastFileSystemVolumeState volume,
-            string outputPath)
+        public static async Task ExtractVolume(FastFileSystemVolumeState volume, string outputPath)
         {
             var entries = (await FastFileSystemDirectory.ReadEntries(volume, volume.RootBlockOffset, true)).ToList();
 
@@ -70,8 +69,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="parent"></param>
         /// <param name="entries"></param>
         /// <param name="outputPath"></param>
-        private static async Task ExtractDirectory(FastFileSystemVolumeState volume, FastFileSystemEntryBlock parent, IEnumerable<FastFileSystemEntry> entries,
-            string outputPath)
+        private static async Task ExtractDirectory(FastFileSystemVolumeState volume, FastFileSystemEntryBlock parent, IEnumerable<FastFileSystemEntry> entries, string outputPath)
         {
             if (!System.IO.Directory.Exists(outputPath))
             {
@@ -154,8 +152,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="blockSize">Size of blocks in bytes</param>
         /// <param name="rootBlockOffset">Root block offset</param>
         /// <returns></returns>
-        public static async Task<FastFileSystemVolumeState> MountHdf(Stream stream, uint size, uint reserved = 0, uint blockSize = 512,
-            uint rootBlockOffset = 0)
+        public static async Task<FastFileSystemVolumeState> MountHdf(Stream stream, uint size, uint reserved = 0, uint blockSize = 512, uint rootBlockOffset = 0)
         {
             var blocks = size / blockSize;
             var surfaces = 16U; // heads
@@ -195,8 +192,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             // throw exception, if boot block dos type is invalid
             if (bootBlockBytes[0] != 0x44 || bootBlockBytes[1] != 0x4f || bootBlockBytes[2] != 0x53)
             {
-                throw new IOException(
-                    $"Invalid fast file system dos type '{string.Join(string.Empty, bootBlockBytes.Take(4).Select(x => x.ToString("x2")))}' in boot block");
+                throw new IOException($"Invalid fast file system dos type '{string.Join(string.Empty, bootBlockBytes.Take(4).Select(x => x.ToString("x2")))}' in boot block");
             }
 
             var mode = (int)bootBlockBytes[3];

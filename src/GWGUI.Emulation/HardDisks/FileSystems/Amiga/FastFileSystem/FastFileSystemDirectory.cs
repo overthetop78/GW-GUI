@@ -216,8 +216,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             return new string(nstr);
         }
 
-        public static async Task<FastFileSystemNameToEntryBlockResult> GetEntryBlock(FastFileSystemVolumeState volume, uint[] ht, string name,
-            bool nUpdSect)
+        public static async Task<FastFileSystemNameToEntryBlockResult> GetEntryBlock(FastFileSystemVolumeState volume, uint[] ht, string name, bool nUpdSect)
         {
             name = TrimName(volume, name);
 

@@ -8,8 +8,7 @@ public enum VmdkImageSetKind { VmfsFlat, VmfsSparse, SplitFlat, SplitSparse, Mon
 public static class VmdkImageSetWriter
 {
     /// <summary>The callback consumes each stream synchronously. Streams are disposed after the callback returns.</summary>
-    public static void Write(long capacity,string baseName,VmdkImageSetKind kind,Action<string,Stream> emit,
-        Action<Stream>? initialize=null,DiscUtils.Vmdk.DiskAdapterType adapter=DiscUtils.Vmdk.DiskAdapterType.LsiLogicScsi)
+    public static void Write(long capacity,string baseName,VmdkImageSetKind kind,Action<string,Stream> emit, Action<Stream>? initialize=null,DiscUtils.Vmdk.DiskAdapterType adapter=DiscUtils.Vmdk.DiskAdapterType.LsiLogicScsi)
     {
         if (kind == VmdkImageSetKind.MonolithicFlat)
         {

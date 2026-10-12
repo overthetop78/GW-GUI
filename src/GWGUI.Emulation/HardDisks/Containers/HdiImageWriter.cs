@@ -10,8 +10,7 @@ public static class HdiImageWriter
         LinearHeaderImageWriter.Cylinders(capacity, heads, sectors, sectorBytes);
         if (capacity > uint.MaxValue) throw new ArgumentOutOfRangeException(nameof(capacity));
     }
-    public static void Write(Stream destination, long capacity, Action<Stream>? initialize = null,
-        int heads = 1, int sectors = 1, int sectorBytes = 512)
+    public static void Write(Stream destination, long capacity, Action<Stream>? initialize = null, int heads = 1, int sectors = 1, int sectorBytes = 512)
     {
         Validate(capacity, heads, sectors, sectorBytes);
         var header = new byte[4096];

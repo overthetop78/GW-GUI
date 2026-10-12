@@ -143,8 +143,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="name">Name of entry to create link to.</param>
         /// <param name="overwrite">Overwrite link, if it exists.</param>
         /// <param name="ignoreProtectionBits">Ignore protection bits, if link exists.</param>
-        public async Task CreateLink(string linkName, string name, bool overwrite = false,
-            bool ignoreProtectionBits = false)
+        public async Task CreateLink(string linkName, string name, bool overwrite = false, bool ignoreProtectionBits = false)
         {
             await FastFileSystemDirectory.CreateLink(volume, currentDirectorySector, linkName, name);
         }
@@ -254,8 +253,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="partitionBlock"></param>
         /// <param name="resolveLinkPaths"></param>
         /// <returns></returns>
-        public static async Task<FastFileSystemVolume> MountPartition(Stream stream, PartitionBlock partitionBlock,
-            bool resolveLinkPaths = true)
+        public static async Task<FastFileSystemVolume> MountPartition(Stream stream, PartitionBlock partitionBlock, bool resolveLinkPaths = true)
         {
             return await Mount(stream, partitionBlock.LowCyl, partitionBlock.HighCyl,
                 partitionBlock.Surfaces, partitionBlock.BlocksPerTrack, partitionBlock.Reserved,
@@ -291,9 +289,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <param name="fileSystemBlockSize"></param>
         /// <param name="resolveLinkPaths"></param>
         /// <returns></returns>
-        public static async Task<FastFileSystemVolume> Mount(Stream stream, uint lowCyl, uint highCyl,
-            uint surfaces, uint blocksPerTrack, uint reserved, uint blockSize, uint fileSystemBlockSize,
-            bool resolveLinkPaths = true)
+        public static async Task<FastFileSystemVolume> Mount(Stream stream, uint lowCyl, uint highCyl, uint surfaces, uint blocksPerTrack, uint reserved, uint blockSize, uint fileSystemBlockSize, bool resolveLinkPaths = true)
         {
             var volume = await FastFileSystemHelper.Mount(stream, lowCyl, highCyl, surfaces, blocksPerTrack, reserved, blockSize, fileSystemBlockSize);
             volume.ResolveLinkPaths = resolveLinkPaths;

@@ -10,8 +10,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 
     public static partial class Pfs3Directory
     {
-        public static async Task<bool> RenameAndMove(Pfs3ObjectInfo sourcedi, Pfs3ObjectInfo srcinfo, Pfs3ObjectInfo destdi,
-            string destname, Pfs3GlobalData g)
+        public static async Task<bool> RenameAndMove(Pfs3ObjectInfo sourcedi, Pfs3ObjectInfo srcinfo, Pfs3ObjectInfo destdi, string destname, Pfs3GlobalData g)
         {
             Pfs3DirEntry srcdirentry, destentry;
             // var entrybuffer = new byte[Macro.MAX_ENTRYSIZE];
@@ -327,8 +326,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
         /// <param name="newlink">Newlink created.</param>
         /// <param name="g">Globaldata</param>
         /// <exception cref="IOException">Exception thrown.</exception>
-        public static async Task CreateLink(Pfs3ObjectInfo linkdir, string linkname, Pfs3ObjectInfo obj,
-				        Pfs3ObjectInfo newlink, Pfs3GlobalData g)
+        public static async Task CreateLink(Pfs3ObjectInfo linkdir, string linkname, Pfs3ObjectInfo obj, Pfs3ObjectInfo newlink, Pfs3GlobalData g)
         {
 	        var info = new Pfs3ObjectInfo();
             var odi = new Pfs3ObjectInfo();

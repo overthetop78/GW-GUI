@@ -16,11 +16,7 @@ public static class VmdkStreamImageWriter
             throw new ArgumentOutOfRangeException(nameof(capacity));
     }
 
-    public static void Write(
-        Stream destination,
-        long capacity,
-        Action<Stream>? initialize = null
-    )
+    public static void Write(Stream destination, long capacity, Action<Stream>? initialize = null)
     {
         ContainerValidation.Validate(destination, capacity);
         Validate(capacity);
@@ -79,10 +75,7 @@ public static class VmdkStreamImageWriter
         destination.Flush();
     }
 
-    private static byte[] Header(
-        long capacity,
-        ulong directorySector
-    )
+    private static byte[] Header(long capacity, ulong directorySector)
     {
         var header = new byte[512];
         "KDMV"u8.CopyTo(header);
@@ -103,10 +96,7 @@ public static class VmdkStreamImageWriter
         return header;
     }
 
-    private static byte[] Marker(
-        ulong sectors,
-        uint type
-    )
+    private static byte[] Marker(ulong sectors, uint type)
     {
         var marker = new byte[512];
         Put64(marker, 0, sectors);

@@ -10,8 +10,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 
     public static partial class Pfs3Directory
     {
-        public static async Task<bool> AddDirectoryEntry(Pfs3ObjectInfo dir, Pfs3DirEntry newentry, Pfs3FileInfo newinfo,
-            Pfs3GlobalData g)
+        public static async Task<bool> AddDirectoryEntry(Pfs3ObjectInfo dir, Pfs3DirEntry newentry, Pfs3FileInfo newinfo, Pfs3GlobalData g)
         {
 #if DEBUG
             Pfs3Logger.Instance.Debug("Pfs3Directory: AddDirectoryEntry");
@@ -321,8 +320,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
  *
  * output: - info: objectinfo of new directoryentry
  */
-        public static async Task<Pfs3DirEntry> MakeDirEntry(int type, string name,
-            Pfs3GlobalData g)
+        public static async Task<Pfs3DirEntry> MakeDirEntry(int type, string name, Pfs3GlobalData g)
         {
             //ushort entrysize;
             //direntry *direntry;

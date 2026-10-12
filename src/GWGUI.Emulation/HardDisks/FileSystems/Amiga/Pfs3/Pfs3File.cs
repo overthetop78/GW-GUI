@@ -17,8 +17,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 	    /// <param name="overwrite"></param>
 	    /// <param name="g">Globaldata.</param>
 	    /// <returns></returns>
-	    public static async Task<IPfs3Entry> Open(Pfs3ObjectInfo parentfi, string fullname, Amiga.FileSystems.FileMode mode,
-		    bool overwrite, Pfs3GlobalData g)
+        public static async Task<IPfs3Entry> Open(Pfs3ObjectInfo parentfi, string fullname, Amiga.FileSystems.FileMode mode, bool overwrite, Pfs3GlobalData g)
         {
 	        // static SIPTR dd_Open(struct DosPacket *pkt, globaldata * g)
 	        // ARG1 = BPTR Filehandle to fill in

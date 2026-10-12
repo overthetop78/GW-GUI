@@ -8,14 +8,12 @@ namespace GWGUI.Emulation.HardDisks;
 /// <summary>Only registered implementations are advertised as constructible. Registries are instance-owned.</summary>
 public sealed class DiskFormatRegistry
 {
-    public sealed record ImageSet(string Id, string EntryPoint, Action<long, bool> Validate,
-        Action<long, Action<string, Stream>, Action<Stream>> Write, DiskFormatIdentity Identity)
+    public sealed record ImageSet(string Id, string EntryPoint, Action<long, bool> Validate, Action<long, Action<string, Stream>, Action<Stream>> Write, DiskFormatIdentity Identity)
     {
         public IReadOnlySet<int>? LogicalSectorSizes { get; init; }
         public DiskFormatOperations Operations => DiskFormatOperations.Create;
     }
-    public sealed record Container(string Id, Action<long, bool> Validate,
-        Action<Stream, long, bool, Action<Stream>> Write)
+    public sealed record Container(string Id, Action<long, bool> Validate, Action<Stream, long, bool, Action<Stream>> Write)
     {
         public DiskFormatIdentity? Identity { get; init; }
         public IReadOnlySet<int>? LogicalSectorSizes { get; init; }
@@ -24,14 +22,12 @@ public sealed class DiskFormatRegistry
         public bool SupportsFixedAllocation { get; init; } = true;
         public DiskFormatOperations Operations => DiskFormatOperations.Create;
     }
-    public sealed record FileSystem(string Id, Action<DiskVolumePlan> Validate,
-        Action<Stream, DiskVolumePlan> Format, IReadOnlySet<int>? SectorSizes = null)
+    public sealed record FileSystem(string Id, Action<DiskVolumePlan> Validate, Action<Stream, DiskVolumePlan> Format, IReadOnlySet<int>? SectorSizes = null)
     {
         public DiskFormatIdentity? Identity { get; init; }
         public DiskFormatOperations Operations => DiskFormatOperations.Create;
     }
-    public sealed record PartitionTable(string Id, Action<long, IReadOnlyList<DiskVolumePlan>> Validate,
-        Action<Stream, IReadOnlyList<DiskVolumePlan>> Write)
+    public sealed record PartitionTable(string Id, Action<long, IReadOnlyList<DiskVolumePlan>> Validate, Action<Stream, IReadOnlyList<DiskVolumePlan>> Write)
     {
         public DiskFormatIdentity? Identity { get; init; }
         public int LogicalSectorBytes { get; init; } = 512;
@@ -204,8 +200,7 @@ public sealed class DiskFormatRegistry
                 volume => LongNameDosVolumeFormatter.Validate(volume.LengthBytes, volume.Label),
                 (stream, volume) => LongNameDosVolumeFormatter.Format(stream, volume.Label, fast))
             { Identity = new("OFS / FFS", fast ? "DOS7, long names, 512-byte blocks" : "DOS6, long names, 512-byte blocks") });
-        registry.Register(new FileSystem("d90-dos", volume => D90VolumeFormatter.Validate(volume.LengthBytes, volume.Label),
-            (stream, volume) => D90VolumeFormatter.Format(stream, volume.Label), new HashSet<int> { 256 }));
+        registry.Register(new FileSystem("d90-dos", volume => D90VolumeFormatter.Validate(volume.LengthBytes, volume.Label), (stream, volume) => D90VolumeFormatter.Format(stream, volume.Label), new HashSet<int> { 256 }));
         foreach (var (id, order) in new[] { ("v7-le", StorageByteOrder.LittleEndian), ("v7-be", StorageByteOrder.BigEndian), ("v7-pdp", StorageByteOrder.PdpEndian) })
             registry.Register(new FileSystem(id, volume =>
             {
@@ -270,8 +265,7 @@ public sealed class DiskFormatRegistry
             if (volumes.Count > 1 || volumes.Any(v => v.OffsetBytes != 0 || v.LengthBytes != size))
                 throw new ArgumentException("A direct volume must occupy the entire disk.");
         }, (_, _) => { }) { LogicalSectorBytes = 0 });
-        registry.Register(new PartitionTable("mbr", ComposedPartitionWriter.ValidateMbr, ComposedPartitionWriter.WriteMbr)
-        { SupportsMbrLogical = true });
+        registry.Register(new PartitionTable("mbr", ComposedPartitionWriter.ValidateMbr, ComposedPartitionWriter.WriteMbr) { SupportsMbrLogical = true });
         registry.Register(new PartitionTable("mbr-chs", (size, volumes) => ChsMbrPartitionWriter.Validate(size, volumes),
             (stream, volumes) => ChsMbrPartitionWriter.Write(stream, volumes))
         { SupportsMbrLogical = true, BiosGeometry = new(), Identity = new("MBR", "CHS 16 heads, 63 sectors per track, extended type 05") });

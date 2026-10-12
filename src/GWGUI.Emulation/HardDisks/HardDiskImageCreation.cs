@@ -10,8 +10,7 @@ public static class HardDiskImageCreation
         Publish(path, plan.FixedSize && string.Equals(plan.ContainerId, "raw", StringComparison.OrdinalIgnoreCase) ? plan.CapacityBytes : 0, write);
     }
 
-    public static void Create(string path, long bytes, HardDiskImageFormat format, bool preallocate,
-        HardDiskPreparation preparation = HardDiskPreparation.Blank)
+    public static void Create(string path, long bytes, HardDiskImageFormat format, bool preallocate, HardDiskPreparation preparation = HardDiskPreparation.Blank)
     {
         HardDiskImageValidation.Validate(path, bytes, format);
         if (preparation != HardDiskPreparation.Blank && format.Preparations?.Contains(preparation) != true)

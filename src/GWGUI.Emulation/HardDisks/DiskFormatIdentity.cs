@@ -11,8 +11,7 @@ public sealed class DiskFormatIdentity
     public string? SignatureFamily { get; }
     public IReadOnlyList<string> Extensions { get; }
 
-    public DiskFormatIdentity(string family, string variant, IEnumerable<string>? extensions = null,
-        string? signatureFamily = null)
+    public DiskFormatIdentity(string family, string variant, IEnumerable<string>? extensions = null, string? signatureFamily = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(family);
         ArgumentException.ThrowIfNullOrWhiteSpace(variant);

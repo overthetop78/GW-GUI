@@ -15,8 +15,7 @@ public static class VhdxImageWriter
             throw new ArgumentOutOfRangeException(nameof(capacity));
     }
 
-    public static void Write(Stream destination, long capacity, bool fixedSize = false, Action<Stream>? initialize = null,
-        int logicalSectorBytes = 512)
+    public static void Write(Stream destination, long capacity, bool fixedSize = false, Action<Stream>? initialize = null, int logicalSectorBytes = 512)
     {
         ContainerValidation.Validate(destination, capacity);
         Validate(capacity, logicalSectorBytes);

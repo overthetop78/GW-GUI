@@ -8,8 +8,7 @@ namespace GWGUI.Emulation.HardDisks.Containers;
 /// <summary>Common serialization for hosted VMDK sets with external descriptors.</summary>
 internal static class VmdkDescriptorImageSetWriter
 {
-    internal static void Write(long capacity, string baseName, bool sparse, Action<string, Stream> emit,
-        Action<Stream>? initialize, DiskAdapterType adapter, long extentBytes, bool split)
+    internal static void Write(long capacity, string baseName, bool sparse, Action<string, Stream> emit, Action<Stream>? initialize, DiskAdapterType adapter, long extentBytes, bool split)
     {
         ArgumentNullException.ThrowIfNull(emit);
         if (capacity < 512 || capacity % 512 != 0 || capacity > 1L << 40)
@@ -40,8 +39,7 @@ internal static class VmdkDescriptorImageSetWriter
             descriptor.Append(sparse ? "\n" : " 0\n");
             using var slice = new SubStream(content, Ownership.None, offset, length);
             if (!sparse) { emit(name, slice); continue; }
-            var builder = new DiscUtils.Vmdk.DiskBuilder
-            { Content = slice, DiskType = DiskCreateType.MonolithicSparse, AdapterType = adapter };
+            var builder = new DiscUtils.Vmdk.DiskBuilder { Content = slice, DiskType = DiskCreateType.MonolithicSparse, AdapterType = adapter };
             using var built = builder.Build(Path.GetFileNameWithoutExtension(name)).Single().OpenStream();
             using var extent = new SparseMemoryStream();
             built.CopyTo(extent);

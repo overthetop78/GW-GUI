@@ -75,9 +75,7 @@ internal static class EmulationHostProtocolFunctions
             var controls = new Dictionary<string, float>(controlCount, StringComparer.OrdinalIgnoreCase);
             for (var controlIndex = 0; controlIndex < controlCount; controlIndex++)
                 controls[reader.ReadString()] = reader.ReadSingle();
-            controllers[index] = controlCount == 0
-                ? controller with { DeviceId = deviceId }
-                : controller with { DeviceId = deviceId, Controls = new EmulationControllerControls(controls) };
+            controllers[index] = controlCount == 0 ? controller with { DeviceId = deviceId } : controller with { DeviceId = deviceId, Controls = new EmulationControllerControls(controls) };
         }
         return new EmulationInputSnapshot(keys, pointer, controllers);
     }

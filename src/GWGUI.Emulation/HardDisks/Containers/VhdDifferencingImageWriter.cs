@@ -6,13 +6,11 @@ namespace GWGUI.Emulation.HardDisks.Containers;
 /// <summary>Creates a VHD child without modifying its explicitly supplied parent chain.</summary>
 public static class VhdDifferencingImageWriter
 {
-    public static void Write(Stream destination, Stream parentImage, string parentAbsolutePath, string parentRelativePath,
-        DateTime parentModificationTimeUtc, Action<Stream>? initialize = null)
+    public static void Write(Stream destination, Stream parentImage, string parentAbsolutePath, string parentRelativePath, DateTime parentModificationTimeUtc, Action<Stream>? initialize = null)
         => WriteChain(destination, [parentImage], parentAbsolutePath, parentRelativePath, parentModificationTimeUtc, initialize);
 
     /// <summary>Parents are ordered from immediate parent to autonomous base; all must have matching identities and capacity.</summary>
-    public static void WriteChain(Stream destination, IReadOnlyList<Stream> parentImages, string parentAbsolutePath, string parentRelativePath,
-        DateTime parentModificationTimeUtc, Action<Stream>? initialize = null)
+    public static void WriteChain(Stream destination, IReadOnlyList<Stream> parentImages, string parentAbsolutePath, string parentRelativePath, DateTime parentModificationTimeUtc, Action<Stream>? initialize = null)
     {
         ArgumentNullException.ThrowIfNull(parentImages);
         var images = parentImages.ToArray();

@@ -10,8 +10,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem.Blocks
         {
             if (entryBlock.Type != FastFileSystemConstants.T_HEADER)
             {
-                throw new ArgumentException($"Invalid entry block type '{entryBlock.SecType}'",
-                    nameof(entryBlock.Type));
+                throw new ArgumentException($"Invalid entry block type '{entryBlock.SecType}'", nameof(entryBlock.Type));
             }
 
             switch (entryBlock.SecType)
@@ -24,8 +23,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem.Blocks
                 case FastFileSystemConstants.ST_LFILE:
                     return useLnfs ? FastFileSystemLongNameEntryBlockWriter.Build(entryBlock, blockSize) : BuildEntryBlock(entryBlock, blockSize);
                 default:
-                    throw new ArgumentException($"Invalid entry block secondary type '{entryBlock.SecType}'",
-                        nameof(entryBlock.SecType));
+                    throw new ArgumentException($"Invalid entry block secondary type '{entryBlock.SecType}'", nameof(entryBlock.SecType));
             }
         }
 

@@ -6,15 +6,13 @@ namespace GWGUI.Emulation.Functions;
 
 public static partial class JsonConfigurationRecoveryFunctions
 {
-    public static T DeserializeRemovingInvalidProperties<T>(string json,
-        Func<JsonElement, T> deserialize, out string repairedJson)
+    public static T DeserializeRemovingInvalidProperties<T>(string json, Func<JsonElement, T> deserialize, out string repairedJson)
     {
         var root = JsonNode.Parse(json) ?? throw new JsonException("The JSON document is empty.");
         var changed = false;
         for (var attempt = 0; attempt < 32; attempt++)
         {
-            var candidate = changed
-                ? root.ToJsonString(new JsonSerializerOptions { WriteIndented = true }) : json;
+            var candidate = changed ? root.ToJsonString(new JsonSerializerOptions { WriteIndented = true }) : json;
             try
             {
                 using var document = JsonDocument.Parse(candidate);
@@ -31,8 +29,7 @@ public static partial class JsonConfigurationRecoveryFunctions
         throw new JsonException("Too many incompatible JSON properties.");
     }
 
-    public static async Task WriteAtomicallyAsync(string path, string json,
-        CancellationToken cancellationToken)
+    public static async Task WriteAtomicallyAsync(string path, string json, CancellationToken cancellationToken)
     {
         var temporary = path + "." + Guid.NewGuid().ToString("N") + ".tmp";
         try

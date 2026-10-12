@@ -14,8 +14,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <summary>
         /// format partition with fast file system
         /// </summary>
-        public static async Task FormatPartition(Stream stream, PartitionBlock partitionBlock,
-            string diskName)
+        public static async Task FormatPartition(Stream stream, PartitionBlock partitionBlock, string diskName)
         {
             await Format(stream, partitionBlock.LowCyl, partitionBlock.HighCyl, partitionBlock.Reserved,
                 partitionBlock.Surfaces, partitionBlock.BlocksPerTrack, partitionBlock.BlockSize,
@@ -25,8 +24,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <summary>
         /// format disk with fast file system
         /// </summary>
-        public static async Task Format(Stream stream, uint lowCyl, uint highCyl, uint reserved, uint surfaces,
-            uint blocksPerTrack, uint blockSize, uint fileSystemBlockSize, byte[] dosType, string diskName)
+        public static async Task Format(Stream stream, uint lowCyl, uint highCyl, uint reserved, uint surfaces, uint blocksPerTrack, uint blockSize, uint fileSystemBlockSize, byte[] dosType, string diskName)
         {
             var rootBlockOffset = FastFileSystemOffsetHelper.CalculateRootBlockOffset(lowCyl, highCyl, reserved, surfaces, blocksPerTrack, fileSystemBlockSize);
 

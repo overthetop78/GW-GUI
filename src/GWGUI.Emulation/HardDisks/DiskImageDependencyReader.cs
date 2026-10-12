@@ -126,17 +126,12 @@ public static partial class DiskImageDependencyReader
 
     private static IEnumerable<DiskImageDependencyReference> Paths(IEnumerable<string> paths) => paths.Select(DiskImageDependencyReference.FromPath);
 
-    private static IReadOnlyList<DiskImageDependencyReference> DistinctReferences(
-        IEnumerable<DiskImageDependencyReference> references)
+    private static IReadOnlyList<DiskImageDependencyReference> DistinctReferences(IEnumerable<DiskImageDependencyReference> references)
     {
         var paths = new HashSet<string>(PathComparer);
         var uuids = new HashSet<Guid>();
         var hashes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        return references.Where(reference =>
-                reference.Path is { } path ? paths.Add(path) :
-                reference.Uuid is { } uuid ? uuids.Add(uuid) :
-                reference.Sha1 is { } sha1 && hashes.Add(sha1))
-            .ToArray();
+        return references.Where(reference => reference.Path is { } path ? paths.Add(path) : reference.Uuid is { } uuid ? uuids.Add(uuid) : reference.Sha1 is { } sha1 && hashes.Add(sha1)).ToArray();
     }
 
     private static IReadOnlyList<DiskImageDependencyReference> ReadVdiParent(byte[] header)

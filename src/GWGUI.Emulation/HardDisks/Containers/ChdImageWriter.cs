@@ -20,8 +20,7 @@ public static class ChdImageWriter
         var units = SparseImageContent.AllocatedUnits(content, Hunk);
         var count = checked((int)((capacity + Hunk - 1) / Hunk));
         var map = new byte[checked(count * 4)];
-        var metadata = Encoding.ASCII.GetBytes(string.Create(CultureInfo.InvariantCulture,
-            $"CYLS:{cylinders},HEADS:{heads},SECS:{sectors},BPS:512\0"));
+        var metadata = Encoding.ASCII.GetBytes(string.Create(CultureInfo.InvariantCulture, $"CYLS:{cylinders},HEADS:{heads},SECS:{sectors},BPS:512\0"));
         var metadataOffset = 124L + map.Length;
         var firstData = (metadataOffset + 16 + metadata.Length + Hunk - 1) / Hunk;
         destination.SetLength((firstData + units.Count) * Hunk);

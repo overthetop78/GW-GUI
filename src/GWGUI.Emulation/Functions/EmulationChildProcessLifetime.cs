@@ -96,8 +96,7 @@ internal sealed class EmulationChildProcessJob : IDisposable
 
     [DllImport("kernel32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool SetInformationJobObject(SafeFileHandle job, int informationClass,
-        IntPtr information, uint informationLength);
+    private static extern bool SetInformationJobObject(SafeFileHandle job, int informationClass, IntPtr information, uint informationLength);
 
     [DllImport("kernel32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]

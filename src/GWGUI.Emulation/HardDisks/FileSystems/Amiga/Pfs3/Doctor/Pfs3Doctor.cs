@@ -243,7 +243,7 @@ namespace Hst.Amiga.FileSystems.Pfs3.Doctor
 }
 
 
-public static bool IsRootBlock(Pfs3RootBlock r)
+        public static bool IsRootBlock(Pfs3RootBlock r)
 {
 	// check rootblock type
 	if (r.DiskType != Pfs3Constants.ID_PFS_DISK && r.DiskType != Pfs3Constants.ID_PFS2_DISK)

@@ -9,8 +9,7 @@ public static class DiskImageSetPublication
     public static string CreateTree(string directory, string entryPoint, Action<Action<string, Stream>> build)
         => Create(directory, entryPoint, build, new FileImageSetStorage(), true);
 
-    internal static string Create(string directory, string entryPoint, Action<Action<string, Stream>> build,
-        IImageSetStorage storage, bool allowSubdirectories = false)
+    internal static string Create(string directory, string entryPoint, Action<Action<string, Stream>> build, IImageSetStorage storage, bool allowSubdirectories = false)
     {
         ArgumentNullException.ThrowIfNull(build);
         ValidateMemberPath(entryPoint, allowSubdirectories);

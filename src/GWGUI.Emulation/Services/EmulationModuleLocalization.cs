@@ -58,10 +58,7 @@ public sealed class EmulationModuleLocalization(Assembly assembly, string resour
 
     private bool IsCatalogResource(string resourceName, string culture) =>
         resourceName.StartsWith(_resourceRoot, StringComparison.Ordinal)
-        && (culture == BaseCulture
-            ? resourceName.EndsWith(".resources", StringComparison.Ordinal)
-                && !SatelliteResourceSuffix.IsMatch(resourceName)
-            : resourceName.EndsWith($".{culture}.resources", StringComparison.Ordinal));
+        && (culture == BaseCulture ? resourceName.EndsWith(".resources", StringComparison.Ordinal) && !SatelliteResourceSuffix.IsMatch(resourceName) : resourceName.EndsWith($".{culture}.resources", StringComparison.Ordinal));
 
     private static string GetResourceRoot(string resourcePrefix)
     {

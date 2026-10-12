@@ -17,8 +17,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
         /// <param name="numBuffers"></param>
         /// <param name="mask"></param>
         /// <returns></returns>
-        public static Pfs3GlobalData CreateGlobalData(uint sectors, uint blocksPerTrack, uint surfaces,
-            uint lowCyl, uint highCyl, uint numBuffers, uint mask)
+        public static Pfs3GlobalData CreateGlobalData(uint sectors, uint blocksPerTrack, uint surfaces, uint lowCyl, uint highCyl, uint numBuffers, uint mask)
         {
             var blocksPerCylinder = blocksPerTrack * surfaces;
 

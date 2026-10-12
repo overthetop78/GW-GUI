@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.HardDisks.Containers;
 
 public static class DiskContainerWriter
 {
-    public static void Write(Stream destination, long capacity, DiskContainerKind kind,
-        Action<Stream>? initialize = null, bool fixedSize = false)
+    public static void Write(Stream destination, long capacity, DiskContainerKind kind, Action<Stream>? initialize = null, bool fixedSize = false)
     {
         switch (kind)
         {

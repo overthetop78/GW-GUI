@@ -67,8 +67,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             return AdfReadFile(count, buffer).GetAwaiter().GetResult();
         }
 
-        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count,
-            CancellationToken cancellationToken)
+        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             if (offset != 0)
             {
