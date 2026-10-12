@@ -32,16 +32,11 @@ public sealed class UpdatePlanBuilder
         }
 
         var componentsById = catalog.Components.ToDictionary(component => component.Id, StringComparer.OrdinalIgnoreCase);
-        if (scope == UpdateSearchScope.Application && componentsById.Values.Any(component =>
-                component.Kind != UpdateComponentKind.Application ||
-                !component.Id.Equals(ApplicationId, StringComparison.OrdinalIgnoreCase)))
+        if (scope == UpdateSearchScope.Application && componentsById.Values.Any(component => component.Kind != UpdateComponentKind.Application || !component.Id.Equals(ApplicationId, StringComparison.OrdinalIgnoreCase)))
             throw new InvalidDataException("The application catalog must contain only the GW GUI application component.");
-        if (scope == UpdateSearchScope.Modules && componentsById.Values.Any(component =>
-                component.Kind != UpdateComponentKind.Module))
+        if (scope == UpdateSearchScope.Modules && componentsById.Values.Any(component => component.Kind != UpdateComponentKind.Module))
             throw new InvalidDataException("A module catalog must contain only module components.");
-        var moduleCatalogs = componentsById.Values
-            .Where(component => component.Kind == UpdateComponentKind.Module)
-            .ToDictionary(component => component.Id, StringComparer.OrdinalIgnoreCase);
+        var moduleCatalogs = componentsById.Values.Where(component => component.Kind == UpdateComponentKind.Module).ToDictionary(component => component.Id, StringComparer.OrdinalIgnoreCase);
         var issues = new List<string>();
         var rows = new List<AvailableComponentUpdate>();
         UpdateCatalogRelease? selectedApplication = null;
@@ -58,8 +53,7 @@ public sealed class UpdatePlanBuilder
                     targetHostApi = ParseVersion(selectedApplication.HostApiVersion, 2,
                         $"application {selectedApplication.Version} host API");
                 rows.Add(new(application.Id, application.Kind, installed.ApplicationVersion,
-                    newer.Count == 0 ? UpdateAvailability.UpToDate
-                    : feasible.Length == 0 ? UpdateAvailability.Incompatible : UpdateAvailability.Available,
+                    newer.Count == 0 ? UpdateAvailability.UpToDate : feasible.Length == 0 ? UpdateAvailability.Incompatible : UpdateAvailability.Available,
                     feasible, selectedApplication?.Version));
             }
             else issues.Add("The update catalog does not contain the application component.");
@@ -85,8 +79,7 @@ public sealed class UpdatePlanBuilder
                             $"module '{component.Id}' minimum API"))
                         .Min()?.ToString(2)
                     : null;
-                rows.Add(new(component.Id, component.Kind, installedModule.Version, availability,
-                    compatible.Length > 0 ? compatible : newer, selected?.Version, requiredApi));
+                rows.Add(new(component.Id, component.Kind, installedModule.Version, availability, compatible.Length > 0 ? compatible : newer, selected?.Version, requiredApi));
                 if (selected is not null) moduleSelections[component.Id] = selected;
             }
         }
@@ -146,8 +139,7 @@ public sealed class UpdatePlanBuilder
         return true;
     }
 
-    private static bool AcceptsHostApi(UpdateCatalogRelease release, Version hostApi) =>
-        AcceptsHostApi(release.HostApiMinimum, release.HostApiMaximum, hostApi);
+    private static bool AcceptsHostApi(UpdateCatalogRelease release, Version hostApi) => AcceptsHostApi(release.HostApiMinimum, release.HostApiMaximum, hostApi);
 
     private static bool AcceptsHostApi(string? minimumValue, string? maximumValue, Version hostApi)
     {

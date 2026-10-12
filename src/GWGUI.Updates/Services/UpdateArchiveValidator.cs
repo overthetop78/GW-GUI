@@ -75,25 +75,20 @@ public sealed class UpdateArchiveValidator
     public ValidatedUpdateArchive ExtractModuleValidated(string archivePath, string destinationDirectory)
     {
         using var zip = ZipFile.OpenRead(Path.GetFullPath(archivePath));
-        var manifests = zip.Entries
-            .Where(entry => entry.FullName.Replace('\\', '/').Split('/') is ["Modules", _, "module.json"])
-            .ToArray();
+        var manifests = zip.Entries.Where(entry => entry.FullName.Replace('\\', '/').Split('/') is ["Modules", _, "module.json"]).ToArray();
         if (manifests.Length != 1)
             throw new InvalidDataException("The module archive must contain exactly one Modules/<id>/module.json.");
         EmulationModuleManifest manifest;
         using (var content = manifests[0].Open())
-            manifest = JsonSerializer.Deserialize<EmulationModuleManifest>(content, JsonOptions)
-                ?? throw new InvalidDataException("The module manifest is empty.");
-        return ExtractValidated(archivePath, destinationDirectory, manifest.Id,
-            UpdateComponentKind.Module, manifest.ModuleVersion);
+            manifest = JsonSerializer.Deserialize<EmulationModuleManifest>(content, JsonOptions) ?? throw new InvalidDataException("The module manifest is empty.");
+        return ExtractValidated(archivePath, destinationDirectory, manifest.Id, UpdateComponentKind.Module, manifest.ModuleVersion);
     }
 
     private static EmulationModuleManifest ValidateModule(string root, string componentId, string expectedVersion)
     {
         var manifestPath = Path.Combine(root, "module.json");
         if (!File.Exists(manifestPath)) throw new InvalidDataException("The module archive does not contain module.json.");
-        var manifest = JsonSerializer.Deserialize<EmulationModuleManifest>(File.ReadAllText(manifestPath), JsonOptions)
-            ?? throw new InvalidDataException("The module manifest is empty.");
+        var manifest = JsonSerializer.Deserialize<EmulationModuleManifest>(File.ReadAllText(manifestPath), JsonOptions) ?? throw new InvalidDataException("The module manifest is empty.");
         if (!string.Equals(manifest.Id, componentId, StringComparison.OrdinalIgnoreCase)
             || !string.Equals(manifest.ModuleVersion, expectedVersion, StringComparison.Ordinal))
             throw new InvalidDataException("The module archive identity or version does not match the update plan.");
