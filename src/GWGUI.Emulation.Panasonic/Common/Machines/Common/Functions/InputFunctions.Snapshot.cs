@@ -2,12 +2,7 @@ namespace GWGUI.Emulation.Panasonic.Common.Machines.Common.Functions;
 internal static class InputSnapshotFunctions
 {
     // Named controls contain normalized command pressure; the .Delta suffix carries relative displacement separately.
-    internal static EmulationInputSnapshot Apply(
-        EmulationInputSnapshot snapshot,
-        InputConfiguration input,
-        MachineModel model,
-        Emulator core
-    )
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model, Emulator core)
     {
         if (!Enum.IsDefined(model) || !Enum.IsDefined(core))
             throw new ArgumentOutOfRangeException(nameof(model));
@@ -50,12 +45,7 @@ internal static class InputSnapshotFunctions
     }
 
     private static bool IsMotion(ControllerCommand command) => command is ControllerCommand.MoveUp or ControllerCommand.MoveDown or ControllerCommand.MoveLeft or ControllerCommand.MoveRight or ControllerCommand.AimUp or ControllerCommand.AimDown or ControllerCommand.AimLeft or ControllerCommand.AimRight;
-    private static float Value(
-        string mapping,
-        EmulationControllerState controller,
-        EmulationInputSnapshot snapshot,
-        int deadZone
-    )
+    private static float Value(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot, int deadZone)
     {
         if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
             return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key) ? 1 : 0;

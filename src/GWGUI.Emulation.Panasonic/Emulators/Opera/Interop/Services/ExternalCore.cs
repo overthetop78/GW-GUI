@@ -56,11 +56,7 @@ internal sealed class ExternalCore : IEmulatorCore
         return _audio?.TryDequeue(out chunk) == true;
     }
 
-    public void Initialize(
-        MachineConfiguration configuration,
-        string sessionDirectory,
-        string? saveDirectory = null
-    )
+    public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
         if (_library is not null)
@@ -186,19 +182,13 @@ internal sealed class ExternalCore : IEmulatorCore
     }
 
     public void SetInput(EmulationInputSnapshot snapshot) => (_input ?? throw new InvalidOperationException()).Update(snapshot, _video?.LatestFrame?.Width ?? 320, _video?.LatestFrame?.Height ?? 240);
-    public void SetOption(
-        string key,
-        string value
-    )
+    public void SetOption(string key, string value)
     {
         (_environment ?? throw new InvalidOperationException()).SetOption(key, value);
         ThrowCallbackFailure();
     }
 
-    public void SetControllerPortDevice(
-        int port,
-        PeripheralCategory peripheral
-    )
+    public void SetControllerPortDevice(int port, PeripheralCategory peripheral)
     {
         if (_input is null || !InputSettingsFunctions.SupportsPeripheral(_configuration!, port, peripheral))
             throw new ArgumentException(nameof(peripheral));

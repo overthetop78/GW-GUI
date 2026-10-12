@@ -21,11 +21,7 @@ internal sealed class InputCallbackHost
     internal ExternalCoreApi.InputStateCallback StateCallback { get; }
     internal Exception? Failure { get; private set; }
 
-    internal void Update(
-        EmulationInputSnapshot input,
-        int width,
-        int height
-    )
+    internal void Update(EmulationInputSnapshot input, int width, int height)
     {
         _input = input;
         _width = Math.Max(1, width);
@@ -33,10 +29,7 @@ internal sealed class InputCallbackHost
         _polled = false;
     }
 
-    internal void SetPeripheral(
-        int port,
-        PeripheralCategory peripheral
-    )
+    internal void SetPeripheral(int port, PeripheralCategory peripheral)
     {
         if (port < 0 || port >= _peripherals.Length || !Enum.IsDefined(peripheral))
             throw new ArgumentOutOfRangeException(nameof(port));
@@ -79,12 +72,7 @@ internal sealed class InputCallbackHost
         }
     }
 
-    private short OnState(
-        uint port,
-        uint device,
-        uint index,
-        uint id
-    )
+    private short OnState(uint port, uint device, uint index, uint id)
     {
         try
         {

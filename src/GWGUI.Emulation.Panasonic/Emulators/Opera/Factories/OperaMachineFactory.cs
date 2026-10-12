@@ -17,10 +17,7 @@ internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareC
     public string EmulatorKey => Emulator.Opera.ToString();
     public EmulationEmulatorDefinition Definition { get; } = new(EmulatorConstants.Id, EmulatorConstants.DisplayName, EmulatorConstants.DescriptionResourceKey, CoreCatalog.Entry.Models.Select(model => model.ToString()).ToHashSet(StringComparer.Ordinal));
 
-    public bool TryHandleHostCommand(
-        IReadOnlyList<string> arguments,
-        out int exitCode
-    )
+    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
         exitCode = CoreHostConstants.NativeOperationSuccess;
         if (arguments is not [CoreHostConstants.CommandLineArgument, var pipeName, var videoMapName])
@@ -31,31 +28,20 @@ internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareC
         return true;
     }
 
-    public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(
-        EmulatorManagementContext context,
-        CancellationToken cancellationToken
-    )
+    public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator.Opera, cancellationToken).ConfigureAwait(false);
         return new(Definition, installation is null ? null : Path.GetFileName(installation.VersionDirectory));
     }
 
-    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
-        EmulatorManagementContext context,
-        CancellationToken cancellationToken
-    )
+    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetAvailableAsync(Emulator.Opera, cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id, $"{item.DeclaredVersion} · {item.PublishedUtc.LocalDateTime:g}", item.DeclaredVersion)).ToArray();
     }
 
-    public async ValueTask<string> InstallAsync(
-        EmulatorManagementContext context,
-        EmulationEmulatorRelease release,
-        IProgress<double>? progress,
-        CancellationToken cancellationToken
-    )
+    public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
         if (!_availableReleases.TryGetValue(release.Id, out var selected) || selected.Emulator != Emulator.Opera)
             throw new ArgumentException(nameof(release));
@@ -71,10 +57,7 @@ internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareC
     public IReadOnlyList<FirmwareRequirement> DescribeFirmware(MachineConfiguration configuration) => FirmwareCatalog.Requirements(configuration.Model);
     public bool IsFirmwareCompatible(MachineConfiguration configuration, FirmwareRole role, string path) => NativeFirmware.IsCompatible(configuration, role, path);
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration) => NativeSettings.Create(configuration);
-    public Machine Create(
-        MachineConfiguration configuration,
-        EmulatorCreationContext context
-    )
+    public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
         ConfigurationFunctions.Validate(configuration);
         if (configuration.Core != Emulator.Opera || !CoreCatalog.Entry.Models.Contains(configuration.Model))

@@ -70,10 +70,7 @@ internal sealed class OptionCallbackHost : IDisposable
         return true;
     }
 
-    internal void SetValue(
-        string key,
-        string value
-    )
+    internal void SetValue(string key, string value)
     {
         if (!_options.TryGetValue(key, out var option) || !option.Values.Any(choice => choice.Value == value))
             throw new ArgumentException(nameof(value));

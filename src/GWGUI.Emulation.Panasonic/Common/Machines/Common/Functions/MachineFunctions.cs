@@ -23,8 +23,7 @@ internal static class MachineFunctions
         {
             var path = Path.GetFullPath(sessionDirectory);
             if (!Directory.Exists(path) || !Guid.TryParse(Path.GetFileName(path), out _)) return;
-            foreach (var file in Directory.EnumerateFiles(path, "*", new EnumerationOptions
-                     { RecurseSubdirectories = true, AttributesToSkip = FileAttributes.ReparsePoint })) File.SetAttributes(file, File.GetAttributes(file) & ~FileAttributes.ReadOnly);
+            foreach (var file in Directory.EnumerateFiles(path, "*", new EnumerationOptions { RecurseSubdirectories = true, AttributesToSkip = FileAttributes.ReparsePoint })) File.SetAttributes(file, File.GetAttributes(file) & ~FileAttributes.ReadOnly);
             Directory.Delete(path, recursive: true);
         }
         catch (IOException) { }

@@ -11,10 +11,7 @@ internal static class StorageSettingsFunctions
         return new(devices, configuration.ConfiguredSlots, configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
     }
 
-    internal static MachineConfiguration Apply(
-        MachineConfiguration configuration,
-        EmulationStorageSettings settings
-    )
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
         var devices = Describe(configuration).AvailableDevices;
         if (!settings.ConfiguredSlots.SequenceEqual(new[] { EmulationMediaSlot.Cd0 }) || settings.ConfiguredSlots.Distinct().Count() != settings.ConfiguredSlots.Count || settings.ConfiguredSlots.Any(slot => !devices.Any(device => device.Slot == slot)) || settings.MountedMedia.Select(media => media.Slot).Distinct().Count() != settings.MountedMedia.Count || settings.DeviceSettings?.Count > 0)
