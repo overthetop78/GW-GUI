@@ -151,8 +151,7 @@ internal static partial class Program
         TemporaryNamedMediaFormatIdentification.ThrowIfIdentificationIsRequired(document, explored);
         var visualization = engine.Visualization.Registry.CreateDescriptor(explored.Document);
         var catalogFormat = new BuiltInImageFormatCatalog().Formats.FirstOrDefault(format => format.Id.Equals(document.FormatId, StringComparison.OrdinalIgnoreCase));
-        var destinations = engine.ConversionService.GetAvailableDestinations(document).Select(destination => new ConversionAudit(destination.FormatId, destination.Extension, destination.WriterId, destination.ProducesMultipleFiles))
-            .ToArray();
+        var destinations = engine.ConversionService.GetAvailableDestinations(document).Select(destination => new ConversionAudit(destination.FormatId, destination.Extension, destination.WriterId, destination.ProducesMultipleFiles)) .ToArray();
 
         var writePlan = false;
         string? writeDiagnostic = null;

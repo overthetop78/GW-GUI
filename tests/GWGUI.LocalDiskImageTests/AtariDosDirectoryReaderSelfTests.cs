@@ -136,8 +136,7 @@ internal static class AtariDosDirectoryReaderSelfTests
         BinaryPrimitives.WriteUInt16LittleEndian(directory.AsSpan(offset + AtariDosFileSystemLayout.SectorCountOffset, sizeof(ushort)), sectorCount);
         BinaryPrimitives.WriteUInt16LittleEndian(directory.AsSpan(offset + AtariDosFileSystemLayout.FirstSectorOffset, sizeof(ushort)), firstSector);
         Encoding.ASCII.GetBytes(fileName.PadRight(AtariDosFileSystemLayout.NameLength)).CopyTo(directory.AsSpan(offset + AtariDosFileSystemLayout.NameOffset, AtariDosFileSystemLayout.NameLength));
-        Encoding.ASCII.GetBytes(fileExtension.PadRight(AtariDosFileSystemLayout.ExtensionLength)).CopyTo(
-            directory.AsSpan(offset + AtariDosFileSystemLayout.NameOffset + AtariDosFileSystemLayout.NameLength, AtariDosFileSystemLayout.ExtensionLength));
+        Encoding.ASCII.GetBytes(fileExtension.PadRight(AtariDosFileSystemLayout.ExtensionLength)).CopyTo( directory.AsSpan(offset + AtariDosFileSystemLayout.NameOffset + AtariDosFileSystemLayout.NameLength, AtariDosFileSystemLayout.ExtensionLength));
     }
 
     private static SectorBlock DataBlock(int sectorNumber, int ownerEntryNumber, int nextSector, byte payload)
