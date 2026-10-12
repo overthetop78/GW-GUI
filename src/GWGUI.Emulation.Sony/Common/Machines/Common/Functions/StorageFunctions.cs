@@ -60,8 +60,7 @@ internal static class StorageSettingsFunctions
         return new EmulationStorageSettings(devices, configured, mounted, deviceSettings);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        EmulationStorageSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
         var media = settings.MountedMedia.Select((item, index) => new MediaConfiguration(
             item.Path, item.Type switch
@@ -116,8 +115,7 @@ internal static class StorageSettingsFunctions
     private static EmulationMediaDevice MemoryCard(int index, bool ps2 = false)
     {
         var size = ps2 ? StorageSettingsFunctionsConstants.Ps2MemoryCardSize : StorageSettingsFunctionsConstants.MemoryCardSize;
-        var extensions = ps2 ? new[] { StorageSettingsFunctionsConstants.Ps2MemoryCardExtension }
-            : new[] { StorageSettingsFunctionsConstants.MemoryCardExtension, StorageSettingsFunctionsConstants.AlternativeMemoryCardExtension };
+        var extensions = ps2 ? new[] { StorageSettingsFunctionsConstants.Ps2MemoryCardExtension } : new[] { StorageSettingsFunctionsConstants.MemoryCardExtension, StorageSettingsFunctionsConstants.AlternativeMemoryCardExtension };
         return new(
         new EmulationMediaSlot(EmulationMediaCategory.MemoryCard, index), EmulationMediaType.MemoryCard,
         extensions,

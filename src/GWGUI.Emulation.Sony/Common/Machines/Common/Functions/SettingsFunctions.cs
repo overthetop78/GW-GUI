@@ -50,8 +50,7 @@ internal static partial class SettingsDescriptionFunctions
                     SettingsDescriptionFunctionsConstants.Audio,
                     SettingsDescriptionFunctionsConstants.ResourceAudioLatency,
                     (configuration.Audio?.LatencyMilliseconds ?? 50).ToString(),
-                    new[] { 20, 35, 50, 75, 100, 150, 250 }
-                        .Select(value => Invariant(value.ToString(), $"{value} ms", value))),
+                    new[] { 20, 35, 50, 75, 100, 150, 250 }.Select(value => Invariant(value.ToString(), $"{value} ms", value))),
                 Information(SettingsConstants.Model + ".audio", EmulationMachineTab.Audio,
                     SettingsDescriptionFunctionsConstants.Audio,
                     SettingsDescriptionFunctionsConstants.ResourceAudioChip,
@@ -100,8 +99,7 @@ internal static partial class SettingsDescriptionFunctions
         if (hardwareVideo >= 0 && renderingVideo >= 0)
         {
             var rendering = blocks[renderingVideo];
-            blocks[renderingVideo] = rendering with { Fields = [.. blocks[hardwareVideo].Fields
-                .Select(field => field with { BlockId = rendering.Id }), .. rendering.Fields] };
+            blocks[renderingVideo] = rendering with { Fields = [.. blocks[hardwareVideo].Fields.Select(field => field with { BlockId = rendering.Id }), .. rendering.Fields] };
             blocks.RemoveAt(hardwareVideo);
         }
         var audio = blocks.FindIndex(block => block.Id == SettingsDescriptionFunctionsConstants.Audio);

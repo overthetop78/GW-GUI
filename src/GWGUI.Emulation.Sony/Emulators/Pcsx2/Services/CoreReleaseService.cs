@@ -42,18 +42,14 @@ public sealed class CoreReleaseService
         catch (IOException) { return CoreReleaseConstants.Unknown; }
     }
 
-    public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(
-        CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<CoreRelease>> GetAvailableAsync(CancellationToken cancellationToken = default)
     {
         using var request = new HttpRequestMessage(HttpMethod.Head, LatestOfficialUri);
         using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
         var published = response.Content.Headers.LastModified ?? response.Headers.Date;
         var suffix = published?.UtcDateTime.ToString(CoreReleaseConstants.YyyyMMddHHmm) ?? CoreReleaseConstants.Latest;
-        return [new CoreRelease($"official-{suffix}",
-            published is null ? CoreReleaseConstants.Pcsx2Latest
-                : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · PCSX2",
-            LatestOfficialUri, published, true, true)];
+        return [new CoreRelease($"official-{suffix}", published is null ? CoreReleaseConstants.Pcsx2Latest : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · PCSX2", LatestOfficialUri, published, true, true)];
     }
 
     public bool IsInstalled(CoreRelease release)
@@ -66,8 +62,7 @@ public sealed class CoreReleaseService
 
     public string GetLibraryPath(CoreRelease release) => RequiredLibraryPath;
 
-    public async Task<string> InstallAsync(CoreRelease release,
-        IProgress<double>? progress = null, CancellationToken cancellationToken = default)
+    public async Task<string> InstallAsync(CoreRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(release);
         Directory.CreateDirectory(_directory);

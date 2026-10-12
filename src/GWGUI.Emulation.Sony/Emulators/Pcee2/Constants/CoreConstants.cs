@@ -15,8 +15,7 @@ internal static class CoreConstants
         Id, LibraryName, LibraryFileName, FirmwareConstants.ContentExtensions,
         new(new Uri(OfficialPackageUrl), LibraryFileName, LibraryFileName, DisplayName),
         OptionCatalog.All, FirmwareConstants.All,
-        new(Id, DisplayName, DescriptionResourceKey,
-            new HashSet<string>(StringComparer.Ordinal) { ModelConstants.PlayStation2 }),
+        new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.PlayStation2 }),
         RequiresExternalFirmware: true,
         ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
 }

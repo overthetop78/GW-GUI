@@ -85,8 +85,7 @@ internal static class MemoryCardFunctions
         or BeetleHw.UseMednafenMemcard0MethodKey or BeetleHw.EnableMemcard1Key or BeetleHw.SharedMemoryCardsKey
         or BeetleHw.MemcardLeftIndexKey or BeetleHw.MemcardRightIndexKey;
 
-    internal static void PreparePs2(MachineConfiguration configuration, string systemDirectory,
-        ICollection<(string Source, string Native)> files)
+    internal static void PreparePs2(MachineConfiguration configuration, string systemDirectory, ICollection<(string Source, string Native)> files)
     {
         files.Clear();
         var names = NativeFileNames(configuration);

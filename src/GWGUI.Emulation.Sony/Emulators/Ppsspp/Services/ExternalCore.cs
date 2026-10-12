@@ -51,8 +51,7 @@ internal sealed class ExternalCore : IEmulatorCore
         return false;
     }
 
-    public void Initialize(MachineConfiguration configuration, string sessionDirectory,
-        string? saveDirectory = null)
+    public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
         saveDirectory = ResolveSaveDirectory(configuration, saveDirectory);
         _configuration = configuration;
@@ -143,8 +142,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
     internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(MachineConfiguration configuration) => (configuration.Media ?? []).Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ToArray();
 
-    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media,
-        string contentDirectory)
+    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media, string contentDirectory)
     {
         if (media.Count == 0) return null;
         if (media.Count == 1 || media.Any(item => item.Category != MediaCategory.Floppy))
@@ -237,8 +235,7 @@ internal sealed class ExternalCore : IEmulatorCore
         var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
         try
         {
-            Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = nativePath.Pointer },
-                game, false);
+            Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = nativePath.Pointer }, game, false);
             return loadGame(game);
         }
         finally { Marshal.FreeHGlobal(game); }

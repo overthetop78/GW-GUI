@@ -6,13 +6,7 @@ using GWGUI.Emulation.Sony.Emulators.Ppsspp.Services;
 
 namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Contracts;
 
-public sealed record CoreRelease(
-    string Id,
-    string DisplayName,
-    Uri DownloadUri,
-    DateTimeOffset? PublishedUtc,
-    bool IsRequired,
-    bool IsZip)
+public sealed record CoreRelease(string Id, string DisplayName, Uri DownloadUri, DateTimeOffset? PublishedUtc, bool IsRequired, bool IsZip)
 {
     public override string ToString() => DisplayName;
 }

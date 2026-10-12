@@ -225,10 +225,8 @@ internal sealed partial class OpenGlHardwareRenderContext : IDisposable
     [DllImport(UserLibrary)] private static extern int ReleaseDC(IntPtr window, IntPtr deviceContext);
     [DllImport(UserLibrary)] private static extern bool DestroyWindow(IntPtr window);
     [DllImport(Kernel32Library)] private static extern IntPtr GetModuleHandle(string? moduleName);
-    [DllImport(GdiLibrary)] private static extern int ChoosePixelFormat(IntPtr deviceContext,
-        ref PixelFormatDescriptor descriptor);
-    [DllImport(GdiLibrary)] private static extern bool SetPixelFormat(IntPtr deviceContext,
-        int format, ref PixelFormatDescriptor descriptor);
+    [DllImport(GdiLibrary)] private static extern int ChoosePixelFormat(IntPtr deviceContext, ref PixelFormatDescriptor descriptor);
+    [DllImport(GdiLibrary)] private static extern bool SetPixelFormat(IntPtr deviceContext, int format, ref PixelFormatDescriptor descriptor);
     [DllImport(OpenGlLibrary, EntryPoint = "wglCreateContext")] private static extern IntPtr WglCreateContext(IntPtr deviceContext);
     [DllImport(OpenGlLibrary, EntryPoint = "wglMakeCurrent")] private static extern bool WglMakeCurrent(IntPtr deviceContext, IntPtr context);
     [DllImport(OpenGlLibrary, EntryPoint = "wglDeleteContext")] private static extern bool WglDeleteContext(IntPtr context);

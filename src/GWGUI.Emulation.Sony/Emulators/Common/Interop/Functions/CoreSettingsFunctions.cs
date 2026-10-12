@@ -29,8 +29,7 @@ internal static class CoreSettingsFunctions
 
     internal static IReadOnlyList<EmulationSettingsBlock> Blocks(CoreDefinition definition, MachineConfiguration configuration) => Blocks(definition.Options, configuration);
 
-    internal static IReadOnlyList<EmulationSettingsBlock> Blocks(IReadOnlyList<CoreOption> options,
-        MachineConfiguration configuration)
+    internal static IReadOnlyList<EmulationSettingsBlock> Blocks(IReadOnlyList<CoreOption> options, MachineConfiguration configuration)
     {
         var fields = options.Where(option => option.IsVisible && !CoreSettingsConstants.HiddenOptions.Contains(option.Key) && !MemoryCardFunctions.IsManagedOption(option.Key) && !AnalogToggleFunctions.IsManagedOption(option.Key)).Select(option =>
         {

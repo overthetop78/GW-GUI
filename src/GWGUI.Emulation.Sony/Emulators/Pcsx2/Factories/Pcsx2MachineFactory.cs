@@ -20,10 +20,7 @@ internal sealed class Pcsx2MachineFactory : IEmulatorAdapter
     public IReadOnlyList<string> SupportedContentExtensions => FirmwareConstants.ContentExtensions;
     public string EmulatorId => Pcsx2Constants.Id;
     public string EmulatorKey => Pcsx2Constants.Id;
-    public EmulationEmulatorDefinition Definition { get; } = new(
-        Pcsx2Constants.Id, Pcsx2Constants.DisplayName,
-        Pcsx2Constants.DescriptionResourceKey,
-        new[] { ModelConstants.PlayStation2 }.ToHashSet(StringComparer.Ordinal));
+    public EmulationEmulatorDefinition Definition { get; } = new(Pcsx2Constants.Id, Pcsx2Constants.DisplayName, Pcsx2Constants.DescriptionResourceKey, new[] { ModelConstants.PlayStation2 }.ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -35,8 +32,7 @@ internal sealed class Pcsx2MachineFactory : IEmulatorAdapter
         return true;
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(
-        EmulatorManagementContext context, CancellationToken cancellationToken)
+    public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
         var service = new CoreReleaseService(context.HttpClient, context.CoreDirectory);
@@ -44,17 +40,14 @@ internal sealed class Pcsx2MachineFactory : IEmulatorAdapter
         return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, version));
     }
 
-    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
-        EmulatorManagementContext context, CancellationToken cancellationToken)
+    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
         return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();
     }
 
-    public async ValueTask<string> InstallAsync(EmulatorManagementContext context,
-        EmulationEmulatorRelease release, IProgress<double>? progress,
-        CancellationToken cancellationToken)
+    public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
         if (!_availableReleases.TryGetValue(release.Id, out var selected))
             throw new ArgumentException(nameof(release));

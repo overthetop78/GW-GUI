@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
-    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type,
-        Model model) => model.Id == ModelConstants.PlayStation ? type switch
+    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type, Model model) => model.Id == ModelConstants.PlayStation ? type switch
         {
             ControllerType.Joystick => [EmulationControllerVisualIds.SonyPlayStationController],
             ControllerType.DualShock => [EmulationControllerVisualIds.SonyDualShock1],

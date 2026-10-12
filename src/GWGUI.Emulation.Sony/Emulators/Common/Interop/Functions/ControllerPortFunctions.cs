@@ -6,8 +6,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 
 internal static class ControllerPortFunctions
 {
-    internal static uint Resolve(ControllerType type, int port,
-        IReadOnlyList<IReadOnlyList<ControllerDevice>> ports)
+    internal static uint Resolve(ControllerType type, int port, IReadOnlyList<IReadOnlyList<ControllerDevice>> ports)
     {
         if (port < SemanticPortConstants.MinimumControllerPort
             || port >= SemanticPortConstants.MaximumControllerPortCount)

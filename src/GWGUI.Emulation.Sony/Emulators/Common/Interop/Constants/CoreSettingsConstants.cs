@@ -49,9 +49,7 @@ internal static class CoreSettingsConstants
         or Emulators.Ppsspp.Constants.OptionConstants.InternalResolutionKey
         or Emulators.Rpcs3.Constants.OptionConstants.RendererKey
         or Emulators.Rpcs3.Constants.OptionConstants.ResolutionScaleKey;
-    internal static bool IsScreenOption(string key) => new[]
-        { "crop", "overscan", "aspect", "widescreen", "offset", "scanline", "interlac" }
-        .Any(part => key.Contains(part, StringComparison.OrdinalIgnoreCase));
+    internal static bool IsScreenOption(string key) => new[] { "crop", "overscan", "aspect", "widescreen", "offset", "scanline", "interlac" }.Any(part => key.Contains(part, StringComparison.OrdinalIgnoreCase));
     internal const long DevelopmentRamExtensionBytes = 6L * 1024 * 1024;
     internal static IReadOnlySet<string> EnabledLabels { get; } = new HashSet<string>(StringComparer.Ordinal)
     {

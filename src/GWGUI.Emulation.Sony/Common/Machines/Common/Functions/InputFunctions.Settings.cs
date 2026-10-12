@@ -29,8 +29,7 @@ internal static partial class InputSettingsFunctions
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        EmulationInputSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         if (!EmulatorCatalog.GetAll(configuration.Model).Any(adapter => adapter.Id == configuration.EmulatorId))
             return configuration;
@@ -69,8 +68,7 @@ internal static partial class InputSettingsFunctions
 
     private static IReadOnlyDictionary<string, string> MouseValues(InputConfiguration input) => (input.MouseButtonMappings ?? new Dictionary<string, MouseAction>()).Where(item => item.Value != MouseAction.None).ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal);
 
-    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(
-        ControllerType type, Model model) => type is ControllerType.None ? []
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type, Model model) => type is ControllerType.None ? []
         : type == ControllerType.Mouse ? MouseDefinitions()
         : type == ControllerType.Keyboard ? []
         : model.Id == ModelConstants.PocketStation ? Machines.PocketStation.Functions.ControllerFunctions.Definitions
@@ -107,8 +105,7 @@ internal static partial class InputSettingsFunctions
         Definition(InputSettingsFunctionsConstants.PspStickRight, InputSettingsFunctionsConstants.PspStickRightLabel, string.Empty)
     ];
 
-    private static IReadOnlyList<InputBindingDefinition> PlayStationControllerDefinitions(
-        ControllerType type, Model model)
+    private static IReadOnlyList<InputBindingDefinition> PlayStationControllerDefinitions(ControllerType type, Model model)
     {
         var buttons = PlayStationButtonDefinitions();
         if (type is ControllerType.GunCon or ControllerType.Justifier)
@@ -138,10 +135,7 @@ internal static partial class InputSettingsFunctions
             return buttons.Where(definition => definition.Id is not (EmulationControllerCommandIds.L3 or EmulationControllerCommandIds.R3)).ToArray();
         if (type is ControllerType.AnalogController or ControllerType.AnalogJoystick)
             buttons = buttons.Where(definition => definition.Id is not (EmulationControllerCommandIds.L3 or EmulationControllerCommandIds.R3)).ToArray();
-        var analogButtons = model.Id == ModelConstants.PlayStation
-            && type is ControllerType.DualShock or ControllerType.AnalogController or ControllerType.AnalogJoystick
-            ? new[] { Definition(InputSettingsFunctionsConstants.Analog, InputSettingsFunctionsConstants.Analog, string.Empty) }
-            : [];
+        var analogButtons = model.Id == ModelConstants.PlayStation && type is ControllerType.DualShock or ControllerType.AnalogController or ControllerType.AnalogJoystick ? new[] { Definition(InputSettingsFunctionsConstants.Analog, InputSettingsFunctionsConstants.Analog, string.Empty) } : [];
         return buttons.Concat(analogButtons).Concat(AnalogStickDefinitions()).ToArray();
     }
 

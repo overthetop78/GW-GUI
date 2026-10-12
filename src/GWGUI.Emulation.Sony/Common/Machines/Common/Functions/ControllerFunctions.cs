@@ -30,8 +30,7 @@ internal static class ControllerFunctions
             throw new ArgumentOutOfRangeException(nameof(type), type, null);
     }
 
-    internal static MachineConfiguration WithControllerType(MachineConfiguration configuration,
-        int port, ControllerType type)
+    internal static MachineConfiguration WithControllerType(MachineConfiguration configuration, int port, ControllerType type)
     {
         Validate(configuration, port, type);
         var input = configuration.Input ?? new InputConfiguration();
@@ -41,14 +40,12 @@ internal static class ControllerFunctions
         {
             Input = input with
             {
-                ControllerBindings = bindings.Where(item => item.Port != port)
-                    .Append(binding with { Type = type }).ToArray()
+                ControllerBindings = bindings.Where(item => item.Port != port).Append(binding with { Type = type }).ToArray()
             }
         };
     }
 
-    internal static ControllerType FromCommon(EmulationPeripheralCategory peripheral,
-        MachineConfiguration configuration)
+    internal static ControllerType FromCommon(EmulationPeripheralCategory peripheral, MachineConfiguration configuration)
     {
         var types = Supported(configuration);
         var type = peripheral switch

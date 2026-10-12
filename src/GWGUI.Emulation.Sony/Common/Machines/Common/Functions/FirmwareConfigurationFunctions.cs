@@ -14,8 +14,7 @@ internal static class FirmwareConfigurationFunctions
                 ?? (configuration.Model == ModelConstants.PlayStation && configuration.FirmwarePaths?.Count == 1 ? configuration.FirmwarePaths.Values.Single() : null),
             DefaultFolderCategory: EmulationDefaultFolderCategory.Firmware)).ToArray();
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        IReadOnlyDictionary<string, string?> values, IEmulatorAdapter adapter)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values, IEmulatorAdapter adapter)
     {
         var paths = new Dictionary<string, string>(configuration.FirmwarePaths ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         foreach (var slot in adapter.GetFirmwareSlots(configuration))
@@ -29,8 +28,7 @@ internal static class FirmwareConfigurationFunctions
         return configuration with { FirmwarePaths = paths };
     }
 
-    internal static IReadOnlyList<EmulationFirmwareCandidate> Scan(MachineConfiguration configuration,
-        string directory, IEmulatorAdapter adapter, CancellationToken cancellationToken)
+    internal static IReadOnlyList<EmulationFirmwareCandidate> Scan(MachineConfiguration configuration, string directory, IEmulatorAdapter adapter, CancellationToken cancellationToken)
     {
         if (!Directory.Exists(directory)) return [];
         var candidates = new List<EmulationFirmwareCandidate>();
@@ -47,8 +45,7 @@ internal static class FirmwareConfigurationFunctions
         return candidates;
     }
 
-    internal static void CopySelectedFiles(MachineConfiguration configuration, IEmulatorAdapter adapter,
-        string destinationDirectory)
+    internal static void CopySelectedFiles(MachineConfiguration configuration, IEmulatorAdapter adapter, string destinationDirectory)
     {
         if (configuration.Model == ModelConstants.PlayStation)
         {

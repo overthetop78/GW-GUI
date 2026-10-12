@@ -15,8 +15,7 @@ internal static class CoreConstants
         GWGUI.Emulation.Sony.Common.Machines.PocketStation.Constants.MediaConstants.FlashImageExtensions,
         new(new Uri(OfficialPackageUrl), LibraryFileName, LibraryFileName, DisplayName),
         [], FirmwareConstants.All,
-        new(Id, DisplayName, DescriptionResourceKey,
-            new HashSet<string>(StringComparer.Ordinal) { ModelConstants.PocketStation }),
+        new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.PocketStation }),
         RequiresExternalFirmware: true,
         ControllerTypes: [ControllerType.Joystick, ControllerType.None]);
 }
