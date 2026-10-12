@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;
-
 internal static class NativeInputFunctions
 {
     private static readonly IReadOnlyDictionary<ControllerCommand, uint> Carriers = new Dictionary<ControllerCommand, uint>
@@ -10,8 +9,15 @@ internal static class NativeInputFunctions
         [ControllerCommand.Right] = InputConstants.JoypadRightId,
         [ControllerCommand.Fire1] = InputConstants.JoypadFireId
     };
-
-    internal static short State(EmulationInputSnapshot snapshot, IReadOnlySet<uint> keyboard, uint port, uint device, uint index, uint id, Emulator emulator)
+    internal static short State(
+        EmulationInputSnapshot snapshot,
+        IReadOnlySet<uint> keyboard,
+        uint port,
+        uint device,
+        uint index,
+        uint id,
+        Emulator emulator
+    )
     {
         if (index != InputConstants.LeftAnalogIndex)
             return InputConstants.InactiveState;
@@ -34,7 +40,7 @@ internal static class NativeInputFunctions
                 _ => InputConstants.InactiveState
             };
         }
-    
+
         if (baseDevice != InputConstants.JoypadDevice || port >= snapshot.Controllers.Count)
             return InputConstants.InactiveState;
         var controller = snapshot.Controllers[checked((int)port)];
@@ -44,7 +50,7 @@ internal static class NativeInputFunctions
             if ((controller.Buttons & (1u << (int)pair.Key)) != 0)
                 buttons |= 1u << checked((int)pair.Value);
         }
-    
+
         return id == InputConstants.JoypadMaskId ? unchecked((short)buttons) : Active(id < InputConstants.MaximumJoypadButtonCount && (buttons & (1u << checked((int)id))) != 0);
     }
 

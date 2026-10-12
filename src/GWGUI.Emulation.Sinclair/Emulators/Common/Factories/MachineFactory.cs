@@ -1,7 +1,6 @@
 using System.IO;
 
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Factories;
-
 internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
 {
     public EmulatorCatalogEntry CatalogEntry { get; } = catalogEntry;
@@ -11,25 +10,29 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public EmulationEmulatorDefinition Definition => CoreCatalog.GetDefinition(CatalogEntry);
 
     public abstract bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode);
-    public abstract ValueTask<EmulationEmulatorInstallation> GetInstallationAsync( EmulatorManagementContext context, CancellationToken cancellationToken);
-    public abstract ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync( EmulatorManagementContext context, CancellationToken cancellationToken);
+    public abstract ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
+    public abstract ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
     public abstract ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken);
     public abstract ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
-
     protected abstract IEmulatorCore CreateCore(MachineConfiguration configuration, EmulatorCreationContext context);
     protected virtual bool SupportsPointerCapture => false;
     protected virtual bool RequiresResetRestart => false;
     protected virtual bool SupportsNoContent => false;
+
     public abstract IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration);
-    public virtual IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => configuration.InitialContent is { Length: > 0 } path ? new[] { path } : Array.Empty<string>();
+    public virtual IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => configuration.InitialContent is { Length: > 0 } path ? new[]
+    {
+        path
+    }
 
+    : Array.Empty<string>();
     protected abstract bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path);
-
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
-
     public virtual IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options;
-
-    public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
+    public Machine Create(
+        MachineConfiguration configuration,
+        EmulatorCreationContext context
+    )
     {
         ConfigurationFunctions.Validate(configuration);
         if (configuration.Core != Emulator || !CatalogEntry.Models.Contains(configuration.Model))

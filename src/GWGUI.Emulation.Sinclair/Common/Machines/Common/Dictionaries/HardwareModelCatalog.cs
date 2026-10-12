@@ -1,9 +1,7 @@
 namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Dictionaries;
-
 internal static class HardwareModelCatalog
 {
     internal static HardwareModelDefinition Get(MachineModel model) => new(HardwareConstants.CpuResource, Frequency(model), Memory(model), HardwareConstants.DisplayWidth, HardwareConstants.DisplayHeight);
-
     private static long Frequency(MachineModel model) => model switch
     {
         MachineModel.Zx80 or MachineModel.Zx81 => HardwareConstants.ZxFrequencyHz,
@@ -14,7 +12,6 @@ internal static class HardwareModelCatalog
         MachineModel.SpectrumSe => HardwareConstants.SpectrumSeFrequencyHz,
         MachineModel.Spectrum16K or MachineModel.Spectrum48K or MachineModel.TimexTc2048 or MachineModel.TimexTc2068 or MachineModel.Scorpion256K => HardwareConstants.SpectrumFrequencyHz,
         _ => throw new ArgumentOutOfRangeException(nameof(model))};
-
     private static long Memory(MachineModel model) => model switch
     {
         MachineModel.Zx80 => HardwareConstants.Zx80MemoryBytes,

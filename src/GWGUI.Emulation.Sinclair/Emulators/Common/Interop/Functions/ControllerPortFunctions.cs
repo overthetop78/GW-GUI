@@ -1,8 +1,10 @@
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;
-
 internal static class ControllerPortFunctions
 {
-    internal static void Configure(ExternalCoreExports exports, MachineConfiguration configuration)
+    internal static void Configure(
+        ExternalCoreExports exports,
+        MachineConfiguration configuration
+    )
     {
         var count = ConfigurationFunctions.ControllerPortCount(configuration.Model);
         var controllers = configuration.Input.Controllers ?? [];
@@ -16,8 +18,10 @@ internal static class ControllerPortFunctions
                 device = InputConstants.KempstonMouse;
                 mouseConfigured = true;
             }
+
             exports.SetControllerPortDevice(checked((uint)port), device);
         }
+
         var keyboardPort = configuration.Core == Emulator.EightyOne ? InputConstants.EightyOneKeyboardPort : InputConstants.FuseKeyboardPort;
         exports.SetControllerPortDevice(keyboardPort, InputConstants.SinclairKeyboard);
     }

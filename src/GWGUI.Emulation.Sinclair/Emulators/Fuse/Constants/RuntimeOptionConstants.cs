@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Sinclair.Emulators.Fuse.Constants;
-
 internal static class RuntimeOptionConstants
 {
     internal const string Enabled = "enabled";

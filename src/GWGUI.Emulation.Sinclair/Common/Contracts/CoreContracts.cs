@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Sinclair.Common.Contracts;
-
 public sealed record CoreOption(
     string Key,
     string Name,

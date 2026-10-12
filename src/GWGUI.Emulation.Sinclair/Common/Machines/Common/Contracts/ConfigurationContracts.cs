@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
 
 namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Contracts;
-
 internal sealed record ConfigurationDocument(
     int SchemaVersion,
     Guid Id,
@@ -17,7 +16,6 @@ internal sealed record ConfigurationDocument(
     string? InitialContent = null
 );
 public sealed record FolderConfiguration(string? Saves = null);
-
 public sealed record MachineConfiguration : IEmulationConfiguration
 {
     [JsonConstructor]
@@ -34,7 +32,20 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         FolderConfiguration folders,
         IReadOnlyList<EmulationMediaSlot> configuredSlots,
         string? initialContent = null
-    ) : this(model, firmwares, media, options, input, id, schemaVersion, audioEnabled, folders, core, configuredSlots, initialContent)
+    ) : this(
+        model,
+        firmwares,
+        media,
+        options,
+        input,
+        id,
+        schemaVersion,
+        audioEnabled,
+        folders,
+        core,
+        configuredSlots,
+        initialContent
+    )
     {
     }
 

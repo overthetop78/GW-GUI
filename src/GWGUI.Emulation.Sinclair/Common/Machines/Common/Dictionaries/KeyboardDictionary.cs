@@ -1,28 +1,36 @@
 namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Dictionaries;
-
 internal static class KeyboardDictionary
 {
     private static readonly IReadOnlyList<EmulationKey> SpectrumKeys = Array.AsReadOnly(new[] { EmulationKey.SinclairSymbolShift });
-    private static readonly IReadOnlyDictionary<EmulationKey, EmulationKey> SpectrumDefaults = new Dictionary<EmulationKey, EmulationKey> { [EmulationKey.SinclairSymbolShift] = EmulationKey.LeftControl };
+    private static readonly IReadOnlyDictionary<EmulationKey, EmulationKey> SpectrumDefaults = new Dictionary<EmulationKey, EmulationKey>
+    {
+        [EmulationKey.SinclairSymbolShift] = EmulationKey.LeftControl
+    };
     private static readonly IReadOnlyDictionary<EmulationKey, EmulationKey> NoDefaults = new Dictionary<EmulationKey, EmulationKey>();
-
     internal static IReadOnlyList<EmulationKey> Keys(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.Spectrum ? SpectrumKeys : [];
     internal static IReadOnlyDictionary<EmulationKey, EmulationKey> Defaults(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.Spectrum ? SpectrumDefaults : NoDefaults;
-
     internal static IReadOnlyList<InputBindingDefinition> Definitions(MachineModel model) => Keys(model).Select(key => new InputBindingDefinition(key.ToString(), InputMappingConstants.KeyboardResourcePrefix + key, Defaults(model).TryGetValue(key, out var physical) ? physical.ToString() : string.Empty)).ToArray();
-
-    internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)
+    internal static IReadOnlyDictionary<string, string> Bindings(
+        InputConfiguration input,
+        MachineModel model
+    )
     {
         var bindings = Definitions(model).ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);
         foreach (var pair in input.Keyboard ?? new Dictionary<string, string>())
         {
-            if (!bindings.ContainsKey(pair.Key) || !IsPhysicalKey(pair.Value)) throw new ArgumentException(nameof(input));
+            if (!bindings.ContainsKey(pair.Key) || !IsPhysicalKey(pair.Value))
+                throw new ArgumentException(nameof(input));
             bindings[pair.Key] = pair.Value;
         }
+
         return bindings;
     }
 
-    internal static IReadOnlySet<EmulationKey> Apply(IReadOnlySet<EmulationKey> keys, InputConfiguration input, MachineModel model)
+    internal static IReadOnlySet<EmulationKey> Apply(
+        IReadOnlySet<EmulationKey> keys,
+        InputConfiguration input,
+        MachineModel model
+    )
     {
         var mappings = Bindings(input, model).Where(pair => !string.IsNullOrEmpty(pair.Value)).ToDictionary(pair => pair.Key, pair => Enum.Parse<EmulationKey>(pair.Value), StringComparer.Ordinal);
         return EmulationInputMappingFunctions.MapKeyboard(keys, mappings);

@@ -1,12 +1,14 @@
 using System.IO;
 
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;
-
 internal static class FirmwareRuntimeFunctions
 {
     internal static void Prepare(MachineConfiguration configuration, string systemDirectory) => ((LibretroMachineFactory)CoreCatalog.CreateAdapter(configuration.Core)).PrepareFirmware(configuration, systemDirectory);
-
-    internal static void CopyVerified(MachineConfiguration configuration, FirmwareCategory role, string target)
+    internal static void CopyVerified(
+        MachineConfiguration configuration,
+        FirmwareCategory role,
+        string target
+    )
     {
         var firmware = configuration.Firmwares.SingleOrDefault(item => item.Category == role);
         if (firmware is null)
@@ -15,7 +17,7 @@ internal static class FirmwareRuntimeFunctions
                 throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareMissing, ErrorMessages.RequiredFirmwareMissing);
             return;
         }
-    
+
         if (!File.Exists(firmware.Path))
             throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareMissing, ErrorMessages.FirmwareFileMissing);
         var candidate = FirmwareFunctions.ScanFileAsync(firmware.Path, configuration.Model, configuration.Core, CancellationToken.None).AsTask().GetAwaiter().GetResult();

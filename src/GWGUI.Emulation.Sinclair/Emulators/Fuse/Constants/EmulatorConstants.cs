@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Sinclair.Emulators.Fuse.Constants;
-
 internal static class EmulatorConstants
 {
     internal const string Id = "fuse";
@@ -18,7 +17,7 @@ internal static class EmulatorConstants
         SourceUri,
         InspectedRevision,
         Enum.GetValues<MachineModel>().Where(model => ConfigurationFunctions.Family(model) == MachineFamily.Spectrum).ToArray()
-    )with
+    ) with
     {
         DescriptionResourceKey = DescriptionResourceKey
     };

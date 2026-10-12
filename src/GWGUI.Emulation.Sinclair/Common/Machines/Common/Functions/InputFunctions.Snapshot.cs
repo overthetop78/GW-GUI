@@ -1,8 +1,12 @@
 namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions;
-
 internal static class InputSnapshotFunctions
 {
-    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model, Emulator core)
+    internal static EmulationInputSnapshot Apply(
+        EmulationInputSnapshot snapshot,
+        InputConfiguration input,
+        MachineModel model,
+        Emulator core
+    )
     {
         var controllers = new EmulationControllerState[ConfigurationFunctions.ControllerPortCount(model)];
         for (var port = ControllerConstants.FirstPort; port < controllers.Length; port++)
@@ -36,7 +40,7 @@ internal static class InputSnapshotFunctions
                         break;
                 }
             }
-    
+
             controllers[port] = EmulationControllerState.Empty with
             {
                 DeviceId = source.DeviceId,
@@ -45,7 +49,7 @@ internal static class InputSnapshotFunctions
                 LeftY = Axis(vertical)
             };
         }
-    
+
         var pointer = EmulationInputSnapshot.Empty.Pointer;
         if (core == Emulator.Fuse)
         {
@@ -57,10 +61,14 @@ internal static class InputSnapshotFunctions
                 DeltaX = Scale(snapshot.Pointer.DeltaX, input.MouseSpeedPercent),
                 DeltaY = Scale(snapshot.Pointer.DeltaY, input.MouseSpeedPercent),
                 Left = IsPressed(left, EmulationInputMappingFunctions.ResolveSourceController(left, snapshot.Controllers, physical), snapshot),
-                Right = IsPressed(right, EmulationInputMappingFunctions.ResolveSourceController(right, snapshot.Controllers, physical), snapshot)
+                Right = IsPressed(
+                    right,
+                    EmulationInputMappingFunctions.ResolveSourceController(right, snapshot.Controllers, physical),
+                    snapshot
+                )
             };
         }
-    
+
         return snapshot with
         {
             Keys = KeyboardDictionary.Apply(snapshot.Keys, input, model),
@@ -71,16 +79,26 @@ internal static class InputSnapshotFunctions
 
     private static int Scale(int value, int percent) => (int)Math.Clamp(Math.Round((double)value * percent / InputMappingConstants.PercentScale), int.MinValue, int.MaxValue);
     private static short Axis(float value) => (short)(Math.Clamp(value, -1f, 1f) * short.MaxValue);
-
-    private static float Magnitude(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot, int deadZone)
+    private static float Magnitude(
+        string mapping,
+        EmulationControllerState controller,
+        EmulationInputSnapshot snapshot,
+        int deadZone
+    )
     {
-        if (!mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)) return IsPressed(mapping, controller, snapshot) ? 1f : 0f;
+        if (!mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase))
+            return IsPressed(mapping, controller, snapshot) ? 1f : 0f;
         var value = EmulationInputMappingFunctions.ControllerSourceValue(mapping, controller);
-        if (Math.Abs(value) > 1f) value /= short.MaxValue;
+        if (Math.Abs(value) > 1f)
+            value /= short.MaxValue;
         return value <= (float)deadZone / InputMappingConstants.PercentScale ? 0f : Math.Clamp(value, 0f, 1f);
     }
 
-    private static bool IsPressed(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot)
+    private static bool IsPressed(
+        string mapping,
+        EmulationControllerState controller,
+        EmulationInputSnapshot snapshot
+    )
     {
         if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
             return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key);

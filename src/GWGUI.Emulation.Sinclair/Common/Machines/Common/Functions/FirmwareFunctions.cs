@@ -2,7 +2,6 @@ using System.IO;
 using System.Security.Cryptography;
 
 namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions;
-
 internal static class FirmwareFunctions
 {
     internal static string Field(FirmwareCategory role) => FirmwareConstants.FieldPrefix + role;
@@ -30,22 +29,33 @@ internal static class FirmwareFunctions
         FirmwareCategory.USpeech => FirmwareConstants.USpeechFileName,
         FirmwareCategory.Sp0256 => FirmwareConstants.Sp0256FileName,
         _ => throw new ArgumentOutOfRangeException(nameof(role))};
-
-    internal static IReadOnlyList<FirmwareConfiguration> Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
+    internal static IReadOnlyList<FirmwareConfiguration> Apply(
+        MachineConfiguration configuration,
+        IReadOnlyDictionary<string, string?> values
+    )
     {
         var result = configuration.Firmwares.ToList();
         foreach (var role in Roles(configuration.Model))
         {
-            if (!values.TryGetValue(Field(role), out var path)) continue;
+            if (!values.TryGetValue(Field(role), out var path))
+                continue;
             result.RemoveAll(item => item.Category == role);
-            if (!string.IsNullOrWhiteSpace(path)) result.Add(new(role, path, IsRequired(configuration.Model, role), IsOriginalFirmware: false));
+            if (!string.IsNullOrWhiteSpace(path))
+                result.Add(new(role, path, IsRequired(configuration.Model, role), IsOriginalFirmware: false));
         }
+
         return result;
     }
 
-    internal static async ValueTask<EmulationFirmwareCandidate> ScanFileAsync(string path, MachineModel model, Emulator core, CancellationToken cancellationToken)
+    internal static async ValueTask<EmulationFirmwareCandidate> ScanFileAsync(
+        string path,
+        MachineModel model,
+        Emulator core,
+        CancellationToken cancellationToken
+    )
     {
-        if (!ConfigurationFunctions.IsCompatible(model, core)) throw new ArgumentOutOfRangeException(nameof(core));
+        if (!ConfigurationFunctions.IsCompatible(model, core))
+            throw new ArgumentOutOfRangeException(nameof(core));
         var absolute = Path.GetFullPath(path);
         string? hash = null;
         string? destination = null;
@@ -55,8 +65,14 @@ internal static class FirmwareFunctions
             var length = new FileInfo(absolute).Length;
             foreach (var role in Roles(model))
             {
-                if (!Path.GetFileName(absolute).Equals(FileName(role), StringComparison.OrdinalIgnoreCase)) continue;
-                if (length != RequiredSize(role)) { compatibility = EmulationFirmwareCompatibility.Incompatible; break; }
+                if (!Path.GetFileName(absolute).Equals(FileName(role), StringComparison.OrdinalIgnoreCase))
+                    continue;
+                if (length != RequiredSize(role))
+                {
+                    compatibility = EmulationFirmwareCompatibility.Incompatible;
+                    break;
+                }
+
                 await using var stream = File.OpenRead(absolute);
                 hash = Convert.ToHexString(await SHA256.HashDataAsync(stream, cancellationToken).ConfigureAwait(false));
                 destination = Field(role);
@@ -64,12 +80,20 @@ internal static class FirmwareFunctions
                 break;
             }
         }
-        catch (IOException) { }
-        catch (UnauthorizedAccessException) { }
+        catch (IOException)
+        {
+        }
+        catch (UnauthorizedAccessException)
+        {
+        }
+
         return new(hash ?? absolute, absolute, Path.GetFileName(absolute), null, compatibility, destination);
     }
 
-    internal static FirmwareConfiguration Select(EmulationFirmwareCandidate candidate, MachineModel model)
+    internal static FirmwareConfiguration Select(
+        EmulationFirmwareCandidate candidate,
+        MachineModel model
+    )
     {
         if (candidate.Compatibility is not EmulationFirmwareCompatibility.Compatible and not EmulationFirmwareCompatibility.PartiallyCompatible || !IsField(candidate.DestinationFieldId ?? string.Empty))
             throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareCannotBeSelected);

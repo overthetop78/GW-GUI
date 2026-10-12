@@ -1,7 +1,6 @@
 using System.Globalization;
 
 namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions;
-
 internal static class CoreOptionValidationFunctions
 {
     internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core switch
@@ -10,7 +9,6 @@ internal static class CoreOptionValidationFunctions
         Emulator.EightyOne => GWGUI.Emulation.Sinclair.Emulators.EightyOne.Dictionaries.OptionCatalog.Options,
         Emulator.Fuse => GWGUI.Emulation.Sinclair.Emulators.Fuse.Dictionaries.OptionCatalog.Options,
         _ => throw new ArgumentOutOfRangeException(nameof(core))};
-
     internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration)
     {
         var defaults = configuration.Core switch
@@ -21,6 +19,7 @@ internal static class CoreOptionValidationFunctions
             _ => throw new ArgumentOutOfRangeException(nameof(configuration))};
         return ForCore(configuration.Core).Select(option => option with { DefaultValue = defaults.GetValueOrDefault(option.Key, option.DefaultValue), CurrentValue = configuration.Options.GetValueOrDefault(option.Key, defaults.GetValueOrDefault(option.Key, option.DefaultValue)), IsEnabled = IsAvailable(configuration, option.Key) }).ToArray();
     }
+
     private static bool IsAvailable(MachineConfiguration configuration, string key) => configuration.Core switch
     {
         Emulator.None => false,
