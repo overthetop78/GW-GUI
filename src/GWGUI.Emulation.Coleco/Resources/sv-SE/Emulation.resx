@@ -4,47 +4,30 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Emulerar ColecoVision och ADAM.</value></data>
-  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>Emulerar ColecoVision.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>Emulerar ColecoVision.</value></data>
   <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>Videominne</value></data>
-  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>Video</value></data>
-  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>Controller-alternativ</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>Controller alternativ</value></data>
   <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>Systemsystem</value></data>
   <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAM diskenhet</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAM-datapaket</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAM Data Pack</value></data>
   <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>Video Refresh rate</value></data>
-  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Välj automatisk timing eller videostandarden.</value></data>
   <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>Cartridge typ</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Välj den kassör minne bankkontroller.</value></data>
   <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>Video Chip</value></data>
-  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Välj det emulerade videochipet.</value></data>
-  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>Bild aspekt ratio</value></data>
-  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Välj bildaspektkvoten. Automatiskt urval använder spelregionen.</value></data>
   <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>Skärmgränser</value></data>
-  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Välj de synliga skärmgränserna.</value></data>
   <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>Ta bort sprite gräns</value></data>
-  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Ta bort gränsen på sprit per skärmlinje. Detta kan orsaka grafiska fel.</value></data>
   <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>Tillåta motsatta riktningar</value></data>
-  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Låt motsatta riktningar pressas tillsammans.</value></data>
   <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>Rotary Control Känslighet</value></data>
-  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Justera känsligheten hos den roterande kontrollen.</value></data>
   <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>Färgpalett</value></data>
-  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Välj färgpaletten.</value></data>
-  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Dölj den övre gränsen för skärmen.</value></data>
-  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Dölj den nedre skärmen gränsen.</value></data>
-  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Dölj vänster skärm gränsen.</value></data>
-  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Dölj rätt skärmgräns.</value></data>
-  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Snabbstart</value></data>
-  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Hoppa över startförseningen.</value></data>
-  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Standardpatron</value></data>
-  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Topp och botten gränser</value></data>
-  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>Alla gränser (284 pixlar breda)</value></data>
-  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>Alla gränser (320 pixlar bred)</value></data>
   <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>Dölj överskärmsgränsen</value></data>
   <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>Dölj gränsen för lägre skärm</value></data>
   <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>Göm vänster skärm gräns</value></data>
   <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>Dölj höger skärm gräns</value></data>
   <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>Göm skärm gränser</value></data>
-  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Dölj pixlar vid kanterna av den visade bilden.</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Snabbstart</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Standardpatron</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Topp och botten gränser</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>Alla gränser (284 pixlar breda)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>Alla gränser (320 pixlar bred)</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Emulerar COLECOVISION och ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>Emulerar COLECOVISION.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>Emulerar COLECOVISION.</value></data>
 </root>

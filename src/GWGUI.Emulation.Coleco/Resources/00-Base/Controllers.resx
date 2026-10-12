@@ -9,8 +9,8 @@
   <data name="Emulation.Coleco.Controller.Roller" xml:space="preserve"><value>Roller Controller</value></data>
   <data name="Emulation.Coleco.Controller.Driving" xml:space="preserve"><value>Driving Controller</value></data>
   <data name="Emulation.Coleco.Controller.Paddle" xml:space="preserve"><value>Paddle</value></data>
-  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Left fire button</value></data>
-  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Right fire button</value></data>
+  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Left side button</value></data>
+  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Right side button</value></data>
   <data name="Emulation.Coleco.Action.Purple" xml:space="preserve"><value>Purple button</value></data>
   <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>Blue button</value></data>
   <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Spinner left</value></data>

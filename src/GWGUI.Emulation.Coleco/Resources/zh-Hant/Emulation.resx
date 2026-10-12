@@ -4,47 +4,30 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>模擬 ColecoVision 和 ADAM.</value></data>
-  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>相模為ColecoVision.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>相模為ColecoVision.</value></data>
-  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>視頻內存</value></data>
-  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>視頻</value></data>
-  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>控制器選項</value></data>
-  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>系統</value></data>
-  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAM 磁盤驅動器</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAM 數據包</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>视频内存</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>控制器选项</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>系统</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAM 磁盘驱动器</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAM 数据包</value></data>
   <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>视频刷新率</value></data>
-  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>选择自动计时或视频标准。</value></data>
   <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>纸箱类型</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>选择弹匣内存库控制器 。</value></data>
   <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>视频芯片</value></data>
-  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>选择模拟视频芯片 。</value></data>
-  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>图像全相比</value></data>
-  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>选择图像相像相像相像比例。自动选择使用游戏区域。</value></data>
   <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>屏幕边框</value></data>
-  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>选择可见屏幕边框。</value></data>
   <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>删除图示限制</value></data>
-  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>删除每条屏幕线上的图示限制。 这可能造成图形错误 。</value></data>
   <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>允许相反方向</value></data>
-  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>允许将相反的方向按在一起 。</value></data>
   <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>扶轮控制敏感性</value></data>
-  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>调整旋转控制器的灵敏度。</value></data>
   <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>彩色调色板</value></data>
-  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>选择颜色调色板。</value></data>
-  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>隐藏上屏幕边框 。</value></data>
-  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>隐藏下方屏幕边框 。</value></data>
-  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>隐藏左屏边框 。</value></data>
-  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>隐藏右屏边框 。</value></data>
-  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>快速启动</value></data>
-  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>跳过拖后腿。</value></data>
-  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>标准墨盒</value></data>
-  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>上下边框</value></data>
-  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>所有边界( 284 像素宽度)</value></data>
-  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>所有边界( 320 像素宽)</value></data>
   <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>隐藏上屏幕边框</value></data>
   <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>隐藏下屏幕边框</value></data>
   <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>隐藏左侧屏幕边框</value></data>
   <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>隐藏右屏幕边框</value></data>
   <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>隐藏屏幕边框</value></data>
-  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>将像素隐藏在显示图像的边缘。</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>快速启动</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>标准墨盒</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>上下边框</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>所有边界( 284 像素宽度)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>所有边界( 320 像素宽)</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>模拟 COLECOVISION 财务报告和已审计财务报表 ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>模拟 COLECOVISION.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>模拟 COLECOVISION.</value></data>
 </root>

@@ -8,7 +8,7 @@ internal static class SettingsTextConstants
     internal const string CartridgeTypeHelp = "Emulation.Coleco.Help.CartridgeTypeHelp";
     internal const string VideoChip = "Emulation.Coleco.Setting.VideoChip";
     internal const string VideoChipHelp = "Emulation.Coleco.Help.VideoChipHelp";
-    internal const string AspectRatio = "Emulation.Coleco.Setting.AspectRatio";
+    internal const string AspectRatio = "Emulation.Video.AspectRatio";
     internal const string AspectRatioHelp = "Emulation.Coleco.Help.AspectRatioHelp";
     internal const string ScreenBorders = "Emulation.Coleco.Setting.ScreenBorders";
     internal const string ScreenBordersHelp = "Emulation.Coleco.Help.ScreenBordersHelp";

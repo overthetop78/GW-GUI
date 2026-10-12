@@ -4,47 +4,30 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Προσομοιάζει ColecoVision και ADAM.</value></data>
-  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>Προσομοιάζει ColecoVision.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>Προσομοιάζει ColecoVision.</value></data>
-  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>Μνήμη βίντεο</value></data>
-  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>Βίντεο</value></data>
+  <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>μνήμη βίντεο</value></data>
   <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>Επιλογές ελεγκτή</value></data>
   <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>Σύστημα</value></data>
-  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>Μονάδα δίσκου ADAM</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>Συσκευασία δεδομένων ADAM</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAM κίνηση δίσκου</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAM πακέτο δεδομένων</value></data>
   <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>Ρυθμός ανανέωσης βίντεο</value></data>
-  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Επιλέξτε αυτόματο συγχρονισμό ή το πρότυπο βίντεο.</value></data>
   <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>Τύπος καλαθιού</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Επιλέξτε το χειριστήριο της τράπεζας μνήμης φυσιγγίων.</value></data>
   <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>Τσιπ βίντεο</value></data>
-  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Επιλέξτε το μιμούμενο βίντεο τσιπ.</value></data>
-  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>Λόγος διαστάσεων εικόνας</value></data>
-  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Επιλέξτε την αναλογία διαστάσεων εικόνας. Η αυτόματη επιλογή χρησιμοποιεί την περιοχή του παιχνιδιού.</value></data>
   <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>Περιθώρια οθόνης</value></data>
-  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Επιλέξτε τα ορατά όρια οθόνης.</value></data>
   <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>Αφαίρεση ορίου sprite</value></data>
-  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Αφαίρεση του ορίου των sprites ανά γραμμή οθόνης. Αυτό μπορεί να προκαλέσει γραφικά σφάλματα.</value></data>
   <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>Επίτρεψε αντίθετες κατευθύνσεις</value></data>
-  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Να επιτρέπεται η συμπίεση των αντιθέτων κατευθύνσεων.</value></data>
   <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>Ευαισθησία στον περιστροφικό έλεγχο</value></data>
-  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Ρυθμίστε την ευαισθησία του περιστροφικού ελεγκτή.</value></data>
   <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>Παλέτα χρωμάτων</value></data>
-  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Επιλέξτε την παλέτα χρωμάτων.</value></data>
-  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Απόκρυψη του πάνω περιγράμματος της οθόνης.</value></data>
-  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Απόκρυψη του κάτω περιγράμματος οθόνης.</value></data>
-  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Απόκρυψη του αριστερού περιγράμματος οθόνης.</value></data>
-  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Απόκρυψη του δεξιού περιγράμματος οθόνης.</value></data>
-  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Γρήγορη εκκίνηση</value></data>
-  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Παράλειψε την καθυστέρηση της εκκίνησης.</value></data>
-  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Φυσίγγιο</value></data>
-  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Πάνω και κάτω όρια</value></data>
-  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>Όλα τα σύνορα (284 εικονοστοιχεία πλάτος)</value></data>
-  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>Όλα τα σύνορα (320 εικονοστοιχεία πλάτος)</value></data>
   <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>Απόκρυψη περιγράμματος πάνω οθόνης</value></data>
   <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>Απόκρυψη κάτω περιγράμματος οθόνης</value></data>
   <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>Απόκρυψη περιγράμματος αριστερής οθόνης</value></data>
   <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>Απόκρυψη δεξιού περιγράμματος οθόνης</value></data>
   <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>Απόκρυψη περιγράμματος οθόνης</value></data>
-  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Απόκρυψη εικονοστοιχείων στις άκρες της εμφανιζόμενης εικόνας.</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Γρήγορη εκκίνηση</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Φυσίγγιο</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Πάνω και κάτω όρια</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>Όλα τα σύνορα (284 εικονοστοιχεία πλάτος)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>Όλα τα σύνορα (320 εικονοστοιχεία πλάτος)</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Εξομοίωση COLECOVISION και ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>Εξομοίωση COLECOVISION.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>Εξομοίωση COLECOVISION.</value></data>
 </root>

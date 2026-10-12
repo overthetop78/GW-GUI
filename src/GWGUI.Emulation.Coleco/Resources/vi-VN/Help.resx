@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Chọn thời gian tự động hoặc tiêu chuẩn video.</value></data>
+  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Chọn chip video đã mô phỏng.</value></data>
+  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Chọn tỷ lệ hình thể của ảnh. Chọn tự động dùng vùng trò chơi.</value></data>
+  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Chọn viền màn hình nhìn thấy được.</value></data>
+  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Gỡ bỏ giới hạn trên mỗi dòng màn hình. Nó có thể gây ra lỗi đồ hoạ.</value></data>
+  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Cho phép các chỉ dẫn đối diện được ép lại với nhau.</value></data>
+  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Điều chỉnh độ nhạy của bộ điều khiển quay.</value></data>
+  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Chọn bảng màu.</value></data>
+  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Ẩn biên giới màn hình trên cùng.</value></data>
+  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Ẩn biên giới màn hình dưới cùng.</value></data>
+  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Ẩn biên giới màn hình trái.</value></data>
+  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Ẩn biên giới màn hình bên phải.</value></data>
+  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Ẩn điểm ảnh ở cạnh của ảnh đã hiển thị.</value></data>
+  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Bỏ qua việc trì hoãn khởi động.</value></data>
+  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Hãy chọn cách kiểm soát các ngân hàng bộ nhớ đạn.</value></data>
+</root>

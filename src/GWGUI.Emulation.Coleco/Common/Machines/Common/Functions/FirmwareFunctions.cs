@@ -30,7 +30,7 @@ internal static class FirmwareFunctions
         try
         {
             var length = new FileInfo(absolute).Length;
-            if (length != MediaRuntimeConstants.Os7Bytes && length != MediaRuntimeConstants.SmartWriterBytes)
+            if (length != FirmwareConstants.Os7Bytes && length != FirmwareConstants.SmartWriterBytes)
                 return new(absolute, absolute, Path.GetFileName(absolute), null, compatibility, null);
             var bytes = await File.ReadAllBytesAsync(absolute, cancellationToken).ConfigureAwait(false);
             hash = Convert.ToHexString(SHA256.HashData(bytes));
@@ -46,9 +46,9 @@ internal static class FirmwareFunctions
             else
             {
                 var name = Path.GetFileNameWithoutExtension(absolute);
-                role = bytes.Length == MediaRuntimeConstants.SmartWriterBytes && model == MachineModel.Adam
+                role = bytes.Length == FirmwareConstants.SmartWriterBytes && model == MachineModel.Adam
                     ? FirmwareCategory.SmartWriter
-                    : bytes.Length == MediaRuntimeConstants.Os7Bytes ? name.Contains("eos", StringComparison.OrdinalIgnoreCase) && model == MachineModel.Adam ? FirmwareCategory.Eos : FirmwareCategory.Os7 : null;
+                    : bytes.Length == FirmwareConstants.Os7Bytes ? name.Contains("eos", StringComparison.OrdinalIgnoreCase) && model == MachineModel.Adam ? FirmwareCategory.Eos : FirmwareCategory.Os7 : null;
                 if (role is not null) compatibility = EmulationFirmwareCompatibility.PartiallyCompatible;
             }
         }

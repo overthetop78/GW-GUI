@@ -48,7 +48,7 @@ internal static class GearColecoOptionCatalog
             "Auto",
             "Auto",
             [
-                new("Auto", "Auto", ResourceKey: "Emulation.Value.Auto"),
+                new("Auto", "Auto", ResourceKey: "Visual.Automatic"),
                 new("NTSC (60 Hz)", "NTSC (60 Hz)", VideoStandard: EmulationVideoStandard.Ntsc, FrequencyHz: 60),
                 new("PAL (50 Hz)", "PAL (50 Hz)", VideoStandard: EmulationVideoStandard.Pal, FrequencyHz: 50)
             ],
@@ -63,7 +63,7 @@ internal static class GearColecoOptionCatalog
             "Auto",
             "Auto",
             [
-                new("Auto", "Auto", ResourceKey: "Emulation.Value.Auto"),
+                new("Auto", "Auto", ResourceKey: "Visual.Automatic"),
                 new("Standard", "Standard", ResourceKey: SettingsChoiceConstants.ValueStandard),
                 new("MegaCart", "MegaCart", ResourceKey: SettingsChoiceConstants.ValueMegaCart),
                 new("Activision", "Activision", ResourceKey: SettingsChoiceConstants.ValueActivision),
@@ -79,7 +79,7 @@ internal static class GearColecoOptionCatalog
             "system",
             "Auto",
             "Auto",
-            [new("Auto", "Auto", ResourceKey: "Emulation.Value.Auto"), new("TMS9918A", "TMS9918A", ResourceKey: SettingsChoiceConstants.ValueTMS9918A), new("F18A", "F18A", ResourceKey: SettingsChoiceConstants.ValueF18A)],
+            [new("Auto", "Auto", ResourceKey: "Visual.Automatic"), new("TMS9918A", "TMS9918A", ResourceKey: SettingsChoiceConstants.ValueTMS9918A), new("F18A", "F18A", ResourceKey: SettingsChoiceConstants.ValueF18A)],
             ResourceKey: SettingsTextConstants.VideoChip,
             ExplanationResourceKey: SettingsTextConstants.VideoChipHelp
         ),
@@ -154,16 +154,16 @@ internal static class GearColecoOptionCatalog
             "1",
             "1",
             [
-                new("1", "1", ResourceKey: SettingsChoiceConstants.ValueNumber1),
-                new("2", "2", ResourceKey: SettingsChoiceConstants.ValueNumber2),
-                new("3", "3", ResourceKey: SettingsChoiceConstants.ValueNumber3),
-                new("4", "4", ResourceKey: SettingsChoiceConstants.ValueNumber4),
-                new("5", "5", ResourceKey: SettingsChoiceConstants.ValueNumber5),
-                new("6", "6", ResourceKey: SettingsChoiceConstants.ValueNumber6),
-                new("7", "7", ResourceKey: SettingsChoiceConstants.ValueNumber7),
-                new("8", "8", ResourceKey: SettingsChoiceConstants.ValueNumber8),
-                new("9", "9", ResourceKey: SettingsChoiceConstants.ValueNumber9),
-                new("10", "10", ResourceKey: SettingsChoiceConstants.ValueNumber10)
+                new("1", "1", InvariantDisplayValue: "1"),
+                new("2", "2", InvariantDisplayValue: "2"),
+                new("3", "3", InvariantDisplayValue: "3"),
+                new("4", "4", InvariantDisplayValue: "4"),
+                new("5", "5", InvariantDisplayValue: "5"),
+                new("6", "6", InvariantDisplayValue: "6"),
+                new("7", "7", InvariantDisplayValue: "7"),
+                new("8", "8", InvariantDisplayValue: "8"),
+                new("9", "9", InvariantDisplayValue: "9"),
+                new("10", "10", InvariantDisplayValue: "10")
             ],
             ResourceKey: SettingsTextConstants.RotarySensitivity,
             ExplanationResourceKey: SettingsTextConstants.RotarySensitivityHelp

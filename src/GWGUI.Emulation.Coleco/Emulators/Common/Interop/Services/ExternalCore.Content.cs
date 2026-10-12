@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions;
 namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore

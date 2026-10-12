@@ -2,9 +2,6 @@ namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants;
 
 internal static class MediaRuntimeConstants
 {
-    internal const int Os7Bytes = 8192;
-    internal const int EosBytes = 8192;
-    internal const int SmartWriterBytes = 32768;
     internal const string Os7FileName = "coleco.rom";
     internal const string EosFileName = "eos.rom";
     internal const string SmartWriterFileName = "writer.rom";

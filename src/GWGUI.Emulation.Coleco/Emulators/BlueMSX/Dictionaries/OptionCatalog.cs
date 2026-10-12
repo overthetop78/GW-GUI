@@ -55,7 +55,7 @@ internal static class BlueMSXOptionCatalog
             "video",
             "Auto",
             "Auto",
-            [new("Auto", "Auto", ResourceKey: "Emulation.Value.Auto"), new("50Hz", "50Hz", ResourceKey: SettingsChoiceConstants.ValueFrequency50Hz), new("60Hz", "60Hz", ResourceKey: SettingsChoiceConstants.ValueFrequency60Hz)],
+            [new("Auto", "Auto", ResourceKey: "Visual.Automatic"), new("50Hz", "50Hz", ResourceKey: SettingsChoiceConstants.ValueFrequency50Hz), new("60Hz", "60Hz", ResourceKey: SettingsChoiceConstants.ValueFrequency60Hz)],
             ResourceKey: SettingsTextConstants.RefreshRate,
             ExplanationResourceKey: SettingsTextConstants.RefreshRateHelp
         ),

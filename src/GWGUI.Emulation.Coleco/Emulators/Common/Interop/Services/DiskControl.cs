@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Coleco.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions;
 using System.IO;
 using System.Runtime.InteropServices;
 

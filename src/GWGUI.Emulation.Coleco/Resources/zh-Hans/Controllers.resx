@@ -4,12 +4,12 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>ColecoVision 控制器</value></data>
+  <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>Colecovision 控制器</value></data>
   <data name="Emulation.Coleco.Controller.Paddle" xml:space="preserve"><value>划桨</value></data>
-  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>左键射击</value></data>
-  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>右键射击</value></data>
   <data name="Emulation.Coleco.Action.Purple" xml:space="preserve"><value>紫色按钮</value></data>
   <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>蓝色按钮</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>左转</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>向右旋转</value></data>
-  </root>
+  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>左旋转</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>右旋线</value></data>
+  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>左侧按钮</value></data>
+  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>右侧按钮</value></data>
+</root>

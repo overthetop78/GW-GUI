@@ -27,7 +27,7 @@ internal static class JollyCVOptionCatalog
             "Auto",
             "Auto",
             [
-                new("Auto", "Region-based Pixel Aspect Ratio (Default)", ResourceKey: "Emulation.Value.Auto"),
+                new("Auto", "Region-based Pixel Aspect Ratio (Default)", ResourceKey: "Visual.Automatic"),
                 new("1:1", "Perfectly Square Pixels (1:1 PAR)", ResourceKey: SettingsChoiceConstants.ValueAspect1By1PAR),
                 new("NTSC", "Very Traditional NTSC Aspect Ratio (4:3 DAR)", ResourceKey: SettingsChoiceConstants.ValueAspect4By3NTSC),
                 new("PAL", "Ostensibly Accurate PAL Aspect Ratio", ResourceKey: SettingsChoiceConstants.ValuePAL)
@@ -43,15 +43,15 @@ internal static class JollyCVOptionCatalog
             "0",
             "0",
             [
-                new("0", "0 (Default)", ResourceKey: SettingsChoiceConstants.ValueNumber0),
-                new("2", "2", ResourceKey: SettingsChoiceConstants.ValueNumber2),
-                new("4", "4", ResourceKey: SettingsChoiceConstants.ValueNumber4),
-                new("6", "6", ResourceKey: SettingsChoiceConstants.ValueNumber6),
-                new("8", "8", ResourceKey: SettingsChoiceConstants.ValueNumber8),
-                new("10", "10", ResourceKey: SettingsChoiceConstants.ValueNumber10),
-                new("12", "12", ResourceKey: SettingsChoiceConstants.ValueNumber12),
-                new("14", "14", ResourceKey: SettingsChoiceConstants.ValueNumber14),
-                new("16", "16", ResourceKey: SettingsChoiceConstants.ValueNumber16)
+                new("0", "0 (Default)", InvariantDisplayValue: "0"),
+                new("2", "2", InvariantDisplayValue: "2"),
+                new("4", "4", InvariantDisplayValue: "4"),
+                new("6", "6", InvariantDisplayValue: "6"),
+                new("8", "8", InvariantDisplayValue: "8"),
+                new("10", "10", InvariantDisplayValue: "10"),
+                new("12", "12", InvariantDisplayValue: "12"),
+                new("14", "14", InvariantDisplayValue: "14"),
+                new("16", "16", InvariantDisplayValue: "16")
             ],
             ResourceKey: SettingsTextConstants.CropTopBorder,
             ExplanationResourceKey: SettingsTextConstants.CropTopBorderHelp
@@ -64,15 +64,15 @@ internal static class JollyCVOptionCatalog
             "0",
             "0",
             [
-                new("0", "0 (Default)", ResourceKey: SettingsChoiceConstants.ValueNumber0),
-                new("2", "2", ResourceKey: SettingsChoiceConstants.ValueNumber2),
-                new("4", "4", ResourceKey: SettingsChoiceConstants.ValueNumber4),
-                new("6", "6", ResourceKey: SettingsChoiceConstants.ValueNumber6),
-                new("8", "8", ResourceKey: SettingsChoiceConstants.ValueNumber8),
-                new("10", "10", ResourceKey: SettingsChoiceConstants.ValueNumber10),
-                new("12", "12", ResourceKey: SettingsChoiceConstants.ValueNumber12),
-                new("14", "14", ResourceKey: SettingsChoiceConstants.ValueNumber14),
-                new("16", "16", ResourceKey: SettingsChoiceConstants.ValueNumber16)
+                new("0", "0 (Default)", InvariantDisplayValue: "0"),
+                new("2", "2", InvariantDisplayValue: "2"),
+                new("4", "4", InvariantDisplayValue: "4"),
+                new("6", "6", InvariantDisplayValue: "6"),
+                new("8", "8", InvariantDisplayValue: "8"),
+                new("10", "10", InvariantDisplayValue: "10"),
+                new("12", "12", InvariantDisplayValue: "12"),
+                new("14", "14", InvariantDisplayValue: "14"),
+                new("16", "16", InvariantDisplayValue: "16")
             ],
             ResourceKey: SettingsTextConstants.CropBottomBorder,
             ExplanationResourceKey: SettingsTextConstants.CropBottomBorderHelp
@@ -85,11 +85,11 @@ internal static class JollyCVOptionCatalog
             "6",
             "6",
             [
-                new("0", "0", ResourceKey: SettingsChoiceConstants.ValueNumber0),
-                new("2", "2", ResourceKey: SettingsChoiceConstants.ValueNumber2),
-                new("4", "4", ResourceKey: SettingsChoiceConstants.ValueNumber4),
-                new("6", "6 (Default)", ResourceKey: SettingsChoiceConstants.ValueNumber6),
-                new("8", "8", ResourceKey: SettingsChoiceConstants.ValueNumber8)
+                new("0", "0", InvariantDisplayValue: "0"),
+                new("2", "2", InvariantDisplayValue: "2"),
+                new("4", "4", InvariantDisplayValue: "4"),
+                new("6", "6 (Default)", InvariantDisplayValue: "6"),
+                new("8", "8", InvariantDisplayValue: "8")
             ],
             ResourceKey: SettingsTextConstants.CropLeftBorder,
             ExplanationResourceKey: SettingsTextConstants.CropLeftBorderHelp
@@ -102,11 +102,11 @@ internal static class JollyCVOptionCatalog
             "6",
             "6",
             [
-                new("0", "0", ResourceKey: SettingsChoiceConstants.ValueNumber0),
-                new("2", "2", ResourceKey: SettingsChoiceConstants.ValueNumber2),
-                new("4", "4", ResourceKey: SettingsChoiceConstants.ValueNumber4),
-                new("6", "6 (Default)", ResourceKey: SettingsChoiceConstants.ValueNumber6),
-                new("8", "8", ResourceKey: SettingsChoiceConstants.ValueNumber8)
+                new("0", "0", InvariantDisplayValue: "0"),
+                new("2", "2", InvariantDisplayValue: "2"),
+                new("4", "4", InvariantDisplayValue: "4"),
+                new("6", "6 (Default)", InvariantDisplayValue: "6"),
+                new("8", "8", InvariantDisplayValue: "8")
             ],
             ResourceKey: SettingsTextConstants.CropRightBorder,
             ExplanationResourceKey: SettingsTextConstants.CropRightBorderHelp

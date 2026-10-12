@@ -1,5 +1,4 @@
 using System.IO;
-using CartridgeOptions = GWGUI.Emulation.Coleco.Emulators.GearColeco.Constants.OptionConstants;
 
 namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;
 
@@ -7,12 +6,13 @@ internal static class StorageSettingsFunctions
 {
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
     {
+        var cartridgeFields = CartridgeFields(configuration);
         var devices = new List<EmulationMediaDevice>
         {
             new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, SettingsConstants.CartridgeExtensions,
                 RequiresMachineRecreation: true, ImageDirectory: configuration.Folders.Cartridges, IsPermanent: true,
-                ConfigurationKind: configuration.Core == Emulator.GearColeco ? EmulationStorageConfigurationKind.CartridgeSlot : EmulationStorageConfigurationKind.None,
-                ConfigurationFields: CartridgeFields(configuration))
+                ConfigurationKind: cartridgeFields.Count > 0 ? EmulationStorageConfigurationKind.CartridgeSlot : EmulationStorageConfigurationKind.None,
+                ConfigurationFields: cartridgeFields)
         };
         if (configuration.Model == MachineModel.Adam)
         {
@@ -28,11 +28,13 @@ internal static class StorageSettingsFunctions
         }
         return new(devices, configuration.ConfiguredSlots,
             configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray(),
-            configuration.Core == Emulator.GearColeco ? [new(EmulationMediaSlot.Cartridge0, Cartridge: new CartridgeSlotSettings(Options: CartridgeFields(configuration).ToDictionary(field => field.Id, field => field.Value!)))] : []);
+            cartridgeFields.Count > 0 ? [new(EmulationMediaSlot.Cartridge0, Cartridge: new CartridgeSlotSettings(Options: cartridgeFields.ToDictionary(field => field.Id, field => field.Value!)))] : []);
     }
 
     private static IReadOnlyList<EmulationSettingsField> CartridgeFields(MachineConfiguration configuration) =>
-        configuration.Core == Emulator.GearColeco ? [SettingsDescriptionFunctions.Native(configuration, CoreOptionValidationFunctions.ForCore(configuration.Core).Single(option => option.Key == CartridgeOptions.OptionMapper), EmulationMachineTab.Storage, "Emulation.Storage.Cartridges")] : [];
+        new Engine().Adapter(configuration) is IEmulatorSettings settings
+            ? settings.DescribeSettings(configuration).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray()
+            : [];
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
@@ -40,14 +42,14 @@ internal static class StorageSettingsFunctions
         if (settings.ConfiguredSlots.Any(slot => !devices.ContainsKey(slot))
             || settings.MountedMedia.Any(media => !devices.TryGetValue(media.Slot, out var device) || device.MediaType != media.Type || !device.AcceptedExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase)))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
+        var cartridgeFields = CartridgeFields(configuration).Select(field => field.Id).ToHashSet(StringComparer.Ordinal);
         var options = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal);
         foreach (var deviceSettings in settings.DeviceSettings ?? [])
         {
             if (!devices.ContainsKey(deviceSettings.Slot)) throw new ArgumentException(nameof(settings));
             foreach (var option in deviceSettings.Cartridge?.Options ?? new Dictionary<string, string>())
             {
-                if (deviceSettings.Slot != EmulationMediaSlot.Cartridge0 || configuration.Core != Emulator.GearColeco
-                    || option.Key != CartridgeOptions.OptionMapper)
+                if (deviceSettings.Slot != EmulationMediaSlot.Cartridge0 || !cartridgeFields.Contains(option.Key))
                     throw new ArgumentException(nameof(settings));
                 options[option.Key] = option.Value;
             }

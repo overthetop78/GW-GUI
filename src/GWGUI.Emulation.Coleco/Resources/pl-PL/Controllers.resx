@@ -6,10 +6,10 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>Sterownik ColecoVision</value></data>
   <data name="Emulation.Coleco.Controller.Paddle" xml:space="preserve"><value>Wiosło</value></data>
-  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Lewy przycisk pożarowy</value></data>
-  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Prawy przycisk ognia</value></data>
   <data name="Emulation.Coleco.Action.Purple" xml:space="preserve"><value>Fioletowy przycisk</value></data>
-  <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>Przycisk niebieski</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Obrót w lewo</value></data>
+  <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>Niebieski przycisk</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Skręcany lewy</value></data>
   <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>Prawa spinner</value></data>
-  </root>
+  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Przycisk lewego boku</value></data>
+  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Przycisk z prawej strony</value></data>
+</root>

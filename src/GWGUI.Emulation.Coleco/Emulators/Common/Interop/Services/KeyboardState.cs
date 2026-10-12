@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services;

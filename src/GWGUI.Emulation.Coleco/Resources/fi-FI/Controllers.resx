@@ -6,10 +6,10 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>ColecoVision-ohjain</value></data>
   <data name="Emulation.Coleco.Controller.Paddle" xml:space="preserve"><value>Melo</value></data>
-  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Vasen tulinappi</value></data>
-  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Oikea palonappula</value></data>
   <data name="Emulation.Coleco.Action.Purple" xml:space="preserve"><value>Violetti painike</value></data>
   <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>Sininen painike</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Spinner vasen</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Spinner vasemmalle</value></data>
   <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>Spinner oikealle</value></data>
-  </root>
+  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Vasen sivunappi</value></data>
+  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Oikeanpuoleinen painike</value></data>
+</root>

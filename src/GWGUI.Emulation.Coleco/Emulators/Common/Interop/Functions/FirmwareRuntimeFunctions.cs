@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Coleco.Emulators.BlueMSX.Functions;
+using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants;
 using System.IO;
 
 namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions;
@@ -6,11 +8,11 @@ internal static class FirmwareRuntimeFunctions
 {
     internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
     {
-        Copy(configuration, FirmwareCategory.Os7, MediaRuntimeConstants.Os7Bytes, MediaRuntimeConstants.Os7FileName, systemDirectory);
+        Copy(configuration, FirmwareCategory.Os7, FirmwareConstants.Os7Bytes, MediaRuntimeConstants.Os7FileName, systemDirectory);
         if (configuration.Model == MachineModel.Adam)
         {
-            Copy(configuration, FirmwareCategory.Eos, MediaRuntimeConstants.EosBytes, MediaRuntimeConstants.EosFileName, systemDirectory);
-            Copy(configuration, FirmwareCategory.SmartWriter, MediaRuntimeConstants.SmartWriterBytes, MediaRuntimeConstants.SmartWriterFileName, systemDirectory);
+            Copy(configuration, FirmwareCategory.Eos, FirmwareConstants.EosBytes, MediaRuntimeConstants.EosFileName, systemDirectory);
+            Copy(configuration, FirmwareCategory.SmartWriter, FirmwareConstants.SmartWriterBytes, MediaRuntimeConstants.SmartWriterFileName, systemDirectory);
         }
         if (configuration.Core == Emulator.BlueMSX)
             GWGUI.Emulation.Coleco.Emulators.BlueMSX.Functions.SystemFilesFunctions.Prepare(configuration, systemDirectory);

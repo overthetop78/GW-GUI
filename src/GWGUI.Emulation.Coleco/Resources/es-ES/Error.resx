@@ -5,7 +5,7 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>El estado salvado de Coleco es incompatible con la máquina actual.</value></data>
-  <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>Se produjo un error inesperado de emulación Coleco.</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>Un error inesperado de emulación de Coleco ocurrió.</value></data>
   <data name="Emulation.Coleco.Error.FirmwareMissing" xml:space="preserve"><value>Falta un firmware de Coleco necesario.</value></data>
   <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>El sistema ROM es inválido o incompatible.</value></data>
   <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>No se encontró el medio de Coleco configurado.</value></data>
@@ -14,8 +14,8 @@
   <data name="Emulation.Coleco.Error.CoreNotFound" xml:space="preserve"><value>No se encontró el núcleo necesario de Coleco.</value></data>
   <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>El núcleo seleccionado de Coleco no se puede cargar.</value></data>
   <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>El estado salvado de Coleco es inválido.</value></data>
-  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>El camino ejecutable del anfitrión Coleco no está disponible.</value></data>
   <data name="Emulation.Coleco.Error.Details" xml:space="preserve"><value>Detalles: {0}</value></data>
   <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>La comunicación con el anfitrión Coleco falló.</value></data>
-  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>desconocido medio ambiente comando: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>El camino del programa emulador no está disponible.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Unknown environment command: {0}</value></data>
 </root>

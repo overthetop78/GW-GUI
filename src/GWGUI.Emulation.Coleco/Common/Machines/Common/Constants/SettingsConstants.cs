@@ -22,7 +22,7 @@ internal static class SettingsConstants
     internal const double HertzPerKilohertz = 1_000;
     internal const string MegahertzUnit = "MHz", KilohertzUnit = "kHz", ByteUnit = "B", KibibyteUnit = "KiB";
     internal const string ResourceFirmware = "Emulation.Firmware.Rom.System";
-    internal const string ResourceNativeVideo = "Emulation.Coleco.Video.Native";
+    internal const string ResourceNativeVideo = "Emulation.Tab.Video";
     internal const string ResourceNativeControls = "Emulation.Coleco.Controls.Native";
     internal const string ResourceNativeSystem = "Emulation.Coleco.System.Native";
     internal const string ResourceAudio = "Emulation.Audio";

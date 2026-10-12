@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Coleco.Emulators.Common.Contracts;
+using GWGUI.Emulation.Coleco.Emulators.Common.Functions;
 namespace GWGUI.Emulation.Coleco.Emulators.JollyCV.Constants;
 
 internal static class EmulatorConstants

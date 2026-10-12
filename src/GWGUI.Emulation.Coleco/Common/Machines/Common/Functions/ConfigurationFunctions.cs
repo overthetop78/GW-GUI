@@ -2,11 +2,7 @@ namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;
 
 internal static class ConfigurationFunctions
 {
-    internal static Emulator DefaultEmulator(MachineModel model) => model switch
-    {
-        MachineModel.ColecoVision or MachineModel.Adam => Emulator.GearColeco,
-        _ => throw new ArgumentOutOfRangeException(nameof(model))
-    };
+    internal static Emulator DefaultEmulator(MachineModel model) => new Engine().DefaultEmulator(model);
 
     internal static IReadOnlyList<EmulationMediaSlot> DefaultSlots(MachineModel model) => model switch
     {
@@ -15,7 +11,7 @@ internal static class ConfigurationFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     };
 
-    internal static bool IsCompatible(MachineModel model, Emulator core) => Enum.IsDefined(model) && Enum.IsDefined(core) && (model == MachineModel.ColecoVision || core == Emulator.GearColeco);
+    internal static bool IsCompatible(MachineModel model, Emulator core) => Enum.IsDefined(model) && Enum.IsDefined(core) && new Engine().Adapter(core).Definition.MachineIds.Contains(model.ToString());
 
     internal static void Validate(MachineConfiguration configuration)
     {

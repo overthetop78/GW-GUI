@@ -13,9 +13,9 @@
   <data name="Emulation.Coleco.Error.OptionInvalid" xml:space="preserve"><value>Un'opzione Coleco ha un valore non valido.</value></data>
   <data name="Emulation.Coleco.Error.CoreNotFound" xml:space="preserve"><value>Il nucleo Coleco richiesto non è stato trovato.</value></data>
   <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>Il nucleo Coleco selezionato non poteva essere caricato.</value></data>
-  <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>Lo stato salvato da Coleco non e' valido.</value></data>
-  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>Il percorso eseguibile dell'ospite Coleco non è disponibile.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>Lo stato salvato da Coleco non è valido.</value></data>
   <data name="Emulation.Coleco.Error.Details" xml:space="preserve"><value>Dettagli: {0}</value></data>
-  <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>La comunicazione con l'ospite Coleco è fallita.</value></data>
-  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comando dell'ambiente sconosciuto: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>La comunicazione con l'ospite Coleco non è riuscita.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comando ambiente sconosciuto: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>Il percorso del programma emulatore non è disponibile.</value></data>
 </root>

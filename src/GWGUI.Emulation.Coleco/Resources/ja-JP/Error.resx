@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>Coleco保存状態は、現在のマシンと互換性がありません。</value></data>
-  <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>予期しない Coleco エミュレーションエラーが発生しました。</value></data>
+  <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>保存状態は、現在のマシンと互換性がありません。</value></data>
+  <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>予期しない Coleco のエミュレーションエラーが発生しました。</value></data>
   <data name="Emulation.Coleco.Error.FirmwareMissing" xml:space="preserve"><value>必要なColecoファームウェアが不足しています。</value></data>
-  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>システム ROM は無効または非互換です。</value></data>
-  <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>構成されたColeco媒体が見つかりませんでした。</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>システム ROM 無効または非互換です。</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>設定されたColecoメディアが見つかりませんでした。</value></data>
   <data name="Emulation.Coleco.Error.ContentUnsupported" xml:space="preserve"><value>選択したメディアに対応していません。</value></data>
-  <data name="Emulation.Coleco.Error.OptionInvalid" xml:space="preserve"><value>Coleco オプションには無効な値があります。</value></data>
+  <data name="Emulation.Coleco.Error.OptionInvalid" xml:space="preserve"><value>Coleco オプションには、無効な値があります。</value></data>
   <data name="Emulation.Coleco.Error.CoreNotFound" xml:space="preserve"><value>必要なColecoコアが見つかりませんでした。</value></data>
-  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>選択したColecoコアはロードできませんでした。</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>選択されたColecoのコアは読み込められなかった。</value></data>
   <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>Coleco保存状態が無効です。</value></data>
-  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>Coleco ホスト実行可能なパスは利用できません。</value></data>
   <data name="Emulation.Coleco.Error.Details" xml:space="preserve"><value>詳細情報: {0}</value></data>
   <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>Colecoホストとの通信が失敗しました。</value></data>
-  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>不明な環境コマンド: {0}</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知の環境コマンド: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>エミュレータプログラムパスは利用できません。</value></data>
 </root>

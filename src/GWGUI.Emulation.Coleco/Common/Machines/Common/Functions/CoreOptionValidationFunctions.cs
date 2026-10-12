@@ -1,18 +1,8 @@
-using GWGUI.Emulation.Coleco.Emulators.GearColeco.Dictionaries;
-using GWGUI.Emulation.Coleco.Emulators.JollyCV.Dictionaries;
-using GWGUI.Emulation.Coleco.Emulators.BlueMSX.Dictionaries;
-
 namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;
 
 internal static class CoreOptionValidationFunctions
 {
-    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core switch
-    {
-        Emulator.GearColeco => GearColecoOptionCatalog.All,
-        Emulator.JollyCV => JollyCVOptionCatalog.All,
-        Emulator.BlueMSX => BlueMSXOptionCatalog.All,
-        _ => throw new ArgumentOutOfRangeException(nameof(core))
-    };
+    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];
 
     internal static void Validate(MachineConfiguration configuration)
     {
@@ -42,13 +32,7 @@ internal static class CoreOptionValidationFunctions
             if (!catalog.Any(definition => definition.Key == option.Key && definition.Values.Any(choice => choice.Value == option.Value)))
                 throw new ArgumentException(nameof(configuration.Options));
         }
-        if (configuration.Core == Emulator.GearColeco
-            && configuration.Options.TryGetValue(Emulators.GearColeco.Constants.OptionConstants.OptionCartridgeHardware, out var hardware)
-            && hardware != (configuration.Model == MachineModel.Adam ? CoreModelConstants.Adam : CoreModelConstants.ColecoVision))
-            throw new ArgumentException(nameof(configuration.Options));
-        if (configuration.Core == Emulator.BlueMSX
-            && configuration.Options.TryGetValue(Emulators.BlueMSX.Constants.OptionConstants.OptionMsxtype, out var machine)
-            && machine is not CoreModelConstants.Automatic and not CoreModelConstants.ColecoVision)
-            throw new ArgumentException(nameof(configuration.Options));
+        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidator validator)
+            validator.ValidateConfiguration(configuration);
     }
 }

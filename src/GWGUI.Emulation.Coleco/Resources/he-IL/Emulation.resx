@@ -4,47 +4,30 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>עקבו אחרי ColecoVision and ADAM</value></data>
-  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>עקבו אחרי ColecoVision</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>עקבו אחרי ColecoVision</value></data>
   <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>זיכרון וידאו</value></data>
-  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>וידאו</value></data>
-  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>אפשרויות פיקוח</value></data>
-  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>מערכת</value></data>
-  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>כונן הדיסק ADAM</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>חבילות נתונים ADAM</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>אפשרויות למפקח</value></data>
+  <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>מערכת מערכת</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>ADAM כונן הדיסק</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>ADAM ערכות נתונים</value></data>
   <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>וידאו: RONE</value></data>
-  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>בחר תזמון אוטומטי או תקן וידאו.</value></data>
   <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>סוג Cartridge</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>בחר בקר בנק זיכרון מחסנית.</value></data>
   <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>וידאו שבב</value></data>
-  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>בחר את שבב הוידאו הגנוב.</value></data>
-  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>יחס</value></data>
-  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>בחר את יחס היבט התמונה.בחירת אוטומטית משתמשת באזור המשחק.</value></data>
   <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>גבולות המסך</value></data>
-  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>בחרו את גבולות המסך הגלויים</value></data>
   <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>להסיר את הגבלת</value></data>
-  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>להסיר את הגבול על טקסי מסך קו זה יכול לגרום שגיאות גרפיות.</value></data>
   <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>לאפשר כיוונים מנוגדים</value></data>
-  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>אפשרו לכיוונים מנוגדים להיות מחוברים יחד.</value></data>
   <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>רגישות לשליטה רוטארית</value></data>
-  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>להתאים את הרגישות של הבקר המסתובב.</value></data>
   <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>צבעים</value></data>
-  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>בחרו את צבעי הצבעים</value></data>
-  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>הסתר את גבול המסך העליון</value></data>
-  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>הסתר את גבול המסך התחתון</value></data>
-  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>הסתר את גבול המסך השמאלי.</value></data>
-  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>הסתר את גבול המסך הנכון</value></data>
-  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>חול מהיר</value></data>
-  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>עזוב את העיכוב.</value></data>
-  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>מחסנית Standard</value></data>
-  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>גבולות למעלה ותחתית</value></data>
-  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>כל הגבולות (284 פיקסלים)</value></data>
-  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>כל הגבולות (320 פיקסלים רחבים)</value></data>
   <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>סודיות גבול המסך העליון</value></data>
   <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>המונחים: low screenגבול</value></data>
   <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>« מסך שמאל</value></data>
   <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>סודיות מסך הגבול</value></data>
   <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>גבולות המסך</value></data>
-  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>הסתר פיקסלים בשולי התמונה המוצגת.</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>חול מהיר</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>מחסנית Standard</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>גבולות למעלה ותחתית</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>כל הגבולות (284 פיקסלים)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>כל הגבולות (320 פיקסלים רחבים)</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>⁇ COLECOVISION ו ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>⁇ COLECOVISION.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>⁇ COLECOVISION.</value></data>
 </root>

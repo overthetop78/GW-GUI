@@ -4,12 +4,12 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>Ελεγκτής ColecoVision</value></data>
+  <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>Ελεγκτής δονήσεων Coleco</value></data>
   <data name="Emulation.Coleco.Controller.Paddle" xml:space="preserve"><value>Κουπί</value></data>
-  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Αριστερό κουμπί φωτιάς</value></data>
-  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Δεξί κουμπί φωτιάς</value></data>
   <data name="Emulation.Coleco.Action.Purple" xml:space="preserve"><value>Μωβ κουμπί</value></data>
   <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>Μπλε κουμπί</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Αριστερά του Spinner</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>Στριφτός δεξιά</value></data>
-  </root>
+  <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>Αριστερά του περιστρεφόμενου</value></data>
+  <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>Δεξιά περιστροφής</value></data>
+  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>Αριστερό πλευρικό κουμπί</value></data>
+  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>Κουμπί δεξιάς πλευράς</value></data>
+</root>

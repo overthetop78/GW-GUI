@@ -7,15 +7,15 @@
   <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>O estado salvo da Coleco é incompatível com a máquina atual.</value></data>
   <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>Ocorreu um erro inesperado de emulação Coleco.</value></data>
   <data name="Emulation.Coleco.Error.FirmwareMissing" xml:space="preserve"><value>Falta um firmware Coleco necessário.</value></data>
-  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>A ROM do sistema é inválida ou incompatível.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>O sistema ROM é inválido ou incompatível.</value></data>
   <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>A mídia Coleco configurada não foi encontrada.</value></data>
-  <data name="Emulation.Coleco.Error.ContentUnsupported" xml:space="preserve"><value>Esta máquina não suporta a mídia selecionada.</value></data>
+  <data name="Emulation.Coleco.Error.ContentUnsupported" xml:space="preserve"><value>Esta máquina não suporta os meios seleccionados.</value></data>
   <data name="Emulation.Coleco.Error.OptionInvalid" xml:space="preserve"><value>Uma opção Coleco tem um valor inválido.</value></data>
   <data name="Emulation.Coleco.Error.CoreNotFound" xml:space="preserve"><value>O núcleo Coleco necessário não foi encontrado.</value></data>
-  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>Não foi possível carregar o núcleo Coleco seleccionado.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>O núcleo Coleco seleccionado não pôde ser carregado.</value></data>
   <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>O estado salvo do Coleco é inválido.</value></data>
-  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>A localização do executável da máquina Coleco não está disponível.</value></data>
   <data name="Emulation.Coleco.Error.Details" xml:space="preserve"><value>Detalhes: {0}</value></data>
   <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>A comunicação com o anfitrião da Coleco falhou.</value></data>
   <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comando de ambiente desconhecido: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>O caminho do programa emulador está indisponível.</value></data>
 </root>

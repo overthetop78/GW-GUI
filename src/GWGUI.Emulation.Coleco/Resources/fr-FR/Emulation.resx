@@ -4,47 +4,30 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Émule ColecoVision et ADAM.</value></data>
-  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>Émule ColecoVision.</value></data>
-  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>Émule ColecoVision.</value></data>
   <data name="Emulation.Coleco.Memory.Display" xml:space="preserve"><value>Mémoire vidéo</value></data>
-  <data name="Emulation.Coleco.Video.Native" xml:space="preserve"><value>Vidéo</value></data>
-  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>Options de contrôleur</value></data>
+  <data name="Emulation.Coleco.Controls.Native" xml:space="preserve"><value>Commandes</value></data>
   <data name="Emulation.Coleco.System.Native" xml:space="preserve"><value>Système</value></data>
-  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>Lecteur de disquette ADAM</value></data>
-  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>Lecteur de datapack ADAM</value></data>
-  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>Fréquence de rafraîchissement vidéo</value></data>
-  <data name="Emulation.Coleco.Help.RefreshRateHelp" xml:space="preserve"><value>Sélectionnez la fréquence automatique ou la norme vidéo.</value></data>
+  <data name="Emulation.Coleco.Storage.Disk" xml:space="preserve"><value>Lecteur de disquettes ADAM</value></data>
+  <data name="Emulation.Coleco.Storage.DataPack" xml:space="preserve"><value>Lecteur Data Pack ADAM</value></data>
+  <data name="Emulation.Coleco.Setting.RefreshRate" xml:space="preserve"><value>Taux de rafraîchissement vidéo</value></data>
   <data name="Emulation.Coleco.Setting.CartridgeType" xml:space="preserve"><value>Type de cartouche</value></data>
-  <data name="Emulation.Coleco.Help.CartridgeTypeHelp" xml:space="preserve"><value>Sélectionnez le contrôleur des banques de mémoire de la cartouche.</value></data>
   <data name="Emulation.Coleco.Setting.VideoChip" xml:space="preserve"><value>Puce vidéo</value></data>
-  <data name="Emulation.Coleco.Help.VideoChipHelp" xml:space="preserve"><value>Sélectionnez la puce vidéo émulée.</value></data>
-  <data name="Emulation.Coleco.Setting.AspectRatio" xml:space="preserve"><value>Format de l’image</value></data>
-  <data name="Emulation.Coleco.Help.AspectRatioHelp" xml:space="preserve"><value>Sélectionnez le format de l’image. Le mode automatique utilise la région du jeu.</value></data>
   <data name="Emulation.Coleco.Setting.ScreenBorders" xml:space="preserve"><value>Bordures de l’écran</value></data>
-  <data name="Emulation.Coleco.Help.ScreenBordersHelp" xml:space="preserve"><value>Sélectionnez les bordures visibles de l’écran.</value></data>
   <data name="Emulation.Coleco.Setting.RemoveSpriteLimit" xml:space="preserve"><value>Supprimer la limite de sprites</value></data>
-  <data name="Emulation.Coleco.Help.RemoveSpriteLimitHelp" xml:space="preserve"><value>Supprime la limite de sprites par ligne d’écran. Cela peut provoquer des défauts graphiques.</value></data>
   <data name="Emulation.Coleco.Setting.AllowOppositeDirections" xml:space="preserve"><value>Autoriser les directions opposées</value></data>
-  <data name="Emulation.Coleco.Help.AllowOppositeDirectionsHelp" xml:space="preserve"><value>Permet d’appuyer simultanément sur des directions opposées.</value></data>
-  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>Sensibilité du contrôleur rotatif</value></data>
-  <data name="Emulation.Coleco.Help.RotarySensitivityHelp" xml:space="preserve"><value>Réglez la sensibilité du contrôleur rotatif.</value></data>
+  <data name="Emulation.Coleco.Setting.RotarySensitivity" xml:space="preserve"><value>Sensibilité de la commande rotative</value></data>
   <data name="Emulation.Coleco.Setting.ColorPalette" xml:space="preserve"><value>Palette de couleurs</value></data>
-  <data name="Emulation.Coleco.Help.ColorPaletteHelp" xml:space="preserve"><value>Sélectionnez la palette de couleurs.</value></data>
-  <data name="Emulation.Coleco.Help.CropTopBorderHelp" xml:space="preserve"><value>Masque la bordure supérieure de l’écran.</value></data>
-  <data name="Emulation.Coleco.Help.CropBottomBorderHelp" xml:space="preserve"><value>Masque la bordure inférieure de l’écran.</value></data>
-  <data name="Emulation.Coleco.Help.CropLeftBorderHelp" xml:space="preserve"><value>Masque la bordure gauche de l’écran.</value></data>
-  <data name="Emulation.Coleco.Help.CropRightBorderHelp" xml:space="preserve"><value>Masque la bordure droite de l’écran.</value></data>
-  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Démarrage rapide</value></data>
-  <data name="Emulation.Coleco.Help.FastBootHelp" xml:space="preserve"><value>Ignore le délai de démarrage.</value></data>
-  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Cartouche standard</value></data>
-  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Bordures supérieure et inférieure</value></data>
-  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>Toutes les bordures de 284 pixels de large</value></data>
-  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>Toutes les bordures (320 pixels de large)</value></data>
   <data name="Emulation.Coleco.Setting.CropTopBorder" xml:space="preserve"><value>Masquer la bordure supérieure</value></data>
   <data name="Emulation.Coleco.Setting.CropBottomBorder" xml:space="preserve"><value>Masquer la bordure inférieure</value></data>
   <data name="Emulation.Coleco.Setting.CropLeftBorder" xml:space="preserve"><value>Masquer la bordure gauche</value></data>
   <data name="Emulation.Coleco.Setting.CropRightBorder" xml:space="preserve"><value>Masquer la bordure droite</value></data>
   <data name="Emulation.Coleco.Setting.CropScreenBorders" xml:space="preserve"><value>Masquer les bordures de l’écran</value></data>
-  <data name="Emulation.Coleco.Help.CropScreenBordersHelp" xml:space="preserve"><value>Masque les pixels situés sur les bords de l’image affichée.</value></data>
+  <data name="Emulation.Coleco.Setting.FastBoot" xml:space="preserve"><value>Démarrage rapide</value></data>
+  <data name="Emulation.Coleco.Value.Standard" xml:space="preserve"><value>Cartouche standard</value></data>
+  <data name="Emulation.Coleco.Value.TopAndBottomBorders" xml:space="preserve"><value>Bordures supérieure et inférieure</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders284" xml:space="preserve"><value>Toutes les bordures (largeur de 284 pixels)</value></data>
+  <data name="Emulation.Coleco.Value.FullBorders320" xml:space="preserve"><value>Toutes les bordures (largeur de 320 pixels)</value></data>
+  <data name="Emulation.Emulator.gearcoleco.Description" xml:space="preserve"><value>Émule COLECOVISION et ADAM.</value></data>
+  <data name="Emulation.Emulator.jollycv.Description" xml:space="preserve"><value>Émule COLECOVISION.</value></data>
+  <data name="Emulation.Emulator.bluemsx.Description" xml:space="preserve"><value>Émule COLECOVISION.</value></data>
 </root>

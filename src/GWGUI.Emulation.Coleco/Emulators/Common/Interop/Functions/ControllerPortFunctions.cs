@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services;
 using GearOptions = GWGUI.Emulation.Coleco.Emulators.GearColeco.Constants.OptionConstants;
 
 namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions;

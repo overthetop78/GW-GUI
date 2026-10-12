@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Coleco.Emulators.Common.Contracts;
+using GWGUI.Emulation.Coleco.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Coleco.Emulators.Common.Functions;
 using GWGUI.Emulation.Coleco.Common.Interfaces;
 using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Factories;
 

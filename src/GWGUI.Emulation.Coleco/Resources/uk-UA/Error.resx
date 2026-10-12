@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>Coleco збережений стан несумісний з поточною машиною.</value></data>
+  <data name="Emulation.Coleco.Error.StateIncompatible" xml:space="preserve"><value>У зв'язку з тим, що в даний час компанія Coleco зберегла стан, несумісний з поточною машиною.</value></data>
   <data name="Emulation.Coleco.Error.Unexpected" xml:space="preserve"><value>Несподівана помилка емульсії Coleco сталася.</value></data>
   <data name="Emulation.Coleco.Error.FirmwareMissing" xml:space="preserve"><value>Прошивка Coleco відсутні.</value></data>
-  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM недійсна або несумісна.</value></data>
-  <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>Не знайдено налаштовувані файли Coleco.</value></data>
+  <data name="Emulation.Coleco.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM недійсний або несумісний.</value></data>
+  <data name="Emulation.Coleco.Error.ContentNotFound" xml:space="preserve"><value>Не знайдено настройовувані файли Coleco.</value></data>
   <data name="Emulation.Coleco.Error.ContentUnsupported" xml:space="preserve"><value>Ця машина не підтримує вибрані медіа.</value></data>
   <data name="Emulation.Coleco.Error.OptionInvalid" xml:space="preserve"><value>Опція Coleco має недійсне значення.</value></data>
   <data name="Emulation.Coleco.Error.CoreNotFound" xml:space="preserve"><value>Не знайдено обов’язкове ядро Coleco.</value></data>
-  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>Вибране ядро Coleco не може бути завантажено.</value></data>
-  <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>Неймовірно збережений стан Coleco.</value></data>
-  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>Coleco ходьба виконуваний шлях недоступний.</value></data>
+  <data name="Emulation.Coleco.Error.CoreRejected" xml:space="preserve"><value>Вибраний колько ядро не можна завантажити.</value></data>
+  <data name="Emulation.Coleco.Error.StateInvalid" xml:space="preserve"><value>У той же час, коли він не був,</value></data>
   <data name="Emulation.Coleco.Error.Details" xml:space="preserve"><value>Детальніше: {0}</value></data>
-  <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>Зв'язок з Coleco не вдалося.</value></data>
-  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Невідомі команди середовища: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostProtocolFailure" xml:space="preserve"><value>Зв'язок з косою не вдалося.</value></data>
+  <data name="Emulation.Coleco.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Невідомий командний простір: {0}</value></data>
+  <data name="Emulation.Coleco.Error.HostExecutableMissing" xml:space="preserve"><value>Шлях програми емулятора не доступний.</value></data>
 </root>

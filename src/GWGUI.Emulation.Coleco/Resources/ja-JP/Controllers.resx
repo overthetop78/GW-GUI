@@ -6,10 +6,10 @@
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Coleco.Controller.Standard" xml:space="preserve"><value>ColecoVision コントローラ</value></data>
   <data name="Emulation.Coleco.Controller.Paddle" xml:space="preserve"><value>パドル</value></data>
-  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>左消防ボタン</value></data>
-  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>直火ボタン</value></data>
   <data name="Emulation.Coleco.Action.Purple" xml:space="preserve"><value>パープルボタン</value></data>
-  <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>青いボタン</value></data>
+  <data name="Emulation.Coleco.Action.Blue" xml:space="preserve"><value>ブルーボタン</value></data>
   <data name="Emulation.Coleco.Action.SpinnerLeft" xml:space="preserve"><value>スピナー左</value></data>
-  <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>スピンナーの権利</value></data>
-  </root>
+  <data name="Emulation.Coleco.Action.SpinnerRight" xml:space="preserve"><value>スピンナー 右</value></data>
+  <data name="Emulation.Coleco.Action.FireLeft" xml:space="preserve"><value>左サイドボタン</value></data>
+  <data name="Emulation.Coleco.Action.FireRight" xml:space="preserve"><value>右側のボタン</value></data>
+</root>

@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Coleco.Emulators.Common.Constants;
+using GWGUI.Emulation.Coleco.Emulators.Common.Contracts;
+using GWGUI.Emulation.Coleco.Emulators.Common.Exceptions;
 using System.Net.Http;
 using System.IO;
 using System.Globalization;

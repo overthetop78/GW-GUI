@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Coleco.Emulators.Common.Contracts;
 namespace GWGUI.Emulation.Coleco.Emulators.Common.Interfaces;
 
 public interface ICoreReleaseService

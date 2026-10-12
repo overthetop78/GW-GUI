@@ -1,3 +1,8 @@
+using GWGUI.Emulation.Coleco.Emulators.Common.Contracts;
+using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Dictionaries;
+using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Coleco.Emulators.Common.Interop.Services;
 using System.IO;
 
 namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Factories;

@@ -7,7 +7,8 @@ internal static class SettingsDescriptionFunctions
     {
         var blocks = new List<EmulationSettingsBlock> { Audio(configuration) };
         AddHardware(blocks, configuration);
-        AddNative(blocks, configuration, RelevantOptions(configuration));
+        if (new Engine().Adapter(configuration) is IEmulatorSettings settings)
+            blocks.AddRange(settings.DescribeSettings(configuration).Where(block => block.Tab != EmulationMachineTab.Storage));
         blocks.Add(Block(EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware,
             FirmwareFunctions.Roles(configuration.Model).Select(role => new EmulationSettingsField(
                 FirmwareFunctions.Field(role), EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware,
@@ -43,32 +44,6 @@ internal static class SettingsDescriptionFunctions
 
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
 
-    internal static IReadOnlyList<CoreOption> RelevantOptions(MachineConfiguration configuration) =>
-        CoreOptionValidationFunctions.ForCore(configuration.Core).Where(option => configuration.Core switch
-        {
-            Emulator.GearColeco => option.Key is not ("gearcoleco_cartridge_hardware" or "gearcoleco_adam_disk_drive"
-                or "gearcoleco_adam_writable_media" or "gearcoleco_spinners" or "gearcoleco_adam_computer_reset"
-                or GWGUI.Emulation.Coleco.Emulators.GearColeco.Constants.OptionConstants.OptionMapper),
-            Emulator.JollyCV => option.Key != "jollycv_autoreset",
-            Emulator.BlueMSX => option.Key is "bluemsx_overscan" or "bluemsx_vdp_synctype"
-                or "bluemsx_nospritelimits" or "patch_coleco_rom",
-            _ => false
-        }).ToArray();
-
-    private static void AddNative(List<EmulationSettingsBlock> blocks, MachineConfiguration configuration, IEnumerable<CoreOption> options)
-    {
-        foreach (var group in options.GroupBy(option => option.Category == "input" ? EmulationMachineTab.Controllers : EmulationMachineTab.Video))
-        {
-            var resource = group.Key switch
-            {
-                EmulationMachineTab.Video => SettingsConstants.ResourceNativeVideo,
-                EmulationMachineTab.Controllers => SettingsConstants.ResourceNativeControls,
-                _ => "Emulation.Storage.Cartridges"
-            };
-            blocks.Add(Block(group.Key, resource, group.Select(option => Native(configuration, option, group.Key, resource)).ToArray()));
-        }
-    }
-
     internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string blockId)
     {
         var resource = option.ResourceKey ?? throw new InvalidOperationException(option.Key);
@@ -80,10 +55,11 @@ internal static class SettingsDescriptionFunctions
             ExplanationResourceKey: option.ExplanationResourceKey,
             EnabledValue: toggle ? option.Values.First(choice => choice.Value is "Enabled" or "ON" or "on" or "enabled").Value : EmulationSettingConstants.Enabled,
             DisabledValue: toggle ? option.Values.First(choice => choice.Value is "Disabled" or "OFF" or "off" or "disabled").Value : EmulationSettingConstants.Disabled,
-            RequiresRestart: RuntimeOptionFunctions.RequiresRestart(configuration.Core, option.Key));
+            RequiresRestart: false);
     }
     private static EmulationSettingsChoice Choice(CoreOptionValue choice, string optionKey)
     {
+        if (choice.InvariantDisplayValue is { } invariant) return new(choice.Value, string.Empty, invariant);
         if (choice.VideoStandard is { } standard && choice.FrequencyHz is { } frequencyHz) return new(choice.Value, string.Empty, EmulationVideoFunctions.FormatTiming(standard, frequencyHz));
         if (choice.VideoStandard is not null || choice.FrequencyHz is not null) throw new InvalidOperationException(optionKey + ":" + choice.Value);
         return new(choice.Value, choice.ResourceKey ?? throw new InvalidOperationException(optionKey + ":" + choice.Value), double.TryParse(choice.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out _) ? choice.Value : null);

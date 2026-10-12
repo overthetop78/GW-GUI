@@ -1,19 +1,9 @@
 using System.Diagnostics;
-using GWGUI.Emulation.Coleco.Emulators.GearColeco.Dictionaries;
-using GWGUI.Emulation.Coleco.Emulators.JollyCV.Dictionaries;
-using GWGUI.Emulation.Coleco.Emulators.BlueMSX.Dictionaries;
 
 namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Functions;
 
 internal static class RuntimeFunctions
 {
-    internal static EmulationVideoStandard? Region(uint nativeRegion) => nativeRegion switch
-    {
-        RuntimeConstants.NativeNtscRegion => EmulationVideoStandard.Ntsc,
-        RuntimeConstants.NativePalRegion => EmulationVideoStandard.Pal,
-        _ => null
-    };
-
     internal static int RegionValue(EmulationVideoStandard? region) => region is null ? RuntimeConstants.MissingRegionValue : (int)region.Value;
 
     internal static EmulationVideoStandard? ReadRegion(int value) => value == RuntimeConstants.MissingRegionValue || value is not ((int)EmulationVideoStandard.Ntsc) and not ((int)EmulationVideoStandard.Pal) ? null : (EmulationVideoStandard)value;
@@ -36,19 +26,6 @@ internal static class RuntimeFunctions
             new Dictionary<int, bool>(core.LedStates), core.BufferedAudioFrames, core.AudioOverrunCount,
             core.AudioUnderrunCount, core.HostProcessState, core.HostProcessId);
     }
-}
-
-internal static class RuntimeOptionFunctions
-{
-    internal static bool RequiresRestart(Emulator emulator, string key) => Catalog(emulator).Any(option => option.Key == key && option.Name.Contains(CoreOptionConstants.RestartRequiredMarker, StringComparison.Ordinal));
-
-    private static IReadOnlyList<CoreOption> Catalog(Emulator emulator) => emulator switch
-    {
-        Emulator.GearColeco => GearColecoOptionCatalog.All,
-        Emulator.JollyCV => JollyCVOptionCatalog.All,
-        Emulator.BlueMSX => BlueMSXOptionCatalog.All,
-        _ => throw new ArgumentOutOfRangeException(nameof(emulator))
-    };
 }
 
 internal static class MessageFunctions

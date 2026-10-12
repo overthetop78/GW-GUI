@@ -23,18 +23,4 @@ internal static class SettingsChoiceConstants
     internal const string ValueTopAndBottomBorders = "Emulation.Coleco.Value.TopAndBottomBorders";
     internal const string ValueFullBorders284 = "Emulation.Coleco.Value.FullBorders284";
     internal const string ValueFullBorders320 = "Emulation.Coleco.Value.FullBorders320";
-    internal const string ValueNumber0 = "Emulation.Coleco.Value.Number0";
-    internal const string ValueNumber1 = "Emulation.Coleco.Value.Number1";
-    internal const string ValueNumber2 = "Emulation.Coleco.Value.Number2";
-    internal const string ValueNumber3 = "Emulation.Coleco.Value.Number3";
-    internal const string ValueNumber4 = "Emulation.Coleco.Value.Number4";
-    internal const string ValueNumber5 = "Emulation.Coleco.Value.Number5";
-    internal const string ValueNumber6 = "Emulation.Coleco.Value.Number6";
-    internal const string ValueNumber7 = "Emulation.Coleco.Value.Number7";
-    internal const string ValueNumber8 = "Emulation.Coleco.Value.Number8";
-    internal const string ValueNumber9 = "Emulation.Coleco.Value.Number9";
-    internal const string ValueNumber10 = "Emulation.Coleco.Value.Number10";
-    internal const string ValueNumber12 = "Emulation.Coleco.Value.Number12";
-    internal const string ValueNumber14 = "Emulation.Coleco.Value.Number14";
-    internal const string ValueNumber16 = "Emulation.Coleco.Value.Number16";
 }
