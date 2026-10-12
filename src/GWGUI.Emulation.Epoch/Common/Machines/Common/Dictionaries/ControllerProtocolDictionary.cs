@@ -2,9 +2,7 @@ using GWGUI.Emulation.Epoch.Common.Machines.Common.Constants;
 
 namespace GWGUI.Emulation.Epoch.Common.Machines.Common.Dictionaries;
 
-internal sealed record NativeInputAction(string Id,
-    int Button = InputMappingConstants.Unassigned, EmulationKey? Key = null,
-    int Axis = InputMappingConstants.Unassigned, int Direction = 1, uint CarrierMask = 0)
+internal sealed record NativeInputAction(string Id, int Button = InputMappingConstants.Unassigned, EmulationKey? Key = null, int Axis = InputMappingConstants.Unassigned, int Direction = 1, uint CarrierMask = 0)
 {
     internal string DefaultBinding => string.Empty;
 

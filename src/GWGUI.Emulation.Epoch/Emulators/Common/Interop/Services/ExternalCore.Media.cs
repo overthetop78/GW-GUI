@@ -57,9 +57,7 @@ internal sealed partial class ExternalCore
     private static void RequireNonempty(string path)
     {
         if (!File.Exists(path) || new FileInfo(path).Length == 0)
-            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentNotFound,
-                ErrorMessages.ContentFileMissing,
-                new Dictionary<string, string> { [ErrorContextConstants.Path] = path });
+            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentNotFound, ErrorMessages.ContentFileMissing, new Dictionary<string, string> { [ErrorContextConstants.Path] = path });
     }
 
     private static string PrepareArchive(string source, string directory)

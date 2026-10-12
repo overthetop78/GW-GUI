@@ -44,8 +44,7 @@ internal static class InputSettingsFunctions
     }
 
     private static IReadOnlyList<string> Visuals(MachineModel model, int port) => ConfigurationFunctions.DefaultEmulator(model) == Emulator.EmuSCV ? [EmulationControllerVisualIds.EpochSuperCassetteVisionController] : [];
-    private static IReadOnlyDictionary<EmulationControllerVisualControl, string> VisualCommands(
-        MachineModel model, int port, IReadOnlyList<InputBindingDefinition> definitions)
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string> VisualCommands(MachineModel model, int port, IReadOnlyList<InputBindingDefinition> definitions)
     {
         var commands = new Dictionary<EmulationControllerVisualControl, string>();
         if (ConfigurationFunctions.DefaultEmulator(model) == Emulator.EmuSCV)

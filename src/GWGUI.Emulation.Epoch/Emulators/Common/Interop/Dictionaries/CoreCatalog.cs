@@ -35,9 +35,7 @@ internal static class CoreCatalog
 
     public static IReadOnlyList<EmulatorCatalogEntry> GetAll(MachineModel model) => Entries.Where(entry => entry.Models.Contains(model)).ToArray();
 
-    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => new(
-        entry.Id, entry.LibraryName, entry.DescriptionResourceKey ?? $"Emulation.Emulator.{entry.Id}.Description",
-        entry.Models.Select(model => model.ToString()).ToHashSet(StringComparer.Ordinal));
+    public static EmulationEmulatorDefinition GetDefinition(EmulatorCatalogEntry entry) => new(entry.Id, entry.LibraryName, entry.DescriptionResourceKey ?? $"Emulation.Emulator.{entry.Id}.Description", entry.Models.Select(model => model.ToString()).ToHashSet(StringComparer.Ordinal));
 
     public static CoreInstallationPaths GetInstallationPaths(Emulator emulator, string installationRoot, string version) => EmulatorCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);
 

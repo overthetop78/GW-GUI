@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.Epoch.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
 {
-    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration input,
-        MachineModel model, Emulator core)
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model, Emulator core)
     {
         // Console keys are reconstructed from their assignments. An old host key must
         // not survive a reassignment and reach the native keyboard callback.
@@ -49,8 +48,7 @@ internal static class InputSnapshotFunctions
 
     private static short EncodeAxis(float value) => (short)Math.Round(Math.Clamp(value, -1f, 1f) * InputMappingConstants.AxisMaximum);
 
-    private static float AxisValue(string mapping, EmulationControllerState controller,
-        EmulationInputSnapshot snapshot, int deadZonePercent)
+    private static float AxisValue(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot, int deadZonePercent)
     {
         if (!mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase))
             return IsPressed(mapping, controller, snapshot) ? 1f : 0f;
