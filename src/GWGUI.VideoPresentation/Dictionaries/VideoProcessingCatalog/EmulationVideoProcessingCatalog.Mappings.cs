@@ -109,9 +109,7 @@ public static partial class EmulationVideoProcessingCatalog
         = ResourceKeys("EPaper.ColorMode", Enum.GetValues<EmulationEPaperColorMode>());
 
     public static IReadOnlyDictionary<string, string> ParameterResourceKeys { get; } =
-        ParameterIds.ToDictionary(id => id,
-            id => id == Gamma ? "Emulation.Video.Gamma" : $"Emulation.Video.Parameter.{id}",
-            StringComparer.Ordinal);
+        ParameterIds.ToDictionary(id => id, id => id == Gamma ? "Emulation.Video.Gamma" : $"Emulation.Video.Parameter.{id}", StringComparer.Ordinal);
 
     public static IReadOnlyDictionary<string, object?> NeutralValues { get; } =
         new Dictionary<string, object?>(StringComparer.Ordinal)
@@ -242,9 +240,7 @@ public static partial class EmulationVideoProcessingCatalog
     public static IReadOnlyDictionary<EmulationVideoPreset, EmulationVideoProcessingConfiguration>
         PresetConfigurations { get; } = CreatePresets();
 
-    private static IReadOnlyDictionary<TEnum, string> ResourceKeys<TEnum>(string group,
-        IEnumerable<TEnum> values) where TEnum : struct, Enum =>
-        values.ToDictionary(value => value, value => $"Emulation.Video.{group}.{value}");
+    private static IReadOnlyDictionary<TEnum, string> ResourceKeys<TEnum>(string group, IEnumerable<TEnum> values) where TEnum : struct, Enum => values.ToDictionary(value => value, value => $"Emulation.Video.{group}.{value}");
 
     private static IReadOnlyDictionary<string, EmulationVideoDisplayTechnology> TechnologyRequirements()
     {

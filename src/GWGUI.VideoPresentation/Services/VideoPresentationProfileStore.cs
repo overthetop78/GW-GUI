@@ -4,9 +4,7 @@ using System.Text.Json.Serialization;
 namespace GWGUI.VideoPresentation.Services;
 
 /// <summary>Host-owned video profiles stored independently from machine configurations.</summary>
-public sealed class VideoPresentationProfileStore(
-    string directory,
-    IVideoProfileFiles? fileSystem = null, Func<Action, Task>? schedule = null)
+public sealed class VideoPresentationProfileStore(string directory, IVideoProfileFiles? fileSystem = null, Func<Action, Task>? schedule = null)
 {
     private readonly IVideoProfileFiles _files = fileSystem ?? new VideoProfileFiles();
     private readonly Func<Action, Task> _schedule = schedule ?? Task.Run;

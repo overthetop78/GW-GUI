@@ -6,8 +6,7 @@ namespace GWGUI.VideoPresentation.Functions;
 
 public static class EmulationVideoProcessingConfigurationFunctions
 {
-    public static EmulationVideoProcessingConfiguration Normalize(
-        EmulationVideoProcessingConfiguration? configuration)
+    public static EmulationVideoProcessingConfiguration Normalize(EmulationVideoProcessingConfiguration? configuration)
     {
         configuration ??= new EmulationVideoProcessingConfiguration();
         var crt = configuration.Crt ?? new EmulationCrtVideoConfiguration();
