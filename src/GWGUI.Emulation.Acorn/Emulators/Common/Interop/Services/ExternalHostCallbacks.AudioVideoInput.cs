@@ -27,9 +27,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;
         var pixels = _videoBuffers.Rent(length);
         VideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));
-        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length),
-            checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio,
-            ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));
+        LatestVideoFrame = new VideoFrame(pixels.AsMemory(BufferConstants.FirstBufferIndex, length), checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio, ++_videoSequence, VideoFunctions.Timestamp(_videoStartTimestamp));
     }
 
     private void OnAudioSample(short left, short right)
