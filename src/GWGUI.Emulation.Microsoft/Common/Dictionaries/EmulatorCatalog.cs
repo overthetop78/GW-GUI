@@ -6,8 +6,7 @@ public static class EmulatorCatalog
 
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => [];
 
-    public static string DefaultFor(string machineId) => GetAll(machineId).FirstOrDefault()?.Id
-        ?? throw new NotSupportedException($"No Microsoft emulator adapter is installed for '{machineId}'.");
+    public static string DefaultFor(string machineId) => GetAll(machineId).FirstOrDefault()?.Id ?? throw new NotSupportedException($"No Microsoft emulator adapter is installed for '{machineId}'.");
 
     public static IReadOnlyList<EmulationEmulatorDefinition> GetAll(string machineId) => All.Where(definition => definition.MachineIds.Contains(machineId)).ToArray();
 }

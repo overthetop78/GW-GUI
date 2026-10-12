@@ -15,16 +15,14 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
 
     public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) => Localization.TryGetString(key, culture, out value);
 
-    public MicrosoftEmulationModule(string configurationDirectory, string pathBase,
-        HttpClient httpClient, string coreDirectory)
+    public MicrosoftEmulationModule(string configurationDirectory, string pathBase, HttpClient httpClient, string coreDirectory)
     {
         _store = new ConfigurationStore(configurationDirectory, pathBase);
     }
 
     public string Id => EmulationModuleConstants.ModuleId;
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
-    public string BrandImageResourceName =>
-        $"{EmulationModuleConstants.AssetResourcePrefix}.microsoft.png";
+    public string BrandImageResourceName => $"{EmulationModuleConstants.AssetResourcePrefix}.microsoft.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
 
@@ -76,8 +74,7 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
         };
     }
 
-    public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration,
-        IReadOnlyDictionary<string, string?> values)
+    public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         if (configuration is not MachineConfiguration current)
             throw new ArgumentException(nameof(configuration));
@@ -109,66 +106,55 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
 
     public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
-    public ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration,
-        EmulationRuntimeServices services, CancellationToken cancellationToken = default) =>
+    public ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration, EmulationRuntimeServices services, CancellationToken cancellationToken = default) =>
         ValueTask.FromException<EmulationMachineRuntime>(new NotSupportedException("The Microsoft machine adapter has not been added yet."));
 
     public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
 
     public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => configuration is MachineConfiguration current ? SaveValidatedAsync(current, cancellationToken) : ValueTask.FromException(new ArgumentException(nameof(configuration)));
 
-    private ValueTask SaveValidatedAsync(MachineConfiguration configuration,
-        CancellationToken cancellationToken)
+    private ValueTask SaveValidatedAsync(MachineConfiguration configuration, CancellationToken cancellationToken)
     {
         ConfigurationValidationFunctions.ValidateForSave(configuration);
         return new ValueTask(_store.SaveAsync(configuration, cancellationToken));
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(
-        string machineId, CancellationToken cancellationToken = default)
+    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         _ = ModelCatalog.Get(machineId);
-        return ValueTask.FromException<EmulationEmulatorInstallation>(
-            new NotSupportedException($"No Microsoft emulator adapter is installed for '{machineId}'."));
+        return ValueTask.FromException<EmulationEmulatorInstallation>(new NotSupportedException($"No Microsoft emulator adapter is installed for '{machineId}'."));
     }
 
-    public ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(
-        IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    public ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         _ = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
         return ValueTask.FromResult<IReadOnlyList<EmulationEmulatorInstallation>>([]);
     }
 
-    public ValueTask<IEmulationConfiguration> UseEmulatorAsync(
-        IEmulationConfiguration configuration, string emulatorId,
-        CancellationToken cancellationToken = default)
+    public ValueTask<IEmulationConfiguration> UseEmulatorAsync(IEmulationConfiguration configuration, string emulatorId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         _ = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
         return ValueTask.FromException<IEmulationConfiguration>(new NotSupportedException("No Microsoft emulator adapter is installed."));
     }
 
-    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
-        string machineId, CancellationToken cancellationToken = default)
+    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         _ = ModelCatalog.Get(machineId);
         return ValueTask.FromResult<IReadOnlyList<EmulationEmulatorRelease>>([]);
     }
 
-    public ValueTask<string> InstallEmulatorAsync(string machineId,
-        EmulationEmulatorRelease release, IProgress<double>? progress = null,
-        CancellationToken cancellationToken = default)
+    public ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         _ = ModelCatalog.Get(machineId);
         return ValueTask.FromException<string>(new NotSupportedException("No Microsoft emulator adapter is installed."));
     }
 
-    public ValueTask DeleteConfigurationAsync(Guid configurationId,
-        CancellationToken cancellationToken = default)
+    public ValueTask DeleteConfigurationAsync(Guid configurationId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         _store.Delete(configurationId);
