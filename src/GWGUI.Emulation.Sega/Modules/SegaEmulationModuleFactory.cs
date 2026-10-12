@@ -11,10 +11,6 @@ public sealed class SegaEmulationModuleFactory : IEmulationModuleFactory
     {
         ArgumentNullException.ThrowIfNull(context);
         Directory.CreateDirectory(Path.Combine(context.ModuleDirectory, "Configurations"));
-        return new SegaEmulationModule(
-            Path.Combine(context.ModuleDirectory, "Configurations"),
-            context.DataDirectory,
-            context.HttpClient,
-            Path.Combine(context.ModuleDirectory, "Core"));
+        return new SegaEmulationModule(Path.Combine(context.ModuleDirectory, "Configurations"), context.DataDirectory, context.HttpClient, Path.Combine(context.ModuleDirectory, "Core"));
     }
 }

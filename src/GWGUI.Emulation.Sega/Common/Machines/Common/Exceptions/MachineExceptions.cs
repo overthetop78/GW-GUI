@@ -5,29 +5,20 @@ namespace GWGUI.Emulation.Sega.Common.Machines.Common.Exceptions;
 
 internal static class MachineExceptions
 {
-    internal static EmulationMessageException SavedStateInvalid(Exception? innerException = null) =>
-        Error(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, innerException);
+    internal static EmulationMessageException SavedStateInvalid(Exception? innerException = null) => Error(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateInvalid, innerException);
 
-    internal static EmulationMessageException SavedStateIncompatible(Exception? innerException = null) =>
-        Error(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateIncompatible,
-            innerException);
+    internal static EmulationMessageException SavedStateIncompatible(Exception? innerException = null) => Error(EmulationMessageCategory.SavedState, EmulationMessageCode.SavedStateIncompatible, innerException);
 
-    internal static EmulationMessageException MediaNotFound(Exception? innerException = null) =>
-        Error(EmulationMessageCategory.Media, EmulationMessageCode.MediaNotFound, innerException);
+    internal static EmulationMessageException MediaNotFound(Exception? innerException = null) => Error(EmulationMessageCategory.Media, EmulationMessageCode.MediaNotFound, innerException);
 
-    internal static EmulationMessageException MachineNotRunning(Exception? innerException = null) =>
-        Error(EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, innerException);
+    internal static EmulationMessageException MachineNotRunning(Exception? innerException = null) => Error(EmulationMessageCategory.Machine, EmulationMessageCode.MachineStartFailed, innerException);
 
-    private static EmulationMessageException Error(EmulationMessageCategory category,
-        EmulationMessageCode code, Exception? innerException) =>
-        new(new EmulationMessage(category, code, EmulationMessageSeverity.Error,
-            EmulationMessageTarget.Dialog), innerException);
+    private static EmulationMessageException Error(EmulationMessageCategory category, EmulationMessageCode code, Exception? innerException) => new(new EmulationMessage(category, code, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog), innerException);
 }
 
 internal static class ExternalCoreExceptions
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(SegaEmulationModule).Assembly, "GWGUI.Emulation.Sega.Resources.Error");
+    private static readonly EmulationModuleLocalization Localization = new(typeof(SegaEmulationModule).Assembly, "GWGUI.Emulation.Sega.Resources.Error");
 
     internal static string HostConfigurationInvalid() => Text("Error.ExternalCore.HostConfigurationInvalid");
     internal static string HostNotInitialized() => Text("Error.ExternalCore.HostNotInitialized");

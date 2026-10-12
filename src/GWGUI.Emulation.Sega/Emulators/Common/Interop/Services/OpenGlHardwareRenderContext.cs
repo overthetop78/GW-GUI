@@ -108,9 +108,7 @@ internal sealed partial class OpenGlHardwareRenderContext : IDisposable
 
     private void CreateContext()
     {
-        _window = CreateWindowEx(0, StaticWindowClass, EmptyWindowTitle, WindowStylePopup,
-            0, 0, ContextWidth, ContextHeight, IntPtr.Zero, IntPtr.Zero,
-            GetModuleHandle(null), IntPtr.Zero);
+        _window = CreateWindowEx(0, StaticWindowClass, EmptyWindowTitle, WindowStylePopup, 0, 0, ContextWidth, ContextHeight, IntPtr.Zero, IntPtr.Zero, GetModuleHandle(null), IntPtr.Zero);
         if (_window == IntPtr.Zero) throw new InvalidOperationException(CoreExceptions.HostConfigurationInvalid());
         _deviceContext = GetDC(_window);
         if (_deviceContext == IntPtr.Zero) throw new InvalidOperationException(CoreExceptions.HostConfigurationInvalid());
@@ -190,16 +188,10 @@ internal sealed partial class OpenGlHardwareRenderContext : IDisposable
         var name = Marshal.PtrToStringAnsi(symbol);
         if (string.IsNullOrWhiteSpace(name)) return IntPtr.Zero;
         var address = WglGetProcAddress(name);
-        return IsInvalidProcAddress(address)
-            ? GetProcAddress(GetModuleHandle(OpenGlLibrary), name)
-            : address;
+        return IsInvalidProcAddress(address) ? GetProcAddress(GetModuleHandle(OpenGlLibrary), name) : address;
     }
 
-    private static bool IsInvalidProcAddress(nint address) => address == IntPtr.Zero
-        || address == new IntPtr(InvalidProcAddress)
-        || address == new IntPtr(InvalidProcAddressOne)
-        || address == new IntPtr(InvalidProcAddressTwo)
-        || address == new IntPtr(InvalidProcAddressThree);
+    private static bool IsInvalidProcAddress(nint address) => address == IntPtr.Zero || address == new IntPtr(InvalidProcAddress) || address == new IntPtr(InvalidProcAddressOne) || address == new IntPtr(InvalidProcAddressTwo) || address == new IntPtr(InvalidProcAddressThree);
 
     private static void FlipRows(byte[] pixels, int width, int height)
     {

@@ -78,10 +78,7 @@ public sealed class FirmwareCatalog
     public IReadOnlyList<Firmware> Scan()
     {
         Directory.CreateDirectory(_directory);
-        return Directory.EnumerateFiles(_directory, FirmwareCatalogConstants.SearchPattern,
-                SearchOption.AllDirectories)
-            .Where(path => Extensions.Contains(Path.GetExtension(path)))
-            .Select(Inspect)
+        return Directory.EnumerateFiles(_directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories).Where(path => Extensions.Contains(Path.GetExtension(path))).Select(Inspect)
             .OrderBy(entry => entry.Path, StringComparer.OrdinalIgnoreCase)
             .ToArray();
     }
@@ -100,7 +97,5 @@ public sealed class FirmwareCatalog
             known ? identity.FileNames : []);
     }
 
-    internal static bool TryIdentifyKnown(string md5,
-        out (string Name, string Version, string[] Models, string[] FileNames) identity) =>
-        Known.TryGetValue(md5, out identity);
+    internal static bool TryIdentifyKnown(string md5, out (string Name, string Version, string[] Models, string[] FileNames) identity) => Known.TryGetValue(md5, out identity);
 }

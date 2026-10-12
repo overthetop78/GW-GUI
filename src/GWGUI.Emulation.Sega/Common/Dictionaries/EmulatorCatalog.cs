@@ -45,6 +45,5 @@ public static class EmulatorCatalog
         ModelConstants.DreamcastVmu => Emulators.VeMUlator.Constants.CoreConstants.Id,
         _ => throw new ArgumentOutOfRangeException(nameof(machineId), machineId, null)
     };
-    public static IReadOnlyList<EmulationEmulatorDefinition> GetAll(string machineId) =>
-        All.Where(definition => definition.MachineIds.Contains(machineId)).ToArray();
+    public static IReadOnlyList<EmulationEmulatorDefinition> GetAll(string machineId) => All.Where(definition => definition.MachineIds.Contains(machineId)).ToArray();
 }

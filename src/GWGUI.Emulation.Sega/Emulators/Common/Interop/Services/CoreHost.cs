@@ -21,8 +21,7 @@ public static class CoreHost
     public static void Run(string pipeName, string videoMapName)
     {
         var previousErrorMode = GetErrorMode();
-        SetErrorMode(previousErrorMode | CoreHostConstants.SuppressCriticalErrorDialogs
-            | CoreHostConstants.SuppressFaultDialogs);
+        SetErrorMode(previousErrorMode | CoreHostConstants.SuppressCriticalErrorDialogs | CoreHostConstants.SuppressFaultDialogs);
         try { RunSession(pipeName, videoMapName); }
         finally { SetErrorMode(previousErrorMode); }
     }
@@ -31,8 +30,7 @@ public static class CoreHost
     private static void RunSession(string pipeName, string videoMapName)
     {
         using var videoMemory = MemoryMappedFile.OpenExisting(videoMapName, MemoryMappedFileRights.ReadWrite);
-        using var videoMap = videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity,
-            MemoryMappedFileAccess.ReadWrite);
+        using var videoMap = videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
         using var pipe = new NamedPipeClientStream(CoreHostConstants.LocalPipeServer, pipeName, PipeDirection.InOut, PipeOptions.None);
         pipe.Connect(CoreHostConstants.ConnectionTimeoutMilliseconds);
         using var reader = new BinaryReader(pipe, System.Text.Encoding.UTF8, true);
@@ -58,8 +56,7 @@ public static class CoreHost
                             var corePath = reader.ReadString();
                             var session = reader.ReadString();
                             var saves = CoreHostProtocol.ReadString(reader);
-                            var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(), CoreHostProtocol.JsonOptions)
-                                ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid());
+                            var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(), CoreHostProtocol.JsonOptions) ?? throw new InvalidDataException(CoreExceptions.HostConfigurationInvalid());
                             core = new ExternalCore(corePath);
                             core.Initialize(configuration, session, saves);
                             writer.Write(true);
@@ -78,8 +75,7 @@ public static class CoreHost
                             activeCore.RunFrame();
                             writer.Write(true);
                             var frame = activeCore.LatestVideoFrame;
-                            CoreHostProtocol.WriteSharedFrame(writer,
-                                frame?.Sequence == lastVideoSequence ? null : frame, videoMap);
+                            CoreHostProtocol.WriteSharedFrame(writer, frame?.Sequence == lastVideoSequence ? null : frame, videoMap);
                             if (frame is not null) lastVideoSequence = frame.Sequence;
                             var audio = new List<AudioChunk>();
                             while (activeCore.TryDequeueAudio(out var chunk) && chunk is not null) audio.Add(chunk);
@@ -118,9 +114,7 @@ public static class CoreHost
                     writer.Write(error.ToString());
                 }
                 writer.Flush();
-                CoreHostProtocol.WriteBytes(transportWriter,
-                    responseStream.GetBuffer().AsSpan(BufferConstants.FirstBufferIndex,
-                        checked((int)responseStream.Length)));
+                CoreHostProtocol.WriteBytes(transportWriter, responseStream.GetBuffer().AsSpan(BufferConstants.FirstBufferIndex, checked((int)responseStream.Length)));
                 if (exit) break;
             }
         }

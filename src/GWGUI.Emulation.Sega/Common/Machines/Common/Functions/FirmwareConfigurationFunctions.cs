@@ -37,9 +37,7 @@ internal static class FirmwareConfigurationFunctions
             var exact = slots.Where(slot => Path.GetFileName(slot.FileName).Equals(name, StringComparison.OrdinalIgnoreCase)).ToArray();
             var targets = exact.Length > 0 ? exact : slots;
             foreach (var slot in targets)
-                candidates.Add(new EmulationFirmwareCandidate(digest + slot.FieldId, path,
-                    slot.FileName + Path.DirectorySeparatorChar + name, null,
-                    EmulationFirmwareCompatibility.Unknown, slot.FieldId));
+                candidates.Add(new EmulationFirmwareCandidate(digest + slot.FieldId, path, slot.FileName + Path.DirectorySeparatorChar + name, null, EmulationFirmwareCompatibility.Unknown, slot.FieldId));
         }
         return candidates;
     }

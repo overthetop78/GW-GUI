@@ -11,12 +11,8 @@ internal static class CoreSettingsFunctions
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         foreach (var option in CoreCatalog.Get(configuration.EmulatorId).Options)
         {
-            var selected = option.IsVisible
-                && (option.MachineIds is null || option.MachineIds.Contains(configuration.Model))
-                ? configuration.Options?.GetValueOrDefault(option.Key) ?? option.DefaultValue
-                : option.DefaultValue;
-            options[option.Key] = AvailableValues(option, configuration.Model)
-                .Any(value => value.Value == selected) ? selected : option.DefaultValue;
+            var selected = option.IsVisible && (option.MachineIds is null || option.MachineIds.Contains(configuration.Model)) ? configuration.Options?.GetValueOrDefault(option.Key) ?? option.DefaultValue : option.DefaultValue;
+            options[option.Key] = AvailableValues(option, configuration.Model).Any(value => value.Value == selected) ? selected : option.DefaultValue;
         }
         if (CoreCatalog.Get(configuration.EmulatorId).MachineOptions?.GetValueOrDefault(configuration.Model) is { } forced)
             foreach (var option in forced) options[option.Key] = option.Value;
@@ -42,6 +38,5 @@ internal static class CoreSettingsFunctions
             CoreSettingsConstants.Sections[group.Key].Icon, CoreSettingsConstants.OptionsColumnCount)).ToArray();
     }
 
-    private static IEnumerable<CoreOptionValue> AvailableValues(CoreOption option, string machineId) =>
-        option.Values.Where(value => value.MachineIds is null || value.MachineIds.Contains(machineId));
+    private static IEnumerable<CoreOptionValue> AvailableValues(CoreOption option, string machineId) => option.Values.Where(value => value.MachineIds is null || value.MachineIds.Contains(machineId));
 }

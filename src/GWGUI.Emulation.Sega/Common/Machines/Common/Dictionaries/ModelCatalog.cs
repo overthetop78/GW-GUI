@@ -92,9 +92,7 @@ public static class ModelCatalog
             CpuFrequency: ModelConstants.FrequencyVmu, RamBytes: ModelConstants.VmuRamBytes)
     ];
 
-    public static Model Get(string id) => All.FirstOrDefault(model =>
-            model.Id.Equals(id, StringComparison.Ordinal))
-        ?? throw new ArgumentOutOfRangeException(nameof(id), id, null);
+    public static Model Get(string id) => All.FirstOrDefault(model => model.Id.Equals(id, StringComparison.Ordinal)) ?? throw new ArgumentOutOfRangeException(nameof(id), id, null);
 
     public static string BackendModelFor(string id) => Get(id).BackendModel;
 }
