@@ -10,8 +10,7 @@ namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
 
 internal static class CoreFunctions
 {
-    internal static ExternalCoreInfo ReadInitializedInfo(ExternalCoreExports exports,
-        Emulator expectedEmulator)
+    internal static ExternalCoreInfo ReadInitializedInfo(ExternalCoreExports exports, Emulator expectedEmulator)
     {
         exports.GetSystemInfo(out var nativeInfo);
         var libraryName = Marshal.PtrToStringUTF8(nativeInfo.LibraryName) ?? string.Empty;

@@ -11,11 +11,9 @@ internal static partial class SettingsDescriptionFunctions
         {
             Block(EmulationMachineTab.Cpu, SettingsConstants.ResourceCpu,
                 Information(SettingsConstants.Cpu, EmulationMachineTab.Cpu, SettingsConstants.ResourceCpu, hardware.DefaultCpu.ToString()),
-                Information(SettingsConstants.CpuFrequency, EmulationMachineTab.Cpu, SettingsConstants.ResourceFrequency,
-                    $"{hardware.DefaultCpuFrequencyHz / (double)SettingsConstants.Megahertz:0.##} MHz")),
+                Information(SettingsConstants.CpuFrequency, EmulationMachineTab.Cpu, SettingsConstants.ResourceFrequency, $"{hardware.DefaultCpuFrequencyHz / (double)SettingsConstants.Megahertz:0.##} MHz")),
             Block(EmulationMachineTab.Ram, SettingsConstants.ResourceMemory,
-                Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemory,
-                    $"{hardware.MainMemoryBytes / SettingsConstants.Kibibyte} KiB")),
+                Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemory, $"{hardware.MainMemoryBytes / SettingsConstants.Kibibyte} KiB")),
             Audio(configuration)
         };
         if (new Engine().Adapter(configuration) is IEmulatorSettings settings) blocks.AddRange(settings.DescribeSettings(configuration));
@@ -35,15 +33,12 @@ internal static partial class SettingsDescriptionFunctions
             AudioSelection(configuration, SettingsConstants.AudioLatency, SettingsConstants.ResourceAudioLatency, SettingsConstants.DefaultLatency, SettingsConstants.Latencies, "ms"),
             AudioSelection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume, SettingsConstants.DefaultVolume, SettingsConstants.Volumes, "%"));
 
-    private static EmulationSettingsField AudioSelection(MachineConfiguration configuration, string id,
-        string resource, int fallback, IReadOnlyList<int> values, string unit) =>
+    private static EmulationSettingsField AudioSelection(MachineConfiguration configuration, string id, string resource, int fallback, IReadOnlyList<int> values, string unit) =>
         new(id, EmulationMachineTab.Audio, EmulationMachineTab.Audio.ToString(), resource,
             EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(id, fallback.ToString(CultureInfo.InvariantCulture)),
-            values.Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture),
-                string.Empty, $"{value} {unit}")).ToArray());
+            values.Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture), string.Empty, $"{value} {unit}")).ToArray());
 
-    internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option,
-        EmulationMachineTab tab)
+    internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab)
     {
         var resource = option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}.");
         var value = configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue);

@@ -26,10 +26,7 @@ public sealed record CoreDiagnosticManifest(
     string DeclaredVersion,
     IReadOnlyList<string> Exports);
 
-public sealed record CoreInstallationPaths(
-    string VersionDirectory,
-    string LibraryPath,
-    string ManifestPath);
+public sealed record CoreInstallationPaths(string VersionDirectory, string LibraryPath, string ManifestPath);
 
 public sealed record CoreInstallProgress(long DownloadedBytes, long? TotalBytes)
 {
@@ -38,10 +35,4 @@ public sealed record CoreInstallProgress(long DownloadedBytes, long? TotalBytes)
 
 public sealed record CoreOptionCategory(string Key, string Name, string? Description);
 
-public sealed record CoreRelease(
-    Emulator Emulator,
-    string Id,
-    string DeclaredVersion,
-    Uri DownloadUri,
-    DateTimeOffset PublishedUtc,
-    long? ExpectedArchiveSize);
+public sealed record CoreRelease(Emulator Emulator, string Id, string DeclaredVersion, Uri DownloadUri, DateTimeOffset PublishedUtc, long? ExpectedArchiveSize);

@@ -8,8 +8,7 @@ namespace GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
 
 internal static class ControllerPortFunctions
 {
-    internal static void Configure(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration)
+    internal static void Configure(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration)
     {
         if (configuration.Core == Emulator.MiniVmac)
             exports.SetControllerPortDevice(InputConstants.PrimaryPort, MiniVmacConstants.KeyboardDevice);
@@ -20,8 +19,7 @@ internal static class ControllerPortFunctions
         callbacks.ConfigureInput(configuration.Input);
     }
 
-    internal static void ConfigurePort(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration, int port, PeripheralCategory peripheral)
+    internal static void ConfigurePort(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration, int port, PeripheralCategory peripheral)
     {
         if (port < ControllerPortConstants.MinimumControllerPort
             || port >= ConfigurationFunctions.ControllerPortCount(configuration.Model))

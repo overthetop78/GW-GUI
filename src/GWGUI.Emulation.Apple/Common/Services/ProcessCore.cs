@@ -90,8 +90,7 @@ internal sealed partial class ProcessCore : IEmulatorCore
         return false;
     }
 
-    public void Initialize(MachineConfiguration configuration, string sessionDirectory,
-        string? saveDirectory = null)
+    public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
         if (_initialized) throw new InvalidOperationException(CoreHostErrors.AlreadyInitialized);

@@ -11,10 +11,7 @@ namespace GWGUI.Emulation.Apple.Emulators.Common.Functions;
 
 internal static class SessionMediaFunctions
 {
-    internal static SessionMedia Prepare(
-        MediaConfiguration configuration,
-        string sessionDirectory,
-        IReadOnlySet<string> supportedExtensions)
+    internal static SessionMedia Prepare(MediaConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
         var mediaDirectory = Path.Combine(sessionDirectory, SessionMediaConstants.SessionDirectoryName);
         var prepared = FindPrepared(configuration, mediaDirectory);

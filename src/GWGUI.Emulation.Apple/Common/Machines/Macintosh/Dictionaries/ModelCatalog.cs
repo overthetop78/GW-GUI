@@ -25,8 +25,7 @@ public static class MacintoshModelCatalog
             memory, Array.AsReadOnly(new[] { HardwareRegion.Worldwide }),
             Array.AsReadOnly(new[] { macintoshII ? HardwareVideoCapability.MacintoshIIColor : HardwareVideoCapability.MacintoshMonochrome }),
             Array.AsReadOnly(new[] { macintoshII ? HardwareAudioCapability.AppleSoundChip : HardwareAudioCapability.MacintoshSound }),
-            Array.AsReadOnly(hardDisk ? new[] { HardwareStorageCapability.Floppy, HardwareStorageCapability.HardDisk }
-                : new[] { HardwareStorageCapability.Floppy }),
+            Array.AsReadOnly(hardDisk ? new[] { HardwareStorageCapability.Floppy, HardwareStorageCapability.HardDisk } : new[] { HardwareStorageCapability.Floppy }),
             Array.AsReadOnly(new[]
             {
                 new HardwarePortDefinition(HardwarePortCapability.Keyboard, MacintoshModelConstants.OnePort),

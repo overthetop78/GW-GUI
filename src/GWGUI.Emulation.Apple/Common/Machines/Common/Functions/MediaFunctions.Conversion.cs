@@ -4,8 +4,7 @@ internal static class EmulationMediaConversionFunctions
 {
     internal static EmulationMedia ToCommon(MediaConfiguration media) => new(media.Path, media.Slot, ToType(media.Category), media.IsReadOnly, media.IsInserted);
 
-    internal static MediaConfiguration ToApple(EmulationMedia media,
-        IReadOnlyList<MediaConfiguration> mountedMedia)
+    internal static MediaConfiguration ToApple(EmulationMedia media, IReadOnlyList<MediaConfiguration> mountedMedia)
     {
         var category = ToAppleCategory(media.Type);
         var existing = mountedMedia.FirstOrDefault(item => item.Slot == media.Slot);

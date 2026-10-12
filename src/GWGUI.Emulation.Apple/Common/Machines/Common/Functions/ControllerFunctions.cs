@@ -10,8 +10,7 @@ internal static class ControllerFunctions
         return Math.Abs((int)value) <= threshold ? ControllerConstants.NeutralAxis : value;
     }
 
-    internal static EmulationInputSnapshot ApplyDeadZones(EmulationInputSnapshot snapshot,
-        IReadOnlyList<ControllerBinding>? bindings)
+    internal static EmulationInputSnapshot ApplyDeadZones(EmulationInputSnapshot snapshot, IReadOnlyList<ControllerBinding>? bindings)
     {
         if (bindings is null || bindings.Count == BufferConstants.EmptyCollectionCount) return snapshot;
         var controllers = snapshot.Controllers.ToArray();

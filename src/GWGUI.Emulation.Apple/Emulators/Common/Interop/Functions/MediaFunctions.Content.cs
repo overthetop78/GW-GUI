@@ -12,9 +12,7 @@ internal static class ContentFunctions
     internal static string Validate(string contentPath, IReadOnlySet<string> supportedExtensions)
     {
         if (!File.Exists(contentPath))
-            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentNotFound,
-                ErrorMessages.ContentFileMissing,
-                new Dictionary<string, string> { [ErrorContextConstants.Path] = contentPath });
+            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentNotFound, ErrorMessages.ContentFileMissing, new Dictionary<string, string> { [ErrorContextConstants.Path] = contentPath });
         var extension = Path.GetExtension(contentPath).TrimStart(MediaConstants.ExtensionPrefix);
         if (!supportedExtensions.Contains(extension))
             throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported,
@@ -27,8 +25,7 @@ internal static class ContentFunctions
         return Path.GetFullPath(contentPath);
     }
 
-    internal static LoadedContent Create(string contentPath, bool needsFullPath,
-        IReadOnlySet<string> supportedExtensions, bool useWindowsAnsiPath = false)
+    internal static LoadedContent Create(string contentPath, bool needsFullPath, IReadOnlySet<string> supportedExtensions, bool useWindowsAnsiPath = false)
     {
         var absolutePath = Validate(contentPath, supportedExtensions);
         var path = new ContentPath(absolutePath, useWindowsAnsiPath);

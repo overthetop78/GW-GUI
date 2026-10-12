@@ -9,8 +9,7 @@ namespace GWGUI.Emulation.Apple.Common.Services;
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
-private MachineConfiguration CurrentConfiguration() =>
-        Configuration with { Media = _mountedMedia.ToArray() };
+    private MachineConfiguration CurrentConfiguration() => Configuration with { Media = _mountedMedia.ToArray() };
 
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken)
     {

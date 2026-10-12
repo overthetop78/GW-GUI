@@ -14,9 +14,7 @@ internal static class ExternalCoreProbe
         if (!Path.IsPathFullyQualified(absolutePath))
             throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected, ErrorMessages.CorePathMustBeAbsolute);
         if (!File.Exists(absolutePath))
-            throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreNotFound,
-                ErrorMessages.CoreFileMissing,
-                new Dictionary<string, string> { [ErrorContextConstants.Path] = absolutePath });
+            throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreNotFound, ErrorMessages.CoreFileMissing, new Dictionary<string, string> { [ErrorContextConstants.Path] = absolutePath });
 
         try
         {

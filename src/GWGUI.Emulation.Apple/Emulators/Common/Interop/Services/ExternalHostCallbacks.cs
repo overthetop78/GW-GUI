@@ -34,9 +34,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private readonly DiskControl _diskControl = new();
     private readonly ExternalCoreVirtualFileSystem _virtualFileSystem;
 
-    internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory,
-        string assetsDirectory,
-        IReadOnlyDictionary<string, string> configuredOptions)
+    internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions)
     {
         if (emulator is not (Emulator.AppleWin or Emulator.MiniVmac)) throw new ArgumentOutOfRangeException(nameof(emulator));
         Directory.CreateDirectory(systemDirectory);

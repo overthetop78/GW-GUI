@@ -9,8 +9,7 @@ internal static class CoreOptionFunctions
 {
     internal static IReadOnlyList<CoreOption> CopyLegacyDefinitions(nint definitions) => CopyDefinitions(definitions, versionTwo: false, []);
 
-    internal static IReadOnlyList<CoreOption> CopyVersionTwoDefinitions(
-        nint options, out IReadOnlyList<CoreOptionCategory> categories)
+    internal static IReadOnlyList<CoreOption> CopyVersionTwoDefinitions(nint options, out IReadOnlyList<CoreOptionCategory> categories)
     {
         categories = [];
         if (options == nint.Zero) return [];
@@ -27,18 +26,14 @@ internal static class CoreOptionFunctions
         return local != nint.Zero ? local : PointerAt(data, CoreOptionConstants.EnglishPointerIndex);
     }
 
-    internal static IReadOnlyList<CoreOption> MergeLocalizedDefinitions(
-        IReadOnlyList<CoreOption> english, IReadOnlyList<CoreOption> localized)
+    internal static IReadOnlyList<CoreOption> MergeLocalizedDefinitions(IReadOnlyList<CoreOption> english, IReadOnlyList<CoreOption> localized)
     {
         if (localized.Count == CoreOptionConstants.NoEntries) return english;
         var localByKey = localized.ToDictionary(option => option.Key, StringComparer.Ordinal);
-        return english.Select(option => localByKey.TryGetValue(option.Key, out var local)
-            ? local with { DefaultValue = option.DefaultValue }
-            : option).ToArray();
+        return english.Select(option => localByKey.TryGetValue(option.Key, out var local) ? local with { DefaultValue = option.DefaultValue } : option).ToArray();
     }
 
-    internal static IReadOnlyList<CoreOptionCategory> MergeLocalizedCategories(
-        IReadOnlyList<CoreOptionCategory> english, IReadOnlyList<CoreOptionCategory> localized)
+    internal static IReadOnlyList<CoreOptionCategory> MergeLocalizedCategories(IReadOnlyList<CoreOptionCategory> english, IReadOnlyList<CoreOptionCategory> localized)
     {
         if (localized.Count == CoreOptionConstants.NoEntries) return english;
         var localByKey = localized.ToDictionary(category => category.Key, StringComparer.Ordinal);
@@ -84,8 +79,7 @@ internal static class CoreOptionFunctions
         return result;
     }
 
-    private static IReadOnlyList<CoreOption> CopyDefinitions(nint definitions, bool versionTwo,
-        IReadOnlyList<CoreOptionCategory> categories)
+    private static IReadOnlyList<CoreOption> CopyDefinitions(nint definitions, bool versionTwo, IReadOnlyList<CoreOptionCategory> categories)
     {
         if (definitions == nint.Zero) return [];
         var prefix = versionTwo ? CoreOptionConstants.VersionTwoDefinitionPointerCountBeforeValues : CoreOptionConstants.LegacyDefinitionPointerCount;
