@@ -4,8 +4,7 @@ namespace GWGUI.Updater;
 
 internal static class UpdateProcessWaiter
 {
-    internal static async Task<bool> WaitAsync(IReadOnlyList<int> processIds, TimeSpan timeout,
-        int? updaterProcessId = null)
+    internal static async Task<bool> WaitAsync(IReadOnlyList<int> processIds, TimeSpan timeout, int? updaterProcessId = null)
     {
         using var cancellation = new CancellationTokenSource(timeout);
         try
