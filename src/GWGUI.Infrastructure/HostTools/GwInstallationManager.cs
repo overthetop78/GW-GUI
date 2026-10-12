@@ -19,15 +19,13 @@ public sealed partial class GwInstallationManager(HttpClient httpClient, string 
         candidates.AddRange(path.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries).Select(x => Path.Combine(x.Trim(), "gw.exe")));
         if (files.DirectoryExists(managedRoot))
         {
-            foreach (var versionDirectory in files.EnumerateDirectories(managedRoot)
-                         .Where(directory => !Path.GetFileName(directory).StartsWith(".", StringComparison.Ordinal)))
+            foreach (var versionDirectory in files.EnumerateDirectories(managedRoot).Where(directory => !Path.GetFileName(directory).StartsWith(".", StringComparison.Ordinal)))
             {
                 NormalizeManagedInstallation(versionDirectory);
             }
             candidates.AddRange(files.EnumerateFiles(managedRoot, "gw.exe", SearchOption.AllDirectories));
         }
-        return candidates.Where(x => !string.IsNullOrWhiteSpace(x) && files.FileExists(x)).Select(x => Path.GetFullPath(x!))
-            .Distinct(StringComparer.OrdinalIgnoreCase)
+        return candidates.Where(x => !string.IsNullOrWhiteSpace(x) && files.FileExists(x)).Select(x => Path.GetFullPath(x!)).Distinct(StringComparer.OrdinalIgnoreCase)
             .Select(x => new HostToolsInstallation(x, VersionFromPath(x), IsInside(x, managedRoot))).ToArray();
     }
 
@@ -106,9 +104,7 @@ public sealed partial class GwInstallationManager(HttpClient httpClient, string 
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(selected.ExecutablePath);
         if (!files.FileExists(selected.ExecutablePath)) throw new FileNotFoundException("The selected gw executable does not exist.", selected.ExecutablePath);
-        var previous = !string.Equals(currentPath, selected.ExecutablePath, StringComparison.OrdinalIgnoreCase) && files.FileExists(currentPath)
-            ? currentPath
-            : previousPath;
+        var previous = !string.Equals(currentPath, selected.ExecutablePath, StringComparison.OrdinalIgnoreCase) && files.FileExists(currentPath) ? currentPath : previousPath;
         return new(selected.ExecutablePath, previous, selected.Version);
     }
 

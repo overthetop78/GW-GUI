@@ -20,9 +20,7 @@ public sealed class GwCommandBuilder : IGwCommandBuilder
 
     public GwCommand BuildRead(ReadRequest request) => ReadCommandBuilder.Build(request);
     public GwCommand BuildWrite(WriteRequest request) => WriteCommandBuilder.Build(request);
-    public GwCommand BuildConversion(string executable, string source, ConversionOutput output,
-        IReadOnlyList<EnabledOption>? options = null, string? expertArguments = null) =>
-        ConversionCommandBuilder.Build(executable, source, output, options, expertArguments);
+    public GwCommand BuildConversion(string executable, string source, ConversionOutput output, IReadOnlyList<EnabledOption>? options = null, string? expertArguments = null) => ConversionCommandBuilder.Build(executable, source, output, options, expertArguments);
     public GwCommand BuildErase(EraseRequest request) => MaintenanceCommandBuilder.Erase(request);
     public GwCommand BuildClean(CleanRequest request) => MaintenanceCommandBuilder.Clean(request);
     public GwCommand BuildTool(ToolCommandRequest request) => ToolCommandBuilder.Build(request);

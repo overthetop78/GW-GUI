@@ -64,21 +64,15 @@ public sealed class GreaseweazleHardwareRegistry(
     private static bool Matches(ControllerSettings controller, SerialDevice serial, string? confirmedSerial)
     {
         if (!string.IsNullOrWhiteSpace(confirmedSerial))
-            return EqualsId(controller.UsbId, confirmedSerial) ||
-                   EqualsId(controller.UsbSerialNumber, confirmedSerial) ||
-                   EqualsId(controller.PnpDeviceId, serial.PnpDeviceId);
+            return EqualsId(controller.UsbId, confirmedSerial) || EqualsId(controller.UsbSerialNumber, confirmedSerial) || EqualsId(controller.PnpDeviceId, serial.PnpDeviceId);
 
         if (!string.IsNullOrWhiteSpace(serial.PnpDeviceId))
-            return EqualsId(controller.UsbId, serial.PnpDeviceId) ||
-                   EqualsId(controller.PnpDeviceId, serial.PnpDeviceId);
+            return EqualsId(controller.UsbId, serial.PnpDeviceId) || EqualsId(controller.PnpDeviceId, serial.PnpDeviceId);
 
-        return EqualsId(controller.UsbId, serial.StableId) ||
-               EqualsId(controller.LastUsbLocation, serial.UsbLocation);
+        return EqualsId(controller.UsbId, serial.StableId) || EqualsId(controller.LastUsbLocation, serial.UsbLocation);
     }
 
-    private static bool EqualsId(string? left, string? right) =>
-        !string.IsNullOrWhiteSpace(left) && !string.IsNullOrWhiteSpace(right) &&
-        string.Equals(left, right, StringComparison.OrdinalIgnoreCase);
+    private static bool EqualsId(string? left, string? right) => !string.IsNullOrWhiteSpace(left) && !string.IsNullOrWhiteSpace(right) && string.Equals(left, right, StringComparison.OrdinalIgnoreCase);
 
     private static string? NullIfWhiteSpace(string? value) => string.IsNullOrWhiteSpace(value) ? null : value;
 }

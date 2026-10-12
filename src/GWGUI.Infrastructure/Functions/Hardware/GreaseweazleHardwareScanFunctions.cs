@@ -18,9 +18,6 @@ internal static class GreaseweazleHardwareScanFunctions
             string.IsNullOrWhiteSpace(information.FirmwareVersion) &&
             string.IsNullOrWhiteSpace(information.SerialNumber)) return false;
 
-        return string.IsNullOrWhiteSpace(information.SerialNumber) ||
-               string.IsNullOrWhiteSpace(serialDevice.UsbSerialNumber) ||
-               string.Equals(information.SerialNumber, serialDevice.UsbSerialNumber,
-                   StringComparison.OrdinalIgnoreCase);
+        return string.IsNullOrWhiteSpace(information.SerialNumber) || string.IsNullOrWhiteSpace(serialDevice.UsbSerialNumber) || string.Equals(information.SerialNumber, serialDevice.UsbSerialNumber, StringComparison.OrdinalIgnoreCase);
     }
 }

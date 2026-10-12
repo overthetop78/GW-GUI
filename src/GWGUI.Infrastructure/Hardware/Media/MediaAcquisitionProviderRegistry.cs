@@ -18,8 +18,7 @@ public sealed class MediaAcquisitionProviderRegistry
             throw new ArgumentException("An acquisition provider cannot be null.", nameof(providers));
         if (registered.Any(provider => string.IsNullOrWhiteSpace(provider.Id)))
             throw new ArgumentException("An acquisition provider identifier cannot be empty.", nameof(providers));
-        var duplicate = registered.GroupBy(provider => provider.Id, StringComparer.OrdinalIgnoreCase)
-            .FirstOrDefault(group => group.Skip(1).Any());
+        var duplicate = registered.GroupBy(provider => provider.Id, StringComparer.OrdinalIgnoreCase).FirstOrDefault(group => group.Skip(1).Any());
         if (duplicate is not null)
             throw new ArgumentException($"Acquisition provider identifier '{duplicate.Key}' is registered more than once.", nameof(providers));
         this.providers = Array.AsReadOnly(registered);
@@ -30,9 +29,7 @@ public sealed class MediaAcquisitionProviderRegistry
     public IMediaAcquisitionProvider GetRequired(MediaKind mediaKind, string deviceId)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(deviceId);
-        var compatible = providers.Where(provider =>
-            provider.SupportedMediaKinds.Contains(mediaKind)
-            && provider.CanAcquire(mediaKind, deviceId)).ToArray();
+        var compatible = providers.Where(provider => provider.SupportedMediaKinds.Contains(mediaKind) && provider.CanAcquire(mediaKind, deviceId)).ToArray();
         return compatible.Length switch
         {
             1 => compatible[0],
@@ -51,7 +48,6 @@ public sealed class MediaAcquisitionProviderRegistry
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(options);
-        return GetRequired(mediaKind, deviceId)
-            .AcquireAsync(mediaKind, deviceId, options, progress, cancellationToken);
+        return GetRequired(mediaKind, deviceId).AcquireAsync(mediaKind, deviceId, options, progress, cancellationToken);
     }
 }

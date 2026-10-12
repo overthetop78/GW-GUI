@@ -48,8 +48,7 @@ public sealed class RotatingOperationLogWriter(string directory, long maximumByt
 
     private string Format(GwCommand command, GwExecutionResult result)
     {
-        var builder = new StringBuilder()
-            .AppendLine("================================================================================")
+        var builder = new StringBuilder().AppendLine("================================================================================")
             .AppendLine($"{now():O} | exit={result.ExitCode} | cancelled={result.WasCancelled} | duration={result.Duration:c}")
             .AppendLine(command.ToDisplayString());
         foreach (var line in result.Output) builder.Append('[').Append(line.Timestamp.ToString("O")).Append("] [").Append(line.Stream).Append("] ").AppendLine(line.Text);

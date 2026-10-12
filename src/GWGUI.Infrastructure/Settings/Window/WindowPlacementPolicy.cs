@@ -13,12 +13,9 @@ public static class WindowPlacementPolicy
             return new(width, height, null, null);
         var right = virtualLeft + virtualWidth;
         var bottom = virtualTop + virtualHeight;
-        var intersects = left + width >= virtualLeft + visibleMargin && left <= right - visibleMargin &&
-                         top + height >= virtualTop + visibleMargin && top <= bottom - visibleMargin;
+        var intersects = left + width >= virtualLeft + visibleMargin && left <= right - visibleMargin && top + height >= virtualTop + visibleMargin && top <= bottom - visibleMargin;
         if (!intersects) return new(width, height, null, null);
-        return new(width, height,
-            Math.Clamp(left, virtualLeft, Math.Max(virtualLeft, right - width)),
-            Math.Clamp(top, virtualTop, Math.Max(virtualTop, bottom - height)));
+        return new(width, height, Math.Clamp(left, virtualLeft, Math.Max(virtualLeft, right - width)), Math.Clamp(top, virtualTop, Math.Max(virtualTop, bottom - height)));
     }
 
     public static NormalizedWindowPlacement ConstrainToWorkArea(NormalizedWindowPlacement value,

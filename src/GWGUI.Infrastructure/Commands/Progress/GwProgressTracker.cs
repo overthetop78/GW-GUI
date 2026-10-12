@@ -56,8 +56,7 @@ public sealed partial class GwProgressTracker
         return GwTrackState.Success;
     }
 
-    private static int CountSet(string specification)
-        => ParseSet(specification).Count;
+    private static int CountSet(string specification) => ParseSet(specification).Count;
 
     private static HashSet<int> ParseSet(string specification)
     {

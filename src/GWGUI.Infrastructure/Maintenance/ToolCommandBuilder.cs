@@ -88,10 +88,7 @@ public static class ToolCommandBuilder
         if (request.Enabled.Contains(key)) options.Add(new("--" + key, Required(request, key)));
     }
 
-    private static string Required(ToolCommandRequest request, string key) =>
-        request.Values.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value)
-            ? value.Trim()
-            : throw new ArgumentException("Value is required.", key);
+    private static string Required(ToolCommandRequest request, string key) => request.Values.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value) ? value.Trim() : throw new ArgumentException("Value is required.", key);
 
     private static int Positive(ToolCommandRequest request, string key) { var value = Parse(request, key); if (value <= 0) throw new ArgumentOutOfRangeException(key, "Value must be greater than zero."); return value; }
     private static int NonNegative(ToolCommandRequest request, string key) { var value = Parse(request, key); if (value < 0) throw new ArgumentOutOfRangeException(key, "Value must not be negative."); return value; }

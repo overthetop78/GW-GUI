@@ -18,8 +18,7 @@ public sealed class MediaPhysicalWriterRegistry
             throw new ArgumentException("A physical writer cannot be null.", nameof(writers));
         if (registered.Any(writer => string.IsNullOrWhiteSpace(writer.Id)))
             throw new ArgumentException("A physical writer identifier cannot be empty.", nameof(writers));
-        var duplicate = registered.GroupBy(writer => writer.Id, StringComparer.OrdinalIgnoreCase)
-            .FirstOrDefault(group => group.Skip(1).Any());
+        var duplicate = registered.GroupBy(writer => writer.Id, StringComparer.OrdinalIgnoreCase).FirstOrDefault(group => group.Skip(1).Any());
         if (duplicate is not null)
             throw new ArgumentException($"Physical writer identifier '{duplicate.Key}' is registered more than once.", nameof(writers));
         this.writers = Array.AsReadOnly(registered);
@@ -31,9 +30,7 @@ public sealed class MediaPhysicalWriterRegistry
     {
         ArgumentNullException.ThrowIfNull(plan);
         ArgumentException.ThrowIfNullOrWhiteSpace(deviceId);
-        var compatible = writers.Where(writer =>
-            writer.SupportedMediaKinds.Contains(plan.MediaKind)
-            && writer.CanWrite(plan, deviceId)).ToArray();
+        var compatible = writers.Where(writer => writer.SupportedMediaKinds.Contains(plan.MediaKind) && writer.CanWrite(plan, deviceId)).ToArray();
         return compatible.Length switch
         {
             1 => compatible[0],

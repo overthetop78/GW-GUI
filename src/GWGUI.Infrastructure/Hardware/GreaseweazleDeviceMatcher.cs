@@ -16,6 +16,5 @@ public static class GreaseweazleDeviceMatcher
         return 0;
     }
 
-    private static bool Contains(string? value, string expected) =>
-        value?.Contains(expected, StringComparison.OrdinalIgnoreCase) == true;
+    private static bool Contains(string? value, string expected) => value?.Contains(expected, StringComparison.OrdinalIgnoreCase) == true;
 }

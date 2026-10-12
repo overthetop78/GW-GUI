@@ -31,9 +31,7 @@ public sealed class GreaseweazleMediaPhysicalWriter(
             && plan.RepresentationKind == MediaRepresentationKind.Flux
             && !string.IsNullOrWhiteSpace(deviceId)
             && plan.DataUnits.Count > 0
-            && plan.DataUnits.All(unit =>
-                unit.Metadata.TryGetValue(MediaPhysicalMetadataKeys.Encoding, out var encoding)
-                && encoding.Equals(MediaPhysicalEncodingIds.FluxTrackV1, StringComparison.Ordinal));
+            && plan.DataUnits.All(unit => unit.Metadata.TryGetValue(MediaPhysicalMetadataKeys.Encoding, out var encoding) && encoding.Equals(MediaPhysicalEncodingIds.FluxTrackV1, StringComparison.Ordinal));
     }
 
     public async Task<MediaPhysicalWriteResult> WriteAsync(
@@ -71,15 +69,8 @@ public sealed class GreaseweazleMediaPhysicalWriter(
                 if (track.Revolutions.Count != 1)
                     throw new InvalidDataException("A physical write unit must contain exactly one selected flux revolution.");
                 await device.SeekAsync(checked((short)cylinder), checked((byte)head), cancellationToken).ConfigureAwait(false);
-                var intervals = ConvertNanosecondsToDeviceTicks(
-                    track.Revolutions[0].FluxIntervalsNanoseconds,
-                    firmware.SampleFrequency);
-                await device.WriteFluxAsync(
-                    intervals,
-                    cueAtIndex,
-                    terminateAtIndex,
-                    hardSectorTicks,
-                    cancellationToken).ConfigureAwait(false);
+                var intervals = ConvertNanosecondsToDeviceTicks(track.Revolutions[0].FluxIntervalsNanoseconds, firmware.SampleFrequency);
+                await device.WriteFluxAsync(intervals, cueAtIndex, terminateAtIndex, hardSectorTicks, cancellationToken).ConfigureAwait(false);
                 completed++;
                 progress?.Report(new MediaPhysicalWriteProgress(completed, plan.WriteOrder.Count, unit.Position, false));
             }

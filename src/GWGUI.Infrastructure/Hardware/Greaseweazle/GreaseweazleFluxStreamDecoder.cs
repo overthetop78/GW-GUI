@@ -49,8 +49,7 @@ public static class GreaseweazleFluxStreamDecoder
                 EnsureAvailable(stream, position, 1);
                 var low = stream[position++];
                 if (low == 0) throw new InvalidDataException("A long Greaseweazle flux interval has an invalid low byte.");
-                interval = checked((uint)(GreaseweazleFluxProtocol.LongIntervalStart +
-                    (value - GreaseweazleFluxProtocol.LongIntervalStart) * byte.MaxValue + low - 1));
+                interval = checked((uint)(GreaseweazleFluxProtocol.LongIntervalStart + (value - GreaseweazleFluxProtocol.LongIntervalStart) * byte.MaxValue + low - 1));
             }
 
             pendingTicks += interval;
@@ -64,11 +63,7 @@ public static class GreaseweazleFluxStreamDecoder
         return new GreaseweazleFluxCapture(flux, indexes, sampleFrequency, stream.ToArray());
     }
 
-    private static uint ReadExtendedValue(ReadOnlySpan<byte> value) =>
-        checked((uint)(((value[0] & 254) >> 1) +
-            ((value[1] & 254) << 6) +
-            ((value[2] & 254) << 13) +
-            ((value[3] & 254) << 20)));
+    private static uint ReadExtendedValue(ReadOnlySpan<byte> value) => checked((uint)(((value[0] & 254) >> 1) + ((value[1] & 254) << 6) + ((value[2] & 254) << 13) + ((value[3] & 254) << 20)));
 
     private static void EnsureAvailable(ReadOnlySpan<byte> stream, int position, int length)
     {
