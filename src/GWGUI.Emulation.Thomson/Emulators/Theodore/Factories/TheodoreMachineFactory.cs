@@ -57,18 +57,35 @@ internal sealed class TheodoreMachineFactory : IEmulatorAdapter, IEmulatorMediaC
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
         ConfigurationFunctions.Validate(configuration);
-        if (configuration.Core != Emulator.Theodore || !CoreCatalog.Entry.Models.Contains(configuration.Model)) throw new ArgumentException(nameof(configuration));
-        if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();
+        if (configuration.Core != Emulator.Theodore || !CoreCatalog.Entry.Models.Contains(configuration.Model))
+            throw new ArgumentException(nameof(configuration));
+        if (!OperatingSystem.IsWindows())
+            throw new PlatformNotSupportedException();
         IEmulatorCore CreateCore() => OperatingSystem.IsWindows() ? new ProcessCore(context.HostExecutablePath, context.CorePath, Emulator.Theodore) : throw new PlatformNotSupportedException();
         var id = Guid.NewGuid();
         var core = CreateCore();
         var completed = false;
         try
         {
-            var machine = new Machine(id, configuration, core, Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), (_, _) => true, audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null, saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration), coreFactory: CreateCore, supportsPointerCapture: true, supportsNoContent: true);
+            var machine = new Machine(
+                id,
+                configuration,
+                core,
+                Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
+                (_, _) => true,
+                audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
+                saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
+                coreFactory: CreateCore,
+                supportsPointerCapture: true,
+                supportsNoContent: true
+            );
             completed = true;
             return machine;
         }
-        finally { if (!completed) core.Dispose(); }
+        finally
+        {
+            if (!completed)
+                core.Dispose();
+        }
     }
 }

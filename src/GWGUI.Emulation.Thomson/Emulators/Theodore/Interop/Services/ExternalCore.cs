@@ -94,7 +94,12 @@ internal sealed class ExternalCore : IEmulatorCore
     public void HardReset() { _input?.Release(); RequireExports().Reset(); }
     public void SetInput(EmulationInputSnapshot snapshot) => (_input ?? throw new InvalidOperationException()).Update(snapshot);
     public void SetOption(string key, string value) => (_environment ?? throw new InvalidOperationException()).SetOption(key, value);
-    public void SetControllerPortDevice(int port, PeripheralCategory peripheral) { if (port < 0 || port >= ControllerConstants.PortCount || !Enum.IsDefined(peripheral)) throw new ArgumentException(nameof(port)); RequireExports().SetControllerPortDevice((uint)port, peripheral == PeripheralCategory.None ? 0u : 1u); }
+    public void SetControllerPortDevice(int port, PeripheralCategory peripheral)
+    {
+        if (port < 0 || port >= ControllerConstants.PortCount || !Enum.IsDefined(peripheral))
+            throw new ArgumentException(nameof(port));
+        RequireExports().SetControllerPortDevice((uint)port, peripheral == PeripheralCategory.None ? 0u : 1u);
+    }
     public void InsertMedia(MediaConfiguration media) => throw MediaUnsupported();
     public void EjectMedia(EmulationMediaSlot slot) => throw MediaUnsupported();
     public void SelectDisk(int index) { if (index != 0) throw new ArgumentOutOfRangeException(nameof(index)); }

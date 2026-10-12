@@ -41,18 +41,37 @@ internal sealed class CoreReleaseService
         {
             var archiveSize = await CoreReleaseFunctions.DownloadAsync(_httpClient, release.DownloadUri, download, progress, cancellationToken).ConfigureAwait(false);
             CoreReleaseFunctions.ExtractExpectedLibrary(download, entry.DllName, extracted);
-            var manifest = new CoreDiagnosticManifest(release.Id, release.DeclaredVersion, release.DownloadUri.AbsoluteUri, DateTimeOffset.UtcNow, archiveSize, new FileInfo(extracted).Length, CoreDiagnosticFunctions.CalculateSha256(extracted), CoreDiagnosticFunctions.ReadArchitecture(extracted), CoreDiagnosticFunctions.ReadDeclaredVersion(extracted), CoreDiagnosticFunctions.ReadExports(extracted));
-            if (!string.Equals(manifest.Architecture, EmulatorCatalogConstants.WindowsX64Architecture, StringComparison.Ordinal)) throw new InvalidDataException(CoreReleaseErrors.InvalidArchitecture);
+            var manifest = new CoreDiagnosticManifest(
+                release.Id,
+                release.DeclaredVersion,
+                release.DownloadUri.AbsoluteUri,
+                DateTimeOffset.UtcNow,
+                archiveSize,
+                new FileInfo(extracted).Length,
+                CoreDiagnosticFunctions.CalculateSha256(extracted),
+                CoreDiagnosticFunctions.ReadArchitecture(extracted),
+                CoreDiagnosticFunctions.ReadDeclaredVersion(extracted),
+                CoreDiagnosticFunctions.ReadExports(extracted)
+            );
+            if (!string.Equals(manifest.Architecture, EmulatorCatalogConstants.WindowsX64Architecture, StringComparison.Ordinal))
+                throw new InvalidDataException(CoreReleaseErrors.InvalidArchitecture);
             CoreReleaseFunctions.ReplaceLibraryAtomically(extracted, paths.LibraryPath);
             await CoreReleaseFunctions.WriteManifestAtomicallyAsync(paths.ManifestPath, manifest, cancellationToken).ConfigureAwait(false);
             var activeManifestPath = CoreCatalog.GetActiveManifestPath(release.Emulator, _installationRoot);
-            await CoreReleaseFunctions.WriteActiveInstallationAtomicallyAsync(activeManifestPath, new CoreActiveInstallation(release.Id, release.DeclaredVersion), cancellationToken) .ConfigureAwait(false);
+            await CoreReleaseFunctions.WriteActiveInstallationAtomicallyAsync(activeManifestPath, new CoreActiveInstallation(release.Id, release.DeclaredVersion), cancellationToken).ConfigureAwait(false);
             progress?.Report(new CoreInstallProgress(archiveSize, archiveSize));
             return paths;
         }
         finally
         {
-            try { CoreReleaseFunctions.DeleteIfExists(download); } finally { CoreReleaseFunctions.DeleteIfExists(extracted); }
+            try
+            {
+                CoreReleaseFunctions.DeleteIfExists(download);
+            }
+            finally
+            {
+                CoreReleaseFunctions.DeleteIfExists(extracted);
+            }
         }
     }
 
