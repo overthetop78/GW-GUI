@@ -69,10 +69,7 @@ internal static class KeyboardFunctions
     }
 
     internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)((HasShift(keys) ? KeyboardConstants.ShiftModifier : KeyboardConstants.NoModifiers) | (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? KeyboardConstants.ControlModifier : KeyboardConstants.NoModifiers) | (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? KeyboardConstants.AltModifier : KeyboardConstants.NoModifiers));
-    internal static uint Character(
-        uint code,
-        IReadOnlySet<EmulationKey> keys
-    )
+    internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)
     {
         var shifted = HasShift(keys);
         if (code is >= KeyboardConstants.FirstLetter and <= KeyboardConstants.LastLetter)
@@ -109,12 +106,7 @@ internal static class KeyboardFunctions
     internal static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt;
     private static bool HasShift(IReadOnlySet<EmulationKey> keys) => keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift);
     private static bool IsPrintable(uint code) => code is >= KeyboardConstants.FirstPrintableCharacter and <= KeyboardConstants.LastPrintableCharacter;
-    private static void AddRange(
-        IDictionary<EmulationKey, uint> map,
-        EmulationKey firstKey,
-        uint firstCode,
-        int count
-    )
+    private static void AddRange(IDictionary<EmulationKey, uint> map, EmulationKey firstKey, uint firstCode, int count)
     {
         for (var offset = KeyboardConstants.FirstRangeOffset; offset < count; offset++)
             map[(EmulationKey)((int)firstKey + offset)] = firstCode + checked((uint)offset);

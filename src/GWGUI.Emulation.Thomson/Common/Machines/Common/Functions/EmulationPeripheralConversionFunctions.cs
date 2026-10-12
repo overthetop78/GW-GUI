@@ -1,10 +1,7 @@
 namespace GWGUI.Emulation.Thomson.Common.Machines.Common.Functions;
 internal static class EmulationPeripheralConversionFunctions
 {
-    internal static PeripheralCategory ToModule(
-        EmulationPeripheralCategory peripheral,
-        MachineModel model
-    )
+    internal static PeripheralCategory ToModule(EmulationPeripheralCategory peripheral, MachineModel model)
     {
         _ = ConfigurationFunctions.Family(model);
         return peripheral switch

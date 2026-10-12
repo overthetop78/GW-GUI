@@ -49,10 +49,7 @@ internal static class InputSettingsFunctions
         return new(keyboard, mouse, ports);
     }
 
-    internal static MachineConfiguration Apply(
-        MachineConfiguration configuration,
-        EmulationInputSettings settings
-    )
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         if (settings.ControllerPorts.Count != ControllerConstants.PortCount || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, ControllerConstants.PortCount)))
             throw new ArgumentException(nameof(settings));

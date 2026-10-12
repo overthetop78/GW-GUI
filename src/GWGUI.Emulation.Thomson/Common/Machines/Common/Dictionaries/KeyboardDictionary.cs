@@ -19,10 +19,7 @@ internal static class KeyboardDictionary
         ? [EmulationKey.ThomsonStop, EmulationKey.ThomsonAccent, EmulationKey.ThomsonRaz, EmulationKey.ThomsonBasic] 
         : [EmulationKey.ThomsonStop, EmulationKey.ThomsonAccent, EmulationKey.ThomsonRaz];
     internal static IReadOnlyList<InputBindingDefinition> Definitions(MachineModel model) => Keys(model).Select(key => new InputBindingDefinition(key.ToString(), string.Empty, Defaults[key].ToString(), Labels[key])).ToArray();
-    internal static IReadOnlyDictionary<string, string> Bindings(
-        InputConfiguration input,
-        MachineModel model
-    )
+    internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)
     {
         var bindings = Definitions(model).ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);
         foreach (var pair in input.Keyboard ?? new Dictionary<string, string>())
@@ -35,11 +32,7 @@ internal static class KeyboardDictionary
         return bindings;
     }
 
-    internal static IReadOnlySet<EmulationKey> Apply(
-        IReadOnlySet<EmulationKey> keys,
-        InputConfiguration input,
-        MachineModel model
-    )
+    internal static IReadOnlySet<EmulationKey> Apply(IReadOnlySet<EmulationKey> keys, InputConfiguration input, MachineModel model)
     {
         var mappings = Bindings(input, model).Where(pair => !string.IsNullOrEmpty(pair.Value)).ToDictionary(pair => pair.Key, pair => Enum.Parse<EmulationKey>(pair.Value), StringComparer.Ordinal);
         return EmulationInputMappingFunctions.MapKeyboard(keys, mappings);
