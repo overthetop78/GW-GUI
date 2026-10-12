@@ -13,9 +13,7 @@ internal static class MediaContentRecognitionFunctions
         return (trimmed[0] == '.' ? trimmed : $".{trimmed}").ToLowerInvariant();
     }
 
-    public static MediaContentTypeDefinition ToDefinition(
-        MediaContentRecognitionRule rule,
-        string? actualExtension = null)
+    public static MediaContentTypeDefinition ToDefinition(MediaContentRecognitionRule rule, string? actualExtension = null)
     {
         var (resourceKey, icon, contentFormat) = Presentation(rule.Category);
         var extension = rule.Extension.Length > 0 ? rule.Extension : NormalizeExtension(actualExtension);

@@ -67,19 +67,10 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
         }
     }
 
-    private static MediaContentTypeDefinition Fallback(
-        MediaContentCategory category,
-        string resourceKey,
-        string iconId,
-        string extension = "",
-        MediaContentFormat contentFormat = MediaContentFormat.Unknown) =>
+    private static MediaContentTypeDefinition Fallback(MediaContentCategory category, string resourceKey, string iconId, string extension = "", MediaContentFormat contentFormat = MediaContentFormat.Unknown) =>
         new(null, MediaContentRecognitionFunctions.NormalizeExtension(extension), category, resourceKey, MediaExecutionKind.None, iconId, contentFormat, MediaTextEncoding.NotApplicable, MediaPreviewKind.None);
 
-    private static MediaContentCategory? KnownCategory(
-        string comment,
-        bool? dataValid,
-        string? nativeTypeId,
-        MediaFileSystemFamily family)
+    private static MediaContentCategory? KnownCategory(string comment, bool? dataValid, string? nativeTypeId, MediaFileSystemFamily family)
     {
         if (dataValid == false) return MediaContentCategory.Data;
         if (string.Equals(nativeTypeId, "cartridge-bank", StringComparison.OrdinalIgnoreCase))

@@ -28,11 +28,7 @@ public static class MediaContentRecognitionCatalog
 
     public static MediaContentRecognitionRule? Find(MediaFileSystemFamily family, string? extension) => Find(family, extension, null, MediaContentRecognitionPriority.Standard);
 
-    public static MediaContentRecognitionRule? Find(
-        MediaFileSystemFamily family,
-        string? extension,
-        IReadOnlyList<byte>? content,
-        MediaContentRecognitionPriority priority)
+    public static MediaContentRecognitionRule? Find(MediaFileSystemFamily family, string? extension, IReadOnlyList<byte>? content, MediaContentRecognitionPriority priority)
     {
         var normalized = MediaContentRecognitionFunctions.NormalizeExtension(extension);
         foreach (var candidateFamily in CandidateFamilies(family))
