@@ -5,8 +5,7 @@ internal static class ControllerPortFunctions
     internal static void Configure(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
         MachineConfiguration configuration)
     {
-        ConfigurePort(exports, callbacks, configuration, ControllerConstants.FirstPort,
-            configuration.Input.Controllers?.FirstOrDefault()?.Peripheral ?? PeripheralCategory.Automatic);
+        ConfigurePort(exports, callbacks, configuration, ControllerConstants.FirstPort, configuration.Input.Controllers?.FirstOrDefault()?.Peripheral ?? PeripheralCategory.Automatic);
         callbacks.ConfigureInput(configuration.Input);
     }
 
@@ -17,7 +16,6 @@ internal static class ControllerPortFunctions
             throw new ArgumentOutOfRangeException(nameof(port), ErrorMessages.InvalidControllerPort);
         if (!ControllerFunctions.Peripherals(configuration.Model).Contains(peripheral))
             throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(peripheral));
-        exports.SetControllerPortDevice(checked((uint)port), peripheral == PeripheralCategory.None
-            ? CoreLifecycleConstants.NoDevice : InputConstants.JoypadDevice);
+        exports.SetControllerPortDevice(checked((uint)port), peripheral == PeripheralCategory.None ? CoreLifecycleConstants.NoDevice : InputConstants.JoypadDevice);
     }
 }

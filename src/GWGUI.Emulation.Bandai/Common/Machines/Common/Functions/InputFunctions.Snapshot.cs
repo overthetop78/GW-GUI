@@ -11,8 +11,7 @@ internal static class InputSnapshotFunctions
         foreach (var binding in configuration.Controllers)
         {
             if (binding.Port != ControllerConstants.FirstPort || binding.Peripheral == PeripheralCategory.None) continue;
-            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId,
-                snapshot.Controllers, binding.Port);
+            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, binding.Port);
             if (binding.Mappings is not { Count: > 0 })
             {
                 controllers[binding.Port] = EmulationControllerState.Empty;
@@ -22,8 +21,7 @@ internal static class InputSnapshotFunctions
             foreach (var mapping in binding.Mappings)
             {
                 if (!targets.TryGetValue(mapping.Key, out var target)) continue;
-                var controller = EmulationInputMappingFunctions.ResolveSourceController(mapping.Value,
-                    snapshot.Controllers, source);
+                var controller = EmulationInputMappingFunctions.ResolveSourceController(mapping.Value, snapshot.Controllers, source);
                 if (IsPressed(mapping.Value, controller, snapshot)) buttons |= 1u << target;
             }
             controllers[binding.Port] = source with { Buttons = buttons };
@@ -35,8 +33,7 @@ internal static class InputSnapshotFunctions
         EmulationInputSnapshot snapshot)
     {
         if (source.StartsWith(InputSnapshotFunctionsConstants.Keyboard, StringComparison.OrdinalIgnoreCase))
-            return Enum.TryParse<EmulationKey>(source[InputSnapshotFunctionsConstants.Keyboard.Length..], true,
-                out var key) && snapshot.Keys.Contains(key);
+            return Enum.TryParse<EmulationKey>(source[InputSnapshotFunctionsConstants.Keyboard.Length..], true, out var key) && snapshot.Keys.Contains(key);
         if (source.StartsWith(InputSnapshotFunctionsConstants.Mouse, StringComparison.OrdinalIgnoreCase))
             return source[InputSnapshotFunctionsConstants.Mouse.Length..] switch
             {

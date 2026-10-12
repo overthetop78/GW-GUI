@@ -7,8 +7,7 @@ public sealed class BandaiEmulationModule : IEmulationModule, IEmulationEmulator
     IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization,
     IEmulationFirmwareManager
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(BandaiEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
+    private static readonly EmulationModuleLocalization Localization = new(typeof(BandaiEmulationModule).Assembly, EmulationModuleConstants.LocalizationResourceName);
     private readonly ConfigurationStore _store;
     private readonly EmulatorManagementContext _managementContext;
     private readonly Engine _engine = new();
@@ -28,14 +27,10 @@ public sealed class BandaiEmulationModule : IEmulationModule, IEmulationEmulator
     public string DisplayResourceKey => EmulationModuleConstants.ResourceFamily;
     public string BrandImageResourceName => $"{EmulationModuleConstants.AssetResourcePrefix}.bandai.png";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
-    public EmulationSettingsVisibility DefaultVisibility { get; } = new(
-        Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab,
-            tab => true));
+    public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, tab => true));
 
-    public bool TryGetString(string key, CultureInfo culture, out string value) =>
-        Localization.TryGetString(key, culture, out value);
-    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode) =>
-        _engine.TryHandleHostCommand(arguments, out exitCode);
+    public bool TryGetString(string key, CultureInfo culture, out string value) => Localization.TryGetString(key, culture, out value);
+    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode) => _engine.TryHandleHostCommand(arguments, out exitCode);
 
     public EmulationMachineSettings Describe(string machineId, IEmulationConfiguration? configuration = null)
     {
@@ -52,12 +47,10 @@ public sealed class BandaiEmulationModule : IEmulationModule, IEmulationEmulator
             EmulationMachineTab.Storage => current.Family != MachineFamily.Tamagotchi,
             _ => item.Value
         });
-        return new EmulationMachineSettings(machineId, new EmulationSettingsVisibility(tabs),
-            SettingsDescriptionFunctions.Create(current));
+        return new EmulationMachineSettings(machineId, new EmulationSettingsVisibility(tabs), SettingsDescriptionFunctions.Create(current));
     }
 
-    public IEmulationConfiguration CreateConfiguration(string machineId) =>
-        new MachineConfiguration(ModelCatalog.Parse(machineId));
+    public IEmulationConfiguration CreateConfiguration(string machineId) => new MachineConfiguration(ModelCatalog.Parse(machineId));
     public IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId)
     {
         _ = Require(configuration);
@@ -68,10 +61,7 @@ public sealed class BandaiEmulationModule : IEmulationModule, IEmulationEmulator
         IReadOnlyDictionary<string, string?> values)
     {
         var current = Require(configuration);
-        var editable = SettingsDescriptionFunctions.Create(current).SelectMany(block => block.Fields)
-            .Where(field => field.IsEnabled && field.IsVisible
-                && field.Editor != EmulationSettingsEditor.Information)
-            .Select(field => field.Id).ToHashSet(StringComparer.Ordinal);
+        var editable = SettingsDescriptionFunctions.Create(current).SelectMany(block => block.Fields).Where(field => field.IsEnabled && field.IsVisible && field.Editor != EmulationSettingsEditor.Information).Select(field => field.Id).ToHashSet(StringComparer.Ordinal);
         var options = new Dictionary<string, string>(current.Options, StringComparer.Ordinal);
         foreach (var value in values)
         {
@@ -93,42 +83,25 @@ public sealed class BandaiEmulationModule : IEmulationModule, IEmulationEmulator
         };
         var result = current with
         {
-            Firmwares = values.TryGetValue(SettingsConstants.Firmware, out var firmwarePath)
-                && editable.Contains(SettingsConstants.Firmware)
-                ? string.IsNullOrWhiteSpace(firmwarePath) ? [] :
-                    [new FirmwareConfiguration(FirmwareCategory.System, firmwarePath, true)]
-                : current.Firmwares,
+            Firmwares = values.TryGetValue(SettingsConstants.Firmware, out var firmwarePath) && editable.Contains(SettingsConstants.Firmware) ? string.IsNullOrWhiteSpace(firmwarePath) ? [] : [new FirmwareConfiguration(FirmwareCategory.System, firmwarePath, true)] : current.Firmwares,
             Options = options, Folders = folders,
-            AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled)
-                && editable.Contains(SettingsConstants.AudioEnabled)
-                ? enabled == EmulationSettingConstants.Enabled : current.AudioEnabled
+            AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) && editable.Contains(SettingsConstants.AudioEnabled) ? enabled == EmulationSettingConstants.Enabled : current.AudioEnabled
         };
         ConfigurationFunctions.Validate(result);
         return result;
-        string? Folder(string id, string? original) => editable.Contains(id)
-            && values.TryGetValue(id, out var value) ? value : original;
+        string? Folder(string id, string? original) => editable.Contains(id) && values.TryGetValue(id, out var value) ? value : original;
     }
 
-    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) =>
-        _engine.Adapter(Require(configuration)).GetRuntimeOptions(Require(configuration));
-    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) =>
-        ConfigurationSummaryFunctions.Create(Require(configuration));
-    public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) =>
-        InputSettingsFunctions.Describe(Require(configuration));
-    public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration,
-        EmulationInputSettings settings) => InputSettingsFunctions.Apply(Require(configuration), settings);
-    public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default) => SaveConfigurationAsync(configuration, cancellationToken);
-    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) =>
-        StorageSettingsFunctions.Describe(Require(configuration));
-    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration,
-        EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(Require(configuration), settings);
+    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) => _engine.Adapter(Require(configuration)).GetRuntimeOptions(Require(configuration));
+    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) => ConfigurationSummaryFunctions.Create(Require(configuration));
+    public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => InputSettingsFunctions.Describe(Require(configuration));
+    public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => InputSettingsFunctions.Apply(Require(configuration), settings);
+    public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => SaveConfigurationAsync(configuration, cancellationToken);
+    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) => StorageSettingsFunctions.Describe(Require(configuration));
+    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(Require(configuration), settings);
 
-    public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(
-        CancellationToken cancellationToken = default) =>
-        (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
-    public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default) => new(_store.SaveAsync(Require(configuration), cancellationToken));
+    public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
+    public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => new(_store.SaveAsync(Require(configuration), cancellationToken));
     public ValueTask DeleteConfigurationAsync(Guid configurationId, CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -136,16 +109,10 @@ public sealed class BandaiEmulationModule : IEmulationModule, IEmulationEmulator
         return ValueTask.CompletedTask;
     }
 
-    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId,
-        CancellationToken cancellationToken = default) => Adapter(machineId)
-        .GetInstallationAsync(_managementContext, cancellationToken);
-    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(
-        IEmulationConfiguration configuration, CancellationToken cancellationToken = default) =>
-        _engine.Adapter(Require(configuration)).GetInstallationAsync(_managementContext, cancellationToken);
+    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId, CancellationToken cancellationToken = default) => Adapter(machineId).GetInstallationAsync(_managementContext, cancellationToken);
+    public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.Adapter(Require(configuration)).GetInstallationAsync(_managementContext, cancellationToken);
 
-    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(
-        IEmulationConfiguration configuration, CancellationToken cancellationToken = default) =>
-        _engine.Adapter(Require(configuration)).FindReleasesAsync(_managementContext, cancellationToken);
+    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.Adapter(Require(configuration)).FindReleasesAsync(_managementContext, cancellationToken);
 
     public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration,
         EmulationEmulatorRelease release, IProgress<double>? progress = null,
@@ -171,32 +138,24 @@ public sealed class BandaiEmulationModule : IEmulationModule, IEmulationEmulator
         return ValueTask.FromResult<IEmulationConfiguration>(current with
             { Core = Enum.Parse<Emulator>(adapter.EmulatorKey) });
     }
-    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId,
-        CancellationToken cancellationToken = default) => Adapter(machineId)
-        .FindReleasesAsync(_managementContext, cancellationToken);
-    public ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release,
-        IProgress<double>? progress = null, CancellationToken cancellationToken = default) => Adapter(machineId)
-        .InstallAsync(_managementContext, release, progress, cancellationToken);
+    public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default) => Adapter(machineId).FindReleasesAsync(_managementContext, cancellationToken);
+    public ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default) => Adapter(machineId).InstallAsync(_managementContext, release, progress, cancellationToken);
 
     public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration,
         EmulationRuntimeServices services, CancellationToken cancellationToken = default)
     {
         var current = Require(configuration);
         var adapter = _engine.Adapter(current);
-        var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken)
-            .ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(
+        var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(
                 EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
                 EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
                 new EmulationEmulatorMessageContext(adapter.EmulatorId)));
         var output = current.Options.GetValueOrDefault(SettingsConstants.AudioOutput);
         if (output == SettingsConstants.DefaultOutput) output = null;
-        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency)
-            && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)
-                ? parsed : SettingsConstants.DefaultLatency;
+        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : SettingsConstants.DefaultLatency;
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath, () => services.CreateAudioOutput(output, latency),
-            value => value.Folders.Saves ?? Path.Combine(services.StatesDirectory, EmulationModuleConstants.SavesDirectoryName,
-                value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)));
+            value => value.Folders.Saves ?? Path.Combine(services.StatesDirectory, EmulationModuleConstants.SavesDirectoryName, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)));
         var storage = StorageSettingsFunctions.Describe(current);
         return new EmulationMachineRuntime(current, media =>
         {
@@ -209,9 +168,7 @@ public sealed class BandaiEmulationModule : IEmulationModule, IEmulationEmulator
             ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey, false);
     }
 
-    private IEmulatorAdapter Adapter(string machineId) =>
-        _engine.Adapters(ModelCatalog.Parse(machineId).ToString()).SingleOrDefault()
-            ?? throw new ArgumentOutOfRangeException(nameof(machineId));
+    private IEmulatorAdapter Adapter(string machineId) => _engine.Adapters(ModelCatalog.Parse(machineId).ToString()).SingleOrDefault() ?? throw new ArgumentOutOfRangeException(nameof(machineId));
 
     public string GetFirmwareDirectory(string machineId)
     {
@@ -246,6 +203,5 @@ public sealed class BandaiEmulationModule : IEmulationModule, IEmulationEmulator
         ConfigurationFunctions.Validate(result);
         return result;
     }
-    private static MachineConfiguration Require(IEmulationConfiguration configuration) =>
-        configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+    private static MachineConfiguration Require(IEmulationConfiguration configuration) => configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
 }

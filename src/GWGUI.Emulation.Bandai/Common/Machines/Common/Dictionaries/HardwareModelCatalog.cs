@@ -23,15 +23,11 @@ public static class HardwareModelCatalog
     {
         MachineModel.WonderSwan => WonderSwan(WonderSwanMemoryBytes),
         MachineModel.WonderSwanColor or MachineModel.SwanCrystal => WonderSwan(WonderSwanColorMemoryBytes),
-        MachineModel.TamagotchiP1 => new(TamagotchiCpuResource, TamagotchiClockHz,
-            TamagotchiMemoryBytes, TamagotchiDisplayWidth, TamagotchiDisplayHeight,
-            TamagotchiDisplayMemoryBytes),
+        MachineModel.TamagotchiP1 => new(TamagotchiCpuResource, TamagotchiClockHz, TamagotchiMemoryBytes, TamagotchiDisplayWidth, TamagotchiDisplayHeight, TamagotchiDisplayMemoryBytes),
         // PlaydiaEmu plays discs through HLE; it does not emulate the physical CPUs/RAM.
         MachineModel.Playdia => null,
         _ => throw new ArgumentOutOfRangeException(nameof(model), model, null)
     };
 
-    private static HardwareModelDefinition WonderSwan(long memoryBytes) =>
-        new(WonderSwanCpuResource, WonderSwanClockHz, memoryBytes,
-            WonderSwanDisplayWidth, WonderSwanDisplayHeight);
+    private static HardwareModelDefinition WonderSwan(long memoryBytes) => new(WonderSwanCpuResource, WonderSwanClockHz, memoryBytes, WonderSwanDisplayWidth, WonderSwanDisplayHeight);
 }

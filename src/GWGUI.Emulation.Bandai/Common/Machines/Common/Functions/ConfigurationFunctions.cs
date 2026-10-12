@@ -47,23 +47,20 @@ internal static class ConfigurationFunctions
             }
             if (option.Key == SettingsConstants.AudioLatency)
             {
-                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer,
-                        System.Globalization.CultureInfo.InvariantCulture, out var latency)
+                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var latency)
                     || !SettingsConstants.Latencies.Contains(latency))
                     throw new ArgumentException(nameof(configuration.Options));
                 continue;
             }
             if (option.Key == VideoAudioSettingsConstants.AudioVolumeOption)
             {
-                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer,
-                        System.Globalization.CultureInfo.InvariantCulture, out var volume)
+                if (!int.TryParse(option.Value, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out var volume)
                     || volume is < VideoAudioSettingsConstants.MinimumVolumePercent
                         or > VideoAudioSettingsConstants.MaximumVolumePercent)
                     throw new ArgumentException(nameof(configuration.Options));
                 continue;
             }
-            if (!options.Any(definition => string.Equals(definition.Key, option.Key, StringComparison.Ordinal)
-                && definition.Values.Any(choice => string.Equals(choice.Value, option.Value, StringComparison.Ordinal))))
+            if (!options.Any(definition => string.Equals(definition.Key, option.Key, StringComparison.Ordinal) && definition.Values.Any(choice => string.Equals(choice.Value, option.Value, StringComparison.Ordinal))))
                 throw new ArgumentException(nameof(configuration.Options));
         }
         var firmwareRoles = new HashSet<FirmwareCategory>();
@@ -92,8 +89,7 @@ internal static class ConfigurationFunctions
                 || controller.Peripheral != PeripheralCategory.None && controller.Peripheral != PeripheralCategory.Automatic
                     && controller.Peripheral != DefaultPeripheral(configuration.Model))
                 throw new ArgumentException(nameof(configuration.Input));
-            if (controller.Mappings?.Any(mapping =>
-                    !InputSnapshotDictionary.ForModel(configuration.Model).ContainsKey(mapping.Key)) == true)
+            if (controller.Mappings?.Any(mapping => !InputSnapshotDictionary.ForModel(configuration.Model).ContainsKey(mapping.Key)) == true)
                 throw new ArgumentException(nameof(configuration.Input));
         }
     }

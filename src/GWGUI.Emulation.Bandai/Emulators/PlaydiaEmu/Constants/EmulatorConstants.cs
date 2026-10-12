@@ -2,9 +2,7 @@ namespace GWGUI.Emulation.Bandai.Emulators.PlaydiaEmu.Constants;
 
 internal static class EmulatorConstants
 {
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(
-        Emulator.PlaydiaEmu, Id, LibraryName, DllName, SourceUri, InspectedRevision,
-        MachineModel.Playdia)
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.PlaydiaEmu, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.Playdia)
         with { DescriptionResourceKey = DescriptionResourceKey };
     internal const string Id = "playdiaemu";
     internal const string LibraryName = "PlaydiaEmu";

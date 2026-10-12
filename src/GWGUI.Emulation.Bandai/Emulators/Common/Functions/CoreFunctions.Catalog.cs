@@ -7,9 +7,7 @@ internal static class EmulatorCatalogFunctions
         string dllName, string source, string revision, params MachineModel[] models)
     {
         var archiveName = dllName + EmulatorCatalogConstants.ArchiveExtension;
-        return new EmulatorCatalogEntry(emulator, id, libraryName, dllName, archiveName,
-            new Uri(EmulatorCatalogConstants.BuildServerRoot + archiveName, UriKind.Absolute),
-            new Uri(source, UriKind.Absolute), revision, models.ToHashSet());
+        return new EmulatorCatalogEntry(emulator, id, libraryName, dllName, archiveName, new Uri(EmulatorCatalogConstants.BuildServerRoot + archiveName, UriKind.Absolute), new Uri(source, UriKind.Absolute), revision, models.ToHashSet());
     }
 
     internal static CoreInstallationPaths GetInstallationPaths(EmulatorCatalogEntry entry,
@@ -20,17 +18,14 @@ internal static class EmulatorCatalogFunctions
         if (string.IsNullOrWhiteSpace(version))
             throw new ArgumentException(EmulatorCatalogErrors.EmptyVersion, nameof(version));
         var versionDirectory = Path.Combine(Path.GetFullPath(installationRoot), entry.Id, version);
-        return new CoreInstallationPaths(versionDirectory,
-            Path.Combine(versionDirectory, entry.DllName),
-            Path.Combine(versionDirectory, EmulatorCatalogConstants.ManifestFileName));
+        return new CoreInstallationPaths(versionDirectory, Path.Combine(versionDirectory, entry.DllName), Path.Combine(versionDirectory, EmulatorCatalogConstants.ManifestFileName));
     }
 
     internal static string GetActiveManifestPath(EmulatorCatalogEntry entry, string installationRoot)
     {
         if (string.IsNullOrWhiteSpace(installationRoot))
             throw new ArgumentException(EmulatorCatalogErrors.EmptyInstallationRoot, nameof(installationRoot));
-        return Path.Combine(Path.GetFullPath(installationRoot), entry.Id,
-            EmulatorCatalogConstants.ActiveManifestFileName);
+        return Path.Combine(Path.GetFullPath(installationRoot), entry.Id, EmulatorCatalogConstants.ActiveManifestFileName);
     }
 
     internal static IReadOnlyDictionary<MachineModel, Emulator> CreateModelAssociations(

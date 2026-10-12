@@ -9,14 +9,11 @@ internal sealed partial class ExternalCore
     private void PrepareInitialMedia(MachineConfiguration configuration)
     {
         _initialMedia = configuration.Media.FirstOrDefault(media => media.IsInserted);
-        var path = configuration.Model == MachineModel.TamagotchiP1
-            ? configuration.Firmwares.FirstOrDefault(firmware => firmware.Category == FirmwareCategory.System)?.Path
-            : _initialMedia?.Path;
+        var path = configuration.Model == MachineModel.TamagotchiP1 ? configuration.Firmwares.FirstOrDefault(firmware => firmware.Category == FirmwareCategory.System)?.Path : _initialMedia?.Path;
         if (path is null)
         {
             if (configuration.Model == MachineModel.TamagotchiP1)
-                throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareMissing,
-                    ErrorMessages.RequiredFirmwareMissing);
+                throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareMissing, ErrorMessages.RequiredFirmwareMissing);
             return;
         }
         var validated = ContentFunctions.Validate(path, _info.Extensions);
@@ -25,8 +22,7 @@ internal sealed partial class ExternalCore
             var size = new FileInfo(validated).Length;
             if (size <= 0 || size > MediaConstants.MaximumTamagotchiRomBytes
                 || size % MediaConstants.TamagotchiInstructionBytes != 0)
-                throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid,
-                    ErrorMessages.UnknownFirmware);
+                throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.UnknownFirmware);
         }
         _content = ContentFunctions.Create(validated, _info.NeedsFullPath, _info.Extensions);
         if (configuration.Family == MachineFamily.WonderSwan)
@@ -46,9 +42,7 @@ internal sealed partial class ExternalCore
         if (index != 0 || GetDiskStatus().ImageCount == 0) throw DynamicMediaUnavailable();
     }
 
-    public DiskStatus GetDiskStatus() => _configuration?.Family == MachineFamily.Playdia && _initialMedia is not null
-        ? new(1, 0, false, [new(0, _initialMedia.Path, _initialMedia.Label)])
-        : new(0, -1, true, []);
+    public DiskStatus GetDiskStatus() => _configuration?.Family == MachineFamily.Playdia && _initialMedia is not null ? new(1, 0, false, [new(0, _initialMedia.Path, _initialMedia.Label)]) : new(0, -1, true, []);
 
     public void SaveMediaChanges(EmulationMediaSlot slot)
     {
@@ -58,6 +52,5 @@ internal sealed partial class ExternalCore
 
     public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) => false;
 
-    private static EmulationException DynamicMediaUnavailable() => new(
-        ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.DynamicMediaUnsupported);
+    private static EmulationException DynamicMediaUnavailable() => new(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.DynamicMediaUnsupported);
 }

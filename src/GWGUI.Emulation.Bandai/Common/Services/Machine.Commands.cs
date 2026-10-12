@@ -26,8 +26,7 @@ private MachineConfiguration CurrentConfiguration() =>
         return new ValueTask(completion.Task.WaitAsync(cancellationToken));
     }
 
-    private ValueTask QueueCommand<T>(Action<T> action, T value, CancellationToken cancellationToken) =>
-        QueueCommand(() => action(value), cancellationToken);
+    private ValueTask QueueCommand<T>(Action<T> action, T value, CancellationToken cancellationToken) => QueueCommand(() => action(value), cancellationToken);
 
     private void Run(CancellationToken cancellationToken)
     {
@@ -107,8 +106,7 @@ private MachineConfiguration CurrentConfiguration() =>
     {
         error = MessageFunctions.Translate(error, Configuration);
         if (_core.Diagnostics.Count > MachineConstants.EmptyCount)
-            error.Data[MachineConstants.DiagnosticDataKey] = string.Join(Environment.NewLine,
-                _core.Diagnostics.TakeLast(MachineConstants.DiagnosticTailCount));
+            error.Data[MachineConstants.DiagnosticDataKey] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(MachineConstants.DiagnosticTailCount));
         _started?.TrySetException(error);
         lock (_gate)
         {
@@ -148,8 +146,7 @@ private MachineConfiguration CurrentConfiguration() =>
         _core.HardReset();
     }
 
-    private bool NeedsMediaRestart(EmulationMediaSlot slot, string? path = null) =>
-        slot == EmulationMediaSlot.Cartridge0 || slot == EmulationMediaSlot.Cd0;
+    private bool NeedsMediaRestart(EmulationMediaSlot slot, string? path = null) => slot == EmulationMediaSlot.Cartridge0 || slot == EmulationMediaSlot.Cd0;
 
     private void SuspendForMedia()
     {

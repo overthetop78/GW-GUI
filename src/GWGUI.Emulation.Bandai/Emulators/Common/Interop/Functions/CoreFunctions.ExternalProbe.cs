@@ -9,8 +9,7 @@ internal static class ExternalCoreProbe
     internal static ExternalCoreInfo Inspect(string absolutePath, Emulator expectedEmulator)
     {
         if (!Path.IsPathFullyQualified(absolutePath))
-            throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected,
-                ErrorMessages.CorePathMustBeAbsolute);
+            throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected, ErrorMessages.CorePathMustBeAbsolute);
         if (!File.Exists(absolutePath))
             throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreNotFound,
                 ErrorMessages.CoreFileMissing,
@@ -54,13 +53,11 @@ internal static class ExternalCoreProbe
         }
         catch (EntryPointNotFoundException error)
         {
-            throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected,
-                ErrorMessages.CoreExportMissing, innerException: error);
+            throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected, ErrorMessages.CoreExportMissing, innerException: error);
         }
         catch (BadImageFormatException error)
         {
-            throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected,
-                ErrorMessages.CoreIdentityMismatch, innerException: error);
+            throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreRejected, ErrorMessages.CoreIdentityMismatch, innerException: error);
         }
     }
 

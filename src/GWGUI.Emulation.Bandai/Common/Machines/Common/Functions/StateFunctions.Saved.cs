@@ -45,11 +45,9 @@ internal static class SavedStateFunctions
             throw Invalid(ErrorCode.StateInvalid, ErrorMessages.StateInvalid);
     }
 
-    internal static EmulationException Invalid(ErrorCode code, string message,
-        Exception? innerException = null) => new(ErrorCategory.State, code, message, innerException: innerException);
+    internal static EmulationException Invalid(ErrorCode code, string message, Exception? innerException = null) => new(ErrorCategory.State, code, message, innerException: innerException);
 
-    internal static string HashBytes(ReadOnlySpan<byte> value) =>
-        Convert.ToHexString(SHA256.HashData(value));
+    internal static string HashBytes(ReadOnlySpan<byte> value) => Convert.ToHexString(SHA256.HashData(value));
 
     internal static string ConfigurationHash(MachineConfiguration configuration)
     {
@@ -61,28 +59,20 @@ internal static class SavedStateFunctions
             ContentEntries(configuration),
             configuration.Options.OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray(),
             InputFingerprint(configuration.Input),
-            configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
-                .ToArray(),
+            configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).ToArray(),
             configuration.Firmwares.OrderBy(firmware => firmware.Category).ToArray());
         return HashBytes(JsonSerializer.SerializeToUtf8Bytes(fingerprint, StateConstants.JsonOptions));
     }
 
-    internal static bool IsCompatibleConfigurationHash(MachineConfiguration configuration, string hash) =>
-        string.Equals(hash, ConfigurationHash(configuration), StringComparison.OrdinalIgnoreCase);
+    internal static bool IsCompatibleConfigurationHash(MachineConfiguration configuration, string hash) => string.Equals(hash, ConfigurationHash(configuration), StringComparison.OrdinalIgnoreCase);
 
-    internal static string ContentHash(MachineConfiguration configuration) =>
-        HashBytes(JsonSerializer.SerializeToUtf8Bytes(ContentEntries(configuration),
-            StateConstants.JsonOptions));
+    internal static string ContentHash(MachineConfiguration configuration) => HashBytes(JsonSerializer.SerializeToUtf8Bytes(ContentEntries(configuration), StateConstants.JsonOptions));
 
     private static IReadOnlyList<StateContentEntry> ContentEntries(
         MachineConfiguration configuration)
     {
-        var entries = configuration.Firmwares
-            .OrderBy(firmware => firmware.Category)
-            .Select(firmware => new StateContentEntry(StateConstants.FirmwareCategory,
-                firmware.Category.ToString(), HashPath(firmware.Path)))
-            .Concat(configuration.Media.OrderBy(MediaOrder)
-                .ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
+        var entries = configuration.Firmwares.OrderBy(firmware => firmware.Category).Select(firmware => new StateContentEntry(StateConstants.FirmwareCategory, firmware.Category.ToString(), HashPath(firmware.Path)))
+            .Concat(configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
                 .Select(media => new StateContentEntry(StateConstants.MediaCategory,
                     $"{media.Category}:{media.Slot}", HashPath(media.Path))))
             .ToArray();
@@ -103,40 +93,31 @@ internal static class SavedStateFunctions
         && !string.IsNullOrWhiteSpace(header.StateSha256);
 
     private static StateInputFingerprint InputFingerprint(InputConfiguration input) => new(
-        (input.Controllers ?? [])
-            .OrderBy(controller => controller.Port)
+        (input.Controllers ?? []).OrderBy(controller => controller.Port)
             .Select(controller => new StateControllerFingerprint(
                 controller.Port,
                 controller.Peripheral,
                 controller.DeviceId,
                 controller.DeadZonePercent,
-                (controller.Mappings ?? new Dictionary<string, string>())
-                    .OrderBy(pair => pair.Key, StringComparer.Ordinal)
-                    .ToArray()))
+                (controller.Mappings ?? new Dictionary<string, string>()).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray()))
             .ToArray());
 
     private static string HashPath(string path)
     {
-        if (string.Equals(Path.GetExtension(path), MediaConstants.CueExtension,
-                StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(Path.GetExtension(path), MediaConstants.CueExtension, StringComparison.OrdinalIgnoreCase))
         {
-            var document = new GWGUI.MediaEngine.Images.Formats.Optical.BinCue.CueSheetReader()
-                .Parse(File.ReadLines(path));
+            var document = new GWGUI.MediaEngine.Images.Formats.Optical.BinCue.CueSheetReader().Parse(File.ReadLines(path));
             var directory = Path.GetDirectoryName(Path.GetFullPath(path))!;
             return HashBytes(Encoding.UTF8.GetBytes(string.Join(Environment.NewLine,
-                document.Files.Select(file => Path.GetFullPath(file.DeclaredPath, directory))
-                    .Distinct(StringComparer.OrdinalIgnoreCase).Select(HashFile).Prepend(HashFile(path)))));
+                document.Files.Select(file => Path.GetFullPath(file.DeclaredPath, directory)).Distinct(StringComparer.OrdinalIgnoreCase).Select(HashFile).Prepend(HashFile(path)))));
         }
         if (File.Exists(path)) return HashFile(path);
         if (!Directory.Exists(path)) throw new FileNotFoundException(ErrorMessages.ContentFileMissing, path);
         using var hash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
         Span<byte> length = stackalloc byte[sizeof(int)];
-        foreach (var file in Directory.EnumerateFiles(path, StateConstants.AllFilesSearchPattern,
-                     SearchOption.AllDirectories)
-                     .Order(StringComparer.OrdinalIgnoreCase))
+        foreach (var file in Directory.EnumerateFiles(path, StateConstants.AllFilesSearchPattern, SearchOption.AllDirectories).Order(StringComparer.OrdinalIgnoreCase))
         {
-            var relative = Path.GetRelativePath(path, file)
-                .Replace(Path.DirectorySeparatorChar, StateConstants.CanonicalDirectorySeparator);
+            var relative = Path.GetRelativePath(path, file).Replace(Path.DirectorySeparatorChar, StateConstants.CanonicalDirectorySeparator);
             var name = Encoding.UTF8.GetBytes(relative);
             BinaryPrimitives.WriteInt32LittleEndian(length, name.Length);
             hash.AppendData(length);

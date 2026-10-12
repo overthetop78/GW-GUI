@@ -2,9 +2,7 @@ namespace GWGUI.Emulation.Bandai.Emulators.TamaLibretro.Constants;
 
 internal static class EmulatorConstants
 {
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(
-        Emulator.TamaLibretro, Id, LibraryName, DllName, SourceUri, InspectedRevision,
-        MachineModel.TamagotchiP1)
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.TamaLibretro, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.TamagotchiP1)
         with { DescriptionResourceKey = DescriptionResourceKey };
     internal const string Id = "tamalibretro";
     internal const string LibraryName = "TamaLIBretro";

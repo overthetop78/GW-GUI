@@ -47,13 +47,7 @@ internal static class SettingsDescriptionFunctions
             ));
         var memoryFields = new List<EmulationSettingsField>
         {
-            Information(
-                SettingsConstants.MainMemory,
-                EmulationMachineTab.Ram,
-                SettingsConstants.ResourceMemoryMain,
-                SettingsConstants.ResourceMemoryMain,
-                Memory(hardware.MainMemoryBytes)
-            )
+            Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, SettingsConstants.ResourceMemoryMain, Memory(hardware.MainMemoryBytes))
         };
         if (hardware.DisplayMemoryBytes > 0)
             memoryFields.Add(Information(SettingsConstants.DisplayMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, SettingsConstants.ResourceDisplayMemory, Memory(hardware.DisplayMemoryBytes)));

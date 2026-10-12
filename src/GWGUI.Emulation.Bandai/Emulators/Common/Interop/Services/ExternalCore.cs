@@ -63,8 +63,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
         {
             _configuration = configuration;
             _sessionDirectory = Path.GetFullPath(sessionDirectory);
-            _saveDirectory = Path.GetFullPath(saveDirectory ?? configuration.Folders.Saves
-                ?? Path.Combine(_sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
+            _saveDirectory = Path.GetFullPath(saveDirectory ?? configuration.Folders.Saves ?? Path.Combine(_sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
             var systemDirectory = Path.Combine(_sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
             Directory.CreateDirectory(systemDirectory);
             _library = new ExternalCoreLibrary(_corePath);
@@ -91,8 +90,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
             ControllerPortFunctions.Configure(_exports, _callbacks, configuration);
             _exports.GetSystemAvInfo(out var avInfo);
             _callbacks.ApplySystemAvInfo(avInfo);
-            Region = _exports.GetRegion() == ExternalCoreInteropConstants.NativeBooleanTrue
-                ? EmulationVideoStandard.Pal : EmulationVideoStandard.Ntsc;
+            Region = _exports.GetRegion() == ExternalCoreInteropConstants.NativeBooleanTrue ? EmulationVideoStandard.Pal : EmulationVideoStandard.Ntsc;
             completed = true;
         }
         finally
