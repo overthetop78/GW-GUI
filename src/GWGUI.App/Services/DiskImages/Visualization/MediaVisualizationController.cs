@@ -160,14 +160,8 @@ internal sealed class MediaVisualizationController
         if (showProgress)
         {
             var cylindersBySurface = geometry.Surfaces.ToDictionary(surface => surface.Index, surface => (IReadOnlyList<int>)surface.Tracks.Select(track => track.Cylinder).ToArray());
-            _face0Progress.Configure(
-                MediaVisualizationLayoutConstants.FaceOne,
-                cylindersBySurface.GetValueOrDefault(MediaVisualizationLayoutConstants.FaceOne) ?? [],
-                _localize(DiskImageResourceKeys.VisualSide, [MediaVisualizationLayoutConstants.FaceOne]));
-            _face1Progress.Configure(
-                MediaVisualizationLayoutConstants.FaceTwo,
-                cylindersBySurface.GetValueOrDefault(MediaVisualizationLayoutConstants.FaceTwo) ?? [],
-                _localize(DiskImageResourceKeys.VisualSide, [MediaVisualizationLayoutConstants.FaceTwo]));
+            _face0Progress.Configure( MediaVisualizationLayoutConstants.FaceOne, cylindersBySurface.GetValueOrDefault(MediaVisualizationLayoutConstants.FaceOne) ?? [], _localize(DiskImageResourceKeys.VisualSide, [MediaVisualizationLayoutConstants.FaceOne]));
+            _face1Progress.Configure( MediaVisualizationLayoutConstants.FaceTwo, cylindersBySurface.GetValueOrDefault(MediaVisualizationLayoutConstants.FaceTwo) ?? [], _localize(DiskImageResourceKeys.VisualSide, [MediaVisualizationLayoutConstants.FaceTwo]));
             _viewModel.ProgressVisibility = Visibility.Visible;
             _viewModel.Face0ProgressVisibility = cylindersBySurface.ContainsKey(MediaVisualizationLayoutConstants.FaceOne) ? Visibility.Visible : Visibility.Collapsed;
             _viewModel.Face1ProgressVisibility = cylindersBySurface.ContainsKey(MediaVisualizationLayoutConstants.FaceTwo) ? Visibility.Visible : Visibility.Collapsed;
@@ -203,11 +197,7 @@ internal sealed class MediaVisualizationController
         var rowSize = (model.Segments.Count + rowCount - 1) / rowCount;
         var firstCount = Math.Min(rowSize, model.Segments.Count);
         var secondCount = Math.Max(0, model.Segments.Count - firstCount);
-        _face0Progress.Configure(
-            MediaVisualizationProgressUnit.Segment,
-            MediaVisualizationLayoutConstants.SegmentProgressPageOne,
-            Enumerable.Range(0, firstCount).Select(index => (long)index).ToArray(),
-            _localize(DiskImageResourceKeys.ExplorerCassette, []));
+        _face0Progress.Configure( MediaVisualizationProgressUnit.Segment, MediaVisualizationLayoutConstants.SegmentProgressPageOne, Enumerable.Range(0, firstCount).Select(index => (long)index).ToArray(), _localize(DiskImageResourceKeys.ExplorerCassette, []));
         if (secondCount > 0)
         {
             _face1Progress.Configure(

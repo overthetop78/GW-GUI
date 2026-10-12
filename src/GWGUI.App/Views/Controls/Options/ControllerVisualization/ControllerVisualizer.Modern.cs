@@ -133,13 +133,7 @@ public sealed partial class ControllerVisualizer
             dc.DrawGeometry(null, new Pen(ColorBrush(Color.FromRgb(40, 103, 191)), 2), Geometry.Parse("M231,78 C253,90 280,96 310,96 C340,96 367,90 389,78"));
         }
 
-        dc.DrawRoundedRectangle(
-            dualSense ? ColorBrush(Color.FromRgb(31, 32, 36)) : ColorBrush(Color.FromRgb(25, 26, 29)),
-            new Pen(ColorBrush(Color.FromRgb(117, 120, 126)), 2),
-            dualSense ? new Rect(242, 80, 136, 71) : new Rect(234, 72, 152, 68),
-            14,
-            14
-        );
+        dc.DrawRoundedRectangle( dualSense ? ColorBrush(Color.FromRgb(31, 32, 36)) : ColorBrush(Color.FromRgb(25, 26, 29)), new Pen(ColorBrush(Color.FromRgb(117, 120, 126)), 2), dualSense ? new Rect(242, 80, 136, 71) : new Rect(234, 72, 152, 68), 14, 14 );
         dc.DrawLine(new Pen(ColorBrush(Color.FromArgb(80, 255, 255, 255)), 1), new Point(255, 94), new Point(365, 94));
         dc.DrawRoundedRectangle(input.LeftTrigger > .04f ? Accent() : ColorBrush(Color.FromRgb(29, 31, 34)), outline, new Rect(124, 47, 111, 27), 11, 11);
         dc.DrawRoundedRectangle(input.RightTrigger > .04f ? Accent() : ColorBrush(Color.FromRgb(29, 31, 34)), outline, new Rect(385, 47, 111, 27), 11, 11);

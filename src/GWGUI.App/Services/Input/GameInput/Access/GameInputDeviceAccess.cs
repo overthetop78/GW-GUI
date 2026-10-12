@@ -124,10 +124,7 @@ internal static partial class GameInputDeviceMonitor
         var refreshTokens = new List<ulong>(ControllerRefreshFilters.Length);
         foreach (var filter in ControllerRefreshFilters)
         {
-            var result = _gameInput.RegisterDeviceCallback(null, filter,
-                GameInputDeviceStatus.Any, GameInputEnumerationKind.Blocking,
-                new IntPtr(unchecked((long)(uint)filter)),
-                Marshal.GetFunctionPointerForDelegate(DeviceCallback), out var refreshToken);
+            var result = _gameInput.RegisterDeviceCallback(null, filter, GameInputDeviceStatus.Any, GameInputEnumerationKind.Blocking, new IntPtr(unchecked((long)(uint)filter)), Marshal.GetFunctionPointerForDelegate(DeviceCallback), out var refreshToken);
             if (result < 0)
             {
                 foreach (var token in refreshTokens) SafeUnregister(token);

@@ -20,14 +20,7 @@ public sealed class WindowPlacementController
 
     public void Restore(Window window, WindowPlacementSettings settings)
     {
-        var placement = WindowPlacementPolicy.Normalize(
-            settings,
-            window.MinWidth,
-            window.MinHeight,
-            SystemParameters.VirtualScreenLeft,
-            SystemParameters.VirtualScreenTop,
-            SystemParameters.VirtualScreenWidth,
-            SystemParameters.VirtualScreenHeight);
+        var placement = WindowPlacementPolicy.Normalize( settings, window.MinWidth, window.MinHeight, SystemParameters.VirtualScreenLeft, SystemParameters.VirtualScreenTop, SystemParameters.VirtualScreenWidth, SystemParameters.VirtualScreenHeight);
 
         window.Width = placement.Width;
         window.Height = placement.Height;

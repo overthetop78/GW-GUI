@@ -10,10 +10,7 @@ public sealed class MediaParityMatrix(IEnumerable<MediaParityRow> rows)
     {
         var source = Normalize(sourceContainer);
         var target = Normalize(targetContainer);
-        return _rows.FirstOrDefault(row =>
-            row.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase) &&
-            row.SourceContainer.Equals(source, StringComparison.OrdinalIgnoreCase) &&
-            row.TargetContainer.Equals(target, StringComparison.OrdinalIgnoreCase));
+        return _rows.FirstOrDefault(row => row.FormatId.Equals(formatId, StringComparison.OrdinalIgnoreCase) && row.SourceContainer.Equals(source, StringComparison.OrdinalIgnoreCase) && row.TargetContainer.Equals(target, StringComparison.OrdinalIgnoreCase));
     }
 
     public bool IsValidated(string sourceContainer, string formatId, string targetContainer, MediaParityOperation operation) => Find(sourceContainer, formatId, targetContainer)?.IsValidatedFor(operation) == true;

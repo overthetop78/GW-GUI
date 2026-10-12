@@ -77,10 +77,7 @@ public sealed class FloppyDriveConfigurationDialog : Window
         body.Children.Add(StorageDialogUi.IconCard(IconGlyphs.FloppyDisk, LocExtension.Get("Emulation.Storage.Media.Blank"), blankMedia));
         }
 
-        Content = StorageDialogUi.DialogLayout(
-            StorageDialogUi.DialogHeader(IconGlyphs.Memory, Title, $"{LocExtension.Get(EmulationResourceKeys.FloppyDevice)} · {machineName}"),
-            body,
-            StorageDialogUi.Footer(this, LocExtension.Get("Common.Save")));
+        Content = StorageDialogUi.DialogLayout( StorageDialogUi.DialogHeader(IconGlyphs.Memory, Title, $"{LocExtension.Get(EmulationResourceKeys.FloppyDevice)} · {machineName}"), body, StorageDialogUi.Footer(this, LocExtension.Get("Common.Save")));
     }
 
     private void CreateBlankFloppy()

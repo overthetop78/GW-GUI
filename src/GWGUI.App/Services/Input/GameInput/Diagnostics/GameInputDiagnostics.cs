@@ -114,11 +114,7 @@ internal static class GameInputDiagnostics
         {
             foreach (var axis in Enum.GetValues<GameInputGamepadAxes>())
                 if (axis != 0 && mapper.GetGamepadAxisMappingInfo(axis, out var mapping))
-                    mappings.Add(Format(
-                        GameInputDiagnosticConstants.AxisMappingFormat,
-                        axis, mapping.ControllerElementKind, mapping.ControllerIndex,
-                        mapping.IsInverted, mapping.FromTwoButtons,
-                        mapping.ButtonMinIndexValue, mapping.ReferenceDirection));
+                    mappings.Add(Format( GameInputDiagnosticConstants.AxisMappingFormat, axis, mapping.ControllerElementKind, mapping.ControllerIndex, mapping.IsInverted, mapping.FromTwoButtons, mapping.ButtonMinIndexValue, mapping.ReferenceDirection));
             foreach (var button in Enum.GetValues<GameInputGamepadButtons>())
                 if (button != 0 && mapper.GetGamepadButtonMappingInfo(button, out var mapping))
                     mappings.Add(Format(GameInputDiagnosticConstants.ButtonMappingFormat, button, mapping.ControllerElementKind, mapping.ControllerIndex, mapping.IsInverted, mapping.SwitchPosition));

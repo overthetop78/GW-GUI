@@ -171,10 +171,7 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
         var handle = GCHandle.Alloc(pixels, GCHandleType.Pinned);
         try
         {
-            GlTexImage2D(OpenGlVideoConstants.Texture2D, 0,
-                (int)OpenGlVideoConstants.Rgba, processed.Width, processed.Height, 0,
-                OpenGlVideoConstants.Bgra, OpenGlVideoConstants.UnsignedByte,
-                IntPtr.Add(handle.AddrOfPinnedObject(), pixelOffset));
+            GlTexImage2D(OpenGlVideoConstants.Texture2D, 0, (int)OpenGlVideoConstants.Rgba, processed.Width, processed.Height, 0, OpenGlVideoConstants.Bgra, OpenGlVideoConstants.UnsignedByte, IntPtr.Add(handle.AddrOfPinnedObject(), pixelOffset));
         }
         finally { handle.Free(); }        GlViewport(0, 0, clientSize.Width, clientSize.Height);
         GlClearColor(0, 0, 0, 1); GlClear(OpenGlVideoConstants.ColorBufferBit);

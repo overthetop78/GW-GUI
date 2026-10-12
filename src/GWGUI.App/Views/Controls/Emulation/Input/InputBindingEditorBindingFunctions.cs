@@ -44,8 +44,7 @@ public partial class InputBindingEditor
 
     private void ValidateBindings()
     {
-        var duplicates = _rows.Where(row => !string.IsNullOrWhiteSpace(row.Binding)).GroupBy(row => row.Binding.Trim(), StringComparer.OrdinalIgnoreCase).Where(group => group.Count() > 1).Select(group => group.Key)
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var duplicates = _rows.Where(row => !string.IsNullOrWhiteSpace(row.Binding)).GroupBy(row => row.Binding.Trim(), StringComparer.OrdinalIgnoreCase).Where(group => group.Count() > 1).Select(group => group.Key) .ToHashSet(StringComparer.OrdinalIgnoreCase);
         foreach (var row in _rows)
         {
             if (string.IsNullOrWhiteSpace(row.Binding)) row.SetState(InputBindingState.Unassigned);

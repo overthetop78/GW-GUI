@@ -50,8 +50,6 @@ internal static class GameControllerNameDatabase
     private static bool TryReadLittleEndianId(ReadOnlySpan<char> value, out ushort result)
     {
         result = 0;
-        return byte.TryParse(value[..2], System.Globalization.NumberStyles.HexNumber, null, out var low) &&
-            byte.TryParse(value.Slice(2, 2), System.Globalization.NumberStyles.HexNumber, null, out var high) &&
-            (result = (ushort)(low | high << 8)) >= 0;
+        return byte.TryParse(value[..2], System.Globalization.NumberStyles.HexNumber, null, out var low) && byte.TryParse(value.Slice(2, 2), System.Globalization.NumberStyles.HexNumber, null, out var high) && (result = (ushort)(low | high << 8)) >= 0;
     }
 }

@@ -52,10 +52,7 @@ internal static class FilterSabr
             sourceX = Math.Clamp(sourceX, 0, width - 1);
             sourceY = Math.Clamp(sourceY, 0, height - 1);
             var offset = (sourceY * width + sourceX) * 3;
-            return new Color(
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]),
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]),
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]));
+            return new Color( SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]));
         }
     }
 

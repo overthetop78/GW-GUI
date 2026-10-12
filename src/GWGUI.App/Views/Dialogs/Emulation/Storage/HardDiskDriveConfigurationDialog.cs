@@ -309,9 +309,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         }
         if (!IsSupportedCapacity(byteSize, SelectedFormat))
         { ShowError(_limits.Text); return; }
-        HardDiskImageCreation.Create(path, byteSize, SelectedFormat,
-            SelectedFormat.SupportsFixedAllocation && _preallocate.IsChecked == true,
-            _preparation.SelectedValue is HardDiskPreparation preparation ? preparation : HardDiskPreparation.Blank);
+        HardDiskImageCreation.Create(path, byteSize, SelectedFormat, SelectedFormat.SupportsFixedAllocation && _preallocate.IsChecked == true, _preparation.SelectedValue is HardDiskPreparation preparation ? preparation : HardDiskPreparation.Blank);
         SupportPath = path;
         InterfaceId = SelectedFormat.InterfaceName;
         DialogResult = true;

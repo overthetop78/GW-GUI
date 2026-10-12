@@ -47,10 +47,7 @@ internal static class FilterHqx
         {
             px = Math.Clamp(px, 0, width - 1); py = Math.Clamp(py, 0, height - 1);
             var offset = (py * width + px) * 3;
-            return new FilterColor(
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]),
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]),
-                SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]));
+            return new FilterColor( SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]));
         }
     }
 

@@ -93,16 +93,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         _fileSelection = new DiskImageFileSelectionService(getSettings, fileDialogs, localize, supportedExtensions);
         _mediaVisualization = new MediaVisualizationController(visualizer, viewModel, face0Progress, face1Progress, visualizationProviders, localize);
         _scpVisualization = new ScpVisualizationController(visualizer, viewModel, face0Progress, face1Progress, inspector, scpLoader, cancellation, visualizationProviders, operationIsRunning, showError, localize);
-        _explorerLoading = new ExplorerPresentationController(
-            explorer,
-            visualizer,
-            AnalyzeOpeningAsync,
-            cancellation,
-            ApplyClassification,
-            document => LastReadImage = document,
-            mediaImage => _exploredMediaImage = mediaImage,
-            showError,
-            localize);
+        _explorerLoading = new ExplorerPresentationController( explorer, visualizer, AnalyzeOpeningAsync, cancellation, ApplyClassification, document => LastReadImage = document, mediaImage => _exploredMediaImage = mediaImage, showError, localize);
         _cassetteLoading = new CassetteLoadingPresenter(explorer, visualizer, face0Progress, face1Progress, _mediaVisualization, ReportSharedProgress, localize);
         _visualizerLoading = new VisualizerLoadingController(
             visualizer,
@@ -143,13 +134,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         var disk = await _explore(path, requestedFormatId, cancellationToken);
         cancellationToken.ThrowIfCancellationRequested();
         var representation = disk.ScpImage is { } scpImage ? (GWGUI.MediaEngine.Interfaces.IMediaImageRepresentation)new FluxMediaImageRepresentation(ScpProtectedTrackImageAdapter.Create(scpImage)) : new SectorMediaImageRepresentation(disk.Image);
-        var document = MediaImageDocument.CreateUnexplored(
-            new MediaSourceDescriptor(path, [], RequestedFormatId: requestedFormatId),
-            disk.PrimaryFormatId,
-            MediaKind.Floppy,
-            representation,
-            [],
-            new Dictionary<string, string>(StringComparer.Ordinal));
+        var document = MediaImageDocument.CreateUnexplored( new MediaSourceDescriptor(path, [], RequestedFormatId: requestedFormatId), disk.PrimaryFormatId, MediaKind.Floppy, representation, [], new Dictionary<string, string>(StringComparer.Ordinal));
         return new(document, disk, null);
     }
 

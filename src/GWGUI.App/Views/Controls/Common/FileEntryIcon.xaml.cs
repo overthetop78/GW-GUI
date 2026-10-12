@@ -15,9 +15,7 @@ public partial class FileEntryIcon : UserControl
         nameof(Category), typeof(ExplorerIconCategory), typeof(FileEntryIcon),
         new PropertyMetadata(ExplorerIconCategory.File, (owner, _) => ((FileEntryIcon)owner).Refresh()));
 
-    public static readonly DependencyProperty ToneProperty = DependencyProperty.Register(
-        nameof(Tone), typeof(ExplorerEntryTone), typeof(FileEntryIcon),
-        new PropertyMetadata(ExplorerEntryTone.Default, (owner, _) => ((FileEntryIcon)owner).Refresh()));
+    public static readonly DependencyProperty ToneProperty = DependencyProperty.Register( nameof(Tone), typeof(ExplorerEntryTone), typeof(FileEntryIcon), new PropertyMetadata(ExplorerEntryTone.Default, (owner, _) => ((FileEntryIcon)owner).Refresh()));
 
     public FileEntryIcon()
     {

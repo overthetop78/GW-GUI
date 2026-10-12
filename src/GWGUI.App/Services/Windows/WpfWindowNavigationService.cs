@@ -46,8 +46,7 @@ public sealed class WpfWindowNavigationService : IWindowNavigationService
         _emulationPreferences = settings => new EmulationPreferencesWindow(settings);
         _emulationModuleOptions = (_, moduleId) =>
         {
-            var module = EmulationModuleRegistry.Modules.FirstOrDefault(candidate => string.Equals(candidate.Id, moduleId, StringComparison.OrdinalIgnoreCase))
-                ?? throw new InvalidOperationException($"Emulation module '{moduleId}' is not loaded.");
+            var module = EmulationModuleRegistry.Modules.FirstOrDefault(candidate => string.Equals(candidate.Id, moduleId, StringComparison.OrdinalIgnoreCase)) ?? throw new InvalidOperationException($"Emulation module '{moduleId}' is not loaded.");
             return new EmulationModuleOptionsWindow(module);
         };
         _updates = () => new UpdatesWindow(pendingInstallations);

@@ -39,10 +39,7 @@ public sealed partial class SkiaScpRenderer
             if (decoded.EstimatedBitCellTicks > 0)
             {
                 var totalBits = Math.Max(1d, decodedRevolution.FluxIntervals.Sum(interval => (double)interval) / decoded.EstimatedBitCellTicks);
-                structureArcs.AddRange(decoded.Structures.Select(structure => new PreparedScpArc(
-                    (float)(structure.BitOffset / totalBits * 360 - 90),
-                    Math.Max(.18f, (float)(structure.BitLength / totalBits * 360)),
-                    StructureColor(structure.Kind))));
+                structureArcs.AddRange(decoded.Structures.Select(structure => new PreparedScpArc( (float)(structure.BitOffset / totalBits * 360 - 90), Math.Max(.18f, (float)(structure.BitLength / totalBits * 360)), StructureColor(structure.Kind))));
             }
         }
         var sectors = decodedResult?.Sectors ?? [];

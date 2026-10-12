@@ -57,9 +57,7 @@ internal static partial class GameInputDeviceMonitor
                     _gameInput.SetFocusPolicy(GameInputFocusPolicy.ExclusiveForegroundGuideButton);
                     foreach (var filter in DeviceCallbackFilters)
                     {
-                        result = _gameInput.RegisterDeviceCallback(null, filter,
-                            GameInputDeviceStatus.Any, GameInputEnumerationKind.Async, new IntPtr(unchecked((long)(uint)filter)),
-                            Marshal.GetFunctionPointerForDelegate(DeviceCallback), out var deviceToken);
+                        result = _gameInput.RegisterDeviceCallback(null, filter, GameInputDeviceStatus.Any, GameInputEnumerationKind.Async, new IntPtr(unchecked((long)(uint)filter)), Marshal.GetFunctionPointerForDelegate(DeviceCallback), out var deviceToken);
                         if (result < 0)
                             throw new COMException(GameInputDiagnostics.DeviceEnumerationFailure(filter), result);
                         DeviceTokens.Add(deviceToken);

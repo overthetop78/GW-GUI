@@ -49,11 +49,7 @@ internal static class FilterXbrz
         x = Math.Clamp(x, 0, width - 1);
         y = Math.Clamp(y, 0, height - 1);
         var offset = (y * width + x) * 3;
-        return new FilterColor(
-            SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]),
-            SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]),
-            SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2])
-        );
+        return new FilterColor( SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 1]), SoftwareEmulationVideoProcessingPipeline.LinearToSrgb(source[offset + 2]) );
     }
 
     private static float ColorDistance(FilterColor first, FilterColor second)

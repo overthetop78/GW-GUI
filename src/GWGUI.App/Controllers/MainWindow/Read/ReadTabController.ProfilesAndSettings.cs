@@ -223,17 +223,7 @@ internal sealed partial class ReadTabController
         var retries = viewModel.Read.Retries.Enabled ? int.Parse(viewModel.Read.Retries.Value) : PhysicalDiskReadDefaults.FluxOverflowRetries;
         var seekRetries = viewModel.Read.SeekRetries.Enabled ? int.Parse(viewModel.Read.SeekRetries.Value) : PhysicalDiskReadDefaults.SeekRetries;
         TimeSpan? fakeIndex = viewModel.Read.FakeIndex.Enabled ? PhysicalDiskIndexPeriodParser.Parse(viewModel.Read.FakeIndex.Value) : null;
-        return new PhysicalDiskReadOptions(
-            hardware.Port,
-            selection.BusType,
-            selection.Unit,
-            tracks,
-            ScpCaptureDiskTypeFunctions.Resolve(hardware.Drive.Density),
-            revolutions,
-            retries,
-            seekRetries,
-            fakeIndex,
-            viewModel.Read.HardSectors.Enabled);
+        return new PhysicalDiskReadOptions( hardware.Port, selection.BusType, selection.Unit, tracks, ScpCaptureDiskTypeFunctions.Resolve(hardware.Drive.Density), revolutions, retries, seekRetries, fakeIndex, viewModel.Read.HardSectors.Enabled);
     }
 
     internal bool HasUnsupportedInternalOptions() =>

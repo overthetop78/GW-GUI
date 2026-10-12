@@ -24,8 +24,7 @@ internal sealed partial class EmulationModuleSettingsSection
             var wasSaved = _saved.Any(item => item.Id == previous.Id);
             if (!wasSaved) EmulationConfigurationDraftStore.Set(_module.Id, previous);
             if (wasSaved) await PersistCapturedConfigurationAsync(previous, true);
-            _configuration = _saved.FirstOrDefault(item => item.MachineId == selected.Definition.Id)
-                ?? (EmulationConfigurationDraftStore.TryGet(_module.Id, selected.Definition.Id, out var draft) ? draft : _module.CreateConfiguration(selected.Definition.Id));
+            _configuration = _saved.FirstOrDefault(item => item.MachineId == selected.Definition.Id) ?? (EmulationConfigurationDraftStore.TryGet(_module.Id, selected.Definition.Id, out var draft) ? draft : _module.CreateConfiguration(selected.Definition.Id));
             RebuildEditor();
             NotifyEditingContextChanged();
         });

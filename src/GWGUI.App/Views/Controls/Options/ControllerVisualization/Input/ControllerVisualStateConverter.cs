@@ -14,8 +14,7 @@ internal static class ControllerVisualStateConverter
 
         var rawAxes = source.Controls.Where(control => control.Type == GameInputControlType.Axis).GroupBy(control => control.Index).ToDictionary(group => group.Key, group => group.Last().Value);
         var rawButtons = source.Controls.Where(control => control.Type == GameInputControlType.Button && control.IsPressed).Select(control => control.Index).ToHashSet();
-        var labeled = source.Controls.Where(control => control.Type == GameInputControlType.Button && control.IsPressed).Select(control => LabelControl(control.Label)).Where(control => control is not null).Select(control => control!.Value)
-            .ToHashSet();
+        var labeled = source.Controls.Where(control => control.Type == GameInputControlType.Button && control.IsPressed).Select(control => LabelControl(control.Label)).Where(control => control is not null).Select(control => control!.Value) .ToHashSet();
         var standard = new HashSet<ControllerVisualControl>();
 
         var gamepad = source.Gamepad;
@@ -45,13 +44,7 @@ internal static class ControllerVisualStateConverter
         var primarySwitchDirections = new HashSet<ControllerVisualControl>();
         var primarySwitch = source.Controls.FirstOrDefault(control => control.Type == GameInputControlType.Switch);
         if (primarySwitch is not null)
-            AddDirectionControls(
-                primarySwitchDirections,
-                primarySwitch.SwitchPosition,
-                ControllerVisualControl.GamepadDPadUp,
-                ControllerVisualControl.GamepadDPadDown,
-                ControllerVisualControl.GamepadDPadLeft,
-                ControllerVisualControl.GamepadDPadRight);
+            AddDirectionControls( primarySwitchDirections, primarySwitch.SwitchPosition, ControllerVisualControl.GamepadDPadUp, ControllerVisualControl.GamepadDPadDown, ControllerVisualControl.GamepadDPadLeft, ControllerVisualControl.GamepadDPadRight);
 
         float RawSigned(int index)
         {

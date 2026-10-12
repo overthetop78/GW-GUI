@@ -168,9 +168,7 @@ internal sealed class ConversionTabController(
     {
         if (string.IsNullOrWhiteSpace(viewModel.Conversion.SourcePath)) return [];
         var catalog = CurrentFormatCatalog();
-        return new ConversionPlanner(catalog).Plan(viewModel.Conversion.SourcePath,
-            viewModel.Conversion.OutputName.Trim(), viewModel.Conversion.BuildSelections(catalog.Formats),
-            viewModel.Conversion.AddTags, settings().Conversion.TagPattern);
+        return new ConversionPlanner(catalog).Plan(viewModel.Conversion.SourcePath, viewModel.Conversion.OutputName.Trim(), viewModel.Conversion.BuildSelections(catalog.Formats), viewModel.Conversion.AddTags, settings().Conversion.TagPattern);
     }
 
     private IImageFormatCatalog CurrentFormatCatalog()

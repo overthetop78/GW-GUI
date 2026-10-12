@@ -50,8 +50,7 @@ internal sealed class ModuleUpdateService
             using var response = await _httpClient.GetAsync(package.Manifest.UpdateCatalogUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             await using var content = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-            var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(content, JsonOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidDataException(
-                    $"The update catalog for module '{package.Manifest.Id}' is empty.");
+            var catalog = await JsonSerializer.DeserializeAsync<UpdateCatalog>(content, JsonOptions, cancellationToken).ConfigureAwait(false) ?? throw new InvalidDataException( $"The update catalog for module '{package.Manifest.Id}' is empty.");
             _catalogValidator.Validate(catalog, package.Manifest.Id);
             var result = _planBuilder.Search(catalog, installedState, UpdateSearchScope.Modules, selections);
             rows.AddRange(result.Components);

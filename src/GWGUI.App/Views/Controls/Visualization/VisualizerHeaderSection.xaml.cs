@@ -141,8 +141,7 @@ public partial class VisualizerHeaderSection : UserControl
             return LocExtension.Get("Explorer.DetectedFormats", "Atari 8-bit (Atari CAS)");
 
         var catalog = new DiskClassificationCatalog(formats);
-        var detected = ids.Select(catalog.ResolveFormat).Where(format => format is not null).Cast<DiskFormat>().DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase).Select(format => $"{format.Family} ({format.DisplayName})")
-            .ToArray();
+        var detected = ids.Select(catalog.ResolveFormat).Where(format => format is not null).Cast<DiskFormat>().DistinctBy(format => format.Id, StringComparer.OrdinalIgnoreCase).Select(format => $"{format.Family} ({format.DisplayName})") .ToArray();
         var value = detected.Length == 0 ? "\u2014" : string.Join("  \u00b7  ", detected);
         return LocExtension.Get("Explorer.DetectedFormats", value);
     }

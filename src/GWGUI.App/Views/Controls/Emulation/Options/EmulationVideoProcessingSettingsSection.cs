@@ -97,16 +97,8 @@ internal sealed partial class EmulationVideoProcessingSettingsSection : UserCont
                          EmulationVideoDisplayTechnology.Vector or
                          EmulationVideoDisplayTechnology.Vfd)));
             }
-            tabs.Items.Add(Tab(EmulationVideoSettingsLayoutConstants.ImageTabId,
-                EmulationResourceKeys.VideoTabImage,
-                CreateImageGroups(),
-                EmulationVideoSettingsLayoutConstants.DisplayTabContentMaximumWidth,
-                compactFields: false, frameContent: false));
-            tabs.Items.Add(Tab(EmulationVideoSettingsLayoutConstants.EffectsTabId,
-                EmulationResourceKeys.VideoTabEffects,
-                CreateEffectGroups(),
-                EmulationVideoSettingsLayoutConstants.DisplayTabContentMaximumWidth,
-                compactFields: false, frameContent: false));
+            tabs.Items.Add(Tab(EmulationVideoSettingsLayoutConstants.ImageTabId, EmulationResourceKeys.VideoTabImage, CreateImageGroups(), EmulationVideoSettingsLayoutConstants.DisplayTabContentMaximumWidth, compactFields: false, frameContent: false));
+            tabs.Items.Add(Tab(EmulationVideoSettingsLayoutConstants.EffectsTabId, EmulationResourceKeys.VideoTabEffects, CreateEffectGroups(), EmulationVideoSettingsLayoutConstants.DisplayTabContentMaximumWidth, compactFields: false, frameContent: false));
             if (_nativeSettings is not null)
                 tabs.Items.Add(Tab(nameof(_nativeSettings), EmulationResourceKeys.VideoRenderingSettings, _nativeSettings, EmulationVideoSettingsLayoutConstants.DisplayTabContentMaximumWidth, compactFields: false, frameContent: false));
             tabs.SelectedItem = tabs.Items.Cast<TabItem>().FirstOrDefault(item => string.Equals((string)item.Tag, _selectedSettingsTab, StringComparison.Ordinal)) ?? tabs.Items[0];

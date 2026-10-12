@@ -120,9 +120,7 @@ internal sealed partial class UpdateOptionsController : IDisposable
                 _localize("Updates.InstalledVersion", [package.Manifest.ModuleVersion]),
                 IconGlyphs.Controller, state, package.Module.Id));
         }
-        items.Add(new(UpdateOptionsConstants.AdvancedNavigationId, UpdateNavigationPage.Advanced,
-            _localize("Updates.ModuleAdvancedInstallationTitle", []),
-            _localize("Updates.NavigationAdvancedSubtitle", []), IconGlyphs.Settings, _advancedState));
+        items.Add(new(UpdateOptionsConstants.AdvancedNavigationId, UpdateNavigationPage.Advanced, _localize("Updates.ModuleAdvancedInstallationTitle", []), _localize("Updates.NavigationAdvancedSubtitle", []), IconGlyphs.Settings, _advancedState));
         _section.SetNavigationItems(items);
     }
 

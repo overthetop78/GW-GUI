@@ -66,9 +66,7 @@ public sealed class ConversionBatchExecutor(IGreaseweazleRunner runner, MediaIma
                 if (!isDirectMediaEngineDestination)
                 {
                     var sequentialDestinations = await sequentialConversionService.GetAvailableDestinationsAsync(sourceDocument, cancellationToken: cancellationToken).ConfigureAwait(false);
-                    isSequentialDestination = sequentialDestinations.Any(destination =>
-                        destination.FormatId.Equals(output.FormatId, StringComparison.OrdinalIgnoreCase)
-                        && destination.Extension.Equals(output.Extension, StringComparison.OrdinalIgnoreCase));
+                    isSequentialDestination = sequentialDestinations.Any(destination => destination.FormatId.Equals(output.FormatId, StringComparison.OrdinalIgnoreCase) && destination.Extension.Equals(output.Extension, StringComparison.OrdinalIgnoreCase));
                 }
                 if (!isDirectMediaEngineDestination && !isSequentialDestination)
                 {
