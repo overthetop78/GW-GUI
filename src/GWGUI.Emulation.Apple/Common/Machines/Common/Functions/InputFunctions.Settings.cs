@@ -8,8 +8,11 @@ internal static class InputSettingsFunctions
     {
         MachineModel.AppleIIe or MachineModel.AppleIIeEnhanced => AppleIIKeyboardDictionary.DefaultHostKeys,
         MachineModel.Macintosh128K or MachineModel.Macintosh512K or MachineModel.MacintoshPlus or MachineModel.MacintoshClassic or MachineModel.MacintoshII => MacintoshKeyboardDictionary.DefaultHostKeys,
-        _ => new Dictionary<EmulationKey, EmulationKey>()};
-    private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) => DefaultHostKeys(configuration.Model).Select(pair => new InputBindingDefinition(pair.Key.ToString(), InputSettingsFunctionsConstants.ResourceKeyboardPrefix + pair.Key, pair.Value.ToString())).ToArray();
+        _ => new Dictionary<EmulationKey, EmulationKey>()
+    };
+    private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(MachineConfiguration configuration) => DefaultHostKeys(configuration.Model).Select(pair => new InputBindingDefinition(pair.Key.ToString(),
+        InputSettingsFunctionsConstants.ResourceKeyboardPrefix + pair.Key,
+        pair.Value.ToString())).ToArray();
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var input = configuration.Input;
@@ -46,7 +49,9 @@ internal static class InputSettingsFunctions
         var allowedKeys = KeyboardDefinitions(configuration).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         var keyboardBindings = settings.Keyboard is null 
             ? configuration.Input.KeyboardBindings ?? ToStrings(configuration.Input.KeyboardMappings) 
-            : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key) && (string.IsNullOrWhiteSpace(item.Value) || Enum.TryParse<EmulationKey>(item.Value, true, out var key) && Enum.IsDefined(key))).ToDictionary(item => item.Key, item => string.IsNullOrWhiteSpace(item.Value) ? string.Empty : item.Value, StringComparer.Ordinal);
+            : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key) && (string.IsNullOrWhiteSpace(item.Value) || Enum.TryParse<EmulationKey>(item.Value, true, out var key) && Enum.IsDefined(key))).ToDictionary(item => item.Key,
+                item => string.IsNullOrWhiteSpace(item.Value) ? string.Empty : item.Value,
+                StringComparer.Ordinal);
         var keyboard = keyboardBindings.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
         var controllers = settings.ControllerPorts.Select(port =>
         {
