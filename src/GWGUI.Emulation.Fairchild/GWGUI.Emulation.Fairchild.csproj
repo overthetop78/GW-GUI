@@ -14,10 +14,8 @@
     <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Assets\*.png"
-                      LogicalName="GWGUI.Emulation.Fairchild.Assets.%(Filename)%(Extension)" />
-    <EmbeddedResource Include="Assets\Machines\*.png"
-                      LogicalName="GWGUI.Emulation.Fairchild.Assets.Machines.%(Filename)%(Extension)" />
+    <EmbeddedResource Include="Assets\*.png" LogicalName="GWGUI.Emulation.Fairchild.Assets.%(Filename)%(Extension)" />
+    <EmbeddedResource Include="Assets\Machines\*.png" LogicalName="GWGUI.Emulation.Fairchild.Assets.Machines.%(Filename)%(Extension)" />
     <EmbeddedResource Update="Resources\*\*.resx">
       <WithCulture>false</WithCulture>
       <LogicalName>GWGUI.Emulation.Fairchild.Resources.%(Filename).$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(Identity)')))).resources</LogicalName>
@@ -25,8 +23,7 @@
   </ItemGroup>
   <Target Name="RemoveHostProvidedAssembliesFromCopyLocal" AfterTargets="ResolveAssemblyReferences">
     <ItemGroup>
-      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)"
-                               Condition="$([System.String]::Copy('%(ReferenceCopyLocalPaths.Filename)').StartsWith('gwgui.'))" />
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="$([System.String]::Copy('%(ReferenceCopyLocalPaths.Filename)').StartsWith('gwgui.'))" />
     </ItemGroup>
   </Target>
 </Project>
