@@ -29,15 +29,13 @@ public sealed class ColecoModuleTests
         var applied = StorageSettingsFunctions.Apply(configuration, changed);
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(applied))!;
         Assert.Equal(value, restored.Options[field.Id]);
-        Assert.Equal(value, StorageSettingsFunctions.Describe(restored).AvailableDevices
-            .Single(device => device.Slot == EmulationMediaSlot.Cartridge0).ConfigurationFields!.Single().Value);
+        Assert.Equal(value, StorageSettingsFunctions.Describe(restored).AvailableDevices.Single(device => device.Slot == EmulationMediaSlot.Cartridge0).ConfigurationFields!.Single().Value);
         Assert.Throws<ArgumentException>(() => StorageSettingsFunctions.Apply(configuration, changed with
         {
             DeviceSettings = [new(EmulationMediaSlot.Cartridge0,
                 Cartridge: new CartridgeSlotSettings(Options: new Dictionary<string, string> { [field.Id] = "invalid" }))]
         }));
-        Assert.Equal(EmulationStorageConfigurationKind.None, StorageSettingsFunctions.Describe(
-            new MachineConfiguration(MachineModel.ColecoVision, core: Emulator.JollyCV))
+        Assert.Equal(EmulationStorageConfigurationKind.None, StorageSettingsFunctions.Describe(new MachineConfiguration(MachineModel.ColecoVision, core: Emulator.JollyCV))
             .AvailableDevices.Single(device => device.Slot == EmulationMediaSlot.Cartridge0).ConfigurationKind);
     }
     [Fact]
@@ -92,8 +90,7 @@ public sealed class ColecoModuleTests
         var result = InputSnapshotFunctions.Apply(snapshot, input, MachineModel.ColecoVision, core);
         var expected = (1u << bit) | (core == Emulator.JollyCV ? 1u << 12 : 0);
         Assert.All(result.Controllers, controller => Assert.Equal(expected, controller.Buttons));
-        Assert.All(InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty, input, MachineModel.ColecoVision, core).Controllers,
-            controller => Assert.Equal(0u, controller.Buttons));
+        Assert.All(InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty, input, MachineModel.ColecoVision, core).Controllers, controller => Assert.Equal(0u, controller.Buttons));
     }
 
     [Fact]
@@ -134,8 +131,7 @@ public sealed class ColecoModuleTests
         var applied = StorageSettingsFunctions.Apply(config, storage with { ConfiguredSlots = storage.AvailableDevices.Select(device => device.Slot).ToArray() });
         Assert.Equal(5, applied.ConfiguredSlots.Count);
         Assert.Empty(applied.Media);
-        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.ColecoVision, input:
-            new InputConfiguration(Controllers: [new(0, PeripheralCategory.Roller)]), core: Emulator.BlueMSX));
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.ColecoVision, input: new InputConfiguration(Controllers: [new(0, PeripheralCategory.Roller)]), core: Emulator.BlueMSX));
     }
     [Fact]
     public void AdamSpecialKeyCanBeUnassigned()

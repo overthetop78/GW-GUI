@@ -39,16 +39,12 @@ internal static class PendingModuleInstallationScenarios
         var second = Installation(root, "atari");
         try
         {
-            var service = new UpdatePackagePreparationService(
-                installedState: () => new InstalledUpdateState("0.3.0", "1.0", []),
-                applicationDirectory: application,
-                workingRootDirectory: working);
+            var service = new UpdatePackagePreparationService(installedState: () => new InstalledUpdateState("0.3.0", "1.0", []), applicationDirectory: application, workingRootDirectory: working);
             var launch = await service.CreateModuleLaunchAsync([first, second]);
             using var document = JsonDocument.Parse(await File.ReadAllTextAsync(launch.PlanPath));
             var components = document.RootElement.GetProperty("components").EnumerateArray().ToArray();
             Assert.Equal(2, components.Length);
-            Assert.Equal(new[] { "amiga", "atari" }, components
-                .Select(component => component.GetProperty("componentId").GetString()).Order().ToArray());
+            Assert.Equal(new[] { "amiga", "atari" }, components.Select(component => component.GetProperty("componentId").GetString()).Order().ToArray());
             Assert.True(File.Exists(launch.UpdaterExecutable));
         }
         finally { Delete(root); }
@@ -61,8 +57,7 @@ internal static class PendingModuleInstallationScenarios
         Directory.CreateDirectory(prepared);
         File.WriteAllText(Path.Combine(prepared, "module.json"), id);
         return new(id, id, "1.0.0", $"https://example.invalid/{id}.json",
-            new PreparedUpdateComponent(id, UpdateComponentKind.Module,
-                UpdateComponentOperation.InstallModule, "1.0.0", prepared), work);
+            new PreparedUpdateComponent(id, UpdateComponentKind.Module, UpdateComponentOperation.InstallModule, "1.0.0", prepared), work);
     }
 
     private static string TemporaryDirectory()

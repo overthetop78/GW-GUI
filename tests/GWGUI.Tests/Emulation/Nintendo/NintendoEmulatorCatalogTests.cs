@@ -20,12 +20,10 @@ public sealed class NintendoEmulatorCatalogTests
     public void GraphicsApiChoicesMatchTheHostCapabilities(string machine, string emulator, string optionKey)
     {
         var configuration = new MachineConfiguration(machine, emulator);
-        var field = CoreSettingsFunctions.Blocks(configuration).SelectMany(block => block.Fields)
-            .Single(item => item.Id == optionKey);
+        var field = CoreSettingsFunctions.Blocks(configuration).SelectMany(block => block.Fields).Single(item => item.Id == optionKey);
         Assert.DoesNotContain(field.Choices!, choice => choice.Id == "Vulkan");
         Assert.Contains(field.Choices!, choice => choice.Id == "OpenGL");
-        var runtimeOption = CoreSettingsFunctions.WithSupportedGraphicsApis(
-            CoreCatalog.Get(emulator).Options.Single(option => option.Key == optionKey));
+        var runtimeOption = CoreSettingsFunctions.WithSupportedGraphicsApis(CoreCatalog.Get(emulator).Options.Single(option => option.Key == optionKey));
         Assert.DoesNotContain(runtimeOption.Values, value => value.Value == "Vulkan");
         Assert.Contains(runtimeOption.Values, value => value.Value == runtimeOption.DefaultValue);
     }
@@ -35,8 +33,7 @@ public sealed class NintendoEmulatorCatalogTests
     {
         var configuration = new MachineConfiguration("Nes", "mesen", AudioEnabled: true);
         var audio = new TrackingAudioOutput();
-        var context = new EmulatorCreationContext(".", "core.dll", "host.exe", () => audio,
-            _ => throw new InvalidOperationException("Interrupted construction"));
+        var context = new EmulatorCreationContext(".", "core.dll", "host.exe", () => audio, _ => throw new InvalidOperationException("Interrupted construction"));
         Assert.Throws<InvalidOperationException>(() => new Engine().Adapter(configuration).Create(configuration, context));
         Assert.True(audio.Disposed);
     }
@@ -179,8 +176,7 @@ public sealed class NintendoEmulatorCatalogTests
     [InlineData("GameBoyAdvance", "vbam", "vbam_gbHardware")]
     public void SettingsOfOtherMachinesAreNotPresented(string machine, string emulator, string key)
     {
-        var fields = CoreSettingsFunctions.Blocks(new MachineConfiguration(machine, emulator))
-            .SelectMany(block => block.Fields);
+        var fields = CoreSettingsFunctions.Blocks(new MachineConfiguration(machine, emulator)).SelectMany(block => block.Fields);
         Assert.DoesNotContain(fields, field => field.Id == key);
     }
 
@@ -222,7 +218,6 @@ public sealed class NintendoEmulatorCatalogTests
         var configuration = CoreSettingsFunctions.Configure(new MachineConfiguration(machine, "skyemu",
             Options: new Dictionary<string, string> { ["system_core_override"] = "Nintendo DS" }));
         Assert.Equal(core, configuration.Options!["system_core_override"]);
-        Assert.DoesNotContain(CoreSettingsFunctions.Blocks(configuration).SelectMany(block => block.Fields),
-            field => field.Id == "system_core_override");
+        Assert.DoesNotContain(CoreSettingsFunctions.Blocks(configuration).SelectMany(block => block.Fields), field => field.Id == "system_core_override");
     }
 }

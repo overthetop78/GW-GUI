@@ -20,12 +20,9 @@ public sealed class EmulatorManagerTests
             using var http = new HttpClient();
             IEmulationModule[] modules =
             [
-                new AtariEmulationModule(Path.Combine(root, "atari-config"), root, http,
-                    Path.Combine(root, "atari-cores")),
-                new CommodoreEmulationModule(Path.Combine(root, "amiga-config"), root, http,
-                    Path.Combine(root, "amiga-cores")),
-                new AmstradEmulationModule(Path.Combine(root, "amstrad-config"), root, http,
-                    Path.Combine(root, "amstrad-cores"))
+                new AtariEmulationModule(Path.Combine(root, "atari-config"), root, http, Path.Combine(root, "atari-cores")),
+                new CommodoreEmulationModule(Path.Combine(root, "amiga-config"), root, http, Path.Combine(root, "amiga-cores")),
+                new AmstradEmulationModule(Path.Combine(root, "amstrad-config"), root, http, Path.Combine(root, "amstrad-cores"))
             ];
 
             foreach (var module in modules)

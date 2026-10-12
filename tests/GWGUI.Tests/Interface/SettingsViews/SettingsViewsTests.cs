@@ -13,8 +13,7 @@ public sealed class SettingsViewsTests(StaExecutionScenarios sta)
         var storage = module.DescribeStorageSettings(configuration);
         var device = storage.AvailableDevices.Single(item => item.Slot == GWGUI.Emulation.Contracts.EmulationMediaSlot.Cartridge0);
         var current = storage.DeviceSettings!.Single().Cartridge!;
-        var dialog = new GWGUI.App.Views.Dialogs.Emulation.Storage.CartridgeSlotConfigurationDialog(
-            device.Slot.ToString(), configuration.MachineId, current, string.Empty, null, module.Id, device.ConfigurationFields);
+        var dialog = new GWGUI.App.Views.Dialogs.Emulation.Storage.CartridgeSlotConfigurationDialog(device.Slot.ToString(), configuration.MachineId, current, string.Empty, null, module.Id, device.ConfigurationFields);
         try
         {
             var expected = device.ConfigurationFields!.Single().Choices!.Last().Id;
@@ -39,12 +38,10 @@ public sealed class SettingsViewsTests(StaExecutionScenarios sta)
         var directory = System.IO.Path.GetTempPath();
         var module = new GWGUI.Emulation.Coleco.Modules.ColecoEmulationModule(directory, directory, http, directory);
         GWGUI.Emulation.Interfaces.IEmulationConfiguration configuration = module.CreateConfiguration("ColecoVision");
-        var controller = new GWGUI.App.Controllers.Emulation.Options.EmulationEmulatorManagementController(
-            module, () => configuration, value => configuration = value, () => false, module);
+        var controller = new GWGUI.App.Controllers.Emulation.Options.EmulationEmulatorManagementController(module, () => configuration, value => configuration = value, () => false, module);
         try
         {
-            var panel = Assert.IsType<GWGUI.App.Views.Controls.Emulation.Options.EmulationCoreManagementPanel>(
-                controller.CreateView(new System.Windows.Controls.Button()));
+            var panel = Assert.IsType<GWGUI.App.Views.Controls.Emulation.Options.EmulationCoreManagementPanel>(controller.CreateView(new System.Windows.Controls.Button()));
             await controller.RefreshAsync();
             var choices = panel.Emulators.Items.Cast<GWGUI.Emulation.Contracts.EmulationEmulatorInstallation>().ToArray();
             Assert.Equal(3, choices.Length);

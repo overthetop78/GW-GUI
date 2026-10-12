@@ -32,13 +32,10 @@ public sealed class ConfigurationPresentationTests
     {
         var configuration = Configuration(emulator);
         var blocks = SettingsDescriptionFunctions.Create(configuration);
-        Assert.All(blocks.Where(block => block.Tab == EmulationMachineTab.General).SelectMany(block => block.Fields),
-            field => Assert.Equal(EmulationSettingsEditor.Information, field.Editor));
-        var paths = blocks.Where(block => block.Tab == EmulationMachineTab.Rom).SelectMany(block => block.Fields)
-            .Where(field => field.Editor == EmulationSettingsEditor.Path);
+        Assert.All(blocks.Where(block => block.Tab == EmulationMachineTab.General).SelectMany(block => block.Fields), field => Assert.Equal(EmulationSettingsEditor.Information, field.Editor));
+        var paths = blocks.Where(block => block.Tab == EmulationMachineTab.Rom).SelectMany(block => block.Fields).Where(field => field.Editor == EmulationSettingsEditor.Path);
         Assert.Equal(Ps1Firmware.SelectedField, Assert.Single(paths).Id);
-        Assert.Contains(blocks.Where(block => block.Tab == EmulationMachineTab.Cpu).SelectMany(block => block.Fields),
-            field => field.Editor == EmulationSettingsEditor.Selection);
+        Assert.Contains(blocks.Where(block => block.Tab == EmulationMachineTab.Cpu).SelectMany(block => block.Fields), field => field.Editor == EmulationSettingsEditor.Selection);
     }
 
     [Theory]
@@ -105,8 +102,7 @@ public sealed class ConfigurationPresentationTests
     public void FixedRamAndDevelopmentExtensionUseBytes()
     {
         var fields = Fields(Swan.Id);
-        var ram = SettingsDescriptionFunctions.Create(Configuration(Swan.Id))
-            .Where(block => block.Tab == EmulationMachineTab.Ram).SelectMany(block => block.Fields);
+        var ram = SettingsDescriptionFunctions.Create(Configuration(Swan.Id)).Where(block => block.Tab == EmulationMachineTab.Ram).SelectMany(block => block.Fields);
         Assert.Equal(2 * 1024 * 1024, ram.Sum(EmulationSettingsValuePresentationFunctions.DefaultNumericValue));
         var extension = fields.Single(field => field.Id == SwanOptions.ConsoleEnable8MBRAMKey);
         Assert.Equal(EmulationSettingsEditor.Toggle, extension.Editor);
@@ -166,8 +162,7 @@ public sealed class ConfigurationPresentationTests
         var frequency = Assert.Single(acceleration.Fields, field => field.FrequencyScaleFieldId is not null);
         Assert.Contains(acceleration.Fields, field => field.Id == frequency.FrequencyScaleFieldId);
         Assert.Equal(33_868_800L, frequency.NumericValue);
-        Assert.All(blocks.Where(block => block.Tab is EmulationMachineTab.Cpu or EmulationMachineTab.Video or EmulationMachineTab.Audio)
-            .SelectMany(block => block.Fields), field =>
+        Assert.All(blocks.Where(block => block.Tab is EmulationMachineTab.Cpu or EmulationMachineTab.Video or EmulationMachineTab.Audio).SelectMany(block => block.Fields), field =>
         {
             Assert.False(string.IsNullOrWhiteSpace(field.ExplanationResourceKey), field.Id);
             Assert.False(string.IsNullOrWhiteSpace(field.DetailedExplanationResourceKey), field.Id);
@@ -182,10 +177,8 @@ public sealed class ConfigurationPresentationTests
     [Fact]
     public void ClockPercentageChangesDisplayedFrequency()
     {
-        Assert.Equal(33.8688.ToString("0.####") + " MHz",
-            EmulationSettingsValuePresentationFunctions.ScaledFrequency(33_868_800, "100%"));
-        Assert.Equal(37.25568.ToString("0.####") + " MHz",
-            EmulationSettingsValuePresentationFunctions.ScaledFrequency(33_868_800, "110"));
+        Assert.Equal(33.8688.ToString("0.####") + " MHz", EmulationSettingsValuePresentationFunctions.ScaledFrequency(33_868_800, "100%"));
+        Assert.Equal(37.25568.ToString("0.####") + " MHz", EmulationSettingsValuePresentationFunctions.ScaledFrequency(33_868_800, "110"));
         Assert.Null(EmulationSettingsValuePresentationFunctions.ScaledFrequency(33_868_800, "auto"));
     }
 
@@ -262,11 +255,9 @@ public sealed class ConfigurationPresentationTests
         Assert.Contains(blocks, block => block.Tab == EmulationMachineTab.Audio && block.Id != audio.Id);
         var basic = blocks.Where(block => block.Tab == EmulationMachineTab.Video && !block.IsCollapsible).ToArray();
         Assert.NotEmpty(basic);
-        Assert.DoesNotContain(basic.SelectMany(block => block.Fields), field => field.Id.Contains("crop", StringComparison.OrdinalIgnoreCase)
-            || field.Id.Contains("PGXP", StringComparison.OrdinalIgnoreCase));
+        Assert.DoesNotContain(basic.SelectMany(block => block.Fields), field => field.Id.Contains("crop", StringComparison.OrdinalIgnoreCase) || field.Id.Contains("PGXP", StringComparison.OrdinalIgnoreCase));
         Assert.Contains(blocks, block => block.Tab == EmulationMachineTab.Video && block.IsCollapsible);
-        Assert.DoesNotContain(blocks.SelectMany(block => block.Fields), field => field.Id == SwanOptions.GPUTextureFilterKey
-            || field.Id == GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Constants.OptionConstants.FilterKey);
+        Assert.DoesNotContain(blocks.SelectMany(block => block.Fields), field => field.Id == SwanOptions.GPUTextureFilterKey || field.Id == GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Constants.OptionConstants.FilterKey);
     }
 
     [Theory]
@@ -283,8 +274,7 @@ public sealed class ConfigurationPresentationTests
             [prefix + "enable_multitap_port1"] = first ? "enabled" : "disabled",
             [prefix + "enable_multitap_port2"] = second ? "enabled" : "disabled"
         } };
-        var cards = StorageSettingsFunctions.Describe(configuration).AvailableDevices
-            .Where(device => device.MediaType == EmulationMediaType.MemoryCard).ToArray();
+        var cards = StorageSettingsFunctions.Describe(configuration).AvailableDevices.Where(device => device.MediaType == EmulationMediaType.MemoryCard).ToArray();
         Assert.Equal(count, cards.Length);
         Assert.Equal(Enumerable.Range(1, count).Select(index => "MC " + index), cards.Select(card => card.DisplayLabel));
         var names = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.MemoryCardFunctions.NativeFileNames(configuration);
@@ -328,10 +318,8 @@ public sealed class ConfigurationPresentationTests
         var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2",
             Options: new Dictionary<string, string> { ["pcsx2_multitap"] = "both" });
         Assert.Equal(8, InputSettingsFunctions.Describe(configuration).ControllerPorts.Count);
-        Assert.Equal(2, StorageSettingsFunctions.Describe(configuration).AvailableDevices
-            .Count(device => device.MediaType == EmulationMediaType.MemoryCard));
-        Assert.Equal(2, GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.MemoryCardFunctions
-            .NativeFileNames(configuration).Count);
+        Assert.Equal(2, StorageSettingsFunctions.Describe(configuration).AvailableDevices.Count(device => device.MediaType == EmulationMediaType.MemoryCard));
+        Assert.Equal(2, GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.MemoryCardFunctions.NativeFileNames(configuration).Count);
     }
 
     [Theory]
@@ -353,8 +341,7 @@ public sealed class ConfigurationPresentationTests
         Assert.DoesNotContain(fields, field => field.Id == "ppsspp_texture_shader");
         var storage = StorageSettingsFunctions.Describe(configuration);
         Assert.Equal("UMD", storage.AvailableDevices[0].DisplayLabel);
-        Assert.Contains(storage.AvailableDevices[0].ConfigurationFields!, field => field.Id == "ppsspp_cache_iso"
-            && field.Editor == EmulationSettingsEditor.Toggle);
+        Assert.Contains(storage.AvailableDevices[0].ConfigurationFields!, field => field.Id == "ppsspp_cache_iso" && field.Editor == EmulationSettingsEditor.Toggle);
         var stick = Assert.Single(storage.AvailableDevices, device => device.MediaType == EmulationMediaType.MemoryCard);
         Assert.True(stick.UsesDirectory);
         Assert.Equal(Path.Combine("Sony", "PSP", "Memory Stick"), stick.DefaultImageSubdirectory);
@@ -371,8 +358,7 @@ public sealed class ConfigurationPresentationTests
         Assert.DoesNotContain(native, option => option.Key == "pcsx2_mtvu");
     }
 
-    private static EmulationSettingsField[] Fields(string emulator) =>
-        SettingsDescriptionFunctions.Create(Configuration(emulator)).SelectMany(block => block.Fields).ToArray();
+    private static EmulationSettingsField[] Fields(string emulator) => SettingsDescriptionFunctions.Create(Configuration(emulator)).SelectMany(block => block.Fields).ToArray();
 
     [Theory]
     [InlineData(ModelConstants.PsVita)]
@@ -385,7 +371,6 @@ public sealed class ConfigurationPresentationTests
         Assert.NotEmpty(previous.ControllerPorts);
         var configuration = new MachineConfiguration(model, string.Empty);
         Assert.Same(configuration, InputSettingsFunctions.Apply(configuration, previous));
-        Assert.Same(configuration, InputSettingsFunctions.Apply(configuration,
-            InputSettingsFunctions.Describe(configuration)));
+        Assert.Same(configuration, InputSettingsFunctions.Apply(configuration, InputSettingsFunctions.Describe(configuration)));
     }
 }

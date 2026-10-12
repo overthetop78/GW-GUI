@@ -17,12 +17,9 @@ internal static class ConsoleFamilyMediaScenarios
         Directory.CreateDirectory(contextRoot);
         try
         {
-            var nintendo = new NintendoEmulationModuleFactory().Create(
-                new EmulationModuleContext(contextRoot, contextRoot, http));
-            var sega = new SegaEmulationModuleFactory().Create(
-                new EmulationModuleContext(contextRoot, contextRoot, http));
-            var sony = new SonyEmulationModuleFactory().Create(
-                new EmulationModuleContext(contextRoot, contextRoot, http));
+            var nintendo = new NintendoEmulationModuleFactory().Create(new EmulationModuleContext(contextRoot, contextRoot, http));
+            var sega = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(contextRoot, contextRoot, http));
+            var sony = new SonyEmulationModuleFactory().Create(new EmulationModuleContext(contextRoot, contextRoot, http));
 
             AssertOpticalDevice(nintendo, "GameCube", "gamecube.iso");
             AssertOpticalDevice(sega, "Dreamcast", "dreamcast.gdi");
@@ -59,12 +56,9 @@ internal static class ConsoleFamilyMediaScenarios
         Directory.CreateDirectory(root);
         try
         {
-            var module = new NintendoEmulationModuleFactory().Create(
-                new EmulationModuleContext(root, root, http));
-            var storage = ((IEmulationStorageSettingsManager)module)
-                .DescribeStorageSettings(module.CreateConfiguration("FamicomDisk"));
-            var floppy = Assert.Single(storage.AvailableDevices,
-                item => item.Slot == EmulationMediaSlot.Floppy0);
+            var module = new NintendoEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
+            var storage = ((IEmulationStorageSettingsManager)module).DescribeStorageSettings(module.CreateConfiguration("FamicomDisk"));
+            var floppy = Assert.Single(storage.AvailableDevices, item => item.Slot == EmulationMediaSlot.Floppy0);
             Assert.Contains(".fds", floppy.AcceptedExtensions, StringComparer.OrdinalIgnoreCase);
         }
         finally
@@ -77,8 +71,7 @@ internal static class ConsoleFamilyMediaScenarios
     {
         var configuration = module.CreateConfiguration(machineId);
         var storage = ((IEmulationStorageSettingsManager)module).DescribeStorageSettings(configuration);
-        var device = Assert.Single(storage.AvailableDevices,
-            item => item.Slot == EmulationMediaSlot.Cd0);
+        var device = Assert.Single(storage.AvailableDevices, item => item.Slot == EmulationMediaSlot.Cd0);
         Assert.Equal(EmulationMediaType.CompactDisc, device.MediaType);
         Assert.Contains(".cue", device.AcceptedExtensions, StringComparer.OrdinalIgnoreCase);
         Assert.Contains(EmulationMediaSlot.Cd0, storage.ConfiguredSlots);
@@ -86,13 +79,10 @@ internal static class ConsoleFamilyMediaScenarios
         var mounted = storage with
         {
             ConfiguredSlots = [EmulationMediaSlot.Cd0],
-            MountedMedia = [new EmulationMedia(path, EmulationMediaSlot.Cd0,
-                EmulationMediaType.CompactDisc, true, true)]
+            MountedMedia = [new EmulationMedia(path, EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc, true, true)]
         };
-        var applied = ((IEmulationStorageSettingsManager)module)
-            .ApplyStorageSettings(configuration, mounted);
-        var appliedSettings = ((IEmulationStorageSettingsManager)module)
-            .DescribeStorageSettings(applied);
+        var applied = ((IEmulationStorageSettingsManager)module).ApplyStorageSettings(configuration, mounted);
+        var appliedSettings = ((IEmulationStorageSettingsManager)module).DescribeStorageSettings(applied);
         var media = Assert.Single(appliedSettings.MountedMedia);
         Assert.Equal(EmulationMediaType.CompactDisc, media.Type);
         Assert.Equal(EmulationMediaSlot.Cd0, media.Slot);

@@ -17,11 +17,9 @@ public sealed class EmulationArchitectureTests
         var contract = assembly.GetType("GWGUI.Emulation.Atari.Emulators.Common.Interfaces.IEmulatorCore");
         Assert.NotNull(contract);
         var host = assembly.GetType("GWGUI.Emulation.Atari.Common.Services.CoreHost");
-        var factory = host!.GetMethod("Run", BindingFlags.Static | BindingFlags.NonPublic)!
-            .GetParameters().Last().ParameterType;
+        var factory = host!.GetMethod("Run", BindingFlags.Static | BindingFlags.NonPublic)!.GetParameters().Last().ParameterType;
         Assert.Equal(contract, factory.GetGenericArguments().Last());
-        Assert.All(contract!.GetMethods(), method => Assert.DoesNotContain("ExternalCoreApi",
-            method.ToString()!, StringComparison.Ordinal));
+        Assert.All(contract!.GetMethods(), method => Assert.DoesNotContain("ExternalCoreApi", method.ToString()!, StringComparison.Ordinal));
     }
 
     [Fact]
@@ -49,19 +47,14 @@ public sealed class EmulationArchitectureTests
         Assert.Equal(MemberNames(atari.Context), MemberNames(amiga.Context));
         Assert.Equal(MemberNames(atari.Management), MemberNames(amiga.Management));
         foreach (var adapter in new[] { atari.Adapter, amiga.Adapter })
-            Assert.DoesNotContain(MemberNames(adapter), member => member is "CatalogEntry" or "Emulator"
-                or "NormalizeConfiguration" or "PrepareConfiguration" or "get_CatalogEntry"
-                or "get_Emulator");
-        var atariMediaAdapter = typeof(AtariEmulationModule).Assembly.GetType(
-            "GWGUI.Emulation.Atari.Emulators.Common.Interop.Interfaces.IEmulatorMediaAdapter");
+            Assert.DoesNotContain(MemberNames(adapter), member => member is "CatalogEntry" or "Emulator" or "NormalizeConfiguration" or "PrepareConfiguration" or "get_CatalogEntry" or "get_Emulator");
+        var atariMediaAdapter = typeof(AtariEmulationModule).Assembly.GetType("GWGUI.Emulation.Atari.Emulators.Common.Interop.Interfaces.IEmulatorMediaAdapter");
         Assert.NotNull(atariMediaAdapter);
         Assert.DoesNotContain("PrepareOptions", MemberNames(atariMediaAdapter!));
 
         var root = RepositoryRoot();
-        var atariSource = NormalizedFamilySource(Path.Combine(root, "src",
-            "GWGUI.Emulation.Atari", "Common", "Interfaces", "IEmulatorAdapter.cs"), "Atari");
-        var amigaSource = NormalizedFamilySource(Path.Combine(root, "src",
-            "GWGUI.Emulation.Commodore", "Common", "Interfaces", "IEmulatorAdapter.cs"), "Commodore");
+        var atariSource = NormalizedFamilySource(Path.Combine(root, "src", "GWGUI.Emulation.Atari", "Common", "Interfaces", "IEmulatorAdapter.cs"), "Atari");
+        var amigaSource = NormalizedFamilySource(Path.Combine(root, "src", "GWGUI.Emulation.Commodore", "Common", "Interfaces", "IEmulatorAdapter.cs"), "Commodore");
         Assert.Contains("interface IEmulatorAdapter", atariSource, StringComparison.Ordinal);
         Assert.Contains("interface IEmulatorAdapter", amigaSource, StringComparison.Ordinal);
     }
@@ -78,12 +71,9 @@ public sealed class EmulationArchitectureTests
     public void AtariMachineFamiliesUseTheSharedHardwareContractAndCommonAdapter()
     {
         var assembly = typeof(AtariEmulationModule).Assembly;
-        var hardwareType = assembly.GetType(
-            "GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.HardwareModelDefinition");
-        var adapterType = assembly.GetType(
-            "GWGUI.Emulation.Atari.Common.Interfaces.IEmulatorAdapter");
-        var coreCatalog = assembly.GetType(
-            "GWGUI.Emulation.Atari.Emulators.Common.Interop.Dictionaries.CoreCatalog");
+        var hardwareType = assembly.GetType("GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.HardwareModelDefinition");
+        var adapterType = assembly.GetType("GWGUI.Emulation.Atari.Common.Interfaces.IEmulatorAdapter");
+        var coreCatalog = assembly.GetType("GWGUI.Emulation.Atari.Emulators.Common.Interop.Dictionaries.CoreCatalog");
         Assert.NotNull(hardwareType);
         Assert.NotNull(adapterType);
         Assert.NotNull(coreCatalog);
@@ -105,17 +95,13 @@ public sealed class EmulationArchitectureTests
             var catalog = assembly.GetType(
                 $"GWGUI.Emulation.Atari.Common.Machines.{family}.Dictionaries.{catalogName}");
             Assert.NotNull(catalog);
-            var familyDefinitions = ((System.Collections.IEnumerable)catalog!
-                    .GetProperty("All", BindingFlags.Static | BindingFlags.Public)!.GetValue(null)!)
-                .Cast<object>().ToArray();
+            var familyDefinitions = ((System.Collections.IEnumerable)catalog!.GetProperty("All", BindingFlags.Static | BindingFlags.Public)!.GetValue(null)!).Cast<object>().ToArray();
             Assert.All(familyDefinitions, definition => Assert.Equal(hardwareType, definition.GetType()));
-            Assert.Equal(models, familyDefinitions.Select(definition => definition.GetType()
-                .GetProperty("Model")!.GetValue(definition)!.ToString()).ToArray());
+            Assert.Equal(models, familyDefinitions.Select(definition => definition.GetType().GetProperty("Model")!.GetValue(definition)!.ToString()).ToArray());
             definitions.AddRange(familyDefinitions);
         }
 
-        var createAdapter = coreCatalog!.GetMethod("CreateAdapter",
-            BindingFlags.Static | BindingFlags.NonPublic);
+        var createAdapter = coreCatalog!.GetMethod("CreateAdapter", BindingFlags.Static | BindingFlags.NonPublic);
         Assert.NotNull(createAdapter);
         foreach (var definition in definitions)
         {
@@ -133,8 +119,7 @@ public sealed class EmulationArchitectureTests
         foreach (var family in new[] { "Atari", "Commodore", "Amstrad", "Nec", "Nintendo", "Sega", "Sony", "Microsoft" })
         {
             var common = Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common");
-            Assert.DoesNotContain(Directory.EnumerateFiles(common, "*.cs", SearchOption.AllDirectories),
-                file => Path.GetFileName(file) is "CoreReleaseConstants.cs" or "CoreDefinitionConstants.cs");
+            Assert.DoesNotContain(Directory.EnumerateFiles(common, "*.cs", SearchOption.AllDirectories), file => Path.GetFileName(file) is "CoreReleaseConstants.cs" or "CoreDefinitionConstants.cs");
         }
     }
 
@@ -148,10 +133,8 @@ public sealed class EmulationArchitectureTests
 
         foreach (var fileName in atari)
         {
-            var atariSource = NormalizedFamilySource(Path.Combine(root, "src",
-                "GWGUI.Emulation.Atari", "Common", "Contracts", fileName), "Atari");
-            var amigaSource = NormalizedFamilySource(Path.Combine(root, "src",
-                "GWGUI.Emulation.Commodore", "Common", "Contracts", fileName), "Commodore");
+            var atariSource = NormalizedFamilySource(Path.Combine(root, "src", "GWGUI.Emulation.Atari", "Common", "Contracts", fileName), "Atari");
+            var amigaSource = NormalizedFamilySource(Path.Combine(root, "src", "GWGUI.Emulation.Commodore", "Common", "Contracts", fileName), "Commodore");
             Assert.Equal(atariSource, amigaSource);
         }
     }
@@ -165,12 +148,9 @@ public sealed class EmulationArchitectureTests
                  {
                      "A5200", "Atari800", "BeetleLynx", "GearLynx", "Handy", "Holani", "Hatari", "Hatari2014", "HatariB", "ProSystem", "Stella", "Stella2014", "Stella2023", "VirtualJaguar"
                  })
-            Assert.True(File.Exists(Path.Combine(atari, "Emulators", emulator,
-                "Constants", "EmulatorConstants.cs")), $"{emulator} does not own its metadata.");
+            Assert.True(File.Exists(Path.Combine(atari, "Emulators", emulator, "Constants", "EmulatorConstants.cs")), $"{emulator} does not own its metadata.");
 
-        var commonSource = string.Join('\n', Directory.EnumerateFiles(
-                Path.Combine(atari, "Common"), "*.cs", SearchOption.AllDirectories)
-            .Select(File.ReadAllText));
+        var commonSource = string.Join('\n', Directory.EnumerateFiles(Path.Combine(atari, "Common"), "*.cs", SearchOption.AllDirectories).Select(File.ReadAllText));
         foreach (var concreteValue in new[]
                  {
                      "hatari_libretro.dll", "atari800_libretro.dll", "stella2023_libretro.dll",
@@ -184,11 +164,8 @@ public sealed class EmulationArchitectureTests
             Assert.DoesNotContain(concreteValue, commonSource, StringComparison.OrdinalIgnoreCase);
 
         var atariGenericSource = string.Join('\n', new[] { "Common", "Modules" }
-            .SelectMany(area => Directory.EnumerateFiles(Path.Combine(atari, area), "*.cs",
-                SearchOption.AllDirectories)).Select(File.ReadAllText));
-        Assert.DoesNotMatch(new Regex(
-            "\\\"(?:hatari|atari800|atarixegs|stella|virtualjaguar)_[^\\\"]*\\\"",
-            RegexOptions.CultureInvariant), atariGenericSource);
+            .SelectMany(area => Directory.EnumerateFiles(Path.Combine(atari, area), "*.cs", SearchOption.AllDirectories)).Select(File.ReadAllText));
+        Assert.DoesNotMatch(new Regex("\\\"(?:hatari|atari800|atarixegs|stella|virtualjaguar)_[^\\\"]*\\\"", RegexOptions.CultureInvariant), atariGenericSource);
         foreach (var nativeOption in new[]
                  {
                      "color_hue", "color_saturation", "color_contrast", "color_brightness",
@@ -201,18 +178,12 @@ public sealed class EmulationArchitectureTests
 
         var amiga = Path.Combine(root, "src", "GWGUI.Emulation.Commodore");
         var amigaGenericSource = string.Join('\n', new[] { "Common", "Modules" }
-            .SelectMany(area => Directory.EnumerateFiles(Path.Combine(amiga, area), "*.cs",
-                SearchOption.AllDirectories)).Select(File.ReadAllText));
+            .SelectMany(area => Directory.EnumerateFiles(Path.Combine(amiga, area), "*.cs", SearchOption.AllDirectories)).Select(File.ReadAllText));
         Assert.DoesNotContain("puae_", amigaGenericSource, StringComparison.Ordinal);
-        var genericOptionDeclarations = Regex.Matches(amigaGenericSource,
-            "const string Option\\w+ = \\\"(gwgui_amiga_[^\\\"]+)\\\"",
-            RegexOptions.CultureInvariant).Select(match => match.Groups[1].Value).ToArray();
-        Assert.Equal(genericOptionDeclarations.Distinct(StringComparer.Ordinal),
-            genericOptionDeclarations);
+        var genericOptionDeclarations = Regex.Matches(amigaGenericSource, "const string Option\\w+ = \\\"(gwgui_amiga_[^\\\"]+)\\\"", RegexOptions.CultureInvariant).Select(match => match.Groups[1].Value).ToArray();
+        Assert.Equal(genericOptionDeclarations.Distinct(StringComparer.Ordinal), genericOptionDeclarations);
 
-        var prefixedDeclaration = new Regex(
-            @"\b(?:class|record|enum|interface|struct)\s+(?:Amiga|Atari(?!800))",
-            RegexOptions.CultureInvariant);
+        var prefixedDeclaration = new Regex(@"\b(?:class|record|enum|interface|struct)\s+(?:Amiga|Atari(?!800))", RegexOptions.CultureInvariant);
         foreach (var family in new[] { "Atari", "Commodore" })
         foreach (var file in Directory.EnumerateFiles(Path.Combine(root, "src",
                      $"GWGUI.Emulation.{family}", "Emulators"), "*.cs", SearchOption.AllDirectories))
@@ -223,16 +194,14 @@ public sealed class EmulationArchitectureTests
     private static void AssertFamilyFolders(string root, string module, params string[] families)
     {
         var machines = Path.Combine(root, "src", $"GWGUI.Emulation.{module}", "Common", "Machines");
-        Assert.Equal(families.Order(StringComparer.Ordinal),
-            Directory.EnumerateDirectories(machines).Select(Path.GetFileName).Order(StringComparer.Ordinal));
+        Assert.Equal(families.Order(StringComparer.Ordinal), Directory.EnumerateDirectories(machines).Select(Path.GetFileName).Order(StringComparer.Ordinal));
     }
 
     private static void AssertMachineCommonFolders(string root, string module, params string[] folders)
     {
         var common = Path.Combine(root, "src", $"GWGUI.Emulation.{module}", "Common", "Machines",
             "Common");
-        Assert.Equal(folders.Order(StringComparer.Ordinal),
-            Directory.EnumerateDirectories(common).Select(Path.GetFileName).Order(StringComparer.Ordinal));
+        Assert.Equal(folders.Order(StringComparer.Ordinal), Directory.EnumerateDirectories(common).Select(Path.GetFileName).Order(StringComparer.Ordinal));
     }
 
     [Fact]
@@ -312,8 +281,7 @@ public sealed class EmulationArchitectureTests
             .Order(StringComparer.Ordinal)
             .ToArray();
 
-    private static string[] ContractFileNames(string root, string family) =>
-        CommonFileNames(root, family, "Contracts");
+    private static string[] ContractFileNames(string root, string family) => CommonFileNames(root, family, "Contracts");
 
     private static string[] CommonFileNames(string root, string family, string folder) =>
         Directory.Exists(Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common", folder))
@@ -325,14 +293,9 @@ public sealed class EmulationArchitectureTests
             .ToArray()
             : [];
 
-    private static IReadOnlyDictionary<string, Type> ConstantTypes(Assembly assembly,
-        string constantsNamespace) => assembly.GetTypes()
-        .Where(type => type.Namespace == constantsNamespace)
-        .ToDictionary(type => type.Name, StringComparer.Ordinal);
+    private static IReadOnlyDictionary<string, Type> ConstantTypes(Assembly assembly, string constantsNamespace) => assembly.GetTypes().Where(type => type.Namespace == constantsNamespace).ToDictionary(type => type.Name, StringComparer.Ordinal);
 
-    private static string[] ConstantMemberNames(Type type) => type
-        .GetMembers(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic |
-                    BindingFlags.DeclaredOnly)
+    private static string[] ConstantMemberNames(Type type) => type.GetMembers(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly)
         .Where(member => member.MemberType is MemberTypes.Field or MemberTypes.Property)
         .Select(member => member.Name)
         .Order(StringComparer.Ordinal)
@@ -354,11 +317,9 @@ public sealed class EmulationArchitectureTests
     {
         var project = Path.Combine(repositoryRoot, "src", $"GWGUI.Emulation.{family}");
         foreach (var area in new[] { "Common", "Emulators" })
-        foreach (var file in Directory.EnumerateFiles(Path.Combine(project, area), "*.cs",
-                     SearchOption.AllDirectories))
+        foreach (var file in Directory.EnumerateFiles(Path.Combine(project, area), "*.cs", SearchOption.AllDirectories))
         {
-            var relativeDirectory = Path.GetRelativePath(project, Path.GetDirectoryName(file)!)
-                .Replace(Path.DirectorySeparatorChar, '.');
+            var relativeDirectory = Path.GetRelativePath(project, Path.GetDirectoryName(file)!).Replace(Path.DirectorySeparatorChar, '.');
             var expected = $"GWGUI.Emulation.{family}.{relativeDirectory}";
             var source = File.ReadAllText(file);
             Assert.Contains($"namespace {expected};", source, StringComparison.Ordinal);
@@ -381,25 +342,18 @@ public sealed class EmulationArchitectureTests
         return directory?.FullName ?? throw new DirectoryNotFoundException();
     }
 
-    private static string[] MemberNames(Type type) => type.GetMembers(BindingFlags.Instance |
-            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly)
-        .Select(member => member.Name).Order(StringComparer.Ordinal).ToArray();
+    private static string[] MemberNames(Type type) => type.GetMembers(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly).Select(member => member.Name).Order(StringComparer.Ordinal).ToArray();
 
     private static string NormalizedFamilySource(string path, string family)
     {
         var source = File.ReadAllText(path).Replace($"GWGUI.Emulation.{family}", "GWGUI.Emulation.Family",
             StringComparison.Ordinal).Replace("\r\n", "\n", StringComparison.Ordinal);
         if (Path.GetFileName(path) == "IEmulatorAdapter.cs")
-            source = string.Join('\n', source.Split('\n').Where(line =>
-                !line.Contains(" GetCartridgeExtensions(", StringComparison.Ordinal)
-                && !line.Contains(" GetRuntimeOptions(", StringComparison.Ordinal)));
+            source = string.Join('\n', source.Split('\n').Where(line => !line.Contains(" GetCartridgeExtensions(", StringComparison.Ordinal) && !line.Contains(" GetRuntimeOptions(", StringComparison.Ordinal)));
         if (Path.GetFileName(path) == "EmulatorCatalog.cs")
-            source = source.Replace("\n                && type.Namespace?.Contains(\".Emulators.\", StringComparison.Ordinal) == true",
-                string.Empty, StringComparison.Ordinal);
+            source = source.Replace("\n                && type.Namespace?.Contains(\".Emulators.\", StringComparison.Ordinal) == true", string.Empty, StringComparison.Ordinal);
         return source;
     }
 
-    private static IReadOnlySet<string> References(Assembly assembly) => assembly.GetReferencedAssemblies()
-        .Select(reference => reference.Name?.ToLowerInvariant() ?? string.Empty)
-        .ToHashSet(StringComparer.Ordinal);
+    private static IReadOnlySet<string> References(Assembly assembly) => assembly.GetReferencedAssemblies().Select(reference => reference.Name?.ToLowerInvariant() ?? string.Empty).ToHashSet(StringComparer.Ordinal);
 }

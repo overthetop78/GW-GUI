@@ -18,8 +18,7 @@ internal static class AtariMediaActivityScenarios
         PaintLed(pixels, width - 36, pitch);
         var ledStates = new Dictionary<int, bool>();
 
-        Assert.True(EmulationMediaActivityFunctions.CaptureHatariOverlay(
-            pixels, width, height, pitch, EmulationPixelFormat.Rgb565, ledStates));
+        Assert.True(EmulationMediaActivityFunctions.CaptureHatariOverlay(pixels, width, height, pitch, EmulationPixelFormat.Rgb565, ledStates));
         Assert.True(ledStates[0]);
         Assert.False(ledStates[1]);
         Assert.True(ledStates[2]);
@@ -29,8 +28,7 @@ internal static class AtariMediaActivityScenarios
         Assert.False(activity[EmulationMediaSlot.Floppy1]);
         Assert.True(activity[EmulationMediaSlot.HardDisk0]);
 
-        Assert.True(EmulationMediaActivityFunctions.CaptureHatariOverlay(
-            new byte[pitch * height], width, height, pitch, EmulationPixelFormat.Rgb565, ledStates));
+        Assert.True(EmulationMediaActivityFunctions.CaptureHatariOverlay(new byte[pitch * height], width, height, pitch, EmulationPixelFormat.Rgb565, ledStates));
         Assert.All(ledStates.Values, Assert.False);
     }
 
@@ -45,8 +43,7 @@ internal static class AtariMediaActivityScenarios
         PaintGlyph(pixels, 321, 233, pitch, [0x00, 0x04, 0x0a, 0x08, 0x0a, 0x04, 0x00]);
         var ledStates = new Dictionary<int, bool>();
 
-        Assert.True(EmulationMediaActivityFunctions.CaptureAtari800Overlay(
-            pixels, width, height, pitch, EmulationPixelFormat.Rgb565, ledStates));
+        Assert.True(EmulationMediaActivityFunctions.CaptureAtari800Overlay(pixels, width, height, pitch, EmulationPixelFormat.Rgb565, ledStates));
         Assert.False(ledStates[0]);
         Assert.True(ledStates[1]);
         Assert.False(ledStates[2]);
@@ -57,8 +54,7 @@ internal static class AtariMediaActivityScenarios
         Assert.True(activity[EmulationMediaSlot.Floppy1]);
         Assert.True(activity[EmulationMediaSlot.Cassette0]);
 
-        Assert.True(EmulationMediaActivityFunctions.CaptureAtari800Overlay(
-            new byte[pitch * height], width, height, pitch, EmulationPixelFormat.Rgb565, ledStates));
+        Assert.True(EmulationMediaActivityFunctions.CaptureAtari800Overlay(new byte[pitch * height], width, height, pitch, EmulationPixelFormat.Rgb565, ledStates));
         Assert.All(ledStates.Values, Assert.False);
     }
 

@@ -29,8 +29,7 @@ public sealed class HiddenMachineRenderingTests(StaExecutionScenarios sta)
             Sequence = 100, Timestamp = TimeSpan.FromSeconds(2) };
         pipeline.Process(settings, old, new(1, 2), new(1, 2));
         pipeline.ResetTemporalHistory();
-        Assert.Equal(fresh.Process(settings, current, new(1, 2), new(1, 2)).Pixels.ToArray(),
-            pipeline.Process(settings, current, new(1, 2), new(1, 2)).Pixels.ToArray());
+        Assert.Equal(fresh.Process(settings, current, new(1, 2), new(1, 2)).Pixels.ToArray(), pipeline.Process(settings, current, new(1, 2), new(1, 2)).Pixels.ToArray());
     }
 
     private sealed class BlockingPipeline : IEmulationVideoProcessingPipeline

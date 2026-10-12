@@ -22,9 +22,7 @@ public sealed class GameCubeFstFileSystemReaderTests
         {
             var bytes = new byte[32 * 2048];
             WriteFst(bytes);
-            var track = new OpticalTrackDescriptor(
-                1, 1, OpticalTrackMode.Mode1Data2048, 0, 32,
-                2048, 0, 2048, new MemoryRandomAccessData(bytes), 0);
+            var track = new OpticalTrackDescriptor(1, 1, OpticalTrackMode.Mode1Data2048, 0, 32, 2048, 0, 2048, new MemoryRandomAccessData(bytes), 0);
             var volume = new MediaVolumeDescriptor(0, bytes.Length, "optical-track", sessionNumber: 1, trackNumber: 1);
             var document = new MediaImageDocument(
                 new MediaSourceDescriptor($"game{extension}", []),

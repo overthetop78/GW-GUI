@@ -27,11 +27,7 @@ internal static class ExplorerDocumentScenarios
         {
             File.Copy(typeof(ExplorerDocumentScenarios).Assembly.Location, scpPath);
             File.Copy(typeof(ExplorerDocumentScenarios).Assembly.Location, imgPath);
-            using var workspace = new VisualizerDocumentScenarios.Workspace(
-                withVisualizationProviders: true,
-                withMediaServices: true,
-                useDefaultExplorer: true,
-                sectorCylinders: 1);
+            using var workspace = new VisualizerDocumentScenarios.Workspace(withVisualizationProviders: true, withMediaServices: true, useDefaultExplorer: true, sectorCylinders: 1);
 
             await workspace.Controller.LoadAsync(scpPath);
             Assert.Equal(MediaRepresentationKind.Sectors, workspace.Visualizer.ActiveRepresentationKind);
@@ -59,30 +55,15 @@ internal static class ExplorerDocumentScenarios
         var amiga = new SectorImage(DiskImageFormatIds.AmigaDos, 512, 80, 2, 11, []);
         var ibm = new SectorImage(DiskImageFormatIds.Ibm720, 512, 80, 2, 9, []);
         var atari = new SectorImage(DiskImageFormatIds.AtariSt720, 512, 80, 2, 9, []);
-        var document = new ExploredDiskImage(
-            source.SourcePath,
-            amiga,
-            source.Volume,
-            source.Metadata,
-            detectedFileSystems: [new("amiga", amiga, source.Volume)],
-            detectedSectorImages: [ibm, atari],
-            scpImage: source.ScpImage);
+        var document = new ExploredDiskImage(source.SourcePath, amiga, source.Volume, source.Metadata, detectedFileSystems: [new("amiga", amiga, source.Volume)], detectedSectorImages: [ibm, atari], scpImage: source.ScpImage);
 
         section.Display(document);
 
-        Assert.Equal(
-            [DiskImageFormatIds.AmigaDos, DiskImageFormatIds.Ibm720, DiskImageFormatIds.AtariSt720],
-            selector.Items.Cast<ExplorerFormatChoice>().Select(choice => choice.Id));
+        Assert.Equal([DiskImageFormatIds.AmigaDos, DiskImageFormatIds.Ibm720, DiskImageFormatIds.AtariSt720], selector.Items.Cast<ExplorerFormatChoice>().Select(choice => choice.Id));
         Assert.Equal(Visibility.Visible, selector.Visibility);
         Assert.Equal(Visibility.Visible, label.Visibility);
 
-        var single = new ExploredDiskImage(
-            source.SourcePath,
-            amiga,
-            source.Volume,
-            source.Metadata,
-            detectedFileSystems: [new("amiga", amiga, source.Volume)],
-            scpImage: source.ScpImage);
+        var single = new ExploredDiskImage(source.SourcePath, amiga, source.Volume, source.Metadata, detectedFileSystems: [new("amiga", amiga, source.Volume)], scpImage: source.ScpImage);
         section.Display(single);
         Assert.Equal(Visibility.Collapsed, selector.Visibility);
         Assert.Equal(Visibility.Collapsed, label.Visibility);
@@ -96,14 +77,7 @@ internal static class ExplorerDocumentScenarios
         var source = Document("AUTO");
         var amiga = new SectorImage(DiskImageFormatIds.AmigaDos, 512, 80, 2, 11, []);
         var ibm = new SectorImage(DiskImageFormatIds.Ibm720, 512, 80, 2, 9, []);
-        var document = new ExploredDiskImage(
-            source.SourcePath,
-            amiga,
-            source.Volume,
-            source.Metadata,
-            detectedFileSystems: [new("amiga", amiga, source.Volume)],
-            detectedSectorImages: [ibm],
-            scpImage: source.ScpImage);
+        var document = new ExploredDiskImage(source.SourcePath, amiga, source.Volume, source.Metadata, detectedFileSystems: [new("amiga", amiga, source.Volume)], detectedSectorImages: [ibm], scpImage: source.ScpImage);
         section.Display(document);
 
         var changes = 0;
@@ -115,8 +89,7 @@ internal static class ExplorerDocumentScenarios
         var classification = section.ClassificationSelector;
         var ibmFamily = new DiskClassificationCatalog(formats).ResolveFormat(DiskImageFormatIds.Ibm720)!.Family;
         var machines = Assert.IsType<ComboBox>(classification.FindName("Machine"));
-        machines.SelectedItem = machines.Items.Cast<GWGUI.App.Contracts.Storage.DiskMachineChoice>()
-            .Single(item => item.DisplayName == ibmFamily);
+        machines.SelectedItem = machines.Items.Cast<GWGUI.App.Contracts.Storage.DiskMachineChoice>().Single(item => item.DisplayName == ibmFamily);
         Assert.Equal(DiskImageFormatIds.Ibm720, classification.SelectedFormatId);
         var changesAfterManualSelection = changes;
 
@@ -124,9 +97,7 @@ internal static class ExplorerDocumentScenarios
 
         Assert.Equal(changesAfterManualSelection + 1, changes);
         Assert.Equal(DiskImageFormatIds.AmigaDos, classification.SelectedFormatId);
-        Assert.Equal(
-            DiskImageFormatIds.AmigaDos,
-            Assert.IsType<ExplorerFormatChoice>(Find<ComboBox>(section, "DetectedFormatSelector").SelectedItem).Id);
+        Assert.Equal(DiskImageFormatIds.AmigaDos, Assert.IsType<ExplorerFormatChoice>(Find<ComboBox>(section, "DetectedFormatSelector").SelectedItem).Id);
     }
 
     public static void AtariEightBitUsesFiveAndQuarterFloppyIcon()
@@ -152,18 +123,15 @@ internal static class ExplorerDocumentScenarios
         section.SetFormats(formats, null);
         var source = Document("MANUAL");
         var detectedImage = source.Image.WithFormatId("test.detected");
-        section.Display(new ExploredDiskImage(source.SourcePath, detectedImage, source.Volume, source.Metadata,
-            detectedFileSystems: [new("detected-reader", detectedImage, source.Volume)], scpImage: source.ScpImage));
+        section.Display(new ExploredDiskImage(source.SourcePath, detectedImage, source.Volume, source.Metadata, detectedFileSystems: [new("detected-reader", detectedImage, source.Volume)], scpImage: source.ScpImage));
         var changes = 0;
         section.FormatChanged += (_, _) => changes++;
 
         var classification = section.ClassificationSelector;
         var machines = Assert.IsType<ComboBox>(classification.FindName("Machine"));
-        machines.SelectedItem = machines.Items.Cast<GWGUI.App.Contracts.Storage.DiskMachineChoice>()
-            .Single(item => item.DisplayName == "manual-family");
+        machines.SelectedItem = machines.Items.Cast<GWGUI.App.Contracts.Storage.DiskMachineChoice>().Single(item => item.DisplayName == "manual-family");
         var choices = Assert.IsType<ComboBox>(classification.FindName("Format"));
-        choices.SelectedItem = choices.Items.Cast<GWGUI.App.Contracts.Storage.DiskFormatChoice>()
-            .Single(item => item.Format.Id == "test.manual.second");
+        choices.SelectedItem = choices.Items.Cast<GWGUI.App.Contracts.Storage.DiskFormatChoice>().Single(item => item.Format.Id == "test.manual.second");
 
         Assert.False(Find<CheckBox>(section, "AutomaticDetection").IsChecked);
         Assert.Equal("test.manual.second", section.SelectedFormatId);
@@ -198,8 +166,7 @@ internal static class ExplorerDocumentScenarios
         Assert.Equal("SECOND", Find<TextBlock>(section, "VolumeNameText").Text);
         Assert.Empty(Find<ListView>(section, "ContentsList").Items);
         Assert.Null(image.SelectFormat("missing"));
-        var unknown = new ExploredDiskImage("virtual/unknown.scp", new("unknown", 512, 1, 1, 1, []),
-            second.Volume, second.Metadata, fileSystemRecognized: false, scpImage: first.ScpImage);
+        var unknown = new ExploredDiskImage("virtual/unknown.scp", new("unknown", 512, 1, 1, 1, []), second.Volume, second.Metadata, fileSystemRecognized: false, scpImage: first.ScpImage);
         section.Clear(); section.Display(unknown);
         Assert.Equal(LocExtension.Get("Explorer.Unknown"), Find<TextBlock>(section, "VolumeNameText").Text);
         Assert.Equal(LocExtension.Get("Explorer.PhysicalSectorsNoFileSystem"), Find<TextBlock>(section, "FileSystemText").Text);

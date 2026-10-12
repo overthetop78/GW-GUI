@@ -107,6 +107,5 @@ internal static class WriteOperationScenarios
         }
     }
 
-    private static string Text(RichTextBox output) =>
-        new TextRange(output.Document.ContentStart, output.Document.ContentEnd).Text;
+    private static string Text(RichTextBox output) => new TextRange(output.Document.ContentStart, output.Document.ContentEnd).Text;
 }

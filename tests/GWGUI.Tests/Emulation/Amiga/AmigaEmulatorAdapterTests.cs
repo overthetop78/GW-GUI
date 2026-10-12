@@ -24,8 +24,7 @@ public sealed class AmigaEmulatorAdapterTests
         Assert.DoesNotContain("External", Enum.GetNames<Emulator>());
         Assert.False(Enum.TryParse<Emulator>("External", out _));
         foreach (var id in new[] { "A500OG", "A1200OG", "A2000OG", "A4030", "A4040", "CD32FR" })
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-                GWGUI.Emulation.Commodore.Common.Machines.Common.Dictionaries.ModelCatalog.Get(id));
+            Assert.Throws<ArgumentOutOfRangeException>(() => GWGUI.Emulation.Commodore.Common.Machines.Common.Dictionaries.ModelCatalog.Get(id));
     }
 
     [Fact]
@@ -34,8 +33,7 @@ public sealed class AmigaEmulatorAdapterTests
         var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
         var original = new MachineConfiguration("A500", Emulator.PUAE, FirmwarePaths: new Dictionary<string,string> {{"configuration.kickstartPath","kickstart.rom"}});
 
-        var restored = JsonSerializer.Deserialize<MachineConfiguration>(
-            JsonSerializer.Serialize(original, options), options);
+        var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(original, options), options);
 
         Assert.NotNull(restored);
         Assert.Equal(original.Id, restored.Id);
@@ -100,16 +98,13 @@ public sealed class AmigaEmulatorAdapterTests
             new EmulatorCreationContext(Path.GetTempPath(), "virtual-core", "virtual-host", null, null));
         try
         {
-            var field = typeof(Machine).GetField("_startErrorTranslator",
-                BindingFlags.Instance | BindingFlags.NonPublic);
+            var field = typeof(Machine).GetField("_startErrorTranslator", BindingFlags.Instance | BindingFlags.NonPublic);
             var translate = Assert.IsType<Func<Exception, Exception>>(field!.GetValue(machine));
-            var technical = new InvalidDataException(
-                "Logical block 247 is missing.\n   at Technical.Stack.Trace()");
+            var technical = new InvalidDataException("Logical block 247 is missing.\n   at Technical.Stack.Trace()");
 
             var translated = Assert.IsType<EmulationMessageException>(translate(technical));
 
-            Assert.Equal(EmulationMessageCode.MachineStartFailed,
-                translated.MessageData.MessageCode);
+            Assert.Equal(EmulationMessageCode.MachineStartFailed, translated.MessageData.MessageCode);
             Assert.Null(translated.MessageData.OriginalText);
             Assert.Same(technical, translated.InnerException);
         }
@@ -129,12 +124,10 @@ public sealed class AmigaEmulatorAdapterTests
         try
         {
             await File.WriteAllBytesAsync(Path.Combine(coreDirectory, "puae_libretro.dll"), [0]);
-            await File.WriteAllTextAsync(Path.Combine(coreDirectory, "core.json"),
-                "{\"version\":\"test-version\"}");
+            await File.WriteAllTextAsync(Path.Combine(coreDirectory, "core.json"), "{\"version\":\"test-version\"}");
             using var httpClient = new HttpClient();
             var factory = new CommodoreEmulationModuleFactory();
-            var module = Assert.IsType<CommodoreEmulationModule>(factory.Create(
-                new EmulationModuleContext(directory, moduleDirectory, httpClient)));
+            var module = Assert.IsType<CommodoreEmulationModule>(factory.Create(new EmulationModuleContext(directory, moduleDirectory, httpClient)));
 
             var installation = await module.GetEmulatorInstallationAsync("A500");
 
@@ -161,8 +154,7 @@ public sealed class AmigaEmulatorAdapterTests
             await module.SaveConfigurationAsync(configuration);
 
             Assert.Single(await module.LoadConfigurationsAsync());
-            var error = await Assert.ThrowsAsync<EmulationMessageException>(() =>
-                module.CreateRuntimeAsync(configuration, null!).AsTask());
+            var error = await Assert.ThrowsAsync<EmulationMessageException>(() => module.CreateRuntimeAsync(configuration, null!).AsTask());
             Assert.Equal(EmulationMessageCode.FirmwareMissing, error.MessageData.MessageCode);
         }
         finally
@@ -175,8 +167,7 @@ public sealed class AmigaEmulatorAdapterTests
     public void PuaeDeclaresOnlyItsHardwareConfigurationDialogs()
     {
         using var httpClient = new HttpClient();
-        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
+        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var storage = module.DescribeStorageSettings(module.CreateConfiguration("A1200"));
 
         Assert.All(storage.AvailableDevices, device => Assert.Equal(
@@ -192,19 +183,13 @@ public sealed class AmigaEmulatorAdapterTests
     public void AmigaKeyboardListsOnlyUniqueMachineKeysWithAutomaticHostBindings()
     {
         using var httpClient = new HttpClient();
-        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
-        var keyboard = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(
-            module.CreateConfiguration("A500")).Keyboard);
+        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var keyboard = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(module.CreateConfiguration("A500")).Keyboard);
 
-        Assert.Equal([nameof(EmulationKey.Help), nameof(EmulationKey.LeftAmiga),
-            nameof(EmulationKey.RightAmiga)], keyboard.Definitions.Select(key => key.Id));
-        Assert.Equal(nameof(EmulationKey.Insert), keyboard.Definitions.Single(
-            key => key.Id == nameof(EmulationKey.Help)).DefaultBinding);
-        Assert.Equal(nameof(EmulationKey.PageUp), keyboard.Definitions.Single(
-            key => key.Id == nameof(EmulationKey.LeftAmiga)).DefaultBinding);
-        Assert.Equal(nameof(EmulationKey.PageDown), keyboard.Definitions.Single(
-            key => key.Id == nameof(EmulationKey.RightAmiga)).DefaultBinding);
+        Assert.Equal([nameof(EmulationKey.Help), nameof(EmulationKey.LeftAmiga), nameof(EmulationKey.RightAmiga)], keyboard.Definitions.Select(key => key.Id));
+        Assert.Equal(nameof(EmulationKey.Insert), keyboard.Definitions.Single(key => key.Id == nameof(EmulationKey.Help)).DefaultBinding);
+        Assert.Equal(nameof(EmulationKey.PageUp), keyboard.Definitions.Single(key => key.Id == nameof(EmulationKey.LeftAmiga)).DefaultBinding);
+        Assert.Equal(nameof(EmulationKey.PageDown), keyboard.Definitions.Single(key => key.Id == nameof(EmulationKey.RightAmiga)).DefaultBinding);
         Assert.All(keyboard.Definitions, definition =>
         {
             Assert.True(Enum.TryParse<EmulationKey>(definition.Id, out _));
@@ -217,8 +202,7 @@ public sealed class AmigaEmulatorAdapterTests
     public void AmigaConfigurationSummaryDoesNotDisplayAudioState()
     {
         using var httpClient = new HttpClient();
-        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
+        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration("A600"));
 
         Assert.Equal(module.SummarizeConfiguration(configuration with { AudioEnabled = true }).Details,
@@ -229,13 +213,11 @@ public sealed class AmigaEmulatorAdapterTests
     public void EveryAmigaMachineSettingDeclaresLocalizedHelp()
     {
         using var httpClient = new HttpClient();
-        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
+        var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
 
         var missing = new HashSet<string>(StringComparer.Ordinal);
         foreach (var machine in module.Machines.Where(machine => new[] {"A500","A500PLUS","A600","A1000","A1200","A2000","A3000","A4000","CDTV","CD32"}.Contains(machine.Id)))
-        foreach (var field in module.Describe(machine.Id,
-                     module.CreateConfiguration(machine.Id)).Blocks.SelectMany(block => block.Fields))
+        foreach (var field in module.Describe(machine.Id, module.CreateConfiguration(machine.Id)).Blocks.SelectMany(block => block.Fields))
         {
             if (string.IsNullOrWhiteSpace(field.ExplanationResourceKey))
                 missing.Add($"{field.Id}:short-key");

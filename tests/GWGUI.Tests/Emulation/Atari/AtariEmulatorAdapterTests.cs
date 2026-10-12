@@ -36,8 +36,7 @@ public sealed class AtariEmulatorAdapterTests
         Assert.Equal("Emulation.Emulator.atari-lynx.Description", CoreCatalog.Get(emulator).DescriptionResourceKey);
         var settings = module.Describe(nameof(MachineModel.Lynx), selected);
         Assert.True(settings.Visibility.Tabs[EmulationMachineTab.Rom]);
-        Assert.Contains(settings.Blocks.SelectMany(block => block.Fields), field =>
-            field.Id == "configuration.systemFirmware" && field.IsVisible && field.IsEnabled);
+        Assert.Contains(settings.Blocks.SelectMany(block => block.Fields), field => field.Id == "configuration.systemFirmware" && field.IsVisible && field.IsEnabled);
         Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.Atari2600, core: emulator));
         Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.Atari5200, core: emulator));
     }
@@ -64,8 +63,7 @@ public sealed class AtariEmulatorAdapterTests
     public void HolaniPreservesPhysicalLynxButtons(int command, int nativeButton)
     {
         var controller = EmulationControllerState.Empty with { Buttons = 1u << command, LeftX = 1234 };
-        var snapshot = new EmulationInputSnapshot(new HashSet<EmulationKey>(),
-            EmulationInputSnapshot.Empty.Pointer, [controller]);
+        var snapshot = new EmulationInputSnapshot(new HashSet<EmulationKey>(), EmulationInputSnapshot.Empty.Pointer, [controller]);
         var converted = GWGUI.Emulation.Atari.Emulators.Holani.Functions.InputFunctions.ToNative(snapshot);
         Assert.Equal(1u << nativeButton, converted.Controllers[0].Buttons);
         Assert.Equal(controller.LeftX, converted.Controllers[0].LeftX);
@@ -97,8 +95,7 @@ public sealed class AtariEmulatorAdapterTests
         Assert.Equal(hardware.DefaultCpuFrequencyMhz.ToString(CultureInfo.InvariantCulture), options["hatarib_cpu_clock"]);
         Assert.Equal("<etos1024k>", options["hatarib_tos"]);
         Assert.DoesNotContain(options.Keys, key => key.StartsWith("hatari_", StringComparison.Ordinal));
-        Assert.Equal(CoreCatalog.Get(Emulator.Hatari).DescriptionResourceKey,
-            CoreCatalog.Get(Emulator.HatariB).DescriptionResourceKey);
+        Assert.Equal(CoreCatalog.Get(Emulator.Hatari).DescriptionResourceKey, CoreCatalog.Get(Emulator.HatariB).DescriptionResourceKey);
     }
 
     [Theory]
@@ -124,8 +121,7 @@ public sealed class AtariEmulatorAdapterTests
         var actual = module.RuntimeOptions(selected);
         Assert.Equal(nativeModel, actual["hatari_machinetype"]);
         Assert.Equal(expected.OrderBy(pair => pair.Key), actual.OrderBy(pair => pair.Key));
-        Assert.Equal(CoreCatalog.Get(Emulator.Hatari).DescriptionResourceKey,
-            CoreCatalog.Get(selected.Core).DescriptionResourceKey);
+        Assert.Equal(CoreCatalog.Get(Emulator.Hatari).DescriptionResourceKey, CoreCatalog.Get(selected.Core).DescriptionResourceKey);
     }
 
     [Fact]
@@ -180,32 +176,26 @@ public sealed class AtariEmulatorAdapterTests
     public async Task Atari5200OffersA5200WithoutChangingItsDefaultAdapter()
     {
         using var httpClient = new HttpClient();
-        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
-        var configuration = Assert.IsType<MachineConfiguration>(
-            module.CreateConfiguration(nameof(MachineModel.Atari5200)));
+        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(nameof(MachineModel.Atari5200)));
         Assert.Equal(Emulator.Atari800, configuration.Core);
         Assert.Equal(new[] { "a5200", "atari800" },
             CoreCatalog.GetAll(MachineModel.Atari5200).Select(entry => entry.Id));
-        var selected = Assert.IsType<MachineConfiguration>(
-            await module.UseEmulatorAsync(configuration, "a5200"));
+        var selected = Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(configuration, "a5200"));
         Assert.Equal(Emulator.A5200, selected.Core);
         var entry = CoreCatalog.Get(selected.Core);
         Assert.Equal("a5200_libretro.dll", entry.DllName);
         Assert.Equal(new[] { MachineModel.Atari5200 }, entry.Models);
-        Assert.Throws<ArgumentException>(() => new MachineConfiguration(
-            MachineModel.Atari800Xl, core: Emulator.A5200));
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.Atari800Xl, core: Emulator.A5200));
         Assert.Equal("internal", module.RuntimeOptions(selected)["a5200_bios"]);
         Assert.Equal("official", module.RuntimeOptions(selected with
         {
-            Firmwares = [new FirmwareConfiguration(FirmwareCategory.Atari5200Bios,
-                "5200.rom", false)]
+            Firmwares = [new FirmwareConfiguration(FirmwareCategory.Atari5200Bios, "5200.rom", false)]
         })["a5200_bios"]);
         Assert.Equal("internal", module.RuntimeOptions(selected with
         {
             Options = new Dictionary<string, string> { ["a5200_bios"] = "internal" },
-            Firmwares = [new FirmwareConfiguration(FirmwareCategory.Atari5200Bios,
-                "5200.rom", false)]
+            Firmwares = [new FirmwareConfiguration(FirmwareCategory.Atari5200Bios, "5200.rom", false)]
         })["a5200_bios"]);
     }
 
@@ -226,8 +216,7 @@ public sealed class AtariEmulatorAdapterTests
             LeftX = 1234,
             LeftY = -2345
         };
-        var snapshot = new EmulationInputSnapshot(new HashSet<EmulationKey>(),
-            EmulationInputSnapshot.Empty.Pointer, [controller]);
+        var snapshot = new EmulationInputSnapshot(new HashSet<EmulationKey>(), EmulationInputSnapshot.Empty.Pointer, [controller]);
         var converted = GWGUI.Emulation.Atari.Emulators.A5200.Functions.InputFunctions.ToNative(snapshot);
         Assert.Equal(1u << nativeButton, converted.Controllers[0].Buttons);
         Assert.Equal(controller.LeftX, converted.Controllers[0].LeftX);
@@ -239,8 +228,7 @@ public sealed class AtariEmulatorAdapterTests
     public void A5200MapsKeypadTwoAndDoesNotExposeUnsupportedControllerPorts()
     {
         var controller = EmulationControllerState.Empty with { Buttons = 1u << 12 };
-        var snapshot = new EmulationInputSnapshot(new HashSet<EmulationKey>(),
-            EmulationInputSnapshot.Empty.Pointer, [controller, controller, controller, controller]);
+        var snapshot = new EmulationInputSnapshot(new HashSet<EmulationKey>(), EmulationInputSnapshot.Empty.Pointer, [controller, controller, controller, controller]);
         var converted = GWGUI.Emulation.Atari.Emulators.A5200.Functions.InputFunctions.ToNative(snapshot);
         Assert.Equal(2, converted.Controllers.Count);
         Assert.Equal(0u, converted.Controllers[0].Buttons);
@@ -252,8 +240,7 @@ public sealed class AtariEmulatorAdapterTests
     public async Task Atari2600OffersThreeSeparateStellaAdapters()
     {
         using var httpClient = new HttpClient();
-        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
+        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var configuration = module.CreateConfiguration(nameof(MachineModel.Atari2600));
         var entries = CoreCatalog.GetAll(MachineModel.Atari2600);
         Assert.Equal(new[] { "stella", "stella2014", "stella2023" }, entries.Select(entry => entry.Id));
@@ -261,11 +248,9 @@ public sealed class AtariEmulatorAdapterTests
         foreach (var entry in entries)
         {
             Assert.Equal(new[] { MachineModel.Atari2600 }, entry.Models);
-            var selected = Assert.IsType<MachineConfiguration>(
-                await module.UseEmulatorAsync(configuration, entry.Id));
+            var selected = Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(configuration, entry.Id));
             Assert.Equal(entry.Emulator, selected.Core);
-            Assert.Throws<ArgumentException>(() => new MachineConfiguration(
-                MachineModel.Atari7800, core: entry.Emulator));
+            Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.Atari7800, core: entry.Emulator));
         }
     }
 
@@ -289,8 +274,7 @@ public sealed class AtariEmulatorAdapterTests
         var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
         var original = new MachineConfiguration(MachineModel.Atari800Xl);
 
-        var restored = JsonSerializer.Deserialize<MachineConfiguration>(
-            JsonSerializer.Serialize(original, options), options);
+        var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(original, options), options);
 
         Assert.NotNull(restored);
         Assert.Equal(original.Id, restored.Id);
@@ -315,19 +299,14 @@ public sealed class AtariEmulatorAdapterTests
     {
         var field = typeof(Engine).GetField("_adapters", BindingFlags.Instance | BindingFlags.NonPublic);
         var adapters = Assert.IsAssignableFrom<System.Collections.IEnumerable>(field!.GetValue(new Engine()));
-        var ids = adapters.Cast<object>().Select(item => item.GetType().GetProperty("Key")!.GetValue(item) as string)
-            .Order(StringComparer.Ordinal).ToArray();
+        var ids = adapters.Cast<object>().Select(item => item.GetType().GetProperty("Key")!.GetValue(item) as string).Order(StringComparer.Ordinal).ToArray();
         Assert.Equal(CoreCatalog.All.Select(item => item.Id).Order(StringComparer.Ordinal), ids);
         foreach (var entry in CoreCatalog.All)
         {
-            var adapter = adapters.Cast<object>().Single(item =>
-                string.Equals(item.GetType().GetProperty("Key")!.GetValue(item) as string,
-                    entry.Id, StringComparison.Ordinal));
+            var adapter = adapters.Cast<object>().Single(item => string.Equals(item.GetType().GetProperty("Key")!.GetValue(item) as string, entry.Id, StringComparison.Ordinal));
             var value = adapter.GetType().GetProperty("Value")!.GetValue(adapter)!;
-            var definition = Assert.IsType<EmulationEmulatorDefinition>(
-                value.GetType().GetProperty("Definition")!.GetValue(value));
-            Assert.Equal(CoreCatalog.GetDefinition(entry).MachineIds.Order(StringComparer.Ordinal),
-                definition.MachineIds.Order(StringComparer.Ordinal));
+            var definition = Assert.IsType<EmulationEmulatorDefinition>(value.GetType().GetProperty("Definition")!.GetValue(value));
+            Assert.Equal(CoreCatalog.GetDefinition(entry).MachineIds.Order(StringComparer.Ordinal), definition.MachineIds.Order(StringComparer.Ordinal));
         }
     }
 
@@ -356,8 +335,7 @@ public sealed class AtariEmulatorAdapterTests
     public void AtariEmulatorsDeclareOnlyTheirHardwareConfigurationDialogs()
     {
         using var httpClient = new HttpClient();
-        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
+        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
 
         foreach (var machine in module.Machines)
         {
@@ -376,12 +354,9 @@ public sealed class AtariEmulatorAdapterTests
     public void AtariComputerKeyboardsListOnlyUniqueMachineKeysWithAutomaticHostBindings()
     {
         using var httpClient = new HttpClient();
-        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
-        var tos = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(
-            module.CreateConfiguration(nameof(MachineModel.St))).Keyboard);
-        var eightBit = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(
-            module.CreateConfiguration(nameof(MachineModel.Atari800Xl))).Keyboard);
+        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var tos = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(module.CreateConfiguration(nameof(MachineModel.St))).Keyboard);
+        var eightBit = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(module.CreateConfiguration(nameof(MachineModel.Atari800Xl))).Keyboard);
 
         Assert.DoesNotContain(tos.Definitions, key => key.Id == nameof(EmulationKey.A));
         Assert.DoesNotContain(tos.Definitions, key => key.Id == nameof(EmulationKey.D1));
@@ -405,10 +380,8 @@ public sealed class AtariEmulatorAdapterTests
     public void AtariConfigurationSummaryDoesNotDisplayAudioState()
     {
         using var httpClient = new HttpClient();
-        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
-        var configuration = Assert.IsType<MachineConfiguration>(
-            module.CreateConfiguration(nameof(MachineModel.Atari800Xl)));
+        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(nameof(MachineModel.Atari800Xl)));
 
         Assert.Equal(module.SummarizeConfiguration(configuration with { AudioEnabled = true }).Details,
             module.SummarizeConfiguration(configuration with { AudioEnabled = false }).Details);
@@ -418,13 +391,11 @@ public sealed class AtariEmulatorAdapterTests
     public void EveryAtariMachineSettingDeclaresLocalizedHelp()
     {
         using var httpClient = new HttpClient();
-        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
+        var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
 
         var missing = new HashSet<string>(StringComparer.Ordinal);
         foreach (var machine in module.Machines)
-        foreach (var field in module.Describe(machine.Id,
-                     module.CreateConfiguration(machine.Id)).Blocks.SelectMany(block => block.Fields))
+        foreach (var field in module.Describe(machine.Id, module.CreateConfiguration(machine.Id)).Blocks.SelectMany(block => block.Fields))
         {
             if (string.IsNullOrWhiteSpace(field.ExplanationResourceKey))
                 missing.Add($"{field.Id}:short-key");

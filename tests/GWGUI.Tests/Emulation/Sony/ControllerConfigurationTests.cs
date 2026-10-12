@@ -76,9 +76,7 @@ public sealed class ControllerConfigurationTests
         foreach (var firstEnabled in new[] { false, true })
         foreach (var secondEnabled in new[] { false, true })
         {
-            var count = firstEnabled && secondEnabled ? PortCounts.MaximumControllerPortCount
-                : firstEnabled || secondEnabled ? PortCounts.SingleMultitapControllerCount
-                : PortCounts.TwoControllerPorts;
+            var count = firstEnabled && secondEnabled ? PortCounts.MaximumControllerPortCount : firstEnabled || secondEnabled ? PortCounts.SingleMultitapControllerCount : PortCounts.TwoControllerPorts;
             AssertPortCapacity(new MachineConfiguration(ModelConstants.PlayStation, emulator,
                 Options: new Dictionary<string, string>
                 {
@@ -114,17 +112,14 @@ public sealed class ControllerConfigurationTests
             Assert.Contains(nameof(ControllerType.DualShock), choices);
             Assert.Contains(nameof(ControllerType.None), choices);
         }
-        Assert.Throws<ArgumentOutOfRangeException>(() =>
-            ControllerFunctions.WithControllerType(configuration, SwanCore.LightGunPortCount, ControllerType.GunCon));
-        Assert.Throws<ArgumentOutOfRangeException>(() =>
-            ControllerFunctions.WithControllerType(configuration, SwanCore.SteeringControllerPortCount, ControllerType.NeGcon));
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, SwanCore.LightGunPortCount, ControllerType.GunCon));
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, SwanCore.SteeringControllerPortCount, ControllerType.NeGcon));
     }
 
     [Fact]
     public void Ps3ExposesSevenPortsWithCompleteButtonsAndBothSticks()
     {
-        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(
-            ModelConstants.PlayStation3, Rpcs3Core.Id));
+        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.PlayStation3, Rpcs3Core.Id));
         Assert.Equal(Ps3Hardware.ControllerPortCount, settings.ControllerPorts.Count);
         Assert.All(settings.ControllerPorts, port =>
         {
@@ -137,8 +132,7 @@ public sealed class ControllerConfigurationTests
             Assert.Contains(EmulationControllerCommandIds.R3, ids);
             Assert.Contains(InputSettingsFunctionsConstants.LeftStickLeft, ids);
             Assert.Contains(InputSettingsFunctionsConstants.RightStickRight, ids);
-            Assert.DoesNotContain(port.ControllerChoices, choice =>
-                choice.CompatibleVisualIds?.Contains(EmulationControllerVisualIds.QuickShot) == true);
+            Assert.DoesNotContain(port.ControllerChoices, choice => choice.CompatibleVisualIds?.Contains(EmulationControllerVisualIds.QuickShot) == true);
         });
     }
 
@@ -185,17 +179,14 @@ public sealed class ControllerConfigurationTests
     {
         var mappings = new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA };
         var configuration = new MachineConfiguration(ModelConstants.PlayStation, SwanCore.Id,
-            Input: new InputConfiguration(ControllerBindings:
-            [new ControllerBinding(FirstPort, ControllerType.Joystick, PhysicalDevice, mappings,
-                EmulationControllerVisualIds.SonyPlayStationController)]));
+            Input: new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, ControllerType.Joystick, PhysicalDevice, mappings, EmulationControllerVisualIds.SonyPlayStationController)]));
         var updated = ControllerFunctions.WithControllerType(configuration, FirstPort, ControllerType.DualShock);
         var binding = Assert.Single(updated.Input!.ControllerBindings!);
         Assert.Equal(ControllerType.DualShock, binding.Type);
         Assert.Equal(PhysicalDevice, binding.DeviceId);
         Assert.Same(mappings, binding.ButtonMappings);
         Assert.Equal(EmulationControllerVisualIds.SonyPlayStationController, binding.VisualId);
-        Assert.Throws<ArgumentOutOfRangeException>(() =>
-            ControllerFunctions.WithControllerType(configuration, FirstPort, ControllerType.Keyboard));
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, FirstPort, ControllerType.Keyboard));
     }
 
     [Fact]
@@ -206,8 +197,7 @@ public sealed class ControllerConfigurationTests
         Assert.NotNull(settings.Keyboard);
         Assert.Empty(settings.Keyboard.Definitions);
         Assert.Equal(nameof(EmulationKey.F10), settings.Keyboard.Values[nameof(EmulationKey.A)]);
-        Assert.All(settings.ControllerPorts, port => Assert.Contains(port.ControllerChoices,
-            choice => choice.Id == ControllerType.Keyboard.ToString()));
+        Assert.All(settings.ControllerPorts, port => Assert.Contains(port.ControllerChoices, choice => choice.Id == ControllerType.Keyboard.ToString()));
     }
 
     [Fact]

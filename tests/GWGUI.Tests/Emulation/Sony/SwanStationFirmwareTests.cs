@@ -26,15 +26,13 @@ public sealed class SwanStationFirmwareTests
     public void AlternativeBiosIsUsedForAllRegions(string field, string nativeFile)
     {
         var native = SwanStationOptionFunctions.ToNative(Configuration(field));
-        Assert.All(FirmwareConstants.Regions.Values,
-            region => Assert.Equal(nativeFile, native.Options![region.PathKey]));
+        Assert.All(FirmwareConstants.Regions.Values, region => Assert.Equal(nativeFile, native.Options![region.PathKey]));
     }
 
     [Fact]
     public void BiosPathsAreProvidedByRomSelectionRatherThanOptionChoices()
     {
-        Assert.DoesNotContain(OptionCatalog.All,
-            option => FirmwareConstants.Regions.Values.Any(region => region.PathKey == option.Key));
+        Assert.DoesNotContain(OptionCatalog.All, option => FirmwareConstants.Regions.Values.Any(region => region.PathKey == option.Key));
     }
 
     private static MachineConfiguration Configuration(string field) =>

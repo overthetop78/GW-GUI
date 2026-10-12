@@ -33,8 +33,7 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
         Assert.Equal(2, selector.Items.Count);
         selector.SelectedIndex = 1;
         Assert.Equal("DATA", Find<TextBlock>(section, "VolumeNameText").Text);
-        Assert.Equal("DATA.BIN", Assert.IsType<ExplorerContentItem>(
-            Assert.Single(Find<ListView>(section, "ContentsList").Items.Cast<object>())).Entry.Name);
+        Assert.Equal("DATA.BIN", Assert.IsType<ExplorerContentItem>(Assert.Single(Find<ListView>(section, "ContentsList").Items.Cast<object>())).Entry.Name);
     });
 
     [Fact]
@@ -44,8 +43,7 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
         var tracks = new[]
         {
             new OpticalTrackDescriptor(1, 1, OpticalTrackMode.Mode1Data2048, 0, 2, 2_048, 0, 2_048, source, 0),
-            new OpticalTrackDescriptor(1, 2, OpticalTrackMode.Audio, 2, 2, 2_352, 0, 2_352,
-                new MemoryRandomAccessData(new byte[2 * 2_352]), 0),
+            new OpticalTrackDescriptor(1, 2, OpticalTrackMode.Audio, 2, 2, 2_352, 0, 2_352, new MemoryRandomAccessData(new byte[2 * 2_352]), 0),
             new OpticalTrackDescriptor(2, 3, OpticalTrackMode.Mode1Data2048, 4, 2, 2_048, 0, 2_048, source, 4 * 2_048)
         };
         var representation = new OpticalMediaImageRepresentation(6 * 2_048, tracks);
@@ -71,8 +69,7 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
         var section = Display(Document(MediaKind.Tape, representation, [volume]));
 
         Assert.Equal(Visibility.Collapsed, Find<ComboBox>(section, "SessionSelector").Visibility);
-        Assert.Equal("PROGRAM.BIN", Assert.IsType<ExplorerContentItem>(
-            Assert.Single(Find<ListView>(section, "ContentsList").Items.Cast<object>())).Entry.Name);
+        Assert.Equal("PROGRAM.BIN", Assert.IsType<ExplorerContentItem>(Assert.Single(Find<ListView>(section, "ContentsList").Items.Cast<object>())).Entry.Name);
     });
 
     [Fact]
@@ -140,19 +137,11 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
         int? session = null,
         int? track = null)
     {
-        var descriptor = new MediaVolumeDescriptor(
-            start,
-            length,
-            "test",
-            partitionNumber: partition,
-            sessionNumber: session,
-            trackNumber: track,
-            name: name);
+        var descriptor = new MediaVolumeDescriptor(start, length, "test", partitionNumber: partition, sessionNumber: session, trackNumber: track, name: name);
         var entry = new FileSystemEntry(fileName, FileSystemEntryKind.File, 1, null, string.Empty, 0, 0, true, [], [1]);
         var fileSystem = new FileSystemVolume(name, "test.fs", length, 0, null, null, [entry], [], freeSpaceKnown: false);
         return new ExploredMediaVolume(descriptor, "test.reader", fileSystem, []);
     }
 
-    private static T Find<T>(ExplorerSection section, string name) where T : class =>
-        Assert.IsType<T>(section.FindName(name));
+    private static T Find<T>(ExplorerSection section, string name) where T : class => Assert.IsType<T>(section.FindName(name));
 }

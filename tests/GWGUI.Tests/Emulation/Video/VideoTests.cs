@@ -11,10 +11,7 @@ public class VideoTests(GWGUI.Tests.Application.TestInfrastructure.StaExecutionS
         {
             var french = System.Globalization.CultureInfo.GetCultureInfo("fr-FR");
             localization.SetCultures(french, french);
-            Assert.Equal("Emulation.Video.Gamma",
-                GWGUI.VideoPresentation.Dictionaries.EmulationVideoProcessingCatalog
-                    .ParameterResourceKeys[GWGUI.VideoPresentation.Dictionaries
-                        .EmulationVideoProcessingCatalog.Gamma]);
+            Assert.Equal("Emulation.Video.Gamma", GWGUI.VideoPresentation.Dictionaries.EmulationVideoProcessingCatalog.ParameterResourceKeys[GWGUI.VideoPresentation.Dictionaries.EmulationVideoProcessingCatalog.Gamma]);
             foreach (var resourceKey in GWGUI.VideoPresentation.Dictionaries
                          .EmulationVideoProcessingCatalog.ParameterResourceKeys.Values)
             {

@@ -61,10 +61,8 @@ public sealed class BandaiModuleTests
         Assert.Equal(storage, settings.Visibility.Tabs[EmulationMachineTab.Storage]);
         Assert.False(settings.Visibility.Tabs[EmulationMachineTab.Keyboard]);
         Assert.False(settings.Visibility.Tabs[EmulationMachineTab.Mouse]);
-        Assert.DoesNotContain(settings.Blocks.SelectMany(block => block.Fields),
-            field => field.Editor == EmulationSettingsEditor.DirectoryPath);
-        Assert.DoesNotContain(settings.Blocks.SelectMany(block => block.Fields),
-            field => field.Tab == EmulationMachineTab.General && field.Id.StartsWith("wswan_", StringComparison.Ordinal));
+        Assert.DoesNotContain(settings.Blocks.SelectMany(block => block.Fields), field => field.Editor == EmulationSettingsEditor.DirectoryPath);
+        Assert.DoesNotContain(settings.Blocks.SelectMany(block => block.Fields), field => field.Tab == EmulationMachineTab.General && field.Id.StartsWith("wswan_", StringComparison.Ordinal));
         var input = InputSettingsFunctions.Describe(configuration);
         Assert.Null(input.Keyboard);
         Assert.Null(input.Mouse);
@@ -115,8 +113,7 @@ public sealed class BandaiModuleTests
     [Fact]
     public void IncompatibleCoreAndNativeValuesAreRejected()
     {
-        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.Playdia,
-            core: Emulator.BeetleWonderSwan));
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.Playdia, core: Emulator.BeetleWonderSwan));
         Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.WonderSwan,
             options: new Dictionary<string, string> { ["wswan_rotate_display"] = "invalid" }));
     }
@@ -149,8 +146,7 @@ public sealed class BandaiModuleTests
             {
                 Assert.True(module.TryGetString(machine.DisplayResourceKey, culture, out var name));
                 Assert.False(string.IsNullOrWhiteSpace(name));
-                foreach (var field in module.Describe(machine.Id).Blocks.SelectMany(block => block.Fields)
-                    .Where(field => field.LabelResourceKey.StartsWith("Emulation.Bandai.", StringComparison.Ordinal)))
+                foreach (var field in module.Describe(machine.Id).Blocks.SelectMany(block => block.Fields).Where(field => field.LabelResourceKey.StartsWith("Emulation.Bandai.", StringComparison.Ordinal)))
                     Assert.True(module.TryGetString(field.LabelResourceKey, culture, out _), field.LabelResourceKey);
             }
         }

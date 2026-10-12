@@ -28,9 +28,7 @@ public sealed class BinCueWaveMediaFormatTests
             var outputCuePath = Path.Combine(directory, "roundtrip.cue");
             var pcm = CreatePcm();
             await File.WriteAllBytesAsync(wavePath, CreateWave(pcm));
-            await File.WriteAllTextAsync(cuePath,
-                "FILE \"audio.wav\" WAVE\n  TRACK 01 AUDIO\n    INDEX 01 00:00:00\n",
-                Encoding.ASCII);
+            await File.WriteAllTextAsync(cuePath, "FILE \"audio.wav\" WAVE\n  TRACK 01 AUDIO\n    INDEX 01 00:00:00\n", Encoding.ASCII);
 
             IMediaImageReader reader = new BinCueReader();
             var context = new MediaRecognitionContext(new MediaSourceDescriptor(cuePath, []));
@@ -44,8 +42,7 @@ public sealed class BinCueWaveMediaFormatTests
             await track.DataSource.ReadExactlyAsync(0, readPcm, CancellationToken.None);
             Assert.Equal(pcm, readPcm);
 
-            var outputs = await new BinCueWriter().WriteAsync(
-                document, outputCuePath, OpticalImageFormatIds.BinCue);
+            var outputs = await new BinCueWriter().WriteAsync(document, outputCuePath, OpticalImageFormatIds.BinCue);
             var outputBinPath = Path.Combine(directory, "roundtrip.track01.bin");
             Assert.Contains(outputCuePath, outputs, StringComparer.OrdinalIgnoreCase);
             Assert.Contains(outputBinPath, outputs, StringComparer.OrdinalIgnoreCase);

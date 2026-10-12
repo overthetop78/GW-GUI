@@ -34,14 +34,7 @@ internal static class ReadAcquisitionScenarios
         Assert.Equal("close", device.Calls[^1]);
     }
 
-    internal static PhysicalDiskReadOptions Options => new(
-        "virtual-port",
-        (GreaseweazleBusType)1,
-        1,
-        [new(2, 1, 4, 0), new(0, 0)],
-        (ScpDiskType)0,
-        Revolutions: 1,
-        SeekRetries: 1);
+    internal static PhysicalDiskReadOptions Options => new("virtual-port", (GreaseweazleBusType)1, 1, [new(2, 1, 4, 0), new(0, 0)], (ScpDiskType)0, Revolutions: 1, SeekRetries: 1);
 
     public static async Task Acquire()
     {
@@ -68,12 +61,7 @@ internal static class ReadAcquisitionScenarios
         PhysicalDiskReadOptions options,
         IProgress<MediaAcquisitionProgress>? progress = null,
         CancellationToken cancellationToken = default) =>
-        new GreaseweazleMediaAcquisitionProvider(() => device).AcquireAsync(
-            MediaKind.Floppy,
-            options.PortName,
-            CreateProviderOptions(options),
-            progress,
-            cancellationToken);
+        new GreaseweazleMediaAcquisitionProvider(() => device).AcquireAsync(MediaKind.Floppy, options.PortName, CreateProviderOptions(options), progress, cancellationToken);
 
     internal static IReadOnlyDictionary<string, string> CreateProviderOptions(PhysicalDiskReadOptions options)
     {

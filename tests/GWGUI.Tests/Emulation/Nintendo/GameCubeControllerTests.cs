@@ -11,9 +11,7 @@ namespace GWGUI.Tests.Emulation.Nintendo;
 public sealed class GameCubeControllerTests
 {
     private const int FirstPortIndex = 0;
-    private const uint ExpectedButtons = (1u << 0) | (1u << 1) | (1u << 3)
-        | (1u << 4) | (1u << 8) | (1u << 9) | (1u << 11)
-        | (1u << 12) | (1u << 13) | (1u << 14) | (1u << 15);
+    private const uint ExpectedButtons = (1u << 0) | (1u << 1) | (1u << 3) | (1u << 4) | (1u << 8) | (1u << 9) | (1u << 11) | (1u << 12) | (1u << 13) | (1u << 14) | (1u << 15);
     private const string KeyboardA = "Keyboard:A";
     private const string KeyboardB = "Keyboard:B";
     private const string KeyboardC = "Keyboard:C";
@@ -33,13 +31,10 @@ public sealed class GameCubeControllerTests
     [Fact]
     public void ProfilePublishesFourPortsAndMappableCommands()
     {
-        var settings = InputSettingsFunctions.Describe(
-            new MachineConfiguration(ModelConstants.GameCube, string.Empty));
+        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.GameCube, string.Empty));
 
-        Assert.Equal(ModelConstants.GameCubeControllerPortCount,
-            settings.ControllerPorts.Count);
-        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex]
-            .ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
+        Assert.Equal(ModelConstants.GameCubeControllerPortCount, settings.ControllerPorts.Count);
+        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex].ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
         Assert.Equal(EmulationControllerVisualIds.NintendoGameCubePad, choice.DefaultVisualId);
         var ids = choice.BindingDefinitions!.Select(item => item.Id).ToHashSet();
         Assert.Contains(InputSettingsFunctionsConstants.GameCubeZ, ids);
@@ -55,16 +50,12 @@ public sealed class GameCubeControllerTests
     [Fact]
     public void WaveBirdUsesTheGameCubeCommandProfile()
     {
-        var settings = InputSettingsFunctions.Describe(
-            new MachineConfiguration(ModelConstants.GameCube, string.Empty));
-        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex]
-            .ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
+        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.GameCube, string.Empty));
+        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex].ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
 
-        Assert.Contains(EmulationControllerVisualIds.NintendoGameCubeWaveBird,
-            choice.CompatibleVisualIds!);
+        Assert.Contains(EmulationControllerVisualIds.NintendoGameCubeWaveBird, choice.CompatibleVisualIds!);
         var bindingIds = choice.BindingDefinitions!.Select(item => item.Id).ToHashSet();
-        Assert.All(choice.VisualCommandIds!, command =>
-            Assert.Contains(command.Value, bindingIds));
+        Assert.All(choice.VisualCommandIds!, command => Assert.Contains(command.Value, bindingIds));
     }
 
     [Fact]
@@ -88,11 +79,7 @@ public sealed class GameCubeControllerTests
             [InputSettingsFunctionsConstants.GameCubeCLeft] = KeyboardN,
             [InputSettingsFunctionsConstants.GameCubeCDown] = KeyboardO
         };
-        var configuration = new InputConfiguration(ControllerBindings:
-        [
-            new ControllerBinding(FirstPortIndex, ControllerType.Joystick,
-                ButtonMappings: mappings)
-        ]);
+        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPortIndex, ControllerType.Joystick, ButtonMappings: mappings)]);
         var snapshot = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey>
@@ -104,9 +91,7 @@ public sealed class GameCubeControllerTests
             }
         };
 
-        var controller = InputSnapshotFunctions.Apply(snapshot, ModelConstants.GameCube,
-            configuration, false)
-            .Controllers[FirstPortIndex];
+        var controller = InputSnapshotFunctions.Apply(snapshot, ModelConstants.GameCube, configuration, false).Controllers[FirstPortIndex];
 
         Assert.Equal(ExpectedButtons, controller.Buttons);
         Assert.Equal(short.MaxValue, controller.LeftX);
@@ -138,9 +123,7 @@ public sealed class GameCubeControllerTests
                 })
         ]);
 
-        var controller = InputSnapshotFunctions.Apply(snapshot, ModelConstants.GameCube,
-            configuration, false)
-            .Controllers[FirstPortIndex];
+        var controller = InputSnapshotFunctions.Apply(snapshot, ModelConstants.GameCube, configuration, false).Controllers[FirstPortIndex];
 
         Assert.Equal(default, controller.RightX);
         Assert.Equal(short.MaxValue, controller.RightY);

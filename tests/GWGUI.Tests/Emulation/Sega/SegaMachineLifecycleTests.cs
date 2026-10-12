@@ -28,8 +28,7 @@ public sealed class SegaMachineLifecycleTests
     [Fact]
     public async Task StopReleasesInputBeforeDisposingCore()
     {
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-machine-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-machine-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var core = new Core();
@@ -63,8 +62,7 @@ public sealed class SegaMachineLifecycleTests
     [Fact]
     public async Task FaultReleasesInputBeforeDisposingCore()
     {
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-machine-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-machine-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var core = new Core { ThrowOnFrame = true };
@@ -103,8 +101,7 @@ public sealed class SegaMachineLifecycleTests
         if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
             || !File.Exists(corePath) || !File.Exists(mediaPath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-genesis-smoke-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-genesis-smoke-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.MasterSystem,
@@ -112,8 +109,7 @@ public sealed class SegaMachineLifecycleTests
         {
             Media =
             [
-                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
-                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
         var core = new GenesisPlusGxExternalCore(corePath);
@@ -137,13 +133,11 @@ public sealed class SegaMachineLifecycleTests
     {
         var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_GENESIS_CORE");
         var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_SMS_MEDIA");
-        var hostPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_HOST")
-            ?? Path.Combine(Environment.CurrentDirectory, "build", "Debug", "GW GUI", "gwgui.exe");
+        var hostPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_HOST") ?? Path.Combine(Environment.CurrentDirectory, "build", "Debug", "GW GUI", "gwgui.exe");
         if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
             || !File.Exists(corePath) || !File.Exists(mediaPath) || !File.Exists(hostPath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-master-system-host-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-master-system-host-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.MasterSystem,
@@ -152,8 +146,7 @@ public sealed class SegaMachineLifecycleTests
             AudioEnabled = false,
             Media =
             [
-                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
-                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
         var core = new GenesisPlusGxProcessCore(hostPath, corePath);
@@ -182,15 +175,12 @@ public sealed class SegaMachineLifecycleTests
     public async Task SegaMachineStartsMasterSystemThroughPicoDriveHostWhenSmokePathsAreProvided()
     {
         var corePath = Environment.GetEnvironmentVariable("GWGUI_SEGA_PICODRIVE_CORE");
-        var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_PICODRIVE_SMS_MEDIA")
-            ?? Environment.GetEnvironmentVariable("GWGUI_SEGA_SMS_MEDIA");
-        var hostPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_HOST")
-            ?? Path.Combine(Environment.CurrentDirectory, "build", "Debug", "GW GUI", "gwgui.exe");
+        var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_PICODRIVE_SMS_MEDIA") ?? Environment.GetEnvironmentVariable("GWGUI_SEGA_SMS_MEDIA");
+        var hostPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_HOST") ?? Path.Combine(Environment.CurrentDirectory, "build", "Debug", "GW GUI", "gwgui.exe");
         if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
             || !File.Exists(corePath) || !File.Exists(mediaPath) || !File.Exists(hostPath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-master-system-picodrive-host-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-master-system-picodrive-host-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.MasterSystem, PicoDriveConstants.Id)
@@ -198,8 +188,7 @@ public sealed class SegaMachineLifecycleTests
             AudioEnabled = false,
             Media =
             [
-                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
-                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
         var core = new GenesisPlusGxProcessCore(hostPath, corePath);
@@ -232,13 +221,11 @@ public sealed class SegaMachineLifecycleTests
     {
         var corePath = Environment.GetEnvironmentVariable(coreVariable);
         var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_SMS_MEDIA");
-        var hostPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_HOST")
-            ?? Path.Combine(Environment.CurrentDirectory, "build", "Debug", "GW GUI", "gwgui.exe");
+        var hostPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_HOST") ?? Path.Combine(Environment.CurrentDirectory, "build", "Debug", "GW GUI", "gwgui.exe");
         if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
             || !File.Exists(corePath) || !File.Exists(mediaPath) || !File.Exists(hostPath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-module-runtime-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-module-runtime-tests", Guid.NewGuid().ToString("N"));
         var moduleDirectory = Path.Combine(root, "module");
         var dataDirectory = Path.Combine(root, "data");
         var coreDirectory = Path.Combine(moduleDirectory, "Core", emulatorId);
@@ -249,17 +236,14 @@ public sealed class SegaMachineLifecycleTests
         try
         {
             using var http = new HttpClient();
-            var module = Assert.IsType<SegaEmulationModule>(new SegaEmulationModuleFactory().Create(
-                new EmulationModuleContext(dataDirectory, moduleDirectory, http)));
-            var configuration = Assert.IsType<MachineConfiguration>(
-                module.CreateConfiguration(ModelConstants.MasterSystem)) with
+            var module = Assert.IsType<SegaEmulationModule>(new SegaEmulationModuleFactory().Create(new EmulationModuleContext(dataDirectory, moduleDirectory, http)));
+            var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MasterSystem)) with
             {
                 EmulatorId = emulatorId,
                 AudioEnabled = false,
                 Media =
                 [
-                    new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
-                        EmulationMediaSlot.Cartridge0, IsInserted: true)
+                    new MediaConfiguration(mediaPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true)
                 ]
             };
             if (!string.IsNullOrWhiteSpace(firmwarePath) && File.Exists(firmwarePath))
@@ -268,20 +252,14 @@ public sealed class SegaMachineLifecycleTests
                 Directory.CreateDirectory(firmwareDirectory);
                 var copiedFirmware = Path.Combine(firmwareDirectory, Path.GetFileName(firmwarePath));
                 File.Copy(firmwarePath, copiedFirmware);
-                var candidate = Assert.Single(await ((IEmulationFirmwareManager)module)
-                    .ScanFirmwareAsync(ModelConstants.MasterSystem, configuration));
-                configuration = Assert.IsType<MachineConfiguration>(((IEmulationFirmwareManager)module)
-                    .UseFirmware(configuration, candidate));
+                var candidate = Assert.Single(await ((IEmulationFirmwareManager)module).ScanFirmwareAsync(ModelConstants.MasterSystem, configuration));
+                configuration = Assert.IsType<MachineConfiguration>(((IEmulationFirmwareManager)module).UseFirmware(configuration, candidate));
             }
 
             var runtime = await module.CreateRuntimeAsync(configuration,
-                new EmulationRuntimeServices(
-                    Path.Combine(root, "sessions"), Path.Combine(root, "states"),
-                    Path.Combine(root, "converted"), hostPath,
-                    (_, _) => new SilentAudioOutput()));
+                new EmulationRuntimeServices(Path.Combine(root, "sessions"), Path.Combine(root, "states"), Path.Combine(root, "converted"), hostPath, (_, _) => new SilentAudioOutput()));
             await using var machine = runtime.CreateMachine(runtime.MountedMedia);
-            var frame = new TaskCompletionSource<VideoFrame>(
-                TaskCreationOptions.RunContinuationsAsynchronously);
+            var frame = new TaskCompletionSource<VideoFrame>(TaskCreationOptions.RunContinuationsAsynchronously);
             machine.Video.FrameReady += OnFrame;
             try
             {
@@ -312,8 +290,7 @@ public sealed class SegaMachineLifecycleTests
         if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
             || !File.Exists(corePath) || !File.Exists(mediaPath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-genesis-megadrive-smoke-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-genesis-megadrive-smoke-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.MegaDrive,
@@ -321,8 +298,7 @@ public sealed class SegaMachineLifecycleTests
         {
             Media =
             [
-                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
-                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
         var core = new GenesisPlusGxExternalCore(corePath);
@@ -349,8 +325,7 @@ public sealed class SegaMachineLifecycleTests
         if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
             || !File.Exists(corePath) || !File.Exists(mediaPath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-genesis-options-smoke-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-genesis-options-smoke-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.MasterSystem,
@@ -358,8 +333,7 @@ public sealed class SegaMachineLifecycleTests
         {
             Media =
             [
-                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
-                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
         var core = new GenesisPlusGxExternalCore(corePath);
@@ -367,14 +341,10 @@ public sealed class SegaMachineLifecycleTests
         {
             core.Initialize(configuration, session);
 
-            Assert.Contains("sms", core.SupportedContentExtensions,
-                StringComparer.OrdinalIgnoreCase);
-            Assert.Contains("sg", core.SupportedContentExtensions,
-                StringComparer.OrdinalIgnoreCase);
-            Assert.Contains("md", core.SupportedContentExtensions,
-                StringComparer.OrdinalIgnoreCase);
-            Assert.Contains("gg", core.SupportedContentExtensions,
-                StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("sms", core.SupportedContentExtensions, StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("sg", core.SupportedContentExtensions, StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("md", core.SupportedContentExtensions, StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("gg", core.SupportedContentExtensions, StringComparer.OrdinalIgnoreCase);
 
             var requiredOptions = new[]
             {
@@ -385,11 +355,9 @@ public sealed class SegaMachineLifecycleTests
             };
             foreach (var key in requiredOptions)
             {
-                var option = Assert.Single(core.Options,
-                    item => item.Key.Equals(key, StringComparison.Ordinal));
+                var option = Assert.Single(core.Options, item => item.Key.Equals(key, StringComparison.Ordinal));
                 Assert.NotEmpty(option.Values);
-                Assert.Contains(option.Values, value =>
-                    value.Value.Equals(option.DefaultValue, StringComparison.Ordinal));
+                Assert.Contains(option.Values, value => value.Value.Equals(option.DefaultValue, StringComparison.Ordinal));
             }
         }
         finally
@@ -407,16 +375,14 @@ public sealed class SegaMachineLifecycleTests
         if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
             || !File.Exists(corePath) || !File.Exists(mediaPath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-picodrive-32x-smoke-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-picodrive-32x-smoke-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.MegaDrive, "picodrive")
         {
             Media =
             [
-                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
-                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
         var core = new GenesisPlusGxExternalCore(corePath);
@@ -424,8 +390,7 @@ public sealed class SegaMachineLifecycleTests
         {
             core.Initialize(configuration, session);
             Assert.Equal("PicoDrive", core.CoreName);
-            Assert.Contains("32x", core.SupportedContentExtensions,
-                StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("32x", core.SupportedContentExtensions, StringComparer.OrdinalIgnoreCase);
             Assert.NotEmpty(core.Options);
             Assert.All(core.Options, option => Assert.NotEmpty(option.Values));
             core.RunFrame();
@@ -448,16 +413,14 @@ public sealed class SegaMachineLifecycleTests
         if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
             || !File.Exists(corePath) || !File.Exists(mediaPath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-picodrive-sms-smoke-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-picodrive-sms-smoke-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.MasterSystem, "picodrive")
         {
             Media =
             [
-                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
-                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
         var core = new GenesisPlusGxExternalCore(corePath);
@@ -465,8 +428,7 @@ public sealed class SegaMachineLifecycleTests
         {
             core.Initialize(configuration, session);
             Assert.Equal("PicoDrive", core.CoreName);
-            Assert.Contains("sms", core.SupportedContentExtensions,
-                StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("sms", core.SupportedContentExtensions, StringComparer.OrdinalIgnoreCase);
             core.RunFrame();
             Assert.NotNull(core.LatestVideoFrame);
             Assert.True(core.LatestVideoFrame!.Width > 0);
@@ -495,16 +457,14 @@ public sealed class SegaMachineLifecycleTests
         foreach (var (model, variable, extension) in cases)
         {
             var mediaPath = Environment.GetEnvironmentVariable(variable)!;
-            var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-picodrive-eight-bit-tests",
-                Guid.NewGuid().ToString("N"));
+            var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-picodrive-eight-bit-tests", Guid.NewGuid().ToString("N"));
             var session = Path.Combine(root, "session");
             Directory.CreateDirectory(session);
             var configuration = new MachineConfiguration(model, "picodrive")
             {
                 Media =
                 [
-                    new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
-                        EmulationMediaSlot.Cartridge0, IsInserted: true)
+                    new MediaConfiguration(mediaPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true)
                 ]
             };
             var core = new GenesisPlusGxExternalCore(corePath);
@@ -512,8 +472,7 @@ public sealed class SegaMachineLifecycleTests
             {
                 core.Initialize(configuration, session);
                 Assert.Equal("PicoDrive", core.CoreName);
-                Assert.Contains(extension, core.SupportedContentExtensions,
-                    StringComparer.OrdinalIgnoreCase);
+                Assert.Contains(extension, core.SupportedContentExtensions, StringComparer.OrdinalIgnoreCase);
                 core.RunFrame();
                 Assert.NotNull(core.LatestVideoFrame);
                 Assert.True(core.LatestVideoFrame!.Width > 0);
@@ -537,8 +496,7 @@ public sealed class SegaMachineLifecycleTests
             || string.IsNullOrWhiteSpace(firmwarePath) || !File.Exists(corePath)
             || !File.Exists(mediaPath) || !File.Exists(firmwarePath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-picodrive-firmware-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-picodrive-firmware-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.MegaDrive, "picodrive")
@@ -546,20 +504,16 @@ public sealed class SegaMachineLifecycleTests
             FirmwarePaths = new Dictionary<string, string> { ["configuration.firmware.picodrive.0"] = firmwarePath },
             Media =
             [
-                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
-                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
         var core = new GenesisPlusGxExternalCore(corePath);
         try
         {
             core.Initialize(configuration, session);
-            var stagedFirmware = Path.Combine(session, CoreDirectoryConstants.SystemDirectoryName,
-                FirmwareConstants.MegaCdEuropeBiosFileName);
+            var stagedFirmware = Path.Combine(session, CoreDirectoryConstants.SystemDirectoryName, FirmwareConstants.MegaCdEuropeBiosFileName);
             Assert.True(File.Exists(stagedFirmware));
-            Assert.Equal(FirmwareConstants.MegaCdEuropeBiosMd5,
-                Convert.ToHexString(System.Security.Cryptography.MD5.HashData(File.ReadAllBytes(stagedFirmware)))
-                    .ToLowerInvariant());
+            Assert.Equal(FirmwareConstants.MegaCdEuropeBiosMd5, Convert.ToHexString(System.Security.Cryptography.MD5.HashData(File.ReadAllBytes(stagedFirmware))).ToLowerInvariant());
         }
         finally
         {
@@ -578,8 +532,7 @@ public sealed class SegaMachineLifecycleTests
             || string.IsNullOrWhiteSpace(firmwarePath) || !File.Exists(corePath)
             || !File.Exists(mediaPath) || !File.Exists(firmwarePath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-genesis-master-system-firmware-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-genesis-master-system-firmware-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.MasterSystem, "genesisplusgx")
@@ -587,20 +540,16 @@ public sealed class SegaMachineLifecycleTests
             FirmwarePaths = new Dictionary<string, string> { ["configuration.firmware.genesisplusgx.4"] = firmwarePath },
             Media =
             [
-                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
-                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
         var core = new GenesisPlusGxExternalCore(corePath);
         try
         {
             core.Initialize(configuration, session);
-            var stagedFirmware = Path.Combine(session, CoreDirectoryConstants.SystemDirectoryName,
-                FirmwareConstants.MasterSystemEuropeBiosFileName);
+            var stagedFirmware = Path.Combine(session, CoreDirectoryConstants.SystemDirectoryName, FirmwareConstants.MasterSystemEuropeBiosFileName);
             Assert.True(File.Exists(stagedFirmware));
-            Assert.Equal(FirmwareConstants.MasterSystemEuropeBiosAlternateMd5,
-                Convert.ToHexString(System.Security.Cryptography.MD5.HashData(File.ReadAllBytes(stagedFirmware)))
-                    .ToLowerInvariant());
+            Assert.Equal(FirmwareConstants.MasterSystemEuropeBiosAlternateMd5, Convert.ToHexString(System.Security.Cryptography.MD5.HashData(File.ReadAllBytes(stagedFirmware))).ToLowerInvariant());
         }
         finally
         {
@@ -633,8 +582,7 @@ public sealed class SegaMachineLifecycleTests
         if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
             || !File.Exists(corePath) || !File.Exists(mediaPath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-genesis-pico-smoke-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-genesis-pico-smoke-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.Pico,
@@ -642,8 +590,7 @@ public sealed class SegaMachineLifecycleTests
         {
             Media =
             [
-                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
-                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
         var core = new GenesisPlusGxExternalCore(corePath);
@@ -677,8 +624,7 @@ public sealed class SegaMachineLifecycleTests
         {
             Media =
             [
-                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
-                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
         var core = new GenesisPlusGxExternalCore(corePath);
@@ -700,14 +646,12 @@ public sealed class SegaMachineLifecycleTests
     [Fact]
     public void FlycastPublishesLegacyCoreOptions()
     {
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-options-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-options-tests", Guid.NewGuid().ToString("N"));
         var system = Path.Combine(root, "system");
         var content = Path.Combine(root, "content");
         var save = Path.Combine(root, "save");
         Directory.CreateDirectory(root);
-        using var callbacks = new GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks(
-            system, content, save, null);
+        using var callbacks = new GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks(system, content, save, null);
         var pointers = new List<nint>();
         var definitionSize = (FlycastHostConstants.CoreOptionV1PointerFieldsBeforeValues
             + FlycastHostConstants.MaximumCoreOptionValues * FlycastHostConstants.CoreOptionValueFieldCount
@@ -729,12 +673,9 @@ public sealed class SegaMachineLifecycleTests
             var valuesOffset = FlycastHostConstants.CoreOptionV1PointerFieldsBeforeValues * IntPtr.Size;
             Marshal.WriteIntPtr(definitions, valuesOffset, Native("true"));
             Marshal.WriteIntPtr(definitions, valuesOffset + IntPtr.Size, Native("Enabled"));
-            Marshal.WriteIntPtr(definitions, valuesOffset + IntPtr.Size * FlycastHostConstants.CoreOptionValueFieldCount,
-                Native("false"));
-            Marshal.WriteIntPtr(definitions, valuesOffset + IntPtr.Size * (FlycastHostConstants.CoreOptionValueFieldCount + 1),
-                Native("Disabled"));
-            var defaultOffset = valuesOffset
-                + FlycastHostConstants.MaximumCoreOptionValues * FlycastHostConstants.CoreOptionValueFieldCount * IntPtr.Size;
+            Marshal.WriteIntPtr(definitions, valuesOffset + IntPtr.Size * FlycastHostConstants.CoreOptionValueFieldCount, Native("false"));
+            Marshal.WriteIntPtr(definitions, valuesOffset + IntPtr.Size * (FlycastHostConstants.CoreOptionValueFieldCount + 1), Native("Disabled"));
+            var defaultOffset = valuesOffset + FlycastHostConstants.MaximumCoreOptionValues * FlycastHostConstants.CoreOptionValueFieldCount * IntPtr.Size;
             Marshal.WriteIntPtr(definitions, defaultOffset, Native("true"));
 
             Assert.True(callbacks.Environment(ExternalCoreApiConstants.SetCoreOptions, definitions));
@@ -762,8 +703,7 @@ public sealed class SegaMachineLifecycleTests
             || string.IsNullOrWhiteSpace(firmwarePath) || !File.Exists(corePath)
             || !File.Exists(mediaPath) || !File.Exists(firmwarePath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-flycast-smoke-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-flycast-smoke-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.Dreamcast, "flycast")
@@ -771,8 +711,7 @@ public sealed class SegaMachineLifecycleTests
             FirmwarePaths = new Dictionary<string, string> { ["configuration.firmware.flycast.0"] = firmwarePath },
             Media =
             [
-                new MediaConfiguration(mediaPath, MediaCategory.CompactDisc,
-                    EmulationMediaSlot.Cd0, IsInserted: true)
+                new MediaConfiguration(mediaPath, MediaCategory.CompactDisc, EmulationMediaSlot.Cd0, IsInserted: true)
             ]
         };
         var core = new FlycastExternalCore(corePath);
@@ -804,8 +743,7 @@ public sealed class SegaMachineLifecycleTests
             || string.IsNullOrWhiteSpace(firmwarePath) || !File.Exists(corePath)
             || !File.Exists(mediaPath) || !File.Exists(firmwarePath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-atomiswave-smoke-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-atomiswave-smoke-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.Atomiswave, "flycast")
@@ -813,8 +751,7 @@ public sealed class SegaMachineLifecycleTests
             FirmwarePaths = new Dictionary<string, string> { ["configuration.firmware.flycast.7"] = firmwarePath },
             Media =
             [
-                new MediaConfiguration(mediaPath, MediaCategory.Cartridge,
-                    EmulationMediaSlot.Cartridge0, IsInserted: true)
+                new MediaConfiguration(mediaPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true)
             ]
         };
         var core = new FlycastExternalCore(corePath);
@@ -846,8 +783,7 @@ public sealed class SegaMachineLifecycleTests
             || string.IsNullOrWhiteSpace(firmwarePath) || !File.Exists(corePath)
             || !File.Exists(mediaPath) || !File.Exists(firmwarePath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-yabause-smoke-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-yabause-smoke-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(ModelConstants.Saturn, "yabause")
@@ -855,8 +791,7 @@ public sealed class SegaMachineLifecycleTests
             FirmwarePaths = new Dictionary<string, string> { ["configuration.firmware.yabause.0"] = firmwarePath },
             Media =
             [
-                new MediaConfiguration(mediaPath, MediaCategory.CompactDisc,
-                    EmulationMediaSlot.Cd0, IsInserted: true)
+                new MediaConfiguration(mediaPath, MediaCategory.CompactDisc, EmulationMediaSlot.Cd0, IsInserted: true)
             ]
         };
         var core = new YabauseExternalCore(corePath);
@@ -864,8 +799,7 @@ public sealed class SegaMachineLifecycleTests
         {
             core.Initialize(configuration, session);
             Assert.Equal("Yabause", core.CoreName);
-            Assert.Contains("ccd", core.SupportedContentExtensions,
-                StringComparer.OrdinalIgnoreCase);
+            Assert.Contains("ccd", core.SupportedContentExtensions, StringComparer.OrdinalIgnoreCase);
             for (var frame = 0; frame < 120 && core.LatestVideoFrame is null; frame++)
                 core.RunFrame();
             Assert.True(core.LatestVideoFrame is not null, string.Join(Environment.NewLine, core.Diagnostics));
@@ -895,8 +829,7 @@ public sealed class SegaMachineLifecycleTests
 
         foreach (var firmwarePath in firmwarePaths)
         {
-            var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-yabause-bios-variants-tests",
-                Guid.NewGuid().ToString("N"));
+            var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-yabause-bios-variants-tests", Guid.NewGuid().ToString("N"));
             var session = Path.Combine(root, "session");
             Directory.CreateDirectory(session);
             var configuration = new MachineConfiguration(ModelConstants.Saturn, "yabause")
@@ -904,8 +837,7 @@ public sealed class SegaMachineLifecycleTests
                 FirmwarePaths = new Dictionary<string, string> { ["configuration.firmware.yabause.0"] = firmwarePath! },
                 Media =
                 [
-                    new MediaConfiguration(mediaPath, MediaCategory.CompactDisc,
-                        EmulationMediaSlot.Cd0, IsInserted: true)
+                    new MediaConfiguration(mediaPath, MediaCategory.CompactDisc, EmulationMediaSlot.Cd0, IsInserted: true)
                 ]
             };
             var core = new YabauseExternalCore(corePath);
@@ -926,10 +858,7 @@ public sealed class SegaMachineLifecycleTests
         }
     }
 
-    private static Machine CreateMachine(Core core, string session) => new(
-        Guid.NewGuid(),
-        new MachineConfiguration(ModelConstants.MegaDrive, "genesisplusgx"),
-        core, [], session);
+    private static Machine CreateMachine(Core core, string session) => new(Guid.NewGuid(), new MachineConfiguration(ModelConstants.MegaDrive, "genesisplusgx"), core, [], session);
 
     private static void AssertEmptyInput(EmulationInputSnapshot input)
     {

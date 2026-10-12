@@ -9,13 +9,10 @@ internal static class ReadFailureScenarios
     {
         var device = new ReadAcquisitionScenarios.Device
         {
-            Read = (attempt, _) => attempt == 1
-                ? ReadAcquisitionScenarios.Device.Capture()
-                : new([1, 2], [], 1000, [])
+            Read = (attempt, _) => attempt == 1 ? ReadAcquisitionScenarios.Device.Capture() : new([1, 2], [], 1000, [])
         };
         var reports = new ReadAcquisitionScenarios.Reports();
-        await Assert.ThrowsAsync<InvalidDataException>(() =>
-            ReadAcquisitionScenarios.AcquireAsync(device, ReadAcquisitionScenarios.Options, reports));
+        await Assert.ThrowsAsync<InvalidDataException>(() => ReadAcquisitionScenarios.AcquireAsync(device, ReadAcquisitionScenarios.Options, reports));
         Assert.Equal(3, device.Calls.Count(call => call.StartsWith("read:")));
         Assert.Equal("close", device.Calls[^1]);
         var completed = Assert.Single(reports.Values, report => report.AcquiredUnit is not null);
@@ -31,9 +28,7 @@ internal static class ReadFailureScenarios
     {
         var device = new ReadAcquisitionScenarios.Device
         {
-            Read = (attempt, _) => attempt == 1
-                ? throw new IOException("synthetic overflow")
-                : ReadAcquisitionScenarios.Device.Capture()
+            Read = (attempt, _) => attempt == 1 ? throw new IOException("synthetic overflow") : ReadAcquisitionScenarios.Device.Capture()
         };
         var progress = new ReadAcquisitionScenarios.Reports();
         var acquisition = await ReadAcquisitionScenarios.AcquireAsync(
@@ -62,10 +57,7 @@ internal static class ReadFailureScenarios
                 throw error;
             }
         };
-        var task = ReadAcquisitionScenarios.AcquireAsync(
-            device,
-            ReadAcquisitionScenarios.Options,
-            cancellationToken: source.Token);
+        var task = ReadAcquisitionScenarios.AcquireAsync(device, ReadAcquisitionScenarios.Options, cancellationToken: source.Token);
         if (cancel) await Assert.ThrowsAnyAsync<OperationCanceledException>(() => task);
         else Assert.Same(error, await Assert.ThrowsAsync<IOException>(() => task));
         Assert.Equal(cancel ? 1 : 2, device.Calls.Count(call => call.StartsWith("read:")));

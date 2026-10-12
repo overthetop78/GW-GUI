@@ -30,16 +30,13 @@ public sealed class ModuleConfigurationReviewTests
         using var client = new HttpClient();
         var module = new GWGUI.Emulation.Commodore.Modules.CommodoreEmulationModule(".", ".", client, ".");
         var original = new CommodoreMachines.Contracts.MachineConfiguration(machine, emulator);
-        var field = Assert.Single(module.Describe(machine, original).Blocks.SelectMany(block => block.Fields),
-            field => field.Id == "folders.hardDisks");
+        var field = Assert.Single(module.Describe(machine, original).Blocks.SelectMany(block => block.Fields), field => field.Id == "folders.hardDisks");
         Assert.Equal(EmulationSettingsEditor.DirectoryPath, field.Editor);
         var updated = Assert.IsType<CommodoreMachines.Contracts.MachineConfiguration>(module.ApplySettings(original,
             new Dictionary<string, string?> { [field.Id] = "custom-hdd-directory" }));
         Assert.Equal("custom-hdd-directory", updated.HardDiskDirectory);
         Assert.DoesNotContain(field.Id, updated.Options!.Keys);
-        Assert.All(module.DescribeStorageSettings(updated).AvailableDevices
-            .Where(device => device.MediaType == EmulationMediaType.HardDisk),
-            device => Assert.Equal(updated.HardDiskDirectory, device.ImageDirectory));
+        Assert.All(module.DescribeStorageSettings(updated).AvailableDevices.Where(device => device.MediaType == EmulationMediaType.HardDisk), device => Assert.Equal(updated.HardDiskDirectory, device.ImageDirectory));
     }
 
     [Theory]
@@ -53,8 +50,7 @@ public sealed class ModuleConfigurationReviewTests
         var updated = Assert.IsType<NecMachines.Contracts.MachineConfiguration>(module.ApplySettings(original,
             new Dictionary<string, string?> { ["folders.hardDisks"] = "custom-hdd-directory" }));
         Assert.DoesNotContain("folders.hardDisks", updated.Options!.Keys);
-        var devices = module.DescribeStorageSettings(updated).AvailableDevices
-            .Where(device => device.MediaType == EmulationMediaType.HardDisk).ToArray();
+        var devices = module.DescribeStorageSettings(updated).AvailableDevices.Where(device => device.MediaType == EmulationMediaType.HardDisk).ToArray();
         Assert.NotEmpty(devices);
         Assert.All(devices, device => Assert.Equal("custom-hdd-directory", device.ImageDirectory));
     }
@@ -77,8 +73,7 @@ public sealed class ModuleConfigurationReviewTests
         using var client = new HttpClient();
         var module = new GWGUI.Emulation.Sony.Modules.SonyEmulationModule(".", ".", client, ".");
         var original = new SonyMachines.Contracts.MachineConfiguration(machine, emulator);
-        var field = module.Describe(machine, original).Blocks.SelectMany(block => block.Fields)
-            .First(field => field.Tab == EmulationMachineTab.Rom);
+        var field = module.Describe(machine, original).Blocks.SelectMany(block => block.Fields).First(field => field.Tab == EmulationMachineTab.Rom);
         Assert.Equal(EmulationSettingsEditor.Path, field.Editor);
         var updated = Assert.IsType<SonyMachines.Contracts.MachineConfiguration>(module.ApplySettings(original,
             new Dictionary<string, string?> { [field.Id] = "my-personal-bios-dump.bin" }));
@@ -94,10 +89,8 @@ public sealed class ModuleConfigurationReviewTests
     {
         var audio = new TrackingAudio();
         var configuration = new SonyMachines.Contracts.MachineConfiguration(machine, emulator);
-        var context = new GWGUI.Emulation.Sony.Common.Contracts.EmulatorCreationContext(".", "core.dll", "host.exe",
-            () => audio, _ => throw new InvalidOperationException("Interrupted construction"));
-        Assert.Throws<InvalidOperationException>(() => new GWGUI.Emulation.Sony.Common.Services.Engine()
-            .Adapter(configuration).Create(configuration, context));
+        var context = new GWGUI.Emulation.Sony.Common.Contracts.EmulatorCreationContext(".", "core.dll", "host.exe", () => audio, _ => throw new InvalidOperationException("Interrupted construction"));
+        Assert.Throws<InvalidOperationException>(() => new GWGUI.Emulation.Sony.Common.Services.Engine().Adapter(configuration).Create(configuration, context));
         Assert.True(audio.Disposed);
     }
 

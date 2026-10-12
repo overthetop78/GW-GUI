@@ -12,10 +12,8 @@ internal static class WriteVerificationScenarios
     public static async Task Unsupported()
     {
         var device = new WritePlanningScenarios.Device();
-        var plan = new FloppyMediaWritePlanningService(DiskImageExplorer.CreateDefault())
-            .CreatePlan(WritePlanningScenarios.Image, 0);
-        var writers = new MediaPhysicalWriterRegistry(
-            [new GreaseweazleMediaPhysicalWriter(() => device)]);
+        var plan = new FloppyMediaWritePlanningService(DiskImageExplorer.CreateDefault()).CreatePlan(WritePlanningScenarios.Image, 0);
+        var writers = new MediaPhysicalWriterRegistry([new GreaseweazleMediaPhysicalWriter(() => device)]);
         var result = await new PhysicalDiskWriteService(writers)
             .WriteAsync(plan, WritePlanningScenarios.Options with { Verify = true });
         Assert.False(result.IsSuccess);

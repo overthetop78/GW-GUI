@@ -68,11 +68,9 @@ public sealed class AcornModuleTests
         Assert.False(ConfigurationFunctions.SupportsRuntime(modelA.Model));
         Assert.Empty(CoreCatalog.GetAll(modelA.Model));
         Assert.Empty(B2ModelFunctions.GetModels(modelA.Model));
-        Assert.DoesNotContain(SettingsDescriptionFunctions.Create(modelA).SelectMany(block => block.Fields),
-            field => field.Tab == EmulationMachineTab.General);
+        Assert.DoesNotContain(SettingsDescriptionFunctions.Create(modelA).SelectMany(block => block.Fields), field => field.Tab == EmulationMachineTab.General);
         foreach (var model in Enum.GetValues<MachineModel>())
-            Assert.DoesNotContain(SettingsDescriptionFunctions.Create(new MachineConfiguration(model)).SelectMany(block => block.Fields),
-                field => field.Editor == EmulationSettingsEditor.DirectoryPath);
+            Assert.DoesNotContain(SettingsDescriptionFunctions.Create(new MachineConfiguration(model)).SelectMany(block => block.Fields), field => field.Editor == EmulationSettingsEditor.DirectoryPath);
         Assert.True(ConfigurationFunctions.SupportsRuntime(MachineModel.BbcMicroModelB));
         Assert.True(ConfigurationFunctions.SupportsRuntime(MachineModel.BbcMaster128));
     }
@@ -87,8 +85,7 @@ public sealed class AcornModuleTests
         Assert.Equal(count, keyboard.Definitions.Count);
         Assert.DoesNotContain(keyboard.Definitions, key => key.Id == nameof(EmulationKey.A));
         Assert.DoesNotContain(keyboard.Definitions, key => key.Id == nameof(EmulationKey.LeftAmiga));
-        Assert.Equal(nameof(EmulationKey.F10), keyboard.Definitions.Single(
-            key => key.Id == nameof(EmulationKey.AcornF0)).DefaultBinding);
+        Assert.Equal(nameof(EmulationKey.F10), keyboard.Definitions.Single(key => key.Id == nameof(EmulationKey.AcornF0)).DefaultBinding);
     }
 
     [Theory]
@@ -111,10 +108,8 @@ public sealed class AcornModuleTests
         var pathBase = Path.GetTempPath();
         var document = ConfigurationStoreFunctions.ToDocument(applied, pathBase);
         var json = JsonSerializer.SerializeToElement(document, new JsonSerializerOptions(JsonSerializerDefaults.Web));
-        var restored = ConfigurationStoreFunctions.FromDocument(
-            ConfigurationStoreFunctions.Deserialize(json), pathBase);
-        Assert.Equal(nameof(EmulationKey.Z), InputSettingsFunctions.Describe(restored)
-            .Keyboard!.Values[target.ToString()]);
+        var restored = ConfigurationStoreFunctions.FromDocument(ConfigurationStoreFunctions.Deserialize(json), pathBase);
+        Assert.Equal(nameof(EmulationKey.Z), InputSettingsFunctions.Describe(restored).Keyboard!.Values[target.ToString()]);
         var map = KeyboardFunctions.CreateKeyMap();
         var custom = InputSnapshotFunctions.Apply(Pressed(EmulationKey.Z), restored.Input);
         Assert.Contains(target, custom.Keys);
@@ -145,12 +140,9 @@ public sealed class AcornModuleTests
     [Fact]
     public void NativeDiskLimitRejectsUnsupportedSlotsAndCassette()
     {
-        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.BbcMicroModelB,
-            media: [new("disk.ssd", MediaCategory.Floppy, EmulationMediaSlot.Floppy1)]));
-        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.BbcMicroModelB,
-            media: [new("tape.uef", MediaCategory.Cassette, EmulationMediaSlot.Floppy0)]));
-        var accepted = new MachineConfiguration(MachineModel.BbcMicroModelB,
-            media: [new("disk.ssd", MediaCategory.Floppy, EmulationMediaSlot.Floppy0)]);
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.BbcMicroModelB, media: [new("disk.ssd", MediaCategory.Floppy, EmulationMediaSlot.Floppy1)]));
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.BbcMicroModelB, media: [new("tape.uef", MediaCategory.Cassette, EmulationMediaSlot.Floppy0)]));
+        var accepted = new MachineConfiguration(MachineModel.BbcMicroModelB, media: [new("disk.ssd", MediaCategory.Floppy, EmulationMediaSlot.Floppy0)]);
         Assert.Single(accepted.Media);
     }
 

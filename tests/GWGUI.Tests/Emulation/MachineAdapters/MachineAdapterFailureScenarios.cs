@@ -18,9 +18,7 @@ internal static class MachineAdapterFailureScenarios
 {
     public static async Task AmigaBoundary(int failure)
     {
-        var error = failure==0 ? new FileNotFoundException("core unavailable","virtual-core")
-            : failure==1 ? new FileNotFoundException("firmware absent","virtual-rom")
-            : (Exception)new InvalidOperationException("synthetic adapter refusal");
+        var error = failure==0 ? new FileNotFoundException("core unavailable","virtual-core") : failure==1 ? new FileNotFoundException("firmware absent","virtual-rom") : (Exception)new InvalidOperationException("synthetic adapter refusal");
         using var core = new Core { InitializeError=failure<2?error:null, FrameError=failure==2?error:null };
         var cleanups=0;
         await using var machine = new Machine(Guid.NewGuid(),new MachineConfiguration("A500", GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator.PUAE, FirmwarePaths: new Dictionary<string,string> {{"configuration.kickstartPath","virtual-rom"}}, Options: new Dictionary<string,string>(), Id: Guid.NewGuid()),core,[],"virtual-session",
@@ -61,14 +59,12 @@ internal static class MachineAdapterFailureScenarios
         var core = new Core { ExpectedMediaPath = "disk-2.adf" };
         var cleanups = 0;
         var machine = new Machine(Guid.NewGuid(), new MachineConfiguration("A500", GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator.PUAE, FirmwarePaths: new Dictionary<string,string> {{"configuration.kickstartPath","virtual-rom"}}, Options: new Dictionary<string,string>(), Id: Guid.NewGuid()), core,
-            [new MediaConfiguration("disk-1.adf",
-                GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.MediaCategory.Floppy)], "virtual-session",
+            [new MediaConfiguration("disk-1.adf", GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.MediaCategory.Floppy)], "virtual-session",
             deleteSession: path => { Assert.Equal("virtual-session", path); cleanups++; });
         try
         {
             await machine.StartAsync();
-            var media = new EmulationMedia("disk-2.adf", EmulationMediaSlot.Floppy0,
-                EmulationMediaType.Floppy, false, true);
+            var media = new EmulationMedia("disk-2.adf", EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy, false, true);
 
             await machine.Media.InsertAsync(media, default);
 

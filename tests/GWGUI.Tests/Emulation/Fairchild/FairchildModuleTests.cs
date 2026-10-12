@@ -24,21 +24,17 @@ public sealed class FairchildModuleTests
             var configuration = new MachineConfiguration(model);
             var fields = module.Describe(model.ToString(), configuration).Blocks.SelectMany(block => block.Fields).ToArray();
             var input = module.DescribeInputSettings(configuration);
-            var keys = fields.Select(field => field.LabelResourceKey)
-                .Concat(fields.Select(field => field.ExplanationResourceKey).OfType<string>())
+            var keys = fields.Select(field => field.LabelResourceKey).Concat(fields.Select(field => field.ExplanationResourceKey).OfType<string>())
                 .Concat(fields.SelectMany(field => field.Choices ?? []).Select(choice => choice.DisplayResourceKey))
                 .Concat(input.ControllerPorts.SelectMany(port => port.ControllerChoices).Select(choice => choice.DisplayResourceKey))
                 .Concat(input.ControllerPorts.SelectMany(port => port.Bindings.Definitions).Select(action => action.DisplayResourceKey))
                 .Append(module.Machines.Single(machine => machine.Id == model.ToString()).DisplayResourceKey)
                 .Where(key => key.StartsWith("Emulation.Fairchild.", StringComparison.Ordinal)).Distinct().ToArray();
-            var cultures = typeof(FairchildEmulationModule).Assembly.GetManifestResourceNames()
-                .Where(name => name.EndsWith(".resources", StringComparison.Ordinal))
-                .Select(name => name[..^10].Split('.').Last()).Distinct().Where(name => name != "00-Base").ToArray();
+            var cultures = typeof(FairchildEmulationModule).Assembly.GetManifestResourceNames().Where(name => name.EndsWith(".resources", StringComparison.Ordinal)).Select(name => name[..^10].Split('.').Last()).Distinct().Where(name => name != "00-Base").ToArray();
             Assert.Equal(29, cultures.Length);
             foreach (var name in cultures)
                 foreach (var key in keys)
-                    Assert.True(module.TryGetString(key, CultureInfo.GetCultureInfo(name), out var text)
-                        && !string.IsNullOrWhiteSpace(text), name + ": " + key);
+                    Assert.True(module.TryGetString(key, CultureInfo.GetCultureInfo(name), out var text) && !string.IsNullOrWhiteSpace(text), name + ": " + key);
             Assert.DoesNotContain(fields, field => field.Editor == EmulationSettingsEditor.DirectoryPath);
             Assert.Equal(2, fields.Count(field => field.Tab == EmulationMachineTab.Rom));
         }
@@ -62,15 +58,13 @@ public sealed class FairchildModuleTests
     {
         var config = new MachineConfiguration(MachineModel.ChannelFSystemII);
         var settings = InputSettingsFunctions.Describe(config);
-        Assert.All(settings.ControllerPorts, port =>
-            Assert.All(port.Bindings.Definitions, action => Assert.Empty(action.DefaultBinding)));
+        Assert.All(settings.ControllerPorts, port => Assert.All(port.Bindings.Definitions, action => Assert.Empty(action.DefaultBinding)));
         var physical = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey> { EmulationKey.Up, EmulationKey.Z },
             Controllers = [EmulationControllerState.Empty with { Buttons = uint.MaxValue }]
         };
-        Assert.All(InputSnapshotFunctions.Apply(physical, config.Input, config.Model, config.Core).Controllers,
-            port => Assert.Equal(0u, port.Buttons));
+        Assert.All(InputSnapshotFunctions.Apply(physical, config.Input, config.Model, config.Core).Controllers, port => Assert.Equal(0u, port.Buttons));
         var ports = settings.ControllerPorts.Select(port => port with
         {
             VisualId = port.ControllerChoices[0].DefaultVisualId,
@@ -80,7 +74,6 @@ public sealed class FairchildModuleTests
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(applied))!;
         Assert.All(restored.Input.Controllers!, port => Assert.All(port.Mappings!, pair => Assert.Empty(pair.Value)));
         Assert.Equal(ports[0].VisualId, InputSettingsFunctions.Describe(restored).ControllerPorts[0].VisualId);
-        Assert.All(InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty, restored.Input, restored.Model, restored.Core).Controllers,
-            port => Assert.Equal(0u, port.Buttons));
+        Assert.All(InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty, restored.Input, restored.Model, restored.Core).Controllers, port => Assert.Equal(0u, port.Buttons));
     }
 }

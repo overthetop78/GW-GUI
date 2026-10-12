@@ -121,9 +121,7 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
             header.DisplayDocument(Document("disk.atr", MediaKind.Floppy, DiskImageFormatIds.Atari90), descriptor);
             header.DocumentIdentityControl.Measure(new Size(double.PositiveInfinity, 80));
             Assert.Equal("floppy-5.25", header.MediaIconKind);
-            Assert.Equal(
-                LocExtension.Get("Explorer.DetectedFormats", "Atari 8-bit (Atari 8-bit — 90 KiB)"),
-                header.DocumentIdentityControl.SummaryText.Text);
+            Assert.Equal(LocExtension.Get("Explorer.DetectedFormats", "Atari 8-bit (Atari 8-bit — 90 KiB)"), header.DocumentIdentityControl.SummaryText.Text);
             Assert.Null(header.DocumentIdentityControl.FindName("Badges"));
             Assert.InRange(header.DocumentIdentityControl.DesiredSize.Width, 1, 800);
             header.DisplayDocument(Document("drive.hdf", MediaKind.HardDisk), descriptor);
@@ -186,17 +184,14 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
         Assert.IsType<GWGUI.App.Views.Controls.Common.CardSection>(header.HeaderCardControl);
         Assert.IsType<GWGUI.App.Views.Controls.Common.CardSection>(new ExplorerSection().HeaderCardControl);
         var names = new[] { "RepresentationChoice", "RevolutionControl", "Reset", "Open" };
-        var fluxPositions = names.ToDictionary(name => name, name =>
-            Assert.IsAssignableFrom<FrameworkElement>(header.FindName(name)).TranslatePoint(new Point(), header).X);
+        var fluxPositions = names.ToDictionary(name => name, name => Assert.IsAssignableFrom<FrameworkElement>(header.FindName(name)).TranslatePoint(new Point(), header).X);
 
         header.DisplayDocument(Document("capture.scp"), Descriptor(0, 1));
         header.Measure(new Size(1900, 80));
         header.Arrange(new Rect(0, 0, 1900, 80));
 
         Assert.Equal(Visibility.Hidden, Assert.IsAssignableFrom<FrameworkElement>(header.FindName("RevolutionControl")).Visibility);
-        Assert.All(names, name => Assert.Equal(
-            fluxPositions[name],
-            Assert.IsAssignableFrom<FrameworkElement>(header.FindName(name)).TranslatePoint(new Point(), header).X));
+        Assert.All(names, name => Assert.Equal(fluxPositions[name], Assert.IsAssignableFrom<FrameworkElement>(header.FindName(name)).TranslatePoint(new Point(), header).X));
     });
 
     [Fact]
@@ -205,9 +200,7 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
         var header = new VisualizerHeaderSection();
         header.SetFormats(new BuiltInImageFormatCatalog(key => LocExtension.Get(key)).Formats);
         header.ApplyDetection(DiskImageFormatIds.AmstradRom, null, []);
-        header.DisplayDocument(
-            Document("cartridge.rom", MediaKind.Cartridge, DiskImageFormatIds.AmstradRom),
-            Descriptor(0));
+        header.DisplayDocument(Document("cartridge.rom", MediaKind.Cartridge, DiskImageFormatIds.AmstradRom), Descriptor(0));
 
         Assert.Contains("Amstrad CPC", header.DocumentIdentityControl.SummaryText.Text, StringComparison.Ordinal);
 
@@ -265,10 +258,7 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
                 new SectorMediaTrack(1, [new SectorMediaElement(1, 1, 1, 1, 512, SectorMediaElementState.WithoutData)])
             ])
         ]);
-        var analyzed = new SectorMediaTrack(0,
-        [
-            new SectorMediaElement(0, 0, 0, 1, 512, SectorMediaElementState.WithData)
-        ]);
+        var analyzed = new SectorMediaTrack(0, [new SectorMediaElement(0, 0, 0, 1, 512, SectorMediaElementState.WithData)]);
         var view = new SectorMediaView();
 
         view.SetDocument(pending, Descriptor(0));
@@ -286,13 +276,7 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
         var first = new SectorMediaElement(17, 17, 4, 2, 512, SectorMediaElementState.WithData);
         var second = new SectorMediaElement(18, 18, 4, 3, 512, SectorMediaElementState.WithData);
         var view = new SectorMediaView();
-        view.SetDocument(
-            new SectorMediaRenderModel("test.720", 512,
-            [
-                new SectorMediaSurface(0, [new SectorMediaTrack(4, [first, second])]),
-                new SectorMediaSurface(1, [new SectorMediaTrack(4, [second])])
-            ]),
-            Descriptor(0, 1));
+        view.SetDocument(new SectorMediaRenderModel("test.720", 512, [new SectorMediaSurface(0, [new SectorMediaTrack(4, [first, second])]), new SectorMediaSurface(1, [new SectorMediaTrack(4, [second])])]), Descriptor(0, 1));
         var selections = new List<(int Surface, SectorMediaElement? Sector)>();
         view.SectorSelected += (surface, sector) => selections.Add((surface, sector));
 
@@ -324,15 +308,11 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
     [Fact]
     public void SectorHitTestUsesTheRenderedPixelCoordinates()
     {
-        var sectors = Enumerable.Range(0, 4)
-            .Select(number => new SectorMediaElement(number, number, 0, number, 512, SectorMediaElementState.WithData))
-            .ToArray();
-        var model = new SectorMediaRenderModel("test.720", 512,
-            [new SectorMediaSurface(0, [new SectorMediaTrack(0, sectors)])]);
+        var sectors = Enumerable.Range(0, 4).Select(number => new SectorMediaElement(number, number, 0, number, 512, SectorMediaElementState.WithData)).ToArray();
+        var model = new SectorMediaRenderModel("test.720", 512, [new SectorMediaSurface(0, [new SectorMediaTrack(0, sectors)])]);
         var point = SectorMediaView.MapPointerToRender(new Point(300, 50), 600, 400, 1200, 800);
 
-        var selected = new SkiaSectorMediaRenderer().HitTest(
-            model, 0, MediaVisualizationDirection.Ascending, 1200, 800, point);
+        var selected = new SkiaSectorMediaRenderer().HitTest(model, 0, MediaVisualizationDirection.Ascending, 1200, 800, point);
 
         Assert.NotNull(selected);
         Assert.Equal(0, selected.Number);
@@ -342,11 +322,7 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
     public Task FluxTrackDefaultsToTheSynthesisAndAllowsOneRevolution() => sta.Run(() =>
     {
         var source = ExplorerDocumentScenarios.Document("flux").ScpImage!;
-        var track = new ScpTrack(0, 12, 0,
-        [
-            new ScpRevolution(8_000_000, 2, [80, 160]),
-            new ScpRevolution(8_000_000, 2, [90, 150])
-        ]);
+        var track = new ScpTrack(0, 12, 0, [new ScpRevolution(8_000_000, 2, [80, 160]), new ScpRevolution(8_000_000, 2, [90, 150])]);
         var image = new ScpImage(source.Header, [track], true, source.FileSize);
         var section = new VisualizerTabSection();
         section.FirstSide.SetImage(image, 0);
@@ -369,10 +345,7 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
     public async Task PreparedFluxTracksStayHiddenUntilExplicitlyRevealed()
     {
         var source = ExplorerDocumentScenarios.Document("flux").ScpImage!;
-        var track = new ScpTrack(0, 0, 0,
-        [
-            new ScpRevolution(8_000_000, 3, [80, 120, 160])
-        ]);
+        var track = new ScpTrack(0, 0, 0, [new ScpRevolution(8_000_000, 3, [80, 120, 160])]);
         var image = new ScpImage(source.Header, [track], true, source.FileSize);
         var renderer = new SkiaScpRenderer();
 
@@ -402,8 +375,7 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
         {
             var bitmap = new SKBitmap(320, 320);
             using var canvas = new SKCanvas(bitmap);
-            renderer.Render(canvas, new ScpRenderRequest(image, 0, null, revolution, 320, 320,
-                new SKPoint(160, 160), 1, "No data", "Side 0", DiskMediaCategory.ThreeHalfDd));
+            renderer.Render(canvas, new ScpRenderRequest(image, 0, null, revolution, 320, 320, new SKPoint(160, 160), 1, "No data", "Side 0", DiskMediaCategory.ThreeHalfDd));
             return bitmap;
         }
 
@@ -431,12 +403,7 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
         static uint[] Flux(int count) => Enumerable.Range(0, count)
             .Select(index => (uint)(index % 3 switch { 0 => 80, 1 => 120, _ => 160 }))
             .ToArray();
-        var track = new ScpTrack(0, 0, 0,
-        [
-            new ScpRevolution(8_000_000, 720, Flux(720)),
-            new ScpRevolution(8_020_000, 718, Flux(718)),
-            new ScpRevolution(7_990_000, 722, Flux(722))
-        ]);
+        var track = new ScpTrack(0, 0, 0, [new ScpRevolution(8_000_000, 720, Flux(720)), new ScpRevolution(8_020_000, 718, Flux(718)), new ScpRevolution(7_990_000, 722, Flux(722))]);
         var image = new ScpImage(source.Header, [track], true, source.FileSize);
         var reports = new List<ScpTrackPreparation>();
 
@@ -486,10 +453,7 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
         Assert.Equal(new SKColor(63, 116, 72), SkiaScpRenderer.QualityColor(.8));
         Assert.Equal(new SKColor(47, 166, 91), SkiaScpRenderer.QualityColor(1));
 
-        var colors = Enum.GetValues<SectorMediaElementState>()
-            .Select(SkiaSectorMediaRenderer.ColorFor)
-            .Distinct()
-            .ToArray();
+        var colors = Enum.GetValues<SectorMediaElementState>().Select(SkiaSectorMediaRenderer.ColorFor).Distinct().ToArray();
         Assert.Equal(Enum.GetValues<SectorMediaElementState>().Length, colors.Length);
     }
 
@@ -498,9 +462,7 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
     {
         using var bitmap = new SKBitmap(320, 220);
         using var canvas = new SKCanvas(bitmap);
-        new SkiaScpRenderer().Render(canvas, new ScpRenderRequest(
-            null, 0, null, null, bitmap.Width, bitmap.Height, new SKPoint(160, 110), 1,
-            "No data", "Side 0", DiskMediaCategory.ThreeHalfDd));
+        new SkiaScpRenderer().Render(canvas, new ScpRenderRequest(null, 0, null, null, bitmap.Width, bitmap.Height, new SKPoint(160, 110), 1, "No data", "Side 0", DiskMediaCategory.ThreeHalfDd));
 
         var corner = bitmap.GetPixel(8, 8);
         Assert.True(corner.Red > 225 && corner.Green > 230 && corner.Blue > 235);
@@ -544,17 +506,10 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
     [Fact]
     public Task SequentialOverviewRevealsOneTapeBlockAtATime() => sta.Run(() =>
     {
-        var first = new GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment(
-            0, 0, TimeSpan.Zero, TimeSpan.Zero,
-            GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.Signal,
-            StoredLength: 10);
-        var second = new GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment(
-            1, 0, TimeSpan.Zero, TimeSpan.Zero,
-            GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.DecodedBlock,
-            StoredLength: 20);
+        var first = new GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment(0, 0, TimeSpan.Zero, TimeSpan.Zero, GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.Signal, StoredLength: 10);
+        var second = new GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment(1, 0, TimeSpan.Zero, TimeSpan.Zero, GWGUI.App.Enums.Rendering.Sequential.SequentialSegmentKind.DecodedBlock, StoredLength: 20);
         var overview = new VisualizerTrackOverview();
-        overview.ConfigureSequential(new GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaRenderModel(
-            30, null, [first, second]));
+        overview.ConfigureSequential(new GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaRenderModel(30, null, [first, second]));
         var rows = Assert.IsType<StackPanel>(overview.FindName("ProgressRows"));
         var firstStrip = Assert.IsType<TrackProgressStrip>(rows.Children[0]);
         var secondStrip = Assert.IsType<TrackProgressStrip>(rows.Children[1]);
@@ -564,33 +519,18 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
         overview.MarkSequentialSegment(first);
 
         var firstColor = SkiaSequentialMediaRenderer.ColorFor(first);
-        Assert.Equal(Color.FromRgb(firstColor.Red, firstColor.Green, firstColor.Blue),
-            Assert.IsType<SolidColorBrush>(firstStrip.Segments[0].Brush).Color);
+        Assert.Equal(Color.FromRgb(firstColor.Red, firstColor.Green, firstColor.Blue), Assert.IsType<SolidColorBrush>(firstStrip.Segments[0].Brush).Color);
         Assert.Equal(secondPending, Assert.IsType<SolidColorBrush>(secondStrip.Segments[0].Brush).Color);
         Assert.NotEqual(firstPending, Assert.IsType<SolidColorBrush>(firstStrip.Segments[0].Brush).Color);
     });
 
-    private static SectorMediaSurface Surface(int index) => new(index,
-        [new SectorMediaTrack(0, [new SectorMediaElement(index, index, 0, 1, 512, SectorMediaElementState.WithData)])]);
+    private static SectorMediaSurface Surface(int index) => new(index, [new SectorMediaTrack(0, [new SectorMediaElement(index, index, 0, 1, 512, SectorMediaElementState.WithData)])]);
 
-    private static MediaVisualizationDescriptor Descriptor(params int[] surfaces) => new(
-        MediaRepresentationKind.Sectors,
-        surfaces,
-        MediaVisualizationProgressUnit.Sector,
-        MediaVisualizationDirection.Ascending,
-        surfaces.Select(surface => new MediaVisualizationElement(0, surface)).ToArray());
+    private static MediaVisualizationDescriptor Descriptor(params int[] surfaces) => new(MediaRepresentationKind.Sectors, surfaces, MediaVisualizationProgressUnit.Sector, MediaVisualizationDirection.Ascending, surfaces.Select(surface => new MediaVisualizationElement(0, surface)).ToArray());
 
-    private static MediaInspectorModel Model(string selectedElement = "Track 0 · Sector 1") => new(
-        "Selected sector",
-        selectedElement,
-        [new MediaInspectorSection("Summary", "i", [new MediaInspectorEntry("State", "Available")])]);
+    private static MediaInspectorModel Model(string selectedElement = "Track 0 · Sector 1") => new("Selected sector", selectedElement, [new MediaInspectorSection("Summary", "i", [new MediaInspectorEntry("State", "Available")])]);
 
-    private static MediaImageDocument Document(
-        string path = "layout.img",
-        MediaKind mediaKind = MediaKind.Floppy,
-        string formatId = "test.720") => new(
-        new MediaSourceDescriptor(path, []), formatId, mediaKind,
-        new TestSectorRepresentation(), [], [], new Dictionary<string, string>());
+    private static MediaImageDocument Document(string path = "layout.img", MediaKind mediaKind = MediaKind.Floppy, string formatId = "test.720") => new(new MediaSourceDescriptor(path, []), formatId, mediaKind, new TestSectorRepresentation(), [], [], new Dictionary<string, string>());
 
     private sealed class TestSectorRepresentation : IMediaImageRepresentation
     {

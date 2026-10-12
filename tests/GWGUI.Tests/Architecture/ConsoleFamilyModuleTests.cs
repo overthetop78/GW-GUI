@@ -46,8 +46,7 @@ public sealed class ConsoleFamilyModuleTests
         {
             var files = CommonFiles(root, family);
             Assert.Contains(Path.Combine("Interfaces", "IEmulatorAdapter.cs"), files);
-            var contractSource = string.Join(Environment.NewLine, files
-                .Where(file => file.StartsWith("Contracts" + Path.DirectorySeparatorChar, StringComparison.Ordinal))
+            var contractSource = string.Join(Environment.NewLine, files.Where(file => file.StartsWith("Contracts" + Path.DirectorySeparatorChar, StringComparison.Ordinal))
                 .Select(file => File.ReadAllText(Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common", file))));
             Assert.Contains("record EmulatorCreationContext", contractSource, StringComparison.Ordinal);
             Assert.Contains(Path.Combine("Dictionaries", "EmulatorCatalog.cs"), files);
@@ -104,8 +103,7 @@ public sealed class ConsoleFamilyModuleTests
             {
                 var configuration = module.CreateConfiguration(machineId);
                 Assert.Equal(machineId, configuration.MachineId);
-                Assert.Equal(string.Empty, configuration.GetType()
-                    .GetProperty("EmulatorId")?.GetValue(configuration));
+                Assert.Equal(string.Empty, configuration.GetType().GetProperty("EmulatorId")?.GetValue(configuration));
             }
         }
         finally
@@ -124,10 +122,8 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new NintendoEmulationModuleFactory().Create(context);
-            var nes = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
-                module.CreateConfiguration("Nes"));
-            var fds = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
-                module.CreateConfiguration("FamicomDisk"));
+            var nes = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("Nes"));
+            var fds = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("FamicomDisk"));
             Assert.Equal("mesen", nes.EmulatorId);
             Assert.Equal("mesen", fds.EmulatorId);
         }
@@ -153,18 +149,15 @@ public sealed class ConsoleFamilyModuleTests
             NintendoModelConstants.Switch
         };
         Assert.Equal(expected, NintendoModelCatalog.All.Select(model => model.Id));
-        Assert.DoesNotContain(NintendoModelCatalog.All, model => model.BackendModel is
-            "sg1000" or "mastersystem" or "megadrive" or "saturn" or "dreamcast");
+        Assert.DoesNotContain(NintendoModelCatalog.All, model => model.BackendModel is "sg1000" or "mastersystem" or "megadrive" or "saturn" or "dreamcast");
         Assert.All(NintendoModelCatalog.All, model => Assert.False(string.IsNullOrWhiteSpace(model.BackendModel)));
     }
 
     [Fact]
     public void NintendoAdaptersPublishOnlyCatalogModels()
     {
-        var modelIds = NintendoModelCatalog.All.Select(model => model.Id)
-            .ToHashSet(StringComparer.Ordinal);
-        Assert.All(NintendoEmulatorCatalog.All, definition =>
-            Assert.All(definition.MachineIds, machineId => Assert.Contains(machineId, modelIds)));
+        var modelIds = NintendoModelCatalog.All.Select(model => model.Id).ToHashSet(StringComparer.Ordinal);
+        Assert.All(NintendoEmulatorCatalog.All, definition => Assert.All(definition.MachineIds, machineId => Assert.Contains(machineId, modelIds)));
     }
 
     [Fact]
@@ -179,8 +172,7 @@ public sealed class ConsoleFamilyModuleTests
             foreach (var definition in NintendoEmulatorCatalog.All)
             foreach (var machineId in definition.MachineIds)
             {
-                var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
-                    module.CreateConfiguration(machineId));
+                var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration(machineId));
                 Assert.Equal(NintendoEmulatorCatalog.DefaultFor(machineId), configuration.EmulatorId);
             }
         }
@@ -199,25 +191,18 @@ public sealed class ConsoleFamilyModuleTests
         {
             using var http = new HttpClient();
             var module = new NintendoEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
-            var supported = NintendoModelCatalog.All.Where(model => NintendoEmulatorCatalog.All
-                .Any(definition => definition.MachineIds.Contains(model.Id, StringComparer.Ordinal)));
+            var supported = NintendoModelCatalog.All.Where(model => NintendoEmulatorCatalog.All.Any(definition => definition.MachineIds.Contains(model.Id, StringComparer.Ordinal)));
             foreach (var model in supported)
             {
-                var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
-                    module.CreateConfiguration(model.Id));
-                var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
-                    .DescribeStorageSettings(configuration);
-                var cartridge = storage.AvailableDevices.Where(device => device.Slot == EmulationMediaSlot.Cartridge0)
-                    .Select(device => device.AcceptedExtensions).SingleOrDefault();
-                var optical = storage.AvailableDevices.Where(device => device.Slot == EmulationMediaSlot.Cd0)
-                    .Select(device => device.AcceptedExtensions).SingleOrDefault();
+                var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration(model.Id));
+                var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module).DescribeStorageSettings(configuration);
+                var cartridge = storage.AvailableDevices.Where(device => device.Slot == EmulationMediaSlot.Cartridge0).Select(device => device.AcceptedExtensions).SingleOrDefault();
+                var optical = storage.AvailableDevices.Where(device => device.Slot == EmulationMediaSlot.Cd0).Select(device => device.AcceptedExtensions).SingleOrDefault();
                 if (model.Id == NintendoModelConstants.FamicomDisk)
                 {
-                    var floppy = Assert.Single(storage.AvailableDevices,
-                        device => device.Slot == EmulationMediaSlot.Floppy0);
+                    var floppy = Assert.Single(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Floppy0);
                     Assert.Equal([".fds", ".m3u"], floppy.AcceptedExtensions);
-                    Assert.DoesNotContain(storage.AvailableDevices,
-                        device => device.AcceptedExtensions.Contains(".dsk"));
+                    Assert.DoesNotContain(storage.AvailableDevices, device => device.AcceptedExtensions.Contains(".dsk"));
                 }
                 else if (model.Id is NintendoModelConstants.GameCube or NintendoModelConstants.Wii)
                     Assert.Equal([".cue", ".chd", ".iso", ".gcm"], optical);
@@ -231,19 +216,13 @@ public sealed class ConsoleFamilyModuleTests
                     Assert.Null(cartridge);
 
                 var fields = module.Describe(model.Id, configuration).Blocks.SelectMany(block => block.Fields).ToArray();
-                Assert.DoesNotContain(fields, field => field.Id is "configuration.videoResolution"
-                    or "configuration.videoMonitor" or "configuration.videoIntensity"
-                    or "configuration.videoCrop" or "configuration.floppySound");
-                Assert.Equal(EmulationSettingsEditor.Information,
-                    fields.Single(field => field.Id == NintendoSettingsConstants.Ram).Editor);
+                Assert.DoesNotContain(fields, field => field.Id is "configuration.videoResolution" or "configuration.videoMonitor" or "configuration.videoIntensity" or "configuration.videoCrop" or "configuration.floppySound");
+                Assert.Equal(EmulationSettingsEditor.Information, fields.Single(field => field.Id == NintendoSettingsConstants.Ram).Editor);
                 Assert.Equal($"{model.RamKib} KiB",
                     fields.Single(field => field.Id == NintendoSettingsConstants.Ram).Value);
-                Assert.Equal(string.Join(" / ", model.Processors),
-                    fields.Single(field => field.Id == NintendoSettingsConstants.Model + ".cpu").Value);
-                Assert.Equal(model.VideoChip,
-                    fields.Single(field => field.Id == NintendoSettingsConstants.Model + ".video").Value);
-                Assert.Equal(model.AudioChip,
-                    fields.Single(field => field.Id == NintendoSettingsConstants.Model + ".audio").Value);
+                Assert.Equal(string.Join(" / ", model.Processors), fields.Single(field => field.Id == NintendoSettingsConstants.Model + ".cpu").Value);
+                Assert.Equal(model.VideoChip, fields.Single(field => field.Id == NintendoSettingsConstants.Model + ".video").Value);
+                Assert.Equal(model.AudioChip, fields.Single(field => field.Id == NintendoSettingsConstants.Model + ".audio").Value);
             }
         }
         finally
@@ -275,24 +254,17 @@ public sealed class ConsoleFamilyModuleTests
             "Emulation.Nintendo.Help.Audio.FloppySound.Short",
             "Emulation.Nintendo.Help.Audio.FloppySound.Detailed"
         };
-        var baseEntries = Directory.EnumerateFiles(Path.Combine(resources, "00-Base"), "*.resx")
-            .SelectMany(ResxEntries).ToDictionary(item => item.Key, item => item.Value);
-        var englishEntries = Directory.EnumerateFiles(Path.Combine(resources, "en-US"), "*.resx")
-            .SelectMany(ResxEntries).ToDictionary(item => item.Key, item => item.Value);
+        var baseEntries = Directory.EnumerateFiles(Path.Combine(resources, "00-Base"), "*.resx").SelectMany(ResxEntries).ToDictionary(item => item.Key, item => item.Value);
+        var englishEntries = Directory.EnumerateFiles(Path.Combine(resources, "en-US"), "*.resx").SelectMany(ResxEntries).ToDictionary(item => item.Key, item => item.Value);
         Assert.DoesNotContain(baseEntries.Keys, key => obsolete.Contains(key));
         Assert.DoesNotContain(englishEntries.Keys, key => obsolete.Contains(key));
         Assert.Equal("System ROM", baseEntries["Emulation.Nintendo.Firmware.Integrated"]);
         Assert.Equal("System ROM", englishEntries["Emulation.Nintendo.Firmware.Integrated"]);
-        Assert.Equal("Displays the RAM provided by the selected Nintendo machine.",
-            englishEntries["Emulation.Nintendo.Help.Memory.Ram.Detailed"]);
-        Assert.DoesNotContain("Mesen", englishEntries["Emulation.Nintendo.Firmware.Integrated"],
-            StringComparison.Ordinal);
-        Assert.DoesNotContain("Mesen", englishEntries["Emulation.Nintendo.Help.Memory.Ram.Detailed"],
-            StringComparison.Ordinal);
-        Assert.DoesNotContain("Mesen", englishEntries["Emulation.Nintendo.Help.Firmware.Integrated.Short"],
-            StringComparison.Ordinal);
-        Assert.DoesNotContain("Mesen", englishEntries["Emulation.Nintendo.Help.Firmware.Integrated.Detailed"],
-            StringComparison.Ordinal);
+        Assert.Equal("Displays the RAM provided by the selected Nintendo machine.", englishEntries["Emulation.Nintendo.Help.Memory.Ram.Detailed"]);
+        Assert.DoesNotContain("Mesen", englishEntries["Emulation.Nintendo.Firmware.Integrated"], StringComparison.Ordinal);
+        Assert.DoesNotContain("Mesen", englishEntries["Emulation.Nintendo.Help.Memory.Ram.Detailed"], StringComparison.Ordinal);
+        Assert.DoesNotContain("Mesen", englishEntries["Emulation.Nintendo.Help.Firmware.Integrated.Short"], StringComparison.Ordinal);
+        Assert.DoesNotContain("Mesen", englishEntries["Emulation.Nintendo.Help.Firmware.Integrated.Detailed"], StringComparison.Ordinal);
         var forbiddenFamilyNames = new[] { "Caprice32", "Caprice 32", "Amstrad", "GenesisPlusGX", "Sega" };
         const string namedGameBoyPaletteKey = "Emulation.Option.gambatte.gambatte_gb_palette_twb64_2.Value.TWB64 192 - SEGA Tokyo Blue";
         bool HasForeignFamilyName(string value) => forbiddenFamilyNames.Any(name =>
@@ -300,32 +272,22 @@ public sealed class ConsoleFamilyModuleTests
                 @"\b" + System.Text.RegularExpressions.Regex.Escape(name) + @"\b",
                 System.Text.RegularExpressions.RegexOptions.IgnoreCase
                     | System.Text.RegularExpressions.RegexOptions.CultureInvariant));
-        Assert.DoesNotContain(baseEntries, entry => entry.Key != namedGameBoyPaletteKey
-            && HasForeignFamilyName(entry.Value));
-        Assert.DoesNotContain(englishEntries, entry => entry.Key != namedGameBoyPaletteKey
-            && HasForeignFamilyName(entry.Value));
-        foreach (var culture in Directory.EnumerateDirectories(resources)
-                     .Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal)
-                         && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
+        Assert.DoesNotContain(baseEntries, entry => entry.Key != namedGameBoyPaletteKey && HasForeignFamilyName(entry.Value));
+        Assert.DoesNotContain(englishEntries, entry => entry.Key != namedGameBoyPaletteKey && HasForeignFamilyName(entry.Value));
+        foreach (var culture in Directory.EnumerateDirectories(resources).Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal) && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
         {
-            var entries = Directory.EnumerateFiles(culture, "*.resx").SelectMany(ResxEntries)
-                .ToDictionary(item => item.Key, item => item.Value);
+            var entries = Directory.EnumerateFiles(culture, "*.resx").SelectMany(ResxEntries).ToDictionary(item => item.Key, item => item.Value);
             Assert.DoesNotContain(entries.Keys, key => obsolete.Contains(key));
-            Assert.DoesNotContain("Mesen", entries["Emulation.Nintendo.Firmware.Integrated"],
-                StringComparison.Ordinal);
+            Assert.DoesNotContain("Mesen", entries["Emulation.Nintendo.Firmware.Integrated"], StringComparison.Ordinal);
             Assert.Equal(englishEntries.Keys.Order(StringComparer.Ordinal), entries.Keys.Order(StringComparer.Ordinal));
-            Assert.DoesNotContain(entries, entry => entry.Key != namedGameBoyPaletteKey
-                && HasForeignFamilyName(entry.Value));
+            Assert.DoesNotContain(entries, entry => entry.Key != namedGameBoyPaletteKey && HasForeignFamilyName(entry.Value));
         }
 
         static IReadOnlyDictionary<string, string> ResxEntries(string path)
         {
             var document = new XmlDocument();
             document.Load(path);
-            return document.SelectNodes("/root/data")!.Cast<XmlElement>()
-                .ToDictionary(element => element.GetAttribute("name"),
-                    element => element.SelectSingleNode("value")?.InnerText ?? string.Empty,
-                    StringComparer.Ordinal);
+            return document.SelectNodes("/root/data")!.Cast<XmlElement>().ToDictionary(element => element.GetAttribute("name"), element => element.SelectSingleNode("value")?.InnerText ?? string.Empty, StringComparer.Ordinal);
         }
     }
 
@@ -338,30 +300,21 @@ public sealed class ConsoleFamilyModuleTests
         var englishEntries = ReadEntries(Path.Combine(resources, "en-US"));
         var expectedModels = new[] { "PlayStation", "PlayStation2", "Psp", "PsVita", "PlayStation3", "PlayStation4", "PlayStation5" };
         Assert.Contains("Emulation.Family.Sony", baseEntries.Keys);
-        Assert.All(expectedModels, model => Assert.Contains(
-            GWGUI.Emulation.Sony.Common.Machines.Common.Constants.MachineConfigurationConstants.ResourceKey(model),
-            baseEntries.Keys));
-        Assert.DoesNotContain(englishEntries.Keys, key => key == "Emulation.Family.Sony"
-            || key.StartsWith("Emulation.Sony.Machine.", StringComparison.Ordinal));
+        Assert.All(expectedModels, model => Assert.Contains(GWGUI.Emulation.Sony.Common.Machines.Common.Constants.MachineConfigurationConstants.ResourceKey(model), baseEntries.Keys));
+        Assert.DoesNotContain(englishEntries.Keys, key => key == "Emulation.Family.Sony" || key.StartsWith("Emulation.Sony.Machine.", StringComparison.Ordinal));
         Assert.Contains("Emulation.Error.Pcsx2.HostConfigurationInvalid", englishEntries.Keys);
         Assert.Contains("Emulation.Emulator.pcsx2.Description", englishEntries.Keys);
         Assert.Equal("Sony", baseEntries["Emulation.Family.Sony"]);
         var forbidden = new[] { "Caprice32", "Amstrad", "GenesisPlusGX", "Sega", "Nintendo", "SonyCore" };
-        Assert.DoesNotContain(englishEntries.Values, value => forbidden.Any(name =>
-            value.Contains(name, StringComparison.OrdinalIgnoreCase)));
-        var files = Directory.EnumerateFiles(Path.Combine(resources, "en-US"), "*.resx")
-            .Select(Path.GetFileName).Order(StringComparer.Ordinal).ToArray();
-        foreach (var culture in Directory.EnumerateDirectories(resources)
-                     .Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal)
-                         && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
+        Assert.DoesNotContain(englishEntries.Values, value => forbidden.Any(name => value.Contains(name, StringComparison.OrdinalIgnoreCase)));
+        var files = Directory.EnumerateFiles(Path.Combine(resources, "en-US"), "*.resx").Select(Path.GetFileName).Order(StringComparer.Ordinal).ToArray();
+        foreach (var culture in Directory.EnumerateDirectories(resources).Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal) && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
         {
             Assert.False(File.Exists(Path.Combine(culture, "Emulation.resx")));
-            Assert.Equal(files, Directory.EnumerateFiles(culture, "*.resx")
-                .Select(Path.GetFileName).Order(StringComparer.Ordinal));
+            Assert.Equal(files, Directory.EnumerateFiles(culture, "*.resx").Select(Path.GetFileName).Order(StringComparer.Ordinal));
             var entries = ReadEntries(culture);
             Assert.Equal(englishEntries.Keys.Order(StringComparer.Ordinal), entries.Keys.Order(StringComparer.Ordinal));
-            Assert.DoesNotContain(entries.Values, value => forbidden.Any(name =>
-                value.Contains(name, StringComparison.OrdinalIgnoreCase)));
+            Assert.DoesNotContain(entries.Values, value => forbidden.Any(name => value.Contains(name, StringComparison.OrdinalIgnoreCase)));
         }
 
         static IReadOnlyDictionary<string, string> ReadEntries(string directory)
@@ -393,50 +346,37 @@ public sealed class ConsoleFamilyModuleTests
         var xbox360 = Assert.Single(models, model => model.Id == "Xbox360");
         Assert.Equal(512 * 1024, xbox360.RamKib);
         Assert.False(xbox360.SupportsCompactDiscDrive);
-        Assert.DoesNotContain(models, model => model.BackendModel is
-            "sg1000" or "mastersystem" or "megadrive" or "saturn" or "dreamcast");
+        Assert.DoesNotContain(models, model => model.BackendModel is "sg1000" or "mastersystem" or "megadrive" or "saturn" or "dreamcast");
     }
 
     [Fact]
     public void MicrosoftStorageAndSettingsExposeOnlySupportedHardware()
     {
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-microsoft-settings-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-microsoft-settings-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
         try
         {
             using var http = new HttpClient();
-            var module = new MicrosoftEmulationModuleFactory().Create(
-                new EmulationModuleContext(root, root, http));
+            var module = new MicrosoftEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
             foreach (var model in GWGUI.Emulation.Microsoft.Common.Machines.Common.Dictionaries.ModelCatalog.All)
             {
-                var configuration = new GWGUI.Emulation.Microsoft.Common.Machines.Common.Contracts.MachineConfiguration(
-                    model.Id, "unavailable", Media: []);
-                var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
-                    .DescribeStorageSettings(configuration);
+                var configuration = new GWGUI.Emulation.Microsoft.Common.Machines.Common.Contracts.MachineConfiguration(model.Id, "unavailable", Media: []);
+                var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module).DescribeStorageSettings(configuration);
                 if (model.Id == "Xbox")
                 {
-                    var optical = Assert.Single(storage.AvailableDevices,
-                        device => device.Slot == EmulationMediaSlot.Cd0);
+                    var optical = Assert.Single(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cd0);
                     Assert.Equal([".iso"], optical.AcceptedExtensions);
                 }
                 else
                     Assert.Empty(storage.AvailableDevices);
-                var fields = module.Describe(model.Id, configuration).Blocks
-                    .SelectMany(block => block.Fields).ToArray();
-                Assert.DoesNotContain(fields, field => field.Id is "configuration.videoResolution"
-                    or "configuration.videoMonitor" or "configuration.videoIntensity"
-                    or "configuration.videoCrop" or "configuration.floppySound");
-                Assert.Equal(EmulationSettingsEditor.Information,
-                    fields.Single(field => field.Id == "configuration.ramKib").Editor);
+                var fields = module.Describe(model.Id, configuration).Blocks.SelectMany(block => block.Fields).ToArray();
+                Assert.DoesNotContain(fields, field => field.Id is "configuration.videoResolution" or "configuration.videoMonitor" or "configuration.videoIntensity" or "configuration.videoCrop" or "configuration.floppySound");
+                Assert.Equal(EmulationSettingsEditor.Information, fields.Single(field => field.Id == "configuration.ramKib").Editor);
                 Assert.Equal($"{model.RamKib} KiB",
                     fields.Single(field => field.Id == "configuration.ramKib").Value);
-                Assert.Equal(string.Join(" / ", model.Processors),
-                    fields.Single(field => field.Id == "configuration.model.cpu").Value);
-                Assert.Equal(model.VideoChip,
-                    fields.Single(field => field.Id == "configuration.model.video").Value);
-                Assert.Equal(model.AudioChip,
-                    fields.Single(field => field.Id == "configuration.model.audio").Value);
+                Assert.Equal(string.Join(" / ", model.Processors), fields.Single(field => field.Id == "configuration.model.cpu").Value);
+                Assert.Equal(model.VideoChip, fields.Single(field => field.Id == "configuration.model.video").Value);
+                Assert.Equal(model.AudioChip, fields.Single(field => field.Id == "configuration.model.audio").Value);
             }
         }
         finally
@@ -455,26 +395,17 @@ public sealed class ConsoleFamilyModuleTests
         Assert.Contains("Emulation.Family.Microsoft", baseEntries.Keys);
         Assert.Contains("Emulation.Microsoft.Machine.Xbox", baseEntries.Keys);
         Assert.Contains("Emulation.Microsoft.Machine.Xbox360", baseEntries.Keys);
-        Assert.DoesNotContain(englishEntries.Keys, key => key == "Emulation.Family.Microsoft"
-            || key.StartsWith("Emulation.Microsoft.Machine.", StringComparison.Ordinal));
-        Assert.DoesNotContain(englishEntries.Keys, key => key.Contains("MicrosoftCore",
-            StringComparison.OrdinalIgnoreCase));
-        Assert.DoesNotContain(englishEntries.Values, value => value.Contains("MicrosoftCore",
-            StringComparison.OrdinalIgnoreCase));
-        var files = Directory.EnumerateFiles(Path.Combine(resources, "en-US"), "*.resx")
-            .Select(Path.GetFileName).Order(StringComparer.Ordinal).ToArray();
-        foreach (var culture in Directory.EnumerateDirectories(resources)
-                     .Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal)
-                         && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
+        Assert.DoesNotContain(englishEntries.Keys, key => key == "Emulation.Family.Microsoft" || key.StartsWith("Emulation.Microsoft.Machine.", StringComparison.Ordinal));
+        Assert.DoesNotContain(englishEntries.Keys, key => key.Contains("MicrosoftCore", StringComparison.OrdinalIgnoreCase));
+        Assert.DoesNotContain(englishEntries.Values, value => value.Contains("MicrosoftCore", StringComparison.OrdinalIgnoreCase));
+        var files = Directory.EnumerateFiles(Path.Combine(resources, "en-US"), "*.resx").Select(Path.GetFileName).Order(StringComparer.Ordinal).ToArray();
+        foreach (var culture in Directory.EnumerateDirectories(resources).Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal) && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
         {
             Assert.False(File.Exists(Path.Combine(culture, "Emulation.resx")));
-            Assert.Equal(files, Directory.EnumerateFiles(culture, "*.resx")
-                .Select(Path.GetFileName).Order(StringComparer.Ordinal));
+            Assert.Equal(files, Directory.EnumerateFiles(culture, "*.resx").Select(Path.GetFileName).Order(StringComparer.Ordinal));
             var entries = ReadEntries(culture);
-            Assert.Equal(englishEntries.Keys.Order(StringComparer.Ordinal),
-                entries.Keys.Order(StringComparer.Ordinal));
-            Assert.DoesNotContain(entries.Values, value => value.Contains("MicrosoftCore",
-                StringComparison.OrdinalIgnoreCase));
+            Assert.Equal(englishEntries.Keys.Order(StringComparer.Ordinal), entries.Keys.Order(StringComparer.Ordinal));
+            Assert.DoesNotContain(entries.Values, value => value.Contains("MicrosoftCore", StringComparison.OrdinalIgnoreCase));
         }
 
         static IReadOnlyDictionary<string, string> ReadEntries(string directory)
@@ -485,8 +416,7 @@ public sealed class ConsoleFamilyModuleTests
                 var document = new XmlDocument();
                 document.Load(path);
                 foreach (var element in document.SelectNodes("/root/data")!.Cast<XmlElement>())
-                    result.Add(element.GetAttribute("name"),
-                        element.SelectSingleNode("value")?.InnerText ?? string.Empty);
+                    result.Add(element.GetAttribute("name"), element.SelectSingleNode("value")?.InnerText ?? string.Empty);
             }
             return result;
         }
@@ -516,8 +446,7 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new NintendoEmulationModuleFactory().Create(context);
-            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
-                module.CreateConfiguration("VirtualBoy"));
+            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("VirtualBoy"));
             Assert.Equal("beetle_vb", configuration.EmulatorId);
         }
         finally
@@ -536,8 +465,7 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new NintendoEmulationModuleFactory().Create(context);
-            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
-                module.CreateConfiguration("GameWatch"));
+            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("GameWatch"));
             Assert.Equal("gw", configuration.EmulatorId);
         }
         finally
@@ -556,8 +484,7 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new NintendoEmulationModuleFactory().Create(context);
-            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
-                module.CreateConfiguration("Nintendo3Ds"));
+            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("Nintendo3Ds"));
             Assert.Equal("citra", configuration.EmulatorId);
         }
         finally
@@ -578,8 +505,7 @@ public sealed class ConsoleFamilyModuleTests
             var module = new NintendoEmulationModuleFactory().Create(context);
             foreach (var machineId in new[] { "GameCube", "Wii" })
             {
-                var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
-                    module.CreateConfiguration(machineId));
+                var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration(machineId));
                 Assert.Equal("dolphin", configuration.EmulatorId);
             }
         }
@@ -601,8 +527,7 @@ public sealed class ConsoleFamilyModuleTests
             var module = new NecEmulationModuleFactory().Create(context);
             foreach (var machineId in new[] { "PcEngine", "CoreGrafx", "SuperGrafx", "PcEngineDuo", "TurboExpress" })
             {
-                var configuration = Assert.IsType<GWGUI.Emulation.Nec.Common.Machines.Common.Contracts.MachineConfiguration>(
-                    module.CreateConfiguration(machineId));
+                var configuration = Assert.IsType<GWGUI.Emulation.Nec.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration(machineId));
                 Assert.Equal(machineId == "SuperGrafx" ? "beetle_sgx" : "beetle_pce_fast", configuration.EmulatorId);
             }
         }
@@ -622,8 +547,7 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new NintendoEmulationModuleFactory().Create(context);
-            var snes = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
-                module.CreateConfiguration("Snes"));
+            var snes = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("Snes"));
             Assert.Equal("snes9x", snes.EmulatorId);
         }
         finally
@@ -642,8 +566,7 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new SonyEmulationModuleFactory().Create(context);
-            var playStation = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(
-                module.CreateConfiguration("PlayStation"));
+            var playStation = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("PlayStation"));
             Assert.Equal("swanstation", playStation.EmulatorId);
         }
         finally
@@ -664,8 +587,7 @@ public sealed class ConsoleFamilyModuleTests
             var module = new NintendoEmulationModuleFactory().Create(context);
             foreach (var machineId in new[] { "GameBoy", "GameBoyColor" })
             {
-                var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
-                    module.CreateConfiguration(machineId));
+                var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration(machineId));
                 Assert.Equal("gambatte", configuration.EmulatorId);
             }
         }
@@ -685,8 +607,7 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new NintendoEmulationModuleFactory().Create(context);
-            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
-                module.CreateConfiguration("GameBoyAdvance"));
+            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("GameBoyAdvance"));
             Assert.Equal("mgba", configuration.EmulatorId);
         }
         finally
@@ -705,8 +626,7 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new NintendoEmulationModuleFactory().Create(context);
-            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
-                module.CreateConfiguration("Nintendo64"));
+            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("Nintendo64"));
             Assert.Equal("mupen64plus-next", configuration.EmulatorId);
         }
         finally
@@ -725,8 +645,7 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new NintendoEmulationModuleFactory().Create(context);
-            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(
-                module.CreateConfiguration("NintendoDs"));
+            var configuration = Assert.IsType<GWGUI.Emulation.Nintendo.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("NintendoDs"));
             Assert.Equal("melonds", configuration.EmulatorId);
         }
         finally
@@ -745,8 +664,7 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new SonyEmulationModuleFactory().Create(context);
-            var configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(
-                module.CreateConfiguration("PlayStation2"));
+            var configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("PlayStation2"));
             Assert.Equal("pcsx2", configuration.EmulatorId);
         }
         finally
@@ -765,8 +683,7 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new SonyEmulationModuleFactory().Create(context);
-            var configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(
-                module.CreateConfiguration("Psp"));
+            var configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("Psp"));
             Assert.Equal("ppsspp", configuration.EmulatorId);
         }
         finally
@@ -783,25 +700,18 @@ public sealed class ConsoleFamilyModuleTests
         try
         {
             using var http = new HttpClient();
-            var module = new SonyEmulationModuleFactory().Create(
-                new EmulationModuleContext(root, root, http));
+            var module = new SonyEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
             var expected = new[] { "PlayStation", "PlayStation2", "Psp", "PsVita", "PlayStation3", "PlayStation4", "PlayStation5" };
             Assert.Equal(expected, SonyModelCatalog.All.Select(model => model.Id));
-            Assert.DoesNotContain(SonyModelCatalog.All, model => model.BackendModel is
-                "sg1000" or "mastersystem" or "megadrive" or "saturn" or "dreamcast");
-            var supported = SonyModelCatalog.All.Where(model => SonyEmulatorCatalog.All
-                .Any(definition => definition.MachineIds.Contains(model.Id, StringComparer.Ordinal)));
+            Assert.DoesNotContain(SonyModelCatalog.All, model => model.BackendModel is "sg1000" or "mastersystem" or "megadrive" or "saturn" or "dreamcast");
+            var supported = SonyModelCatalog.All.Where(model => SonyEmulatorCatalog.All.Any(definition => definition.MachineIds.Contains(model.Id, StringComparer.Ordinal)));
             foreach (var model in supported)
             {
-                var configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(
-                    module.CreateConfiguration(model.Id));
-                var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
-                    .DescribeStorageSettings(configuration);
-                var optical = Assert.Single(storage.AvailableDevices,
-                    device => device.Slot == EmulationMediaSlot.Cd0);
+                var configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration(model.Id));
+                var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module).DescribeStorageSettings(configuration);
+                var optical = Assert.Single(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cd0);
                 Assert.Contains(EmulationMediaSlot.Cd0, storage.ConfiguredSlots);
-                Assert.DoesNotContain(storage.AvailableDevices,
-                    device => device.Slot == EmulationMediaSlot.Cartridge0);
+                Assert.DoesNotContain(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cartridge0);
                 var expectedExtensions = model.Id switch
                 {
                     "Psp" => new[] { ".elf", ".iso", ".cso", ".prx", ".pbp", ".chd" },
@@ -811,21 +721,14 @@ public sealed class ConsoleFamilyModuleTests
                 Assert.Equal(expectedExtensions, optical.AcceptedExtensions);
 
                 var fields = module.Describe(model.Id, configuration).Blocks.SelectMany(block => block.Fields).ToArray();
-                Assert.DoesNotContain(fields, field => field.Id is "configuration.videoResolution"
-                    or "configuration.videoMonitor" or "configuration.videoIntensity"
-                    or "configuration.videoCrop" or "configuration.floppySound");
-                Assert.Equal(EmulationSettingsEditor.Information,
-                    fields.Single(field => field.Id == "configuration.ramKib").Editor);
+                Assert.DoesNotContain(fields, field => field.Id is "configuration.videoResolution" or "configuration.videoMonitor" or "configuration.videoIntensity" or "configuration.videoCrop" or "configuration.floppySound");
+                Assert.Equal(EmulationSettingsEditor.Information, fields.Single(field => field.Id == "configuration.ramKib").Editor);
                 Assert.Equal($"{model.RamKib} KiB",
                     fields.Single(field => field.Id == "configuration.ramKib").Value);
-                Assert.Equal(string.Join(" / ", model.Processors),
-                    fields.Single(field => field.Id == "configuration.model.cpu").Value);
-                Assert.Equal(model.VideoChip,
-                    fields.Single(field => field.Id == "configuration.model.video").Value);
-                Assert.Equal(model.AudioChip,
-                    fields.Single(field => field.Id == "configuration.model.audio").Value);
-                Assert.Equal(model.CpuFrequency,
-                    fields.Single(field => field.Id == "configuration.model.frequency").Value);
+                Assert.Equal(string.Join(" / ", model.Processors), fields.Single(field => field.Id == "configuration.model.cpu").Value);
+                Assert.Equal(model.VideoChip, fields.Single(field => field.Id == "configuration.model.video").Value);
+                Assert.Equal(model.AudioChip, fields.Single(field => field.Id == "configuration.model.audio").Value);
+                Assert.Equal(model.CpuFrequency, fields.Single(field => field.Id == "configuration.model.frequency").Value);
             }
         }
         finally
@@ -844,8 +747,7 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new NecEmulationModuleFactory().Create(context);
-            var configuration = Assert.IsType<GWGUI.Emulation.Nec.Common.Machines.Common.Contracts.MachineConfiguration>(
-                module.CreateConfiguration("PcFx"));
+            var configuration = Assert.IsType<GWGUI.Emulation.Nec.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("PcFx"));
             Assert.Equal("beetle_pcfx_fast", configuration.EmulatorId);
         }
         finally
@@ -864,8 +766,7 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new SegaEmulationModuleFactory().Create(context);
-            var configuration = Assert.IsType<GWGUI.Emulation.Sega.Common.Machines.Common.Contracts.MachineConfiguration>(
-                module.CreateConfiguration("Dreamcast"));
+            var configuration = Assert.IsType<GWGUI.Emulation.Sega.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("Dreamcast"));
             Assert.Equal("flycast", configuration.EmulatorId);
         }
         finally
@@ -877,8 +778,7 @@ public sealed class ConsoleFamilyModuleTests
     [Fact]
     public void SegaFlycastSelectsNaomiModels()
     {
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-flycast-naomi-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-flycast-naomi-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
         try
         {
@@ -889,8 +789,7 @@ public sealed class ConsoleFamilyModuleTests
             {
                 var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(model));
                 Assert.Equal("flycast", configuration.EmulatorId);
-                Assert.Equal(model == ModelConstants.Atomiswave ? ModelConstants.Ram16384Kib : ModelConstants.Ram32768Kib,
-                    ModelCatalog.Get(model).RamKib);
+                Assert.Equal(model == ModelConstants.Atomiswave ? ModelConstants.Ram16384Kib : ModelConstants.Ram32768Kib, ModelCatalog.Get(model).RamKib);
             }
         }
         finally
@@ -922,8 +821,7 @@ public sealed class ConsoleFamilyModuleTests
     [Fact]
     public void SegaPicoDrivePublishesItsSupportedMachines()
     {
-        var definition = Assert.Single(EmulatorCatalog.All,
-            item => item.Id.Equals("picodrive", StringComparison.Ordinal));
+        var definition = Assert.Single(EmulatorCatalog.All, item => item.Id.Equals("picodrive", StringComparison.Ordinal));
         Assert.Equal([ModelConstants.GameGear, ModelConstants.MasterSystem, ModelConstants.MegaCd, ModelConstants.MegaDrive, ModelConstants.Pico, ModelConstants.Sc3000, ModelConstants.Sg1000, ModelConstants.ThirtyTwoX],
             definition.MachineIds.Order(StringComparer.Ordinal));
         Assert.Contains(ModelCatalog.All, model => model.Id == ModelConstants.ThirtyTwoX);
@@ -939,21 +837,16 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
             var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration("MasterSystem"));
-            var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
-                .DescribeStorageSettings(configuration);
-            var cartridge = Assert.Single(storage.AvailableDevices,
-                device => device.Slot == EmulationMediaSlot.Cartridge0);
-            var segaCard = Assert.Single(storage.AvailableDevices,
-                device => device.Slot == EmulationMediaSlot.Cartridge1);
+            var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module).DescribeStorageSettings(configuration);
+            var cartridge = Assert.Single(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cartridge0);
+            var segaCard = Assert.Single(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cartridge1);
             Assert.Contains(".sms", cartridge.AcceptedExtensions);
             Assert.Contains(".mv", segaCard.AcceptedExtensions);
             Assert.Equal(EmulationStorageConfigurationKind.CartridgeSlot, segaCard.ConfigurationKind);
-            Assert.Equal("Emulation.Sega.MasterSystem.ThreeDGlasses",
-                segaCard.ConfigurationOptionResourceKey);
+            Assert.Equal("Emulation.Sega.MasterSystem.ThreeDGlasses", segaCard.ConfigurationOptionResourceKey);
             Assert.Contains(EmulationMediaSlot.Cartridge0, storage.ConfiguredSlots);
             Assert.Contains(EmulationMediaSlot.Cartridge1, storage.ConfiguredSlots);
-            Assert.False(Assert.Single(storage.DeviceSettings!,
-                item => item.Slot == EmulationMediaSlot.Cartridge1).Cartridge!.OptionEnabled);
+            Assert.False(Assert.Single(storage.DeviceSettings!, item => item.Slot == EmulationMediaSlot.Cartridge1).Cartridge!.OptionEnabled);
         }
         finally
         {
@@ -964,24 +857,20 @@ public sealed class ConsoleFamilyModuleTests
     [Fact]
     public void SegaMasterSystemKeepsRamInformativeAndMovesThreeDGlassesToSegaCard()
     {
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-master-system-settings-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-master-system-settings-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
         try
         {
             using var http = new HttpClient();
             var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
             var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MasterSystem));
-            var fields = module.Describe(ModelConstants.MasterSystem, configuration).Blocks
-                .SelectMany(block => block.Fields).ToDictionary(field => field.Id, StringComparer.Ordinal);
+            var fields = module.Describe(ModelConstants.MasterSystem, configuration).Blocks.SelectMany(block => block.Fields).ToDictionary(field => field.Id, StringComparer.Ordinal);
             Assert.Equal(EmulationSettingsEditor.Information, fields[SettingsConstants.Ram].Editor);
             Assert.Equal(EmulationSettingsEditor.Information, fields[SettingsConstants.VideoChip].Editor);
             Assert.Equal(ModelConstants.VideoSega3155246, fields[SettingsConstants.VideoChip].Value);
             Assert.Equal(EmulationSettingsEditor.Information, fields[SettingsConstants.AudioChip].Editor);
             Assert.Equal(ModelConstants.AudioSn76489, fields[SettingsConstants.AudioChip].Value);
-            Assert.DoesNotContain(fields, field => field.Key is "configuration.videoResolution"
-                or "configuration.videoMonitor" or "configuration.videoIntensity"
-                or "configuration.videoCrop" or "configuration.floppySound");
+            Assert.DoesNotContain(fields, field => field.Key is "configuration.videoResolution" or "configuration.videoMonitor" or "configuration.videoIntensity" or "configuration.videoCrop" or "configuration.floppySound");
             Assert.DoesNotContain(fields, field => field.Key == SettingsConstants.MasterSystemThreeDGlasses);
         }
         finally
@@ -993,17 +882,14 @@ public sealed class ConsoleFamilyModuleTests
     [Fact]
     public void SegaMarkThreeSegaCardDoesNotExposeMasterSystemOnlyOptions()
     {
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-mark-three-storage-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-mark-three-storage-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
         try
         {
             using var http = new HttpClient();
             var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
             var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MarkIII));
-            var segaCard = Assert.Single(Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
-                .DescribeStorageSettings(configuration).AvailableDevices,
-                device => device.Slot == EmulationMediaSlot.Cartridge1);
+            var segaCard = Assert.Single(Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module).DescribeStorageSettings(configuration).AvailableDevices, device => device.Slot == EmulationMediaSlot.Cartridge1);
             Assert.Equal(EmulationStorageConfigurationKind.None, segaCard.ConfigurationKind);
             Assert.Null(segaCard.ConfigurationOptionResourceKey);
             Assert.Null(segaCard.ConfigurationOptionDetailedResourceKey);
@@ -1017,8 +903,7 @@ public sealed class ConsoleFamilyModuleTests
     [Fact]
     public void SegaCardConfigurationPersistsItsGenericOptionAndRemovesCardMediaWhenEnabled()
     {
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-card-settings-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-card-settings-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
         var cardPath = Path.Combine(root, "game.mv");
         File.WriteAllBytes(cardPath, new byte[0x4000]);
@@ -1028,15 +913,13 @@ public sealed class ConsoleFamilyModuleTests
             var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
             var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MasterSystem)) with
             {
-                Media = [new MediaConfiguration(cardPath, MediaCategory.Cartridge,
-                    EmulationMediaSlot.Cartridge1, IsInserted: true)]
+                Media = [new MediaConfiguration(cardPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge1, IsInserted: true)]
             };
             var manager = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module);
             var described = manager.DescribeStorageSettings(configuration);
             var enabled = described with
             {
-                DeviceSettings = [new EmulationStorageDeviceSettings(
-                    EmulationMediaSlot.Cartridge1, Cartridge: new CartridgeSlotSettings(true))]
+                DeviceSettings = [new EmulationStorageDeviceSettings(EmulationMediaSlot.Cartridge1, Cartridge: new CartridgeSlotSettings(true))]
             };
             var applied = Assert.IsType<MachineConfiguration>(manager.ApplyStorageSettings(configuration, enabled));
             Assert.Equal("True", applied.Options![SettingsConstants.MasterSystemThreeDGlasses]);
@@ -1051,19 +934,15 @@ public sealed class ConsoleFamilyModuleTests
     [Fact]
     public void SegaAtomiswaveExposesFlycastCartridgeStorage()
     {
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-atomiswave-storage-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-atomiswave-storage-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
         try
         {
             using var http = new HttpClient();
             var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
-            var configuration = Assert.IsType<MachineConfiguration>(
-                module.CreateConfiguration(ModelConstants.Atomiswave));
-            var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
-                .DescribeStorageSettings(configuration);
-            var cartridge = Assert.Single(storage.AvailableDevices,
-                device => device.Slot == EmulationMediaSlot.Cartridge0);
+            var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Atomiswave));
+            var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module).DescribeStorageSettings(configuration);
+            var cartridge = Assert.Single(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cartridge0);
             Assert.Equal([".lst", ".bin", ".dat", ".zip"], cartridge.AcceptedExtensions);
             Assert.Contains(EmulationMediaSlot.Cartridge0, storage.ConfiguredSlots);
         }
@@ -1126,8 +1005,7 @@ public sealed class ConsoleFamilyModuleTests
             var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
             var saturn = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.Saturn));
             var storageManager = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module);
-            var saturnDisc = Assert.Single(storageManager.DescribeStorageSettings(saturn).AvailableDevices,
-                device => device.Slot == EmulationMediaSlot.Cd0);
+            var saturnDisc = Assert.Single(storageManager.DescribeStorageSettings(saturn).AvailableDevices, device => device.Slot == EmulationMediaSlot.Cd0);
             Assert.Equal([".cue", ".iso", ".mds", ".ccd", ".zip", ".chd", ".m3u"], saturnDisc.AcceptedExtensions);
 
             var megaDrive = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MegaDrive)) with
@@ -1138,8 +1016,7 @@ public sealed class ConsoleFamilyModuleTests
                     [SettingsConstants.MegaCdModel] = ModelConstants.MegaCdI
                 }
             };
-            var megaCd = Assert.Single(storageManager.DescribeStorageSettings(megaDrive).AvailableDevices,
-                device => device.Slot == EmulationMediaSlot.Cd0);
+            var megaCd = Assert.Single(storageManager.DescribeStorageSettings(megaDrive).AvailableDevices, device => device.Slot == EmulationMediaSlot.Cd0);
             Assert.Equal([".m3u", ".cue", ".iso", ".chd"], megaCd.AcceptedExtensions);
         }
         finally
@@ -1151,8 +1028,7 @@ public sealed class ConsoleFamilyModuleTests
     [Fact]
     public void SegaFirmwareSettingsExposeExternalRomPathsForDiscMachines()
     {
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-firmware-settings-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-firmware-settings-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
         try
         {
@@ -1190,14 +1066,11 @@ public sealed class ConsoleFamilyModuleTests
         }
     }
 
-    private static EmulationSettingsField FirmwareField(SegaEmulationModule module,
-        MachineConfiguration configuration) => module.Describe(configuration.Model, configuration).Blocks
-            .Where(block => block.Tab == EmulationMachineTab.Rom).SelectMany(block => block.Fields).First();
+    private static EmulationSettingsField FirmwareField(SegaEmulationModule module, MachineConfiguration configuration) => module.Describe(configuration.Model, configuration).Blocks.Where(block => block.Tab == EmulationMachineTab.Rom).SelectMany(block => block.Fields).First();
     [Fact]
     public async Task SegaMegaDriveAddonsAreDisabledUntilEnabledAndValidateMedia()
     {
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-addon-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-addon-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
         var thirtyTwoXPath = Path.Combine(root, "game.32x");
         var compactDiscPath = Path.Combine(root, "game.cue");
@@ -1206,27 +1079,20 @@ public sealed class ConsoleFamilyModuleTests
         try
         {
             using var http = new HttpClient();
-            var module = new SegaEmulationModuleFactory().Create(
-                new EmulationModuleContext(root, root, http));
-            var megaDrive = Assert.IsType<MachineConfiguration>(
-                module.CreateConfiguration(ModelConstants.MegaDrive));
-            var disabledStorage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
-                .DescribeStorageSettings(megaDrive);
-            Assert.DoesNotContain(disabledStorage.ConfiguredSlots, slot =>
-                slot == EmulationMediaSlot.Cd0);
+            var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
+            var megaDrive = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(ModelConstants.MegaDrive));
+            var disabledStorage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module).DescribeStorageSettings(megaDrive);
+            Assert.DoesNotContain(disabledStorage.ConfiguredSlots, slot => slot == EmulationMediaSlot.Cd0);
             var settings = module.Describe(ModelConstants.MegaDrive, megaDrive);
-            var fields = settings.Blocks.SelectMany(block => block.Fields)
-                .ToDictionary(field => field.Id, StringComparer.Ordinal);
+            var fields = settings.Blocks.SelectMany(block => block.Fields).ToDictionary(field => field.Id, StringComparer.Ordinal);
             Assert.Equal("disabled", fields[SettingsConstants.MegaCdEnabled].Value);
             Assert.Equal("disabled", fields[SettingsConstants.MegaDriveThirtyTwoX].Value);
 
             var invalid = megaDrive with
             {
-                Media = [new MediaConfiguration(thirtyTwoXPath, MediaCategory.Cartridge,
-                    EmulationMediaSlot.Cartridge0)]
+                Media = [new MediaConfiguration(thirtyTwoXPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0)]
             };
-            await Assert.ThrowsAsync<InvalidDataException>(() =>
-                module.SaveConfigurationAsync(invalid).AsTask());
+            await Assert.ThrowsAsync<InvalidDataException>(() => module.SaveConfigurationAsync(invalid).AsTask());
 
             var enabled = megaDrive with
             {
@@ -1238,16 +1104,12 @@ public sealed class ConsoleFamilyModuleTests
                 },
                 Media =
                 [
-                    new MediaConfiguration(thirtyTwoXPath, MediaCategory.Cartridge,
-                        EmulationMediaSlot.Cartridge0),
-                    new MediaConfiguration(compactDiscPath, MediaCategory.CompactDisc,
-                        EmulationMediaSlot.Cd0)
+                    new MediaConfiguration(thirtyTwoXPath, MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0),
+                    new MediaConfiguration(compactDiscPath, MediaCategory.CompactDisc, EmulationMediaSlot.Cd0)
                 ]
             };
-            var enabledStorage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module)
-                .DescribeStorageSettings(enabled);
-            Assert.Contains(enabledStorage.AvailableDevices,
-                device => device.Slot == EmulationMediaSlot.Cd0);
+            var enabledStorage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module).DescribeStorageSettings(enabled);
+            Assert.Contains(enabledStorage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cd0);
             await module.SaveConfigurationAsync(enabled).AsTask();
 
             var loaded = Assert.Single(await module.LoadConfigurationsAsync());
@@ -1255,12 +1117,8 @@ public sealed class ConsoleFamilyModuleTests
             Assert.True(loadedConfiguration.MegaCdEnabled);
             Assert.Equal(ModelConstants.MegaCdII, loadedConfiguration.MegaCdModel);
             Assert.True(loadedConfiguration.ThirtyTwoXEnabled);
-            Assert.Contains(loadedConfiguration.Media!, media =>
-                media.Slot == EmulationMediaSlot.Cartridge0
-                && Path.GetExtension(media.Path).Equals(".32x", StringComparison.OrdinalIgnoreCase));
-            Assert.Contains(loadedConfiguration.Media!, media =>
-                media.Slot == EmulationMediaSlot.Cd0
-                && Path.GetExtension(media.Path).Equals(".cue", StringComparison.OrdinalIgnoreCase));
+            Assert.Contains(loadedConfiguration.Media!, media => media.Slot == EmulationMediaSlot.Cartridge0 && Path.GetExtension(media.Path).Equals(".32x", StringComparison.OrdinalIgnoreCase));
+            Assert.Contains(loadedConfiguration.Media!, media => media.Slot == EmulationMediaSlot.Cd0 && Path.GetExtension(media.Path).Equals(".cue", StringComparison.OrdinalIgnoreCase));
         }
         finally
         {
@@ -1279,9 +1137,7 @@ public sealed class ConsoleFamilyModuleTests
         };
         var catalog = new[]
         {
-            new CoreOption("genesis_plus_gx_region_detect", "Region", null, null,
-                "ntsc", "ntsc", [new CoreOptionValue("ntsc", "NTSC"),
-                new CoreOptionValue("pal", "PAL")])
+            new CoreOption("genesis_plus_gx_region_detect", "Region", null, null, "ntsc", "ntsc", [new CoreOptionValue("ntsc", "NTSC"), new CoreOptionValue("pal", "PAL")])
         };
 
         var filtered = FirmwareFunctions.RuntimeOptions(new MachineConfiguration(ModelConstants.MegaDrive, "genesisplusgx", Options: options), string.Empty);
@@ -1296,8 +1152,7 @@ public sealed class ConsoleFamilyModuleTests
     {
         var supported = new HashSet<string>(["md", "m3u"], StringComparer.OrdinalIgnoreCase);
 
-        Assert.Throws<InvalidDataException>(() => ExternalCore.ValidateConfiguredExtensions(
-            supported, ["game.md", "game.32x"]));
+        Assert.Throws<InvalidDataException>(() => ExternalCore.ValidateConfiguredExtensions(supported, ["game.md", "game.32x"]));
     }
 
     [Fact]
@@ -1305,10 +1160,8 @@ public sealed class ConsoleFamilyModuleTests
     {
         var media = new[]
         {
-            new MediaConfiguration("game.md", MediaCategory.Cartridge,
-                EmulationMediaSlot.Cartridge0),
-            new MediaConfiguration("game.cue", MediaCategory.CompactDisc,
-                EmulationMediaSlot.Cd0)
+            new MediaConfiguration("game.md", MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0),
+            new MediaConfiguration("game.cue", MediaCategory.CompactDisc, EmulationMediaSlot.Cd0)
         };
 
         Assert.Throws<InvalidOperationException>(() => ExternalCore.PrepareContentPath(media));
@@ -1323,22 +1176,17 @@ public sealed class ConsoleFamilyModuleTests
         {
             var media = new[]
             {
-                new MediaConfiguration(Path.Combine(root, "disc-b.cue"), MediaCategory.CompactDisc,
-                    EmulationMediaSlot.Cd0, MountOrder: 2),
-                new MediaConfiguration(Path.Combine(root, "disc-a.cue"), MediaCategory.CompactDisc,
-                    EmulationMediaSlot.Cd0, MountOrder: 1),
-                new MediaConfiguration(Path.Combine(root, "ejected.cue"), MediaCategory.CompactDisc,
-                    EmulationMediaSlot.Cd0, IsInserted: false, MountOrder: 0)
+                new MediaConfiguration(Path.Combine(root, "disc-b.cue"), MediaCategory.CompactDisc, EmulationMediaSlot.Cd0, MountOrder: 2),
+                new MediaConfiguration(Path.Combine(root, "disc-a.cue"), MediaCategory.CompactDisc, EmulationMediaSlot.Cd0, MountOrder: 1),
+                new MediaConfiguration(Path.Combine(root, "ejected.cue"), MediaCategory.CompactDisc, EmulationMediaSlot.Cd0, IsInserted: false, MountOrder: 0)
             };
             var configuration = new MachineConfiguration(ModelConstants.Dreamcast, "flycast", Media: media);
             var flycastOrdered = FlycastExternalCore.ResolveConfiguredMedia(configuration);
             var yabauseOrdered = YabauseExternalCore.ResolveConfiguredMedia(configuration);
             Assert.Equal([media[1], media[0]], flycastOrdered);
             Assert.Equal([media[1], media[0]], yabauseOrdered);
-            Assert.Equal(Path.GetFullPath(media[1].Path),
-                FlycastExternalCore.PrepareContentPath(flycastOrdered, root, selectFirst: true));
-            Assert.Equal(Path.GetFullPath(media[1].Path),
-                YabauseExternalCore.PrepareContentPath(yabauseOrdered, root, selectFirst: true));
+            Assert.Equal(Path.GetFullPath(media[1].Path), FlycastExternalCore.PrepareContentPath(flycastOrdered, root, selectFirst: true));
+            Assert.Equal(Path.GetFullPath(media[1].Path), YabauseExternalCore.PrepareContentPath(yabauseOrdered, root, selectFirst: true));
 
 
         }
@@ -1351,10 +1199,8 @@ public sealed class ConsoleFamilyModuleTests
     [Fact]
     public void SegaAdaptersOnlyPublishModelsFromTheMachineCatalog()
     {
-        var machineIds = ModelCatalog.All.Select(model => model.Id)
-            .ToHashSet(StringComparer.Ordinal);
-        Assert.All(EmulatorCatalog.All, definition =>
-            Assert.All(definition.MachineIds, machineId => Assert.Contains(machineId, machineIds)));
+        var machineIds = ModelCatalog.All.Select(model => model.Id).ToHashSet(StringComparer.Ordinal);
+        Assert.All(EmulatorCatalog.All, definition => Assert.All(definition.MachineIds, machineId => Assert.Contains(machineId, machineIds)));
         Assert.All(ModelCatalog.All, model => Assert.NotEmpty(EmulatorCatalog.GetAll(model.Id)));
     }
 
@@ -1366,51 +1212,36 @@ public sealed class ConsoleFamilyModuleTests
         try
         {
             using var http = new HttpClient();
-            var emulation = new SegaEmulationModuleFactory().Create(
-                new EmulationModuleContext(root, root, http));
+            var emulation = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
             var module = Assert.IsAssignableFrom<IEmulationInputSettingsManager>(emulation);
             var megaDrive = Assert.IsType<MachineConfiguration>(emulation.CreateConfiguration("MegaDrive"));
             var configured = megaDrive with
             {
-                Input = new InputConfiguration(ControllerBindings:
-                    [new ControllerBinding(0, ControllerType.SegaMegaDriveThreeButton,
-                        VisualId: EmulationControllerVisualIds.MegaDrive6)])
+                Input = new InputConfiguration(ControllerBindings: [new ControllerBinding(0, ControllerType.SegaMegaDriveThreeButton, VisualId: EmulationControllerVisualIds.MegaDrive6)])
             };
             var described = module.DescribeInputSettings(configured);
             Assert.Equal(2, described.ControllerPorts.Count);
             var port = described.ControllerPorts[0];
             Assert.Equal(EmulationControllerVisualIds.MegaDrive3, port.VisualId);
-            Assert.Contains(port.ControllerChoices,
-                choice => choice.Id == ControllerType.SegaMegaDriveThreeButton.ToString());
-            Assert.Contains(port.ControllerChoices,
-                choice => choice.Id == ControllerType.SegaMegaDriveSixButton.ToString());
+            Assert.Contains(port.ControllerChoices, choice => choice.Id == ControllerType.SegaMegaDriveThreeButton.ToString());
+            Assert.Contains(port.ControllerChoices, choice => choice.Id == ControllerType.SegaMegaDriveSixButton.ToString());
 
-            var masterSystem = Assert.IsType<MachineConfiguration>(
-                emulation.CreateConfiguration("MasterSystem"));
+            var masterSystem = Assert.IsType<MachineConfiguration>(emulation.CreateConfiguration("MasterSystem"));
             var masterPorts = module.DescribeInputSettings(masterSystem).ControllerPorts;
             Assert.Equal(2, masterPorts.Count);
             var masterPort = masterPorts[0];
-            Assert.Contains(masterPort.ControllerChoices,
-                choice => choice.Id == ControllerType.SegaLightPhaser.ToString());
-            Assert.Equal(EmulationControllerVisualIds.MasterSystem,
-                masterPort.ControllerChoices.Single(choice => choice.Id ==
-                    ControllerType.SegaMasterSystemController.ToString()).DefaultVisualId);
+            Assert.Contains(masterPort.ControllerChoices, choice => choice.Id == ControllerType.SegaLightPhaser.ToString());
+            Assert.Equal(EmulationControllerVisualIds.MasterSystem, masterPort.ControllerChoices.Single(choice => choice.Id == ControllerType.SegaMasterSystemController.ToString()).DefaultVisualId);
 
-            var saturn = Assert.IsType<MachineConfiguration>(
-                emulation.CreateConfiguration(ModelConstants.Saturn));
+            var saturn = Assert.IsType<MachineConfiguration>(emulation.CreateConfiguration(ModelConstants.Saturn));
             var saturnPort = module.DescribeInputSettings(saturn).ControllerPorts[0];
             Assert.Equal(EmulationControllerVisualIds.Saturn, saturnPort.VisualId);
-            Assert.Equal(EmulationControllerVisualIds.Saturn,
-                saturnPort.ControllerChoices.Single(choice => choice.Id ==
-                    ControllerType.SegaSaturnController.ToString()).DefaultVisualId);
+            Assert.Equal(EmulationControllerVisualIds.Saturn, saturnPort.ControllerChoices.Single(choice => choice.Id == ControllerType.SegaSaturnController.ToString()).DefaultVisualId);
 
-            var dreamcast = Assert.IsType<MachineConfiguration>(
-                emulation.CreateConfiguration(ModelConstants.Dreamcast));
+            var dreamcast = Assert.IsType<MachineConfiguration>(emulation.CreateConfiguration(ModelConstants.Dreamcast));
             var dreamcastPort = module.DescribeInputSettings(dreamcast).ControllerPorts[0];
             Assert.Equal(EmulationControllerVisualIds.Dreamcast, dreamcastPort.VisualId);
-            Assert.Equal(EmulationControllerVisualIds.Dreamcast,
-                dreamcastPort.ControllerChoices.Single(choice => choice.Id ==
-                    ControllerType.SegaDreamcastController.ToString()).DefaultVisualId);
+            Assert.Equal(EmulationControllerVisualIds.Dreamcast, dreamcastPort.ControllerChoices.Single(choice => choice.Id == ControllerType.SegaDreamcastController.ToString()).DefaultVisualId);
         }
         finally
         {
@@ -1421,22 +1252,18 @@ public sealed class ConsoleFamilyModuleTests
     [Fact]
     public void SegaInputSettingsExposeAResourceForEveryPublishedPeripheral()
     {
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-input-label-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-input-label-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
         try
         {
             using var http = new HttpClient();
-            var module = new SegaEmulationModuleFactory().Create(
-                new EmulationModuleContext(root, root, http));
+            var module = new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
             var manager = Assert.IsAssignableFrom<IEmulationInputSettingsManager>(module);
             foreach (var model in ModelCatalog.All.Where(item => item.ControllerPortCount > 0))
             {
-                var configuration = Assert.IsType<MachineConfiguration>(
-                    module.CreateConfiguration(model.Id));
+                var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(model.Id));
                 var settings = manager.DescribeInputSettings(configuration);
-                foreach (var choice in settings.ControllerPorts.SelectMany(
-                    port => port.ControllerChoices))
+                foreach (var choice in settings.ControllerPorts.SelectMany(port => port.ControllerChoices))
                     Assert.False(string.IsNullOrWhiteSpace(choice.DisplayResourceKey));
             }
         }
@@ -1449,14 +1276,12 @@ public sealed class ConsoleFamilyModuleTests
     [Fact]
     public async Task SegaInputSettingsRoundTripPreservesControllerIdentityBindingsAndVisual()
     {
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-input-roundtrip-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-input-roundtrip-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
         try
         {
             using var http = new HttpClient();
-            var module = Assert.IsAssignableFrom<IEmulationInputSettingsManager>(
-                new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http)));
+            var module = Assert.IsAssignableFrom<IEmulationInputSettingsManager>(new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http)));
             var emulation = Assert.IsAssignableFrom<IEmulationModule>(module);
             var original = Assert.IsType<MachineConfiguration>(emulation.CreateConfiguration("MegaDrive")) with
             {
@@ -1474,30 +1299,25 @@ public sealed class ConsoleFamilyModuleTests
             };
 
             var described = module.DescribeInputSettings(original);
-            var applied = Assert.IsType<MachineConfiguration>(
-                module.ApplyInputSettings(original, described));
+            var applied = Assert.IsType<MachineConfiguration>(module.ApplyInputSettings(original, described));
             var appliedBinding = Assert.Single(applied.Input!.ControllerBindings!, binding => binding.Port == 0);
             Assert.Equal(ControllerType.SegaMegaDriveSixButton, appliedBinding.Type);
             Assert.Equal("gameinput:pad-0", appliedBinding.DeviceId);
             Assert.Equal(EmulationControllerVisualIds.MegaDrive6, appliedBinding.VisualId);
-            Assert.Equal(original.Input!.ControllerBindings![0].ButtonMappings,
-                appliedBinding.ButtonMappings);
+            Assert.Equal(original.Input!.ControllerBindings![0].ButtonMappings, appliedBinding.ButtonMappings);
 
             await emulation.SaveConfigurationAsync(applied);
             var loaded = Assert.Single(await emulation.LoadConfigurationsAsync());
             var loadedConfiguration = Assert.IsType<MachineConfiguration>(loaded);
-            var loadedBinding = Assert.Single(loadedConfiguration.Input!.ControllerBindings!,
-                binding => binding.Port == 0);
+            var loadedBinding = Assert.Single(loadedConfiguration.Input!.ControllerBindings!, binding => binding.Port == 0);
             Assert.Equal(appliedBinding.Type, loadedBinding.Type);
             Assert.Equal(appliedBinding.DeviceId, loadedBinding.DeviceId);
             Assert.Equal(appliedBinding.VisualId, loadedBinding.VisualId);
             Assert.Equal(appliedBinding.ButtonMappings, loadedBinding.ButtonMappings);
 
             var jsonOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-            var restored = JsonSerializer.Deserialize<MachineConfiguration>(
-                JsonSerializer.Serialize(applied, jsonOptions), jsonOptions);
-            var restoredBinding = Assert.Single(restored!.Input!.ControllerBindings!,
-                binding => binding.Port == 0);
+            var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(applied, jsonOptions), jsonOptions);
+            var restoredBinding = Assert.Single(restored!.Input!.ControllerBindings!, binding => binding.Port == 0);
             Assert.Equal(appliedBinding.Type, restoredBinding.Type);
             Assert.Equal(appliedBinding.DeviceId, restoredBinding.DeviceId);
             Assert.Equal(appliedBinding.VisualId, restoredBinding.VisualId);
@@ -1515,21 +1335,15 @@ public sealed class ConsoleFamilyModuleTests
         {
             [new ControllerDevice("Joypad", 1), new ControllerDevice("Mouse", 2)]
         };
-        Assert.Equal(1u, ExternalCore.ResolveControllerDevice(devices[0],
-            ControllerType.SegaMegaDriveThreeButton));
-        Assert.Equal(2u, ExternalCore.ResolveControllerDevice(devices[0],
-            ControllerType.SegaMegaMouse));
-        Assert.Equal(0u, ExternalCore.ResolveControllerDevice(devices[0],
-            ControllerType.SegaLightPhaser));
+        Assert.Equal(1u, ExternalCore.ResolveControllerDevice(devices[0], ControllerType.SegaMegaDriveThreeButton));
+        Assert.Equal(2u, ExternalCore.ResolveControllerDevice(devices[0], ControllerType.SegaMegaMouse));
+        Assert.Equal(0u, ExternalCore.ResolveControllerDevice(devices[0], ControllerType.SegaLightPhaser));
 
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-lightgun-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-lightgun-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
         try
         {
-            using var callbacks = new ExternalHostCallbacks(
-                Path.Combine(root, "system"), Path.Combine(root, "content"),
-                Path.Combine(root, "saves"), new Dictionary<string, string>());
+            using var callbacks = new ExternalHostCallbacks(Path.Combine(root, "system"), Path.Combine(root, "content"), Path.Combine(root, "saves"), new Dictionary<string, string>());
             callbacks.Input = EmulationInputSnapshot.Empty with
             {
                 Pointer = EmulationInputSnapshot.Empty.Pointer with
@@ -1542,15 +1356,11 @@ public sealed class ConsoleFamilyModuleTests
             callbacks.InputPoll();
             Assert.Equal((short)(ExternalHostCallbacksConstants.PointerCoordinateCenter
                 + 2 * ExternalHostCallbacksConstants.PointerCoordinateScale),
-                callbacks.ReadInputState(0, ExternalHostCallbacksConstants.LightGunDevice, 0,
-                    ExternalHostCallbacksConstants.LightGunScreenX));
+                callbacks.ReadInputState(0, ExternalHostCallbacksConstants.LightGunDevice, 0, ExternalHostCallbacksConstants.LightGunScreenX));
             Assert.Equal((short)(ExternalHostCallbacksConstants.PointerCoordinateCenter
                 - ExternalHostCallbacksConstants.PointerCoordinateScale),
-                callbacks.ReadInputState(0, ExternalHostCallbacksConstants.LightGunDevice, 0,
-                    ExternalHostCallbacksConstants.LightGunScreenY));
-            Assert.Equal((short)1, callbacks.ReadInputState(0,
-                ExternalHostCallbacksConstants.LightGunDevice, 0,
-                ExternalHostCallbacksConstants.LightGunTrigger));
+                callbacks.ReadInputState(0, ExternalHostCallbacksConstants.LightGunDevice, 0, ExternalHostCallbacksConstants.LightGunScreenY));
+            Assert.Equal((short)1, callbacks.ReadInputState(0, ExternalHostCallbacksConstants.LightGunDevice, 0, ExternalHostCallbacksConstants.LightGunTrigger));
         }
         finally
         {
@@ -1587,24 +1397,15 @@ public sealed class ConsoleFamilyModuleTests
             Assert.Contains(model, identity.Models);
             Assert.NotEmpty(identity.FileNames);
         }
-        Assert.Equal([FirmwareConstants.SaturnBiosFileName],
-            AssertIdentity(FirmwareConstants.SaturnBiosMd5).FileNames);
-        Assert.Equal([FirmwareConstants.DreamcastBiosRelativeFileName],
-            AssertIdentity(FirmwareConstants.DreamcastBiosMd5).FileNames);
-        Assert.Equal([FirmwareConstants.NaomiBiosRelativeFileName],
-            AssertIdentity(FirmwareConstants.NaomiBiosMd5).FileNames);
-        Assert.Equal([FirmwareConstants.Naomi2BiosRelativeFileName],
-            AssertIdentity(FirmwareConstants.Naomi2BiosMd5).FileNames);
-        Assert.Equal([FirmwareConstants.AtomiswaveBiosRelativeFileName],
-            AssertIdentity(FirmwareConstants.AtomiswaveBiosMd5).FileNames);
-        Assert.Equal([FirmwareConstants.MegaDriveBiosFileName],
-            AssertIdentity(FirmwareConstants.MegaDriveBiosAlternateMd5).FileNames);
-        Assert.Equal([FirmwareConstants.MasterSystemEuropeBiosFileName],
-            AssertIdentity(FirmwareConstants.MasterSystemEuropeBiosAlternateMd5).FileNames);
-        Assert.Equal([FirmwareConstants.MasterSystemUnitedStatesBiosFileName],
-            AssertIdentity(FirmwareConstants.MasterSystemUnitedStatesBiosAlternateMd5).FileNames);
-        Assert.False(FirmwareCatalog.TryIdentifyKnown("00000000000000000000000000000000",
-            out _));
+        Assert.Equal([FirmwareConstants.SaturnBiosFileName], AssertIdentity(FirmwareConstants.SaturnBiosMd5).FileNames);
+        Assert.Equal([FirmwareConstants.DreamcastBiosRelativeFileName], AssertIdentity(FirmwareConstants.DreamcastBiosMd5).FileNames);
+        Assert.Equal([FirmwareConstants.NaomiBiosRelativeFileName], AssertIdentity(FirmwareConstants.NaomiBiosMd5).FileNames);
+        Assert.Equal([FirmwareConstants.Naomi2BiosRelativeFileName], AssertIdentity(FirmwareConstants.Naomi2BiosMd5).FileNames);
+        Assert.Equal([FirmwareConstants.AtomiswaveBiosRelativeFileName], AssertIdentity(FirmwareConstants.AtomiswaveBiosMd5).FileNames);
+        Assert.Equal([FirmwareConstants.MegaDriveBiosFileName], AssertIdentity(FirmwareConstants.MegaDriveBiosAlternateMd5).FileNames);
+        Assert.Equal([FirmwareConstants.MasterSystemEuropeBiosFileName], AssertIdentity(FirmwareConstants.MasterSystemEuropeBiosAlternateMd5).FileNames);
+        Assert.Equal([FirmwareConstants.MasterSystemUnitedStatesBiosFileName], AssertIdentity(FirmwareConstants.MasterSystemUnitedStatesBiosAlternateMd5).FileNames);
+        Assert.False(FirmwareCatalog.TryIdentifyKnown("00000000000000000000000000000000", out _));
 
         static (string Name, string Version, string[] Models, string[] FileNames) AssertIdentity(string md5)
         {
@@ -1616,19 +1417,15 @@ public sealed class ConsoleFamilyModuleTests
     [Fact]
     public async Task SegaFirmwareScanAllowsUnknownFirmwareWithAnExplicitDestination()
     {
-        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-firmware-scan-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), "gwgui-sega-firmware-scan-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
         try
         {
             using var http = new HttpClient();
-            var sega = Assert.IsType<SegaEmulationModule>(new SegaEmulationModuleFactory().Create(
-                new EmulationModuleContext(root, root, http)));
+            var sega = Assert.IsType<SegaEmulationModule>(new SegaEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http)));
             var manager = Assert.IsAssignableFrom<IEmulationFirmwareManager>(sega);
-            var configuration = Assert.IsType<MachineConfiguration>(
-                sega.CreateConfiguration(ModelConstants.MegaDrive));
-            var firmwarePath = Path.Combine(sega.GetFirmwareDirectory(ModelConstants.MegaDrive),
-                "custom-sega-firmware.bin");
+            var configuration = Assert.IsType<MachineConfiguration>(sega.CreateConfiguration(ModelConstants.MegaDrive));
+            var firmwarePath = Path.Combine(sega.GetFirmwareDirectory(ModelConstants.MegaDrive), "custom-sega-firmware.bin");
             Directory.CreateDirectory(Path.GetDirectoryName(firmwarePath)!);
             await File.WriteAllBytesAsync(firmwarePath, Enumerable.Repeat((byte)0x5a, 4096).ToArray());
 
@@ -1665,9 +1462,7 @@ public sealed class ConsoleFamilyModuleTests
         {
             var document = new XmlDocument();
             document.Load(path);
-            return document.SelectNodes("/root/data")!.Cast<XmlElement>()
-                .Select(element => element.GetAttribute("name"))
-                .ToHashSet(StringComparer.Ordinal);
+            return document.SelectNodes("/root/data")!.Cast<XmlElement>().Select(element => element.GetAttribute("name")).ToHashSet(StringComparer.Ordinal);
         }
     }
 
@@ -1676,15 +1471,11 @@ public sealed class ConsoleFamilyModuleTests
     {
         var root = RepositoryRoot();
         var resources = Path.Combine(root, "src", "GWGUI.Emulation.Sega", "Resources");
-        Assert.DoesNotContain("Emulation.Sega.Video.Chipset", ResxKeys(
-            Path.Combine(resources, "00-Base", "Video.resx")));
-        Assert.DoesNotContain("Emulation.Sega.Audio.Chip", ResxKeys(
-            Path.Combine(resources, "00-Base", "Machine.resx")));
+        Assert.DoesNotContain("Emulation.Sega.Video.Chipset", ResxKeys(Path.Combine(resources, "00-Base", "Video.resx")));
+        Assert.DoesNotContain("Emulation.Sega.Audio.Chip", ResxKeys(Path.Combine(resources, "00-Base", "Machine.resx")));
         Assert.Contains("Emulation.Sega.Video.Chipset", ResxKeys(Path.Combine(resources, "en-US", "Video.resx")));
         Assert.Contains("Emulation.Sega.Audio.Chip", ResxKeys(Path.Combine(resources, "en-US", "Machine.resx")));
-        foreach (var culture in Directory.EnumerateDirectories(resources)
-                     .Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal)
-                         && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
+        foreach (var culture in Directory.EnumerateDirectories(resources).Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal) && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
         {
             Assert.Contains("Emulation.Sega.Video.Chipset", ResxKeys(Path.Combine(culture, "Video.resx")));
             Assert.Contains("Emulation.Sega.Audio.Chip", ResxKeys(Path.Combine(culture, "Machine.resx")));
@@ -1694,9 +1485,7 @@ public sealed class ConsoleFamilyModuleTests
         {
             var document = new XmlDocument();
             document.Load(path);
-            return document.SelectNodes("/root/data")!.Cast<XmlElement>()
-                .Select(element => element.GetAttribute("name"))
-                .ToHashSet(StringComparer.Ordinal);
+            return document.SelectNodes("/root/data")!.Cast<XmlElement>().Select(element => element.GetAttribute("name")).ToHashSet(StringComparer.Ordinal);
         }
     }
 
@@ -1730,9 +1519,7 @@ public sealed class ConsoleFamilyModuleTests
             "Emulation.Sega.Help.Audio.FloppySound.Short",
             "Emulation.Sega.Help.Audio.FloppySound.Detailed"
         };
-        foreach (var directory in Directory.EnumerateDirectories(resources)
-                     .Where(path => !Path.GetFileName(path).Equals("00-Base",
-                         StringComparison.Ordinal)))
+        foreach (var directory in Directory.EnumerateDirectories(resources).Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal)))
         {
             var keys = ResxKeys(Path.Combine(directory, "Help.resx")).Union(ResxKeys(Path.Combine(resources, "00-Base", "Help.resx"))).ToHashSet(StringComparer.Ordinal);
             Assert.All(referenced, key => Assert.Contains(key, keys));
@@ -1743,9 +1530,7 @@ public sealed class ConsoleFamilyModuleTests
         {
             var document = new XmlDocument();
             document.Load(path);
-            return document.SelectNodes("/root/data")!.Cast<XmlElement>()
-                .Select(element => element.GetAttribute("name"))
-                .ToHashSet(StringComparer.Ordinal);
+            return document.SelectNodes("/root/data")!.Cast<XmlElement>().Select(element => element.GetAttribute("name")).ToHashSet(StringComparer.Ordinal);
         }
     }
 
@@ -1756,9 +1541,7 @@ public sealed class ConsoleFamilyModuleTests
         Assert.Equal(EmulationMediaSlot.Cartridge1, EmulationMediaSlot.FromProtocolValue(8));
     }
 
-    private static string RepositoryRoot() => Path.GetFullPath(Path.Combine(
-        Path.GetDirectoryName(typeof(ConsoleFamilyModuleTests).Assembly.Location)!,
-        "..", "..", "..", "..", ".."));
+    private static string RepositoryRoot() => Path.GetFullPath(Path.Combine(Path.GetDirectoryName(typeof(ConsoleFamilyModuleTests).Assembly.Location)!, "..", "..", "..", "..", ".."));
 
     private static string[] CommonFiles(string root, string family) =>
         Directory.EnumerateFiles(Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common"),

@@ -41,8 +41,7 @@ internal static class DraftAndSaveScenarios
         Assert.Equal(previous,Assert.Single(files.Files).Value); Assert.Single(files.Writes);
         files.FailWrite = false; store.FlushPending();
         Assert.Equal(2,files.Writes.Count); Assert.NotEqual(previous,Assert.Single(files.Files).Value);
-        Assert.Equal(GWGUI.VideoPresentation.Enums.EmulationVideoRenderer.Wpf,
-            new GWGUI.VideoPresentation.Services.VideoPresentationProfileStore("virtual-video",fileSystem:files).Get("module",id).Renderer);
+        Assert.Equal(GWGUI.VideoPresentation.Enums.EmulationVideoRenderer.Wpf, new GWGUI.VideoPresentation.Services.VideoPresentationProfileStore("virtual-video",fileSystem:files).Get("module",id).Renderer);
     }
     private static IEmulationConfiguration Configuration(string id) => ControlledDependencies.Simulate<IEmulationConfiguration>((method, _) => method.Name == "get_MachineId" ? id : throw new InvalidOperationException(method.Name));
     public static void Drafts()

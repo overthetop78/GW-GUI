@@ -47,9 +47,7 @@ internal static class ReadFormatScenarios
         context.Controller.FamilyChanged();context.Controller.FormatChanged();context.Controller.ModeChanged();
         var proposedFormats = image.FormatCombo.Items.Cast<DiskFormat>().ToArray();
         Assert.All(proposedFormats, format => Assert.True(format.SupportsPhysicalRead));
-        Assert.DoesNotContain(
-            context.Formats.Where(format => !format.SupportsPhysicalRead),
-            disabled => proposedFormats.Any(proposed => proposed.Id == disabled.Id));
+        Assert.DoesNotContain(context.Formats.Where(format => !format.SupportsPhysicalRead), disabled => proposedFormats.Any(proposed => proposed.Id == disabled.Id));
         Assert.Equal(Visibility.Visible,image.KnownFormatPanel.Visibility);
         Assert.Equal("test.one",Assert.IsType<DiskFormat>(image.FormatCombo.SelectedItem).Id);
         Assert.Equal(".two",context.Controller.GetExtension());

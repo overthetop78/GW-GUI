@@ -10,10 +10,8 @@ internal static class MachineTabsScenarios
     public static void CollapsedSelectorShowsLocalizedLabel()
     {
         var section = new EmulationSection();
-        var toggle = MachineConfigurationScenarios.Controls<Button>(section).Single(button =>
-            Equals(button.ToolTip, LocExtension.Get("Emulation.Configuration")));
-        var label = MachineConfigurationScenarios.Controls<TextBlock>(section).Single(text =>
-            Equals(text.Text, LocExtension.Get("Emulation.Configuration.Selector")));
+        var toggle = MachineConfigurationScenarios.Controls<Button>(section).Single(button => Equals(button.ToolTip, LocExtension.Get("Emulation.Configuration")));
+        var label = MachineConfigurationScenarios.Controls<TextBlock>(section).Single(text => Equals(text.Text, LocExtension.Get("Emulation.Configuration.Selector")));
 
         Assert.Equal(Visibility.Collapsed, label.Visibility);
         toggle.RaiseEvent(new RoutedEventArgs(Button.ClickEvent, toggle));
@@ -40,8 +38,7 @@ internal static class MachineTabsScenarios
         close.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
         Assert.Equal(new[] {second.Id},stopped); Assert.Equal(2,tabs.Items.Count); Assert.Same(firstView,tabs.SelectedContent);
         close.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); Assert.Single(stopped);
-        await section.CloseMachineAsync((module.Id,first.Id),firstTab,() => throw new IOException("synthetic stop"))
-            .ContinueWith(task => Assert.IsType<IOException>(task.Exception!.InnerException));
+        await section.CloseMachineAsync((module.Id,first.Id),firstTab,() => throw new IOException("synthetic stop")).ContinueWith(task => Assert.IsType<IOException>(task.Exception!.InnerException));
         Assert.Contains(firstTab,tabs.Items.Cast<TabItem>());
         await section.CloseMachineAsync((module.Id,first.Id),firstTab,() => Task.CompletedTask);
         Assert.Single(tabs.Items); Assert.DoesNotContain(firstTab,tabs.Items.Cast<TabItem>());

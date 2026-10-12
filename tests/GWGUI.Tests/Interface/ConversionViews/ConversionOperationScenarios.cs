@@ -43,13 +43,7 @@ internal static class ConversionOperationScenarios
         var output = new RichTextBox();
         var log = new ConsoleLogSession("virtual-log", () => new OperationLogSettings { Enabled = false });
         var progress = new OperationProgressController(model, new TrackProgressStrip(), new TrackProgressStrip(), (key, _) => key);
-        var operation = new OperationRuntimeController(
-            Dispatcher.CurrentDispatcher,
-            model,
-            progress,
-            output,
-            log,
-            (key, _) => key);
+        var operation = new OperationRuntimeController(Dispatcher.CurrentDispatcher, model, progress, output, log, (key, _) => key);
         operation.Begin();
         try
         {
@@ -125,8 +119,7 @@ internal static class ConversionOperationScenarios
         await Dispatcher.Yield(DispatcherPriority.DataBind);
         await context.Controller.ExecuteAsync();
 
-        Assert.Equal(LocExtension.Get("Conversion.OutputCollision", "disk.adf", LocExtension.Get("Conversion.AddTags")),
-            Assert.Single(context.DialogMessages));
+        Assert.Equal(LocExtension.Get("Conversion.OutputCollision", "disk.adf", LocExtension.Get("Conversion.AddTags")), Assert.Single(context.DialogMessages));
         Assert.Empty(context.Commands);
     }
     public static async Task Outcome(int exit)
@@ -212,12 +205,7 @@ internal static class ConversionOperationScenarios
             var writers = new MediaImageWriterRegistry([]);
             var mediaWriting = new MediaImageWritingService(writers);
             var mediaConversion = new MediaConversionService(new MediaRepresentationConverterRegistry([]), writers, mediaWriting);
-            var sequentialMediaConversion = new SequentialMediaConversionService(
-                mediaReader,
-                new SequentialDecoderRegistry([]),
-                new SequentialEncoderRegistry([]),
-                writers,
-                mediaWriting);
+            var sequentialMediaConversion = new SequentialMediaConversionService(mediaReader, new SequentialDecoderRegistry([]), new SequentialEncoderRegistry([]), writers, mediaWriting);
             Controller = new(new Window(), View, Model, null!, new ConversionFormatPresenter(), () => catalog, null!, () => settings, new GwCommandBuilder(), runner, mediaReader, mediaConversion, sequentialMediaConversion, () => throw new InvalidOperationException(), business, dialogs,
                 definitions, Operation, log, null!, new TextBox(), Output, () => 0, _ => { }, null!, Operation.RequestCancellation, (_, _) => throw new InvalidOperationException(), () => { }, Dispatcher.CurrentDispatcher,
                 path => path is "virtual-tool" or "virtual-source.scp" || conflicts && path is not null && !path.Contains("(2)"));
@@ -229,6 +217,5 @@ internal static class ConversionOperationScenarios
         }
     }
 
-    private static string Text(RichTextBox output) =>
-        new TextRange(output.Document.ContentStart, output.Document.ContentEnd).Text;
+    private static string Text(RichTextBox output) => new TextRange(output.Document.ContentStart, output.Document.ContentEnd).Text;
 }

@@ -32,10 +32,8 @@ public sealed class AmstradEmulatorAdapterTests
     [Fact]
     public void MachineGroupsExposeOnlyTheRequestedMachines()
     {
-        Assert.Equal(["cpc-464", "cpc-664", "cpc-6128"],
-            CpcClassicCatalog.All.Select(model => model.Id));
-        Assert.Equal(["cpc-464-plus", "cpc-6128-plus"],
-            CpcPlusCatalog.All.Select(model => model.Id));
+        Assert.Equal(["cpc-464", "cpc-664", "cpc-6128"], CpcClassicCatalog.All.Select(model => model.Id));
+        Assert.Equal(["cpc-464-plus", "cpc-6128-plus"], CpcPlusCatalog.All.Select(model => model.Id));
         Assert.Equal(["gx4000"], Gx4000Catalog.All.Select(model => model.Id));
         Assert.Equal(6, MachineCatalog.All.Count);
     }
@@ -46,8 +44,7 @@ public sealed class AmstradEmulatorAdapterTests
         var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
         var original = new MachineConfiguration("cpc-6128", "caprice32");
 
-        var restored = JsonSerializer.Deserialize<MachineConfiguration>(
-            JsonSerializer.Serialize(original, options), options);
+        var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(original, options), options);
 
         Assert.NotNull(restored);
         Assert.Equal(original.Id, restored.Id);
@@ -59,10 +56,8 @@ public sealed class AmstradEmulatorAdapterTests
     [Fact]
     public void EngineDiscoversCaprice32ThroughTheCommonAdapter()
     {
-        var adapterType = typeof(AmstradEmulationModule).Assembly.GetType(
-            "GWGUI.Emulation.Amstrad.Emulators.Caprice32.Factories.Caprice32MachineFactory");
-        var commonType = typeof(AmstradEmulationModule).Assembly.GetType(
-            "GWGUI.Emulation.Amstrad.Common.Interfaces.IEmulatorAdapter");
+        var adapterType = typeof(AmstradEmulationModule).Assembly.GetType("GWGUI.Emulation.Amstrad.Emulators.Caprice32.Factories.Caprice32MachineFactory");
+        var commonType = typeof(AmstradEmulationModule).Assembly.GetType("GWGUI.Emulation.Amstrad.Common.Interfaces.IEmulatorAdapter");
         Assert.NotNull(adapterType);
         Assert.NotNull(commonType);
         Assert.Contains(commonType!, adapterType!.GetInterfaces());
@@ -82,12 +77,10 @@ public sealed class AmstradEmulatorAdapterTests
         try
         {
             await File.WriteAllBytesAsync(Path.Combine(coreDirectory, "cap32_libretro.dll"), [0]);
-            await File.WriteAllTextAsync(Path.Combine(coreDirectory, "core.json"),
-                "{\"version\":\"test-version\"}");
+            await File.WriteAllTextAsync(Path.Combine(coreDirectory, "core.json"), "{\"version\":\"test-version\"}");
             using var httpClient = new HttpClient();
             var factory = new AmstradEmulationModuleFactory();
-            var module = Assert.IsType<AmstradEmulationModule>(factory.Create(
-                new EmulationModuleContext(directory, moduleDirectory, httpClient)));
+            var module = Assert.IsType<AmstradEmulationModule>(factory.Create(new EmulationModuleContext(directory, moduleDirectory, httpClient)));
 
             var installation = await module.GetEmulatorInstallationAsync("cpc-6128");
 
@@ -104,15 +97,13 @@ public sealed class AmstradEmulatorAdapterTests
     public async Task Caprice32UsesTheGenericReleaseSelectionContracts()
     {
         using var httpClient = new HttpClient(new ReleaseHandler());
-        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var configuration = module.CreateConfiguration("cpc-6128");
 
         var releases = await module.FindEmulatorReleasesAsync(configuration);
 
         var release = Assert.Single(releases);
-        Assert.Equal(["caprice32", "crocods"], (await module.GetEmulatorInstallationsAsync(configuration))
-            .Select(item => item.EmulatorId));
+        Assert.Equal(["caprice32", "crocods"], (await module.GetEmulatorInstallationsAsync(configuration)).Select(item => item.EmulatorId));
         Assert.StartsWith("official-", release.Id, StringComparison.Ordinal);
         Assert.Equal(release.Id, release.Version);
         Assert.True(release.IsRequired);
@@ -131,8 +122,7 @@ public sealed class AmstradEmulatorAdapterTests
         using var client = new HttpClient();
         var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), client, Path.GetTempPath());
         var original = module.CreateConfiguration(model);
-        Assert.Equal(supported, (await module.GetEmulatorInstallationsAsync(original))
-            .Any(item => item.EmulatorId == "crocods"));
+        Assert.Equal(supported, (await module.GetEmulatorInstallationsAsync(original)).Any(item => item.EmulatorId == "crocods"));
         if (!supported)
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => module.UseEmulatorAsync(original, "crocods").AsTask());
         else
@@ -166,8 +156,7 @@ public sealed class AmstradEmulatorAdapterTests
     {
         var config = new MachineConfiguration("cpc-6128", "crocods",
             new Dictionary<string, string> { ["crocods_resize"] = "Overscan" });
-        var option = new CoreOption("crocods_resize", "Resize", null, null, "Auto", "Auto",
-            [new("Auto", "Auto"), new("320x200", "320x200"), new("Overscan", "Overscan")], true);
+        var option = new CoreOption("crocods_resize", "Resize", null, null, "Auto", "Auto", [new("Auto", "Auto"), new("320x200", "320x200"), new("Overscan", "Overscan")], true);
         var settings = SettingsDescriptionFunctions.Create(config, [option]);
         var field = Assert.Single(settings.SelectMany(block => block.Fields), field => field.Id == "crocods_resize");
         Assert.Equal("Overscan", field.Value);
@@ -187,10 +176,8 @@ public sealed class AmstradEmulatorAdapterTests
     [InlineData(".m3u", MediaCategory.Floppy)]
     public void CrocoDSRejectsUnsupportedContent(string extension, MediaCategory category)
     {
-        var config = new MachineConfiguration("cpc-6128", "crocods", Media:
-            [new MediaConfiguration(Path.Combine(Path.GetTempPath(), "content" + extension), category)]);
-        Assert.Throws<ArgumentOutOfRangeException>(() =>
-            GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Factories.CrocoDSMachineFactory.Validate(config));
+        var config = new MachineConfiguration("cpc-6128", "crocods", Media: [new MediaConfiguration(Path.Combine(Path.GetTempPath(), "content" + extension), category)]);
+        Assert.Throws<ArgumentOutOfRangeException>(() => GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Factories.CrocoDSMachineFactory.Validate(config));
     }
 
     [Theory]
@@ -204,23 +191,18 @@ public sealed class AmstradEmulatorAdapterTests
         bool cassette, bool cartridge)
     {
         using var httpClient = new HttpClient();
-        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var configuration = module.CreateConfiguration(machineId);
         var initial = module.DescribeStorageSettings(configuration);
 
-        Assert.Equal(floppyCount, initial.AvailableDevices.Count(device =>
-            device.Slot.Category == EmulationMediaCategory.FloppyDrive && device.IsPermanent));
-        Assert.Equal(cassette, initial.AvailableDevices.Any(device =>
-            device.Slot == EmulationMediaSlot.Cassette0 && device.IsPermanent));
-        Assert.Equal(cartridge, initial.AvailableDevices.Any(device =>
-            device.Slot == EmulationMediaSlot.Cartridge0 && device.IsPermanent));
+        Assert.Equal(floppyCount, initial.AvailableDevices.Count(device => device.Slot.Category == EmulationMediaCategory.FloppyDrive && device.IsPermanent));
+        Assert.Equal(cassette, initial.AvailableDevices.Any(device => device.Slot == EmulationMediaSlot.Cassette0 && device.IsPermanent));
+        Assert.Equal(cartridge, initial.AvailableDevices.Any(device => device.Slot == EmulationMediaSlot.Cartridge0 && device.IsPermanent));
 
         var removed = module.ApplyStorageSettings(configuration,
             initial with { ConfiguredSlots = [] });
         var restored = module.DescribeStorageSettings(removed);
-        Assert.All(initial.AvailableDevices.Where(device => device.IsPermanent),
-            device => Assert.Contains(device.Slot, restored.ConfiguredSlots));
+        Assert.All(initial.AvailableDevices.Where(device => device.IsPermanent), device => Assert.Contains(device.Slot, restored.ConfiguredSlots));
     }
 
     [Theory]
@@ -234,40 +216,32 @@ public sealed class AmstradEmulatorAdapterTests
         int maximumFloppyCount, bool cassetteAvailable)
     {
         using var httpClient = new HttpClient();
-        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var settings = module.DescribeStorageSettings(module.CreateConfiguration(machineId));
 
-        Assert.Equal(maximumFloppyCount, settings.AvailableDevices.Count(device =>
-            device.Slot.Category == EmulationMediaCategory.FloppyDrive));
-        Assert.Equal(cassetteAvailable, settings.AvailableDevices.Any(device =>
-            device.Slot == EmulationMediaSlot.Cassette0));
-        Assert.DoesNotContain(settings.AvailableDevices,
-            device => device.Slot.Category == EmulationMediaCategory.HardDisk);
-        Assert.All(settings.AvailableDevices, device =>
-            Assert.Equal(EmulationStorageConfigurationKind.None, device.ConfigurationKind));
+        Assert.Equal(maximumFloppyCount, settings.AvailableDevices.Count(device => device.Slot.Category == EmulationMediaCategory.FloppyDrive));
+        Assert.Equal(cassetteAvailable, settings.AvailableDevices.Any(device => device.Slot == EmulationMediaSlot.Cassette0));
+        Assert.DoesNotContain(settings.AvailableDevices, device => device.Slot.Category == EmulationMediaCategory.HardDisk);
+        Assert.All(settings.AvailableDevices, device => Assert.Equal(EmulationStorageConfigurationKind.None, device.ConfigurationKind));
     }
 
     [Fact]
     public void CpcSettingsExposeAllGenericMachineTabs()
     {
         using var httpClient = new HttpClient();
-        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var configuration = module.CreateConfiguration("cpc-464");
         var description = module.Describe("cpc-464", configuration);
         var input = module.DescribeInputSettings(configuration);
 
         Assert.All(new[] { EmulationMachineTab.General, EmulationMachineTab.Cpu,
             EmulationMachineTab.Ram, EmulationMachineTab.Rom, EmulationMachineTab.Video,
-            EmulationMachineTab.Audio }, tab => Assert.Contains(description.Blocks,
-                block => block.Tab == tab && block.Fields.Count > 0));
+            EmulationMachineTab.Audio }, tab => Assert.Contains(description.Blocks, block => block.Tab == tab && block.Fields.Count > 0));
         Assert.NotNull(input.Keyboard);
         Assert.NotNull(input.Mouse);
         Assert.Equal(2, input.ControllerPorts.Count);
         Assert.All(input.ControllerPorts, port => Assert.NotEmpty(port.Bindings.Definitions));
-        Assert.All(input.ControllerPorts, port => Assert.DoesNotContain(port.ControllerChoices,
-            choice => choice.Id.Equals("Keyboard", StringComparison.OrdinalIgnoreCase)));
+        Assert.All(input.ControllerPorts, port => Assert.DoesNotContain(port.ControllerChoices, choice => choice.Id.Equals("Keyboard", StringComparison.OrdinalIgnoreCase)));
         Assert.True(Assert.IsType<MachineConfiguration>(configuration).Input!.CaptureMouse);
     }
 
@@ -275,21 +249,17 @@ public sealed class AmstradEmulatorAdapterTests
     public void Caprice32SettingsExposeOnlySupportedRomVideoAndAudioOptions()
     {
         using var httpClient = new HttpClient();
-        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var description = module.Describe("cpc-6128", module.CreateConfiguration("cpc-6128"));
         var fields = description.Blocks.SelectMany(block => block.Fields).ToDictionary(field => field.Id);
 
         var firmware = fields[SettingsConstants.FirmwareIntegrated];
         Assert.Equal(EmulationSettingsEditor.Information, firmware.Editor);
         Assert.Equal(SettingsDescriptionFunctionsConstants.Caprice32, firmware.Value);
-        Assert.DoesNotContain(description.Blocks.SelectMany(block => block.Fields), field =>
-            field.Tab == EmulationMachineTab.Rom && field.Editor != EmulationSettingsEditor.Information);
+        Assert.DoesNotContain(description.Blocks.SelectMany(block => block.Fields), field => field.Tab == EmulationMachineTab.Rom && field.Editor != EmulationSettingsEditor.Information);
 
         var resolution = fields[SettingsConstants.VideoResolution];
-        Assert.Equal([SettingsDescriptionFunctionsConstants.Resolution384,
-            SettingsDescriptionFunctionsConstants.Resolution400],
-            resolution.Choices!.Select(choice => choice.Id));
+        Assert.Equal([SettingsDescriptionFunctionsConstants.Resolution384, SettingsDescriptionFunctionsConstants.Resolution400], resolution.Choices!.Select(choice => choice.Id));
         Assert.Contains(SettingsConstants.VideoCrop, fields.Keys);
         Assert.Contains(SettingsConstants.FloppySound, fields.Keys);
         Assert.DoesNotContain(fields.Keys, key => key.Contains("volume", StringComparison.OrdinalIgnoreCase));
@@ -299,8 +269,7 @@ public sealed class AmstradEmulatorAdapterTests
     public void AmstradConfigurationSummaryDoesNotDisplayAudioState()
     {
         using var httpClient = new HttpClient();
-        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration("cpc-6128"));
 
         Assert.Equal(module.SummarizeConfiguration(configuration with { AudioEnabled = true }).Details,
@@ -311,21 +280,17 @@ public sealed class AmstradEmulatorAdapterTests
     public void AmstradSettingHelpIsDeclaredAndLocalized()
     {
         using var httpClient = new HttpClient();
-        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var description = module.Describe("cpc-6128", module.CreateConfiguration("cpc-6128"));
         var fields = description.Blocks.SelectMany(block => block.Fields).ToArray();
         foreach (var field in fields)
         {
             Assert.False(string.IsNullOrWhiteSpace(field.ExplanationResourceKey), field.Id);
             Assert.False(string.IsNullOrWhiteSpace(field.DetailedExplanationResourceKey), field.Id);
-            if (!field.ExplanationResourceKey!.StartsWith("Emulation.Amstrad.",
-                    StringComparison.Ordinal)) continue;
-            Assert.True(module.TryGetString(field.ExplanationResourceKey!,
-                CultureInfo.GetCultureInfo("fr-FR"), out var shortHelp));
+            if (!field.ExplanationResourceKey!.StartsWith("Emulation.Amstrad.", StringComparison.Ordinal)) continue;
+            Assert.True(module.TryGetString(field.ExplanationResourceKey!, CultureInfo.GetCultureInfo("fr-FR"), out var shortHelp));
             Assert.False(string.IsNullOrWhiteSpace(shortHelp));
-            Assert.True(module.TryGetString(field.DetailedExplanationResourceKey!,
-                CultureInfo.GetCultureInfo("fr-FR"), out var detailedHelp));
+            Assert.True(module.TryGetString(field.DetailedExplanationResourceKey!, CultureInfo.GetCultureInfo("fr-FR"), out var detailedHelp));
             Assert.False(string.IsNullOrWhiteSpace(detailedHelp));
         }
         Assert.NotEmpty(fields);
@@ -334,8 +299,7 @@ public sealed class AmstradEmulatorAdapterTests
     [Fact]
     public void Caprice32PointerConsumesCapturedRelativeMovement()
     {
-        using var callbacks = new ExternalHostCallbacks(Path.GetTempPath(), Path.GetTempPath(),
-            Path.GetTempPath(), null);
+        using var callbacks = new ExternalHostCallbacks(Path.GetTempPath(), Path.GetTempPath(), Path.GetTempPath(), null);
         callbacks.Input = EmulationInputSnapshot.Empty with
         {
             Pointer = EmulationInputSnapshot.Empty.Pointer with
@@ -349,16 +313,10 @@ public sealed class AmstradEmulatorAdapterTests
         callbacks.InputPoll();
 
         Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter
-            + 10 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0,
-            ExternalHostCallbacksConstants.PointerDevice, 0,
-            ExternalHostCallbacksConstants.PointerX));
+            + 10 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerX));
         Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter
-            - 5 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0,
-            ExternalHostCallbacksConstants.PointerDevice, 0,
-            ExternalHostCallbacksConstants.PointerY));
-        Assert.Equal(1, callbacks.InputState(0,
-            ExternalHostCallbacksConstants.PointerDevice, 0,
-            ExternalHostCallbacksConstants.PointerPressed));
+            - 5 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerY));
+        Assert.Equal(1, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerPressed));
 
         callbacks.Input = EmulationInputSnapshot.Empty with
         {
@@ -366,20 +324,14 @@ public sealed class AmstradEmulatorAdapterTests
         };
         callbacks.InputPoll();
         Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter
-            + 6 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0,
-            ExternalHostCallbacksConstants.PointerDevice, 0,
-            ExternalHostCallbacksConstants.PointerX));
+            + 6 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerX));
         Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter
-            - 2 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0,
-            ExternalHostCallbacksConstants.PointerDevice, 0,
-            ExternalHostCallbacksConstants.PointerY));
+            - 2 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerY));
 
         callbacks.Input = EmulationInputSnapshot.Empty;
         callbacks.InputPoll();
         Assert.Equal(ExternalHostCallbacksConstants.PointerCoordinateCenter
-            + 6 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0,
-            ExternalHostCallbacksConstants.PointerDevice, 0,
-            ExternalHostCallbacksConstants.PointerX));
+            + 6 * ExternalHostCallbacksConstants.PointerCoordinateScale, callbacks.InputState(0, ExternalHostCallbacksConstants.PointerDevice, 0, ExternalHostCallbacksConstants.PointerX));
     }
 
     [Theory]
@@ -504,26 +456,21 @@ public sealed class AmstradEmulatorAdapterTests
     public void CpcKeyboardListsOnlySpecialMachineKeysWithAutomaticHostBindings()
     {
         using var httpClient = new HttpClient();
-        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(),
-            httpClient, Path.GetTempPath());
-        var keyboard = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(
-            module.CreateConfiguration("cpc-6128")).Keyboard);
+        var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
+        var keyboard = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(module.CreateConfiguration("cpc-6128")).Keyboard);
 
         Assert.Equal(new[] { nameof(EmulationKey.AmstradCopy), nameof(EmulationKey.AmstradClear), nameof(EmulationKey.AmstradF0), nameof(EmulationKey.AmstradFPeriod) }, keyboard.Definitions.Select(key => key.Id));
         Assert.Equal(new[] { "COPY", "CLR", "F0", "F." }, keyboard.Definitions.Select(key => key.InvariantDisplayValue));
         Assert.All(keyboard.Definitions, definition => Assert.True(Enum.TryParse<EmulationKey>(definition.DefaultBinding, out _)));
-        var plusKeyboard = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(
-            module.CreateConfiguration("cpc-6128-plus")).Keyboard);
-        Assert.Equal(keyboard.Definitions.Select(key => key.Id),
-            plusKeyboard.Definitions.Select(key => key.Id));
+        var plusKeyboard = Assert.IsType<EmulationInputBindingSet>(module.DescribeInputSettings(module.CreateConfiguration("cpc-6128-plus")).Keyboard);
+        Assert.Equal(keyboard.Definitions.Select(key => key.Id), plusKeyboard.Definitions.Select(key => key.Id));
         Assert.Null(module.DescribeInputSettings(module.CreateConfiguration("gx4000")).Keyboard);
     }
 
     [Fact]
     public void Caprice32DoesNotReceiveTheReservedFullscreenChord()
     {
-        using var callbacks = new ExternalHostCallbacks(Path.GetTempPath(), Path.GetTempPath(),
-            Path.GetTempPath(), null);
+        using var callbacks = new ExternalHostCallbacks(Path.GetTempPath(), Path.GetTempPath(), Path.GetTempPath(), null);
         var alt = new HashSet<EmulationKey> { EmulationKey.LeftAlt };
         var chord = new HashSet<EmulationKey> { EmulationKey.LeftAlt, EmulationKey.Return };
 
@@ -537,8 +484,7 @@ public sealed class AmstradEmulatorAdapterTests
     [Fact]
     public void CapturedMouseNeverInjectsJoystickButtons()
     {
-        using var callbacks = new ExternalHostCallbacks(Path.GetTempPath(), Path.GetTempPath(),
-            Path.GetTempPath(), null);
+        using var callbacks = new ExternalHostCallbacks(Path.GetTempPath(), Path.GetTempPath(), Path.GetTempPath(), null);
         callbacks.Input = EmulationInputSnapshot.Empty with
         {
             Pointer = EmulationInputSnapshot.Empty.Pointer with
@@ -550,9 +496,7 @@ public sealed class AmstradEmulatorAdapterTests
             }
         };
         callbacks.InputPoll();
-        var buttons = unchecked((ushort)callbacks.InputState(0,
-            ExternalHostCallbacksConstants.JoypadDevice, 0,
-            ExternalHostCallbacksConstants.JoypadMask));
+        var buttons = unchecked((ushort)callbacks.InputState(0, ExternalHostCallbacksConstants.JoypadDevice, 0, ExternalHostCallbacksConstants.JoypadMask));
 
         Assert.Equal(0, buttons);
     }
@@ -627,8 +571,7 @@ public sealed class AmstradEmulatorAdapterTests
                 Content = new ByteArrayContent([]),
                 RequestMessage = request
             };
-            response.Content.Headers.LastModified = new DateTimeOffset(2026, 9, 26, 12, 0, 0,
-                TimeSpan.Zero);
+            response.Content.Headers.LastModified = new DateTimeOffset(2026, 9, 26, 12, 0, 0, TimeSpan.Zero);
             return Task.FromResult(response);
         }
     }

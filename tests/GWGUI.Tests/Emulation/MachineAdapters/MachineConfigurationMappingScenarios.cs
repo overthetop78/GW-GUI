@@ -47,8 +47,7 @@ internal static class MachineConfigurationMappingScenarios
         Assert.Equal("virtual.adf",changed.InitialDiskPath); Assert.True(Assert.Single(changed.Media!).IsReadOnly);
         Assert.Equal("automatic",changed.Options!["gwgui_amiga_crop"]);
 
-        var native = GWGUI.Emulation.Commodore.Emulators.UAE.Common.Interop.Functions.UaeOptionFunctions
-            .ToNative(mapped);
+        var native = GWGUI.Emulation.Commodore.Emulators.UAE.Common.Interop.Functions.UaeOptionFunctions.ToNative(mapped);
         Assert.Equal("automatic", native.Options!["puae_crop"]);
         Assert.Equal("kept", native.Options["custom"]);
         Assert.False(native.Options.ContainsKey("gwgui_amiga_crop"));

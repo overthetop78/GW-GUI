@@ -23,32 +23,22 @@ public sealed class NesMaxControllerTests
     [Fact]
     public void NesMaxExposesDistinctTurboButtons()
     {
-        var settings = InputSettingsFunctions.Describe(
-            new MachineConfiguration(ModelConstants.Nes, string.Empty));
-        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex]
-            .ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
+        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.Nes, string.Empty));
+        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex].ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
 
-        Assert.Contains(EmulationControllerVisualIds.NintendoNesMax,
-            choice.CompatibleVisualIds!);
-        Assert.Contains(EmulationControllerVisualIds.NintendoNesAdvantage,
-            choice.CompatibleVisualIds!);
+        Assert.Contains(EmulationControllerVisualIds.NintendoNesMax, choice.CompatibleVisualIds!);
+        Assert.Contains(EmulationControllerVisualIds.NintendoNesAdvantage, choice.CompatibleVisualIds!);
         var bindingIds = choice.BindingDefinitions!.Select(item => item.Id).ToHashSet();
         Assert.Contains(InputSettingsFunctionsConstants.NesTurboA, bindingIds);
         Assert.Contains(InputSettingsFunctionsConstants.NesTurboB, bindingIds);
-        Assert.Equal(InputSettingsFunctionsConstants.NesTurboB,
-            choice.VisualCommandIds![EmulationControllerVisualControl.TertiaryAction]);
-        Assert.Equal(InputSettingsFunctionsConstants.NesTurboA,
-            choice.VisualCommandIds[EmulationControllerVisualControl.QuaternaryAction]);
+        Assert.Equal(InputSettingsFunctionsConstants.NesTurboB, choice.VisualCommandIds![EmulationControllerVisualControl.TertiaryAction]);
+        Assert.Equal(InputSettingsFunctionsConstants.NesTurboA, choice.VisualCommandIds[EmulationControllerVisualControl.QuaternaryAction]);
         Assert.All(choice.VisualCommandIds, item => Assert.Contains(item.Value, bindingIds));
 
-        var famicomSettings = InputSettingsFunctions.Describe(
-            new MachineConfiguration(ModelConstants.FamicomDisk, string.Empty));
-        var famicomChoice = Assert.Single(famicomSettings.ControllerPorts[FirstPortIndex]
-            .ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
-        Assert.DoesNotContain(EmulationControllerVisualIds.NintendoNesMax,
-            famicomChoice.CompatibleVisualIds!);
-        Assert.DoesNotContain(EmulationControllerVisualIds.NintendoNesAdvantage,
-            famicomChoice.CompatibleVisualIds!);
+        var famicomSettings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.FamicomDisk, string.Empty));
+        var famicomChoice = Assert.Single(famicomSettings.ControllerPorts[FirstPortIndex].ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
+        Assert.DoesNotContain(EmulationControllerVisualIds.NintendoNesMax, famicomChoice.CompatibleVisualIds!);
+        Assert.DoesNotContain(EmulationControllerVisualIds.NintendoNesAdvantage, famicomChoice.CompatibleVisualIds!);
     }
 
     [Fact]
@@ -73,15 +63,10 @@ public sealed class NesMaxControllerTests
             }
         };
 
-        var nes = InputSnapshotFunctions.Apply(snapshot, ModelConstants.Nes,
-            configuration, false).Controllers[FirstPortIndex];
-        var snes = InputSnapshotFunctions.Apply(snapshot, ModelConstants.Snes,
-            configuration, false).Controllers[FirstPortIndex];
+        var nes = InputSnapshotFunctions.Apply(snapshot, ModelConstants.Nes, configuration, false).Controllers[FirstPortIndex];
+        var snes = InputSnapshotFunctions.Apply(snapshot, ModelConstants.Snes, configuration, false).Controllers[FirstPortIndex];
 
-        Assert.Equal((1u << MesenAButtonBit) | (1u << MesenBButtonBit)
-            | (1u << MesenTurboAButtonBit) | (1u << MesenTurboBButtonBit),
-            nes.Buttons);
-        Assert.Equal((1u << MesenAButtonBit) | (1u << MesenTurboAButtonBit),
-            snes.Buttons);
+        Assert.Equal((1u << MesenAButtonBit) | (1u << MesenBButtonBit) | (1u << MesenTurboAButtonBit) | (1u << MesenTurboBButtonBit), nes.Buttons);
+        Assert.Equal((1u << MesenAButtonBit) | (1u << MesenTurboAButtonBit), snes.Buttons);
     }
 }

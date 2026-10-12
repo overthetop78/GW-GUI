@@ -14,12 +14,8 @@ public sealed class ModuleDirectoryServiceTests
     {
         using var client = Client(
             (DirectoryUri, DirectoryJson(("amiga", "Amiga", "https://example.test/amiga.json"))),
-            (new Uri("https://example.test/amiga.json"), CatalogJson("amiga",
-                ("1.0.0", "1.0", "1.0"), ("1.2.0", "1.0", "1.0"),
-                ("2.0.0", "2.0", "2.0"))));
-        var service = new ModuleDirectoryService(client, DirectoryUri,
-            installedVersions: () => new Dictionary<string, string>(),
-            hostApiVersion: () => "1.0");
+            (new Uri("https://example.test/amiga.json"), CatalogJson("amiga", ("1.0.0", "1.0", "1.0"), ("1.2.0", "1.0", "1.0"), ("2.0.0", "2.0", "2.0"))));
+        var service = new ModuleDirectoryService(client, DirectoryUri, installedVersions: () => new Dictionary<string, string>(), hostApiVersion: () => "1.0");
 
         var module = Assert.Single(await service.SearchAsync());
 
@@ -30,10 +26,7 @@ public sealed class ModuleDirectoryServiceTests
     [Fact]
     public async Task Installed_module_is_listed_but_cannot_be_installed_again()
     {
-        using var client = Client(
-            (DirectoryUri, DirectoryJson(("amiga", "Amiga", "https://example.test/amiga.json"))),
-            (new Uri("https://example.test/amiga.json"), CatalogJson("amiga",
-                ("1.0.0", "1.0", "1.0"))));
+        using var client = Client((DirectoryUri, DirectoryJson(("amiga", "Amiga", "https://example.test/amiga.json"))), (new Uri("https://example.test/amiga.json"), CatalogJson("amiga", ("1.0.0", "1.0", "1.0"))));
         var service = new ModuleDirectoryService(client, DirectoryUri,
             installedVersions: () => new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
@@ -47,8 +40,7 @@ public sealed class ModuleDirectoryServiceTests
         Assert.False(module.CanInstall);
     }
 
-    private static HttpClient Client(params (Uri Uri, string Json)[] responses) =>
-        new(new JsonResponseHandler(responses.ToDictionary(item => item.Uri, item => item.Json)));
+    private static HttpClient Client(params (Uri Uri, string Json)[] responses) => new(new JsonResponseHandler(responses.ToDictionary(item => item.Uri, item => item.Json)));
 
     private static string DirectoryJson(params (string Id, string Name, string CatalogUrl)[] modules) => $$"""
         {

@@ -17,8 +17,7 @@ public sealed class PocketStationTests
     {
         var definition = Assert.Single(EmulatorCatalog.GetAll(ModelConstants.PocketStation));
         Assert.Equal(CoreConstants.Id, definition.Id);
-        Assert.DoesNotContain(EmulatorCatalog.GetAll(ModelConstants.PlayStation),
-            item => item.Id == CoreConstants.Id);
+        Assert.DoesNotContain(EmulatorCatalog.GetAll(ModelConstants.PlayStation), item => item.Id == CoreConstants.Id);
     }
 
     [Fact]
@@ -62,6 +61,5 @@ public sealed class PocketStationTests
         Assert.All(port.ControllerChoices, choice => Assert.Null(choice.DefaultVisualId));
     }
 
-    private static MachineConfiguration Configuration() =>
-        new(ModelConstants.PocketStation, CoreConstants.Id);
+    private static MachineConfiguration Configuration() => new(ModelConstants.PocketStation, CoreConstants.Id);
 }

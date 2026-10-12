@@ -25,9 +25,7 @@ public sealed class WiiUMediaFormatTests
         {
             var sourcePath = Path.Combine(directory, "source.wud");
             var outputPath = Path.Combine(directory, "roundtrip.wud");
-            var source = Enumerable.Range(0, 2 * 2048)
-                .Select(value => (byte)(value % byte.MaxValue))
-                .ToArray();
+            var source = Enumerable.Range(0, 2 * 2048).Select(value => (byte)(value % byte.MaxValue)).ToArray();
             await File.WriteAllBytesAsync(sourcePath, source);
 
             var reader = new WiiUReader();
@@ -49,8 +47,7 @@ public sealed class WiiUMediaFormatTests
             var catalog = new BuiltInImageFormatCatalog();
             var format = Assert.Single(catalog.Formats, item => item.Id == DiskImageFormatIds.NintendoWiiU);
             Assert.Equal([DiskImageFileExtensions.Wud, DiskImageFileExtensions.Wux], format.Extensions.Select(item => item.Extension));
-            Assert.Contains(MediaImageWriterIds.NintendoWiiU,
-                MediaWritingComposition.CreateDefault().Writers.Select(writer => writer.Id));
+            Assert.Contains(MediaImageWriterIds.NintendoWiiU, MediaWritingComposition.CreateDefault().Writers.Select(writer => writer.Id));
         }
         finally
         {
@@ -77,8 +74,7 @@ public sealed class WiiUMediaFormatTests
             var readBack = new byte[checked((int)blocks.Capacity)];
             await ((IMediaBlockRepresentation)blocks).ReadExactlyAsync(0, readBack);
 
-            Assert.Equal(Enumerable.Repeat((byte)0x11, 4096)
-                .Concat(Enumerable.Repeat((byte)0x22, 4096)).ToArray(), readBack);
+            Assert.Equal(Enumerable.Repeat((byte)0x11, 4096).Concat(Enumerable.Repeat((byte)0x22, 4096)).ToArray(), readBack);
             Assert.Equal(DiskImageFileExtensions.Wux, document.Metadata["nintendo.wiiu.variant"]);
             Assert.Equal("2", document.Metadata["nintendo.wiiu.indexEntryCount"]);
             Assert.Equal("2", document.Metadata["nintendo.wiiu.storedSectorCount"]);

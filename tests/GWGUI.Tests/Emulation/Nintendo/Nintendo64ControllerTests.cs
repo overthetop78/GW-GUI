@@ -11,8 +11,7 @@ namespace GWGUI.Tests.Emulation.Nintendo;
 public sealed class Nintendo64ControllerTests
 {
     private const int FirstPortIndex = 0;
-    private const uint ExpectedButtonMask = (1u << 0) | (1u << 1) | (1u << 3)
-        | (1u << 4) | (1u << 10) | (1u << 11) | (1u << 12);
+    private const uint ExpectedButtonMask = (1u << 0) | (1u << 1) | (1u << 3) | (1u << 4) | (1u << 10) | (1u << 11) | (1u << 12);
     private const string KeyboardA = "Keyboard:A";
     private const string KeyboardB = "Keyboard:B";
     private const string KeyboardC = "Keyboard:C";
@@ -28,13 +27,10 @@ public sealed class Nintendo64ControllerTests
     [Fact]
     public void ProfilePublishesFourPortsAndEveryVisibleCommand()
     {
-        var settings = InputSettingsFunctions.Describe(
-            new MachineConfiguration(ModelConstants.Nintendo64, string.Empty));
+        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.Nintendo64, string.Empty));
 
-        Assert.Equal(ModelConstants.Nintendo64ControllerPortCount,
-            settings.ControllerPorts.Count);
-        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex]
-            .ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
+        Assert.Equal(ModelConstants.Nintendo64ControllerPortCount, settings.ControllerPorts.Count);
+        var choice = Assert.Single(settings.ControllerPorts[FirstPortIndex].ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
         Assert.Equal(EmulationControllerVisualIds.Nintendo64Pad, choice.DefaultVisualId);
         var ids = choice.BindingDefinitions!.Select(item => item.Id).ToHashSet();
         Assert.Contains(InputSettingsFunctionsConstants.Nintendo64A, ids);
@@ -68,11 +64,7 @@ public sealed class Nintendo64ControllerTests
             [EmulationControllerCommandIds.Start] = KeyboardJ,
             [EmulationControllerCommandIds.Up] = KeyboardK
         };
-        var configuration = new InputConfiguration(ControllerBindings:
-        [
-            new ControllerBinding(FirstPortIndex, ControllerType.Joystick,
-                ButtonMappings: bindings)
-        ]);
+        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPortIndex, ControllerType.Joystick, ButtonMappings: bindings)]);
         var snapshot = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey>
@@ -83,8 +75,7 @@ public sealed class Nintendo64ControllerTests
             }
         };
 
-        var mapped = InputSnapshotFunctions.Apply(snapshot, ModelConstants.Nintendo64,
-            configuration, false);
+        var mapped = InputSnapshotFunctions.Apply(snapshot, ModelConstants.Nintendo64, configuration, false);
         var controller = mapped.Controllers[FirstPortIndex];
 
         Assert.Equal(ExpectedButtonMask, controller.Buttons);
@@ -117,8 +108,7 @@ public sealed class Nintendo64ControllerTests
                 })
         ]);
 
-        var mapped = InputSnapshotFunctions.Apply(snapshot, ModelConstants.Nintendo64,
-            configuration, false);
+        var mapped = InputSnapshotFunctions.Apply(snapshot, ModelConstants.Nintendo64, configuration, false);
 
         Assert.Equal(default, mapped.Controllers[FirstPortIndex].LeftX);
         Assert.Equal(short.MaxValue, mapped.Controllers[FirstPortIndex].LeftY);

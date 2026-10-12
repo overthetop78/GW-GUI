@@ -45,26 +45,17 @@ public sealed class MediaEngineProjectBoundaryTests
             FileSystemIds.CommodoreDos,
             FileSystemIds.Fat12
         })
-            Assert.Same(typeof(GWGUI.MediaFileSystems.Exploration.FileSystemReaderCatalog).Assembly,
-                Assert.Single(readers, reader => reader.Id == id).GetType().Assembly);
+            Assert.Same(typeof(GWGUI.MediaFileSystems.Exploration.FileSystemReaderCatalog).Assembly, Assert.Single(readers, reader => reader.Id == id).GetType().Assembly);
 
-        var exploration = GWGUI.MediaFileSystems.Exploration.MediaExplorer.CreateDefault(
-            [new SequentialContentDecoderAdapter(SequentialMediaComposition.CreateDefault().Decoders)]);
-        Assert.IsType<SequentialContentDecoderAdapter>(
-            Assert.Single(exploration.Readers, reader => reader.Id == FileSystemIds.SequentialContent));
+        var exploration = GWGUI.MediaFileSystems.Exploration.MediaExplorer.CreateDefault([new SequentialContentDecoderAdapter(SequentialMediaComposition.CreateDefault().Decoders)]);
+        Assert.IsType<SequentialContentDecoderAdapter>(Assert.Single(exploration.Readers, reader => reader.Id == FileSystemIds.SequentialContent));
     }
 
     private static void AssertGwguiReferences(Assembly assembly, IEnumerable<string> expected)
     {
-        var actual = References(assembly)
-            .Where(name => name.StartsWith("gwgui.", StringComparison.OrdinalIgnoreCase))
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var actual = References(assembly).Where(name => name.StartsWith("gwgui.", StringComparison.OrdinalIgnoreCase)).ToHashSet(StringComparer.OrdinalIgnoreCase);
         Assert.Equal(expected.Order(StringComparer.OrdinalIgnoreCase), actual.Order(StringComparer.OrdinalIgnoreCase));
     }
 
-    private static IReadOnlySet<string> References(Assembly assembly) => assembly
-        .GetReferencedAssemblies()
-        .Select(reference => reference.Name ?? string.Empty)
-        .Where(name => name.Length > 0)
-        .ToHashSet(StringComparer.OrdinalIgnoreCase);
+    private static IReadOnlySet<string> References(Assembly assembly) => assembly.GetReferencedAssemblies().Select(reference => reference.Name ?? string.Empty).Where(name => name.Length > 0).ToHashSet(StringComparer.OrdinalIgnoreCase);
 }

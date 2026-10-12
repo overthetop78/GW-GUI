@@ -40,12 +40,7 @@ public sealed class AmstradCpcMediaFormatTests
         var curated = new BuiltInImageFormatCatalog(key => key);
         var runtime = new RuntimeImageFormatCatalog(curated,
         [
-            new DiskFormat(
-                DiskImageFormatIds.AmstradRom,
-                string.Empty,
-                "Format.amstrad.rom",
-                [new ImageExtension(".rom", "ROM", true)],
-                CompatibleSourceExtensions: new HashSet<string>([".bin"], StringComparer.OrdinalIgnoreCase))
+            new DiskFormat(DiskImageFormatIds.AmstradRom, string.Empty, "Format.amstrad.rom", [new ImageExtension(".rom", "ROM", true)], CompatibleSourceExtensions: new HashSet<string>([".bin"], StringComparer.OrdinalIgnoreCase))
         ]);
 
         var rom = runtime.Formats.Single(format => format.Id == DiskImageFormatIds.AmstradRom);
@@ -53,12 +48,7 @@ public sealed class AmstradCpcMediaFormatTests
         Assert.Equal("Format.amstrad.rom", rom.DisplayName);
         Assert.Contains(".bin", rom.CompatibleSourceExtensions!);
 
-        var items = new ConversionFormatPresenter().Build(
-            runtime,
-            ".bin",
-            null,
-            new HashSet<string>(["amiga.amigados"], StringComparer.OrdinalIgnoreCase),
-            new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase));
+        var items = new ConversionFormatPresenter().Build(runtime, ".bin", null, new HashSet<string>(["amiga.amigados"], StringComparer.OrdinalIgnoreCase), new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase));
         Assert.False(items.Single(item => item.Format.Id == "amiga.amigados").IsCompatible);
         Assert.True(items.Single(item => item.Format.Id == DiskImageFormatIds.AmstradRom).IsCompatible);
     }
@@ -77,18 +67,8 @@ public sealed class AmstradCpcMediaFormatTests
                 ["blockNumber"] = "1"
             });
         var encoder = new AmstradCpcTapeEncoder();
-        var representation = await encoder.EncodeAsync(new SequentialEncodeRequest(
-            TapeImageFormatIds.Tzx,
-            DiskSystemIds.Amstrad,
-            [block]));
-        var document = new MediaImageDocument(
-            new MediaSourceDescriptor("memory.cdt", []),
-            TapeImageFormatIds.Tzx,
-            MediaKind.Tape,
-            representation,
-            [],
-            [],
-            new Dictionary<string, string>());
+        var representation = await encoder.EncodeAsync(new SequentialEncodeRequest(TapeImageFormatIds.Tzx, DiskSystemIds.Amstrad, [block]));
+        var document = new MediaImageDocument(new MediaSourceDescriptor("memory.cdt", []), TapeImageFormatIds.Tzx, MediaKind.Tape, representation, [], [], new Dictionary<string, string>());
 
         var result = await new AmstradCpcTapeDecoder().DecodeAsync(document, DiskSystemIds.Amstrad);
 
@@ -133,8 +113,7 @@ public sealed class AmstradCpcMediaFormatTests
         {
             var sourcePath = Path.Combine(directory, "game.nes");
             var outputPath = Path.Combine(directory, "roundtrip.nes");
-            var source = Enumerable.Range(0, 16 * 1024 + 17)
-                .Select(value => (byte)(value % byte.MaxValue)).ToArray();
+            var source = Enumerable.Range(0, 16 * 1024 + 17).Select(value => (byte)(value % byte.MaxValue)).ToArray();
             await File.WriteAllBytesAsync(sourcePath, source);
 
             var document = await ReadAsync(new ConsoleCartridgeReader(), sourcePath);
@@ -147,12 +126,10 @@ public sealed class AmstradCpcMediaFormatTests
             var explorer = new ConsoleCartridgeFileSystemReader();
             var entries = explorer.Read(document, Volume(document)).Entries;
             Assert.Equal(["bank00", "bank01"], entries.Select(entry => entry.Name));
-            Assert.All(entries, entry => Assert.Equal(
-                ConsoleCartridgeMetadataConstants.BankEntryType, entry.NativeTypeId));
+            Assert.All(entries, entry => Assert.Equal(ConsoleCartridgeMetadataConstants.BankEntryType, entry.NativeTypeId));
             Assert.Equal(source.Length - (16 * 1024), entries[1].Size);
 
-            await new ConsoleCartridgeWriter().WriteAsync(document, outputPath,
-                DiskImageFormatIds.NintendoNes);
+            await new ConsoleCartridgeWriter().WriteAsync(document, outputPath, DiskImageFormatIds.NintendoNes);
             Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
         }
         finally
@@ -168,8 +145,7 @@ public sealed class AmstradCpcMediaFormatTests
         Directory.CreateDirectory(directory);
         try
         {
-            var source = Enumerable.Range(0, 16 * 1024 + 7)
-                .Select(value => (byte)(value % byte.MaxValue)).ToArray();
+            var source = Enumerable.Range(0, 16 * 1024 + 7).Select(value => (byte)(value % byte.MaxValue)).ToArray();
             var cases = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
                 [".nes"] = DiskImageFormatIds.NintendoNes,
@@ -213,8 +189,7 @@ public sealed class AmstradCpcMediaFormatTests
                 foreach (var outputExtension in format.Extensions.Select(item => item.Extension))
                 {
                     var outputPath = Path.Combine(directory, $"converted-{conversionIndex++}{outputExtension}");
-                    var result = await engine.ConversionService.ConvertAsync(
-                        new MediaConversionRequest(document, outputPath, formatId));
+                    var result = await engine.ConversionService.ConvertAsync(new MediaConversionRequest(document, outputPath, formatId));
                     Assert.Equal([outputPath], result.ProducedFiles);
                     Assert.Equal(source.Length, new FileInfo(outputPath).Length);
                 }
@@ -245,8 +220,7 @@ public sealed class AmstradCpcMediaFormatTests
             Assert.Equal(2, entries.Count);
             Assert.Equal(source.Length - 16 * 1024, entries[1].Size);
 
-            await new ConsoleCartridgeWriter().WriteAsync(document, outputPath,
-                DiskImageFormatIds.NintendoGameWatch);
+            await new ConsoleCartridgeWriter().WriteAsync(document, outputPath, DiskImageFormatIds.NintendoGameWatch);
             Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
         }
         finally
@@ -262,8 +236,7 @@ public sealed class AmstradCpcMediaFormatTests
         Directory.CreateDirectory(directory);
         try
         {
-            var source = Enumerable.Range(0, 16 * 1024 + 5)
-                .Select(value => (byte)(value % byte.MaxValue)).ToArray();
+            var source = Enumerable.Range(0, 16 * 1024 + 5).Select(value => (byte)(value % byte.MaxValue)).ToArray();
             foreach (var extension in new[] { ".3ds", ".3dsx", ".elf", ".axf", ".cci", ".cxi", ".app" })
             {
                 var sourcePath = Path.Combine(directory, $"game{extension}");
@@ -271,8 +244,7 @@ public sealed class AmstradCpcMediaFormatTests
                 await File.WriteAllBytesAsync(sourcePath, source);
                 var document = await ReadAsync(new ConsoleCartridgeReader(), sourcePath);
                 Assert.Equal(DiskImageFormatIds.Nintendo3Ds, document.FormatId);
-                await new ConsoleCartridgeWriter().WriteAsync(document, outputPath,
-                    DiskImageFormatIds.Nintendo3Ds);
+                await new ConsoleCartridgeWriter().WriteAsync(document, outputPath, DiskImageFormatIds.Nintendo3Ds);
                 Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
             }
 
@@ -293,8 +265,7 @@ public sealed class AmstradCpcMediaFormatTests
         Directory.CreateDirectory(directory);
         try
         {
-            var source = Enumerable.Range(0, 16 * 1024 + 7)
-                .Select(value => (byte)(value % byte.MaxValue)).ToArray();
+            var source = Enumerable.Range(0, 16 * 1024 + 7).Select(value => (byte)(value % byte.MaxValue)).ToArray();
             var engine = MediaEngineComposition.CreateDefault();
             var cases = new[]
             {
@@ -321,29 +292,23 @@ public sealed class AmstradCpcMediaFormatTests
 
                 var document = await ReadAsync(new ConsoleCartridgeReader(), sourcePath);
                 Assert.Equal(item.FormatId, document.FormatId);
-                var visualization = MediaVisualizationComposition.CreateDefault().Registry
-                    .CreateDescriptor(document);
+                var visualization = MediaVisualizationComposition.CreateDefault().Registry.CreateDescriptor(document);
                 Assert.Equal(MediaRepresentationKind.Blocks, visualization.RepresentationKind);
                 Assert.Equal(MediaVisualizationProgressUnit.BlockRange, visualization.ProgressUnit);
                 Assert.True(visualization.Elements.Count >= 2);
                 var blocks = Assert.IsType<BlockMediaImageRepresentation>(document.Representation);
-                Assert.Equal(source.LongLength,
-                    visualization.Elements.Sum(element => element.Length));
-                Assert.Equal(source.LongLength,
-                    visualization.Elements[^1].Position + visualization.Elements[^1].Length);
+                Assert.Equal(source.LongLength, visualization.Elements.Sum(element => element.Length));
+                Assert.Equal(source.LongLength, visualization.Elements[^1].Position + visualization.Elements[^1].Length);
                 var explorer = new ConsoleCartridgeFileSystemReader();
                 Assert.Equal(2, explorer.Read(document, Volume(document)).Entries.Count);
                 var invalidMetadata = new Dictionary<string, string>(document.Metadata, StringComparer.Ordinal)
                 {
                     [$"{ConsoleCartridgeMetadataConstants.BankPrefix}0{ConsoleCartridgeMetadataConstants.LengthSuffix}"] = "0"
                 };
-                var invalidDocument = new MediaImageDocument(
-                    document.Source, document.FormatId, document.MediaKind, document.Representation,
-                    document.FileSystemVolumes, document.Diagnostics, invalidMetadata);
+                var invalidDocument = new MediaImageDocument(document.Source, document.FormatId, document.MediaKind, document.Representation, document.FileSystemVolumes, document.Diagnostics, invalidMetadata);
                 Assert.False(explorer.CanRead(invalidDocument, Volume(invalidDocument)));
 
-                var conversion = await engine.ConversionService.ConvertAsync(
-                    new MediaConversionRequest(document, outputPath, item.FormatId));
+                var conversion = await engine.ConversionService.ConvertAsync(new MediaConversionRequest(document, outputPath, item.FormatId));
                 Assert.Equal([outputPath], conversion.ProducedFiles);
                 Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
             }
@@ -363,22 +328,17 @@ public sealed class AmstradCpcMediaFormatTests
             Assert.Contains(DiskImageFileExtensions.ThirtyTwoX, supported);
             Assert.Contains(DiskImageFileExtensions.Pce, supported);
             Assert.Contains(DiskImageFileExtensions.Sgx, supported);
-            var megaDrive = new BuiltInImageFormatCatalog().Formats.Single(format =>
-                format.Id == DiskImageFormatIds.SegaMegaDrive);
+            var megaDrive = new BuiltInImageFormatCatalog().Formats.Single(format => format.Id == DiskImageFormatIds.SegaMegaDrive);
             Assert.Equal(
                 [DiskImageFileExtensions.Md, DiskImageFileExtensions.Mdx,
                  DiskImageFileExtensions.Sgd, DiskImageFileExtensions.Smd,
                  DiskImageFileExtensions.Bms, DiskImageFileExtensions.SixtyEightK,
                  DiskImageFileExtensions.Gen],
                 megaDrive.Extensions.Select(extension => extension.Extension));
-            Assert.Equal([DiskImageFileExtensions.Sms], new BuiltInImageFormatCatalog().Formats.Single(format =>
-                format.Id == DiskImageFormatIds.SegaMasterSystem).Extensions.Select(extension => extension.Extension));
-            Assert.Equal([DiskImageFileExtensions.Gg], new BuiltInImageFormatCatalog().Formats.Single(format =>
-                format.Id == DiskImageFormatIds.SegaGameGear).Extensions.Select(extension => extension.Extension));
-            Assert.Equal([DiskImageFileExtensions.ThirtyTwoX], new BuiltInImageFormatCatalog().Formats.Single(format =>
-                format.Id == DiskImageFormatIds.SegaThirtyTwoX).Extensions.Select(extension => extension.Extension));
-            Assert.Contains(MediaImageWriterIds.ConsoleCartridge,
-                MediaWritingComposition.CreateDefault().Writers.Select(writer => writer.Id));
+            Assert.Equal([DiskImageFileExtensions.Sms], new BuiltInImageFormatCatalog().Formats.Single(format => format.Id == DiskImageFormatIds.SegaMasterSystem).Extensions.Select(extension => extension.Extension));
+            Assert.Equal([DiskImageFileExtensions.Gg], new BuiltInImageFormatCatalog().Formats.Single(format => format.Id == DiskImageFormatIds.SegaGameGear).Extensions.Select(extension => extension.Extension));
+            Assert.Equal([DiskImageFileExtensions.ThirtyTwoX], new BuiltInImageFormatCatalog().Formats.Single(format => format.Id == DiskImageFormatIds.SegaThirtyTwoX).Extensions.Select(extension => extension.Extension));
+            Assert.Contains(MediaImageWriterIds.ConsoleCartridge, MediaWritingComposition.CreateDefault().Writers.Select(writer => writer.Id));
         }
         finally
         {
@@ -418,14 +378,12 @@ public sealed class AmstradCpcMediaFormatTests
 
                 var document = await ReadAsync(reader, sourcePath);
                 Assert.Equal(item.FormatId, document.FormatId);
-                var visualization = MediaVisualizationComposition.CreateDefault().Registry
-                    .CreateDescriptor(document);
+                var visualization = MediaVisualizationComposition.CreateDefault().Registry.CreateDescriptor(document);
                 Assert.NotEmpty(visualization.Elements);
                 Assert.NotEmpty(explorer.Read(document, Volume(document)).Entries);
 
                 var outputPath = Path.Combine(directory, $"export-{found}{item.Extension}");
-                var conversion = await engine.ConversionService.ConvertAsync(
-                    new MediaConversionRequest(document, outputPath, item.FormatId));
+                var conversion = await engine.ConversionService.ConvertAsync(new MediaConversionRequest(document, outputPath, item.FormatId));
                 Assert.Equal([outputPath], conversion.ProducedFiles);
                 Assert.True(File.Exists(outputPath));
                 Assert.True(new FileInfo(outputPath).Length > 0);
@@ -458,9 +416,7 @@ public sealed class AmstradCpcMediaFormatTests
                 [DiskImageFileExtensions.Gg] = DiskImageFormatIds.SegaGameGear,
                 [DiskImageFileExtensions.ThirtyTwoX] = DiskImageFormatIds.SegaThirtyTwoX
             };
-            var paths = Directory.EnumerateFiles(corpus, "*", SearchOption.AllDirectories)
-                .Where(path => formats.ContainsKey(Path.GetExtension(path)))
-                .ToArray();
+            var paths = Directory.EnumerateFiles(corpus, "*", SearchOption.AllDirectories).Where(path => formats.ContainsKey(Path.GetExtension(path))).ToArray();
             Assert.NotEmpty(paths);
 
             var reader = new ConsoleCartridgeReader();
@@ -475,8 +431,7 @@ public sealed class AmstradCpcMediaFormatTests
                 var extension = Path.GetExtension(path);
                 var document = await ReadAsync(reader, path);
                 Assert.Equal(formats[extension], document.FormatId);
-                var visualization = MediaVisualizationComposition.CreateDefault().Registry
-                    .CreateDescriptor(document);
+                var visualization = MediaVisualizationComposition.CreateDefault().Registry.CreateDescriptor(document);
                 Assert.NotEmpty(visualization.Elements);
                 Assert.NotEmpty(explorer.Read(document, Volume(document)).Entries);
                 counts[extension] = counts.TryGetValue(extension, out var count) ? count + 1 : 1;
@@ -486,12 +441,9 @@ public sealed class AmstradCpcMediaFormatTests
                 var destinations = engine.ConversionService.GetAvailableDestinations(document);
                 foreach (var destinationExtension in format.Extensions.Select(item => item.Extension))
                 {
-                    Assert.Contains(destinations,
-                        destination => destination.FormatId == document.FormatId
-                            && destination.Extension.Equals(destinationExtension, StringComparison.OrdinalIgnoreCase));
+                    Assert.Contains(destinations, destination => destination.FormatId == document.FormatId && destination.Extension.Equals(destinationExtension, StringComparison.OrdinalIgnoreCase));
                     var outputPath = Path.Combine(directory, $"export-{++converted}{destinationExtension}");
-                    var result = await engine.ConversionService.ConvertAsync(
-                        new MediaConversionRequest(document, outputPath, document.FormatId));
+                    var result = await engine.ConversionService.ConvertAsync(new MediaConversionRequest(document, outputPath, document.FormatId));
                     Assert.Equal([outputPath], result.ProducedFiles);
                     Assert.Equal(new FileInfo(path).Length, new FileInfo(outputPath).Length);
                 }
@@ -528,11 +480,9 @@ public sealed class AmstradCpcMediaFormatTests
             Assert.Equal(5, file.Size);
             Assert.Equal("0", file.Metadata["side"]);
 
-            await new FamicomFdsWriter().WriteAsync(document, outputPath,
-                DiskImageFormatIds.NintendoFamicomDisk);
+            await new FamicomFdsWriter().WriteAsync(document, outputPath, DiskImageFormatIds.NintendoFamicomDisk);
             Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
-            Assert.Contains(DiskImageFileExtensions.Fds,
-                MediaRecognitionComposition.CreateDefault().SupportedExtensions);
+            Assert.Contains(DiskImageFileExtensions.Fds, MediaRecognitionComposition.CreateDefault().SupportedExtensions);
         }
         finally
         {
@@ -553,9 +503,7 @@ public sealed class AmstradCpcMediaFormatTests
             var outputPath = Path.Combine(directory, "roundtrip.gdi");
             await File.WriteAllBytesAsync(trackOnePath, Enumerable.Repeat((byte)0x11, 100 * 2048).ToArray());
             await File.WriteAllBytesAsync(trackTwoPath, Enumerable.Repeat((byte)0x22, 2 * 2352).ToArray());
-            await File.WriteAllTextAsync(
-                descriptorPath,
-                "2\n1 0 4 2048 \"track01.bin\" 0\n2 100 0 2352 \"track02.raw\" 0\n");
+            await File.WriteAllTextAsync(descriptorPath, "2\n1 0 4 2048 \"track01.bin\" 0\n2 100 0 2352 \"track02.raw\" 0\n");
 
             var document = await ReadAsync(new GdiReader(), descriptorPath);
             Assert.Equal(OpticalImageFormatIds.Gdi, document.FormatId);
@@ -568,11 +516,9 @@ public sealed class AmstradCpcMediaFormatTests
             await new GdiWriter().WriteAsync(document, outputPath, OpticalImageFormatIds.Gdi);
             var roundtrip = await ReadAsync(new GdiReader(), outputPath);
             var roundtripOptical = Assert.IsType<GWGUI.MediaEngine.Images.Models.Optical.OpticalMediaImageRepresentation>(roundtrip.Representation);
-            Assert.Equal(optical.Tracks.Select(track => (track.TrackNumber, track.FirstSector, track.SectorCount, track.Mode)),
-                roundtripOptical.Tracks!.Select(track => (track.TrackNumber, track.FirstSector, track.SectorCount, track.Mode)));
+            Assert.Equal(optical.Tracks.Select(track => (track.TrackNumber, track.FirstSector, track.SectorCount, track.Mode)), roundtripOptical.Tracks!.Select(track => (track.TrackNumber, track.FirstSector, track.SectorCount, track.Mode)));
             Assert.Contains(DiskImageFileExtensions.Gdi, MediaRecognitionComposition.CreateDefault().SupportedExtensions);
-            Assert.Contains(MediaImageWriterIds.OpticalGdi,
-                MediaWritingComposition.CreateDefault().Writers.Select(writer => writer.Id));
+            Assert.Contains(MediaImageWriterIds.OpticalGdi, MediaWritingComposition.CreateDefault().Writers.Select(writer => writer.Id));
         }
         finally
         {
@@ -604,12 +550,9 @@ public sealed class AmstradCpcMediaFormatTests
             await File.WriteAllBytesAsync(amsdosPath, amsdos);
             IMediaImageReader reader = new AmstradRomReader();
 
-            Assert.True(await reader.CanReadAsync(new MediaRecognitionContext(
-                new MediaSourceDescriptor(dandanatorPath, [])), CancellationToken.None));
-            Assert.True(await reader.CanReadAsync(new MediaRecognitionContext(
-                new MediaSourceDescriptor(amsdosPath, [])), CancellationToken.None));
-            Assert.False(await reader.CanReadAsync(new MediaRecognitionContext(
-                new MediaSourceDescriptor(foreignPath, [])), CancellationToken.None));
+            Assert.True(await reader.CanReadAsync(new MediaRecognitionContext(new MediaSourceDescriptor(dandanatorPath, [])), CancellationToken.None));
+            Assert.True(await reader.CanReadAsync(new MediaRecognitionContext(new MediaSourceDescriptor(amsdosPath, [])), CancellationToken.None));
+            Assert.False(await reader.CanReadAsync(new MediaRecognitionContext(new MediaSourceDescriptor(foreignPath, [])), CancellationToken.None));
         }
         finally
         {
@@ -693,18 +636,9 @@ public sealed class AmstradCpcMediaFormatTests
         entry[16] = 2;
         bytes.AsSpan(directoryOffset + 2 * 1024, 128).Fill(0x41);
         var blocks = Enumerable.Range(0, cylinders * sectorsPerTrack)
-            .Select(index => new SectorBlock(
-                index,
-                new SectorAddress(index / sectorsPerTrack, 0, firstSectorId + index % sectorsPerTrack),
-                bytes.AsSpan(index * sectorSize, sectorSize).ToArray()))
+            .Select(index => new SectorBlock(index, new SectorAddress(index / sectorsPerTrack, 0, firstSectorId + index % sectorsPerTrack), bytes.AsSpan(index * sectorSize, sectorSize).ToArray()))
             .ToArray();
-        var image = new SectorImage(
-            DiskImageFormatIds.CpcEmuDsk,
-            sectorSize,
-            cylinders,
-            1,
-            sectorsPerTrack,
-            blocks);
+        var image = new SectorImage(DiskImageFormatIds.CpcEmuDsk, sectorSize, cylinders, 1, sectorsPerTrack, blocks);
         var reader = new AmstradCpmFileSystemReader();
 
         Assert.True(reader.CanRead(image));

@@ -16,8 +16,7 @@ internal static class EmulationMenuScenarios
         menu.SetEmulationModules([]);
 
         Assert.Empty(menu.EmulationMenuItem.Items.OfType<MenuItem>().Skip(1));
-        Assert.Equal(Visibility.Collapsed,
-            menu.EmulationMenuItem.Items.OfType<Separator>().Single().Visibility);
+        Assert.Equal(Visibility.Collapsed, menu.EmulationMenuItem.Items.OfType<Separator>().Single().Visibility);
     }
 
     internal static void DynamicEntries()
@@ -57,10 +56,8 @@ internal static class EmulationMenuScenarios
         try
         {
             Assert.Equal(windows[0].GetType(), windows[1].GetType());
-            Assert.Equal(first.Id, Assert.IsType<GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection>(
-                windows[0].ModuleContent.Content).CurrentConfiguration.ModuleId);
-            Assert.Equal(second.Id, Assert.IsType<GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection>(
-                windows[1].ModuleContent.Content).CurrentConfiguration.ModuleId);
+            Assert.Equal(first.Id, Assert.IsType<GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection>(windows[0].ModuleContent.Content).CurrentConfiguration.ModuleId);
+            Assert.Equal(second.Id, Assert.IsType<GWGUI.App.Views.Controls.Emulation.Options.EmulationModuleSettingsSection>(windows[1].ModuleContent.Content).CurrentConfiguration.ModuleId);
         }
         finally
         {

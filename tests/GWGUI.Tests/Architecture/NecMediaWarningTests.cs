@@ -23,16 +23,14 @@ public sealed class NecMediaWarningTests
             : new[] { EmulationMediaSlot.Cartridge0 };
         var options = new Dictionary<string, string>();
         GeargrafxStorageFunctions.ApplyOptions(options, slots);
-        var configuration = new MachineConfiguration(PcEngineMachineConstants.Id,
-            GeargrafxConstants.Id, options);
+        var configuration = new MachineConfiguration(PcEngineMachineConstants.Id, GeargrafxConstants.Id, options);
 
         var warning = Machine.RequiredMediaWarning(configuration, new Exception());
 
         Assert.Equal(EmulationMessageCode.RequiredMediaMissing, warning.MessageData.MessageCode);
         Assert.Equal(EmulationMessageSeverity.Warning, warning.MessageData.Severity);
         Assert.Equal(EmulationMessageTarget.Dialog, warning.MessageData.Target);
-        var required = Assert.IsType<EmulationRequiredMachineMediaMessageContext>(
-            warning.MessageData.Context);
+        var required = Assert.IsType<EmulationRequiredMachineMediaMessageContext>(warning.MessageData.Context);
         Assert.Equal(cdDriveEnabled
                 ? new[] { EmulationMediaCategory.CartridgeSlot, EmulationMediaCategory.CompactDiscDrive }
                 : new[] { EmulationMediaCategory.CartridgeSlot },

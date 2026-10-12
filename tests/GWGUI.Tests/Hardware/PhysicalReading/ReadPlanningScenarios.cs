@@ -43,10 +43,7 @@ internal static class ReadPlanningScenarios
         };
         var device = new ReadAcquisitionScenarios.Device();
         var provider = new GreaseweazleMediaAcquisitionProvider(() => device);
-        var acquire = () => provider.AcquireAsync(
-                MediaKind.Floppy,
-                options.PortName,
-                ReadAcquisitionScenarios.CreateProviderOptions(options));
+        var acquire = () => provider.AcquireAsync(MediaKind.Floppy, options.PortName, ReadAcquisitionScenarios.CreateProviderOptions(options));
         if (variant == 0) await Assert.ThrowsAsync<NotSupportedException>(acquire);
         else await Assert.ThrowsAnyAsync<ArgumentException>(acquire);
         Assert.Empty(device.Calls);

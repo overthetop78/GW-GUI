@@ -11,9 +11,7 @@ namespace GWGUI.Tests.Emulation.Sony;
 public sealed class PspControllerTests
 {
     private const int IntegratedPortIndex = 0;
-    private const uint ExpectedButtonMask = (1u << 0) | (1u << 1) | (1u << 2)
-        | (1u << 3) | (1u << 4) | (1u << 8) | (1u << 9) | (1u << 10)
-        | (1u << 11);
+    private const uint ExpectedButtonMask = (1u << 0) | (1u << 1) | (1u << 2) | (1u << 3) | (1u << 4) | (1u << 8) | (1u << 9) | (1u << 10) | (1u << 11);
     private const string KeyboardA = "Keyboard:A";
     private const string KeyboardB = "Keyboard:B";
     private const string KeyboardC = "Keyboard:C";
@@ -29,13 +27,10 @@ public sealed class PspControllerTests
     [Fact]
     public void ProfilePublishesOneIntegratedPortAndEveryVisibleCommand()
     {
-        var settings = InputSettingsFunctions.Describe(
-            new MachineConfiguration(ModelConstants.Psp,
-                GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants.PpssppConstants.Id));
+        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.Psp, GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants.PpssppConstants.Id));
 
         var port = Assert.Single(settings.ControllerPorts);
-        var choice = Assert.Single(port.ControllerChoices,
-            item => item.Id == ControllerType.Joystick.ToString());
+        var choice = Assert.Single(port.ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
         Assert.Equal(EmulationControllerVisualIds.SonyPsp1000, choice.DefaultVisualId);
         var ids = choice.BindingDefinitions!.Select(item => item.Id).ToHashSet();
         Assert.Contains(InputSettingsFunctionsConstants.PspStickUp, ids);
@@ -67,11 +62,7 @@ public sealed class PspControllerTests
             [InputSettingsFunctionsConstants.PspStickLeft] = KeyboardJ,
             [InputSettingsFunctionsConstants.PspStickUp] = KeyboardK
         };
-        var configuration = new InputConfiguration(ControllerBindings:
-        [
-            new ControllerBinding(IntegratedPortIndex, ControllerType.Joystick,
-                ButtonMappings: bindings)
-        ]);
+        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(IntegratedPortIndex, ControllerType.Joystick, ButtonMappings: bindings)]);
         var snapshot = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey>

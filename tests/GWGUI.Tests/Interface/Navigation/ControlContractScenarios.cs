@@ -47,8 +47,7 @@ internal static class ControlContractScenarios
             try
             {
                 var navigation = updates.Section.NavigationControl;
-                var updateEntries = Assert.IsAssignableFrom<IEnumerable<UpdateNavigationItem>>(
-                    navigation.ItemsSource).ToArray();
+                var updateEntries = Assert.IsAssignableFrom<IEnumerable<UpdateNavigationItem>>(navigation.ItemsSource).ToArray();
                 Assert.True(updateEntries.Length >= 3);
                 Assert.All(updateEntries, entry =>
                 {
@@ -122,18 +121,15 @@ internal static class ControlContractScenarios
         });
         try
         {
-            Assert.Equal(GWGUI.App.Localization.Extensions.LocExtension.Get("Common.Close"),
-                window.FooterButton.Content);
+            Assert.Equal(GWGUI.App.Localization.Extensions.LocExtension.Get("Common.Close"), window.FooterButton.Content);
             Assert.Equal(Visibility.Collapsed, window.FooterHint.Visibility);
             Assert.False(window.RequiresFinishingBeforeClose);
 
             Assert.True(store.TryAdd(new PendingModuleInstallation(
                 "synthetic", "Synthetic", "1.0.0", "https://example.invalid/catalog.json",
-                new PreparedUpdateComponent("synthetic", UpdateComponentKind.Module,
-                    UpdateComponentOperation.InstallModule, "1.0.0", prepared), root)));
+                new PreparedUpdateComponent("synthetic", UpdateComponentKind.Module, UpdateComponentOperation.InstallModule, "1.0.0", prepared), root)));
 
-            Assert.Equal(GWGUI.App.Localization.Extensions.LocExtension.Get("Updates.FinishModuleInstallations"),
-                window.FooterButton.Content);
+            Assert.Equal(GWGUI.App.Localization.Extensions.LocExtension.Get("Updates.FinishModuleInstallations"), window.FooterButton.Content);
             Assert.Equal(Visibility.Visible, window.FooterHint.Visibility);
             Assert.True(window.RequiresFinishingBeforeClose);
 

@@ -12,8 +12,7 @@ public sealed class StaExecutionScenarios : IDisposable
 
     public StaExecutionScenarios()
     {
-        var ready = new TaskCompletionSource<(Dispatcher Dispatcher, ResourceApplication Application)>(
-            TaskCreationOptions.RunContinuationsAsynchronously);
+        var ready = new TaskCompletionSource<(Dispatcher Dispatcher, ResourceApplication Application)>(TaskCreationOptions.RunContinuationsAsynchronously);
         thread = new Thread(() =>
         {
             try
@@ -86,8 +85,7 @@ public sealed class StaExecutionScenarios : IDisposable
             if (!thread.Join(TimeSpan.FromSeconds(5)))
                 cleanupFailure ??= new TimeoutException("WPF test dispatcher did not stop.");
             else if (thread.IsAlive || !dispatcher.HasShutdownFinished)
-                cleanupFailure ??= new InvalidOperationException(
-                    "WPF test dispatcher thread did not finish its shutdown.");
+                cleanupFailure ??= new InvalidOperationException("WPF test dispatcher thread did not finish its shutdown.");
 
             GC.Collect();
             GC.WaitForPendingFinalizers();

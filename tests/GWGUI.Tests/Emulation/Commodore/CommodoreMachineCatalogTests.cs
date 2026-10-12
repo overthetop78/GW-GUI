@@ -66,8 +66,7 @@ public sealed class CommodoreMachineCatalogTests
     public async Task NonAmigaMediaPreparationDoesNotApplyAmigaScpConversion()
     {
         var configuration = new MachineConfiguration("C64", Emulator.ViceX64);
-        var media = new EmulationMedia("unavailable.scp", EmulationMediaSlot.Floppy0,
-            EmulationMediaType.Floppy, true, true);
+        var media = new EmulationMedia("unavailable.scp", EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy, true, true);
         Assert.Same(media, await RuntimeMediaFunctions.PrepareMediaAsync(configuration, media, "unused"));
         Assert.Same(configuration, await RuntimeMediaFunctions.PrepareConfigurationAsync(configuration, "unused"));
     }
@@ -75,13 +74,10 @@ public sealed class CommodoreMachineCatalogTests
     [Fact]
     public async Task AmigaPreparationPreservesSlotsAndLeavesNonFloppyMediaUnchanged()
     {
-        var configuration = new MachineConfiguration("A500", Emulator.PUAE,
-            Media: [new MediaConfiguration("disk.adf", MediaCategory.Floppy, SlotIndex: 3),
-                    new MediaConfiguration("hardfile.hdf", MediaCategory.HardDrive, SlotIndex: 1)]);
+        var configuration = new MachineConfiguration("A500", Emulator.PUAE, Media: [new MediaConfiguration("disk.adf", MediaCategory.Floppy, SlotIndex: 3), new MediaConfiguration("hardfile.hdf", MediaCategory.HardDrive, SlotIndex: 1)]);
         var prepared = await RuntimeMediaFunctions.PrepareConfigurationAsync(configuration, "unused");
         Assert.Equal(configuration.Media, prepared.Media);
-        var media = new EmulationMedia("hardfile.scp", EmulationMediaSlot.HardDisk0,
-            EmulationMediaType.HardDisk, true, true);
+        var media = new EmulationMedia("hardfile.scp", EmulationMediaSlot.HardDisk0, EmulationMediaType.HardDisk, true, true);
         Assert.Same(media, await RuntimeMediaFunctions.PrepareMediaAsync(configuration, media, "unused"));
     }
 
@@ -94,8 +90,7 @@ public sealed class CommodoreMachineCatalogTests
         using var http = new HttpClient();
         var module = new CommodoreEmulationModule("virtual-config", "virtual-base", http, "virtual-core");
         var configuration = new MachineConfiguration(model, core);
-        var fields = module.Describe(model, configuration).Blocks
-            .Where(block => block.Tab == EmulationMachineTab.Rom).SelectMany(block => block.Fields).ToArray();
+        var fields = module.Describe(model, configuration).Blocks.Where(block => block.Tab == EmulationMachineTab.Rom).SelectMany(block => block.Fields).ToArray();
         Assert.Equal(slotCount, fields.Length);
         Assert.All(fields, field => Assert.Equal(EmulationSettingsEditor.Path, field.Editor));
         Assert.Equal(slotCount, fields.Select(field => field.Id).Distinct().Count());

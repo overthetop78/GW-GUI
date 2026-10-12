@@ -89,6 +89,5 @@ internal static class ToolOperationScenarios
         Assert.Equal(1, erase); Assert.Equal(1, clean);
     }
 
-    private static string Text(RichTextBox output) =>
-        new TextRange(output.Document.ContentStart, output.Document.ContentEnd).Text;
+    private static string Text(RichTextBox output) => new TextRange(output.Document.ContentStart, output.Document.ContentEnd).Text;
 }

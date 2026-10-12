@@ -52,16 +52,13 @@ public sealed class AppleModuleTests
     {
         var configuration = new MachineConfiguration(model);
         var blocks = SettingsDescriptionFunctions.Create(configuration);
-        Assert.DoesNotContain(blocks.SelectMany(block => block.Fields),
-            field => field.Editor == EmulationSettingsEditor.DirectoryPath
-                || field.Id == SettingsConstants.ResourceUnavailableModel);
+        Assert.DoesNotContain(blocks.SelectMany(block => block.Fields), field => field.Editor == EmulationSettingsEditor.DirectoryPath || field.Id == SettingsConstants.ResourceUnavailableModel);
         var settings = InputSettingsFunctions.Describe(configuration);
         Assert.Equal(executable, ConfigurationFunctions.SupportsRuntime(model));
         Assert.Equal(executable, CoreCatalog.GetAll(model).Count > 0);
         Assert.Equal(keys, settings.Keyboard!.Definitions.Count);
         Assert.Equal(ports, settings.ControllerPorts.Count);
-        Assert.DoesNotContain(settings.Keyboard.Definitions, definition =>
-            definition.Id is nameof(EmulationKey.A) or nameof(EmulationKey.LeftAmiga));
+        Assert.DoesNotContain(settings.Keyboard.Definitions, definition => definition.Id is nameof(EmulationKey.A) or nameof(EmulationKey.LeftAmiga));
     }
 
     [Theory]
@@ -93,8 +90,7 @@ public sealed class AppleModuleTests
         Assert.Contains(EmulationKey.A, mapped.Keys);
         var old = InputSnapshotFunctions.Apply(Pressed(previous), restored.Input, model);
         var codes = KeyboardFunctions.CreateKeyMap();
-        Assert.DoesNotContain(old.Keys.Where(codes.ContainsKey).Select(key => codes[key]),
-            code => code == codes[target]);
+        Assert.DoesNotContain(old.Keys.Where(codes.ContainsKey).Select(key => codes[key]), code => code == codes[target]);
     }
 
     [Fact]

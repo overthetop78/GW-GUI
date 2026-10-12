@@ -147,6 +147,5 @@ internal static class ReadOperationScenarios
         public void Dispose() => Workspace.Dispose();
     }
 
-    private static string Text(RichTextBox output) =>
-        new TextRange(output.Document.ContentStart, output.Document.ContentEnd).Text;
+    private static string Text(RichTextBox output) => new TextRange(output.Document.ContentStart, output.Document.ContentEnd).Text;
 }

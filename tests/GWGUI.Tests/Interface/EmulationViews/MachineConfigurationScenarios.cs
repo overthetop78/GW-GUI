@@ -56,8 +56,7 @@ internal static class MachineConfigurationScenarios
             [new("general",EmulationMachineTab.General,"Emulation.Machine.Model",
                 [new("toggle",EmulationMachineTab.General,"general","Emulation.Value.Enabled",EmulationSettingsEditor.Toggle,configuration.Value,EnabledValue:"on",DisabledValue:"off"),
                  new("hidden",EmulationMachineTab.General,"general","Emulation.Machine.Model",EmulationSettingsEditor.Text,"hidden",IsVisible:false)]),
-             new("cpu",EmulationMachineTab.Cpu,"Emulation.Machine.Model",
-                [new("locked",EmulationMachineTab.Cpu,"cpu","Emulation.Machine.Model",EmulationSettingsEditor.Text,"fixed",IsEnabled:false)])]);
+             new("cpu",EmulationMachineTab.Cpu,"Emulation.Machine.Model", [new("locked",EmulationMachineTab.Cpu,"cpu","Emulation.Machine.Model",EmulationSettingsEditor.Text,"fixed",IsEnabled:false)])]);
         public void Cleanup() { EmulationConfigurationDraftStore.Remove(Id,"a"); EmulationConfigurationDraftStore.Remove(Id,"b"); }
     }
     internal static IEnumerable<T> Controls<T>(DependencyObject root) where T:DependencyObject
@@ -180,8 +179,7 @@ internal static class MachineConfigurationScenarios
         try
         {
             await view.EditConfigurationAsync(configuration);
-            var grain = Controls<Slider>(view).Single(slider =>
-                AutomationProperties.GetAutomationId(slider) == EmulationVideoProcessingCatalog.Grain);
+            var grain = Controls<Slider>(view).Single(slider => AutomationProperties.GetAutomationId(slider) == EmulationVideoProcessingCatalog.Grain);
 
             grain.Value = 60;
             await Dispatcher.Yield(DispatcherPriority.ContextIdle);

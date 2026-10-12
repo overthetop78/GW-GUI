@@ -49,66 +49,37 @@ public sealed class MediaConversionServiceTests
             new MediaSourceDescriptor("source.adf", []),
             TestWriter.TargetFormat,
             MediaKind.Floppy,
-            new SectorMediaImageRepresentation(new SectorImage(
-                TestWriter.TargetFormat,
-                1,
-                cylinders: 2,
-                heads: 2,
-                sectorsPerTrack: 1,
-                blocks)),
+            new SectorMediaImageRepresentation(new SectorImage(TestWriter.TargetFormat, 1, cylinders: 2, heads: 2, sectorsPerTrack: 1, blocks)),
             [],
             [],
             new Dictionary<string, string>());
         var writer = new TestWriter();
         var writers = new MediaImageWriterRegistry([writer]);
-        var service = new MediaConversionService(
-            new MediaRepresentationConverterRegistry([]),
-            writers,
-            new MediaImageWritingService(writers));
+        var service = new MediaConversionService(new MediaRepresentationConverterRegistry([]), writers, new MediaImageWritingService(writers));
         var reported = new List<MediaExplorationProgress>();
 
-        await service.ConvertAsync(new MediaConversionRequest(
-            source,
-            "converted.img",
-            TestWriter.TargetFormat,
-            progress: reported.Add));
+        await service.ConvertAsync(new MediaConversionRequest(source, "converted.img", TestWriter.TargetFormat, progress: reported.Add));
 
         Assert.Contains(reported, item => item.Detail == "Converting c=0,1:h=0,1");
-        Assert.Equal(
-            ["T0.0", "T0.1", "T1.0", "T1.1"],
-            reported.Where(item => item.Detail.StartsWith('T')).Select(item => item.Detail));
+        Assert.Equal(["T0.0", "T0.1", "T1.0", "T1.1"], reported.Where(item => item.Detail.StartsWith('T')).Select(item => item.Detail));
         Assert.Equal(100, reported[^1].Value);
     }
 
     [Fact]
     public async Task ConvertedRepresentationDestinationIsAdvertisedExecutedAndReported()
     {
-        var source = new MediaImageDocument(
-            new MediaSourceDescriptor("source.synthetic", []),
-            "source.flux",
-            MediaKind.Floppy,
-            new TestRepresentation(MediaRepresentationKind.Flux),
-            [],
-            [],
-            new Dictionary<string, string>());
+        var source = new MediaImageDocument(new MediaSourceDescriptor("source.synthetic", []), "source.flux", MediaKind.Floppy, new TestRepresentation(MediaRepresentationKind.Flux), [], [], new Dictionary<string, string>());
         var converter = new TestConverter();
         var writer = new TestWriter();
         var writers = new MediaImageWriterRegistry([writer]);
-        var service = new MediaConversionService(
-            new MediaRepresentationConverterRegistry([converter]),
-            writers,
-            new MediaImageWritingService(writers));
+        var service = new MediaConversionService(new MediaRepresentationConverterRegistry([converter]), writers, new MediaImageWritingService(writers));
         var reported = new List<MediaExplorationProgress>();
 
         var destination = Assert.Single(service.GetAvailableDestinations(source));
         Assert.Equal(TestWriter.TargetFormat, destination.FormatId);
         Assert.Equal(TestWriter.TargetExtension, destination.Extension);
 
-        var result = await service.ConvertAsync(new MediaConversionRequest(
-            source,
-            "converted.img",
-            TestWriter.TargetFormat,
-            progress: reported.Add));
+        var result = await service.ConvertAsync(new MediaConversionRequest(source, "converted.img", TestWriter.TargetFormat, progress: reported.Add));
 
         Assert.True(converter.WasCalled);
         Assert.True(writer.WasCalled);
@@ -146,19 +117,8 @@ public sealed class MediaConversionServiceTests
             CancellationToken cancellationToken = default)
         {
             WasCalled = true;
-            progress?.Invoke(new(
-                MediaExplorationProgressStage.ReadingMedia,
-                "test unit",
-                50,
-                source.MediaKind));
-            var converted = new MediaImageDocument(
-                source.Source,
-                targetFormatId,
-                source.MediaKind,
-                new TestRepresentation(targetRepresentationKind),
-                [],
-                [],
-                source.Metadata);
+            progress?.Invoke(new(MediaExplorationProgressStage.ReadingMedia, "test unit", 50, source.MediaKind));
+            var converted = new MediaImageDocument(source.Source, targetFormatId, source.MediaKind, new TestRepresentation(targetRepresentationKind), [], [], source.Metadata);
             return Task.FromResult(new MediaRepresentationConversionResult(converted, [], []));
         }
     }
@@ -175,10 +135,7 @@ public sealed class MediaConversionServiceTests
         public IReadOnlySet<string> ProducedFileExtensions { get; } = new HashSet<string> { TargetExtension };
         public bool ProducesMultipleFiles => false;
 
-        public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) =>
-            document.Representation.RepresentationKind == MediaRepresentationKind.Sectors &&
-            targetFormatId == TargetFormat &&
-            targetExtension == TargetExtension;
+        public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) => document.Representation.RepresentationKind == MediaRepresentationKind.Sectors && targetFormatId == TargetFormat && targetExtension == TargetExtension;
 
         public Task<IReadOnlyList<string>> WriteAsync(
             MediaImageDocument document,

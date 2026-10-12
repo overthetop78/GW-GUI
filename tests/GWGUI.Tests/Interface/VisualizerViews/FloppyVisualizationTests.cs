@@ -21,14 +21,7 @@ public sealed class FloppyVisualizationTests(StaExecutionScenarios sta)
     [Fact]
     public void FluxAndSectorDocumentsKeepDifferentInformation()
     {
-        var fluxTrack = new ProtectedTrack(
-            3,
-            1,
-            null,
-            [],
-            [],
-            [],
-            [new TrackFluxRevolution(25, new FluxRevolution(1_000, [10, 20, 30]))]);
+        var fluxTrack = new ProtectedTrack(3, 1, null, [], [], [], [new TrackFluxRevolution(25, new FluxRevolution(1_000, [10, 20, 30]))]);
         var fluxDocument = Document(new FluxMediaImageRepresentation(new ProtectedTrackImage([fluxTrack], false)));
         var flux = new FluxMediaVisualizationProvider().CreateDescriptor(fluxDocument);
 
@@ -119,10 +112,7 @@ public sealed class FloppyVisualizationTests(StaExecutionScenarios sta)
     [InlineData(0xFF)]
     public void FilledPayloadIsStillData(byte fill)
     {
-        var image = new SectorImage("test.sectors", 512, 1, 1, 1,
-        [
-            new SectorBlock(0, new SectorAddress(0, 0, 1), Enumerable.Repeat(fill, 512).ToArray(), true)
-        ]);
+        var image = new SectorImage("test.sectors", 512, 1, 1, 1, [new SectorBlock(0, new SectorAddress(0, 0, 1), Enumerable.Repeat(fill, 512).ToArray(), true)]);
 
         var presenter = new SectorMediaInspectorPresenter((key, _) => key);
         var sector = Assert.Single(Assert.Single(Assert.Single(presenter.BuildRenderModel(image).Surfaces).Tracks).Sectors);
@@ -130,12 +120,5 @@ public sealed class FloppyVisualizationTests(StaExecutionScenarios sta)
         Assert.Equal(SectorMediaElementState.WithData, sector.State);
     }
 
-    private static MediaImageDocument Document(GWGUI.MediaEngine.Interfaces.IMediaImageRepresentation representation) => new(
-        new MediaSourceDescriptor("memory.image", []),
-        "test.format",
-        MediaKind.Floppy,
-        representation,
-        [],
-        [],
-        new Dictionary<string, string>());
+    private static MediaImageDocument Document(GWGUI.MediaEngine.Interfaces.IMediaImageRepresentation representation) => new(new MediaSourceDescriptor("memory.image", []), "test.format", MediaKind.Floppy, representation, [], [], new Dictionary<string, string>());
 }

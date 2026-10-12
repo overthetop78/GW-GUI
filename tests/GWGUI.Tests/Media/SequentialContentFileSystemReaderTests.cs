@@ -15,16 +15,8 @@ public sealed class SequentialContentFileSystemReaderTests
     [Fact]
     public void KeepsStoredFileNameAndDoesNotPresentAnonymousBlocksAsFiles()
     {
-        var volume = new MediaVolumeDescriptor(
-            0, 4, MediaVolumeOrigins.SequentialContent, fileSystemId: FileSystemIds.SequentialContent);
-        var document = new MediaImageDocument(
-            new MediaSourceDescriptor("memory.uef", []),
-            "tape.uef",
-            MediaKind.Tape,
-            new SequentialMediaImageRepresentation(4),
-            [volume],
-            [],
-            new Dictionary<string, string>());
+        var volume = new MediaVolumeDescriptor(0, 4, MediaVolumeOrigins.SequentialContent, fileSystemId: FileSystemIds.SequentialContent);
+        var document = new MediaImageDocument(new MediaSourceDescriptor("memory.uef", []), "tape.uef", MediaKind.Tape, new SequentialMediaImageRepresentation(4), [volume], [], new Dictionary<string, string>());
         var blocks = new[]
         {
             new MediaSequentialDecodedBlock(0, new byte[] { 1, 2 }, true,
@@ -35,8 +27,7 @@ public sealed class SequentialContentFileSystemReaderTests
                 new Dictionary<string, string>())
         };
 
-        var result = new SequentialContentFileSystemReader().Read(
-            document, volume, new DecodedContent("acorn-tape", blocks, []), string.Empty);
+        var result = new SequentialContentFileSystemReader().Read(document, volume, new DecodedContent("acorn-tape", blocks, []), string.Empty);
 
         var file = Assert.Single(result.Entries);
         Assert.Equal("HELLO", file.Name);

@@ -39,8 +39,7 @@ public sealed class SegaEmulatorCatalogTests
     [Fact]
     public void RestartNoticeIsReservedForOptionsWhichRequireIt()
     {
-        var fields = CoreSettingsFunctions.Blocks(new(ModelConstants.MegaCd, "genesisplusgx"))
-            .SelectMany(block => block.Fields).ToArray();
+        var fields = CoreSettingsFunctions.Blocks(new(ModelConstants.MegaCd, "genesisplusgx")).SelectMany(block => block.Fields).ToArray();
         Assert.False(Assert.Single(fields, field => field.Id == "genesis_plus_gx_audio_filter").RequiresRestart);
         Assert.True(Assert.Single(fields, field => field.Id == "genesis_plus_gx_cart_size").RequiresRestart);
     }
@@ -68,8 +67,7 @@ public sealed class SegaEmulatorCatalogTests
     [Fact]
     public void MegaCdKeepsItsOwnCdSettings()
     {
-        var fields = CoreSettingsFunctions.Blocks(new(ModelConstants.MegaCd, "genesisplusgx"))
-            .SelectMany(block => block.Fields).ToArray();
+        var fields = CoreSettingsFunctions.Blocks(new(ModelConstants.MegaCd, "genesisplusgx")).SelectMany(block => block.Fields).ToArray();
         Assert.Contains(fields, field => field.Id == "genesis_plus_gx_add_on");
         Assert.Contains(fields, field => field.Id == "genesis_plus_gx_system_bram");
     }
@@ -86,8 +84,7 @@ public sealed class SegaEmulatorCatalogTests
     [Fact]
     public void BlueMsxSegaMachinesDoNotOfferMsxCartridgeMappers()
     {
-        var fields = CoreSettingsFunctions.Blocks(new(ModelConstants.Sg1000, "bluemsx"))
-            .SelectMany(block => block.Fields).ToArray();
+        var fields = CoreSettingsFunctions.Blocks(new(ModelConstants.Sg1000, "bluemsx")).SelectMany(block => block.Fields).ToArray();
         var mapper = Assert.Single(fields, field => field.Id == "bluemsx_cartmapper");
         Assert.Equal(["Auto", "SG1000", "SG1000Castle", "SG1000RamA", "SG1000RamB"], mapper.Choices!.Select(choice => choice.Id));
         Assert.DoesNotContain(fields, field => field.Id == "bluemsx_ym2413_enable");
@@ -100,11 +97,8 @@ public sealed class SegaEmulatorCatalogTests
     [InlineData("SystemSp")]
     public void FlycastArcadeMachinesDoNotOfferDreamcastVmuSettings(string model)
     {
-        var fields = CoreSettingsFunctions.Blocks(new(model, "flycast"))
-            .SelectMany(block => block.Fields).ToArray();
-        Assert.DoesNotContain(fields, field => field.Id.Contains("vmu", StringComparison.Ordinal)
-            || field.Id.StartsWith("reicast_device_port", StringComparison.Ordinal)
-            || field.Id == "reicast_dc_32mb_mod");
+        var fields = CoreSettingsFunctions.Blocks(new(model, "flycast")).SelectMany(block => block.Fields).ToArray();
+        Assert.DoesNotContain(fields, field => field.Id.Contains("vmu", StringComparison.Ordinal) || field.Id.StartsWith("reicast_device_port", StringComparison.Ordinal) || field.Id == "reicast_dc_32mb_mod");
         Assert.Contains(fields, field => field.Id == "reicast_allow_service_buttons");
     }
 
@@ -143,10 +137,7 @@ public sealed class SegaEmulatorCatalogTests
     {
         var assembly = typeof(EmulatorCatalog).Assembly;
         var localization = new EmulationModuleLocalization(assembly, "GWGUI.Emulation.Sega.Resources.");
-        var cultures = assembly.GetManifestResourceNames()
-            .Select(name => Regex.Match(name, @"\.([a-z]{2}(?:-[A-Za-z]{2,4})?)\.resources$"))
-            .Where(match => match.Success)
-            .Select(match => CultureInfo.GetCultureInfo(match.Groups[1].Value))
+        var cultures = assembly.GetManifestResourceNames().Select(name => Regex.Match(name, @"\.([a-z]{2}(?:-[A-Za-z]{2,4})?)\.resources$")).Where(match => match.Success).Select(match => CultureInfo.GetCultureInfo(match.Groups[1].Value))
             .DistinctBy(culture => culture.Name).ToArray();
         Assert.Equal(29, cultures.Length);
         var keys = CoreCatalog.All.SelectMany(core => core.Options)
@@ -175,8 +166,7 @@ public sealed class SegaEmulatorCatalogTests
     [InlineData("DreamcastVmu", "vemulator")]
     public void MachineOffersItsDeclaredCores(string machineId, params string[] expected)
     {
-        Assert.Equal(expected.Order(StringComparer.Ordinal),
-            EmulatorCatalog.GetAll(machineId).Select(item => item.Id).Order(StringComparer.Ordinal));
+        Assert.Equal(expected.Order(StringComparer.Ordinal), EmulatorCatalog.GetAll(machineId).Select(item => item.Id).Order(StringComparer.Ordinal));
         Assert.Contains(EmulatorCatalog.DefaultFor(machineId), expected);
     }
 
@@ -187,8 +177,7 @@ public sealed class SegaEmulatorCatalogTests
         Assert.Equal(16, adapters.Count);
         Assert.Equal(adapters.Count, adapters.Select(adapter => adapter.EmulatorId).Distinct().Count());
         Assert.Equal(19, ModelCatalog.All.Count);
-        Assert.All(ModelCatalog.All, model => Assert.Contains(EmulatorCatalog.GetAll(model.Id),
-            core => core.Id == EmulatorCatalog.DefaultFor(model.Id)));
+        Assert.All(ModelCatalog.All, model => Assert.Contains(EmulatorCatalog.GetAll(model.Id), core => core.Id == EmulatorCatalog.DefaultFor(model.Id)));
     }
 
     [Theory]
@@ -199,19 +188,16 @@ public sealed class SegaEmulatorCatalogTests
     {
         var configuration = new MachineConfiguration(model, "bluemsx");
         Assert.Equal(profile, CoreSettingsFunctions.Configure(configuration).Options!["bluemsx_msxtype"]);
-        Assert.DoesNotContain(CoreSettingsFunctions.Blocks(configuration).SelectMany(block => block.Fields),
-            field => field.Id == "bluemsx_msxtype");
+        Assert.DoesNotContain(CoreSettingsFunctions.Blocks(configuration).SelectMany(block => block.Fields), field => field.Id == "bluemsx_msxtype");
     }
 
     [Fact]
     public void FirmwareSlotsStaySpecificToTheirMachineAndCanHaveSeveralFiles()
     {
         var flycast = EmulatorCatalog.CreateAdapters().Single(adapter => adapter.EmulatorId == "flycast");
-        Assert.Equal(["dc/dc_boot.bin", "dc/dc_flash.bin"],
-            flycast.GetFirmwareSlots(new(ModelConstants.Dreamcast, flycast.EmulatorId)).Select(slot => slot.FileName));
+        Assert.Equal(["dc/dc_boot.bin", "dc/dc_flash.bin"], flycast.GetFirmwareSlots(new(ModelConstants.Dreamcast, flycast.EmulatorId)).Select(slot => slot.FileName));
         Assert.Equal("dc/segasp.zip", Assert.Single(flycast.GetFirmwareSlots(new(ModelConstants.SystemSp, flycast.EmulatorId))).FileName);
-        Assert.Empty(EmulatorCatalog.CreateAdapters().Single(adapter => adapter.EmulatorId == "gearsystem")
-            .GetFirmwareSlots(new(ModelConstants.Sg1000, "gearsystem")));
+        Assert.Empty(EmulatorCatalog.CreateAdapters().Single(adapter => adapter.EmulatorId == "gearsystem").GetFirmwareSlots(new(ModelConstants.Sg1000, "gearsystem")));
     }
 
     [Fact]

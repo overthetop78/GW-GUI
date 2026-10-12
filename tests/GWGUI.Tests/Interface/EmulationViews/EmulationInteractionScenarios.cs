@@ -18,8 +18,7 @@ internal static class EmulationInteractionScenarios
         var directory = Path.Combine(Path.GetTempPath(), "gwgui-error-console-" + Guid.NewGuid().ToString("N"));
         var terminal = new TerminalSection();
         var settings = new AppSettings();
-        var controller = new TerminalPanelController(terminal, new RowDefinition(), new GridSplitter(),
-            () => settings);
+        var controller = new TerminalPanelController(terminal, new RowDefinition(), new GridSplitter(), () => settings);
         Action<string> append = controller.AppendError;
         ErrorLog.EntryWritten += append;
         try
@@ -34,8 +33,7 @@ internal static class EmulationInteractionScenarios
             Assert.True(controller.IsVisible);
 
             ErrorLog.EntryWritten -= append;
-            Assert.NotNull(ErrorLog.Write(new InvalidOperationException("after detach"),
-                "detached", directory));
+            Assert.NotNull(ErrorLog.Write(new InvalidOperationException("after detach"), "detached", directory));
             Assert.DoesNotContain("after detach", terminal.OutputText, StringComparison.Ordinal);
         }
         finally

@@ -16,16 +16,13 @@ public sealed class EpochModuleTests
     {
         using var http = new System.Net.Http.HttpClient();
         var module = new EpochEmulationModule("unused", "unused", http, "unused");
-        var cultures = typeof(EpochEmulationModule).Assembly.GetManifestResourceNames()
-            .Where(name => name.EndsWith(".resources", StringComparison.Ordinal))
-            .Select(name => name[..^10].Split('.').Last()).Distinct()
+        var cultures = typeof(EpochEmulationModule).Assembly.GetManifestResourceNames().Where(name => name.EndsWith(".resources", StringComparison.Ordinal)).Select(name => name[..^10].Split('.').Last()).Distinct()
             .Where(name => name != "00-Base").Select(CultureInfo.GetCultureInfo).ToArray();
         foreach (var model in Enum.GetValues<MachineModel>())
         {
             var config = new MachineConfiguration(model);
             var input = module.DescribeInputSettings(config);
-            var keys = module.Describe(model.ToString(), config).Blocks.SelectMany(block => block.Fields)
-                .Select(field => field.LabelResourceKey)
+            var keys = module.Describe(model.ToString(), config).Blocks.SelectMany(block => block.Fields).Select(field => field.LabelResourceKey)
                 .Concat(input.ControllerPorts.SelectMany(port => port.ControllerChoices).Select(choice => choice.DisplayResourceKey))
                 .Concat(input.ControllerPorts.SelectMany(port => port.Bindings.Definitions).Select(action => action.DisplayResourceKey))
                 .Where(key => key.StartsWith("Emulation.Epoch.", StringComparison.Ordinal)).Distinct();

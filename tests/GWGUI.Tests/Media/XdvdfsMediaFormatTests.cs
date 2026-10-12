@@ -37,9 +37,7 @@ public sealed class XdvdfsMediaFormatTests
             var document = await reader.ReadAsync(context, CancellationToken.None);
             Assert.Equal(OpticalImageFormatIds.XboxXdvdfs, document.FormatId);
 
-            var explorer = new GWGUI.MediaFileSystems.Exploration.MediaExplorer(
-                [new XdvdfsFileSystemReader()],
-                new MediaVolumeDetectorRegistry([]));
+            var explorer = new GWGUI.MediaFileSystems.Exploration.MediaExplorer([new XdvdfsFileSystemReader()], new MediaVolumeDetectorRegistry([]));
             var result = await explorer.ExploreAsync(document);
             var file = Assert.Single(Assert.Single(result.ExploredVolumes).FileSystem!.Entries);
             Assert.Equal("default.xbe", file.Name);
@@ -49,13 +47,10 @@ public sealed class XdvdfsMediaFormatTests
             await new XdvdfsWriter().WriteAsync(document, outputPath, OpticalImageFormatIds.XboxXdvdfs);
             Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
             var convertedPath = Path.Combine(directory, "converted.iso");
-            await MediaEngineComposition.CreateDefault().OpticalConversionService.ConvertAsync(
-                sourcePath, convertedPath, OpticalImageFormatIds.XboxXdvdfs);
+            await MediaEngineComposition.CreateDefault().OpticalConversionService.ConvertAsync(sourcePath, convertedPath, OpticalImageFormatIds.XboxXdvdfs);
             Assert.Equal(source, await File.ReadAllBytesAsync(convertedPath));
-            Assert.Contains(MediaImageWriterIds.OpticalXboxXdvdfs,
-                MediaWritingComposition.CreateDefault().Writers.Select(writer => writer.Id));
-            Assert.Contains(DiskImageFileExtensions.Iso,
-                MediaRecognitionComposition.CreateDefault().SupportedExtensions);
+            Assert.Contains(MediaImageWriterIds.OpticalXboxXdvdfs, MediaWritingComposition.CreateDefault().Writers.Select(writer => writer.Id));
+            Assert.Contains(DiskImageFileExtensions.Iso, MediaRecognitionComposition.CreateDefault().SupportedExtensions);
         }
         finally
         {

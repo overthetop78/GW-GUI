@@ -48,10 +48,7 @@ public sealed class NecControllerInputTests
             DeviceId = "gameinput:xbox360"
         };
         var input = EmulationInputSnapshot.Empty with { Controllers = [xbox360] };
-        var configuration = new InputConfiguration(ControllerBindings:
-        [
-            new ControllerBinding(0, controllerType, "gameinput:rematch")
-        ]);
+        var configuration = new InputConfiguration(ControllerBindings: [new ControllerBinding(0, controllerType, "gameinput:rematch")]);
 
         var mapped = InputSnapshotFunctions.Apply(input, configuration, false);
 

@@ -23,15 +23,12 @@ public sealed class GameCubeIsoMediaFormatTests
             await File.WriteAllBytesAsync(sourcePath, source);
 
             var engine = MediaEngineComposition.CreateDefault();
-            var document = await engine.ReadingService.ReadAsync(
-                new MediaSourceDescriptor(sourcePath, []));
+            var document = await engine.ReadingService.ReadAsync(new MediaSourceDescriptor(sourcePath, []));
 
             Assert.Equal(OpticalImageFormatIds.Iso, document.FormatId);
-            await engine.OpticalConversionService.ConvertAsync(
-                sourcePath, outputPath, OpticalImageFormatIds.Iso);
+            await engine.OpticalConversionService.ConvertAsync(sourcePath, outputPath, OpticalImageFormatIds.Iso);
             Assert.Equal(source, await File.ReadAllBytesAsync(outputPath));
-            Assert.Contains(DiskImageFileExtensions.Gcm,
-                MediaRecognitionComposition.CreateDefault().SupportedExtensions);
+            Assert.Contains(DiskImageFileExtensions.Gcm, MediaRecognitionComposition.CreateDefault().SupportedExtensions);
         }
         finally
         {

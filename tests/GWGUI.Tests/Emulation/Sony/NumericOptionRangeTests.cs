@@ -38,8 +38,7 @@ public sealed class NumericOptionRangeTests
         var configuration = Configuration(OptionConstants.CpuFreqScaleKey, input);
         var native = CoreSettingsFunctions.Configure(Definition(), configuration);
         Assert.Equal(expected, native.Options![OptionConstants.CpuFreqScaleKey]);
-        var field = CoreSettingsFunctions.Blocks(Definition(), native).SelectMany(block => block.Fields)
-            .Single(field => field.Id == OptionConstants.CpuFreqScaleKey);
+        var field = CoreSettingsFunctions.Blocks(Definition(), native).SelectMany(block => block.Fields).Single(field => field.Id == OptionConstants.CpuFreqScaleKey);
         Assert.Equal(EmulationSettingsEditor.Slider, field.Editor);
         Assert.Equal(expected.TrimEnd('%'), field.Value);
     }

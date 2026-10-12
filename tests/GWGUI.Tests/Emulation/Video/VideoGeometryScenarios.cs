@@ -42,10 +42,8 @@ internal static class VideoGeometryScenarios
     public static void FrameAspect()
     {
         var pixels = new byte[640 * 240 * 4];
-        var reported = new GWGUI.Emulation.Contracts.VideoFrame(pixels, 640, 240, 640 * 4,
-            GWGUI.Emulation.Enums.EmulationPixelFormat.Xrgb8888, 4f / 3f, 1, TimeSpan.Zero);
-        Assert.Equal(4d / 3d,
-            GWGUI.App.Presenters.Emulation.Machine.MachineVideoPresenter.FrameAspectRatio(reported), 6);
+        var reported = new GWGUI.Emulation.Contracts.VideoFrame(pixels, 640, 240, 640 * 4, GWGUI.Emulation.Enums.EmulationPixelFormat.Xrgb8888, 4f / 3f, 1, TimeSpan.Zero);
+        Assert.Equal(4d / 3d, GWGUI.App.Presenters.Emulation.Machine.MachineVideoPresenter.FrameAspectRatio(reported), 6);
         Assert.Equal(640d / 240d,
             GWGUI.App.Presenters.Emulation.Machine.MachineVideoPresenter.FrameAspectRatio(
                 reported with { AspectRatio = 0 }), 6);

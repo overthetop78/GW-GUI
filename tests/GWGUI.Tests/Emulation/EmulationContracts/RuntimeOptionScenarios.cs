@@ -16,50 +16,34 @@ internal static class RuntimeOptionScenarios
 {
     internal static void Atari800HotAndRestartOptions()
     {
-        Assert.False(RuntimeOptionFunctions.RequiresRestart(
-            Emulator.Atari800, EightBitSettingsConstants.ShowActivityOptionKey));
-        Assert.False(RuntimeOptionFunctions.RequiresRestart(
-            Emulator.Atari800, EightBitSettingsConstants.ShowSectorOptionKey));
-        Assert.False(RuntimeOptionFunctions.RequiresRestart(
-            Emulator.Atari800, EightBitSettingsConstants.ShowSpeedOptionKey));
-        Assert.True(RuntimeOptionFunctions.RequiresRestart(
-            Emulator.Atari800, EightBitSettingsConstants.RealTimeClockOptionKey));
-        Assert.True(RuntimeOptionFunctions.RequiresRestart(
-            Emulator.Atari800, EightBitSettingsConstants.CassetteBootOptionKey));
-        Assert.True(RuntimeOptionFunctions.RequiresRestart(
-            Emulator.Atari800, EightBitSettingsConstants.PrinterDeviceOptionKey));
-        Assert.True(RuntimeOptionFunctions.RequiresRestart(
-            Emulator.Atari800, EightBitSettingsConstants.SerialDeviceOptionKey));
+        Assert.False(RuntimeOptionFunctions.RequiresRestart(Emulator.Atari800, EightBitSettingsConstants.ShowActivityOptionKey));
+        Assert.False(RuntimeOptionFunctions.RequiresRestart(Emulator.Atari800, EightBitSettingsConstants.ShowSectorOptionKey));
+        Assert.False(RuntimeOptionFunctions.RequiresRestart(Emulator.Atari800, EightBitSettingsConstants.ShowSpeedOptionKey));
+        Assert.True(RuntimeOptionFunctions.RequiresRestart(Emulator.Atari800, EightBitSettingsConstants.RealTimeClockOptionKey));
+        Assert.True(RuntimeOptionFunctions.RequiresRestart(Emulator.Atari800, EightBitSettingsConstants.CassetteBootOptionKey));
+        Assert.True(RuntimeOptionFunctions.RequiresRestart(Emulator.Atari800, EightBitSettingsConstants.PrinterDeviceOptionKey));
+        Assert.True(RuntimeOptionFunctions.RequiresRestart(Emulator.Atari800, EightBitSettingsConstants.SerialDeviceOptionKey));
 
-        var settings = SettingsDescriptionFunctions.Create(
-            new MachineConfiguration(MachineModel.Atari800));
-        var fields = settings.SelectMany(block => block.Fields)
-            .ToDictionary(field => field.Id, StringComparer.Ordinal);
+        var settings = SettingsDescriptionFunctions.Create(new MachineConfiguration(MachineModel.Atari800));
+        var fields = settings.SelectMany(block => block.Fields).ToDictionary(field => field.Id, StringComparer.Ordinal);
         Assert.True(fields[EightBitSettingsConstants.CassetteBootOptionKey].RequiresRestart);
         Assert.True(fields[EightBitSettingsConstants.RealTimeClockOptionKey].RequiresRestart);
         Assert.True(fields[EightBitSettingsConstants.PrinterDeviceOptionKey].RequiresRestart);
         Assert.True(fields[EightBitSettingsConstants.SerialDeviceOptionKey].RequiresRestart);
         Assert.DoesNotContain(EightBitSettingsConstants.SioAccelerationOptionKey, fields.Keys);
 
-        var artifacting = fields[EightBitSettingsConstants.ArtifactingModeOptionKey].Choices!
-            .ToDictionary(choice => choice.Id, StringComparer.Ordinal);
-        Assert.Equal("Emulation.Value.None",
-            artifacting[EightBitSettingsConstants.None].DisplayResourceKey);
-        Assert.Equal("Emulation.Atari.Video.Artifacting.BlueBrown1",
-            artifacting["blue/brown 1"].DisplayResourceKey);
+        var artifacting = fields[EightBitSettingsConstants.ArtifactingModeOptionKey].Choices!.ToDictionary(choice => choice.Id, StringComparer.Ordinal);
+        Assert.Equal("Emulation.Value.None", artifacting[EightBitSettingsConstants.None].DisplayResourceKey);
+        Assert.Equal("Emulation.Atari.Video.Artifacting.BlueBrown1", artifacting["blue/brown 1"].DisplayResourceKey);
         Assert.Equal("GTIA", artifacting["GTIA"].InvariantDisplayValue);
 
-        var palettes = fields[EightBitSettingsConstants.ExternalPaletteOptionKey].Choices!
-            .ToDictionary(choice => choice.Id, StringComparer.Ordinal);
+        var palettes = fields[EightBitSettingsConstants.ExternalPaletteOptionKey].Choices!.ToDictionary(choice => choice.Id, StringComparer.Ordinal);
         Assert.Equal("Emulation.Value.Default", palettes["default"].DisplayResourceKey);
         Assert.Equal("Emulation.Value.Gray", palettes["gray"].DisplayResourceKey);
         Assert.Equal("jakub", palettes["jakub"].InvariantDisplayValue);
 
-        var controllerCompatibility = fields[
-            EightBitSettingsConstants.ControllerCompatibilityOptionKey].Choices!
-            .ToDictionary(choice => choice.Id, StringComparer.Ordinal);
-        Assert.Equal("Emulation.Atari.Controller.DualStick",
-            controllerCompatibility[EightBitSettingsConstants.DualStick].DisplayResourceKey);
+        var controllerCompatibility = fields[EightBitSettingsConstants.ControllerCompatibilityOptionKey].Choices!.ToDictionary(choice => choice.Id, StringComparer.Ordinal);
+        Assert.Equal("Emulation.Atari.Controller.DualStick", controllerCompatibility[EightBitSettingsConstants.DualStick].DisplayResourceKey);
     }
 
     internal static void OnlyRecognizedHotOptionsArePropagated()
@@ -100,9 +84,7 @@ internal static class RuntimeOptionScenarios
         };
         foreach (var expected in expectedFields)
         {
-            var actual = SettingsDescriptionFunctions.Create(new MachineConfiguration(expected.Key))
-                .SelectMany(block => block.Fields)
-                .Where(field => field.DefaultFolderCategory == EmulationDefaultFolderCategory.Firmware)
+            var actual = SettingsDescriptionFunctions.Create(new MachineConfiguration(expected.Key)).SelectMany(block => block.Fields).Where(field => field.DefaultFolderCategory == EmulationDefaultFolderCategory.Firmware)
                 .Select(field => field.Id).ToArray();
             Assert.Equal(expected.Value, actual);
         }
@@ -114,8 +96,7 @@ internal static class RuntimeOptionScenarios
                      MachineModel.XlXe, MachineModel.Xegs, MachineModel.Atari5200
                  })
         {
-            var fields = SettingsDescriptionFunctions.Create(new MachineConfiguration(model))
-                .SelectMany(block => block.Fields).ToArray();
+            var fields = SettingsDescriptionFunctions.Create(new MachineConfiguration(model)).SelectMany(block => block.Fields).ToArray();
             Assert.Single(fields, field => field.Id == SettingsConstants.SystemFirmware);
         }
 
@@ -123,15 +104,13 @@ internal static class RuntimeOptionScenarios
         var previous = new FirmwareConfiguration(FirmwareCategory.AtariXlOs, "previous.rom", false);
         var xegs = new FirmwareConfiguration(FirmwareCategory.AtariXegsBios, "xegs.rom", false);
         var selected = new FirmwareConfiguration(FirmwareCategory.AtariXlOs, "selected.rom", false);
-        var configured = FirmwareSelectionFunctions.ReplaceField(MachineModel.Xegs,
-            [basic, previous, xegs], SettingsConstants.SystemFirmware, selected);
+        var configured = FirmwareSelectionFunctions.ReplaceField(MachineModel.Xegs, [basic, previous, xegs], SettingsConstants.SystemFirmware, selected);
 
         Assert.Contains(basic, configured);
         Assert.Contains(xegs, configured);
         Assert.Contains(selected, configured);
         Assert.DoesNotContain(previous, configured);
-        Assert.Single(configured,
-            item => FirmwareSelectionFunctions.IsSystemRom(MachineModel.Xegs, item.Category));
+        Assert.Single(configured, item => FirmwareSelectionFunctions.IsSystemRom(MachineModel.Xegs, item.Category));
     }
 
     internal static void AtariExternalFirmwareModelsExposeOnlyUsableRomTabs()
@@ -143,13 +122,8 @@ internal static class RuntimeOptionScenarios
                      MachineModel.JaguarCd
                  })
         {
-            Assert.Contains(SettingsTab.Firmware,
-                CompatibilityCatalog.Get(model).VisibleTabs);
-            var firmwareFields = SettingsDescriptionFunctions.Create(
-                    new MachineConfiguration(model))
-                .SelectMany(block => block.Fields)
-                .Where(field => field.DefaultFolderCategory == EmulationDefaultFolderCategory.Firmware)
-                .ToArray();
+            Assert.Contains(SettingsTab.Firmware, CompatibilityCatalog.Get(model).VisibleTabs);
+            var firmwareFields = SettingsDescriptionFunctions.Create(new MachineConfiguration(model)).SelectMany(block => block.Fields).Where(field => field.DefaultFolderCategory == EmulationDefaultFolderCategory.Firmware).ToArray();
             Assert.Equal(SettingsConstants.SystemFirmware, Assert.Single(firmwareFields).Id);
         }
 
@@ -159,14 +133,10 @@ internal static class RuntimeOptionScenarios
                      MachineModel.Jaguar
                  })
         {
-            Assert.DoesNotContain(SettingsTab.Firmware,
-                CompatibilityCatalog.Get(model).VisibleTabs);
-            Assert.DoesNotContain(SettingsDescriptionFunctions.Create(
-                    new MachineConfiguration(model)).SelectMany(block => block.Fields),
-                field => field.DefaultFolderCategory == EmulationDefaultFolderCategory.Firmware);
+            Assert.DoesNotContain(SettingsTab.Firmware, CompatibilityCatalog.Get(model).VisibleTabs);
+            Assert.DoesNotContain(SettingsDescriptionFunctions.Create(new MachineConfiguration(model)).SelectMany(block => block.Fields), field => field.DefaultFolderCategory == EmulationDefaultFolderCategory.Firmware);
         }
     }
 
-    private static EmulationOption Option(string key, bool restart) =>
-        new(key, key, null, null, "disabled", "disabled", [], RequiresRestart: restart);
+    private static EmulationOption Option(string key, bool restart) => new(key, key, null, null, "disabled", "disabled", [], RequiresRestart: restart);
 }

@@ -20,12 +20,9 @@ internal static class AtariCartridgeScenarios
 
     internal static void CartridgeIsTheInitialAtari800Content()
     {
-        var floppy = new MediaConfiguration("third.atr", MediaCategory.Floppy,
-            EmulationMediaSlot.Floppy0, MountOrder: 0);
-        var cassette = new MediaConfiguration("first.cas", MediaCategory.Cassette,
-            EmulationMediaSlot.Cassette0, MountOrder: 2);
-        var cartridge = new MediaConfiguration("second.car", MediaCategory.Cartridge,
-            EmulationMediaSlot.Cartridge0, MountOrder: 3);
+        var floppy = new MediaConfiguration("third.atr", MediaCategory.Floppy, EmulationMediaSlot.Floppy0, MountOrder: 0);
+        var cassette = new MediaConfiguration("first.cas", MediaCategory.Cassette, EmulationMediaSlot.Cassette0, MountOrder: 2);
+        var cartridge = new MediaConfiguration("second.car", MediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, MountOrder: 3);
 
         Assert.Equal(cartridge, Atari800MediaFunctions.Primary([floppy, cassette, cartridge]));
         Assert.Equal(cassette, Atari800MediaFunctions.Primary([floppy, cassette]));
@@ -35,8 +32,7 @@ internal static class AtariCartridgeScenarios
     private static void AssertExtensions(MachineModel model, params string[] expected)
     {
         var storage = StorageSettingsFunctions.Describe(new MachineConfiguration(model));
-        var cartridge = Assert.Single(storage.AvailableDevices,
-            device => device.Slot == EmulationMediaSlot.Cartridge0);
+        var cartridge = Assert.Single(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cartridge0);
         Assert.Equal(expected, cartridge.AcceptedExtensions);
     }
 }

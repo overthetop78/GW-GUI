@@ -17,40 +17,29 @@ public sealed class ControllerPortResolutionTests
     [Fact]
     public void UsesTheOnlyAdvertisedJoypadSubclass()
     {
-        IReadOnlyList<IReadOnlyList<ControllerDevice>> devices =
-            [[new ControllerDevice(DualShock2Name, DualShock2Device)]];
-        Assert.Equal(DualShock2Device,
-            ControllerPortFunctions.Resolve(ControllerType.Joystick, Ports.MinimumControllerPort, devices));
-        Assert.Throws<ArgumentOutOfRangeException>(() =>
-            ControllerPortFunctions.Resolve(ControllerType.Joystick, Ports.OneControllerPort, devices));
+        IReadOnlyList<IReadOnlyList<ControllerDevice>> devices = [[new ControllerDevice(DualShock2Name, DualShock2Device)]];
+        Assert.Equal(DualShock2Device, ControllerPortFunctions.Resolve(ControllerType.Joystick, Ports.MinimumControllerPort, devices));
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerPortFunctions.Resolve(ControllerType.Joystick, Ports.OneControllerPort, devices));
     }
 
     [Fact]
     public void PrefersTheGenericJoypadWhenAdvertised()
     {
-        IReadOnlyList<IReadOnlyList<ControllerDevice>> devices =
-            [[new ControllerDevice(DualShock2Name, DualShock2Device),
-              new ControllerDevice(DigitalName, Native.JoypadDevice)]];
-        Assert.Equal(Native.JoypadDevice,
-            ControllerPortFunctions.Resolve(ControllerType.Joystick, Ports.MinimumControllerPort, devices));
+        IReadOnlyList<IReadOnlyList<ControllerDevice>> devices = [[new ControllerDevice(DualShock2Name, DualShock2Device), new ControllerDevice(DigitalName, Native.JoypadDevice)]];
+        Assert.Equal(Native.JoypadDevice, ControllerPortFunctions.Resolve(ControllerType.Joystick, Ports.MinimumControllerPort, devices));
     }
 
     [Fact]
     public void DoesNotChooseAnAmbiguousSubclass()
     {
-        IReadOnlyList<IReadOnlyList<ControllerDevice>> devices =
-            [[new ControllerDevice(DualShock2Name, DualShock2Device),
-              new ControllerDevice(AlternativeName, AlternativeJoypadDevice)]];
-        Assert.Throws<ArgumentOutOfRangeException>(() =>
-            ControllerPortFunctions.Resolve(ControllerType.Joystick, Ports.MinimumControllerPort, devices));
+        IReadOnlyList<IReadOnlyList<ControllerDevice>> devices = [[new ControllerDevice(DualShock2Name, DualShock2Device), new ControllerDevice(AlternativeName, AlternativeJoypadDevice)]];
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerPortFunctions.Resolve(ControllerType.Joystick, Ports.MinimumControllerPort, devices));
     }
 
     [Fact]
     public void UnspecifiedControllerInformationUsesTheGenericJoypad()
     {
-        Assert.Equal(Native.JoypadDevice,
-            ControllerPortFunctions.Resolve(ControllerType.Joystick, Ports.MinimumControllerPort, []));
-        Assert.Throws<ArgumentOutOfRangeException>(() =>
-            ControllerPortFunctions.Resolve(ControllerType.Joystick, Ports.MaximumControllerPortCount, []));
+        Assert.Equal(Native.JoypadDevice, ControllerPortFunctions.Resolve(ControllerType.Joystick, Ports.MinimumControllerPort, []));
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerPortFunctions.Resolve(ControllerType.Joystick, Ports.MaximumControllerPortCount, []));
     }
 }

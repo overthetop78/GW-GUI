@@ -14,8 +14,7 @@ public sealed class ControllerArtworkCatalogTests
     [Fact]
     public void EveryControllerProfileHasInitializedZones()
     {
-        var field = typeof(ControllerArtworkCatalog).GetField(
-            DefinitionsFieldName, BindingFlags.NonPublic | BindingFlags.Static);
+        var field = typeof(ControllerArtworkCatalog).GetField(DefinitionsFieldName, BindingFlags.NonPublic | BindingFlags.Static);
         Assert.NotNull(field);
 
         var lazy = field.GetValue(null);
