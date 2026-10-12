@@ -7,8 +7,7 @@ internal static class LauncherPolicy
 {
     internal static int Run(string baseDirectory, string[] args, Func<string, MethodInfo?> loadEntryPoint)
     {
-        var entryPoint = loadEntryPoint(Path.Combine(baseDirectory, "lib", "gwgui.app.dll"))
-            ?? throw new InvalidOperationException("gwgui.app.dll has no entry point.");
+        var entryPoint = loadEntryPoint(Path.Combine(baseDirectory, "lib", "gwgui.app.dll")) ?? throw new InvalidOperationException("gwgui.app.dll has no entry point.");
         var parameters = entryPoint.GetParameters().Length == 0 ? null : new object?[] { args };
         return entryPoint.Invoke(null, parameters) is int exitCode ? exitCode : 0;
     }
