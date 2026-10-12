@@ -19,15 +19,11 @@ public sealed class Engine
         return Adapter(configuration).Create(configuration, context);
     }
 
-    internal IEmulatorAdapter Adapter(MachineConfiguration configuration) =>
-        Adapter(configuration.EmulatorId);
+    internal IEmulatorAdapter Adapter(MachineConfiguration configuration) => Adapter(configuration.EmulatorId);
 
-    internal IReadOnlyList<CoreOption> GetOptions(MachineConfiguration configuration,
-        EmulatorManagementContext context) => Adapter(configuration).GetOptions(context);
+    internal IReadOnlyList<CoreOption> GetOptions(MachineConfiguration configuration, EmulatorManagementContext context) => Adapter(configuration).GetOptions(context);
 
-    internal IEmulatorAdapter Adapter(string emulatorId) => _adapters.TryGetValue(emulatorId, out var adapter)
-        ? adapter
-        : throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
+    internal IEmulatorAdapter Adapter(string emulatorId) => _adapters.TryGetValue(emulatorId, out var adapter) ? adapter : throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
 
     internal bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {

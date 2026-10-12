@@ -36,8 +36,7 @@ internal sealed class ExternalCore : IEmulatorCore
     public AudioChunk? LatestAudioChunk => _host?.LatestAudioChunk;
     public IReadOnlyList<CoreOption> Options => _host?.OptionCatalog ?? [];
     public IReadOnlyList<string> Diagnostics => _host?.Diagnostics ?? [];
-    public IReadOnlyDictionary<int, bool> LedStates => _host?.LedStates
-        ?? new Dictionary<int, bool>();
+    public IReadOnlyDictionary<int, bool> LedStates => _host?.LedStates ?? new Dictionary<int, bool>();
     public string CoreName { get; private set; } = string.Empty;
     public string CoreVersion { get; private set; } = string.Empty;
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } =
@@ -72,8 +71,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
         var systemDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.SystemDirectoryName);
         var contentDirectory = Path.Combine(sessionDirectory, CoreDirectoryConstants.ContentDirectoryName);
-        saveDirectory = Path.GetFullPath(saveDirectory
-            ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
+        saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, CoreDirectoryConstants.SavesDirectoryName));
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
@@ -82,27 +80,21 @@ internal sealed class ExternalCore : IEmulatorCore
         var isolatedCorePath = Path.Combine(isolatedCoreDirectory, Path.GetFileName(_corePath));
         File.Copy(sourceCorePath, isolatedCorePath, true);
         var contentPath = PrepareContentPath(media, contentDirectory);
-        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory,
-            configuration.Options ?? new Dictionary<string, string>(), keyboardOverrides: _definition.KeyboardOverrides);
+        _host = new ExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, configuration.Options ?? new Dictionary<string, string>(), keyboardOverrides: _definition.KeyboardOverrides);
 
         try
         {
             _library = new ExternalCoreLibrary(isolatedCorePath);
-            var apiVersion = Export<ExternalCoreApi.GetApiVersion>(
-                ExternalCoreConstants.RetroApiVersion)();
+            var apiVersion = Export<ExternalCoreApi.GetApiVersion>(ExternalCoreConstants.RetroApiVersion)();
             if (apiVersion != ExternalCoreInteropConstants.ApiVersion)
                 throw new NotSupportedException(CommonExceptions.UnsupportedApiVersion(apiVersion));
             Export<ExternalCoreApi.GetSystemInfo>(ExternalCoreConstants.RetroGetSystemInfo)(out var info);
             var libraryName = Marshal.PtrToStringUTF8(info.LibraryName);
-            if (!string.Equals(libraryName, _definition.LibraryName,
-                    StringComparison.OrdinalIgnoreCase))
-                throw new InvalidDataException(CommonExceptions.LibraryIdentityMismatch(libraryName,
-                    _definition.LibraryName));
+            if (!string.Equals(libraryName, _definition.LibraryName, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidDataException(CommonExceptions.LibraryIdentityMismatch(libraryName, _definition.LibraryName));
             CoreName = libraryName!;
             CoreVersion = Marshal.PtrToStringUTF8(info.LibraryVersion) ?? string.Empty;
-            SupportedContentExtensions = (Marshal.PtrToStringUTF8(info.ValidExtensions) ?? string.Empty)
-                .Split(MediaConstants.SupportedExtensionSeparator,
-                    StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            SupportedContentExtensions = (Marshal.PtrToStringUTF8(info.ValidExtensions) ?? string.Empty).Split(MediaConstants.SupportedExtensionSeparator, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
                 .Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix))
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
             ValidateExtension(contentPath);
@@ -123,8 +115,7 @@ internal sealed class ExternalCore : IEmulatorCore
             Export<ExternalCoreApi.VoidCall>(ExternalCoreConstants.RetroInit)();
             _initialized = true;
             _host.ValidateConfiguredOptions();
-            var setController = Export<ExternalCoreApi.SetControllerPortDevice>(
-                ExternalCoreConstants.RetroSetControllerPortDevice);
+            var setController = Export<ExternalCoreApi.SetControllerPortDevice>(ExternalCoreConstants.RetroSetControllerPortDevice);
             for (var port = BufferConstants.FirstCollectionIndex; port < ModelCatalog.Get(configuration.Model).ControllerPortCount; port++)
                 setController((uint)port, ExternalCoreConstants.JoypadDevice);
 
@@ -147,9 +138,7 @@ internal sealed class ExternalCore : IEmulatorCore
         }
     }
 
-    internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(
-        MachineConfiguration configuration) => (configuration.Media ?? [])
-        .Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ToArray();
+    internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(MachineConfiguration configuration) => (configuration.Media ?? []).Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ToArray();
 
     internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media,
         string contentDirectory)
@@ -158,46 +147,33 @@ internal sealed class ExternalCore : IEmulatorCore
         if (media.Count == BufferConstants.SingleItemCount || media.Any(item => item.Category != MediaCategory.Floppy))
             return Path.GetFullPath(media[BufferConstants.FirstCollectionIndex].Path);
         if (media.Count > ExternalCoreConstants.MaximumPlaylistEntries)
-            throw new ArgumentOutOfRangeException(nameof(media),
-                CommonExceptions.PlaylistLimitExceeded());
+            throw new ArgumentOutOfRangeException(nameof(media), CommonExceptions.PlaylistLimitExceeded());
         var playlist = Path.Combine(contentDirectory, ExternalCoreConstants.PlaylistName);
-        File.WriteAllLines(playlist, media.Select(item => Path.GetFullPath(item.Path)),
-            new System.Text.UTF8Encoding(false));
+        File.WriteAllLines(playlist, media.Select(item => Path.GetFullPath(item.Path)), new System.Text.UTF8Encoding(false));
         return playlist;
     }
 
-    public void RunFrame() => (_run
-        ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized()))();
+    public void RunFrame() => (_run ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized()))();
     public void HardReset()
     {
-        var configuration = _configuration
-            ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized());
-        var sessionDirectory = _sessionDirectory
-            ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized());
+        var configuration = _configuration ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized());
+        var sessionDirectory = _sessionDirectory ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized());
         var saveDirectory = _saveDirectory;
         Dispose();
         Initialize(configuration, sessionDirectory, saveDirectory);
     }
-    public void SoftReset() => (_reset
-        ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized()))();
+    public void SoftReset() => (_reset ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized()))();
     public void SetInput(EmulationInputSnapshot snapshot)
     {
         if (_host is not null) _host.Input = snapshot;
     }
-    public void InsertMedia(string path) => (_host
-        ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized()))
-        .DiskControl.Insert(path);
-    public void EjectMedia() => (_host
-        ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized()))
-        .DiskControl.Eject();
-    public void SelectDisk(int index) => (_host
-        ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized()))
-        .DiskControl.Select(index);
+    public void InsertMedia(string path) => (_host ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized())).DiskControl.Insert(path);
+    public void EjectMedia() => (_host ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized())).DiskControl.Eject();
+    public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized())).DiskControl.Select(index);
 
     public byte[] SaveState()
     {
-        var size = (_getSerializedSize
-            ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized()))();
+        var size = (_getSerializedSize ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized()))();
         if (size == ExternalCoreInteropConstants.EmptyNativeSize || size > SavedStateConstants.MaximumStateSize)
             throw new InvalidOperationException(CommonExceptions.InvalidStateSize(size));
         var state = new byte[(int)size];
@@ -226,9 +202,7 @@ internal sealed class ExternalCore : IEmulatorCore
         finally { Marshal.FreeHGlobal(buffer); }
     }
 
-    public void SetOption(string key, string value) => (_host
-        ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized()))
-        .SetOption(key, value);
+    public void SetOption(string key, string value) => (_host ?? throw new InvalidOperationException(CommonExceptions.CoreNotInitialized())).SetOption(key, value);
 
     public void Stop()
     {
@@ -267,8 +241,7 @@ internal sealed class ExternalCore : IEmulatorCore
         }
     }
 
-    private T Export<T>(string name) where T : Delegate => (_library
-        ?? throw new InvalidOperationException(CommonExceptions.CoreNotLoaded())).Resolve<T>(name);
+    private T Export<T>(string name) where T : Delegate => (_library ?? throw new InvalidOperationException(CommonExceptions.CoreNotLoaded())).Resolve<T>(name);
 
     private static string ResolveCorePath(string path)
     {

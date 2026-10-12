@@ -43,10 +43,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _deleteSession = deleteSession;
         _startErrorTranslator = startErrorTranslator;
         _audioOutput = audioOutput;
-        _mediaPaths = resolvedMedia
-            .Select(item => Path.GetFullPath(item.Path)).ToList();
-        _mountedCommonMedia = EmulationMediaConversionFunctions
-            .ToCommon(resolvedMedia).ToList();
+        _mediaPaths = resolvedMedia.Select(item => Path.GetFullPath(item.Path)).ToList();
+        _mountedCommonMedia = EmulationMediaConversionFunctions.ToCommon(resolvedMedia).ToList();
         _currentDiskPath = _mediaPaths.FirstOrDefault();
         _currentOptions = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
     }
@@ -62,8 +60,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     public IEmulationRuntime Runtime => this;
     bool IEmulationInput.SupportsPointerCapture => _core.SupportsPointerCapture;
     bool IEmulationInput.CapturePointerOnClick => Configuration.Input?.CaptureMouse ?? true;
-    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings =>
-        Configuration.Input?.KeyboardBindings ?? new Dictionary<string, string>();
+    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings => Configuration.Input?.KeyboardBindings ?? new Dictionary<string, string>();
     bool IEmulationInput.SupportsControllerPointerSwitch => _core.SupportsPointerCapture;
     bool IEmulationInput.ControllerPointerMode => _controllerPointerMode;
     public EmulationMachineState State { get; private set; } = EmulationMachineState.Created;
@@ -97,8 +94,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         if (mountedIndex >= BufferConstants.FirstCollectionIndex)
             _mountedCommonMedia[mountedIndex] = _mountedCommonMedia[mountedIndex] with { IsInserted = false };
     }
-    ValueTask IEmulationMedia.SelectDiskAsync(EmulationMediaSlot slot, int index,
-        CancellationToken cancellationToken) => SelectDiskAsync(index, cancellationToken);
+    ValueTask IEmulationMedia.SelectDiskAsync(EmulationMediaSlot slot, int index, CancellationToken cancellationToken) => SelectDiskAsync(index, cancellationToken);
     AudioChunk? IEmulationAudio.LatestChunk => LatestAudioChunk;
     int IEmulationAudio.SampleRate => _core.SampleRate;
     bool IEmulationAudio.IsMuted => IsAudioMuted;
@@ -114,8 +110,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     string IEmulationRuntime.EmulatorName => CoreName;
     string IEmulationRuntime.EmulatorVersion => CoreVersion;
     IReadOnlySet<string> IEmulationRuntime.SupportedContentExtensions => SupportedContentExtensions;
-    IReadOnlyDictionary<EmulationMediaSlot, bool> IEmulationRuntime.MediaActivity =>
-        EmulationMediaActivityFunctions.FromLedStates(_core.LedStates);
+    IReadOnlyDictionary<EmulationMediaSlot, bool> IEmulationRuntime.MediaActivity => EmulationMediaActivityFunctions.FromLedStates(_core.LedStates);
     IReadOnlyList<EmulationOption> IEmulationRuntime.AvailableOptions => AvailableOptions
         .Select(option => new EmulationOption(
             option.Key,
@@ -135,12 +130,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         remove => VideoFrameReady -= value;
     }
     bool IEmulationSavedStates.IsSupported => true;
-    ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) =>
-        SaveStateAsync(path, cancellationToken);
-    ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) =>
-        LoadStateAsync(path, cancellationToken);
-    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) =>
-        throw new NotSupportedException();
-    ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) =>
-        SwitchControllerPointerAsync(cancellationToken);
+    ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) => SaveStateAsync(path, cancellationToken);
+    ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) => LoadStateAsync(path, cancellationToken);
+    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) => throw new NotSupportedException();
+    ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) => SwitchControllerPointerAsync(cancellationToken);
 }

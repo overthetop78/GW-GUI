@@ -6,14 +6,12 @@ namespace GWGUI.Emulation.Amstrad.Modules;
 public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulatorManager,
     IEmulationInputSettingsManager, IEmulationStorageSettingsManager, IEmulationModuleLocalization
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(AmstradEmulationModule).Assembly, CommonExceptionsConstants.ResourceManagerBaseName);
+    private static readonly EmulationModuleLocalization Localization = new(typeof(AmstradEmulationModule).Assembly, CommonExceptionsConstants.ResourceManagerBaseName);
     private readonly ConfigurationStore _store;
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;
     private readonly Engine _engine = new();
-    private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) =>
-        new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
+    private EmulatorManagementContext EmulatorManagement(IEmulatorAdapter adapter) => new(_httpClient, Path.Combine(_coreDirectory, adapter.EmulatorId));
 
     public AmstradEmulationModule(string configurationDirectory, string pathBase,
         HttpClient httpClient, string coreDirectory)
@@ -28,23 +26,18 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
     public string BrandImageResourceName =>
         $"{EmulationModuleConstants.AssetResourcePrefix}{EmulationModuleConstants.ModuleIconResourceSuffix}";
     public IReadOnlyList<EmulationMachineDefinition> Machines => MachineCatalog.All;
-    public EmulationSettingsVisibility DefaultVisibility { get; } = new(
-        Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
+    public EmulationSettingsVisibility DefaultVisibility { get; } = new(Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
 
-    public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) =>
-        Localization.TryGetString(key, culture, out value);
+    public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) => Localization.TryGetString(key, culture, out value);
 
-    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode) =>
-        _engine.TryHandleHostCommand(arguments, out exitCode);
+    public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode) => _engine.TryHandleHostCommand(arguments, out exitCode);
 
     public EmulationMachineSettings Describe(string machineId,
         IEmulationConfiguration? configuration = null)
     {
-        var current = configuration as MachineConfiguration
-            ?? (MachineConfiguration)CreateConfiguration(machineId);
+        var current = configuration as MachineConfiguration ?? (MachineConfiguration)CreateConfiguration(machineId);
         var model = ModelCatalog.Get(current.Model);
-        var blocks = SettingsDescriptionFunctions.Create(current,
-            _engine.GetOptions(current, EmulatorManagement(_engine.Adapter(current))));
+        var blocks = SettingsDescriptionFunctions.Create(current, _engine.GetOptions(current, EmulatorManagement(_engine.Adapter(current))));
         var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
         {
             EmulationMachineTab.Video => current.EmulatorId != CrocoDSProfile.Id || blocks.Any(block => block.Tab == EmulationMachineTab.Video),
@@ -54,8 +47,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
                 || model.SupportsCassetteDrive || model.SupportsCartridgeSlot,
             _ => item.Value
         });
-        return new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs),
-            blocks);
+        return new EmulationMachineSettings(model.Id, new EmulationSettingsVisibility(tabs), blocks);
     }
 
     public IEmulationConfiguration CreateConfiguration(string machineId)
@@ -63,8 +55,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         var model = ModelCatalog.Get(machineId);
         return new MachineConfiguration(model.Id, DefaultEmulatorId(model.Id),
             Options: new Dictionary<string, string>(StringComparer.Ordinal), Id: Guid.NewGuid(),
-            Controllers: Enumerable.Repeat(ControllerType.Joystick,
-                model.ControllerPortCount).ToArray(),
+            Controllers: Enumerable.Repeat(ControllerType.Joystick, model.ControllerPortCount).ToArray(),
             Input: new InputConfiguration(), Media: []);
     }
 
@@ -74,10 +65,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         if (configuration is not MachineConfiguration current)
             throw new ArgumentException(nameof(configuration));
         var created = (MachineConfiguration)CreateConfiguration(machineId);
-        var emulatorId = EmulatorCatalog.GetAll(machineId)
-            .Any(item => item.Id == current.EmulatorId)
-            ? current.EmulatorId
-            : created.EmulatorId;
+        var emulatorId = EmulatorCatalog.GetAll(machineId).Any(item => item.Id == current.EmulatorId) ? current.EmulatorId : created.EmulatorId;
         return created with { Id = current.Id, EmulatorId = emulatorId,
             AudioEnabled = current.AudioEnabled, Audio = current.Audio };
     }
@@ -86,14 +74,12 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         IReadOnlyDictionary<string, string?> values)
     {
         var amstrad = RequireConfiguration(configuration);
-        var options = new Dictionary<string, string>(amstrad.Options
-            ?? new Dictionary<string, string>(), StringComparer.Ordinal);
+        var options = new Dictionary<string, string>(amstrad.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         foreach (var item in values)
         {
             if (item.Key is SettingsConstants.Model or SettingsConstants.Emulator
                 or SettingsConstants.AudioEnabled or SettingsConstants.AudioOutput
-                or SettingsConstants.AudioLatency || item.Key.StartsWith(
-                    SettingsConstants.Model + ConfigurationStoreConstants.TemporaryNameSeparator, StringComparison.Ordinal)) continue;
+                or SettingsConstants.AudioLatency || item.Key.StartsWith(SettingsConstants.Model + ConfigurationStoreConstants.TemporaryNameSeparator, StringComparison.Ordinal)) continue;
             if (item.Value is null) options.Remove(item.Key);
             else options[item.Key] = item.Value;
         }
@@ -101,39 +87,24 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         return amstrad with
         {
             Options = options,
-            AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled)
-                ? enabled == SettingsDescriptionFunctionsConstants.Enabled : amstrad.AudioEnabled,
+            AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) ? enabled == SettingsDescriptionFunctionsConstants.Enabled : amstrad.AudioEnabled,
             Audio = audio with
             {
-                OutputDeviceId = values.TryGetValue(SettingsConstants.AudioOutput, out var output)
-                    ? string.IsNullOrWhiteSpace(output) ? null : output : audio.OutputDeviceId,
-                LatencyMilliseconds = values.TryGetValue(SettingsConstants.AudioLatency, out var latency)
-                    && int.TryParse(latency, out var parsedLatency)
-                    ? parsedLatency : audio.LatencyMilliseconds
+                OutputDeviceId = values.TryGetValue(SettingsConstants.AudioOutput, out var output) ? string.IsNullOrWhiteSpace(output) ? null : output : audio.OutputDeviceId,
+                LatencyMilliseconds = values.TryGetValue(SettingsConstants.AudioLatency, out var latency) && int.TryParse(latency, out var parsedLatency) ? parsedLatency : audio.LatencyMilliseconds
             }
         };
     }
 
-    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) =>
-        configuration is MachineConfiguration amstrad
-            ? amstrad.Options ?? new Dictionary<string, string>()
-            : throw new ArgumentException(nameof(configuration));
+    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) => configuration is MachineConfiguration amstrad ? amstrad.Options ?? new Dictionary<string, string>() : throw new ArgumentException(nameof(configuration));
 
-    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) =>
-        ConfigurationSummaryFunctions.Create(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) => ConfigurationSummaryFunctions.Create(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
 
-    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) =>
-        StorageSettingsFunctions.Describe(configuration as MachineConfiguration
-            ?? throw new ArgumentException(nameof(configuration)));
+    public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) => StorageSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
 
-    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration,
-        EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(
-        configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)),
-        settings);
+    public IEmulationConfiguration ApplyStorageSettings(IEmulationConfiguration configuration, EmulationStorageSettings settings) => StorageSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
-    public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) =>
-        DescribeInput(RequireConfiguration(configuration));
+    public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => DescribeInput(RequireConfiguration(configuration));
 
     private static EmulationInputSettings DescribeInput(MachineConfiguration configuration)
     {
@@ -141,20 +112,12 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         return configuration.EmulatorId == CrocoDSProfile.Id ? settings with { Mouse = null } : settings;
     }
 
-    public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration,
-        EmulationInputSettings settings) => InputSettingsFunctions.Apply(
-        configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)),
-        settings);
+    public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => InputSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
     public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default) => configuration is MachineConfiguration amstrad
-        ? new ValueTask(_store.SaveAsync(amstrad, cancellationToken))
-        : ValueTask.FromException(new ArgumentException(nameof(configuration)));
+        CancellationToken cancellationToken = default) => configuration is MachineConfiguration amstrad ? new ValueTask(_store.SaveAsync(amstrad, cancellationToken)) : ValueTask.FromException(new ArgumentException(nameof(configuration)));
 
-    public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(
-        CancellationToken cancellationToken = default) =>
-        (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false))
-        .Cast<IEmulationConfiguration>().ToArray();
+    public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
 
     public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration,
         CancellationToken cancellationToken = default)
@@ -196,8 +159,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         foreach (var emulator in EmulatorCatalog.GetAll(amstrad.Model))
         {
             var adapter = _engine.Adapter(emulator.Id);
-            installations.Add(await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken)
-                .ConfigureAwait(false));
+            installations.Add(await adapter.GetInstallationAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false));
         }
         return installations;
     }
@@ -208,18 +170,14 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         cancellationToken.ThrowIfCancellationRequested();
         var amstrad = RequireConfiguration(configuration);
         if (!EmulatorCatalog.GetAll(amstrad.Model).Any(item => item.Id == emulatorId))
-            return ValueTask.FromException<IEmulationConfiguration>(
-                new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null));
+            return ValueTask.FromException<IEmulationConfiguration>(new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null));
         var selected = amstrad with { EmulatorId = emulatorId };
         if (emulatorId == CrocoDSProfile.Id)
         {
             selected = selected with
             {
-                Media = (amstrad.Media ?? []).Where(item => item.Category is MediaCategory.Floppy or MediaCategory.Snapshot
-                    && CrocoDSProfile.Extensions.Contains(Path.GetExtension(item.Path)))
-                    .Take(CrocoDSProfile.MaximumInsertedMediaCount).ToArray(),
-                Options = (amstrad.Options ?? new Dictionary<string, string>())
-                    .Where(item => item.Key.StartsWith(CrocoDSProfile.OptionKeyPrefix, StringComparison.Ordinal))
+                Media = (amstrad.Media ?? []).Where(item => item.Category is MediaCategory.Floppy or MediaCategory.Snapshot && CrocoDSProfile.Extensions.Contains(Path.GetExtension(item.Path))).Take(CrocoDSProfile.MaximumInsertedMediaCount).ToArray(),
+                Options = (amstrad.Options ?? new Dictionary<string, string>()).Where(item => item.Key.StartsWith(CrocoDSProfile.OptionKeyPrefix, StringComparison.Ordinal))
                     .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal)
             };
         }
@@ -265,8 +223,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         if (configuration is not MachineConfiguration amstrad)
             throw new ArgumentException(nameof(configuration));
         var adapter = _engine.Adapter(amstrad);
-        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken)
-            .ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(
+        var corePath = await adapter.FindInstalledCorePathAsync(EmulatorManagement(adapter), cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(
                 EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
                 EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,
                 new EmulationEmulatorMessageContext(adapter.EmulatorId)));
@@ -274,9 +231,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         var context = new EmulatorCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
-            value => Path.Combine(services.StatesDirectory,
-                value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat),
-                CoreDirectoryConstants.SavesDirectoryName));
+            value => Path.Combine(services.StatesDirectory, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat), CoreDirectoryConstants.SavesDirectoryName));
         var storage = StorageSettingsFunctions.Describe(amstrad);
         var mounted = adapter.ResolveConfiguredMedia(amstrad);
         return new EmulationMachineRuntime(amstrad,
@@ -300,9 +255,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
             MountOrder: index)).ToArray()
     };
 
-    private static string DefaultEmulatorId(string machineId) =>
-        EmulatorCatalog.GetAll(machineId).FirstOrDefault()?.Id ?? string.Empty;
+    private static string DefaultEmulatorId(string machineId) => EmulatorCatalog.GetAll(machineId).FirstOrDefault()?.Id ?? string.Empty;
 
-    private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) =>
-        configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+    private static MachineConfiguration RequireConfiguration(IEmulationConfiguration configuration) => configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
 }

@@ -63,8 +63,7 @@ internal sealed partial class ExternalHostCallbacks
         if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;
         var samples = new short[checked((int)frames * AudioConstants.StereoChannelCount)];
         Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length);
-        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames),
-            ++_audioSequence, _clock.Elapsed));
+        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));
         return frames;
     }
 

@@ -7,12 +7,8 @@ internal static partial class InputSettingsFunctions
     {
         var model = ModelCatalog.Get(configuration.Model);
         var input = configuration.Input ?? new InputConfiguration();
-        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(
-            KeyboardDefinitions(), KeyboardBindingFunctions.Normalize(input),
-            EmulationInputSource.Keyboard) : null;
-        var mouse = model.MouseButtonCount > BufferConstants.EmptyCollectionCount ? new EmulationInputBindingSet(
-            MouseDefinitions(), MouseValues(input), EmulationInputSource.Mouse
-                | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
+        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(KeyboardDefinitions(), KeyboardBindingFunctions.Normalize(input), EmulationInputSource.Keyboard) : null;
+        var mouse = model.MouseButtonCount > BufferConstants.EmptyCollectionCount ? new EmulationInputBindingSet(MouseDefinitions(), MouseValues(input), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         var configured = input.ControllerBindings ?? [];
         var ports = Enumerable.Range(BufferConstants.FirstCollectionIndex, model.ControllerPortCount).Select(index =>
         {
@@ -21,10 +17,7 @@ internal static partial class InputSettingsFunctions
             return new EmulationControllerPort(index + BufferConstants.IndexIncrement,
                 ControllerCatalog.Types(model).Select(Choice).ToArray(), type.ToString(),
                 current?.DeviceId,
-                new EmulationInputBindingSet(ControllerDefinitions(type),
-                    current?.ButtonMappings ?? new Dictionary<string, string>(),
-                    EmulationInputSource.Keyboard | EmulationInputSource.Mouse
-                        | EmulationInputSource.Controller, true),
+                new EmulationInputBindingSet(ControllerDefinitions(type), current?.ButtonMappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                 VisualId: current?.VisualId);
         }).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
@@ -35,21 +28,14 @@ internal static partial class InputSettingsFunctions
     {
         var current = configuration.Input ?? new InputConfiguration();
         var keyboard = KeyboardBindingFunctions.Normalize(current with { KeyboardBindings = settings.Keyboard?.Values ?? new Dictionary<string, string>() });
-        var mouse = settings.Mouse?.Values
-            .Where(item => !string.IsNullOrWhiteSpace(item.Value)
-                && Enum.TryParse<MouseAction>(item.Key, true, out var action)
-                && action != MouseAction.None)
+        var mouse = settings.Mouse?.Values.Where(item => !string.IsNullOrWhiteSpace(item.Value) && Enum.TryParse<MouseAction>(item.Key, true, out var action) && action != MouseAction.None)
             .ToDictionary(item => item.Value, item => Enum.Parse<MouseAction>(item.Key, true),
                 StringComparer.OrdinalIgnoreCase) ?? new Dictionary<string, MouseAction>();
         var controllers = settings.ControllerPorts.Select(port => new ControllerBinding(
             port.Number - BufferConstants.IndexIncrement,
-            Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type)
-                ? type : ControllerType.None,
+            Enum.TryParse<ControllerType>(port.SelectedControllerId, true, out var type) ? type : ControllerType.None,
             port.PhysicalDeviceId,
-            port.Bindings.Values
-                .Where(item => !string.IsNullOrWhiteSpace(item.Key)
-                    && !string.IsNullOrWhiteSpace(item.Value))
-                .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal),
+            port.Bindings.Values.Where(item => !string.IsNullOrWhiteSpace(item.Key) && !string.IsNullOrWhiteSpace(item.Value)).ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal),
             port.VisualId)).ToArray();
         return configuration with
         {
@@ -66,39 +52,24 @@ internal static partial class InputSettingsFunctions
     private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions() => KeyboardConstants.SpecialKeys.Select(key => Definition(key.ToString(), key.ToString(), KeyboardDictionary.DefaultHostKeys[key].ToString(), KeyboardDictionary.Labels[key])).ToArray();
     private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() =>
     [
-        Definition(nameof(MouseAction.LeftButton),
-            InputSettingsFunctionsConstants.ResourceMouseButtonLeft,
-            InputSettingsFunctionsConstants.MouseLeft),
-        Definition(nameof(MouseAction.RightButton),
-            InputSettingsFunctionsConstants.ResourceMouseButtonRight,
-            InputSettingsFunctionsConstants.MouseRight)
+        Definition(nameof(MouseAction.LeftButton), InputSettingsFunctionsConstants.ResourceMouseButtonLeft, InputSettingsFunctionsConstants.MouseLeft),
+        Definition(nameof(MouseAction.RightButton), InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)
     ];
 
-    private static IReadOnlyDictionary<string, string> MouseValues(InputConfiguration input) =>
-        (input.MouseButtonMappings ?? new Dictionary<string, MouseAction>())
-            .Where(item => item.Value != MouseAction.None)
-            .ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal);
+    private static IReadOnlyDictionary<string, string> MouseValues(InputConfiguration input) => (input.MouseButtonMappings ?? new Dictionary<string, MouseAction>()).Where(item => item.Value != MouseAction.None).ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal);
 
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type) =>
         type is ControllerType.None ? [] :
         [
-            Definition(InputSettingsFunctionsConstants.Up,
-                InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
-            Definition(InputSettingsFunctionsConstants.Down,
-                InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
-            Definition(InputSettingsFunctionsConstants.Left,
-                InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
-            Definition(InputSettingsFunctionsConstants.Right,
-                InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty),
-            Definition(InputSettingsFunctionsConstants.B,
-                InputSettingsFunctionsConstants.ResourceControllerActionFire1, string.Empty),
-            Definition(InputSettingsFunctionsConstants.A,
-                InputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty)
+            Definition(InputSettingsFunctionsConstants.Up, InputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Down, InputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Left, InputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
+            Definition(InputSettingsFunctionsConstants.Right, InputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty),
+            Definition(InputSettingsFunctionsConstants.B, InputSettingsFunctionsConstants.ResourceControllerActionFire1, string.Empty),
+            Definition(InputSettingsFunctionsConstants.A, InputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty)
         ];
 
-    private static InputBindingDefinition Definition(string id, string resourceKey,
-        string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding,
-            invariant ?? (resourceKey.Contains(MediaConstants.ExtensionPrefix) ? null : resourceKey));
+    private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding, invariant ?? (resourceKey.Contains(MediaConstants.ExtensionPrefix) ? null : resourceKey));
 
     private static EmulationControllerChoice Choice(ControllerType type) => new(
         type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type),

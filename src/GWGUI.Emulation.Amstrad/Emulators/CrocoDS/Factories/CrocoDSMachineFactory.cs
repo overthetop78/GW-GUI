@@ -13,19 +13,13 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter
         ReleaseConstants.ReleaseProviderSuffix, ReleaseConstants.Architecture,
         CoreLibraryVerifier.VerifyWindowsX64Library, GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Dictionaries.KeyboardDictionary.NativeKeys);
 
-    private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
-        new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
+    private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
-    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration,
-        IReadOnlyList<CoreOption> coreOptions) =>
-        GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration, coreOptions);
+    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration, IReadOnlyList<CoreOption> coreOptions) => GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration, coreOptions);
     public string EmulatorId => EmulatorConstants.Id;
     public string EmulatorKey => Emulator.CrocoDS.ToString();
-    public IReadOnlyList<CoreOption> GetOptions(EmulatorManagementContext context) =>
-        CoreOptionsReader.Read(Path.Combine(context.CoreDirectory, Core.LibraryFile));
-    public EmulationEmulatorDefinition Definition { get; } = new(
-        EmulatorConstants.Id, EmulatorConstants.DisplayName, EmulatorConstants.DescriptionResourceKey,
-        new HashSet<string>([EmulatorConstants.MachineId], StringComparer.Ordinal));
+    public IReadOnlyList<CoreOption> GetOptions(EmulatorManagementContext context) => CoreOptionsReader.Read(Path.Combine(context.CoreDirectory, Core.LibraryFile));
+    public EmulationEmulatorDefinition Definition { get; } = new(EmulatorConstants.Id, EmulatorConstants.DisplayName, EmulatorConstants.DescriptionResourceKey, new HashSet<string>([EmulatorConstants.MachineId], StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
@@ -37,15 +31,13 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter
         return true;
     }
 
-    private static CoreReleaseService Releases(EmulatorManagementContext context) =>
-        new(context.HttpClient, context.CoreDirectory, Core);
+    private static CoreReleaseService Releases(EmulatorManagementContext context) => new(context.HttpClient, context.CoreDirectory, Core);
 
     public ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(
         EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition,
-            Releases(context).GetInstalledVersion()));
+        return ValueTask.FromResult(new EmulationEmulatorInstallation(Definition, Releases(context).GetInstalledVersion()));
     }
 
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
@@ -53,8 +45,7 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter
     {
         var releases = await Releases(context).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName,
-            item.Id, item.IsRequired)).ToArray();
+        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();
     }
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context,
@@ -65,9 +56,7 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter
         return await Releases(context).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient,
-            context.CoreDirectory, Core).FindInstalledPathAsync(cancellationToken));
+    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient, context.CoreDirectory, Core).FindInstalledPathAsync(cancellationToken));
 
     internal static void Validate(MachineConfiguration configuration)
     {
@@ -95,13 +84,11 @@ internal sealed class CrocoDSMachineFactory : IEmulatorAdapter
         // Keep only this core's native options; host/device settings are handled by the module.
         var native = configuration.EnsureId() with
         {
-            Options = (configuration.Options ?? new Dictionary<string, string>())
-                .Where(item => item.Key.StartsWith(EmulatorConstants.OptionKeyPrefix, StringComparison.Ordinal))
+            Options = (configuration.Options ?? new Dictionary<string, string>()).Where(item => item.Key.StartsWith(EmulatorConstants.OptionKeyPrefix, StringComparison.Ordinal))
                 .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal)
         };
         return new Machine(id, native, new ProcessCore(context.HostExecutablePath, Core.HostCommand, context.CorePath, supportsPointerCapture: false),
-            native.Media ?? [], Path.Combine(context.SessionsDirectory,
-                id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
+            native.Media ?? [], Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
             native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
             context.SaveDirectoryResolver?.Invoke(configuration));
     }

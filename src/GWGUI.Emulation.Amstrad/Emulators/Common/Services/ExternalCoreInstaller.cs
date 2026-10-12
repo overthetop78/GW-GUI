@@ -39,8 +39,7 @@ public sealed class ExternalCoreInstaller
     {
         var service = new CoreReleaseService(_httpClient, _directory, _definition);
         var releases = await service.GetAvailableAsync(cancellationToken).ConfigureAwait(false);
-        return await service.InstallAsync(releases.Single(), cancellationToken: cancellationToken)
-            .ConfigureAwait(false);
+        return await service.InstallAsync(releases.Single(), cancellationToken: cancellationToken).ConfigureAwait(false);
     }
 
     internal static async Task WriteManifestAsync(string version, string source, string libraryPath,

@@ -168,9 +168,7 @@ internal sealed partial class ExternalHostCallbacks
             var buttons = controller.Buttons;
             if (id == JoypadMask)
                 return unchecked((short)(buttons & ushort.MaxValue));
-            return id < ControllerButtonBitCount && (buttons & (ControllerButtonMask << (int)id)) != ExternalCoreInteropConstants.NoInputState 
-                ? ExternalCoreInteropConstants.PressedInputState 
-                : ExternalCoreInteropConstants.ReleasedInputState;
+            return id < ControllerButtonBitCount && (buttons & (ControllerButtonMask << (int)id)) != ExternalCoreInteropConstants.NoInputState ? ExternalCoreInteropConstants.PressedInputState : ExternalCoreInteropConstants.ReleasedInputState;
         }
 
         if (device == AnalogDevice)

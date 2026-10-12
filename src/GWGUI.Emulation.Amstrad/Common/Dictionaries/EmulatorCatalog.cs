@@ -2,30 +2,16 @@ namespace GWGUI.Emulation.Amstrad.Common.Dictionaries;
 
 internal static class EmulatorCatalog
 {
-    internal static IReadOnlyList<EmulationEmulatorDefinition> All =>
-        CreateAdapters().Select(adapter => adapter.Definition)
-            .OrderBy(definition => definition.Id, StringComparer.Ordinal).ToArray();
+    internal static IReadOnlyList<EmulationEmulatorDefinition> All => CreateAdapters().Select(adapter => adapter.Definition).OrderBy(definition => definition.Id, StringComparer.Ordinal).ToArray();
 
-    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() =>
-    [
-        new Emulators.Caprice32.Factories.Caprice32MachineFactory(),
-        new Emulators.CrocoDS.Factories.CrocoDSMachineFactory()
-    ];
+    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => [new Emulators.Caprice32.Factories.Caprice32MachineFactory(), new Emulators.CrocoDS.Factories.CrocoDSMachineFactory()];
 
-    internal static IEmulatorAdapter CreateAdapter(Emulator emulator) =>
-        CreateAdapters().SingleOrDefault(adapter => string.Equals(
-            adapter.EmulatorKey, emulator.ToString(), StringComparison.Ordinal))
-        ?? throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);
+    internal static IEmulatorAdapter CreateAdapter(Emulator emulator) => CreateAdapters().SingleOrDefault(adapter => string.Equals(adapter.EmulatorKey, emulator.ToString(), StringComparison.Ordinal)) ?? throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);
 
-    internal static EmulationEmulatorDefinition Get(Emulator emulator) =>
-        CreateAdapter(emulator).Definition;
+    internal static EmulationEmulatorDefinition Get(Emulator emulator) => CreateAdapter(emulator).Definition;
 
-    internal static EmulationEmulatorDefinition Get(string emulatorId) =>
-        CreateAdapters().SingleOrDefault(adapter => string.Equals(
-            adapter.EmulatorId, emulatorId, StringComparison.Ordinal))?.Definition
-        ?? throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
+    internal static EmulationEmulatorDefinition Get(string emulatorId) => CreateAdapters().SingleOrDefault(adapter => string.Equals(adapter.EmulatorId, emulatorId, StringComparison.Ordinal))?.Definition ?? throw new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null);
 
-    internal static IReadOnlyList<EmulationEmulatorDefinition> GetAll(string machineId) =>
-        All.Where(definition => definition.MachineIds.Contains(machineId)).ToArray();
+    internal static IReadOnlyList<EmulationEmulatorDefinition> GetAll(string machineId) => All.Where(definition => definition.MachineIds.Contains(machineId)).ToArray();
 }
 

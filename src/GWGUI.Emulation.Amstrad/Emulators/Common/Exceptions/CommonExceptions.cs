@@ -5,8 +5,7 @@ namespace GWGUI.Emulation.Amstrad.Emulators.Common.Exceptions;
 
 internal static class CommonExceptions
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(AmstradEmulationModule).Assembly, CommonExceptionsConstants.ResourceManagerBaseName);
+    private static readonly EmulationModuleLocalization Localization = new(typeof(AmstradEmulationModule).Assembly, CommonExceptionsConstants.ResourceManagerBaseName);
 
     internal static string HostConfigurationInvalid() => Text(CommonExceptionsConstants.HostConfigurationInvalidResourceKey);
     internal static string HostNotInitialized() => Text(CommonExceptionsConstants.HostNotInitializedResourceKey);
@@ -43,16 +42,14 @@ internal static class CommonExceptions
     internal static string ProcessUnavailable() => Text(CommonExceptionsConstants.ProcessUnavailableResourceKey);
     internal static string ProcessNotInitialized() => Text(CommonExceptionsConstants.ProcessNotInitializedResourceKey);
     internal static string ProcessTimeout() => Text(CommonExceptionsConstants.ProcessTimeoutResourceKey);
-    internal static string ProcessCommunicationFailed(string detail) =>
-        Text(CommonExceptionsConstants.ProcessCommunicationFailedResourceKey, detail);
+    internal static string ProcessCommunicationFailed(string detail) => Text(CommonExceptionsConstants.ProcessCommunicationFailedResourceKey, detail);
     internal static string HostResponseUnavailable() => Text(CommonExceptionsConstants.HostResponseUnavailableResourceKey);
     internal static string UnknownCoreOption() => Text(CommonExceptionsConstants.UnknownCoreOptionResourceKey);
     internal static string UnsupportedPixelFormat(int value) => Text(CommonExceptionsConstants.UnsupportedPixelFormatResourceKey, value);
     internal static string InvalidOptionValue(string value, string key) => Text(CommonExceptionsConstants.InvalidOptionValueResourceKey, value, key);
     internal static string InvalidResponseLength(int length) => Text(CommonExceptionsConstants.InvalidResponseLengthResourceKey, length);
     internal static string UnsupportedApiVersion(uint version) => Text(CommonExceptionsConstants.UnsupportedApiVersionResourceKey, version);
-    internal static string LibraryIdentityMismatch(string? name, string expected) =>
-        Text(CommonExceptionsConstants.LibraryIdentityMismatchResourceKey, name ?? string.Empty, expected);
+    internal static string LibraryIdentityMismatch(string? name, string expected) => Text(CommonExceptionsConstants.LibraryIdentityMismatchResourceKey, name ?? string.Empty, expected);
     internal static string UnsupportedContentExtension(string extension) => Text(CommonExceptionsConstants.UnsupportedContentExtensionResourceKey, extension);
     internal static string InvalidStateSize(nuint size) => Text(CommonExceptionsConstants.InvalidStateSizeResourceKey, size);
     internal static string UnknownHostCommand(byte command) => Text(CommonExceptionsConstants.UnknownHostCommandResourceKey, command);

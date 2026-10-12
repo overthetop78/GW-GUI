@@ -9,20 +9,14 @@ internal static partial class CoreSettingsDescriptionFunctions
         if (configuration.EmulatorId == CrocoDSProfile.Id) return CreateCrocoDS(configuration, coreOptions ?? []);
         var model = ModelCatalog.Get(configuration.Model);
         var options = configuration.Options ?? new Dictionary<string, string>();
-        var ram = options.GetValueOrDefault(SettingsConstants.Ram,
-            model.RamKib.ToString(System.Globalization.CultureInfo.InvariantCulture));
+        var ram = options.GetValueOrDefault(SettingsConstants.Ram, model.RamKib.ToString(System.Globalization.CultureInfo.InvariantCulture));
         return
         [
             Block(SettingsDescriptionFunctionsConstants.General, EmulationMachineTab.General,
                 SettingsDescriptionFunctionsConstants.ResourceGeneral,
                 SettingsDescriptionFunctionsConstants.IconGeneral, SettingsDescriptionFunctionsConstants.TwoColumnLayout,
-                Information(SettingsConstants.Model, EmulationMachineTab.General,
-                    SettingsDescriptionFunctionsConstants.General,
-                    SettingsDescriptionFunctionsConstants.ResourceMachineModel, model.DisplayName),
-                Information(SettingsConstants.Emulator, EmulationMachineTab.General,
-                    SettingsDescriptionFunctionsConstants.General,
-                    SettingsDescriptionFunctionsConstants.ResourceEmulator,
-                    SettingsDescriptionFunctionsConstants.Caprice32)),
+                Information(SettingsConstants.Model, EmulationMachineTab.General, SettingsDescriptionFunctionsConstants.General, SettingsDescriptionFunctionsConstants.ResourceMachineModel, model.DisplayName),
+                Information(SettingsConstants.Emulator, EmulationMachineTab.General, SettingsDescriptionFunctionsConstants.General, SettingsDescriptionFunctionsConstants.ResourceEmulator, SettingsDescriptionFunctionsConstants.Caprice32)),
             Block(SettingsDescriptionFunctionsConstants.Cpu, EmulationMachineTab.Cpu,
                 SettingsDescriptionFunctionsConstants.ResourceCpuProcessor,
                 SettingsDescriptionFunctionsConstants.IconCpu, SettingsDescriptionFunctionsConstants.TwoColumnLayout,
@@ -55,21 +49,15 @@ internal static partial class CoreSettingsDescriptionFunctions
                 Select(SettingsConstants.VideoResolution, EmulationMachineTab.Video,
                     SettingsDescriptionFunctionsConstants.Video,
                     SettingsDescriptionFunctionsConstants.ResourceVideoResolution,
-                    options.GetValueOrDefault(SettingsConstants.VideoResolution,
-                        SettingsDescriptionFunctionsConstants.Resolution384),
-                    InvariantChoices(SettingsDescriptionFunctionsConstants.Resolution384,
-                        SettingsDescriptionFunctionsConstants.Resolution400)),
+                    options.GetValueOrDefault(SettingsConstants.VideoResolution, SettingsDescriptionFunctionsConstants.Resolution384),
+                    InvariantChoices(SettingsDescriptionFunctionsConstants.Resolution384, SettingsDescriptionFunctionsConstants.Resolution400)),
                 Select(SettingsConstants.VideoMonitor, EmulationMachineTab.Video,
                     SettingsDescriptionFunctionsConstants.Video,
                     SettingsDescriptionFunctionsConstants.ResourceVideoMonitor,
-                    options.GetValueOrDefault(SettingsConstants.VideoMonitor,
-                        SettingsDescriptionFunctionsConstants.Color),
-                    [new(SettingsDescriptionFunctionsConstants.Color,
-                        SettingsDescriptionFunctionsConstants.ResourceColor),
-                     new(SettingsDescriptionFunctionsConstants.Green,
-                        SettingsDescriptionFunctionsConstants.ResourceGreen),
-                     new(SettingsDescriptionFunctionsConstants.White,
-                        SettingsDescriptionFunctionsConstants.ResourceWhite)]),
+                    options.GetValueOrDefault(SettingsConstants.VideoMonitor, SettingsDescriptionFunctionsConstants.Color),
+                    [new(SettingsDescriptionFunctionsConstants.Color, SettingsDescriptionFunctionsConstants.ResourceColor),
+                     new(SettingsDescriptionFunctionsConstants.Green, SettingsDescriptionFunctionsConstants.ResourceGreen),
+                     new(SettingsDescriptionFunctionsConstants.White, SettingsDescriptionFunctionsConstants.ResourceWhite)]),
                 Select(SettingsConstants.VideoIntensity, EmulationMachineTab.Video,
                     SettingsDescriptionFunctionsConstants.Video,
                     SettingsDescriptionFunctionsConstants.ResourceVideoIntensity,
@@ -78,16 +66,12 @@ internal static partial class CoreSettingsDescriptionFunctions
                 Toggle(SettingsConstants.VideoCrop, EmulationMachineTab.Video,
                     SettingsDescriptionFunctionsConstants.Video,
                     SettingsDescriptionFunctionsConstants.ResourceVideoCrop,
-                    options.GetValueOrDefault(SettingsConstants.VideoCrop,
-                        SettingsDescriptionFunctionsConstants.Disabled)
+                    options.GetValueOrDefault(SettingsConstants.VideoCrop, SettingsDescriptionFunctionsConstants.Disabled)
                         == SettingsDescriptionFunctionsConstants.Enabled)),
             Block(SettingsDescriptionFunctionsConstants.Audio, EmulationMachineTab.Audio,
                 SettingsDescriptionFunctionsConstants.ResourceAudio,
                 SettingsDescriptionFunctionsConstants.IconAudio, SettingsDescriptionFunctionsConstants.TwoColumnLayout,
-                Toggle(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio,
-                    SettingsDescriptionFunctionsConstants.Audio,
-                    SettingsDescriptionFunctionsConstants.ResourceAudioEnabled,
-                    configuration.AudioEnabled),
+                Toggle(SettingsConstants.AudioEnabled, EmulationMachineTab.Audio, SettingsDescriptionFunctionsConstants.Audio, SettingsDescriptionFunctionsConstants.ResourceAudioEnabled, configuration.AudioEnabled),
                 AudioOutput(configuration.Audio?.OutputDeviceId),
                 Select(SettingsConstants.AudioLatency, EmulationMachineTab.Audio,
                     SettingsDescriptionFunctionsConstants.Audio,
@@ -98,8 +82,7 @@ internal static partial class CoreSettingsDescriptionFunctions
                 Toggle(SettingsConstants.FloppySound, EmulationMachineTab.Audio,
                     SettingsDescriptionFunctionsConstants.Audio,
                     SettingsDescriptionFunctionsConstants.ResourceAudioFloppySound,
-                    options.GetValueOrDefault(SettingsConstants.FloppySound,
-                        SettingsDescriptionFunctionsConstants.Enabled)
+                    options.GetValueOrDefault(SettingsConstants.FloppySound, SettingsDescriptionFunctionsConstants.Enabled)
                         == SettingsDescriptionFunctionsConstants.Enabled))
         ];
     }

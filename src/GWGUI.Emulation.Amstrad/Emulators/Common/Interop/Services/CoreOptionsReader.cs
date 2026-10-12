@@ -13,8 +13,7 @@ internal static class CoreOptionsReader
         ExternalHostCallbacks? callbacks = null;
         try
         {
-            callbacks = new ExternalHostCallbacks(directory, directory, directory, null,
-                createDirectories: false);
+            callbacks = new ExternalHostCallbacks(directory, directory, directory, null, createDirectories: false);
             library = new ExternalCoreLibrary(libraryPath);
             library.Resolve<ExternalCoreApi.SetEnvironment>(ExternalCoreConstants.RetroSetEnvironment)(callbacks.Environment);
             return callbacks.OptionCatalog.ToArray();

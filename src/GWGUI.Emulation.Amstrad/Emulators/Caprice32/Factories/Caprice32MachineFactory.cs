@@ -14,12 +14,9 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter
         ReleaseConstants.ReleaseProviderSuffix, ReleaseConstants.Architecture,
         CoreLibraryVerifier.VerifyWindowsX64Library, GWGUI.Emulation.Amstrad.Emulators.Caprice32.Dictionaries.KeyboardDictionary.NativeKeys);
 
-    private IReadOnlyDictionary<string, CoreRelease> _availableReleases =
-        new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
+    private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
-    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration,
-        IReadOnlyList<CoreOption> coreOptions) =>
-        GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration, coreOptions);
+    public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration, IReadOnlyList<CoreOption> coreOptions) => GWGUI.Emulation.Amstrad.Emulators.Common.Interop.Functions.CoreSettingsDescriptionFunctions.Create(configuration, coreOptions);
     public string EmulatorId => EmulatorConstants.Id;
     public string EmulatorKey => Emulator.Caprice32.ToString();
     public IReadOnlyList<CoreOption> GetOptions(EmulatorManagementContext context) => [];
@@ -50,11 +47,9 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter
     public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
         EmulatorManagementContext context, CancellationToken cancellationToken)
     {
-        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Core)
-            .GetAvailableAsync(cancellationToken).ConfigureAwait(false);
+        var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Core).GetAvailableAsync(cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName,
-            item.Id, item.IsRequired)).ToArray();
+        return releases.Select(item => new EmulationEmulatorRelease(item.Id, item.DisplayName, item.Id, item.IsRequired)).ToArray();
     }
 
     public async ValueTask<string> InstallAsync(EmulatorManagementContext context,
@@ -63,16 +58,12 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter
     {
         if (!_availableReleases.TryGetValue(release.Id, out var selected))
             throw new ArgumentException(nameof(release));
-        return await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Core)
-            .InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
+        return await new CoreReleaseService(context.HttpClient, context.CoreDirectory, Core).InstallAsync(selected, progress, cancellationToken).ConfigureAwait(false);
     }
 
-    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
-        CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient,
-            context.CoreDirectory, Core).FindInstalledPathAsync(cancellationToken));
+    public ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => new(new CoreProvider(context.HttpClient, context.CoreDirectory, Core).FindInstalledPathAsync(cancellationToken));
 
-    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) =>
-        EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
+    public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
 
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
@@ -80,8 +71,7 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter
         var native = Caprice32OptionFunctions.ToNative(configuration.EnsureId());
         return new Machine(machineId, native,
             new ProcessCore(context.HostExecutablePath, Core.HostCommand, context.CorePath),
-            native.Media ?? [], Path.Combine(context.SessionsDirectory,
-                machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
+            native.Media ?? [], Path.Combine(context.SessionsDirectory, machineId.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
             native.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
             context.SaveDirectoryResolver?.Invoke(configuration));
     }
