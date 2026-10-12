@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Amstrad.Emulators.Common.Contracts;
-
 internal sealed record CoreDefinition(
     string EmulatorId,
     string LibraryName,
