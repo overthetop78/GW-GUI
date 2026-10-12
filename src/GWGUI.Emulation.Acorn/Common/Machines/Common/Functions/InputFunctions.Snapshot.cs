@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
 {
-    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot,
-        InputConfiguration? configuration)
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration? configuration)
     {
         var keyboardMappings = BbcMicroKeyboardDictionary.DefaultHostKeys.ToDictionary(item => item.Key.ToString(), item => item.Value, StringComparer.Ordinal);
         var bindings = configuration?.KeyboardBindings ?? configuration?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal);
@@ -73,8 +72,7 @@ internal static class InputSnapshotFunctions
 
     private static short Axis(float value) => (short)Math.Round(Math.Clamp(value, -1f, 1f) * ControllerConstants.MaximumAxisMagnitude);
 
-    private static float Magnitude(string source, EmulationControllerState controller,
-        EmulationInputSnapshot snapshot)
+    private static float Magnitude(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
         if (source.StartsWith(InputSnapshotFunctionsConstants.Keyboard, StringComparison.OrdinalIgnoreCase)
             || source.StartsWith(InputSnapshotFunctionsConstants.Mouse, StringComparison.OrdinalIgnoreCase))
@@ -90,8 +88,7 @@ internal static class InputSnapshotFunctions
         return Math.Clamp(value, 0f, 1f);
     }
 
-    private static bool IsPressed(string source, EmulationControllerState controller,
-        EmulationInputSnapshot snapshot)
+    private static bool IsPressed(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
         if (TryRemovePrefix(source, InputSnapshotFunctionsConstants.Keyboard, out var keyboard)
             && Enum.TryParse<EmulationKey>(keyboard, true, out var key)) return snapshot.Keys.Contains(key);

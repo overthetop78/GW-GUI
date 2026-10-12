@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;
 
 internal static class ControllerPortFunctions
 {
-    internal static void Configure(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration)
+    internal static void Configure(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration)
     {
         for (var port = ControllerPortConstants.MinimumControllerPort;
              port < ConfigurationFunctions.ControllerPortCount(configuration.Model); port++)
@@ -14,8 +13,7 @@ internal static class ControllerPortFunctions
         callbacks.ConfigureInput(configuration.Input);
     }
 
-    internal static void ConfigurePort(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration, int port, PeripheralCategory peripheral)
+    internal static void ConfigurePort(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration, int port, PeripheralCategory peripheral)
     {
         if (port < ControllerPortConstants.MinimumControllerPort
             || port >= ConfigurationFunctions.ControllerPortCount(configuration.Model))

@@ -5,8 +5,7 @@ namespace GWGUI.Emulation.Acorn.Emulators.Common.Functions;
 
 internal static class SessionMediaFunctions
 {
-    internal static SessionMedia Prepare(MediaConfiguration configuration, string sessionDirectory,
-        IReadOnlySet<string> supportedExtensions)
+    internal static SessionMedia Prepare(MediaConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
         var source = ContentFunctions.Validate(configuration.Path, supportedExtensions);
         var runtimeDirectory = Path.Combine(sessionDirectory, SessionMediaConstants.SessionDirectoryName,

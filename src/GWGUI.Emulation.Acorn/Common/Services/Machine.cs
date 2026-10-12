@@ -23,9 +23,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private bool _pauseRequested;
     private bool _disposed;
 
-    internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core,
-        string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
-        Func<IAudioOutput?>? audioOutputFactory = null)
+    internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core, string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null, Func<IAudioOutput?>? audioOutputFactory = null)
     {
         Id = id;
         Configuration = configuration;

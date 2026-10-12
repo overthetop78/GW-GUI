@@ -27,10 +27,7 @@ internal static class InputSettingsFunctions
         return new EmulationInputSettings(keyboard, null, ports);
     }
 
-    internal static MachineConfiguration Apply(
-        MachineConfiguration configuration,
-        EmulationInputSettings settings
-    )
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         var allowedKeys = BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         var keyboardBindings = settings.Keyboard is null 

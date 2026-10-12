@@ -14,11 +14,9 @@ internal static class SettingsDescriptionFunctions
         {
             Block(EmulationMachineTab.Cpu, SettingsConstants.ResourceCpu,
                 Information(SettingsConstants.Cpu, EmulationMachineTab.Cpu, SettingsConstants.ResourceCpu, hardware.DefaultCpu.ToString()),
-                Information(SettingsConstants.CpuFrequency, EmulationMachineTab.Cpu, SettingsConstants.ResourceFrequency,
-                    $"{hardware.DefaultCpuFrequencyHz / (double)SettingsConstants.Megahertz:0.##} MHz")),
+                Information(SettingsConstants.CpuFrequency, EmulationMachineTab.Cpu, SettingsConstants.ResourceFrequency, $"{hardware.DefaultCpuFrequencyHz / (double)SettingsConstants.Megahertz:0.##} MHz")),
             Block(EmulationMachineTab.Ram, SettingsConstants.ResourceMemory,
-                Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemory,
-                    $"{hardware.MainMemoryBytes / SettingsConstants.Kibibyte} KiB")),
+                Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemory, $"{hardware.MainMemoryBytes / SettingsConstants.Kibibyte} KiB")),
             Block(EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware,
                 new EmulationSettingsField(SettingsConstants.Firmware, EmulationMachineTab.Rom,
                     EmulationMachineTab.Rom.ToString(), SettingsConstants.ResourceFirmware,
@@ -55,12 +53,10 @@ internal static class SettingsDescriptionFunctions
             Selection(configuration, SettingsConstants.AudioLatency, SettingsConstants.ResourceAudioLatency, SettingsConstants.DefaultLatency, SettingsConstants.Latencies, "ms"),
             Selection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume, SettingsConstants.DefaultVolume, SettingsConstants.Volumes, "%"));
 
-    private static EmulationSettingsField Selection(MachineConfiguration configuration, string id,
-        string resource, int defaultValue, IReadOnlyList<int> values, string unit) =>
+    private static EmulationSettingsField Selection(MachineConfiguration configuration, string id, string resource, int defaultValue, IReadOnlyList<int> values, string unit) =>
         new(id, EmulationMachineTab.Audio, EmulationMachineTab.Audio.ToString(), resource,
             EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(id, defaultValue.ToString(CultureInfo.InvariantCulture)),
-            values.Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture),
-                string.Empty, $"{value} {unit}")).ToArray());
+            values.Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture), string.Empty, $"{value} {unit}")).ToArray());
 
 
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string resource, string value) => new(id, tab, tab.ToString(), resource, EmulationSettingsEditor.Information, value);

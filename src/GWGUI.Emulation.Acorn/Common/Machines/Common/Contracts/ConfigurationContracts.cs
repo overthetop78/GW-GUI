@@ -9,8 +9,7 @@ internal sealed record ConfigurationDocument(int SchemaVersion, Guid Id, Machine
     IReadOnlyDictionary<string, string> Options, InputConfiguration Input, FolderConfiguration Folders,
     bool AudioEnabled);
 
-public sealed record FolderConfiguration(string? Shared = null, string? Floppies = null,
-    string? States = null, string? Captures = null);
+public sealed record FolderConfiguration(string? Shared = null, string? Floppies = null, string? States = null, string? Captures = null);
 
 public sealed record MachineConfiguration : IEmulationConfiguration
 {

@@ -23,14 +23,7 @@ internal sealed record ExternalCoreExports(
     ExternalCoreApi.Serialize Serialize,
     ExternalCoreApi.Serialize Unserialize);
 
-internal sealed record ExternalCoreInfo(
-    Emulator Emulator,
-    string LibraryName,
-    string LibraryVersion,
-    IReadOnlySet<string> Extensions,
-    bool NeedsFullPath,
-    bool BlocksArchiveExtraction);
+internal sealed record ExternalCoreInfo(Emulator Emulator, string LibraryName, string LibraryVersion, IReadOnlySet<string> Extensions, bool NeedsFullPath, bool BlocksArchiveExtraction);
 
-internal sealed record MemoryDescriptor(ulong Flags, nint Pointer, nuint Offset, nuint Start, nuint Select,
-    nuint Disconnect, nuint Length, string? AddressSpace);
+internal sealed record MemoryDescriptor(ulong Flags, nint Pointer, nuint Offset, nuint Start, nuint Select, nuint Disconnect, nuint Length, string? AddressSpace);
 

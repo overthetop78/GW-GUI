@@ -14,8 +14,7 @@ internal static class StorageSettingsFunctions
         return new EmulationStorageSettings(devices, devices.Select(device => device.Slot).ToArray(), configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        EmulationStorageSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
         var available = Describe(configuration).AvailableDevices.Select(device => device.Slot).ToHashSet();
         if (settings.ConfiguredSlots.Any(slot => !available.Contains(slot))
