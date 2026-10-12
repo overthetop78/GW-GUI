@@ -38,7 +38,5 @@ public static class LinuxSwapVolumeFormatter
         }
     }
 
-    internal static bool IsProfile(string id) => id is "linux-swap-4k" or "linux-swap-8k" or "linux-swap-16k" or
-        "linux-swap-32k" or "linux-swap-64k" or "linux-swap-4k-be" or "linux-swap-8k-be" or
-        "linux-swap-16k-be" or "linux-swap-32k-be" or "linux-swap-64k-be";
+    internal static bool IsProfile(string id) => id is "linux-swap-4k" or "linux-swap-8k" or "linux-swap-16k" or "linux-swap-32k" or "linux-swap-64k" or "linux-swap-4k-be" or "linux-swap-8k-be" or "linux-swap-16k-be" or "linux-swap-32k-be" or "linux-swap-64k-be";
 }

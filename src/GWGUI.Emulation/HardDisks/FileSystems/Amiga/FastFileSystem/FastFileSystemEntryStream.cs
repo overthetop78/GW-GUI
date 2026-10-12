@@ -61,8 +61,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         {
             if (offset != 0)
             {
-                throw new FileSystemDiagnosticException(FileSystemErrorCode.OnlyOffsetZeroSupported,
-                    FastFileSystemErrorMessages.OnlyOffsetZeroSupported);
+                throw new FileSystemDiagnosticException(FileSystemErrorCode.OnlyOffsetZeroSupported, FastFileSystemErrorMessages.OnlyOffsetZeroSupported);
             }
 
             return AdfReadFile(count, buffer).GetAwaiter().GetResult();
@@ -73,8 +72,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         {
             if (offset != 0)
             {
-                throw new FileSystemDiagnosticException(FileSystemErrorCode.OnlyOffsetZeroSupported,
-                    FastFileSystemErrorMessages.OnlyOffsetZeroSupported);
+                throw new FileSystemDiagnosticException(FileSystemErrorCode.OnlyOffsetZeroSupported, FastFileSystemErrorMessages.OnlyOffsetZeroSupported);
             }
 
             return await AdfReadFile(count, buffer);
@@ -88,16 +86,14 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
         public override void SetLength(long value)
         {
-            throw new FileSystemDiagnosticException(FileSystemErrorCode.SetLengthUnsupported,
-                FastFileSystemErrorMessages.SetLengthUnsupported);
+            throw new FileSystemDiagnosticException(FileSystemErrorCode.SetLengthUnsupported, FastFileSystemErrorMessages.SetLengthUnsupported);
         }
 
         public override void Write(byte[] buffer, int offset, int count)
         {
             if (offset != 0)
             {
-                throw new FileSystemDiagnosticException(FileSystemErrorCode.OnlyOffsetZeroSupported,
-                    FastFileSystemErrorMessages.OnlyOffsetZeroSupported);
+                throw new FileSystemDiagnosticException(FileSystemErrorCode.OnlyOffsetZeroSupported, FastFileSystemErrorMessages.OnlyOffsetZeroSupported);
             }
 
             AdfWriteFile(count, buffer).GetAwaiter().GetResult();
@@ -107,8 +103,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         {
             if (offset != 0)
             {
-                throw new FileSystemDiagnosticException(FileSystemErrorCode.OnlyOffsetZeroSupported,
-                    FastFileSystemErrorMessages.OnlyOffsetZeroSupported);
+                throw new FileSystemDiagnosticException(FileSystemErrorCode.OnlyOffsetZeroSupported, FastFileSystemErrorMessages.OnlyOffsetZeroSupported);
             }
 
             await AdfWriteFile(count, buffer);

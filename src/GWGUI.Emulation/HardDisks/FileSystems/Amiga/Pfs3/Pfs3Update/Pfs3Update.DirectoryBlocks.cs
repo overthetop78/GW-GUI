@@ -99,8 +99,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
                     blk2 = blk.Value;
                     blk2.blk.datestamp = g.RootBlock.Datestamp;
                     blk.Value.oldblocknr = 0;
-                    if (!(await Pfs3Disk.RawWrite(g.stream, blk.Value.blk, g.currentvolume.rescluster, blk.Value.blocknr,
-                            g)))
+                    if (!(await Pfs3Disk.RawWrite(g.stream, blk.Value.blk, g.currentvolume.rescluster, blk.Value.blocknr, g)))
                     {
                         // goto update_error;
                         // ErrorMsg (AFS_ERROR_UPDATE_FAIL, NULL, g);
@@ -128,8 +127,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             Pfs3Allocation.FreeReservedBlock(blk.oldblocknr, g);
                     blk.blk.datestamp = g.RootBlock.Datestamp;
                     blk.oldblocknr = 0;
-                    if (!(await Pfs3Disk.RawWrite(g.stream, blk.blk, g.currentvolume.rescluster, blk.blocknr,
-                            g)))
+                    if (!(await Pfs3Disk.RawWrite(g.stream, blk.blk, g.currentvolume.rescluster, blk.blocknr, g)))
                     {
                         // goto update_error;
                         // ErrorMsg (AFS_ERROR_UPDATE_FAIL, NULL, g);

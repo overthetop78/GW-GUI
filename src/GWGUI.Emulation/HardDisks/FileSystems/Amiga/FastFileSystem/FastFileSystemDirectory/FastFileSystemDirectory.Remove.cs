@@ -68,8 +68,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
                     FastFileSystemBitmap.AdfSetBlockFree(vol, nSect); //marks the entry block as free in BitmapBlock
                     if (vol.UseLnfs && fileHeaderBlock.CommentBlock != 0)
                     {
-                        FastFileSystemBitmap.AdfSetBlockFree(vol,
-                            fileHeaderBlock.CommentBlock); //marks the comment block as free in BitmapBlock
+                        FastFileSystemBitmap.AdfSetBlockFree(vol, fileHeaderBlock.CommentBlock); //marks the comment block as free in BitmapBlock
                     }
                     break;
                 case FastFileSystemConstants.ST_DIR:

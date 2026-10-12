@@ -93,8 +93,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
                 {
                     entry.LinkEntryBlock = await FastFileSystemDisk.ReadEntryBlock(volume, entry.Real);
                     var linkPath = await GetPath(volume, entry.LinkEntryBlock.Parent, entry.Parent);
-                    entry.LinkPath = string.Concat(linkPath, string.IsNullOrEmpty(linkPath) ? string.Empty : "/",
-                        entry.LinkEntryBlock.Name);
+                    entry.LinkPath = string.Concat(linkPath, string.IsNullOrEmpty(linkPath) ? string.Empty : "/", entry.LinkEntryBlock.Name);
                 }
 
                 entry.Sector = hashTable[i];
@@ -102,8 +101,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
                 if (recursive && entry.IsDirectory())
                 {
-                    entry.SubDir = (await ReadEntries(volume,
-                        FastFileSystemHelper.GetSector(volume, entryBlock), true)).ToList();
+                    entry.SubDir = (await ReadEntries(volume, FastFileSystemHelper.GetSector(volume, entryBlock), true)).ToList();
                 }
 
                 //         /* same hashcode linked list */
@@ -121,8 +119,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
                     if (recursive && entry.IsDirectory())
                     {
-                        entry.SubDir = (await ReadEntries(volume,
-                            FastFileSystemHelper.GetSector(volume, entryBlock), true)).ToList();
+                        entry.SubDir = (await ReadEntries(volume, FastFileSystemHelper.GetSector(volume, entryBlock), true)).ToList();
                     }
 
                     nextSector = entryBlock.NextSameHash;

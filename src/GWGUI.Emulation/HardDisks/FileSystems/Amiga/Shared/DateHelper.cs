@@ -21,8 +21,7 @@
         {
             var seconds = ticks / TicksPerSecond;
             var milliseconds = (double)ticks % TicksPerSecond / 50 * 1000;
-            return AmigaDate.AmigaEpocDate.AddDays(days).AddMinutes(minutes).AddSeconds(seconds)
-                .AddMilliseconds(milliseconds);
+            return AmigaDate.AmigaEpocDate.AddDays(days).AddMinutes(minutes).AddSeconds(seconds).AddMilliseconds(milliseconds);
         }
 
         /// <summary>
@@ -60,8 +59,7 @@
         {
             var days = BigEndianConverter.ConvertBytesToUInt32(bytes, offset); // days since 1 jan 78
             var minutes = BigEndianConverter.ConvertBytesToUInt32(bytes, offset + SizeOf.Long); // minutes past midnight
-            var ticks = BigEndianConverter.ConvertBytesToUInt32(bytes,
-                offset + (SizeOf.Long * 2)); // ticks (1/50 sec) past last minute
+            var ticks = BigEndianConverter.ConvertBytesToUInt32(bytes, offset + (SizeOf.Long * 2)); // ticks (1/50 sec) past last minute
 
             return ConvertToDate((int)days, (int)minutes, (int)ticks);
         }
@@ -88,10 +86,8 @@
             var amigaDate = ConvertToAmigaDate(date);
 
             BigEndianConverter.ConvertUInt32ToBytes((uint)amigaDate.Days, bytes, offset + 0); // days since 1 jan 78
-            BigEndianConverter.ConvertUInt32ToBytes((uint)amigaDate.Minutes, bytes,
-                offset + 4); // minutes past midnight
-            BigEndianConverter.ConvertUInt32ToBytes((uint)amigaDate.Ticks, bytes,
-                offset + 8); // ticks (1/50 sec) past last minute
+            BigEndianConverter.ConvertUInt32ToBytes((uint)amigaDate.Minutes, bytes, offset + 4); // minutes past midnight
+            BigEndianConverter.ConvertUInt32ToBytes((uint)amigaDate.Ticks, bytes, offset + 8); // ticks (1/50 sec) past last minute
         }
 
         public static async Task WriteDate(Stream stream, DateTime date)

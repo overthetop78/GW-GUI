@@ -34,8 +34,6 @@ internal static class ComposedPartitionWriter
         table.CreatePrimaryBySector(first, end - 1, 0x0f, false);
         ExtendedMbrWriter.Write(stream, logical);
     }
-    internal static void ValidateGpt(long size, IReadOnlyList<DiskVolumePlan> volumes)
-        => GptPartitionWriter.Validate(size, volumes);
-    internal static void WriteGpt(Stream stream, IReadOnlyList<DiskVolumePlan> volumes)
-        => GptPartitionWriter.Write(stream, volumes);
+    internal static void ValidateGpt(long size, IReadOnlyList<DiskVolumePlan> volumes) => GptPartitionWriter.Validate(size, volumes);
+    internal static void WriteGpt(Stream stream, IReadOnlyList<DiskVolumePlan> volumes) => GptPartitionWriter.Write(stream, volumes);
 }

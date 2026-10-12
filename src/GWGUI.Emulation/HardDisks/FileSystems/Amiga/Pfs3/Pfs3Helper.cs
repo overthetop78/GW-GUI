@@ -9,9 +9,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
     {
         public static async Task<Pfs3GlobalData> Mount(Stream stream, PartitionBlock partitionBlock)
         {
-            return await Mount(stream, partitionBlock.Sectors, partitionBlock.BlocksPerTrack,
-                partitionBlock.Surfaces, partitionBlock.LowCyl, partitionBlock.HighCyl, partitionBlock.NumBuffer,
-                partitionBlock.BlockSize, partitionBlock.Mask);
+            return await Mount(stream, partitionBlock.Sectors, partitionBlock.BlocksPerTrack, partitionBlock.Surfaces, partitionBlock.LowCyl, partitionBlock.HighCyl, partitionBlock.NumBuffer, partitionBlock.BlockSize, partitionBlock.Mask);
         }
 
         public static async Task<Pfs3GlobalData> Mount(Stream stream, uint sectors, uint blocksPerTrack, uint surfaces, uint lowCyl,
@@ -45,9 +43,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             var bitmapsPerBlock = g.blocksize / Amiga.SizeOf.ULong;
             var bitmapsPerFirstBlock = (g.blocksize - (Amiga.SizeOf.UWord * 2) - (Amiga.SizeOf.ULong * 2)) / Amiga.SizeOf.ULong;
 
-            return bitmapsCount > bitmapsPerFirstBlock
-                ? Convert.ToInt32(Math.Ceiling((double)(bitmapsCount - bitmapsPerFirstBlock) / bitmapsPerBlock) + 1)
-                : 1;
+            return bitmapsCount > bitmapsPerFirstBlock ? Convert.ToInt32(Math.Ceiling((double)(bitmapsCount - bitmapsPerFirstBlock) / bitmapsPerBlock) + 1) : 1;
         }
     }
 }

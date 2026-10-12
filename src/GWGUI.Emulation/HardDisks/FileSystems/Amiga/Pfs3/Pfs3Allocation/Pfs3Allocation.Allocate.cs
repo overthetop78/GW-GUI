@@ -177,9 +177,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
                                             await Pfs3Anodes.SaveAnode(chnode.an, chnode.an.nr, g);
                                             if (bitmap.BitmapBlock == null)
                                             {
-                                                throw new FileSystemDiagnosticException(
-                                                    FileSystemErrorCode.BitmapBlockMissing,
-                                                    Pfs3ErrorMessages.BitmapBlockMissing);
+                                                throw new FileSystemDiagnosticException(FileSystemErrorCode.BitmapBlockMissing, Pfs3ErrorMessages.BitmapBlockMissing);
                                             }
                                             await Pfs3Update.UpdateDisk(g);
 

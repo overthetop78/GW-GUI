@@ -22,8 +22,7 @@ internal sealed class EmulationChildProcessJob : IDisposable
         ArgumentNullException.ThrowIfNull(process);
         if (process.HasExited) return;
         if (!AssignProcessToJobObject(_job, process.Handle))
-            throw new Win32Exception(Marshal.GetLastWin32Error(),
-                "The emulator host process could not be attached to GW GUI's lifetime.");
+            throw new Win32Exception(Marshal.GetLastWin32Error(), "The emulator host process could not be attached to GW GUI's lifetime.");
     }
 
     public void Dispose() => _job.Dispose();

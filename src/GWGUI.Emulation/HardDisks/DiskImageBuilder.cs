@@ -4,11 +4,9 @@ namespace GWGUI.Emulation.HardDisks;
 
 public static class DiskImageBuilder
 {
-    public static void Validate(DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)
-        => _ = Prepare(plan, registry, consumer);
+    public static void Validate(DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null) => _ = Prepare(plan, registry, consumer);
 
-    public static void Write(Stream destination, DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)
-        => Prepare(plan, registry, consumer)(destination);
+    public static void Write(Stream destination, DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null) => Prepare(plan, registry, consumer)(destination);
 
     internal static Action<Stream> Prepare(DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)
     {
@@ -23,8 +21,7 @@ public static class DiskImageBuilder
         };
     }
 
-    public static void ValidateSet(DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)
-        => _ = PrepareSet(plan, registry, consumer);
+    public static void ValidateSet(DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null) => _ = PrepareSet(plan, registry, consumer);
 
     public static void WriteSet(DiskImagePlan plan, Action<string, Stream> emit,
         DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)

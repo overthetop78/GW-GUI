@@ -21,8 +21,7 @@ namespace Hst.Amiga.FileSystems.Pfs3.Blocks
 
         public Pfs3IndexBlock(Pfs3GlobalData g)
         {
-            index = new int[(g.RootBlock.ReservedBlksize - Amiga.SizeOf.UWord * 2 - Amiga.SizeOf.ULong * 2) /
-                            Amiga.SizeOf.Long];
+            index = new int[(g.RootBlock.ReservedBlksize - Amiga.SizeOf.UWord * 2 - Amiga.SizeOf.ULong * 2) / Amiga.SizeOf.Long];
         }
     }
 }

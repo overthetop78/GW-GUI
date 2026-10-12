@@ -88,8 +88,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
                 dir.HashTable[hashValue] = newSect;
                 dir.Date = DateTime.Now;
-                await WriteEntryBlock(vol, dir.SecType == FastFileSystemConstants.ST_ROOT ? vol.RootBlockOffset : dir.HeaderKey,
-                    dir);
+                await WriteEntryBlock(vol, dir.SecType == FastFileSystemConstants.ST_ROOT ? vol.RootBlockOffset : dir.HeaderKey, dir);
 
                 return newSect;
             }

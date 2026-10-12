@@ -40,15 +40,11 @@ namespace Hst.Amiga.FileSystems.Pfs3
             var protection = bytes[offset + 16];
 
             var nameLength = bytes[offset + Pfs3DirEntry.StartOfName];
-            var name = nameLength == 0
-                ? string.Empty
-                : AmigaTextHelper.GetString(bytes, offset + Pfs3DirEntry.StartOfName + 1, nameLength);
+            var name = nameLength == 0 ? string.Empty : AmigaTextHelper.GetString(bytes, offset + Pfs3DirEntry.StartOfName + 1, nameLength);
 
             var commentOffset = offset + Pfs3DirEntry.StartOfName + 1 + nameLength;
             var commentLength = bytes[commentOffset];
-            var comment = commentLength > 0
-                ? AmigaTextHelper.GetString(bytes, commentOffset + 1, commentLength)
-                : string.Empty;
+            var comment = commentLength > 0 ? AmigaTextHelper.GetString(bytes, commentOffset + 1, commentLength) : string.Empty;
 
             var extraFields = g.dirextension ? ReadExtraFields(bytes, offset, next) : new Pfs3ExtraFields();
 

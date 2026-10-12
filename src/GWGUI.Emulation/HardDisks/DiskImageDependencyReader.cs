@@ -47,14 +47,11 @@ public static partial class DiskImageDependencyReader
             case "vmdk": dependencies = Paths(ReadVmdk(input, imagePath).Dependencies); break;
             case "qcow":
                 var qcow = ReadBytes(input, 0, 20);
-                dependencies = Paths(ReadBackingName(input, BinaryPrimitives.ReadUInt64BigEndian(qcow.AsSpan(8)),
-                    BinaryPrimitives.ReadUInt32BigEndian(qcow.AsSpan(16))));
+                dependencies = Paths(ReadBackingName(input, BinaryPrimitives.ReadUInt64BigEndian(qcow.AsSpan(8)), BinaryPrimitives.ReadUInt32BigEndian(qcow.AsSpan(16))));
                 break;
             case "qed":
                 var qed = ReadBytes(input, 0, 64);
-                dependencies = (BinaryPrimitives.ReadUInt64LittleEndian(qed.AsSpan(16)) & 1) == 0 ? [] : Paths(
-                    ReadBackingName(input, BinaryPrimitives.ReadUInt32LittleEndian(qed.AsSpan(56)),
-                        BinaryPrimitives.ReadUInt32LittleEndian(qed.AsSpan(60))));
+                dependencies = (BinaryPrimitives.ReadUInt64LittleEndian(qed.AsSpan(16)) & 1) == 0 ? [] : Paths(ReadBackingName(input, BinaryPrimitives.ReadUInt32LittleEndian(qed.AsSpan(56)), BinaryPrimitives.ReadUInt32LittleEndian(qed.AsSpan(60))));
                 break;
             case "vdi":
                 var vdi = ReadBytes(input, 0, VdiHeaderWithParentIdentifiersSize);
@@ -70,9 +67,7 @@ public static partial class DiskImageDependencyReader
                 var chd = ReadBytes(input, 0, 124);
                 if (BinaryPrimitives.ReadUInt32BigEndian(chd.AsSpan(12)) != ChdVersion5)
                     throw new NotSupportedException("Only CHD V5 dependencies are supported.");
-                dependencies = chd.AsSpan(104, 20).ContainsAnyExcept((byte)0)
-                    ? [DiskImageDependencyReference.FromSha1(chd.AsSpan(104, 20))]
-                    : [];
+                dependencies = chd.AsSpan(104, 20).ContainsAnyExcept((byte)0) ? [DiskImageDependencyReference.FromSha1(chd.AsSpan(104, 20))] : [];
                 break;
             case "udif":
                 var footer = ReadBytes(input, (ulong)(input.Length - 512), 512);
@@ -88,9 +83,7 @@ public static partial class DiskImageDependencyReader
                 break;
             default: dependencies = []; break;
         }
-        return DistinctReferences(dependencies.Select(reference => reference.Path is null
-                ? reference
-                : DiskImageDependencyReference.FromPath(Resolve(imagePath, reference.Path))));
+        return DistinctReferences(dependencies.Select(reference => reference.Path is null ? reference : DiskImageDependencyReference.FromPath(Resolve(imagePath, reference.Path))));
     }
 
     public static IReadOnlyList<DiskImageDependencyReference> ReadIdentities(Stream image)
@@ -109,9 +102,7 @@ public static partial class DiskImageDependencyReader
     {
         if (!image.CanRead || !image.CanSeek) throw new ArgumentException("A readable seekable image is required.");
         using var input = new DifferencingImageStreams.ReadOnlyParent(image);
-        return DiskContainerSignatures.Identify(input) == "vmdk"
-            ? ReadVmdk(input, imagePath).Members.Select(path => Resolve(imagePath, path)).Distinct(PathComparer).ToArray()
-            : [];
+        return DiskContainerSignatures.Identify(input) == "vmdk" ? ReadVmdk(input, imagePath).Members.Select(path => Resolve(imagePath, path)).Distinct(PathComparer).ToArray() : [];
     }
 
     internal static StringComparer PathComparer => OperatingSystem.IsWindows() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal;
@@ -133,8 +124,7 @@ public static partial class DiskImageDependencyReader
         return [new UTF8Encoding(false, true).GetString(ReadBytes(image, offset, count))];
     }
 
-    private static IEnumerable<DiskImageDependencyReference> Paths(IEnumerable<string> paths) =>
-        paths.Select(DiskImageDependencyReference.FromPath);
+    private static IEnumerable<DiskImageDependencyReference> Paths(IEnumerable<string> paths) => paths.Select(DiskImageDependencyReference.FromPath);
 
     private static IReadOnlyList<DiskImageDependencyReference> DistinctReferences(
         IEnumerable<DiskImageDependencyReference> references)
@@ -168,9 +158,7 @@ public static partial class DiskImageDependencyReader
         var header = ReadBytes(image, 0, 124);
         if (BinaryPrimitives.ReadUInt32BigEndian(header.AsSpan(12)) != ChdVersion5)
             throw new NotSupportedException("Only CHD V5 identities are supported.");
-        return header.AsSpan(84, 20).ContainsAnyExcept((byte)0)
-            ? [DiskImageDependencyReference.FromSha1(header.AsSpan(84, 20))]
-            : [];
+        return header.AsSpan(84, 20).ContainsAnyExcept((byte)0) ? [DiskImageDependencyReference.FromSha1(header.AsSpan(84, 20))] : [];
     }
 
     private static byte[] ReadBytes(Stream image, ulong offset, uint count)

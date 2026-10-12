@@ -9,12 +9,7 @@ public static class EmulationErrorService
     {
         ArgumentNullException.ThrowIfNull(error);
         if (error is OperationCanceledException or EmulationMessageException) return error;
-        return new EmulationMessageException(new EmulationMessage(
-            fallbackCategory,
-            fallbackCode,
-            EmulationMessageSeverity.Error,
-            EmulationMessageTarget.Dialog,
-            context), error);
+        return new EmulationMessageException(new EmulationMessage(fallbackCategory, fallbackCode, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog, context), error);
     }
 
     public static Exception TranslateLocalized(Exception error,
@@ -23,12 +18,6 @@ public static class EmulationErrorService
     {
         ArgumentNullException.ThrowIfNull(error);
         if (error is OperationCanceledException or EmulationMessageException) return error;
-        return new EmulationMessageException(new EmulationMessage(
-            category,
-            EmulationMessageCode.UntranslatedEmulatorMessage,
-            EmulationMessageSeverity.Error,
-            EmulationMessageTarget.Dialog,
-            context,
-            error.Message), error);
+        return new EmulationMessageException(new EmulationMessage(category, EmulationMessageCode.UntranslatedEmulatorMessage, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog, context, error.Message), error);
     }
 }

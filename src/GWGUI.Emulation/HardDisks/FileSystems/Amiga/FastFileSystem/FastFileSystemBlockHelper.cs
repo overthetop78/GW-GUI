@@ -18,8 +18,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         public static int CalculateBitmapsPerBitmapBlockCount(uint fileSystemBlockSize)
         {
             // calculate bitmaps per bitmap blocks count
-            return Convert.ToInt32(CalculateOffsetsPerBitmapBlockCount(fileSystemBlockSize) *
-                                   FastFileSystemConstants.BitmapsPerULong);
+            return Convert.ToInt32(CalculateOffsetsPerBitmapBlockCount(fileSystemBlockSize) * FastFileSystemConstants.BitmapsPerULong);
         }
 
         public static int CalculateBitmapBlockOffsetsPerBitmapExtensionBlock(uint fileSystemBlockSize)
@@ -96,8 +95,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             {
                 var bitmapBlockChunk = bitmapBlockChunks[i].ToList();
 
-                var nextBitmapExtensionBlockOffset =
-                    FastFileSystemOffsetHelper.SetBitmapBlockOffsets(bitmapBlockChunk, currentBitmapExtensionBlockOffset + 1) + 1;
+                var nextBitmapExtensionBlockOffset = FastFileSystemOffsetHelper.SetBitmapBlockOffsets(bitmapBlockChunk, currentBitmapExtensionBlockOffset + 1) + 1;
 
                 yield return new FastFileSystemBitmapExtensionBlock
                 {
@@ -122,8 +120,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
                 var bitmapBlockIndex = Convert.ToInt32((entry.Key - reserved) / bitmapsPerBitmapBlockCount);
                 var blockIndex = (int)((entry.Key - reserved) % bitmapsPerBitmapBlockCount);
 
-                FastFileSystemMapBlockHelper.SetBlock(bitmapBlocksList[bitmapBlockIndex], blockIndex,
-                    entry.Value ? FastFileSystemBitmapBlock.FastFileSystemBlockState.Free : FastFileSystemBitmapBlock.FastFileSystemBlockState.Used);
+                FastFileSystemMapBlockHelper.SetBlock(bitmapBlocksList[bitmapBlockIndex], blockIndex, entry.Value ? FastFileSystemBitmapBlock.FastFileSystemBlockState.Free : FastFileSystemBitmapBlock.FastFileSystemBlockState.Used);
             }
         }
 
@@ -150,8 +147,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             while (bitmapExtensionBlocksOffset != 0)
             {
                 var bitmapExtensionBlock = await FastFileSystemDisk.ReadBitmapExtensionBlock(volume, bitmapExtensionBlocksOffset);
-                bitmapExtensionBlock.BitmapBlocks =
-                    await ReadBitmapBlocks(volume, bitmapExtensionBlock.BitmapBlockOffsets);
+                bitmapExtensionBlock.BitmapBlocks = await ReadBitmapBlocks(volume, bitmapExtensionBlock.BitmapBlockOffsets);
 
                 bitmapExtensionBlocks.Add(bitmapExtensionBlock);
 

@@ -8,9 +8,7 @@ public static class VdiImageWriter
     {
         ContainerValidation.Validate(destination, capacity);
         using var content = SparseImageContent.Create(capacity, initialize);
-        using var disk = fixedSize
-            ? DiscUtils.Vdi.Disk.InitializeFixed(destination, Ownership.None, capacity)
-            : DiscUtils.Vdi.Disk.InitializeDynamic(destination, Ownership.None, capacity);
+        using var disk = fixedSize ? DiscUtils.Vdi.Disk.InitializeFixed(destination, Ownership.None, capacity) : DiscUtils.Vdi.Disk.InitializeDynamic(destination, Ownership.None, capacity);
         SparseImageContent.CopyAllocated(content, disk.Content);
         disk.Content.Flush();
     }

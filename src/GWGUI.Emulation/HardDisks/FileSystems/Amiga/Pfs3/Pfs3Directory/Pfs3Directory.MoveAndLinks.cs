@@ -83,8 +83,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             /* Make destination  */
             //destentry = (struct Pfs3DirEntry *)&entrybuffer;
             //destentry = srcdirentry;
-            destentry = new Pfs3DirEntry(0, srcdirentry.type, srcdirentry.anode, srcdirentry.fsize, srcdirentry.protection,
-                srcdirentry.CreationDate, destname, srcdirentry.comment, srcdirentry.ExtraFields, g);
+            destentry = new Pfs3DirEntry(0, srcdirentry.type, srcdirentry.anode, srcdirentry.fsize, srcdirentry.protection, srcdirentry.CreationDate, destname, srcdirentry.comment, srcdirentry.ExtraFields, g);
 
             /* copy header */
             //memcpy(destentry, srcdirentry, offsetof(struct Pfs3DirEntry, nlength));
@@ -262,8 +261,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             // destentry = (struct Pfs3DirEntry *)entrybuffer;
             sourceentry = info.file.direntry;
 
-            destentry = new Pfs3DirEntry(0, sourceentry.type, sourceentry.anode, sourceentry.fsize, sourceentry.protection,
-                sourceentry.CreationDate, sourceentry.Name, comment, sourceentry.ExtraFields, g);
+            destentry = new Pfs3DirEntry(0, sourceentry.type, sourceentry.anode, sourceentry.fsize, sourceentry.protection, sourceentry.CreationDate, sourceentry.Name, comment, sourceentry.ExtraFields, g);
 
             // destentry = new direntry(sourceentry)
             // {

@@ -17,8 +17,7 @@ public static class VhdxDifferencingImageWriter
         ArgumentNullException.ThrowIfNull(parentImages);
         var images = parentImages.ToArray();
         foreach (var image in images) DifferencingImageStreams.Validate(destination, image, parentAbsolutePath, parentRelativePath, parentModificationTimeUtc);
-        using var chain = new DifferencingParentChain<DiskImageFile>(images, stream => new(stream, Ownership.None),
-            layer => layer.UniqueId, layer => layer.ParentUniqueId, VhdxImageWriter.Validate);
+        using var chain = new DifferencingParentChain<DiskImageFile>(images, stream => new(stream, Ownership.None), layer => layer.UniqueId, layer => layer.ParentUniqueId, VhdxImageWriter.Validate);
         var parent = chain.ImmediateParent;
         using var staged = new SparseMemoryStream();
         using (var child = DiskImageFile.InitializeDifferencing(staged, Ownership.None, parent, parentAbsolutePath, parentRelativePath, parentModificationTimeUtc))

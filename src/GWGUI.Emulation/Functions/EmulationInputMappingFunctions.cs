@@ -54,8 +54,7 @@ public static class EmulationInputMappingFunctions
         foreach (var key in keys)
         {
             var mapped = mappings.FirstOrDefault(item => item.Value == key);
-            result.Add(!string.IsNullOrWhiteSpace(mapped.Key)
-                && Enum.TryParse<EmulationKey>(mapped.Key, true, out var target) ? target : key);
+            result.Add(!string.IsNullOrWhiteSpace(mapped.Key) && Enum.TryParse<EmulationKey>(mapped.Key, true, out var target) ? target : key);
         }
         return result;
     }
@@ -65,8 +64,7 @@ public static class EmulationInputMappingFunctions
         if (string.IsNullOrWhiteSpace(source) ||
             !source.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)) return null;
         var controlSeparator = source.LastIndexOf(EmulationInputMappingConstants.SourceSeparator);
-        return controlSeparator <= EmulationInputMappingConstants.ControllerPrefix.Length ? null
-            : source[EmulationInputMappingConstants.ControllerPrefix.Length..controlSeparator];
+        return controlSeparator <= EmulationInputMappingConstants.ControllerPrefix.Length ? null : source[EmulationInputMappingConstants.ControllerPrefix.Length..controlSeparator];
     }
 
     public static EmulationControllerState ResolveController(string? deviceId,
@@ -74,12 +72,10 @@ public static class EmulationInputMappingFunctions
     {
         if (!string.IsNullOrWhiteSpace(deviceId))
         {
-            var match = controllers.FirstOrDefault(controller =>
-                string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase));
+            var match = controllers.FirstOrDefault(controller => string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase));
             return match ?? EmulationControllerState.Empty;
         }
-        return fallbackIndex >= 0 && fallbackIndex < controllers.Count
-            ? controllers[fallbackIndex] : EmulationControllerState.Empty;
+        return fallbackIndex >= 0 && fallbackIndex < controllers.Count ? controllers[fallbackIndex] : EmulationControllerState.Empty;
     }
 
     public static EmulationControllerState ResolveSourceController(string source,
@@ -95,12 +91,10 @@ public static class EmulationInputMappingFunctions
         if (ControllerButtons.TryGetValue(name, out var button))
             return (controller.Buttons & (1u << button)) != 0 ? 1f : 0f;
         if (name.EndsWith(EmulationInputMappingConstants.PositiveSuffix, StringComparison.OrdinalIgnoreCase)
-            && controller.Controls.TryGetValue(
-                name[..^EmulationInputMappingConstants.PositiveSuffix.Length], out var positive))
+            && controller.Controls.TryGetValue(name[..^EmulationInputMappingConstants.PositiveSuffix.Length], out var positive))
             return positive;
         if (name.EndsWith(EmulationInputMappingConstants.NegativeSuffix, StringComparison.OrdinalIgnoreCase)
-            && controller.Controls.TryGetValue(
-                name[..^EmulationInputMappingConstants.NegativeSuffix.Length], out var negative))
+            && controller.Controls.TryGetValue(name[..^EmulationInputMappingConstants.NegativeSuffix.Length], out var negative))
             return -negative;
         if (controller.Controls.TryGetValue(name, out var value)) return value;
         return name switch
@@ -117,8 +111,7 @@ public static class EmulationInputMappingFunctions
         };
     }
 
-    public static bool IsControllerSourcePressed(string source, EmulationControllerState controller) =>
-        IsControllerSourcePressed(source, controller, ControllerSourceValue(source, controller));
+    public static bool IsControllerSourcePressed(string source, EmulationControllerState controller) => IsControllerSourcePressed(source, controller, ControllerSourceValue(source, controller));
 
     public static bool IsControllerSourcePressed(
         string source,
@@ -137,7 +130,5 @@ public static class EmulationInputMappingFunctions
         return value > EmulationInputMappingConstants.AnalogThreshold;
     }
 
-    private static string SourceControlName(string source) =>
-        source.Split(EmulationInputMappingConstants.SourceSeparator,
-            StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? string.Empty;
+    private static string SourceControlName(string source) => source.Split(EmulationInputMappingConstants.SourceSeparator, StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? string.Empty;
 }

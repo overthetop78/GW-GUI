@@ -12,10 +12,8 @@ public sealed class EmulationModuleLocalization(Assembly assembly, string resour
 {
     private const string BaseCulture = "00-Base";
     private const string FallbackCulture = "en-US";
-    private static readonly Regex SatelliteResourceSuffix = new(
-        @"\.[a-z]{2}(?:-[A-Za-z]{2,4})?\.resources$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-    private readonly ConcurrentDictionary<string, IReadOnlyDictionary<string, string>> _catalogs =
-        new(StringComparer.OrdinalIgnoreCase);
+    private static readonly Regex SatelliteResourceSuffix = new(@"\.[a-z]{2}(?:-[A-Za-z]{2,4})?\.resources$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    private readonly ConcurrentDictionary<string, IReadOnlyDictionary<string, string>> _catalogs = new(StringComparer.OrdinalIgnoreCase);
     private readonly string _resourceRoot = GetResourceRoot(resourcePrefix);
 
     public bool TryGetString(string key, CultureInfo culture, out string value)
@@ -46,8 +44,7 @@ public sealed class EmulationModuleLocalization(Assembly assembly, string resour
     private IReadOnlyDictionary<string, string> LoadCatalog(string culture)
     {
         var result = new Dictionary<string, string>(StringComparer.Ordinal);
-        foreach (var resourceName in assembly.GetManifestResourceNames()
-                     .Where(name => IsCatalogResource(name, culture)))
+        foreach (var resourceName in assembly.GetManifestResourceNames().Where(name => IsCatalogResource(name, culture)))
         {
             using var stream = assembly.GetManifestResourceStream(resourceName);
             if (stream is null) continue;
@@ -70,8 +67,6 @@ public sealed class EmulationModuleLocalization(Assembly assembly, string resour
     {
         const string marker = ".Resources.";
         var markerIndex = resourcePrefix.LastIndexOf(marker, StringComparison.Ordinal);
-        return markerIndex >= 0
-            ? resourcePrefix[..(markerIndex + marker.Length)]
-            : resourcePrefix[..(resourcePrefix.LastIndexOf('.') + 1)];
+        return markerIndex >= 0 ? resourcePrefix[..(markerIndex + marker.Length)] : resourcePrefix[..(resourcePrefix.LastIndexOf('.') + 1)];
     }
 }

@@ -11,9 +11,7 @@ public static class HardDiskPreparationWriter
         {
             case HardDiskPreparation.Blank: return;
             case HardDiskPreparation.AtariAhdiFat16:
-                using (var partition = string.Equals(formatId, "atari-ide", StringComparison.OrdinalIgnoreCase)
-                           ? AtariIdePartitionWriter.Create(disk)
-                           : AtariAhdiPartitionWriter.Create(disk))
+                using (var partition = string.Equals(formatId, "atari-ide", StringComparison.OrdinalIgnoreCase) ? AtariIdePartitionWriter.Create(disk) : AtariAhdiPartitionWriter.Create(disk))
                     AtariFat16VolumeFormatter.Format(partition);
                 break;
             case HardDiskPreparation.AmigaOfs: AmigaDosVolumeFormatter.Format(disk, label, false); break;
@@ -31,8 +29,7 @@ public static class HardDiskPreparationWriter
             case HardDiskPreparation.GptNtfs:
                 var ntfs = preparation is HardDiskPreparation.MbrNtfs or HardDiskPreparation.GptNtfs;
                 var type = ntfs ? DiscUtils.Partitions.WellKnownPartitionType.WindowsNtfs : DiscUtils.Partitions.WellKnownPartitionType.WindowsFat;
-                var entry = preparation is HardDiskPreparation.MbrFat or HardDiskPreparation.MbrNtfs
-                    ? MbrPartitionWriter.Create(disk, type) : GptPartitionWriter.Create(disk, type);
+                var entry = preparation is HardDiskPreparation.MbrFat or HardDiskPreparation.MbrNtfs ? MbrPartitionWriter.Create(disk, type) : GptPartitionWriter.Create(disk, type);
                 using (var partition = entry.Open())
                 {
                     if (ntfs) NtfsVolumeFormatter.Format(partition, label, entry.FirstSector);

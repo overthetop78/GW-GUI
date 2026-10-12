@@ -22,9 +22,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem.Blocks
                 case FastFileSystemConstants.ST_FILE:
                 case FastFileSystemConstants.ST_LDIR:
                 case FastFileSystemConstants.ST_LFILE:
-                    return useLnfs
-                        ? FastFileSystemLongNameEntryBlockWriter.Build(entryBlock, blockSize)
-                        : BuildEntryBlock(entryBlock, blockSize);
+                    return useLnfs ? FastFileSystemLongNameEntryBlockWriter.Build(entryBlock, blockSize) : BuildEntryBlock(entryBlock, blockSize);
                 default:
                     throw new ArgumentException($"Invalid entry block secondary type '{entryBlock.SecType}'",
                         nameof(entryBlock.SecType));

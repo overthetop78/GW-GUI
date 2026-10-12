@@ -14,8 +14,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         public static async Task<FastFileSystemFindEntryResult> FindEntry(uint sector, string path, FastFileSystemVolumeState volume)
         {
             var isRoot = path.StartsWith(FastFileSystemPathConstants.Root);
-            var parts = (isRoot ? path.Substring(1) : path)
-                .Split(FastFileSystemPathConstants.Separator);
+            var parts = (isRoot ? path.Substring(1) : path).Split(FastFileSystemPathConstants.Separator);
 
             if (isRoot)
             {
@@ -41,8 +40,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             {
                 var part = parts[i];
 
-                var currentEntry = (await ReadEntries(volume, sector)).FirstOrDefault(x =>
-                    x.Name.Equals(part, StringComparison.OrdinalIgnoreCase));
+                var currentEntry = (await ReadEntries(volume, sector)).FirstOrDefault(x => x.Name.Equals(part, StringComparison.OrdinalIgnoreCase));
                 if (currentEntry == null)
                 {
                     break;

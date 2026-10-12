@@ -89,9 +89,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
         public static async Task WriteDataBlock(FastFileSystemVolumeState volume, uint nSect, FastFileSystemDataBlock dataBlock)
         {
-            var blockBytes = volume.UseOfs
-                ? FastFileSystemDataBlockBuilder.Build(dataBlock, volume.FileSystemBlockSize)
-                : dataBlock.Data;
+            var blockBytes = volume.UseOfs ? FastFileSystemDataBlockBuilder.Build(dataBlock, volume.FileSystemBlockSize) : dataBlock.Data;
             await WriteBlock(volume, nSect, blockBytes);
         }
 

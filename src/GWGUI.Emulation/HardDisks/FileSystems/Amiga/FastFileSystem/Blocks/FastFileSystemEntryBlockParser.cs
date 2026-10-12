@@ -26,9 +26,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem.Blocks
                 case FastFileSystemConstants.ST_FILE:
                 case FastFileSystemConstants.ST_LDIR:
                 case FastFileSystemConstants.ST_LFILE:
-                    return useLnfs
-                        ? FastFileSystemLongNameEntryBlockReader.Read(blockBytes)
-                        : ParseEntryBlock(blockBytes);
+                    return useLnfs ? FastFileSystemLongNameEntryBlockReader.Read(blockBytes) : ParseEntryBlock(blockBytes);
                 default:
                     throw new IOException($"Invalid entry block sec type '{secType}'");
             }

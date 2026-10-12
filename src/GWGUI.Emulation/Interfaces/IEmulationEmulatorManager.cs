@@ -17,8 +17,7 @@ public interface IEmulationEmulatorManager
         IEmulationConfiguration configuration,
         CancellationToken cancellationToken = default)
     {
-        var installation = await GetEmulatorInstallationAsync(configuration, cancellationToken)
-            .ConfigureAwait(false);
+        var installation = await GetEmulatorInstallationAsync(configuration, cancellationToken).ConfigureAwait(false);
         if (string.IsNullOrWhiteSpace(installation.EmulatorId)
             || string.IsNullOrWhiteSpace(installation.DisplayName)
             || string.IsNullOrWhiteSpace(installation.DescriptionResourceKey))

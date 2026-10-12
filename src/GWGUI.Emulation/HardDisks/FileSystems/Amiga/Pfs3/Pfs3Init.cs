@@ -105,13 +105,11 @@ namespace Hst.Amiga.FileSystems.Pfs3
             g.harddiskmode = rootBlock.Options.HasFlag(Pfs3RootBlock.Pfs3DiskOptions.MODE_HARDDISK);
             g.anodesplitmode = rootBlock.Options.HasFlag(Pfs3RootBlock.Pfs3DiskOptions.MODE_SPLITTED_ANODES);
             g.dirextension = rootBlock.Options.HasFlag(Pfs3RootBlock.Pfs3DiskOptions.MODE_DIR_EXTENSION);
-            g.deldirenabled = rootBlock.Options.HasFlag(Pfs3RootBlock.Pfs3DiskOptions.MODE_DELDIR) &&
-                              g.dirextension && blk.deldirsize > 0;
+            g.deldirenabled = rootBlock.Options.HasFlag(Pfs3RootBlock.Pfs3DiskOptions.MODE_DELDIR) && g.dirextension && blk.deldirsize > 0;
             g.SuperMode = rootBlock.Options.HasFlag(Pfs3RootBlock.Pfs3DiskOptions.MODE_SUPERINDEX);
             g.fnsize = (ushort)(volume.rblkextension != null ? blk.fnsize : 32);
             if (g.fnsize == 0) g.fnsize = 32;
-            g.largefile = rootBlock.Options.HasFlag(Pfs3RootBlock.Pfs3DiskOptions.MODE_LARGEFILE) &&
-                          g.dirextension && Pfs3Constants.LARGE_FILE_SIZE;
+            g.largefile = rootBlock.Options.HasFlag(Pfs3RootBlock.Pfs3DiskOptions.MODE_LARGEFILE) && g.dirextension && Pfs3Constants.LARGE_FILE_SIZE;
 
             await InitAnodes(volume, formatting, g);
             InitAllocation(volume, g);
@@ -133,15 +131,12 @@ namespace Hst.Amiga.FileSystems.Pfs3
             // reference to method
 
             var andata = g.glob_anodedata;
-            andata.curranseqnr =
-                (ushort)(volume.rblkextension != null ? volume.rblkextension.rblkextension.curranseqnr : 0);
+            andata.curranseqnr = (ushort)(volume.rblkextension != null ? volume.rblkextension.rblkextension.curranseqnr : 0);
             //andata.anodesperblock = (volume->rootblk->reserved_blksize - sizeof(anodeblock_t)) / sizeof(anode_t);
             //andata.indexperblock = (volume->rootblk->reserved_blksize - sizeof(indexblock_t)) / sizeof(LONG);
             andata.anodesperblock = (ushort)((g.RootBlock.ReservedBlksize - Pfs3SizeOf.ANODEBLOCK_T) / Pfs3SizeOf.ANODE_T);
             andata.indexperblock = (ushort)((g.RootBlock.ReservedBlksize - Pfs3SizeOf.INDEXBLOCK_T) / 4);
-            andata.maxanodeseqnr = (uint)(g.SuperMode
-                ? ((Pfs3Constants.MAXSUPER + 1) * andata.indexperblock * andata.indexperblock * andata.anodesperblock - 1)
-                : (Pfs3Constants.MAXSMALLINDEXNR * andata.indexperblock - 1));
+            andata.maxanodeseqnr = (uint)(g.SuperMode ? ((Pfs3Constants.MAXSUPER + 1) * andata.indexperblock * andata.indexperblock * andata.anodesperblock - 1) : (Pfs3Constants.MAXSMALLINDEXNR * andata.indexperblock - 1));
             andata.reserved = (ushort)(andata.anodesperblock - Pfs3Constants.RESERVEDANODES);
             await Pfs3Anodes.MakeAnodeBitmap(formatting, g);
         }
@@ -277,8 +272,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
                     alloc_data.rovingbit = 0;
                 }
 
-                alloc_data.numreserved =
-                    (uint)((rootblock.LastReserved - rootblock.FirstReserved + 1) / volume.rescluster);
+                alloc_data.numreserved = (uint)((rootblock.LastReserved - rootblock.FirstReserved + 1) / volume.rescluster);
                 alloc_data.reservedtobefreed = null;
                 alloc_data.rtbf_size = 0;
                 alloc_data.rtbf_index = 0;

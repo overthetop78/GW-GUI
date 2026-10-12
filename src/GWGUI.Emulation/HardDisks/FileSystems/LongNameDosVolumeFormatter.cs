@@ -7,16 +7,14 @@ namespace GWGUI.Emulation.HardDisks.FileSystems;
 /// <summary>DOS6/DOS7 volumes with long names and 512-byte filesystem blocks. No executable boot code.</summary>
 public static class LongNameDosVolumeFormatter
 {
-    public static void Validate(long capacity, string label)
-        => AmigaDosVolumeFormatter.Validate(capacity, label, 0);
+    public static void Validate(long capacity, string label) => AmigaDosVolumeFormatter.Validate(capacity, label, 0);
 
     public static void Format(Stream volume, string label, bool fastFileSystem)
     {
         Validate(volume.Length, label);
         if (!volume.CanRead || !volume.CanSeek || !volume.CanWrite)
             throw new ArgumentException("A readable writable seekable volume is required.");
-        Task.Run(() => FastFileSystemFormatter.FormatPartition(volume, DescribeVolume(volume.Length, fastFileSystem), label))
-            .GetAwaiter().GetResult();
+        Task.Run(() => FastFileSystemFormatter.FormatPartition(volume, DescribeVolume(volume.Length, fastFileSystem), label)).GetAwaiter().GetResult();
         var boot = new byte[1024];
         volume.Position = 0;
         volume.ReadExactly(boot);

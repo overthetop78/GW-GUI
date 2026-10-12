@@ -86,9 +86,7 @@ public sealed class DiskFormatRegistry
     {
         ArgumentNullException.ThrowIfNull(format);
         var container = GetContainer(format.Container.ToString().ToLowerInvariant());
-        var sectorSizes = container.LogicalSectorSizes is null
-            ? format.LogicalSectorSizes
-            : format.LogicalSectorSizes.Intersect(container.LogicalSectorSizes).ToFrozenSet();
+        var sectorSizes = container.LogicalSectorSizes is null ? format.LogicalSectorSizes : format.LogicalSectorSizes.Intersect(container.LogicalSectorSizes).ToFrozenSet();
         if (sectorSizes.Count == 0)
             throw new NotSupportedException($"Container '{container.Id}' and format '{format.Id}' have no common logical sector size.");
         var minimum = Math.Max(format.MinimumBytes, container.MinimumBytes);
@@ -197,8 +195,7 @@ public sealed class DiskFormatRegistry
                 (stream, volume) => LinuxSwapVolumeFormatter.Format(stream, volume.Label, pageBytes, bigEndian))
             { Identity = new("Linux swap", $"SWAPSPACE2 v1, {pageBytes}-byte pages, {(bigEndian ? "big" : "little")}-endian integers") });
         }
-        registry.Register(new FileSystem("bfs", volume => BfsVolumeFormatter.Validate(volume.LengthBytes, volume.Label),
-            (stream, volume) => BfsVolumeFormatter.Format(stream, volume.Label)));
+        registry.Register(new FileSystem("bfs", volume => BfsVolumeFormatter.Validate(volume.LengthBytes, volume.Label), (stream, volume) => BfsVolumeFormatter.Format(stream, volume.Label)));
         registry.Register(new FileSystem("pfs3", volume => Pfs3VolumeFormatter.Validate(volume.LengthBytes, volume.Label),
             (stream, volume) => Pfs3VolumeFormatter.Format(stream, volume.Label))
         { Identity = new("PFS3", "512-byte sectors, 1024-byte reserved blocks, super-index supported") });
@@ -234,45 +231,31 @@ public sealed class DiskFormatRegistry
             },(stream,_)=>MinixVolumeFormatter.Format(stream,version,order:order,nameLength:nameLength))
             { Identity = new("Minix", $"Version {version}, {order}, {nameLength}-byte names, 1 KiB blocks") });
         }
-        registry.Register(new FileSystem("hfs", volume => ClassicHfsVolumeFormatter.Validate(volume.LengthBytes, volume.Label),
-            (stream, volume) => ClassicHfsVolumeFormatter.Format(stream, volume.Label)));
-        registry.Register(new FileSystem("mfs", volume => MfsVolumeFormatter.Validate(volume.LengthBytes, volume.Label),
-            (stream, volume) => MfsVolumeFormatter.Format(stream, volume.Label)));
-        registry.Register(new FileSystem("pascal", volume => PascalVolumeFormatter.Validate(volume.LengthBytes, volume.Label),
-            (stream, volume) => PascalVolumeFormatter.Format(stream, volume.Label)));
-        registry.Register(new FileSystem("hfsplus", volume => HfsPlusVolumeFormatter.Validate(volume.LengthBytes, volume.Label),
-            (stream, volume) => HfsPlusVolumeFormatter.Format(stream, volume.Label)));
-        registry.Register(new FileSystem("hfsx", volume => HfsxVolumeFormatter.Validate(volume.LengthBytes, volume.Label),
-            (stream, volume) => HfsxVolumeFormatter.Format(stream, volume.Label)));
+        registry.Register(new FileSystem("hfs", volume => ClassicHfsVolumeFormatter.Validate(volume.LengthBytes, volume.Label), (stream, volume) => ClassicHfsVolumeFormatter.Format(stream, volume.Label)));
+        registry.Register(new FileSystem("mfs", volume => MfsVolumeFormatter.Validate(volume.LengthBytes, volume.Label), (stream, volume) => MfsVolumeFormatter.Format(stream, volume.Label)));
+        registry.Register(new FileSystem("pascal", volume => PascalVolumeFormatter.Validate(volume.LengthBytes, volume.Label), (stream, volume) => PascalVolumeFormatter.Format(stream, volume.Label)));
+        registry.Register(new FileSystem("hfsplus", volume => HfsPlusVolumeFormatter.Validate(volume.LengthBytes, volume.Label), (stream, volume) => HfsPlusVolumeFormatter.Format(stream, volume.Label)));
+        registry.Register(new FileSystem("hfsx", volume => HfsxVolumeFormatter.Validate(volume.LengthBytes, volume.Label), (stream, volume) => HfsxVolumeFormatter.Format(stream, volume.Label)));
         registry.Register(new FileSystem("fatx", volume =>
         {
             if (!string.IsNullOrEmpty(volume.Label)) throw new ArgumentException("This FATX formatter does not install a volume label.");
             FatxVolumeFormatter.Validate(volume.LengthBytes, volume.SectorsPerCluster == 0 ? 32 : volume.SectorsPerCluster);
         }, (stream, volume) => FatxVolumeFormatter.Format(stream, volume.SectorsPerCluster == 0 ? 32 : volume.SectorsPerCluster)));
-        registry.Register(new FileSystem("ext2", volume => Ext2VolumeFormatter.Validate(volume.LengthBytes, volume.Label),
-            (stream, volume) => Ext2VolumeFormatter.Format(stream, volume.Label)));
-        registry.Register(new FileSystem("ext3", volume => Ext3VolumeFormatter.Validate(volume.LengthBytes, volume.Label),
-            (stream, volume) => Ext3VolumeFormatter.Format(stream, volume.Label)));
-        registry.Register(new FileSystem("ext4", volume => Ext4VolumeFormatter.Validate(volume.LengthBytes, volume.Label),
-            (stream, volume) => Ext4VolumeFormatter.Format(stream, volume.Label)));
+        registry.Register(new FileSystem("ext2", volume => Ext2VolumeFormatter.Validate(volume.LengthBytes, volume.Label), (stream, volume) => Ext2VolumeFormatter.Format(stream, volume.Label)));
+        registry.Register(new FileSystem("ext3", volume => Ext3VolumeFormatter.Validate(volume.LengthBytes, volume.Label), (stream, volume) => Ext3VolumeFormatter.Format(stream, volume.Label)));
+        registry.Register(new FileSystem("ext4", volume => Ext4VolumeFormatter.Validate(volume.LengthBytes, volume.Label), (stream, volume) => Ext4VolumeFormatter.Format(stream, volume.Label)));
         foreach (var variant in Enum.GetValues<FatVariant>())
             registry.Register(new FileSystem(variant.ToString().ToLowerInvariant(),
                 volume => ExplicitFatVolumeFormatter.Validate(volume.LengthBytes, volume.Label, variant, volume.SectorsPerCluster, volume.OffsetBytes / volume.SectorBytes,volume.SectorBytes),
                 (stream, volume) => ExplicitFatVolumeFormatter.Format(stream, volume.Label, variant, volume.SectorsPerCluster, volume.OffsetBytes / volume.SectorBytes,volume.SectorBytes, volume.BiosGeometry),
                 new HashSet<int>{512,1024,2048,4096}));
-        registry.Register(new FileSystem("exfat", volume => ExFatVolumeFormatter.Validate(volume.LengthBytes, volume.Label),
-            (stream, volume) => ExFatVolumeFormatter.Format(stream, volume.Label, volume.OffsetBytes / 512)));
-        registry.Register(new FileSystem("prodos", volume => ProDosVolumeFormatter.Validate(volume.LengthBytes, volume.Label),
-            (stream, volume) => ProDosVolumeFormatter.Format(stream, volume.Label)));
-        registry.Register(new FileSystem("cpm22", volume => CpmVolumeFormatter.Validate(volume.LengthBytes,
-            volume.CpmOptions ?? throw new ArgumentException("CP/M requires explicit disk parameters.")),
+        registry.Register(new FileSystem("exfat", volume => ExFatVolumeFormatter.Validate(volume.LengthBytes, volume.Label), (stream, volume) => ExFatVolumeFormatter.Format(stream, volume.Label, volume.OffsetBytes / 512)));
+        registry.Register(new FileSystem("prodos", volume => ProDosVolumeFormatter.Validate(volume.LengthBytes, volume.Label), (stream, volume) => ProDosVolumeFormatter.Format(stream, volume.Label)));
+        registry.Register(new FileSystem("cpm22", volume => CpmVolumeFormatter.Validate(volume.LengthBytes, volume.CpmOptions ?? throw new ArgumentException("CP/M requires explicit disk parameters.")),
             (stream, volume) => CpmVolumeFormatter.Format(stream, volume.CpmOptions!)));
-        registry.Register(new FileSystem("fat", volume => ValidateVolume(volume, 8L << 20, (long)int.MaxValue * 512),
-            (stream, volume) => FatVolumeFormatter.Format(stream, volume.Label, volume.OffsetBytes / 512, volume.BiosGeometry)));
-        registry.Register(new FileSystem("ntfs", volume => ValidateVolume(volume, 16L << 20, (long)int.MaxValue * 512),
-            (stream, volume) => NtfsVolumeFormatter.Format(stream, volume.Label, volume.OffsetBytes / 512, volume.BiosGeometry)));
-        registry.Register(new FileSystem("fat16-adapted", volume => ValidateVolume(volume, 8L << 20, 1L << 30),
-            (stream, _) => AtariFat16VolumeFormatter.Format(stream)));
+        registry.Register(new FileSystem("fat", volume => ValidateVolume(volume, 8L << 20, (long)int.MaxValue * 512), (stream, volume) => FatVolumeFormatter.Format(stream, volume.Label, volume.OffsetBytes / 512, volume.BiosGeometry)));
+        registry.Register(new FileSystem("ntfs", volume => ValidateVolume(volume, 16L << 20, (long)int.MaxValue * 512), (stream, volume) => NtfsVolumeFormatter.Format(stream, volume.Label, volume.OffsetBytes / 512, volume.BiosGeometry)));
+        registry.Register(new FileSystem("fat16-adapted", volume => ValidateVolume(volume, 8L << 20, 1L << 30), (stream, _) => AtariFat16VolumeFormatter.Format(stream)));
         foreach (var fast in new[] { false, true })
             registry.Register(new FileSystem(fast ? "ffs" : "ofs", volume =>
             {
@@ -281,8 +264,7 @@ public sealed class DiskFormatRegistry
                     throw new ArgumentException("Invalid volume label.");
             }, (stream, volume) => AmigaDosVolumeFormatter.Format(stream, volume.Label, fast)));
         foreach (var (id, variant) in new (string,byte)[] { ("ofs-intl",2),("ffs-intl",3),("ofs-dircache",4),("ffs-dircache",5) })
-            registry.Register(new FileSystem(id, volume => AmigaDosVolumeFormatter.Validate(volume.LengthBytes,volume.Label,variant),
-                (stream,volume)=>AmigaDosVolumeFormatter.Format(stream,volume.Label,variant)));
+            registry.Register(new FileSystem(id, volume => AmigaDosVolumeFormatter.Validate(volume.LengthBytes,volume.Label,variant), (stream,volume)=>AmigaDosVolumeFormatter.Format(stream,volume.Label,variant)));
         registry.Register(new PartitionTable("none", (size, volumes) =>
         {
             if (volumes.Count > 1 || volumes.Any(v => v.OffsetBytes != 0 || v.LengthBytes != size))
@@ -300,8 +282,7 @@ public sealed class DiskFormatRegistry
         registry.Register(new PartitionTable("ahdi", AhdiPartitionWriter.Validate, AhdiPartitionWriter.Write));
         registry.Register(new PartitionTable("icd", IcdPartitionWriter.Validate, IcdPartitionWriter.Write));
         registry.Register(new PartitionTable("bsd-disklabel", BsdDisklabelWriter.Validate, BsdDisklabelWriter.Write));
-        registry.Register(new PartitionTable("bsd-disklabel-be", BsdDisklabelWriter.Validate,
-            (stream,volumes)=>BsdDisklabelWriter.Write(stream,volumes,true)));
+        registry.Register(new PartitionTable("bsd-disklabel-be", BsdDisklabelWriter.Validate, (stream,volumes)=>BsdDisklabelWriter.Write(stream,volumes,true)));
         registry.Register(new PartitionTable("rdb", RdbPartitionWriter.Validate, RdbPartitionWriter.Write));
         registry.Register(new PartitionTable("sun-vtoc", SunDisklabelWriter.Validate, SunDisklabelWriter.Write));
         registry.Register(SunDisklabelWriter.Describe("sun-vtoc-backup", new(), new()));

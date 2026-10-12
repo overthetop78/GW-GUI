@@ -104,9 +104,7 @@ namespace Hst.Amiga.FileSystems.Pfs3.Blocks
         {
         }
 
-        public Pfs3DirEntry Clone() =>
-            new Pfs3DirEntry(Next, type, anode, fsize, protection, CreationDate, Name, comment,
-                new Pfs3ExtraFields(ExtraFields));
+        public Pfs3DirEntry Clone() => new Pfs3DirEntry(Next, type, anode, fsize, protection, CreationDate, Name, comment, new Pfs3ExtraFields(ExtraFields));
 
         public void SetType(sbyte type)
         {

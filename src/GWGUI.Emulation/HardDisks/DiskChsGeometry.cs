@@ -14,7 +14,5 @@ public sealed record DiskChsGeometry
         Heads = heads; SectorsPerTrack = sectorsPerTrack;
     }
 
-    internal DiscUtils.Geometry ForCapacity(long capacity) => new(
-        checked((int)((capacity + Heads * SectorsPerTrack * 512L - 1) / (Heads * SectorsPerTrack * 512L))),
-        Heads, SectorsPerTrack, 512);
+    internal DiscUtils.Geometry ForCapacity(long capacity) => new(checked((int)((capacity + Heads * SectorsPerTrack * 512L - 1) / (Heads * SectorsPerTrack * 512L))), Heads, SectorsPerTrack, 512);
 }

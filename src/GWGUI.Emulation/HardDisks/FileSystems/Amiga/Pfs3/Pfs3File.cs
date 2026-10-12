@@ -231,8 +231,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 						throw new PathNotFoundException($"Path '{filename}' not found");
 					}
 
-					var hasReadProtectionBit =
-						(filefi.file.direntry.protection & Pfs3Constants.FIBF_READ) == 0;
+					var hasReadProtectionBit = (filefi.file.direntry.protection & Pfs3Constants.FIBF_READ) == 0;
 
 					if (!g.IgnoreProtectionBits && !hasReadProtectionBit)
 					{

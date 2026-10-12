@@ -87,6 +87,5 @@ public static class ChsMbrPartitionWriter
         }
     }
 
-    private static byte Type(DiskVolumePlan volume) => volume.MbrType is null && volume.FileSystemId.Equals("fat32", StringComparison.OrdinalIgnoreCase)
-        ? (byte)0x0b : PartitionTypeDefaults.Mbr(volume);
+    private static byte Type(DiskVolumePlan volume) => volume.MbrType is null && volume.FileSystemId.Equals("fat32", StringComparison.OrdinalIgnoreCase) ? (byte)0x0b : PartitionTypeDefaults.Mbr(volume);
 }

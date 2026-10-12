@@ -7,8 +7,7 @@ public static class HardDiskImageCreation
     public static void Create(string path, DiskImagePlan plan, DiskFormatRegistry? registry = null, DiskConsumerProfile? consumer = null)
     {
         var write = DiskImageBuilder.Prepare(plan, registry, consumer);
-        Publish(path, plan.FixedSize && string.Equals(plan.ContainerId, "raw", StringComparison.OrdinalIgnoreCase)
-            ? plan.CapacityBytes : 0, write);
+        Publish(path, plan.FixedSize && string.Equals(plan.ContainerId, "raw", StringComparison.OrdinalIgnoreCase) ? plan.CapacityBytes : 0, write);
     }
 
     public static void Create(string path, long bytes, HardDiskImageFormat format, bool preallocate,

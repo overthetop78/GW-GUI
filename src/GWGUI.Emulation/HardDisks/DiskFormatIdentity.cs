@@ -17,8 +17,7 @@ public sealed class DiskFormatIdentity
         ArgumentException.ThrowIfNullOrWhiteSpace(family);
         ArgumentException.ThrowIfNullOrWhiteSpace(variant);
         var suffixes = (extensions ?? []).Select(value => value.ToLowerInvariant()).Distinct().ToArray();
-        if (suffixes.Any(value => value.Length < 2 || value[0] != '.' ||
-            value.Skip(1).Any(c => !char.IsAsciiLetterOrDigit(c) && c is not ('-' or '_'))))
+        if (suffixes.Any(value => value.Length < 2 || value[0] != '.' || value.Skip(1).Any(c => !char.IsAsciiLetterOrDigit(c) && c is not ('-' or '_'))))
             throw new ArgumentException("Expected filename extensions beginning with one dot.", nameof(extensions));
         Family = family;
         Variant = variant;

@@ -28,9 +28,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         public static async Task Format(Stream stream, uint lowCyl, uint highCyl, uint reserved, uint surfaces,
             uint blocksPerTrack, uint blockSize, uint fileSystemBlockSize, byte[] dosType, string diskName)
         {
-            var rootBlockOffset =
-                FastFileSystemOffsetHelper.CalculateRootBlockOffset(lowCyl, highCyl,
-                    reserved, surfaces, blocksPerTrack, fileSystemBlockSize);
+            var rootBlockOffset = FastFileSystemOffsetHelper.CalculateRootBlockOffset(lowCyl, highCyl, reserved, surfaces, blocksPerTrack, fileSystemBlockSize);
 
             // create root block
             var rootBlock = new FastFileSystemRootBlock((int)fileSystemBlockSize)
@@ -40,13 +38,8 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
                 Extension = rootBlockOffset
             };
 
-            var bitmapBlocks = FastFileSystemBlockHelper.CreateBitmapBlocks(lowCyl, highCyl, surfaces, blocksPerTrack,
-                blockSize, fileSystemBlockSize).ToList();
-            var bitmapExtensionBlocks =
-            FastFileSystemBlockHelper.CreateBitmapExtensionBlocks(
-                        bitmapBlocks.Skip(FastFileSystemConstants.MaxBitmapBlockPointersInRootBlock).ToList(),
-                        fileSystemBlockSize)
-                    .ToList();
+            var bitmapBlocks = FastFileSystemBlockHelper.CreateBitmapBlocks(lowCyl, highCyl, surfaces, blocksPerTrack, blockSize, fileSystemBlockSize).ToList();
+            var bitmapExtensionBlocks = FastFileSystemBlockHelper.CreateBitmapExtensionBlocks(bitmapBlocks.Skip(FastFileSystemConstants.MaxBitmapBlockPointersInRootBlock).ToList(), fileSystemBlockSize).ToList();
 
             rootBlock.BitmapBlocks = bitmapBlocks.Take(FastFileSystemConstants.MaxBitmapBlockPointersInRootBlock).ToList();
             rootBlock.BitmapExtensionBlocks = bitmapExtensionBlocks;
@@ -117,8 +110,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
                 // build and write bitmap extension block
                 var bitmapExtensionBlockBytes =
-                    FastFileSystemBitmapExtensionBlockBuilder.Build(bitmapExtensionBlock,
-                        fileSystemBlockSize);
+                    FastFileSystemBitmapExtensionBlockBuilder.Build(bitmapExtensionBlock, fileSystemBlockSize);
                 await stream.WriteBytes(bitmapExtensionBlockBytes);
 
                 // write bitmap blocks

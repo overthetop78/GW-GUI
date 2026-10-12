@@ -91,9 +91,7 @@ internal sealed class ExternalCoreVirtualFileSystem : IDisposable
             var writes = (mode & WriteAccess) != 0;
             if (!reads && !writes) return nint.Zero;
             var access = reads && writes ? FileAccess.ReadWrite : reads ? FileAccess.Read : FileAccess.Write;
-            var fileMode = writes
-                ? (mode & UpdateExisting) != 0 ? FileMode.OpenOrCreate : FileMode.Create
-                : FileMode.Open;
+            var fileMode = writes ? (mode & UpdateExisting) != 0 ? FileMode.OpenOrCreate : FileMode.Create : FileMode.Open;
             var fullPath = Path.GetFullPath(path);
             var stream = new FileStream(fullPath, fileMode, access, FileShare.ReadWrite | FileShare.Delete);
             var file = new OpenFile(fullPath, stream);

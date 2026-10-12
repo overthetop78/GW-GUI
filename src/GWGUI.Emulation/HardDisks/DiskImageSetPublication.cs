@@ -3,8 +3,7 @@ namespace GWGUI.Emulation.HardDisks;
 /// <summary>Publishes a complete image set by renaming a sibling staging directory without replacing an existing target.</summary>
 public static class DiskImageSetPublication
 {
-    public static string Create(string directory, string entryPoint, Action<Action<string, Stream>> build)
-        => Create(directory, entryPoint, build, new FileImageSetStorage());
+    public static string Create(string directory, string entryPoint, Action<Action<string, Stream>> build) => Create(directory, entryPoint, build, new FileImageSetStorage());
 
     /// <summary>Publishes an image whose members may occupy relative subdirectories.</summary>
     public static string CreateTree(string directory, string entryPoint, Action<Action<string, Stream>> build)
@@ -32,8 +31,7 @@ public static class DiskImageSetPublication
                     try
                     {
                         ValidateMemberPath(name, allowSubdirectories);
-                        if (members.Any(existing => existing.StartsWith(name + "/", StringComparison.OrdinalIgnoreCase) ||
-                            name.StartsWith(existing + "/", StringComparison.OrdinalIgnoreCase)))
+                        if (members.Any(existing => existing.StartsWith(name + "/", StringComparison.OrdinalIgnoreCase) || name.StartsWith(existing + "/", StringComparison.OrdinalIgnoreCase)))
                             throw new ArgumentException("An image set member conflicts with a directory.", nameof(name));
                         if (!members.Add(name)) throw new ArgumentException("Duplicate image set member.", nameof(name));
                         if (!source.CanRead) throw new ArgumentException("Image set members require a readable stream.");

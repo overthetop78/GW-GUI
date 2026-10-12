@@ -19,8 +19,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             //ENTER("GetFullPath");
             //g.unparsed = NULL;
             /* Set base path */
-            fullpath.OverwriteWith(Pfs3Macro.IsDirEntry(basispath) && !filename.StartsWith("/")
-                ? basispath : await GetRoot(g));
+            fullpath.OverwriteWith(Pfs3Macro.IsDirEntry(basispath) && !filename.StartsWith("/") ? basispath : await GetRoot(g));
 
             /* The basispath should not be a file
              * BTW: softlink is illegal too, but not possible
@@ -519,8 +518,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 
                         // get path of linked object
                         var linkPath = await GetPath(g, fileFe.ListEntry.info, currentDirObject);
-                        dirEntry.SetLinkPath(string.Concat(linkPath, string.IsNullOrEmpty(linkPath) ? string.Empty : "/",
-                            fileFe.ListEntry.info.file.direntry.Name));
+                        dirEntry.SetLinkPath(string.Concat(linkPath, string.IsNullOrEmpty(linkPath) ? string.Empty : "/", fileFe.ListEntry.info.file.direntry.Name));
                     }
 
                     dirEntries.Add(dirEntry);
@@ -565,8 +563,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 
             var ddblkBlk = ddblk.deldirblock;
             dde = ddblkBlk.entries[ddnr % Pfs3Constants.DELENTRIES_PER_BLOCK];
-            rextBlk.deldirroving =
-                (ushort)((rextBlk.deldirroving + 1) % (rextBlk.deldirsize * Pfs3Constants.DELENTRIES_PER_BLOCK));
+            rextBlk.deldirroving = (ushort)((rextBlk.deldirroving + 1) % (rextBlk.deldirsize * Pfs3Constants.DELENTRIES_PER_BLOCK));
             await Pfs3Update.MakeBlockDirty(ddblk, g);
 
             anodenr = dde.anodenr;

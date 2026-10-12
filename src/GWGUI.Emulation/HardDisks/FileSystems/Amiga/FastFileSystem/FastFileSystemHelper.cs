@@ -61,8 +61,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             await ExtractDirectory(volume, volume.RootBlock, entries, volume.RootBlock.DiskName);
         }
 
-        public static readonly Regex EntryRegex =
-            new Regex("[^\\w\\-_\\.\\\\/ ]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        public static readonly Regex EntryRegex = new Regex("[^\\w\\-_\\.\\\\/ ]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         /// <summary>
         /// extract directory recursively
@@ -165,8 +164,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             var lowCyl = 0U;
             var highCyl = Convert.ToUInt32(Math.Ceiling((double)blocks / blocksPerCylinder));
 
-            return await Mount(stream, lowCyl, highCyl, surfaces, blocksPerTrack, reserved, blockSize,
-                rootBlockOffset);
+            return await Mount(stream, lowCyl, highCyl, surfaces, blocksPerTrack, reserved, blockSize, rootBlockOffset);
         }
 
         /// <summary>
@@ -210,17 +208,14 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
             var offsetsPerBitmapBlock = FastFileSystemBlockHelper.CalculateOffsetsPerBitmapBlockCount(fileSystemBlockSize);
 
-            var dataBlockSize =
-                useFfs ? fileSystemBlockSize : fileSystemBlockSize - (SizeOf.ULong * 4) - (SizeOf.Long * 2);
+            var dataBlockSize = useFfs ? fileSystemBlockSize : fileSystemBlockSize - (SizeOf.ULong * 4) - (SizeOf.Long * 2);
 
             var hashtableSize = CalculateHashtableSize(fileSystemBlockSize);
 
             // calculate root block offset, if not set
             if (rootBlockOffset == 0)
             {
-                rootBlockOffset =
-                    FastFileSystemOffsetHelper.CalculateRootBlockOffset(lowCyl, highCyl, reserved, surfaces, blocksPerTrack,
-                        fileSystemBlockSize);
+                rootBlockOffset = FastFileSystemOffsetHelper.CalculateRootBlockOffset(lowCyl, highCyl, reserved, surfaces, blocksPerTrack, fileSystemBlockSize);
             }
 
             // seek root block offset

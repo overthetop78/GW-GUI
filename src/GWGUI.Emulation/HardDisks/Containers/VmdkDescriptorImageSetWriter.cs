@@ -35,8 +35,7 @@ internal static class VmdkDescriptorImageSetWriter
         for (long offset = 0; offset < capacity; offset += extentBytes)
         {
             var length = Math.Min(extentBytes, capacity - offset);
-            var name = !split ? baseName + "-flat.vmdk" :
-                baseName + (sparse ? "-s" : "-f") + (++index).ToString("D3", CultureInfo.InvariantCulture) + ".vmdk";
+            var name = !split ? baseName + "-flat.vmdk" : baseName + (sparse ? "-s" : "-f") + (++index).ToString("D3", CultureInfo.InvariantCulture) + ".vmdk";
             descriptor.Append(FormattableString.Invariant($"RW {length / 512} {(sparse ? "SPARSE" : "FLAT")} \"{name}\""));
             descriptor.Append(sparse ? "\n" : " 0\n");
             using var slice = new SubStream(content, Ownership.None, offset, length);

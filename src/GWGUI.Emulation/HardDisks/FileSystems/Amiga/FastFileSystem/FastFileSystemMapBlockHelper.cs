@@ -71,9 +71,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
             var mapEntryBlockOffset = block % 32;
 
-            bitmapBlock.Map[mapEntryOffset] = state == FastFileSystemBitmapBlock.FastFileSystemBlockState.Free
-                ? bitmapBlock.Map[mapEntryOffset] | (uint)(1 << mapEntryBlockOffset)
-                : bitmapBlock.Map[mapEntryOffset] ^ (uint)(1 << mapEntryBlockOffset);
+            bitmapBlock.Map[mapEntryOffset] = state == FastFileSystemBitmapBlock.FastFileSystemBlockState.Free ? bitmapBlock.Map[mapEntryOffset] | (uint)(1 << mapEntryBlockOffset) : bitmapBlock.Map[mapEntryOffset] ^ (uint)(1 << mapEntryBlockOffset);
         }
     }
 }

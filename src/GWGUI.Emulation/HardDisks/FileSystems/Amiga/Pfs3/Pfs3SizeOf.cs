@@ -15,17 +15,13 @@ namespace Hst.Amiga.FileSystems.Pfs3
         {
             public static int Struct(Pfs3GlobalData g) => Amiga.SizeOf.UWord * 4 + Amiga.SizeOf.ULong * 3 + Entries(g);
 
-            public static int Entries(Pfs3GlobalData g) =>
-                g.RootBlock.ReservedBlksize - Amiga.SizeOf.UWord * 4 - Amiga.SizeOf.ULong * 3;
+            public static int Entries(Pfs3GlobalData g) => g.RootBlock.ReservedBlksize - Amiga.SizeOf.UWord * 4 - Amiga.SizeOf.ULong * 3;
         }
 
         public static class Pfs3DelDirBlockSize
         {
 
-            public static int Entries(Pfs3GlobalData g) =>
-                (g.RootBlock.ReservedBlksize - Amiga.SizeOf.UWord * 2 - Amiga.SizeOf.ULong * 2 -
-                Amiga.SizeOf.UWord * 5 -
-                Amiga.SizeOf.ULong - Amiga.SizeOf.UWord * 3) / Pfs3DelDirEntrySize.Struct;
+            public static int Entries(Pfs3GlobalData g) => (g.RootBlock.ReservedBlksize - Amiga.SizeOf.UWord * 2 - Amiga.SizeOf.ULong * 2 - Amiga.SizeOf.UWord * 5 - Amiga.SizeOf.ULong - Amiga.SizeOf.UWord * 3) / Pfs3DelDirEntrySize.Struct;
         }
 
         public static class Pfs3DelDirEntrySize
@@ -35,8 +31,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 
         public static class Pfs3DirEntrySize
         {
-            public static int Struct => Amiga.SizeOf.UByte + Amiga.SizeOf.Byte + (Amiga.SizeOf.ULong * 2) +
-                                        (Amiga.SizeOf.UWord * 3) + (Amiga.SizeOf.UByte * 4);
+            public static int Struct => Amiga.SizeOf.UByte + Amiga.SizeOf.Byte + (Amiga.SizeOf.ULong * 2) + (Amiga.SizeOf.UWord * 3) + (Amiga.SizeOf.UByte * 4);
         }
 
         public static class Pfs3FileInfoSize
@@ -56,8 +51,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
 
         public static class Pfs3ExtraFieldsSize
         {
-            public static int Struct => Amiga.SizeOf.ULong + (Amiga.SizeOf.UWord * 2) +
-                                        (Amiga.SizeOf.ULong * 3) + Amiga.SizeOf.UWord;
+            public static int Struct => Amiga.SizeOf.ULong + (Amiga.SizeOf.UWord * 2) + (Amiga.SizeOf.ULong * 3) + Amiga.SizeOf.UWord;
         }
     }
 }

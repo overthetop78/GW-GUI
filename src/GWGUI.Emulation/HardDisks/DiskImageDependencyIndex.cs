@@ -6,10 +6,8 @@ public sealed class DiskImageDependencyIndex(
     Func<string, string>? resolveIdentity = null,
     Func<string, DiskImageDependencyReference, string?>? resolveReference = null)
 {
-    private readonly Dictionary<string, IReadOnlyList<DiskImageDependencyReference>> dependencies =
-        new(DiskImageDependencyReader.PathComparer);
-    private readonly Dictionary<string, IReadOnlyList<DiskImageDependencyReference>> imageIdentifiers =
-        new(DiskImageDependencyReader.PathComparer);
+    private readonly Dictionary<string, IReadOnlyList<DiskImageDependencyReference>> dependencies = new(DiskImageDependencyReader.PathComparer);
+    private readonly Dictionary<string, IReadOnlyList<DiskImageDependencyReference>> imageIdentifiers = new(DiskImageDependencyReader.PathComparer);
     private readonly Dictionary<string, string> identities = new(DiskImageDependencyReader.PathComparer);
 
     private string Identity(string path)

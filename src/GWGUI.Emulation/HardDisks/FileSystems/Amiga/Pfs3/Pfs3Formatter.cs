@@ -31,9 +31,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             // g->firstblock = g->dosenvec->de_LowCyl * geom->dg_CylSectors;
             // g->lastblock = (g->dosenvec->de_HighCyl + 1) *  geom->dg_CylSectors - 1;
 
-            var g = Pfs3Init.CreateGlobalData(partitionBlock.Sectors, partitionBlock.BlocksPerTrack,
-                partitionBlock.Surfaces, partitionBlock.LowCyl, partitionBlock.HighCyl, partitionBlock.NumBuffer,
-                partitionBlock.Mask);
+            var g = Pfs3Init.CreateGlobalData(partitionBlock.Sectors, partitionBlock.BlocksPerTrack, partitionBlock.Surfaces, partitionBlock.LowCyl, partitionBlock.HighCyl, partitionBlock.NumBuffer, partitionBlock.Mask);
             g.stream = stream;
 
             /* remove error-induced soft protect */

@@ -11,8 +11,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             var blockBytes = new byte[g.RootBlock.ReservedBlksize];
             if (indexBlock.BlockBytes != null)
             {
-                Array.Copy(indexBlock.BlockBytes, 0, blockBytes, 0,
-                    Math.Min(indexBlock.BlockBytes.Length, g.RootBlock.ReservedBlksize));
+                Array.Copy(indexBlock.BlockBytes, 0, blockBytes, 0, Math.Min(indexBlock.BlockBytes.Length, g.RootBlock.ReservedBlksize));
             }
 
             BigEndianConverter.ConvertUInt16ToBytes(indexBlock.id, blockBytes, 0);
@@ -21,8 +20,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             BigEndianConverter.ConvertUInt32ToBytes(indexBlock.seqnr, blockBytes, 0x8);
 
             var offset = 0xc;
-            var indexCount = (g.RootBlock.ReservedBlksize - Amiga.SizeOf.UWord * 2 - Amiga.SizeOf.ULong * 2) /
-                             Amiga.SizeOf.Long;
+            var indexCount = (g.RootBlock.ReservedBlksize - Amiga.SizeOf.UWord * 2 - Amiga.SizeOf.ULong * 2) / Amiga.SizeOf.Long;
             for (var i = 0; i < indexCount; i++)
             {
                 BigEndianConverter.ConvertInt32ToBytes(indexBlock.index[i], blockBytes, offset);

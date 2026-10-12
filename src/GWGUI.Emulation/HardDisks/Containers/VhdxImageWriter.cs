@@ -6,8 +6,7 @@ public static class VhdxImageWriter
 {
     public const long MaximumCapacity = 64L << 40;
 
-    public static void Validate(long capacity)
-        => Validate(capacity, 512);
+    public static void Validate(long capacity) => Validate(capacity, 512);
 
     public static void Validate(long capacity, int logicalSectorBytes)
     {
@@ -23,9 +22,7 @@ public static class VhdxImageWriter
         Validate(capacity, logicalSectorBytes);
         using var content = SparseImageContent.Create(capacity, initialize);
         var geometry = DiscUtils.Geometry.FromCapacity(capacity, logicalSectorBytes);
-        using var disk = fixedSize
-            ? DiscUtils.Vhdx.DiskImageFile.InitializeFixed(destination, Ownership.None, capacity, geometry)
-            : DiscUtils.Vhdx.DiskImageFile.InitializeDynamic(destination, Ownership.None, capacity, geometry);
+        using var disk = fixedSize ? DiscUtils.Vhdx.DiskImageFile.InitializeFixed(destination, Ownership.None, capacity, geometry) : DiscUtils.Vhdx.DiskImageFile.InitializeDynamic(destination, Ownership.None, capacity, geometry);
         using var logical = disk.OpenContent(null!, Ownership.None);
         SparseImageContent.CopyAllocated(content, logical);
         logical.Flush();
