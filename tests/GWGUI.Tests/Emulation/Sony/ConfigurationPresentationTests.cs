@@ -43,8 +43,7 @@ public sealed class ConfigurationPresentationTests
     [InlineData(Beetle.Id, GWGUI.Emulation.Sony.Emulators.BeetlePsx.Constants.OptionConstants.SkipBiosKey)]
     [InlineData(BeetleHw.Id, GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Constants.OptionConstants.SkipBiosKey)]
     [InlineData(Rearmed.Id, GWGUI.Emulation.Sony.Emulators.PcsxRearmed.Constants.OptionConstants.ShowBiosBootlogoKey)]
-    public void BiosAnimationUsesCheckbox(string emulator, string key) =>
-        Assert.Equal(EmulationSettingsEditor.Toggle, Fields(emulator).Single(field => field.Id == key).Editor);
+    public void BiosAnimationUsesCheckbox(string emulator, string key) => Assert.Equal(EmulationSettingsEditor.Toggle, Fields(emulator).Single(field => field.Id == key).Editor);
 
     [Fact]
     public void SelectedBiosReplacesAllPreviousSelections()
@@ -112,8 +111,7 @@ public sealed class ConfigurationPresentationTests
     [InlineData("512 KiB", 524288)]
     [InlineData("2 MiB", 2097152)]
     [InlineData("8 MB", 8388608)]
-    public void MemoryTotalsRecognizeExistingModuleUnits(string display, long bytes) =>
-        Assert.Equal(bytes, EmulationSettingsValuePresentationFunctions.MemoryBytes(display));
+    public void MemoryTotalsRecognizeExistingModuleUnits(string display, long bytes) => Assert.Equal(bytes, EmulationSettingsValuePresentationFunctions.MemoryBytes(display));
 
     [Fact]
     public void DeviceSpecificSettingsAreFilteredByType()

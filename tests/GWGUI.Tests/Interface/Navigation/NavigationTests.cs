@@ -14,8 +14,7 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     [InlineData(4, "ExplorerSection")]
     [InlineData(5, "ToolsTabSection")]
     [InlineData(6, "EmulationSection")]
-    public Task Switching_tabs_displays_the_expected_section_and_preserves_state(int index, string expectedType) =>
-        sta.Run(() => NavigationScenarios.TabRoundTrip(index, expectedType));
+    public Task Switching_tabs_displays_the_expected_section_and_preserves_state(int index, string expectedType) => sta.Run(() => NavigationScenarios.TabRoundTrip(index, expectedType));
 
     [Theory]
     [InlineData("preferences")]
@@ -23,8 +22,7 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     [InlineData("emulation")]
     [InlineData("history")]
     [InlineData("about")]
-    public Task Main_window_routes_dialog_requests_once(string request) =>
-        sta.Run(() => NavigationScenarios.ShellDialogRequest(request));
+    public Task Main_window_routes_dialog_requests_once(string request) => sta.Run(() => NavigationScenarios.ShellDialogRequest(request));
 
     [Theory]
     [InlineData("preferences", true)]
@@ -36,8 +34,7 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     [InlineData("history", null)]
     [InlineData("about", null)]
     [InlineData("tool", null)]
-    public Task Dialog_navigation_preserves_arguments_owner_and_existing_return_contract(string request, bool? result) =>
-        sta.Run(() => NavigationScenarios.DialogOwnerAndArguments(request, result));
+    public Task Dialog_navigation_preserves_arguments_owner_and_existing_return_contract(string request, bool? result) => sta.Run(() => NavigationScenarios.DialogOwnerAndArguments(request, result));
 
     public static IEnumerable<object[]> LayoutCases()
     {
@@ -61,8 +58,7 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     [InlineData(0, "ReadExecuteButton")]
     [InlineData(1, "WriteExecuteButton")]
     [InlineData(2, "ConvertExecuteButton")]
-    public Task Primary_controls_expose_accessible_commands_and_forward_activation_once(int index, string automationId) =>
-        sta.Run(() => ControlContractScenarios.PrimaryCommand(index, automationId));
+    public Task Primary_controls_expose_accessible_commands_and_forward_activation_once(int index, string automationId) => sta.Run(() => ControlContractScenarios.PrimaryCommand(index, automationId));
 
     [Fact] public Task Path_section_binds_location_and_accessible_name_and_exposes_browse() => sta.Run(ControlContractScenarios.PathControls);
 
@@ -76,8 +72,7 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     [InlineData("history")]
     [InlineData("about")]
     [InlineData("tool")]
-    public Task Dialog_presentation_failure_propagates_without_retry(string request) =>
-        sta.Run(() => NavigationScenarios.DialogOwnerAndArguments(request, null, fail: true));
+    public Task Dialog_presentation_failure_propagates_without_retry(string request) => sta.Run(() => NavigationScenarios.DialogOwnerAndArguments(request, null, fail: true));
 
     [Theory]
     [InlineData("preferences")]
@@ -95,16 +90,14 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     [InlineData("reset")]
     [InlineData("delays")]
     [InlineData("update")]
-    public Task Menu_dispatches_exactly_the_requested_action_once(string request) =>
-        sta.Run(() => NavigationScenarios.MenuRequest(request));
+    public Task Menu_dispatches_exactly_the_requested_action_once(string request) => sta.Run(() => NavigationScenarios.MenuRequest(request));
 
     [Fact] public Task Tool_without_verb_does_not_dispatch() => sta.Run(NavigationScenarios.MissingToolVerbDoesNotDispatch);
 
     [Theory]
     [InlineData(1280, 720)]
     [InlineData(1360d, 820d)]
-    public Task Top_level_menu_commands_fit_the_available_area(double width, double height) =>
-        sta.Run(() => WindowLayoutScenarios.MenuFits(width, height));
+    public Task Top_level_menu_commands_fit_the_available_area(double width, double height) => sta.Run(() => WindowLayoutScenarios.MenuFits(width, height));
 
     [Theory]
     [InlineData(1360d, 820d, -1800d, 100d, 1360d, 820d, -1800d, 100d)]
@@ -134,6 +127,5 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     [InlineData(0, double.PositiveInfinity, 1920, 1080)]
     [InlineData(0, 0, double.PositiveInfinity, 1080)]
     [InlineData(0, 0, 1920, double.NaN)]
-    public void Invalid_work_area_preserves_the_existing_placement(double left, double top, double width, double height) =>
-        WindowLayoutScenarios.InvalidWorkArea(left, top, width, height);
+    public void Invalid_work_area_preserves_the_existing_placement(double left, double top, double width, double height) => WindowLayoutScenarios.InvalidWorkArea(left, top, width, height);
 }

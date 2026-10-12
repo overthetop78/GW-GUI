@@ -34,8 +34,7 @@ public sealed class NecEmulatorCatalogTests
     [InlineData("SuperGrafx", "beetle_sgx")]
     [InlineData("PcFx", "beetle_pcfx_fast")]
     [InlineData("LaserActive", "geargrafx")]
-    public void ExistingDefaultEmulatorsArePreserved(string machine, string emulator) =>
-        Assert.Equal(emulator, EmulatorCatalog.DefaultFor(machine));
+    public void ExistingDefaultEmulatorsArePreserved(string machine, string emulator) => Assert.Equal(emulator, EmulatorCatalog.DefaultFor(machine));
 
     [Theory]
     [InlineData("beetle_pce", 42)]

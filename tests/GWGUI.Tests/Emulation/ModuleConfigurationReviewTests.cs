@@ -17,8 +17,7 @@ public sealed class ModuleConfigurationReviewTests
     [InlineData("PlayStation3", 262144)]
     [InlineData("PlayStation4", 8388608)]
     [InlineData("PlayStation5", 16777216)]
-    public void SonyMachineRamUsesKib(string machine, int expectedCapacity) =>
-        Assert.Equal(expectedCapacity, SonyMachines.Dictionaries.ModelCatalog.Get(machine).RamKib);
+    public void SonyMachineRamUsesKib(string machine, int expectedCapacity) => Assert.Equal(expectedCapacity, SonyMachines.Dictionaries.ModelCatalog.Get(machine).RamKib);
 
     [Theory]
     [InlineData("A500", GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator.PUAE)]
