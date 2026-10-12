@@ -8,8 +8,7 @@ namespace GWGUI.Emulation.Fairchild.Emulators.FreeChaF.Factories;
 
 internal sealed class FreeChaFMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorInputMapper, IEmulatorStorageSettings
 {
-    public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port) =>
-        ControllerProtocolDictionary.Actions(model, Emulator.FreeChaF, port).Select(action => new InputActionDefinition(action.Definition)).ToArray();
+    public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port) => ControllerProtocolDictionary.Actions(model, Emulator.FreeChaF, port).Select(action => new InputActionDefinition(action.Definition)).ToArray();
     public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => NativeInputSnapshotFunctions.Apply(snapshot, input, model, Emulator.FreeChaF);
     public IReadOnlyList<EmulationMediaDevice> DescribeStorage(MachineConfiguration configuration) => Settings.Storage(configuration);
 
