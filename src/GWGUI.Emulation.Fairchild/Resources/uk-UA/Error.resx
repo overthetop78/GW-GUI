@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>Fairchild збережений стан несумісний з поточною машиною.</value></data>
-  <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>Несподівана Fairchild помилка емульсії.</value></data>
-  <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>Необхідна прошивка Fairchild відсутня.</value></data>
-  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM недійсна або несумісна.</value></data>
-  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>Не знайдено налаштовуваний Fairchild media.</value></data>
+  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>У разі несумісності в поточному апараті Fairchild, що зберігається.</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>Несподівана помилка емульсії Fairchild.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>Не пропустіть казку Fairchild.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM недійсний або несумісний.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>Не знайдено настрочених фахальдівських медіа.</value></data>
   <data name="Emulation.Fairchild.Error.ContentUnsupported" xml:space="preserve"><value>Ця машина не підтримує вибрані медіа.</value></data>
-  <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>Опція Fairchild має недійсне значення.</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>Варіант Fairchild має недійсне значення.</value></data>
   <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>Не знайдено обов’язкове ядро Fairchild.</value></data>
-  <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>Вибране ядро Fairchild не може бути завантажено.</value></data>
-  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>Fairchild збережений стан недійсним.</value></data>
-  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>Fairchild хост виконуваний шлях є недоступним.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>Вибраний ядро Fairchild не можна завантажити.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>Недійсний стан Фехальда.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>Шлях програми емулятора не доступний.</value></data>
   <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>Детальніше: {0}</value></data>
-  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>Зв'язок з Fairchild не вдалося.</value></data>
-  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Невідомі команди середовища: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>Зв'язок з феєрохімічним хостом не вдалося.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Невідомий командний простір: {0}</value></data>
 </root>

@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>Fairchild 保存状态与当前机器不相容.</value></data>
-  <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>发生了出乎意料的 Fairchild 仿真错误 。</value></data>
-  <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>缺少一个所需的Fairchild固件。</value></data>
-  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>系统ROM无效或不兼容.</value></data>
-  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>未找到配置的 Fairchild 介质 。</value></data>
+  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>费尔柴尔德所救状态与目前的机器不相容.</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>发生了意外的 Fairchild 仿真错误 。</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>缺少一个Fairchild的软件</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>系统 ROM 无效或不兼容。</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>配置的 Fairchild 介质未找到 。</value></data>
   <data name="Emulation.Fairchild.Error.ContentUnsupported" xml:space="preserve"><value>此机器不支持所选的媒体 。</value></data>
-  <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>Fairchild 选项的值无效 。</value></data>
-  <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>未找到所需的 Fairchild 核心 。</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>费尔柴尔德选项的值无效 。</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>所需的费尔柴尔德核心没有找到.</value></data>
   <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>无法装入选中的 Fairchild 核心 。</value></data>
   <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>Fairchild 保存状态无效 。</value></data>
-  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>Fairchild 主机可执行路径没有可用 。</value></data>
-  <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>细节 :{0}</value></data>
-  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>与 Fairchild 主机的通信失败 。</value></data>
-  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知的环境命令 :{0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>模拟程序路径没有可用 。</value></data>
+  <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>细节 : {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>与费尔柴尔德主机的通信失败.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知的环境命令 : {0}</value></data>
 </root>

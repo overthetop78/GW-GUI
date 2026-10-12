@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Fairchild.Emulators.Common.Contracts;
+using GWGUI.Emulation.Fairchild.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Fairchild.Emulators.Common.Functions;
 using GWGUI.Emulation.Fairchild.Common.Interfaces;
 using GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Factories;
 

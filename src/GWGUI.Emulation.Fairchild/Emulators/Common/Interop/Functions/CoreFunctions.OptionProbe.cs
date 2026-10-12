@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services;
 using System.IO;
 
 namespace GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions;

@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Fairchild.Emulators.Common.Contracts;
+using GWGUI.Emulation.Fairchild.Emulators.Common.Enums;
+using GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Contracts;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;

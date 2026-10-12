@@ -14,7 +14,7 @@
   <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>The required Fairchild core was not found.</value></data>
   <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>The selected Fairchild core could not be loaded.</value></data>
   <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>The Fairchild saved state is invalid.</value></data>
-  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>The Fairchild host executable path is unavailable.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>The emulator program path is unavailable.</value></data>
   <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>Details: {0}</value></data>
   <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>Communication with the Fairchild host failed.</value></data>
   <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Unknown environment command: {0}</value></data>

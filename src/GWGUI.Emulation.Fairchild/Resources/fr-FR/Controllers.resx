@@ -4,10 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>Tourner le manche vers la gauche</value></data>
-  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Tourner le manche vers la droite</value></data>
-  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Enfoncer le manche</value></data>
-  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Tirer le manche vers le haut</value></data>
+  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>Tourner la poignée vers la gauche</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Tourner la poignée vers la droite</value></data>
+  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Enfoncer la poignée</value></data>
+  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Tirer la poignée vers le haut</value></data>
   <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>Afficher les boutons de la console</value></data>
   <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Permuter les deux manettes</value></data>
 </root>

@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Fairchild.Emulators.Common.Constants;
+using GWGUI.Emulation.Fairchild.Emulators.Common.Exceptions;
 using System.IO;
 using System.Diagnostics;
 using System.Reflection.PortableExecutable;

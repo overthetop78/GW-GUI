@@ -4,10 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>Rodar o punho para a esquerda</value></data>
-  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Rodar o punho para a direita</value></data>
+  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>Rodar a pega para a esquerda</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Rodar a pega para a direita</value></data>
   <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Empurre o cabo para baixo</value></data>
-  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Puxe o punho para cima</value></data>
+  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Puxa o cabo para cima</value></data>
   <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>Mostrar os botões da consola</value></data>
   <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Trocar os dois controladores</value></data>
 </root>

@@ -4,9 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.freechaf.Description" xml:space="preserve"><value>Channel FおよびChannel F System IIコンソールをエミュレートします。</value></data>
-  <data name="Emulation.Fairchild.Memory.Display" xml:space="preserve"><value>ビデオ記憶</value></data>
-  <data name="Emulation.Fairchild.Video.Native" xml:space="preserve"><value>コンソール ビデオ</value></data>
-  <data name="Emulation.Fairchild.Video.FastScreenClear" xml:space="preserve"><value>1フレームで画面をクリア</value></data>
-  <data name="Emulation.Fairchild.Video.FastScreenClear.Help" xml:space="preserve"><value>1フレームに完了することで画面クリアを加速。</value></data>
+  <data name="Emulation.Emulator.freechaf.Description" xml:space="preserve"><value>エミュレータ CHANNEL と の と の と の と の と の と の と の と の と の と の と の と の と の と の と の と の と の と の と の と の と の と の と の と の と の と の と と の は と と の と と の と は と と と の と と と と と と の は と は は は と と と と と と と と と と と と は と と と は と と と と と と と と と は と と と と と と と と と と と は と と と と と と と と と CHANNEL フィフ SYSTEM II.</value></data>
+  <data name="Emulation.Fairchild.Memory.Display" xml:space="preserve"><value>ビデオメモリ</value></data>
+  <data name="Emulation.Fairchild.Video.Native" xml:space="preserve"><value>コンソールビデオ</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear" xml:space="preserve"><value>画面をすぐにクリアする</value></data>
 </root>

@@ -9,5 +9,5 @@
   <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Tryck handtaget ner</value></data>
   <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Dra handtaget upp</value></data>
   <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>Visa konsolknapparna</value></data>
-  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Byta de två styrenheterna</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Byt de två kontrollerna</value></data>
 </root>

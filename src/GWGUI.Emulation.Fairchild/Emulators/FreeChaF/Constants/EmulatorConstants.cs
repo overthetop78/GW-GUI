@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Fairchild.Emulators.Common.Contracts;
+using GWGUI.Emulation.Fairchild.Emulators.Common.Functions;
 namespace GWGUI.Emulation.Fairchild.Emulators.FreeChaF.Constants;
 
 internal static class EmulatorConstants

@@ -4,10 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>좌측에 손잡이를 자전하십시오</value></data>
-  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>적당한에 손잡이를 자전하십시오</value></data>
-  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>손잡이를 아래로 미십시오</value></data>
-  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>손잡이를 위로 당기십시오</value></data>
-  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>콘솔 단추를 보여주십시오</value></data>
-  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>2개의 관제사를 교환하십시오</value></data>
+  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>왼쪽에 손잡이를 회전</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>핸들을 오른쪽으로 회전</value></data>
+  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>핸들을 아래로 밀어</value></data>
+  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>핸들을 잡아</value></data>
+  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>콘솔 버튼 표시</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>두 개의 컨트롤러를 교환</value></data>
 </root>

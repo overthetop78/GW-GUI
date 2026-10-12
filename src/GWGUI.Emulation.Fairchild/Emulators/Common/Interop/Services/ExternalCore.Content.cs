@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions;
 namespace GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore

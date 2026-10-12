@@ -8,6 +8,6 @@
   <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Drehen Sie den Griff nach rechts</value></data>
   <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Drücken Sie den Griff nach unten</value></data>
   <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Ziehen Sie den Griff nach oben</value></data>
-  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>Zeigen Sie die Konsolen-Buttons</value></data>
-  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Swap der beiden Controller</value></data>
+  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>Die Konsolen-Buttons anzeigen</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Tauschen Sie die beiden Controller</value></data>
 </root>

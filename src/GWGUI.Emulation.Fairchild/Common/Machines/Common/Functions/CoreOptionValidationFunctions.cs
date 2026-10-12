@@ -3,11 +3,7 @@ namespace GWGUI.Emulation.Fairchild.Common.Machines.Common.Functions;
 
 internal static class CoreOptionValidationFunctions
 {
-    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core switch
-    {
-        Emulator.FreeChaF => Emulators.FreeChaF.Dictionaries.FreeChaFOptionCatalog.All,
-        _ => throw new ArgumentOutOfRangeException(nameof(core))
-    };
+    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => (new Engine().Adapter(core) as IEmulatorSettings)?.GetSettingsOptions() ?? [];
 
     internal static void Validate(MachineConfiguration configuration)
     {

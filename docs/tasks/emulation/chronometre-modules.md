@@ -289,3 +289,4 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-12 21:02:27 | 62:06:43 | -54:06:43 | Reprise. Tous les sous-projets : suppression des coupures inutiles, sans tests ni build de livraison. |
 | 2026-10-12 21:12:43 | 62:16:59 | -54:16:59 | Reprise. Bandai : frontière neutre livrée ; poursuite de Coleco. |
 | 2026-10-12 22:03:59 | 63:08:15 | -55:08:15 | Reprise. Epoch : options semantiques, frontiere neutre et ressources. |
+| 2026-10-12 22:48:40 | 63:52:56 | -55:52:56 | Reprise. Fairchild : raccordement FreeChaF, frontiere et ressources. |

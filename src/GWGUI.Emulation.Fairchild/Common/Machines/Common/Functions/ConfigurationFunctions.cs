@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Fairchild.Common.Machines.Common.Functions;
 
 internal static partial class ConfigurationFunctions
 {
-    internal static Emulator DefaultEmulator(MachineModel model) => Enum.IsDefined(model) ? Emulator.FreeChaF : throw new ArgumentOutOfRangeException(nameof(model));
+    internal static Emulator DefaultEmulator(MachineModel model) => new Engine().DefaultEmulator(model);
 
     internal static IReadOnlyList<EmulationMediaSlot> DefaultSlots(MachineModel model)
     {
@@ -15,7 +15,8 @@ internal static partial class ConfigurationFunctions
         ArgumentNullException.ThrowIfNull(configuration);
         if (configuration.Id == Guid.Empty
             || configuration.SchemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion
-            || configuration.Core != DefaultEmulator(configuration.Model))
+            || !Enum.IsDefined(configuration.Model) || !Enum.IsDefined(configuration.Core)
+            || !new Engine().Adapter(configuration.Core).Definition.MachineIds.Contains(configuration.MachineId))
             throw new ArgumentException(nameof(configuration));
         if (configuration.ConfiguredSlots.Count != 1
             || configuration.ConfiguredSlots[0] != EmulationMediaSlot.Cartridge0

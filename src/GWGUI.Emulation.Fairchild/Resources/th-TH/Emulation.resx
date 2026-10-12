@@ -4,9 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.freechaf.Description" xml:space="preserve"><value>จําลอง Channel F และ Channel F System II คอนโซล.</value></data>
+  <data name="Emulation.Emulator.freechaf.Description" xml:space="preserve"><value>จําลอง CHANNEL F และ CHANNEL F SYSTEM II.</value></data>
   <data name="Emulation.Fairchild.Memory.Display" xml:space="preserve"><value>หน่วยความจําวีดิทัศน์</value></data>
-  <data name="Emulation.Fairchild.Video.Native" xml:space="preserve"><value>Console วิดีโอ</value></data>
-  <data name="Emulation.Fairchild.Video.FastScreenClear" xml:space="preserve"><value>ล้างหน้าจอในหนึ่งเฟรม</value></data>
-  <data name="Emulation.Fairchild.Video.FastScreenClear.Help" xml:space="preserve"><value>ขยายหน้าจอให้โล่ง โดยทําให้สมบูรณ์ในหนึ่งเฟรม</value></data>
+  <data name="Emulation.Fairchild.Video.Native" xml:space="preserve"><value>คลิปวิดีโอ</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear" xml:space="preserve"><value>ล้างหน้าจอทันที</value></data>
 </root>

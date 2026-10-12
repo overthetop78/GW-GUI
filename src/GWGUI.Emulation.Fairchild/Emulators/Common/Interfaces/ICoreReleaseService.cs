@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Fairchild.Emulators.Common.Contracts;
 namespace GWGUI.Emulation.Fairchild.Emulators.Common.Interfaces;
 
 public interface ICoreReleaseService

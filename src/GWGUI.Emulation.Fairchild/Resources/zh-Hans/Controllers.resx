@@ -4,10 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>将控点旋转到左侧</value></data>
-  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>将控件旋转到右侧</value></data>
-  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>按下手柄</value></data>
-  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>将控件拉起</value></data>
+  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>将控点向左旋转</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>将控点向右旋转</value></data>
+  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>把手推倒,把柄推倒</value></data>
+  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>把手拉起来</value></data>
   <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>显示控制台按钮</value></data>
-  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>交换两个控制器</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>换掉两个控制器</value></data>
 </root>

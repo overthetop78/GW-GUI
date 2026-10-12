@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Fairchild.Emulators.Common.Constants;
+using GWGUI.Emulation.Fairchild.Emulators.Common.Contracts;
+using GWGUI.Emulation.Fairchild.Emulators.Common.Exceptions;
 using System.Net.Http;
 using System.IO;
 using System.Globalization;

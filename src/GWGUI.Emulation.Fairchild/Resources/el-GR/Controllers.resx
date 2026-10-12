@@ -4,10 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>Περιστρέψτε τη λαβή προς τα αριστερά</value></data>
-  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Περιστροφή της λαβής προς τα δεξιά</value></data>
-  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Πιέστε τη λαβή κάτω</value></data>
-  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Τραβήξτε τη λαβή επάνω</value></data>
+  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>Περιστροφή της λαβής στα αριστερά</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Περιστροφή της λαβής στα δεξιά</value></data>
+  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Σπρώξε το χερούλι προς τα κάτω</value></data>
+  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Τράβα τη λαβή πάνω.</value></data>
   <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>Εμφάνιση των κουμπιών της κονσόλας</value></data>
   <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Εναλλαγή των δύο ελεγκτών</value></data>
 </root>

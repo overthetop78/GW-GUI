@@ -8,6 +8,6 @@
   <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Drej håndtaget til højre</value></data>
   <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Skub håndtaget ned</value></data>
   <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Træk håndtaget op</value></data>
-  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>Vis konsolknapper</value></data>
-  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Swap de to controllere</value></data>
+  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>Vis konsolknapperne</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Swap- de to kontrollører</value></data>
 </root>

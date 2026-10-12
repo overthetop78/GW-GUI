@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>O estado salvo de Fairchild é incompatível com a máquina atual.</value></data>
-  <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>Ocorreu um erro inesperado de emulação Fairchild.</value></data>
+  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>O estado salvo Fairchild é incompatível com a máquina atual.</value></data>
+  <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>Ocorreu um erro inesperado de emulação de Fairchild.</value></data>
   <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>Falta um firmware Fairchild necessário.</value></data>
-  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>A ROM do sistema é inválida ou incompatível.</value></data>
-  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>A mídia de Fairchild configurada não foi encontrada.</value></data>
-  <data name="Emulation.Fairchild.Error.ContentUnsupported" xml:space="preserve"><value>Esta máquina não suporta a mídia selecionada.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>O sistema ROM é inválido ou incompatível.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>A mídia Fairchild configurada não foi encontrada.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentUnsupported" xml:space="preserve"><value>Esta máquina não suporta os meios seleccionados.</value></data>
   <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>Uma opção Fairchild tem um valor inválido.</value></data>
   <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>O núcleo Fairchild necessário não foi encontrado.</value></data>
-  <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>Não foi possível carregar o núcleo Fairchild seleccionado.</value></data>
-  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>O estado salvo do Fairchild é inválido.</value></data>
-  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>O caminho executável da máquina Fairchild não está disponível.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>O núcleo Fairchild selecionado não pôde ser carregado.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>O estado salvo Fairchild é inválido.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>O caminho do programa emulador está indisponível.</value></data>
   <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>Detalhes: {0}</value></data>
-  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>A comunicação com o hospedeiro Fairchild falhou.</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>A comunicação com o anfitrião Fairchild falhou.</value></data>
   <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comando de ambiente desconhecido: {0}</value></data>
 </root>

@@ -8,16 +8,8 @@ internal static class SettingsDescriptionFunctions
     {
         var blocks = new List<EmulationSettingsBlock> { Audio(configuration) };
         AddHardware(blocks, configuration);
-        foreach (var group in RelevantOptions(configuration).GroupBy(option => NativeTab(option.Key)))
-        {
-            var resource = group.Key switch
-            {
-                EmulationMachineTab.Controllers => SettingsConstants.ResourceNativeControls,
-                EmulationMachineTab.Rom => SettingsConstants.ResourceFirmware,
-                _ => SettingsConstants.ResourceNativeVideo
-            };
-            blocks.Add(Block(group.Key, resource, group.Select(option => Native(configuration, option, group.Key, resource)).ToArray()));
-        }
+        if (new Engine().Adapter(configuration) is IEmulatorSettings settings)
+            blocks.AddRange(settings.DescribeSettings(configuration));
         var firmwareFields = FirmwareFunctions.Roles(configuration.Model).Select(role => new EmulationSettingsField(
             FirmwareFunctions.Field(role), EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware,
             "Emulation.Fairchild.Firmware." + role, EmulationSettingsEditor.Path,
@@ -26,10 +18,6 @@ internal static class SettingsDescriptionFunctions
             blocks.Add(new(SettingsConstants.ResourceFirmware + ".File", EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware, firmwareFields));
         return blocks;
     }
-
-    internal static IReadOnlyList<CoreOption> RelevantOptions(MachineConfiguration configuration) => CoreOptionValidationFunctions.ForCore(configuration.Core);
-
-    private static EmulationMachineTab NativeTab(string key) => EmulationMachineTab.Video;
 
     private static void AddHardware(List<EmulationSettingsBlock> blocks, MachineConfiguration configuration)
     {
@@ -59,17 +47,17 @@ internal static class SettingsDescriptionFunctions
 
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
 
-    private static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
+    internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
     {
         var resource = option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}.");
-        var choices = option.Values.Select((choice, index) => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}."))).ToArray();
+        var choices = option.Values.Select(choice => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}."))).ToArray();
         var toggle = option.Values.Count == 2 && option.Values.All(choice => choice.Value is "enabled" or "disabled");
         return new(option.Key, tab, block, resource, toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection,
             configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), choices,
             ExplanationResourceKey: option.ExplanationResourceKey,
             EnabledValue: toggle ? "enabled" : EmulationSettingConstants.Enabled,
             DisabledValue: toggle ? "disabled" : EmulationSettingConstants.Disabled,
-            RequiresRestart: RuntimeOptionFunctions.RequiresRestart(configuration.Core, option.Key));
+            RequiresRestart: false);
     }
 
     private static EmulationSettingsBlock Audio(MachineConfiguration configuration) => Block(EmulationMachineTab.Audio,

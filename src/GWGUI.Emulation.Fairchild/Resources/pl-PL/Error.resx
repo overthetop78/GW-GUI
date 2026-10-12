@@ -7,15 +7,15 @@
   <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>Stan zapisany przez Fairchilda jest niezgodny z obecną maszyną.</value></data>
   <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>Wystąpił nieoczekiwany błąd emulacji Fairchilda.</value></data>
   <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>Brakuje wymaganego oprogramowania firmowego Fairchild.</value></data>
-  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>System ROM jest nieprawidłowy lub niekompatybilny.</value></data>
-  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>Konfigurowane media Fairchild nie zostały znalezione.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>System ROM jest nieważny lub niezgodny.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>Nie znaleziono skonfigurowanych mediów Fairchild.</value></data>
   <data name="Emulation.Fairchild.Error.ContentUnsupported" xml:space="preserve"><value>Ta maszyna nie obsługuje wybranych mediów.</value></data>
   <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>Opcja Fairchild ma niepoprawną wartość.</value></data>
   <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>Nie znaleziono wymaganego rdzenia Fairchilda.</value></data>
-  <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>Wybrany rdzeń Fairchilda nie mógł być wczytany.</value></data>
-  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>Stan zapisany przez Fairchilda jest niepoprawny.</value></data>
-  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>Ścieżka wykonywalna hosta Fairchild jest niedostępna.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>Wybrany rdzeń Fairchilda nie mógł być załadowany.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>Stan uratowany przez Fairchild jest nieważny.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>Ścieżka programu emulatora jest niedostępna.</value></data>
   <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>Szczegóły: {0}</value></data>
-  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikacja z hostem Fairchilda nie powiodła się.</value></data>
-  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Nieznane polecenie środowiska: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikacja z gospodarzem Fairchild nie powiodła się.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Polecenie nieznanego środowiska: {0}</value></data>
 </root>

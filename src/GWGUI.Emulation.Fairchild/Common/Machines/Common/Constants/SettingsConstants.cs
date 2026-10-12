@@ -23,11 +23,6 @@ internal static class SettingsConstants
     internal const string MegahertzUnit = "MHz", KilohertzUnit = "kHz", ByteUnit = "B", KibibyteUnit = "KiB";
     internal const string ResourceFirmware = "Emulation.Firmware.Rom.System";
     internal const string ResourceNativeVideo = "Emulation.Fairchild.Video.Native";
-    internal const string ResourceNativeControls = "Emulation.Fairchild.Controls.Native";
-    internal const string ResourceNativeSystem = "Emulation.Fairchild.System.Native";
-    internal const string NativeOptionResourcePrefix = "Emulation.Fairchild.Option.";
-    internal const string NativeChoiceResourceFormat = "{0}.Value{1}";
-    internal const string HelpResourceSuffix = ".Help";
     internal const string ResourceAudio = "Emulation.Audio";
     internal const string ResourceAudioEnabled = "Emulation.Audio.Enabled";
     internal const string ResourceAudioOutput = "Emulation.Audio.Output";

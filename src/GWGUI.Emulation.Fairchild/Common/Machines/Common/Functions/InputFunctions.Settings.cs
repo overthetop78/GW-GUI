@@ -14,7 +14,7 @@ internal static class InputSettingsFunctions
     {
         var ports = Enumerable.Range(ControllerConstants.FirstPort, ControllerConstants.PortCount).Select(port =>
         {
-            var definitions = ControllerProtocolDictionary.Actions(configuration.Model, configuration.Core, port).Select(action => action.Definition).ToArray();
+            var definitions = InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, port).Select(action => action.Definition).ToArray();
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
             var choice = new EmulationControllerChoice(PeripheralCategory.Standard.ToString(),
                 "Emulation.Fairchild.Controller.ChannelF", BindingDefinitions: definitions,
@@ -59,7 +59,7 @@ internal static class InputSettingsFunctions
         if (configuration.Input.Keyboard?.Count > 0) throw new ArgumentException(nameof(configuration.Input));
         foreach (var controller in configuration.Input.Controllers ?? [])
         {
-            var actions = ControllerProtocolDictionary.Actions(configuration.Model, configuration.Core, controller.Port).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
+            var actions = InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, controller.Port).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
             if (controller.Mappings?.Any(pair => !actions.Contains(pair.Key) || !IsSource(pair.Value)) == true)
                 throw new ArgumentException(nameof(configuration.Input));
         }

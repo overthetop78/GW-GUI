@@ -5,9 +5,9 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>Girar el mango a la izquierda</value></data>
-  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>girar el mango a la derecha</value></data>
-  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Empujar el mango hacia abajo</value></data>
-  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Tire el mango hacia arriba</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Gire el mango a la derecha</value></data>
+  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Empuja el mango hacia abajo</value></data>
+  <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>Tira el mango</value></data>
   <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>Mostrar los botones de consola</value></data>
-  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Cierre los dos controladores</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>Trae los dos controladores</value></data>
 </root>

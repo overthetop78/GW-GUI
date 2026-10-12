@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>Сохраненное состояние Fairchild несовместимо с текущей машиной.</value></data>
+  <data name="Emulation.Fairchild.Error.StateIncompatible" xml:space="preserve"><value>Сохранённое состояние Фэйрчайлда несовместимо с нынешней машиной.</value></data>
   <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>Неожиданная ошибка эмуляции Fairchild.</value></data>
-  <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>Требуемая прошивка Fairchild отсутствует.</value></data>
-  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM является недействительной или несовместимой.</value></data>
-  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>Настроенных носителей Fairchild обнаружено не было.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>Не хватает необходимого прошивки Fairchild.</value></data>
+  <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM является недействительным или несовместимым.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>Настроенные СМИ Fairchild не были найдены.</value></data>
   <data name="Emulation.Fairchild.Error.ContentUnsupported" xml:space="preserve"><value>Данная машина не поддерживает выбранные носители.</value></data>
-  <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>Опцион Fairchild имеет недействительное значение.</value></data>
-  <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>Требуемое ядро Fairchild найдено не было.</value></data>
+  <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>Вариант Fairchild имеет недействительное значение.</value></data>
+  <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>Требуемое ядро Fairchild не было найдено.</value></data>
   <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>Выбранное ядро Fairchild не могло быть загружено.</value></data>
-  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>Fairchild сохраненное состояние является недействительным.</value></data>
-  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>Исполняемый путь хоста Fairchild недоступен.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>Государство, спасенное Фэйрчайлдом, недействительно.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>Путь программы эмулятора недоступен.</value></data>
   <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>Подробности: {0}</value></data>
-  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>Связь с хостом Fairchild не удалось.</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>Общение с хозяином Fairchild провалилось.</value></data>
   <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Неизвестная команда окружения: {0}</value></data>
 </root>

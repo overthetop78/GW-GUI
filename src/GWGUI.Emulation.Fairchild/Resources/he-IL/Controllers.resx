@@ -4,10 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>Rotate the Hand to the left</value></data>
-  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>Rotate the Hand to the Right</value></data>
-  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>Push The Hand Down</value></data>
+  <data name="Emulation.Fairchild.Input.RotateLeft" xml:space="preserve"><value>פשטו את היד לשמאל</value></data>
+  <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>לטרוף את היד ימינה</value></data>
+  <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>לדחוף את היד למטה</value></data>
   <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>משוך את היד למעלה</value></data>
   <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>הצג את כפתורי הקונסולה</value></data>
-  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>לסובב את שני הבקרים</value></data>
+  <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>« « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « « «</value></data>
 </root>

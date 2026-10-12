@@ -8,14 +8,14 @@
   <data name="Emulation.Fairchild.Error.Unexpected" xml:space="preserve"><value>Si è verificato un errore di emulazione Fairchild inaspettato.</value></data>
   <data name="Emulation.Fairchild.Error.FirmwareMissing" xml:space="preserve"><value>Manca un firmware Fairchild richiesto.</value></data>
   <data name="Emulation.Fairchild.Error.FirmwareInvalid" xml:space="preserve"><value>Il sistema ROM è invalido o incompatibile.</value></data>
-  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>Il supporto Fairchild configurato non è stato trovato.</value></data>
+  <data name="Emulation.Fairchild.Error.ContentNotFound" xml:space="preserve"><value>I supporti Fairchild configurati non sono stati trovati.</value></data>
   <data name="Emulation.Fairchild.Error.ContentUnsupported" xml:space="preserve"><value>Questa macchina non supporta i supporti selezionati.</value></data>
   <data name="Emulation.Fairchild.Error.OptionInvalid" xml:space="preserve"><value>Un'opzione Fairchild ha un valore non valido.</value></data>
   <data name="Emulation.Fairchild.Error.CoreNotFound" xml:space="preserve"><value>Il nucleo Fairchild richiesto non è stato trovato.</value></data>
   <data name="Emulation.Fairchild.Error.CoreRejected" xml:space="preserve"><value>Il nucleo Fairchild selezionato non poteva essere caricato.</value></data>
-  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>Lo stato salvato dall'Fairchild è invalido.</value></data>
-  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>Il percorso eseguibile dell'ospite Fairchild non è disponibile.</value></data>
+  <data name="Emulation.Fairchild.Error.StateInvalid" xml:space="preserve"><value>Lo stato salvato da Fairchild non è valido.</value></data>
+  <data name="Emulation.Fairchild.Error.HostExecutableMissing" xml:space="preserve"><value>Il percorso del programma emulatore non è disponibile.</value></data>
   <data name="Emulation.Fairchild.Error.Details" xml:space="preserve"><value>Dettagli: {0}</value></data>
-  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>La comunicazione con l'ospite Fairchild è fallita.</value></data>
-  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comando dell'ambiente sconosciuto: {0}</value></data>
+  <data name="Emulation.Fairchild.Error.HostProtocolFailure" xml:space="preserve"><value>La comunicazione con l'ospite Fairchild non è riuscita.</value></data>
+  <data name="Emulation.Fairchild.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comando ambiente sconosciuto: {0}</value></data>
 </root>

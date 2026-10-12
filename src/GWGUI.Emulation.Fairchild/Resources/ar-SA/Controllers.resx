@@ -8,6 +8,6 @@
   <data name="Emulation.Fairchild.Input.RotateRight" xml:space="preserve"><value>تناوب المقبض إلى اليمين</value></data>
   <data name="Emulation.Fairchild.Input.Push" xml:space="preserve"><value>ادفع المقبض</value></data>
   <data name="Emulation.Fairchild.Input.Pull" xml:space="preserve"><value>اسحب المقبض</value></data>
-  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>اظهروا أزرار البنفسج</value></data>
+  <data name="Emulation.Fairchild.Input.ConsoleOverlay" xml:space="preserve"><value>أظهر أزرار الفول</value></data>
   <data name="Emulation.Fairchild.Input.SwapControllers" xml:space="preserve"><value>امسح المتحكمين</value></data>
 </root>

@@ -4,9 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.freechaf.Description" xml:space="preserve"><value>Consolas Channel F y Channel F System II.</value></data>
-  <data name="Emulation.Fairchild.Memory.Display" xml:space="preserve"><value>memoria del vídeo</value></data>
-  <data name="Emulation.Fairchild.Video.Native" xml:space="preserve"><value>Consola vídeo</value></data>
-  <data name="Emulation.Fairchild.Video.FastScreenClear" xml:space="preserve"><value>Limpiar la pantalla en un marco</value></data>
-  <data name="Emulation.Fairchild.Video.FastScreenClear.Help" xml:space="preserve"><value>Acelerar la limpieza de la pantalla completando en un marco.</value></data>
+  <data name="Emulation.Emulator.freechaf.Description" xml:space="preserve"><value>Emulates CHANNEL F y CHANNEL F SYSTEM II.</value></data>
+  <data name="Emulation.Fairchild.Memory.Display" xml:space="preserve"><value>Memoria de vídeo</value></data>
+  <data name="Emulation.Fairchild.Video.Native" xml:space="preserve"><value>Video de consola</value></data>
+  <data name="Emulation.Fairchild.Video.FastScreenClear" xml:space="preserve"><value>Limpia la pantalla inmediatamente</value></data>
 </root>
