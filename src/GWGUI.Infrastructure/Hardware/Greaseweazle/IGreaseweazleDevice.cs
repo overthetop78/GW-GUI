@@ -4,13 +4,9 @@ public interface IGreaseweazleDevice : IAsyncDisposable
 {
     GreaseweazleFirmwareInfo? Firmware { get; }
 
-    ValueTask<GreaseweazleFirmwareInfo> OpenAsync(
-        string portName,
-        CancellationToken cancellationToken = default);
+    ValueTask<GreaseweazleFirmwareInfo> OpenAsync(string portName, CancellationToken cancellationToken = default);
 
-    ValueTask SetBusTypeAsync(
-        GreaseweazleBusType busType,
-        CancellationToken cancellationToken = default);
+    ValueTask SetBusTypeAsync(GreaseweazleBusType busType, CancellationToken cancellationToken = default);
 
     ValueTask SelectDriveAsync(byte unit, CancellationToken cancellationToken = default);
 

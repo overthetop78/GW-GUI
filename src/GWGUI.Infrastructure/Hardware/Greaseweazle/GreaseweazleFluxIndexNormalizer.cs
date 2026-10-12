@@ -2,9 +2,7 @@ namespace GWGUI.Infrastructure.Hardware.Greaseweazle;
 
 public static class GreaseweazleFluxIndexNormalizer
 {
-    public static GreaseweazleRotationLayout FromPhysicalIndexes(
-        GreaseweazleFluxCapture capture,
-        int revolutions)
+    public static GreaseweazleRotationLayout FromPhysicalIndexes(GreaseweazleFluxCapture capture, int revolutions)
     {
         ArgumentNullException.ThrowIfNull(capture);
         if (revolutions <= 0) throw new ArgumentOutOfRangeException(nameof(revolutions));
@@ -13,10 +11,7 @@ public static class GreaseweazleFluxIndexNormalizer
         return new(capture.IndexIntervals[0], capture.IndexIntervals.Skip(1).Take(revolutions).ToArray());
     }
 
-    public static GreaseweazleRotationLayout FromFakeIndex(
-        GreaseweazleFluxCapture capture,
-        int revolutions,
-        uint ticksPerRevolution)
+    public static GreaseweazleRotationLayout FromFakeIndex(GreaseweazleFluxCapture capture, int revolutions, uint ticksPerRevolution)
     {
         ArgumentNullException.ThrowIfNull(capture);
         if (revolutions <= 0) throw new ArgumentOutOfRangeException(nameof(revolutions));
@@ -25,9 +20,7 @@ public static class GreaseweazleFluxIndexNormalizer
         return new(preIndexTicks, Enumerable.Repeat(ticksPerRevolution, revolutions).ToArray());
     }
 
-    public static GreaseweazleRotationLayout FromHardSectorIndexes(
-        GreaseweazleFluxCapture capture,
-        int revolutions)
+    public static GreaseweazleRotationLayout FromHardSectorIndexes(GreaseweazleFluxCapture capture, int revolutions)
     {
         ArgumentNullException.ThrowIfNull(capture);
         if (revolutions <= 0) throw new ArgumentOutOfRangeException(nameof(revolutions));

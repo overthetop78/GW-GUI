@@ -33,19 +33,12 @@ public sealed class MediaAcquisitionProviderRegistry
         return compatible.Length switch
         {
             1 => compatible[0],
-            0 => throw new NotSupportedException(
-                $"No physical acquisition provider accepts device '{deviceId}' for media family '{mediaKind}'."),
-            _ => throw new InvalidOperationException(
-                $"Multiple physical acquisition providers accept device '{deviceId}' for media family '{mediaKind}'.")
+            0 => throw new NotSupportedException($"No physical acquisition provider accepts device '{deviceId}' for media family '{mediaKind}'."),
+            _ => throw new InvalidOperationException($"Multiple physical acquisition providers accept device '{deviceId}' for media family '{mediaKind}'.")
         };
     }
 
-    public Task<MediaAcquisitionResult> AcquireAsync(
-        MediaKind mediaKind,
-        string deviceId,
-        IReadOnlyDictionary<string, string> options,
-        IProgress<MediaAcquisitionProgress>? progress = null,
-        CancellationToken cancellationToken = default)
+    public Task<MediaAcquisitionResult> AcquireAsync(MediaKind mediaKind, string deviceId, IReadOnlyDictionary<string, string> options, IProgress<MediaAcquisitionProgress>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(options);
         return GetRequired(mediaKind, deviceId).AcquireAsync(mediaKind, deviceId, options, progress, cancellationToken);

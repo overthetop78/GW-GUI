@@ -9,8 +9,7 @@ public interface IOperationLogWriter
     Task WriteAsync(GwCommand command, GwExecutionResult result, CancellationToken cancellationToken = default);
 }
 
-public sealed class RotatingOperationLogWriter(string directory, long maximumBytes = 5 * 1024 * 1024, int maximumFiles = 10,
-    ILogFileSystem? fileSystem = null, Func<DateTimeOffset>? clock = null) : IOperationLogWriter
+public sealed class RotatingOperationLogWriter(string directory, long maximumBytes = 5 * 1024 * 1024, int maximumFiles = 10, ILogFileSystem? fileSystem = null, Func<DateTimeOffset>? clock = null) : IOperationLogWriter
 {
     private readonly ILogFileSystem files = fileSystem ?? new LogFileSystem();
     private readonly Func<DateTimeOffset> now = clock ?? (() => DateTimeOffset.Now);

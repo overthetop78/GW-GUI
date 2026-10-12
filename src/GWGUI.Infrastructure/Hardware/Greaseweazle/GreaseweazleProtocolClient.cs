@@ -2,9 +2,7 @@ using System.Buffers.Binary;
 
 namespace GWGUI.Infrastructure.Hardware.Greaseweazle;
 
-public sealed class GreaseweazleProtocolClient(
-    IGreaseweazleSerialTransport transport,
-    int maximumFluxUnderflowRetries = 5) : IGreaseweazleWriteDevice, IGreaseweazleReadDevice
+public sealed class GreaseweazleProtocolClient(IGreaseweazleSerialTransport transport, int maximumFluxUnderflowRetries = 5) : IGreaseweazleWriteDevice, IGreaseweazleReadDevice
 {
     private bool _selected;
     private bool _motorOn;
@@ -12,9 +10,7 @@ public sealed class GreaseweazleProtocolClient(
 
     public GreaseweazleFirmwareInfo? Firmware { get; private set; }
 
-    public async ValueTask<GreaseweazleFirmwareInfo> OpenAsync(
-        string portName,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<GreaseweazleFirmwareInfo> OpenAsync(string portName, CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(portName);
         await transport.OpenAsync(portName, GreaseweazleProtocol.NormalBaudRate, cancellationToken);
@@ -38,10 +34,7 @@ public sealed class GreaseweazleProtocolClient(
         }
     }
 
-    public ValueTask SetBusTypeAsync(
-        GreaseweazleBusType busType,
-        CancellationToken cancellationToken = default) =>
-        SendCommandAsync(new byte[] { (byte)GreaseweazleCommand.SetBusType, 3, (byte)busType }, cancellationToken);
+    public ValueTask SetBusTypeAsync(GreaseweazleBusType busType, CancellationToken cancellationToken = default) => SendCommandAsync(new byte[] { (byte)GreaseweazleCommand.SetBusType, 3, (byte)busType }, cancellationToken);
 
     public async ValueTask SelectDriveAsync(byte unit, CancellationToken cancellationToken = default)
     {
@@ -53,23 +46,16 @@ public sealed class GreaseweazleProtocolClient(
     public async ValueTask SetMotorAsync(bool enabled, CancellationToken cancellationToken = default)
     {
         EnsureDriveSelected();
-        await SendCommandAsync(
-            new byte[] { (byte)GreaseweazleCommand.Motor, 4, _selectedUnit, enabled ? (byte)1 : (byte)0 },
-            cancellationToken);
+        await SendCommandAsync(new byte[] { (byte)GreaseweazleCommand.Motor, 4, _selectedUnit, enabled ? (byte)1 : (byte)0 }, cancellationToken);
         _motorOn = enabled;
     }
 
-    public async ValueTask SeekAsync(
-        short cylinder,
-        byte head,
-        CancellationToken cancellationToken = default)
+    public async ValueTask SeekAsync(short cylinder, byte head, CancellationToken cancellationToken = default)
     {
         EnsureDriveSelected();
         if (cylinder is >= sbyte.MinValue and <= sbyte.MaxValue)
         {
-            await SendCommandAsync(
-                new byte[] { (byte)GreaseweazleCommand.Seek, 3, unchecked((byte)(sbyte)cylinder) },
-                cancellationToken);
+            await SendCommandAsync(new byte[] { (byte)GreaseweazleCommand.Seek, 3, unchecked((byte)(sbyte)cylinder) }, cancellationToken);
         }
         else
         {
@@ -83,12 +69,7 @@ public sealed class GreaseweazleProtocolClient(
         await SendCommandAsync(new byte[] { (byte)GreaseweazleCommand.Head, 3, head }, cancellationToken);
     }
 
-    public async ValueTask WriteFluxAsync(
-        ReadOnlyMemory<uint> intervals,
-        bool cueAtIndex,
-        bool terminateAtIndex,
-        uint hardSectorTicks = 0,
-        CancellationToken cancellationToken = default)
+    public async ValueTask WriteFluxAsync(ReadOnlyMemory<uint> intervals, bool cueAtIndex, bool terminateAtIndex, uint hardSectorTicks = 0, CancellationToken cancellationToken = default)
     {
         EnsureDriveSelected();
         if (!_motorOn) throw new InvalidOperationException("The drive motor is not running.");
@@ -115,11 +96,7 @@ public sealed class GreaseweazleProtocolClient(
         }
     }
 
-    public async ValueTask<GreaseweazleFluxCapture> ReadFluxAsync(
-        int revolutions,
-        uint tickLimit = 0,
-        int retries = 5,
-        CancellationToken cancellationToken = default)
+    public async ValueTask<GreaseweazleFluxCapture> ReadFluxAsync(int revolutions, uint tickLimit = 0, int retries = 5, CancellationToken cancellationToken = default)
     {
         EnsureDriveSelected();
         if (!_motorOn) throw new InvalidOperationException("The drive motor is not running.");
@@ -161,9 +138,7 @@ public sealed class GreaseweazleProtocolClient(
             {
                 if (_motorOn)
                 {
-                    await SendCommandAsync(
-                        new byte[] { (byte)GreaseweazleCommand.Motor, 4, _selectedUnit, 0 },
-                        CancellationToken.None);
+                    await SendCommandAsync(new byte[] { (byte)GreaseweazleCommand.Motor, 4, _selectedUnit, 0 }, CancellationToken.None);
                 }
             }
             finally

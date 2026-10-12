@@ -4,10 +4,7 @@ namespace GWGUI.Infrastructure.Hardware.Greaseweazle;
 
 public sealed record GreaseweazleRotationLayout
 {
-    public GreaseweazleRotationLayout(
-        uint initialIndexTicks,
-        IReadOnlyList<uint> revolutionTicks,
-        IReadOnlyList<int>? hardSectorCounts = null)
+    public GreaseweazleRotationLayout(uint initialIndexTicks, IReadOnlyList<uint> revolutionTicks, IReadOnlyList<int>? hardSectorCounts = null)
     {
         ArgumentNullException.ThrowIfNull(revolutionTicks);
         if (revolutionTicks.Count == 0 || revolutionTicks.Any(value => value == 0))

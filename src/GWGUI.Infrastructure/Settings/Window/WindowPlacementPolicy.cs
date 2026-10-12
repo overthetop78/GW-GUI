@@ -4,8 +4,7 @@ public sealed record NormalizedWindowPlacement(double Width, double Height, doub
 
 public static class WindowPlacementPolicy
 {
-    public static NormalizedWindowPlacement Normalize(WindowPlacementSettings value, double minimumWidth, double minimumHeight,
-        double virtualLeft, double virtualTop, double virtualWidth, double virtualHeight, double visibleMargin = 80)
+    public static NormalizedWindowPlacement Normalize(WindowPlacementSettings value, double minimumWidth, double minimumHeight, double virtualLeft, double virtualTop, double virtualWidth, double virtualHeight, double visibleMargin = 80)
     {
         var width = Math.Clamp(value.Width, minimumWidth, Math.Max(minimumWidth, virtualWidth));
         var height = Math.Clamp(value.Height, minimumHeight, Math.Max(minimumHeight, virtualHeight));
@@ -18,8 +17,7 @@ public static class WindowPlacementPolicy
         return new(width, height, Math.Clamp(left, virtualLeft, Math.Max(virtualLeft, right - width)), Math.Clamp(top, virtualTop, Math.Max(virtualTop, bottom - height)));
     }
 
-    public static NormalizedWindowPlacement ConstrainToWorkArea(NormalizedWindowPlacement value,
-        double workLeft, double workTop, double workWidth, double workHeight)
+    public static NormalizedWindowPlacement ConstrainToWorkArea(NormalizedWindowPlacement value, double workLeft, double workTop, double workWidth, double workHeight)
     {
         if (workWidth <= 0 || workHeight <= 0 || !double.IsFinite(workLeft) || !double.IsFinite(workTop) ||
             !double.IsFinite(workWidth) || !double.IsFinite(workHeight)) return value;

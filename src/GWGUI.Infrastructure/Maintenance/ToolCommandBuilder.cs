@@ -5,13 +5,7 @@ using System.Globalization;
 
 namespace GWGUI.Infrastructure.Maintenance;
 
-public sealed record ToolCommandRequest(
-    string Executable,
-    string Verb,
-    IReadOnlyDictionary<string, string> Values,
-    IReadOnlySet<string> Enabled,
-    string? Device = null,
-    string? Drive = null);
+public sealed record ToolCommandRequest(string Executable, string Verb, IReadOnlyDictionary<string, string> Values, IReadOnlySet<string> Enabled, string? Device = null, string? Drive = null);
 
 public static class ToolCommandBuilder
 {

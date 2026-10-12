@@ -171,10 +171,7 @@ public static class GwOptionValidator
                 throw new ArgumentException("Invalid TSPEC head set.");
     }
 
-    private static bool ValidRange(
-        string value,
-        bool head
-    )
+    private static bool ValidRange(string value, bool head)
     {
         var match = Regex.Match(value, head ? @"^([01])(?:-([01]))?$" : @"^(\d+)(?:-(\d+)(?:/([1-9]\d*))?)?$");
         if (!match.Success)
@@ -200,20 +197,13 @@ public static class GwOptionValidator
         return (element[..separator], element[(separator + 1)..]);
     }
 
-    private static void Unique(
-        HashSet<string> keys,
-        string key
-    )
+    private static void Unique(HashSet<string> keys, string key)
     {
         if (!keys.Add(key))
             throw new ArgumentException($"Duplicate specification element '{key}'.");
     }
 
-    private static void Exclusive(
-        IReadOnlySet<string> names,
-        string first,
-        string second
-    )
+    private static void Exclusive(IReadOnlySet<string> names, string first, string second)
     {
         if (names.Contains(first) && names.Contains(second))
             throw new ArgumentException($"{first} and {second} are mutually exclusive.");

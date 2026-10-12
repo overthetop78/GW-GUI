@@ -7,12 +7,7 @@ namespace GWGUI.Infrastructure.Conversion;
 
 public static class ConversionCommandBuilder
 {
-    public static GwCommand Build(
-        string executable,
-        string source,
-        ConversionOutput output,
-        IReadOnlyList<EnabledOption>? options = null,
-        string? expertArguments = null)
+    public static GwCommand Build(string executable, string source, ConversionOutput output, IReadOnlyList<EnabledOption>? options = null, string? expertArguments = null)
     {
         if (options is not null) GwOptionValidator.Validate(options);
         var arguments = new List<string>();

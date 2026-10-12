@@ -58,10 +58,7 @@ public sealed partial class WindowsSerialDeviceDiscovery : ISerialDeviceDiscover
         return devices.Values.OrderBy(x => NaturalPortNumber(x.Port)).ThenBy(x => x.Port).ToArray();
     }
 
-    private static string? ReadPortName(
-        IntPtr set,
-        SpDevinfoData info
-    )
+    private static string? ReadPortName(IntPtr set, SpDevinfoData info)
     {
         var key = SetupDiOpenDevRegKey(set, ref info, DicpGlobal, 0, DiregDev, KeyRead);
         if (key == InvalidHandleValue)
@@ -77,20 +74,13 @@ public sealed partial class WindowsSerialDeviceDiscovery : ISerialDeviceDiscover
         }
     }
 
-    private static string? ReadInstanceId(
-        IntPtr set,
-        SpDevinfoData info
-    )
+    private static string? ReadInstanceId(IntPtr set, SpDevinfoData info)
     {
         var buffer = new StringBuilder(512);
         return SetupDiGetDeviceInstanceId(set, ref info, buffer, buffer.Capacity, out _) ? buffer.ToString() : null;
     }
 
-    private static string? ReadProperty(
-        IntPtr set,
-        SpDevinfoData info,
-        uint property
-    )
+    private static string? ReadProperty(IntPtr set, SpDevinfoData info, uint property)
     {
         var buffer = new byte[2048];
         if (!SetupDiGetDeviceRegistryProperty(set, ref info, property, out _, buffer, (uint)buffer.Length, out _))

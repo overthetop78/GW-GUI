@@ -6,17 +6,11 @@ using GWGUI.Infrastructure.Settings.Hardware;
 using GWGUI.Infrastructure.Functions.Hardware;
 namespace GWGUI.Infrastructure.Hardware;
 
-public sealed class GreaseweazleHardwareRegistry(
-    ISerialDeviceDiscovery discovery,
-    IGreaseweazleRunner runner,
-    IGwCommandBuilder? commandBuilder = null) : IHardwareRegistry
+public sealed class GreaseweazleHardwareRegistry(ISerialDeviceDiscovery discovery, IGreaseweazleRunner runner, IGwCommandBuilder? commandBuilder = null) : IHardwareRegistry
 {
     private readonly IGwCommandBuilder commandBuilder = commandBuilder ?? new GwCommandBuilder();
 
-    public async Task<HardwareScanResult> ScanAsync(
-        string executable,
-        IReadOnlyList<ControllerSettings> configuredControllers,
-        CancellationToken cancellationToken = default)
+    public async Task<HardwareScanResult> ScanAsync(string executable, IReadOnlyList<ControllerSettings> configuredControllers, CancellationToken cancellationToken = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(executable);
         var controllers = configuredControllers.Select(CloneUnavailable).ToList();

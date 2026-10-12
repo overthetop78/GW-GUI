@@ -5,10 +5,7 @@ namespace GWGUI.Infrastructure.Functions.Hardware;
 
 internal static class GreaseweazleHardwareScanFunctions
 {
-    internal static bool CanUseInfo(
-        GwExecutionResult result,
-        GwDeviceInfo information,
-        SerialDevice serialDevice)
+    internal static bool CanUseInfo(GwExecutionResult result, GwDeviceInfo information, SerialDevice serialDevice)
     {
         if (result.IsSuccess) return true;
         if (!information.HasNetworkWarning ||

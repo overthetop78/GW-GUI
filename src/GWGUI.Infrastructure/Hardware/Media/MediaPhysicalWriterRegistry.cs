@@ -34,19 +34,12 @@ public sealed class MediaPhysicalWriterRegistry
         return compatible.Length switch
         {
             1 => compatible[0],
-            0 => throw new NotSupportedException(
-                $"No physical writer accepts device '{deviceId}' for media family '{plan.MediaKind}'."),
-            _ => throw new InvalidOperationException(
-                $"Multiple physical writers accept device '{deviceId}' for media family '{plan.MediaKind}'.")
+            0 => throw new NotSupportedException($"No physical writer accepts device '{deviceId}' for media family '{plan.MediaKind}'."),
+            _ => throw new InvalidOperationException($"Multiple physical writers accept device '{deviceId}' for media family '{plan.MediaKind}'.")
         };
     }
 
-    public Task<MediaPhysicalWriteResult> WriteAsync(
-        MediaWritePlan plan,
-        string deviceId,
-        IReadOnlyDictionary<string, string> options,
-        IProgress<MediaPhysicalWriteProgress>? progress = null,
-        CancellationToken cancellationToken = default)
+    public Task<MediaPhysicalWriteResult> WriteAsync(MediaWritePlan plan, string deviceId, IReadOnlyDictionary<string, string> options, IProgress<MediaPhysicalWriteProgress>? progress = null, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(options);
         return GetRequired(plan, deviceId).WriteAsync(plan, deviceId, options, progress, cancellationToken);
