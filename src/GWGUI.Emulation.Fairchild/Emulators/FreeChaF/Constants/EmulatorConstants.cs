@@ -8,8 +8,6 @@ internal static class EmulatorConstants
     internal const string SourceUri = "https://github.com/libretro/FreeChaF";
     internal const string InspectedRevision = "76c7a84f1f7e80f3e6f2bba96fe100cb24e99124";
     internal const string DescriptionResourceKey = "Emulation.Emulator.freechaf.Description";
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(
-        Emulator.FreeChaF, Id, LibraryName, DllName, SourceUri, InspectedRevision,
-        MachineModel.ChannelF, MachineModel.ChannelFSystemII)
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.FreeChaF, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.ChannelF, MachineModel.ChannelFSystemII)
         with { DescriptionResourceKey = DescriptionResourceKey };
 }

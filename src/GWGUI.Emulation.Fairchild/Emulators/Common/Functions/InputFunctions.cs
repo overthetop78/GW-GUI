@@ -14,8 +14,7 @@ internal static class InputFunctions
             return InputConstants.InactiveState;
         var controller = snapshot.Controllers[checked((int)port)];
         if (id == InputConstants.JoypadMaskId) return unchecked((short)(controller.Buttons & ushort.MaxValue));
-        return id < InputConstants.MaximumJoypadButtonCount && (controller.Buttons & (1u << checked((int)id))) != 0
-            ? InputConstants.ActiveState : InputConstants.InactiveState;
+        return id < InputConstants.MaximumJoypadButtonCount && (controller.Buttons & (1u << checked((int)id))) != 0 ? InputConstants.ActiveState : InputConstants.InactiveState;
     }
     internal static EmulationInputSnapshot Accumulate(EmulationInputSnapshot current,
         EmulationInputSnapshot update) => new(new HashSet<EmulationKey>(update.Keys), update.Pointer with
@@ -39,6 +38,5 @@ internal static class InputFunctions
         };
 
 
-    private static int SaturatingAdd(int left, int right) =>
-        (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
+    private static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
 }

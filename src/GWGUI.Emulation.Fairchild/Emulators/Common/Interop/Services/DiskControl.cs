@@ -16,17 +16,14 @@ internal sealed class DiskControl
     private ExternalCoreApi.GetImageLabel? _getImageLabel;
 
     internal bool IsAvailable => _setEjectState is not null;
-    internal int ImageCount => IsAvailable ? checked((int)_getImageCount!()) :
-        DiskControlConstants.FirstImageIndex;
+    internal int ImageCount => IsAvailable ? checked((int)_getImageCount!()) : DiskControlConstants.FirstImageIndex;
     internal int CurrentIndex
     {
         get
         {
             if (!IsAvailable) return DiskControlConstants.NoImageIndex;
             var index = _getImageIndex!();
-            return index == DiskControlConstants.NoNativeImageIndex
-                ? DiskControlConstants.NoImageIndex
-                : checked((int)index);
+            return index == DiskControlConstants.NoNativeImageIndex ? DiskControlConstants.NoImageIndex : checked((int)index);
         }
     }
     internal bool IsEjected => !IsAvailable || _getEjectState!();
@@ -82,9 +79,7 @@ internal sealed class DiskControl
         var wasEjected = _getEjectState!();
         if (!wasEjected && !_setEjectState!(true)) throw new InvalidOperationException(DiskControlErrors.EjectFailed);
         var count = _getImageCount!();
-        var index = count == DiskControlConstants.FirstNativeImageIndex
-            ? DiskControlConstants.FirstNativeImageIndex
-            : Math.Min(_getImageIndex!(), count - DiskControlConstants.PreviousImageOffset);
+        var index = count == DiskControlConstants.FirstNativeImageIndex ? DiskControlConstants.FirstNativeImageIndex : Math.Min(_getImageIndex!(), count - DiskControlConstants.PreviousImageOffset);
         if (count == DiskControlConstants.FirstNativeImageIndex && !_addImage!())
             throw new InvalidOperationException(DiskControlErrors.CreateSlotFailed);
 
@@ -119,9 +114,7 @@ internal sealed class DiskControl
 
     internal DiskStatus GetStatus()
     {
-        var images = Enumerable.Range(DiskControlConstants.FirstImageIndex, ImageCount)
-            .Select(index => new DiskImageStatus(index, GetPath(index), GetLabel(index)))
-            .ToArray();
+        var images = Enumerable.Range(DiskControlConstants.FirstImageIndex, ImageCount).Select(index => new DiskImageStatus(index, GetPath(index), GetLabel(index))).ToArray();
         return new DiskStatus(ImageCount, CurrentIndex, IsEjected, images);
     }
 

@@ -6,8 +6,7 @@ namespace GWGUI.Emulation.Fairchild.Emulators.Common.Interop.Functions;
 
 internal static class EnvironmentFunctions
 {
-    internal static string CreateUnknownCommandDiagnostic(uint command) => string.Format(
-        CultureInfo.InvariantCulture, ExceptionText.Get(EnvironmentConstants.UnknownCommandDiagnosticResourceKey), command);
+    internal static string CreateUnknownCommandDiagnostic(uint command) => string.Format(CultureInfo.InvariantCulture, ExceptionText.Get(EnvironmentConstants.UnknownCommandDiagnosticResourceKey), command);
 
     internal static IReadOnlyList<InputDescriptor> CopyInputDescriptors(nint data)
     {
@@ -19,8 +18,7 @@ internal static class EnvironmentFunctions
         {
             var native = Marshal.PtrToStructure<ExternalCoreApi.InputDescriptor>(data + index * nativeSize);
             if (native.Description == nint.Zero) return result;
-            result.Add(new(native.Port, native.Device, native.Index, native.Id,
-                Marshal.PtrToStringUTF8(native.Description) ?? string.Empty));
+            result.Add(new(native.Port, native.Device, native.Index, native.Id, Marshal.PtrToStringUTF8(native.Description) ?? string.Empty));
         }
         return result;
     }
@@ -41,8 +39,7 @@ internal static class EnvironmentFunctions
             var count = Math.Min(port.Count, (uint)EnvironmentConstants.MaximumControllerTypeCount);
             for (var deviceIndex = BufferConstants.FirstCollectionIndex; deviceIndex < count; deviceIndex++)
             {
-                var device = Marshal.PtrToStructure<ExternalCoreApi.ControllerDescription>(
-                    port.Types + checked((int)deviceIndex) * deviceSize);
+                var device = Marshal.PtrToStructure<ExternalCoreApi.ControllerDescription>(port.Types + checked((int)deviceIndex) * deviceSize);
                 devices.Add(new(Marshal.PtrToStringUTF8(device.Description) ?? string.Empty, device.Id));
             }
             ports.Add(new(devices));
@@ -61,10 +58,8 @@ internal static class EnvironmentFunctions
         var size = Marshal.SizeOf<ExternalCoreApi.MemoryDescriptor>();
         for (var index = BufferConstants.FirstCollectionIndex; index < count; index++)
         {
-            var item = Marshal.PtrToStructure<ExternalCoreApi.MemoryDescriptor>(
-                map.Descriptors + checked((int)index) * size);
-            result.Add(new(item.Flags, item.Pointer, item.Offset, item.Start, item.Select, item.Disconnect,
-                item.Length, Marshal.PtrToStringUTF8(item.AddressSpace)));
+            var item = Marshal.PtrToStructure<ExternalCoreApi.MemoryDescriptor>(map.Descriptors + checked((int)index) * size);
+            result.Add(new(item.Flags, item.Pointer, item.Offset, item.Start, item.Select, item.Disconnect, item.Length, Marshal.PtrToStringUTF8(item.AddressSpace)));
         }
         return result;
     }

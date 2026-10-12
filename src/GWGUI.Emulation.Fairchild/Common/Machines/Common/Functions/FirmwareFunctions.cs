@@ -7,8 +7,7 @@ internal static class FirmwareFunctions
 {
     internal static string Field(FirmwareCategory role) => MediaRuntimeConstants.ConsoleFirmwareFieldPrefix + role;
     internal static bool IsField(string field) => Enum.GetValues<FirmwareCategory>().Any(role => field == Field(role));
-    internal static IReadOnlyList<FirmwareCategory> Roles(MachineModel model) => Enum.IsDefined(model)
-        ? [FirmwareCategory.Bios1, FirmwareCategory.Bios2] : throw new ArgumentOutOfRangeException(nameof(model));
+    internal static IReadOnlyList<FirmwareCategory> Roles(MachineModel model) => Enum.IsDefined(model) ? [FirmwareCategory.Bios1, FirmwareCategory.Bios2] : throw new ArgumentOutOfRangeException(nameof(model));
 
     internal static IReadOnlyList<FirmwareConfiguration> Apply(MachineConfiguration configuration,
         IReadOnlyDictionary<string, string?> values)

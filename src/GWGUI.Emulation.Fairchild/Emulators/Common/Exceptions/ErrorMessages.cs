@@ -2,9 +2,7 @@ namespace GWGUI.Emulation.Fairchild.Emulators.Common.Exceptions;
 
 internal static class ErrorMessages
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(ErrorMessages).Assembly,
-        "GWGUI.Emulation.Fairchild.Resources.Emulation");
+    private static readonly EmulationModuleLocalization Localization = new(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Fairchild.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();
     internal static string RequiredFirmwareMissing => FirmwareMissing();
@@ -48,12 +46,9 @@ internal static class ErrorMessages
     internal static string StateUnavailable => StateInvalidText();
     internal static string StateSaveFailed => StateInvalidText();
     internal static string StateLoadFailed => StateInvalidText();
-    internal static string StateIncompatible =>
-        Text("Emulation.Fairchild.Error.StateIncompatible");
-    internal static string MachineInvalidState =>
-        Text("Emulation.Fairchild.Error.Unexpected");
-    internal static string MachineStopped =>
-        Text("Emulation.Fairchild.Error.Unexpected");
+    internal static string StateIncompatible => Text("Emulation.Fairchild.Error.StateIncompatible");
+    internal static string MachineInvalidState => Text("Emulation.Fairchild.Error.Unexpected");
+    internal static string MachineStopped => Text("Emulation.Fairchild.Error.Unexpected");
 
     private static string FirmwareMissing() => Text("Emulation.Fairchild.Error.FirmwareMissing");
     private static string FirmwareInvalid() => Text("Emulation.Fairchild.Error.FirmwareInvalid");
@@ -66,9 +61,6 @@ internal static class ErrorMessages
 
     private static string Text(string resourceKey)
     {
-        return Localization.TryGetString(resourceKey, System.Globalization.CultureInfo.CurrentUICulture,
-            out var value)
-            ? value
-            : resourceKey;
+        return Localization.TryGetString(resourceKey, System.Globalization.CultureInfo.CurrentUICulture, out var value) ? value : resourceKey;
     }
 }

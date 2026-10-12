@@ -4,18 +4,14 @@ internal sealed record NativeInputAction(string Id, int Button)
 {
     internal string DefaultBinding => string.Empty;
 
-    internal InputBindingDefinition Definition => new(Id,
-        Id is "Up" or "Down" or "Left" or "Right"
-            ? "Emulation.Controller.Action." + Id : InputMappingConstants.ResourcePrefix + Id,
-        DefaultBinding);
+    internal InputBindingDefinition Definition => new(Id, Id is "Up" or "Down" or "Left" or "Right" ? "Emulation.Controller.Action." + Id : InputMappingConstants.ResourcePrefix + Id, DefaultBinding);
 }
 
 internal static class ControllerProtocolDictionary
 {
     private enum NativeButton { Push = 0, RotateLeft = 1, SwapControllers = 2, ConsoleOverlay = 3, Up = 4, Down = 5, Left = 6, Right = 7, RotateRight = 8, Pull = 9 }
 
-    private static NativeInputAction Button(string id, NativeButton nativeButton) =>
-        new(id, (int)nativeButton);
+    private static NativeInputAction Button(string id, NativeButton nativeButton) => new(id, (int)nativeButton);
 
     internal static IReadOnlyList<NativeInputAction> Actions(MachineModel model, Emulator core, int port)
     {

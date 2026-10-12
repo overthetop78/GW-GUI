@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Fairchild.Common.Machines.Common.Functions;
 
 internal static partial class ConfigurationFunctions
 {
-    internal static Emulator DefaultEmulator(MachineModel model) => Enum.IsDefined(model)
-        ? Emulator.FreeChaF : throw new ArgumentOutOfRangeException(nameof(model));
+    internal static Emulator DefaultEmulator(MachineModel model) => Enum.IsDefined(model) ? Emulator.FreeChaF : throw new ArgumentOutOfRangeException(nameof(model));
 
     internal static IReadOnlyList<EmulationMediaSlot> DefaultSlots(MachineModel model)
     {
@@ -21,8 +20,7 @@ internal static partial class ConfigurationFunctions
         if (configuration.ConfiguredSlots.Count != 1
             || configuration.ConfiguredSlots[0] != EmulationMediaSlot.Cartridge0
             || configuration.Media.Count > 1
-            || configuration.Media.Any(media => media.Slot != EmulationMediaSlot.Cartridge0
-                || media.Category != MediaCategory.Cartridge || string.IsNullOrWhiteSpace(media.Path)))
+            || configuration.Media.Any(media => media.Slot != EmulationMediaSlot.Cartridge0 || media.Category != MediaCategory.Cartridge || string.IsNullOrWhiteSpace(media.Path)))
             throw new ArgumentException(nameof(configuration.Media));
         var roles = new HashSet<FirmwareCategory>();
         foreach (var firmware in configuration.Firmwares)

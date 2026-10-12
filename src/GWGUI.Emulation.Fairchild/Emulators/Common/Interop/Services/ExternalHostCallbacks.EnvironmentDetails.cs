@@ -73,8 +73,7 @@ private bool SetRotation(nint data)
         if (data == nint.Zero) return false;
         var message = Marshal.PtrToStructure<ExternalCoreApi.MessageExtended>(data);
         var text = CopyDiagnostic(message.Text);
-        if (text is not null) ExtendedMessages.Add(new(text, message.DurationMilliseconds, message.Priority,
-            message.Level, message.Target, message.Type, message.Progress));
+        if (text is not null) ExtendedMessages.Add(new(text, message.DurationMilliseconds, message.Priority, message.Level, message.Target, message.Type, message.Progress));
         return true;
     }
 

@@ -19,18 +19,13 @@ internal sealed class SharedVideoWriter : IDisposable
         var required = CoreHostFunctions.CalculateVideoSlotCapacity(frameLength);
         if (SlotCapacity == required && View is not null) return;
         Dispose();
-        Name = _namePrefix + CoreHostConstants.VideoMapGenerationSeparator
-            + Guid.NewGuid().ToString(CoreHostConstants.UniqueNameFormat);
+        Name = _namePrefix + CoreHostConstants.VideoMapGenerationSeparator + Guid.NewGuid().ToString(CoreHostConstants.UniqueNameFormat);
         SlotCapacity = required;
-        _memory = MemoryMappedFile.CreateNew(Name,
-            checked((long)SlotCapacity * EmulationHostProtocolConstants.VideoSlotCount),
-            MemoryMappedFileAccess.ReadWrite);
+        _memory = MemoryMappedFile.CreateNew(Name, checked((long)SlotCapacity * EmulationHostProtocolConstants.VideoSlotCount), MemoryMappedFileAccess.ReadWrite);
         var completed = false;
         try
         {
-            View = _memory.CreateViewAccessor(BufferConstants.FirstBufferIndex,
-                checked((long)SlotCapacity * EmulationHostProtocolConstants.VideoSlotCount),
-                MemoryMappedFileAccess.ReadWrite);
+            View = _memory.CreateViewAccessor(BufferConstants.FirstBufferIndex, checked((long)SlotCapacity * EmulationHostProtocolConstants.VideoSlotCount), MemoryMappedFileAccess.ReadWrite);
             completed = true;
         }
         finally { if (!completed) Dispose(); }

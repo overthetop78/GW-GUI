@@ -6,6 +6,5 @@ public static class ModelCatalog
         Enum.GetValues<MachineModel>().Select(model => new EmulationMachineDefinition(
             model.ToString(), $"Emulation.Fairchild.Model.{model}")).ToArray());
 
-    public static MachineModel Parse(string id) => Enum.TryParse<MachineModel>(id, out var model)
-        && Enum.IsDefined(model) ? model : throw new ArgumentOutOfRangeException(nameof(id), id, null);
+    public static MachineModel Parse(string id) => Enum.TryParse<MachineModel>(id, out var model) && Enum.IsDefined(model) ? model : throw new ArgumentOutOfRangeException(nameof(id), id, null);
 }
