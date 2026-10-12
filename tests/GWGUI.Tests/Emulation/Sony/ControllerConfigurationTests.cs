@@ -64,8 +64,7 @@ public sealed class ControllerConfigurationTests
     public void MultitapMakesAllConfiguredPlayersAvailable(string emulator, string key, string value, int count)
     {
         var model = emulator == PceeCore.Id ? ModelConstants.PlayStation2 : ModelConstants.PlayStation;
-        AssertPortCapacity(new MachineConfiguration(model, emulator,
-            Options: new Dictionary<string, string> { [key] = value }), count);
+        AssertPortCapacity(new MachineConfiguration(model, emulator, Options: new Dictionary<string, string> { [key] = value }), count);
     }
 
     [Theory]
@@ -145,9 +144,7 @@ public sealed class ControllerConfigurationTests
             Controllers = [EmulationControllerState.Empty with
                 { Buttons = uint.MaxValue, LeftX = short.MaxValue, RightY = short.MinValue }]
         };
-        var input = new InputConfiguration(ControllerBindings:
-        [new ControllerBinding(FirstPort, ControllerType.None,
-            ButtonMappings: new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA })]);
+        var input = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, ControllerType.None, ButtonMappings: new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA })]);
         var mapped = InputSnapshotFunctions.Apply(snapshot, input, false, Ps3Hardware.ControllerPortCount);
         Assert.Equal(Ps3Hardware.ControllerPortCount, mapped.Controllers.Count);
         Assert.Equal(EmulationControllerState.Empty, mapped.Controllers[FirstPort]);
@@ -164,9 +161,7 @@ public sealed class ControllerConfigurationTests
         };
         var snapshot = EmulationInputSnapshot.Empty with { Controllers = [controller] };
         var input = new InputConfiguration(ControllerBindings:
-        [new ControllerBinding(FirstPort, ControllerType.DualShock, PhysicalDevice,
-            new Dictionary<string, string>
-            { [InputSettingsFunctionsConstants.RightStickRight] = PositiveAxisSource })]);
+        [new ControllerBinding(FirstPort, ControllerType.DualShock, PhysicalDevice, new Dictionary<string, string> { [InputSettingsFunctionsConstants.RightStickRight] = PositiveAxisSource })]);
         var mapped = InputSnapshotFunctions.Apply(snapshot, input, false).Controllers[FirstPort];
         Assert.Equal(controller.LeftX, mapped.LeftX);
         Assert.Equal(controller.LeftY, mapped.LeftY);
@@ -203,11 +198,8 @@ public sealed class ControllerConfigurationTests
     [Fact]
     public void MouseMappingsReachPerPortControls()
     {
-        var snapshot = EmulationInputSnapshot.Empty with
-            { Keys = new HashSet<EmulationKey> { EmulationKey.A } };
-        var input = new InputConfiguration(ControllerBindings:
-        [new ControllerBinding(FirstPort, ControllerType.Mouse, ButtonMappings:
-            new Dictionary<string, string> { [nameof(MouseAction.LeftButton)] = KeyboardA })]);
+        var snapshot = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A } };
+        var input = new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, ControllerType.Mouse, ButtonMappings: new Dictionary<string, string> { [nameof(MouseAction.LeftButton)] = KeyboardA })]);
         var mapped = InputSnapshotFunctions.Apply(snapshot, input, false).Controllers[FirstPort];
         Assert.Equal(InputSnapshotFunctionsConstants.FullPressure, mapped.Controls[nameof(MouseAction.LeftButton)]);
     }

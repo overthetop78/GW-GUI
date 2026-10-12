@@ -52,8 +52,7 @@ public sealed class ModuleDirectoryServiceTests
         }
         """;
 
-    private static string CatalogJson(string id,
-        params (string Version, string Minimum, string Maximum)[] releases) => $$"""
+    private static string CatalogJson(string id, params (string Version, string Minimum, string Maximum)[] releases) => $$"""
         {
           "schemaVersion": 2,
           "kind": "module",
@@ -70,8 +69,7 @@ public sealed class ModuleDirectoryServiceTests
 
     private sealed class JsonResponseHandler(IReadOnlyDictionary<Uri, string> responses) : HttpMessageHandler
     {
-        protected override Task<HttpResponseMessage> SendAsync(
-            HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (request.RequestUri is null || !responses.TryGetValue(request.RequestUri, out var json))

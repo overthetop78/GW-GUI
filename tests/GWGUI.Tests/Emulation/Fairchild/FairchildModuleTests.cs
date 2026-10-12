@@ -44,8 +44,7 @@ public sealed class FairchildModuleTests
     [Fact]
     public void ReassignedHandleMovementSurvivesSerializationAndSuppressesTheOldControllerSource()
     {
-        var config = new MachineConfiguration(MachineModel.ChannelF, input: new InputConfiguration(
-            Controllers: [new(0, PeripheralCategory.Standard, Mappings: new Dictionary<string, string> { ["Push"] = "Keyboard:Z" })]));
+        var config = new MachineConfiguration(MachineModel.ChannelF, input: new InputConfiguration(Controllers: [new(0, PeripheralCategory.Standard, Mappings: new Dictionary<string, string> { ["Push"] = "Keyboard:Z" })]));
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(config))!;
         var keyboard = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z } };
         Assert.NotEqual(0u, InputSnapshotFunctions.Apply(keyboard, restored.Input, restored.Model, restored.Core).Controllers[0].Buttons & 1u);

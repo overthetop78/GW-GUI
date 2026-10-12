@@ -18,9 +18,7 @@ public sealed class NecMediaWarningTests
     [InlineData(true)]
     public void MissingMediaListsOnlyConfiguredDrives(bool cdDriveEnabled)
     {
-        var slots = cdDriveEnabled
-            ? new[] { EmulationMediaSlot.Cartridge0, EmulationMediaSlot.Cd0 }
-            : new[] { EmulationMediaSlot.Cartridge0 };
+        var slots = cdDriveEnabled ? new[] { EmulationMediaSlot.Cartridge0, EmulationMediaSlot.Cd0 } : new[] { EmulationMediaSlot.Cartridge0 };
         var options = new Dictionary<string, string>();
         GeargrafxStorageFunctions.ApplyOptions(options, slots);
         var configuration = new MachineConfiguration(PcEngineMachineConstants.Id, GeargrafxConstants.Id, options);
@@ -31,10 +29,7 @@ public sealed class NecMediaWarningTests
         Assert.Equal(EmulationMessageSeverity.Warning, warning.MessageData.Severity);
         Assert.Equal(EmulationMessageTarget.Dialog, warning.MessageData.Target);
         var required = Assert.IsType<EmulationRequiredMachineMediaMessageContext>(warning.MessageData.Context);
-        Assert.Equal(cdDriveEnabled
-                ? new[] { EmulationMediaCategory.CartridgeSlot, EmulationMediaCategory.CompactDiscDrive }
-                : new[] { EmulationMediaCategory.CartridgeSlot },
-            required.RequiredMedia);
+        Assert.Equal(cdDriveEnabled ? new[] { EmulationMediaCategory.CartridgeSlot, EmulationMediaCategory.CompactDiscDrive } : new[] { EmulationMediaCategory.CartridgeSlot }, required.RequiredMedia);
         Assert.Equal(cdDriveEnabled
                 ? new[] { BeetlePceFastStorageConstants.CartridgeSlotLabel,
                     StorageSettingsFunctionsConstants.CdDriveLabel }

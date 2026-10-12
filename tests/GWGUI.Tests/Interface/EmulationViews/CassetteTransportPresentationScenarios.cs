@@ -76,9 +76,7 @@ internal static class CassetteTransportPresentationScenarios
         Assert.Equal(record.Foreground, Assert.IsType<TextBlock>(Assert.IsType<Border>(record.Content).Child).Foreground);
         Assert.Equal(Brushes.Gray, buttons.Single(button => Equals(button.ToolTip, EmulationCassetteCommand.Stop.ToString())).Foreground);
 
-        view.SetCassetteTransport("Cassette0", EmulationCassetteState.Playing,
-            EmulationCassetteCommand.Play,
-            new HashSet<EmulationCassetteCommand> { EmulationCassetteCommand.Play }, powered: true);
+        view.SetCassetteTransport("Cassette0", EmulationCassetteState.Playing, EmulationCassetteCommand.Play, new HashSet<EmulationCassetteCommand> { EmulationCassetteCommand.Play }, powered: true);
         Assert.Equal(Color.FromRgb(0, 200, 83), ((SolidColorBrush)play.Foreground).Color);
         Assert.False(play.IsEnabled);
         Assert.Equal(new Thickness(2), Assert.IsType<Border>(play.Content).BorderThickness);

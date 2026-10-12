@@ -47,8 +47,7 @@ public sealed class BandaiModuleTests
     [InlineData(MachineModel.SwanCrystal, 12, true, false, true)]
     [InlineData(MachineModel.Playdia, 8, false, false, true)]
     [InlineData(MachineModel.TamagotchiP1, 3, true, true, false)]
-    public void EveryMachineHasOnlyRelevantTabsAndControls(MachineModel model, int buttons,
-        bool hardware, bool rom, bool storage)
+    public void EveryMachineHasOnlyRelevantTabsAndControls(MachineModel model, int buttons, bool hardware, bool rom, bool storage)
     {
         using var http = new HttpClient();
         var path = Path.GetTempPath();
@@ -106,16 +105,14 @@ public sealed class BandaiModuleTests
         Assert.Equal(slot, Assert.Single(storage.ConfiguredSlots));
         Assert.True(Assert.Single(storage.AvailableDevices).IsPermanent);
         Assert.Empty(storage.MountedMedia);
-        Assert.Throws<ArgumentException>(() => StorageSettingsFunctions.Apply(restored,
-            storage with { ConfiguredSlots = [] }));
+        Assert.Throws<ArgumentException>(() => StorageSettingsFunctions.Apply(restored, storage with { ConfiguredSlots = [] }));
     }
 
     [Fact]
     public void IncompatibleCoreAndNativeValuesAreRejected()
     {
         Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.Playdia, core: Emulator.BeetleWonderSwan));
-        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.WonderSwan,
-            options: new Dictionary<string, string> { ["wswan_rotate_display"] = "invalid" }));
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.WonderSwan, options: new Dictionary<string, string> { ["wswan_rotate_display"] = "invalid" }));
     }
 
     [Fact]

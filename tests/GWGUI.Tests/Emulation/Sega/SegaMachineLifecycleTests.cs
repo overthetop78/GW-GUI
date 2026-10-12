@@ -216,8 +216,7 @@ public sealed class SegaMachineLifecycleTests
     [Theory]
     [InlineData(GenesisPlusGxConstants.Id, "GWGUI_SEGA_GENESIS_CORE")]
     [InlineData(PicoDriveConstants.Id, "GWGUI_SEGA_PICODRIVE_CORE")]
-    public async Task SegaModuleCreatesAndStartsMasterSystemRuntime(string emulatorId,
-        string coreVariable)
+    public async Task SegaModuleCreatesAndStartsMasterSystemRuntime(string emulatorId, string coreVariable)
     {
         var corePath = Environment.GetEnvironmentVariable(coreVariable);
         var mediaPath = Environment.GetEnvironmentVariable("GWGUI_SEGA_SMS_MEDIA");
@@ -616,8 +615,7 @@ public sealed class SegaMachineLifecycleTests
         if (string.IsNullOrWhiteSpace(corePath) || string.IsNullOrWhiteSpace(mediaPath)
             || !File.Exists(corePath) || !File.Exists(mediaPath)) return;
 
-        var root = Path.Combine(Path.GetTempPath(), $"gwgui-sega-genesis-{name}-smoke-tests",
-            Guid.NewGuid().ToString("N"));
+        var root = Path.Combine(Path.GetTempPath(), $"gwgui-sega-genesis-{name}-smoke-tests", Guid.NewGuid().ToString("N"));
         var session = Path.Combine(root, "session");
         Directory.CreateDirectory(session);
         var configuration = new MachineConfiguration(model, "genesisplusgx")
@@ -903,8 +901,7 @@ public sealed class SegaMachineLifecycleTests
         public int DiskCount => 0;
         public int CurrentDiskIndex => 0;
 
-        public void Initialize(MachineConfiguration configuration, string sessionDirectory,
-            string? saveDirectory = null) { }
+        public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null) { }
 
         public void RunFrame()
         {

@@ -28,8 +28,7 @@ internal static class ProfileSelectionScenarios
         }
     }
 
-    private static void Verify(ProfileSection section, OperationKind kind, Action change, Action reset,
-        ValueOptionViewModel tracks, Action<string> editExpert, Func<string> expert)
+    private static void Verify(ProfileSection section, OperationKind kind, Action change, Action reset, ValueOptionViewModel tracks, Action<string> editExpert, Func<string> expert)
     {
         var first = new OperationProfile("first", kind, "first", new Dictionary<string, string> { ["tracks"] = "c=2-4:h=1", ["expert"] = "--raw" }, new HashSet<string> { "tracks" });
         var second = new OperationProfile("second", kind, "second", new Dictionary<string, string> { ["tracks"] = "c=1-1:h=0" }, new HashSet<string> { "tracks" });

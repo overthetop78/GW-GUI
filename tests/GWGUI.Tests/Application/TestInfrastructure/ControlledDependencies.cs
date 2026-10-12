@@ -16,8 +16,5 @@ public class ControlledDependencies : DispatchProxy
 
     public static T Reject<T>() where T : class => Create<T, ControlledDependencies>();
 
-    protected override object? Invoke(MethodInfo? targetMethod, object?[]? args) =>
-        handler is null
-            ? throw new InvalidOperationException($"Unexpected external call in test: {targetMethod}")
-            : handler(targetMethod!, args ?? []);
+    protected override object? Invoke(MethodInfo? targetMethod, object?[]? args) => handler is null ? throw new InvalidOperationException($"Unexpected external call in test: {targetMethod}") : handler(targetMethod!, args ?? []);
 }

@@ -40,8 +40,7 @@ internal static class ExplorerTreeScenarios
     private static string DetailValue(ExplorerDetailsPanel details, string resourceKey)
     {
         var expectedLabel = LocExtension.Get(resourceKey);
-        var index = Enumerable.Range(1, 12).Single(value =>
-            Assert.IsType<TextBlock>(details.FindName($"DetailLabel{value}")).Text == expectedLabel);
+        var index = Enumerable.Range(1, 12).Single(value => Assert.IsType<TextBlock>(details.FindName($"DetailLabel{value}")).Text == expectedLabel);
         return Assert.IsType<TextBlock>(details.FindName($"DetailValue{index}")).Text;
     }
 }

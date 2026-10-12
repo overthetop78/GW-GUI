@@ -154,8 +154,7 @@ public sealed class AmstradEmulatorAdapterTests
     [Fact]
     public void CrocoDSDeclaredOptionsKeepNativeKeysChoicesAndPersistedValues()
     {
-        var config = new MachineConfiguration("cpc-6128", "crocods",
-            new Dictionary<string, string> { ["crocods_resize"] = "Overscan" });
+        var config = new MachineConfiguration("cpc-6128", "crocods", new Dictionary<string, string> { ["crocods_resize"] = "Overscan" });
         var option = new CoreOption("crocods_resize", "Resize", null, null, "Auto", "Auto", [new("Auto", "Auto"), new("320x200", "320x200"), new("Overscan", "Overscan")], true);
         var settings = SettingsDescriptionFunctions.Create(config, [option]);
         var field = Assert.Single(settings.SelectMany(block => block.Fields), field => field.Id == "crocods_resize");
@@ -187,8 +186,7 @@ public sealed class AmstradEmulatorAdapterTests
     [InlineData("cpc-464-plus", 0, true, true)]
     [InlineData("cpc-6128-plus", 1, false, true)]
     [InlineData("gx4000", 0, false, true)]
-    public void BuiltInStorageCannotBeRemoved(string machineId, int floppyCount,
-        bool cassette, bool cartridge)
+    public void BuiltInStorageCannotBeRemoved(string machineId, int floppyCount, bool cassette, bool cartridge)
     {
         using var httpClient = new HttpClient();
         var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
@@ -199,8 +197,7 @@ public sealed class AmstradEmulatorAdapterTests
         Assert.Equal(cassette, initial.AvailableDevices.Any(device => device.Slot == EmulationMediaSlot.Cassette0 && device.IsPermanent));
         Assert.Equal(cartridge, initial.AvailableDevices.Any(device => device.Slot == EmulationMediaSlot.Cartridge0 && device.IsPermanent));
 
-        var removed = module.ApplyStorageSettings(configuration,
-            initial with { ConfiguredSlots = [] });
+        var removed = module.ApplyStorageSettings(configuration, initial with { ConfiguredSlots = [] });
         var restored = module.DescribeStorageSettings(removed);
         Assert.All(initial.AvailableDevices.Where(device => device.IsPermanent), device => Assert.Contains(device.Slot, restored.ConfiguredSlots));
     }
@@ -212,8 +209,7 @@ public sealed class AmstradEmulatorAdapterTests
     [InlineData("cpc-464-plus", 2, true)]
     [InlineData("cpc-6128-plus", 2, true)]
     [InlineData("gx4000", 0, false)]
-    public void OptionalStorageMatchesMachineCapabilities(string machineId,
-        int maximumFloppyCount, bool cassetteAvailable)
+    public void OptionalStorageMatchesMachineCapabilities(string machineId, int maximumFloppyCount, bool cassetteAvailable)
     {
         using var httpClient = new HttpClient();
         var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
@@ -272,8 +268,7 @@ public sealed class AmstradEmulatorAdapterTests
         var module = new AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration("cpc-6128"));
 
-        Assert.Equal(module.SummarizeConfiguration(configuration with { AudioEnabled = true }).Details,
-            module.SummarizeConfiguration(configuration with { AudioEnabled = false }).Details);
+        Assert.Equal(module.SummarizeConfiguration(configuration with { AudioEnabled = true }).Details, module.SummarizeConfiguration(configuration with { AudioEnabled = false }).Details);
     }
 
     [Fact]
@@ -360,8 +355,7 @@ public sealed class AmstradEmulatorAdapterTests
     [Fact]
     public void ConfiguredKeyboardMappingIsAppliedToRuntimeInput()
     {
-        var configuration = new InputConfiguration(KeyboardMappings:
-            new Dictionary<string, EmulationKey> { [nameof(EmulationKey.F1)] = EmulationKey.A });
+        var configuration = new InputConfiguration(KeyboardMappings: new Dictionary<string, EmulationKey> { [nameof(EmulationKey.F1)] = EmulationKey.A });
         var physical = EmulationInputSnapshot.Empty with
         {
             Keys = new HashSet<EmulationKey> { EmulationKey.A }
@@ -543,8 +537,7 @@ public sealed class AmstradEmulatorAdapterTests
         public int SoftResetCount { get; private set; }
         public bool Disposed { get; private set; }
 
-        public void Initialize(MachineConfiguration configuration, string sessionDirectory,
-            string? saveDirectory = null) { }
+        public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null) { }
         public void RunFrame() => Thread.Sleep(1);
         public void HardReset() => HardResetCount++;
         public void SoftReset() => SoftResetCount++;
@@ -562,8 +555,7 @@ public sealed class AmstradEmulatorAdapterTests
 
     private sealed class ReleaseHandler : HttpMessageHandler
     {
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
-            CancellationToken cancellationToken)
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
             var response = new HttpResponseMessage(HttpStatusCode.OK)

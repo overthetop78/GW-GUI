@@ -28,8 +28,7 @@ public sealed class AtariEmulatorAdapterTests
         var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(nameof(MachineModel.Lynx)));
         Assert.Equal(Emulator.BeetleLynx, configuration.Core);
-        Assert.Equal(new[] { "beetle-lynx", "gearlynx", "handy", "holani" },
-            CoreCatalog.GetAll(MachineModel.Lynx).Select(entry => entry.Id));
+        Assert.Equal(new[] { "beetle-lynx", "gearlynx", "handy", "holani" }, CoreCatalog.GetAll(MachineModel.Lynx).Select(entry => entry.Id));
         var selected = Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(configuration, id));
         Assert.Equal(emulator, selected.Core);
         Assert.Equal(dll, CoreCatalog.Get(emulator).DllName);
@@ -44,14 +43,10 @@ public sealed class AtariEmulatorAdapterTests
     [Fact]
     public void LynxAdaptersUseTheirOwnCartridgeFormats()
     {
-        Assert.Equal(new[] { "bll", "lnx", "lyx", "o" },
-            GWGUI.Emulation.Atari.Emulators.BeetleLynx.Constants.EmulatorConstants.CartridgeExtensions.Order());
-        Assert.Equal(new[] { "bin", "lnx", "lyx", "o" },
-            GWGUI.Emulation.Atari.Emulators.GearLynx.Constants.EmulatorConstants.CartridgeExtensions.Order());
-        Assert.Equal(new[] { "lnx", "lyx", "o" },
-            GWGUI.Emulation.Atari.Emulators.Handy.Constants.EmulatorConstants.CartridgeExtensions.Order());
-        Assert.Equal(new[] { "lnx", "o" },
-            GWGUI.Emulation.Atari.Emulators.Holani.Constants.EmulatorConstants.CartridgeExtensions.Order());
+        Assert.Equal(new[] { "bll", "lnx", "lyx", "o" }, GWGUI.Emulation.Atari.Emulators.BeetleLynx.Constants.EmulatorConstants.CartridgeExtensions.Order());
+        Assert.Equal(new[] { "bin", "lnx", "lyx", "o" }, GWGUI.Emulation.Atari.Emulators.GearLynx.Constants.EmulatorConstants.CartridgeExtensions.Order());
+        Assert.Equal(new[] { "lnx", "lyx", "o" }, GWGUI.Emulation.Atari.Emulators.Handy.Constants.EmulatorConstants.CartridgeExtensions.Order());
+        Assert.Equal(new[] { "lnx", "o" }, GWGUI.Emulation.Atari.Emulators.Holani.Constants.EmulatorConstants.CartridgeExtensions.Order());
     }
 
     [Theory]
@@ -157,8 +152,7 @@ public sealed class AtariEmulatorAdapterTests
         Assert.Equal("68882", options["hatarib_fpu"]);
         Assert.Equal("1", options["hatarib_cycle_exact"]);
         Assert.Equal("<tos.img>", options["hatarib_tos"]);
-        Assert.Equal("<etos192uk>", GWGUI.Emulation.Atari.Emulators.HatariB.Functions.OptionFunctions.Apply(
-            configuration with { Options = new Dictionary<string, string> { ["hatarib_tos"] = "<etos192uk>" } })["hatarib_tos"]);
+        Assert.Equal("<etos192uk>", GWGUI.Emulation.Atari.Emulators.HatariB.Functions.OptionFunctions.Apply(configuration with { Options = new Dictionary<string, string> { ["hatarib_tos"] = "<etos192uk>" } })["hatarib_tos"]);
     }
 
     [Theory]
@@ -166,8 +160,7 @@ public sealed class AtariEmulatorAdapterTests
     [InlineData("1", "0")]
     public void HatariBConvertsTheSharedResetType(string commonValue, string nativeValue)
     {
-        var options = GWGUI.Emulation.Atari.Emulators.HatariB.Functions.OptionFunctions.ToNative(
-            new Dictionary<string, string> { ["gwgui_atari_reset_type"] = commonValue });
+        var options = GWGUI.Emulation.Atari.Emulators.HatariB.Functions.OptionFunctions.ToNative(new Dictionary<string, string> { ["gwgui_atari_reset_type"] = commonValue });
         Assert.Equal(nativeValue, options["hatarib_soft_reset"]);
         Assert.DoesNotContain("gwgui_atari_reset_type", options.Keys);
     }
@@ -179,8 +172,7 @@ public sealed class AtariEmulatorAdapterTests
         var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(nameof(MachineModel.Atari5200)));
         Assert.Equal(Emulator.Atari800, configuration.Core);
-        Assert.Equal(new[] { "a5200", "atari800" },
-            CoreCatalog.GetAll(MachineModel.Atari5200).Select(entry => entry.Id));
+        Assert.Equal(new[] { "a5200", "atari800" }, CoreCatalog.GetAll(MachineModel.Atari5200).Select(entry => entry.Id));
         var selected = Assert.IsType<MachineConfiguration>(await module.UseEmulatorAsync(configuration, "a5200"));
         Assert.Equal(Emulator.A5200, selected.Core);
         var entry = CoreCatalog.Get(selected.Core);
@@ -316,8 +308,7 @@ public sealed class AtariEmulatorAdapterTests
     [InlineData("de-DE", StRegion.Germany)]
     [InlineData("en-GB", StRegion.UnitedKingdom)]
     [InlineData("pt-PT", StRegion.UnitedStates)]
-    public void AtariStRegionDefaultsToTheApplicationLanguage(string cultureName,
-        StRegion expected)
+    public void AtariStRegionDefaultsToTheApplicationLanguage(string cultureName, StRegion expected)
     {
         var previous = CultureInfo.CurrentUICulture;
         try
@@ -383,8 +374,7 @@ public sealed class AtariEmulatorAdapterTests
         var module = new AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration(nameof(MachineModel.Atari800Xl)));
 
-        Assert.Equal(module.SummarizeConfiguration(configuration with { AudioEnabled = true }).Details,
-            module.SummarizeConfiguration(configuration with { AudioEnabled = false }).Details);
+        Assert.Equal(module.SummarizeConfiguration(configuration with { AudioEnabled = true }).Details, module.SummarizeConfiguration(configuration with { AudioEnabled = false }).Details);
     }
 
     [Fact]

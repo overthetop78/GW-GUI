@@ -91,8 +91,7 @@ internal static class WindowLayoutScenarios
         }
     }
 
-    public static void Restore(double width, double height, double? left, double? top,
-        double expectedWidth, double expectedHeight, double? expectedLeft, double? expectedTop)
+    public static void Restore(double width, double height, double? left, double? top, double expectedWidth, double expectedHeight, double? expectedLeft, double? expectedTop)
     {
         var saved = new WindowPlacementSettings { Width = width, Height = height, Left = left, Top = top };
         var actual = WindowPlacementPolicy.Normalize(saved, 1280, 720, -1920, 0, 3840, 1080);

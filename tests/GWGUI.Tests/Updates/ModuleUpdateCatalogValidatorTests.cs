@@ -52,11 +52,5 @@ public sealed class ModuleUpdateCatalogValidatorTests
 
     private static UpdateCatalogComponent Component(string id, params UpdateCatalogRelease[] releases) => new(id, UpdateComponentKind.Module, releases);
 
-    private static UpdateCatalogRelease Release(string version) => new(
-        version,
-        $"https://example.test/{version}/module.zip",
-        new string('b', 64),
-        $"https://example.test/{version}/notes",
-        HostApiMinimum: "1.0",
-        HostApiMaximum: "1.0");
+    private static UpdateCatalogRelease Release(string version) => new(version, $"https://example.test/{version}/module.zip", new string('b', 64), $"https://example.test/{version}/notes", HostApiMinimum: "1.0", HostApiMaximum: "1.0");
 }

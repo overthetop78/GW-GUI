@@ -24,16 +24,14 @@ public sealed class ModuleConfigurationReviewTests
     [InlineData("A500", GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator.PUAE)]
     [InlineData("A1200", GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator.PUAE2021)]
     [InlineData("A4000", GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator.Amiberry)]
-    public void CommodoreHardDiskDirectoryIsAppliedToItsImageDialogs(string machine,
-        GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator emulator)
+    public void CommodoreHardDiskDirectoryIsAppliedToItsImageDialogs(string machine, GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator emulator)
     {
         using var client = new HttpClient();
         var module = new GWGUI.Emulation.Commodore.Modules.CommodoreEmulationModule(".", ".", client, ".");
         var original = new CommodoreMachines.Contracts.MachineConfiguration(machine, emulator);
         var field = Assert.Single(module.Describe(machine, original).Blocks.SelectMany(block => block.Fields), field => field.Id == "folders.hardDisks");
         Assert.Equal(EmulationSettingsEditor.DirectoryPath, field.Editor);
-        var updated = Assert.IsType<CommodoreMachines.Contracts.MachineConfiguration>(module.ApplySettings(original,
-            new Dictionary<string, string?> { [field.Id] = "custom-hdd-directory" }));
+        var updated = Assert.IsType<CommodoreMachines.Contracts.MachineConfiguration>(module.ApplySettings(original, new Dictionary<string, string?> { [field.Id] = "custom-hdd-directory" }));
         Assert.Equal("custom-hdd-directory", updated.HardDiskDirectory);
         Assert.DoesNotContain(field.Id, updated.Options!.Keys);
         Assert.All(module.DescribeStorageSettings(updated).AvailableDevices.Where(device => device.MediaType == EmulationMediaType.HardDisk), device => Assert.Equal(updated.HardDiskDirectory, device.ImageDirectory));
@@ -47,8 +45,7 @@ public sealed class ModuleConfigurationReviewTests
         using var client = new HttpClient();
         var module = new GWGUI.Emulation.Nec.Modules.NecEmulationModule(".", ".", client, ".");
         var original = new NecMachines.Contracts.MachineConfiguration(machine, emulator);
-        var updated = Assert.IsType<NecMachines.Contracts.MachineConfiguration>(module.ApplySettings(original,
-            new Dictionary<string, string?> { ["folders.hardDisks"] = "custom-hdd-directory" }));
+        var updated = Assert.IsType<NecMachines.Contracts.MachineConfiguration>(module.ApplySettings(original, new Dictionary<string, string?> { ["folders.hardDisks"] = "custom-hdd-directory" }));
         Assert.DoesNotContain("folders.hardDisks", updated.Options!.Keys);
         var devices = module.DescribeStorageSettings(updated).AvailableDevices.Where(device => device.MediaType == EmulationMediaType.HardDisk).ToArray();
         Assert.NotEmpty(devices);
@@ -75,8 +72,7 @@ public sealed class ModuleConfigurationReviewTests
         var original = new SonyMachines.Contracts.MachineConfiguration(machine, emulator);
         var field = module.Describe(machine, original).Blocks.SelectMany(block => block.Fields).First(field => field.Tab == EmulationMachineTab.Rom);
         Assert.Equal(EmulationSettingsEditor.Path, field.Editor);
-        var updated = Assert.IsType<SonyMachines.Contracts.MachineConfiguration>(module.ApplySettings(original,
-            new Dictionary<string, string?> { [field.Id] = "my-personal-bios-dump.bin" }));
+        var updated = Assert.IsType<SonyMachines.Contracts.MachineConfiguration>(module.ApplySettings(original, new Dictionary<string, string?> { [field.Id] = "my-personal-bios-dump.bin" }));
         Assert.Equal("my-personal-bios-dump.bin", updated.FirmwarePaths![field.Id]);
         Assert.DoesNotContain(field.Id, updated.Options!.Keys);
     }

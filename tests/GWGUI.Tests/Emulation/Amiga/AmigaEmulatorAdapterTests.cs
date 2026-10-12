@@ -205,8 +205,7 @@ public sealed class AmigaEmulatorAdapterTests
         var module = new CommodoreEmulationModule(Path.GetTempPath(), Path.GetTempPath(), httpClient, Path.GetTempPath());
         var configuration = Assert.IsType<MachineConfiguration>(module.CreateConfiguration("A600"));
 
-        Assert.Equal(module.SummarizeConfiguration(configuration with { AudioEnabled = true }).Details,
-            module.SummarizeConfiguration(configuration with { AudioEnabled = false }).Details);
+        Assert.Equal(module.SummarizeConfiguration(configuration with { AudioEnabled = true }).Details, module.SummarizeConfiguration(configuration with { AudioEnabled = false }).Details);
     }
 
     [Fact]

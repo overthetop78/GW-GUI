@@ -39,12 +39,7 @@ public sealed class MediaConversionServiceTests
     [Fact]
     public async Task DirectSectorConversionReportsEveryTrackForAnySectorFormat()
     {
-        var blocks = Enumerable.Range(0, 4)
-            .Select(logicalBlock => new SectorBlock(
-                logicalBlock,
-                new SectorAddress(logicalBlock / 2, logicalBlock % 2, 1),
-                new byte[] { (byte)logicalBlock }))
-            .ToArray();
+        var blocks = Enumerable.Range(0, 4).Select(logicalBlock => new SectorBlock(logicalBlock, new SectorAddress(logicalBlock / 2, logicalBlock % 2, 1), new byte[] { (byte)logicalBlock })).ToArray();
         var source = new MediaImageDocument(
             new MediaSourceDescriptor("source.adf", []),
             TestWriter.TargetFormat,
@@ -137,11 +132,7 @@ public sealed class MediaConversionServiceTests
 
         public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension) => document.Representation.RepresentationKind == MediaRepresentationKind.Sectors && targetFormatId == TargetFormat && targetExtension == TargetExtension;
 
-        public Task<IReadOnlyList<string>> WriteAsync(
-            MediaImageDocument document,
-            string outputPath,
-            string targetFormatId,
-            CancellationToken cancellationToken = default)
+        public Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)
         {
             WasCalled = true;
             return Task.FromResult<IReadOnlyList<string>>([outputPath]);

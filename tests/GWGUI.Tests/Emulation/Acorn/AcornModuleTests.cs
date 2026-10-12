@@ -92,8 +92,7 @@ public sealed class AcornModuleTests
     [InlineData(EmulationKey.AcornF0, EmulationKey.F10)]
     [InlineData(EmulationKey.AcornCopy, EmulationKey.Insert)]
     [InlineData(EmulationKey.AcornShiftLock, EmulationKey.PageDown)]
-    public void CustomAssignmentReplacesDefaultThroughEditorAndPersistence(
-        EmulationKey target, EmulationKey previous)
+    public void CustomAssignmentReplacesDefaultThroughEditorAndPersistence(EmulationKey target, EmulationKey previous)
     {
         var configuration = new MachineConfiguration(MachineModel.BbcMicroModelB);
         var settings = InputSettingsFunctions.Describe(configuration);
@@ -131,10 +130,8 @@ public sealed class AcornModuleTests
     [Fact]
     public void NativeModelCannotCrossBetweenModelBAndMaster()
     {
-        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.BbcMicroModelB,
-            options: new Dictionary<string, string> { [OptionConstants.Model] = OptionConstants.Master128 }));
-        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.BbcMaster128,
-            options: new Dictionary<string, string> { [OptionConstants.Model] = OptionConstants.ModelBAcorn1770 }));
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.BbcMicroModelB, options: new Dictionary<string, string> { [OptionConstants.Model] = OptionConstants.Master128 }));
+        Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.BbcMaster128, options: new Dictionary<string, string> { [OptionConstants.Model] = OptionConstants.ModelBAcorn1770 }));
     }
 
     [Fact]
@@ -146,6 +143,5 @@ public sealed class AcornModuleTests
         Assert.Single(accepted.Media);
     }
 
-    private static EmulationInputSnapshot Pressed(params EmulationKey[] keys) =>
-        EmulationInputSnapshot.Empty with { Keys = keys.ToHashSet() };
+    private static EmulationInputSnapshot Pressed(params EmulationKey[] keys) => EmulationInputSnapshot.Empty with { Keys = keys.ToHashSet() };
 }

@@ -80,8 +80,7 @@ public sealed class NecEmulatorCatalogTests
     [InlineData("Pc8801", "quasi88", 2, 0)]
     [InlineData("Pc9801", "neko_project_ii", 2, 2)]
     [InlineData("Pc9821", "np2kai", 2, 2)]
-    public void ComputerStorageSeparatesFloppyDrivesAndHardDisks(string machine, string emulator,
-        int floppies, int hardDisks)
+    public void ComputerStorageSeparatesFloppyDrivesAndHardDisks(string machine, string emulator, int floppies, int hardDisks)
     {
         var settings = StorageSettingsFunctions.Describe(new MachineConfiguration(machine, emulator));
         Assert.Equal(floppies, settings.AvailableDevices.Count(device => device.MediaType == EmulationMediaType.Floppy));

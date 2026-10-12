@@ -70,8 +70,7 @@ public sealed class ConsoleFamilyModuleTests
                 new MicrosoftEmulationModuleFactory().Create(context),
                 new NecEmulationModuleFactory().Create(context)
             };
-            Assert.Equal(new[] { "microsoft", "nec", "nintendo", "sega", "sony" },
-                modules.Select(module => module.Id).Order(StringComparer.Ordinal));
+            Assert.Equal(new[] { "microsoft", "nec", "nintendo", "sega", "sony" }, modules.Select(module => module.Id).Order(StringComparer.Ordinal));
             Assert.All(modules, module => Assert.NotEmpty(module.Machines));
         }
         finally
@@ -218,8 +217,7 @@ public sealed class ConsoleFamilyModuleTests
                 var fields = module.Describe(model.Id, configuration).Blocks.SelectMany(block => block.Fields).ToArray();
                 Assert.DoesNotContain(fields, field => field.Id is "configuration.videoResolution" or "configuration.videoMonitor" or "configuration.videoIntensity" or "configuration.videoCrop" or "configuration.floppySound");
                 Assert.Equal(EmulationSettingsEditor.Information, fields.Single(field => field.Id == NintendoSettingsConstants.Ram).Editor);
-                Assert.Equal($"{model.RamKib} KiB",
-                    fields.Single(field => field.Id == NintendoSettingsConstants.Ram).Value);
+                Assert.Equal($"{model.RamKib} KiB", fields.Single(field => field.Id == NintendoSettingsConstants.Ram).Value);
                 Assert.Equal(string.Join(" / ", model.Processors), fields.Single(field => field.Id == NintendoSettingsConstants.Model + ".cpu").Value);
                 Assert.Equal(model.VideoChip, fields.Single(field => field.Id == NintendoSettingsConstants.Model + ".video").Value);
                 Assert.Equal(model.AudioChip, fields.Single(field => field.Id == NintendoSettingsConstants.Model + ".audio").Value);
@@ -372,8 +370,7 @@ public sealed class ConsoleFamilyModuleTests
                 var fields = module.Describe(model.Id, configuration).Blocks.SelectMany(block => block.Fields).ToArray();
                 Assert.DoesNotContain(fields, field => field.Id is "configuration.videoResolution" or "configuration.videoMonitor" or "configuration.videoIntensity" or "configuration.videoCrop" or "configuration.floppySound");
                 Assert.Equal(EmulationSettingsEditor.Information, fields.Single(field => field.Id == "configuration.ramKib").Editor);
-                Assert.Equal($"{model.RamKib} KiB",
-                    fields.Single(field => field.Id == "configuration.ramKib").Value);
+                Assert.Equal($"{model.RamKib} KiB", fields.Single(field => field.Id == "configuration.ramKib").Value);
                 Assert.Equal(string.Join(" / ", model.Processors), fields.Single(field => field.Id == "configuration.model.cpu").Value);
                 Assert.Equal(model.VideoChip, fields.Single(field => field.Id == "configuration.model.video").Value);
                 Assert.Equal(model.AudioChip, fields.Single(field => field.Id == "configuration.model.audio").Value);
@@ -723,8 +720,7 @@ public sealed class ConsoleFamilyModuleTests
                 var fields = module.Describe(model.Id, configuration).Blocks.SelectMany(block => block.Fields).ToArray();
                 Assert.DoesNotContain(fields, field => field.Id is "configuration.videoResolution" or "configuration.videoMonitor" or "configuration.videoIntensity" or "configuration.videoCrop" or "configuration.floppySound");
                 Assert.Equal(EmulationSettingsEditor.Information, fields.Single(field => field.Id == "configuration.ramKib").Editor);
-                Assert.Equal($"{model.RamKib} KiB",
-                    fields.Single(field => field.Id == "configuration.ramKib").Value);
+                Assert.Equal($"{model.RamKib} KiB", fields.Single(field => field.Id == "configuration.ramKib").Value);
                 Assert.Equal(string.Join(" / ", model.Processors), fields.Single(field => field.Id == "configuration.model.cpu").Value);
                 Assert.Equal(model.VideoChip, fields.Single(field => field.Id == "configuration.model.video").Value);
                 Assert.Equal(model.AudioChip, fields.Single(field => field.Id == "configuration.model.audio").Value);
@@ -1544,10 +1540,8 @@ public sealed class ConsoleFamilyModuleTests
     private static string RepositoryRoot() => Path.GetFullPath(Path.Combine(Path.GetDirectoryName(typeof(ConsoleFamilyModuleTests).Assembly.Location)!, "..", "..", "..", "..", ".."));
 
     private static string[] CommonFiles(string root, string family) =>
-        Directory.EnumerateFiles(Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common"),
-                "*.cs", SearchOption.AllDirectories)
-            .Select(path => Path.GetRelativePath(
-                Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common"), path))
+        Directory.EnumerateFiles(Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common"), "*.cs", SearchOption.AllDirectories)
+            .Select(path => Path.GetRelativePath(Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common"), path))
             .Order(StringComparer.Ordinal)
             .ToArray();
 }

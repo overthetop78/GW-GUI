@@ -400,15 +400,12 @@ public sealed class MediaVisualizationLayoutTests(StaExecutionScenarios sta)
     public async Task FluxSynthesisRatesAgreementBetweenRevolutionsIndependentlyOfTheSelectedDecoder()
     {
         var source = ExplorerDocumentScenarios.Document("flux").ScpImage!;
-        static uint[] Flux(int count) => Enumerable.Range(0, count)
-            .Select(index => (uint)(index % 3 switch { 0 => 80, 1 => 120, _ => 160 }))
-            .ToArray();
+        static uint[] Flux(int count) => Enumerable.Range(0, count).Select(index => (uint)(index % 3 switch { 0 => 80, 1 => 120, _ => 160 })).ToArray();
         var track = new ScpTrack(0, 0, 0, [new ScpRevolution(8_000_000, 720, Flux(720)), new ScpRevolution(8_020_000, 718, Flux(718)), new ScpRevolution(7_990_000, 722, Flux(722))]);
         var image = new ScpImage(source.Header, [track], true, source.FileSize);
         var reports = new List<ScpTrackPreparation>();
 
-        await new SkiaScpRenderer { DecoderId = "amiga.mfm" }
-            .PrepareAsync(image, 0, new InlineProgress<ScpTrackPreparation>(reports.Add));
+        await new SkiaScpRenderer { DecoderId = "amiga.mfm" }.PrepareAsync(image, 0, new InlineProgress<ScpTrackPreparation>(reports.Add));
 
         var result = Assert.Single(reports);
         Assert.True(result.Quality > .95, $"Expected readable revolutions, observed quality {result.Quality:P1}.");

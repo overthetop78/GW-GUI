@@ -215,8 +215,7 @@ public sealed class NintendoEmulatorCatalogTests
     [InlineData("NintendoDs", "Nintendo DS")]
     public void SkyEmuUsesTheConfiguredMachine(string machine, string core)
     {
-        var configuration = CoreSettingsFunctions.Configure(new MachineConfiguration(machine, "skyemu",
-            Options: new Dictionary<string, string> { ["system_core_override"] = "Nintendo DS" }));
+        var configuration = CoreSettingsFunctions.Configure(new MachineConfiguration(machine, "skyemu", Options: new Dictionary<string, string> { ["system_core_override"] = "Nintendo DS" }));
         Assert.Equal(core, configuration.Options!["system_core_override"]);
         Assert.DoesNotContain(CoreSettingsFunctions.Blocks(configuration).SelectMany(block => block.Fields), field => field.Id == "system_core_override");
     }

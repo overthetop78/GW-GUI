@@ -61,8 +61,7 @@ public sealed class EpochModuleTests
     [Fact]
     public void ReassignedConsolePowerSurvivesPersistenceWithoutItsOldHostAlias()
     {
-        var config = new MachineConfiguration(MachineModel.SuperCassetteVision, input: new InputConfiguration(
-            Controllers: [new(0, PeripheralCategory.Standard, Mappings: new Dictionary<string, string> { ["Power"] = "Keyboard:Z" })]));
+        var config = new MachineConfiguration(MachineModel.SuperCassetteVision, input: new InputConfiguration(Controllers: [new(0, PeripheralCategory.Standard, Mappings: new Dictionary<string, string> { ["Power"] = "Keyboard:Z" })]));
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(config))!;
         var pressed = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z } };
         Assert.Contains(EmulationKey.EpochPower, InputSnapshotFunctions.Apply(pressed, restored.Input, restored.Model, restored.Core).Keys);

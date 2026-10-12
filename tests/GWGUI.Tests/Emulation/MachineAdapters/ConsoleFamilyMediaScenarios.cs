@@ -89,12 +89,10 @@ internal static class ConsoleFamilyMediaScenarios
         Assert.Equal(Path.GetFullPath(path), media.Path);
     }
 
-    private static void AssertOptionRoundTrip(IEmulationModule module,
-        string machineId, string key, string value)
+    private static void AssertOptionRoundTrip(IEmulationModule module, string machineId, string key, string value)
     {
         var configuration = module.CreateConfiguration(machineId);
-        var changed = module.ApplySettings(configuration,
-            new Dictionary<string, string?> { [key] = value });
+        var changed = module.ApplySettings(configuration, new Dictionary<string, string?> { [key] = value });
         var options = ((IEmulationModule)module).RuntimeOptions(changed);
         Assert.Equal(value, options[key]);
     }

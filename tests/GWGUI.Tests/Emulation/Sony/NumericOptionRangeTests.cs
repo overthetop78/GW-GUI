@@ -72,11 +72,7 @@ public sealed class NumericOptionRangeTests
         Assert.Equal(expected, native.Options![OptionConstants.ImageOffsetKey]);
     }
 
-    private static MachineConfiguration Configuration(string key, string value) =>
-        new(GWGUI.Emulation.Sony.Common.Machines.Common.Constants.ModelConstants.PlayStation,
-            "test", Options: new Dictionary<string, string> { [key] = value });
+    private static MachineConfiguration Configuration(string key, string value) => new(GWGUI.Emulation.Sony.Common.Machines.Common.Constants.ModelConstants.PlayStation, "test", Options: new Dictionary<string, string> { [key] = value });
 
-    private static CoreDefinition Definition() =>
-        GWGUI.Emulation.Sony.Emulators.SwanStation.Constants.CoreConstants.Definition
-            with { Options = OptionCatalog.All };
+    private static CoreDefinition Definition() => GWGUI.Emulation.Sony.Emulators.SwanStation.Constants.CoreConstants.Definition with { Options = OptionCatalog.All };
 }

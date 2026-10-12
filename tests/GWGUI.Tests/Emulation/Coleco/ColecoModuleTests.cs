@@ -24,16 +24,14 @@ public sealed class ColecoModuleTests
         var field = Assert.Single(cartridge.ConfigurationFields!);
         Assert.Equal("gearcoleco_mapper", field.Id);
         var value = field.Choices!.Last().Id;
-        var changed = storage with { DeviceSettings = [new(EmulationMediaSlot.Cartridge0,
-            Cartridge: new CartridgeSlotSettings(Options: new Dictionary<string, string> { [field.Id] = value }))] };
+        var changed = storage with { DeviceSettings = [new(EmulationMediaSlot.Cartridge0, Cartridge: new CartridgeSlotSettings(Options: new Dictionary<string, string> { [field.Id] = value }))] };
         var applied = StorageSettingsFunctions.Apply(configuration, changed);
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(applied))!;
         Assert.Equal(value, restored.Options[field.Id]);
         Assert.Equal(value, StorageSettingsFunctions.Describe(restored).AvailableDevices.Single(device => device.Slot == EmulationMediaSlot.Cartridge0).ConfigurationFields!.Single().Value);
         Assert.Throws<ArgumentException>(() => StorageSettingsFunctions.Apply(configuration, changed with
         {
-            DeviceSettings = [new(EmulationMediaSlot.Cartridge0,
-                Cartridge: new CartridgeSlotSettings(Options: new Dictionary<string, string> { [field.Id] = "invalid" }))]
+            DeviceSettings = [new(EmulationMediaSlot.Cartridge0, Cartridge: new CartridgeSlotSettings(Options: new Dictionary<string, string> { [field.Id] = "invalid" }))]
         }));
         Assert.Equal(EmulationStorageConfigurationKind.None, StorageSettingsFunctions.Describe(new MachineConfiguration(MachineModel.ColecoVision, core: Emulator.JollyCV))
             .AvailableDevices.Single(device => device.Slot == EmulationMediaSlot.Cartridge0).ConfigurationKind);
@@ -84,8 +82,7 @@ public sealed class ColecoModuleTests
     [InlineData(Emulator.BlueMSX, 9)]
     public void KeypadReassignmentUsesBothNativePorts(Emulator core, int bit)
     {
-        var input = new InputConfiguration(Controllers: Enumerable.Range(0, 2).Select(port =>
-            new ControllerBinding(port, PeripheralCategory.Standard, Mappings: new Dictionary<string,string> { ["Keypad1"] = "Keyboard:Z" })).ToArray());
+        var input = new InputConfiguration(Controllers: Enumerable.Range(0, 2).Select(port => new ControllerBinding(port, PeripheralCategory.Standard, Mappings: new Dictionary<string,string> { ["Keypad1"] = "Keyboard:Z" })).ToArray());
         var snapshot = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z } };
         var result = InputSnapshotFunctions.Apply(snapshot, input, MachineModel.ColecoVision, core);
         var expected = (1u << bit) | (core == Emulator.JollyCV ? 1u << 12 : 0);
@@ -96,8 +93,7 @@ public sealed class ColecoModuleTests
     [Fact]
     public void AdamSpecialKeysAreModifiableAndSurviveJson()
     {
-        var config = new MachineConfiguration(MachineModel.Adam, input: new InputConfiguration(
-            Keyboard: new Dictionary<string,string> { ["Smart1"] = "Z" }));
+        var config = new MachineConfiguration(MachineModel.Adam, input: new InputConfiguration(Keyboard: new Dictionary<string,string> { ["Smart1"] = "Z" }));
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(config))!;
         var pressed = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z } };
         Assert.Contains(EmulationKey.AdamSmart1, InputSnapshotFunctions.Apply(pressed, restored.Input, restored.Model, restored.Core).Keys);
@@ -113,8 +109,7 @@ public sealed class ColecoModuleTests
         var module = new ColecoEmulationModule(path,path,http,path);
         var config = new MachineConfiguration(MachineModel.ColecoVision,
             options: new Dictionary<string,string> { ["gearcoleco_timing"] = "Auto" },
-            input: new InputConfiguration(Controllers: [new(0, PeripheralCategory.Roller,
-                Mappings: new Dictionary<string,string> { ["FireLeft"] = "Keyboard:Z" })]));
+            input: new InputConfiguration(Controllers: [new(0, PeripheralCategory.Roller, Mappings: new Dictionary<string,string> { ["FireLeft"] = "Keyboard:Z" })]));
         var selected = (MachineConfiguration)await module.UseEmulatorAsync(config,"bluemsx");
         Assert.Empty(selected.Options);
         Assert.Equal(PeripheralCategory.Standard, selected.Input.Controllers![0].Peripheral);
@@ -136,8 +131,7 @@ public sealed class ColecoModuleTests
     [Fact]
     public void AdamSpecialKeyCanBeUnassigned()
     {
-        var config = new MachineConfiguration(MachineModel.Adam, input: new InputConfiguration(
-            Keyboard: new Dictionary<string,string> { ["Smart1"] = string.Empty }));
+        var config = new MachineConfiguration(MachineModel.Adam, input: new InputConfiguration(Keyboard: new Dictionary<string,string> { ["Smart1"] = string.Empty }));
         var pressed = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.F1 } };
         Assert.DoesNotContain(EmulationKey.AdamSmart1, InputSnapshotFunctions.Apply(pressed, config.Input, config.Model, config.Core).Keys);
     }

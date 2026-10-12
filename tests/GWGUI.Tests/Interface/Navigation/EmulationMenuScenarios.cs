@@ -31,8 +31,7 @@ internal static class EmulationMenuScenarios
 
         var entries = menu.EmulationMenuItem.Items.OfType<MenuItem>().Skip(1).ToArray();
         Assert.Equal(2, entries.Length);
-        Assert.Equal(new[] { "module-one", "module-two" },
-            entries.Select(entry => Assert.IsType<string>(entry.Tag)).Order().ToArray());
+        Assert.Equal(new[] { "module-one", "module-two" }, entries.Select(entry => Assert.IsType<string>(entry.Tag)).Order().ToArray());
         Assert.All(entries, entry =>
         {
             var label = Assert.IsType<string>(entry.Header);

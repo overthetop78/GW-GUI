@@ -31,10 +31,7 @@ internal static class ReadFailureScenarios
             Read = (attempt, _) => attempt == 1 ? throw new IOException("synthetic overflow") : ReadAcquisitionScenarios.Device.Capture()
         };
         var progress = new ReadAcquisitionScenarios.Reports();
-        var acquisition = await ReadAcquisitionScenarios.AcquireAsync(
-            device,
-            ReadAcquisitionScenarios.Options with { Tracks = [new(2, 1, 4, 0)] },
-            progress);
+        var acquisition = await ReadAcquisitionScenarios.AcquireAsync(device, ReadAcquisitionScenarios.Options with { Tracks = [new(2, 1, 4, 0)] }, progress);
         Assert.Single(acquisition.DataUnits);
         Assert.Equal(new[] { "seek:4:0", "seek:0:0", "seek:4:0" }, device.Calls.Where(call => call.StartsWith("seek:")));
         Assert.Equal(new[] { 1, 2, 2 }, progress.Values.Select(value => value.Attempt));

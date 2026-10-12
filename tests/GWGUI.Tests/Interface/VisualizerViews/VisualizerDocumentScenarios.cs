@@ -482,9 +482,7 @@ internal static class VisualizerDocumentScenarios
 
         header.ApplyDetection(DiskImageFormatIds.AmigaDos, null, [DiskImageFormatIds.AmigaDos, DiskImageFormatIds.Ibm720, DiskImageFormatIds.AtariSt720]);
 
-        Assert.Equal(
-            new string?[] { null, DiskImageFormatIds.AmigaDos, DiskImageFormatIds.Ibm720, DiskImageFormatIds.AtariSt720 },
-            selector.Items.Cast<ExplorerFormatChoice>().Select(choice => choice.Id));
+        Assert.Equal(new string?[] { null, DiskImageFormatIds.AmigaDos, DiskImageFormatIds.Ibm720, DiskImageFormatIds.AtariSt720 }, selector.Items.Cast<ExplorerFormatChoice>().Select(choice => choice.Id));
     }
 
     public static async Task Heads(int mask)
@@ -519,11 +517,8 @@ internal static class VisualizerDocumentScenarios
         await workspace.Controller.LoadScpAsync("paced.scp");
 
         elapsed.Stop();
-        Assert.True(elapsed.Elapsed >= TimeSpan.FromMilliseconds(180),
-            $"The eight tracks were presented in only {elapsed.Elapsed.TotalMilliseconds:N0} ms.");
-        Assert.Equal(
-            Enumerable.Range(0, 4).SelectMany(cylinder => new[] { (Head: 0, Cylinder: cylinder), (Head: 1, Cylinder: cylinder) }),
-            workspace.Controller.ScpTrackPresentationOrder);
+        Assert.True(elapsed.Elapsed >= TimeSpan.FromMilliseconds(180), $"The eight tracks were presented in only {elapsed.Elapsed.TotalMilliseconds:N0} ms.");
+        Assert.Equal(Enumerable.Range(0, 4).SelectMany(cylinder => new[] { (Head: 0, Cylinder: cylinder), (Head: 1, Cylinder: cylinder) }), workspace.Controller.ScpTrackPresentationOrder);
         Assert.Equal(Visibility.Collapsed, workspace.Model.ProgressVisibility);
         Assert.Empty(workspace.Errors);
     }

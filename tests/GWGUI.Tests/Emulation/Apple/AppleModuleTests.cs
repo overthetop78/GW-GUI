@@ -47,8 +47,7 @@ public sealed class AppleModuleTests
     [InlineData(MachineModel.MacintoshPlus, false, 3, 0)]
     [InlineData(MachineModel.MacintoshClassic, false, 3, 0)]
     [InlineData(MachineModel.MacintoshII, true, 3, 0)]
-    public void SelectionDescribesPhysicalModelWithoutClaimingUnsupportedRuntime(
-        MachineModel model, bool executable, int keys, int ports)
+    public void SelectionDescribesPhysicalModelWithoutClaimingUnsupportedRuntime(MachineModel model, bool executable, int keys, int ports)
     {
         var configuration = new MachineConfiguration(model);
         var blocks = SettingsDescriptionFunctions.Create(configuration);
@@ -67,8 +66,7 @@ public sealed class AppleModuleTests
     [InlineData(MachineModel.MacintoshII, EmulationKey.MacintoshCommand, EmulationKey.LeftAlt)]
     [InlineData(MachineModel.MacintoshII, EmulationKey.MacintoshKeypadClear, EmulationKey.Delete)]
     [InlineData(MachineModel.MacintoshII, EmulationKey.MacintoshKeypadEquals, EmulationKey.Insert)]
-    public void ReassignmentSurvivesPersistenceAndRemovesNativeDefaultAlias(
-        MachineModel model, EmulationKey target, EmulationKey previous)
+    public void ReassignmentSurvivesPersistenceAndRemovesNativeDefaultAlias(MachineModel model, EmulationKey target, EmulationKey previous)
     {
         var configuration = new MachineConfiguration(model);
         var settings = InputSettingsFunctions.Describe(configuration);
@@ -179,6 +177,5 @@ public sealed class AppleModuleTests
             Assert.Contains(machine.ImageResourceName!, resources);
     }
 
-    private static EmulationInputSnapshot Pressed(params EmulationKey[] keys) =>
-        EmulationInputSnapshot.Empty with { Keys = keys.ToHashSet() };
+    private static EmulationInputSnapshot Pressed(params EmulationKey[] keys) => EmulationInputSnapshot.Empty with { Keys = keys.ToHashSet() };
 }

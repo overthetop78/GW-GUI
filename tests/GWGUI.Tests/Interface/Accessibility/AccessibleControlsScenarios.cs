@@ -34,8 +34,7 @@ internal static class AccessibleControlsScenarios
         }
     }
 
-    private static async Task CheckStates(UserControl section, Button button, string id, Func<Task> execute,
-        Task started, TaskCompletionSource<GwExecutionResult> pending, bool failure)
+    private static async Task CheckStates(UserControl section, Button button, string id, Func<Task> execute, Task started, TaskCompletionSource<GwExecutionResult> pending, bool failure)
     {
         await Dispatcher.Yield(DispatcherPriority.ContextIdle);
         Validate(section);

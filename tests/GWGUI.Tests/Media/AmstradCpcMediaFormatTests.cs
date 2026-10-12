@@ -249,8 +249,7 @@ public sealed class AmstradCpcMediaFormatTests
             }
 
             var supported = MediaRecognitionComposition.CreateDefault().SupportedExtensions;
-            Assert.All(new[] { ".3ds", ".3dsx", ".elf", ".axf", ".cci", ".cxi", ".app" },
-                extension => Assert.Contains(extension, supported));
+            Assert.All(new[] { ".3ds", ".3dsx", ".elf", ".axf", ".cci", ".cxi", ".app" }, extension => Assert.Contains(extension, supported));
         }
         finally
         {
@@ -371,8 +370,7 @@ public sealed class AmstradCpcMediaFormatTests
             var found = 0;
             foreach (var item in cases)
             {
-                var sourcePath = Directory.EnumerateFiles(corpus, $"*{item.Extension}",
-                        SearchOption.AllDirectories).FirstOrDefault();
+                var sourcePath = Directory.EnumerateFiles(corpus, $"*{item.Extension}", SearchOption.AllDirectories).FirstOrDefault();
                 if (sourcePath is null) continue;
                 found++;
 
@@ -647,10 +645,7 @@ public sealed class AmstradCpcMediaFormatTests
         Assert.Equal(128, file.Size);
     }
 
-    private static async Task<MediaImageDocument> ReadAsync(
-        IMediaImageReader reader,
-        string path,
-        string? requestedFormatId = null)
+    private static async Task<MediaImageDocument> ReadAsync(IMediaImageReader reader, string path, string? requestedFormatId = null)
     {
         var context = new MediaRecognitionContext(new MediaSourceDescriptor(path, [], RequestedFormatId: requestedFormatId));
         Assert.True(await reader.CanReadAsync(context, CancellationToken.None));

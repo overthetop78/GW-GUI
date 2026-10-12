@@ -23,8 +23,7 @@ public sealed class HiddenMachineRenderingTests(StaExecutionScenarios sta)
         using var pipeline = new GWGUI.App.Rendering.Emulation.Processing.SoftwareEmulationVideoProcessingPipeline();
         using var fresh = new GWGUI.App.Rendering.Emulation.Processing.SoftwareEmulationVideoProcessingPipeline();
         var settings = new EmulationVideoProcessingConfiguration { Temporal = new(Interlacing: 100) };
-        var old = new VideoFrame(new byte[] { 0, 0, 255, 255, 0, 0, 255, 255 },
-            1, 2, 4, EmulationPixelFormat.Xrgb8888, 0.5f, 1, TimeSpan.Zero);
+        var old = new VideoFrame(new byte[] { 0, 0, 255, 255, 0, 0, 255, 255 }, 1, 2, 4, EmulationPixelFormat.Xrgb8888, 0.5f, 1, TimeSpan.Zero);
         var current = old with { Pixels = new byte[] { 255, 0, 0, 255, 255, 0, 0, 255 },
             Sequence = 100, Timestamp = TimeSpan.FromSeconds(2) };
         pipeline.Process(settings, old, new(1, 2), new(1, 2));
@@ -39,8 +38,7 @@ public sealed class HiddenMachineRenderingTests(StaExecutionScenarios sta)
         internal readonly ConcurrentQueue<(long Sequence, int Resets)> Processed = new();
         private int _resets;
         public EmulationVideoRenderer Renderer => EmulationVideoRenderer.Wpf;
-        public VideoFrame Process(EmulationVideoProcessingConfiguration configuration, VideoFrame frame,
-            EmulationVideoProcessingSize sourceSize, EmulationVideoProcessingSize outputSize)
+        public VideoFrame Process(EmulationVideoProcessingConfiguration configuration, VideoFrame frame, EmulationVideoProcessingSize sourceSize, EmulationVideoProcessingSize outputSize)
         {
             if (frame.Sequence == 1) { Entered.Set(); Assert.True(Release.Wait(TimeSpan.FromSeconds(5))); }
             Processed.Enqueue((frame.Sequence, _resets));
@@ -90,8 +88,7 @@ public sealed class HiddenMachineRenderingTests(StaExecutionScenarios sta)
         public void Dispose() => Disposed = true;
     }
 
-    private static VideoFrame Frame(long sequence) => new(new byte[] { 1, 2, 3, 255 },
-        1, 1, 4, EmulationPixelFormat.Xrgb8888, 1, sequence, TimeSpan.FromMilliseconds(sequence * 20));
+    private static VideoFrame Frame(long sequence) => new(new byte[] { 1, 2, 3, 255 }, 1, 1, 4, EmulationPixelFormat.Xrgb8888, 1, sequence, TimeSpan.FromMilliseconds(sequence * 20));
     private static Window Host(object content) => new()
     {
         Content = content, Width = 320, Height = 240, ShowActivated = false,

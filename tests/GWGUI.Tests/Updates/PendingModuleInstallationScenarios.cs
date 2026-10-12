@@ -56,8 +56,7 @@ internal static class PendingModuleInstallationScenarios
         var prepared = Path.Combine(work, "prepared");
         Directory.CreateDirectory(prepared);
         File.WriteAllText(Path.Combine(prepared, "module.json"), id);
-        return new(id, id, "1.0.0", $"https://example.invalid/{id}.json",
-            new PreparedUpdateComponent(id, UpdateComponentKind.Module, UpdateComponentOperation.InstallModule, "1.0.0", prepared), work);
+        return new(id, id, "1.0.0", $"https://example.invalid/{id}.json", new PreparedUpdateComponent(id, UpdateComponentKind.Module, UpdateComponentOperation.InstallModule, "1.0.0", prepared), work);
     }
 
     private static string TemporaryDirectory()

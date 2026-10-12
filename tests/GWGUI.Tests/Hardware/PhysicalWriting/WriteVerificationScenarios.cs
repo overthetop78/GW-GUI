@@ -14,8 +14,7 @@ internal static class WriteVerificationScenarios
         var device = new WritePlanningScenarios.Device();
         var plan = new FloppyMediaWritePlanningService(DiskImageExplorer.CreateDefault()).CreatePlan(WritePlanningScenarios.Image, 0);
         var writers = new MediaPhysicalWriterRegistry([new GreaseweazleMediaPhysicalWriter(() => device)]);
-        var result = await new PhysicalDiskWriteService(writers)
-            .WriteAsync(plan, WritePlanningScenarios.Options with { Verify = true });
+        var result = await new PhysicalDiskWriteService(writers).WriteAsync(plan, WritePlanningScenarios.Options with { Verify = true });
         Assert.False(result.IsSuccess);
         Assert.Equal(0, result.WrittenTracks);
         Assert.Equal(PhysicalDiskWriteFailureCategory.Validation, Assert.Single(result.Failures).Category);

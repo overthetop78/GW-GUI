@@ -24,11 +24,7 @@ public sealed class MediaContentRecognitionCatalogScenarios
     [InlineData(MediaFileSystemFamily.Atari8Bit, ".XEX", MediaContentCategory.Executable, MediaExecutionKind.NativeExecutable)]
     [InlineData(MediaFileSystemFamily.Msx, ".COM", MediaContentCategory.Executable, MediaExecutionKind.NativeExecutable)]
     [InlineData(MediaFileSystemFamily.Cpm, ".SUB", MediaContentCategory.Command, MediaExecutionKind.CommandScript)]
-    public void MachineRulesAreCaseInsensitive(
-        MediaFileSystemFamily family,
-        string extension,
-        MediaContentCategory category,
-        MediaExecutionKind execution)
+    public void MachineRulesAreCaseInsensitive(MediaFileSystemFamily family, string extension, MediaContentCategory category, MediaExecutionKind execution)
     {
         var definition = MediaContentRecognitionCatalog.Find(family, extension);
 

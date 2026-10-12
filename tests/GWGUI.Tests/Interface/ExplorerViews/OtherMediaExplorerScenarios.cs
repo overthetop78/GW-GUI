@@ -78,15 +78,9 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
         var segment = new SequentialMediaSegment(0, SequentialSegmentKind.DataBlock, 132, duration: TimeSpan.FromSeconds(2));
         var representation = new SequentialMediaImageRepresentation(132, TimeSpan.FromSeconds(2), [segment]);
         var volume = Volume(0, 132, "TEST TAPE", fileName: "TEST TAPE.bin");
-        var section = Display(Document(
-            MediaKind.Tape,
-            representation,
-            [volume],
-            "tape.atari-cas",
-            new Dictionary<string, string> { ["systemId"] = "atari-8bit" }));
+        var section = Display(Document(MediaKind.Tape, representation, [volume], "tape.atari-cas", new Dictionary<string, string> { ["systemId"] = "atari-8bit" }));
 
-        Assert.Equal($"{LocExtension.Get("Explorer.Cassette")} {LocExtension.Get("System.atari-8bit")}",
-            Find<TextBlock>(section, "FileSystemText").Text);
+        Assert.Equal($"{LocExtension.Get("Explorer.Cassette")} {LocExtension.Get("System.atari-8bit")}", Find<TextBlock>(section, "FileSystemText").Text);
         Assert.Equal("Atari 8-bit", Find<TextBlock>(section, "SystemText").Text);
         Assert.Equal("1", Find<TextBlock>(section, "EntryCountText").Text);
     });
@@ -128,14 +122,7 @@ public sealed class OtherMediaExplorerScenarios(StaExecutionScenarios sta)
         return new ExploredMediaImage(document, volumes, []);
     }
 
-    private static ExploredMediaVolume Volume(
-        long start,
-        long length,
-        string name,
-        int? partition = null,
-        string fileName = "FILE.BIN",
-        int? session = null,
-        int? track = null)
+    private static ExploredMediaVolume Volume(long start, long length, string name, int? partition = null, string fileName = "FILE.BIN", int? session = null, int? track = null)
     {
         var descriptor = new MediaVolumeDescriptor(start, length, "test", partitionNumber: partition, sessionNumber: session, trackNumber: track, name: name);
         var entry = new FileSystemEntry(fileName, FileSystemEntryKind.File, 1, null, string.Empty, 0, 0, true, [], [1]);

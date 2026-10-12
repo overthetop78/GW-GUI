@@ -10,8 +10,7 @@ public sealed class NecControllerInputTests
     [Theory]
     [InlineData(ControllerType.PcFxPad)]
     [InlineData(ControllerType.PcEnginePad)]
-    public void ExplicitControllerMappingsUseTheirDeviceInsteadOfTheFirstConnectedController(
-        ControllerType controllerType)
+    public void ExplicitControllerMappingsUseTheirDeviceInsteadOfTheFirstConnectedController(ControllerType controllerType)
     {
         var xbox360 = new EmulationControllerState(1u << 4, 0, 0, 0, 0, 0, 0)
         {
@@ -40,8 +39,7 @@ public sealed class NecControllerInputTests
     [Theory]
     [InlineData(ControllerType.PcFxPad)]
     [InlineData(ControllerType.PcEnginePad)]
-    public void DisconnectedSelectedControllerDoesNotFallBackToAnotherController(
-        ControllerType controllerType)
+    public void DisconnectedSelectedControllerDoesNotFallBackToAnotherController(ControllerType controllerType)
     {
         var xbox360 = new EmulationControllerState(1u << 4, 0, 0, 0, 0, 0, 0)
         {

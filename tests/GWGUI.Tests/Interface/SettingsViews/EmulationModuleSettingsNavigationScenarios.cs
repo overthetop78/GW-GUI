@@ -144,8 +144,7 @@ internal static class EmulationModuleSettingsNavigationScenarios
         }
 
         ValueTask<IEmulationConfiguration> UseEmulator(string selected) =>
-            ValueTask.FromResult<IEmulationConfiguration>(
-                ((MachineConfigurationScenarios.Configuration)configuration) with { Value = selected });
+            ValueTask.FromResult<IEmulationConfiguration>(((MachineConfigurationScenarios.Configuration)configuration) with { Value = selected });
     }
 
     internal static async Task EmptyEmulatorCatalogKeepsOptionsOpenAndBlocksCreation()
@@ -286,9 +285,7 @@ internal static class EmulationModuleSettingsNavigationScenarios
     internal static async Task EmulatorDescriptionUsesModuleLocalization()
     {
         IEmulationConfiguration configuration = new MachineConfigurationScenarios.Configuration("synthetic", Guid.NewGuid(), "machine-a", "emulator-a");
-        var definition = new EmulationEmulatorDefinition(
-            "emulator-a", "Emulator A", "Emulation.Emulator.emulator-a.Description",
-            new HashSet<string>(StringComparer.Ordinal) { "machine-a" });
+        var definition = new EmulationEmulatorDefinition("emulator-a", "Emulator A", "Emulation.Emulator.emulator-a.Description", new HashSet<string>(StringComparer.Ordinal) { "machine-a" });
         var installation = new EmulationEmulatorInstallation(definition, "1.0.0");
         var manager = ControlledDependencies.Simulate<IEmulationEmulatorManager>((method, _) => method.Name switch
         {
@@ -470,8 +467,7 @@ internal static class EmulationModuleSettingsNavigationScenarios
     private sealed class EmulatorLocalization(string key, string translation)
         : IEmulationModuleLocalization
     {
-        public bool TryGetString(string resourceKey, System.Globalization.CultureInfo culture,
-            out string value)
+        public bool TryGetString(string resourceKey, System.Globalization.CultureInfo culture, out string value)
         {
             _ = culture;
             value = string.Equals(resourceKey, key, StringComparison.Ordinal) ? translation : string.Empty;

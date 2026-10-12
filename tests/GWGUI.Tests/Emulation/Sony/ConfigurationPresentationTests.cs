@@ -58,8 +58,7 @@ public sealed class ConfigurationPresentationTests
             }
         };
         var adapter = EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == Swan.Id);
-        var result = FirmwareConfigurationFunctions.Apply(configuration,
-            new Dictionary<string, string?> { [Ps1Firmware.SelectedField] = "scph1002.rom" }, adapter);
+        var result = FirmwareConfigurationFunctions.Apply(configuration, new Dictionary<string, string?> { [Ps1Firmware.SelectedField] = "scph1002.rom" }, adapter);
         Assert.Equal("scph1002.rom", Assert.Single(result.FirmwarePaths!).Value);
     }
 
@@ -106,8 +105,7 @@ public sealed class ConfigurationPresentationTests
         Assert.Equal(2 * 1024 * 1024, ram.Sum(EmulationSettingsValuePresentationFunctions.DefaultNumericValue));
         var extension = fields.Single(field => field.Id == SwanOptions.ConsoleEnable8MBRAMKey);
         Assert.Equal(EmulationSettingsEditor.Toggle, extension.Editor);
-        Assert.Equal(6 * 1024 * 1024, EmulationSettingsValuePresentationFunctions.DefaultNumericValue(
-            extension with { Value = extension.EnabledValue }));
+        Assert.Equal(6 * 1024 * 1024, EmulationSettingsValuePresentationFunctions.DefaultNumericValue(extension with { Value = extension.EnabledValue }));
     }
 
     [Theory]
@@ -194,8 +192,7 @@ public sealed class ConfigurationPresentationTests
         var multitap = fields.Single(field => field.Id == SwanOptions.ControllerPortsMultitapModeKey);
         Assert.True(multitap.IsGlobalControllerOption);
         Assert.True(multitap.RefreshSettingsOnChange);
-        var bothPorts = Configuration(Swan.Id) with { Options = new Dictionary<string, string>
-            { [SwanOptions.ControllerPortsMultitapModeKey] = SwanOptions.ControllerPortsMultitapModeBothPorts } };
+        var bothPorts = Configuration(Swan.Id) with { Options = new Dictionary<string, string> { [SwanOptions.ControllerPortsMultitapModeKey] = SwanOptions.ControllerPortsMultitapModeBothPorts } };
         var eight = InputSettingsFunctions.Describe(bothPorts);
         Assert.Equal(8, eight.ControllerPorts.Count);
         var reduced = InputSettingsFunctions.Apply(Configuration(Swan.Id), eight);
@@ -208,8 +205,7 @@ public sealed class ConfigurationPresentationTests
         var configuration = Configuration(Swan.Id);
         var storage = StorageSettingsFunctions.Describe(configuration);
         var selected = storage with { DeviceSettings = [new EmulationStorageDeviceSettings(
-            EmulationMediaSlot.Cd0, CompactDisc: new EmulationCompactDiscDriveSettings(Options:
-                new Dictionary<string, string> { [SwanOptions.CDROMMuteCDAudioKey] = "true" }))] };
+            EmulationMediaSlot.Cd0, CompactDisc: new EmulationCompactDiscDriveSettings(Options: new Dictionary<string, string> { [SwanOptions.CDROMMuteCDAudioKey] = "true" }))] };
         var result = StorageSettingsFunctions.Apply(configuration, selected);
         Assert.Equal("true", result.Options![SwanOptions.CDROMMuteCDAudioKey]);
     }
@@ -249,8 +245,7 @@ public sealed class ConfigurationPresentationTests
     {
         var blocks = SettingsDescriptionFunctions.Create(Configuration(emulator));
         var audio = Assert.Single(blocks, block => block.Id == "audio");
-        Assert.Equal(new[] { SettingsConstants.AudioEnabled, SettingsConstants.AudioOutput, SettingsConstants.AudioLatency },
-            audio.Fields.Select(field => field.Id));
+        Assert.Equal(new[] { SettingsConstants.AudioEnabled, SettingsConstants.AudioOutput, SettingsConstants.AudioLatency }, audio.Fields.Select(field => field.Id));
         Assert.False(audio.IsCompact);
         Assert.Contains(blocks, block => block.Tab == EmulationMachineTab.Audio && block.Id != audio.Id);
         var basic = blocks.Where(block => block.Tab == EmulationMachineTab.Video && !block.IsCollapsible).ToArray();
@@ -315,8 +310,7 @@ public sealed class ConfigurationPresentationTests
     [Fact]
     public void Pcee2MultitapsExpandControllersButOnlyTwoNativeCardSelectorsExist()
     {
-        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2",
-            Options: new Dictionary<string, string> { ["pcsx2_multitap"] = "both" });
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcee2", Options: new Dictionary<string, string> { ["pcsx2_multitap"] = "both" });
         Assert.Equal(8, InputSettingsFunctions.Describe(configuration).ControllerPorts.Count);
         Assert.Equal(2, StorageSettingsFunctions.Describe(configuration).AvailableDevices.Count(device => device.MediaType == EmulationMediaType.MemoryCard));
         Assert.Equal(2, GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.MemoryCardFunctions.NativeFileNames(configuration).Count);
@@ -327,8 +321,7 @@ public sealed class ConfigurationPresentationTests
     [InlineData("psp_2000_3000", "65536 KiB")]
     public void PspModelChangesRamAndKeepsNativeOptionsInTheirTabs(string model, string memory)
     {
-        var configuration = new MachineConfiguration(ModelConstants.Psp, "ppsspp",
-            Options: new Dictionary<string, string> { ["ppsspp_psp_model"] = model });
+        var configuration = new MachineConfiguration(ModelConstants.Psp, "ppsspp", Options: new Dictionary<string, string> { ["ppsspp_psp_model"] = model });
         var blocks = SettingsDescriptionFunctions.Create(configuration);
         var fields = blocks.SelectMany(block => block.Fields).ToArray();
         Assert.Equal(memory, fields.Single(field => field.Id == SettingsConstants.Ram).Value);

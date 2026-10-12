@@ -75,8 +75,7 @@ public sealed class SegaEmulatorCatalogTests
     [Fact]
     public void SwitchingToSg1000ResetsAnInapplicableCdOption()
     {
-        var configuration = new MachineConfiguration(ModelConstants.Sg1000, "genesisplusgx",
-            Options: new Dictionary<string, string> { ["genesis_plus_gx_add_on"] = "sega/mega cd" });
+        var configuration = new MachineConfiguration(ModelConstants.Sg1000, "genesisplusgx", Options: new Dictionary<string, string> { ["genesis_plus_gx_add_on"] = "sega/mega cd" });
         var definition = CoreCatalog.Get(configuration.EmulatorId).Options.Single(option => option.Key == "genesis_plus_gx_add_on");
         Assert.Equal(definition.DefaultValue, CoreSettingsFunctions.Configure(configuration).Options![definition.Key]);
     }
@@ -140,17 +139,13 @@ public sealed class SegaEmulatorCatalogTests
         var cultures = assembly.GetManifestResourceNames().Select(name => Regex.Match(name, @"\.([a-z]{2}(?:-[A-Za-z]{2,4})?)\.resources$")).Where(match => match.Success).Select(match => CultureInfo.GetCultureInfo(match.Groups[1].Value))
             .DistinctBy(culture => culture.Name).ToArray();
         Assert.Equal(29, cultures.Length);
-        var keys = CoreCatalog.All.SelectMany(core => core.Options)
-            .SelectMany(option => new[] { option.Name, option.Description }
-                .Concat(option.Values.Select(value => value.Label)))
-            .OfType<string>()
+        var keys = CoreCatalog.All.SelectMany(core => core.Options).SelectMany(option => new[] { option.Name, option.Description }.Concat(option.Values.Select(value => value.Label))).OfType<string>()
             .Where(key => key.StartsWith("Emulation.", StringComparison.Ordinal))
             .Distinct(StringComparer.Ordinal).ToArray();
         Assert.NotEmpty(keys);
         foreach (var culture in cultures)
             foreach (var key in keys)
-                Assert.True(localization.TryGetString(key, culture, out var value)
-                    && !string.IsNullOrWhiteSpace(value), $"{culture.Name}: {key}");
+                Assert.True(localization.TryGetString(key, culture, out var value) && !string.IsNullOrWhiteSpace(value), $"{culture.Name}: {key}");
     }
 
     [Theory]
@@ -206,8 +201,7 @@ public sealed class SegaEmulatorCatalogTests
         var adapter = EmulatorCatalog.CreateAdapters().Single(item => item.EmulatorId == "flycast");
         var configuration = new MachineConfiguration(ModelConstants.Dreamcast, adapter.EmulatorId);
         var slot = adapter.GetFirmwareSlots(configuration).First();
-        var applied = FirmwareConfigurationFunctions.Apply(configuration,
-            new Dictionary<string, string?> { [slot.FieldId] = "my-dreamcast-backup.rom" }, adapter);
+        var applied = FirmwareConfigurationFunctions.Apply(configuration, new Dictionary<string, string?> { [slot.FieldId] = "my-dreamcast-backup.rom" }, adapter);
         Assert.Equal("my-dreamcast-backup.rom", applied.FirmwarePaths![slot.FieldId]);
         Assert.Equal("my-dreamcast-backup.rom", FirmwareConfigurationFunctions.Fields(applied, adapter).First().Value);
     }
@@ -215,8 +209,7 @@ public sealed class SegaEmulatorCatalogTests
     [Fact]
     public void RuntimeOptionsExcludeApplicationSettingsAndEnforceTheSelectedHardware()
     {
-        var configuration = new MachineConfiguration(ModelConstants.MasterSystem, "genesisplusgx",
-            Options: new Dictionary<string, string> { ["foreign-setting"] = "value", ["genesis_plus_gx_region_detect"] = "pal" });
+        var configuration = new MachineConfiguration(ModelConstants.MasterSystem, "genesisplusgx", Options: new Dictionary<string, string> { ["foreign-setting"] = "value", ["genesis_plus_gx_region_detect"] = "pal" });
         var options = FirmwareFunctions.RuntimeOptions(configuration, string.Empty);
         Assert.DoesNotContain("foreign-setting", options.Keys);
         Assert.Equal("pal", options["genesis_plus_gx_region_detect"]);

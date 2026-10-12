@@ -21,8 +21,7 @@ public sealed class UpdatePlanBuilderTests
     {
         var component = Module("amiga", ModuleRelease("1.2.0", "1.0", "1.0"), ModuleRelease("1.1.0", "1.0", "1.0"));
 
-        var result = _builder.Search(ModuleCatalog(component), Installed(), UpdateSearchScope.Modules,
-            new Dictionary<string, string> { ["amiga"] = "1.1.0" });
+        var result = _builder.Search(ModuleCatalog(component), Installed(), UpdateSearchScope.Modules, new Dictionary<string, string> { ["amiga"] = "1.1.0" });
 
         var update = Assert.Single(result.Components);
         Assert.Equal(UpdateAvailability.Available, update.Availability);
@@ -87,8 +86,5 @@ public sealed class UpdatePlanBuilderTests
 
     private static UpdateCatalogRelease ModuleRelease(string version, string minimum, string maximum) => Release(version, minimum: minimum, maximum: maximum);
 
-    private static UpdateCatalogRelease Release(string version, string? hostApiVersion = null,
-        string? minimum = null, string? maximum = null) => new(version,
-        $"https://example.test/{version}.zip", new string('a', 64),
-        $"https://example.test/releases/{version}", hostApiVersion, minimum, maximum);
+    private static UpdateCatalogRelease Release(string version, string? hostApiVersion = null, string? minimum = null, string? maximum = null) => new(version, $"https://example.test/{version}.zip", new string('a', 64), $"https://example.test/releases/{version}", hostApiVersion, minimum, maximum);
 }

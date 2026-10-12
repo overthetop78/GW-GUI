@@ -18,8 +18,7 @@ public sealed class ModuleDirectoryCatalogValidatorTests
     [Fact]
     public void Unsupported_schema_is_rejected()
     {
-        Assert.Throws<InvalidDataException>(() =>
-            _validator.Validate(Directory(Entry("amiga", "Amiga")) with { SchemaVersion = 2 }));
+        Assert.Throws<InvalidDataException>(() => _validator.Validate(Directory(Entry("amiga", "Amiga")) with { SchemaVersion = 2 }));
     }
 
     [Fact]
@@ -38,7 +37,5 @@ public sealed class ModuleDirectoryCatalogValidatorTests
 
     private static ModuleDirectoryCatalog Directory(params ModuleDirectoryEntry[] modules) => new(1, DateTimeOffset.UtcNow, modules);
 
-    private static ModuleDirectoryEntry Entry(string id, string displayName,
-        string? url = null) => new(id, displayName,
-            url ?? $"https://example.test/{id}/update-catalog.json");
+    private static ModuleDirectoryEntry Entry(string id, string displayName, string? url = null) => new(id, displayName, url ?? $"https://example.test/{id}/update-catalog.json");
 }

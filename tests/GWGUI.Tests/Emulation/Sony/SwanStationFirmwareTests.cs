@@ -11,8 +11,7 @@ public sealed class SwanStationFirmwareTests
     [InlineData(FirmwareConstants.JapanField, FirmwareConstants.JapanPathKey, FirmwareConstants.JapanFile)]
     [InlineData(FirmwareConstants.NorthAmericaField, FirmwareConstants.NorthAmericaPathKey, FirmwareConstants.NorthAmericaFile)]
     [InlineData(FirmwareConstants.EuropeField, FirmwareConstants.EuropePathKey, FirmwareConstants.EuropeFile)]
-    public void RegionalBiosUsesTheSelectedRomRegardlessOfItsOriginalName(
-        string field, string nativeKey, string nativeFile)
+    public void RegionalBiosUsesTheSelectedRomRegardlessOfItsOriginalName(string field, string nativeKey, string nativeFile)
     {
         var configuration = Configuration(field);
         var native = SwanStationOptionFunctions.ToNative(configuration);

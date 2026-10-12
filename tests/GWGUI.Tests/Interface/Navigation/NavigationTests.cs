@@ -53,8 +53,7 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     public Task Shell_sections_and_primary_commands_fit_minimum_and_normal_content_areas(int index, double width, double height) =>
         sta.Run(() => WindowLayoutScenarios.ShellLayout(index, width, height));
 
-    public static IEnumerable<object[]> MenuCultures() =>
-        UiLanguageCatalog.Available.Select(language => new object[] { language.Code });
+    public static IEnumerable<object[]> MenuCultures() => UiLanguageCatalog.Available.Select(language => new object[] { language.Code });
 
     [Theory]
     [MemberData(nameof(MenuCultures))]
@@ -124,8 +123,7 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     [InlineData(1360d, 820d, null, null, 1360d, 820d, null, null)]
     [InlineData(1360d, 820d, double.NaN, 0d, 1360d, 820d, null, null)]
     [InlineData(1360d, 820d, 0d, double.PositiveInfinity, 1360d, 820d, null, null)]
-    public void Restore_handles_saved_sizes_and_disconnected_monitors(double width, double height,
-        double? left, double? top, double expectedWidth, double expectedHeight, double? expectedLeft, double? expectedTop) =>
+    public void Restore_handles_saved_sizes_and_disconnected_monitors(double width, double height, double? left, double? top, double expectedWidth, double expectedHeight, double? expectedLeft, double? expectedTop) =>
         WindowLayoutScenarios.Restore(width, height, left, top, expectedWidth, expectedHeight, expectedLeft, expectedTop);
 
     [Theory]
@@ -133,8 +131,7 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     [InlineData(200d, 900d, -1360d, 260d)]
     [InlineData(-3000d, -200d, -1920d, 40d)]
     [InlineData(null, null, -1920d, 40d)]
-    public void Work_area_keeps_the_window_on_screen_and_clear_of_taskbar(double? left, double? top,
-        double expectedLeft, double expectedTop) => WindowLayoutScenarios.WorkArea(left, top, expectedLeft, expectedTop);
+    public void Work_area_keeps_the_window_on_screen_and_clear_of_taskbar(double? left, double? top, double expectedLeft, double expectedTop) => WindowLayoutScenarios.WorkArea(left, top, expectedLeft, expectedTop);
 
     [Fact]
     public void Small_screen_limits_the_window_to_available_space() => WindowLayoutScenarios.SmallScreen();

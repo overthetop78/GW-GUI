@@ -91,8 +91,7 @@ internal static class AtariCassetteScenarios
         }
     }
 
-    private static MachineConfiguration Configuration(MachineModel model,
-        MediaConfiguration media, bool cassetteBoot) => new(model, media: [media],
+    private static MachineConfiguration Configuration(MachineModel model, MediaConfiguration media, bool cassetteBoot) => new(model, media: [media],
         options: new Dictionary<string, string>
         {
             [EightBitSettingsConstants.CassetteBootOptionKey] = cassetteBoot ? EightBitSettingsConstants.Enabled : EightBitSettingsConstants.Disabled

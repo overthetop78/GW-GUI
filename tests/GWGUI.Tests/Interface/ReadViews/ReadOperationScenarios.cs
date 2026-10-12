@@ -134,8 +134,7 @@ internal static class ReadOperationScenarios
                 Assert.Equal("read", command.Verb); Assert.Equal("virtual-tool", command.ExecutablePath); Command = command;
                 Token = (CancellationToken)args[2]!; Started.TrySetResult(); return Pending.Task;
             });
-            var catalog = ControlledDependencies.Simulate<IImageFormatCatalog>((method, _) => method.Name == "get_Formats"
-                ? new[] { format } : throw new InvalidOperationException(method.Name));
+            var catalog = ControlledDependencies.Simulate<IImageFormatCatalog>((method, _) => method.Name == "get_Formats" ? new[] { format } : throw new InvalidOperationException(method.Name));
             Controller = new(View, Model, null!, () => catalog, () => settings, new GwCommandBuilder(), files,
                 ControlledDependencies.Simulate<IBusinessDialogService>((method, args) => {
                     Assert.Equal("ResolveReadConflict", method.Name); Conflicts.Add((string)args[0]!); return ConflictChoice;

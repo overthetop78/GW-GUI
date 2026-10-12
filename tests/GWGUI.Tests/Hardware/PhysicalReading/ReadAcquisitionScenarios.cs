@@ -15,9 +15,7 @@ internal static class ReadAcquisitionScenarios
     public static async Task IndexModes(bool hard)
     {
         var device = new Device();
-        device.Read = (_, _) => hard
-            ? new(new uint[] { 50, 100, 100, 100, 40, 40 }, new uint[] { 50, 100, 100, 100, 40, 40 }, 1000, [])
-            : new(new uint[] { 1, 50, 50, 50 }, [], 1000, []);
+        device.Read = (_, _) => hard ? new(new uint[] { 50, 100, 100, 100, 40, 40 }, new uint[] { 50, 100, 100, 100, 40, 40 }, 1000, []) : new(new uint[] { 1, 50, 50, 50 }, [], 1000, []);
         var options = Options with
         {
             Tracks = [new(0, 1)],
@@ -56,11 +54,7 @@ internal static class ReadAcquisitionScenarios
         Assert.Equal(2, progress.Values.Count(value => value.AcquiredUnit is not null));
     }
 
-    internal static Task<MediaAcquisitionResult> AcquireAsync(
-        Device device,
-        PhysicalDiskReadOptions options,
-        IProgress<MediaAcquisitionProgress>? progress = null,
-        CancellationToken cancellationToken = default) =>
+    internal static Task<MediaAcquisitionResult> AcquireAsync(Device device, PhysicalDiskReadOptions options, IProgress<MediaAcquisitionProgress>? progress = null, CancellationToken cancellationToken = default) =>
         new GreaseweazleMediaAcquisitionProvider(() => device).AcquireAsync(MediaKind.Floppy, options.PortName, CreateProviderOptions(options), progress, cancellationToken);
 
     internal static IReadOnlyDictionary<string, string> CreateProviderOptions(PhysicalDiskReadOptions options)
@@ -69,8 +63,7 @@ internal static class ReadAcquisitionScenarios
         {
             [GreaseweazleMediaOptionKeys.BusType] = options.BusType.ToString(),
             [GreaseweazleMediaOptionKeys.DriveUnit] = options.DriveUnit.ToString(CultureInfo.InvariantCulture),
-            [GreaseweazleMediaOptionKeys.Tracks] = string.Join(';', options.Tracks.Select(track =>
-                $"{track.Cylinder}:{track.Head}:{track.DriveCylinder}:{track.DriveHead}")),
+            [GreaseweazleMediaOptionKeys.Tracks] = string.Join(';', options.Tracks.Select(track => $"{track.Cylinder}:{track.Head}:{track.DriveCylinder}:{track.DriveHead}")),
             [GreaseweazleMediaOptionKeys.DiskType] = options.DiskType.ToString(),
             [GreaseweazleMediaOptionKeys.Revolutions] = options.Revolutions.ToString(CultureInfo.InvariantCulture),
             [GreaseweazleMediaOptionKeys.FluxOverflowRetries] = options.FluxOverflowRetries.ToString(CultureInfo.InvariantCulture),
