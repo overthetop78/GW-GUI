@@ -90,20 +90,14 @@ public sealed class SinclairEmulationModule : IEmulationModule, IEmulationEmulat
             Input = values.TryGetValue(SettingsConstants.MouseSpeed, out var speed) && editable.Contains(SettingsConstants.MouseSpeed) 
                 ? current.Input with
             {
-                MouseSpeedPercent = int.Parse(
-                    speed ?? InputMappingConstants.DefaultMouseSpeedPercent.ToString(CultureInfo.InvariantCulture),
-                    NumberStyles.Integer,
-                    CultureInfo.InvariantCulture
-                )
+                MouseSpeedPercent = int.Parse(speed ?? InputMappingConstants.DefaultMouseSpeedPercent.ToString(CultureInfo.InvariantCulture), NumberStyles.Integer, CultureInfo.InvariantCulture)
                 }
 
 
                 : current.Input,
             Firmwares = FirmwareFunctions.Apply(current, values),
             Options = options,
-            InitialContent = editable.Contains(SettingsConstants.InitialContent) && values.TryGetValue(SettingsConstants.InitialContent, out var initialContent) 
-                ? string.IsNullOrWhiteSpace(initialContent) ? null : initialContent 
-                : current.InitialContent,
+            InitialContent = editable.Contains(SettingsConstants.InitialContent) && values.TryGetValue(SettingsConstants.InitialContent, out var initialContent) ? string.IsNullOrWhiteSpace(initialContent) ? null : initialContent : current.InitialContent,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) && editable.Contains(SettingsConstants.AudioEnabled) ? enabled == EmulationSettingConstants.Enabled : current.AudioEnabled
         };
         ConfigurationFunctions.Validate(result);
@@ -186,9 +180,7 @@ public sealed class SinclairEmulationModule : IEmulationModule, IEmulationEmulat
         var output = current.Options.GetValueOrDefault(SettingsConstants.AudioOutput);
         if (output == SettingsConstants.DefaultOutput)
             output = null;
-        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) 
-            ? parsed 
-            : SettingsConstants.DefaultLatency;
+        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : SettingsConstants.DefaultLatency;
         var context = new EmulatorCreationContext(
             services.SessionsDirectory,
             corePath,
