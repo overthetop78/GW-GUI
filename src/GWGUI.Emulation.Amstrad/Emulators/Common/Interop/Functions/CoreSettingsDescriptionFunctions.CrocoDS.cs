@@ -58,9 +58,7 @@ internal static partial class CoreSettingsDescriptionFunctions
         }
         var videoFields = fields.Where(field => field.Tab == EmulationMachineTab.Video).ToArray();
         if (videoFields.Length > BufferConstants.EmptyCollectionCount)
-            blocks.Add(Block(CrocoDSProfile.Id, EmulationMachineTab.Video,
-                SettingsDescriptionFunctionsConstants.ResourceVideo,
-                SettingsDescriptionFunctionsConstants.IconVideo, SettingsDescriptionFunctionsConstants.TwoColumnLayout, videoFields));
+            blocks.Add(Block(CrocoDSProfile.Id, EmulationMachineTab.Video, SettingsDescriptionFunctionsConstants.ResourceVideo, SettingsDescriptionFunctionsConstants.IconVideo, SettingsDescriptionFunctionsConstants.TwoColumnLayout, videoFields));
         return blocks;
     }
 

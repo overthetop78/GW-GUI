@@ -89,8 +89,7 @@ public sealed class CoreReleaseService
             if (release.IsZip)
             {
                 using var archive = ZipFile.OpenRead(download);
-                var entry = archive.Entries.FirstOrDefault(item => Path.GetFileName(item.FullName).Equals(_definition.LibraryFile, StringComparison.OrdinalIgnoreCase))
-                    ?? throw new InvalidDataException(CommonExceptions.ArchiveMissingLibrary());
+                var entry = archive.Entries.FirstOrDefault(item => Path.GetFileName(item.FullName).Equals(_definition.LibraryFile, StringComparison.OrdinalIgnoreCase)) ?? throw new InvalidDataException(CommonExceptions.ArchiveMissingLibrary());
                 entry.ExtractToFile(extracted, true);
             }
             else File.Copy(download, extracted, true);

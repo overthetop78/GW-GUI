@@ -16,9 +16,7 @@ internal sealed partial class ExternalHostCallbacks
         var byteCount = checked((int)(pitch * height));
         var pixels = new byte[byteCount];
         Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);
-        LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height),
-            checked((int)pitch), _pixelFormat, _aspectRatio > VideoConstants.UnspecifiedAspectRatio ? _aspectRatio : width / (float)height,
-            ++_videoSequence, _clock.Elapsed);
+        LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _aspectRatio > VideoConstants.UnspecifiedAspectRatio ? _aspectRatio : width / (float)height, ++_videoSequence, _clock.Elapsed);
     }
 
     internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)

@@ -87,9 +87,7 @@ internal sealed class ProcessCore : IEmulatorCore
         try
         {
             _videoMap = _videoMemory.CreateViewAccessor(BufferConstants.FirstBufferIndex, EmulationHostProtocolConstants.VideoMapCapacity, MemoryMappedFileAccess.ReadWrite);
-            _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, ProcessCoreConstants.PipeInstanceCount,
-                PipeTransmissionMode.Byte, PipeOptions.Asynchronous,
-                ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
+            _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, ProcessCoreConstants.PipeInstanceCount, PipeTransmissionMode.Byte, PipeOptions.Asynchronous, ProcessCoreConstants.PipeBufferSize, ProcessCoreConstants.PipeBufferSize);
             var startInfo = new ProcessStartInfo(_hostExecutablePath)
             {
                 UseShellExecute = false,
