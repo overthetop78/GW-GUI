@@ -57,7 +57,8 @@ public sealed class MediaOpeningAnalysisService(MediaImageReadingService reader,
     private async Task<ExploredMediaImage> ExploreDecodedFluxAsync(MediaImageDocument source, Task<ExploredDiskImage> diskTask, CancellationToken cancellationToken)
     {
         var decoded = await diskTask.ConfigureAwait(false);
-        var document = decoded.Image.FormatId.Equals(DiskImageFormatIds.Unknown, StringComparison.OrdinalIgnoreCase) ? source : new MediaImageDocument(source.Source, decoded.Image.FormatId, source.MediaKind, new SectorMediaImageRepresentation(decoded.Image), [], source.Diagnostics, source.Metadata);
+        var document = decoded.Image.FormatId.Equals(DiskImageFormatIds.Unknown, StringComparison.OrdinalIgnoreCase) ? source : new MediaImageDocument(source.Source,
+            decoded.Image.FormatId, source.MediaKind, new SectorMediaImageRepresentation(decoded.Image), [], source.Diagnostics, source.Metadata);
         return await mediaExplorer.ExploreAsync(document, cancellationToken).ConfigureAwait(false);
     }
 }

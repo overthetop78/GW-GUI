@@ -26,18 +26,7 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
         DiskFormat Cartridge(string id, string family, string key, string fallback, IReadOnlyList<string> extensions, string tag)
         {
             var normalized = extensions.Select(Normalize).ToArray();
-            return new(
-                id,
-                family,
-                T(key, fallback),
-                normalized.Select((extension, index) => new ImageExtension(extension, extension[1..].ToUpperInvariant(), index == 0)).ToArray(),
-                true,
-                Set(normalized),
-                tag,
-                FloppyFormFactor.Unknown,
-                false,
-                false
-            );
+            return new( id, family, T(key, fallback), normalized.Select((extension, index) => new ImageExtension(extension, extension[1..].ToUpperInvariant(), index == 0)).ToArray(), true, Set(normalized), tag, FloppyFormFactor.Unknown, false, false );
         }
 
         var ima = new Func<bool, ImageExtension>(isDefault => E(".ima", "Extension.ima", "IMA disk image", isDefault));

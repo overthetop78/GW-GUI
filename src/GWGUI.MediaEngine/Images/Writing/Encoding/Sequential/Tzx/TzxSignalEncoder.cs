@@ -23,10 +23,7 @@ public sealed class TzxSignalEncoder : ISequentialMediaEncoder
     public bool CanEncode(SequentialEncodeRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
-        return SupportedFormats.Contains(request.TargetFormatId)
-            && SupportedMachines.Contains(request.MachineId)
-            && request.Blocks.All(block => block.IntegrityValid == true && block.Data.Length <= ushort.MaxValue)
-            && request.RetainedSegments.All(CanRetain);
+        return SupportedFormats.Contains(request.TargetFormatId) && SupportedMachines.Contains(request.MachineId) && request.Blocks.All(block => block.IntegrityValid == true && block.Data.Length <= ushort.MaxValue) && request.RetainedSegments.All(CanRetain);
     }
 
     public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)

@@ -71,7 +71,13 @@ public abstract class AppleIwmGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Recherche le bloc de données apparié, lit ses tags et données puis valide son checksum.</summary>
-    /// <param name = "stream">Flux à parcourir.</param><param name = "headerEnd">Position suivant l'adresse, en bits.</param><param name = "address">Adresse décodée.</param><param name = "structures">Collection recevant la structure.</param><param name = "bytes">Collection recevant les données décodées.</param><param name = "pairedData">Positions des marques déjà appariées.</param><returns>Résultat des données et position finale reconnue.</returns>
+    /// <param name = "stream">Flux à parcourir.</param>
+    /// <param name = "headerEnd">Position suivant l'adresse, en bits.</param>
+    /// <param name = "address">Adresse décodée.</param>
+    /// <param name = "structures">Collection recevant la structure.</param>
+    /// <param name = "bytes">Collection recevant les données décodées.</param>
+    /// <param name = "pairedData">Positions des marques déjà appariées.</param>
+    /// <returns>Résultat des données et position finale reconnue.</returns>
     private static AppleIwmDataDecodeResult FindAndDecodeData(FluxBitstream stream, int headerEnd, AppleIwmAddressDecodeResult? address, List<FluxStructure> structures, List<byte> bytes, HashSet<int> pairedData)
     {
         var dataOffset = address?.Valid == true ? FindMark(stream, headerEnd, Math.Min(stream.Bits.Length, headerEnd + AppleIwmGcrFormat.DataSearchBitCount), AppleIwmGcrFormat.DataMark) : -1;
@@ -118,7 +124,12 @@ public abstract class AppleIwmGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Ajoute le secteur IWM et la structure décrivant son adresse.</summary>
-    /// <param name = "offset">Position de l'adresse, en bits.</param><param name = "headerEnd">Position suivant l'adresse, en bits.</param><param name = "address">Adresse décodée.</param><param name = "data">Données décodées.</param><param name = "sectors">Collection recevant le secteur.</param><param name = "structures">Collection recevant la structure.</param>
+    /// <param name = "offset">Position de l'adresse, en bits.</param>
+    /// <param name = "headerEnd">Position suivant l'adresse, en bits.</param>
+    /// <param name = "address">Adresse décodée.</param>
+    /// <param name = "data">Données décodées.</param>
+    /// <param name = "sectors">Collection recevant le secteur.</param>
+    /// <param name = "structures">Collection recevant la structure.</param>
     private static void AddSectorAndAddress(int offset, int headerEnd, AppleIwmAddressDecodeResult? address, AppleIwmDataDecodeResult data, List<DecodedSector> sectors, List<FluxStructure> structures)
     {
         bool? integrity = address?.Valid == false || data.Valid == false ? false : data.Valid is null ? null : true;

@@ -115,8 +115,7 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
         }
         FlushLogicalFile(false);
 
-        var pulseSegments = (representation.Segments ?? []).Where(segment => segment.Kind == Enums.SequentialSegmentKind.Pulse && segment.Duration is not null && segment.Metadata.ContainsKey("signal")).OrderBy(segment => segment.Position)
-            .ToArray();
+        var pulseSegments = (representation.Segments ?? []).Where(segment => segment.Kind == Enums.SequentialSegmentKind.Pulse && segment.Duration is not null && segment.Metadata.ContainsKey("signal")).OrderBy(segment => segment.Position) .ToArray();
         if (pulseSegments.Length > 0)
         {
             var bits = new List<bool>();
@@ -192,8 +191,7 @@ public sealed class AtariCassetteDecoder : ISequentialMediaDecoder
         if (!PcmSampleFunctions.TryGetProfile(document.Metadata, out var channels, out var sampleRate, out var bitsPerSample, out var blockAlign))
             return new SequentialDecodeResult(Id, 0, [], representation.Segments ?? [], ["The WAV PCM profile is incomplete or incompatible."]);
 
-        var sampleSegments = (representation.Segments ?? []).Where(segment => segment.Kind == Enums.SequentialSegmentKind.Samples && segment.ChannelNumber == 0 && segment.DataRange?.Source is not null).OrderBy(segment => segment.Position)
-            .ToArray();
+        var sampleSegments = (representation.Segments ?? []).Where(segment => segment.Kind == Enums.SequentialSegmentKind.Samples && segment.ChannelNumber == 0 && segment.DataRange?.Source is not null).OrderBy(segment => segment.Position) .ToArray();
         if (sampleSegments.Length == 0)
             return new SequentialDecodeResult(Id, 0, [], representation.Segments ?? [], ["The WAV image has no readable PCM sample segment."]);
 

@@ -18,10 +18,7 @@ public sealed class FluxContainerConversionService(ScpReader scpReader, ScpWrite
             return target is DiskImageFileExtensions.Scp or DiskImageFileExtensions.Hfe;
         if (!source.Equals(DiskImageFileExtensions.Hfe, StringComparison.OrdinalIgnoreCase))
             return false;
-        return target == DiskImageFileExtensions.Scp &&
-               formatId.Equals(DiskImageFormatIds.RawScp, StringComparison.OrdinalIgnoreCase) ||
-               target == DiskImageFileExtensions.Hfe &&
-               formatId.Equals(DiskImageFormatIds.RawHfe, StringComparison.OrdinalIgnoreCase);
+        return target == DiskImageFileExtensions.Scp && formatId.Equals(DiskImageFormatIds.RawScp, StringComparison.OrdinalIgnoreCase) || target == DiskImageFileExtensions.Hfe && formatId.Equals(DiskImageFormatIds.RawHfe, StringComparison.OrdinalIgnoreCase);
     }
 
     public async Task ConvertAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)

@@ -81,11 +81,7 @@ public sealed class VmdkReader : IMediaImageReader
         if (sourceOffset > extentLength || capacity > extentLength - sourceOffset)
             throw new InvalidDataException("The VMDK FLAT extent is shorter than its declared capacity.");
         var ranges = includeRanges ? new[] { new MediaDataRange(0, capacity, MediaDataRangeKind.Stored, new FileRandomAccessData(extentPath), sourceOffset) } : new[] { new MediaDataRange(0, capacity, MediaDataRangeKind.Unavailable) };
-        var source = new MediaSourceDescriptor(
-            context.Source.PrimaryPath,
-            context.Source.AssociatedPaths.Concat([extentPath]).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
-            context.Source.KnownLength,
-            context.Source.RequestedFormatId);
+        var source = new MediaSourceDescriptor( context.Source.PrimaryPath, context.Source.AssociatedPaths.Concat([extentPath]).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(), context.Source.KnownLength, context.Source.RequestedFormatId);
         return CreateDocument(source, capacity, ranges, HardDiskImageVariant.Fixed, text);
     }
 

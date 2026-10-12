@@ -56,8 +56,7 @@ public sealed class GdiReader : IMediaImageReader
         var descriptor = await descriptors.ReadAsync(context.Source.PrimaryPath, cancellationToken).ConfigureAwait(false);
         var directory = Path.GetDirectoryName(Path.GetFullPath(context.Source.PrimaryPath)) ?? Directory.GetCurrentDirectory();
         ValidateAssociatedFiles(context.Source.PrimaryPath, descriptor);
-        var sources = descriptor.Tracks.Select(track => ResolveDataPath(directory, track.FileName)).Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToDictionary(path => path, path => new FileRandomAccessData(path), StringComparer.OrdinalIgnoreCase);
+        var sources = descriptor.Tracks.Select(track => ResolveDataPath(directory, track.FileName)).Distinct(StringComparer.OrdinalIgnoreCase) .ToDictionary(path => path, path => new FileRandomAccessData(path), StringComparer.OrdinalIgnoreCase);
 
         var tracks = new List<OpticalTrackDescriptor>(descriptor.Tracks.Count);
         for (var index = 0; index < descriptor.Tracks.Count; index++)

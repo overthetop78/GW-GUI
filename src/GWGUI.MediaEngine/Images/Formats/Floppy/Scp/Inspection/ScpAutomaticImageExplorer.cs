@@ -68,8 +68,6 @@ internal sealed class ScpAutomaticImageExplorer(IScpReader scpReader, ScpCandida
     {
         var recognizedFormatIds = detected.Select(match => match.FormatId).ToHashSet(StringComparer.OrdinalIgnoreCase);
         if (ranking.BestDecoded is null) return [];
-        return ranking.DecodedImages.Where(image => !recognizedFormatIds.Contains(image.FormatId)).GroupBy(image => FileSystemInterpretationIdentity.FormatFamily(image.FormatId), StringComparer.OrdinalIgnoreCase)
-            .Select(group => group.First())
-            .ToArray();
+        return ranking.DecodedImages.Where(image => !recognizedFormatIds.Contains(image.FormatId)).GroupBy(image => FileSystemInterpretationIdentity.FormatFamily(image.FormatId), StringComparer.OrdinalIgnoreCase) .Select(group => group.First()) .ToArray();
     }
 }

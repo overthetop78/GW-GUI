@@ -24,9 +24,7 @@ internal static class BlankSectorImageFactory
             return CreateLinearBlank(formatId, geometry.BlockSize, geometry.Cylinders, geometry.Heads, geometry.SectorsPerTrack, SectorNumbering.ZeroBased);
         }
         if (formatId is DiskImageFormatIds.AppleIIAppleDos113 or DiskImageFormatIds.AppleIIAppleDos140)
-            return CreateLinearBlank(formatId, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount, 1,
-                formatId == DiskImageFormatIds.AppleIIAppleDos113 ? AppleIIGeometry.Dos32SectorsPerTrack : AppleIIGeometry.SectorsPerTrack,
-                SectorNumbering.ZeroBased);
+            return CreateLinearBlank(formatId, AppleIIGeometry.SectorSize, AppleIIGeometry.TrackCount, 1, formatId == DiskImageFormatIds.AppleIIAppleDos113 ? AppleIIGeometry.Dos32SectorsPerTrack : AppleIIGeometry.SectorsPerTrack, SectorNumbering.ZeroBased);
         if (formatId is DiskImageFormatIds.AppleIIProDos140 or DiskImageFormatIds.AppleIIISos)
             return CreateLinearBlank(formatId, AppleIIGeometry.ProDosBlockSize, AppleIIGeometry.TrackCount, 1, AppleIIGeometry.ProDosBlocksPerTrack, SectorNumbering.ZeroBased);
         if (formatId == DiskImageFormatIds.AppleIIProDos800)
@@ -45,9 +43,7 @@ internal static class BlankSectorImageFactory
                 CancellationToken.None);
         }
         if (formatId == DiskImageFormatIds.Commodore1581)
-            return CreateLinearBlank(formatId, Commodore1581Geometry.LogicalBlockSize,
-                Commodore1581Geometry.LogicalCylinderCount, Commodore1581Geometry.LogicalHeadCount,
-                Commodore1581Geometry.LogicalBlocksPerTrack, SectorNumbering.ZeroBased);
+            return CreateLinearBlank(formatId, Commodore1581Geometry.LogicalBlockSize, Commodore1581Geometry.LogicalCylinderCount, Commodore1581Geometry.LogicalHeadCount, Commodore1581Geometry.LogicalBlocksPerTrack, SectorNumbering.ZeroBased);
         throw new ArgumentException($"Unsupported migration target format '{formatId}'.", nameof(formatId));
     }
 

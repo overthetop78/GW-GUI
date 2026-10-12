@@ -161,7 +161,10 @@ public sealed class VmdkWriter : IMediaImageWriter
         var cylinders = geometry?.Cylinders ?? Math.Max(1, capacitySectors / (16 * 63));
         var heads = geometry?.Heads ?? 16;
         var sectors = geometry?.SectorsPerTrack ?? 63;
-        var text = $"# Disk DescriptorFile\nversion=1\nencoding=\"UTF-8\"\nCID={contentId:x8}\nparentCID=ffffffff\ncreateType=\"{createType}\"\n\n# Extent description\nRW {capacitySectors.ToString(CultureInfo.InvariantCulture)} {extentType} \"{extentFileName}\"{extentSuffix}\n\n# The Disk Data Base\n#DDB\nddb.virtualHWVersion = \"4\"\nddb.geometry.cylinders = \"{cylinders.ToString(CultureInfo.InvariantCulture)}\"\nddb.geometry.heads = \"{heads.ToString(CultureInfo.InvariantCulture)}\"\nddb.geometry.sectors = \"{sectors.ToString(CultureInfo.InvariantCulture)}\"\nddb.adapterType = \"lsilogic\"\n";
+        var text = $"# Disk DescriptorFile\nversion=1\nencoding=\"UTF-8\"\nCID={contentId:x8}\nparentCID=ffffffff\ncreateType=\"{createType}\"\n\n# Extent description\nRW {capacitySectors
+            .ToString(CultureInfo.InvariantCulture)} {extentType} \"{extentFileName}\"{extentSuffix}\n\n# The Disk Data Base\n#DDB\nddb.virtualHWVersion = \"4\"\nddb.geometry.cylinders = \"{cylinders
+            .ToString(CultureInfo.InvariantCulture)}\"\nddb.geometry.heads = \"{heads.ToString(CultureInfo.InvariantCulture)}\"\nddb.geometry.sectors = \"{sectors
+            .ToString(CultureInfo.InvariantCulture)}\"\nddb.adapterType = \"lsilogic\"\n";
         return System.Text.Encoding.UTF8.GetBytes(text);
     }
 

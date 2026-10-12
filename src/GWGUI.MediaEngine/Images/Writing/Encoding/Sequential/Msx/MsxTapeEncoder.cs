@@ -93,16 +93,7 @@ public sealed class MsxTapeEncoder : ISequentialMediaEncoder
                 MsxCasConstants.OneFrequency,
                 longHeader ? MsxCasConstants.LongCarrierSeconds : MsxCasConstants.ShortCarrierSeconds);
             foreach (var value in blocks[blockIndex].Data.Span)
-                FskSerialFunctions.AppendPcmFrame(
-                    samples,
-                    ref level,
-                    sampleRate,
-                    MsxCasConstants.StandardBaudRate,
-                    MsxCasConstants.ZeroFrequency,
-                    MsxCasConstants.OneFrequency,
-                    MsxCasConstants.DataBitsPerFrame,
-                    MsxCasConstants.StopBitsPerFrame,
-                    value);
+                FskSerialFunctions.AppendPcmFrame( samples, ref level, sampleRate, MsxCasConstants.StandardBaudRate, MsxCasConstants.ZeroFrequency, MsxCasConstants.OneFrequency, MsxCasConstants.DataBitsPerFrame, MsxCasConstants.StopBitsPerFrame, value);
         }
 
         var pcm = new byte[samples.Count * sizeof(short)];

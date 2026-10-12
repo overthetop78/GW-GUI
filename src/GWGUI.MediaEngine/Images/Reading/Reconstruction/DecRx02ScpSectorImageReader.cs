@@ -44,13 +44,7 @@ public sealed class DecRx02ScpSectorImageReader(IScpReader scpReader, FluxDecode
                 if (!sectors.TryGetValue(logical, out var values)) sectors[logical] = values = [];
                 values.Add((sector, window.Revolution));
             }
-            progress?.Report(new(
-                GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.TrackDecoded,
-                $"DEC RX02 · {track.Cylinder}:{track.Head}",
-                ++completed,
-                scp.Tracks.Count,
-                Cylinder: track.Cylinder,
-                Head: track.Head));
+            progress?.Report(new( GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgressKind.TrackDecoded, $"DEC RX02 · {track.Cylinder}:{track.Head}", ++completed, scp.Tracks.Count, Cylinder: track.Cylinder, Head: track.Head));
         }
         if (sectors.Count == 0) throw ScpReconstructionExceptions.NoDecodedSectors(DecRx02Format.StructureDescriptionName);
 

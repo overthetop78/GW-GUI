@@ -17,8 +17,7 @@ public sealed class CapabilityAwareImageFormatCatalog : IImageFormatCatalog
 
         var curatedFormats = curated.Formats.Select(format => ApplyPhysicalCapabilities(format, capabilities)).ToList();
         var known = curatedFormats.Select(format => format.Id).ToHashSet(StringComparer.OrdinalIgnoreCase);
-        curatedFormats.AddRange(capabilities.FormatIds.Where(id => !known.Contains(id)).Order(StringComparer.OrdinalIgnoreCase).Select(id => CreateDiscoveredFormat(id, capabilities.ImageExtensions))
-            .Where(format => format.Extensions.Count > 0));
+        curatedFormats.AddRange(capabilities.FormatIds.Where(id => !known.Contains(id)).Order(StringComparer.OrdinalIgnoreCase).Select(id => CreateDiscoveredFormat(id, capabilities.ImageExtensions)) .Where(format => format.Extensions.Count > 0));
         Formats = curatedFormats;
     }
 

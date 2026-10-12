@@ -54,7 +54,9 @@ internal sealed class AutomaticIsoScpSectorImagePolicy : IIsoScpSectorImagePolic
         if (withData.Length == 0)
             return null;
         var size = withData.GroupBy(value => value.Sector.IntegrityValid 
-            == true ? AutomaticIsoScpSelectionRules.ValidIntegrityScore : value.Sector.IntegrityValid is null ? AutomaticIsoScpSelectionRules.UnknownIntegrityScore : AutomaticIsoScpSelectionRules.InvalidIntegrityScore).OrderByDescending(group => group.Key).First().GroupBy(value => value.Sector.Data!.Count).OrderByDescending(group => group.Count()).ThenByDescending(group => group.Key).First().Key;
+            == true ? AutomaticIsoScpSelectionRules.ValidIntegrityScore : value.Sector.IntegrityValid is null ? AutomaticIsoScpSelectionRules.UnknownIntegrityScore : AutomaticIsoScpSelectionRules.InvalidIntegrityScore)
+                .OrderByDescending(group => group.Key).First().GroupBy(value => value.Sector.Data!.Count).OrderByDescending(group => group
+                .Count()).ThenByDescending(group => group.Key).First().Key;
         return new(pair.Key.Cylinder, pair.Key.Head, pair.Key.Number, size);
     }
 }

@@ -73,8 +73,7 @@ public sealed class SequentialMediaConversionService
         var resolvedMachineId = ResolveMachineId(source, machineId) ?? throw new InvalidOperationException("The sequential source requires an explicit machine selection.");
         var decoded = await decoders.DecodeAsync(source, resolvedMachineId, cancellationToken).ConfigureAwait(false);
         var selectedParameters = parameters ?? new Dictionary<string, string>(StringComparer.Ordinal);
-        var request = SelectEncodableRequest(decoded, targetFormatId, resolvedMachineId, selectedParameters)
-            ?? throw new NotSupportedException($"No sequential encoder can convert '{source.FormatId}' to '{targetFormatId}' for '{resolvedMachineId}'.");
+        var request = SelectEncodableRequest(decoded, targetFormatId, resolvedMachineId, selectedParameters) ?? throw new NotSupportedException($"No sequential encoder can convert '{source.FormatId}' to '{targetFormatId}' for '{resolvedMachineId}'.");
         var encoded = await encoders.EncodeAsync(request, cancellationToken).ConfigureAwait(false);
         var losses = new List<string>();
         if (decoded.UndecodedSegments.Count > 0 && request.RetainedSegments.Count == 0)

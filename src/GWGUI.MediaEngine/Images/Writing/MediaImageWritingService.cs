@@ -54,11 +54,7 @@ public sealed class MediaImageWritingService
         var descriptor = provider.CreateDescriptor(document);
         if (descriptor.ProgressUnit == MediaVisualizationProgressUnit.Track && descriptor.Elements.Count > 0)
         {
-            progress(new(
-                MediaExplorationProgressStage.ReadingMedia,
-                $"Converting c={string.Join(',', descriptor.Elements.Select(element => element.Position).Distinct().Order())}:h={string.Join(',', descriptor.Surfaces.Order())}",
-                60,
-                document.MediaKind));
+            progress(new( MediaExplorationProgressStage.ReadingMedia, $"Converting c={string.Join(',', descriptor.Elements.Select(element => element.Position).Distinct().Order())}:h={string.Join(',', descriptor.Surfaces.Order())}", 60, document.MediaKind));
         }
 
         for (var index = 0; index < descriptor.Elements.Count; index++)

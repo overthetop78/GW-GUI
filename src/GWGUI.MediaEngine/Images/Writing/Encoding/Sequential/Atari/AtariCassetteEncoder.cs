@@ -22,10 +22,7 @@ public sealed class AtariCassetteEncoder : ISequentialMediaEncoder
     public bool CanEncode(SequentialEncodeRequest request)
     {
         ArgumentNullException.ThrowIfNull(request);
-        return SupportedFormats.Contains(request.TargetFormatId)
-            && SupportedMachines.Contains(request.MachineId)
-            && request.Blocks.Count > 0
-            && request.Blocks.All(block => block.IntegrityValid == true && block.Data.Length <= ushort.MaxValue);
+        return SupportedFormats.Contains(request.TargetFormatId) && SupportedMachines.Contains(request.MachineId) && request.Blocks.Count > 0 && request.Blocks.All(block => block.IntegrityValid == true && block.Data.Length <= ushort.MaxValue);
     }
 
     public Task<SequentialMediaImageRepresentation> EncodeAsync(SequentialEncodeRequest request, CancellationToken cancellationToken = default)

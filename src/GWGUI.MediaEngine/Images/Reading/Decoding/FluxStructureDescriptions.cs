@@ -18,7 +18,14 @@ internal static class FluxStructureDescriptions
     /// <returns>État nommé correspondant.</returns>
     public static FluxIntegrityDescriptionState IntegrityState(bool? valid) => valid is null ? FluxIntegrityDescriptionState.Unavailable : valid.Value ? FluxIntegrityDescriptionState.Valid : FluxIntegrityDescriptionState.Invalid;
     /// <summary>Construit l'identité technique commune d'une structure.</summary>
-    /// <param name = "codec">Nom du codec.</param><param name = "kind">Type de structure.</param><param name = "cylinder">Cylindre.</param><param name = "head">Face.</param><param name = "sector">Secteur.</param><param name = "size">Taille en octets.</param><param name = "mark">Marque éventuelle.</param><param name = "variant">Variante éventuelle.</param>
+    /// <param name = "codec">Nom du codec.</param>
+    /// <param name = "kind">Type de structure.</param>
+    /// <param name = "cylinder">Cylindre.</param>
+    /// <param name = "head">Face.</param>
+    /// <param name = "sector">Secteur.</param>
+    /// <param name = "size">Taille en octets.</param>
+    /// <param name = "mark">Marque éventuelle.</param>
+    /// <param name = "variant">Variante éventuelle.</param>
     /// <returns>Description de l'identité technique.</returns>
     public static string Identity(string codec, FluxStructureKind kind, int cylinder, int head, int sector, int size, byte? mark, string? variant)
     {
@@ -34,7 +41,17 @@ internal static class FluxStructureDescriptions
     /// <param name = "headerValid">Intégrité de l'en-tête.</param><param name = "dataValid">Intégrité des données.</param><returns>Description des deux contrôles.</returns>
     public static string Integrity(bool? headerValid, bool? dataValid) => $"{Integrity("header CRC", headerValid)}, {Integrity("data CRC", dataValid)}";
     /// <summary>Construit l'identité technique d'une structure suivie de son contrôle d'intégrité.</summary>
-    /// <param name = "codec">Codec.</param><param name = "kind">Type.</param><param name = "cylinder">Cylindre.</param><param name = "head">Face.</param><param name = "sector">Secteur.</param><param name = "size">Taille.</param><param name = "mark">Marque.</param><param name = "variant">Variante.</param><param name = "integrityLabel">Nom du contrôle.</param><param name = "integrityValid">Résultat du contrôle.</param><returns>Description technique complète.</returns>
+    /// <param name = "codec">Codec.</param>
+    /// <param name = "kind">Type.</param>
+    /// <param name = "cylinder">Cylindre.</param>
+    /// <param name = "head">Face.</param>
+    /// <param name = "sector">Secteur.</param>
+    /// <param name = "size">Taille.</param>
+    /// <param name = "mark">Marque.</param>
+    /// <param name = "variant">Variante.</param>
+    /// <param name = "integrityLabel">Nom du contrôle.</param>
+    /// <param name = "integrityValid">Résultat du contrôle.</param>
+    /// <returns>Description technique complète.</returns>
     public static string WithIntegrity(string codec,
         FluxStructureKind kind,
         int cylinder,
@@ -46,7 +63,19 @@ internal static class FluxStructureDescriptions
         string integrityLabel,
         bool? integrityValid) => $"{Identity(codec, kind, cylinder, head, sector, size, mark, variant)}, {Integrity(integrityLabel, integrityValid)}";
     /// <summary>Construit la description d'une structure complète.</summary>
-    /// <param name = "codec">Codec.</param><param name = "kind">Type.</param><param name = "cylinder">Cylindre.</param><param name = "head">Face.</param><param name = "sector">Secteur.</param><param name = "size">Taille.</param><param name = "mark">Marque.</param><param name = "variant">Variante.</param><param name = "headerValid">Intégrité d'en-tête.</param><param name = "dataValid">Intégrité des données.</param><param name = "headerIntegrityLabel">Nom du contrôle d'en-tête.</param><param name = "dataIntegrityLabel">Nom du contrôle des données.</param><returns>Description complète.</returns>
+    /// <param name = "codec">Codec.</param>
+    /// <param name = "kind">Type.</param>
+    /// <param name = "cylinder">Cylindre.</param>
+    /// <param name = "head">Face.</param>
+    /// <param name = "sector">Secteur.</param>
+    /// <param name = "size">Taille.</param>
+    /// <param name = "mark">Marque.</param>
+    /// <param name = "variant">Variante.</param>
+    /// <param name = "headerValid">Intégrité d'en-tête.</param>
+    /// <param name = "dataValid">Intégrité des données.</param>
+    /// <param name = "headerIntegrityLabel">Nom du contrôle d'en-tête.</param>
+    /// <param name = "dataIntegrityLabel">Nom du contrôle des données.</param>
+    /// <returns>Description complète.</returns>
     public static string Complete(
         string codec,
         FluxStructureKind kind,

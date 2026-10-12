@@ -92,16 +92,7 @@ public sealed class AcornTapeEncoder : ISequentialMediaEncoder
                 UefConstants.AcornOneFrequency,
                 index == 0 ? UefConstants.InitialCarrierSeconds : UefConstants.InterBlockCarrierSeconds);
             foreach (var value in blocks[index])
-                FskSerialFunctions.AppendPcmFrame(
-                    samples,
-                    ref level,
-                    sampleRate,
-                    UefConstants.DefaultBaudRate,
-                    UefConstants.AcornZeroFrequency,
-                    UefConstants.AcornOneFrequency,
-                    UefConstants.AcornDataBitsPerFrame,
-                    UefConstants.AcornStopBitsPerFrame,
-                    value);
+                FskSerialFunctions.AppendPcmFrame( samples, ref level, sampleRate, UefConstants.DefaultBaudRate, UefConstants.AcornZeroFrequency, UefConstants.AcornOneFrequency, UefConstants.AcornDataBitsPerFrame, UefConstants.AcornStopBitsPerFrame, value);
         }
 
         var pcm = new byte[samples.Count * sizeof(short)];

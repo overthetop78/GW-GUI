@@ -55,7 +55,12 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Exécute le traitement « Decode Five And Three » propre à ce format.</summary>
-    /// <param name = "stream">Flux binaire à analyser.</param><param name = "trackBitLength">Longueur logique de la piste en bits.</param><param name = "structures">Structures auxquelles ajouter les blocs reconnus.</param><param name = "bytes">Octets auxquels ajouter les données décodées.</param><param name = "sectors">Secteurs auxquels ajouter les secteurs reconnus.</param><param name = "pairedData">Offsets en bits des données déjà associées à une adresse.</param>
+    /// <param name = "stream">Flux binaire à analyser.</param>
+    /// <param name = "trackBitLength">Longueur logique de la piste en bits.</param>
+    /// <param name = "structures">Structures auxquelles ajouter les blocs reconnus.</param>
+    /// <param name = "bytes">Octets auxquels ajouter les données décodées.</param>
+    /// <param name = "sectors">Secteurs auxquels ajouter les secteurs reconnus.</param>
+    /// <param name = "pairedData">Offsets en bits des données déjà associées à une adresse.</param>
     private static void DecodeFiveAndThree(FluxBitstream stream, int trackBitLength, List<FluxStructure> structures, List<byte> bytes, List<DecodedSector> sectors, HashSet<int> pairedData)
     {
         for (var offset = 0; offset < trackBitLength && offset + AppleIIGcrFormat.PrologueBitCount <= stream.Bits.Length; offset++)
@@ -88,7 +93,12 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Recherche, associe et décode le bloc de données 6-and-2 suivant une adresse.</summary>
-    /// <param name = "stream">Flux binaire à parcourir.</param><param name = "headerEnd">Position suivant l'adresse, en bits.</param><param name = "address">Adresse décodée.</param><param name = "structures">Collection recevant la structure de données.</param><param name = "bytes">Collection recevant les octets décodés.</param><param name = "pairedData">Positions des blocs déjà associés.</param>
+    /// <param name = "stream">Flux binaire à parcourir.</param>
+    /// <param name = "headerEnd">Position suivant l'adresse, en bits.</param>
+    /// <param name = "address">Adresse décodée.</param>
+    /// <param name = "structures">Collection recevant la structure de données.</param>
+    /// <param name = "bytes">Collection recevant les octets décodés.</param>
+    /// <param name = "pairedData">Positions des blocs déjà associés.</param>
     /// <returns>Résultat des données et position finale reconnue.</returns>
     private static AppleDataDecodeResult FindAndDecodeSixAndTwoData(FluxBitstream stream, int headerEnd, AppleAddressDecodeResult? address, List<FluxStructure> structures, List<byte> bytes, HashSet<int> pairedData)
     {
@@ -130,7 +140,12 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Recherche, associe et décode le bloc de données 5-and-3 suivant une adresse.</summary>
-    /// <param name = "stream">Flux binaire à parcourir.</param><param name = "headerEnd">Position suivant l'adresse, en bits.</param><param name = "address">Adresse décodée.</param><param name = "structures">Collection recevant la structure de données.</param><param name = "bytes">Collection recevant les octets décodés.</param><param name = "pairedData">Positions des blocs déjà associés.</param>
+    /// <param name = "stream">Flux binaire à parcourir.</param>
+    /// <param name = "headerEnd">Position suivant l'adresse, en bits.</param>
+    /// <param name = "address">Adresse décodée.</param>
+    /// <param name = "structures">Collection recevant la structure de données.</param>
+    /// <param name = "bytes">Collection recevant les octets décodés.</param>
+    /// <param name = "pairedData">Positions des blocs déjà associés.</param>
     /// <returns>Résultat des données et position finale reconnue.</returns>
     private static AppleDataDecodeResult FindAndDecodeFiveAndThreeData(FluxBitstream stream, int headerEnd, AppleAddressDecodeResult? address, List<FluxStructure> structures, List<byte> bytes, HashSet<int> pairedData)
     {
@@ -163,7 +178,13 @@ public sealed class AppleIIGcrDecoder : IFluxDecoder
     }
 
     /// <summary>Ajoute le secteur et la structure d'adresse correspondant aux résultats décodés.</summary>
-    /// <param name = "offset">Position de l'adresse, en bits.</param><param name = "headerEnd">Position suivant l'adresse, en bits.</param><param name = "address">Adresse décodée.</param><param name = "data">Données décodées.</param><param name = "variant">Variante de format éventuelle.</param><param name = "sectors">Collection recevant le secteur.</param><param name = "structures">Collection recevant la structure.</param>
+    /// <param name = "offset">Position de l'adresse, en bits.</param>
+    /// <param name = "headerEnd">Position suivant l'adresse, en bits.</param>
+    /// <param name = "address">Adresse décodée.</param>
+    /// <param name = "data">Données décodées.</param>
+    /// <param name = "variant">Variante de format éventuelle.</param>
+    /// <param name = "sectors">Collection recevant le secteur.</param>
+    /// <param name = "structures">Collection recevant la structure.</param>
     private static void AddSectorAndAddress(int offset, int headerEnd, AppleAddressDecodeResult? address, AppleDataDecodeResult data, string? variant, List<DecodedSector> sectors, List<FluxStructure> structures)
     {
         var volume = address?.Volume ?? 0;

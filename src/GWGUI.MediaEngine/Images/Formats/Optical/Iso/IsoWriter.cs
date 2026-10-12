@@ -32,11 +32,7 @@ public sealed class IsoWriter : IMediaImageWriter
     public bool CanWrite(MediaImageDocument document, string targetFormatId, string targetExtension)
     {
         ArgumentNullException.ThrowIfNull(document);
-        return SupportedFormatIds.Contains(targetFormatId)
-            && IsoFormat.Extensions.Contains(targetExtension)
-            && document.MediaKind == MediaKind.Optical
-            && document.Representation is OpticalMediaImageRepresentation optical
-            && IsLosslessIsoProfile(optical);
+        return SupportedFormatIds.Contains(targetFormatId) && IsoFormat.Extensions.Contains(targetExtension) && document.MediaKind == MediaKind.Optical && document.Representation is OpticalMediaImageRepresentation optical && IsLosslessIsoProfile(optical);
     }
 
     public async Task<IReadOnlyList<string>> WriteAsync(MediaImageDocument document, string outputPath, string targetFormatId, CancellationToken cancellationToken = default)

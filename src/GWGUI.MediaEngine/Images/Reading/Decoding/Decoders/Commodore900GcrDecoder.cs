@@ -105,7 +105,12 @@ public sealed class Commodore900GcrDecoder : IFluxDecoder
     }
 
     /// <summary>Représente un en-tête Commodore 900 décodé.</summary>
-    /// <param name = "Offset">Position de la synchronisation.</param><param name = "EndOffset">Position suivant l'en-tête.</param><param name = "Bytes">Octets décodés.</param><param name = "Cylinder">Cylindre.</param><param name = "Sector">Secteur.</param><param name = "ChecksumValid">Validité du checksum.</param>
+    /// <param name = "Offset">Position de la synchronisation.</param>
+    /// <param name = "EndOffset">Position suivant l'en-tête.</param>
+    /// <param name = "Bytes">Octets décodés.</param>
+    /// <param name = "Cylinder">Cylindre.</param>
+    /// <param name = "Sector">Secteur.</param>
+    /// <param name = "ChecksumValid">Validité du checksum.</param>
     private sealed record Commodore900HeaderBlock(int Offset, int EndOffset, byte[] Bytes, byte Cylinder, byte Sector, bool ChecksumValid);
     /// <summary>Représente un bloc de données Commodore 900 décodé.</summary>
     /// <param name = "Offset">Position de la synchronisation.</param><param name = "EndOffset">Position suivant le bloc.</param><param name = "Bytes">Octets décodés.</param><param name = "ChecksumValid">Validité du checksum.</param>

@@ -69,7 +69,12 @@ public sealed class AppleRwts18Decoder : IFluxDecoder
     }
 
     /// <summary>Ajoute les structures d'adresse et de données ainsi que le secteur RWTS18.</summary>
-    /// <param name = "offset">Position de l'adresse, en bits.</param><param name = "address">Adresse validée.</param><param name = "data">Données éventuellement reconnues.</param><param name = "structures">Collection recevant les structures.</param><param name = "decodedBytes">Collection recevant les octets décodés.</param><param name = "sectors">Collection recevant le secteur.</param>
+    /// <param name = "offset">Position de l'adresse, en bits.</param>
+    /// <param name = "address">Adresse validée.</param>
+    /// <param name = "data">Données éventuellement reconnues.</param>
+    /// <param name = "structures">Collection recevant les structures.</param>
+    /// <param name = "decodedBytes">Collection recevant les octets décodés.</param>
+    /// <param name = "sectors">Collection recevant le secteur.</param>
     private static void AddSectorAndStructures(int offset, AppleRwts18Address address, (byte[] Data, bool Valid, int StartOffset, int EndOffset)? data, List<FluxStructure> structures, List<byte> decodedBytes, List<DecodedSector> sectors)
     {
         structures.Add(new(

@@ -50,7 +50,13 @@ internal static class Td0Exceptions
     /// <returns>Erreur de données construite.</returns>
     public static InvalidDataException InvalidRepeatedPayload(int cylinder, int head, int sector, int observedLength, int expectedLength) => new($"TeleDisk sector {cylinder}/{head}/{sector} has a repeated payload of {observedLength} bytes; {expectedLength} bytes are required.");
     /// <summary>Signale une séquence encodée tronquée avec sa position et ses longueurs.</summary>
-    /// <param name = "cylinder">Cylindre.</param><param name = "head">Face.</param><param name = "sector">Numéro de secteur.</param><param name = "encoding">Encodage.</param><param name = "position">Position dans la charge utile.</param><param name = "expectedLength">Longueur attendue.</param><param name = "availableLength">Longueur disponible.</param>
+    /// <param name = "cylinder">Cylindre.</param>
+    /// <param name = "head">Face.</param>
+    /// <param name = "sector">Numéro de secteur.</param>
+    /// <param name = "encoding">Encodage.</param>
+    /// <param name = "position">Position dans la charge utile.</param>
+    /// <param name = "expectedLength">Longueur attendue.</param>
+    /// <param name = "availableLength">Longueur disponible.</param>
     /// <returns>Erreur de données construite.</returns>
     public static InvalidDataException TruncatedEncoding(int cylinder,
         int head,

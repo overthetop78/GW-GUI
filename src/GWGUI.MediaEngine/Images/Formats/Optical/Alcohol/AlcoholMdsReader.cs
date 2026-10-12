@@ -59,8 +59,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
             sessions.Add(await ReadSessionAsync(context, bytes, cancellationToken).ConfigureAwait(false));
         }
 
-        var sources = sessions.SelectMany(session => session.Tracks).Select(track => track.DataPath).Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToDictionary(path => path, path => new FileRandomAccessData(path), StringComparer.OrdinalIgnoreCase);
+        var sources = sessions.SelectMany(session => session.Tracks).Select(track => track.DataPath).Distinct(StringComparer.OrdinalIgnoreCase) .ToDictionary(path => path, path => new FileRandomAccessData(path), StringComparer.OrdinalIgnoreCase);
         var descriptors = new List<OpticalTrackDescriptor>();
         foreach (var session in sessions)
         {
@@ -212,12 +211,7 @@ public sealed class AlcoholMdsReader : IMediaImageReader
         var sessionCount = BinaryPrimitives.ReadUInt16LittleEndian(bytes.Slice(AlcoholMdsConstants.SessionCountOffset, 2));
         if (sessionCount == 0 || sessionsOffset > context.Length - checked(sessionCount * AlcoholMdsConstants.SessionBlockSize))
             throw new InvalidDataException("The MDS session table exceeds the descriptor.");
-        return new MdsHeader(
-            bytes[AlcoholMdsConstants.VersionOffset],
-            bytes[AlcoholMdsConstants.VersionOffset + 1],
-            BinaryPrimitives.ReadUInt16LittleEndian(bytes.Slice(AlcoholMdsConstants.MediumTypeOffset, 2)),
-            sessionCount,
-            sessionsOffset);
+        return new MdsHeader( bytes[AlcoholMdsConstants.VersionOffset], bytes[AlcoholMdsConstants.VersionOffset + 1], BinaryPrimitives.ReadUInt16LittleEndian(bytes.Slice(AlcoholMdsConstants.MediumTypeOffset, 2)), sessionCount, sessionsOffset);
     }
 
     private static async ValueTask<ReadOnlyMemory<byte>> ReadRangeAsync(MediaRecognitionContext context, long offset, int length, CancellationToken cancellationToken)

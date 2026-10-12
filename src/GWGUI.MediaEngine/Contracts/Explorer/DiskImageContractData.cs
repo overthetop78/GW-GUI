@@ -152,21 +152,7 @@ internal static class DiskImageContractData
 
         var state = block.IntegrityValid == false ? "invalid" : "available";
         var tag = block.Tag is null ? null : new ReadOnlyMemory<byte>(block.Tag.ToArray());
-        return new SectorData(
-            block.LogicalBlock,
-            block.Address.Cylinder,
-            block.Address.Head,
-            block.Address.Number,
-            block.Data.Count,
-            state,
-            block.Data.ToArray(),
-            null,
-            block.IntegrityValid,
-            tag,
-            block.FormatCode,
-            block.DiagnosticCode,
-            [block.Revolution]
-        );
+        return new SectorData( block.LogicalBlock, block.Address.Cylinder, block.Address.Head, block.Address.Number, block.Data.Count, state, block.Data.ToArray(), null, block.IntegrityValid, tag, block.FormatCode, block.DiagnosticCode, [block.Revolution] );
     }
 
     private static IEntree CreateEntry(FileSystemEntry entry)
