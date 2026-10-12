@@ -118,12 +118,19 @@ public sealed class PanasonicEmulationModule : IEmulationModule, IEmulationEmula
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(string machineId, CancellationToken cancellationToken = default) => Adapter(machineId).FindReleasesAsync(_managementContext, cancellationToken);
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => SelectedOrDefault(Require(configuration)).FindReleasesAsync(_managementContext, cancellationToken);
     public ValueTask<string> InstallEmulatorAsync(string machineId, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default) => Adapter(machineId).InstallAsync(_managementContext, release, progress, cancellationToken);
-    public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default) => SelectedOrDefault(Require(configuration)).InstallAsync(_managementContext, release, progress, cancellationToken);
+    public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration,
+        EmulationEmulatorRelease release,
+        IProgress<double>? progress = null,
+        CancellationToken cancellationToken = default) => SelectedOrDefault(Require(configuration)).InstallAsync(_managementContext, release, progress, cancellationToken);
     public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration, EmulationRuntimeServices services, CancellationToken cancellationToken = default)
     {
         var current = Require(configuration);
         var adapter = _engine.Adapter(current);
-        var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog, new EmulationEmulatorMessageContext(adapter.EmulatorId)));
+        var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Emulator,
+            EmulationMessageCode.EmulatorNotInstalled,
+            EmulationMessageSeverity.Error,
+            EmulationMessageTarget.Dialog,
+            new EmulationEmulatorMessageContext(adapter.EmulatorId)));
         var output = current.Options.GetValueOrDefault(SettingsConstants.AudioOutput);
         if (output == SettingsConstants.DefaultOutput)
             output = null;

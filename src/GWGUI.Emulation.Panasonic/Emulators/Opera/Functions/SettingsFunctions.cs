@@ -81,6 +81,12 @@ internal static class SettingsDescriptionFunctions
         ];
     }
 
-    private static EmulationSettingsField Select(MachineConfiguration configuration, string key, EmulationMachineTab tab, string block, string label, string fallback, IReadOnlyList<EmulationSettingsChoice> choices) => new(key, tab, block, label, EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(key, fallback), choices);
+    private static EmulationSettingsField Select(MachineConfiguration configuration,
+        string key,
+        EmulationMachineTab tab,
+        string block,
+        string label,
+        string fallback,
+        IReadOnlyList<EmulationSettingsChoice> choices) => new(key, tab, block, label, EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(key, fallback), choices);
     private static EmulationSettingsField Toggle(MachineConfiguration configuration, string key, EmulationMachineTab tab, string block, string label) => new(key, tab, block, label, EmulationSettingsEditor.Toggle, configuration.Options.GetValueOrDefault(key, EmulationSettingConstants.Disabled));
 }

@@ -70,7 +70,8 @@ internal static class ControllerCatalog
             ControllerCommand.CoinPlayer2,
             ControllerCommand.Service
         ],
-        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))};
+        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
+    };
     internal static IReadOnlyList<InputBindingDefinition> Definitions(PeripheralCategory peripheral) => Commands(peripheral).Select(command => command switch
     {
         ControllerCommand.Up or ControllerCommand.Down or ControllerCommand.Left or ControllerCommand.Right => new InputBindingDefinition(command.ToString(), "Emulation.Controller.Action." + command, string.Empty),
@@ -92,7 +93,8 @@ internal static class ControllerCatalog
         ControllerCommand.StartPlayer2 => "START 2",
         ControllerCommand.CoinPlayer1 => "COIN 1",
         ControllerCommand.CoinPlayer2 => "COIN 2",
-        _ => command.ToString().ToUpperInvariant()};
+        _ => command.ToString().ToUpperInvariant()
+    };
     internal static IReadOnlyDictionary<EmulationControllerVisualControl, string> VisualCommands(PeripheralCategory peripheral) => peripheral == PeripheralCategory.ThreeDOPad 
         ? new Dictionary<EmulationControllerVisualControl, string>
     {

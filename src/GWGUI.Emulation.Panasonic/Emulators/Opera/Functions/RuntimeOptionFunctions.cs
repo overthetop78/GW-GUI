@@ -11,7 +11,9 @@ internal static class RuntimeOptionFunctions
         values[RuntimeOptionConstants.Bios] = FirmwareRuntimeFunctions.FileName(configuration, FirmwareRole.SystemRom);
         values[RuntimeOptionConstants.Font] = configuration.Firmware.Images.ContainsKey(FirmwareRole.FontRom) ? FirmwareRuntimeFunctions.FileName(configuration, FirmwareRole.FontRom) : RuntimeOptionConstants.NoFont;
         if (!values.ContainsKey(RuntimeOptionConstants.ActiveDevices))
-            values[RuntimeOptionConstants.ActiveDevices] = Enumerable.Range(ControllerConstants.FirstPort, ControllerConstants.PortCount).Where(port => InputSettingsFunctions.Peripheral(configuration.Input, port) != PeripheralCategory.None).Select(port => port + 1).DefaultIfEmpty(0).Max().ToString(CultureInfo.InvariantCulture);
+            values[RuntimeOptionConstants.ActiveDevices] = Enumerable.Range(ControllerConstants.FirstPort,
+                ControllerConstants.PortCount).Where(port => InputSettingsFunctions.Peripheral(configuration.Input,
+                port) != PeripheralCategory.None).Select(port => port + 1).DefaultIfEmpty(0).Max().ToString(CultureInfo.InvariantCulture);
         return values;
     }
 }

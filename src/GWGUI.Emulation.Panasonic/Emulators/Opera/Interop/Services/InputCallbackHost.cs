@@ -45,12 +45,17 @@ internal sealed class InputCallbackHost
         PeripheralCategory.Lightgun => NativeDevice.Lightgun,
         PeripheralCategory.ArcadeLightgun => NativeDevice.ArcadeLightgun,
         PeripheralCategory.OrbatakTrackball => NativeDevice.OrbatakTrackball,
-        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))};
+        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
+    };
     private float Value(int port, ControllerCommand command) => port < _input.Controllers.Count && _input.Controllers[port].Controls.TryGetValue(command.ToString(), out var value) ? value : 0;
     private short Button(int port, ControllerCommand command) => Value(port, command) > 0.5f ? (short)1 : (short)0;
     private short Axis(int port, ControllerCommand negative, ControllerCommand positive) => (short)Math.Clamp(Math.Round((Value(port, positive) - Value(port, negative)) * short.MaxValue), short.MinValue, short.MaxValue);
     private float Relative(int port, ControllerCommand command) => port < _input.Controllers.Count && _input.Controllers[port].Controls.TryGetValue(command.ToString() + InputMappingConstants.RelativeMotionSuffix, out var value) ? value : 0;
-    private short TrackballAxis(int port, ControllerCommand negative, ControllerCommand positive) => (short)Math.Clamp(Math.Round(((Value(port, positive) - Value(port, negative)) + (Relative(port, positive) - Relative(port, negative)) / TrackballCountsPerFrame) * (short.MaxValue + 1f)), short.MinValue, short.MaxValue);
+    private short TrackballAxis(int port,
+        ControllerCommand negative,
+        ControllerCommand positive) => (short)Math.Clamp(Math.Round(((Value(port, positive) - Value(port, negative)) + (Relative(port, positive) - Relative(port, negative)) / TrackballCountsPerFrame) * (short.MaxValue + 1f)),
+        short.MinValue,
+        short.MaxValue);
     private float MotionValue(int port, ControllerCommand negative, ControllerCommand positive) => Relative(port, positive) - Relative(port, negative) + (Value(port, positive) - Value(port, negative)) * MotionStep;
     private short Motion(int port, ControllerCommand negative, ControllerCommand positive) => (short)Math.Clamp(Math.Round(MotionValue(port, negative, positive)), short.MinValue, short.MaxValue);
     private void OnPoll()
