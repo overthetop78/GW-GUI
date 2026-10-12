@@ -70,9 +70,7 @@ internal static class SettingsDescriptionFunctions
 
     internal static string ChoiceLabel(CoreOptionValue choice) => choice.ResourceKey ?? InvariantChoice(choice) ?? choice.Label;
 
-    private static string? InvariantChoice(CoreOptionValue choice) => choice.VideoStandard is { } standard && choice.FrequencyHz is { } frequency
-        ? EmulationVideoFunctions.FormatTiming(standard, frequency)
-        : choice.InvariantDisplayValue;
+    private static string? InvariantChoice(CoreOptionValue choice) => choice.VideoStandard is { } standard && choice.FrequencyHz is { } frequency ? EmulationVideoFunctions.FormatTiming(standard, frequency) : choice.InvariantDisplayValue;
 
     private static EmulationSettingsBlock Audio(MachineConfiguration configuration) => Block(EmulationMachineTab.Audio,
         SettingsConstants.ResourceAudio,
