@@ -183,10 +183,7 @@ internal sealed partial class ExternalHostCallbacks
                 values.Add(new(value, StringAt(definition, offset + IntPtr.Size) ?? value));
             }
             var defaultValue = StringAt(definition, defaultOffset) ?? string.Empty;
-            catalog.Add(new(key, StringAt(definition, IntPtr.Size) ?? key,
-                StringAt(definition, CoreOptionV1DescriptionPointerIndex * IntPtr.Size), null,
-                defaultValue, defaultValue, values,
-                !_optionVisibility.TryGetValue(key, out var visible) || visible));
+            catalog.Add(new(key, StringAt(definition, IntPtr.Size) ?? key, StringAt(definition, CoreOptionV1DescriptionPointerIndex * IntPtr.Size), null, defaultValue, defaultValue, values, !_optionVisibility.TryGetValue(key, out var visible) || visible));
             if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;
         }
         OptionCatalog = catalog.Where(CoreSettingsFunctions.IsSupportedNintendoOption).Select(CoreSettingsFunctions.WithSupportedGraphicsApis).ToArray();

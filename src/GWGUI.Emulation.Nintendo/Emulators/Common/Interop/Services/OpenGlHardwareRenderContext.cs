@@ -211,10 +211,7 @@ internal sealed partial class OpenGlHardwareRenderContext : IDisposable
     {
         internal ushort Size, Version;
         internal int Flags;
-        internal byte PixelType, ColorBits, RedBits, RedShift, GreenBits, GreenShift,
-            BlueBits, BlueShift, AlphaBits, AlphaShift, AccumBits, AccumRedBits,
-            AccumGreenBits, AccumBlueBits, AccumAlphaBits, DepthBits, StencilBits,
-            AuxBuffers, LayerType, Reserved;
+        internal byte PixelType, ColorBits, RedBits, RedShift, GreenBits, GreenShift, BlueBits, BlueShift, AlphaBits, AlphaShift, AccumBits, AccumRedBits, AccumGreenBits, AccumBlueBits, AccumAlphaBits, DepthBits, StencilBits, AuxBuffers, LayerType, Reserved;
         internal int LayerMask, VisibleMask, DamageMask;
     }
 
