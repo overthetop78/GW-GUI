@@ -18,12 +18,8 @@ internal static class MediaContentRecognitionFunctions
         string? actualExtension = null)
     {
         var (resourceKey, icon, contentFormat) = Presentation(rule.Category);
-        var extension = rule.Extension.Length > 0
-            ? rule.Extension
-            : NormalizeExtension(actualExtension);
-        return new(rule.Family, extension, rule.Category, resourceKey,
-            rule.ExecutionKind, icon, contentFormat,
-            rule.TextEncoding, rule.PreviewKind);
+        var extension = rule.Extension.Length > 0 ? rule.Extension : NormalizeExtension(actualExtension);
+        return new(rule.Family, extension, rule.Category, resourceKey, rule.ExecutionKind, icon, contentFormat, rule.TextEncoding, rule.PreviewKind);
     }
 
     private static (string ResourceKey, string Icon, MediaContentFormat ContentFormat)

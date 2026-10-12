@@ -26,16 +26,7 @@ internal static class Atari8BitMediaContentRecognitionTable
         new(Family, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Eps, [], MediaContentCategory.Document, MediaTextEncoding.Unknown, MediaExecutionKind.None, MediaPreviewKind.Text),
         new(Family, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Sch, [], MediaContentCategory.Document, MediaTextEncoding.Unknown, MediaExecutionKind.None, MediaPreviewKind.Text),
         new(Family, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Zom, [], MediaContentCategory.Document, MediaTextEncoding.Unknown, MediaExecutionKind.None, MediaPreviewKind.Text),
-        new(
-            Family,
-            MediaContentRecognitionPriority.Primary,
-            FileTypeExtensions.Crd,
-            [MediaContentSignatures.AtariCardStaxCardHeader],
-            MediaContentCategory.Document,
-            MediaTextEncoding.Atascii,
-            MediaExecutionKind.None,
-            MediaPreviewKind.Text
-        ),
+        new(Family, MediaContentRecognitionPriority.Primary, FileTypeExtensions.Crd, [MediaContentSignatures.AtariCardStaxCardHeader], MediaContentCategory.Document, MediaTextEncoding.Atascii, MediaExecutionKind.None, MediaPreviewKind.Text),
         new(Family, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Inf, [], MediaContentCategory.Configuration, MediaTextEncoding.Unknown, MediaExecutionKind.None, MediaPreviewKind.Text),
         new(Family, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Def, [], MediaContentCategory.Configuration, MediaTextEncoding.Unknown, MediaExecutionKind.None, MediaPreviewKind.Text),
         new(Family, MediaContentRecognitionPriority.Standard, FileTypeExtensions.Ecf, [], MediaContentCategory.Configuration, MediaTextEncoding.Unknown, MediaExecutionKind.None, MediaPreviewKind.Text),
@@ -366,26 +357,8 @@ internal static class Atari8BitMediaContentRecognitionTable
             MediaExecutionKind.None,
             MediaPreviewKind.Hexadecimal
         ),
-        new(
-            Family,
-            MediaContentRecognitionPriority.Primary,
-            string.Empty,
-            [MediaContentSignatures.AtariBGraphImageBlocks],
-            MediaContentCategory.Image,
-            MediaTextEncoding.NotApplicable,
-            MediaExecutionKind.None,
-            MediaPreviewKind.Image
-        ),
-        new(
-            Family,
-            MediaContentRecognitionPriority.Primary,
-            string.Empty,
-            [MediaContentSignatures.AtariDrawingBoardImageEnd],
-            MediaContentCategory.Image,
-            MediaTextEncoding.NotApplicable,
-            MediaExecutionKind.None,
-            MediaPreviewKind.Image
-        ),
+        new(Family, MediaContentRecognitionPriority.Primary, string.Empty, [MediaContentSignatures.AtariBGraphImageBlocks], MediaContentCategory.Image, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Image),
+        new(Family, MediaContentRecognitionPriority.Primary, string.Empty, [MediaContentSignatures.AtariDrawingBoardImageEnd], MediaContentCategory.Image, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Image),
         new(
             Family,
             MediaContentRecognitionPriority.Primary,
@@ -567,16 +540,7 @@ internal static class Atari8BitMediaContentRecognitionTable
             MediaExecutionKind.None,
             MediaPreviewKind.Hexadecimal
         ),
-        new(
-            Family,
-            MediaContentRecognitionPriority.Primary,
-            string.Empty,
-            [MediaContentSignatures.AtariSoftsynthSongHeader],
-            MediaContentCategory.Audio,
-            MediaTextEncoding.NotApplicable,
-            MediaExecutionKind.None,
-            MediaPreviewKind.Audio
-        ),
+        new(Family, MediaContentRecognitionPriority.Primary, string.Empty, [MediaContentSignatures.AtariSoftsynthSongHeader], MediaContentCategory.Audio, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Audio),
         new(
             Family,
             MediaContentRecognitionPriority.Primary,
@@ -638,15 +602,6 @@ internal static class Atari8BitMediaContentRecognitionTable
             MediaExecutionKind.None,
             MediaPreviewKind.BasicListing
         ),
-        new(
-            Family,
-            MediaContentRecognitionPriority.Fallback,
-            string.Empty,
-            [MediaContentSignatures.AtariAdvancedMusicSystemData],
-            MediaContentCategory.Audio,
-            MediaTextEncoding.NotApplicable,
-            MediaExecutionKind.None,
-            MediaPreviewKind.Audio
-        )
+        new(Family, MediaContentRecognitionPriority.Fallback, string.Empty, [MediaContentSignatures.AtariAdvancedMusicSystemData], MediaContentCategory.Audio, MediaTextEncoding.NotApplicable, MediaExecutionKind.None, MediaPreviewKind.Audio)
     ];
 }

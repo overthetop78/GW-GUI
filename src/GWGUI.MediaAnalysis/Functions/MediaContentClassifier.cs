@@ -28,9 +28,7 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
             return Fallback(MediaContentCategory.Link, "Explorer.Link", MediaContentIconIds.Link);
 
         if (content is { Count: 0 })
-            return Fallback(MediaContentCategory.File,
-                extension.Length == 0 ? "Explorer.File" : "Explorer.FileWithExtension",
-                MediaContentIconIds.File, extension, MediaContentFormat.Empty);
+            return Fallback(MediaContentCategory.File, extension.Length == 0 ? "Explorer.File" : "Explorer.FileWithExtension", MediaContentIconIds.File, extension, MediaContentFormat.Empty);
 
         var primary = DefinitionFor(MediaContentRecognitionPriority.Primary);
         if (primary is not null) return primary;
@@ -41,16 +39,12 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
         var recognized = KnownCategory(comment, dataValid, nativeTypeId, family);
         if (recognized is not null)
         {
-            var encoding = recognized == MediaContentCategory.Text && family == MediaFileSystemFamily.Atari8Bit
-                ? MediaTextEncoding.Atascii
-                : MediaTextEncoding.NotApplicable;
+            var encoding = recognized == MediaContentCategory.Text && family == MediaFileSystemFamily.Atari8Bit ? MediaTextEncoding.Atascii : MediaTextEncoding.NotApplicable;
             return MediaContentRecognitionFunctions.ToDefinition(
                 new(family, MediaContentRecognitionPriority.Standard,
                     MediaContentRecognitionFunctions.NormalizeExtension(extension), [],
                     recognized.Value, encoding,
-                    recognized == MediaContentCategory.Executable
-                        ? MediaExecutionKind.NativeExecutable
-                        : MediaExecutionKind.None,
+                    recognized == MediaContentCategory.Executable ? MediaExecutionKind.NativeExecutable : MediaExecutionKind.None,
                     PreviewFor(recognized.Value)));
         }
         if (LooksLikeText(content, family))
@@ -58,17 +52,13 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
                 new(family, MediaContentRecognitionPriority.Standard,
                     MediaContentRecognitionFunctions.NormalizeExtension(extension), [],
                     MediaContentCategory.Text,
-                    family == MediaFileSystemFamily.Atari8Bit
-                        ? MediaTextEncoding.Atascii
-                        : MediaTextEncoding.Unknown,
+                    family == MediaFileSystemFamily.Atari8Bit ? MediaTextEncoding.Atascii : MediaTextEncoding.Unknown,
                     MediaExecutionKind.None, MediaPreviewKind.Text));
 
         var fallback = DefinitionFor(MediaContentRecognitionPriority.Fallback);
         if (fallback is not null) return fallback;
 
-        return Fallback(MediaContentCategory.File,
-            extension.Length == 0 ? "Explorer.File" : "Explorer.FileWithExtension",
-            MediaContentIconIds.File, extension);
+        return Fallback(MediaContentCategory.File, extension.Length == 0 ? "Explorer.File" : "Explorer.FileWithExtension", MediaContentIconIds.File, extension);
 
         MediaContentTypeDefinition? DefinitionFor(MediaContentRecognitionPriority priority)
         {
@@ -83,9 +73,7 @@ public sealed class MediaContentClassifier : IMediaContentClassifier
         string iconId,
         string extension = "",
         MediaContentFormat contentFormat = MediaContentFormat.Unknown) =>
-        new(null, MediaContentRecognitionFunctions.NormalizeExtension(extension), category, resourceKey,
-            MediaExecutionKind.None, iconId, contentFormat,
-            MediaTextEncoding.NotApplicable, MediaPreviewKind.None);
+        new(null, MediaContentRecognitionFunctions.NormalizeExtension(extension), category, resourceKey, MediaExecutionKind.None, iconId, contentFormat, MediaTextEncoding.NotApplicable, MediaPreviewKind.None);
 
     private static MediaContentCategory? KnownCategory(
         string comment,
