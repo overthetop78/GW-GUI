@@ -23,10 +23,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     protected abstract bool RequiresMediaRestart(EmulationMediaSlot slot, string? path);
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
     public virtual IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options;
-    public Machine Create(
-        MachineConfiguration configuration,
-        EmulatorCreationContext context
-    )
+    public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
         ConfigurationFunctions.Validate(configuration);
         if (configuration.Core != Emulator || !CatalogEntry.Models.Contains(configuration.Model))

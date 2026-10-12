@@ -6,10 +6,7 @@ namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;
 internal static class EnvironmentFunctions
 {
     internal static string CreateUnknownCommandDiagnostic(uint command) => string.Format(CultureInfo.InvariantCulture, ExceptionText.Get(EnvironmentConstants.UnknownCommandDiagnosticResourceKey), command);
-    internal static IReadOnlyList<InputDescriptor> CopyInputDescriptors(
-        nint data,
-        int maximumCount = EnvironmentConstants.MaximumInputDescriptorCount
-    )
+    internal static IReadOnlyList<InputDescriptor> CopyInputDescriptors(nint data, int maximumCount = EnvironmentConstants.MaximumInputDescriptorCount)
     {
         if (data == nint.Zero)
             return[];

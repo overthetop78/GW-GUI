@@ -17,10 +17,7 @@ internal static class KeyboardDictionary
     internal static IReadOnlyList<EmulationKey> Keys(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.X68000 ? X68000Keys : X1Keys;
     internal static IReadOnlyDictionary<EmulationKey, EmulationKey> Defaults(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.X68000 ? X68000Defaults : X1Defaults;
     internal static IReadOnlyList<InputBindingDefinition> Definitions(MachineModel model) => Keys(model).Select(key => new InputBindingDefinition(key.ToString(), InputMappingConstants.KeyboardResourcePrefix + key, Defaults(model).TryGetValue(key, out var physical) ? physical.ToString() : string.Empty)).ToArray();
-    internal static IReadOnlyDictionary<string, string> Bindings(
-        InputConfiguration input,
-        MachineModel model
-    )
+    internal static IReadOnlyDictionary<string, string> Bindings(InputConfiguration input, MachineModel model)
     {
         var bindings = Definitions(model).ToDictionary(definition => definition.Id, definition => definition.DefaultBinding, StringComparer.Ordinal);
         foreach (var pair in input.Keyboard ?? new Dictionary<string, string>())
@@ -33,11 +30,7 @@ internal static class KeyboardDictionary
         return bindings;
     }
 
-    internal static IReadOnlySet<EmulationKey> Apply(
-        IReadOnlySet<EmulationKey> keys,
-        InputConfiguration input,
-        MachineModel model
-    )
+    internal static IReadOnlySet<EmulationKey> Apply(IReadOnlySet<EmulationKey> keys, InputConfiguration input, MachineModel model)
     {
         var mappings = Bindings(input, model).Where(pair => !string.IsNullOrEmpty(pair.Value)).ToDictionary(pair => pair.Key, pair => Enum.Parse<EmulationKey>(pair.Value), StringComparer.Ordinal);
         return EmulationInputMappingFunctions.MapKeyboard(keys, mappings);

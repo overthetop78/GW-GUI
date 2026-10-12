@@ -33,15 +33,7 @@ internal static class NativeInputFunctions
         [ControllerCommand.Fire7] = Joypad.Start,
         [ControllerCommand.Fire8] = Joypad.Select
     };
-    internal static short State(
-        EmulationInputSnapshot snapshot,
-        IReadOnlySet<uint> keyboard,
-        uint port,
-        uint device,
-        uint index,
-        uint id,
-        Emulator emulator
-    )
+    internal static short State(EmulationInputSnapshot snapshot, IReadOnlySet<uint> keyboard, uint port, uint device, uint index, uint id, Emulator emulator)
     {
         if (device == InputConstants.KeyboardDevice)
             return port == InputConstants.PrimaryPort && index == InputConstants.LeftAnalogIndex && keyboard.Contains(id) ? InputConstants.ActiveState : InputConstants.InactiveState;

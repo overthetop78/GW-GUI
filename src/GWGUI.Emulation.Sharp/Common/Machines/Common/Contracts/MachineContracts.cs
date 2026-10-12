@@ -1,10 +1,7 @@
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Contracts;
-internal sealed record MachineCommand(
-    Action Action,
-    TaskCompletionSource Completion
-)
+internal sealed record MachineCommand(Action Action, TaskCompletionSource Completion)
 {
     internal void Execute()
     {

@@ -25,10 +25,7 @@ internal sealed class KeyboardState
 
     internal IReadOnlySet<uint> Codes { get; private set; } = new HashSet<uint>();
 
-    internal void Publish(
-        IReadOnlySet<EmulationKey> keys,
-        ExternalCoreApi.KeyboardEvent? keyboardEvent
-    )
+    internal void Publish(IReadOnlySet<EmulationKey> keys, ExternalCoreApi.KeyboardEvent? keyboardEvent)
     {
         var composed = new HashSet<uint>();
         if (_supportsCompose)
