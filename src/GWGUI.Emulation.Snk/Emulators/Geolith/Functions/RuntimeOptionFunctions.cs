@@ -51,7 +51,8 @@ internal static class RuntimeOptionFunctions
         return result;
     }
 
-    internal static bool AllowsFourPlayers(MachineModel model, IReadOnlyDictionary<string, string> options) => model == MachineModel.NeoGeoMvs && options[RuntimeOptionConstants.SystemType] == RuntimeOptionConstants.Mvs && options[RuntimeOptionConstants.Region] is RuntimeOptionConstants.Japan or RuntimeOptionConstants.Asia;
+    internal static bool AllowsFourPlayers(MachineModel model,
+        IReadOnlyDictionary<string, string> options) => model == MachineModel.NeoGeoMvs && options[RuntimeOptionConstants.SystemType] == RuntimeOptionConstants.Mvs && options[RuntimeOptionConstants.Region] is RuntimeOptionConstants.Japan or RuntimeOptionConstants.Asia;
     internal static int ControllerPorts(MachineConfiguration configuration)
     {
         var options = Prepare(configuration);

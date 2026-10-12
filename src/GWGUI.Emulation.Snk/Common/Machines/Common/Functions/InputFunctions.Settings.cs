@@ -15,13 +15,15 @@ internal static class InputSettingsFunctions
         MachineModel.NeoGeoPocketColor => PeripheralCategory.NeoGeoPocketColor,
         MachineModel.NeoGeoCd or MachineModel.NeoGeoCdz => PeripheralCategory.NeoGeoCdPad,
         MachineModel.NeoGeoAes or MachineModel.NeoGeoMvs => PeripheralCategory.NeoGeoArcadeStick,
-        _ => throw new ArgumentOutOfRangeException(nameof(model))};
+        _ => throw new ArgumentOutOfRangeException(nameof(model))
+    };
     private static IReadOnlyList<PeripheralCategory> Choices(MachineModel model) => model switch
     {
         MachineModel.NeoGeoPocket => [PeripheralCategory.NeoGeoPocket],
         MachineModel.NeoGeoPocketColor => [PeripheralCategory.NeoGeoPocketColor],
         MachineModel.NeoGeoAes or MachineModel.NeoGeoMvs or MachineModel.NeoGeoCd or MachineModel.NeoGeoCdz => [PeripheralCategory.NeoGeoArcadeStick, PeripheralCategory.NeoGeoCdPad],
-        _ => throw new ArgumentOutOfRangeException(nameof(model))};
+        _ => throw new ArgumentOutOfRangeException(nameof(model))
+    };
     internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => port >= ControllerConstants.FirstPort && port < ConfigurationFunctions.ControllerPortCount(configuration) && Choices(configuration.Model).Contains(peripheral);
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {

@@ -34,6 +34,8 @@ internal static class RuntimeOptionFunctions
     internal static IReadOnlyList<CoreOption> Describe(MachineConfiguration configuration)
     {
         var selected = Prepare(configuration);
-        return OptionCatalog.Options.Select(option => option with { CurrentValue = selected[option.Key], IsVisible = option.IsVisible && !ManagedOptions.Contains(option.Key) && !UnsupportedInputs.Contains(option.Key), IsEnabled = option.Key != RuntimeOptionConstants.Altres || selected[RuntimeOptionConstants.AlternateRenderer] != RuntimeOptionConstants.Disabled }).ToArray();
+        return OptionCatalog.Options.Select(option => option with { CurrentValue = selected[option.Key],
+            IsVisible = option.IsVisible && !ManagedOptions.Contains(option.Key) && !UnsupportedInputs.Contains(option.Key),
+            IsEnabled = option.Key != RuntimeOptionConstants.Altres || selected[RuntimeOptionConstants.AlternateRenderer] != RuntimeOptionConstants.Disabled }).ToArray();
     }
 }

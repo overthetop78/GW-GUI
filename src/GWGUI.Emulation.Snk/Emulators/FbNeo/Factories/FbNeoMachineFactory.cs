@@ -39,7 +39,8 @@ internal sealed class FbNeoMachineFactory() : LibretroMachineFactory(EmulatorCon
         {
             MachineFamily.NeoGeoCd => content is not null && exports.LoadGameSpecial(RuntimeOptionConstants.CdSubsystem, content.GameInfo, RuntimeOptionConstants.ContentCount),
             MachineFamily.NeoGeoPocket => content is not null && exports.LoadGameSpecial(RuntimeOptionConstants.PocketSubsystem, content.GameInfo, RuntimeOptionConstants.ContentCount),
-            _ => exports.LoadGame(content?.GameInfo ?? nint.Zero)};
+            _ => exports.LoadGame(content?.GameInfo ?? nint.Zero)
+        };
         if (loaded)
             ControllerPortFunctions.Configure(exports, configuration);
         return loaded;

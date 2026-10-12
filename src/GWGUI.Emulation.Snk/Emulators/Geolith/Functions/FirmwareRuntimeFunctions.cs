@@ -98,7 +98,8 @@ internal static class FirmwareRuntimeFunctions
             RuntimeOptionConstants.CdTop => TopRom,
             RuntimeOptionConstants.Cdz => CdzRom,
             RuntimeOptionConstants.CdzUniverseBios => UniverseCdRom,
-            _ => throw new ArgumentException(nameof(configuration))};
+            _ => throw new ArgumentException(nameof(configuration))
+        };
         var mainName = cd ? configuration.Model == MachineModel.NeoGeoCd ? CdArchive : CdzArchive : nativeSystem == RuntimeOptionConstants.Aes ? AesArchive : MvsArchive;
         var mainPath = Path.Combine(systemDirectory, mainName);
         FirmwareCopy.CopyVerified(configuration, FirmwareCategory.SystemBios, mainPath);

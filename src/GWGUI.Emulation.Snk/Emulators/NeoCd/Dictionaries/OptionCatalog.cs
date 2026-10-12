@@ -27,7 +27,23 @@ internal static class OptionCatalog
                 new("16", "16", ResourceKey: SettingsChoiceConstants.Value16)
             ],
             ResourceKey: SettingsTextConstants.SettingHorizontalOverscan
-        ), new(RuntimeOptionConstants.Cdspeedhack, "CD Speed Hack", null, EmulationMachineTab.Storage.ToString(), "Off", "Off", [new("On", "On"), new("Off", "Off")], ResourceKey: SettingsTextConstants.SettingCDSpeedHack), new(RuntimeOptionConstants.Loadskip, "Skip CD Loading", null, EmulationMachineTab.Storage.ToString(), "On", "On", [new("On", "On"), new("Off", "Off")], ResourceKey: SettingsTextConstants.SettingSkipCDLoading), new(
+        ), new(RuntimeOptionConstants.Cdspeedhack,
+            "CD Speed Hack",
+            null,
+            EmulationMachineTab.Storage.ToString(),
+            "Off",
+            "Off",
+            [new("On", "On"),
+            new("Off", "Off")],
+            ResourceKey: SettingsTextConstants.SettingCDSpeedHack), new(RuntimeOptionConstants.Loadskip,
+            "Skip CD Loading",
+            null,
+            EmulationMachineTab.Storage.ToString(),
+            "On",
+            "On",
+            [new("On", "On"),
+            new("Off", "Off")],
+            ResourceKey: SettingsTextConstants.SettingSkipCDLoading), new(
             RuntimeOptionConstants.CpuOverclock,
             "CPU Overclock",
             null,

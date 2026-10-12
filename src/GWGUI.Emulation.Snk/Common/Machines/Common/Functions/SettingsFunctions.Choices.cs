@@ -8,5 +8,6 @@ internal static class SettingsChoiceFunctions
         FrameSkipRatio.ThreeOfFour => "3/4",
         FrameSkipRatio.FourOfFive => "4/5",
         FrameSkipRatio.FiveOfSix => "5/6",
-        _ => throw new ArgumentOutOfRangeException(nameof(ratio))};
+        _ => throw new ArgumentOutOfRangeException(nameof(ratio))
+    };
 }

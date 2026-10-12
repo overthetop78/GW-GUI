@@ -21,7 +21,8 @@ internal static class EmulationMediaConversionFunctions
             (EmulationMediaType.CompactDisc, EmulationMediaCategory.CompactDiscDrive) => MediaCategory.CdRom,
             (EmulationMediaType.MemoryCard, EmulationMediaCategory.MemoryCard) => MediaCategory.MemoryCard,
             (EmulationMediaType.Cartridge, EmulationMediaCategory.CartridgeSlot) => MediaCategory.Cartridge,
-            _ => throw new ArgumentOutOfRangeException(nameof(media))};
+            _ => throw new ArgumentOutOfRangeException(nameof(media))
+        };
         var existing = mountedMedia.FirstOrDefault(item => item.Slot == media.Slot);
         return existing is null 
             ? new MediaConfiguration(media.Path, category, media.Slot, IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted) 

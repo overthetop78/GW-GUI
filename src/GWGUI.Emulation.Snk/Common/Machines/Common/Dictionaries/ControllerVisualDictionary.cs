@@ -8,7 +8,8 @@ internal static class ControllerVisualDictionary
         PeripheralCategory.NeoGeoCdPad => [EmulationControllerVisualIds.SnkNeoGeoCdPad],
         PeripheralCategory.NeoGeoPocket => [EmulationControllerVisualIds.SnkNeoGeoPocket],
         PeripheralCategory.NeoGeoPocketColor => [EmulationControllerVisualIds.SnkNeoGeoPocketColor],
-        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))};
+        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
+    };
     internal static string? DefaultVisualId(PeripheralCategory peripheral) => VisualIds(peripheral).FirstOrDefault();
     internal static IReadOnlyDictionary<EmulationControllerVisualControl, string> Commands(PeripheralCategory peripheral)
     {

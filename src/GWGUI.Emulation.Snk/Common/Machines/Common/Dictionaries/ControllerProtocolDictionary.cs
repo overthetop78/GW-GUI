@@ -10,8 +10,23 @@ internal sealed record NativeInputAction(ControllerCommand Command)
 
 internal static class ControllerProtocolDictionary
 {
-    private static readonly IReadOnlyList<NativeInputAction> ArcadeActions = Array.AsReadOnly(new[] { ControllerCommand.Up, ControllerCommand.Down, ControllerCommand.Left, ControllerCommand.Right, ControllerCommand.A, ControllerCommand.B, ControllerCommand.C, ControllerCommand.D, ControllerCommand.Start, ControllerCommand.Select }.Select(command => new NativeInputAction(command)).ToArray());
-    private static readonly IReadOnlyList<NativeInputAction> PocketActions = Array.AsReadOnly(new[] { ControllerCommand.Up, ControllerCommand.Down, ControllerCommand.Left, ControllerCommand.Right, ControllerCommand.A, ControllerCommand.B, ControllerCommand.Option }.Select(command => new NativeInputAction(command)).ToArray());
+    private static readonly IReadOnlyList<NativeInputAction> ArcadeActions = Array.AsReadOnly(new[] { ControllerCommand.Up,
+        ControllerCommand.Down,
+        ControllerCommand.Left,
+        ControllerCommand.Right,
+        ControllerCommand.A,
+        ControllerCommand.B,
+        ControllerCommand.C,
+        ControllerCommand.D,
+        ControllerCommand.Start,
+        ControllerCommand.Select }.Select(command => new NativeInputAction(command)).ToArray());
+    private static readonly IReadOnlyList<NativeInputAction> PocketActions = Array.AsReadOnly(new[] { ControllerCommand.Up,
+        ControllerCommand.Down,
+        ControllerCommand.Left,
+        ControllerCommand.Right,
+        ControllerCommand.A,
+        ControllerCommand.B,
+        ControllerCommand.Option }.Select(command => new NativeInputAction(command)).ToArray());
     internal static IReadOnlyList<NativeInputAction> Actions(MachineModel model, PeripheralCategory peripheral)
     {
         if (!Enum.IsDefined(model) || !Enum.IsDefined(peripheral))
