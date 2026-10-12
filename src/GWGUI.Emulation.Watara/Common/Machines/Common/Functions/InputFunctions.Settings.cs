@@ -26,11 +26,7 @@ internal static class InputSettingsFunctions
             EmulationControllerVisualIds.WataraSupervisionControls,
             ControllerCatalog.VisualCommands
         );
-        return new(
-            null,
-            null,
-            [new(1, [choice], choice.Id, binding?.DeviceId, bindings, binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId ?? EmulationControllerVisualIds.WataraSupervisionControls)]
-        );
+        return new(null, null, [new(1, [choice], choice.Id, binding?.DeviceId, bindings, binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId ?? EmulationControllerVisualIds.WataraSupervisionControls)]);
     }
 
     internal static MachineConfiguration Apply(
