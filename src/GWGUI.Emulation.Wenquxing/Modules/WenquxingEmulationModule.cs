@@ -153,9 +153,7 @@ public sealed class WenquxingEmulationModule : IEmulationModule, IEmulationEmula
         var output = current.Options.GetValueOrDefault(SettingsConstants.AudioOutput);
         if (output == SettingsConstants.DefaultOutput)
             output = null;
-        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) 
-            ? parsed 
-            : SettingsConstants.DefaultLatency;
+        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : SettingsConstants.DefaultLatency;
         var context = new EmulatorCreationContext(
             services.SessionsDirectory,
             corePath,
@@ -165,9 +163,7 @@ public sealed class WenquxingEmulationModule : IEmulationModule, IEmulationEmula
         );
         return new EmulationMachineRuntime(
             current,
-            media => media.Count == 0
-                ? _engine.CreateMachine(current, context)
-                : throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog)),
+            media => media.Count == 0 ? _engine.CreateMachine(current, context) : throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog)),
             [],
             [],
             ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey,
