@@ -21,7 +21,8 @@ internal static class SettingsDescriptionFunctions
                 EmulationMachineTab.Video => SettingsConstants.ResourceNativeVideo,
                 EmulationMachineTab.Audio => SettingsConstants.ResourceNativeAudio,
                 EmulationMachineTab.Controllers => SettingsConstants.ResourceNativeControls,
-                _ => throw new InvalidOperationException()};
+                _ => throw new InvalidOperationException()
+            };
             blocks.Add(Block(group.Key, resource, group.Select(option => Native(configuration, option, group.Key, resource)).ToArray())with { IsCompact = group.Key == EmulationMachineTab.Audio });
         }
 
