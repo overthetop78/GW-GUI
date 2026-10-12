@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Snk.Emulators.Mame2016.Constants;
-
 internal static class EmulatorConstants
 {
     internal const string Id = "mame2016";
@@ -23,7 +22,7 @@ internal static class EmulatorConstants
         MachineModel.NeoGeoPocketColor,
         MachineModel.NeoGeoCd,
         MachineModel.NeoGeoCdz
-    )with
+    ) with
     {
         DescriptionResourceKey = DescriptionResourceKey
     };

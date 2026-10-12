@@ -4,7 +4,6 @@ using GWGUI.Emulation.Snk.Emulators.FbNeo.Constants;
 using FirmwareCopy = GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.FirmwareRuntimeFunctions;
 
 namespace GWGUI.Emulation.Snk.Emulators.FbNeo.Functions;
-
 internal static class FirmwareRuntimeFunctions
 {
     private const string NativeDirectory = "fbneo";
@@ -59,10 +58,13 @@ internal static class FirmwareRuntimeFunctions
         ["uni-bios_1_0.rom"] = 131072,
         ["neopen.sp1"] = 131072,
     };
-
     internal static IReadOnlyList<FirmwareCategory> Roles => [FirmwareCategory.SystemBios];
 
-    internal static ValueTask<EmulationFirmwareCandidate> Inspect(string path, MachineModel model, CancellationToken cancellationToken)
+    internal static ValueTask<EmulationFirmwareCandidate> Inspect(
+        string path,
+        MachineModel model,
+        CancellationToken cancellationToken
+    )
     {
         cancellationToken.ThrowIfCancellationRequested();
         var absolute = Path.GetFullPath(path);
@@ -70,26 +72,45 @@ internal static class FirmwareRuntimeFunctions
         try
         {
             using var archive = ZipFile.OpenRead(absolute);
-            if (Valid(archive, model, null)) compatibility = EmulationFirmwareCompatibility.PartiallyCompatible;
+            if (Valid(archive, model, null))
+                compatibility = EmulationFirmwareCompatibility.PartiallyCompatible;
         }
-        catch (InvalidDataException) { }
-        catch (IOException) { }
+        catch (InvalidDataException)
+        {
+        }
+        catch (IOException)
+        {
+        }
+
         return ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible ? null : FirmwareFunctions.Field(FirmwareCategory.SystemBios)));
     }
 
-    internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
+    internal static void Prepare(
+        MachineConfiguration configuration,
+        string systemDirectory
+    )
     {
         var directory = Path.Combine(systemDirectory, NativeDirectory);
         Directory.CreateDirectory(directory);
-        var archiveName = configuration.Family switch { MachineFamily.NeoGeoPocket => PocketArchive, MachineFamily.NeoGeoCd => RuntimeOptionConstants.CdArchive, _ => RuntimeOptionConstants.SystemArchive };
+        var archiveName = configuration.Family switch
+        {
+            MachineFamily.NeoGeoPocket => PocketArchive,
+            MachineFamily.NeoGeoCd => RuntimeOptionConstants.CdArchive,
+            _ => RuntimeOptionConstants.SystemArchive
+        };
         var destination = Path.Combine(directory, archiveName);
         FirmwareCopy.CopyVerified(configuration, FirmwareCategory.SystemBios, destination);
         using var archive = ZipFile.OpenRead(destination);
         var mode = RuntimeOptionFunctions.Prepare(configuration).GetValueOrDefault(RuntimeOptionConstants.NeogeoMode);
-        if (!Valid(archive, configuration.Model, mode)) throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
+        if (!Valid(archive, configuration.Model, mode))
+            throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
     }
 
-    private static bool Valid(ZipArchive archive, MachineModel model, string? mode)
+    private static bool Valid(
+        ZipArchive archive,
+        MachineModel model,
+        string? mode
+    )
     {
         bool Has(string name, int length) => archive.GetEntry(name)?.Length == length;
         if (model is MachineModel.NeoGeoPocket or MachineModel.NeoGeoPocketColor)
@@ -106,6 +127,7 @@ internal static class FirmwareRuntimeFunctions
             RuntimeOptionConstants.AesJapan => bios.Key == JapanAesRom,
             RuntimeOptionConstants.UniverseBios => bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal),
             RuntimeOptionConstants.MvsEurope or RuntimeOptionConstants.MvsUsa or RuntimeOptionConstants.MvsJapan => bios.Key is not (JapanAesRom or AsiaAesRom) && !bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal),
-            _ => model != MachineModel.NeoGeoAes || bios.Key is JapanAesRom or AsiaAesRom || bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal)}));
+            _ => model != MachineModel.NeoGeoAes || bios.Key is JapanAesRom or AsiaAesRom || bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal)
+        }));
     }
 }

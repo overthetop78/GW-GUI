@@ -2,11 +2,9 @@ using GWGUI.Emulation.Snk.Emulators.FbNeo.Constants;
 using GWGUI.Emulation.Snk.Emulators.FbNeo.Dictionaries;
 
 namespace GWGUI.Emulation.Snk.Emulators.FbNeo.Functions;
-
 internal static class RuntimeOptionFunctions
 {
     internal static string DefaultMode(MachineModel model) => model == MachineModel.NeoGeoAes ? RuntimeOptionConstants.AesEurope : RuntimeOptionConstants.MvsEurope;
-
     internal static IReadOnlyDictionary<string, string> Prepare(MachineConfiguration configuration)
     {
         var result = OptionCatalog.Options.Where(option => IsApplicable(configuration, option.Key)).ToDictionary(option => option.Key, option => option.DefaultValue, StringComparer.Ordinal);
@@ -35,7 +33,7 @@ internal static class RuntimeOptionFunctions
                     ? value.Value is RuntimeOptionConstants.AesEurope or RuntimeOptionConstants.AesJapan
                     : value.Value is RuntimeOptionConstants.MvsEurope or RuntimeOptionConstants.MvsUsa or RuntimeOptionConstants.MvsJapan)).ToArray();
             }
-    
+
             if (option.Key == RuntimeOptionConstants.MemcardMode && configuration.Media.Any(media => media.Slot == EmulationMediaSlot.MemoryCard0))
                 visible = false;
             if (option.Key == RuntimeOptionConstants.FrameskipManualThreshold)
@@ -53,13 +51,21 @@ internal static class RuntimeOptionFunctions
         }).ToArray();
     }
 
-    private static bool IsApplicable(MachineConfiguration configuration, string key)
+    private static bool IsApplicable(
+        MachineConfiguration configuration,
+        string key
+    )
     {
-        if (key.StartsWith(RuntimeOptionConstants.DebugOptionPrefix, StringComparison.Ordinal)) return false;
-        if (key is RuntimeOptionConstants.LightgunCrosshairEmulation or RuntimeOptionConstants.Resolution or RuntimeOptionConstants.AnalogSpeed) return false;
-        if (key is RuntimeOptionConstants.NeogeoMode or RuntimeOptionConstants.MemcardMode) return configuration.Family == MachineFamily.NeoGeoCartridge;
-        if (key == RuntimeOptionConstants.Samplerate) return configuration.Family != MachineFamily.NeoGeoCd;
-        if (key is RuntimeOptionConstants.Hiscores or RuntimeOptionConstants.DiagnosticInput) return configuration.Family == MachineFamily.NeoGeoCartridge;
+        if (key.StartsWith(RuntimeOptionConstants.DebugOptionPrefix, StringComparison.Ordinal))
+            return false;
+        if (key is RuntimeOptionConstants.LightgunCrosshairEmulation or RuntimeOptionConstants.Resolution or RuntimeOptionConstants.AnalogSpeed)
+            return false;
+        if (key is RuntimeOptionConstants.NeogeoMode or RuntimeOptionConstants.MemcardMode)
+            return configuration.Family == MachineFamily.NeoGeoCartridge;
+        if (key == RuntimeOptionConstants.Samplerate)
+            return configuration.Family != MachineFamily.NeoGeoCd;
+        if (key is RuntimeOptionConstants.Hiscores or RuntimeOptionConstants.DiagnosticInput)
+            return configuration.Family == MachineFamily.NeoGeoCartridge;
         return true;
     }
 }

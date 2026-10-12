@@ -5,7 +5,6 @@ using GWGUI.Emulation;
 using GWGUI.Emulation.Services;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
-
 internal sealed partial class ExternalHostCallbacks : IDisposable
 {
     private readonly CoreOptionHost _optionHost;
@@ -29,14 +28,30 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Xrgb8888;
     private bool _disposed;
     private readonly ExternalCoreVirtualFileSystem _virtualFileSystem;
-
-    internal ExternalHostCallbacks(MachineConfiguration configuration, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions) : this(configuration.Core, systemDirectory, contentDirectory, saveDirectory, assetsDirectory, configuredOptions, configuration)
+    internal ExternalHostCallbacks(MachineConfiguration configuration, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions) : this(
+        configuration.Core,
+        systemDirectory,
+        contentDirectory,
+        saveDirectory,
+        assetsDirectory,
+        configuredOptions,
+        configuration
+    )
     {
     }
 
-    internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions, MachineConfiguration? configuration = null)
+    internal ExternalHostCallbacks(
+        Emulator emulator,
+        string systemDirectory,
+        string contentDirectory,
+        string saveDirectory,
+        string assetsDirectory,
+        IReadOnlyDictionary<string, string> configuredOptions,
+        MachineConfiguration? configuration = null
+    )
     {
-        if (!Enum.IsDefined(emulator)) throw new ArgumentOutOfRangeException(nameof(emulator));
+        if (!Enum.IsDefined(emulator))
+            throw new ArgumentOutOfRangeException(nameof(emulator));
         var adapter = (LibretroMachineFactory)CoreCatalog.CreateAdapter(emulator);
         var directoryStringBufferCapacity = adapter.DirectoryStringBufferCapacity;
         _controllerButtonIds = configuration is null ? new Dictionary<ControllerCommand, uint>() : adapter!.ControllerButtonIds(configuration);
@@ -78,7 +93,13 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         {
             if (!completed)
             {
-                using (system) using (content) using (save) using (assets) using (virtualFileSystem) using (_videoBuffers) optionHost?.Dispose();
+                using (system)
+                using (content)
+                using (save)
+                using (assets)
+                using (virtualFileSystem)
+                using (_videoBuffers)
+                    optionHost?.Dispose();
             }
         }
     }
@@ -94,10 +115,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal ExternalCoreApi.SetSensorState SetSensorState { get; }
     internal ExternalCoreApi.GetSensorInput GetSensorInput { get; }
     internal ExternalCoreApi.LogCallback Log { get; }
-    internal EmulationInputSnapshot Input
-    {
-        set => _input.Update(ControllerFunctions.FreezeMappedInput(value));
-    }
+    internal EmulationInputSnapshot Input { set => _input.Update(ControllerFunctions.FreezeMappedInput(value)); }
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }
     internal IReadOnlyList<CoreOption> Options => _optionHost.Catalog;
@@ -126,7 +144,6 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal float AspectRatio { get; private set; }
 
     internal bool TryDequeueAudio(out AudioChunk? chunk) => _audio.TryDequeue(out chunk);
-
     internal void ApplySystemAvInfo(ExternalCoreApi.SystemAvInfo info)
     {
         SystemAvInfo = info;
@@ -140,13 +157,15 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal void ValidateConfiguredOptions() => _optionHost.ValidateConfiguredValues();
     internal void ValidateDeferredOptions(MachineConfiguration configuration)
     {
-        if (CoreCatalog.CreateAdapter(configuration.Core) is not IEmulatorSettingsAdapter adapter) return;
+        if (CoreCatalog.CreateAdapter(configuration.Core)is not IEmulatorSettingsAdapter adapter)
+            return;
         foreach (var pair in configuration.Options)
         {
-            if (!adapter.IsDeferredOption(configuration, pair.Key)) continue;
+            if (!adapter.IsDeferredOption(configuration, pair.Key))
+                continue;
             var option = Options.FirstOrDefault(item => item.Key == pair.Key);
-            if (option is null || !option.Values.Any(value => value.Value == pair.Value)) throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid, CoreFunctions.CreateInvalidOptionValueMessage(pair.Key, pair.Value));
+            if (option is null || !option.Values.Any(value => value.Value == pair.Value))
+                throw new EmulationException(ErrorCategory.Option, ErrorCode.OptionInvalid, CoreFunctions.CreateInvalidOptionValueMessage(pair.Key, pair.Value));
         }
     }
-
 }

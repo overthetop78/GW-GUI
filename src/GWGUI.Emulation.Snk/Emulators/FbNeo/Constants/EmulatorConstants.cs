@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Snk.Emulators.FbNeo.Constants;
-
 internal static class EmulatorConstants
 {
     internal const string Id = "fbneo";
@@ -22,7 +21,7 @@ internal static class EmulatorConstants
         MachineModel.NeoGeoCdz,
         MachineModel.NeoGeoPocket,
         MachineModel.NeoGeoPocketColor
-    )with
+    ) with
     {
         DescriptionResourceKey = DescriptionResourceKey
     };

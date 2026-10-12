@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Snk.Emulators.NeoCd.Constants;
-
 internal static class EmulatorConstants
 {
     internal const string Id = "neocd";

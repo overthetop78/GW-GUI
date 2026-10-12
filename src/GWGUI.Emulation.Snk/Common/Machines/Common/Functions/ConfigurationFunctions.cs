@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Snk.Common.Machines.Common.Functions;
-
 internal static partial class ConfigurationFunctions
 {
     internal static MachineFamily Family(MachineModel model) => model switch
@@ -8,10 +7,17 @@ internal static partial class ConfigurationFunctions
         MachineModel.NeoGeoPocket or MachineModel.NeoGeoPocketColor => MachineFamily.NeoGeoPocket,
         MachineModel.NeoGeoCd or MachineModel.NeoGeoCdz => MachineFamily.NeoGeoCd,
         _ => throw new ArgumentOutOfRangeException(nameof(model))};
-    internal static Emulator DefaultEmulator(MachineModel model) => Family(model) switch { MachineFamily.NeoGeoCartridge => Emulator.Geolith, MachineFamily.NeoGeoPocket => Emulator.MednafenNgp, MachineFamily.NeoGeoCd => Emulator.NeoCd, _ => throw new ArgumentOutOfRangeException(nameof(model)) };
+    internal static Emulator DefaultEmulator(MachineModel model) => Family(model) switch
+    {
+        MachineFamily.NeoGeoCartridge => Emulator.Geolith,
+        MachineFamily.NeoGeoPocket => Emulator.MednafenNgp,
+        MachineFamily.NeoGeoCd => Emulator.NeoCd,
+        _ => throw new ArgumentOutOfRangeException(nameof(model))};
     internal static bool IsCompatible(MachineModel model, Emulator core) => Enum.IsDefined(model) && Enum.IsDefined(core) && (core == Emulator.None || EmulatorCatalog.Get(core).Models.Contains(model));
     internal static int ControllerPortCount(MachineModel model) => Family(model) == MachineFamily.NeoGeoPocket ? ControllerConstants.PocketPortCount : ControllerConstants.NeoGeoPortCount;
-    internal static int ControllerPortCount(MachineConfiguration configuration) => configuration.Core != Emulator.None && EmulatorCatalog.CreateAdapter(configuration.Core) is IEmulatorControllerAdapter adapter ? adapter.ControllerPortCount(configuration) : ControllerPortCount(configuration.Model);
+    internal static int ControllerPortCount(MachineConfiguration configuration) => configuration.Core != Emulator.None && EmulatorCatalog.CreateAdapter(configuration.Core)is IEmulatorControllerAdapter adapter 
+        ? adapter.ControllerPortCount(configuration) 
+        : ControllerPortCount(configuration.Model);
     internal static IReadOnlyList<EmulationMediaSlot> DefaultSlots(MachineModel model) => Family(model) switch
     {
         MachineFamily.NeoGeoCartridge => [EmulationMediaSlot.Cartridge0, EmulationMediaSlot.MemoryCard0],
@@ -19,7 +25,6 @@ internal static partial class ConfigurationFunctions
         MachineFamily.NeoGeoCd => [EmulationMediaSlot.Cd0],
         _ => throw new ArgumentOutOfRangeException(nameof(model))};
     internal static IReadOnlyList<EmulationMediaSlot> AvailableSlots(MachineModel model) => DefaultSlots(model);
-
     internal static void Validate(MachineConfiguration configuration)
     {
         ArgumentNullException.ThrowIfNull(configuration);
@@ -45,7 +50,7 @@ internal static partial class ConfigurationFunctions
             if (media.Category != expected)
                 throw new ArgumentException(nameof(configuration.Media));
         }
-    
+
         var roles = new HashSet<FirmwareCategory>();
         foreach (var firmware in configuration.Firmwares)
             if (!FirmwareFunctions.Roles(configuration.Model, configuration.Core).Contains(firmware.Category) || !roles.Add(firmware.Category) || string.IsNullOrWhiteSpace(firmware.Path))

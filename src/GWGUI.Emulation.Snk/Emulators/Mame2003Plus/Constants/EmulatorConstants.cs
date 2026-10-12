@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Snk.Emulators.Mame2003Plus.Constants;
-
 internal static class EmulatorConstants
 {
     internal const string Id = "mame2003_plus";

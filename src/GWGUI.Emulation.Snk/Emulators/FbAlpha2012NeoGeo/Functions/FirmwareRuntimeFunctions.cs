@@ -4,7 +4,6 @@ using System.IO.Compression;
 using GWGUI.Emulation.Snk.Emulators.FbAlpha2012NeoGeo.Constants;
 
 namespace GWGUI.Emulation.Snk.Emulators.FbAlpha2012NeoGeo.Functions;
-
 internal static class FirmwareRuntimeFunctions
 {
     private const string ZoomRom = "000-lo.lo";
@@ -47,9 +46,13 @@ internal static class FirmwareRuntimeFunctions
         ["uni-bios_1_0.rom"] = 131072,
         ["neopen.sp1"] = 131072,
     };
-
     internal static IReadOnlyList<FirmwareCategory> Roles => [FirmwareCategory.SystemBios];
-    internal static ValueTask<EmulationFirmwareCandidate> Inspect(string path, MachineModel model, CancellationToken cancellationToken)
+
+    internal static ValueTask<EmulationFirmwareCandidate> Inspect(
+        string path,
+        MachineModel model,
+        CancellationToken cancellationToken
+    )
     {
         cancellationToken.ThrowIfCancellationRequested();
         var absolute = Path.GetFullPath(path);
@@ -57,14 +60,23 @@ internal static class FirmwareRuntimeFunctions
         try
         {
             using var archive = ZipFile.OpenRead(absolute);
-            if (Valid(archive, model, null)) compatibility = EmulationFirmwareCompatibility.PartiallyCompatible;
+            if (Valid(archive, model, null))
+                compatibility = EmulationFirmwareCompatibility.PartiallyCompatible;
         }
-        catch (InvalidDataException) { }
-        catch (IOException) { }
+        catch (InvalidDataException)
+        {
+        }
+        catch (IOException)
+        {
+        }
+
         return ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible ? null : FirmwareFunctions.Field(FirmwareCategory.SystemBios)));
     }
 
-    internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
+    internal static void Prepare(
+        MachineConfiguration configuration,
+        string systemDirectory
+    )
     {
         var directory = systemDirectory;
         Directory.CreateDirectory(directory);
@@ -73,10 +85,15 @@ internal static class FirmwareRuntimeFunctions
         FirmwareCopy.CopyVerified(configuration, FirmwareCategory.SystemBios, destination);
         using var archive = ZipFile.OpenRead(destination);
         var mode = RuntimeOptionFunctions.Prepare(configuration).GetValueOrDefault(RuntimeOptionConstants.NeoGeoMode);
-        if (!Valid(archive, configuration.Model, mode)) throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
+        if (!Valid(archive, configuration.Model, mode))
+            throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
     }
 
-    private static bool Valid(ZipArchive archive, MachineModel model, string? mode)
+    private static bool Valid(
+        ZipArchive archive,
+        MachineModel model,
+        string? mode
+    )
     {
         bool Has(string name, int length) => archive.GetEntry(name)?.Length == length;
         if (!Has(ZoomRom, RomBankBytes))
@@ -88,6 +105,7 @@ internal static class FirmwareRuntimeFunctions
             RuntimeOptionConstants.Aes => bios.Key is JapanAesRom or AsiaAesRom,
             RuntimeOptionConstants.Mvs => bios.Key is not (JapanAesRom or AsiaAesRom) && !bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal),
             RuntimeOptionConstants.UniverseBios => bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal),
-            _ => model != MachineModel.NeoGeoAes || bios.Key is JapanAesRom or AsiaAesRom || bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal)}));
+            _ => model != MachineModel.NeoGeoAes || bios.Key is JapanAesRom or AsiaAesRom || bios.Key.StartsWith(UniverseBiosPrefix, StringComparison.Ordinal)
+        }));
     }
 }

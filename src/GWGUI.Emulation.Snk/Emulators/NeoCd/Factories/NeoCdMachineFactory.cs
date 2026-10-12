@@ -5,10 +5,10 @@ using NativeMedia = GWGUI.Emulation.Snk.Emulators.NeoCd.Functions.MediaRuntimeFu
 using NativeFirmware = GWGUI.Emulation.Snk.Emulators.NeoCd.Functions.FirmwareRuntimeFunctions;
 
 namespace GWGUI.Emulation.Snk.Emulators.NeoCd.Factories;
-
 internal sealed class NeoCdMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry)
 {
     public override IReadOnlyList<CoreOption> CoreOptions => OptionCatalog.Options;
+
     public override IReadOnlyList<CoreOption> DescribeOptions(MachineConfiguration configuration) => NativeOptions.Describe(configuration);
     public override IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => NativeFirmware.Roles;
     public override bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => NativeFirmware.Required(model, category);

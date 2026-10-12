@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Snk.Common.Dictionaries;
-
 internal static class EmulatorCatalog
 {
     private static readonly IReadOnlyList<IEmulatorAdapter> DiscoveredAdapters = DiscoverAdapters();
@@ -7,8 +6,8 @@ internal static class EmulatorCatalog
     private static readonly IReadOnlyList<EmulatorDefinition> Entries = DiscoveredAdapters.Select(adapter => new EmulatorDefinition(Enum.Parse<Emulator>(adapter.EmulatorKey), adapter.Definition.Id, adapter.Definition.DisplayName, adapter.Definition.DescriptionResourceKey, adapter.Definition.MachineIds.Select(Enum.Parse<MachineModel>).ToHashSet())).OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();
     private static readonly IReadOnlyDictionary<Emulator, EmulatorDefinition> ByEmulator = Entries.ToDictionary(entry => entry.Emulator);
     private static readonly IReadOnlyDictionary<string, EmulatorDefinition> ById = Entries.ToDictionary(entry => entry.Id, StringComparer.Ordinal);
-
     internal static IReadOnlyList<EmulatorDefinition> All => Entries;
+
     private static IReadOnlyList<IEmulatorAdapter> DiscoverAdapters() => typeof(EmulatorCatalog).Assembly.GetTypes().Where(type => !type.IsAbstract && typeof(IEmulatorAdapter).IsAssignableFrom(type)).Select(type => (IEmulatorAdapter)Activator.CreateInstance(type, nonPublic: true)!).OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal).ToArray();
     internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => Entries.Select(entry => CreateAdapter(entry.Emulator)).ToArray();
     internal static IEmulatorAdapter CreateAdapter(Emulator emulator) => AdapterTypes.TryGetValue(emulator, out var type) ? (IEmulatorAdapter)Activator.CreateInstance(type, nonPublic: true)! : throw new ArgumentOutOfRangeException(nameof(emulator));

@@ -1,12 +1,10 @@
 using System.Globalization;
 
 namespace GWGUI.Emulation.Snk.Common.Machines.Common.Functions;
-
 internal static class CoreOptionValidationFunctions
 {
-    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core != Emulator.None && EmulatorCatalog.CreateAdapter(core) is IEmulatorSettingsAdapter adapter ? adapter.CoreOptions : [];
-    internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core != Emulator.None && EmulatorCatalog.CreateAdapter(configuration.Core) is IEmulatorSettingsAdapter adapter ? adapter.DescribeOptions(configuration) : [];
-
+    internal static IReadOnlyList<CoreOption> ForCore(Emulator core) => core != Emulator.None && EmulatorCatalog.CreateAdapter(core)is IEmulatorSettingsAdapter adapter ? adapter.CoreOptions : [];
+    internal static IReadOnlyList<CoreOption> ForConfiguration(MachineConfiguration configuration) => configuration.Core != Emulator.None && EmulatorCatalog.CreateAdapter(configuration.Core)is IEmulatorSettingsAdapter adapter ? adapter.DescribeOptions(configuration) : [];
     internal static void Validate(MachineConfiguration configuration)
     {
         var adapter = configuration.Core == Emulator.None ? null : EmulatorCatalog.CreateAdapter(configuration.Core) as IEmulatorSettingsAdapter;

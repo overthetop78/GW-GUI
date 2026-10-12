@@ -5,10 +5,10 @@ using NativeMedia = GWGUI.Emulation.Snk.Emulators.Mame2003Plus.Functions.MediaRu
 using NativeFirmware = GWGUI.Emulation.Snk.Emulators.Mame2003Plus.Functions.FirmwareRuntimeFunctions;
 
 namespace GWGUI.Emulation.Snk.Emulators.Mame2003Plus.Factories;
-
 internal sealed class Mame2003PlusMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry)
 {
     public override IReadOnlyList<CoreOption> CoreOptions => OptionCatalog.Options;
+
     public override IReadOnlyList<CoreOption> DescribeOptions(MachineConfiguration configuration) => NativeOptions.Describe(configuration);
     public override IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => NativeFirmware.Roles;
     public override bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => category == FirmwareCategory.SystemBios;

@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Snk.Emulators.Race.Constants;
-
 internal static class EmulatorConstants
 {
     internal const string Id = "race";

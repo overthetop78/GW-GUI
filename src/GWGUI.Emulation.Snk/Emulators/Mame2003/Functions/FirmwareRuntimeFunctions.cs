@@ -4,7 +4,6 @@ using GWGUI.Emulation.Snk.Emulators.Mame2003.Constants;
 using FirmwareCopy = GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.FirmwareRuntimeFunctions;
 
 namespace GWGUI.Emulation.Snk.Emulators.Mame2003.Functions;
-
 internal static class FirmwareRuntimeFunctions
 {
     private const int BiosRomBytes = 131072;
@@ -24,9 +23,13 @@ internal static class FirmwareRuntimeFunctions
         ["japan-s2"] = "sp-j2.rom"
     };
     internal static IReadOnlyList<FirmwareCategory> Roles => [FirmwareCategory.SystemBios];
-    private static bool IsCompatible(ZipArchive archive) => BiosFiles.Values.Any(file => archive.GetEntry(file)?.Length == BiosRomBytes) && archive.GetEntry(SoundRom)?.Length == BiosRomBytes && archive.GetEntry(FixedRom)?.Length == BiosRomBytes && archive.GetEntry(ZoomRom)?.Length == ZoomRomBytes;
 
-    internal static ValueTask<EmulationFirmwareCandidate> Inspect(string path, MachineModel model, CancellationToken cancellationToken)
+    private static bool IsCompatible(ZipArchive archive) => BiosFiles.Values.Any(file => archive.GetEntry(file)?.Length == BiosRomBytes) && archive.GetEntry(SoundRom)?.Length == BiosRomBytes && archive.GetEntry(FixedRom)?.Length == BiosRomBytes && archive.GetEntry(ZoomRom)?.Length == ZoomRomBytes;
+    internal static ValueTask<EmulationFirmwareCandidate> Inspect(
+        string path,
+        MachineModel model,
+        CancellationToken cancellationToken
+    )
     {
         cancellationToken.ThrowIfCancellationRequested();
         var absolute = Path.GetFullPath(path);
@@ -34,20 +37,31 @@ internal static class FirmwareRuntimeFunctions
         try
         {
             using var archive = ZipFile.OpenRead(absolute);
-            if (model == MachineModel.NeoGeoMvs && IsCompatible(archive)) compatibility = EmulationFirmwareCompatibility.PartiallyCompatible;
+            if (model == MachineModel.NeoGeoMvs && IsCompatible(archive))
+                compatibility = EmulationFirmwareCompatibility.PartiallyCompatible;
         }
-        catch (InvalidDataException) { }
-        catch (IOException) { }
+        catch (InvalidDataException)
+        {
+        }
+        catch (IOException)
+        {
+        }
+
         return ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible ? null : FirmwareFunctions.Field(FirmwareCategory.SystemBios)));
     }
 
-    internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
+    internal static void Prepare(
+        MachineConfiguration configuration,
+        string systemDirectory
+    )
     {
-        if (configuration.Model != MachineModel.NeoGeoMvs) throw new ArgumentException(nameof(configuration));
+        if (configuration.Model != MachineModel.NeoGeoMvs)
+            throw new ArgumentException(nameof(configuration));
         var destination = Path.Combine(systemDirectory, RuntimeOptionConstants.SystemArchive);
         FirmwareCopy.CopyVerified(configuration, FirmwareCategory.SystemBios, destination);
         using var archive = ZipFile.OpenRead(destination);
         var selected = RuntimeOptionFunctions.Prepare(configuration)[RuntimeOptionConstants.NeogeoBios];
-        if (!IsCompatible(archive) || archive.GetEntry(BiosFiles[selected])?.Length != BiosRomBytes) throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
+        if (!IsCompatible(archive) || archive.GetEntry(BiosFiles[selected])?.Length != BiosRomBytes)
+            throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
     }
 }

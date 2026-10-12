@@ -5,10 +5,10 @@ using NativeMedia = GWGUI.Emulation.Snk.Emulators.Mame2015.Functions.MediaRuntim
 using NativeFirmware = GWGUI.Emulation.Snk.Emulators.Mame2015.Functions.FirmwareRuntimeFunctions;
 
 namespace GWGUI.Emulation.Snk.Emulators.Mame2015.Factories;
-
 internal sealed class Mame2015MachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry)
 {
     public override IReadOnlyList<CoreOption> CoreOptions => OptionCatalog.Options;
+
     public override IReadOnlyList<CoreOption> DescribeOptions(MachineConfiguration configuration) => NativeOptions.Describe(configuration);
     public override IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => NativeFirmware.Roles;
     public override bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => category == FirmwareCategory.SystemBios;

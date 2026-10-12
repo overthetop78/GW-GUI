@@ -5,15 +5,21 @@ using NativeMedia = GWGUI.Emulation.Snk.Emulators.Race.Functions.MediaRuntimeFun
 using NativeFirmware = GWGUI.Emulation.Snk.Emulators.Race.Functions.FirmwareRuntimeFunctions;
 
 namespace GWGUI.Emulation.Snk.Emulators.Race.Factories;
-
 internal sealed class RaceMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry)
 {
     public override IReadOnlyList<CoreOption> CoreOptions => OptionCatalog.Options;
+
     public override IReadOnlyList<CoreOption> DescribeOptions(MachineConfiguration configuration) => NativeOptions.Describe(configuration);
     public override IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => NativeFirmware.Roles;
     public override bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => false;
     public override ValueTask<EmulationFirmwareCandidate> InspectFirmwareAsync(string path, MachineModel model, CancellationToken cancellationToken) => NativeFirmware.Inspect(path, cancellationToken);
-    internal override void PrepareFirmware(MachineConfiguration configuration, string systemDirectory) { }
+    internal override void PrepareFirmware(
+        MachineConfiguration configuration,
+        string systemDirectory
+    )
+    {
+    }
+
     internal override LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions) => NativeMedia.Prepare(configuration, supportedExtensions);
     protected override bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => true;
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices;

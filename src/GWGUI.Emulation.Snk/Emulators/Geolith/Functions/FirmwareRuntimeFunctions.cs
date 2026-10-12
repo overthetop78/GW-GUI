@@ -4,7 +4,6 @@ using GWGUI.Emulation.Snk.Emulators.Geolith.Constants;
 using FirmwareCopy = GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions.FirmwareRuntimeFunctions;
 
 namespace GWGUI.Emulation.Snk.Emulators.Geolith.Functions;
-
 internal static class FirmwareRuntimeFunctions
 {
     private const string AesArchive = "aes.zip";
@@ -37,7 +36,6 @@ internal static class FirmwareRuntimeFunctions
         [RuntimeOptionConstants.Asia] = "neo-epo.bin",
         [RuntimeOptionConstants.Europe] = "neo-epo.bin"
     };
-
     internal static IReadOnlyList<FirmwareCategory> Roles(MachineModel model) => model switch
     {
         MachineModel.NeoGeoCd or MachineModel.NeoGeoMvs => [FirmwareCategory.SystemBios, FirmwareCategory.AuxiliaryBios],
@@ -45,8 +43,11 @@ internal static class FirmwareRuntimeFunctions
         _ => []
     };
     internal static bool Required(MachineModel model, FirmwareCategory role) => role == FirmwareCategory.SystemBios && Roles(model).Contains(role) || model == MachineModel.NeoGeoCd && role == FirmwareCategory.AuxiliaryBios;
-
-    internal static ValueTask<EmulationFirmwareCandidate> Inspect(string path, MachineModel model, CancellationToken cancellationToken)
+    internal static ValueTask<EmulationFirmwareCandidate> Inspect(
+        string path,
+        MachineModel model,
+        CancellationToken cancellationToken
+    )
     {
         cancellationToken.ThrowIfCancellationRequested();
         var absolute = Path.GetFullPath(path);
@@ -83,11 +84,14 @@ internal static class FirmwareRuntimeFunctions
         catch (IOException)
         {
         }
-    
+
         return ValueTask.FromResult(new EmulationFirmwareCandidate(absolute, absolute, Path.GetFileName(absolute), null, compatibility, role is FirmwareCategory selected ? FirmwareFunctions.Field(selected) : null));
     }
 
-    internal static void Prepare(MachineConfiguration configuration, string systemDirectory)
+    internal static void Prepare(
+        MachineConfiguration configuration,
+        string systemDirectory
+    )
     {
         var options = RuntimeOptionFunctions.Prepare(configuration);
         var cd = ConfigurationFunctions.Family(configuration.Model) == MachineFamily.NeoGeoCd;
@@ -116,7 +120,7 @@ internal static class FirmwareRuntimeFunctions
                 Require(archive, SoundRom, RomBankBytes);
             }
         }
-    
+
         if (configuration.Model == MachineModel.NeoGeoCd)
         {
             var auxiliaryPath = Path.Combine(systemDirectory, CdzArchive);
@@ -128,8 +132,13 @@ internal static class FirmwareRuntimeFunctions
             FirmwareCopy.CopyVerified(configuration, FirmwareCategory.AuxiliaryBios, Path.Combine(systemDirectory, TrackballArchive));
     }
 
-    private static void Require(ZipArchive archive, string name, long length)
+    private static void Require(
+        ZipArchive archive,
+        string name,
+        long length
+    )
     {
-        if (archive.GetEntry(name)?.Length != length) throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
+        if (archive.GetEntry(name)?.Length != length)
+            throw new EmulationException(ErrorCategory.Firmware, ErrorCode.FirmwareInvalid, ErrorMessages.FirmwareFileUnreadable);
     }
 }

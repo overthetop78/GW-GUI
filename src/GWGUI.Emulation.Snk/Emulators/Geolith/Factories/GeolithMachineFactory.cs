@@ -5,10 +5,10 @@ using NativeOptions = GWGUI.Emulation.Snk.Emulators.Geolith.Functions.RuntimeOpt
 using NativeFirmware = GWGUI.Emulation.Snk.Emulators.Geolith.Functions.FirmwareRuntimeFunctions;
 
 namespace GWGUI.Emulation.Snk.Emulators.Geolith.Factories;
-
 internal sealed class GeolithMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry)
 {
     public override IReadOnlyList<CoreOption> CoreOptions => OptionCatalog.Options;
+
     public override IReadOnlyList<CoreOption> DescribeOptions(MachineConfiguration configuration) => NativeOptions.Describe(configuration);
     public override int ControllerPortCount(MachineConfiguration configuration) => NativeOptions.ControllerPorts(configuration);
     public override IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => NativeFirmware.Roles(model);

@@ -6,10 +6,10 @@ using NativeMedia = GWGUI.Emulation.Snk.Emulators.FbAlpha.Functions.MediaRuntime
 using NativeFirmware = GWGUI.Emulation.Snk.Emulators.FbAlpha.Functions.FirmwareRuntimeFunctions;
 
 namespace GWGUI.Emulation.Snk.Emulators.FbAlpha.Factories;
-
 internal sealed class FbAlphaMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry)
 {
     public override IReadOnlyList<CoreOption> CoreOptions => OptionCatalog.Options;
+
     public override IReadOnlyList<CoreOption> DescribeOptions(MachineConfiguration configuration) => NativeOptions.Describe(configuration);
     public override IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => NativeFirmware.Roles;
     public override bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => category == FirmwareCategory.SystemBios;
@@ -20,17 +20,27 @@ internal sealed class FbAlphaMachineFactory() : LibretroMachineFactory(EmulatorC
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices(configuration.Model);
     public override IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => NativeMedia.InitialContentPaths(configuration);
     public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);
-    public override bool IsDeferredOption(MachineConfiguration configuration, string key)
+    public override bool IsDeferredOption(
+        MachineConfiguration configuration,
+        string key
+    )
     {
         var path = configuration.InitialContent ?? configuration.Media.FirstOrDefault(media => media.Slot == EmulationMediaSlot.Cartridge0 && media.IsInserted)?.Path;
         var driver = configuration.Model == MachineModel.NeoGeoCdz ? RuntimeOptionConstants.CdDriver : path is null ? null : Path.GetFileNameWithoutExtension(path);
         return !string.IsNullOrEmpty(driver) && key.StartsWith(RuntimeOptionConstants.DipSwitchPrefix + driver + "-", StringComparison.Ordinal);
     }
 
-    internal override bool LoadContent(MachineConfiguration configuration, ExternalCoreExports exports, LoadedContent? content)
+    internal override bool LoadContent(
+        MachineConfiguration configuration,
+        ExternalCoreExports exports,
+        LoadedContent? content
+    )
     {
-        var loaded = configuration.Model == MachineModel.NeoGeoCdz ? content is not null && exports.LoadGameSpecial(RuntimeOptionConstants.CdSubsystem, content.GameInfo, RuntimeOptionConstants.CdContentCount) : exports.LoadGame(content?.GameInfo ?? nint.Zero);
-        if (loaded) ControllerPortFunctions.Configure(exports, configuration);
+        var loaded = configuration.Model == MachineModel.NeoGeoCdz 
+            ? content is not null && exports.LoadGameSpecial(RuntimeOptionConstants.CdSubsystem, content.GameInfo, RuntimeOptionConstants.CdContentCount) 
+            : exports.LoadGame(content?.GameInfo ?? nint.Zero);
+        if (loaded)
+            ControllerPortFunctions.Configure(exports, configuration);
         return loaded;
     }
 

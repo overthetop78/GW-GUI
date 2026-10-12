@@ -3,7 +3,6 @@ using GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
 using GWGUI.Emulation.Snk.Emulators.FbNeo.Constants;
 
 namespace GWGUI.Emulation.Snk.Emulators.FbNeo.Functions;
-
 internal static class MediaRuntimeFunctions
 {
     private const string PocketArchive = "ngp.zip";
@@ -20,43 +19,53 @@ internal static class MediaRuntimeFunctions
     private const int MemoryCardStride = 2;
     private const int MemoryCardDataByteOffset = 1;
     internal sealed record PreparedMemoryCard(string SourcePath, string RuntimePath, bool IsReadOnly);
-
-    internal static PreparedMemoryCard? PrepareMemoryCard(MachineConfiguration configuration, string saveDirectory)
+    internal static PreparedMemoryCard? PrepareMemoryCard(
+        MachineConfiguration configuration,
+        string saveDirectory
+    )
     {
         var card = configuration.Media.SingleOrDefault(media => media.Slot == EmulationMediaSlot.MemoryCard0 && media.IsInserted);
-        if (card is null) return null;
+        if (card is null)
+            return null;
         var source = ContentFunctions.Validate(card.Path, new HashSet<string>(StringComparer.OrdinalIgnoreCase) { MemoryCardExtension.TrimStart(MediaConstants.ExtensionPrefix) });
         var raw = File.ReadAllBytes(source);
-        if (raw.Length != RawMemoryCardBytes || configuration.Family != MachineFamily.NeoGeoCartridge) throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(configuration));
+        if (raw.Length != RawMemoryCardBytes || configuration.Family != MachineFamily.NeoGeoCartridge)
+            throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(configuration));
         var content = InitialContentPaths(configuration).SingleOrDefault() ?? throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentRequired, ErrorMessages.ContentRequired);
         var directory = Path.Combine(saveDirectory, NativeSaveDirectory);
         Directory.CreateDirectory(directory);
         var runtime = Path.Combine(directory, Path.GetFileNameWithoutExtension(content) + NativeMemoryCardExtension);
         var data = new byte[NativeMemoryCardBytes];
-        for (var index = 0; index < raw.Length; index++) data[index * MemoryCardStride + MemoryCardDataByteOffset] = raw[index];
+        for (var index = 0; index < raw.Length; index++)
+            data[index * MemoryCardStride + MemoryCardDataByteOffset] = raw[index];
         using var stream = File.Create(runtime);
         using var writer = new BinaryWriter(stream);
         writer.Write(System.Text.Encoding.ASCII.GetBytes(MemoryCardHeader));
         writer.Write(NativeMemoryCardBytes + MemoryCardHeaderBytes);
-        for (var index = 0; index < VersionFieldCount; index++) writer.Write(MinimumMemoryCardVersion);
-        for (var index = 0; index < ReservedFieldCount; index++) writer.Write(0);
+        for (var index = 0; index < VersionFieldCount; index++)
+            writer.Write(MinimumMemoryCardVersion);
+        for (var index = 0; index < ReservedFieldCount; index++)
+            writer.Write(0);
         writer.Write(data);
         return new(source, runtime, card.IsReadOnly);
     }
 
     internal static void CompleteMemoryCard(PreparedMemoryCard? card)
     {
-        if (card is null || card.IsReadOnly || !File.Exists(card.RuntimePath)) return;
+        if (card is null || card.IsReadOnly || !File.Exists(card.RuntimePath))
+            return;
         var data = File.ReadAllBytes(card.RuntimePath);
-        if (data.Length < MemoryCardHeaderBytes + RawMemoryCardBytes * MemoryCardStride || !data.AsSpan(0, MemoryCardHeader.Length).SequenceEqual(System.Text.Encoding.ASCII.GetBytes(MemoryCardHeader))) throw new InvalidDataException(ErrorMessages.IncompatibleMedia);
+        if (data.Length < MemoryCardHeaderBytes + RawMemoryCardBytes * MemoryCardStride || !data.AsSpan(0, MemoryCardHeader.Length).SequenceEqual(System.Text.Encoding.ASCII.GetBytes(MemoryCardHeader)))
+            throw new InvalidDataException(ErrorMessages.IncompatibleMedia);
         var raw = new byte[RawMemoryCardBytes];
-        for (var index = 0; index < raw.Length; index++) raw[index] = data[MemoryCardHeaderBytes + index * MemoryCardStride + MemoryCardDataByteOffset];
+        for (var index = 0; index < raw.Length; index++)
+            raw[index] = data[MemoryCardHeaderBytes + index * MemoryCardStride + MemoryCardDataByteOffset];
         File.WriteAllBytes(card.SourcePath, raw);
     }
 
-    internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineModel model) => model == MachineModel.NeoGeoCdz
-        ? [new(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc, RuntimeOptionConstants.CdExtensions, RequiresMachineRecreation: true)]
-        : model is MachineModel.NeoGeoAes or MachineModel.NeoGeoMvs
+    internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineModel model) => model == MachineModel.NeoGeoCdz 
+        ? [new(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc, RuntimeOptionConstants.CdExtensions, RequiresMachineRecreation: true)] 
+        : model is MachineModel.NeoGeoAes or MachineModel.NeoGeoMvs 
         ? [
         new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, RuntimeOptionConstants.CartridgeExtensions, RequiresMachineRecreation: true),
         new(EmulationMediaSlot.MemoryCard0, EmulationMediaType.MemoryCard, [MemoryCardExtension], RequiresMachineRecreation: true)
@@ -70,11 +79,15 @@ internal static class MediaRuntimeFunctions
         return path is null ? [] : [ContentFunctions.Validate(path, extensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase))];
     }
 
-    internal static LoadedContent? Prepare(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
+    internal static LoadedContent? Prepare(
+        MachineConfiguration configuration,
+        string sessionDirectory,
+        IReadOnlySet<string> supportedExtensions
+    )
     {
         var paths = InitialContentPaths(configuration);
-        var extensions = configuration.Model == MachineModel.NeoGeoCdz
-            ? RuntimeOptionConstants.CdExtensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase)
+        var extensions = configuration.Model == MachineModel.NeoGeoCdz 
+            ? RuntimeOptionConstants.CdExtensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase) 
             : supportedExtensions;
         if (paths.Count == 0)
             return null;
@@ -93,7 +106,7 @@ internal static class MediaRuntimeFunctions
                 continue;
             dependencies.Add(archive);
         }
-    
+
         if (Path.GetExtension(source).Equals(RuntimeOptionConstants.CueExtension, StringComparison.OrdinalIgnoreCase))
         {
             var sheet = new CueSheetReader().Parse(File.ReadLines(source));
@@ -107,7 +120,7 @@ internal static class MediaRuntimeFunctions
             if (File.Exists(subchannel))
                 dependencies.Add(subchannel);
         }
-    
+
         var sourceRoot = sourceDirectory;
         while (dependencies.Any(path => !path.StartsWith((Path.EndsInDirectorySeparator(sourceRoot) ? sourceRoot : sourceRoot + Path.DirectorySeparatorChar), StringComparison.OrdinalIgnoreCase)))
             sourceRoot = Path.GetDirectoryName(Path.TrimEndingDirectorySeparator(sourceRoot)) ?? throw new ArgumentException(nameof(configuration));

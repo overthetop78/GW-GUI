@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Snk.Common.Machines.Common.Dictionaries;
-
 internal static class ControllerVisualDictionary
 {
     internal static IReadOnlyList<string> VisualIds(PeripheralCategory peripheral) => peripheral switch
@@ -11,7 +10,6 @@ internal static class ControllerVisualDictionary
         PeripheralCategory.NeoGeoPocketColor => [EmulationControllerVisualIds.SnkNeoGeoPocketColor],
         _ => throw new ArgumentOutOfRangeException(nameof(peripheral))};
     internal static string? DefaultVisualId(PeripheralCategory peripheral) => VisualIds(peripheral).FirstOrDefault();
-
     internal static IReadOnlyDictionary<EmulationControllerVisualControl, string> Commands(PeripheralCategory peripheral)
     {
         if (!Enum.IsDefined(peripheral))
@@ -36,7 +34,7 @@ internal static class ControllerVisualDictionary
             result[EmulationControllerVisualControl.Start] = nameof(ControllerCommand.Start);
             result[EmulationControllerVisualControl.Option] = nameof(ControllerCommand.Select);
         }
-    
+
         return result;
     }
 }

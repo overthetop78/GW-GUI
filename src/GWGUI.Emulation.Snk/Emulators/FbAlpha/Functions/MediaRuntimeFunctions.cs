@@ -5,11 +5,10 @@ using GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
 using GWGUI.Emulation.Snk.Emulators.FbAlpha.Constants;
 
 namespace GWGUI.Emulation.Snk.Emulators.FbAlpha.Functions;
-
 internal static class MediaRuntimeFunctions
 {
-    internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineModel model) => model == MachineModel.NeoGeoCdz
-        ? [new(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc, RuntimeOptionConstants.CdExtensions, RequiresMachineRecreation: true)]
+    internal static IReadOnlyList<EmulationMediaDevice> Devices(MachineModel model) => model == MachineModel.NeoGeoCdz 
+        ? [new(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc, RuntimeOptionConstants.CdExtensions, RequiresMachineRecreation: true)] 
         : [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, RuntimeOptionConstants.CartridgeExtensions, RequiresMachineRecreation: true)];
     internal static IReadOnlyList<string> InitialContentPaths(MachineConfiguration configuration)
     {
@@ -19,11 +18,15 @@ internal static class MediaRuntimeFunctions
         return path is null ? [] : [ContentFunctions.Validate(path, extensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase))];
     }
 
-    internal static LoadedContent? Prepare(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
+    internal static LoadedContent? Prepare(
+        MachineConfiguration configuration,
+        string sessionDirectory,
+        IReadOnlySet<string> supportedExtensions
+    )
     {
         var paths = InitialContentPaths(configuration);
-        var extensions = configuration.Model == MachineModel.NeoGeoCdz
-            ? RuntimeOptionConstants.CdExtensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase)
+        var extensions = configuration.Model == MachineModel.NeoGeoCdz 
+            ? RuntimeOptionConstants.CdExtensions.Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix)).ToHashSet(StringComparer.OrdinalIgnoreCase) 
             : supportedExtensions;
         if (paths.Count == 0)
             return null;
@@ -43,7 +46,7 @@ internal static class MediaRuntimeFunctions
                 continue;
             dependencies.Add(archive);
         }
-    
+
         if (Path.GetExtension(source).Equals(RuntimeOptionConstants.CueExtension, StringComparison.OrdinalIgnoreCase))
         {
             var sheet = new CueSheetReader().Parse(File.ReadLines(source));
@@ -65,7 +68,7 @@ internal static class MediaRuntimeFunctions
                 CcdRuntimeFunctions.ValidateSubchannels(subchannelStream);
             dependencies.Add(subchannel);
         }
-    
+
         var sourceRoot = sourceDirectory;
         while (dependencies.Any(path => !path.StartsWith((Path.EndsInDirectorySeparator(sourceRoot) ? sourceRoot : sourceRoot + Path.DirectorySeparatorChar), StringComparison.OrdinalIgnoreCase)))
             sourceRoot = Path.GetDirectoryName(Path.TrimEndingDirectorySeparator(sourceRoot)) ?? throw new ArgumentException(nameof(configuration));
@@ -84,7 +87,7 @@ internal static class MediaRuntimeFunctions
                 using var cue = new FileStream(stagedPath, FileMode.Create, FileAccess.Write, FileShare.None);
                 new CueSheetWriter().WriteAsync(prepared, cue).GetAwaiter().GetResult();
             }
-    
+
             content = ContentFunctions.Create(stagedPath, RuntimeOptionConstants.NeedsFullPath, extensions);
             content.OwnContentDirectory(directory);
             completed = true;

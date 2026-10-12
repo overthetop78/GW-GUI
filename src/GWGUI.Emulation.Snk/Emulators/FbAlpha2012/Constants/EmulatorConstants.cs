@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Snk.Emulators.FbAlpha2012.Constants;
-
 internal static class EmulatorConstants
 {
     internal const string Id = "fbalpha2012";

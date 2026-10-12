@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Snk.Emulators.MednafenNgp.Constants;
-
 internal static class EmulatorConstants
 {
     internal const string Id = "mednafen_ngp";

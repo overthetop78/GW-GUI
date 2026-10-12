@@ -7,11 +7,14 @@ using System.Text.Json;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Snk.Common.Services;
-
 public static class CoreHost
 {
     [SupportedOSPlatform(CoreHostValues.Windows)]
-    internal static void Run(string pipeName, string videoMapName, Func<string, Emulator, IEmulatorCore> createCore)
+    internal static void Run(
+        string pipeName,
+        string videoMapName,
+        Func<string, Emulator, IEmulatorCore> createCore
+    )
     {
         ArgumentNullException.ThrowIfNull(createCore);
         using var video = new SharedVideoWriter(videoMapName);
@@ -86,7 +89,7 @@ public static class CoreHost
                     CoreHostFunctions.WriteResponseHeader(writer, HostResponseStatus.Failure);
                     CoreHostFunctions.WriteError(writer, error);
                 }
-    
+
                 writer.Flush();
                 CoreHostFunctions.WriteBytes(transportWriter, responseStream.GetBuffer().AsSpan(BufferConstants.FirstBufferIndex, checked((int)responseStream.Length)));
                 if (exit)
@@ -99,7 +102,10 @@ public static class CoreHost
         }
     }
 
-    private static bool TryReadCommand(BinaryReader reader, out HostCommand command)
+    private static bool TryReadCommand(
+        BinaryReader reader,
+        out HostCommand command
+    )
     {
         try
         {
@@ -113,12 +119,25 @@ public static class CoreHost
         }
     }
 
-    private static void Initialize(BinaryReader reader, BinaryWriter writer, Func<string, Emulator, IEmulatorCore> createCore, ref IEmulatorCore? core, ref int lastDiagnosticCount)
+    private static void Initialize(
+        BinaryReader reader,
+        BinaryWriter writer,
+        Func<string, Emulator, IEmulatorCore> createCore,
+        ref IEmulatorCore? core,
+        ref int lastDiagnosticCount
+    )
     {
         var previousCore = core;
         core = null;
-        try { previousCore?.Dispose(); }
-        finally { core = null; }
+        try
+        {
+            previousCore?.Dispose();
+        }
+        finally
+        {
+            core = null;
+        }
+
         var corePath = reader.ReadString();
         var emulator = (Emulator)reader.ReadInt32();
         var session = reader.ReadString();
@@ -135,10 +154,17 @@ public static class CoreHost
         {
             if (!initialized)
             {
-                try { core.Dispose(); }
-                finally { core = null; }
+                try
+                {
+                    core.Dispose();
+                }
+                finally
+                {
+                    core = null;
+                }
             }
         }
+
         writer.Write(core.CoreSha256);
         writer.Write(core.FramesPerSecond);
         writer.Write(core.SampleRate);
@@ -155,19 +181,28 @@ public static class CoreHost
     }
 
     [SupportedOSPlatform(CoreHostValues.Windows)]
-    private static void RunFrame(BinaryReader reader, BinaryWriter writer, SharedVideoWriter video, IEmulatorCore core, ref long lastVideoSequence, ref int lastDiagnosticCount)
+    private static void RunFrame(
+        BinaryReader reader,
+        BinaryWriter writer,
+        SharedVideoWriter video,
+        IEmulatorCore core,
+        ref long lastVideoSequence,
+        ref int lastDiagnosticCount
+    )
     {
         core.SetInput(CoreHostFunctions.ReadInput(reader));
         core.OutputAudioStatus = reader.ReadBoolean() ? new AudioOutputBufferStatus(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadBoolean()) : null;
         core.RunFrame();
         var frame = core.LatestVideoFrame;
         CoreHostFunctions.WriteResizableSharedFrame(writer, frame?.Sequence == lastVideoSequence ? null : frame, video);
-        if (frame is not null) lastVideoSequence = frame.Sequence;
+        if (frame is not null)
+            lastVideoSequence = frame.Sequence;
         var bufferedAudioFrames = core.BufferedAudioFrames;
         var audioOverrunCount = core.AudioOverrunCount;
         var audioUnderrunCount = core.AudioUnderrunCount;
         var audio = new List<AudioChunk>();
-        while (core.TryDequeueAudio(out var chunk) && chunk is not null) audio.Add(chunk);
+        while (core.TryDequeueAudio(out var chunk) && chunk is not null)
+            audio.Add(chunk);
         CoreHostFunctions.WriteAudio(writer, audio);
         writer.Write(core.FramesPerSecond);
         writer.Write(core.SampleRate);
@@ -181,10 +216,17 @@ public static class CoreHost
             writer.Write(JsonSerializer.Serialize(core.Diagnostics, CoreHostFunctions.JsonOptions));
             lastDiagnosticCount = core.Diagnostics.Count;
         }
+
         CoreHostFunctions.WriteLedStates(writer, core.LedStates);
     }
 
-    private static void WriteRuntimeStatus(BinaryWriter writer, EmulationVideoStandard? region, int bufferedAudioFrames, long audioOverrunCount, long audioUnderrunCount)
+    private static void WriteRuntimeStatus(
+        BinaryWriter writer,
+        EmulationVideoStandard? region,
+        int bufferedAudioFrames,
+        long audioOverrunCount,
+        long audioUnderrunCount
+    )
     {
         writer.Write(RuntimeFunctions.RegionValue(region));
         writer.Write(bufferedAudioFrames);
@@ -193,6 +235,5 @@ public static class CoreHost
     }
 
     private static MediaConfiguration ReadMedia(BinaryReader reader) => JsonSerializer.Deserialize<MediaConfiguration>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);
-
     private static IEmulatorCore EnsureCore(IEmulatorCore? core) => core ?? throw new InvalidOperationException(CoreHostErrors.NotInitialized);
 }

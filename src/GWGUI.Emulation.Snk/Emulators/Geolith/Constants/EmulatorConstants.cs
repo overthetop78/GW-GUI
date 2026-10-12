@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Snk.Emulators.Geolith.Constants;
-
 internal static class EmulatorConstants
 {
     internal const string Id = "geolith";

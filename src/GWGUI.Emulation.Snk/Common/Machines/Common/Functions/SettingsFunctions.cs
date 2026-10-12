@@ -1,7 +1,6 @@
 using System.Globalization;
 
 namespace GWGUI.Emulation.Snk.Common.Machines.Common.Functions;
-
 internal static class SettingsDescriptionFunctions
 {
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
@@ -27,23 +26,25 @@ internal static class SettingsDescriptionFunctions
             var blockId = resource + ".Options." + group.Key;
             blocks.Add(new(blockId, group.Key, resource, group.Select(option => Native(configuration, option, group.Key, blockId)).ToArray(), IsCompact: group.Key == EmulationMachineTab.Audio));
         }
-    
+
         var firmwareFields = FirmwareFunctions.Roles(configuration.Model, configuration.Core).Select(role => new EmulationSettingsField(
-            FirmwareFunctions.Field(role),
-            EmulationMachineTab.Rom,
-            SettingsConstants.ResourceFirmware,
-            "Emulation.Snk.Firmware." + role,
-            EmulationSettingsEditor.Path,
-            configuration.Firmwares.SingleOrDefault(item => item.Category == role)?.Path
-        )).ToArray();
+                FirmwareFunctions.Field(role),
+                EmulationMachineTab.Rom,
+                SettingsConstants.ResourceFirmware,
+                "Emulation.Snk.Firmware." + role,
+                EmulationSettingsEditor.Path,
+                configuration.Firmwares.SingleOrDefault(item => item.Category == role)?.Path
+            )).ToArray();
         if (firmwareFields.Length > 0)
             blocks.Add(new(SettingsConstants.ResourceFirmware + ".File", EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware, firmwareFields));
         return blocks;
     }
 
     internal static IReadOnlyList<CoreOption> RelevantOptions(MachineConfiguration configuration) => CoreOptionValidationFunctions.ForConfiguration(configuration).Where(option => option.IsVisible && option.Category is not null).ToArray();
-
-    private static void AddHardware(List<EmulationSettingsBlock> blocks, MachineConfiguration configuration)
+    private static void AddHardware(
+        List<EmulationSettingsBlock> blocks,
+        MachineConfiguration configuration
+    )
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
         var cpu = new List<EmulationSettingsField>
@@ -60,12 +61,12 @@ internal static class SettingsDescriptionFunctions
         };
         if (hardware.CpuFrequencyHz is long frequency)
             cpu.Add(Information(
-                SettingsConstants.CpuFrequency,
-                EmulationMachineTab.Cpu,
-                SettingsConstants.ResourceCpuProcessor,
-                SettingsConstants.ResourceCpuSpeedOriginal,
-                $"{(frequency / SettingsConstants.HertzPerMegahertz).ToString("0.######", CultureInfo.CurrentCulture)} {SettingsConstants.MegahertzUnit}"
-            ));
+                    SettingsConstants.CpuFrequency,
+                    EmulationMachineTab.Cpu,
+                    SettingsConstants.ResourceCpuProcessor,
+                    SettingsConstants.ResourceCpuSpeedOriginal,
+                    $"{(frequency / SettingsConstants.HertzPerMegahertz).ToString("0.######", CultureInfo.CurrentCulture)} {SettingsConstants.MegahertzUnit}"
+                ));
         blocks.Add(Block(EmulationMachineTab.Cpu, SettingsConstants.ResourceCpuProcessor, cpu.ToArray())with { IsCompact = true });
         var memory = new List<EmulationSettingsField>();
         if (hardware.MainMemoryBytes is long main)
@@ -76,25 +77,31 @@ internal static class SettingsDescriptionFunctions
             blocks.Add(Block(EmulationMachineTab.Ram, SettingsConstants.ResourceMemoryMain, memory.ToArray()));
         if (hardware.DisplayWidth is int width && hardware.DisplayHeight is int height)
             blocks.Add(Block(
-                EmulationMachineTab.Video,
-                SettingsConstants.ResourceVideoResolution,
-                Information(SettingsConstants.DisplayResolution, EmulationMachineTab.Video, SettingsConstants.ResourceVideoResolution, SettingsConstants.ResourceVideoResolution, $"{width} × {height}")
-            ));
+                    EmulationMachineTab.Video,
+                    SettingsConstants.ResourceVideoResolution,
+                    Information(SettingsConstants.DisplayResolution, EmulationMachineTab.Video, SettingsConstants.ResourceVideoResolution, SettingsConstants.ResourceVideoResolution, $"{width} × {height}")
+                ));
     }
 
-    private static string Memory(long bytes) => bytes >= SettingsConstants.BytesPerKibibyte ? $"{(bytes / SettingsConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture)} {SettingsConstants.KibibyteUnit}" : $"{bytes.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.ByteUnit}";
+    private static string Memory(long bytes) => bytes >= SettingsConstants.BytesPerKibibyte 
+        ? $"{(bytes / SettingsConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture)} {SettingsConstants.KibibyteUnit}" 
+        : $"{bytes.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.ByteUnit}";
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
-
-    private static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
+    private static EmulationSettingsField Native(
+        MachineConfiguration configuration,
+        CoreOption option,
+        EmulationMachineTab tab,
+        string block
+    )
     {
         var resource = option.ResourceKey ?? throw new InvalidOperationException($"Missing common resource for {option.Key}.");
         var choices = option.Values.Select(choice => new EmulationSettingsChoice(
-            choice.Value,
-            choice.FrameSkipRatio is null
-            ? CommonChoiceResource(choice.Value) ?? choice.ResourceKey ?? throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}.")
-            : string.Empty,
-            choice.FrameSkipRatio is FrameSkipRatio ratio ? SettingsChoiceFunctions.Format(ratio) : null
-        )).ToArray();
+                choice.Value,
+                choice.FrameSkipRatio is null
+                    ? CommonChoiceResource(choice.Value) ?? choice.ResourceKey ?? throw new InvalidOperationException($"Missing common choice resource for {option.Key}: {choice.Value}.")
+                    : string.Empty,
+                choice.FrameSkipRatio is FrameSkipRatio ratio ? SettingsChoiceFunctions.Format(ratio) : null
+            )).ToArray();
         var enabled = option.Values.FirstOrDefault(choice => CommonChoiceResource(choice.Value) == SettingsConstants.ResourceEnabled)?.Value;
         var disabled = option.Values.FirstOrDefault(choice => CommonChoiceResource(choice.Value) == SettingsConstants.ResourceDisabled)?.Value;
         var toggle = option.Values.Count == 2 && enabled is not null && disabled is not null;
@@ -123,28 +130,27 @@ internal static class SettingsDescriptionFunctions
         "none" => SettingsConstants.ResourceNone,
         _ => null
     };
-
     private static EmulationSettingsBlock Audio(MachineConfiguration configuration) => Block(
         EmulationMachineTab.Audio,
         SettingsConstants.ResourceAudio,
         new(
-        SettingsConstants.AudioEnabled,
-        EmulationMachineTab.Audio,
-        SettingsConstants.ResourceAudio,
-        SettingsConstants.ResourceAudioEnabled,
-        EmulationSettingsEditor.Toggle,
-        configuration.AudioEnabled ? EmulationSettingConstants.Enabled : EmulationSettingConstants.Disabled
-    ),
+            SettingsConstants.AudioEnabled,
+            EmulationMachineTab.Audio,
+            SettingsConstants.ResourceAudio,
+            SettingsConstants.ResourceAudioEnabled,
+            EmulationSettingsEditor.Toggle,
+            configuration.AudioEnabled ? EmulationSettingConstants.Enabled : EmulationSettingConstants.Disabled
+        ),
         new(
-        SettingsConstants.AudioOutput,
-        EmulationMachineTab.Audio,
-        SettingsConstants.ResourceAudio,
-        SettingsConstants.ResourceAudioOutput,
-        EmulationSettingsEditor.Selection,
-        configuration.Options.GetValueOrDefault(SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput),
-        [new(SettingsConstants.DefaultOutput, SettingsConstants.ResourceDefaultOutput)],
-        ChoiceSource: EmulationSettingsChoiceSource.AudioOutputDevices
-    ),
+            SettingsConstants.AudioOutput,
+            EmulationMachineTab.Audio,
+            SettingsConstants.ResourceAudio,
+            SettingsConstants.ResourceAudioOutput,
+            EmulationSettingsEditor.Selection,
+            configuration.Options.GetValueOrDefault(SettingsConstants.AudioOutput, SettingsConstants.DefaultOutput),
+            [new(SettingsConstants.DefaultOutput, SettingsConstants.ResourceDefaultOutput)],
+            ChoiceSource: EmulationSettingsChoiceSource.AudioOutputDevices
+        ),
         AudioSelection(configuration, SettingsConstants.AudioLatency, SettingsConstants.ResourceAudioLatency, SettingsConstants.DefaultLatency, SettingsConstants.Latencies, SettingsConstants.MillisecondsUnit),
         AudioSelection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume, SettingsConstants.DefaultVolume, SettingsConstants.Volumes, SettingsConstants.PercentUnit)
     );

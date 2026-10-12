@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Snk.Common.Machines.Common.Functions;
-
 internal static class SettingsChoiceFunctions
 {
     internal static string Format(FrameSkipRatio ratio) => ratio switch

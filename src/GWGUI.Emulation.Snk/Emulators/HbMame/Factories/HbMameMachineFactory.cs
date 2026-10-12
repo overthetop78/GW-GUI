@@ -5,11 +5,11 @@ using NativeMedia = GWGUI.Emulation.Snk.Emulators.HbMame.Functions.MediaRuntimeF
 using NativeFirmware = GWGUI.Emulation.Snk.Emulators.HbMame.Functions.FirmwareRuntimeFunctions;
 
 namespace GWGUI.Emulation.Snk.Emulators.HbMame.Factories;
-
 internal sealed class HbMameMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry)
 {
     internal override string ExpectedNativeLibraryName => EmulatorConstants.NativeLibraryName;
     public override IReadOnlyList<CoreOption> CoreOptions => OptionCatalog.Options;
+
     public override IReadOnlyList<CoreOption> DescribeOptions(MachineConfiguration configuration) => NativeOptions.Describe(configuration);
     public override IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => NativeFirmware.Roles;
     public override bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => category == FirmwareCategory.SystemBios;

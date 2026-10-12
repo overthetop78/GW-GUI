@@ -6,11 +6,11 @@ using NativeMedia = GWGUI.Emulation.Snk.Emulators.FbNeo.Functions.MediaRuntimeFu
 using NativeFirmware = GWGUI.Emulation.Snk.Emulators.FbNeo.Functions.FirmwareRuntimeFunctions;
 
 namespace GWGUI.Emulation.Snk.Emulators.FbNeo.Factories;
-
 internal sealed class FbNeoMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry)
 {
     internal override int DirectoryStringBufferCapacity => RuntimeOptionConstants.DirectoryStringBufferCapacity;
     public override IReadOnlyList<CoreOption> CoreOptions => OptionCatalog.Options;
+
     public override IReadOnlyList<CoreOption> DescribeOptions(MachineConfiguration configuration) => NativeOptions.Describe(configuration);
     public override IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => NativeFirmware.Roles;
     public override bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => category == FirmwareCategory.SystemBios;
@@ -23,17 +23,24 @@ internal sealed class FbNeoMachineFactory() : LibretroMachineFactory(EmulatorCon
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices(configuration.Model);
     public override IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => NativeMedia.InitialContentPaths(configuration);
     public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);
-
-    public override bool IsDeferredOption(MachineConfiguration configuration, string key)
+    public override bool IsDeferredOption(
+        MachineConfiguration configuration,
+        string key
+    )
     {
         var slot = configuration.Family == MachineFamily.NeoGeoCd ? EmulationMediaSlot.Cd0 : EmulationMediaSlot.Cartridge0;
         var path = configuration.InitialContent ?? configuration.Media.FirstOrDefault(media => media.Slot == slot && media.IsInserted)?.Path;
         var driver = configuration.Model == MachineModel.NeoGeoCdz ? RuntimeOptionConstants.CdDriver : path is null ? null : Path.GetFileNameWithoutExtension(path);
-        if (driver is not null && configuration.Family == MachineFamily.NeoGeoPocket && !driver.StartsWith(RuntimeOptionConstants.PocketDriverPrefix, StringComparison.Ordinal)) driver = RuntimeOptionConstants.PocketDriverPrefix + driver;
+        if (driver is not null && configuration.Family == MachineFamily.NeoGeoPocket && !driver.StartsWith(RuntimeOptionConstants.PocketDriverPrefix, StringComparison.Ordinal))
+            driver = RuntimeOptionConstants.PocketDriverPrefix + driver;
         return !string.IsNullOrEmpty(driver) && key.StartsWith(RuntimeOptionConstants.DipSwitchPrefix + driver + "-", StringComparison.Ordinal);
     }
 
-    internal override bool LoadContent(MachineConfiguration configuration, ExternalCoreExports exports, LoadedContent? content)
+    internal override bool LoadContent(
+        MachineConfiguration configuration,
+        ExternalCoreExports exports,
+        LoadedContent? content
+    )
     {
         var loaded = configuration.Family switch
         {
@@ -66,7 +73,7 @@ internal sealed class FbNeoMachineFactory() : LibretroMachineFactory(EmulatorCon
             result[ControllerCommand.Start] = InputConstants.JoypadStartId;
             result[ControllerCommand.Select] = InputConstants.JoypadSelectId;
         }
-    
+
         return result;
     }
 }

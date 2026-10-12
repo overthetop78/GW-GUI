@@ -5,10 +5,10 @@ using NativeMedia = GWGUI.Emulation.Snk.Emulators.Mame.Functions.MediaRuntimeFun
 using NativeFirmware = GWGUI.Emulation.Snk.Emulators.Mame.Functions.FirmwareRuntimeFunctions;
 
 namespace GWGUI.Emulation.Snk.Emulators.Mame.Factories;
-
 internal sealed class MameMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry)
 {
     public override IReadOnlyList<CoreOption> CoreOptions => OptionCatalog.Options;
+
     public override IReadOnlyList<CoreOption> DescribeOptions(MachineConfiguration configuration) => NativeOptions.Describe(configuration);
     public override IReadOnlyList<FirmwareCategory> FirmwareRoles(MachineModel model) => NativeFirmware.Roles;
     public override bool IsFirmwareRequired(MachineModel model, FirmwareCategory category) => category == FirmwareCategory.SystemBios;
@@ -21,7 +21,6 @@ internal sealed class MameMachineFactory() : LibretroMachineFactory(EmulatorCons
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => NativeMedia.Devices(configuration.Model);
     public override IReadOnlyList<string> ResolveInitialContentPaths(MachineConfiguration configuration) => NativeMedia.InitialContentPaths(configuration);
     public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => NativeOptions.Prepare(configuration);
-
     internal override IReadOnlyDictionary<ControllerCommand, uint> ControllerButtonIds(MachineConfiguration configuration)
     {
         var result = new Dictionary<ControllerCommand, uint>
@@ -42,7 +41,7 @@ internal sealed class MameMachineFactory() : LibretroMachineFactory(EmulatorCons
             result[ControllerCommand.Start] = InputConstants.JoypadStartId;
             result[ControllerCommand.Select] = InputConstants.JoypadSelectId;
         }
-    
+
         return result;
     }
 }
