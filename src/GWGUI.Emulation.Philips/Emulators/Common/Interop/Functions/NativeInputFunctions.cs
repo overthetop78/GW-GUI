@@ -9,8 +9,7 @@ internal static class NativeInputFunctions
     private static readonly IReadOnlyDictionary<uint, IReadOnlySet<EmulationKey>> P2000KeyboardMap =
         KeyboardFunctions.CreateKeyMap(p2000: true).GroupBy(pair => pair.Value).ToDictionary(group => group.Key, group => (IReadOnlySet<EmulationKey>)group.Select(pair => pair.Key).ToHashSet());
 
-    internal static short State(EmulationInputSnapshot snapshot, uint port, uint device, uint index, uint id,
-        Emulator emulator)
+    internal static short State(EmulationInputSnapshot snapshot, uint port, uint device, uint index, uint id, Emulator emulator)
     {
         if (device == InputConstants.KeyboardDevice)
             return (emulator == Emulator.M2000 ? P2000KeyboardMap : KeyboardMap).TryGetValue(id, out var keys) && keys.Any(snapshot.Keys.Contains) ? InputConstants.ActiveState : InputConstants.InactiveState;

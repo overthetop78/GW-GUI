@@ -15,8 +15,7 @@ internal static class P2000KeyboardDictionary
 
     internal static IReadOnlyList<InputBindingDefinition> Definitions { get; } = Defaults.Select(pair => new InputBindingDefinition(pair.Key.ToString(), InputMappingConstants.KeyboardResourcePrefix + pair.Key, pair.Value.ToString())).ToArray();
 
-    internal static IReadOnlySet<EmulationKey> Apply(IReadOnlySet<EmulationKey> keys,
-        IReadOnlyDictionary<string, string>? configured)
+    internal static IReadOnlySet<EmulationKey> Apply(IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, string>? configured)
     {
         var result = new HashSet<EmulationKey>(keys);
         // Default host keys do not remain immutable aliases after reassignment.

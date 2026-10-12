@@ -16,8 +16,7 @@ internal static class FirmwareFunctions
             _ => [FirmwareCategory.SystemBios]
         };
 
-    internal static IReadOnlyList<FirmwareConfiguration> Apply(MachineConfiguration configuration,
-        IReadOnlyDictionary<string, string?> values)
+    internal static IReadOnlyList<FirmwareConfiguration> Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var result = configuration.Firmwares.ToList();
         foreach (var role in Roles(configuration.Model))
@@ -29,8 +28,7 @@ internal static class FirmwareFunctions
         return result;
     }
 
-    internal static async ValueTask<EmulationFirmwareCandidate> ScanFileAsync(string path, MachineModel model, Emulator core,
-        CancellationToken cancellationToken)
+    internal static async ValueTask<EmulationFirmwareCandidate> ScanFileAsync(string path, MachineModel model, Emulator core, CancellationToken cancellationToken)
     {
         var absolute = Path.GetFullPath(path);
         var compatibility = EmulationFirmwareCompatibility.Incompatible;

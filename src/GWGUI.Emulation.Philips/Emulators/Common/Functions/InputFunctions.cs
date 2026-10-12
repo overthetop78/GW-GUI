@@ -7,12 +7,10 @@ internal static class InputFunctions
     internal static EmulationInputSnapshot Freeze(EmulationInputSnapshot? snapshot)
     {
         snapshot ??= EmulationInputSnapshot.Empty;
-        return new EmulationInputSnapshot(new HashSet<EmulationKey>(snapshot.Keys), snapshot.Pointer with { },
-            snapshot.Controllers.ToArray());
+        return new EmulationInputSnapshot(new HashSet<EmulationKey>(snapshot.Keys), snapshot.Pointer with { }, snapshot.Controllers.ToArray());
     }
 
-    internal static EmulationInputSnapshot Accumulate(EmulationInputSnapshot current,
-        EmulationInputSnapshot update) => new(new HashSet<EmulationKey>(update.Keys), update.Pointer with
+    internal static EmulationInputSnapshot Accumulate(EmulationInputSnapshot current, EmulationInputSnapshot update) => new(new HashSet<EmulationKey>(update.Keys), update.Pointer with
     {
         DeltaX = SaturatingAdd(current.Pointer.DeltaX, update.Pointer.DeltaX),
         DeltaY = SaturatingAdd(current.Pointer.DeltaY, update.Pointer.DeltaY),

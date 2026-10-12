@@ -21,8 +21,6 @@ internal static class EmulationMediaConversionFunctions
             _ => throw new ArgumentOutOfRangeException(nameof(media))
         };
         var existing = mountedMedia.FirstOrDefault(item => item.Slot == media.Slot);
-        return existing is null
-            ? new MediaConfiguration(media.Path, category, media.Slot, IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted)
-            : existing with { Path = media.Path, Category = category, IsReadOnly = media.IsReadOnly, IsInserted = media.IsInserted };
+        return existing is null ? new MediaConfiguration(media.Path, category, media.Slot, IsReadOnly: media.IsReadOnly, IsInserted: media.IsInserted) : existing with { Path = media.Path, Category = category, IsReadOnly = media.IsReadOnly, IsInserted = media.IsInserted };
     }
 }

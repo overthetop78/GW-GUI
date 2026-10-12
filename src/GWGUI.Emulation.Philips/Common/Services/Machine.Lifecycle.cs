@@ -8,7 +8,7 @@ namespace GWGUI.Emulation.Philips.Common.Services;
 internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
-public async ValueTask StartAsync(CancellationToken cancellationToken = default)
+    public async ValueTask StartAsync(CancellationToken cancellationToken = default)
     {
         Task started;
         lock (_gate)
@@ -117,8 +117,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
             if (port < ControllerConstants.FirstPort || port >= ConfigurationFunctions.ControllerPortCount(Configuration.Model) || !InputSettingsFunctions.Peripherals(Configuration.Core).Contains(peripheral))
                 throw new ArgumentException(ErrorMessages.UnsupportedControllerDevice, nameof(peripheral));
             var previous = _inputConfiguration.Controllers?.FirstOrDefault(binding => binding.Port == port);
-            var binding = previous is null ? new ControllerBinding(port, peripheral)
-                : previous with { Peripheral = peripheral };
+            var binding = previous is null ? new ControllerBinding(port, peripheral) : previous with { Peripheral = peripheral };
             if (!_mediaSuspended) _core.SetControllerPortDevice(port, peripheral);
             _inputConfiguration = _inputConfiguration with { Controllers = (_inputConfiguration.Controllers ?? []).Where(item => item.Port != port).Append(binding).ToArray() };
         }, CancellationToken.None)

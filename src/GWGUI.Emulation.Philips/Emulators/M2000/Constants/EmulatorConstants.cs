@@ -10,6 +10,5 @@ internal static class EmulatorConstants
     internal const string DescriptionResourceKey = "Emulation.Emulator.m2000.Description";
     // v0.9.3 declares ten descriptors and omits Libretro's terminating null entry.
     internal const int InputDescriptorCount = 10;
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.M2000, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.P2000T)
-        with { DescriptionResourceKey = DescriptionResourceKey };
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.M2000, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.P2000T) with { DescriptionResourceKey = DescriptionResourceKey };
 }

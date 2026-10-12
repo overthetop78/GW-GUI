@@ -5,8 +5,7 @@ namespace GWGUI.Emulation.Philips.Common.Machines.Common.Functions;
 
 internal static class MachineFunctions
 {
-    internal static string ThreadName(Guid id, Emulator core) =>
-        $"{MachineConstants.ThreadNamePrefix} {core} {id:N}";
+    internal static string ThreadName(Guid id, Emulator core) => $"{MachineConstants.ThreadNamePrefix} {core} {id:N}";
 
     internal static long NextFrameTimestamp(long current, double framesPerSecond) => current + (long)(Stopwatch.Frequency / Math.Clamp(framesPerSecond, MachineConstants.MinimumFramesPerSecond, MachineConstants.MaximumFramesPerSecond));
 
@@ -24,8 +23,7 @@ internal static class MachineFunctions
         {
             var path = Path.GetFullPath(sessionDirectory);
             if (!Directory.Exists(path) || !Guid.TryParse(Path.GetFileName(path), out _)) return;
-            foreach (var file in Directory.EnumerateFiles(path, "*", new EnumerationOptions
-                     { RecurseSubdirectories = true, AttributesToSkip = FileAttributes.ReparsePoint }))
+            foreach (var file in Directory.EnumerateFiles(path, "*", new EnumerationOptions { RecurseSubdirectories = true, AttributesToSkip = FileAttributes.ReparsePoint }))
                 File.SetAttributes(file, File.GetAttributes(file) & ~FileAttributes.ReadOnly);
             Directory.Delete(path, recursive: true);
         }

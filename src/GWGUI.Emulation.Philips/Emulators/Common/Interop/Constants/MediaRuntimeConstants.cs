@@ -24,8 +24,7 @@ internal static class MediaRuntimeConstants
     internal const int VideopacRomBanks = 8;
     internal const int VideopacSmallBankBytes = 2048;
     internal const int VideopacLargeBankBytes = 3072;
-    internal static readonly IReadOnlySet<long> MegaCartSizes =
-        new HashSet<long> { 32768, 65536, 131072, 262144, 524288, 1048576 };
+    internal static readonly IReadOnlySet<long> MegaCartSizes = new HashSet<long> { 32768, 65536, 131072, 262144, 524288, 1048576 };
     internal const string PlaylistExtension = ".m3u";
 
     internal static string FileName(MachineModel model) => model switch

@@ -4,9 +4,7 @@ namespace GWGUI.Emulation.Philips.Emulators.Common.Exceptions;
 
 public sealed class EmulationException : Exception
 {
-    public EmulationException(ErrorCategory category, ErrorCode code, string message,
-        IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null,
-        bool isLocalized = false)
+    public EmulationException(ErrorCategory category, ErrorCode code, string message, IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null, bool isLocalized = false)
         : base(message, innerException)
     {
         Category = category;

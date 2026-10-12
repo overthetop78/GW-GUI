@@ -90,8 +90,7 @@ internal sealed class CoreOptionHost : IDisposable
         var key = display.Key == nint.Zero ? null : Marshal.PtrToStringUTF8(display.Key);
         if (string.IsNullOrWhiteSpace(key)) return false;
         _visibility[key] = display.Visible;
-        Catalog = Catalog.Select(option => option.Key.Equals(key, StringComparison.Ordinal)
-            ? option with { IsVisible = display.Visible } : option).ToArray();
+        Catalog = Catalog.Select(option => option.Key.Equals(key, StringComparison.Ordinal) ? option with { IsVisible = display.Visible } : option).ToArray();
         return true;
     }
 
@@ -122,15 +121,13 @@ internal sealed class CoreOptionHost : IDisposable
             !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal))) return false;
         _values[key] = value;
         ReplaceNativeValue(key, value);
-        Catalog = Catalog.Select(item => item.Key.Equals(key, StringComparison.Ordinal)
-            ? item with { CurrentValue = value } : item).ToArray();
+        Catalog = Catalog.Select(item => item.Key.Equals(key, StringComparison.Ordinal) ? item with { CurrentValue = value } : item).ToArray();
         Interlocked.Exchange(ref _updated, CoreOptionConstants.DefaultValuePointerCount);
         _displayUpdate?.Invoke();
         return true;
     }
 
-    private void ReplaceCatalog(IReadOnlyList<CoreOption> options,
-        IReadOnlyList<CoreOptionCategory> categories)
+    private void ReplaceCatalog(IReadOnlyList<CoreOption> options, IReadOnlyList<CoreOptionCategory> categories)
     {
         Categories = categories;
         Catalog = options.Select(option =>

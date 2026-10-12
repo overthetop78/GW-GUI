@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.Philips.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
 {
-    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration input,
-        MachineModel model, Emulator core)
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model, Emulator core)
     {
         var controllers = new EmulationControllerState[ConfigurationFunctions.ControllerPortCount(model)];
         var pointer = snapshot.Pointer with { Left = false, Right = false, Middle = false,

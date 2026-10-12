@@ -11,8 +11,7 @@ namespace GWGUI.Emulation.Philips.Common.Services;
 public static class CoreHost
 {
     [SupportedOSPlatform(CoreHostValues.Windows)]
-    internal static void Run(string pipeName, string videoMapName,
-        Func<string, Emulator, IEmulatorCore> createCore)
+    internal static void Run(string pipeName, string videoMapName, Func<string, Emulator, IEmulatorCore> createCore)
     {
         ArgumentNullException.ThrowIfNull(createCore);
         using var video = new SharedVideoWriter(videoMapName);
@@ -118,9 +117,7 @@ public static class CoreHost
         }
     }
 
-    private static void Initialize(BinaryReader reader, BinaryWriter writer,
-        Func<string, Emulator, IEmulatorCore> createCore, ref IEmulatorCore? core,
-        ref int lastDiagnosticCount)
+    private static void Initialize(BinaryReader reader, BinaryWriter writer, Func<string, Emulator, IEmulatorCore> createCore, ref IEmulatorCore? core, ref int lastDiagnosticCount)
     {
         var previousCore = core;
         core = null;
@@ -148,8 +145,7 @@ public static class CoreHost
     }
 
     [SupportedOSPlatform(CoreHostValues.Windows)]
-    private static void RunFrame(BinaryReader reader, BinaryWriter writer, SharedVideoWriter video,
-        IEmulatorCore core, ref long lastVideoSequence, ref int lastDiagnosticCount)
+    private static void RunFrame(BinaryReader reader, BinaryWriter writer, SharedVideoWriter video, IEmulatorCore core, ref long lastVideoSequence, ref int lastDiagnosticCount)
     {
         core.SetInput(CoreHostFunctions.ReadInput(reader));
         core.RunFrame();
@@ -176,8 +172,7 @@ public static class CoreHost
         CoreHostFunctions.WriteLedStates(writer, core.LedStates);
     }
 
-    private static void WriteRuntimeStatus(BinaryWriter writer, EmulationVideoStandard? region, int bufferedAudioFrames,
-        long audioOverrunCount, long audioUnderrunCount)
+    private static void WriteRuntimeStatus(BinaryWriter writer, EmulationVideoStandard? region, int bufferedAudioFrames, long audioOverrunCount, long audioUnderrunCount)
     {
         writer.Write(RuntimeFunctions.RegionValue(region));
         writer.Write(bufferedAudioFrames);

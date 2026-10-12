@@ -31,8 +31,7 @@ internal sealed partial class ExternalCore
         var configuration = RequireConfiguration();
         var next = configuration with
         {
-            Media = configuration.Media.Where(item => item.Slot != media.Slot)
-                .Append(media with { IsInserted = true }).ToArray()
+            Media = configuration.Media.Where(item => item.Slot != media.Slot).Append(media with { IsInserted = true }).ToArray()
         };
         ConfigurationFunctions.Validate(next);
         if (Emulator != Emulator.SameCdi || media.Slot != EmulationMediaSlot.Cd0
