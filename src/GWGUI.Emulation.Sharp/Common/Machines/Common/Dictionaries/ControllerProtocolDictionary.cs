@@ -23,7 +23,8 @@ internal static class ControllerProtocolDictionary
             PeripheralCategory.Joystick => ControllerConstants.JoystickButtonCount,
             PeripheralCategory.X1Joystick => ControllerConstants.X1JoystickButtonCount,
             PeripheralCategory.CpsfMd or PeripheralCategory.CpsfSfc or PeripheralCategory.CyberstickDigital or PeripheralCategory.CyberstickAnalog => ControllerConstants.ExtendedJoystickButtonCount,
-            _ => throw new ArgumentOutOfRangeException(nameof(peripheral))};
+            _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
+        };
         var commands = Directions.Concat(Buttons.Take(count));
         if (peripheral == PeripheralCategory.CyberstickAnalog)
             commands = commands.Concat(new[] { ControllerCommand.ThrottleIncrease, ControllerCommand.ThrottleDecrease });

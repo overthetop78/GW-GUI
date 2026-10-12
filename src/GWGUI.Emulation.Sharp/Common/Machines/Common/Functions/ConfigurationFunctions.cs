@@ -5,13 +5,15 @@ internal static partial class ConfigurationFunctions
     {
         MachineModel.X68000 or MachineModel.X68000Xvi or MachineModel.X68030 => MachineFamily.X68000,
         MachineModel.X1 or MachineModel.X1Turbo or MachineModel.X1TurboZ => MachineFamily.X1,
-        _ => throw new ArgumentOutOfRangeException(nameof(model))};
+        _ => throw new ArgumentOutOfRangeException(nameof(model))
+    };
     internal static Emulator DefaultEmulator(MachineModel model) => model switch
     {
         MachineModel.X68000 or MachineModel.X68000Xvi => Emulator.Px68k,
         MachineModel.X68030 => Emulator.None,
         MachineModel.X1 or MachineModel.X1Turbo or MachineModel.X1TurboZ => Emulator.X1,
-        _ => throw new ArgumentOutOfRangeException(nameof(model))};
+        _ => throw new ArgumentOutOfRangeException(nameof(model))
+    };
     internal static bool IsCompatible(MachineModel model, Emulator core) => Enum.IsDefined(model) && Enum.IsDefined(core) && (core == Emulator.None || core == DefaultEmulator(model));
     internal static IReadOnlyList<EmulationMediaSlot> DefaultSlots(MachineModel model) => Family(model) == MachineFamily.X68000 ? [EmulationMediaSlot.Floppy0, EmulationMediaSlot.Floppy1] : [EmulationMediaSlot.Floppy0];
     internal static IReadOnlyList<EmulationMediaSlot> AvailableSlots(MachineModel model) => Family(model) == MachineFamily.X68000 ? [EmulationMediaSlot.Floppy0, EmulationMediaSlot.Floppy1, EmulationMediaSlot.HardDisk0] : [EmulationMediaSlot.Floppy0];

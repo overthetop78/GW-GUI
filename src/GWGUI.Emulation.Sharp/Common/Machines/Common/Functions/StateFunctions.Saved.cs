@@ -7,7 +7,17 @@ using System.Text.Json;
 namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;
 internal static class SavedStateFunctions
 {
-    internal static SavedStateHeader CreateHeader(MachineConfiguration configuration, IEmulatorCore core, ReadOnlySpan<byte> state) => new(StateConstants.CurrentFormatVersion, core.Emulator, core.CoreName, core.CoreVersion, core.CoreSha256, configuration.Model, ConfigurationHash(configuration), ContentHash(configuration), HashBytes(state));
+    internal static SavedStateHeader CreateHeader(MachineConfiguration configuration,
+        IEmulatorCore core,
+        ReadOnlySpan<byte> state) => new(StateConstants.CurrentFormatVersion,
+        core.Emulator,
+        core.CoreName,
+        core.CoreVersion,
+        core.CoreSha256,
+        configuration.Model,
+        ConfigurationHash(configuration),
+        ContentHash(configuration),
+        HashBytes(state));
     internal static void Validate(SavedStateHeader header, MachineConfiguration configuration, IEmulatorCore core)
     {
         if (header.FormatVersion != StateConstants.CurrentFormatVersion)
@@ -52,15 +62,30 @@ internal static class SavedStateFunctions
     internal static string ContentHash(MachineConfiguration configuration) => HashBytes(JsonSerializer.SerializeToUtf8Bytes(ContentEntries(configuration), StateConstants.JsonOptions));
     private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration)
     {
-        var entries = configuration.Firmwares.OrderBy(firmware => firmware.Category).Select(firmware => new StateContentEntry(StateConstants.FirmwareCategory, firmware.Category.ToString(), HashPath(firmware.Path))).Concat(configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).Select(media => new StateContentEntry(StateConstants.MediaCategory, $"{media.Category}:{media.Slot}", HashPath(media.Path)))).ToArray();
+        var entries = configuration.Firmwares.OrderBy(firmware => firmware.Category).Select(firmware => new StateContentEntry(StateConstants.FirmwareCategory,
+            firmware.Category.ToString(),
+            HashPath(firmware.Path))).Concat(configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).Select(media => new StateContentEntry(StateConstants.MediaCategory, $"{media.Category}:{media.Slot}", HashPath(media.Path)))).ToArray();
         return entries;
     }
 
     private static EmulationMediaSlot MediaOrder(MediaConfiguration media) => media.Slot;
-    internal static bool IsHeaderValid(SavedStateHeader header) => header.FormatVersion > StateConstants.EmptyLength && Enum.IsDefined(header.Core) && Enum.IsDefined(header.Model) && !string.IsNullOrWhiteSpace(header.CoreName) && !string.IsNullOrWhiteSpace(header.CoreVersion) && !string.IsNullOrWhiteSpace(header.CoreSha256) && !string.IsNullOrWhiteSpace(header.ConfigurationSha256) && !string.IsNullOrWhiteSpace(header.ContentSha256) && !string.IsNullOrWhiteSpace(header.StateSha256);
+    internal static bool IsHeaderValid(SavedStateHeader header) => header.FormatVersion 
+        > StateConstants.EmptyLength 
+        && Enum.IsDefined(header.Core) 
+        && Enum.IsDefined(header.Model) 
+        && !string.IsNullOrWhiteSpace(header.CoreName) 
+        && !string.IsNullOrWhiteSpace(header.CoreVersion) 
+        && !string.IsNullOrWhiteSpace(header.CoreSha256) 
+        && !string.IsNullOrWhiteSpace(header.ConfigurationSha256) 
+        && !string.IsNullOrWhiteSpace(header.ContentSha256) 
+        && !string.IsNullOrWhiteSpace(header.StateSha256);
     private static StateInputFingerprint InputFingerprint(InputConfiguration input) => new(
         (input.Keyboard ?? new Dictionary<string, string>()).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray(),
-        (input.Controllers ?? []).OrderBy(controller => controller.Port).Select(controller => new StateControllerFingerprint(controller.Port, controller.Peripheral, controller.DeviceId, controller.DeadZonePercent, (controller.Mappings ?? new Dictionary<string, string>()).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray())).ToArray(),
+        (input.Controllers ?? []).OrderBy(controller => controller.Port).Select(controller => new StateControllerFingerprint(controller.Port,
+            controller.Peripheral,
+            controller.DeviceId,
+            controller.DeadZonePercent,
+            (controller.Mappings ?? new Dictionary<string, string>()).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray())).ToArray(),
         (input.Mouse ?? new Dictionary<string, string>()).OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray(),
         input.MouseSpeedPercent
     );

@@ -38,5 +38,6 @@ internal static class RuntimeOptionFunctions
         PeripheralCategory.CpsfSfc => RuntimeOptionConstants.CpsfSfc,
         PeripheralCategory.CyberstickDigital => RuntimeOptionConstants.CyberstickDigital,
         PeripheralCategory.CyberstickAnalog => RuntimeOptionConstants.CyberstickAnalog,
-        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))};
+        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
+    };
 }

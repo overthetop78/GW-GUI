@@ -108,7 +108,10 @@ public sealed class SharpEmulationModule : IEmulationModule, IEmulationEmulatorM
     public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(string machineId, CancellationToken cancellationToken = default) => Adapter(machineId).GetInstallationAsync(_managementContext, cancellationToken);
     public ValueTask<EmulationEmulatorInstallation> GetEmulatorInstallationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.Adapter(Require(configuration)).GetInstallationAsync(_managementContext, cancellationToken);
     public ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindEmulatorReleasesAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => _engine.Adapter(Require(configuration)).FindReleasesAsync(_managementContext, cancellationToken);
-    public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration, EmulationEmulatorRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default) => _engine.Adapter(Require(configuration)).InstallAsync(_managementContext, release, progress, cancellationToken);
+    public ValueTask<string> InstallEmulatorAsync(IEmulationConfiguration configuration,
+        EmulationEmulatorRelease release,
+        IProgress<double>? progress = null,
+        CancellationToken cancellationToken = default) => _engine.Adapter(Require(configuration)).InstallAsync(_managementContext, release, progress, cancellationToken);
     public async ValueTask<IReadOnlyList<EmulationEmulatorInstallation>> GetEmulatorInstallationsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
     {
         var results = new List<EmulationEmulatorInstallation>();
@@ -126,7 +129,8 @@ public sealed class SharpEmulationModule : IEmulationModule, IEmulationEmulatorM
             throw new ArgumentOutOfRangeException(nameof(emulatorId));
         var core = Enum.Parse<Emulator>(adapter.EmulatorKey);
         var allowed = CoreOptionValidationFunctions.ForCore(core).Select(option => option.Key).ToHashSet(StringComparer.Ordinal);
-        var options = current.Options.Where(option => allowed.Contains(option.Key) || option.Key == SettingsConstants.AudioOutput || option.Key == SettingsConstants.AudioLatency || option.Key == VideoAudioSettingsConstants.AudioVolumeOption).ToDictionary(option => option.Key, option => option.Value);
+        var options = current.Options.Where(option => allowed.Contains(option.Key) || option.Key == SettingsConstants.AudioOutput || option.Key == SettingsConstants.AudioLatency || option.Key == VideoAudioSettingsConstants.AudioVolumeOption).ToDictionary(option => option.Key,
+            option => option.Value);
         var controllers = current.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(core).Contains(binding.Peripheral) ? binding : binding with { Peripheral = InputSettingsFunctions.DefaultPeripheral(current.Model) }).ToArray();
         var result = current with
         {
@@ -147,7 +151,11 @@ public sealed class SharpEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         var current = Require(configuration);
         var adapter = _engine.Adapter(current);
-        var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog, new EmulationEmulatorMessageContext(adapter.EmulatorId)));
+        var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Emulator,
+            EmulationMessageCode.EmulatorNotInstalled,
+            EmulationMessageSeverity.Error,
+            EmulationMessageTarget.Dialog,
+            new EmulationEmulatorMessageContext(adapter.EmulatorId)));
         var output = current.Options.GetValueOrDefault(SettingsConstants.AudioOutput);
         if (output == SettingsConstants.DefaultOutput)
             output = null;
@@ -177,7 +185,9 @@ public sealed class SharpEmulationModule : IEmulationModule, IEmulationEmulatorM
         );
     }
 
-    private IEmulatorAdapter Adapter(string machineId) => _engine.Adapters(ModelCatalog.Parse(machineId).ToString()).FirstOrDefault(adapter => adapter.EmulatorKey == ConfigurationFunctions.DefaultEmulator(ModelCatalog.Parse(machineId)).ToString()) ?? throw new ArgumentOutOfRangeException(nameof(machineId));
+    private IEmulatorAdapter Adapter(string machineId) => _engine.Adapters(ModelCatalog.Parse(machineId).ToString()).FirstOrDefault(adapter => adapter.EmulatorKey 
+        == ConfigurationFunctions.DefaultEmulator(ModelCatalog.Parse(machineId)).ToString()) 
+        ?? throw new ArgumentOutOfRangeException(nameof(machineId));
     public string GetFirmwareDirectory(string machineId)
     {
         _ = ModelCatalog.Parse(machineId);

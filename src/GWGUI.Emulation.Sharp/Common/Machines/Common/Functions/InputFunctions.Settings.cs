@@ -6,14 +6,17 @@ internal static class InputSettingsFunctions
         Emulator.Px68k => [PeripheralCategory.None, PeripheralCategory.Joystick, PeripheralCategory.CpsfMd, PeripheralCategory.CpsfSfc, PeripheralCategory.CyberstickDigital, PeripheralCategory.CyberstickAnalog],
         Emulator.X1 => [PeripheralCategory.None, PeripheralCategory.X1Joystick],
         Emulator.None => Enum.GetValues<PeripheralCategory>(),
-        _ => throw new ArgumentOutOfRangeException(nameof(core))};
+        _ => throw new ArgumentOutOfRangeException(nameof(core))
+    };
     internal static PeripheralCategory DefaultPeripheral(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.X68000 ? PeripheralCategory.Joystick : PeripheralCategory.X1Joystick;
     internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) => KeyboardDictionary.Bindings(input, model);
     private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() => [
         new(InputMappingConstants.MouseLeft, InputMappingConstants.MouseLeftResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseLeft),
         new(InputMappingConstants.MouseRight, InputMappingConstants.MouseRightResource, InputMappingConstants.MousePrefix + InputMappingConstants.MouseRight)
     ];
-    private static IReadOnlyDictionary<string, string> MouseBindings(InputConfiguration input) => MouseDefinitions().ToDictionary(definition => definition.Id, definition => input.Mouse?.GetValueOrDefault(definition.Id, definition.DefaultBinding) ?? definition.DefaultBinding, StringComparer.Ordinal);
+    private static IReadOnlyDictionary<string, string> MouseBindings(InputConfiguration input) => MouseDefinitions().ToDictionary(definition => definition.Id,
+        definition => input.Mouse?.GetValueOrDefault(definition.Id, definition.DefaultBinding) ?? definition.DefaultBinding,
+        StringComparer.Ordinal);
     private static IReadOnlyList<PeripheralCategory> Choices(MachineConfiguration configuration, int port)
     {
         var choices = Peripherals(configuration.Core).Where(category => category == PeripheralCategory.None || (ConfigurationFunctions.Family(configuration.Model) == MachineFamily.X1) == (category == PeripheralCategory.X1Joystick));

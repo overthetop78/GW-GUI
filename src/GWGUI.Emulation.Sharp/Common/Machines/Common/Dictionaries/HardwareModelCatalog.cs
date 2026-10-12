@@ -8,5 +8,6 @@ internal static class HardwareModelCatalog
         MachineModel.X68030 => new(HardwareConstants.X68030CpuResource, HardwareConstants.X68030FrequencyHz, HardwareConstants.X68030MemoryBytes, null, null, HardwareConstants.X68000DisplayMemoryBytes),
         MachineModel.X1 => new(HardwareConstants.X1CpuResource, HardwareConstants.X1FrequencyHz, HardwareConstants.X1MemoryBytes, null, null, HardwareConstants.X1BitmapMemoryBytes),
         MachineModel.X1Turbo or MachineModel.X1TurboZ => new(HardwareConstants.X1CpuResource, HardwareConstants.X1FrequencyHz, HardwareConstants.X1MemoryBytes, null, null, HardwareConstants.X1TurboBitmapMemoryBytes),
-        _ => throw new ArgumentOutOfRangeException(nameof(model))};
+        _ => throw new ArgumentOutOfRangeException(nameof(model))
+    };
 }
