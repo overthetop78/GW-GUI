@@ -83,16 +83,6 @@ public sealed class SequentialContentFileSystemReader
         if (entries.Count == 0)
             warnings.Add("No named file is available for exploration.");
 
-        return new FileSystemVolume(
-            volumeName,
-            Id,
-            volume.Length,
-            0,
-            null,
-            null,
-            entries,
-            warnings.Distinct(StringComparer.Ordinal),
-            freeSpaceKnown: false,
-            attributes: content.DecoderId is null ? [document.FormatId] : [document.FormatId, content.DecoderId]);
+        return new FileSystemVolume( volumeName, Id, volume.Length, 0, null, null, entries, warnings.Distinct(StringComparer.Ordinal), freeSpaceKnown: false, attributes: content.DecoderId is null ? [document.FormatId] : [document.FormatId, content.DecoderId]);
     }
 }

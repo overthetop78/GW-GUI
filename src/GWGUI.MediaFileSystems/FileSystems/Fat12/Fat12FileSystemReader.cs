@@ -18,9 +18,7 @@ public sealed class Fat12FileSystemReader : IFileSystemReader
     public bool CanRead(IMediaSectorImage image)
     {
         if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize != FatBootSectorLayout.SectorSize || !image.TryGetBlock(0, out var boot) || boot.Data.Count < FatBootSectorLayout.ExtendedBootMinimumLength) return false;
-        return Fat12LayoutReader.TryRead(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout)
-            && TryReadMediaDescriptor(image, boot, layout, out var mediaDescriptor)
-            && Fat12FatReader.HasReadableCopy(image, layout, mediaDescriptor);
+        return Fat12LayoutReader.TryRead(boot.Data.ToArray(), image.BlockCount, image.FormatId, out var layout) && TryReadMediaDescriptor(image, boot, layout, out var mediaDescriptor) && Fat12FatReader.HasReadableCopy(image, layout, mediaDescriptor);
     }
 
     /// <summary>Lit le volume, son espace libre et son arborescence en conservant les secteurs absents.</summary>

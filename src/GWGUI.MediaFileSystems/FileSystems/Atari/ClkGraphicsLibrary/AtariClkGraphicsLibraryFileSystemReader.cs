@@ -77,17 +77,7 @@ public sealed class AtariClkGraphicsLibraryFileSystemReader : IFileSystemReader
         }
 
         var freeSectors = Math.Max(0, image.BlockCount - occupiedSectors.Count);
-        return new FileSystemVolume(
-            FileSystemDisplayNames.AtariClkGraphicsLibrary,
-            FileSystemIds.AtariClkGraphicsLibrary,
-            image.Capacity,
-            (long)freeSectors * image.BlockSize,
-            null,
-            null,
-            entries,
-            [],
-            attributes: ["graphics-library"],
-            bootable: false);
+        return new FileSystemVolume( FileSystemDisplayNames.AtariClkGraphicsLibrary, FileSystemIds.AtariClkGraphicsLibrary, image.Capacity, (long)freeSectors * image.BlockSize, null, null, entries, [], attributes: ["graphics-library"], bootable: false);
     }
 
     private static IEnumerable<DirectoryRecord> EnumerateDirectoryRecords(IMediaSectorImage image)
