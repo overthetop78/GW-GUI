@@ -2,9 +2,7 @@ namespace GWGUI.Emulation.Philips.Emulators.Common.Exceptions;
 
 internal static class ErrorMessages
 {
-    private static readonly EmulationModuleLocalization Localization = new(
-        typeof(ErrorMessages).Assembly,
-        "GWGUI.Emulation.Philips.Resources.Emulation");
+    private static readonly EmulationModuleLocalization Localization = new(typeof(ErrorMessages).Assembly, "GWGUI.Emulation.Philips.Resources.Emulation");
 
     internal static string UnknownFirmware => FirmwareInvalid();
     internal static string RequiredFirmwareMissing => FirmwareMissing();
@@ -48,12 +46,9 @@ internal static class ErrorMessages
     internal static string StateUnavailable => StateInvalidText();
     internal static string StateSaveFailed => StateInvalidText();
     internal static string StateLoadFailed => StateInvalidText();
-    internal static string StateIncompatible =>
-        Text("Emulation.Philips.Error.StateIncompatible");
-    internal static string MachineInvalidState =>
-        Text("Emulation.Philips.Error.Unexpected");
-    internal static string MachineStopped =>
-        Text("Emulation.Philips.Error.Unexpected");
+    internal static string StateIncompatible => Text("Emulation.Philips.Error.StateIncompatible");
+    internal static string MachineInvalidState => Text("Emulation.Philips.Error.Unexpected");
+    internal static string MachineStopped => Text("Emulation.Philips.Error.Unexpected");
 
     private static string FirmwareMissing() => Text("Emulation.Philips.Error.FirmwareMissing");
     private static string FirmwareInvalid() => Text("Emulation.Philips.Error.FirmwareInvalid");
@@ -66,9 +61,6 @@ internal static class ErrorMessages
 
     private static string Text(string resourceKey)
     {
-        return Localization.TryGetString(resourceKey, System.Globalization.CultureInfo.CurrentUICulture,
-            out var value)
-            ? value
-            : resourceKey;
+        return Localization.TryGetString(resourceKey, System.Globalization.CultureInfo.CurrentUICulture, out var value) ? value : resourceKey;
     }
 }

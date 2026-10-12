@@ -36,9 +36,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     {
         if (!Enum.IsDefined(emulator)) throw new ArgumentOutOfRangeException(nameof(emulator));
         _emulator = emulator;
-        _inputDescriptorLimit = emulator == Emulator.M2000
-            ? GWGUI.Emulation.Philips.Emulators.M2000.Constants.EmulatorConstants.InputDescriptorCount
-            : EnvironmentConstants.MaximumInputDescriptorCount;
+        _inputDescriptorLimit = emulator == Emulator.M2000 ? GWGUI.Emulation.Philips.Emulators.M2000.Constants.EmulatorConstants.InputDescriptorCount : EnvironmentConstants.MaximumInputDescriptorCount;
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
@@ -144,7 +142,6 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal void ValidateConfiguredOptions() => _optionHost.ValidateConfiguredValues();
     internal void BeginFrame()
     {
-        _keyboard.Publish(_input.Polled.Keys, KeyboardCallbackPointer == nint.Zero ? null
-            : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer));
+        _keyboard.Publish(_input.Polled.Keys, KeyboardCallbackPointer == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer));
     }
 }

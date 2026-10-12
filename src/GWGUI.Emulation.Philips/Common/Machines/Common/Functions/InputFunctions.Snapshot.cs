@@ -12,8 +12,7 @@ internal static class InputSnapshotFunctions
             ExtendedButton1 = false, ExtendedButton2 = false };
         for (var port = ControllerConstants.FirstPort; port < controllers.Length; port++)
         {
-            var binding = input.Controllers?.FirstOrDefault(item => item.Port == port)
-                ?? new ControllerBinding(port, InputSettingsFunctions.DefaultPeripheral(model));
+            var binding = input.Controllers?.FirstOrDefault(item => item.Port == port) ?? new ControllerBinding(port, InputSettingsFunctions.DefaultPeripheral(model));
             var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId, snapshot.Controllers, port);
             uint buttons = 0;
             float horizontal = 0, vertical = 0;
@@ -37,8 +36,7 @@ internal static class InputSnapshotFunctions
             if (binding.Peripheral == PeripheralCategory.Mouse && port == ControllerConstants.FirstPort)
                 pointer = pointer with { Left = (buttons & 1) != 0, Right = (buttons & 2) != 0, Middle = (buttons & 4) != 0 };
         }
-        var keys = ConfigurationFunctions.Family(model) == MachineFamily.P2000
-            ? P2000KeyboardDictionary.Apply(snapshot.Keys, input.Keyboard) : new HashSet<EmulationKey>(snapshot.Keys);
+        var keys = ConfigurationFunctions.Family(model) == MachineFamily.P2000 ? P2000KeyboardDictionary.Apply(snapshot.Keys, input.Keyboard) : new HashSet<EmulationKey>(snapshot.Keys);
         return snapshot with { Keys = keys, Pointer = pointer, Controllers = controllers };
     }
     private static short Axis(float value) => (short)(Math.Clamp(value, -1f, 1f) * short.MaxValue);
@@ -53,8 +51,7 @@ internal static class InputSnapshotFunctions
     private static bool IsPressed(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
         if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
-            return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key)
-                && snapshot.Keys.Contains(key);
+            return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key);
         if (mapping.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
             return mapping[InputMappingConstants.MousePrefix.Length..] switch
             {
@@ -64,7 +61,6 @@ internal static class InputSnapshotFunctions
                 "WheelLeft" => snapshot.Pointer.HorizontalWheel < 0, "WheelRight" => snapshot.Pointer.HorizontalWheel > 0,
                 _ => false
             };
-        return mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)
-            && EmulationInputMappingFunctions.IsControllerSourcePressed(mapping, controller);
+        return mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase) && EmulationInputMappingFunctions.IsControllerSourcePressed(mapping, controller);
     }
 }

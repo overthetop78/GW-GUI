@@ -27,8 +27,7 @@ private Process StartHostProcess(string pipeName, string videoMapName)
         startInfo.ArgumentList.Add(_hostCommand);
         startInfo.ArgumentList.Add(pipeName);
         startInfo.ArgumentList.Add(videoMapName);
-        var process = Process.Start(startInfo)
-            ?? throw new InvalidOperationException(CoreHostErrors.ProcessStartFailed);
+        var process = Process.Start(startInfo) ?? throw new InvalidOperationException(CoreHostErrors.ProcessStartFailed);
         try
         {
             EmulationChildProcessLifetime.Attach(process);
@@ -53,22 +52,17 @@ private Process StartHostProcess(string pipeName, string videoMapName)
         SampleRate = reader.ReadInt32();
         SupportsSaveStates = reader.ReadBoolean();
         ReadRuntimeStatus(reader);
-        Options = JsonSerializer.Deserialize<IReadOnlyList<CoreOption>>(reader.ReadString(),
-            CoreHostFunctions.JsonOptions) ?? [];
-        Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(),
-            CoreHostFunctions.JsonOptions) ?? [];
+        Options = JsonSerializer.Deserialize<IReadOnlyList<CoreOption>>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? [];
+        Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? [];
         CoreName = reader.ReadString();
         CoreVersion = reader.ReadString();
-        SupportedContentExtensions = reader.ReadString()
-            .Split(CoreHostConstants.ExtensionListSeparator, StringSplitOptions.RemoveEmptyEntries)
-            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+        SupportedContentExtensions = reader.ReadString().Split(CoreHostConstants.ExtensionListSeparator, StringSplitOptions.RemoveEmptyEntries).ToHashSet(StringComparer.OrdinalIgnoreCase);
         LedStates = CoreHostFunctions.ReadLedStates(reader);
     }
 
     private void ReadFrame(BinaryReader reader)
     {
-        LatestVideoFrame = CoreHostFunctions.ReadResizableSharedFrame(reader,
-            ref _videoMemory, ref _videoMap, ref _activeVideoMapName) ?? LatestVideoFrame;
+        LatestVideoFrame = CoreHostFunctions.ReadResizableSharedFrame(reader, ref _videoMemory, ref _videoMap, ref _activeVideoMapName) ?? LatestVideoFrame;
         foreach (var chunk in CoreHostFunctions.ReadAudio(reader))
         {
             LatestAudioChunk = chunk;
@@ -79,8 +73,7 @@ private Process StartHostProcess(string pipeName, string videoMapName)
         ReadRuntimeStatus(reader);
         SupportsSaveStates = reader.ReadBoolean();
         if (reader.ReadBoolean())
-            Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(),
-                CoreHostFunctions.JsonOptions) ?? [];
+            Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? [];
         LedStates = CoreHostFunctions.ReadLedStates(reader);
     }
 

@@ -6,8 +6,6 @@ internal static class M2000OptionCatalog
 {
     internal static IReadOnlyList<CoreOption> All { get; } =
     [
-        new(OptionConstants.KeyboardMapping, "Keyboard mapping", null, null,
-            OptionConstants.Symbolic, OptionConstants.Symbolic,
-            [new(OptionConstants.Symbolic, "symbolic"), new(OptionConstants.Positional, "positional")])
+        new(OptionConstants.KeyboardMapping, "Keyboard mapping", null, null, OptionConstants.Symbolic, OptionConstants.Symbolic, [new(OptionConstants.Symbolic, "symbolic"), new(OptionConstants.Positional, "positional")])
     ];
 }

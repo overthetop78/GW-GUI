@@ -6,6 +6,5 @@ internal sealed class M2000MachineFactory() : LibretroMachineFactory(EmulatorCon
 {
     protected override bool RequiresMediaRestart(EmulationMediaSlot slot, string? path) => true;
 
-    public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) =>
-        GWGUI.Emulation.Philips.Emulators.M2000.Functions.M2000RuntimeFunctions.Options(configuration);
+    public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => GWGUI.Emulation.Philips.Emulators.M2000.Functions.M2000RuntimeFunctions.Options(configuration);
 }

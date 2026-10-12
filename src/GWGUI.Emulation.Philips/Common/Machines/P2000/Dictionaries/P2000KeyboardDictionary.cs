@@ -13,9 +13,7 @@ internal static class P2000KeyboardDictionary
             [EmulationKey.PhilipsP2000ClearLine] = EmulationKey.F5
         };
 
-    internal static IReadOnlyList<InputBindingDefinition> Definitions { get; } = Defaults.Select(pair =>
-        new InputBindingDefinition(pair.Key.ToString(), InputMappingConstants.KeyboardResourcePrefix + pair.Key,
-            pair.Value.ToString())).ToArray();
+    internal static IReadOnlyList<InputBindingDefinition> Definitions { get; } = Defaults.Select(pair => new InputBindingDefinition(pair.Key.ToString(), InputMappingConstants.KeyboardResourcePrefix + pair.Key, pair.Value.ToString())).ToArray();
 
     internal static IReadOnlySet<EmulationKey> Apply(IReadOnlySet<EmulationKey> keys,
         IReadOnlyDictionary<string, string>? configured)
@@ -43,7 +41,6 @@ internal static class P2000KeyboardDictionary
     private static bool TrySource(string source, out EmulationKey key)
     {
         if (source.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase)) source = source[InputMappingConstants.KeyboardPrefix.Length..];
-        return Enum.TryParse(source, out key) && Enum.IsDefined(key) && key != EmulationKey.Unknown
-            && !Defaults.ContainsKey(key);
+        return Enum.TryParse(source, out key) && Enum.IsDefined(key) && key != EmulationKey.Unknown && !Defaults.ContainsKey(key);
     }
 }

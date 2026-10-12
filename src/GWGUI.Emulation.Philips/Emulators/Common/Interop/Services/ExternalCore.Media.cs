@@ -22,10 +22,8 @@ internal sealed partial class ExternalCore
     private static bool IsValidVideopacCartSize(long size)
     {
         if (MediaRuntimeConstants.MegaCartSizes.Contains(size)) return true;
-        var unit = size % MediaRuntimeConstants.VideopacLargeBankBytes == 0
-            ? MediaRuntimeConstants.VideopacLargeBankBytes : MediaRuntimeConstants.VideopacSmallBankBytes;
-        return size >= unit && size % unit == 0
-            && size / unit <= MediaRuntimeConstants.VideopacRomBanks;
+        var unit = size % MediaRuntimeConstants.VideopacLargeBankBytes == 0 ? MediaRuntimeConstants.VideopacLargeBankBytes : MediaRuntimeConstants.VideopacSmallBankBytes;
+        return size >= unit && size % unit == 0 && size / unit <= MediaRuntimeConstants.VideopacRomBanks;
     }
 
     public void InsertMedia(MediaConfiguration media)
@@ -38,8 +36,7 @@ internal sealed partial class ExternalCore
         };
         ConfigurationFunctions.Validate(next);
         if (Emulator != Emulator.SameCdi || media.Slot != EmulationMediaSlot.Cd0
-            || string.Equals(Path.GetExtension(media.Path), MediaRuntimeConstants.PlaylistExtension,
-                StringComparison.OrdinalIgnoreCase))
+            || string.Equals(Path.GetExtension(media.Path), MediaRuntimeConstants.PlaylistExtension, StringComparison.OrdinalIgnoreCase))
             throw new NotSupportedException(ErrorMessages.DynamicMediaUnsupported);
         var path = ContentFunctions.Validate(media.Path, _info.Extensions);
         RequireCallbacks().DiskControl.Insert(path);
@@ -67,8 +64,6 @@ internal sealed partial class ExternalCore
         // Loaded media is read-only. Native cassette/NVRAM writes remain in the persistent save directory.
     }
     public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) => false;
-    private MachineConfiguration RequireConfiguration() => _configuration
-        ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
-    private static EmulationException InvalidContent() => new(ErrorCategory.Content,
-        ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
+    private MachineConfiguration RequireConfiguration() => _configuration ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
+    private static EmulationException InvalidContent() => new(ErrorCategory.Content, ErrorCode.ContentUnsupported, ErrorMessages.ContentLoadFailed);
 }

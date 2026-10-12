@@ -6,6 +6,5 @@ internal sealed class O2emMachineFactory() : LibretroMachineFactory(EmulatorCons
 {
     protected override bool RequiresMediaRestart(EmulationMediaSlot slot, string? path) => true;
 
-    public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) =>
-        GWGUI.Emulation.Philips.Emulators.O2em.Functions.O2emRuntimeFunctions.Options(configuration);
+    public override IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => GWGUI.Emulation.Philips.Emulators.O2em.Functions.O2emRuntimeFunctions.Options(configuration);
 }

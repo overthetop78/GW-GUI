@@ -16,8 +16,7 @@ public static class CoreHost
     {
         ArgumentNullException.ThrowIfNull(createCore);
         using var video = new SharedVideoWriter(videoMapName);
-        using var pipe = new NamedPipeClientStream(CoreHostConstants.LocalPipeServerName,
-            pipeName, PipeDirection.InOut, PipeOptions.None);
+        using var pipe = new NamedPipeClientStream(CoreHostConstants.LocalPipeServerName, pipeName, PipeDirection.InOut, PipeOptions.None);
         pipe.Connect(CoreHostConstants.ConnectionTimeoutMilliseconds);
         using var reader = new BinaryReader(pipe, Encoding.UTF8, leaveOpen: true);
         using var transportWriter = new BinaryWriter(pipe, Encoding.UTF8, leaveOpen: true);
@@ -41,8 +40,7 @@ public static class CoreHost
                             lastVideoSequence = CoreHostConstants.InitialVideoSequence;
                             break;
                         case HostCommand.RunFrame:
-                            RunFrame(reader, writer, video, EnsureCore(core), ref lastVideoSequence,
-                                ref lastDiagnosticCount);
+                            RunFrame(reader, writer, video, EnsureCore(core), ref lastVideoSequence, ref lastDiagnosticCount);
                             break;
                         case HostCommand.HardReset:
                             EnsureCore(core).HardReset();
@@ -75,20 +73,17 @@ public static class CoreHost
                             CoreHostFunctions.WriteDiskStatus(writer, EnsureCore(core).GetDiskStatus());
                             break;
                         case HostCommand.HasUnsavedMediaChanges:
-                            writer.Write(EnsureCore(core).HasUnsavedMediaChanges(
-                                EmulationMediaSlot.FromProtocolValue(reader.ReadInt32())));
+                            writer.Write(EnsureCore(core).HasUnsavedMediaChanges(EmulationMediaSlot.FromProtocolValue(reader.ReadInt32())));
                             break;
                         case HostCommand.SetControllerPortDevice:
-                            EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(),
-                                (PeripheralCategory)reader.ReadInt32());
+                            EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(), (PeripheralCategory)reader.ReadInt32());
                             break;
                         case HostCommand.Dispose:
                             core?.Dispose();
                             core = null;
                             break;
                         default:
-                            throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture,
-                                CoreHostErrors.UnknownCommandFormat, (byte)command));
+                            throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, CoreHostErrors.UnknownCommandFormat, (byte)command));
                     }
                 }
                 catch (Exception error)
@@ -99,9 +94,7 @@ public static class CoreHost
                     CoreHostFunctions.WriteError(writer, error);
                 }
                 writer.Flush();
-                CoreHostFunctions.WriteBytes(transportWriter,
-                    responseStream.GetBuffer().AsSpan(BufferConstants.FirstBufferIndex,
-                        checked((int)responseStream.Length)));
+                CoreHostFunctions.WriteBytes(transportWriter, responseStream.GetBuffer().AsSpan(BufferConstants.FirstBufferIndex, checked((int)responseStream.Length)));
                 if (exit) break;
             }
         }
@@ -137,23 +130,20 @@ public static class CoreHost
         var emulator = (Emulator)reader.ReadInt32();
         var session = reader.ReadString();
         var saves = CoreHostFunctions.ReadString(reader);
-        var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(),
-            CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);
+        var configuration = JsonSerializer.Deserialize<MachineConfiguration>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);
         core = createCore(corePath, emulator);
         core.Initialize(configuration, session, saves);
         writer.Write(core.CoreSha256);
         writer.Write(core.FramesPerSecond);
         writer.Write(core.SampleRate);
         writer.Write(core.SupportsSaveStates);
-        WriteRuntimeStatus(writer, core.Region, core.BufferedAudioFrames, core.AudioOverrunCount,
-            core.AudioUnderrunCount);
+        WriteRuntimeStatus(writer, core.Region, core.BufferedAudioFrames, core.AudioOverrunCount, core.AudioUnderrunCount);
         writer.Write(JsonSerializer.Serialize(core.Options, CoreHostFunctions.JsonOptions));
         writer.Write(JsonSerializer.Serialize(core.Diagnostics, CoreHostFunctions.JsonOptions));
         lastDiagnosticCount = core.Diagnostics.Count;
         writer.Write(core.CoreName);
         writer.Write(core.CoreVersion);
-        writer.Write(string.Join(CoreHostConstants.ExtensionListSeparator,
-            core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
+        writer.Write(string.Join(CoreHostConstants.ExtensionListSeparator, core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
         CoreHostFunctions.WriteLedStates(writer, core.LedStates);
     }
 
@@ -164,8 +154,7 @@ public static class CoreHost
         core.SetInput(CoreHostFunctions.ReadInput(reader));
         core.RunFrame();
         var frame = core.LatestVideoFrame;
-        CoreHostFunctions.WriteResizableSharedFrame(writer,
-            frame?.Sequence == lastVideoSequence ? null : frame, video);
+        CoreHostFunctions.WriteResizableSharedFrame(writer, frame?.Sequence == lastVideoSequence ? null : frame, video);
         if (frame is not null) lastVideoSequence = frame.Sequence;
         var bufferedAudioFrames = core.BufferedAudioFrames;
         var audioOverrunCount = core.AudioOverrunCount;
@@ -196,10 +185,7 @@ public static class CoreHost
         writer.Write(audioUnderrunCount);
     }
 
-    private static MediaConfiguration ReadMedia(BinaryReader reader) =>
-        JsonSerializer.Deserialize<MediaConfiguration>(reader.ReadString(), CoreHostFunctions.JsonOptions)
-        ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);
+    private static MediaConfiguration ReadMedia(BinaryReader reader) => JsonSerializer.Deserialize<MediaConfiguration>(reader.ReadString(), CoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(CoreHostErrors.InvalidConfiguration);
 
-    private static IEmulatorCore EnsureCore(IEmulatorCore? core) => core ??
-        throw new InvalidOperationException(CoreHostErrors.NotInitialized);
+    private static IEmulatorCore EnsureCore(IEmulatorCore? core) => core ?? throw new InvalidOperationException(CoreHostErrors.NotInitialized);
 }

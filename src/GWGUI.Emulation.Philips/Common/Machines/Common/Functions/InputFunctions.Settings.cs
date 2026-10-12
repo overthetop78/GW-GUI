@@ -11,21 +11,15 @@ internal static class InputSettingsFunctions
         Emulator.M2000 => [],
         _ => throw new ArgumentOutOfRangeException(nameof(core))
     };
-    internal static PeripheralCategory DefaultPeripheral(MachineModel model) =>
-        ConfigurationFunctions.Family(model) == MachineFamily.Cdi ? PeripheralCategory.CdiGamepad : PeripheralCategory.Joystick;
+    internal static PeripheralCategory DefaultPeripheral(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.Cdi ? PeripheralCategory.CdiGamepad : PeripheralCategory.Joystick;
     internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) =>
         ConfigurationFunctions.Family(model) == MachineFamily.P2000
-            ? P2000KeyboardDictionary.Definitions.ToDictionary(definition => definition.Id,
-                definition => input.Keyboard?.GetValueOrDefault(definition.Id, definition.DefaultBinding) ?? definition.DefaultBinding,
-                StringComparer.Ordinal)
+            ? P2000KeyboardDictionary.Definitions.ToDictionary(definition => definition.Id, definition => input.Keyboard?.GetValueOrDefault(definition.Id, definition.DefaultBinding) ?? definition.DefaultBinding, StringComparer.Ordinal)
             : new Dictionary<string, string>();
 
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
-        var keyboard = configuration.Family == MachineFamily.P2000
-            ? new EmulationInputBindingSet(P2000KeyboardDictionary.Definitions,
-                configuration.Input.Keyboard ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard)
-            : null;
+        var keyboard = configuration.Family == MachineFamily.P2000 ? new EmulationInputBindingSet(P2000KeyboardDictionary.Definitions, configuration.Input.Keyboard ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard) : null;
         var ports = Enumerable.Range(ControllerConstants.FirstPort, ConfigurationFunctions.ControllerPortCount(configuration.Model))
             .Select(port =>
             {
@@ -55,8 +49,7 @@ internal static class InputSettingsFunctions
         {
             if (!Enum.TryParse<PeripheralCategory>(port.SelectedControllerId, out var peripheral) || !Peripherals(configuration.Core).Contains(peripheral))
                 throw new ArgumentException(nameof(settings));
-            return new ControllerBinding(port.Number - 1, peripheral, port.PhysicalDeviceId,
-                new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId);
+            return new ControllerBinding(port.Number - 1, peripheral, port.PhysicalDeviceId, new Dictionary<string, string>(port.Bindings.Values, StringComparer.Ordinal), port.DeadZonePercent, port.VisualId);
         }).ToArray();
         var result = configuration with { Input = new(settings.Keyboard?.Values, controllers) };
         ConfigurationFunctions.Validate(result);

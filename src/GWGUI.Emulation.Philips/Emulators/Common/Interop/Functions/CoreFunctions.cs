@@ -19,13 +19,9 @@ internal static class CoreFunctions
                     [ErrorContextConstants.Expected] = expectedName,
                     [ErrorContextConstants.Actual] = libraryName
                 });
-        return new ExternalCoreInfo(expectedEmulator, libraryName,
-            Marshal.PtrToStringUTF8(nativeInfo.LibraryVersion) ?? string.Empty,
-            ParseExtensions(nativeInfo.ValidExtensions), nativeInfo.NeedFullPath, nativeInfo.BlockExtract);
+        return new ExternalCoreInfo(expectedEmulator, libraryName, Marshal.PtrToStringUTF8(nativeInfo.LibraryVersion) ?? string.Empty, ParseExtensions(nativeInfo.ValidExtensions), nativeInfo.NeedFullPath, nativeInfo.BlockExtract);
     }
-    internal static string CreateInvalidOptionValueMessage(string key, string value) =>
-        string.Format(CultureInfo.InvariantCulture,
-            ErrorMessages.OptionValueInvalidFormat, key, value);
+    internal static string CreateInvalidOptionValueMessage(string key, string value) => string.Format(CultureInfo.InvariantCulture, ErrorMessages.OptionValueInvalidFormat, key, value);
     internal static string ExpectedLibraryName(Emulator emulator) => CoreCatalog.Get(emulator).LibraryName;
 
     internal static IReadOnlySet<string> ParseExtensions(nint value)
@@ -33,9 +29,7 @@ internal static class CoreFunctions
         var extensions = Marshal.PtrToStringUTF8(value);
         return string.IsNullOrWhiteSpace(extensions)
             ? new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-            : extensions.Split(MediaConstants.SupportedExtensionSeparator,
-                    StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-                .Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix))
+            : extensions.Split(MediaConstants.SupportedExtensionSeparator, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Select(extension => extension.TrimStart(MediaConstants.ExtensionPrefix))
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
     }
 
@@ -83,9 +77,7 @@ internal static class CoreFunctions
     internal static bool WriteBoolean(nint destination, bool value)
     {
         if (destination == nint.Zero) return false;
-        Marshal.WriteByte(destination,
-            value ? ExternalCoreInteropConstants.NativeBooleanTrue
-                : ExternalCoreInteropConstants.NativeBooleanFalse);
+        Marshal.WriteByte(destination, value ? ExternalCoreInteropConstants.NativeBooleanTrue : ExternalCoreInteropConstants.NativeBooleanFalse);
         return true;
     }
 
@@ -96,8 +88,7 @@ internal static class CoreFunctions
         return true;
     }
 
-    internal static bool WriteInteger(nint destination, uint value) =>
-        WriteInteger(destination, checked((int)value));
+    internal static bool WriteInteger(nint destination, uint value) => WriteInteger(destination, checked((int)value));
 
     internal static bool WriteUnsignedLong(nint destination, ulong value)
     {

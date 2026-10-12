@@ -7,8 +7,7 @@ internal static class O2emRuntimeFunctions
 {
     internal static IReadOnlyDictionary<string, string> Options(MachineConfiguration configuration)
     {
-        var options = O2emOptionCatalog.All.Where(option => configuration.Options.ContainsKey(option.Key))
-            .ToDictionary(option => option.Key, option => configuration.Options[option.Key], StringComparer.Ordinal);
+        var options = O2emOptionCatalog.All.Where(option => configuration.Options.ContainsKey(option.Key)).ToDictionary(option => option.Key, option => configuration.Options[option.Key], StringComparer.Ordinal);
         options[OptionConstants.Bios] = configuration.Model switch
         {
             MachineModel.Odyssey2 => OptionConstants.O2romBin,

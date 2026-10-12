@@ -4,9 +4,7 @@ internal sealed record NativeInputAction(string Id, int Button, int AdditionalBu
 {
     internal uint ButtonMask => (1u << Button) | (AdditionalButton >= 0 ? 1u << AdditionalButton : 0u);
     internal string DefaultBinding => string.Empty;
-    internal InputBindingDefinition Definition => new(Id,
-        Id is "Up" or "Down" or "Left" or "Right" ? "Emulation.Controller.Action." + Id
-            : InputMappingConstants.ResourcePrefix + Id, DefaultBinding);
+    internal InputBindingDefinition Definition => new(Id, Id is "Up" or "Down" or "Left" or "Right" ? "Emulation.Controller.Action." + Id : InputMappingConstants.ResourcePrefix + Id, DefaultBinding);
 }
 
 internal static class ControllerProtocolDictionary

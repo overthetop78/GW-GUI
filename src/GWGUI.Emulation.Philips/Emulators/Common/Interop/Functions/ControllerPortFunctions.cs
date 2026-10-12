@@ -7,8 +7,7 @@ internal static class ControllerPortFunctions
         for (var port = ControllerConstants.FirstPort;
              port < ConfigurationFunctions.ControllerPortCount(configuration.Model); port++)
         {
-            var peripheral = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port)?.Peripheral
-                ?? (configuration.Family == MachineFamily.Cdi ? PeripheralCategory.CdiGamepad : PeripheralCategory.Joystick);
+            var peripheral = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port)?.Peripheral ?? (configuration.Family == MachineFamily.Cdi ? PeripheralCategory.CdiGamepad : PeripheralCategory.Joystick);
             var device = peripheral switch
             {
                 PeripheralCategory.None => InputConstants.NoDevice,

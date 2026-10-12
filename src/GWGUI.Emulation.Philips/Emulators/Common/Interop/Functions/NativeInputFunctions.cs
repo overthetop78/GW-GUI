@@ -5,20 +5,15 @@ namespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions;
 internal static class NativeInputFunctions
 {
     private static readonly IReadOnlyDictionary<uint, IReadOnlySet<EmulationKey>> KeyboardMap =
-        KeyboardFunctions.CreateKeyMap().GroupBy(pair => pair.Value).ToDictionary(group => group.Key,
-            group => (IReadOnlySet<EmulationKey>)group.Select(pair => pair.Key).ToHashSet());
+        KeyboardFunctions.CreateKeyMap().GroupBy(pair => pair.Value).ToDictionary(group => group.Key, group => (IReadOnlySet<EmulationKey>)group.Select(pair => pair.Key).ToHashSet());
     private static readonly IReadOnlyDictionary<uint, IReadOnlySet<EmulationKey>> P2000KeyboardMap =
-        KeyboardFunctions.CreateKeyMap(p2000: true).GroupBy(pair => pair.Value).ToDictionary(group => group.Key,
-            group => (IReadOnlySet<EmulationKey>)group.Select(pair => pair.Key).ToHashSet());
+        KeyboardFunctions.CreateKeyMap(p2000: true).GroupBy(pair => pair.Value).ToDictionary(group => group.Key, group => (IReadOnlySet<EmulationKey>)group.Select(pair => pair.Key).ToHashSet());
 
     internal static short State(EmulationInputSnapshot snapshot, uint port, uint device, uint index, uint id,
         Emulator emulator)
     {
         if (device == InputConstants.KeyboardDevice)
-            return (emulator == Emulator.M2000 ? P2000KeyboardMap : KeyboardMap)
-                .TryGetValue(id, out var keys) && keys.Any(snapshot.Keys.Contains)
-                ? InputConstants.ActiveState
-                : InputConstants.InactiveState;
+            return (emulator == Emulator.M2000 ? P2000KeyboardMap : KeyboardMap).TryGetValue(id, out var keys) && keys.Any(snapshot.Keys.Contains) ? InputConstants.ActiveState : InputConstants.InactiveState;
         if (device == InputConstants.MouseDevice)
             return MouseState(snapshot.Pointer, port, index, id);
         if (port >= snapshot.Controllers.Count) return InputConstants.InactiveState;
@@ -39,10 +34,7 @@ internal static class NativeInputFunctions
             if (index != InputConstants.LeftAnalogIndex) return InputConstants.InactiveState;
             if (id == InputConstants.JoypadMaskId)
                 return unchecked((short)(controller.Buttons & ushort.MaxValue));
-            return id < InputConstants.MaximumJoypadButtonCount &&
-                   (controller.Buttons & (1u << checked((int)id))) != ExternalCoreInteropConstants.NoInputState
-                ? InputConstants.ActiveState
-                : InputConstants.InactiveState;
+            return id < InputConstants.MaximumJoypadButtonCount && (controller.Buttons & (1u << checked((int)id))) != ExternalCoreInteropConstants.NoInputState ? InputConstants.ActiveState : InputConstants.InactiveState;
         }
         if (device != InputConstants.AnalogDevice) return InputConstants.InactiveState;
         return (index, id) switch
@@ -73,7 +65,6 @@ internal static class NativeInputFunctions
     }
 
     private static short Boolean(bool value) => value ? InputConstants.ActiveState : InputConstants.InactiveState;
-    private static short Button(EmulationControllerState controller, int index) =>
-        Boolean((controller.Buttons & (1u << index)) != 0);
+    private static short Button(EmulationControllerState controller, int index) => Boolean((controller.Buttons & (1u << index)) != 0);
     private static short Clamp(int value) => (short)Math.Clamp(value, short.MinValue, short.MaxValue);
 }

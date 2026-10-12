@@ -7,8 +7,7 @@ namespace GWGUI.Emulation.Philips.Common.Machines.Common.Functions;
 
 internal static class VoiceSampleFunctions
 {
-    private static readonly Regex FileNames = new(VoiceSampleConstants.FileNamePattern,
-        RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+    private static readonly Regex FileNames = new(VoiceSampleConstants.FileNamePattern, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
     internal static IReadOnlyList<ZipArchiveEntry> Entries(ZipArchive archive)
     {
@@ -40,9 +39,7 @@ internal static class VoiceSampleFunctions
             && header[VoiceSampleConstants.DataOffset..].StartsWith(VoiceSampleConstants.DataMagic)
             && channels is 1 or 2
             && BinaryPrimitives.ReadUInt32LittleEndian(header[VoiceSampleConstants.SampleRateOffset..]) > 0
-            && (format == VoiceSampleConstants.IntegerPcm
-                ? bits is VoiceSampleConstants.BytePcmBits or VoiceSampleConstants.WordPcmBits
-                : format == VoiceSampleConstants.FloatPcm && bits == VoiceSampleConstants.FloatPcmBits)
+            && (format == VoiceSampleConstants.IntegerPcm ? bits is VoiceSampleConstants.BytePcmBits or VoiceSampleConstants.WordPcmBits : format == VoiceSampleConstants.FloatPcm && bits == VoiceSampleConstants.FloatPcmBits)
             && dataSize > 0 && dataSize <= entry.Length - VoiceSampleConstants.HeaderBytes
             && dataSize % (channels * (bits / VoiceSampleConstants.BytePcmBits)) == 0;
     }

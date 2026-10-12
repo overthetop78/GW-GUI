@@ -12,17 +12,14 @@ internal static class StorageSettingsFunctions
             MachineFamily.Videopac => new EmulationMediaDevice(slot, EmulationMediaType.Cartridge,
                 StorageSettingsConstants.CartridgeExtensions, RequiresMachineRecreation: true,
                 ImageDirectory: configuration.Folders.Cartridges, IsPermanent: true),
-            MachineFamily.P2000 => new EmulationMediaDevice(slot, EmulationMediaType.Cassette,
-                StorageSettingsConstants.CassetteExtensions, RequiresMachineRecreation: true,
-                ImageDirectory: configuration.Folders.Cassettes, IsPermanent: true),
+            MachineFamily.P2000 => new EmulationMediaDevice(slot, EmulationMediaType.Cassette, StorageSettingsConstants.CassetteExtensions, RequiresMachineRecreation: true, ImageDirectory: configuration.Folders.Cassettes, IsPermanent: true),
             MachineFamily.Cdi => new EmulationMediaDevice(slot, EmulationMediaType.CompactDisc,
                 StorageSettingsConstants.SameCdiExtensions,
                 RequiresMachineRecreation: true,
                 ImageDirectory: configuration.Folders.CompactDiscs, IsPermanent: true),
             _ => throw new ArgumentOutOfRangeException(nameof(configuration))
         };
-        return new([device], configuration.ConfiguredSlots,
-            configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
+        return new([device], configuration.ConfiguredSlots, configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
     }
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
