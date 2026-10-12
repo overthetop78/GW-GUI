@@ -26,8 +26,7 @@ internal static partial class InputSettingsFunctions
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        EmulationInputSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         var current = configuration.Input ?? new InputConfiguration();
         var keyboard = settings.Keyboard?.Values ?? new Dictionary<string, string>();
@@ -62,8 +61,7 @@ internal static partial class InputSettingsFunctions
 
     private static IReadOnlyDictionary<string, string> MouseValues(InputConfiguration input) => (input.MouseButtonMappings ?? new Dictionary<string, MouseAction>()).Where(item => item.Value != MouseAction.None).ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal);
 
-    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(
-        ControllerType type, Model model) => type is ControllerType.None ? []
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type, Model model) => type is ControllerType.None ? []
         : model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk
             ? NintendoControllerDefinitions(false, nes: true)
         : model.Id == ModelConstants.Snes ? NintendoControllerDefinitions(true)
@@ -81,8 +79,7 @@ internal static partial class InputSettingsFunctions
             Definition(InputSettingsFunctionsConstants.A, InputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty)
         ];
 
-    private static IReadOnlyList<InputBindingDefinition> NintendoControllerDefinitions(
-        bool superNintendo, bool gameBoyAdvance = false, bool nes = false)
+    private static IReadOnlyList<InputBindingDefinition> NintendoControllerDefinitions(bool superNintendo, bool gameBoyAdvance = false, bool nes = false)
     {
         var definitions = new List<InputBindingDefinition>
         {

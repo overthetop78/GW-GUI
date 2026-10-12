@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
 {
-    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot,
-        string modelId, InputConfiguration? configuration, bool controllerPointerSwitchPressed)
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, string modelId, InputConfiguration? configuration, bool controllerPointerSwitchPressed)
     {
         configuration ??= new InputConfiguration();
         var hostKeys = snapshot.Keys;
@@ -112,8 +111,7 @@ internal static class InputSnapshotFunctions
         return positive == negative ? default : positive ? short.MaxValue : short.MinValue;
     }
 
-    private static IReadOnlyDictionary<string, bool> PhysicalMouse(
-        EmulationPointerState pointer) => new Dictionary<string, bool>(
+    private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => new Dictionary<string, bool>(
             StringComparer.OrdinalIgnoreCase)
         {
             [InputSnapshotFunctionsConstants.Left] = pointer.Left,
@@ -127,9 +125,7 @@ internal static class InputSnapshotFunctions
             [InputSnapshotFunctionsConstants.WheelRight] = pointer.HorizontalWheel > 0
         };
 
-    private static bool IsSourcePressed(string sourceName,
-        EmulationControllerState controller, IReadOnlySet<EmulationKey> keys,
-        IReadOnlyDictionary<string, bool> mouse)
+    private static bool IsSourcePressed(string sourceName, EmulationControllerState controller, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
     {
         if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Controller, out var controllerSource))
         {
@@ -144,9 +140,7 @@ internal static class InputSnapshotFunctions
         return TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Mouse, out var mouseSource) && mouse.GetValueOrDefault(mouseSource);
     }
 
-    private static EmulationControllerState ControllerForSource(string source,
-        IReadOnlyList<EmulationControllerState> controllers,
-        EmulationControllerState fallback)
+    private static EmulationControllerState ControllerForSource(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)
     {
         var deviceId = EmulationInputMappingFunctions.ParseControllerDeviceId(source);
         return deviceId is null ? fallback : controllers.FirstOrDefault(controller => string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase)) ?? fallback;

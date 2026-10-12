@@ -49,8 +49,7 @@ internal sealed class ExternalCore : IEmulatorCore
         return false;
     }
 
-    public void Initialize(MachineConfiguration configuration, string sessionDirectory,
-        string? saveDirectory = null)
+    public void Initialize(MachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
         _configuration = configuration;
         _sessionDirectory = Path.GetFullPath(sessionDirectory);
@@ -138,8 +137,7 @@ internal sealed class ExternalCore : IEmulatorCore
 
     internal static IReadOnlyList<MediaConfiguration> ResolveConfiguredMedia(MachineConfiguration configuration) => (configuration.Media ?? []).Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ToArray();
 
-    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media,
-        string contentDirectory)
+    internal static string? PrepareContentPath(IReadOnlyList<MediaConfiguration> media, string contentDirectory)
     {
         if (media.Count == 0) return null;
         if (media.Count == 1 || media.Any(item => item.Category != MediaCategory.Floppy))

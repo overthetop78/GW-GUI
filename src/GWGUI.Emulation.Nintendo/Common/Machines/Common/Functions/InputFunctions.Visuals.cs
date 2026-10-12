@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
-    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type,
-        Model model) => type != ControllerType.Joystick ? null : model.Id switch
+    private static IReadOnlyList<string>? CompatibleVisualIds(ControllerType type, Model model) => type != ControllerType.Joystick ? null : model.Id switch
         {
             ModelConstants.Nes =>
                 [EmulationControllerVisualIds.NintendoNesPad,

@@ -13,6 +13,5 @@ internal static class CoreConstants
     internal static IReadOnlyList<string> Extensions { get; } = [".sfc", ".smc", ".gb", ".gbc", ".st", ".bs"];
     internal static CoreDefinition Definition { get; } = new(Id, LibraryName, LibraryFileName,
         Extensions, new(new Uri(OfficialPackageUrl), LibraryFileName, LibraryFileName, DisplayName),
-        [], [], new(Id, DisplayName, DescriptionResourceKey,
-            new HashSet<string>(StringComparer.Ordinal) { ModelConstants.Snes }));
+        [], [], new(Id, DisplayName, DescriptionResourceKey, new HashSet<string>(StringComparer.Ordinal) { ModelConstants.Snes }));
 }
