@@ -32,7 +32,13 @@ internal abstract class ViceMachineFactory : GWGUI.Emulation.Commodore.Emulators
     internal abstract IReadOnlyList<string> CartridgeExtensions { get; }
 
     public override IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => RomDefinitions(configuration).Select(rom => rom.Slot).ToArray();
-    public override IReadOnlyList<EmulationMediaDevice> GetMediaDevices(MachineConfiguration configuration) => Enumerable.Range(ControllerPortConstants.MinimumControllerPort, ContentConstants.DriveCount).Select(index => new EmulationMediaDevice(new(EmulationMediaCategory.FloppyDrive, index), EmulationMediaType.Floppy, ContentConstants.DiskExtensions, IsPermanent: index == ContentConstants.PrimaryMediaIndex)).Concat([new EmulationMediaDevice(new(EmulationMediaCategory.CassetteDrive, ContentConstants.PrimaryMediaIndex), EmulationMediaType.Cassette, ContentConstants.CassetteExtensions)]).Concat(CartridgeExtensions.Count != BufferConstants.EmptyCollectionCount
+    public override IReadOnlyList<EmulationMediaDevice> GetMediaDevices(MachineConfiguration configuration) => Enumerable.Range(ControllerPortConstants.MinimumControllerPort,
+        ContentConstants.DriveCount).Select(index => new EmulationMediaDevice(new(EmulationMediaCategory.FloppyDrive, index),
+        EmulationMediaType.Floppy,
+        ContentConstants.DiskExtensions,
+        IsPermanent: index == ContentConstants.PrimaryMediaIndex)).Concat([new EmulationMediaDevice(new(EmulationMediaCategory.CassetteDrive, ContentConstants.PrimaryMediaIndex),
+        EmulationMediaType.Cassette,
+        ContentConstants.CassetteExtensions)]).Concat(CartridgeExtensions.Count != BufferConstants.EmptyCollectionCount
             ? [new EmulationMediaDevice(new(EmulationMediaCategory.CartridgeSlot, ContentConstants.PrimaryMediaIndex), EmulationMediaType.Cartridge, CartridgeExtensions, RequiresMachineRecreation: true)]
             : []).ToArray();
     internal override uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports, int port, ControllerType type) => type == ControllerType.None ? ContentConstants.NoControllerDevice : ContentConstants.JoypadDevice;

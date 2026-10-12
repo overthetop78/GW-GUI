@@ -117,7 +117,8 @@ public sealed class CommodoreEmulationModule : IEmulationModule, IEmulationEmula
 
     public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => InputSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
-    public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => configuration is MachineConfiguration current ? new ValueTask(_store.SaveAsync(current, cancellationToken)) : ValueTask.FromException(new ArgumentException(nameof(configuration)));
+    public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
+        CancellationToken cancellationToken = default) => configuration is MachineConfiguration current ? new ValueTask(_store.SaveAsync(current, cancellationToken)) : ValueTask.FromException(new ArgumentException(nameof(configuration)));
 
     public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) => StorageSettingsFunctions.Describe(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
 

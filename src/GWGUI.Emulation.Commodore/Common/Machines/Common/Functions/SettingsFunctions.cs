@@ -59,5 +59,15 @@ internal static class SettingsDescriptionFunctions
         return blocks;
     }
 
-    private static EmulationSettingsBlock Information(string id, EmulationMachineTab tab, string label, string glyph, string fieldId, string value) => new(id, tab, label, [new EmulationSettingsField(fieldId, tab, id, label, EmulationSettingsEditor.Information, value)], glyph, MachineSettingsConstants.InformationColumnCount);
+    private static EmulationSettingsBlock Information(string id,
+        EmulationMachineTab tab,
+        string label,
+        string glyph,
+        string fieldId,
+        string value) => new(id,
+        tab,
+        label,
+        [new EmulationSettingsField(fieldId, tab, id, label, EmulationSettingsEditor.Information, value)],
+        glyph,
+        MachineSettingsConstants.InformationColumnCount);
 }

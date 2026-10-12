@@ -10,7 +10,11 @@ using NativeKeyboard = GWGUI.Emulation.Commodore.Emulators.VICE.Common.Constants
 namespace GWGUI.Emulation.Commodore.Emulators.VICE.Common.Dictionaries;
 internal static class KeyboardDictionary
 {
-    internal static bool Supports(MachineConfiguration configuration) => IsPet(configuration) || IsCbm(configuration) || (configuration.Model is C64Models.C64 or C64Models.C64Dtv or C64Models.C64SuperCpu or VicModels.Vic20 or VicModels.Vic21 or C128Models.C128 or C128Models.C128D || IsPlus4(configuration)) && configuration.Options?.GetValueOrDefault(NativeKeyboard.KeymapOption)is null or NativeKeyboard.PositionalKeymap or NativeKeyboard.SymbolicKeymap;
+    internal static bool Supports(MachineConfiguration configuration) => IsPet(configuration) 
+        || IsCbm(configuration) 
+        || (configuration.Model is C64Models.C64 or C64Models.C64Dtv or C64Models.C64SuperCpu or VicModels.Vic20 or VicModels.Vic21 or C128Models.C128 or C128Models.C128D 
+        || IsPlus4(configuration)) 
+        && configuration.Options?.GetValueOrDefault(NativeKeyboard.KeymapOption)is null or NativeKeyboard.PositionalKeymap or NativeKeyboard.SymbolicKeymap;
     private static bool IsPetGraphics(MachineConfiguration configuration) => configuration.Model is PetModels.Pet2001 or PetModels.Pet3008 or PetModels.Pet3016 or PetModels.Pet3032 or PetModels.Pet4016 or PetModels.Pet4032;
     private static bool IsPetBusiness(MachineConfiguration configuration) => configuration.Model is PetModels.Pet3032B or PetModels.Pet4032B or PetModels.Pet8032 or PetModels.Pet8096 or PetModels.Pet8296 or PetModels.SuperPet;
     private static bool IsPet(MachineConfiguration configuration) => IsPetGraphics(configuration) || IsPetBusiness(configuration);

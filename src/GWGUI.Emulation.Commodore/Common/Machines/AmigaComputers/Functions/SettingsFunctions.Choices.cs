@@ -24,7 +24,8 @@ internal static partial class AmigaSettingsDescriptionFunctions
         FpuModel.Integrated => SettingsValueConstants.IntegratedFpu,
         FpuModel.Motorola68881 => SettingsValueConstants.Motorola68881Option,
         FpuModel.Motorola68882 => SettingsValueConstants.Motorola68882Option,
-        _ => throw new ArgumentOutOfRangeException(nameof(fpu), fpu, null)};
+        _ => throw new ArgumentOutOfRangeException(nameof(fpu), fpu, null)
+    };
     private static IReadOnlyList<RamCapacity> ChipMemoryValues(AmigaModel model) => model.Id switch
     {
         ModelConstants.A1000 => [RamCapacity._512KB],
@@ -45,7 +46,8 @@ internal static partial class AmigaSettingsDescriptionFunctions
     {
         FpuModel.None => new(FpuValue(fpu), SettingsResourceKeys.MemoryNone),
         FpuModel.Integrated => new(FpuValue(fpu), string.Empty, SettingsValueConstants.CpuDisplayName),
-        _ => new(FpuValue(fpu), string.Empty, FpuValue(fpu))};
+        _ => new(FpuValue(fpu), string.Empty, FpuValue(fpu))
+    };
     private static IReadOnlyList<EmulationSettingsChoice> CompatibilityChoices() => Enum.GetValues<CpuCompatibility>().Select(value => SettingsChoiceConstants.CpuCompatibilityChoices[value]).ToArray();
     private static EmulationSettingsChoice ChipMemoryChoice(RamCapacity capacity) => MemoryChoice(ChipMemoryValue(capacity), (long)capacity * MemoryConstants.BytesPerKib);
     private static EmulationSettingsChoice SlowMemoryChoice(RamCapacity capacity) => MemoryChoice(SlowMemoryValue(capacity), (long)capacity * MemoryConstants.BytesPerKib);
@@ -106,7 +108,8 @@ internal static partial class AmigaSettingsDescriptionFunctions
     {
         GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A1200 or GWGUI.Emulation.Commodore.Common.Machines.AmigaCD32.Constants.ModelConstants.CD32 => ntsc ? ToMhz(ClockConstants.Ntsc68EC020FrequencyHz) : ToMhz(ClockConstants.Pal68EC020FrequencyHz),
         GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A3000 or GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A4000 => ToMhz(ClockConstants.WorkstationFrequencyHz),
-        _ => ntsc ? ToMhz(ClockConstants.NtscBaseFrequencyHz) : ToMhz(ClockConstants.PalBaseFrequencyHz)};
+        _ => ntsc ? ToMhz(ClockConstants.NtscBaseFrequencyHz) : ToMhz(ClockConstants.PalBaseFrequencyHz)
+    };
     private static double ToMhz(double frequencyHz) => frequencyHz / ClockConstants.HertzPerMegahertz;
     private static string FormatMhz(double frequency) => string.Format(SettingsValueConstants.MegahertzLabelFormat, frequency);
     private static bool Approximately(double left, double right) => Math.Abs(left - right) < ClockConstants.ComparisonToleranceMhz;
@@ -128,7 +131,15 @@ internal static partial class AmigaSettingsDescriptionFunctions
     private static IReadOnlyList<EmulationSettingsChoice> AudioInterpolationChoices() => Enum.GetValues<AudioInterpolation>().Select(value => SettingsChoiceConstants.AudioInterpolationChoices[value]).ToArray();
     private static IReadOnlyList<EmulationSettingsChoice> AudioFilterChoices() => Enum.GetValues<AudioFilter>().Select(value => SettingsChoiceConstants.AudioFilterChoices[value]).ToArray();
     private static IReadOnlyList<EmulationSettingsChoice> FilterTypeChoices() => Enum.GetValues<AudioFilterType>().Select(value => SettingsChoiceConstants.AudioFilterTypeChoices[value]).ToArray();
-    private static IEnumerable<EmulationSettingsChoice> PercentageChoices(int minimum, int maximum, int step) => Enumerable.Range(BufferConstants.FirstCollectionIndex, (maximum - minimum) / step + SettingsValueConstants.InclusiveRangeEndpointCount).Select(index => minimum + index * step).Select(value => Invariant(value.ToString(), string.Format(SettingsValueConstants.PercentageLabelFormat, value), value));
+    private static IEnumerable<EmulationSettingsChoice> PercentageChoices(int minimum,
+        int maximum,
+        int step) => Enumerable.Range(BufferConstants.FirstCollectionIndex, (maximum - minimum) / step + SettingsValueConstants.InclusiveRangeEndpointCount).Select(index => minimum + index * step).Select(value => Invariant(value.ToString(),
+        string.Format(SettingsValueConstants.PercentageLabelFormat, value),
+        value));
     private static IReadOnlyList<EmulationSettingsChoice> AnalogMouseChoices() => Enum.GetValues<AnalogMouseMode>().Select(value => SettingsChoiceConstants.AnalogMouseModeChoices[value]).ToArray();
-    private static IEnumerable<EmulationSettingsChoice> RatioChoices() => Enumerable.Range(SettingsValueConstants.FirstRatioStep, SettingsValueConstants.RatioStepCount).Select(value => value / SettingsValueConstants.RatioStepsPerUnit).Select(value => Invariant(value.ToString(SettingsValueConstants.RatioFormat, System.Globalization.CultureInfo.InvariantCulture), string.Format(SettingsValueConstants.RatioLabelFormat, value)));
+    private static IEnumerable<EmulationSettingsChoice> RatioChoices() => Enumerable.Range(SettingsValueConstants.FirstRatioStep,
+        SettingsValueConstants.RatioStepCount).Select(value => value 
+        / SettingsValueConstants.RatioStepsPerUnit).Select(value => Invariant(value.ToString(SettingsValueConstants.RatioFormat,
+        System.Globalization.CultureInfo.InvariantCulture),
+        string.Format(SettingsValueConstants.RatioLabelFormat, value)));
 }
