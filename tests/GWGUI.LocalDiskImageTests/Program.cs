@@ -230,14 +230,7 @@ internal static partial class Program
             {
                 const string cataloguedStatus = "catalogued";
                 Increment(statusCounts, cataloguedStatus);
-                await writer.WriteLineAsync(JsonSerializer.Serialize(new
-                {
-                    index = index + 1,
-                    path,
-                    extension,
-                    status = cataloguedStatus,
-                    length = new FileInfo(path).Length
-                }, LineJsonOptions)).ConfigureAwait(false);
+                await writer.WriteLineAsync(JsonSerializer.Serialize(new { index = index + 1, path, extension, status = cataloguedStatus, length = new FileInfo(path).Length }, LineJsonOptions)).ConfigureAwait(false);
                 continue;
             }
 
@@ -487,10 +480,7 @@ internal static partial class Program
                 track.Cylinder, track.Head,
                 bits = track.Bits is null ? null : string.Concat(track.Bits.Select(bit => bit ? '1' : '0')),
                 track.Timing, track.Structures, track.Features,
-                revolutions = track.Revolutions.Select(revolution => new
-                {
-                    revolution.ResolutionNanoseconds, revolution.Flux.IndexTimeTicks, revolution.Flux.FluxIntervals
-                }).ToArray()
+                revolutions = track.Revolutions.Select(revolution => new { revolution.ResolutionNanoseconds, revolution.Flux.IndexTimeTicks, revolution.Flux.FluxIntervals }).ToArray()
             }).ToArray()
         },
         SequentialMediaImageRepresentation sequential => new
