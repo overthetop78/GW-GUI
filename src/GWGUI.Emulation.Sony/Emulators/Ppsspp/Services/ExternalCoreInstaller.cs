@@ -53,8 +53,7 @@ public sealed class ExternalCoreInstaller
 
             using (var archive = ZipFile.OpenRead(package))
             {
-                var entry = archive.Entries.FirstOrDefault(item => Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase))
-                    ?? throw new InvalidDataException(PpssppExceptions.ArchiveMissingLibrary());
+                var entry = archive.Entries.FirstOrDefault(item => Path.GetFileName(item.FullName).Equals(CoreReleaseConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase)) ?? throw new InvalidDataException(PpssppExceptions.ArchiveMissingLibrary());
                 entry.ExtractToFile(extracted, true);
             }
             CoreReleaseService.VerifyWindowsX64Library(extracted);
