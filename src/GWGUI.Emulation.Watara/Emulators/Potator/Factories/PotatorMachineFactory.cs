@@ -47,7 +47,8 @@ internal sealed class PotatorMachineFactory : IEmulatorAdapter, IEmulatorMediaCa
         return installation.LibraryPath;
     }
 
-    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken) => (await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator.Potator, cancellationToken).ConfigureAwait(false))?.LibraryPath;
+    public async ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context,
+        CancellationToken cancellationToken) => (await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator.Potator, cancellationToken).ConfigureAwait(false))?.LibraryPath;
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
     public IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration) => new HashSet<string>(StringComparer.OrdinalIgnoreCase)
     {

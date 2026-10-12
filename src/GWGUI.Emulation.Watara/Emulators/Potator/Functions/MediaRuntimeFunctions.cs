@@ -11,7 +11,8 @@ internal static class MediaRuntimeFunctions
         return Path.GetExtension(path).ToLowerInvariant() switch
         {
             BinExtension or SupervisionExtension => MediaCategory.Cartridge,
-            _ => throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog))};
+            _ => throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog))
+        };
     }
 
     internal static IReadOnlyList<string> InitialContentPaths(MachineConfiguration configuration) => configuration.Media.Where(media => media.IsInserted).Select(media => Path.GetFullPath(media.Path)).ToArray();

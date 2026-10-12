@@ -82,5 +82,14 @@ internal static class ConfigurationStoreFunctions
         }
     }
 
-    private static bool IsInsideBase(string relative) => !Path.IsPathFullyQualified(relative) && !string.Equals(relative, ConfigurationStoreConstants.ParentDirectoryName, StringComparison.Ordinal) && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.DirectorySeparatorChar, StringComparison.Ordinal) && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.AltDirectorySeparatorChar, StringComparison.Ordinal);
+    private static bool IsInsideBase(string relative) => !Path.IsPathFullyQualified(relative) 
+        && !string.Equals(relative,
+        ConfigurationStoreConstants.ParentDirectoryName,
+        StringComparison.Ordinal) 
+        && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName 
+        + Path.DirectorySeparatorChar,
+        StringComparison.Ordinal) 
+        && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName 
+        + Path.AltDirectorySeparatorChar,
+        StringComparison.Ordinal);
 }

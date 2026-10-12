@@ -14,9 +14,25 @@ internal static class SettingsDescriptionFunctions
                 Field(configuration, RuntimeOptionConstants.Palette, "Emulation.Watara.Video.Palette", RuntimeOptionConstants.DefaultPalette, SettingsDictionary.Palettes),
                 Field(configuration, RuntimeOptionConstants.LcdGhosting, "Emulation.Watara.Video.Ghosting", RuntimeOptionConstants.DefaultGhosting, SettingsDictionary.Ghosting),
                 Field(configuration, RuntimeOptionConstants.FrameSkip, "Emulation.Video.FrameSkip", SettingsDictionary.FrameSkipValues[FrameSkipMode.Disabled], SettingsDictionary.FrameSkip),
-                Field(configuration, RuntimeOptionConstants.FrameSkipThreshold, "Emulation.Watara.Video.Threshold", RuntimeOptionConstants.DefaultThreshold, SettingsDictionary.Thresholds)with { IsEnabled = configuration.Options.GetValueOrDefault(RuntimeOptionConstants.FrameSkip) == SettingsDictionary.FrameSkipValues[FrameSkipMode.Manual] }
+                Field(configuration,
+                    RuntimeOptionConstants.FrameSkipThreshold,
+                    "Emulation.Watara.Video.Threshold",
+                    RuntimeOptionConstants.DefaultThreshold,
+                    SettingsDictionary.Thresholds)with { IsEnabled = configuration.Options.GetValueOrDefault(RuntimeOptionConstants.FrameSkip) 
+                    == SettingsDictionary.FrameSkipValues[FrameSkipMode.Manual] }
             ],
             Columns: 2
         )];
-    private static EmulationSettingsField Field(MachineConfiguration configuration, string key, string label, string defaultValue, IReadOnlyList<EmulationSettingsChoice> choices) => new(key, EmulationMachineTab.Video, Block, label, EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(key, defaultValue), choices, RefreshSettingsOnChange: key == RuntimeOptionConstants.FrameSkip);
+    private static EmulationSettingsField Field(MachineConfiguration configuration,
+        string key,
+        string label,
+        string defaultValue,
+        IReadOnlyList<EmulationSettingsChoice> choices) => new(key,
+        EmulationMachineTab.Video,
+        Block,
+        label,
+        EmulationSettingsEditor.Selection,
+        configuration.Options.GetValueOrDefault(key, defaultValue),
+        choices,
+        RefreshSettingsOnChange: key == RuntimeOptionConstants.FrameSkip);
 }
