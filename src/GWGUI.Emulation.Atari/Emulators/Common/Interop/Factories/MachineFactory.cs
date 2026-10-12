@@ -43,25 +43,21 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
         return true;
     }
 
-    public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(
-        EmulatorManagementContext context, CancellationToken cancellationToken)
+    public async ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         var installation = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetActiveInstallationAsync(Emulator, cancellationToken).ConfigureAwait(false);
         var version = installation is null ? null : Path.GetFileName(installation.VersionDirectory);
         return new EmulationEmulatorInstallation(Definition, version);
     }
 
-    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(
-        EmulatorManagementContext context, CancellationToken cancellationToken)
+    public async ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken)
     {
         var releases = await new CoreReleaseService(context.HttpClient, context.CoreDirectory).GetAvailableAsync(Emulator, cancellationToken).ConfigureAwait(false);
         _availableReleases = releases.ToDictionary(item => item.Id, StringComparer.Ordinal);
-        return releases.Select(item => new EmulationEmulatorRelease(item.Id,
-            $"{item.DeclaredVersion} · {item.PublishedUtc.LocalDateTime:g}", item.DeclaredVersion)).ToArray();
+        return releases.Select(item => new EmulationEmulatorRelease(item.Id, $"{item.DeclaredVersion} · {item.PublishedUtc.LocalDateTime:g}", item.DeclaredVersion)).ToArray();
     }
 
-    public async ValueTask<string> InstallAsync(EmulatorManagementContext context,
-        EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
+    public async ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken)
     {
         if (!_availableReleases.TryGetValue(release.Id, out var selected) || selected.Emulator != Emulator)
             throw new ArgumentException(nameof(release));
@@ -86,8 +82,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
 
     public virtual void ConfigureController(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration, int port, PeripheralCategory peripheral) => ControllerPortFunctions.ConfigurePort(exports, callbacks, configuration, port, peripheral);
 
-    public void ConfigureControllers(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration)
+    public void ConfigureControllers(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration)
     {
         var portCount = CompatibilityCatalog.Get(configuration.Model).ControllerPortCount;
         for (var port = ControllerPortConstants.MinimumControllerPort; port < portCount; port++)
@@ -97,8 +92,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
         }
     }
 
-    public virtual EmulatorPreparedContent? PrepareContent(MachineConfiguration configuration,
-        MediaConfiguration? media, string sessionDirectory, ExternalCoreInfo coreInfo)
+    public virtual EmulatorPreparedContent? PrepareContent(MachineConfiguration configuration, MediaConfiguration? media, string sessionDirectory, ExternalCoreInfo coreInfo)
     {
         if (media is null) return null;
         if (CartridgeExtensions is { } cartridgeExtensions)
@@ -113,8 +107,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
 
     public virtual SessionMedia? PrepareInsertedMedia(MachineConfiguration configuration, MediaConfiguration media, string sessionDirectory, ExternalCoreInfo coreInfo) => null;
 
-    public virtual void ValidatePreparedContent(EmulatorPreparedContent? preparedContent,
-        bool diskControlAvailable) { }
+    public virtual void ValidatePreparedContent(EmulatorPreparedContent? preparedContent, bool diskControlAvailable) { }
 
     public virtual void ValidateInsertion(MachineConfiguration configuration, MediaConfiguration media) { }
 
@@ -128,8 +121,7 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
 
     public virtual void CleanupPreparedContent(EmulatorPreparedContent? preparedContent) { }
 
-    public Machine Create(MachineConfiguration configuration,
-        EmulatorCreationContext context)
+    public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
         if (!OperatingSystem.IsWindows())
             throw new PlatformNotSupportedException();

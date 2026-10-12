@@ -14,8 +14,7 @@ internal sealed class Atari800MachineFactory() : MachineFactory(EmulatorConstant
 
     public override MediaConfiguration? SelectPrimaryMedia(MachineConfiguration configuration) => Atari800MediaFunctions.Primary(configuration.Media);
 
-    public override EmulatorPreparedContent? PrepareContent(MachineConfiguration configuration,
-        MediaConfiguration? media, string sessionDirectory, ExternalCoreInfo coreInfo)
+    public override EmulatorPreparedContent? PrepareContent(MachineConfiguration configuration, MediaConfiguration? media, string sessionDirectory, ExternalCoreInfo coreInfo)
     {
         if (media is null) return null;
         var prepared = Atari800MediaFunctions.Prepare(configuration, media, sessionDirectory, coreInfo.Extensions);
@@ -25,16 +24,14 @@ internal sealed class Atari800MachineFactory() : MachineFactory(EmulatorConstant
             State: prepared);
     }
 
-    public override SessionMedia? PrepareInsertedMedia(MachineConfiguration configuration,
-        MediaConfiguration media, string sessionDirectory, ExternalCoreInfo coreInfo)
+    public override SessionMedia? PrepareInsertedMedia(MachineConfiguration configuration, MediaConfiguration media, string sessionDirectory, ExternalCoreInfo coreInfo)
     {
         if (media.Category == MediaCategory.Cartridge)
             throw new NotSupportedException(Atari800MediaErrors.DynamicCartridgeUnsupported);
         return Atari800MediaFunctions.Prepare(configuration, media, sessionDirectory, coreInfo.Extensions).SessionMedia ?? throw new NotSupportedException(Atari800MediaErrors.DynamicCartridgeUnsupported);
     }
 
-    public override void ValidatePreparedContent(EmulatorPreparedContent? preparedContent,
-        bool diskControlAvailable)
+    public override void ValidatePreparedContent(EmulatorPreparedContent? preparedContent, bool diskControlAvailable)
     {
         if (preparedContent?.RequiresDiskControl == true && !diskControlAvailable)
             throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, Atari800MediaErrors.MediaControlRequired);

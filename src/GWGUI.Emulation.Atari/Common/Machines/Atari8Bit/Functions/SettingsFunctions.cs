@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Atari8Bit.Functions;
 
 public static class EightBitSettingsFunctions
 {
-    public static IReadOnlyDictionary<string, string> Normalize(
-        MachineConfiguration configuration)
+    public static IReadOnlyDictionary<string, string> Normalize(MachineConfiguration configuration)
     {
         var options = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal);
         if (EightBitSettingsCatalog.SupportsComputerOptions(configuration.Model))
@@ -94,8 +93,7 @@ public static class EightBitSettingsFunctions
         return options;
     }
 
-    private static void Validate(IDictionary<string, string> options, string key,
-        IReadOnlyList<string> allowed, string fallback)
+    private static void Validate(IDictionary<string, string> options, string key, IReadOnlyList<string> allowed, string fallback)
     {
         if (options.TryGetValue(key, out var value) && !allowed.Contains(value)) options[key] = fallback;
     }

@@ -5,10 +5,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Functions;
 
 internal static class SessionMediaFunctions
 {
-    internal static SessionMedia Prepare(
-        MediaConfiguration configuration,
-        string sessionDirectory,
-        IReadOnlySet<string> supportedExtensions)
+    internal static SessionMedia Prepare(MediaConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
         var sourcePaths = ReadSourcePaths(configuration.Path);
         foreach (var sourcePath in sourcePaths)

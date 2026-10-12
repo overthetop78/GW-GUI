@@ -11,8 +11,7 @@ internal sealed class VirtualJaguarMachineFactory() : MachineFactory(EmulatorCon
 
     public override IReadOnlyDictionary<string, string> PrepareOptions(IReadOnlyDictionary<string, string> options) => VirtualJaguarOptionFunctions.ToNative(options);
 
-    public override EmulatorPreparedContent? PrepareContent(MachineConfiguration configuration,
-        MediaConfiguration? media, string sessionDirectory, ExternalCoreInfo coreInfo)
+    public override EmulatorPreparedContent? PrepareContent(MachineConfiguration configuration, MediaConfiguration? media, string sessionDirectory, ExternalCoreInfo coreInfo)
     {
         if (configuration.Model != MachineModel.JaguarCd || media?.Category != MediaCategory.CompactDisc)
             return base.PrepareContent(configuration, media, sessionDirectory, coreInfo);

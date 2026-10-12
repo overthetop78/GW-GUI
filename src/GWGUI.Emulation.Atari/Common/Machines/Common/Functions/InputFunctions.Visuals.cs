@@ -6,9 +6,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static partial class InputSettingsFunctions
 {
-private static IReadOnlyList<string>? CompatibleVisualIds(
-        MachineModel model,
-        PeripheralCategory category) => category switch
+    private static IReadOnlyList<string>? CompatibleVisualIds(MachineModel model, PeripheralCategory category) => category switch
     {
         PeripheralCategory.Joystick when model == MachineModel.Atari2600 =>
             [EmulationControllerVisualIds.AtariCx40],
@@ -47,9 +45,7 @@ private static IReadOnlyList<string>? CompatibleVisualIds(
         _ => null
     };
 
-    private static string? DefaultVisualId(
-        MachineModel model,
-        PeripheralCategory category) => category switch
+    private static string? DefaultVisualId(MachineModel model, PeripheralCategory category) => category switch
     {
         PeripheralCategory.Joystick when model == MachineModel.Atari2600 =>
             EmulationControllerVisualIds.AtariCx40,
@@ -59,9 +55,7 @@ private static IReadOnlyList<string>? CompatibleVisualIds(
         _ => CompatibleVisualIds(model, category)?.FirstOrDefault()
     };
 
-    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? VisualCommandIds(
-        MachineModel model,
-        PeripheralCategory category)
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? VisualCommandIds(MachineModel model, PeripheralCategory category)
     {
         if (category is PeripheralCategory.None or PeripheralCategory.Automatic)
             return null;
@@ -106,11 +100,7 @@ private static IReadOnlyList<string>? CompatibleVisualIds(
         return result;
     }
 
-    private static void AddVisualCommand(
-        IDictionary<EmulationControllerVisualControl, string> result,
-        IReadOnlySet<string> actions,
-        EmulationControllerVisualControl control,
-        string commandId)
+    private static void AddVisualCommand(IDictionary<EmulationControllerVisualControl, string> result, IReadOnlySet<string> actions, EmulationControllerVisualControl control, string commandId)
     {
         if (actions.Contains(commandId)) result[control] = commandId;
     }

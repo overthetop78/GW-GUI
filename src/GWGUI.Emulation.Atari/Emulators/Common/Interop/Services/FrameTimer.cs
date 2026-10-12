@@ -39,6 +39,5 @@ internal sealed class FrameTimer : IDisposable
 
     [DllImport("kernel32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool SetWaitableTimer(SafeWaitHandle timer, ref long dueTime,
-        int period, nint completionRoutine, nint argument, [MarshalAs(UnmanagedType.Bool)] bool resume);
+    private static extern bool SetWaitableTimer(SafeWaitHandle timer, ref long dueTime, int period, nint completionRoutine, nint argument, [MarshalAs(UnmanagedType.Bool)] bool resume);
 }

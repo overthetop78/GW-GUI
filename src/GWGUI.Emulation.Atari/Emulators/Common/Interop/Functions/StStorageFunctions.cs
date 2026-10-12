@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions;
 
 internal static class StStorageFunctions
 {
-    internal static StStorage? Prepare(MachineConfiguration configuration,
-        IReadOnlySet<string> supportedExtensions)
+    internal static StStorage? Prepare(MachineConfiguration configuration, IReadOnlySet<string> supportedExtensions)
     {
         var storage = configuration.Media.Where(IsStorage).Where(media => media.IsInserted).OrderBy(media => media.MountOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).ToArray();
         if (storage.Length > StStorageConstants.MaximumPrimaryStorageCount)
@@ -13,19 +12,16 @@ internal static class StStorageFunctions
         return storage.Length == StStorageConstants.FirstStorageIndex ? null : Prepare(configuration.Model, storage[StStorageConstants.FirstStorageIndex], supportedExtensions);
     }
 
-    internal static StStorage Prepare(MachineModel model, MediaConfiguration media,
-        IReadOnlySet<string> supportedExtensions)
+    internal static StStorage Prepare(MachineModel model, MediaConfiguration media, IReadOnlySet<string> supportedExtensions)
     {
         try { return PrepareImage(model, media, supportedExtensions); }
         catch (Exception error) when (error is ArgumentException or InvalidDataException)
         {
-            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported,
-                error.Message, new Dictionary<string, string> { [ErrorContextConstants.Path] = media.Path }, error);
+            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentUnsupported, error.Message, new Dictionary<string, string> { [ErrorContextConstants.Path] = media.Path }, error);
         }
     }
 
-    private static StStorage PrepareImage(MachineModel model, MediaConfiguration media,
-        IReadOnlySet<string> supportedExtensions)
+    private static StStorage PrepareImage(MachineModel model, MediaConfiguration media, IReadOnlySet<string> supportedExtensions)
     {
         var bus = ResolveBus(media);
         ValidateModel(model, bus);
@@ -60,8 +56,7 @@ internal static class StStorageFunctions
         };
     }
 
-    private static StStorage PrepareGemdos(MediaConfiguration media,
-        IReadOnlySet<string> supportedExtensions)
+    private static StStorage PrepareGemdos(MediaConfiguration media, IReadOnlySet<string> supportedExtensions)
     {
         if (!Directory.Exists(media.Path))
         {
@@ -80,8 +75,7 @@ internal static class StStorageFunctions
         return new StStorage(media, StorageBus.Gemdos, marker, volumes, true);
     }
 
-    private static IReadOnlyList<StStorageVolume> ReadGemdosVolumes(
-        string directory, string? configuredMountPoint, int mountOrder)
+    private static IReadOnlyList<StStorageVolume> ReadGemdosVolumes(string directory, string? configuredMountPoint, int mountOrder)
     {
         var children = Directory.EnumerateDirectories(directory).ToArray();
         var partitions = children.Where(path => IsPartitionName(Path.GetFileName(path))).OrderBy(path => Path.GetFileName(path), StringComparer.OrdinalIgnoreCase).ToArray();

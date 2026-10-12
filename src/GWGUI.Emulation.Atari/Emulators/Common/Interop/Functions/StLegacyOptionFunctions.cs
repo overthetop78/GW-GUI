@@ -5,8 +5,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions;
 
 internal static class StLegacyOptionFunctions
 {
-    internal static IReadOnlyDictionary<string, string> ApplyWriteProtection(
-        IReadOnlyDictionary<string, string> options, StStorage? storage)
+    internal static IReadOnlyDictionary<string, string> ApplyWriteProtection(IReadOnlyDictionary<string, string> options, StStorage? storage)
     {
         var result = new Dictionary<string, string>(options, StringComparer.Ordinal);
         if (storage is not null)
@@ -24,8 +23,7 @@ internal static class StLegacyOptionFunctions
             [MachineValues.ResetType] = StLegacyOptionConstants.ResetType
         };
 
-    internal static IReadOnlyDictionary<string, string> ToNativeOptions(
-        IReadOnlyDictionary<string, string> options)
+    internal static IReadOnlyDictionary<string, string> ToNativeOptions(IReadOnlyDictionary<string, string> options)
     {
         var translated = new Dictionary<string, string>(options, StringComparer.Ordinal);
         foreach (var mapping in GenericToNative)
@@ -62,8 +60,7 @@ internal static class StLegacyOptionFunctions
         return ToNativeOptions(result);
     }
 
-    private static void Copy(IDictionary<string, string> values, string source, string target,
-        Func<string, string?> convert)
+    private static void Copy(IDictionary<string, string> values, string source, string target, Func<string, string?> convert)
     {
         if (values.TryGetValue(source, out var value) && convert(value) is { } converted)
             values[target] = converted;
@@ -102,9 +99,7 @@ internal static class StLegacyOptionFunctions
         _ => MachineOptionFunctionsConstants.Auto
     };
 
-    private static bool SecondJoystick(MachineConfiguration configuration) =>
-        configuration.Input.Controllers is not { } controllers
-        || controllers.Any(binding => binding.Port == 1 && binding.Peripheral != PeripheralCategory.None);
+    private static bool SecondJoystick(MachineConfiguration configuration) => configuration.Input.Controllers is not { } controllers || controllers.Any(binding => binding.Port == 1 && binding.Peripheral != PeripheralCategory.None);
 
     private static string? MouseSpeedValue(string value)
     {
@@ -120,8 +115,7 @@ internal static class StLegacyOptionFunctions
         };
     }
 
-    private static void ApplyFloppySettings(MachineConfiguration configuration,
-        IDictionary<string, string> result)
+    private static void ApplyFloppySettings(MachineConfiguration configuration, IDictionary<string, string> result)
     {
         var slot = configuration.Media.FirstOrDefault(media => media.Category == MediaCategory.Floppy && media.IsInserted)?.Slot ?? EmulationMediaSlot.Floppy0;
         if (configuration.Options.TryGetValue(MachineOptionConstants.FloppySpeedPrefix + slot, out var speed))

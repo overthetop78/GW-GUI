@@ -47,8 +47,7 @@ internal static partial class StorageSettingsFunctions
         return new EmulationStorageSettings(devices, configured, mounted, settings);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        EmulationStorageSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
         var options = configuration.Options.Where(option => !IsDeviceOption(option.Key)).ToDictionary(option => option.Key, option => option.Value);
         foreach (var slot in settings.ConfiguredSlots)

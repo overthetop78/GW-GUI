@@ -8,10 +8,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Dictionaries;
 public static class MachineCatalog
 {
     public static IReadOnlyList<EmulationMachineDefinition> All { get; } = ModelCatalog.All
-        .Select(model => new EmulationMachineDefinition(model.Id, model.DisplayResourceKey,
-            ImageFileName(model.Id) is { } fileName
-                ? $"{EmulationModuleConstants.AssetResourcePrefix}.Machines.{fileName}"
-                : null))
+        .Select(model => new EmulationMachineDefinition(model.Id, model.DisplayResourceKey, ImageFileName(model.Id) is { } fileName ? $"{EmulationModuleConstants.AssetResourcePrefix}.Machines.{fileName}" : null))
         .ToArray();
 
     private static string? ImageFileName(string machineId) => machineId switch

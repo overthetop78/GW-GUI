@@ -9,30 +9,22 @@ public static class FirmwareFunctions
     public static bool IsValidFingerprint(FirmwareFingerprint fingerprint) => fingerprint.Algorithm == FirmwareHashAlgorithm.Md5 && fingerprint.Value.Length == FirmwareConstants.Md5HexLength && fingerprint.Value.All(Uri.IsHexDigit);
     public static string TosId(string version) => FirmwareConstants.TosIdPrefix + version;
 
-    public static FirmwareDefinition Tos(string version, IReadOnlyList<MachineModel> models,
-        IReadOnlyList<StRegion> regions, params FirmwareFingerprint[] fingerprints) => new(
+    public static FirmwareDefinition Tos(string version, IReadOnlyList<MachineModel> models, IReadOnlyList<StRegion> regions, params FirmwareFingerprint[] fingerprints) => new(
         TosId(version), FirmwareCategory.Tos, version, FirmwareConstants.TosFileName, null,
         FirmwareProvision.RequiredExternal, FirmwareDistribution.UserSuppliedCopyrighted,
         FirmwareEvidence.HatariCoreInformation, models, regions, Values(fingerprints));
 
-    public static FirmwareDefinition Replaceable(string id, FirmwareCategory category, string fileName,
-        string md5, IReadOnlyList<MachineModel> models, IReadOnlyList<StRegion> noRegions,
-        params string[] additionalMd5) => new(
+    public static FirmwareDefinition Replaceable(string id, FirmwareCategory category, string fileName, string md5, IReadOnlyList<MachineModel> models, IReadOnlyList<StRegion> noRegions, params string[] additionalMd5) => new(
         id, category, null, fileName, null, FirmwareProvision.EmbeddedReplaceable,
         FirmwareDistribution.UserSuppliedCopyrighted, FirmwareEvidence.Atari800CoreInformation,
-        models, noRegions, Values(new[] { md5 }.Concat(additionalMd5).Select(value =>
-            new FirmwareFingerprint(FirmwareHashAlgorithm.Md5, value)).ToArray()));
+        models, noRegions, Values(new[] { md5 }.Concat(additionalMd5).Select(value => new FirmwareFingerprint(FirmwareHashAlgorithm.Md5, value)).ToArray()));
 
-    public static FirmwareDefinition ReplaceableRevision(string id, FirmwareCategory category, string version,
-        string fileName, string md5, IReadOnlyList<MachineModel> models,
-        IReadOnlyList<StRegion> noRegions) => new(
+    public static FirmwareDefinition ReplaceableRevision(string id, FirmwareCategory category, string version, string fileName, string md5, IReadOnlyList<MachineModel> models, IReadOnlyList<StRegion> noRegions) => new(
         id, category, version, fileName, null, FirmwareProvision.EmbeddedReplaceable,
         FirmwareDistribution.UserSuppliedCopyrighted, FirmwareEvidence.Atari800CoreInformation,
         models, noRegions, Values(new FirmwareFingerprint(FirmwareHashAlgorithm.Md5, md5)));
 
-    public static FirmwareDefinition External(string id, FirmwareCategory category, string fileName,
-        string md5, FirmwareProvision provision, MachineModel model, FirmwareEvidence evidence,
-        IReadOnlyList<StRegion> noRegions) => new(
+    public static FirmwareDefinition External(string id, FirmwareCategory category, string fileName, string md5, FirmwareProvision provision, MachineModel model, FirmwareEvidence evidence, IReadOnlyList<StRegion> noRegions) => new(
         id, category, null, fileName, null, provision, FirmwareDistribution.UserSuppliedCopyrighted,
         evidence, Values(model), noRegions,
         Values(new FirmwareFingerprint(FirmwareHashAlgorithm.Md5, md5)));
@@ -44,27 +36,20 @@ public static class FirmwareFunctions
         evidence, Values(model), noRegions,
         Values(new FirmwareFingerprint(FirmwareHashAlgorithm.Md5, md5)));
 
-    public static FirmwareDefinition Embedded(string id, FirmwareCategory category,
-        FirmwareProvision provision, IReadOnlyList<MachineModel> models,
-        IReadOnlyList<StRegion> noRegions,
-        IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id, category, null, null, null, provision, FirmwareDistribution.NoExternalFile, FirmwareEvidence.VirtualJaguarCoreInformation, models, noRegions, noFingerprints);
+    public static FirmwareDefinition Embedded(string id, FirmwareCategory category, FirmwareProvision provision, IReadOnlyList<MachineModel> models, IReadOnlyList<StRegion> noRegions, IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id, category, null, null, null, provision, FirmwareDistribution.NoExternalFile, FirmwareEvidence.VirtualJaguarCoreInformation, models, noRegions, noFingerprints);
 
-    public static FirmwareDefinition JaguarCd(string id, string fileName,
-        IReadOnlyList<StRegion> noRegions, IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(
+    public static FirmwareDefinition JaguarCd(string id, string fileName, IReadOnlyList<StRegion> noRegions, IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(
         id, FirmwareCategory.JaguarCdBios, null, fileName, null,
         FirmwareProvision.EmbeddedReplaceable, FirmwareDistribution.UserSuppliedCopyrighted,
         FirmwareEvidence.VirtualJaguarCoreInformation, Values(MachineModel.JaguarCd), noRegions,
         noFingerprints);
 
-    public static FirmwareDefinition None(string id, MachineModel model,
-        FirmwareEvidence evidence, IReadOnlyList<StRegion> noRegions,
-        IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id, null, null, null, null, FirmwareProvision.NotUsed, FirmwareDistribution.NoExternalFile, evidence, Values(model), noRegions, noFingerprints);
+    public static FirmwareDefinition None(string id, MachineModel model, FirmwareEvidence evidence, IReadOnlyList<StRegion> noRegions, IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id, null, null, null, null, FirmwareProvision.NotUsed, FirmwareDistribution.NoExternalFile, evidence, Values(model), noRegions, noFingerprints);
 }
 
 public static class FirmwareRuntimeFunctions
 {
-    public static void PrepareSystemDirectory(MachineConfiguration configuration, string systemDirectory,
-        bool validateRequired = true)
+    public static void PrepareSystemDirectory(MachineConfiguration configuration, string systemDirectory, bool validateRequired = true)
     {
         ArgumentNullException.ThrowIfNull(configuration);
         var absoluteSystemDirectory = Path.GetFullPath(systemDirectory);
@@ -98,8 +83,7 @@ public static class FirmwareRuntimeFunctions
             throw new FileNotFoundException(string.Format(CultureInfo.InvariantCulture, ErrorMessages.RequiredFirmwareMissing, category, configuration.Model));
     }
 
-    public static FirmwareDefinition ResolveDefinition(MachineModel model, FirmwareCategory category,
-        string sourcePath)
+    public static FirmwareDefinition ResolveDefinition(MachineModel model, FirmwareCategory category, string sourcePath)
     {
         var definitions = FirmwareCatalog.ForModel(model).Where(definition => definition.Category == category && definition.ExpectedFileName is not null).ToArray();
         var expectedFileNames = definitions.Select(definition => definition.ExpectedFileName!).Distinct(StringComparer.OrdinalIgnoreCase).ToArray();

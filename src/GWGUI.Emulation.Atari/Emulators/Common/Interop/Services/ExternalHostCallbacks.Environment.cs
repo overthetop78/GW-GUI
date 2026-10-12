@@ -8,7 +8,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalHostCallbacks : IDisposable
 {
-private bool OnEnvironment(uint command, nint data)
+    private bool OnEnvironment(uint command, nint data)
     {
         _environmentCommands.Add(command);
         switch (command)

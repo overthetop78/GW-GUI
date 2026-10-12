@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore : IEmulatorCore
 {
-private void ReplaceCartridge(MediaConfiguration media)
+    private void ReplaceCartridge(MediaConfiguration media)
     {
         var configuration = _configuration ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
         var exports = RequireExports();

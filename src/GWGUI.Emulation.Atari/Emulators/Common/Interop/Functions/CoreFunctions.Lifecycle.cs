@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions;
 
 internal static class CoreLifecycleFunctions
 {
-    internal static void Load(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration, nint gameInfo, Action? configureControllers = null)
+    internal static void Load(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration, nint gameInfo, Action? configureControllers = null)
     {
         if (gameInfo == nint.Zero && !callbacks.SupportsNoGame)
             throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentRequired, ErrorMessages.ContentRequired);
@@ -18,8 +17,7 @@ internal static class CoreLifecycleFunctions
         callbacks.ApplySystemAvInfo(avInfo);
     }
 
-    internal static void Cleanup(ExternalCoreExports? exports, bool gameLoaded, bool initialized,
-        Action disposeCallbacks, Action disposeLibrary)
+    internal static void Cleanup(ExternalCoreExports? exports, bool gameLoaded, bool initialized, Action disposeCallbacks, Action disposeLibrary)
     {
         if (gameLoaded)
             exports?.UnloadGame();

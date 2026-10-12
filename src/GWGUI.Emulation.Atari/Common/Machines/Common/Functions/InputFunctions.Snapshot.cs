@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static class InputSnapshotFunctions
 {
-    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot,
-        InputConfiguration? configuration, MachineModel model)
+    internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration? configuration, MachineModel model)
     {
         var mappedKeyboard = snapshot with
         {
@@ -37,8 +36,7 @@ internal static class InputSnapshotFunctions
         return withDeadZones with { Controllers = controllers };
     }
 
-    private static bool IsPressed(string sourceName, EmulationControllerState controller,
-        IReadOnlySet<EmulationKey> keys, EmulationPointerState pointer)
+    private static bool IsPressed(string sourceName, EmulationControllerState controller, IReadOnlySet<EmulationKey> keys, EmulationPointerState pointer)
     {
         if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Keyboard, out var keyboardSource)
             && Enum.TryParse<EmulationKey>(keyboardSource, true, out var key))
@@ -72,10 +70,7 @@ internal static class InputSnapshotFunctions
         return source.Length > 0;
     }
 
-    private static EmulationControllerState ControllerForSource(
-        string source,
-        IReadOnlyList<EmulationControllerState> controllers,
-        EmulationControllerState fallback)
+    private static EmulationControllerState ControllerForSource(string source, IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)
     {
         var deviceId = EmulationInputMappingFunctions.ParseControllerDeviceId(source);
         return deviceId is null ? fallback : controllers.FirstOrDefault(controller => string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase)) ?? fallback;

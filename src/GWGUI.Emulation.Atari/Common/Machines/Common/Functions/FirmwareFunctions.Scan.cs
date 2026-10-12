@@ -50,8 +50,7 @@ public static class FirmwareScanFunctions
 
     public static FirmwareDefinition? Identify(string md5, MachineModel model) => FirmwareCatalog.ForModel(model).FirstOrDefault(definition => definition.Fingerprints.Any(fingerprint => string.Equals(fingerprint.Value, md5, StringComparison.OrdinalIgnoreCase)));
 
-    public static async Task<(FirmwareDefinition Definition, StRegion? Region)?> IdentifyTosAsync(
-        string path, CancellationToken cancellationToken)
+    public static async Task<(FirmwareDefinition Definition, StRegion? Region)?> IdentifyTosAsync(string path, CancellationToken cancellationToken)
     {
         var header = await TosHeaderReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         if (header is null) return null;
@@ -84,8 +83,7 @@ public static class FirmwareScanFunctions
     public static FirmwareDefinition? IdentifyByExpectedName(string path, MachineModel model) =>
         FirmwareCatalog.ForModel(model).FirstOrDefault(definition => definition.ExpectedFileName is not null && string.Equals(Path.GetFileName(path), definition.ExpectedFileName, StringComparison.OrdinalIgnoreCase));
 
-    public static FirmwareCompatibility Classify(FirmwareDefinition? identified,
-        FirmwareDefinition? named, MachineModel model, StRegion? region)
+    public static FirmwareCompatibility Classify(FirmwareDefinition? identified, FirmwareDefinition? named, MachineModel model, StRegion? region)
     {
         var candidate = identified ?? named;
         if (candidate is null || !candidate.Models.Contains(model) ||
@@ -96,8 +94,7 @@ public static class FirmwareScanFunctions
         return region is not null && identified.Fingerprints.Any(fingerprint => fingerprint.Region is not null) && fingerprintRegion != region ? FirmwareCompatibility.Incompatible : FirmwareCompatibility.Compatible;
     }
 
-    public static async Task<ScannedFirmware> ScanFileAsync(string path, MachineModel model,
-        StRegion? region, CancellationToken cancellationToken)
+    public static async Task<ScannedFirmware> ScanFileAsync(string path, MachineModel model, StRegion? region, CancellationToken cancellationToken)
     {
         try
         {

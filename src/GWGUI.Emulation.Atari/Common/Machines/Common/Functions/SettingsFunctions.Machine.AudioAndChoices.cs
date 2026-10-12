@@ -61,11 +61,9 @@ internal static partial class SettingsDescriptionFunctions
 
     private static IReadOnlyList<EmulationSettingsChoice> DefaultAudioOutput() => [new(VideoAudioSettingsConstants.DefaultAudioOutput, SettingsDescriptionFunctionsConstants.ResourceAudioDefaultOutput)];
 
-    private static EmulationSettingsChoice Milliseconds(int value) =>
-        new(value.ToString(), string.Empty, $"{value} ms", value);
+    private static EmulationSettingsChoice Milliseconds(int value) => new(value.ToString(), string.Empty, $"{value} ms", value);
 
-    private static EmulationSettingsChoice Percentage(int value) =>
-        new(value.ToString(), string.Empty, $"{value} %", value);
+    private static EmulationSettingsChoice Percentage(int value) => new(value.ToString(), string.Empty, $"{value} %", value);
 
     private static IReadOnlyList<EmulationSettingsChoice> Percentages(int minimum, int maximum, int step) => Enumerable.Range(0, (maximum - minimum) / step + 1).Select(index => Percentage(minimum + index * step)).ToArray();
 

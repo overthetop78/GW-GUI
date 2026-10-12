@@ -9,8 +9,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime,
     IEmulationCassetteTransport
 {
-private MachineConfiguration CurrentConfiguration() =>
-        Configuration with { Media = _mountedMedia.ToArray() };
+    private MachineConfiguration CurrentConfiguration() => Configuration with { Media = _mountedMedia.ToArray() };
 
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken)
     {

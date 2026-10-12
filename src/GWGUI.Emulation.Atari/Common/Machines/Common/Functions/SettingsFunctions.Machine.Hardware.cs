@@ -52,13 +52,11 @@ internal static partial class SettingsDescriptionFunctions
         return fields.ToArray();
     }
 
-    private static EmulationSettingsField FirmwarePath(MachineConfiguration configuration,
-        string fieldId, string label) =>
+    private static EmulationSettingsField FirmwarePath(MachineConfiguration configuration, string fieldId, string label) =>
         Path(fieldId, EmulationMachineTab.Rom, SettingsDescriptionFunctionsConstants.Firmware, label,
             configuration.Firmwares.FirstOrDefault(item => string.Equals(FirmwareSelectionFunctions.FieldId(configuration.Model, item.Category), fieldId, StringComparison.Ordinal))?.Path);
 
-    private static void AddEightBitControllerOptions(MachineConfiguration configuration,
-        ICollection<EmulationSettingsBlock> blocks)
+    private static void AddEightBitControllerOptions(MachineConfiguration configuration, ICollection<EmulationSettingsBlock> blocks)
     {
         if (!EightBitSettingsCatalog.SupportsComputerOptions(configuration.Model)) return;
         blocks.Add(Block(SettingsDescriptionFunctionsConstants.ControllerOptions, EmulationMachineTab.Controllers,
@@ -81,8 +79,7 @@ internal static partial class SettingsDescriptionFunctions
                 Value(configuration, EightBitSettingsConstants.AnalogSensitivityOptionKey, EightBitSettingsConstants.DefaultSensitivity), EightBitSettingsCatalog.Sensitivities)));
     }
 
-    private static void AddEightBitOptions(MachineConfiguration configuration,
-        ICollection<EmulationSettingsBlock> blocks)
+    private static void AddEightBitOptions(MachineConfiguration configuration, ICollection<EmulationSettingsBlock> blocks)
     {
         if (!EightBitSettingsCatalog.SupportsComputerOptions(configuration.Model)) return;
         blocks.Add(Block(SettingsDescriptionFunctionsConstants.VideoColors, EmulationMachineTab.Video, SettingsDescriptionFunctionsConstants.ResourceVideoSettingsDisplay, SettingsDescriptionFunctionsConstants.Value7, 2,
@@ -129,8 +126,7 @@ internal static partial class SettingsDescriptionFunctions
                 SettingsDescriptionFunctionsConstants.StorageOptions, SettingsDescriptionFunctionsConstants.ResourceAtariStorageSerialDevice, Enabled(configuration, EightBitSettingsConstants.SerialDeviceOptionKey))));
     }
 
-    private static void AddEightBitMemory(MachineConfiguration configuration,
-        ICollection<EmulationSettingsBlock> blocks)
+    private static void AddEightBitMemory(MachineConfiguration configuration, ICollection<EmulationSettingsBlock> blocks)
     {
         var mosaic = EightBitSettingsCatalog.Mosaic(configuration.Model);
         var axlon = EightBitSettingsCatalog.Axlon(configuration.Model);

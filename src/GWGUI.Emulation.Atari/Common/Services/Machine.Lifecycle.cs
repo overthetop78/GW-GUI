@@ -9,7 +9,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime,
     IEmulationCassetteTransport
 {
-public async ValueTask StartAsync(CancellationToken cancellationToken = default)
+    public async ValueTask StartAsync(CancellationToken cancellationToken = default)
     {
         Task started;
         lock (_gate)
@@ -140,8 +140,7 @@ public async ValueTask StartAsync(CancellationToken cancellationToken = default)
 
     public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) => QueueCommand(() => _core.SetOption(key, value), cancellationToken);
 
-    ValueTask IEmulationCassetteTransport.ExecuteAsync(EmulationCassetteCommand command,
-        CancellationToken cancellationToken) => QueueCommand(() =>
+    ValueTask IEmulationCassetteTransport.ExecuteAsync(EmulationCassetteCommand command, CancellationToken cancellationToken) => QueueCommand(() =>
         {
             if (command != EmulationCassetteCommand.Play)
                 throw new NotSupportedException(command.ToString());

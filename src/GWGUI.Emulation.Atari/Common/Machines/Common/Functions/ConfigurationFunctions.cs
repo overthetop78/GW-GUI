@@ -36,9 +36,7 @@ internal static class ConfigurationFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(model), model, null)
     };
 
-    internal static void Validate(int schemaVersion, MachineModel model,
-        IReadOnlyList<FirmwareConfiguration> firmwares, IReadOnlyList<MediaConfiguration> media,
-        InputConfiguration input)
+    internal static void Validate(int schemaVersion, MachineModel model, IReadOnlyList<FirmwareConfiguration> firmwares, IReadOnlyList<MediaConfiguration> media, InputConfiguration input)
     {
         if (schemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion)
             throw new ArgumentOutOfRangeException(nameof(schemaVersion), ErrorMessages.UnsupportedSchema);

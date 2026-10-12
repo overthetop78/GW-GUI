@@ -64,8 +64,6 @@ internal static class ConfigurationSummaryFunctions
         return name.Length <= ConfigurationSummaryFunctionsConstants.MaximumShortNameLength ? name : name[..ConfigurationSummaryFunctionsConstants.TruncatedShortNameLength] + ConfigurationSummaryFunctionsConstants.Ellipsis;
     }
     private static long LongOption(IReadOnlyDictionary<string, string> options, string key) => options.TryGetValue(key, out var value) && long.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : 0;
-    private static string FormatMemory(long bytes) => bytes < 1024 * 1024
-        ? $"{bytes / 1024d:0.#} KiB"
-        : $"{bytes / 1024d / 1024d:0.##} MiB";
+    private static string FormatMemory(long bytes) => bytes < 1024 * 1024 ? $"{bytes / 1024d:0.#} KiB" : $"{bytes / 1024d / 1024d:0.##} MiB";
 
 }

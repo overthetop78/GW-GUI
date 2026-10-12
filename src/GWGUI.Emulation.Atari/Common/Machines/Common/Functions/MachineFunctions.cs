@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static class MachineFunctions
 {
-    internal static string ThreadName(Guid id, Emulator core) =>
-        $"{MachineConstants.ThreadNamePrefix} {core} {id:N}";
+    internal static string ThreadName(Guid id, Emulator core) => $"{MachineConstants.ThreadNamePrefix} {core} {id:N}";
 
     internal static long NextFrameTimestamp(long current, double framesPerSecond) => current + (long)(Stopwatch.Frequency / Math.Clamp(framesPerSecond, MachineConstants.MinimumFramesPerSecond, MachineConstants.MaximumFramesPerSecond));
 

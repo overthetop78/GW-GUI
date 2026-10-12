@@ -16,8 +16,7 @@ public sealed class ConfigurationStore
         _pathBase = Path.GetFullPath(pathBase ?? directory);
     }
 
-    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(
-        CancellationToken cancellationToken = default)
+    public Task<IReadOnlyList<MachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)
     {
         Directory.CreateDirectory(_directory);
         var configurations = new List<MachineConfiguration>();
@@ -39,8 +38,7 @@ public sealed class ConfigurationStore
         return Task.FromResult<IReadOnlyList<MachineConfiguration>>(configurations);
     }
 
-    public async Task SaveAsync(MachineConfiguration configuration,
-        CancellationToken cancellationToken = default)
+    public async Task SaveAsync(MachineConfiguration configuration, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(configuration);
         await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);

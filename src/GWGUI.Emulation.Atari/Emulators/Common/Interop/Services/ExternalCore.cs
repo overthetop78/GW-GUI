@@ -147,8 +147,7 @@ internal sealed partial class ExternalCore : IEmulatorCore
     }
     public void SetOption(string key, string value)
     {
-        var options = _mediaAdapter.PrepareOptions(
-            new Dictionary<string, string>(StringComparer.Ordinal) { [key] = value });
+        var options = _mediaAdapter.PrepareOptions(new Dictionary<string, string>(StringComparer.Ordinal) { [key] = value });
         foreach (var option in options) RequireCallbacks().SetOption(option.Key, option.Value);
     }
 }

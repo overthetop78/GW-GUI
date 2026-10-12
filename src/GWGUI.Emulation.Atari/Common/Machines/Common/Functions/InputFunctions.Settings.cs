@@ -34,8 +34,7 @@ internal static partial class InputSettingsFunctions
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
 
-    internal static MachineConfiguration Apply(MachineConfiguration configuration,
-        EmulationInputSettings settings)
+    internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         var current = configuration.Input ?? new InputConfiguration();
         var keyboard = settings.Keyboard?.Values.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal)
@@ -66,21 +65,17 @@ internal static partial class InputSettingsFunctions
         Definition(InputSettingsFunctionsConstants.Right, InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)
     ];
 
-    private static IReadOnlyDictionary<string, string> MouseValues(
-        IReadOnlyDictionary<string, string> options) => MouseSettingsConstants.Actions.ToDictionary(
+    private static IReadOnlyDictionary<string, string> MouseValues(IReadOnlyDictionary<string, string> options) => MouseSettingsConstants.Actions.ToDictionary(
         action => action,
-        action => options.GetValueOrDefault(MouseSettingsConstants.MappingOptionPrefix + action,
-            $"Mouse:{action}"), StringComparer.Ordinal);
+        action => options.GetValueOrDefault(MouseSettingsConstants.MappingOptionPrefix + action, $"Mouse:{action}"), StringComparer.Ordinal);
 
-    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(MachineModel model,
-        PeripheralCategory peripheral)
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(MachineModel model, PeripheralCategory peripheral)
     {
         var actions = ControllerActions(model, peripheral);
         return actions.Select(action => Definition(action, ActionResourceKey(action), string.Empty, ActionInvariantValue(action))).ToArray();
     }
 
-    private static IEnumerable<string> ControllerActions(MachineModel model,
-        PeripheralCategory peripheral)
+    private static IEnumerable<string> ControllerActions(MachineModel model, PeripheralCategory peripheral)
     {
         if (peripheral == PeripheralCategory.None) return [];
         if (model == MachineModel.Atari5200 && peripheral is PeripheralCategory.AnalogJoystick
@@ -115,9 +110,7 @@ internal static partial class InputSettingsFunctions
         _ => PeripheralCategory.Joystick
     };
 
-    private static EmulationControllerChoice Choice(
-        MachineModel model,
-        PeripheralCategory category) => new(category.ToString(), category switch
+    private static EmulationControllerChoice Choice(MachineModel model, PeripheralCategory category) => new(category.ToString(), category switch
     {
         PeripheralCategory.None => InputSettingsFunctionsConstants.ResourceControllerNone,
         PeripheralCategory.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,

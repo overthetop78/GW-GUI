@@ -21,8 +21,6 @@ public static class AtariJaguarModelCatalog
                 HardwareModelFunctions.Values(HardwareStorageCapability.Cartridge, HardwareStorageCapability.CompactDisc),
                 HardwareModelFunctions.Values(MediaCategory.Cartridge, MediaCategory.CompactDisc)));
 
-    private static HardwareModelDefinition Create(MachineModel model, string modelId,
-        string resourceKey, IReadOnlyList<FirmwareCategory> firmware,
-        IReadOnlyList<HardwareStorageCapability> storage, IReadOnlyList<MediaCategory> media) =>
+    private static HardwareModelDefinition Create(MachineModel model, string modelId, string resourceKey, IReadOnlyList<FirmwareCategory> firmware, IReadOnlyList<HardwareStorageCapability> storage, IReadOnlyList<MediaCategory> media) =>
         HardwareModelFunctions.Create(model, modelId, resourceKey, Emulator.VirtualJaguar, AtariJaguarModelConstants.CpuFrequencyHz, AtariJaguarModelConstants.MainMemoryBytes, Cpus, Regions, Video, Audio, storage, Ports, firmware, media);
 }

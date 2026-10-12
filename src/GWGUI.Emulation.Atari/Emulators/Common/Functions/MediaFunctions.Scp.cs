@@ -11,8 +11,7 @@ internal static class ScpMediaFunctions
 
     internal static bool IsScp(string path) => Path.GetExtension(path).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase);
 
-    internal static SessionMedia Prepare(MachineConfiguration configuration,
-        MediaConfiguration media, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
+    internal static SessionMedia Prepare(MachineConfiguration configuration, MediaConfiguration media, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
         if (!IsScp(media.Path))
             return SessionMediaFunctions.Prepare(media, sessionDirectory, supportedExtensions);
@@ -23,8 +22,7 @@ internal static class ScpMediaFunctions
         {
             MachineFamily.EightBit => DiskImageFileExtensions.Atr,
             MachineFamily.St => DiskImageFileExtensions.St,
-            _ => throw new NotSupportedException(
-                $"SCP conversion is not supported for Atari family '{configuration.Family}'.")
+            _ => throw new NotSupportedException($"SCP conversion is not supported for Atari family '{configuration.Family}'.")
         };
         var runtimeDirectory = Path.Combine(sessionDirectory, SessionMediaConstants.SessionDirectoryName,
             string.Format(CultureInfo.InvariantCulture, SessionMediaConstants.SessionInstanceNameFormat, media.Slot, Guid.NewGuid().ToString(SessionMediaConstants.UniqueNameFormat)));

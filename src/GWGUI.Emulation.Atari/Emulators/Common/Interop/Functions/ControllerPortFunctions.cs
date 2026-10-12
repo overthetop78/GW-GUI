@@ -2,8 +2,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions;
 
 internal static class ControllerPortFunctions
 {
-    internal static void Configure(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration)
+    internal static void Configure(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration)
     {
         var portCount = CompatibilityCatalog.Get(configuration.Model).ControllerPortCount;
         for (var port = ControllerPortConstants.MinimumControllerPort; port < portCount; port++)
@@ -13,8 +12,7 @@ internal static class ControllerPortFunctions
         }
     }
 
-    internal static uint ResolveDevice(IReadOnlyList<ControllerPort> ports, int port,
-        PeripheralCategory peripheral, Emulator? core = null)
+    internal static uint ResolveDevice(IReadOnlyList<ControllerPort> ports, int port, PeripheralCategory peripheral, Emulator? core = null)
     {
         if (peripheral == PeripheralCategory.None)
             return CoreLifecycleConstants.NoDevice;
@@ -63,8 +61,7 @@ internal static class ControllerPortFunctions
         throw new InvalidDataException(ErrorMessages.UnsupportedControllerDevice);
     }
 
-    internal static void ConfigurePort(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration, int port, PeripheralCategory peripheral)
+    internal static void ConfigurePort(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration, int port, PeripheralCategory peripheral)
     {
         var definition = CompatibilityCatalog.Get(configuration.Model);
         if (port < ControllerPortConstants.MinimumControllerPort || port >= definition.ControllerPortCount)

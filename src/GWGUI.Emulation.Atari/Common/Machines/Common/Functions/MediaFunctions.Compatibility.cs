@@ -4,8 +4,7 @@ internal static class CompatibilityFunctions
 {
     internal static IReadOnlyList<T> Values<T>(params T[] values) => Array.AsReadOnly(values);
 
-    internal static IReadOnlyDictionary<MachineModel, CompatibilityDefinition> Index(
-        IReadOnlyList<CompatibilityDefinition> definitions)
+    internal static IReadOnlyDictionary<MachineModel, CompatibilityDefinition> Index(IReadOnlyList<CompatibilityDefinition> definitions)
     {
         var index = definitions.ToDictionary(definition => definition.Model);
         if (index.Count != definitions.Count)

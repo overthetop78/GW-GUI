@@ -6,8 +6,7 @@ namespace GWGUI.Emulation.Atari.Emulators.VirtualJaguar.Constants;
 
 internal static class JaguarCdConstants
 {
-    internal static readonly IReadOnlySet<string> CompleteDiscExtensions =
-        new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "cue", "cdi" };
+    internal static readonly IReadOnlySet<string> CompleteDiscExtensions = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "cue", "cdi" };
 
     internal const string CueExtension = ".cue";
     internal const string CueFileDirective = "FILE ";

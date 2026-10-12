@@ -12,8 +12,7 @@ internal static class ConfigurationStoreFunctions
 
     internal static ConfigurationDocument Deserialize(JsonElement root) => root.Deserialize<ConfigurationDocument>(JsonOptions) ?? throw new InvalidDataException();
 
-    internal static ConfigurationDocument ToDocument(MachineConfiguration configuration,
-        string pathBase) => new(
+    internal static ConfigurationDocument ToDocument(MachineConfiguration configuration, string pathBase) => new(
         ConfigurationStoreConstants.CurrentSchemaVersion,
         configuration.Id,
         configuration.Model,
@@ -31,8 +30,7 @@ internal static class ConfigurationStoreFunctions
         StoreFolders(configuration.Folders, pathBase),
         configuration.AudioEnabled);
 
-    internal static MachineConfiguration FromDocument(ConfigurationDocument document,
-        string pathBase)
+    internal static MachineConfiguration FromDocument(ConfigurationDocument document, string pathBase)
     {
         if (document.SchemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion)
             throw new InvalidDataException();
@@ -75,8 +73,7 @@ internal static class ConfigurationStoreFunctions
         return Path.GetFullPath(Path.Combine(pathBase, path.Replace(ConfigurationStoreConstants.StoredDirectorySeparator, Path.DirectorySeparatorChar)));
     }
 
-    internal static async Task WriteDocumentAtomicallyAsync(string path, ConfigurationDocument document,
-        CancellationToken cancellationToken)
+    internal static async Task WriteDocumentAtomicallyAsync(string path, ConfigurationDocument document, CancellationToken cancellationToken)
     {
         var fullPath = Path.GetFullPath(path);
         Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);

@@ -7,8 +7,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static class SavedStateFunctions
 {
-    internal static SavedStateHeader CreateHeader(MachineConfiguration configuration,
-        IEmulatorCore core, ReadOnlySpan<byte> state) => new(
+    internal static SavedStateHeader CreateHeader(MachineConfiguration configuration, IEmulatorCore core, ReadOnlySpan<byte> state) => new(
         StateConstants.CurrentFormatVersion,
         core.Emulator,
         core.CoreName,
@@ -19,8 +18,7 @@ internal static class SavedStateFunctions
         ContentHash(configuration),
         HashBytes(state));
 
-    internal static void Validate(SavedStateHeader header, MachineConfiguration configuration,
-        IEmulatorCore core)
+    internal static void Validate(SavedStateHeader header, MachineConfiguration configuration, IEmulatorCore core)
     {
         if (header.FormatVersion != StateConstants.CurrentFormatVersion)
             throw Invalid(ErrorCode.StateIncompatible, ErrorMessages.StateIncompatible);
@@ -67,13 +65,11 @@ internal static class SavedStateFunctions
 
     internal static string ContentHash(MachineConfiguration configuration) => HashBytes(JsonSerializer.SerializeToUtf8Bytes(ContentEntries(configuration), StateConstants.JsonOptions));
 
-    private static IReadOnlyList<StateContentEntry> ContentEntries(
-        MachineConfiguration configuration)
+    private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration)
     {
         var entries = configuration.Firmwares.OrderBy(firmware => firmware.Category).Select(firmware => new StateContentEntry(StateConstants.FirmwareCategory, firmware.Category.ToString(), HashPath(firmware.Path)))
             .Concat(configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
-                .Select(media => new StateContentEntry(StateConstants.MediaCategory,
-                    $"{media.Category}:{media.Slot}:{media.MountOrder}", HashPath(media.Path))))
+                .Select(media => new StateContentEntry(StateConstants.MediaCategory, $"{media.Category}:{media.Slot}:{media.MountOrder}", HashPath(media.Path))))
             .ToArray();
         return entries;
     }

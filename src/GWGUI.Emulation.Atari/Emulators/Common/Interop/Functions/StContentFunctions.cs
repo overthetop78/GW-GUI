@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Functions;
 
 internal static class StContentFunctions
 {
-    internal static StContent? Prepare(MachineConfiguration configuration,
-        string sessionDirectory, IReadOnlySet<string> supportedExtensions)
+    internal static StContent? Prepare(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions)
     {
         var media = configuration.Media.Where(item => item.IsInserted).OrderBy(item => item.MountOrder).ThenBy(item => item.Path, StringComparer.OrdinalIgnoreCase).ToArray();
         if (media.Length > StContentConstants.MaximumPrimaryContentCount)

@@ -22,8 +22,7 @@ internal static class StModelFunctions
         return values.AsReadOnly();
     }
 
-    internal static IReadOnlyDictionary<MachineModel, StModelDefinition> Index(
-        IReadOnlyList<StModelDefinition> definitions)
+    internal static IReadOnlyDictionary<MachineModel, StModelDefinition> Index(IReadOnlyList<StModelDefinition> definitions)
     {
         var result = definitions.ToDictionary(definition => definition.Model);
         if (result.Count != definitions.Count)

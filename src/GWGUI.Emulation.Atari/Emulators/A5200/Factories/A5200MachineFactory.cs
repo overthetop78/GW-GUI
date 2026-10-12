@@ -19,8 +19,7 @@ internal sealed class A5200MachineFactory() : MachineFactory(EmulatorConstants.E
 
     public override EmulationInputSnapshot PrepareInput(EmulationInputSnapshot snapshot) => InputFunctions.ToNative(snapshot);
 
-    public override void ConfigureController(ExternalCoreExports exports, ExternalHostCallbacks callbacks,
-        MachineConfiguration configuration, int port, PeripheralCategory peripheral)
+    public override void ConfigureController(ExternalCoreExports exports, ExternalHostCallbacks callbacks, MachineConfiguration configuration, int port, PeripheralCategory peripheral)
     {
         if (port < InputConstants.PrimaryPort || port >= Atari5200ModelConstants.FourPorts)
             throw new ArgumentOutOfRangeException(nameof(port));

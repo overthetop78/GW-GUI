@@ -2,13 +2,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static class CartridgeFunctions
 {
-    internal static PreparedCartridge Prepare(
-        MachineConfiguration machine,
-        MediaConfiguration media,
-        Emulator core,
-        IReadOnlySet<string> acceptedExtensions,
-        bool needsFullPath,
-        IReadOnlySet<string> reportedExtensions)
+    internal static PreparedCartridge Prepare(MachineConfiguration machine, MediaConfiguration media, Emulator core, IReadOnlySet<string> acceptedExtensions, bool needsFullPath, IReadOnlySet<string> reportedExtensions)
     {
         if (machine.Core != core) throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(machine));
         if (media.Category != MediaCategory.Cartridge || media.Slot != GWGUI.Emulation.Contracts.EmulationMediaSlot.Cartridge0)
@@ -34,19 +28,14 @@ internal static class CartridgeFunctions
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(media));
     }
 
-    internal static IReadOnlyDictionary<string, string> ApplyOptions(
-        IReadOnlyDictionary<string, string> configuredOptions,
-        MediaConfiguration media,
-        bool supportsRegion)
+    internal static IReadOnlyDictionary<string, string> ApplyOptions(IReadOnlyDictionary<string, string> configuredOptions, MediaConfiguration media, bool supportsRegion)
     {
         var options = new Dictionary<string, string>(configuredOptions, StringComparer.Ordinal);
         foreach (var option in GetMediaOptions(media, supportsRegion)) options[option.Key] = option.Value;
         return options;
     }
 
-    internal static IReadOnlyDictionary<string, string> GetMediaOptions(
-        MediaConfiguration media,
-        bool supportsRegion)
+    internal static IReadOnlyDictionary<string, string> GetMediaOptions(MediaConfiguration media, bool supportsRegion)
     {
         var options = new Dictionary<string, string>(StringComparer.Ordinal);
         if (media.CartridgeRegion is not { } region) return options;
@@ -70,13 +59,11 @@ internal static class CartridgeFunctions
         }
         catch (IOException exception)
         {
-            throw CartridgeExceptions.FileUnreadable(
-                new Dictionary<string, string> { [ErrorContextConstants.Path] = path }, exception);
+            throw CartridgeExceptions.FileUnreadable(new Dictionary<string, string> { [ErrorContextConstants.Path] = path }, exception);
         }
         catch (UnauthorizedAccessException exception)
         {
-            throw CartridgeExceptions.FileUnreadable(
-                new Dictionary<string, string> { [ErrorContextConstants.Path] = path }, exception);
+            throw CartridgeExceptions.FileUnreadable(new Dictionary<string, string> { [ErrorContextConstants.Path] = path }, exception);
         }
     }
 }

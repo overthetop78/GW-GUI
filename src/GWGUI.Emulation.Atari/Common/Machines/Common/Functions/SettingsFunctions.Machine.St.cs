@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.Atari.Common.Machines.Common.Functions;
 
 internal static partial class SettingsDescriptionFunctions
 {
-    private static void AddMouseSettings(MachineConfiguration configuration,
-        CompatibilityDefinition compatibility, ICollection<EmulationSettingsBlock> blocks)
+    private static void AddMouseSettings(MachineConfiguration configuration, CompatibilityDefinition compatibility, ICollection<EmulationSettingsBlock> blocks)
     {
         if (!compatibility.VisibleTabs.Contains(SettingsTab.Mouse)) return;
         var choices = Enumerable.Range(MouseSettingsConstants.MinimumSpeedPercent
@@ -19,8 +18,7 @@ internal static partial class SettingsDescriptionFunctions
                 SettingsDescriptionFunctionsConstants.ResourceMouseSpeed, Value(configuration, MouseSettingsConstants.SpeedOptionKey, MouseSettingsConstants.DefaultSpeedPercent.ToString()), choices)));
     }
 
-    private static void AddGeneralFolders(MachineConfiguration configuration,
-        CompatibilityDefinition compatibility, ICollection<EmulationSettingsBlock> blocks)
+    private static void AddGeneralFolders(MachineConfiguration configuration, CompatibilityDefinition compatibility, ICollection<EmulationSettingsBlock> blocks)
     {
         var supportsHardDisk = EightBitSettingsCatalog.SupportsComputerOptions(configuration.Model)
             || compatibility.Media.Any(rule => rule.Availability == MediaAvailability.Available && rule.Category is MediaCategory.HardDisk or MediaCategory.Directory);

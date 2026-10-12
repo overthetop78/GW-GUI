@@ -1,10 +1,6 @@
 namespace GWGUI.Emulation.Atari.Common.Machines.Common.Contracts;
 
-public sealed record FirmwareConfiguration(
-    FirmwareCategory Category,
-    string Path,
-    bool IsRequired,
-    bool IsOriginalFirmware = true);
+public sealed record FirmwareConfiguration(FirmwareCategory Category, string Path, bool IsRequired, bool IsOriginalFirmware = true);
 
 public sealed record FirmwareDefinition(
     string Id, FirmwareCategory? Category, string? Version, string? ExpectedFileName,
@@ -16,10 +12,6 @@ public sealed record FirmwareDefinition(
     public bool CanBePackaged => Distribution != FirmwareDistribution.UserSuppliedCopyrighted;
 }
 
-public sealed record FirmwareFingerprint(
-    FirmwareHashAlgorithm Algorithm, string Value, StRegion? Region = null);
+public sealed record FirmwareFingerprint(FirmwareHashAlgorithm Algorithm, string Value, StRegion? Region = null);
 
-public sealed record ScannedFirmware(
-    string Path, long? SizeBytes, string? Md5, FirmwareDetectionStatus Detection,
-    FirmwareDefinition? Definition, FirmwareCompatibility Compatibility,
-    bool IsDuplicate, string? ReadError);
+public sealed record ScannedFirmware(string Path, long? SizeBytes, string? Md5, FirmwareDetectionStatus Detection, FirmwareDefinition? Definition, FirmwareCompatibility Compatibility, bool IsDuplicate, string? ReadError);

@@ -11,8 +11,7 @@ internal sealed class HatariBMachineFactory() : MachineFactory(EmulatorConstants
 
     public override void PrepareSystemDirectory(MachineConfiguration configuration, string systemDirectory) => FirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, systemDirectory, validateRequired: configuration.Firmwares.Any(item => item.Category == FirmwareCategory.Tos));
 
-    public override EmulatorPreparedContent? PrepareContent(MachineConfiguration configuration,
-        MediaConfiguration? media, string sessionDirectory, ExternalCoreInfo coreInfo)
+    public override EmulatorPreparedContent? PrepareContent(MachineConfiguration configuration, MediaConfiguration? media, string sessionDirectory, ExternalCoreInfo coreInfo)
     {
         var content = StContentFunctions.Prepare(configuration, sessionDirectory, coreInfo.Extensions);
         return content is null ? null : new EmulatorPreparedContent(content.Configuration, content.RuntimePath, coreInfo.NeedsFullPath, GetConfiguredOptions(configuration), content.SessionMedia, content.BootFloppy, State: content);

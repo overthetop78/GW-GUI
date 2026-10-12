@@ -119,8 +119,7 @@ internal static class MessageFunctions
 
 public static class ShortcutFunctions
 {
-    public static IReadOnlyList<ShortcutRule> Rules(MachineConfiguration configuration,
-        bool statesAvailable, bool quickStateExists)
+    public static IReadOnlyList<ShortcutRule> Rules(MachineConfiguration configuration, bool statesAvailable, bool quickStateExists)
     {
         var rules = ShortcutConstants.CommonActions.Select(Available).ToList();
         rules.Add(new ShortcutRule(EmulationShortcutActions.QuickSave, Availability(statesAvailable)));

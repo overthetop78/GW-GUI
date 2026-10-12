@@ -6,8 +6,7 @@ internal static class HardwareModelFunctions
 {
     internal static IReadOnlyList<T> Values<T>(params T[] values) => Array.AsReadOnly(values);
 
-    internal static IReadOnlyDictionary<MachineModel, HardwareModelDefinition> Index(
-        IReadOnlyList<HardwareModelDefinition> definitions)
+    internal static IReadOnlyDictionary<MachineModel, HardwareModelDefinition> Index(IReadOnlyList<HardwareModelDefinition> definitions)
     {
         var result = definitions.ToDictionary(definition => definition.Model);
         if (result.Count != definitions.Count)

@@ -10,20 +10,8 @@ public sealed record ControllerBinding(
 
 public sealed record HardwareChoice(string Value, string DisplayName, long? Bytes = null);
 
-public sealed record HardwareField(
-    SettingOption Option,
-    string ResourceKey,
-    IReadOnlyList<HardwareChoice> Choices,
-    string SelectedValue,
-    OptionAvailability Availability,
-    string? ExplanationResourceKey);
+public sealed record HardwareField(SettingOption Option, string ResourceKey, IReadOnlyList<HardwareChoice> Choices, string SelectedValue, OptionAvailability Availability, string? ExplanationResourceKey);
 
-public sealed record HardwareView(
-    IReadOnlyList<HardwareField> Cpu,
-    IReadOnlyList<HardwareField> Memory,
-    IReadOnlyList<FirmwareDefinition> Firmware,
-    IReadOnlyList<HardwareChoice> Regions);
+public sealed record HardwareView(IReadOnlyList<HardwareField> Cpu, IReadOnlyList<HardwareField> Memory, IReadOnlyList<FirmwareDefinition> Firmware, IReadOnlyList<HardwareChoice> Regions);
 
-public sealed record MemoryExpansionChoice(
-    string Value,
-    long AdditionalBytes);
+public sealed record MemoryExpansionChoice(string Value, long AdditionalBytes);

@@ -30,8 +30,7 @@ internal static class EmulationMediaActivityFunctions
 
     internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromRuntimeStatus(RuntimeStatus status) => status.MediaActivity;
 
-    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(Emulator emulator,
-        IReadOnlyDictionary<int, bool> ledStates) => emulator switch
+    internal static IReadOnlyDictionary<EmulationMediaSlot, bool> FromLedStates(Emulator emulator, IReadOnlyDictionary<int, bool> ledStates) => emulator switch
     {
         Emulator.Hatari or Emulator.Hatari2014 => new Dictionary<EmulationMediaSlot, bool>
         {
@@ -54,8 +53,7 @@ internal static class EmulationMediaActivityFunctions
         _ => new Dictionary<EmulationMediaSlot, bool>()
     };
 
-    internal static bool CaptureHatariOverlay(ReadOnlySpan<byte> pixels, int width, int height, int pitch,
-        EmulationPixelFormat pixelFormat, IDictionary<int, bool> ledStates)
+    internal static bool CaptureHatariOverlay(ReadOnlySpan<byte> pixels, int width, int height, int pitch, EmulationPixelFormat pixelFormat, IDictionary<int, bool> ledStates)
     {
         if (pixelFormat != EmulationPixelFormat.Rgb565 || width < 48 || height <= HatariLedCenterY + SampleRadius
             || pitch < width * sizeof(ushort) || pixels.Length < pitch * height)
@@ -67,8 +65,7 @@ internal static class EmulationMediaActivityFunctions
         return true;
     }
 
-    internal static bool CaptureAtari800Overlay(ReadOnlySpan<byte> pixels, int width, int height, int pitch,
-        EmulationPixelFormat pixelFormat, IDictionary<int, bool> ledStates)
+    internal static bool CaptureAtari800Overlay(ReadOnlySpan<byte> pixels, int width, int height, int pitch, EmulationPixelFormat pixelFormat, IDictionary<int, bool> ledStates)
     {
         var bytesPerPixel = pixelFormat == EmulationPixelFormat.Xrgb8888 ? 4 : 2;
         if (width <= 0 || height <= 0 || pitch < width * bytesPerPixel || pixels.Length < pitch * height)
@@ -100,8 +97,7 @@ internal static class EmulationMediaActivityFunctions
         return true;
     }
 
-    private static bool MatchesGlyph(ReadOnlySpan<byte> pixels, int x, int y, int pitch,
-        EmulationPixelFormat pixelFormat, ReadOnlySpan<byte> rows)
+    private static bool MatchesGlyph(ReadOnlySpan<byte> pixels, int x, int y, int pitch, EmulationPixelFormat pixelFormat, ReadOnlySpan<byte> rows)
     {
         const int glyphWidth = 5;
         if (x < 0 || y < 0 || x + glyphWidth > pitch / (pixelFormat == EmulationPixelFormat.Xrgb8888 ? 4 : 2)

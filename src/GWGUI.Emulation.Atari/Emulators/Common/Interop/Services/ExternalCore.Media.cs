@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore : IEmulatorCore
 {
-public void InsertMedia(MediaConfiguration media)
+    public void InsertMedia(MediaConfiguration media)
     {
         var configuration = _configuration ?? throw new InvalidOperationException(ErrorMessages.CoreNotInitialized);
         _mediaAdapter.ValidateInsertion(configuration, media);

@@ -55,8 +55,7 @@ internal static class OptionFunctions
         return result;
     }
 
-    private static void Convert(IDictionary<string, string> options, string source, string target,
-        Func<string, string> conversion)
+    private static void Convert(IDictionary<string, string> options, string source, string target, Func<string, string> conversion)
     {
         if (options.Remove(source, out var value)) options[target] = conversion(value);
     }

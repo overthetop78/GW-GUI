@@ -33,9 +33,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     private readonly ExternalCoreVirtualFileSystem _virtualFileSystem;
     private readonly HashSet<string> _opticalActivityPaths = new(StringComparer.OrdinalIgnoreCase);
 
-    internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory,
-        string assetsDirectory,
-        IReadOnlyDictionary<string, string> configuredOptions)
+    internal ExternalHostCallbacks(Emulator emulator, string systemDirectory, string contentDirectory, string saveDirectory, string assetsDirectory, IReadOnlyDictionary<string, string> configuredOptions)
     {
         _emulator = emulator;
         Directory.CreateDirectory(systemDirectory);

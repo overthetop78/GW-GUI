@@ -4,8 +4,7 @@ namespace GWGUI.Emulation.Atari.Emulators.Common.Interop.Services;
 
 internal sealed class StStorage
 {
-    internal StStorage(MediaConfiguration configuration, StorageBus bus,
-        string runtimePath, IReadOnlyList<StStorageVolume> volumes, bool ownsMarker)
+    internal StStorage(MediaConfiguration configuration, StorageBus bus, string runtimePath, IReadOnlyList<StStorageVolume> volumes, bool ownsMarker)
     {
         Configuration = configuration;
         Bus = bus;

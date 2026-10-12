@@ -29,10 +29,7 @@ internal static partial class StorageSettingsFunctions
         return extensions.Order(StringComparer.OrdinalIgnoreCase).Select(extension => $"{MediaConstants.ExtensionPrefix}{extension}").ToArray();
     }
 
-    private static FloppyDriveDialogOptions FloppyOptions(
-        MachineModel model,
-        string? imageDirectory
-    )
+    private static FloppyDriveDialogOptions FloppyOptions(MachineModel model, string? imageDirectory)
     {
         var models = StorageConfigurationFunctions.Family(model) == MachineFamily.St ? StFloppyModels(model) : EightBitFloppyModels();
         return new FloppyDriveDialogOptions(
@@ -59,10 +56,7 @@ internal static partial class StorageSettingsFunctions
         new(StorageSettingsFunctionsConstants.Atari130, StorageSettingsFunctionsConstants.FormatAtari130, BlankImageSize: 133_120),
         new(StorageSettingsFunctionsConstants.Atari180, StorageSettingsFunctionsConstants.FormatAtari180, BlankImageSize: 184_320)
     ];
-    private static IReadOnlyList<EmulationSettingsChoice> Interfaces(
-        MachineModel model,
-        MediaCategory category
-    )
+    private static IReadOnlyList<EmulationSettingsChoice> Interfaces(MachineModel model, MediaCategory category)
     {
         if (category != MediaCategory.HardDisk || StorageConfigurationFunctions.Family(model) != MachineFamily.St)
             return[];
@@ -76,10 +70,7 @@ internal static partial class StorageSettingsFunctions
     }
 
     private static EmulationSettingsChoice InvariantChoice(string id, string value) => new(id, string.Empty, value);
-    private static EmulationStorageDeviceSettings DeviceSettings(
-        MachineConfiguration configuration,
-        EmulationMediaSlot slot
-    )
+    private static EmulationStorageDeviceSettings DeviceSettings(MachineConfiguration configuration, EmulationMediaSlot slot)
     {
         var device = CompatibilityCatalog.Get(configuration.Model).Media.First(rule => rule.Availability == MediaAvailability.Available && rule.Slots.Contains(slot));
         var floppy = device.Category == MediaCategory.Floppy 

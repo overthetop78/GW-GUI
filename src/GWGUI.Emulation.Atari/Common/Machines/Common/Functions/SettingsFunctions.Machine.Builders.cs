@@ -7,8 +7,7 @@ internal static partial class SettingsDescriptionFunctions
 
     private static EmulationSettingsBlock Block(string id, EmulationMachineTab tab, string title, string icon, int columns, params EmulationSettingsField[] fields) => new(id, tab, title, fields, icon, columns);
 
-    private static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block,
-        string label, string value, IEnumerable<string> choices, bool isEnabled = true) =>
+    private static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block, string label, string value, IEnumerable<string> choices, bool isEnabled = true) =>
         new(id, tab, block, label, EmulationSettingsEditor.Selection, value,
             choices.Select(choice => LocalizedChoice(id, choice)).ToArray(),
             IsEnabled: isEnabled, ExplanationResourceKey: ShortHelp(id),
@@ -43,8 +42,7 @@ internal static partial class SettingsDescriptionFunctions
         _ => Invariant(value)
     };
 
-    private static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block,
-        string label, string value, IEnumerable<EmulationSettingsChoice> choices, bool isEnabled = true) =>
+    private static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block, string label, string value, IEnumerable<EmulationSettingsChoice> choices, bool isEnabled = true) =>
         new(id, tab, block, label, EmulationSettingsEditor.Selection, value, choices.ToArray(),
             IsEnabled: isEnabled, ExplanationResourceKey: ShortHelp(id),
             DetailedExplanationResourceKey: DetailedHelp(id),
@@ -57,13 +55,11 @@ internal static partial class SettingsDescriptionFunctions
             DetailedExplanationResourceKey: DetailedHelp(id), EnabledValue: enabledValue, DisabledValue: disabledValue,
             RequiresRestart: RuntimeOptionFunctions.RequiresRestart(Emulator.Atari800, id));
 
-    private static EmulationSettingsField Path(string id, EmulationMachineTab tab, string block,
-        string label, string? value) => new(id, tab, block, label, EmulationSettingsEditor.Path, value,
+    private static EmulationSettingsField Path(string id, EmulationMachineTab tab, string block, string label, string? value) => new(id, tab, block, label, EmulationSettingsEditor.Path, value,
             ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id),
             DefaultFolderCategory: EmulationDefaultFolderCategory.Firmware);
 
-    private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block,
-        string label, string value, long? numericValue = null) => new(id, tab, block, label,
+    private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value, long? numericValue = null) => new(id, tab, block, label,
             EmulationSettingsEditor.Information, value, IsEnabled: false,
             ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id),
             NumericValue: numericValue);
@@ -76,15 +72,13 @@ internal static partial class SettingsDescriptionFunctions
 
     private static bool Enabled(MachineConfiguration configuration, string key) => Value(configuration, key, EightBitSettingsConstants.Disabled) == EightBitSettingsConstants.Enabled;
 
-    private static EmulationSettingsField HardwareMemory(MachineConfiguration configuration,
-        HardwareModelDefinition model)
+    private static EmulationSettingsField HardwareMemory(MachineConfiguration configuration, HardwareModelDefinition model)
     {
         if (configuration.Model != MachineModel.XlXe)
             return Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram,
                 SettingsDescriptionFunctionsConstants.MainMemory, SettingsDescriptionFunctionsConstants.ResourceMemoryMain, HardwareSettingsFunctions.FormatBytes(model.MainMemoryBytes),
                 model.MainMemoryBytes);
-        var choices = new[] { 320L, 576L, 1088L }.Select(value =>
-            HardwareSettingsFunctions.MemoryKib((int)value)).ToArray();
+        var choices = new[] { 320L, 576L, 1088L }.Select(value => HardwareSettingsFunctions.MemoryKib((int)value)).ToArray();
         return Select(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsDescriptionFunctionsConstants.MainMemory,
             SettingsDescriptionFunctionsConstants.ResourceMemoryMain, Value(configuration, SettingsConstants.MainMemory, model.MainMemoryBytes.ToString()), choices);
     }

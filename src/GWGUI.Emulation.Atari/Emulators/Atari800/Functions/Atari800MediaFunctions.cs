@@ -22,11 +22,7 @@ internal static class Atari800MediaFunctions
         .ThenBy(item => item.Path, StringComparer.OrdinalIgnoreCase)
         .FirstOrDefault();
 
-    internal static Atari800PreparedMedia Prepare(
-        MachineConfiguration machine,
-        MediaConfiguration media,
-        string sessionDirectory,
-        IReadOnlySet<string> coreExtensions)
+    internal static Atari800PreparedMedia Prepare(MachineConfiguration machine, MediaConfiguration media, string sessionDirectory, IReadOnlySet<string> coreExtensions)
     {
         var contentType = Classify(machine.Model, media);
         if (contentType != Atari800ContentType.Floppy || !ScpMediaFunctions.IsScp(media.Path))
@@ -55,9 +51,7 @@ internal static class Atari800MediaFunctions
         };
     }
 
-    internal static IReadOnlyDictionary<string, string> ApplyOptions(
-        MachineConfiguration machine,
-        Atari800PreparedMedia? media)
+    internal static IReadOnlyDictionary<string, string> ApplyOptions(MachineConfiguration machine, Atari800PreparedMedia? media)
     {
         var options = new Dictionary<string, string>(EightBitSettingsFunctions.Normalize(machine), StringComparer.Ordinal);
         options[EightBitSettingsConstants.SystemOptionKey] = SystemValue(machine, options);
@@ -91,8 +85,7 @@ internal static class Atari800MediaFunctions
         options.Remove(source);
     }
 
-    private static string SystemValue(MachineConfiguration machine,
-        IReadOnlyDictionary<string, string> options)
+    private static string SystemValue(MachineConfiguration machine, IReadOnlyDictionary<string, string> options)
     {
         if (machine.Model != MachineModel.XlXe)
             return HardwareModelCatalog.Get(machine.Model).StableModelId;

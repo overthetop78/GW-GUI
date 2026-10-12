@@ -9,11 +9,7 @@ internal static class JaguarCdFunctions
 {
     internal static bool IsSupported(IReadOnlySet<string> reportedExtensions) => JaguarCdConstants.CompleteDiscExtensions.Any(reportedExtensions.Contains);
 
-    internal static PreparedJaguarCd Prepare(
-        MachineConfiguration machine,
-        MediaConfiguration media,
-        bool needsFullPath,
-        IReadOnlySet<string> reportedExtensions)
+    internal static PreparedJaguarCd Prepare(MachineConfiguration machine, MediaConfiguration media, bool needsFullPath, IReadOnlySet<string> reportedExtensions)
     {
         if (machine.Model != MachineModel.JaguarCd)
             throw new ArgumentException(JaguarCdErrors.ModelRequired, nameof(machine));
@@ -32,9 +28,7 @@ internal static class JaguarCdFunctions
         return new PreparedJaguarCd(media, path, needsFullPath || JaguarCdConstants.RequiresFullPath, activityPaths);
     }
 
-    internal static void RejectForStandardJaguar(
-        MachineModel model,
-        MediaConfiguration media)
+    internal static void RejectForStandardJaguar(MachineModel model, MediaConfiguration media)
     {
         if (model != MachineModel.JaguarCd && media.Category == MediaCategory.CompactDisc)
             throw new ArgumentException(JaguarCdErrors.ModelRequired, nameof(media));
@@ -71,9 +65,7 @@ internal static class JaguarCdFunctions
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
         {
-            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentNotFound,
-                JaguarCdErrors.FileUnreadable,
-                new Dictionary<string, string> { [ErrorContextConstants.Path] = path }, exception);
+            throw new EmulationException(ErrorCategory.Content, ErrorCode.ContentNotFound, JaguarCdErrors.FileUnreadable, new Dictionary<string, string> { [ErrorContextConstants.Path] = path }, exception);
         }
     }
 }
