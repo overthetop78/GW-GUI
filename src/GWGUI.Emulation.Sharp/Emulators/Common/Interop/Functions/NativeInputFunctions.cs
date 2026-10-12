@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;
 internal static class NativeInputFunctions
 {

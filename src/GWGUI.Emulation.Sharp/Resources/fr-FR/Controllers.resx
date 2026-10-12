@@ -4,11 +4,9 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sharp.Controller.None" xml:space="preserve"><value>Aucun</value></data>
-  <data name="Emulation.Sharp.Controller.Joystick" xml:space="preserve"><value>Joystick</value></data>
+  <data name="Emulation.Sharp.Controller.CyberstickAnalog" xml:space="preserve"><value>CYBERSTICK (analogique)</value></data>
+  <data name="Emulation.Sharp.Controller.CyberstickDigital" xml:space="preserve"><value>CYBERSTICK (numérique)</value></data>
   <data name="Emulation.Sharp.Controller.X1Joystick" xml:space="preserve"><value>Joystick X1</value></data>
-  <data name="Emulation.Sharp.Controller.CyberstickDigital" xml:space="preserve"><value>Cyberstick (numérique)</value></data>
-  <data name="Emulation.Sharp.Controller.CyberstickAnalog" xml:space="preserve"><value>Cyberstick (analogique)</value></data>
   <data name="Emulation.Sharp.Input.Fire1" xml:space="preserve"><value>Bouton de tir 1</value></data>
   <data name="Emulation.Sharp.Input.Fire2" xml:space="preserve"><value>Bouton de tir 2</value></data>
   <data name="Emulation.Sharp.Input.Fire3" xml:space="preserve"><value>Bouton de tir 3</value></data>
@@ -17,6 +15,6 @@
   <data name="Emulation.Sharp.Input.Fire6" xml:space="preserve"><value>Bouton de tir 6</value></data>
   <data name="Emulation.Sharp.Input.Fire7" xml:space="preserve"><value>Bouton de tir 7</value></data>
   <data name="Emulation.Sharp.Input.Fire8" xml:space="preserve"><value>Bouton de tir 8</value></data>
+  <data name="Emulation.Sharp.Input.ThrottleDecrease" xml:space="preserve"><value>Réduire les gaz</value></data>
   <data name="Emulation.Sharp.Input.ThrottleIncrease" xml:space="preserve"><value>Augmenter les gaz</value></data>
-  <data name="Emulation.Sharp.Input.ThrottleDecrease" xml:space="preserve"><value>Diminuer les gaz</value></data>
 </root>

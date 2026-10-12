@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>המדינה Sharp הצילה אינה תואמת למכונה הנוכחית.</value></data>
-  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>טעות חיקוי בלתי צפויה של Sharp התרחשה.</value></data>
-  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>קושחה Sharp הנדרשת נעדר.</value></data>
-  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>המערכת ROM היא בלתי חוקית או לא מתאימה.</value></data>
-  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>התקשורת של Sharp לא נמצאה.</value></data>
-  <data name="Emulation.Sharp.Error.ContentUnsupported" xml:space="preserve"><value>מכונה זו אינה תומכת בתקשורת שנבחרה.</value></data>
-  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>אפשרות Sharp יש ערך לא חוקי.</value></data>
-  <data name="Emulation.Sharp.Error.CoreNotFound" xml:space="preserve"><value>הליבה Sharp הנדרשת לא נמצאה.</value></data>
-  <data name="Emulation.Sharp.Error.CoreRejected" xml:space="preserve"><value>הליבה Sharp הנבחר לא יכול להיות טעון.</value></data>
-  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>המדינה Sharp הצילה היא בלתי נסבלת.</value></data>
-  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>מסלול Sharp אינו זמין.</value></data>
-  <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>תגית: {0}</value></data>
-  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>התקשורת עם מארח Sharp נכשלה.</value></data>
-  <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>ארכיון תגיות: {0}</value></data>
+  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>התקשורת המוגדרת של שארפ לא נמצאה.</value></data>
+  <data name="Emulation.Sharp.Error.ContentUnsupported" xml:space="preserve"><value>מכונה זו אינה תומכת בתקשורת הנבחרת.</value></data>
+  <data name="Emulation.Sharp.Error.CoreNotFound" xml:space="preserve"><value>הליבה הנדרשת לא נמצאה.</value></data>
+  <data name="Emulation.Sharp.Error.CoreRejected" xml:space="preserve"><value>לא ניתן לטעון את הליבה של שארפ הנבחר.</value></data>
+  <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>פרטים: {0}</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>המערכת ROM הוא לא חוקי או לא עקבי.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>קושחה נדרשת חסרה.</value></data>
+  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>הנתיב המתואם של שארפ אינו זמין.</value></data>
+  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>התקשורת עם שארפ נכשלה.</value></data>
+  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>לאופציה של שארפ יש ערך לא חוקי.</value></data>
+  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>המדינה ששומרת על שארפ אינה עולה בקנה אחד עם המכונה הנוכחית.</value></data>
+  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>המדינה ששומרת על שארפ היא בלתי נסבלת.</value></data>
+  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>טעות של חיקוי בלתי צפויה התרחשה.</value></data>
+  <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>פיקוד הסביבה הלא ידוע: {0}</value></data>
 </root>

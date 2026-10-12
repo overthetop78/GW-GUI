@@ -4,75 +4,33 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulerer Sharp X68000 computere.</value></data>
-  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulerer Sharp X1-computere.</value></data>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulater SHARP X68000 computere.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulater SHARP X1 computere.</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Maskinlyd</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Kontrollør indstillinger</value></data>
   <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Tegn ROM</value></data>
   <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Viserhukommelse</value></data>
-  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Maskinlyd</value></data>
-  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>Maskintastatur</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM volumen</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>Kassér overskydende lyd</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>Lydprøvehastighed</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>Knaprækkefølge</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>Disk søge lyd</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM lydkort</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM volumen</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>Videokamerahastighed</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>Justering af referencesatsen</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>Videogrammer, uden sidestykke</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>Skjul grafik</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>Skjul spritter og baggrunde</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>Skjul tekstlaget</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM kapacitet</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>Hurtig brand</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>Rastereffekter</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>Omvendt styreinddata</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>Ubegrænset emuleringshastighed</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>Lodret synkronisering</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>Primær video</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>Høj</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>Lav</value></data>
   <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Maskinvisning</value></data>
-  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Indstillinger for kontrollør</value></data>
-  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>Maskinindstillinger</value></data>
-  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>Fuld bredde</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>CPU-frekvens</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>Sætter frekvensen for den emulerede CPU.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>Hovedhukommelse</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>Sætter mængden af hovedhukommelse i den emulerede computer.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>ADPCM volumen</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>Indstiller lydstyrken af ADPCM 's lydkanal.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>FM-volumen</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>Sætter lydstyrken af FM 's lydkanaler.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>Knapper til at vende om</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>Ændrer rækkefølgen af de to primære brandknapper.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>Ubegrænset hastighed</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>Kører uden at vente på den normale emuleringshastighed.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>Frame skipping</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>Sætter hvor ofte emulatoren laver en videoramme.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>Hver ramme</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>En ramme i 2</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>En ramme i 3</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>En ramme i 4</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>En ramme i 5</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>En ramme i 6</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>En ramme i 8</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>One frame in 16</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>En ramme i 32</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>En ramme på 60.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>Automatisk</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>Video før lyd</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>Sender hver video ramme før dens lydprøver.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>Justér frame timing</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>Justerer den emulerede frame timing for displayets opdateringshastighed.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>Justering af lydtiming</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>Justerer lydtiming, når lyd og video mister synkronisering.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>Skjul tekstlag</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>Deaktiverer gengivelsen af tekstlaget.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>Skjul grafiklag</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>Deaktiverer gengivelsen af grafiklaget.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>Skjul spritter og baggrund</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>Deaktiverer rendering af spritter og baggrundslaget.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>Skærmopløsning</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>Vælger emulatorens lave eller høje opløsning output.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>Lav</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>Høj</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>Rammefrekvens</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>Vælger hvor mange video rammer emulatoren gør per sekund.</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>Synkronisér visning</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>Synkroniserer rendering med det emulerede display.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>Rastereffekter</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>Aktiverer gengivelse af effekter produceret under skærmscanningen.</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>Ubegrænset hastighed</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>Kører uden at vente på den normale emuleringshastighed.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>Knapper til at vende om</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>Ændrer rækkefølgen af de primære brandknapper.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>Hurtig brand</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>Aktiverer gentagen affyring mens en brandknap holdes.</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>Lydprøvetagningshastighed</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>Vælger prøvetagningshastigheden for den lyd, der produceres af emulatoren.</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>Køre søge lyd</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>Spiller en lyd, når disken bevæger hovedet.</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>FM lydudvidelse</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>Aktiverer det valgfrie FM lydkort.</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>CPU-frekvens</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>Sætter frekvensen for den emulerede CPU.</value></data>
 </root>

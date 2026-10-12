@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts;
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;
 
 internal static class ControllerPortFunctions

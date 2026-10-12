@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Dictionaries;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;
 using System.Globalization;
 using System.Runtime.InteropServices;
 

@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Contracts;
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Interfaces;
 
 public interface ICoreReleaseService

@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>A Sharp mentett állapot összeegyeztethetetlen az aktuális géppel.</value></data>
-  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>Váratlan Sharp emulációs hiba történt.</value></data>
-  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Egy szükséges Sharp firmware hiányzik.</value></data>
-  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>A ROM rendszer érvénytelen vagy összeegyeztethetetlen.</value></data>
-  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>A konfigurált Sharp média nem található.</value></data>
+  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>A beállított Sharp média nem található.</value></data>
   <data name="Emulation.Sharp.Error.ContentUnsupported" xml:space="preserve"><value>Ez a gép nem támogatja a kiválasztott médiát.</value></data>
-  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>A Sharp opció érvénytelen.</value></data>
-  <data name="Emulation.Sharp.Error.CoreNotFound" xml:space="preserve"><value>A szükséges Sharp magot nem találták meg.</value></data>
+  <data name="Emulation.Sharp.Error.CoreNotFound" xml:space="preserve"><value>A szükséges élesség magját nem találták meg.</value></data>
   <data name="Emulation.Sharp.Error.CoreRejected" xml:space="preserve"><value>A kiválasztott Sharp magot nem sikerült betölteni.</value></data>
-  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>A Sharp mentett állapot érvénytelen.</value></data>
-  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>A Sharp host futtatható elérési útja nem elérhető.</value></data>
   <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>Részletek: {0}</value></data>
-  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>A kommunikáció a Sharp host-tal nem sikerült.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>A rendszer ROM érvénytelen vagy összeegyeztethetetlen.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Egy szükséges éles firmware hiányzik.</value></data>
+  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>A Sharp host futtató elérési útja nem elérhető.</value></data>
+  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>A kommunikáció a Sharp host-tal sikertelen.</value></data>
+  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>A Sharp opció érvénytelen értéket ad.</value></data>
+  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>A Sharp mentett állapot összeegyeztethetetlen az aktuális géppel.</value></data>
+  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>A Sharp mentett állapot érvénytelen.</value></data>
+  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>Váratlan Sharp emulációs hiba történt.</value></data>
   <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Ismeretlen környezet parancs: {0}</value></data>
 </root>

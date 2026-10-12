@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>볼륨을 조정 ADPCM 사운드 채널.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>소리 동기화 오류를 줄이기 위해 과잉 오디오 샘플을 버리십시오.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>소리 표본 추출 빈도를 선택하십시오.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>컨트롤러 버튼의 순서를 선택하십시오.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>프로세서 주파수를 선택하십시오.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>floppy 디스크 헤드 운동의 소리를 재생합니다.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>의 장점 FM 사운드 보드.</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>볼륨을 조정 FM 사운드 채널.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>초당 비디오 프레임의 수를 선택하십시오.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>현대 디스플레이에 대한 비디오 타이밍을 조정하여 사운드 스터링을 감소시킵니다.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>비디오 이미지의 분수를 건너 건너뛰기 위해. 세 개의 건너편에서 한 이미지를 렌더링합니다.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>영상 이미지의 도표 층을 숨깁니다.</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>비디오 이미지의 스프라이트와 배경 레이어를 숨깁니다.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>영상 이미지의 텍스트 레이어를 숨깁니다.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>에뮬레이션의 금액을 선택하십시오. RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>반복 관제사 단추는 자동적으로 누릅니다.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>에뮬레이션 비디오 이미지의 강력한 램 효과.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>낮은 또는 높은 산출 해결책을 선택하십시오.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>emulator에 의해 제공된 컨트롤러 입력을 반전합니다.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>가능한 한 빨리 기계를 실행하십시오. 소리는 동기화되지 않을 수 있습니다.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>수직으로 에뮬레이션 디스플레이를 동기화합니다.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>오디오 대기 시간 전에 비디오 대기 시간을 감소시킵니다.</value></data>
+</root>

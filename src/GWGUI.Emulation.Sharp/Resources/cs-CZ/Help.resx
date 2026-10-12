@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>Upravte objem ADPCM Zvukový kanál.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>Odstranit přebytečné audio vzorky pro snížení chyb synchronizace zvuku.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>Vyberte frekvenci odběru zvuku.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>Vyberte pořadí tlačítek regulátoru.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>Vyberte frekvenci procesoru.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>Zahrajte si zvuk pohybu diskové hlavice.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>Povolit FM zvuková deska.</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>Upravte objem FM Zvukový kanál.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>Vyberte počet video snímků za sekundu.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>Načasování videa pro moderní displeje ke snížení koktání zvuku.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>Vyberte si zlomek video obrázky přeskočit. Prohlížení jeden obrázek ze tří přeskoků dva ze tří.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>Skrýt grafickou vrstvu obrazu videa.</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>Skrýt sprite a pozadí vrstvy obrazu videa.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>Skrýt textovou vrstvu obrazu videa.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>Vyberte množství emulovaného RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>Opakované ovládací tlačítko automaticky stiskne.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>Povolit rastrový efekt v emulovaném snímku videa.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>Vyberte nízké nebo vysoké rozlišení výstupu.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>Převrátit vstup regulátoru podle emulátoru.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>Spusťte stroj tak rychle, jak je to možné. Zvuk se může stát nesynchronizované.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>Synchronizovat emulovaný displej vertikálně.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>Snížit video latenci před zvukovou latenci.</value></data>
+</root>

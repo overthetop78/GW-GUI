@@ -4,75 +4,33 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulasi Sharp X68000 komputer.</value></data>
-  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulasi komputer Sharp X1.</value></data>
-  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>ROM Karakter</value></data>
-  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Tampilkan memori</value></data>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulasi SHARP X68000 komputer.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulasi SHARP X1 komputer.</value></data>
   <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Audio mesin</value></data>
-  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>Keyboard mesin</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Opsi controller</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Karakter ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Tampilkan memori</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM volume</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>Buang audio kelebihan</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>Laju sampel audio</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>Urutan tombol</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>Suara pencarian diska</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM papan suara</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM volume</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>Laju bingkai video</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>Penyesuaian tingkat bingkai</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>Melewati bingkai video</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>Sembunyikan grafis</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>Sembunyikan sprites dan latar belakang</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>Sembunyikan lapisan teks</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM kapasitas</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>Tembakan cepat</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>Efek raster</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>Input controller terbalik</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>Kecepatan emulasi tak terbatas</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>Sinkronisasi vertikal</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>Memmemprioritaskan video</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>Tinggi</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>Rendah</value></data>
   <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Tampilan mesin</value></data>
-  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Opsi pengontrol</value></data>
-  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>Opsi mesin</value></data>
-  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>Lebar penuh</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>Frekuensi CPU</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>Mengatur frekuensi CPU yang terukur.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>Memori utama</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>Mengatur jumlah memori utama dalam komputer yang digandakan.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>Volume ADPCM</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>Tata volume saluran suara ADPCM.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>Volume FM</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>Tata volume saluran suara FM.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>Reverse tombol tembakan</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>Mengubah urutan dari dua tombol api utama.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>Kecepatan tak terbatas</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>Berjalan tanpa menunggu kecepatan emulasi normal.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>Bingkai dilewati</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>Mengatur seberapa sering emulator membuat bingkai video.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>Setiap bingkai</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>Satu frame dalam 2</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>Satu frame dalam 3</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>Satu frame dalam 4</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>Satu frame dalam 5</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>Satu frame dalam 6</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>Satu frame dalam 8</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>Satu frame dalam 16</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>Satu frame dalam 32</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>Satu frame dalam 60</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>Otomatis</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>Video sebelum audio</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>Mengirim setiap frame video sebelum sampel audionya.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>Atur waktu bingkai</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>Atur waktu frame yang telah digandakan untuk tingkat penyegaran tampilan.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>Penyesuaian waktu audio</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>Atur waktu audio ketika suara dan video kehilangan sinkronisasi.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>Sembunyikan lapis teks</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>Menonaktifkan rendering dari lapisan teks.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>Sembunyikan lapisan grafis</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>Menonaktifkan rendering dari lapisan grafis.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>Sembunyikan sprites dan latar belakang</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>Nonaktifkan rendering dari sprites dan lapisan latar belakang.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>Tampilan resolusi</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>Memilih keluaran resolusi rendah atau tinggi emulator.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>Rendah</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>Tinggi</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>Laju bingkai</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>Memilih berapa banyak frame video yang emulator render per detik.</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>Sinkronisasi tampilan</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>Sinkronisasi rendering dengan tampilan yang digandakan.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>Efek raster</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>Mengaktifkan rendering efek yang dihasilkan selama pemindaian layar.</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>Kecepatan tak terbatas</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>Berjalan tanpa menunggu kecepatan emulasi normal.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>Reverse tombol tembakan</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>Mengubah urutan tombol api utama.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>Tembakan cepat.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>Aktifkan tembakan berulang saat tombol kebakaran ditahan.</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>Laju sampling audio</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>Memilih laju sampling suara yang dihasilkan oleh emulator.</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>Drive seek suara</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>Memainkan suara ketika disk drive bergerak kepalanya.</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>Ekspansi suara FM</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>Mengaktifkan papan suara FM opsional.</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>Frekuensi CPU</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>Mengatur frekuensi CPU yang terukur.</value></data>
 </root>

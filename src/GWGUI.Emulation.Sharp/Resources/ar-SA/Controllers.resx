@@ -4,19 +4,17 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sharp.Controller.None" xml:space="preserve"><value>بلا</value></data>
-  <data name="Emulation.Sharp.Controller.Joystick" xml:space="preserve"><value>مرحى</value></data>
-  <data name="Emulation.Sharp.Controller.X1Joystick" xml:space="preserve"><value>X1 متعة</value></data>
-  <data name="Emulation.Sharp.Controller.CyberstickDigital" xml:space="preserve"><value>مرض السيبرست (رقمي)</value></data>
-  <data name="Emulation.Sharp.Controller.CyberstickAnalog" xml:space="preserve"><value>Cyberstick (alog)</value></data>
-  <data name="Emulation.Sharp.Input.Fire1" xml:space="preserve"><value>زر إطلاق 1</value></data>
-  <data name="Emulation.Sharp.Input.Fire2" xml:space="preserve"><value>زر إطلاق 2</value></data>
-  <data name="Emulation.Sharp.Input.Fire3" xml:space="preserve"><value>زر إطلاق 3</value></data>
-  <data name="Emulation.Sharp.Input.Fire4" xml:space="preserve"><value>زر إطلاق 4</value></data>
-  <data name="Emulation.Sharp.Input.Fire5" xml:space="preserve"><value>زر إطلاق 5</value></data>
-  <data name="Emulation.Sharp.Input.Fire6" xml:space="preserve"><value>زر إطلاق 6</value></data>
-  <data name="Emulation.Sharp.Input.Fire7" xml:space="preserve"><value>زر إطلاق 7</value></data>
-  <data name="Emulation.Sharp.Input.Fire8" xml:space="preserve"><value>زر إطلاق 8</value></data>
-  <data name="Emulation.Sharp.Input.ThrottleIncrease" xml:space="preserve"><value>الزيادة في الماشية</value></data>
-  <data name="Emulation.Sharp.Input.ThrottleDecrease" xml:space="preserve"><value>تناقص الطمث</value></data>
+  <data name="Emulation.Sharp.Controller.CyberstickAnalog" xml:space="preserve"><value>CYBERSTICK (اللغة)</value></data>
+  <data name="Emulation.Sharp.Controller.CyberstickDigital" xml:space="preserve"><value>CYBERSTICK (الرقمية)</value></data>
+  <data name="Emulation.Sharp.Controller.X1Joystick" xml:space="preserve"><value>X1 طقوس الفرح</value></data>
+  <data name="Emulation.Sharp.Input.Fire1" xml:space="preserve"><value>زر الإطفاء 1</value></data>
+  <data name="Emulation.Sharp.Input.Fire2" xml:space="preserve"><value>زر الإطفاء 2</value></data>
+  <data name="Emulation.Sharp.Input.Fire3" xml:space="preserve"><value>زر الإطفاء 3</value></data>
+  <data name="Emulation.Sharp.Input.Fire4" xml:space="preserve"><value>زر الإطفاء 4</value></data>
+  <data name="Emulation.Sharp.Input.Fire5" xml:space="preserve"><value>زر الإطفاء 5</value></data>
+  <data name="Emulation.Sharp.Input.Fire6" xml:space="preserve"><value>زر الإطفاء 6</value></data>
+  <data name="Emulation.Sharp.Input.Fire7" xml:space="preserve"><value>زر الإطفاء 7</value></data>
+  <data name="Emulation.Sharp.Input.Fire8" xml:space="preserve"><value>زر الإطفاء 8</value></data>
+  <data name="Emulation.Sharp.Input.ThrottleDecrease" xml:space="preserve"><value>انخفاض الرطوبة</value></data>
+  <data name="Emulation.Sharp.Input.ThrottleIncrease" xml:space="preserve"><value>زيادة الطمث</value></data>
 </root>

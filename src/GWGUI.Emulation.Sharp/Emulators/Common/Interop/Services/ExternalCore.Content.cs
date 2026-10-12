@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore

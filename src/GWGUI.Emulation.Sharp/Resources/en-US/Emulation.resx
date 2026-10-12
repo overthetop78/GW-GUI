@@ -4,75 +4,33 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulates Sharp X68000 computers.</value></data>
-  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulates Sharp X1 computers.</value></data>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulates SHARP X68000 computers.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulates SHARP X1 computers.</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Machine audio</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Controller options</value></data>
   <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Character ROM</value></data>
   <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Display memory</value></data>
-  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Machine audio</value></data>
-  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>Machine keyboard</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM volume</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>Discard excess audio</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>Audio sample rate</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>Button order</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>Disk seek sound</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM sound board</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM volume</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>Video frame rate</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>Frame rate adjustment</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>Skipped video frames</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>Hide graphics</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>Hide sprites and backgrounds</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>Hide the text layer</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM capacity</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>Rapid fire</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>Raster effects</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>Reverse controller input</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>Unlimited emulation speed</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>Vertical synchronization</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>Prioritize video</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>High</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>Low</value></data>
   <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Machine display</value></data>
-  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Controller options</value></data>
-  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>Machine options</value></data>
-  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>Full-width</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>CPU frequency</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>Sets the frequency of the emulated CPU.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>Main memory</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>Sets the amount of main memory in the emulated computer.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>ADPCM volume</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>Sets the volume of the ADPCM sound channel.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>FM volume</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>Sets the volume of the FM sound channels.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>Reverse fire buttons</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>Changes the order of the two primary fire buttons.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>Unlimited speed</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>Runs without waiting for the normal emulation speed.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>Frame skipping</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>Sets how frequently the emulator renders a video frame.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>Every frame</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>One frame in 2</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>One frame in 3</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>One frame in 4</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>One frame in 5</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>One frame in 6</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>One frame in 8</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>One frame in 16</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>One frame in 32</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>One frame in 60</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>Automatic</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>Video before audio</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>Sends each video frame before its audio samples.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>Adjust frame timing</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>Adjusts the emulated frame timing for the display refresh rate.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>Audio timing adjustment</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>Adjusts audio timing when sound and video lose synchronization.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>Hide text layer</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>Disables rendering of the text layer.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>Hide graphics layer</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>Disables rendering of the graphics layer.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>Hide sprites and background</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>Disables rendering of sprites and the background layer.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>Display resolution</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>Selects the low or high resolution output of the emulator.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>Low</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>High</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>Frame rate</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>Selects how many video frames the emulator renders per second.</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>Synchronize display</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>Synchronizes rendering with the emulated display.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>Raster effects</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>Enables rendering of effects produced during the screen scan.</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>Unlimited speed</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>Runs without waiting for the normal emulation speed.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>Reverse fire buttons</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>Changes the order of the primary fire buttons.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>Rapid fire</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>Enables repeated firing while a fire button is held.</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>Audio sampling rate</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>Selects the sampling rate of the sound produced by the emulator.</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>Drive seek sound</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>Plays a sound when the disk drive moves its head.</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>FM sound expansion</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>Enables the optional FM sound board.</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>CPU frequency</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>Sets the frequency of the emulated CPU.</value></data>
 </root>

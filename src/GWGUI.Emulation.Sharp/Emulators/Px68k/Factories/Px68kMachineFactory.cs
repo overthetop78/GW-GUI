@@ -1,10 +1,18 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Factories;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Sharp.Emulators.Px68k.Functions;
 using GWGUI.Emulation.Sharp.Emulators.Px68k.Constants;
+using Settings = GWGUI.Emulation.Sharp.Emulators.Px68k.Functions.SettingsDescriptionFunctions;
 using FirmwarePreparation = GWGUI.Emulation.Sharp.Emulators.Px68k.Functions.FirmwareRuntimeFunctions;
 using RuntimeOptions = GWGUI.Emulation.Sharp.Emulators.Px68k.Functions.RuntimeOptionFunctions;
 
 namespace GWGUI.Emulation.Sharp.Emulators.Px68k.Factories;
-internal sealed class Px68kMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry)
+internal sealed class Px68kMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettings
 {
+    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration) => Settings.Create(configuration);
+    public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null) => Settings.GetOptions(configuration);
+
     protected override bool SupportsPointerCapture => true;
     protected override bool SupportsNoContent => true;
 

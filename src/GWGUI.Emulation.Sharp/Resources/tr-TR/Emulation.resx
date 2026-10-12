@@ -4,75 +4,33 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Sharp X68000 bilgisayarları.</value></data>
-  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Sharp X1 bilgisayarları.</value></data>
-  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Karakteri ROM</value></data>
-  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Ekran hafıza</value></data>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulates SHARP X68000 Bilgisayarlar.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulates SHARP X1 Bilgisayarlar.</value></data>
   <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Makine Sesi</value></data>
-  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>Makineli klavye</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Controller seçenekler</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Karakter Karakter Karakter Karakter ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Ekran hafıza</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM hacim hacmi</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>Kart aşırı ses</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>Ses örneği oranı</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>Düğme siparişi</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>Disk ses arama</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM Ses tahta</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM hacim hacmi</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>Video çerçeve oranı oranı</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>Frame rate ayarlama</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>Skipped video çerçeveleri</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>Gizle Grafikleri</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>Hide sprites ve arka planları</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>Gizlen</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM kapasite kapasitesi kapasite kapasitesi kapasite kapasitesi</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>Hızlı ateş</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>Raster etkiler</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>Ters kontrolör giriş</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>Sınırsız emulation hız</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>Dikey senkronizasyon</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>Videoyu önceden tanımlama</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek Yüksek</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low Low</value></data>
   <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Machine display</value></data>
-  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Kontrollü seçenekler</value></data>
-  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>Makine seçenekleri</value></data>
-  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>Full- Wide</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>CPU frekansı</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>Emated CPU'nun frekansı ayarlar.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>Ana bellek</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>Emated bilgisayardaki ana bellek miktarını ayarlar.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>ADPCM hacmi</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>ADPCM ses kanalının hacmini ayarlar.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>FM hacmi</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>FM ses kanallarının hacmini ayarlar.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>Ters yangın düğmeleri</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>İki birincil yangın düğmesinin siparişini değiştirir.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>Sınırsız hız</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>Normal emülasyon hızını beklemeden Runs.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>Frame atping</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>Ekranlar, emülatörin bir video çerçevesini ne sıklıkta oluşturduğunu gösterir.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>Her çerçeve</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>2'de bir çerçeve</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>3'te bir çerçeve</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>4'te bir çerçeve</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>Bir çerçeve 5</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>6'da bir çerçeve</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>8 içinde bir çerçeve</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>Bir çerçeve 16.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>32 yılında bir çerçeve</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>60'ta bir çerçeve</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>Otomatik</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>Video daha önce audio</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>Her video çerçevesini ses örneklerinden önce gönderin.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>Geometrik zamanlama</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>Ekran yenileme oranı için amplitüd çerçeve zamanlamasını ayarlayın.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>Ses zamanlama ayarı</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>Ses ve video senkronizasyonu kaybettiği zaman ses zamanlamasını ayarlayın.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>Gizle metin katmanı</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>Metin tabakasının açıklanması.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>Gizle grafik katmanı</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>Grafik katmanının uygulanması.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>Hide sprites ve arka plan</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>spritlerin ve arka katmanının uygulanması.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>Ekran çözünürlüğü</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>Simülasyonun düşük veya yüksek çözünürlüklü çıktısını seçin.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>Low Low Low</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>Yüksek yüksek</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>Frame oranı</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>Modellemenin saniyede kaç tane video çizdiğini seçin.</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>Ekranlama</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>Senkronizes, emated ekran ile çalışır.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>Raster etkiler</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>Ekran tarama sırasında üretilen etkilerin oluşturulmasını sağlar.</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>Sınırsız hız</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>Normal emülasyon hızını beklemeden Runs.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>Ters yangın düğmeleri</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>birincil yangın düğmelerinin siparişini değiştirir.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>Hızlı ateş</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>Bir yangın düğmesi tutulurken tekrarlanabilirler.</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>Ses örnekleme oranı</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>Simülasyon tarafından üretilen sesin örnekleme oranını seçin.</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>Drive ses arıyor</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>Disk sürücü kafasını hareket ettiğinde bir ses oynayın.</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>FM ses genişleme</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>Seçmeli FM ses kurulu.</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>CPU frekansı</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>Emated CPU'nun frekansı ayarlar.</value></data>
 </root>

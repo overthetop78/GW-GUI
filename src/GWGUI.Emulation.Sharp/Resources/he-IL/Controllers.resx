@@ -4,19 +4,17 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sharp.Controller.None" xml:space="preserve"><value>ללא</value></data>
-  <data name="Emulation.Sharp.Controller.Joystick" xml:space="preserve"><value>Joystick</value></data>
-  <data name="Emulation.Sharp.Controller.X1Joystick" xml:space="preserve"><value>X1 Happystick</value></data>
-  <data name="Emulation.Sharp.Controller.CyberstickDigital" xml:space="preserve"><value>Cyberstick (דיגיטלי)</value></data>
-  <data name="Emulation.Sharp.Controller.CyberstickAnalog" xml:space="preserve"><value>Cyberstick (analog)</value></data>
-  <data name="Emulation.Sharp.Input.Fire1" xml:space="preserve"><value>כפתור ירי 1</value></data>
-  <data name="Emulation.Sharp.Input.Fire2" xml:space="preserve"><value>כפתור ירי 2</value></data>
-  <data name="Emulation.Sharp.Input.Fire3" xml:space="preserve"><value>כפתור ירי 3</value></data>
-  <data name="Emulation.Sharp.Input.Fire4" xml:space="preserve"><value>כפתור ירי 4</value></data>
-  <data name="Emulation.Sharp.Input.Fire5" xml:space="preserve"><value>כפתור ירי 5</value></data>
-  <data name="Emulation.Sharp.Input.Fire6" xml:space="preserve"><value>כפתור ירי 6</value></data>
-  <data name="Emulation.Sharp.Input.Fire7" xml:space="preserve"><value>כפתור ירי 7</value></data>
-  <data name="Emulation.Sharp.Input.Fire8" xml:space="preserve"><value>כפתור ירי 8</value></data>
-  <data name="Emulation.Sharp.Input.ThrottleIncrease" xml:space="preserve"><value>גידול throttle</value></data>
+  <data name="Emulation.Sharp.Controller.CyberstickAnalog" xml:space="preserve"><value>CYBERSTICK (אולוג)</value></data>
+  <data name="Emulation.Sharp.Controller.CyberstickDigital" xml:space="preserve"><value>CYBERSTICK (דיגיטלי)</value></data>
+  <data name="Emulation.Sharp.Controller.X1Joystick" xml:space="preserve"><value>X1 שמחה</value></data>
+  <data name="Emulation.Sharp.Input.Fire1" xml:space="preserve"><value>כפתור אש 1</value></data>
+  <data name="Emulation.Sharp.Input.Fire2" xml:space="preserve"><value>כפתור אש 2</value></data>
+  <data name="Emulation.Sharp.Input.Fire3" xml:space="preserve"><value>כפתור אש 3</value></data>
+  <data name="Emulation.Sharp.Input.Fire4" xml:space="preserve"><value>כפתור 4</value></data>
+  <data name="Emulation.Sharp.Input.Fire5" xml:space="preserve"><value>כפתור אש 5</value></data>
+  <data name="Emulation.Sharp.Input.Fire6" xml:space="preserve"><value>כפתור אש 6</value></data>
+  <data name="Emulation.Sharp.Input.Fire7" xml:space="preserve"><value>כפתור אש 7</value></data>
+  <data name="Emulation.Sharp.Input.Fire8" xml:space="preserve"><value>כפתור אש 8</value></data>
   <data name="Emulation.Sharp.Input.ThrottleDecrease" xml:space="preserve"><value>המונחים: throttle</value></data>
+  <data name="Emulation.Sharp.Input.ThrottleIncrease" xml:space="preserve"><value>להגדיל את</value></data>
 </root>

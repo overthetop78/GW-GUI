@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>Dalgayı ayarlayın ADPCM Ses kanalı.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>Ses senkronizasyon hataları azaltmak için fazla ses örneği.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>Ses örnekleme frekansı seçin.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>Kontrol düğmelerinin siparişini seçin.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>işlemci frekansı seçin.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>Jumppy disk kafa hareketinin sesini oynayın.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>Enable the Enable the FM Ses tahta.</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>Dalgayı ayarlayın FM Ses kanalı.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>İkinci başına video çerçevelerini seçin.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>Sesi dağınıklığı azaltmak için modern ekranlar için video zamanlamasını ayarlayın.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>Üçden iki attan bir görüntüyü atlamak için video görüntülerinin kesilmesini seçin.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>Video görüntünün grafik katmanını dinleyin.</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>Gizleniyor ve video görüntünün arka katmanı.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>Video görüntünün metin katmanını dinleyin.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>Ölmüş miktar seçin RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>Tekrar kontrolör düğmesine basın otomatik olarak.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>Emated video görüntüsünde enable kir etkiler.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>Düşük veya yüksek çıktı çözünürlüğü seçin.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>Kontrol girişini, emülatör tarafından verilen şekilde geri alın.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>Makineyi mümkün olduğunca hızlı çalıştırın. Sound, eşsiz olmayabilir.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>Örtülmüş görüntüyü dikey olarak optimize edin.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>Video gecikmeden önce geç saatlerden önce gecikmeden önce azaltın.</value></data>
+</root>

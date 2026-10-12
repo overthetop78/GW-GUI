@@ -4,75 +4,33 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>模拟了Sharp X68000计算机.</value></data>
-  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>模拟了Sharp X1计算机.</value></data>
-  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>字符ROM 游戏</value></data>
-  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>显示内存</value></data>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>模拟 SHARP X68000 电脑</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>模拟 SHARP X1 电脑</value></data>
   <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>机器音频</value></data>
-  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>机器键盘</value></data>
-  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>机器显示</value></data>
   <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>控制器选项</value></data>
-  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>机器选项</value></data>
-  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>全宽</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>CPU 频率</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>设置被模拟的CPU的频率。</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>主要记忆</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>设定模拟计算机中主内存的数量。</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>ADPCM 卷</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>设置 ADPCM 声道的音量。</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>FM卷 (中文(简体) ).</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>设定FM声道的音量.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>倒转起火按钮</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>改变两个主火按钮的顺序.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>无限制速度</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>运行时不需要等待正常的仿真速度.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>框架跳过</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>设定模拟器制作视频帧的频率 。</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>每个相框</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>2个内框1个</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>3个中1个</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>4个中1个框</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>5个内框1个</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>6个框</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>8个框</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>16个框架中的一个</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>32个框中一个</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>60个框架中的一个</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>自动的</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>音频前的视频</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>在音频样本之前发送每个视频帧.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>调整框架时间</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>调整显示刷新率的模拟框架时间。</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>音频时间调整</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>当声音和视频失去同步时调整音频时间.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>隐藏文本层</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>禁用文本图层的渲染。</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>隐藏图形层</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>禁用图形图层的渲染。</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>隐藏图示和背景</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>禁用图示和背景图层的渲染 。</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>显示分辨率</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>选择模拟器的低分辨率或高分辨率输出。</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>低级</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>高档</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>帧率</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>选择模拟器每秒制作多少个视频帧 。</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>同步显示</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>与模拟显示同步渲染 。</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>牧场效应</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>能够渲染屏幕扫描过程中产生的效果.</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>无限制速度</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>运行时不需要等待正常的仿真速度.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>倒转起火按钮</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>更改主火按钮的顺序 。</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>快速开火</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>在按住火按钮时启用重复射击 。</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>音频采样率</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>选择模拟器所产生的声音的采样率。</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>驱动器寻找声音</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>磁盘驱动器移动头部时播放声音。</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>FM 音效扩展</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>启用可选的FM音板.</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>CPU 频率</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>设置被模拟的CPU的频率。</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>字符 ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>显示内存</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM 音量</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>丢弃多余的音频</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>音频样本率</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>按钮顺序</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>磁盘寻找声音</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM 音板</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM 音量</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>视频帧率</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>框架利率调整</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>跳过视频框</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>隐藏图形</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>隐藏图示和背景</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>隐藏文本层</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM 能力</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>快速开火</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>牧场效应</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>反向控制器输入</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>无限制的仿真速度</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>垂直同步</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>视频优先化</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>高档</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>低级</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>机器显示</value></data>
 </root>

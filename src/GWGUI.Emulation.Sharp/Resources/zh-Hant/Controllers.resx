@@ -4,19 +4,17 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sharp.Controller.None" xml:space="preserve"><value>無</value></data>
-  <data name="Emulation.Sharp.Controller.Joystick" xml:space="preserve"><value>歡樂棒</value></data>
-  <data name="Emulation.Sharp.Controller.X1Joystick" xml:space="preserve"><value>X1 樂器</value></data>
-  <data name="Emulation.Sharp.Controller.CyberstickDigital" xml:space="preserve"><value>網絡棒(數字)</value></data>
-  <data name="Emulation.Sharp.Controller.CyberstickAnalog" xml:space="preserve"><value>網絡棍子( analog)</value></data>
-  <data name="Emulation.Sharp.Input.Fire1" xml:space="preserve"><value>射擊按鈕 1</value></data>
-  <data name="Emulation.Sharp.Input.Fire2" xml:space="preserve"><value>射擊按鈕 2</value></data>
-  <data name="Emulation.Sharp.Input.Fire3" xml:space="preserve"><value>射擊按鈕 3</value></data>
-  <data name="Emulation.Sharp.Input.Fire4" xml:space="preserve"><value>射擊按鈕 4</value></data>
-  <data name="Emulation.Sharp.Input.Fire5" xml:space="preserve"><value>射擊按鈕 5</value></data>
-  <data name="Emulation.Sharp.Input.Fire6" xml:space="preserve"><value>射擊按鈕 6</value></data>
-  <data name="Emulation.Sharp.Input.Fire7" xml:space="preserve"><value>射擊按鈕 7</value></data>
-  <data name="Emulation.Sharp.Input.Fire8" xml:space="preserve"><value>射擊按鈕 8</value></data>
-  <data name="Emulation.Sharp.Input.ThrottleIncrease" xml:space="preserve"><value>增加節流閥</value></data>
-  <data name="Emulation.Sharp.Input.ThrottleDecrease" xml:space="preserve"><value>減少節流閥</value></data>
+  <data name="Emulation.Sharp.Controller.CyberstickAnalog" xml:space="preserve"><value>CYBERSTICK (异想天开)</value></data>
+  <data name="Emulation.Sharp.Controller.CyberstickDigital" xml:space="preserve"><value>CYBERSTICK (数字)</value></data>
+  <data name="Emulation.Sharp.Controller.X1Joystick" xml:space="preserve"><value>X1 乐器</value></data>
+  <data name="Emulation.Sharp.Input.Fire1" xml:space="preserve"><value>开火按钮 1</value></data>
+  <data name="Emulation.Sharp.Input.Fire2" xml:space="preserve"><value>开火按钮 2</value></data>
+  <data name="Emulation.Sharp.Input.Fire3" xml:space="preserve"><value>开火按钮 3</value></data>
+  <data name="Emulation.Sharp.Input.Fire4" xml:space="preserve"><value>开火按钮 4</value></data>
+  <data name="Emulation.Sharp.Input.Fire5" xml:space="preserve"><value>开火按钮 5</value></data>
+  <data name="Emulation.Sharp.Input.Fire6" xml:space="preserve"><value>开火按钮 6</value></data>
+  <data name="Emulation.Sharp.Input.Fire7" xml:space="preserve"><value>开火按钮7</value></data>
+  <data name="Emulation.Sharp.Input.Fire8" xml:space="preserve"><value>开火按钮8</value></data>
+  <data name="Emulation.Sharp.Input.ThrottleDecrease" xml:space="preserve"><value>减速油门</value></data>
+  <data name="Emulation.Sharp.Input.ThrottleIncrease" xml:space="preserve"><value>增加节流阀</value></data>
 </root>

@@ -1,10 +1,18 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Contracts;
+using GWGUI.Emulation.Sharp.Emulators.Common.Factories;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;
 using System.IO;
 
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Factories;
 
 internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry)
-    : GWGUI.Emulation.Sharp.Emulators.Common.Factories.MachineFactory(catalogEntry)
+    : GWGUI.Emulation.Sharp.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorInputMapper
 {
+    public IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => ControllerCatalog.Peripherals(model);
+    public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => NativeInputMappingFunctions.Apply(snapshot, input, model, Emulator);
+
     internal abstract void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
     internal abstract LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions);
 

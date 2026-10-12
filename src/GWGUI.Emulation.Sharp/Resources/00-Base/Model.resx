@@ -4,10 +4,14 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sharp.Model.X68000" xml:space="preserve"><value>Sharp X68000</value></data>
-  <data name="Emulation.Sharp.Model.X68000Xvi" xml:space="preserve"><value>Sharp X68000 XVI</value></data>
-  <data name="Emulation.Sharp.Model.X68030" xml:space="preserve"><value>Sharp X68030</value></data>
+  <data name="Emulation.Sharp.Cpu.Hd68Hc000" xml:space="preserve"><value>Hitachi HD68HC000</value></data>
+  <data name="Emulation.Sharp.Cpu.M68000" xml:space="preserve"><value>Motorola 68000</value></data>
+  <data name="Emulation.Sharp.Cpu.M68Ec030" xml:space="preserve"><value>Motorola 68EC030</value></data>
+  <data name="Emulation.Sharp.Cpu.Z80A" xml:space="preserve"><value>Zilog Z80A</value></data>
   <data name="Emulation.Sharp.Model.X1" xml:space="preserve"><value>Sharp X1</value></data>
   <data name="Emulation.Sharp.Model.X1Turbo" xml:space="preserve"><value>Sharp X1 turbo</value></data>
   <data name="Emulation.Sharp.Model.X1TurboZ" xml:space="preserve"><value>Sharp X1 turbo Z</value></data>
+  <data name="Emulation.Sharp.Model.X68000" xml:space="preserve"><value>Sharp X68000</value></data>
+  <data name="Emulation.Sharp.Model.X68000Xvi" xml:space="preserve"><value>Sharp X68000 XVI</value></data>
+  <data name="Emulation.Sharp.Model.X68030" xml:space="preserve"><value>Sharp X68030</value></data>
 </root>

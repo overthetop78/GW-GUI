@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>Ajustează volumul ADPCM Canalul sonor.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>Aruncaţi mostrele audio în exces pentru a reduce erorile de sincronizare a sunetului.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>Alege frecvența de eșantionare a sunetului.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>Alege ordinea butoanelor de controler.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>Alege frecvența procesorului.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>Joaca sunetul de mișcare cap dischetă disc.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>Activează FM placa de sunet.</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>Ajustează volumul FM Canalul sonor.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>Alegeţi numărul de cadre video pe secundă.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>Reglați calendarul video pentru ecranele moderne pentru a reduce bâlbâiala sunetului.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>Alege fracţiunea de imagini video pentru a sări. Retrimiterea o imagine din trei skips două din trei.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>Ascunde stratul grafic al imaginii video.</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>Ascunde straturile de sprite și fundal ale imaginii video.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>Ascundeţi stratul de text al imaginii video.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>Alegeți cantitatea de emulat RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>Se apasă automat butonul de controlor.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>Activați efectele raster în imaginea video emulată.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>Alege rezoluţia de ieşire scăzută sau înaltă.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>Reversionați intrarea controlerului, astfel cum este furnizat de emulator.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>Rulați mașina cât mai repede posibil. Sunetul poate deveni nesincronat.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>Sincronizează ecranul emulat vertical.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>Reduceţi latenţa video înainte de latenţa audio.</value></data>
+</root>

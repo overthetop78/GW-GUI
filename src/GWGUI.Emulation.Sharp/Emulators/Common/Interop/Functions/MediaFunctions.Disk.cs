@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;
 using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;

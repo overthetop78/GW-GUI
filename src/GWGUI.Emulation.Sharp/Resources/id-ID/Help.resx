@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>Atur volume ADPCM saluran suara.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>Buang sample audio berlebihan untuk mengurangi kesalahan sinkronisasi suara.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>Pilih frekuensi suara.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>Pilih urutan tombol pengendali.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>Pilih frekuensi prosesor.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>Mainkan suara disket gerakan kepala.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>Aktifkan FM sound board.</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>Atur volume FM saluran suara.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>Pilih jumlah frame video per detik.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>Atur waktu video untuk menampilkan modern untuk mengurangi gagap suara.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>Pilih bagian kecil gambar video yang dilewatkan. Menghubungkan satu gambar dari tiga melewati dua dari tiga.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>Sembunyikan lapisan grafis gambar video.</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>Sembunyikan sprite dan latar belakang gambar video.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>Sembunyikan lapisan teks gambar video.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>Pilih jumlah dari tertimulasi RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>Ulangi tombol pengontrol ditekan secara otomatis.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>Aktifkan efek raster dalam gambar video yang termodifikasi.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>Pilih resolusi output rendah atau tinggi.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>Balikkan input pengendali seperti yang disediakan oleh emulator.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>Jalankan mesin secepat mungkin. Suara mungkin menjadi unsynchronized.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>Sinkronisasi tampilan yang digandakan secara vertikal.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>Kurangi latensi video sebelum latensi audio.</value></data>
+</root>

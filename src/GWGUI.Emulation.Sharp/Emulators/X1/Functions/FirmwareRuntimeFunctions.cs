@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;
 using System.IO;
 using GWGUI.Emulation.Sharp.Emulators.X1.Constants;
 using SharedFirmwareRuntimeFunctions = GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions.FirmwareRuntimeFunctions;

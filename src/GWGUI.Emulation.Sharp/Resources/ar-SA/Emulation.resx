@@ -4,75 +4,33 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>ترجمه Sharp X68000 كمبيوتر</value></data>
-  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>ترجمه Sharp X1 كمبيوتر</value></data>
-  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>كراتر ROM</value></data>
-  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>التذكرة</value></data>
-  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>الصوت الصاخب</value></data>
-  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>لوحة مفاتيح للآلات</value></data>
-  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>عرض الآلات</value></data>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>المواد SHARP X68000 حواسيب</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>المواد SHARP X1 حواسيب</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>الصوت المسموع</value></data>
   <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>خيارات المراقب المالي</value></data>
-  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>خيارات الآلات</value></data>
-  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>كامل القيمة</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>CPU تردد</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>يحدد تواتر الـ CPU.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>الذاكرة الرئيسية</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>يحدد كمية الذاكرة الرئيسية في الكمبيوتر المحوسب.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>المجلد ADPCM</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>يحدد حجم القناة الصوتية ADPCM.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>المجلد FM</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>يحدد حجم القنوات الصوتية FM.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>أزرار حريق عكسية</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>يغيّر ترتيب أزرار الحريق الأولية.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>السرعة غير المحدودة</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>يركض دون انتظار سرعة الاختناق العادية.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>قفزة عارية</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>يحدد كم ينشر المرشد إطاراً للفيديو</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>كلّ إطار</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>إطار واحد في 2</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>إطار واحد في 3</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>إطار واحد في 4</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>إطار واحد في 5</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>إطار واحد في 6</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>إطار واحد في 8</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>إطار واحد في 16</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>إطار واحد في 32</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>إطار واحد في 60</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>تلقائي</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>الفيديو قبل الصوت</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>يرسل كل شريط فيديو قبل عيناته الصوتية</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>الوقت المحدد للإطار</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>يُعدّل التوقيت الإطاري المحوسب لمعدل تجديد العرض.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>تعديل التوقيت الصوتي</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>يُعدل التوقيت الصوتي عندما يفقد الصوت والفيديو التزامن.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>طبقة النص المخفية</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>اختراق طبقة النص.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>طبقة الرسومات المخفية</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>تم تعطيل طبقة الرسوم البيانية</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>الاختباء والخلفية</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>انحرافات عن المواصفات وطبقة المعلومات الأساسية.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>قرار التصويب</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>يُختار الناتج المنخفض أو العالي للتسوية للمحرك.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>منخفض</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>عالية</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>معدل الخصوبة</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>يَختارُ كَمْ شريط فيديو يَضِعُ الناشر في الثانية.</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>عرض متزامن</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>تتزامن مع العرض المحوسب.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>التأثيرات المتطايرة</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>يمكن أن تحدث آثاراً أثناء المسح الشاشي.</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>السرعة غير المحدودة</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>يركض دون انتظار سرعة الاختناق العادية.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>أزرار حريق عكسية</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>يغيّر ترتيب أزرار الحريق الأولية</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>إطلاق النار السريع</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>النوافذ تكرّر إطلاق النار بينما يُحتَجز زر الإطفاء.</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>معدل أخذ العينات الصوتية</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>ويختار معدل أخذ العينات من الصوت الذي ينتجه الناشر.</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>البحث عن الصوت</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>يَلْعبُ a صوت عندما القرصِ يَتحرّكُ رأسهَ.</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>FM</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>يُمكّن مجلس الصوت الإختياري لـ FM.</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>CPU تردد</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>يحدد تواتر الـ CPU.</value></data>
+  <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>السمعة ROM</value></data>
+  <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>ذكري</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM الحجم</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>فائض الصوت</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>معدل العينات الصوتية</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>(بتون)</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>البحث عن الصوت</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM صوت اللوح</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM الحجم</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>معدل إطار الفيديو</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>تسوية معدل الفطر</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>أشرطة فيديو مُصَوَّلة</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>رسومات مخفية</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>إخفاء المناشير والخلفيات</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>اخفي طبقة النص</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM القدرات</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>إطلاق النار السريع</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>آثار الغضب</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>مدخلات المراقبة العكسية</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>سرعة الاختراع غير المحدودة</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>التزامنة الافتراضية</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>أولوية الفيديو</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>عالية</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>منخفض</value></data>
+  <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>عرض آلة</value></data>
 </root>

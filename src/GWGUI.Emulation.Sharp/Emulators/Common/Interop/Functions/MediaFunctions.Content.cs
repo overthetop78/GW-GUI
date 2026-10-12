@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;
 using System.IO;
 using GWGUI.Emulation;
 using System.Globalization;

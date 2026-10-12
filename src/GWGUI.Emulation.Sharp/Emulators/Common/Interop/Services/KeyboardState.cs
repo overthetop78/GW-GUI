@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;
 internal sealed class KeyboardState
 {

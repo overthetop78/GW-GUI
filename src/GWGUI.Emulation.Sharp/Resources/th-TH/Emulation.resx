@@ -4,75 +4,33 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>จําลอง Sharp X68000 คอมพิวเตอร์</value></data>
-  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>จําลอง Sharp X1 คอมพิวเตอร์</value></data>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>จําลอง SHARP X68000 คอมพิวเตอร์</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>จําลอง SHARP X1 คอมพิวเตอร์</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>เสียงเครื่อง</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>ตัวเลือกของตัวควบคุม</value></data>
   <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>อักขระ ROM</value></data>
   <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>แสดงหน่วยความจํา</value></data>
-  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>เสียงเครื่อง</value></data>
-  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>แป้นพิมพ์เครื่องจักร</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM ระดับเสียง</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>เข้ารหัสเสียงที่เกินความสามารถ</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>อัตราการสุ่มตัวอย่างเสียง</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>ลําดับปุ่ม</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>ดิสก์ค้นหาเสียง</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM กระดานเสียง</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM ระดับเสียง</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>อัตราการเล่นเฟรมภาพวิดีโอ</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>ปรับแก้อัตราเฟรมภาพ</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>ข้ามเฟรมภาพวิดีโอ</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>ซ่อนกราฟแสดงความถี่</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>ซ่อนส่วนท้ายและพื้นหลัง</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>ซ่อนชั้นข้อความ</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM ความจุ</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>ไฟไหม้แบบเร็ว</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>ลูกเล่นการไล่ระดับสี</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>กลับค่านําเข้าที่ป้อนมา</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>ความเร็วการจําลองแบบไม่จํากัด</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>ปรับเทียบข้อมูลทางแนวตั้ง</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>แสดงตัวอย่างวิดีโอ</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>สูง</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>ต่ํา</value></data>
   <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>การแสดงผลเครื่อง</value></data>
-  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>ตัวเลือกของตัวควบคุม</value></data>
-  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>ตัวเลือกของเครื่อง</value></data>
-  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>แบบเต็มความกว้าง</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>ความถี่ CPU</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>ตั้งค่าความถี่ของ CPU แบบย่อ</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>หน่วยความจําหลัก</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>ตั้งค่าปริมาณของหน่วยความจําหลักในคอมพิวเตอร์ที่คัดลอก</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>ระดับเสียง ADPCM</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>ตั้งค่าระดับเสียงของช่องเสียง ADPCM</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>ระดับเสียงของ FM</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>ตั้งค่าระดับเสียงของช่องเสียง FM</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>กลับปุ่มยิงกลับ</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>เปลี่ยนลําดับปุ่มยิงหลัก 2 ปุ่ม</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>ความเร็วที่ไม่จํากัด</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>วิ่งโดยไม่รอความเร็ว การจําลองปกติ</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>ข้ามเฟรมภาพ</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>ตั้งค่าว่า ตัวจําลองจะทําการแปลกรอบวิดีโอบ่อยแค่ไหน</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>ทุกเฟรม</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>หนึ่งเฟรมใน 2</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>หนึ่งเฟรมใน 3</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>หนึ่งเฟรมใน 4</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>หนึ่งเฟรมใน 5</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>หนึ่งเฟรมใน 6</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>หนึ่งเฟรมใน 8</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>หนึ่งเฟรมใน 16</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>หนึ่งเฟรมใน 32</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>หนึ่งเฟรมใน 60</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>อัตโนมัติ</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>วิดีโอก่อนเสียง</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>ส่งภาพวิดีโอแต่ละเฟรมก่อนที่จะส่งตัวอย่างเสียง</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>ปรับแก้ความเร่งของเฟรม</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>ปรับจับเวลาของเฟรมที่เลียนแบบสําหรับอัตราการรีเฟรชการแสดงผล</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>ปรับแก้จังหวะเสียง</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>ปรับจังหวะเสียงให้พอดีเมื่อเสียงและวิดีโอสูญเสียการปรับเทียบข้อมูล</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>ซ่อนเลเยอร์ข้อความ</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>ปิดการใช้งานการแสดงผลเลเยอร์ข้อความ</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>ซ่อนเลเยอร์ของกราฟแสดงความถี่</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>ปิดการแสดงผลระดับกราฟแสดงความถี่</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>ซ่อนเส้นประและพื้นหลัง</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>ปิดการใช้งานการแสดงผลแบบ Flites และชั้นหลัง</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>ความละเอียดการแสดงผล</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>เลือกการแสดงผลแบบความละเอียดต่ําหรือสูงของตัวจําลอง</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>ต่ํา</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>สูง</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>อัตราเฟรมภาพ</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>เลือกจํานวนเฟรมของวิดีโอที่จะแปลต่อวินาที</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>ปรับเทียบข้อมูลการแสดงผล</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>ปรับเทียบสีการแสดงผลด้วยการแสดงแบบย่อ</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>ลูกเล่นย่อย</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>เปิดใช้การแสดงลูกเล่นที่เกิดระหว่างการสแกนหน้าจอ</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>ความเร็วที่ไม่จํากัด</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>วิ่งโดยไม่รอความเร็ว การจําลองปกติ</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>กลับปุ่มยิงกลับ</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>เปลี่ยนลําดับของปุ่มยิงหลัก</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>ไฟไหม้แบบเร็ว</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>เปิดใช้การยิงซ้ําขณะกดปุ่มยิง</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>อัตราการสุ่มเสียง</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>เลือกอัตราการสุ่มเสียงที่ผลิตโดยเครื่องจําลองเสียง</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>ไดรฟ์ค้นหาเสียง</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>เล่นเสียงเมื่อไดรฟ์ดิสก์ย้ายหัวของมัน</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>การขยายเสียง FM</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>เปิดการใช้งานบอร์ดเสียง FM ทางเลือก</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>ความถี่ CPU</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>ตั้งค่าความถี่ของ CPU แบบย่อ</value></data>
 </root>

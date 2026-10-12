@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>Juster volumet til ADPCM Lydkanal.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>Forkast overflødige lydprøver for å redusere lydsynkroniseringsfeil.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>Velg lydprøvetakingsfrekvens.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>Velg rekkefølgen på kontrollknappene.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>Velg prosessorfrekvens.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>Spill lyden av disketten hode bevegelse.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>Slå på FM Lydkort.</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>Juster volumet til FM Lydkanal.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>Velg antall videorammer i sekundet.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>Juster videotid for moderne skjermer for å redusere lydstiving.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>Velg fraksjonen av videobilder å hoppe over. Å gjenvinne ett bilde av tre hopper over to av tre.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>Skjul grafikklaget på videobildet.</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>Skjul sprit og bakgrunn lag av videobildet.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>Skjul tekstlaget på videobildet.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>Velg mengden emulert RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>Gjenta kontrollknappen trykker automatisk.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>Aktiver rastereffekter i det emulerte videobildet.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>Velg lav eller høy utgangsoppløsning.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>Vend styreinngangen som angitt av emulatoren.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>Kjør maskinen så raskt som mulig. Lyd kan bli usynkronisert.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>Synkroniser den emulerte skjermen vertikalt.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>Redusere video latens før lyd latens.</value></data>
+</root>

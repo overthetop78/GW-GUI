@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Contracts;
+using GWGUI.Emulation.Sharp.Emulators.Common.Functions;
 using GWGUI.Emulation.Sharp.Common.Interfaces;
 using GWGUI.Emulation.Sharp.Emulators.Common.Factories;
 

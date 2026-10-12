@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Services;
 using System.IO;
 using System.Text;
 using GWGUI.Emulation.Sharp.Emulators.Px68k.Constants;

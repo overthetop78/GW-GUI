@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>Sharp kurtarılan devlet mevcut makine ile uyumlu değildir.</value></data>
-  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>Beklenmeyen bir Sharp emulation hatası meydana geldi.</value></data>
-  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Gerekli Sharp Hardware eksik.</value></data>
-  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>Sistem ROM geçersiz veya uyumsuzdur.</value></data>
   <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>yapılandırılmış Sharp medyası bulunamadı.</value></data>
   <data name="Emulation.Sharp.Error.ContentUnsupported" xml:space="preserve"><value>Bu makine seçilmiş medyayı desteklemiyor.</value></data>
-  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>Bir Sharp seçeneğinin geçersiz bir değeri vardır.</value></data>
   <data name="Emulation.Sharp.Error.CoreNotFound" xml:space="preserve"><value>Gerekli Sharp çekirdeği bulunamadı.</value></data>
   <data name="Emulation.Sharp.Error.CoreRejected" xml:space="preserve"><value>Seçilen Sharp çekirdeği yüklenemezdi.</value></data>
-  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>Sharp kurtarılan devlet geçersizdir.</value></data>
-  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>Sharp host executable yolu mevcut değildir.</value></data>
   <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>Detaylar: {0}</value></data>
-  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>Sharp host ile iletişim başarısız oldu.</value></data>
-  <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Bilinmeyen çevre komutları: {0}</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>Sistem sistemi ROM geçersiz veya uyumlu.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Gerekli Sharp Hardware eksik.</value></data>
+  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>Sharp ev sahibi executable yol mevcut değildir.</value></data>
+  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>Sharp ev sahibi ile iletişim başarısız oldu.</value></data>
+  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>Bir Sharp seçeneğinin geçersiz bir değeri vardır.</value></data>
+  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>Sharp kurtarılan devlet mevcut makine ile uyumlu değildir.</value></data>
+  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>Sharp kurtarılan devlet geçersizdir.</value></data>
+  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>Beklenmeyen Sharp emulation hatası meydana geldi.</value></data>
+  <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Bilinmeyen çevre komutu: {0}</value></data>
 </root>

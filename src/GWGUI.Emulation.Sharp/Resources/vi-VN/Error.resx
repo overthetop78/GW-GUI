@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>Trạng thái được lưu Sharp không tương thích với máy hiện tại.</value></data>
-  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>Một lỗi không mong đợi Sharp đã xảy ra.</value></data>
-  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Yêu cầu thiếu Sharp phần cứng.</value></data>
-  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>ROM hệ thống không hợp lệ hay không tương thích.</value></data>
-  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>Không tìm thấy các phương tiện được cấu hình Sharp.</value></data>
+  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>Không tìm thấy các phương tiện truyền thông được cấu hình Sharp.</value></data>
   <data name="Emulation.Sharp.Error.ContentUnsupported" xml:space="preserve"><value>Máy này không hỗ trợ phương tiện được chọn.</value></data>
-  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>Một tùy chọn Sharp có giá trị không hợp lệ.</value></data>
   <data name="Emulation.Sharp.Error.CoreNotFound" xml:space="preserve"><value>Không tìm thấy lõi Sharp cần thiết.</value></data>
   <data name="Emulation.Sharp.Error.CoreRejected" xml:space="preserve"><value>Không thể tải lõi Sharp đã chọn.</value></data>
-  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>Tình trạng được cứu rỗi của Sharp không hợp lệ.</value></data>
+  <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>Chi tiết: {0}</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>Hệ thống ROM không hợp lệ hay không tương thích.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Một phần mềm cứng cần thiết bị sắc bén bị mất.</value></data>
   <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>Không có đường dẫn đến máy chủ Sharp.</value></data>
-  <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>Chi tiết:{0}</value></data>
-  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>Liên lạc với chủ nhà Sharp đã thất bại.</value></data>
-  <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Lệnh môi trường không rõ:{0}</value></data>
+  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>Liên lạc với chủ nhà Sharp thất bại.</value></data>
+  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>Một tùy chọn sắc nét có giá trị không hợp lệ.</value></data>
+  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>Trạng thái được lưu Sharp không tương thích với máy hiện tại.</value></data>
+  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>Tình trạng được cứu rỗi của Sharp không hợp lệ.</value></data>
+  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>Một lỗi mô phỏng sắc nét bất ngờ đã xảy ra.</value></data>
+  <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Lệnh môi trường không rõ: {0}</value></data>
 </root>

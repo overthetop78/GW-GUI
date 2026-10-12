@@ -4,75 +4,33 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulates Sharp X68000 tietokoneita.</value></data>
-  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulgoi Sharp X1 -tietokoneita.</value></data>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Emulgointi SHARP X68000 tietokoneet.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Emulgointi SHARP X1 tietokoneet.</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Koneääni</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Kontrolloijan valinnat</value></data>
   <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Merkki ROM</value></data>
   <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Näytä muisti</value></data>
-  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Koneääni</value></data>
-  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>Koneiden näppäimistö</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM tilavuus</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>Hylkää ylimääräinen ääni</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>Ääninäytteen näytteenottonopeus</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>Nappijärjestys</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>Levyhakuääni</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM äänilevy</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM tilavuus</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>Videokuvan kuvanopeus</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>Kehysnopeuden säätö</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>Ohitetut videokehykset</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>Piilota grafiikka</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>Piilota sprite ja taustat</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>Piilota tekstikerros</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM kapasiteetti</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>Nopea tulitus</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>Rasterivaikutukset</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>Käänteinen ohjaimen syöte</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>Rajoittamaton emulgointinopeus</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>Pystysuuntainen synkronointi</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>Priorisoi video</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>Korkea</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>Matala</value></data>
   <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Koneen näyttö</value></data>
-  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Ohjaimen valinnat</value></data>
-  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>Koneen valinnat</value></data>
-  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>Täysi leveys</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>Asettaa emulgoidun taajuuden CPU.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>Päämuisti</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>Asettaa päämuistin määrän emulgoidussa tietokoneessa.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>ADPCM-tilavuus</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>Asettaa äänenvoimakkuuden ADPCM.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>FM-tilavuus</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>Asettaa FM-äänikanavien äänenvoimakkuuden.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>Käänteiset palonappulat</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>Muuttaa kahden ensisijaisen palonappulan järjestystä.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>Rajoittamaton nopeus</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>Kulkee odottamatta normaalia emulointinopeutta.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>Runkojen ohitus</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>Asettaa, kuinka usein emulaattori tekee videokehys.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>Jokainen kehys</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>Yksi kehys 2:ssa</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>Yksi runko kolmessa</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>Yksi runko 4:ssä</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>Yksi kehys viidessä</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>Yksi runko 6:ssa</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>Yksi runko kahdeksassa</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>Yksi kuva 16:sta</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>Yksi runko 32:ssa</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>Yksi runko 60:stä</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>Automaattinen</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>Video ennen ääntä</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>Lähettää jokaisen videon kehyksen ennen sen ääninäytteitä.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>Säädä kehyksen ajoitusta</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>Säätää emulgoidun kehyksen ajoitusta näytön virkistystaajuudelle.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>Äänen ajoituksen säätö</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>Säätää äänen ajoitusta, kun ääni ja video menettävät synkronoinnin.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>Piilota tekstikerros</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>Poistaa tekstikerroksen renderoinnin käytöstä.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>Piilota grafiikkakerros</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>Poistaa grafiikkakerroksen renderoinnin käytöstä.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>Piilota sprite ja tausta</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>Estää spriittien ja taustakerroksen renderoinnin.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>Näytön resoluutio</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>Valitsee emulaattorin alhaisen tai korkean resoluution ulostulon.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>Matala</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>Korkea</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>Kehysnopeus</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>Valitsee kuinka monta videoruutua emulaattori tekee sekunnissa.</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>Synkronisoi näyttö</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>Synkronisoi renderoinnin emuloidulla näytöllä.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>Rasteriefektit</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>Mahdollistaa screen skannauksen aikana tuotettujen vaikutusten renderoinnin.</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>Rajoittamaton nopeus</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>Kulkee odottamatta normaalia emulointinopeutta.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>Käänteiset palonappulat</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>Muuttaa pääpalonappulan järjestystä.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>Nopea tulitus</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>Mahdollistaa toistuvan ampumisen, kun palonappulaa pidetään.</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>Äänen näytteenottotaajuus</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>Valitsee emulaattorin tuottaman äänen näytteenottonopeuden.</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>Ajakaa etsikää ääntä</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>Soittaa äänen, kun levyasema siirtää päätään.</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>FM-äänilaajennus</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>Mahdollistaa FM-äänilevyn.</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>Asettaa emulgoidun taajuuden CPU.</value></data>
 </root>

@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Dictionaries;
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Functions;
 
 internal static class NativeRuntimeOptionFunctions

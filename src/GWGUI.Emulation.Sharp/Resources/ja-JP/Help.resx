@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>音量を調整する ADPCM サウンドチャンネル。</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>過剰なオーディオサンプルを捨てて、音の同期エラーを削減します。</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>音のサンプリング周波数を選択します。</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>コントローラーボタンの注文を選択します。</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>プロセッサ周波数を選択します。</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>フロッピーディスクヘッドの動きの音を再生します。</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>有効化する FM サウンドボード。</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>音量を調整する FM サウンドチャンネル。</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>1秒あたりのビデオフレーム数を選択します。</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>現代ディスプレイ用のビデオタイミングを調整して、音の散乱を抑えます。</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>ビデオをスキップするのののの分数を選択します。 3 のうち 1 つの画像をレンダリングすると、2 から 2 をスキップします。</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>ビデオ画像のグラフィックレイヤーを非表示にします。</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>ビデオ画像のスプライトと背景レイヤーを非表示にします。</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>ビデオ画像のテキストレイヤーを非表示にします。</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>計算された金額を選択してください RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>コントローラーボタンを繰り返して自動的に押します。</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>強化されたビデオ画像でラスター効果を有効にします。</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>出力の低解像度または高出力解像度を選択します。</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>エミュレータで提供されるコントローラの入力を逆転させます。</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>できるだけ高速に機械を実行します。音は非同期化されるかもしれません。</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>垂直にエミュレートされたディスプレイを同期させます。</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>音声レイテンシの前にビデオレイテンシを減らします。</value></data>
+</root>

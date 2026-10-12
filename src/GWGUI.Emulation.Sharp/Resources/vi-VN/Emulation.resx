@@ -4,75 +4,33 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Kết hợp máy tính Sharp X68000.</value></data>
-  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Kết hợp máy tính loại Sharp X1.</value></data>
+  <data name="Emulation.Emulator.px68k.Description" xml:space="preserve"><value>Tính SHARP X68000 Máy tính.</value></data>
+  <data name="Emulation.Emulator.x1.Description" xml:space="preserve"><value>Tính SHARP X1 Máy tính.</value></data>
+  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Âm thanh máy</value></data>
+  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Tùy chọn Điều khiển</value></data>
   <data name="Emulation.Sharp.Firmware.Font" xml:space="preserve"><value>Ký tự ROM</value></data>
   <data name="Emulation.Sharp.Memory.Display" xml:space="preserve"><value>Hiển thị bộ nhớ</value></data>
-  <data name="Emulation.Sharp.Audio.Native" xml:space="preserve"><value>Âm thanh máy</value></data>
-  <data name="Emulation.Sharp.Keyboard.Native" xml:space="preserve"><value>Bàn phím máy</value></data>
+  <data name="Emulation.Sharp.Setting.AdpcmVolume" xml:space="preserve"><value>ADPCM âm lượng</value></data>
+  <data name="Emulation.Sharp.Setting.AudioDesynchronization" xml:space="preserve"><value>Bỏ card dư âm</value></data>
+  <data name="Emulation.Sharp.Setting.AudioSampleRate" xml:space="preserve"><value>Tốc độ mẫu âm thanh</value></data>
+  <data name="Emulation.Sharp.Setting.ButtonOrder" xml:space="preserve"><value>Thứ tự nút</value></data>
+  <data name="Emulation.Sharp.Setting.DiskSeekSound" xml:space="preserve"><value>Đĩa tìm âm thanh</value></data>
+  <data name="Emulation.Sharp.Setting.FmBoard" xml:space="preserve"><value>FM thanh âm</value></data>
+  <data name="Emulation.Sharp.Setting.FmVolume" xml:space="preserve"><value>FM âm lượng</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRate" xml:space="preserve"><value>Tỷ lệ khung ảnh động</value></data>
+  <data name="Emulation.Sharp.Setting.FrameRateAdjustment" xml:space="preserve"><value>Điều chỉnh tỷ lệ khung</value></data>
+  <data name="Emulation.Sharp.Setting.FrameSkip" xml:space="preserve"><value>Comment</value></data>
+  <data name="Emulation.Sharp.Setting.HideGraphics" xml:space="preserve"><value>Ẩn đồ họa</value></data>
+  <data name="Emulation.Sharp.Setting.HideSprites" xml:space="preserve"><value>Ẩn các hình dạng và gốc</value></data>
+  <data name="Emulation.Sharp.Setting.HideText" xml:space="preserve"><value>Ẩn lớp văn bản</value></data>
+  <data name="Emulation.Sharp.Setting.MemorySize" xml:space="preserve"><value>RAM khối lượng</value></data>
+  <data name="Emulation.Sharp.Setting.RapidFire" xml:space="preserve"><value>Lửa nhanh</value></data>
+  <data name="Emulation.Sharp.Setting.Raster" xml:space="preserve"><value>Hiệu ứng phân rộng</value></data>
+  <data name="Emulation.Sharp.Setting.ReverseJoystick" xml:space="preserve"><value>Nhập trình điều khiển ngược</value></data>
+  <data name="Emulation.Sharp.Setting.UnlimitedSpeed" xml:space="preserve"><value>Tốc độ hình thành vô hạn</value></data>
+  <data name="Emulation.Sharp.Setting.VerticalSync" xml:space="preserve"><value>Đồng bộ dọc</value></data>
+  <data name="Emulation.Sharp.Setting.VideoBeforeAudio" xml:space="preserve"><value>Ưu tiên phim</value></data>
+  <data name="Emulation.Sharp.Value.High" xml:space="preserve"><value>Cao</value></data>
+  <data name="Emulation.Sharp.Value.Low" xml:space="preserve"><value>Thấp</value></data>
   <data name="Emulation.Sharp.Video.Native" xml:space="preserve"><value>Hiển thị máy</value></data>
-  <data name="Emulation.Sharp.Controls.Native" xml:space="preserve"><value>Tùy chọn Controller</value></data>
-  <data name="Emulation.Sharp.System.Native" xml:space="preserve"><value>Tùy chọn máy</value></data>
-  <data name="Emulation.Sharp.Keyboard.SharpFullWidth" xml:space="preserve"><value>Công cụ &amp; xoá</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed" xml:space="preserve"><value>Tần số CPU</value></data>
-  <data name="Emulation.Sharp.Option.px68k_cpuspeed.Help" xml:space="preserve"><value>Thiết lập tần số của CPU mô phỏng.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize" xml:space="preserve"><value>Bộ nhớ chính</value></data>
-  <data name="Emulation.Sharp.Option.px68k_ramsize.Help" xml:space="preserve"><value>Đặt số lượng bộ nhớ chính trong máy tính mô phỏng.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol" xml:space="preserve"><value>ADPCM âm lượng</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adpcm_vol.Help" xml:space="preserve"><value>Đặt âm lượng của kênh âm thanh ADPCM.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol" xml:space="preserve"><value>FM âm lượng</value></data>
-  <data name="Emulation.Sharp.Option.px68k_opm_vol.Help" xml:space="preserve"><value>Đặt âm lượng của kênh âm thanh FM.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap" xml:space="preserve"><value>Nút chữa cháy ngược</value></data>
-  <data name="Emulation.Sharp.Option.px68k_vbtn_swap.Help" xml:space="preserve"><value>Thay đổi thứ tự của hai nút đốt chính.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode" xml:space="preserve"><value>Tốc độ không giới hạn</value></data>
-  <data name="Emulation.Sharp.Option.px68k_no_wait_mode.Help" xml:space="preserve"><value>Chạy mà không chờ đợi tốc độ mô phỏng bình thường.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip" xml:space="preserve"><value>Bỏ qua khung</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Help" xml:space="preserve"><value>Đặt cách thường xuyên trình giả lập tạo một khung ảnh.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value0" xml:space="preserve"><value>Mỗi khung</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value1" xml:space="preserve"><value>Một khung trong 2</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value2" xml:space="preserve"><value>Một khung trong 3</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value3" xml:space="preserve"><value>Một khung trong 4</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value4" xml:space="preserve"><value>Một khung trong 5</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value5" xml:space="preserve"><value>Một khung trong 6</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value6" xml:space="preserve"><value>Một khung trong 8</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value7" xml:space="preserve"><value>Một khung trong 16</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value8" xml:space="preserve"><value>Một khung trong 32</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value9" xml:space="preserve"><value>Một khung trong 60</value></data>
-  <data name="Emulation.Sharp.Option.px68k_frameskip.Value10" xml:space="preserve"><value>Tự động</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio" xml:space="preserve"><value>Video trước âm thanh</value></data>
-  <data name="Emulation.Sharp.Option.px68k_push_video_before_audio.Help" xml:space="preserve"><value>Gửi mỗi khung hình trước khi lấy mẫu âm thanh.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates" xml:space="preserve"><value>Điều chỉnh giờ khung</value></data>
-  <data name="Emulation.Sharp.Option.px68k_adjust_frame_rates.Help" xml:space="preserve"><value>Điều chỉnh thời gian khung đã mô phỏng cho tốc độ cập nhật bộ trình bày.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack" xml:space="preserve"><value>Điều chỉnh thời gian âm thanh</value></data>
-  <data name="Emulation.Sharp.Option.px68k_audio_desync_hack.Help" xml:space="preserve"><value>Điều chỉnh âm thanh khi âm thanh và video mất đồng bộ hoá.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off" xml:space="preserve"><value>Ẩn lớp văn bản</value></data>
-  <data name="Emulation.Sharp.Option.px68k_text_off.Help" xml:space="preserve"><value>Tắt khả năng vẽ lớp văn bản.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off" xml:space="preserve"><value>Ẩn lớp đồ hoạ</value></data>
-  <data name="Emulation.Sharp.Option.px68k_grp_off.Help" xml:space="preserve"><value>Tắt khả năng vẽ lớp đồ họa.</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off" xml:space="preserve"><value>Ẩn các tinh bột và nền</value></data>
-  <data name="Emulation.Sharp.Option.px68k_sp_off.Help" xml:space="preserve"><value>Tắt khả năng vẽ các sợi và lớp nền.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE" xml:space="preserve"><value>Độ phân giải hiển thị</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Help" xml:space="preserve"><value>Chọn kết xuất độ phân giải thấp hay cao của trình giả lập.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value0" xml:space="preserve"><value>Thấp</value></data>
-  <data name="Emulation.Sharp.Option.X1_RESOLUTE.Value1" xml:space="preserve"><value>Cao</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS" xml:space="preserve"><value>Tỷ lệ Khung</value></data>
-  <data name="Emulation.Sharp.Option.X1_FPS.Help" xml:space="preserve"><value>Chọn bao nhiêu khung phim mà mô phỏng trình mô phỏng sản xuất mỗi giây.</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC" xml:space="preserve"><value>Đồng bộ hoá bộ trình bày</value></data>
-  <data name="Emulation.Sharp.Option.X1_DISPSYNC.Help" xml:space="preserve"><value>Đồng bộ hoá việc vẽ với màn hình mô phỏng.</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER" xml:space="preserve"><value>Hiệu ứng Raster</value></data>
-  <data name="Emulation.Sharp.Option.X1_RASTER.Help" xml:space="preserve"><value>Hiệu ứng vẽ các hiệu ứng tạo ra trong khi quét màn hình.</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT" xml:space="preserve"><value>Tốc độ không giới hạn</value></data>
-  <data name="Emulation.Sharp.Option.X1_NOWAIT.Help" xml:space="preserve"><value>Chạy mà không chờ đợi tốc độ mô phỏng bình thường.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE" xml:space="preserve"><value>Nút chữa cháy ngược</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_MODE.Help" xml:space="preserve"><value>Thay đổi thứ tự các nút đốt chính.</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID" xml:space="preserve"><value>Hỏa lực nhanh</value></data>
-  <data name="Emulation.Sharp.Option.X1_BTN_RAPID.Help" xml:space="preserve"><value>Kích hoạt bắn lặp đi lặp lại trong khi giữ nút chữa cháy.</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE" xml:space="preserve"><value>Tốc độ bắt chước âm thanh</value></data>
-  <data name="Emulation.Sharp.Option.X1_AUDIO_RATE.Help" xml:space="preserve"><value>Chọn tỷ lệ lấy mẫu của âm thanh được tạo bởi trình giả lập.</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND" xml:space="preserve"><value>Lái xe tìm âm thanh</value></data>
-  <data name="Emulation.Sharp.Option.X1_SEEKSND.Help" xml:space="preserve"><value>Chơi một âm thanh khi ổ đĩa di chuyển đầu.</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD" xml:space="preserve"><value>FM mở rộng âm thanh</value></data>
-  <data name="Emulation.Sharp.Option.X1_FMBOARD.Help" xml:space="preserve"><value>Hiệu lực bảng âm thanh FM tùy chọn.</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK" xml:space="preserve"><value>Tần số CPU</value></data>
-  <data name="Emulation.Sharp.Option.X1_CPU_CLOCK.Help" xml:space="preserve"><value>Thiết lập tần số của CPU mô phỏng.</value></data>
 </root>

@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>Сохраненное состояние Sharp несовместимо с текущей машиной.</value></data>
-  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>Неожиданная ошибка эмуляции Sharp.</value></data>
-  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Необходимая прошивка Sharp отсутствует.</value></data>
-  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM является недействительной или несовместимой.</value></data>
   <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>Настроенные СМИ Sharp не были найдены.</value></data>
   <data name="Emulation.Sharp.Error.ContentUnsupported" xml:space="preserve"><value>Данная машина не поддерживает выбранные носители.</value></data>
-  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>Опцион Sharp имеет недействительное значение.</value></data>
   <data name="Emulation.Sharp.Error.CoreNotFound" xml:space="preserve"><value>Требуемое ядро Sharp не было найдено.</value></data>
-  <data name="Emulation.Sharp.Error.CoreRejected" xml:space="preserve"><value>Выбранное ядро Sharp загрузить не удалось.</value></data>
-  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>Sharp сохраненное состояние является недействительным.</value></data>
-  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>Исполняемый путь хоста Sharp недоступен.</value></data>
+  <data name="Emulation.Sharp.Error.CoreRejected" xml:space="preserve"><value>Выбранное ядро Sharp не могло быть загружено.</value></data>
   <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>Подробности: {0}</value></data>
-  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>Связь с хозяином Sharp не удалась.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM является недействительным или несовместимым.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Не хватает необходимого прошивки Sharp.</value></data>
+  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>Исполняемый путь Sharp host недоступен.</value></data>
+  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>Общение с ведущим Sharp не увенчалось успехом.</value></data>
+  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>Опцион Sharp имеет недействительное значение.</value></data>
+  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>Сохранённое состояние Шарпа несовместимо с текущей машиной.</value></data>
+  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>Спасенное государство Шарпа недействительно.</value></data>
+  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>Неожиданная ошибка эмуляции Sharp.</value></data>
   <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Неизвестная команда окружения: {0}</value></data>
 </root>

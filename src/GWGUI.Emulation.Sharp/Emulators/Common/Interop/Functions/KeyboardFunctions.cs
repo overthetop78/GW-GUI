@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;

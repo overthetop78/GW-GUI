@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>התאמת נפח ADPCM ערוץ קול</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>דיסלוט דגימות אודיו עודף כדי להפחית שגיאות סינכרון קולי.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>בחרו את תדירות הדגימה הקולית.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>בחרו את סדר כפתורי הבקר.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>בחרו את תדירות המעבד.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>שחקו בסאונד של תנועת ראשי הדיסקים.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>להיות FM לוח סאונד</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>התאמת נפח FM ערוץ קול</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>בחרו את מספר מסגרות הוידאו לשנייה.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>התאמת תזמון וידאו עבור תצוגות מודרניות כדי להפחית את הנפיחות הקולית.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>בחרו את השבריר של תמונות וידאו כדי לדלג על תמונה אחת מתוך שלושה מדלגים שניים מתוך שלושה.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>הסתר את שכבת הגרפיקה של תמונת הוידאו.</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>הסתר sprite ושכבות רקע של תמונת הוידאו.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>הסתר את שכבת הטקסט של תמונת הוידאו.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>בחר את כמות החיקוי RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>חזור על כפתורי בקר באופן אוטומטי.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>אפקטים של raster בתמונה וידאו חיקוי.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>בחרו את ההחלטה הנמוכה או הגבוהה ביותר.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>הפוך את קלט הבקר כפי שנקבע על ידי החיקוי.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>הפעל את המכונה מהר ככל האפשר.סאונד עשוי להפוך unsynchronized.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>סינכרון התצוגה החיקויית באופן אנכי.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>צמצם את הטון לפני קוצר השמיעה.</value></data>
+</root>

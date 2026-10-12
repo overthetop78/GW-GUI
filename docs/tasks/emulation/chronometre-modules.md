@@ -293,3 +293,5 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-12 23:09:31 | 64:13:47 | -56:13:47 | Reprise. Philips : descriptions communes des trois adaptateurs. |
 | 2026-10-12 23:37:19 | 64:41:35 | -56:41:35 | Reprise. Philips : catalogue commun indépendant des fabriques natives. |
 | 2026-10-13 00:20:30 | 65:24:46 | -57:24:46 | Reprise. Mattel : frontières communes et identifiants de processus. |
+| 2026-10-13 00:53:54 | 65:58:10 | -57:58:10 | Reprise. Sharp : contrats de descriptions et valeurs propres aux modèles. |
+| 2026-10-13 01:25:47 | 66:30:03 | -58:30:03 | Reprise. Sharp : ressources, compilation et livraison. |

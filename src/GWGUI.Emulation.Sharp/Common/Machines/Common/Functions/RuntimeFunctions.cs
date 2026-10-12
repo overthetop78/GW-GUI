@@ -45,11 +45,6 @@ internal static class RuntimeFunctions
     }
 }
 
-internal static class RuntimeOptionFunctions
-{
-    internal static bool RequiresRestart(Emulator emulator, string key) => CoreOptionValidationFunctions.ForCore(emulator).Any(option => option.Key == key && option.RequiresRestart);
-}
-
 internal static class MessageFunctions
 {
     internal static Exception Translate(Exception error, MachineConfiguration configuration)

@@ -1,3 +1,10 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Constants;
+using GWGUI.Emulation.Sharp.Emulators.Common.Contracts;
+using GWGUI.Emulation.Sharp.Emulators.Common.Dictionaries;
+using GWGUI.Emulation.Sharp.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Sharp.Emulators.Common.Functions;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interfaces;
+using GWGUI.Emulation.Sharp.Emulators.Common.Interop.Functions;
 using System.Net.Http;
 using System.IO;
 

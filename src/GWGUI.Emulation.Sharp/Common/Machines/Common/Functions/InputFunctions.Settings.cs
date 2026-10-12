@@ -1,13 +1,16 @@
 namespace GWGUI.Emulation.Sharp.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
 {
-    internal static IReadOnlyList<PeripheralCategory> Peripherals(Emulator core) => core switch
+    internal static IReadOnlyList<PeripheralCategory> Peripherals(MachineModel model, Emulator core) => core == Emulator.None ? ControllerCatalog.Peripherals(model)
+        : new Engine().Adapter(core) is IEmulatorInputMapper mapper ? mapper.GetPeripherals(model) : [];
+    internal static bool SupportsMouse(MachineConfiguration configuration) => configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorRuntimeCapabilities { SupportsPointerSettings: true };
+    private static string ControllerResource(PeripheralCategory peripheral) => peripheral switch
     {
-        Emulator.Px68k => [PeripheralCategory.None, PeripheralCategory.Joystick, PeripheralCategory.CpsfMd, PeripheralCategory.CpsfSfc, PeripheralCategory.CyberstickDigital, PeripheralCategory.CyberstickAnalog],
-        Emulator.X1 => [PeripheralCategory.None, PeripheralCategory.X1Joystick],
-        Emulator.None => Enum.GetValues<PeripheralCategory>(),
-        _ => throw new ArgumentOutOfRangeException(nameof(core))
+        PeripheralCategory.None => "Emulation.Controller.None",
+        PeripheralCategory.Joystick => "Controllers.Enum.Joystick",
+        _ => "Emulation.Sharp.Controller." + peripheral
     };
+
     internal static PeripheralCategory DefaultPeripheral(MachineModel model) => ConfigurationFunctions.Family(model) == MachineFamily.X68000 ? PeripheralCategory.Joystick : PeripheralCategory.X1Joystick;
     internal static IReadOnlyDictionary<string, string> KeyboardBindings(InputConfiguration input, MachineModel model) => KeyboardDictionary.Bindings(input, model);
     private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() => [
@@ -19,7 +22,7 @@ internal static class InputSettingsFunctions
         StringComparer.Ordinal);
     private static IReadOnlyList<PeripheralCategory> Choices(MachineConfiguration configuration, int port)
     {
-        var choices = Peripherals(configuration.Core).Where(category => category == PeripheralCategory.None || (ConfigurationFunctions.Family(configuration.Model) == MachineFamily.X1) == (category == PeripheralCategory.X1Joystick));
+        var choices = Peripherals(configuration.Model, configuration.Core).Where(category => category == PeripheralCategory.None || (ConfigurationFunctions.Family(configuration.Model) == MachineFamily.X1) == (category == PeripheralCategory.X1Joystick));
         if (port != ControllerConstants.FirstPort)
             choices = choices.Where(category => category is not PeripheralCategory.CyberstickAnalog and not PeripheralCategory.CyberstickDigital);
         return choices.ToArray();
@@ -29,15 +32,15 @@ internal static class InputSettingsFunctions
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var keyboard = new EmulationInputBindingSet(KeyboardDictionary.Definitions(configuration.Model), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard);
-        var mouse = configuration.Core == Emulator.Px68k ? new EmulationInputBindingSet(MouseDefinitions(), MouseBindings(configuration.Input), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true) : null;
+        var mouse = SupportsMouse(configuration) ? new EmulationInputBindingSet(MouseDefinitions(), MouseBindings(configuration.Input), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true) : null;
         var ports = Enumerable.Range(ControllerConstants.FirstPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(port =>
         {
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
             var peripheral = binding?.Peripheral ?? DefaultPeripheral(configuration.Model);
             var choices = Choices(configuration, port).Select(category => new EmulationControllerChoice(
                     category.ToString(),
-                    "Emulation.Sharp.Controller." + category,
-                    BindingDefinitions: ControllerProtocolDictionary.Actions(configuration.Model, category).Select(action => action.Definition).ToArray(),
+                    ControllerResource(category),
+                    BindingDefinitions: ControllerCatalog.Actions(configuration.Model, category).Select(action => action.Definition).ToArray(),
                     CompatibleVisualIds: ControllerVisualDictionary.VisualIds(category),
                     DefaultVisualId: ControllerVisualDictionary.DefaultVisualId(category),
                     VisualCommandIds: ControllerVisualDictionary.Commands(category)
@@ -48,7 +51,7 @@ internal static class InputSettingsFunctions
                 peripheral.ToString(),
                 binding?.DeviceId,
                 new(
-                    ControllerProtocolDictionary.Actions(configuration.Model, peripheral).Select(action => action.Definition).ToArray(),
+                    ControllerCatalog.Actions(configuration.Model, peripheral).Select(action => action.Definition).ToArray(),
                     binding?.Mappings ?? new Dictionary<string, string>(),
                     EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
                     true
@@ -63,7 +66,7 @@ internal static class InputSettingsFunctions
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {
         var count = ConfigurationFunctions.ControllerPortCount(configuration.Model);
-        if (settings.ControllerPorts.Count != count || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, count)) || configuration.Core != Emulator.Px68k && settings.Mouse is not null)
+        if (settings.ControllerPorts.Count != count || !settings.ControllerPorts.Select(port => port.Number).Order().SequenceEqual(Enumerable.Range(1, count)) || !SupportsMouse(configuration) && settings.Mouse is not null)
             throw new ArgumentException(nameof(settings));
         var controllers = settings.ControllerPorts.Select(port =>
         {
@@ -91,13 +94,13 @@ internal static class InputSettingsFunctions
         if (configuration.Input.MouseSpeedPercent is < InputMappingConstants.MinimumMouseSpeedPercent or > InputMappingConstants.MaximumMouseSpeedPercent)
             throw new ArgumentException(nameof(configuration.Input));
         var mouseIds = MouseDefinitions().Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
-        if (configuration.Input.Mouse?.Any(pair => !mouseIds.Contains(pair.Key) || !IsSource(pair.Value)) == true || configuration.Core != Emulator.Px68k && configuration.Input.Mouse?.Count > 0)
+        if (configuration.Input.Mouse?.Any(pair => !mouseIds.Contains(pair.Key) || !IsSource(pair.Value)) == true || !SupportsMouse(configuration) && configuration.Input.Mouse?.Count > 0)
             throw new ArgumentException(nameof(configuration.Input));
         foreach (var binding in configuration.Input.Controllers ?? [])
         {
             if (!Choices(configuration, binding.Port).Contains(binding.Peripheral))
                 throw new ArgumentException(nameof(configuration.Input));
-            var ids = ControllerProtocolDictionary.Actions(configuration.Model, binding.Peripheral).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
+            var ids = ControllerCatalog.Actions(configuration.Model, binding.Peripheral).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
             if (binding.Mappings?.Any(pair => !ids.Contains(pair.Key) || !IsSource(pair.Value)) == true)
                 throw new ArgumentException(nameof(configuration.Input));
         }

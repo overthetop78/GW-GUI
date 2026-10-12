@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sharp.Help.AdpcmVolume" xml:space="preserve"><value>Ρυθμίστε τον όγκο του ADPCM κανάλι ήχου.</value></data>
+  <data name="Emulation.Sharp.Help.AudioDesynchronization" xml:space="preserve"><value>Απορρίψτε τα επιπλέον δείγματα ήχου για να μειώσετε τα λάθη συγχρονισμού ήχου.</value></data>
+  <data name="Emulation.Sharp.Help.AudioSampleRate" xml:space="preserve"><value>Επιλέξτε τη συχνότητα δειγματοληψίας ήχου.</value></data>
+  <data name="Emulation.Sharp.Help.ButtonOrder" xml:space="preserve"><value>Επιλέξτε τη σειρά των κουμπιών του χειριστηρίου.</value></data>
+  <data name="Emulation.Sharp.Help.CpuSpeed" xml:space="preserve"><value>Επιλέξτε τη συχνότητα του επεξεργαστή.</value></data>
+  <data name="Emulation.Sharp.Help.DiskSeekSound" xml:space="preserve"><value>Παίξτε τον ήχο της κίνησης της κεφαλής δισκέτας.</value></data>
+  <data name="Emulation.Sharp.Help.FmBoard" xml:space="preserve"><value>Ενεργοποίηση του FM Ηχητική σανίδα.</value></data>
+  <data name="Emulation.Sharp.Help.FmVolume" xml:space="preserve"><value>Ρυθμίστε τον όγκο του FM κανάλι ήχου.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRate" xml:space="preserve"><value>Επιλέξτε τον αριθμό των πλαισίων βίντεο ανά δευτερόλεπτο.</value></data>
+  <data name="Emulation.Sharp.Help.FrameRateAdjustment" xml:space="preserve"><value>Ρυθμίστε το χρονισμό βίντεο για σύγχρονες οθόνες για να μειώσετε τον τραυλό ήχο.</value></data>
+  <data name="Emulation.Sharp.Help.FrameSkip" xml:space="preserve"><value>Επιλέξτε το κλάσμα των εικόνων βίντεο για να παραλείψετε. Αποτύπωση μιας εικόνας από τις τρεις παραλείψεις δύο από τις τρεις.</value></data>
+  <data name="Emulation.Sharp.Help.HideGraphics" xml:space="preserve"><value>Απόκρυψη του στρώματος γραφικών της εικόνας βίντεο.</value></data>
+  <data name="Emulation.Sharp.Help.HideSprites" xml:space="preserve"><value>Απόκρυψη sprite και στρώματα φόντου της εικόνας βίντεο.</value></data>
+  <data name="Emulation.Sharp.Help.HideText" xml:space="preserve"><value>Απόκρυψη του στρώματος κειμένου της εικόνας βίντεο.</value></data>
+  <data name="Emulation.Sharp.Help.MemorySize" xml:space="preserve"><value>Επιλέξτε το ποσό της προσομοίωσης RAM.</value></data>
+  <data name="Emulation.Sharp.Help.RapidFire" xml:space="preserve"><value>Επαναλάβετε το κουμπί ελέγχου πατάει αυτόματα.</value></data>
+  <data name="Emulation.Sharp.Help.Raster" xml:space="preserve"><value>Ενεργοποίηση εφέ rasster στην εικόνα του βίντεο που μιμείται.</value></data>
+  <data name="Emulation.Sharp.Help.Resolution" xml:space="preserve"><value>Επιλέξτε την χαμηλή ή υψηλή ανάλυση εξόδου.</value></data>
+  <data name="Emulation.Sharp.Help.ReverseJoystick" xml:space="preserve"><value>Αντιστροφή της εισόδου του ελεγκτή όπως παρέχεται από τον εξομοιωτή.</value></data>
+  <data name="Emulation.Sharp.Help.UnlimitedSpeed" xml:space="preserve"><value>Ο ήχος μπορεί να γίνει ασυγχρονισμένος.</value></data>
+  <data name="Emulation.Sharp.Help.VerticalSync" xml:space="preserve"><value>Συγχρονισμός της εικονιζόμενης οθόνης κάθετα.</value></data>
+  <data name="Emulation.Sharp.Help.VideoBeforeAudio" xml:space="preserve"><value>Μείωση της λανθάνουσας video πριν από τη λανθάνουσα audio.</value></data>
+</root>

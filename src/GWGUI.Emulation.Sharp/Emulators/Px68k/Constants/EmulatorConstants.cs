@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sharp.Emulators.Common.Contracts;
+using GWGUI.Emulation.Sharp.Emulators.Common.Functions;
 namespace GWGUI.Emulation.Sharp.Emulators.Px68k.Constants;
 internal static class EmulatorConstants
 {

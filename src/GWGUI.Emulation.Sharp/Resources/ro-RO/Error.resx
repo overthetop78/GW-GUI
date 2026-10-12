@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>Starea salvată Sharp este incompatibilă cu maşina curentă.</value></data>
-  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>A apărut o eroare de emulare neaşteptată în Sharp.</value></data>
-  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Lipseşte un firmware Sharp necesar.</value></data>
-  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>Sistemul ROM este invalid sau incompatibil.</value></data>
-  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>Presa Sharp configurată nu a fost găsită.</value></data>
+  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>Nu s-a găsit media Sharp configurată.</value></data>
   <data name="Emulation.Sharp.Error.ContentUnsupported" xml:space="preserve"><value>Această mașină nu suportă media selectată.</value></data>
-  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>O opțiune Sharp are o valoare invalidă.</value></data>
   <data name="Emulation.Sharp.Error.CoreNotFound" xml:space="preserve"><value>Miezul Sharp necesar nu a fost găsit.</value></data>
   <data name="Emulation.Sharp.Error.CoreRejected" xml:space="preserve"><value>Miezul Sharp selectat nu a putut fi încărcat.</value></data>
-  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>Starea salvată Sharp este invalidă.</value></data>
-  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>Calea executabilă a gazdei Sharp nu este disponibilă.</value></data>
   <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>Detalii: {0}</value></data>
-  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>Comunicarea cu gazda Sharp a eşuat.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>Sistemul ROM este invalidă sau incompatibilă.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Lipseşte un firmware Sharp necesar.</value></data>
+  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>Calea executabilă a gazdei Sharp nu este disponibilă.</value></data>
+  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>Comunicarea cu gazda Sharp a eșuat.</value></data>
+  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>O opţiune ascuţită are o valoare invalidă.</value></data>
+  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>Starea Sharp salvată este incompatibilă cu maşina curentă.</value></data>
+  <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>Starea salvată Sharp nu este validă.</value></data>
+  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>A apărut o eroare de emulare bruscă.</value></data>
   <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comandă de mediu necunoscută: {0}</value></data>
 </root>

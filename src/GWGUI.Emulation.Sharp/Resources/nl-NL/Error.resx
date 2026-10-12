@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>De Sharp opgeslagen toestand is onverenigbaar met de huidige machine.</value></data>
-  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>Er is een onverwachte Sharp emulatiefout opgetreden.</value></data>
-  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Een vereiste Sharp firmware ontbreekt.</value></data>
-  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>Het systeem ROM is ongeldig of onverenigbaar.</value></data>
-  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>De geconfigureerde Sharp media is niet gevonden.</value></data>
+  <data name="Emulation.Sharp.Error.ContentNotFound" xml:space="preserve"><value>De ingestelde Sharp media zijn niet gevonden.</value></data>
   <data name="Emulation.Sharp.Error.ContentUnsupported" xml:space="preserve"><value>Deze machine ondersteunt de geselecteerde media niet.</value></data>
-  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>Een Sharp-optie heeft een ongeldige waarde.</value></data>
   <data name="Emulation.Sharp.Error.CoreNotFound" xml:space="preserve"><value>De vereiste Sharp kern werd niet gevonden.</value></data>
   <data name="Emulation.Sharp.Error.CoreRejected" xml:space="preserve"><value>De geselecteerde Sharp-kern kon niet geladen worden.</value></data>
+  <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>Details: {0}</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareInvalid" xml:space="preserve"><value>Het systeem ROM ongeldig of onverenigbaar is.</value></data>
+  <data name="Emulation.Sharp.Error.FirmwareMissing" xml:space="preserve"><value>Een vereiste Sharp firmware ontbreekt.</value></data>
+  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>Het Sharp host uitvoerbare pad is niet beschikbaar.</value></data>
+  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>Communicatie met de Sharp-host is mislukt.</value></data>
+  <data name="Emulation.Sharp.Error.OptionInvalid" xml:space="preserve"><value>Een Sharp-optie heeft een ongeldige waarde.</value></data>
+  <data name="Emulation.Sharp.Error.StateIncompatible" xml:space="preserve"><value>De Sharp-save staat is niet compatibel met de huidige machine.</value></data>
   <data name="Emulation.Sharp.Error.StateInvalid" xml:space="preserve"><value>De Sharp opgeslagen status is ongeldig.</value></data>
-  <data name="Emulation.Sharp.Error.HostExecutableMissing" xml:space="preserve"><value>De Sharp host uitvoerbaar pad is niet beschikbaar.</value></data>
-  <data name="Emulation.Sharp.Error.Details" xml:space="preserve"><value>Gegevens: {0}</value></data>
-  <data name="Emulation.Sharp.Error.HostProtocolFailure" xml:space="preserve"><value>Communicatie met de Sharp host is mislukt.</value></data>
+  <data name="Emulation.Sharp.Error.Unexpected" xml:space="preserve"><value>Er is een onverwachte Sharp emulatiefout opgetreden.</value></data>
   <data name="Emulation.Sharp.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Onbekend omgevingscommando: {0}</value></data>
 </root>
