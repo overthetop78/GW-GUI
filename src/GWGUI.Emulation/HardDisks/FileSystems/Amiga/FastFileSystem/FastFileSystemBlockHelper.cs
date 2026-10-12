@@ -66,8 +66,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         public static IEnumerable<FastFileSystemBitmapExtensionBlock> CreateBitmapExtensionBlocks(IEnumerable<FastFileSystemBitmapBlock> bitmapBlocks, uint fileSystemBlockSize)
         {
             // calculate pointers per bitmap extension block based on block size - next pointer
-            var pointersPerBitmapExtensionBlock =
-                Convert.ToInt32((fileSystemBlockSize - SizeOf.Long) / SizeOf.Long);
+            var pointersPerBitmapExtensionBlock = Convert.ToInt32((fileSystemBlockSize - SizeOf.Long) / SizeOf.Long);
 
             // chunk bitmap blocks
             var bitmapBlockChunks = new List<FastFileSystemBitmapExtensionBlock>();

@@ -217,7 +217,8 @@ public sealed class DiskFormatRegistry
         foreach (var nameLength in version == 3 ? new[] { 60 } : new[] { 30, 14 })
         {
             var suffix = order switch { MinixStorageOrder.BigEndian16 => "-be16", MinixStorageOrder.BigEndian32 => "-be32",
-                MinixStorageOrder.BigEndian64 => "-be64", _ => "" };
+                MinixStorageOrder.BigEndian64 => "-be64", _ => "" 
+            };
             var id = $"minix{version}{suffix}{(nameLength == 14 ? "-n14" : "")}";
             registry.Register(new FileSystem(id,volume=>
             {

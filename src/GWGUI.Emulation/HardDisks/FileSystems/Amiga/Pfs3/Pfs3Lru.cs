@@ -235,8 +235,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
             for (j = 0; j < NEW_LRU_ENTRIES; j++, g.glob_lrudata.poolsize++)
             {
                 //MinAddHead(&g->glob_lrudata.LRUpool, g.glob_lrudata.LRUarray[g.glob_lrudata.poolsize]);
-                Pfs3Macro.MinAddHead(g.glob_lrudata.LRUpool,
-                    g.glob_lrudata.LRUarray[(int)g.glob_lrudata.poolsize]);
+                Pfs3Macro.MinAddHead(g.glob_lrudata.LRUpool, g.glob_lrudata.LRUarray[(int)g.glob_lrudata.poolsize]);
             }
 
             g.NumBuffers = g.glob_lrudata.poolsize;

@@ -83,8 +83,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             foreach (var bitmapBlock in rootBlock.BitmapBlocks)
             {
                 // seek bitmap block offset
-                var bitmapBlockByteOffset = partitionStartByteOffset +
-                                            (long)bitmapBlock.Offset * fileSystemBlockSize;
+                var bitmapBlockByteOffset = partitionStartByteOffset + (long)bitmapBlock.Offset * fileSystemBlockSize;
                 stream.Seek(bitmapBlockByteOffset, SeekOrigin.Begin);
 
                 // build and write bitmap block
@@ -101,23 +100,18 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
             foreach (var bitmapExtensionBlock in rootBlock.BitmapExtensionBlocks)
             {
                 // seek bitmap extension block offset
-                var bitmapExtensionBlockByteOffset = partitionStartByteOffset +
-                                                     (long)bitmapExtensionBlock.Offset *
-                                                     fileSystemBlockSize;
+                var bitmapExtensionBlockByteOffset = partitionStartByteOffset + (long)bitmapExtensionBlock.Offset * fileSystemBlockSize;
                 stream.Seek(bitmapExtensionBlockByteOffset, SeekOrigin.Begin);
 
                 // build and write bitmap extension block
-                var bitmapExtensionBlockBytes =
-                    FastFileSystemBitmapExtensionBlockBuilder.Build(bitmapExtensionBlock, fileSystemBlockSize);
+                var bitmapExtensionBlockBytes = FastFileSystemBitmapExtensionBlockBuilder.Build(bitmapExtensionBlock, fileSystemBlockSize);
                 await stream.WriteBytes(bitmapExtensionBlockBytes);
 
                 // write bitmap blocks
                 foreach (var bitmapBlock in bitmapExtensionBlock.BitmapBlocks)
                 {
                     // seek bitmap block offset
-                    var bitmapBlockByteOffset = partitionStartByteOffset +
-                                                (long)bitmapBlock.Offset *
-                                                fileSystemBlockSize;
+                    var bitmapBlockByteOffset = partitionStartByteOffset + (long)bitmapBlock.Offset * fileSystemBlockSize;
                     stream.Seek(bitmapBlockByteOffset, SeekOrigin.Begin);
 
                     // build and write bitmap block

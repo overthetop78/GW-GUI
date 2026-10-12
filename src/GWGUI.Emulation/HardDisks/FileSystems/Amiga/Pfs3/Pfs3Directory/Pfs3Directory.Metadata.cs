@@ -156,8 +156,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
                 // info.direntry.creationday = (UWORD)time.ds_Days;
                 // info.direntry.creationminute = (UWORD)time.ds_Minute;
                 // info.direntry->creationtick = (UWORD)time.ds_Tick;
-                info.file.direntry.SetProtection(
-                    (byte)(info.file.direntry.protection & ~Pfs3Constants.FIBF_ARCHIVE)); // clear archivebit (eor)
+                info.file.direntry.SetProtection( (byte)(info.file.direntry.protection & ~Pfs3Constants.FIBF_ARCHIVE)); // clear archivebit (eor)
 
                 await Pfs3Update.MakeBlockDirty(info.file.dirblock, g);
             }

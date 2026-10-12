@@ -26,7 +26,8 @@ public static class VmdkStreamImageWriter
         var directory = new byte[((tableCount * 4 + 511) / 512) * 512];
         var geometry = DiscUtils.Geometry.FromCapacity(capacity);
         var cid = Guid.NewGuid().ToString("N")[..8];
-        var descriptor = Encoding.ASCII.GetBytes(FormattableString.Invariant($"# Disk DescriptorFile\nversion=1\nCID={cid}\nparentCID=ffffffff\ncreateType=\"streamOptimized\"\nRW {capacity / 512} SPARSE \"disk.vmdk\"\nddb.adapterType = \"ide\"\nddb.geometry.cylinders = \"{geometry.Cylinders}\"\nddb.geometry.heads = \"{geometry.HeadsPerCylinder}\"\nddb.geometry.sectors = \"{geometry.SectorsPerTrack}\"\nddb.virtualHWVersion = \"4\"\n"));
+        var descriptor = Encoding.ASCII.GetBytes(FormattableString.Invariant($"# Disk DescriptorFile\nversion=1\nCID={cid}\nparentCID=ffffffff\ncreateType=\"streamOptimized\"\nRW {capacity 
+            / 512} SPARSE \"disk.vmdk\"\nddb.adapterType = \"ide\"\nddb.geometry.cylinders = \"{geometry.Cylinders}\"\nddb.geometry.heads = \"{geometry.HeadsPerCylinder}\"\nddb.geometry.sectors = \"{geometry.SectorsPerTrack}\"\nddb.virtualHWVersion = \"4\"\n"));
         destination.SetLength(DataStartSector * 512);
         destination.Position = 0;
         destination.Write(Header(capacity, ulong.MaxValue));
