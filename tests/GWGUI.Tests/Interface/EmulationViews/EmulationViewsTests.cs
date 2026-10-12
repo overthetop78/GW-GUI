@@ -3,25 +3,15 @@ namespace GWGUI.Tests.Interface.EmulationViews;
 public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaExecutionScenarios sta)
 {
     [Fact] public Task DraftReloadDiscardAndSavedConfigurationAreIsolated() => sta.RunAsync(MachineConfigurationScenarios.DraftLifecycle);
-    [Fact] public Task MachineSwitchKeepsSavedAndDraftChanges() =>
-        sta.RunAsync(MachineConfigurationScenarios.MachineSwitchKeepsSavedAndDraftChanges);
-    [Fact] public Task VideoProfileChangesArePublishedAndPersisted() =>
-        sta.RunAsync(MachineConfigurationScenarios.VideoProfileChangesArePublishedAndPersisted);
+    [Fact] public Task MachineSwitchKeepsSavedAndDraftChanges() => sta.RunAsync(MachineConfigurationScenarios.MachineSwitchKeepsSavedAndDraftChanges);
+    [Fact] public Task VideoProfileChangesArePublishedAndPersisted() => sta.RunAsync(MachineConfigurationScenarios.VideoProfileChangesArePublishedAndPersisted);
     [Fact] public Task TabsSelectAndCloseOnlyTargetSession() => sta.RunAsync(MachineTabsScenarios.Tabs);
-    [Fact] public Task CollapsedSelectorShowsLocalizedLabel() =>
-        sta.Run(MachineTabsScenarios.CollapsedSelectorShowsLocalizedLabel);
-    [Theory] [InlineData(false)] [InlineData(true)]
-    public Task ConfigurationDraftSaveAndRetry(bool failure) => sta.RunAsync(() => MachineConfigurationScenarios.ConfigurationEditing(failure));
-    [Theory] [InlineData(false)] [InlineData(true)]
-    public Task CommandsRespectPowerStateAndReportErrors(bool failure) => sta.Run(() => EmulationInteractionScenarios.Commands(failure));
-    [Fact] public Task EmulationErrorsAppearOnceInConsoleAndDetachCleanly() =>
-        sta.Run(EmulationInteractionScenarios.ErrorLogAppearsOnceInConsoleAndDetaches);
-    [Fact] public Task ConsoleLayoutIsIndependentForEachMainTab() =>
-        sta.Run(EmulationInteractionScenarios.ConsoleLayoutIsIndependentForEachMainTab);
-    [Fact] public void CassetteCommandsReflectCapabilitiesAndTransportState() =>
-        CassetteTransportPresentationScenarios.CommandsReflectCapabilitiesAndTransportState();
-    [Fact] public Task CassettePanelShowsEveryCommandBelowTheDevice() =>
-        sta.Run(CassetteTransportPresentationScenarios.PanelContainsASeparateRowWithEveryCommand);
-    [Fact] public Task EmptyDeviceKeepsItsSizeAndCentersItsLed() =>
-        sta.Run(CassetteTransportPresentationScenarios.DeviceHeaderKeepsEjectSpaceAndCentersLedWhenEmpty);
+    [Fact] public Task CollapsedSelectorShowsLocalizedLabel() => sta.Run(MachineTabsScenarios.CollapsedSelectorShowsLocalizedLabel);
+    [Theory] [InlineData(false)] [InlineData(true)] public Task ConfigurationDraftSaveAndRetry(bool failure) => sta.RunAsync(() => MachineConfigurationScenarios.ConfigurationEditing(failure));
+    [Theory] [InlineData(false)] [InlineData(true)] public Task CommandsRespectPowerStateAndReportErrors(bool failure) => sta.Run(() => EmulationInteractionScenarios.Commands(failure));
+    [Fact] public Task EmulationErrorsAppearOnceInConsoleAndDetachCleanly() => sta.Run(EmulationInteractionScenarios.ErrorLogAppearsOnceInConsoleAndDetaches);
+    [Fact] public Task ConsoleLayoutIsIndependentForEachMainTab() => sta.Run(EmulationInteractionScenarios.ConsoleLayoutIsIndependentForEachMainTab);
+    [Fact] public void CassetteCommandsReflectCapabilitiesAndTransportState() => CassetteTransportPresentationScenarios.CommandsReflectCapabilitiesAndTransportState();
+    [Fact] public Task CassettePanelShowsEveryCommandBelowTheDevice() => sta.Run(CassetteTransportPresentationScenarios.PanelContainsASeparateRowWithEveryCommand);
+    [Fact] public Task EmptyDeviceKeepsItsSizeAndCentersItsLed() => sta.Run(CassetteTransportPresentationScenarios.DeviceHeaderKeepsEjectSpaceAndCentersLedWhenEmpty);
 }

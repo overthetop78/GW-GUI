@@ -79,7 +79,16 @@ internal static class EmulationInteractionScenarios
         var host = new DockPanel(); var calls = new List<int>(); var errors = new List<Exception>(); var restored = 0;
         Func<Task> Command(int index) => () => { calls.Add(index); return failure ? Task.FromException(new IOException("synthetic command")) : Task.CompletedTask; };
         var bar = new MachineCommandBar(host,new(Command(0),Command(1),Command(2),Command(3),Command(4),Command(5),Command(6),Command(7),Command(8),Command(9)),[],errors.Add,() => restored++);
-        var keys = new[] {EmulationResourceKeys.Power,EmulationResourceKeys.PauseResume,EmulationResourceKeys.SoftReset,EmulationResourceKeys.HardReset,EmulationResourceKeys.QuickSave,EmulationResourceKeys.QuickLoad,EmulationResourceKeys.CaptureScreen,EmulationResourceKeys.Fullscreen,EmulationResourceKeys.Audio,EmulationResourceKeys.SwitchControllerPointer};
+        var keys = new[] {EmulationResourceKeys.Power,
+            EmulationResourceKeys.PauseResume,
+            EmulationResourceKeys.SoftReset,
+            EmulationResourceKeys.HardReset,
+            EmulationResourceKeys.QuickSave,
+            EmulationResourceKeys.QuickLoad,
+            EmulationResourceKeys.CaptureScreen,
+            EmulationResourceKeys.Fullscreen,
+            EmulationResourceKeys.Audio,
+            EmulationResourceKeys.SwitchControllerPointer};
         Button Find(string key) => MachineConfigurationScenarios.Controls<Button>(host).Single(x => Equals(x.ToolTip,LocExtension.Get(key)));
         bar.SetPowered(false);
         foreach(var key in keys) Assert.Equal(key == EmulationResourceKeys.Power || key == EmulationResourceKeys.Fullscreen,Find(key).IsEnabled);

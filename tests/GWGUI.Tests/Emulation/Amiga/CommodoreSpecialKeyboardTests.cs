@@ -199,7 +199,8 @@ public sealed class CommodoreSpecialKeyboardTests
         var settings = InputSettings.Describe(configuration);
         var keyboard = settings.Keyboard!;
         Assert.Equal(6, keyboard.Definitions.Count);
-        Assert.DoesNotContain(keyboard.Definitions, definition => definition.Id is nameof(EmulationKey.CommodoreRestore) or nameof(EmulationKey.CommodoreArrowLeft) or nameof(EmulationKey.CommodoreArrowUp) or nameof(EmulationKey.CommodoreLineFeed) or nameof(EmulationKey.LeftAmiga) or nameof(EmulationKey.A));
+        Assert.DoesNotContain(keyboard.Definitions,
+            definition => definition.Id is nameof(EmulationKey.CommodoreRestore) or nameof(EmulationKey.CommodoreArrowLeft) or nameof(EmulationKey.CommodoreArrowUp) or nameof(EmulationKey.CommodoreLineFeed) or nameof(EmulationKey.LeftAmiga) or nameof(EmulationKey.A));
         Assert.All(keyboard.Definitions, definition => Assert.NotNull(definition.InvariantDisplayValue));
         Assert.Equal(EmulationKey.CommodorePound, ViceKeyboard.Overrides(configuration)[poundCode]);
         Assert.Equal(EmulationKey.Help, ViceKeyboard.Overrides(configuration)[289]);
@@ -228,7 +229,14 @@ public sealed class CommodoreSpecialKeyboardTests
         var keyboard = settings.Keyboard!;
         Assert.Equal(8, keyboard.Definitions.Count);
         Assert.DoesNotContain(keyboard.Definitions, key => key.Id is nameof(EmulationKey.A) or nameof(EmulationKey.CommodoreRestore) or nameof(EmulationKey.CommodoreArrowLeft) or nameof(EmulationKey.LeftAmiga));
-        var expected = new Dictionary<uint, EmulationKey> { [305] = EmulationKey.CommodoreKey, [308] = EmulationKey.CommodoreRunStop, [301] = EmulationKey.CommodoreShiftLock, [278] = EmulationKey.CommodoreClearHome, [277] = EmulationKey.CommodorePound, [280] = EmulationKey.CommodoreOffReverse, [281] = EmulationKey.CommodoreNormalGraphic, [279] = EmulationKey.CommodoreKeypadClearEntry };
+        var expected = new Dictionary<uint, EmulationKey> { [305] = EmulationKey.CommodoreKey,
+            [308] = EmulationKey.CommodoreRunStop,
+            [301] = EmulationKey.CommodoreShiftLock,
+            [278] = EmulationKey.CommodoreClearHome,
+            [277] = EmulationKey.CommodorePound,
+            [280] = EmulationKey.CommodoreOffReverse,
+            [281] = EmulationKey.CommodoreNormalGraphic,
+            [279] = EmulationKey.CommodoreKeypadClearEntry };
         foreach (var item in expected) Assert.Equal(item.Value, ViceKeyboard.Overrides(configuration)[item.Key]);
         Assert.Equal("OFF/RVS", keyboard.Definitions.Single(key => key.Id == nameof(EmulationKey.CommodoreOffReverse)).InvariantDisplayValue);
         Assert.Equal("NORM/GRAPH", keyboard.Definitions.Single(key => key.Id == nameof(EmulationKey.CommodoreNormalGraphic)).InvariantDisplayValue);

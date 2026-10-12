@@ -610,13 +610,9 @@ public sealed class AmstradCpcMediaFormatTests
             Assert.Contains(extension, extensions);
     }
 
-    [Fact]
-    public void CpcDataDskDirectoryIsListedFromTheNeutralContainerFormat()
-        => AssertCpcDirectoryIsListed(0x41, 0);
+    [Fact] public void CpcDataDskDirectoryIsListedFromTheNeutralContainerFormat() => AssertCpcDirectoryIsListed(0x41, 0);
 
-    [Fact]
-    public void CpcSystemDskDirectoryIsListedFromTheNeutralContainerFormat()
-        => AssertCpcDirectoryIsListed(0xc1, 2);
+    [Fact] public void CpcSystemDskDirectoryIsListedFromTheNeutralContainerFormat() => AssertCpcDirectoryIsListed(0xc1, 2);
 
     private static void AssertCpcDirectoryIsListed(int firstSectorId, int reservedTracks)
     {

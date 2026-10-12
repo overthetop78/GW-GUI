@@ -4,7 +4,38 @@ internal static class DeviceClassificationScenarios
 {
     public static void Duplicates()
     {
-        GameInputDeviceDescriptor Describe(string id, string name, ushort vendor, ushort product) => new(id,name,name,"virtual-pnp",vendor,product,0,default,default,"root",Guid.Empty,default,new(){Page=1,Id=5},GameInputKind.Gamepad,default,default,"synthetic",[],[],null!,[],[],[],false,"",[],ControllerVisualModel.GenericGamepad,false);
+        GameInputDeviceDescriptor Describe(string id,
+            string name,
+            ushort vendor,
+            ushort product) => new(id,
+            name,
+            name,
+            "virtual-pnp",
+            vendor,
+            product,
+            0,
+            default,
+            default,
+            "root",
+            Guid.Empty,
+            default,
+            new(){Page=1,
+            Id=5},
+            GameInputKind.Gamepad,
+            default,
+            default,
+            "synthetic",
+            [],
+            [],
+            null!,
+            [],
+            [],
+            [],
+            false,
+            "",
+            [],
+            ControllerVisualModel.GenericGamepad,
+            false);
         var primary = Describe("primary","Same Pad",42,93);
         var duplicate = Describe("fallback-one","Same Pad",42,93);
         var secondPad = duplicate with { Id="fallback-two" };
@@ -37,7 +68,35 @@ internal static class DeviceClassificationScenarios
     }
     public static void Classification(uint kind, ushort page, ushort usage, bool expected)
     {
-        var descriptor = new GameInputDeviceDescriptor("virtual", "synthetic", "synthetic", "virtual-pnp", 0xfffe,1,0,default,default,"root",Guid.Empty,default,new() { Page = page, Id = usage },(GameInputKind)kind,default,default,"synthetic",[],[],null!,[],[],[],false,"",[],ControllerVisualModel.GenericGamepad,false);
+        var descriptor = new GameInputDeviceDescriptor("virtual",
+            "synthetic",
+            "synthetic",
+            "virtual-pnp",
+            0xfffe,
+            1,
+            0,
+            default,
+            default,
+            "root",
+            Guid.Empty,
+            default,
+            new() { Page = page,
+            Id = usage },
+            (GameInputKind)kind,
+            default,
+            default,
+            "synthetic",
+            [],
+            [],
+            null!,
+            [],
+            [],
+            [],
+            false,
+            "",
+            [],
+            ControllerVisualModel.GenericGamepad,
+            false);
         Assert.Equal(expected,GameInputDeviceClassifier.IsGamingController(descriptor)); Assert.Equal("FFFE:0001",descriptor.VidPid);
         Assert.Equal(expected,GameInputDeviceClassifier.IsGamingController(descriptor with { SupportedInput = descriptor.SupportedInput | GameInputKind.Keyboard | GameInputKind.Mouse }));
     }

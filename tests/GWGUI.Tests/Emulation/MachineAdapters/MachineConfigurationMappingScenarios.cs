@@ -90,7 +90,13 @@ internal static class MachineConfigurationMappingScenarios
         var mapped = StLegacyOptionFunctions.Apply(configuration);
         Assert.Equal("4", mapped["hatari_ramsize"]); Assert.Equal("16", mapped["hatari_cpu_freq"]); Assert.Equal("ste", mapped["hatari_machinetype"]);
         Assert.Equal("kept", mapped["custom"]); Assert.Equal(3, options.Count); Assert.Equal(3, configuration.Options.Count);
-        var amiga = new AmigaMachineConfiguration("A500", GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator.PUAE, FirmwarePaths: new Dictionary<string,string> {{"configuration.kickstartPath","virtual-rom"}}, Options: new Dictionary<string,string>(), Id: Guid.NewGuid(), InitialDiskPath: "virtual-floppy");
+        var amiga = new AmigaMachineConfiguration("A500",
+            GWGUI.Emulation.Commodore.Common.Machines.Common.Enums.Emulator.PUAE,
+            FirmwarePaths: new Dictionary<string,string> {{"configuration.kickstartPath",
+            "virtual-rom"}},
+            Options: new Dictionary<string,string>(),
+            Id: Guid.NewGuid(),
+            InitialDiskPath: "virtual-floppy");
         Assert.Equal("A500", amiga.Model); Assert.Equal("virtual-rom", amiga.FirmwarePath("configuration.kickstartPath")); Assert.Equal("virtual-floppy", amiga.InitialDiskPath);
         Assert.NotEqual(Guid.Empty, amiga.EnsureId().Id); Assert.Equal(amiga.Id, amiga.EnsureId().Id);
     }

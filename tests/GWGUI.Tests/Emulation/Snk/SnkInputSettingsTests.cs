@@ -18,7 +18,13 @@ public sealed class SnkInputSettingsTests
     public void ControllerAssociationsRemainEmptyUntilExplicitlyAssigned(MachineModel model)
     {
         var configuration = new MachineConfiguration(model, core: Emulator.None);
-        var physical = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z, EmulationKey.Up, EmulationKey.Space }, Pointer = EmulationInputSnapshot.Empty.Pointer with { Left = true }, Controllers = [EmulationControllerState.Empty with { Buttons = uint.MaxValue, LeftX = short.MaxValue, LeftY = short.MaxValue }] };
+        var physical = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z,
+            EmulationKey.Up,
+            EmulationKey.Space },
+            Pointer = EmulationInputSnapshot.Empty.Pointer with { Left = true },
+            Controllers = [EmulationControllerState.Empty with { Buttons = uint.MaxValue,
+            LeftX = short.MaxValue,
+            LeftY = short.MaxValue }] };
         Assert.All(InputSnapshotFunctions.Apply(physical, configuration).Controllers, controller => Assert.Equal(EmulationControllerState.Empty, controller));
         var settings = InputSettingsFunctions.Describe(configuration);
         Assert.Null(settings.Keyboard);

@@ -557,21 +557,13 @@ public sealed class SegaMachineLifecycleTests
         }
     }
 
-    [Fact]
-    public void GenesisPlusGxLoadsConfiguredSg1000MediaWhenSmokePathsAreProvided() =>
-        RunGenesisPlusGxMediaSmoke(ModelConstants.Sg1000, "GWGUI_SEGA_SG1000_MEDIA", "sg1000");
+    [Fact] public void GenesisPlusGxLoadsConfiguredSg1000MediaWhenSmokePathsAreProvided() => RunGenesisPlusGxMediaSmoke(ModelConstants.Sg1000, "GWGUI_SEGA_SG1000_MEDIA", "sg1000");
 
-    [Fact]
-    public void GenesisPlusGxLoadsConfiguredSc3000MediaWhenSmokePathsAreProvided() =>
-        RunGenesisPlusGxMediaSmoke(ModelConstants.Sc3000, "GWGUI_SEGA_SC3000_MEDIA", "sc3000");
+    [Fact] public void GenesisPlusGxLoadsConfiguredSc3000MediaWhenSmokePathsAreProvided() => RunGenesisPlusGxMediaSmoke(ModelConstants.Sc3000, "GWGUI_SEGA_SC3000_MEDIA", "sc3000");
 
-    [Fact]
-    public void GenesisPlusGxLoadsConfiguredGameGearMediaWhenSmokePathsAreProvided() =>
-        RunGenesisPlusGxMediaSmoke(ModelConstants.GameGear, "GWGUI_SEGA_GAME_GEAR_MEDIA", "game-gear");
+    [Fact] public void GenesisPlusGxLoadsConfiguredGameGearMediaWhenSmokePathsAreProvided() => RunGenesisPlusGxMediaSmoke(ModelConstants.GameGear, "GWGUI_SEGA_GAME_GEAR_MEDIA", "game-gear");
 
-    [Fact]
-    public void GenesisPlusGxLoadsConfiguredMarkThreeMediaWhenSmokePathsAreProvided() =>
-        RunGenesisPlusGxMediaSmoke(ModelConstants.MarkIII, "GWGUI_SEGA_MARK_THREE_MEDIA", "mark-three");
+    [Fact] public void GenesisPlusGxLoadsConfiguredMarkThreeMediaWhenSmokePathsAreProvided() => RunGenesisPlusGxMediaSmoke(ModelConstants.MarkIII, "GWGUI_SEGA_MARK_THREE_MEDIA", "mark-three");
 
     [Fact]
     public void GenesisPlusGxLoadsConfiguredPicoMediaWhenSmokePathsAreProvided()

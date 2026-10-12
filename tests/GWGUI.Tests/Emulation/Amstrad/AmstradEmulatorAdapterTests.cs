@@ -385,7 +385,10 @@ public sealed class AmstradEmulatorAdapterTests
     [Fact]
     public void LegacyKeyboardBindingsPreserveUserValuesAndExplicitSemanticOverrides()
     {
-        var input = new InputConfiguration(KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.RightAlt)] = nameof(EmulationKey.B), [nameof(EmulationKey.AmstradCopy)] = nameof(EmulationKey.C), [nameof(EmulationKey.Numpad0)] = string.Empty, [nameof(EmulationKey.Numpad1)] = nameof(EmulationKey.A) });
+        var input = new InputConfiguration(KeyboardBindings: new Dictionary<string, string> { [nameof(EmulationKey.RightAlt)] = nameof(EmulationKey.B),
+            [nameof(EmulationKey.AmstradCopy)] = nameof(EmulationKey.C),
+            [nameof(EmulationKey.Numpad0)] = string.Empty,
+            [nameof(EmulationKey.Numpad1)] = nameof(EmulationKey.A) });
         var values = KeyboardBindingFunctions.Normalize(input);
         Assert.Equal(nameof(EmulationKey.C), values[nameof(EmulationKey.AmstradCopy)]);
         Assert.Equal(string.Empty, values[nameof(EmulationKey.AmstradF0)]);

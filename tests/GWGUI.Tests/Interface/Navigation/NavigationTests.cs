@@ -55,10 +55,7 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
 
     public static IEnumerable<object[]> MenuCultures() => UiLanguageCatalog.Available.Select(language => new object[] { language.Code });
 
-    [Theory]
-    [MemberData(nameof(MenuCultures))]
-    public Task Menu_labels_resolve_from_bindings_in_each_supported_language(string culture) =>
-        sta.Run(() => ControlContractScenarios.MenuLabels(culture));
+    [Theory] [MemberData(nameof(MenuCultures))] public Task Menu_labels_resolve_from_bindings_in_each_supported_language(string culture) => sta.Run(() => ControlContractScenarios.MenuLabels(culture));
 
     [Theory]
     [InlineData(0, "ReadExecuteButton")]
@@ -67,13 +64,9 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     public Task Primary_controls_expose_accessible_commands_and_forward_activation_once(int index, string automationId) =>
         sta.Run(() => ControlContractScenarios.PrimaryCommand(index, automationId));
 
-    [Fact]
-    public Task Path_section_binds_location_and_accessible_name_and_exposes_browse() =>
-        sta.Run(ControlContractScenarios.PathControls);
+    [Fact] public Task Path_section_binds_location_and_accessible_name_and_exposes_browse() => sta.Run(ControlContractScenarios.PathControls);
 
-    [Fact]
-    public Task Updates_footer_replaces_close_while_a_downloaded_module_waits_for_installation() =>
-        sta.Run(ControlContractScenarios.UpdatesFooterReflectsPendingModuleInstallation);
+    [Fact] public Task Updates_footer_replaces_close_while_a_downloaded_module_waits_for_installation() => sta.Run(ControlContractScenarios.UpdatesFooterReflectsPendingModuleInstallation);
 
     [Theory]
     [InlineData("preferences")]
@@ -105,8 +98,7 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     public Task Menu_dispatches_exactly_the_requested_action_once(string request) =>
         sta.Run(() => NavigationScenarios.MenuRequest(request));
 
-    [Fact]
-    public Task Tool_without_verb_does_not_dispatch() => sta.Run(NavigationScenarios.MissingToolVerbDoesNotDispatch);
+    [Fact] public Task Tool_without_verb_does_not_dispatch() => sta.Run(NavigationScenarios.MissingToolVerbDoesNotDispatch);
 
     [Theory]
     [InlineData(1280, 720)]
@@ -133,8 +125,7 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     [InlineData(null, null, -1920d, 40d)]
     public void Work_area_keeps_the_window_on_screen_and_clear_of_taskbar(double? left, double? top, double expectedLeft, double expectedTop) => WindowLayoutScenarios.WorkArea(left, top, expectedLeft, expectedTop);
 
-    [Fact]
-    public void Small_screen_limits_the_window_to_available_space() => WindowLayoutScenarios.SmallScreen();
+    [Fact] public void Small_screen_limits_the_window_to_available_space() => WindowLayoutScenarios.SmallScreen();
 
     [Theory]
     [InlineData(0, 0, 0, 1080)]
