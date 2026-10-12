@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Coleco.Common.Contracts;
-
 public sealed record CoreOption(
     string Key,
     string Name,
@@ -14,5 +13,4 @@ public sealed record CoreOption(
     string? ResourceKey = null,
     string? ExplanationResourceKey = null
 );
-
 public sealed record CoreOptionValue(string Value, string Label, string? ResourceKey = null, EmulationVideoStandard? VideoStandard = null, double? FrequencyHz = null);
