@@ -10,7 +10,7 @@ internal static class SettingsDescriptionFunctions
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
     {
         var blocks = new List<EmulationSettingsBlock>();
-        if (!ConfigurationFunctions.SupportsRuntime(configuration.Model))
+        if (!GWGUI.Emulation.Apple.Common.Machines.Common.Functions.ConfigurationFunctions.SupportsRuntime(configuration.Model))
             return [];
         blocks.Add(Block(EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware,
             new EmulationSettingsField(SettingsConstants.Firmware, EmulationMachineTab.Rom,

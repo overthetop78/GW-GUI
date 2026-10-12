@@ -1,4 +1,5 @@
 using GWGUI.Emulation;
+using GWGUI.Emulation.Apple.Common.Dictionaries;
 
 namespace GWGUI.Emulation.Apple.Common.Services;
 
@@ -8,7 +9,7 @@ public sealed class Engine
 
     public Engine()
     {
-        var adapters = CoreCatalog.CreateAdapters();
+        var adapters = EmulatorCatalog.CreateAdapters();
         _adapters = adapters.ToDictionary(adapter => adapter.EmulatorId, StringComparer.Ordinal);
     }
 
@@ -21,15 +22,11 @@ public sealed class Engine
         if (!ConfigurationFunctions.SupportsRuntime(configuration.Model))
             throw new EmulationException(ErrorCategory.Core, ErrorCode.CoreNotFound,
                 EmulatorCatalogErrors.MissingModel);
-        return _adapters.TryGetValue(CoreCatalog.Get(configuration.Core).Id, out var adapter)
-            ? adapter.Create(configuration, context)
-            : throw new ArgumentOutOfRangeException(nameof(configuration));
+        return Adapter(configuration).Create(configuration, context);
     }
 
-    internal IEmulatorAdapter Adapter(MachineConfiguration configuration) =>
-        _adapters[CoreCatalog.Get(configuration.Core).Id];
-    internal IEmulatorAdapter Adapter(Emulator emulator) =>
-        Adapter(CoreCatalog.Get(emulator).Id);
+    internal IEmulatorAdapter Adapter(MachineConfiguration configuration) => Adapter(configuration.Core);
+    internal IEmulatorAdapter Adapter(Emulator emulator) => _adapters.Values.SingleOrDefault(adapter => string.Equals(adapter.EmulatorKey, emulator.ToString(), StringComparison.Ordinal)) ?? throw new ArgumentOutOfRangeException(nameof(emulator));
 
     internal IEmulatorAdapter Adapter(string emulatorId) => _adapters.TryGetValue(emulatorId, out var adapter)
         ? adapter : throw new ArgumentOutOfRangeException(nameof(emulatorId));

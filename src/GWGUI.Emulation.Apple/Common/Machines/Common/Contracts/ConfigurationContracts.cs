@@ -2,8 +2,6 @@ using System.Text.Json.Serialization;
 using GWGUI.Emulation.Apple.Common.Constants;
 using GWGUI.Emulation.Apple.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
-using GWGUI.Emulation.Apple.Emulators.AppleWin.Dictionaries;
-using AppleWinOptionConstants = GWGUI.Emulation.Apple.Emulators.AppleWin.Constants.OptionConstants;
 
 namespace GWGUI.Emulation.Apple.Common.Machines.Common.Contracts;
 
@@ -32,20 +30,18 @@ public sealed record MachineConfiguration : IEmulationConfiguration
     {
         if (!Enum.IsDefined(model)) throw new ArgumentOutOfRangeException(nameof(model));
         Model = model;
-        Core = core ?? (Family == MachineFamily.AppleII ? Emulator.AppleWin : Emulator.MiniVmac);
+        Core = core ?? HardwareModelCatalog.Get(model).Emulator;
         if (!Enum.IsDefined(Core)) throw new ArgumentOutOfRangeException(nameof(core));
         Firmwares = firmwares?.ToArray() ?? [];
         Media = media?.ToArray() ?? [];
         Options = options is null ? new Dictionary<string, string>(StringComparer.Ordinal)
             : new Dictionary<string, string>(options, StringComparer.Ordinal);
-        if (Core == Emulator.AppleWin && Family == MachineFamily.AppleII)
-            ((Dictionary<string, string>)Options).TryAdd(AppleWinOptionConstants.Machine,
-                AppleWinModelCatalog.GetNativeValue(model));
         Input = input ?? new InputConfiguration();
         Id = id == Guid.Empty ? Guid.NewGuid() : id;
         SchemaVersion = schemaVersion;
         AudioEnabled = audioEnabled;
         Folders = folders ?? new FolderConfiguration();
+        if (new Engine().Adapter(this) is IEmulatorConfiguration adapter) adapter.InitializeOptions(this, (Dictionary<string, string>)Options);
         ConfigurationFunctions.Validate(this);
     }
 

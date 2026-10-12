@@ -14,7 +14,22 @@
     - [x] Supprimer `artifacts/temp/apple-settings-validation` après sortie du contrôle et libération des ressources détenues.
     - [x] Commiter les corrections vérifiées, sans push.
 - [ ] Achever la neutralité des autres commandes Apple.
-  - [ ] Corriger les dépendances natives encore constatées.
-    - [ ] Modifier `src/GWGUI.Emulation.Apple/Common/Machines/Common/Contracts/ConfigurationContracts.cs`, `Functions/ConfigurationFunctions.cs`, `src/GWGUI.Emulation.Apple/Common/Services/Engine.cs`, `Machine.Commands.cs` et `EmulationGlobalUsings.cs` : déplacer initialisation/validation et règles propres aux cœurs vers les adaptateurs, enregistrer les capacités neutres utiles avant réalisation ; détailler les fichiers d’adaptateurs concernés après lecture, sans refaire les inventaires déjà acquis.
+  - [x] Confier l’initialisation et la validation native aux adaptateurs.
+    - [x] Créer `src/GWGUI.Emulation.Apple/Common/Interfaces/IEmulatorConfiguration.cs` et `Emulators/AppleWin/Functions/ConfigurationFunctions.cs`, `Emulators/MiniVmac/Functions/ConfigurationFunctions.cs` : capacité neutre de préparation des options et validation ; conserver le modèle AppleWin et les limites de supports Mini vMac dans leurs adaptateurs.
+    - [x] Modifier `src/GWGUI.Emulation.Apple/Emulators/AppleWin/Factories/AppleWinMachineFactory.cs` et `Emulators/MiniVmac/Factories/MiniVmacMachineFactory.cs` : implémenter cette capacité avec leurs fonctions nommées.
+    - [x] Modifier `src/GWGUI.Emulation.Apple/Common/Machines/Common/Contracts/ConfigurationContracts.cs` et `Functions/ConfigurationFunctions.cs` : choisir le défaut matériel existant, déléguer préparation et validation natives ; conserver les contrôles de schéma, matériel, ports et associations sans imports d’émulateur concret.
+  - [x] Découvrir les adaptateurs indépendamment de leur backend.
+    - [x] Créer `src/GWGUI.Emulation.Apple/Common/Dictionaries/EmulatorCatalog.cs` et modifier `Common/Services/Engine.cs` : découverte par IEmulatorAdapter, sélection par identité neutre, sans imposer MachineFactory ou le catalogue natif.
+  - [x] Vérifier cette séparation avant les changements suivants.
+    - [x] Modifier `src/GWGUI.Emulation.Apple/Emulators/MiniVmac/Functions/SettingsFunctions.cs` : qualifier l’appel au contrôle matériel commun SupportsRuntime pour éviter le masquage par les nouvelles fonctions de configuration natives.
+    - [x] Modifier `docs/tasks/emulation/methode-modules.md` : préciser les propriétaires de préparation et validation, ainsi que la vérification des appels masqués lors d’un déplacement de fonctions homonymes.
+    - [x] Produire `build/Debug/GW GUI/gwgui.exe` et les DLL des modules avec `scripts/local-building.cmd --building=debug --modules=A` ; vérifier la réussite terminale et les fichiers livrés.
+    - [x] Créer `artifacts/temp/apple-configuration-validation/Validation.csproj` et `Program.cs` : comparer défauts et rejets de configurations des deux adaptateurs à leur comportement précédent, sans cœur externe.
+    - [x] Supprimer `artifacts/temp/apple-configuration-validation` après la sortie effective du contrôle.
+    - [x] Commiter ces corrections vérifiées, sans push.
+  - [ ] Corriger les autres dépendances natives constatées.
+    - [ ] Modifier `src/GWGUI.Emulation.Apple/Common/Services/Machine.Commands.cs` et `EmulationGlobalUsings.cs` : déléguer les règles de redémarrage des supports et retirer les imports de backend de Common ; détailler les fichiers concernés avant réalisation.
 
 Contrôles acquis sur les DLL livrées : 10 descriptions de machines, défauts et légendes des choix Apple IIe, 1402 chaînes dans les cultures, fréquences/résolutions sans ressources numériques ; audit Argos 28 cultures et 4 catalogues, build complet 23 modules réussi. Contrôle temporaire supprimé. Les autres dépendances natives constatées restent dans le groupe suivant.
+
+Validation de cette correction : 68 contrôles sur les 10 modèles, exécutés contre la DLL livrée ; build complet réussi et 23 manifests/DLL contrôlés. Aucun cœur natif exécuté pour ce contrôle ; fichiers temporaires supprimés.
