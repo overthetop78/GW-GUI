@@ -29,9 +29,7 @@ internal static class InputSettingsFunctions
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var keyboard = new EmulationInputBindingSet(KeyboardDictionary.Definitions(configuration.Model), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard);
-        var mouse = configuration.Core == Emulator.Px68k 
-            ? new EmulationInputBindingSet(MouseDefinitions(), MouseBindings(configuration.Input), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true) 
-            : null;
+        var mouse = configuration.Core == Emulator.Px68k ? new EmulationInputBindingSet(MouseDefinitions(), MouseBindings(configuration.Input), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true) : null;
         var ports = Enumerable.Range(ControllerConstants.FirstPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(port =>
         {
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);

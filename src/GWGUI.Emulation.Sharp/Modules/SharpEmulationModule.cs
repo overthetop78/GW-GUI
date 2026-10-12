@@ -90,11 +90,7 @@ public sealed class SharpEmulationModule : IEmulationModule, IEmulationEmulatorM
             Input = values.TryGetValue(SettingsConstants.MouseSpeed, out var speed) && editable.Contains(SettingsConstants.MouseSpeed) 
                 ? current.Input with
             {
-                MouseSpeedPercent = int.Parse(
-                    speed ?? InputMappingConstants.DefaultMouseSpeedPercent.ToString(CultureInfo.InvariantCulture),
-                    NumberStyles.Integer,
-                    CultureInfo.InvariantCulture
-                )
+                MouseSpeedPercent = int.Parse(speed ?? InputMappingConstants.DefaultMouseSpeedPercent.ToString(CultureInfo.InvariantCulture), NumberStyles.Integer, CultureInfo.InvariantCulture)
                 }
 
 
@@ -183,9 +179,7 @@ public sealed class SharpEmulationModule : IEmulationModule, IEmulationEmulatorM
         var output = current.Options.GetValueOrDefault(SettingsConstants.AudioOutput);
         if (output == SettingsConstants.DefaultOutput)
             output = null;
-        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) 
-            ? parsed 
-            : SettingsConstants.DefaultLatency;
+        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : SettingsConstants.DefaultLatency;
         var context = new EmulatorCreationContext(
             services.SessionsDirectory,
             corePath,

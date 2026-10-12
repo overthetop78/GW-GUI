@@ -68,11 +68,7 @@ internal static class InputSnapshotFunctions
                 DeltaX = Scale(snapshot.Pointer.DeltaX, input.MouseSpeedPercent),
                 DeltaY = Scale(snapshot.Pointer.DeltaY, input.MouseSpeedPercent),
                 Left = IsPressed(left, EmulationInputMappingFunctions.ResolveSourceController(left, snapshot.Controllers, physical), snapshot),
-                Right = IsPressed(
-                    right,
-                    EmulationInputMappingFunctions.ResolveSourceController(right, snapshot.Controllers, physical),
-                    snapshot
-                )
+                Right = IsPressed(right, EmulationInputMappingFunctions.ResolveSourceController(right, snapshot.Controllers, physical), snapshot)
             };
         }
 
