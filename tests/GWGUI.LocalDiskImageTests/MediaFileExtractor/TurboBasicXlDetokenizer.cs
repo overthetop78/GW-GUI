@@ -226,8 +226,7 @@ internal static class TurboBasicXlDetokenizer
             output.Append($"\\x{value:X2}");
     }
 
-    private static ushort ReadUInt16(IReadOnlyList<byte> data, int position) =>
-        (ushort)(data[position] | data[position + 1] << 8);
+    private static ushort ReadUInt16(IReadOnlyList<byte> data, int position) => (ushort)(data[position] | data[position + 1] << 8);
 
     private static string?[] BuildCommands()
     {

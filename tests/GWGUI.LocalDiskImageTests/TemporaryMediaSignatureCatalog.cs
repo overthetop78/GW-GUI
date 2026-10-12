@@ -10,8 +10,7 @@ internal static class TemporaryMediaSignatureCatalog
 
     public static void Record(MediaAuditReport report, string outputDirectory, string repositoryRoot)
     {
-        var outputRoot = Directory.GetParent(outputDirectory)?.Parent?.FullName
-            ?? throw new InvalidOperationException("Le dossier racine de l'audit est introuvable.");
+        var outputRoot = Directory.GetParent(outputDirectory)?.Parent?.FullName ?? throw new InvalidOperationException("Le dossier racine de l'audit est introuvable.");
         var statePath = Path.Combine(outputRoot, "content-signature-state.json");
         var documentPath = Path.Combine(repositoryRoot, "docs", "project", "media-content-signatures.md");
         var state = ReadState(statePath);
@@ -46,8 +45,7 @@ internal static class TemporaryMediaSignatureCatalog
 
     private static void Add(SignatureState state, string element, string? start, string? end, string? sequence, string extension)
     {
-        var entry = state.Entries.FirstOrDefault(candidate =>
-            candidate.Element == element && candidate.Start == start && candidate.End == end && candidate.Sequence == sequence);
+        var entry = state.Entries.FirstOrDefault(candidate => candidate.Element == element && candidate.Start == start && candidate.End == end && candidate.Sequence == sequence);
         if (entry is null)
         {
             entry = new SignatureEntry { Element = element, Start = start, End = end, Sequence = sequence };
@@ -117,17 +115,11 @@ internal static class TemporaryMediaSignatureCatalog
         builder.AppendLine();
         builder.AppendLine("| Élément | Signature de début | Signature de fin | Séquence reconnaissable | Extensions | Occurrences |");
         builder.AppendLine("| --- | --- | --- | --- | --- | ---: |");
-        foreach (var entry in state.Entries
-                     .OrderByDescending(candidate => candidate.Occurrences)
-                     .ThenBy(candidate => candidate.Element, StringComparer.Ordinal)
-                     .ThenBy(candidate => candidate.Start, StringComparer.Ordinal)
+        foreach (var entry in state.Entries.OrderByDescending(candidate => candidate.Occurrences).ThenBy(candidate => candidate.Element, StringComparer.Ordinal).ThenBy(candidate => candidate.Start, StringComparer.Ordinal)
                      .ThenBy(candidate => candidate.End, StringComparer.Ordinal)
                      .ThenBy(candidate => candidate.Sequence, StringComparer.Ordinal))
         {
-            builder.Append("| ").Append(entry.Element).Append(" | ")
-                .Append(Code(entry.Start)).Append(" | ")
-                .Append(Code(entry.End)).Append(" | ")
-                .Append(Code(entry.Sequence)).Append(" | ")
+            builder.Append("| ").Append(entry.Element).Append(" | ").Append(Code(entry.Start)).Append(" | ").Append(Code(entry.End)).Append(" | ").Append(Code(entry.Sequence)).Append(" | ")
                 .Append(string.Join(", ", entry.Extensions.Order(StringComparer.OrdinalIgnoreCase))).Append(" | ")
                 .Append(entry.Occurrences).AppendLine(" |");
         }

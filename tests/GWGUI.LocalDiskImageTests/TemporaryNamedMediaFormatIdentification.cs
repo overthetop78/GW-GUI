@@ -11,18 +11,11 @@ internal static class TemporaryNamedMediaFormatIdentification
 
     public static void ThrowIfIdentificationIsRequired(MediaImageDocument document, ExploredMediaImage explored)
     {
-        var provisionalRule = explored.Volumes.Any(volume =>
-            string.Equals(volume.FileSystem?.FileSystemId, AppleInformXzipId, StringComparison.Ordinal))
-            ? "AppleInformXzipFileSystemReader"
-            : null;
+        var provisionalRule = explored.Volumes.Any(volume => string.Equals(volume.FileSystem?.FileSystemId, AppleInformXzipId, StringComparison.Ordinal)) ? "AppleInformXzipFileSystemReader" : null;
         if (provisionalRule is null)
             return;
 
-        var internalFiles = explored.Volumes
-            .Where(volume => volume.FileSystem is not null)
-            .SelectMany(volume => Flatten(volume.FileSystem!.Entries))
-            .Where(entry => entry.Kind == FileSystemEntryKind.File)
-            .Select(entry => entry.Name)
+        var internalFiles = explored.Volumes.Where(volume => volume.FileSystem is not null).SelectMany(volume => Flatten(volume.FileSystem!.Entries)).Where(entry => entry.Kind == FileSystemEntryKind.File).Select(entry => entry.Name)
             .Distinct(StringComparer.Ordinal)
             .Order(StringComparer.Ordinal)
             .ToArray();

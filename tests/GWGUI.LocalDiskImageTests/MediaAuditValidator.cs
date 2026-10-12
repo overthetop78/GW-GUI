@@ -74,8 +74,7 @@ internal static class MediaAuditValidator
                 var invalidBlocks = image.AvailableBlocks.Count(block => block.IntegrityValid == false);
                 if (invalidBlocks > 0)
                     errors.Add($"Sector image contains {invalidBlocks} block(s) with invalid integrity.");
-                var unexpectedSizes = image.AvailableBlocks.Count(block =>
-                    block.Data.Count <= 0 || (!image.AllowsVariableBlockSize && block.Data.Count != image.BlockSize));
+                var unexpectedSizes = image.AvailableBlocks.Count(block => block.Data.Count <= 0 || (!image.AllowsVariableBlockSize && block.Data.Count != image.BlockSize));
                 if (unexpectedSizes > 0)
                     errors.Add($"Sector image contains {unexpectedSizes} block(s) with an invalid data length.");
                 break;
@@ -84,8 +83,7 @@ internal static class MediaAuditValidator
                     errors.Add("Flux image contains no track or surface.");
                 if (flux.RevolutionCount == 0 || flux.TransitionCount == 0)
                     errors.Add($"Flux image contains no usable flux data: revolutions={flux.RevolutionCount}, transitions={flux.TransitionCount}.");
-                var emptyRevolutions = flux.Tracks.SelectMany(track => track.Revolutions)
-                    .Count(revolution => revolution.ResolutionNanoseconds <= 0 || revolution.Flux.FluxIntervals.Count == 0);
+                var emptyRevolutions = flux.Tracks.SelectMany(track => track.Revolutions).Count(revolution => revolution.ResolutionNanoseconds <= 0 || revolution.Flux.FluxIntervals.Count == 0);
                 if (emptyRevolutions > 0)
                     errors.Add($"Flux image contains {emptyRevolutions} empty or invalid revolution(s).");
                 break;
@@ -186,9 +184,7 @@ internal static class MediaAuditValidator
         var fileCount = volumes.Sum(volume => volume.FileCount);
         if (recognizedVolumes.Length > 0 && fileCount == 0)
         {
-            if (recognizedVolumes.All(volume =>
-                    volume.FileSystemId!.Equals(FileSystemIds.AtariKFile, StringComparison.OrdinalIgnoreCase)
-                    || volume.FileSystemId.Equals(FileSystemIds.AtariBootDisk, StringComparison.OrdinalIgnoreCase)))
+            if (recognizedVolumes.All(volume => volume.FileSystemId!.Equals(FileSystemIds.AtariKFile, StringComparison.OrdinalIgnoreCase) || volume.FileSystemId.Equals(FileSystemIds.AtariBootDisk, StringComparison.OrdinalIgnoreCase)))
                 warnings.Add("The recognized Atari boot media has no file catalog to enumerate.");
             else
                 errors.Add($"A file system was recognized on {recognizedVolumes.Length} volume(s), but no file was extracted.");
@@ -237,8 +233,7 @@ internal static class MediaAuditValidator
     private static ValidationAudit Result(IEnumerable<string> errors, IEnumerable<string> warnings)
     {
         var distinctErrors = errors.Distinct(StringComparer.Ordinal).ToArray();
-        return new(distinctErrors.Length == 0, distinctErrors,
-            warnings.Distinct(StringComparer.Ordinal).ToArray());
+        return new(distinctErrors.Length == 0, distinctErrors, warnings.Distinct(StringComparer.Ordinal).ToArray());
     }
 
     private static bool TrySum(IEnumerable<long> values, out long sum)

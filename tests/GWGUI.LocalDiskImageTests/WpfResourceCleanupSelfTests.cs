@@ -49,9 +49,7 @@ internal static class WpfResourceCleanupSelfTests
                 }
                 catch (Exception cleanupError)
                 {
-                    failure = failure is null
-                        ? cleanupError
-                        : new AggregateException(failure, cleanupError);
+                    failure = failure is null ? cleanupError : new AggregateException(failure, cleanupError);
                 }
 
                 if (window is not null)
