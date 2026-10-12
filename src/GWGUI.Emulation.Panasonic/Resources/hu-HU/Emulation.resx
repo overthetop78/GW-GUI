@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.opera.Description" xml:space="preserve"><value>Videójáték-emuláció (3DO).</value></data>
+  <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>Emulált memóriakapacitás</value></data>
+  <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>Video mód</value></data>
+  <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>Pixel színformátum</value></data>
+  <data name="Emulation.Panasonic.Video.BypassClut" xml:space="preserve"><value>Ne törődjön a színes táblával</value></data>
+  <data name="Emulation.Panasonic.Video.HighResolution" xml:space="preserve"><value>Nagy felbontású renderelés</value></data>
+  <data name="Emulation.Panasonic.Audio.Processing" xml:space="preserve"><value>Hangfeldolgozás</value></data>
+  <data name="Emulation.Panasonic.Audio.Parallel" xml:space="preserve"><value>Párhuzamos audió feldolgozás</value></data>
+  <data name="Emulation.Panasonic.Storage.SaveMode" xml:space="preserve"><value>Tárolási mód a mentett adatok tárolására</value></data>
+  <data name="Emulation.Panasonic.Storage.Version" xml:space="preserve"><value>Memóriabankok a mentett adatokhoz</value></data>
+  <data name="Emulation.Panasonic.Storage.CdSpeed" xml:space="preserve"><value>A CD-ROM</value></data>
+  <data name="Emulation.Panasonic.System" xml:space="preserve"><value>Rendszer</value></data>
+  <data name="Emulation.Panasonic.System.RandomSeed" xml:space="preserve"><value>A véletlenszerű generátor kezdeti értéke</value></data>
+  <data name="Emulation.Panasonic.System.Diagnostics" xml:space="preserve"><value>Diagnosztikai üzenetek</value></data>
+  <data name="Emulation.Panasonic.Value.Hardware" xml:space="preserve"><value>Hardverek</value></data>
+  <data name="Emulation.Panasonic.Value.Software" xml:space="preserve"><value>Szoftver</value></data>
+  <data name="Emulation.Panasonic.Value.PerGame" xml:space="preserve"><value>Játék</value></data>
+  <data name="Emulation.Panasonic.Value.Shared" xml:space="preserve"><value>Megosztva a játékok között</value></data>
+  <data name="Emulation.Panasonic.Value.Unlimited" xml:space="preserve"><value>Korlátlan</value></data>
+  <data name="Emulation.Panasonic.Value.Random" xml:space="preserve"><value>Véletlenszerű</value></data>
+</root>

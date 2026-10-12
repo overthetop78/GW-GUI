@@ -210,7 +210,7 @@ Les ressources sont séparées dès leur création selon les fichiers canoniques
 |---|---|
 | Clavier | Touches PC communes réutilisées ; uniquement touches propres au matériel absentes du clavier hôte ajoutées. Défauts éventuels modifiables/persistés/appliqués ; changement retire l'ancien alias implicite. Aucune touche spéciale étrangère à la machine. |
 | Manette | Commandes réelles sans attribution automatique de touche PC ou bouton hôte. Configuration neuve et restauration gardent les associations physiques vides. Rien transmis implicitement sans association ; associations utilisateur préservées. |
-| Boutons/visuel | Commandes réellement présentes, directions numériques et axes analogiques distingués. Contrôleur intégré forcément présent. Chaîne commande → capture → configuration → entrée native vérifiée. |
+| Boutons/visuel | Commandes réellement présentes, directions numériques et axes analogiques distingués. Contrôleur intégré forcément présent. Chaîne commande → capture → configuration → entrée native vérifiée. Tout périphérique proposant des déplacements de souris déclare la capacité de capture correspondante à App, même si son type matériel porte un autre nom ; ne pas se limiter aux types Mouse/Lightgun. |
 | Disposition | Préserver emplacement des blocs existants ; options ajoutées à gauche lorsque demandé, bloc commun existant à droite. Largeurs/alignements lisibles et fluides, adaptés à l'espace, sans copie mécanique. Ne pas exposer tous les réglages natifs par défaut. |
 | Classement | CPU/accélération dans leur fonction, vidéo dans Vidéo, audio dans Audio, support dans sa configuration. Type de cartouche dans le dialogue de configuration cartouche, pas dans un bloc isolé Général/Stockage. Aucun doublon shaders/traitement App. |
 | Dossiers | Aucun choix de dossier par défaut dans les modules ; utiliser l'organisation de stockage existante. Ne pas confondre ces dossiers avec la sélection réelle d'un fichier firmware/support. |
@@ -511,3 +511,4 @@ Chaque ligne décrit une amélioration de cette procédure, pas une réalisation
 | 220 | 2026-10-12 06:39:11 | Consommer les deltas avant affectation et distinguer pression et déplacement jusqu’à la conversion native. |
 | 221 | 2026-10-12 06:43:34 | Vérifier aussi les namespaces et codes de message SDK avant génération des contrôles et adaptateurs. |
 | 222 | 2026-10-12 07:31:49 | Séparer les catalogues par rôle et contrôler les détourages sur deux fonds avant livraison. |
+| 223 | 2026-10-12 08:36:44 | Relier les capacités de capture aux sources physiques proposées, avant qualification des entrées natives. |

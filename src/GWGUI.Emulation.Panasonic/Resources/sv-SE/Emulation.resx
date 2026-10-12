@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.opera.Description" xml:space="preserve"><value>Videospel emulering (3)DO).</value></data>
+  <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>Emulerad minneskapacitet</value></data>
+  <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>Videoläge</value></data>
+  <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>Pixel färgformat</value></data>
+  <data name="Emulation.Panasonic.Video.BypassClut" xml:space="preserve"><value>Ignorera färgbordet</value></data>
+  <data name="Emulation.Panasonic.Video.HighResolution" xml:space="preserve"><value>Hög upplösning rendering</value></data>
+  <data name="Emulation.Panasonic.Audio.Processing" xml:space="preserve"><value>Audio Processing</value></data>
+  <data name="Emulation.Panasonic.Audio.Parallel" xml:space="preserve"><value>Parallell ljudbehandling</value></data>
+  <data name="Emulation.Panasonic.Storage.SaveMode" xml:space="preserve"><value>Lagringsläge för sparade data</value></data>
+  <data name="Emulation.Panasonic.Storage.Version" xml:space="preserve"><value>Minnesbank för sparade data</value></data>
+  <data name="Emulation.Panasonic.Storage.CdSpeed" xml:space="preserve"><value>Läshastigheten för CD-ROM</value></data>
+  <data name="Emulation.Panasonic.System" xml:space="preserve"><value>Systemsystem</value></data>
+  <data name="Emulation.Panasonic.System.RandomSeed" xml:space="preserve"><value>Initialt värde av slumpgeneratorn</value></data>
+  <data name="Emulation.Panasonic.System.Diagnostics" xml:space="preserve"><value>Diagnostiska meddelanden</value></data>
+  <data name="Emulation.Panasonic.Value.Hardware" xml:space="preserve"><value>Hårdvara</value></data>
+  <data name="Emulation.Panasonic.Value.Software" xml:space="preserve"><value>Programvara programvara</value></data>
+  <data name="Emulation.Panasonic.Value.PerGame" xml:space="preserve"><value>Per spel</value></data>
+  <data name="Emulation.Panasonic.Value.Shared" xml:space="preserve"><value>Delad mellan spel</value></data>
+  <data name="Emulation.Panasonic.Value.Unlimited" xml:space="preserve"><value>Obegränsad</value></data>
+  <data name="Emulation.Panasonic.Value.Random" xml:space="preserve"><value>Random</value></data>
+</root>

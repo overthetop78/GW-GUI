@@ -16,4 +16,6 @@
   <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Compatible memory extensions: {0}.</value></data>
   <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM is not available on {0}.</value></data>
   <data name="Emulation.Memory.TotalConfigured"><value>Total configured memory: {0} {1}</value></data>
+  <data name="Emulation.Memory.Video" xml:space="preserve"><value>VRAM</value></data>
+  <data name="Emulation.Memory.NonVolatile" xml:space="preserve"><value>NVRAM</value></data>
 </root>

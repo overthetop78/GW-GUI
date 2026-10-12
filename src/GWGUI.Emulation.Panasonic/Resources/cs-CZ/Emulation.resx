@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.opera.Description" xml:space="preserve"><value>Emulace videoher (3DO).</value></data>
+  <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>Vyvinutá paměťová kapacita</value></data>
+  <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>Video režim</value></data>
+  <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>Barevný formát pixelů</value></data>
+  <data name="Emulation.Panasonic.Video.BypassClut" xml:space="preserve"><value>Ignorovat tabulku barev</value></data>
+  <data name="Emulation.Panasonic.Video.HighResolution" xml:space="preserve"><value>Vytváření vysokého rozlišení</value></data>
+  <data name="Emulation.Panasonic.Audio.Processing" xml:space="preserve"><value>Zpracování zvuku</value></data>
+  <data name="Emulation.Panasonic.Audio.Parallel" xml:space="preserve"><value>Paralelní audio zpracování</value></data>
+  <data name="Emulation.Panasonic.Storage.SaveMode" xml:space="preserve"><value>Režim ukládání uložených dat</value></data>
+  <data name="Emulation.Panasonic.Storage.Version" xml:space="preserve"><value>Paměťová banka pro uložená data</value></data>
+  <data name="Emulation.Panasonic.Storage.CdSpeed" xml:space="preserve"><value>Rychlost čtení CD-ROM</value></data>
+  <data name="Emulation.Panasonic.System" xml:space="preserve"><value>Systém</value></data>
+  <data name="Emulation.Panasonic.System.RandomSeed" xml:space="preserve"><value>Počáteční hodnota náhodného generátoru</value></data>
+  <data name="Emulation.Panasonic.System.Diagnostics" xml:space="preserve"><value>Diagnostické zprávy</value></data>
+  <data name="Emulation.Panasonic.Value.Hardware" xml:space="preserve"><value>Hardware</value></data>
+  <data name="Emulation.Panasonic.Value.Software" xml:space="preserve"><value>Software</value></data>
+  <data name="Emulation.Panasonic.Value.PerGame" xml:space="preserve"><value>V každé hře</value></data>
+  <data name="Emulation.Panasonic.Value.Shared" xml:space="preserve"><value>Sdílet mezi hrami</value></data>
+  <data name="Emulation.Panasonic.Value.Unlimited" xml:space="preserve"><value>Neomezené</value></data>
+  <data name="Emulation.Panasonic.Value.Random" xml:space="preserve"><value>Náhodné</value></data>
+</root>

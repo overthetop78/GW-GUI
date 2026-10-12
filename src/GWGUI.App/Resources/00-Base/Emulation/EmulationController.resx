@@ -134,4 +134,5 @@
   <data name="Emulation.Controller.Visual.Model.philips-videopac-joystick"><value>Odyssey² / Videopac</value></data>
   <data name="Emulation.Controller.Visual.Model.philips-cdi-gamepad"><value>Philips CD-i Gamepad</value></data>
   <data name="Emulation.Controller.Visual.Model.philips-cdi-mouse"><value>Philips CD-i Mouse</value></data>
+  <data name="Emulation.Controller.Visual.Model.panasonic-fz-jp1" xml:space="preserve"><value>Panasonic FZ-JP1</value></data>
 </root>

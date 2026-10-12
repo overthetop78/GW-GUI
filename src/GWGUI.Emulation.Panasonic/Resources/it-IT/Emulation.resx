@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.opera.Description" xml:space="preserve"><value>Emulazione video gioco (3DO).</value></data>
+  <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>Capacità di memoria emulata</value></data>
+  <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>Modalità video</value></data>
+  <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>Formato del colore del pixel</value></data>
+  <data name="Emulation.Panasonic.Video.BypassClut" xml:space="preserve"><value>Ignora la tabella dei colori</value></data>
+  <data name="Emulation.Panasonic.Video.HighResolution" xml:space="preserve"><value>rendering ad alta risoluzione</value></data>
+  <data name="Emulation.Panasonic.Audio.Processing" xml:space="preserve"><value>Lavorazione audio</value></data>
+  <data name="Emulation.Panasonic.Audio.Parallel" xml:space="preserve"><value>Elaborazione audio parallela</value></data>
+  <data name="Emulation.Panasonic.Storage.SaveMode" xml:space="preserve"><value>Modalità di memorizzazione per i dati salvati</value></data>
+  <data name="Emulation.Panasonic.Storage.Version" xml:space="preserve"><value>Banca di memoria per i dati salvati</value></data>
+  <data name="Emulation.Panasonic.Storage.CdSpeed" xml:space="preserve"><value>Velocità di lettura del CD-ROM</value></data>
+  <data name="Emulation.Panasonic.System" xml:space="preserve"><value>Sistema</value></data>
+  <data name="Emulation.Panasonic.System.RandomSeed" xml:space="preserve"><value>Valore iniziale del generatore casuale</value></data>
+  <data name="Emulation.Panasonic.System.Diagnostics" xml:space="preserve"><value>Messaggi diagnostici</value></data>
+  <data name="Emulation.Panasonic.Value.Hardware" xml:space="preserve"><value>Hardware</value></data>
+  <data name="Emulation.Panasonic.Value.Software" xml:space="preserve"><value>Software software</value></data>
+  <data name="Emulation.Panasonic.Value.PerGame" xml:space="preserve"><value>Per gioco</value></data>
+  <data name="Emulation.Panasonic.Value.Shared" xml:space="preserve"><value>Condividi tra i giochi</value></data>
+  <data name="Emulation.Panasonic.Value.Unlimited" xml:space="preserve"><value>Illimitata</value></data>
+  <data name="Emulation.Panasonic.Value.Random" xml:space="preserve"><value>casuale</value></data>
+</root>

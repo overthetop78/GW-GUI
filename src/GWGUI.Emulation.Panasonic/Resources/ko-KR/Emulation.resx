@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.opera.Description" xml:space="preserve"><value>비디오 게임 에뮬레이션 (3DO).</value></data>
+  <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>메모리 용량을 평가</value></data>
+  <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>동영상 모드</value></data>
+  <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>화소 색깔 체재</value></data>
+  <data name="Emulation.Panasonic.Video.BypassClut" xml:space="preserve"><value>색상 테이블을 무시</value></data>
+  <data name="Emulation.Panasonic.Video.HighResolution" xml:space="preserve"><value>높은 해상도 렌더링</value></data>
+  <data name="Emulation.Panasonic.Audio.Processing" xml:space="preserve"><value>Audio 처리</value></data>
+  <data name="Emulation.Panasonic.Audio.Parallel" xml:space="preserve"><value>평행한 오디오 처리</value></data>
+  <data name="Emulation.Panasonic.Storage.SaveMode" xml:space="preserve"><value>저장된 자료의 저장 형태</value></data>
+  <data name="Emulation.Panasonic.Storage.Version" xml:space="preserve"><value>저장된 데이터에 대한 메모리 은행</value></data>
+  <data name="Emulation.Panasonic.Storage.CdSpeed" xml:space="preserve"><value>독서 속도의 CD-ROM</value></data>
+  <data name="Emulation.Panasonic.System" xml:space="preserve"><value>시스템</value></data>
+  <data name="Emulation.Panasonic.System.RandomSeed" xml:space="preserve"><value>임의 발전기의 초기 값</value></data>
+  <data name="Emulation.Panasonic.System.Diagnostics" xml:space="preserve"><value>진단 메시지</value></data>
+  <data name="Emulation.Panasonic.Value.Hardware" xml:space="preserve"><value>의 특징</value></data>
+  <data name="Emulation.Panasonic.Value.Software" xml:space="preserve"><value>의 특징</value></data>
+  <data name="Emulation.Panasonic.Value.PerGame" xml:space="preserve"><value>게임당</value></data>
+  <data name="Emulation.Panasonic.Value.Shared" xml:space="preserve"><value>게임 공유</value></data>
+  <data name="Emulation.Panasonic.Value.Unlimited" xml:space="preserve"><value>무제한</value></data>
+  <data name="Emulation.Panasonic.Value.Random" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의</value></data>
+</root>

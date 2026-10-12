@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.opera.Description" xml:space="preserve"><value>Mô phỏng trò chơi điện tử (3)DO).</value></data>
+  <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>Khả năng nhận dạng bộ nhớ</value></data>
+  <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>Chế độ ảnh động</value></data>
+  <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>Định dạng màu điểm ảnh</value></data>
+  <data name="Emulation.Panasonic.Video.BypassClut" xml:space="preserve"><value>Bỏ qua bảng màu</value></data>
+  <data name="Emulation.Panasonic.Video.HighResolution" xml:space="preserve"><value>Vẽ độ phân giải cao</value></data>
+  <data name="Emulation.Panasonic.Audio.Processing" xml:space="preserve"><value>xử lý âm thanh</value></data>
+  <data name="Emulation.Panasonic.Audio.Parallel" xml:space="preserve"><value>xử lý âm thanh song song</value></data>
+  <data name="Emulation.Panasonic.Storage.SaveMode" xml:space="preserve"><value>Chế độ cất giữ dữ liệu đã lưu</value></data>
+  <data name="Emulation.Panasonic.Storage.Version" xml:space="preserve"><value>Ngân hàng bộ nhớ cho dữ liệu đã lưu</value></data>
+  <data name="Emulation.Panasonic.Storage.CdSpeed" xml:space="preserve"><value>Đang đọc tốc độ của CD-ROM</value></data>
+  <data name="Emulation.Panasonic.System" xml:space="preserve"><value>Hệ thống</value></data>
+  <data name="Emulation.Panasonic.System.RandomSeed" xml:space="preserve"><value>Giá trị ban đầu của máy phát điện ngẫu nhiên</value></data>
+  <data name="Emulation.Panasonic.System.Diagnostics" xml:space="preserve"><value>Comment</value></data>
+  <data name="Emulation.Panasonic.Value.Hardware" xml:space="preserve"><value>Phần cứng</value></data>
+  <data name="Emulation.Panasonic.Value.Software" xml:space="preserve"><value>Phần mềm</value></data>
+  <data name="Emulation.Panasonic.Value.PerGame" xml:space="preserve"><value>Mỗi trò chơi</value></data>
+  <data name="Emulation.Panasonic.Value.Shared" xml:space="preserve"><value>Chia sẻ giữa các trò chơi</value></data>
+  <data name="Emulation.Panasonic.Value.Unlimited" xml:space="preserve"><value>Vô hạn</value></data>
+  <data name="Emulation.Panasonic.Value.Random" xml:space="preserve"><value>Ngẫu nhiên</value></data>
+</root>

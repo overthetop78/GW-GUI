@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Panasonic.Input.ActiveDevices" xml:space="preserve"><value>ตัวควบคุมที่ทํางานอยู่</value></data>
+  <data name="Emulation.Panasonic.Input.HideCrosshairs" xml:space="preserve"><value>ซ่อนเครื่องหมายปักหมุด</value></data>
+  <data name="Emulation.Panasonic.Controller.Mouse" xml:space="preserve"><value>เมาส์ (3)DO)</value></data>
+  <data name="Emulation.Panasonic.Controller.Lightgun" xml:space="preserve"><value>ปืนโอติคอล (3)DO)</value></data>
+  <data name="Emulation.Panasonic.Controller.ArcadeLightgun" xml:space="preserve"><value>ปืนอาเขตแสง</value></data>
+</root>

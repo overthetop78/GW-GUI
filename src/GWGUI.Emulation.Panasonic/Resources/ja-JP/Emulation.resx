@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.opera.Description" xml:space="preserve"><value>ビデオ ゲームエミュレーション (3)DO)...</value></data>
+  <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>記憶容量をエミュレート</value></data>
+  <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>ビデオモード</value></data>
+  <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>ピクセルカラーフォーマット</value></data>
+  <data name="Emulation.Panasonic.Video.BypassClut" xml:space="preserve"><value>カラーテーブルを無視する</value></data>
+  <data name="Emulation.Panasonic.Video.HighResolution" xml:space="preserve"><value>高リゾリューションのレンダリング</value></data>
+  <data name="Emulation.Panasonic.Audio.Processing" xml:space="preserve"><value>音声処理</value></data>
+  <data name="Emulation.Panasonic.Audio.Parallel" xml:space="preserve"><value>並列音声処理</value></data>
+  <data name="Emulation.Panasonic.Storage.SaveMode" xml:space="preserve"><value>保存されたデータのためのストレージモード</value></data>
+  <data name="Emulation.Panasonic.Storage.Version" xml:space="preserve"><value>保存されたデータのためのメモリバンク</value></data>
+  <data name="Emulation.Panasonic.Storage.CdSpeed" xml:space="preserve"><value>読書速度の CD-ROM</value></data>
+  <data name="Emulation.Panasonic.System" xml:space="preserve"><value>ソリューション</value></data>
+  <data name="Emulation.Panasonic.System.RandomSeed" xml:space="preserve"><value>ランダムジェネレータの初期値</value></data>
+  <data name="Emulation.Panasonic.System.Diagnostics" xml:space="preserve"><value>診断メッセージ</value></data>
+  <data name="Emulation.Panasonic.Value.Hardware" xml:space="preserve"><value>ハードウェア</value></data>
+  <data name="Emulation.Panasonic.Value.Software" xml:space="preserve"><value>ソフトバンク</value></data>
+  <data name="Emulation.Panasonic.Value.PerGame" xml:space="preserve"><value>試合ごとに</value></data>
+  <data name="Emulation.Panasonic.Value.Shared" xml:space="preserve"><value>ゲーム間で共有</value></data>
+  <data name="Emulation.Panasonic.Value.Unlimited" xml:space="preserve"><value>無制限</value></data>
+  <data name="Emulation.Panasonic.Value.Random" xml:space="preserve"><value>ランダム</value></data>
+</root>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.opera.Description" xml:space="preserve"><value>משחק וידאו: (3DO).</value></data>
+  <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>יכולת זיכרון גבוהה</value></data>
+  <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>מצב וידאו</value></data>
+  <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>פורמט צבע Pixel</value></data>
+  <data name="Emulation.Panasonic.Video.BypassClut" xml:space="preserve"><value>התעלמות משולחן הצבעים</value></data>
+  <data name="Emulation.Panasonic.Video.HighResolution" xml:space="preserve"><value>הצעת החלטה גבוהה</value></data>
+  <data name="Emulation.Panasonic.Audio.Processing" xml:space="preserve"><value>עיבוד אודיו</value></data>
+  <data name="Emulation.Panasonic.Audio.Parallel" xml:space="preserve"><value>עיבוד אודיו מקבילים</value></data>
+  <data name="Emulation.Panasonic.Storage.SaveMode" xml:space="preserve"><value>מצב אחסון עבור מידע</value></data>
+  <data name="Emulation.Panasonic.Storage.Version" xml:space="preserve"><value>בנק זיכרון להצלת נתונים</value></data>
+  <data name="Emulation.Panasonic.Storage.CdSpeed" xml:space="preserve"><value>מהירות הקריאה של CD-ROM</value></data>
+  <data name="Emulation.Panasonic.System" xml:space="preserve"><value>מערכת מערכת</value></data>
+  <data name="Emulation.Panasonic.System.RandomSeed" xml:space="preserve"><value>הערך הראשוני של הגנרטור האקראי</value></data>
+  <data name="Emulation.Panasonic.System.Diagnostics" xml:space="preserve"><value>הודעות אבחון</value></data>
+  <data name="Emulation.Panasonic.Value.Hardware" xml:space="preserve"><value>חומרה</value></data>
+  <data name="Emulation.Panasonic.Value.Software" xml:space="preserve"><value>Software Software Software</value></data>
+  <data name="Emulation.Panasonic.Value.PerGame" xml:space="preserve"><value>משחק Per Game</value></data>
+  <data name="Emulation.Panasonic.Value.Shared" xml:space="preserve"><value>משותף בין משחקים</value></data>
+  <data name="Emulation.Panasonic.Value.Unlimited" xml:space="preserve"><value>בלתי מוגבל</value></data>
+  <data name="Emulation.Panasonic.Value.Random" xml:space="preserve"><value>אקראי</value></data>
+</root>

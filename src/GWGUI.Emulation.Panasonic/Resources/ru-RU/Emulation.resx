@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.opera.Description" xml:space="preserve"><value>Эмуляция видеоигр (3)DO.</value></data>
+  <data name="Emulation.Panasonic.Memory.Capacity" xml:space="preserve"><value>Эмулированная память</value></data>
+  <data name="Emulation.Panasonic.Video.Mode" xml:space="preserve"><value>Видеорежим</value></data>
+  <data name="Emulation.Panasonic.Video.PixelFormat" xml:space="preserve"><value>Цветовой формат Pixel</value></data>
+  <data name="Emulation.Panasonic.Video.BypassClut" xml:space="preserve"><value>Игнорируйте цветной стол</value></data>
+  <data name="Emulation.Panasonic.Video.HighResolution" xml:space="preserve"><value>Высокое разрешение</value></data>
+  <data name="Emulation.Panasonic.Audio.Processing" xml:space="preserve"><value>Аудиообработка</value></data>
+  <data name="Emulation.Panasonic.Audio.Parallel" xml:space="preserve"><value>Параллельная обработка аудио</value></data>
+  <data name="Emulation.Panasonic.Storage.SaveMode" xml:space="preserve"><value>Режим хранения для сохраненных данных</value></data>
+  <data name="Emulation.Panasonic.Storage.Version" xml:space="preserve"><value>Банк памяти для сохраненных данных</value></data>
+  <data name="Emulation.Panasonic.Storage.CdSpeed" xml:space="preserve"><value>Скорость чтения в CD-ROM</value></data>
+  <data name="Emulation.Panasonic.System" xml:space="preserve"><value>Система</value></data>
+  <data name="Emulation.Panasonic.System.RandomSeed" xml:space="preserve"><value>Начальное значение случайного генератора</value></data>
+  <data name="Emulation.Panasonic.System.Diagnostics" xml:space="preserve"><value>Диагностические сообщения</value></data>
+  <data name="Emulation.Panasonic.Value.Hardware" xml:space="preserve"><value>Аппаратное оборудование</value></data>
+  <data name="Emulation.Panasonic.Value.Software" xml:space="preserve"><value>Программное обеспечение</value></data>
+  <data name="Emulation.Panasonic.Value.PerGame" xml:space="preserve"><value>Пер за игру</value></data>
+  <data name="Emulation.Panasonic.Value.Shared" xml:space="preserve"><value>Разделяем между играми</value></data>
+  <data name="Emulation.Panasonic.Value.Unlimited" xml:space="preserve"><value>неограниченный</value></data>
+  <data name="Emulation.Panasonic.Value.Random" xml:space="preserve"><value>Случайность</value></data>
+</root>
