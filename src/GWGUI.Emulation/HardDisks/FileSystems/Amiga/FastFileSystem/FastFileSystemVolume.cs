@@ -255,11 +255,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// <returns></returns>
         public static async Task<FastFileSystemVolume> MountPartition(Stream stream, PartitionBlock partitionBlock, bool resolveLinkPaths = true)
         {
-            return await Mount(stream, partitionBlock.LowCyl, partitionBlock.HighCyl,
-                partitionBlock.Surfaces, partitionBlock.BlocksPerTrack, partitionBlock.Reserved,
-                partitionBlock.BlockSize,
-                partitionBlock.FileSystemBlockSize,
-                resolveLinkPaths);
+            return await Mount(stream, partitionBlock.LowCyl, partitionBlock.HighCyl, partitionBlock.Surfaces, partitionBlock.BlocksPerTrack, partitionBlock.Reserved, partitionBlock.BlockSize, partitionBlock.FileSystemBlockSize, resolveLinkPaths);
         }
 
         /// <summary>

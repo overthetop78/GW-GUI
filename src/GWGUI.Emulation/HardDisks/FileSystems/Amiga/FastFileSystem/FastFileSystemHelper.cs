@@ -135,9 +135,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
 
             if (adfSize == FloppyDiskConstants.HighDensity.Size)
             {
-                return await Mount(stream, FloppyDiskConstants.HighDensity.LowCyl,
-                    FloppyDiskConstants.HighDensity.HighCyl, FloppyDiskConstants.HighDensity.Heads,
-                    FloppyDiskConstants.HighDensity.Sectors, FloppyDiskConstants.DoubleDensity.ReservedBlocks);
+                return await Mount(stream, FloppyDiskConstants.HighDensity.LowCyl, FloppyDiskConstants.HighDensity.HighCyl, FloppyDiskConstants.HighDensity.Heads, FloppyDiskConstants.HighDensity.Sectors, FloppyDiskConstants.DoubleDensity.ReservedBlocks);
             }
 
             throw new IOException($"Invalid adf size '{adfSize}'");

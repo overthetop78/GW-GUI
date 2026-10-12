@@ -63,9 +63,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
                 var bitmapBlk = bitmap.BitmapBlock;
                 if (bitmapBlk == null)
                 {
-                    throw new FileSystemDiagnosticException(FileSystemErrorCode.CachedChainBitmapMissing,
-                        Pfs3ErrorMessages.CachedChainBitmap(bitmap.blocknr, bitmap.blk), bitmap.blocknr,
-                        bitmap.blk?.GetType().Name ?? Pfs3ErrorMessages.NullBlockType);
+                    throw new FileSystemDiagnosticException(FileSystemErrorCode.CachedChainBitmapMissing, Pfs3ErrorMessages.CachedChainBitmap(bitmap.blocknr, bitmap.blk), bitmap.blocknr, bitmap.blk?.GetType().Name ?? Pfs3ErrorMessages.NullBlockType);
                 }
                 field = bitmapBlk.bitmap[bmoffset];
 
@@ -106,9 +104,7 @@ namespace Hst.Amiga.FileSystems.Pfs3
                     var bitmapBlk = bitmap.BitmapBlock;
                     if (bitmapBlk == null)
                     {
-                        throw new FileSystemDiagnosticException(FileSystemErrorCode.CachedBitmapMissing,
-                            Pfs3ErrorMessages.CachedBitmap(bitmap.blocknr, bitmap.blk), bitmap.blocknr,
-                            bitmap.blk?.GetType().Name ?? Pfs3ErrorMessages.NullBlockType);
+                        throw new FileSystemDiagnosticException(FileSystemErrorCode.CachedBitmapMissing, Pfs3ErrorMessages.CachedBitmap(bitmap.blocknr, bitmap.blk), bitmap.blocknr, bitmap.blk?.GetType().Name ?? Pfs3ErrorMessages.NullBlockType);
                     }
                     field = bitmapBlk.bitmap[bmoffset];
                     if (field != 0)

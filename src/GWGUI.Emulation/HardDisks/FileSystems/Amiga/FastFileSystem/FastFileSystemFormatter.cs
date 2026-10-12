@@ -16,9 +16,7 @@ namespace Hst.Amiga.FileSystems.FastFileSystem
         /// </summary>
         public static async Task FormatPartition(Stream stream, PartitionBlock partitionBlock, string diskName)
         {
-            await Format(stream, partitionBlock.LowCyl, partitionBlock.HighCyl, partitionBlock.Reserved,
-                partitionBlock.Surfaces, partitionBlock.BlocksPerTrack, partitionBlock.BlockSize,
-                partitionBlock.FileSystemBlockSize, partitionBlock.DosType, diskName);
+            await Format(stream, partitionBlock.LowCyl, partitionBlock.HighCyl, partitionBlock.Reserved, partitionBlock.Surfaces, partitionBlock.BlocksPerTrack, partitionBlock.BlockSize, partitionBlock.FileSystemBlockSize, partitionBlock.DosType, diskName);
         }
 
         /// <summary>
