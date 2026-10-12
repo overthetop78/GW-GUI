@@ -59,15 +59,34 @@ internal sealed partial class ExternalHostCallbacks
     {
         var shifted = keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift);
         var caps = keys.Contains(EmulationKey.CapsLock);
-        if (code is >= (uint)ExternalHostCallbacksConstants.LowercaseA and <= (uint)ExternalHostCallbacksConstants.LowercaseZ) return shifted ^ caps ? code - LowercaseToUppercaseOffset : code;
-        if (!shifted) return code is >= FirstPrintableCharacter and <= LastPrintableCharacter ? code : NoKeyboardCharacter;
+        if (code is >= (uint)ExternalHostCallbacksConstants.LowercaseA and <= (uint)ExternalHostCallbacksConstants.LowercaseZ)
+            return shifted ^ caps ? code - LowercaseToUppercaseOffset : code;
+        if (!shifted)
+            return code is >= FirstPrintableCharacter and <= LastPrintableCharacter ? code : NoKeyboardCharacter;
         return code switch
         {
-            (uint)ExternalHostCallbacksConstants.DigitZero => ExternalHostCallbacksConstants.ClosingParenthesis, (uint)ExternalHostCallbacksConstants.DigitOne => ExternalHostCallbacksConstants.ExclamationMark, (uint)ExternalHostCallbacksConstants.DigitTwo => ExternalHostCallbacksConstants.AtSign, (uint)ExternalHostCallbacksConstants.DigitThree => ExternalHostCallbacksConstants.HashSign, (uint)ExternalHostCallbacksConstants.DigitFour => ExternalHostCallbacksConstants.DollarSign,
-            (uint)ExternalHostCallbacksConstants.DigitFive => ExternalHostCallbacksConstants.PercentSign, (uint)ExternalHostCallbacksConstants.DigitSix => ExternalHostCallbacksConstants.Caret, (uint)ExternalHostCallbacksConstants.DigitSeven => ExternalHostCallbacksConstants.Ampersand, (uint)ExternalHostCallbacksConstants.DigitEight => ExternalHostCallbacksConstants.Asterisk, (uint)ExternalHostCallbacksConstants.DigitNine => ExternalHostCallbacksConstants.OpeningParenthesis,
-            (uint)ExternalHostCallbacksConstants.Hyphen => ExternalHostCallbacksConstants.Underscore, (uint)ExternalHostCallbacksConstants.EqualsSign => ExternalHostCallbacksConstants.PlusSign, (uint)ExternalHostCallbacksConstants.OpeningBracket => ExternalHostCallbacksConstants.OpeningBrace, (uint)ExternalHostCallbacksConstants.ClosingBracket => ExternalHostCallbacksConstants.ClosingBrace, (uint)ExternalHostCallbacksConstants.Backslash => ExternalHostCallbacksConstants.VerticalBar,
-            (uint)ExternalHostCallbacksConstants.Semicolon => ExternalHostCallbacksConstants.Colon, (uint)ExternalHostCallbacksConstants.Apostrophe => ExternalHostCallbacksConstants.QuotationMark, (uint)ExternalHostCallbacksConstants.Comma => ExternalHostCallbacksConstants.LessThanSign, (uint)ExternalHostCallbacksConstants.Period => ExternalHostCallbacksConstants.GreaterThanSign, (uint)ExternalHostCallbacksConstants.Slash => ExternalHostCallbacksConstants.QuestionMark,
-            (uint)ExternalHostCallbacksConstants.Backquote => ExternalHostCallbacksConstants.Tilde, _ => code is >= FirstPrintableCharacter and <= LastPrintableCharacter ? code : NoKeyboardCharacter
+            (uint)ExternalHostCallbacksConstants.DigitZero => ExternalHostCallbacksConstants.ClosingParenthesis,
+            (uint)ExternalHostCallbacksConstants.DigitOne => ExternalHostCallbacksConstants.ExclamationMark,
+            (uint)ExternalHostCallbacksConstants.DigitTwo => ExternalHostCallbacksConstants.AtSign,
+            (uint)ExternalHostCallbacksConstants.DigitThree => ExternalHostCallbacksConstants.HashSign,
+            (uint)ExternalHostCallbacksConstants.DigitFour => ExternalHostCallbacksConstants.DollarSign,
+            (uint)ExternalHostCallbacksConstants.DigitFive => ExternalHostCallbacksConstants.PercentSign,
+            (uint)ExternalHostCallbacksConstants.DigitSix => ExternalHostCallbacksConstants.Caret,
+            (uint)ExternalHostCallbacksConstants.DigitSeven => ExternalHostCallbacksConstants.Ampersand,
+            (uint)ExternalHostCallbacksConstants.DigitEight => ExternalHostCallbacksConstants.Asterisk,
+            (uint)ExternalHostCallbacksConstants.DigitNine => ExternalHostCallbacksConstants.OpeningParenthesis,
+            (uint)ExternalHostCallbacksConstants.Hyphen => ExternalHostCallbacksConstants.Underscore,
+            (uint)ExternalHostCallbacksConstants.EqualsSign => ExternalHostCallbacksConstants.PlusSign,
+            (uint)ExternalHostCallbacksConstants.OpeningBracket => ExternalHostCallbacksConstants.OpeningBrace,
+            (uint)ExternalHostCallbacksConstants.ClosingBracket => ExternalHostCallbacksConstants.ClosingBrace,
+            (uint)ExternalHostCallbacksConstants.Backslash => ExternalHostCallbacksConstants.VerticalBar,
+            (uint)ExternalHostCallbacksConstants.Semicolon => ExternalHostCallbacksConstants.Colon,
+            (uint)ExternalHostCallbacksConstants.Apostrophe => ExternalHostCallbacksConstants.QuotationMark,
+            (uint)ExternalHostCallbacksConstants.Comma => ExternalHostCallbacksConstants.LessThanSign,
+            (uint)ExternalHostCallbacksConstants.Period => ExternalHostCallbacksConstants.GreaterThanSign,
+            (uint)ExternalHostCallbacksConstants.Slash => ExternalHostCallbacksConstants.QuestionMark,
+            (uint)ExternalHostCallbacksConstants.Backquote => ExternalHostCallbacksConstants.Tilde,
+            _ => code is >= FirstPrintableCharacter and <= LastPrintableCharacter ? code : NoKeyboardCharacter
         };
     }
 
