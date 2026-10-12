@@ -8,8 +8,7 @@ namespace GWGUI.Emulation.Epoch.Emulators.EmuSCV.Factories;
 
 internal sealed class EmuSCVMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorSettings, IEmulatorInputMapper, IEmulatorStorageSettings, IEmulatorConfigurationValidator
 {
-    public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port) =>
-        ControllerProtocolDictionary.Actions(model, Emulator.EmuSCV, port).Select(action => new InputActionDefinition(action.Definition, action.Key)).ToArray();
+    public IReadOnlyList<InputActionDefinition> DescribeInput(MachineModel model, int port) => ControllerProtocolDictionary.Actions(model, Emulator.EmuSCV, port).Select(action => new InputActionDefinition(action.Definition, action.Key)).ToArray();
     public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => NativeInputSnapshotFunctions.Apply(snapshot, input, model, Emulator.EmuSCV);
 
     public IReadOnlyList<EmulationMediaDevice> DescribeStorage(MachineConfiguration configuration) => Settings.Storage(configuration);

@@ -9,10 +9,7 @@ public sealed class EpochEmulationModuleFactory : IEmulationModuleFactory
     public IEmulationModule Create(EmulationModuleContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
-        return new EpochEmulationModule(
-            Path.Combine(context.ModuleDirectory, EmulationModuleConstants.ConfigurationsDirectoryName),
-            context.DataDirectory, context.HttpClient,
-            Path.Combine(context.ModuleDirectory, EmulationModuleConstants.CoreDirectoryName));
+        return new EpochEmulationModule( Path.Combine(context.ModuleDirectory, EmulationModuleConstants.ConfigurationsDirectoryName), context.DataDirectory, context.HttpClient, Path.Combine(context.ModuleDirectory, EmulationModuleConstants.CoreDirectoryName));
     }
 }
 
