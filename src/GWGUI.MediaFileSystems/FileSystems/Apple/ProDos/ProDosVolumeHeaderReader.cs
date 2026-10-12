@@ -21,12 +21,20 @@ public static class ProDosVolumeHeaderReader
     internal static bool TryRead(ReadOnlySpan<byte> root, out ProDosVolumeHeaderInfo? header)
     {
         header = null;
-        if (root.Length != ProDosFileSystemLayout.BlockSize) return false;
+        if (root.Length != ProDosFileSystemLayout.BlockSize)
+            return false;
         var storageAndLength = root[ProDosFileSystemLayout.HeaderOffset];
         var storage = (ProDosStorageType)(storageAndLength >> ProDosFileSystemLayout.StorageTypeShift);
         var nameLength = storageAndLength & ProDosFileSystemLayout.NameLengthMask;
-        if (storage != ProDosStorageType.VolumeHeader || nameLength is 0 or > ProDosFileSystemLayout.MaximumNameLength || root[ProDosFileSystemLayout.HeaderEntryLengthOffset] != ProDosFileSystemLayout.EntrySize) return false;
-        header = new(ProDosPrimitives.ReadName(root, ProDosFileSystemLayout.HeaderOffset), ProDosPrimitives.ReadUInt16(root, ProDosFileSystemLayout.BitmapBlockOffset), ProDosPrimitives.ReadUInt16(root, ProDosFileSystemLayout.TotalBlocksOffset), ProDosDateTime.Read(root, ProDosFileSystemLayout.HeaderOffset + ProDosFileSystemLayout.CreatedDateOffset), Array.AsReadOnly(root.ToArray()));
+        if (storage != ProDosStorageType.VolumeHeader || nameLength is 0 or > ProDosFileSystemLayout.MaximumNameLength || root[ProDosFileSystemLayout.HeaderEntryLengthOffset] != ProDosFileSystemLayout.EntrySize)
+            return false;
+        header = new(
+            ProDosPrimitives.ReadName(root, ProDosFileSystemLayout.HeaderOffset),
+            ProDosPrimitives.ReadUInt16(root, ProDosFileSystemLayout.BitmapBlockOffset),
+            ProDosPrimitives.ReadUInt16(root, ProDosFileSystemLayout.TotalBlocksOffset),
+            ProDosDateTime.Read(root, ProDosFileSystemLayout.HeaderOffset + ProDosFileSystemLayout.CreatedDateOffset),
+            Array.AsReadOnly(root.ToArray())
+        );
         return true;
     }
 }

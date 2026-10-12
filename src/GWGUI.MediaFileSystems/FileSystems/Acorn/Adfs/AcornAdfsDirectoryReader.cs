@@ -19,19 +19,24 @@ public static class AcornAdfsDirectoryReader
             warnings.Add(AcornAdfsWarnings.DepthLimit(depth));
             return new(string.Empty, string.Empty, []);
         }
+    
         if (!visited.Add(address))
         {
             warnings.Add(AcornAdfsWarnings.CyclicDirectory(address));
             return new(string.Empty, string.Empty, []);
         }
-        if (!TryRead(image, address, resolver, out var directory)) throw AcornAdfsExceptions.InvalidDirectory(address);
+    
+        if (!TryRead(image, address, resolver, out var directory))
+            throw AcornAdfsExceptions.InvalidDirectory(address);
         var entries = new List<FileSystemEntry>();
         for (var index = 0; index < AcornAdfsLayout.EntryCount; index++)
         {
             var offset = AcornAdfsLayout.EntriesOffset + index * AcornAdfsLayout.EntrySize;
-            if (directory[offset] == AcornAdfsLayout.EndOfEntries) break;
+            if (directory[offset] == AcornAdfsLayout.EndOfEntries)
+                break;
             var name = AcornAdfsNameCodec.Decode(directory.AsSpan(offset + AcornAdfsLayout.EntryNameOffset, AcornAdfsLayout.EntryNameLength));
-            if (name.Length == 0) continue;
+            if (name.Length == 0)
+                continue;
             var load = BinaryPrimitives.ReadUInt32LittleEndian(directory.AsSpan(offset + AcornAdfsLayout.EntryLoadOffset, sizeof(uint)));
             var execute = BinaryPrimitives.ReadUInt32LittleEndian(directory.AsSpan(offset + AcornAdfsLayout.EntryExecuteOffset, sizeof(uint)));
             var length = BinaryPrimitives.ReadUInt32LittleEndian(directory.AsSpan(offset + AcornAdfsLayout.EntryLengthOffset, sizeof(uint)));
@@ -43,17 +48,33 @@ public static class AcornAdfsDirectoryReader
             var metadataValid = resolver.TryResolveByteOffset(indirectAddress, 0, out _);
             if (isDirectory && metadataValid)
             {
-                try { children = Read(image, indirectAddress, resolver, visited, warnings, depth + 1).Children; }
+                try
+                {
+                    children = Read(image, indirectAddress, resolver, visited, warnings, depth + 1).Children;
+                }
                 catch (InvalidDataException exception)
                 {
                     warnings.Add(Definitions.FileSystemWarningMessages.EntryReadFailure(name, exception));
                     metadataValid = false;
                 }
             }
-            else if (!isDirectory) content = AcornAdfsFileReader.Read(image, indirectAddress, length, resolver, name, warnings, ref metadataValid);
+            else if (!isDirectory)
+                content = AcornAdfsFileReader.Read(image, indirectAddress, length, resolver, name, warnings, ref metadataValid);
             var type = global::GWGUI.MediaFileSystems.AcornFileSystemTime.HasTimestamp(load) ? (load >> BitConstants.BitsPerByte) & 0xfff : 0u;
-            entries.Add(new(name, isDirectory ? FileSystemEntryKind.Directory : FileSystemEntryKind.File, isDirectory ? 0 : length, global::GWGUI.MediaFileSystems.AcornFileSystemTime.Decode(load, execute), Describe(load, execute, type), attributes, indirectAddress, metadataValid, children, content));
+            entries.Add(new(
+                name,
+                isDirectory ? FileSystemEntryKind.Directory : FileSystemEntryKind.File,
+                isDirectory ? 0 : length,
+                global::GWGUI.MediaFileSystems.AcornFileSystemTime.Decode(load, execute),
+                Describe(load, execute, type),
+                attributes,
+                indirectAddress,
+                metadataValid,
+                children,
+                content
+            ));
         }
+    
         var title = AcornAdfsNameCodec.Decode(directory.AsSpan(AcornAdfsLayout.TitleOffset, AcornAdfsLayout.TitleLength));
         var directoryName = AcornAdfsNameCodec.Decode(directory.AsSpan(AcornAdfsLayout.DirectoryNameOffset, AcornAdfsLayout.DirectoryNameLength));
         return new(directoryName, title, entries.OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory).ThenBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase));

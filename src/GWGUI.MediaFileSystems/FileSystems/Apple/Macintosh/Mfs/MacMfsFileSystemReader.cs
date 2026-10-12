@@ -28,19 +28,31 @@ public sealed class MacMfsFileSystemReader : IFileSystemReader
             var signature = volumeInformation.Bytes.Count >= sizeof(ushort) ? MacFileSystemPrimitives.ReadUInt16(volumeInformation.Bytes.ToArray(), 0) : (ushort)0;
             throw MacFileSystemExceptions.InvalidVolume(MacMfsFileSystemLayout.SystemName, signature);
         }
+    
         var mdb = volumeInformation.Bytes.ToArray();
         var directoryStart = MacFileSystemPrimitives.ReadUInt16(mdb, MacMfsFileSystemLayout.DirectoryStartOffset);
         var directoryLength = MacFileSystemPrimitives.ReadUInt16(mdb, MacMfsFileSystemLayout.DirectoryLengthOffset);
         var allocationCount = MacFileSystemPrimitives.ReadUInt16(mdb, MacMfsFileSystemLayout.AllocationCountOffset);
         var allocationSize = MacFileSystemPrimitives.ReadUInt32(mdb, MacMfsFileSystemLayout.AllocationSizeOffset);
-        if (allocationSize == 0 || allocationSize % MacMfsFileSystemLayout.SectorSize != 0) throw MacFileSystemExceptions.InvalidAllocationSize(MacMfsFileSystemLayout.SystemName, allocationSize, MacMfsFileSystemLayout.SectorSize);
+        if (allocationSize == 0 || allocationSize % MacMfsFileSystemLayout.SectorSize != 0)
+            throw MacFileSystemExceptions.InvalidAllocationSize(MacMfsFileSystemLayout.SystemName, allocationSize, MacMfsFileSystemLayout.SectorSize);
         var allocationStart = MacFileSystemPrimitives.ReadUInt16(mdb, MacMfsFileSystemLayout.AllocationStartOffset);
         var freeAllocationCount = MacFileSystemPrimitives.ReadUInt16(mdb, MacMfsFileSystemLayout.FreeAllocationCountOffset);
         var volumeName = MacFileSystemPrimitives.ReadPascalString(mdb, MacMfsFileSystemLayout.VolumeNameOffset, MacMfsFileSystemLayout.MaximumVolumeNameLength);
         var map = MacMfsAllocationMap.Decode(mdb.AsSpan(MacMfsFileSystemLayout.AllocationMapOffset, MacMfsFileSystemLayout.AllocationMapLength), allocationCount);
         var entries = MacMfsDirectoryReader.Read(image, directoryStart, directoryLength, map, allocationStart, allocationSize, warnings);
         var freeBytes = freeAllocationCount <= allocationCount ? (long)freeAllocationCount * allocationSize : 0;
-        if (freeAllocationCount > allocationCount) warnings.Add(MacFileSystemExceptions.InvalidFreeAllocationCount(MacMfsFileSystemLayout.SystemName, freeAllocationCount, allocationCount));
-        return new(volumeName, FileSystemIds.MacMfs, image.Capacity, freeBytes, MacFileSystemTime.FromSeconds(MacFileSystemPrimitives.ReadUInt32(mdb, MacMfsFileSystemLayout.CreatedOffset)), MacFileSystemTime.FromSeconds(MacFileSystemPrimitives.ReadUInt32(mdb, MacMfsFileSystemLayout.ModifiedOffset)), entries, warnings);
+        if (freeAllocationCount > allocationCount)
+            warnings.Add(MacFileSystemExceptions.InvalidFreeAllocationCount(MacMfsFileSystemLayout.SystemName, freeAllocationCount, allocationCount));
+        return new(
+            volumeName,
+            FileSystemIds.MacMfs,
+            image.Capacity,
+            freeBytes,
+            MacFileSystemTime.FromSeconds(MacFileSystemPrimitives.ReadUInt32(mdb, MacMfsFileSystemLayout.CreatedOffset)),
+            MacFileSystemTime.FromSeconds(MacFileSystemPrimitives.ReadUInt32(mdb, MacMfsFileSystemLayout.ModifiedOffset)),
+            entries,
+            warnings
+        );
     }
 }

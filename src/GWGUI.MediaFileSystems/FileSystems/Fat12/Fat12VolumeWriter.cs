@@ -33,9 +33,12 @@ public sealed class Fat12VolumeWriter
             fat[0] = _layout.MediaDescriptor;
             fat[1] = Fat12Table.ReservedEntryByte;
             fat[2] = Fat12Table.ReservedEntryByte;
-            foreach (var node in nodes) WriteNode(node, fat);
+            foreach (var node in nodes)
+                WriteNode(node, fat);
             WriteRootDirectory(nodes);
-            for (var copy = 0; copy < _layout.FatCount; copy++) for (var sector = 0; sector < _layout.SectorsPerFat; sector++) fat.AsSpan(sector * FatBootSectorLayout.SectorSize, FatBootSectorLayout.SectorSize).CopyTo(_sectors[FatBootSectorLayout.FirstFatLogicalBlock + copy * _layout.SectorsPerFat + sector]);
+            for (var copy = 0; copy < _layout.FatCount; copy++)
+                for (var sector = 0; sector < _layout.SectorsPerFat; sector++)
+                    fat.AsSpan(sector * FatBootSectorLayout.SectorSize, FatBootSectorLayout.SectorSize).CopyTo(_sectors[FatBootSectorLayout.FirstFatLogicalBlock + copy * _layout.SectorsPerFat + sector]);
             var blocks = Enumerable.Range(0, geometry.TotalSectors).Select(logicalBlock =>
             {
                 var track = logicalBlock / geometry.SectorsPerTrack;

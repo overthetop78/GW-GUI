@@ -61,16 +61,20 @@ public static class AmigaDosRecoveryReader
 
     private static FileSystemEntry BuildEntry(IMediaSectorImage image, RecoveredEntry candidate, IReadOnlyDictionary<int, RecoveredEntry> candidates, AmigaDosVariant variant, List<string> warnings, HashSet<int> ancestors)
     {
-        if (!ancestors.Add(candidate.BlockNumber)) return CreateEntry(candidate, [], null, false);
-        var children = candidate.Kind == FileSystemEntryKind.Directory ? candidates.Values.Where(child => child.ParentBlock == candidate.BlockNumber).Select(child => BuildEntry(image, child, candidates, variant, warnings, new HashSet<int>(ancestors))).OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory).ThenBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray() : [];
-        if (candidate.Kind != FileSystemEntryKind.File) return CreateEntry(candidate, children, null, true);
+        if (!ancestors.Add(candidate.BlockNumber))
+            return CreateEntry(candidate, [], null, false);
+        var children = candidate.Kind == FileSystemEntryKind.Directory
+            ? candidates.Values.Where(child => child.ParentBlock == candidate.BlockNumber).Select(child => BuildEntry(image, child, candidates, variant, warnings, new HashSet<int>(ancestors))).OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory).ThenBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray()
+            : [];
+        if (candidate.Kind != FileSystemEntryKind.File)
+            return CreateEntry(candidate, children, null, true);
         try
         {
             var size = checked((int)BigEndianInt32.ReadUnsigned(candidate.Data, AmigaDosLayout.FileSizeOffset));
             var file = AmigaDosFileReader.Read(image, candidate.Data, size, variant, warnings);
             return CreateEntry(candidate, children, file.Content, file.IsValid);
         }
-        catch (Exception exception) when (exception is InvalidDataException or OverflowException or ArgumentOutOfRangeException)
+        catch (Exception exception)when (exception is InvalidDataException or OverflowException or ArgumentOutOfRangeException)
         {
             warnings.Add(Definitions.FileSystemWarningMessages.EntryReadFailure(candidate.Name, exception));
             return CreateEntry(candidate, children, null, false);
@@ -80,7 +84,18 @@ public static class AmigaDosRecoveryReader
     private static FileSystemEntry CreateEntry(RecoveredEntry candidate, IReadOnlyList<FileSystemEntry> children, IReadOnlyList<byte>? content, bool metadataValid)
     {
         var size = candidate.Kind == FileSystemEntryKind.File ? BigEndianInt32.ReadUnsigned(candidate.Data, AmigaDosLayout.FileSizeOffset) : 0;
-        return new(candidate.Name, candidate.Kind, size, AmigaDosTime.Read(candidate.Data, AmigaDosLayout.DateOffset), AmigaDosNameCodec.Read(candidate.Data, AmigaDosLayout.LongNameOffset, AmigaDosLayout.CommentMaximumLength), BigEndianInt32.ReadUnsigned(candidate.Data, AmigaDosLayout.ProtectionOffset), candidate.BlockNumber, metadataValid, children, content);
+        return new(
+            candidate.Name,
+            candidate.Kind,
+            size,
+            AmigaDosTime.Read(candidate.Data, AmigaDosLayout.DateOffset),
+            AmigaDosNameCodec.Read(candidate.Data, AmigaDosLayout.LongNameOffset, AmigaDosLayout.CommentMaximumLength),
+            BigEndianInt32.ReadUnsigned(candidate.Data, AmigaDosLayout.ProtectionOffset),
+            candidate.BlockNumber,
+            metadataValid,
+            children,
+            content
+        );
     }
 
     private sealed record RecoveredEntry(int BlockNumber, int ParentBlock, string Name, FileSystemEntryKind Kind, byte[] Data);

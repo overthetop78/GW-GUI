@@ -39,16 +39,27 @@ public static class MigrationValidator
 
     private static void ValidateEntry(MigrationEntry entry, MigrationTargetCapabilities target, ICollection<MigrationLoss> losses)
     {
-        if (entry.TargetName.Length == 0 || entry.TargetName.Any(character => target.ForbiddenNameCharacters.Contains(character) || !target.AllowsControlCharacters && char.IsControl(character)) || target.NamePolicy is not null && !target.NamePolicy.IsValid(entry.TargetName)) losses.Add(new(MigrationLossKind.InvalidName, entry.SourcePath, true, entry.TargetName));
-        if (entry.TargetName.Length > target.MaximumNameLength) losses.Add(new(MigrationLossKind.NameTooLong, entry.SourcePath, true, entry.TargetName.Length.ToString()));
-        if (!entry.MetadataValid) losses.Add(new(MigrationLossKind.InvalidMetadata, entry.SourcePath, true, string.Empty));
-        if (entry.Kind == FileSystemEntryKind.Directory && !target.SupportsDirectories) losses.Add(new(MigrationLossKind.UnsupportedEntryKind, entry.SourcePath, true, entry.Kind.ToString()));
-        if (entry.Kind == FileSystemEntryKind.Link && !target.SupportsLinks) losses.Add(new(MigrationLossKind.UnsupportedEntryKind, entry.SourcePath, true, entry.Kind.ToString()));
-        if (entry.Kind == FileSystemEntryKind.Unknown) losses.Add(new(MigrationLossKind.UnsupportedEntryKind, entry.SourcePath, true, entry.Kind.ToString()));
-        if (entry.Kind == FileSystemEntryKind.File && entry.Content is null) losses.Add(new(MigrationLossKind.MissingContent, entry.SourcePath, true, string.Empty));
-        if (entry.Kind == FileSystemEntryKind.File && entry.Size > target.MaximumFileSize) losses.Add(new(MigrationLossKind.FileTooLarge, entry.SourcePath, true, entry.Size.ToString()));
-        if (entry.Modified is not null && !target.SupportsModifiedDate) losses.Add(new(MigrationLossKind.ModifiedDate, entry.SourcePath, false, entry.Modified.Value.ToString("O")));
-        if (!string.IsNullOrEmpty(entry.Comment) && !target.SupportsComments) losses.Add(new(MigrationLossKind.Comment, entry.SourcePath, false, entry.Comment));
-        if (entry.RawAttributes != 0 && !target.SupportsRawAttributes) losses.Add(new(MigrationLossKind.Attributes, entry.SourcePath, false, entry.RawAttributes.ToString()));
+        if (entry.TargetName.Length == 0 || entry.TargetName.Any(character => target.ForbiddenNameCharacters.Contains(character) || !target.AllowsControlCharacters && char.IsControl(character)) || target.NamePolicy is not null && !target.NamePolicy.IsValid(entry.TargetName))
+            losses.Add(new(MigrationLossKind.InvalidName, entry.SourcePath, true, entry.TargetName));
+        if (entry.TargetName.Length > target.MaximumNameLength)
+            losses.Add(new(MigrationLossKind.NameTooLong, entry.SourcePath, true, entry.TargetName.Length.ToString()));
+        if (!entry.MetadataValid)
+            losses.Add(new(MigrationLossKind.InvalidMetadata, entry.SourcePath, true, string.Empty));
+        if (entry.Kind == FileSystemEntryKind.Directory && !target.SupportsDirectories)
+            losses.Add(new(MigrationLossKind.UnsupportedEntryKind, entry.SourcePath, true, entry.Kind.ToString()));
+        if (entry.Kind == FileSystemEntryKind.Link && !target.SupportsLinks)
+            losses.Add(new(MigrationLossKind.UnsupportedEntryKind, entry.SourcePath, true, entry.Kind.ToString()));
+        if (entry.Kind == FileSystemEntryKind.Unknown)
+            losses.Add(new(MigrationLossKind.UnsupportedEntryKind, entry.SourcePath, true, entry.Kind.ToString()));
+        if (entry.Kind == FileSystemEntryKind.File && entry.Content is null)
+            losses.Add(new(MigrationLossKind.MissingContent, entry.SourcePath, true, string.Empty));
+        if (entry.Kind == FileSystemEntryKind.File && entry.Size > target.MaximumFileSize)
+            losses.Add(new(MigrationLossKind.FileTooLarge, entry.SourcePath, true, entry.Size.ToString()));
+        if (entry.Modified is not null && !target.SupportsModifiedDate)
+            losses.Add(new(MigrationLossKind.ModifiedDate, entry.SourcePath, false, entry.Modified.Value.ToString("O")));
+        if (!string.IsNullOrEmpty(entry.Comment) && !target.SupportsComments)
+            losses.Add(new(MigrationLossKind.Comment, entry.SourcePath, false, entry.Comment));
+        if (entry.RawAttributes != 0 && !target.SupportsRawAttributes)
+            losses.Add(new(MigrationLossKind.Attributes, entry.SourcePath, false, entry.RawAttributes.ToString()));
     }
 }

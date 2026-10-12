@@ -15,12 +15,21 @@ internal sealed record CommodoreDosWritableGeometry(string FormatId, int Cylinde
             var tracks = Commodore1541Geometry.StandardTrackCount;
             return new(MediaImageFormatIds.Commodore1541, tracks, 1, Commodore1541Geometry.MaximumSectorsPerTrack, Commodore1541Geometry.BlocksPerSide(tracks));
         }
+    
         if (formatId.Equals(MediaImageFormatIds.Commodore1571, StringComparison.OrdinalIgnoreCase))
         {
             var tracks = Commodore1541Geometry.StandardTrackCount;
             return new(MediaImageFormatIds.Commodore1571, tracks, Commodore1571Geometry.SideCount, Commodore1541Geometry.MaximumSectorsPerTrack, Commodore1541Geometry.BlocksPerSide(tracks) * Commodore1571Geometry.SideCount);
         }
-        if (formatId.Equals(MediaImageFormatIds.Commodore1581, StringComparison.OrdinalIgnoreCase)) return new(MediaImageFormatIds.Commodore1581, Commodore1581Geometry.LogicalCylinderCount, Commodore1581Geometry.LogicalHeadCount, Commodore1581Geometry.LogicalBlocksPerTrack, Commodore1581Geometry.LogicalCylinderCount * Commodore1581Geometry.LogicalBlocksPerTrack);
+    
+        if (formatId.Equals(MediaImageFormatIds.Commodore1581, StringComparison.OrdinalIgnoreCase))
+            return new(
+                MediaImageFormatIds.Commodore1581,
+                Commodore1581Geometry.LogicalCylinderCount,
+                Commodore1581Geometry.LogicalHeadCount,
+                Commodore1581Geometry.LogicalBlocksPerTrack,
+                Commodore1581Geometry.LogicalCylinderCount * Commodore1581Geometry.LogicalBlocksPerTrack
+            );
         throw CommodoreDosVolumeWriterExceptions.UnsupportedFormat(formatId);
     }
 

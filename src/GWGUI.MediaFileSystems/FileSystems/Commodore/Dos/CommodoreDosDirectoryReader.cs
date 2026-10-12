@@ -52,16 +52,23 @@ internal static class CommodoreDosDirectoryReader
                 warnings.Add(CommodoreDosWarnings.DirectoryCycle(track, sector));
                 break;
             }
+    
             var sectorStatus = CommodoreDosSectorReader.Read(image, track, sector, out var data);
             if (sectorStatus != CommodoreDosSectorReadStatus.Success)
             {
-                warnings.Add(sectorStatus switch { CommodoreDosSectorReadStatus.Truncated => CommodoreDosWarnings.DirectorySectorTruncated(track, sector, data.Count), CommodoreDosSectorReadStatus.InvalidCoordinate => CommodoreDosWarnings.DirectoryCoordinateInvalid(track, sector), _ => CommodoreDosWarnings.DirectorySectorMissing(track, sector) });
+                warnings.Add(sectorStatus switch
+                {
+                    CommodoreDosSectorReadStatus.Truncated => CommodoreDosWarnings.DirectorySectorTruncated(track, sector, data.Count),
+                    CommodoreDosSectorReadStatus.InvalidCoordinate => CommodoreDosWarnings.DirectoryCoordinateInvalid(track, sector),
+                    _ => CommodoreDosWarnings.DirectorySectorMissing(track, sector)});
                 break;
             }
+    
             ReadEntries(image, data, entries, warnings);
             track = data[CommodoreDosLayout.NextTrackOffset];
             sector = data[CommodoreDosLayout.NextSectorOffset];
         }
+    
         return entries.OrderBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray();
     }
 

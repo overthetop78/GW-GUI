@@ -13,8 +13,9 @@ public static class AmigaDosDirectoryReader
         if (depth > AmigaDosLayout.MaximumDirectoryDepth)
         {
             warnings.Add(AmigaDosWarnings.DirectoryDepthExceeded(depth));
-            return [];
+            return[];
         }
+    
         var entries = new List<FileSystemEntry>();
         for (var index = 0; index < hashSize; index++)
         {
@@ -27,11 +28,13 @@ public static class AmigaDosDirectoryReader
                     warnings.Add(AmigaDosWarnings.InvalidDirectoryChain(blockNumber));
                     break;
                 }
+    
                 if (!image.TryGetBlock(blockNumber, out var sector))
                 {
                     warnings.Add(AmigaDosWarnings.MissingDirectoryEntry(blockNumber));
                     break;
                 }
+    
                 var block = sector.Data.ToArray();
                 var next = BigEndianInt32.Read(block, AmigaDosLayout.HashChainOffset);
                 if (!visited.Add(blockNumber))
@@ -39,6 +42,7 @@ public static class AmigaDosDirectoryReader
                     blockNumber = next;
                     continue;
                 }
+    
                 var entryType = AmigaDosEntryTypeExtensions.FromRaw(BigEndianInt32.Read(block, AmigaDosLayout.SecondaryTypeOffset));
                 var kind = entryType.ToCommonKind();
                 var name = AmigaDosNameCodec.ReadEntryName(block, variant);
@@ -55,16 +59,30 @@ public static class AmigaDosDirectoryReader
                         content = file.Content;
                         dataValid = file.IsValid;
                     }
-                    catch (Exception exception) when (exception is InvalidDataException or OverflowException or ArgumentOutOfRangeException)
+                    catch (Exception exception)when (exception is InvalidDataException or OverflowException or ArgumentOutOfRangeException)
                     {
                         warnings.Add(Definitions.FileSystemWarningMessages.EntryReadFailure(name, exception));
                         dataValid = false;
                     }
                 }
-                entries.Add(new(name, kind, size, AmigaDosTime.Read(block, AmigaDosLayout.DateOffset), AmigaDosNameCodec.Read(block, AmigaDosLayout.LongNameOffset, AmigaDosLayout.CommentMaximumLength), BigEndianInt32.ReadUnsigned(block, AmigaDosLayout.ProtectionOffset), blockNumber, metadataValid, children, content, dataValid: dataValid));
+    
+                entries.Add(new(
+                    name,
+                    kind,
+                    size,
+                    AmigaDosTime.Read(block, AmigaDosLayout.DateOffset),
+                    AmigaDosNameCodec.Read(block, AmigaDosLayout.LongNameOffset, AmigaDosLayout.CommentMaximumLength),
+                    BigEndianInt32.ReadUnsigned(block, AmigaDosLayout.ProtectionOffset),
+                    blockNumber,
+                    metadataValid,
+                    children,
+                    content,
+                    dataValid: dataValid
+                ));
                 blockNumber = next;
             }
         }
+    
         return entries.OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory).ThenBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase).ToArray();
     }
 }

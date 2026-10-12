@@ -7,10 +7,32 @@ namespace GWGUI.MediaFileSystems.FileSystems.Commodore.Dos;
 public sealed class CommodoreDosLayout
 {
     /// <summary>Disposition utilisée par les images D64 et D71.</summary>
-    public static CommodoreDosLayout D64D71 { get; } = new(Commodore1541DosLayout.HeaderTrack, Commodore1541DosLayout.HeaderSector, Commodore1541DosLayout.HeaderTrack, Commodore1541DosLayout.DirectorySector, Commodore1541DosLayout.VolumeNameOffset, [Commodore1541DosLayout.HeaderSector], Commodore1541DosLayout.BamEntriesOffset, Commodore1541DosLayout.BamEntrySize, Commodore1541Geometry.StandardTrackCount, Commodore1541DosLayout.HeaderSignature);
+    public static CommodoreDosLayout D64D71 { get; } = new(
+        Commodore1541DosLayout.HeaderTrack,
+        Commodore1541DosLayout.HeaderSector,
+        Commodore1541DosLayout.HeaderTrack,
+        Commodore1541DosLayout.DirectorySector,
+        Commodore1541DosLayout.VolumeNameOffset,
+        [Commodore1541DosLayout.HeaderSector],
+        Commodore1541DosLayout.BamEntriesOffset,
+        Commodore1541DosLayout.BamEntrySize,
+        Commodore1541Geometry.StandardTrackCount,
+        Commodore1541DosLayout.HeaderSignature
+    );
 
     /// <summary>Disposition utilisée par les images D81.</summary>
-    public static CommodoreDosLayout D81 { get; } = new(Commodore1581DosLayout.HeaderTrack, Commodore1581DosLayout.HeaderSector, Commodore1581DosLayout.HeaderTrack, Commodore1581DosLayout.DirectorySector, Commodore1581DosLayout.VolumeNameOffset, [Commodore1581DosLayout.FirstBamSector, Commodore1581DosLayout.SecondBamSector], Commodore1581DosLayout.BamEntriesOffset, Commodore1581DosLayout.BamEntrySize, Commodore1581DosLayout.BamEntryCount, Commodore1581DosLayout.HeaderSignature);
+    public static CommodoreDosLayout D81 { get; } = new(
+        Commodore1581DosLayout.HeaderTrack,
+        Commodore1581DosLayout.HeaderSector,
+        Commodore1581DosLayout.HeaderTrack,
+        Commodore1581DosLayout.DirectorySector,
+        Commodore1581DosLayout.VolumeNameOffset,
+        [Commodore1581DosLayout.FirstBamSector, Commodore1581DosLayout.SecondBamSector],
+        Commodore1581DosLayout.BamEntriesOffset,
+        Commodore1581DosLayout.BamEntrySize,
+        Commodore1581DosLayout.BamEntryCount,
+        Commodore1581DosLayout.HeaderSignature
+    );
 
     /// <summary>Taille d'un secteur logique Commodore DOS.</summary>
     public const int SectorSize = 256;

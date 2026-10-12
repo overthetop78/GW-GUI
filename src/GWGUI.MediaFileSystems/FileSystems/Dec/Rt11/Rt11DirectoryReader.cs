@@ -40,17 +40,52 @@ public static class Rt11DirectoryReader
         for (var offset = Rt11FileSystemLayout.EntriesOffset; offset + entrySize <= bytes.Length; offset += entrySize)
         {
             var status = (Rt11DirectoryEntryStatus)Rt11Primitives.ReadUInt16(bytes, offset + Rt11FileSystemLayout.StatusOffset);
-            if (status.HasFlag(Rt11DirectoryEntryStatus.EndOfSegment)) break;
+            if (status.HasFlag(Rt11DirectoryEntryStatus.EndOfSegment))
+                break;
             var blockLength = Rt11Primitives.ReadUInt16(bytes, offset + Rt11FileSystemLayout.BlockLengthOffset);
-            if (status.HasFlag(Rt11DirectoryEntryStatus.Empty)) { freeBlocks += blockLength; dataBlock = checked(dataBlock + blockLength); continue; }
-            if ((status & (Rt11DirectoryEntryStatus.Permanent | Rt11DirectoryEntryStatus.Tentative)) == 0) { dataBlock = checked(dataBlock + blockLength); continue; }
+            if (status.HasFlag(Rt11DirectoryEntryStatus.Empty))
+            {
+                freeBlocks += blockLength;
+                dataBlock = checked(dataBlock + blockLength);
+                continue;
+            }
+    
+            if ((status & (Rt11DirectoryEntryStatus.Permanent | Rt11DirectoryEntryStatus.Tentative)) == 0)
+            {
+                dataBlock = checked(dataBlock + blockLength);
+                continue;
+            }
+    
             var name = (Rt11Radix50.Decode(Rt11Primitives.ReadUInt16(bytes, offset + Rt11FileSystemLayout.NameOffset)) + Rt11Radix50.Decode(Rt11Primitives.ReadUInt16(bytes, offset + Rt11FileSystemLayout.NameOffset + sizeof(ushort)))).TrimEnd();
             var extension = Rt11Radix50.Decode(Rt11Primitives.ReadUInt16(bytes, offset + Rt11FileSystemLayout.ExtensionOffset)).TrimEnd();
-            if (extension.Length != 0) name += "." + extension;
-            if (string.IsNullOrWhiteSpace(name)) { warnings.Add(Rt11FileSystemExceptions.EmptyName(dataBlock, offset)); dataBlock = checked(dataBlock + blockLength); continue; }
+            if (extension.Length != 0)
+                name += "." + extension;
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                warnings.Add(Rt11FileSystemExceptions.EmptyName(dataBlock, offset));
+                dataBlock = checked(dataBlock + blockLength);
+                continue;
+            }
+    
             var content = Rt11FileContentReader.Read(image, dataBlock, blockLength);
-            if (!content.IsValid) { warnings.Add(Rt11FileSystemExceptions.MissingContent(name, content.MissingBlocks)); valid = false; }
-            entries.Add(new(name, FileSystemEntryKind.File, blockLength * (long)Rt11FileSystemLayout.BlockSize, Rt11Date.Decode(Rt11Primitives.ReadUInt16(bytes, offset + Rt11FileSystemLayout.DateOffset)), Rt11FileSystemLayout.FileDescription(status), status.HasFlag(Rt11DirectoryEntryStatus.Protected) ? Rt11FileSystemLayout.ProtectedAttribute : Rt11FileSystemLayout.UnprotectedAttribute, dataBlock, content.IsValid, [], content.Content));
+            if (!content.IsValid)
+            {
+                warnings.Add(Rt11FileSystemExceptions.MissingContent(name, content.MissingBlocks));
+                valid = false;
+            }
+    
+            entries.Add(new(
+                name,
+                FileSystemEntryKind.File,
+                blockLength * (long)Rt11FileSystemLayout.BlockSize,
+                Rt11Date.Decode(Rt11Primitives.ReadUInt16(bytes, offset + Rt11FileSystemLayout.DateOffset)),
+                Rt11FileSystemLayout.FileDescription(status),
+                status.HasFlag(Rt11DirectoryEntryStatus.Protected) ? Rt11FileSystemLayout.ProtectedAttribute : Rt11FileSystemLayout.UnprotectedAttribute,
+                dataBlock,
+                content.IsValid,
+                [],
+                content.Content
+            ));
             dataBlock = checked(dataBlock + blockLength);
         }
     }

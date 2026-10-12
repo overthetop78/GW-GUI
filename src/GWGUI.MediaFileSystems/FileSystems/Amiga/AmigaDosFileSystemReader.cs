@@ -26,24 +26,41 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
     /// <exception cref="InvalidDataException">Le boot, la racine ou un bloc indispensable est invalide.</exception>
     public FileSystemVolume Read(IMediaSectorImage image)
     {
-        if (image.TryGetBlock(AmigaDosLayout.BootBlock, out var bootBlock) && AmigaDosRootBlockReader.HasDosPrefix(bootBlock.Data.ToArray()) && bootBlock.Data[AmigaDosLayout.DosVariantOffset] > (byte)AmigaDosLayout.MaximumVariant) throw AmigaDosExceptions.UnsupportedBootVariant(bootBlock.Data[AmigaDosLayout.DosVariantOffset]);
+        if (image.TryGetBlock(AmigaDosLayout.BootBlock, out var bootBlock) && AmigaDosRootBlockReader.HasDosPrefix(bootBlock.Data.ToArray()) && bootBlock.Data[AmigaDosLayout.DosVariantOffset] > (byte)AmigaDosLayout.MaximumVariant)
+            throw AmigaDosExceptions.UnsupportedBootVariant(bootBlock.Data[AmigaDosLayout.DosVariantOffset]);
         if (!AmigaDosRootBlockReader.TryRead(image, out var rootResult) || rootResult is null)
         {
-            if (AmigaDosRecoveryReader.TryRead(image, out var recovered) && recovered is not null) return recovered;
+            if (AmigaDosRecoveryReader.TryRead(image, out var recovered) && recovered is not null)
+                return recovered;
             if (image.TryGetBlock(AmigaDosLayout.BootBlock, out bootBlock) && AmigaDosRootBlockReader.HasDosPrefix(bootBlock.Data.ToArray()))
             {
                 var declaredRoot = BigEndianInt32.Read(bootBlock.Data.ToArray(), AmigaDosLayout.BootRootPointerOffset);
                 throw AmigaDosExceptions.InvalidRootBlock(declaredRoot > 0 ? declaredRoot : image.BlockCount / 2);
             }
+    
             throw AmigaDosExceptions.UnsupportedBoot();
         }
+    
         var warnings = new List<string>();
         var root = rootResult.Data;
-        if (!AmigaDosChecksum.IsValid(root)) warnings.Add(AmigaDosWarnings.InvalidRootChecksum(rootResult.BlockNumber));
-        var visited = new HashSet<int> { rootResult.BlockNumber };
+        if (!AmigaDosChecksum.IsValid(root))
+            warnings.Add(AmigaDosWarnings.InvalidRootChecksum(rootResult.BlockNumber));
+        var visited = new HashSet<int>
+        {
+            rootResult.BlockNumber
+        };
         var entries = AmigaDosDirectoryReader.Read(image, root, rootResult.HashTableSize, rootResult.Variant, visited, warnings, 0);
         var freeBlocks = AmigaDosBitmapReader.CountFreeBlocks(image, root, warnings);
-        return new(AmigaDosNameCodec.Read(root, AmigaDosLayout.OrdinaryNameOffset, AmigaDosLayout.OrdinaryNameMaximumLength), rootResult.Variant.FileSystemId(), image.Capacity, (long)freeBlocks * AmigaDosLayout.BlockSize, AmigaDosTime.Read(root, AmigaDosLayout.DateOffset), AmigaDosTime.Read(root, AmigaDosLayout.VolumeModifiedDateOffset), entries, warnings);
+        return new(
+            AmigaDosNameCodec.Read(root, AmigaDosLayout.OrdinaryNameOffset, AmigaDosLayout.OrdinaryNameMaximumLength),
+            rootResult.Variant.FileSystemId(),
+            image.Capacity,
+            (long)freeBlocks * AmigaDosLayout.BlockSize,
+            AmigaDosTime.Read(root, AmigaDosLayout.DateOffset),
+            AmigaDosTime.Read(root, AmigaDosLayout.VolumeModifiedDateOffset),
+            entries,
+            warnings
+        );
     }
 
 }

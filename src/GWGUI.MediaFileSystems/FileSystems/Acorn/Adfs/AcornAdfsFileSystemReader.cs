@@ -21,7 +21,8 @@ public sealed class AcornAdfsFileSystemReader : IFileSystemReader
     /// <inheritdoc />
     public FileSystemVolume Read(IMediaSectorImage image)
     {
-        if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize != AcornAdfsLayout.BlockSize || image.BlockCount != AcornAdfsLayout.ImageBlockCount || !TryCreateLayout(image, out var layout) || !AcornAdfsDirectoryReader.TryRead(image, layout.RootAddress, layout, out _)) throw AcornAdfsExceptions.UnsupportedImage(image.BlockSize, image.BlockCount);
+        if (!CatalogFormatIds.Contains(image.FormatId) || image.BlockSize != AcornAdfsLayout.BlockSize || image.BlockCount != AcornAdfsLayout.ImageBlockCount || !TryCreateLayout(image, out var layout) || !AcornAdfsDirectoryReader.TryRead(image, layout.RootAddress, layout, out _))
+            throw AcornAdfsExceptions.UnsupportedImage(image.BlockSize, image.BlockCount);
         var warnings = new List<string>();
         var root = AcornAdfsDirectoryReader.Read(image, layout.RootAddress, layout, new HashSet<int>(), warnings, 0);
         return new(layout.VolumeName.Length == 0 ? root.Name : layout.VolumeName, Definitions.FileSystemIds.AcornAdfs, image.Capacity, layout.FreeBytes, null, null, root.Children, warnings);
