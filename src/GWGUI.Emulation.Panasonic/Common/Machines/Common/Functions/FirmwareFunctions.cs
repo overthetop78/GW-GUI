@@ -11,7 +11,13 @@ internal static class FirmwareFunctions
         return configuration.Core == Emulator.None ? engine.Adapters(configuration.MachineId).OfType<IEmulatorFirmwareCapabilities>().FirstOrDefault() : engine.Adapter(configuration) as IEmulatorFirmwareCapabilities;
     }
     internal static IReadOnlyList<FirmwareRequirement> Requirements(MachineConfiguration configuration) => Capabilities(configuration)?.DescribeFirmware(configuration) ?? [];
-    internal static EmulationSettingsBlock Describe(MachineConfiguration configuration) => new(FirmwareConstants.BlockId, EmulationMachineTab.Rom, FirmwareConstants.TitleResourceKey, Requirements(configuration).Select(requirement => new EmulationSettingsField(requirement.FieldId, EmulationMachineTab.Rom, FirmwareConstants.BlockId, requirement.DisplayResourceKey, EmulationSettingsEditor.Path, configuration.Firmware.Images.GetValueOrDefault(requirement.Role))).ToArray(), IsCompact: true);
+    internal static EmulationSettingsBlock Describe(MachineConfiguration configuration) => new(
+        FirmwareConstants.BlockId,
+        EmulationMachineTab.Rom,
+        FirmwareConstants.TitleResourceKey,
+        Requirements(configuration).Select(requirement => new EmulationSettingsField(requirement.FieldId, EmulationMachineTab.Rom, FirmwareConstants.BlockId, requirement.DisplayResourceKey, EmulationSettingsEditor.Path, configuration.Firmware.Images.GetValueOrDefault(requirement.Role))).ToArray(),
+        IsCompact: true
+    );
     internal static FirmwareConfiguration Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values)
     {
         var selected = new Dictionary<FirmwareRole, string>(configuration.Firmware.Images);

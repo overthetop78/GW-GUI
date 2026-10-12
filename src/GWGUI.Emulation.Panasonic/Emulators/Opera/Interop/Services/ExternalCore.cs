@@ -80,31 +80,64 @@ internal sealed class ExternalCore : IEmulatorCore
     {
         var exports = _initialized && _exports is { } active ? active : throw new InvalidOperationException();
         _input?.Release();
-        if (_loaded) { try { exports.UnloadGame(); } finally { _loaded = false; _content = null; } }
+        if (_loaded)
+        {
+            try
+            {
+                exports.UnloadGame();
+            }
+            finally
+            {
+                _loaded = false;
+                _content = null;
+            }
+        }
+    
         var loaded = false;
         if (content is null)
         {
-            if (_environment?.SupportsNoGame != true) throw UnsupportedMedia();
+            if (_environment?.SupportsNoGame != true)
+                throw UnsupportedMedia();
             loaded = exports.LoadGame(nint.Zero);
         }
         else
         {
-            if (content.Category != EmulationMediaType.CompactDisc || content.Slot != EmulationMediaSlot.Cd0) throw UnsupportedMedia();
+            if (content.Category != EmulationMediaType.CompactDisc || content.Slot != EmulationMediaSlot.Cd0)
+                throw UnsupportedMedia();
             var path = Path.GetFullPath(content.Path);
-            if (!File.Exists(path)) throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.RequiredMediaMissing, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+            if (!File.Exists(path))
+                throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Media, EmulationMessageCode.RequiredMediaMissing, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
             using var filename = new ExternalCoreUtf8String(path);
-            var info = new ExternalCoreApi.GameInfo { Path = filename.Pointer };
+            var info = new ExternalCoreApi.GameInfo
+            {
+                Path = filename.Pointer
+            };
             var pointer = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
-            try { Marshal.StructureToPtr(info, pointer, false); loaded = exports.LoadGame(pointer); }
-            finally { Marshal.FreeHGlobal(pointer); }
+            try
+            {
+                Marshal.StructureToPtr(info, pointer, false);
+                loaded = exports.LoadGame(pointer);
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(pointer);
+            }
         }
-        if (!loaded) throw new EmulationMessageException(new EmulationMessage(content is null ? EmulationMessageCategory.Firmware : EmulationMessageCategory.Media, content is null ? EmulationMessageCode.FirmwareIncompatible : EmulationMessageCode.MediaUnsupported, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+    
+        if (!loaded)
+            throw new EmulationMessageException(new EmulationMessage(
+                content is null ? EmulationMessageCategory.Firmware : EmulationMessageCategory.Media,
+                content is null ? EmulationMessageCode.FirmwareIncompatible : EmulationMessageCode.MediaUnsupported,
+                EmulationMessageSeverity.Error,
+                EmulationMessageTarget.Dialog
+            ));
         _loaded = true;
         _content = content;
         exports.GetSystemAvInfo(out var av);
         _environment!.ApplyAvInfo(av);
         RefreshRegion();
-        for (var port = ControllerConstants.FirstPort; port < ControllerConstants.PortCount; port++) SetControllerPortDevice(port, InputSettingsFunctions.Peripheral(_configuration!.Input, port));
+        for (var port = ControllerConstants.FirstPort; port < ControllerConstants.PortCount; port++)
+            SetControllerPortDevice(port, InputSettingsFunctions.Peripheral(_configuration!.Input, port));
         ThrowCallbackFailure();
     }
     private void RefreshRegion() => Region = _exports?.GetRegion() switch { 0 => EmulationVideoStandard.Ntsc, 1 => EmulationVideoStandard.Pal, _ => null };

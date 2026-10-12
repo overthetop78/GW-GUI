@@ -30,7 +30,19 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly bool _requiresResetRestart;
     private readonly bool _supportsNoContent;
 
-    internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core, string sessionDirectory, Func<EmulationMediaSlot, string?, bool> requiresMediaRestart, IAudioOutput? audioOutput = null, string? saveDirectory = null, Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null, bool requiresResetRestart = false, bool supportsNoContent = false)
+    internal Machine(
+        Guid id,
+        MachineConfiguration configuration,
+        IEmulatorCore core,
+        string sessionDirectory,
+        Func<EmulationMediaSlot, string?, bool> requiresMediaRestart,
+        IAudioOutput? audioOutput = null,
+        string? saveDirectory = null,
+        Func<IAudioOutput?>? audioOutputFactory = null,
+        Func<IEmulatorCore>? coreFactory = null,
+        bool requiresResetRestart = false,
+        bool supportsNoContent = false
+    )
     {
         Id = id;
         Configuration = configuration;
@@ -42,7 +54,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _sessionDirectory = sessionDirectory;
         _audio = new AudioOutputController(audioOutput, audioOutputFactory);
         _audio.SetMuted(!configuration.AudioEnabled);
-        if (configuration.Options.TryGetValue(VideoAudioSettingsConstants.AudioVolumeOption, out var volume) && int.TryParse(volume, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volumePercent)) _audio.SetVolume(volumePercent / (float)VideoAudioSettingsConstants.MaximumVolumePercent);
+        if (configuration.Options.TryGetValue(VideoAudioSettingsConstants.AudioVolumeOption, out var volume) && int.TryParse(volume, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volumePercent))
+            _audio.SetVolume(volumePercent / (float)VideoAudioSettingsConstants.MaximumVolumePercent);
         _saveDirectory = saveDirectory;
         _requiresResetRestart = requiresResetRestart;
         _supportsNoContent = supportsNoContent;
@@ -96,7 +109,17 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     string IEmulationRuntime.EmulatorVersion => CoreVersion;
     IReadOnlySet<string> IEmulationRuntime.SupportedContentExtensions => SupportedContentExtensions;
     IReadOnlyDictionary<EmulationMediaSlot, bool> IEmulationRuntime.MediaActivity => RuntimeStatus.MediaActivity;
-    IReadOnlyList<EmulationOption> IEmulationRuntime.AvailableOptions => AvailableOptions .Select(option => new EmulationOption( option.Key, option.Name, option.Description, option.Category, option.DefaultValue, option.CurrentValue, option.Values.Select(value => new EmulationOptionValue(value.Value, value.Label)).ToArray(), option.IsVisible, option.RequiresRestart)) .ToArray();
+    IReadOnlyList<EmulationOption> IEmulationRuntime.AvailableOptions => AvailableOptions.Select(option => new EmulationOption(
+        option.Key,
+        option.Name,
+        option.Description,
+        option.Category,
+        option.DefaultValue,
+        option.CurrentValue,
+        option.Values.Select(value => new EmulationOptionValue(value.Value, value.Label)).ToArray(),
+        option.IsVisible,
+        option.RequiresRestart
+    )).ToArray();
     VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;
     double IEmulationVideo.FramesPerSecond => _core.FramesPerSecond;
     event EventHandler<VideoFrame>? IEmulationVideo.FrameReady

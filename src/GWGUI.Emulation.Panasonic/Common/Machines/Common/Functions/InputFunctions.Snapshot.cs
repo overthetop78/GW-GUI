@@ -29,11 +29,31 @@ internal static class InputSnapshotFunctions
     private static bool IsMotion(ControllerCommand command) => command is ControllerCommand.MoveUp or ControllerCommand.MoveDown or ControllerCommand.MoveLeft or ControllerCommand.MoveRight or ControllerCommand.AimUp or ControllerCommand.AimDown or ControllerCommand.AimLeft or ControllerCommand.AimRight;
     private static float Value(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot, int deadZone)
     {
-        if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase)) return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key) ? 1 : 0;
-        if (mapping.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase)) return mapping[InputMappingConstants.MousePrefix.Length..] switch { "X+" => Math.Max(0, snapshot.Pointer.DeltaX), "X−" => Math.Max(0, -snapshot.Pointer.DeltaX), "Y+" => Math.Max(0, snapshot.Pointer.DeltaY), "Y−" => Math.Max(0, -snapshot.Pointer.DeltaY), "Left" => snapshot.Pointer.Left ? 1 : 0, "Right" => snapshot.Pointer.Right ? 1 : 0, "Middle" => snapshot.Pointer.Middle ? 1 : 0, "XButton1" => snapshot.Pointer.ExtendedButton1 ? 1 : 0, "XButton2" => snapshot.Pointer.ExtendedButton2 ? 1 : 0, "WheelUp" => snapshot.Pointer.Wheel > 0 ? 1 : 0, "WheelDown" => snapshot.Pointer.Wheel < 0 ? 1 : 0, "WheelLeft" => snapshot.Pointer.HorizontalWheel < 0 ? 1 : 0, "WheelRight" => snapshot.Pointer.HorizontalWheel > 0 ? 1 : 0, _ => 0 };
-        if (!mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)) return 0;
+        if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
+            return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key) ? 1 : 0;
+        if (mapping.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
+            return mapping[InputMappingConstants.MousePrefix.Length..] switch
+            {
+                "X+" => Math.Max(0, snapshot.Pointer.DeltaX),
+                "X−" => Math.Max(0, -snapshot.Pointer.DeltaX),
+                "Y+" => Math.Max(0, snapshot.Pointer.DeltaY),
+                "Y−" => Math.Max(0, -snapshot.Pointer.DeltaY),
+                "Left" => snapshot.Pointer.Left ? 1 : 0,
+                "Right" => snapshot.Pointer.Right ? 1 : 0,
+                "Middle" => snapshot.Pointer.Middle ? 1 : 0,
+                "XButton1" => snapshot.Pointer.ExtendedButton1 ? 1 : 0,
+                "XButton2" => snapshot.Pointer.ExtendedButton2 ? 1 : 0,
+                "WheelUp" => snapshot.Pointer.Wheel > 0 ? 1 : 0,
+                "WheelDown" => snapshot.Pointer.Wheel < 0 ? 1 : 0,
+                "WheelLeft" => snapshot.Pointer.HorizontalWheel < 0 ? 1 : 0,
+                "WheelRight" => snapshot.Pointer.HorizontalWheel > 0 ? 1 : 0,
+                _ => 0
+            };
+        if (!mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase))
+            return 0;
         var value = EmulationInputMappingFunctions.ControllerSourceValue(mapping, controller);
-        if (Math.Abs(value) > 1) value /= short.MaxValue;
+        if (Math.Abs(value) > 1)
+            value /= short.MaxValue;
         return value <= (float)deadZone / InputMappingConstants.PercentScale ? 0 : Math.Clamp(value, 0, 1);
     }
 }

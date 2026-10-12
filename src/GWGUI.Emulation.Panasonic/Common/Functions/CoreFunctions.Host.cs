@@ -45,7 +45,9 @@ internal static class CoreHostFunctions
         throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, CoreHostErrors.ProtocolVersionMismatchFormat, version, CoreHostConstants.ProtocolVersion));
     }
 
-    internal static HostError CreateError(Exception error) => error is EmulationMessageException structured ? new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, structured.MessageData.Category, structured.MessageData.MessageCode) : new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, null, null);
+    internal static HostError CreateError(Exception error) => error is EmulationMessageException structured
+        ? new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, structured.MessageData.Category, structured.MessageData.MessageCode)
+        : new HostError(error.GetType().FullName ?? error.GetType().Name, error.Message, null, null);
 
     internal static void WriteError(BinaryWriter writer, Exception error) => writer.Write(JsonSerializer.Serialize(CreateError(error), JsonOptions));
 
@@ -59,7 +61,8 @@ internal static class CoreHostFunctions
     internal static EmulationInputSnapshot ReadInput(BinaryReader reader) => EmulationHostProtocolFunctions.ReadInput(reader, CoreHostConstants.HostName);
     internal static int CalculateVideoSlotCapacity(int frameLength)
     {
-        if (frameLength <= 0 || frameLength > EmulationHostProtocolConstants.VideoSlotCapacity) throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, EmulationHostProtocolConstants.InvalidVideoFrameLengthFormat, CoreHostConstants.HostName, frameLength, EmulationHostProtocolConstants.VideoSlotCapacity));
+        if (frameLength <= 0 || frameLength > EmulationHostProtocolConstants.VideoSlotCapacity)
+            throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture, EmulationHostProtocolConstants.InvalidVideoFrameLengthFormat, CoreHostConstants.HostName, frameLength, EmulationHostProtocolConstants.VideoSlotCapacity));
         var minimum = Math.Max(frameLength, CoreHostConstants.MinimumVideoSlotCapacity);
         return checked((int)BitOperations.RoundUpToPowerOf2((uint)minimum));
     }

@@ -53,18 +53,34 @@ internal sealed class OperaMachineFactory : IEmulatorAdapter, IEmulatorFirmwareC
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
         ConfigurationFunctions.Validate(configuration);
-        if (configuration.Core != Emulator.Opera || !CoreCatalog.Entry.Models.Contains(configuration.Model)) throw new ArgumentException(nameof(configuration));
-        if (!OperatingSystem.IsWindows()) throw new PlatformNotSupportedException();
+        if (configuration.Core != Emulator.Opera || !CoreCatalog.Entry.Models.Contains(configuration.Model))
+            throw new ArgumentException(nameof(configuration));
+        if (!OperatingSystem.IsWindows())
+            throw new PlatformNotSupportedException();
         IEmulatorCore CreateCore() => OperatingSystem.IsWindows() ? new ProcessCore(context.HostExecutablePath, context.CorePath, Emulator.Opera) : throw new PlatformNotSupportedException();
         var id = Guid.NewGuid();
         var core = CreateCore();
         var completed = false;
         try
         {
-            var machine = new Machine(id, configuration, core, Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)), (slot, _) => slot == EmulationMediaSlot.Cd0, audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null, saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration), coreFactory: CreateCore, supportsNoContent: true);
+            var machine = new Machine(
+                id,
+                configuration,
+                core,
+                Path.Combine(context.SessionsDirectory, id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)),
+                (slot, _) => slot == EmulationMediaSlot.Cd0,
+                audioOutputFactory: configuration.AudioEnabled ? context.AudioOutputFactory : null,
+                saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration),
+                coreFactory: CreateCore,
+                supportsNoContent: true
+            );
             completed = true;
             return machine;
         }
-        finally { if (!completed) core.Dispose(); }
+        finally
+        {
+            if (!completed)
+                core.Dispose();
+        }
     }
 }

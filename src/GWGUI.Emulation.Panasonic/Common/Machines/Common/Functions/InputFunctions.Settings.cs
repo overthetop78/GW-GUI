@@ -8,12 +8,28 @@ internal static class InputSettingsFunctions
     internal static PeripheralCategory Peripheral(InputConfiguration input, int port) => input.Controllers?.FirstOrDefault(binding => binding.Port == port)?.Peripheral ?? (port == ControllerConstants.FirstPort ? PeripheralCategory.ThreeDOPad : PeripheralCategory.None);
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
-        var choices = Enum.GetValues<PeripheralCategory>().Select(peripheral => new EmulationControllerChoice(peripheral.ToString(), peripheral == PeripheralCategory.None ? "Emulation.Controller.None" : "Emulation.Panasonic.Controller." + peripheral, null, ControllerCatalog.Definitions(peripheral), Visuals(peripheral), Visuals(peripheral).FirstOrDefault(), ControllerCatalog.VisualCommands(peripheral))).ToArray();
+        var choices = Enum.GetValues<PeripheralCategory>().Select(peripheral => new EmulationControllerChoice(
+            peripheral.ToString(),
+            peripheral == PeripheralCategory.None ? "Emulation.Controller.None" : "Emulation.Panasonic.Controller." + peripheral,
+            null,
+            ControllerCatalog.Definitions(peripheral),
+            Visuals(peripheral),
+            Visuals(peripheral).FirstOrDefault(),
+            ControllerCatalog.VisualCommands(peripheral)
+        )).ToArray();
         var ports = Enumerable.Range(ControllerConstants.FirstPort, ControllerConstants.PortCount).Select(port =>
         {
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
             var peripheral = Peripheral(configuration.Input, port);
-            var bindings = new EmulationInputBindingSet(ControllerCatalog.Definitions(peripheral), binding?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true, Visuals(peripheral), Visuals(peripheral).FirstOrDefault(), ControllerCatalog.VisualCommands(peripheral));
+            var bindings = new EmulationInputBindingSet(
+                ControllerCatalog.Definitions(peripheral),
+                binding?.Mappings ?? new Dictionary<string, string>(),
+                EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
+                true,
+                Visuals(peripheral),
+                Visuals(peripheral).FirstOrDefault(),
+                ControllerCatalog.VisualCommands(peripheral)
+            );
             return new EmulationControllerPort(port + 1, choices, peripheral.ToString(), binding?.DeviceId, bindings, binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId ?? Visuals(peripheral).FirstOrDefault());
         }).ToArray();
         return new(null, null, ports);
@@ -44,9 +60,12 @@ internal static class InputSettingsFunctions
     }
     private static bool IsSource(string source)
     {
-        if (string.IsNullOrEmpty(source)) return true;
-        if (source.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase)) return Enum.TryParse<EmulationKey>(source[InputMappingConstants.KeyboardPrefix.Length..], out var key) && Enum.IsDefined(key) && key != EmulationKey.Unknown;
-        if (source.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase)) return source[InputMappingConstants.MousePrefix.Length..] is "Left" or "Right" or "Middle" or "XButton1" or "XButton2" or "WheelUp" or "WheelDown" or "WheelLeft" or "WheelRight" or "X+" or "X−" or "Y+" or "Y−";
+        if (string.IsNullOrEmpty(source))
+            return true;
+        if (source.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
+            return Enum.TryParse<EmulationKey>(source[InputMappingConstants.KeyboardPrefix.Length..], out var key) && Enum.IsDefined(key) && key != EmulationKey.Unknown;
+        if (source.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
+            return source[InputMappingConstants.MousePrefix.Length..] is "Left" or "Right" or "Middle" or "XButton1" or "XButton2" or "WheelUp" or "WheelDown" or "WheelLeft" or "WheelRight" or "X+" or "X−" or "Y+" or "Y−";
         return source.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase) && source.Length > InputMappingConstants.ControllerPrefix.Length;
     }
 }

@@ -5,14 +5,73 @@ internal static class ControllerCatalog
     internal static IReadOnlyList<ControllerCommand> Commands(PeripheralCategory peripheral) => peripheral switch
     {
         PeripheralCategory.None => [],
-        PeripheralCategory.ThreeDOPad => [ControllerCommand.Up, ControllerCommand.Down, ControllerCommand.Left, ControllerCommand.Right, ControllerCommand.A, ControllerCommand.B, ControllerCommand.C, ControllerCommand.X, ControllerCommand.P, ControllerCommand.L, ControllerCommand.R],
-        PeripheralCategory.Flightstick => [ControllerCommand.Up, ControllerCommand.Down, ControllerCommand.Left, ControllerCommand.Right, ControllerCommand.A, ControllerCommand.B, ControllerCommand.C, ControllerCommand.X, ControllerCommand.P, ControllerCommand.L, ControllerCommand.R, ControllerCommand.Fire, ControllerCommand.PitchUp, ControllerCommand.PitchDown, ControllerCommand.YawLeft, ControllerCommand.YawRight, ControllerCommand.ThrottleUp, ControllerCommand.ThrottleDown],
-        PeripheralCategory.Mouse => [ControllerCommand.MoveUp, ControllerCommand.MoveDown, ControllerCommand.MoveLeft, ControllerCommand.MoveRight, ControllerCommand.LeftButton, ControllerCommand.MiddleButton, ControllerCommand.RightButton, ControllerCommand.Shift],
+        PeripheralCategory.ThreeDOPad => [
+            ControllerCommand.Up,
+            ControllerCommand.Down,
+            ControllerCommand.Left,
+            ControllerCommand.Right,
+            ControllerCommand.A,
+            ControllerCommand.B,
+            ControllerCommand.C,
+            ControllerCommand.X,
+            ControllerCommand.P,
+            ControllerCommand.L,
+            ControllerCommand.R
+        ],
+        PeripheralCategory.Flightstick => [
+            ControllerCommand.Up,
+            ControllerCommand.Down,
+            ControllerCommand.Left,
+            ControllerCommand.Right,
+            ControllerCommand.A,
+            ControllerCommand.B,
+            ControllerCommand.C,
+            ControllerCommand.X,
+            ControllerCommand.P,
+            ControllerCommand.L,
+            ControllerCommand.R,
+            ControllerCommand.Fire,
+            ControllerCommand.PitchUp,
+            ControllerCommand.PitchDown,
+            ControllerCommand.YawLeft,
+            ControllerCommand.YawRight,
+            ControllerCommand.ThrottleUp,
+            ControllerCommand.ThrottleDown
+        ],
+        PeripheralCategory.Mouse => [
+            ControllerCommand.MoveUp,
+            ControllerCommand.MoveDown,
+            ControllerCommand.MoveLeft,
+            ControllerCommand.MoveRight,
+            ControllerCommand.LeftButton,
+            ControllerCommand.MiddleButton,
+            ControllerCommand.RightButton,
+            ControllerCommand.Shift
+        ],
         PeripheralCategory.Lightgun => [ControllerCommand.AimUp, ControllerCommand.AimDown, ControllerCommand.AimLeft, ControllerCommand.AimRight, ControllerCommand.Trigger, ControllerCommand.Option, ControllerCommand.Reload],
-        PeripheralCategory.ArcadeLightgun => [ControllerCommand.AimUp, ControllerCommand.AimDown, ControllerCommand.AimLeft, ControllerCommand.AimRight, ControllerCommand.Trigger, ControllerCommand.Service, ControllerCommand.Coin, ControllerCommand.Start, ControllerCommand.Reload],
-        PeripheralCategory.OrbatakTrackball => [ControllerCommand.MoveUp, ControllerCommand.MoveDown, ControllerCommand.MoveLeft, ControllerCommand.MoveRight, ControllerCommand.StartPlayer1, ControllerCommand.StartPlayer2, ControllerCommand.CoinPlayer1, ControllerCommand.CoinPlayer2, ControllerCommand.Service],
-        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
-    };
+        PeripheralCategory.ArcadeLightgun => [
+            ControllerCommand.AimUp,
+            ControllerCommand.AimDown,
+            ControllerCommand.AimLeft,
+            ControllerCommand.AimRight,
+            ControllerCommand.Trigger,
+            ControllerCommand.Service,
+            ControllerCommand.Coin,
+            ControllerCommand.Start,
+            ControllerCommand.Reload
+        ],
+        PeripheralCategory.OrbatakTrackball => [
+            ControllerCommand.MoveUp,
+            ControllerCommand.MoveDown,
+            ControllerCommand.MoveLeft,
+            ControllerCommand.MoveRight,
+            ControllerCommand.StartPlayer1,
+            ControllerCommand.StartPlayer2,
+            ControllerCommand.CoinPlayer1,
+            ControllerCommand.CoinPlayer2,
+            ControllerCommand.Service
+        ],
+        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))};
     internal static IReadOnlyList<InputBindingDefinition> Definitions(PeripheralCategory peripheral) => Commands(peripheral).Select(command => command switch
     {
         ControllerCommand.Up or ControllerCommand.Down or ControllerCommand.Left or ControllerCommand.Right => new InputBindingDefinition(command.ToString(), "Emulation.Controller.Action." + command, string.Empty),
@@ -22,6 +81,34 @@ internal static class ControllerCatalog
         ControllerCommand.MiddleButton => new InputBindingDefinition(command.ToString(), "Emulation.Mouse.Button.Middle", string.Empty),
         _ => new InputBindingDefinition(command.ToString(), string.Empty, string.Empty, Label(command))
     }).ToArray();
-    private static string Label(ControllerCommand command) => command switch { ControllerCommand.PitchUp or ControllerCommand.MoveUp or ControllerCommand.AimUp => "Y−", ControllerCommand.PitchDown or ControllerCommand.MoveDown or ControllerCommand.AimDown => "Y+", ControllerCommand.YawLeft or ControllerCommand.MoveLeft or ControllerCommand.AimLeft => "X−", ControllerCommand.YawRight or ControllerCommand.MoveRight or ControllerCommand.AimRight => "X+", ControllerCommand.ThrottleUp => "Z+", ControllerCommand.ThrottleDown => "Z−", ControllerCommand.StartPlayer1 => "START 1", ControllerCommand.StartPlayer2 => "START 2", ControllerCommand.CoinPlayer1 => "COIN 1", ControllerCommand.CoinPlayer2 => "COIN 2", _ => command.ToString().ToUpperInvariant() };
-    internal static IReadOnlyDictionary<EmulationControllerVisualControl, string> VisualCommands(PeripheralCategory peripheral) => peripheral == PeripheralCategory.ThreeDOPad ? new Dictionary<EmulationControllerVisualControl, string> { [EmulationControllerVisualControl.DirectionUp] = ControllerCommand.Up.ToString(), [EmulationControllerVisualControl.DirectionDown] = ControllerCommand.Down.ToString(), [EmulationControllerVisualControl.DirectionLeft] = ControllerCommand.Left.ToString(), [EmulationControllerVisualControl.DirectionRight] = ControllerCommand.Right.ToString(), [EmulationControllerVisualControl.FaceA] = ControllerCommand.A.ToString(), [EmulationControllerVisualControl.FaceB] = ControllerCommand.B.ToString(), [EmulationControllerVisualControl.FaceC] = ControllerCommand.C.ToString(), [EmulationControllerVisualControl.Stop] = ControllerCommand.X.ToString(), [EmulationControllerVisualControl.PlayPause] = ControllerCommand.P.ToString(), [EmulationControllerVisualControl.LeftShoulder] = ControllerCommand.L.ToString(), [EmulationControllerVisualControl.RightShoulder] = ControllerCommand.R.ToString() } : new Dictionary<EmulationControllerVisualControl, string>();
+    private static string Label(ControllerCommand command) => command switch
+    {
+        ControllerCommand.PitchUp or ControllerCommand.MoveUp or ControllerCommand.AimUp => "Y−",
+        ControllerCommand.PitchDown or ControllerCommand.MoveDown or ControllerCommand.AimDown => "Y+",
+        ControllerCommand.YawLeft or ControllerCommand.MoveLeft or ControllerCommand.AimLeft => "X−",
+        ControllerCommand.YawRight or ControllerCommand.MoveRight or ControllerCommand.AimRight => "X+",
+        ControllerCommand.ThrottleUp => "Z+",
+        ControllerCommand.ThrottleDown => "Z−",
+        ControllerCommand.StartPlayer1 => "START 1",
+        ControllerCommand.StartPlayer2 => "START 2",
+        ControllerCommand.CoinPlayer1 => "COIN 1",
+        ControllerCommand.CoinPlayer2 => "COIN 2",
+        _ => command.ToString().ToUpperInvariant()};
+    internal static IReadOnlyDictionary<EmulationControllerVisualControl, string> VisualCommands(PeripheralCategory peripheral) => peripheral == PeripheralCategory.ThreeDOPad
+        ? new Dictionary<EmulationControllerVisualControl, string>
+    {
+        [EmulationControllerVisualControl.DirectionUp] = ControllerCommand.Up.ToString(),
+        [EmulationControllerVisualControl.DirectionDown] = ControllerCommand.Down.ToString(),
+        [EmulationControllerVisualControl.DirectionLeft] = ControllerCommand.Left.ToString(),
+        [EmulationControllerVisualControl.DirectionRight] = ControllerCommand.Right.ToString(),
+        [EmulationControllerVisualControl.FaceA] = ControllerCommand.A.ToString(),
+        [EmulationControllerVisualControl.FaceB] = ControllerCommand.B.ToString(),
+        [EmulationControllerVisualControl.FaceC] = ControllerCommand.C.ToString(),
+        [EmulationControllerVisualControl.Stop] = ControllerCommand.X.ToString(),
+        [EmulationControllerVisualControl.PlayPause] = ControllerCommand.P.ToString(),
+        [EmulationControllerVisualControl.LeftShoulder] = ControllerCommand.L.ToString(),
+        [EmulationControllerVisualControl.RightShoulder] = ControllerCommand.R.ToString()
+    }
+    
+        : new Dictionary<EmulationControllerVisualControl, string>();
 }

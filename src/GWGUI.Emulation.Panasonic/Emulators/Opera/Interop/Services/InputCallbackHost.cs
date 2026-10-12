@@ -18,7 +18,16 @@ internal sealed class InputCallbackHost
     internal Exception? Failure { get; private set; }
     internal void Update(EmulationInputSnapshot input, int width, int height) { _input = input; _width = Math.Max(1, width); _height = Math.Max(1, height); _polled = false; }
     internal void SetPeripheral(int port, PeripheralCategory peripheral) { if (port < 0 || port >= _peripherals.Length || !Enum.IsDefined(peripheral)) throw new ArgumentOutOfRangeException(nameof(port)); _peripherals[port] = peripheral; }
-    internal static NativeDevice Device(PeripheralCategory peripheral) => peripheral switch { PeripheralCategory.None => NativeDevice.None, PeripheralCategory.ThreeDOPad => NativeDevice.Joypad, PeripheralCategory.Flightstick => NativeDevice.Flightstick, PeripheralCategory.Mouse => NativeDevice.Mouse, PeripheralCategory.Lightgun => NativeDevice.Lightgun, PeripheralCategory.ArcadeLightgun => NativeDevice.ArcadeLightgun, PeripheralCategory.OrbatakTrackball => NativeDevice.OrbatakTrackball, _ => throw new ArgumentOutOfRangeException(nameof(peripheral)) };
+    internal static NativeDevice Device(PeripheralCategory peripheral) => peripheral switch
+    {
+        PeripheralCategory.None => NativeDevice.None,
+        PeripheralCategory.ThreeDOPad => NativeDevice.Joypad,
+        PeripheralCategory.Flightstick => NativeDevice.Flightstick,
+        PeripheralCategory.Mouse => NativeDevice.Mouse,
+        PeripheralCategory.Lightgun => NativeDevice.Lightgun,
+        PeripheralCategory.ArcadeLightgun => NativeDevice.ArcadeLightgun,
+        PeripheralCategory.OrbatakTrackball => NativeDevice.OrbatakTrackball,
+        _ => throw new ArgumentOutOfRangeException(nameof(peripheral))};
     private float Value(int port, ControllerCommand command) => port < _input.Controllers.Count && _input.Controllers[port].Controls.TryGetValue(command.ToString(), out var value) ? value : 0;
     private short Button(int port, ControllerCommand command) => Value(port, command) > 0.5f ? (short)1 : (short)0;
     private short Axis(int port, ControllerCommand negative, ControllerCommand positive) => (short)Math.Clamp(Math.Round((Value(port, positive) - Value(port, negative)) * short.MaxValue), short.MinValue, short.MaxValue);
@@ -44,28 +53,76 @@ internal sealed class InputCallbackHost
     {
         try
         {
-            if (port >= ControllerConstants.PortCount || _peripherals[port] == PeripheralCategory.None) return 0;
+            if (port >= ControllerConstants.PortCount || _peripherals[port] == PeripheralCategory.None)
+                return 0;
             var p = checked((int)port);
             switch ((NativeDevice)(device & DeviceMask))
             {
                 case NativeDevice.Joypad:
-                    if (index != 0) return 0;
-                    var command = (NativeButton)id switch { NativeButton.Y => ControllerCommand.A, NativeButton.B => ControllerCommand.B, NativeButton.A => ControllerCommand.C, NativeButton.X or NativeButton.Start => _peripherals[p] == PeripheralCategory.OrbatakTrackball ? ControllerCommand.StartPlayer2 : ControllerCommand.P, NativeButton.Select => _peripherals[p] == PeripheralCategory.OrbatakTrackball ? ControllerCommand.StartPlayer1 : ControllerCommand.X, NativeButton.Up => ControllerCommand.Up, NativeButton.Down => ControllerCommand.Down, NativeButton.Left => ControllerCommand.Left, NativeButton.Right => ControllerCommand.Right, NativeButton.L => _peripherals[p] == PeripheralCategory.OrbatakTrackball ? ControllerCommand.CoinPlayer1 : ControllerCommand.L, NativeButton.R => _peripherals[p] == PeripheralCategory.OrbatakTrackball ? ControllerCommand.CoinPlayer2 : ControllerCommand.R, NativeButton.R2 => _peripherals[p] == PeripheralCategory.OrbatakTrackball ? ControllerCommand.Service : ControllerCommand.Fire, _ => (ControllerCommand?)null };
+                    if (index != 0)
+                        return 0;
+                    var command = (NativeButton)id switch
+                    {
+                        NativeButton.Y => ControllerCommand.A,
+                        NativeButton.B => ControllerCommand.B,
+                        NativeButton.A => ControllerCommand.C,
+                        NativeButton.X or NativeButton.Start => _peripherals[p] == PeripheralCategory.OrbatakTrackball ? ControllerCommand.StartPlayer2 : ControllerCommand.P,
+                        NativeButton.Select => _peripherals[p] == PeripheralCategory.OrbatakTrackball ? ControllerCommand.StartPlayer1 : ControllerCommand.X,
+                        NativeButton.Up => ControllerCommand.Up,
+                        NativeButton.Down => ControllerCommand.Down,
+                        NativeButton.Left => ControllerCommand.Left,
+                        NativeButton.Right => ControllerCommand.Right,
+                        NativeButton.L => _peripherals[p] == PeripheralCategory.OrbatakTrackball ? ControllerCommand.CoinPlayer1 : ControllerCommand.L,
+                        NativeButton.R => _peripherals[p] == PeripheralCategory.OrbatakTrackball ? ControllerCommand.CoinPlayer2 : ControllerCommand.R,
+                        NativeButton.R2 => _peripherals[p] == PeripheralCategory.OrbatakTrackball ? ControllerCommand.Service : ControllerCommand.Fire,
+                        _ => (ControllerCommand? )null
+                    };
                     return command is { } action ? Button(p, action) : (short)0;
                 case NativeDevice.Analog:
-                    if (_peripherals[p] == PeripheralCategory.OrbatakTrackball && index == LeftAnalogIndex) return id == HorizontalAxis ? TrackballAxis(p, ControllerCommand.MoveLeft, ControllerCommand.MoveRight) : id == VerticalAxis ? TrackballAxis(p, ControllerCommand.MoveUp, ControllerCommand.MoveDown) : (short)0;
-                    if (index == LeftAnalogIndex) return id == HorizontalAxis ? Axis(p, ControllerCommand.YawLeft, ControllerCommand.YawRight) : id == VerticalAxis ? Axis(p, ControllerCommand.PitchUp, ControllerCommand.PitchDown) : (short)0;
+                    if (_peripherals[p] == PeripheralCategory.OrbatakTrackball && index == LeftAnalogIndex)
+                        return id == HorizontalAxis
+                            ? TrackballAxis(p, ControllerCommand.MoveLeft, ControllerCommand.MoveRight)
+                            : id == VerticalAxis ? TrackballAxis(p, ControllerCommand.MoveUp, ControllerCommand.MoveDown) : (short)0;
+                    if (index == LeftAnalogIndex)
+                        return id == HorizontalAxis ? Axis(p, ControllerCommand.YawLeft, ControllerCommand.YawRight) : id == VerticalAxis ? Axis(p, ControllerCommand.PitchUp, ControllerCommand.PitchDown) : (short)0;
                     return index == RightAnalogIndex && id == VerticalAxis ? Axis(p, ControllerCommand.ThrottleUp, ControllerCommand.ThrottleDown) : (short)0;
                 case NativeDevice.Mouse:
-                    if (index != 0) return 0;
-                    return (NativeMouseControl)id switch { NativeMouseControl.X => Motion(p, ControllerCommand.MoveLeft, ControllerCommand.MoveRight), NativeMouseControl.Y => Motion(p, ControllerCommand.MoveUp, ControllerCommand.MoveDown), NativeMouseControl.Left => Button(p, ControllerCommand.LeftButton), NativeMouseControl.Right => Button(p, ControllerCommand.RightButton), NativeMouseControl.Middle => Button(p, ControllerCommand.MiddleButton), NativeMouseControl.Button4 => Button(p, ControllerCommand.Shift), _ => 0 };
+                    if (index != 0)
+                        return 0;
+                    return (NativeMouseControl)id switch
+                    {
+                        NativeMouseControl.X => Motion(p, ControllerCommand.MoveLeft, ControllerCommand.MoveRight),
+                        NativeMouseControl.Y => Motion(p, ControllerCommand.MoveUp, ControllerCommand.MoveDown),
+                        NativeMouseControl.Left => Button(p, ControllerCommand.LeftButton),
+                        NativeMouseControl.Right => Button(p, ControllerCommand.RightButton),
+                        NativeMouseControl.Middle => Button(p, ControllerCommand.MiddleButton),
+                        NativeMouseControl.Button4 => Button(p, ControllerCommand.Shift),
+                        _ => 0
+                    };
                 case NativeDevice.Lightgun:
-                    if (index != 0) return 0;
-                    return (NativeLightgunControl)id switch { NativeLightgunControl.ScreenX => _aimX[p], NativeLightgunControl.ScreenY => _aimY[p], NativeLightgunControl.Trigger => Button(p, ControllerCommand.Trigger), NativeLightgunControl.Reload => Button(p, ControllerCommand.Reload), NativeLightgunControl.Select => Button(p, _peripherals[p] == PeripheralCategory.ArcadeLightgun ? ControllerCommand.Coin : ControllerCommand.Option), NativeLightgunControl.AuxiliaryA => Button(p, ControllerCommand.Service), NativeLightgunControl.Start => Button(p, ControllerCommand.Start), NativeLightgunControl.Offscreen => Button(p, ControllerCommand.Reload), _ => 0 };
-                default: return 0;
+                    if (index != 0)
+                        return 0;
+                    return (NativeLightgunControl)id switch
+                    {
+                        NativeLightgunControl.ScreenX => _aimX[p],
+                        NativeLightgunControl.ScreenY => _aimY[p],
+                        NativeLightgunControl.Trigger => Button(p, ControllerCommand.Trigger),
+                        NativeLightgunControl.Reload => Button(p, ControllerCommand.Reload),
+                        NativeLightgunControl.Select => Button(p, _peripherals[p] == PeripheralCategory.ArcadeLightgun ? ControllerCommand.Coin : ControllerCommand.Option),
+                        NativeLightgunControl.AuxiliaryA => Button(p, ControllerCommand.Service),
+                        NativeLightgunControl.Start => Button(p, ControllerCommand.Start),
+                        NativeLightgunControl.Offscreen => Button(p, ControllerCommand.Reload),
+                        _ => 0
+                    };
+                default:
+                    return 0;
             }
         }
-        catch (Exception error) { Failure ??= error; return 0; }
+        catch (Exception error)
+        {
+            Failure ??= error;
+            return 0;
+        }
     }
     internal void Release() { _input = EmulationInputSnapshot.Empty; _polled = false; Array.Clear(_aimX); Array.Clear(_aimY); Failure = null; }
 }

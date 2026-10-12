@@ -17,23 +17,38 @@ internal sealed class OptionCallbackHost : IDisposable
 
     internal bool Register(nint data)
     {
-        if (data == nint.Zero) return false;
+        if (data == nint.Zero)
+            return false;
         var size = Marshal.SizeOf<ExternalCoreApi.Variable>();
         for (var index = 0; index < MaximumVariableCount; index++)
         {
             var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data + checked(index * size));
-            if (variable.Key == nint.Zero) return true;
+            if (variable.Key == nint.Zero)
+                return true;
             var key = Marshal.PtrToStringUTF8(variable.Key) ?? throw new InvalidOperationException("Native option key is invalid.");
             var description = Marshal.PtrToStringUTF8(variable.Value) ?? throw new InvalidOperationException("Native option descriptor is invalid.");
             var separator = description.IndexOf(DescriptionSeparator);
-            if (separator < 0) throw new InvalidOperationException("Native option descriptor has no choices.");
+            if (separator < 0)
+                throw new InvalidOperationException("Native option descriptor has no choices.");
             var values = description[(separator + 1)..].Trim().Split(ValueSeparator, StringSplitOptions.RemoveEmptyEntries);
-            if (values.Length == 0) throw new InvalidOperationException("Native option descriptor has no default value.");
+            if (values.Length == 0)
+                throw new InvalidOperationException("Native option descriptor has no default value.");
             var current = _values.GetValueOrDefault(key, values[0]);
-            if (!values.Contains(current, StringComparer.Ordinal)) throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.OptionInvalid, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
+            if (!values.Contains(current, StringComparer.Ordinal))
+                throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.OptionInvalid, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog));
             _values[key] = current;
-            _options[key] = new CoreOption(key, description[..separator].Trim(), null, null, values[0], current, values.Select(value => new CoreOptionValue(value, value)).ToArray(), IsVisible: key is not (GWGUI.Emulation.Panasonic.Emulators.Opera.Constants.RuntimeOptionConstants.Bios or GWGUI.Emulation.Panasonic.Emulators.Opera.Constants.RuntimeOptionConstants.Font));
+            _options[key] = new CoreOption(
+                key,
+                description[..separator].Trim(),
+                null,
+                null,
+                values[0],
+                current,
+                values.Select(value => new CoreOptionValue(value, value)).ToArray(),
+                IsVisible: key is not (GWGUI.Emulation.Panasonic.Emulators.Opera.Constants.RuntimeOptionConstants.Bios or GWGUI.Emulation.Panasonic.Emulators.Opera.Constants.RuntimeOptionConstants.Font)
+            );
         }
+    
         throw new InvalidOperationException("Native option table has no terminating entry.");
     }
 
