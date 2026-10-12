@@ -53,8 +53,7 @@ internal static class StateStore
 
         var headerBytes = new byte[length];
         stream.ReadExactly(headerBytes);
-        var header = JsonSerializer.Deserialize<SavedStateHeader>(headerBytes, JsonOptions)
-            ?? throw MachineExceptions.SavedStateInvalid();
+        var header = JsonSerializer.Deserialize<SavedStateHeader>(headerBytes, JsonOptions) ?? throw MachineExceptions.SavedStateInvalid();
         using var state = new MemoryStream();
         stream.CopyTo(state);
         var stateBytes = state.ToArray();
@@ -72,8 +71,7 @@ internal static class StateStore
 
         using var hash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
         Span<byte> length = stackalloc byte[sizeof(int)];
-        foreach (var file in Directory.EnumerateFiles(path, StateStoreConstants.Value, SearchOption.AllDirectories)
-                     .Order(StringComparer.OrdinalIgnoreCase))
+        foreach (var file in Directory.EnumerateFiles(path, StateStoreConstants.Value, SearchOption.AllDirectories).Order(StringComparer.OrdinalIgnoreCase))
         {
             var relative = Path.GetRelativePath(path, file).Replace(Path.DirectorySeparatorChar, '/');
             var name = Encoding.UTF8.GetBytes(relative);
@@ -89,8 +87,7 @@ internal static class StateStore
         return Convert.ToHexString(hash.GetHashAndReset());
     }
 
-    internal static string HashBytes(ReadOnlySpan<byte> bytes) =>
-        Convert.ToHexString(SHA256.HashData(bytes));
+    internal static string HashBytes(ReadOnlySpan<byte> bytes) => Convert.ToHexString(SHA256.HashData(bytes));
 
     private static string HashFile(string path)
     {

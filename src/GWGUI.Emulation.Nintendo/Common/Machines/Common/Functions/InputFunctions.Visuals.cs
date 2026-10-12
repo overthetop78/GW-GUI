@@ -28,8 +28,7 @@ internal static partial class InputSettingsFunctions
                 EmulationControllerVisualIds.ZipstikSuperPro]
         };
 
-    private static string? DefaultVisualId(ControllerType type, Model model) =>
-        CompatibleVisualIds(type, model)?.FirstOrDefault();
+    private static string? DefaultVisualId(ControllerType type, Model model) => CompatibleVisualIds(type, model)?.FirstOrDefault();
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string>?
         VisualCommandIds(ControllerType type, Model model) => type != ControllerType.Joystick
@@ -38,9 +37,7 @@ internal static partial class InputSettingsFunctions
             ? GameCubeVisualCommandIds() : model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk
                 or ModelConstants.Snes or ModelConstants.GameBoy
                 or ModelConstants.GameBoyColor or ModelConstants.GameBoyAdvance
-            ? NintendoVisualCommandIds(model.Id == ModelConstants.Snes,
-                model.Id == ModelConstants.GameBoyAdvance,
-                model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk)
+            ? NintendoVisualCommandIds(model.Id == ModelConstants.Snes, model.Id == ModelConstants.GameBoyAdvance, model.Id is ModelConstants.Nes or ModelConstants.FamicomDisk)
             : new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
@@ -67,24 +64,18 @@ internal static partial class InputSettingsFunctions
         };
         if (nes)
         {
-            commands[EmulationControllerVisualControl.TertiaryAction] =
-                InputSettingsFunctionsConstants.NesTurboB;
-            commands[EmulationControllerVisualControl.QuaternaryAction] =
-                InputSettingsFunctionsConstants.NesTurboA;
+            commands[EmulationControllerVisualControl.TertiaryAction] = InputSettingsFunctionsConstants.NesTurboB;
+            commands[EmulationControllerVisualControl.QuaternaryAction] = InputSettingsFunctionsConstants.NesTurboA;
         }
         if (superNintendo)
         {
-            commands[EmulationControllerVisualControl.TertiaryAction] =
-                EmulationControllerCommandIds.Y;
-            commands[EmulationControllerVisualControl.QuaternaryAction] =
-                EmulationControllerCommandIds.X;
+            commands[EmulationControllerVisualControl.TertiaryAction] = EmulationControllerCommandIds.Y;
+            commands[EmulationControllerVisualControl.QuaternaryAction] = EmulationControllerCommandIds.X;
         }
         if (superNintendo || gameBoyAdvance)
         {
-            commands[EmulationControllerVisualControl.LeftShoulder] =
-                EmulationControllerCommandIds.L;
-            commands[EmulationControllerVisualControl.RightShoulder] =
-                EmulationControllerCommandIds.R;
+            commands[EmulationControllerVisualControl.LeftShoulder] = EmulationControllerCommandIds.L;
+            commands[EmulationControllerVisualControl.RightShoulder] = EmulationControllerCommandIds.R;
         }
         return commands;
     }
@@ -155,14 +146,7 @@ internal static partial class InputSettingsFunctions
         _ => $"Emulation.Controller.{type}"
     };
 
-    private static IReadOnlyDictionary<string, string> ToStrings(
-        IReadOnlyDictionary<string, EmulationKey>? values) => values?.ToDictionary(
-            item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal)
-        ?? new Dictionary<string, string>();
+    private static IReadOnlyDictionary<string, string> ToStrings(IReadOnlyDictionary<string, EmulationKey>? values) => values?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>();
 
-    private static IReadOnlyDictionary<string, EmulationKey> ToKeys(
-        IReadOnlyDictionary<string, string> values) => values
-        .Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _))
-        .ToDictionary(item => item.Key,
-            item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
+    private static IReadOnlyDictionary<string, EmulationKey> ToKeys(IReadOnlyDictionary<string, string> values) => values.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
 }

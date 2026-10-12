@@ -5,21 +5,16 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;
 
 internal static class CoreSettingsFunctions
 {
-    internal static bool IsSupportedNintendoOption(CoreOption option) =>
-        !Emulators.Mesen2.Constants.OptionConstants.UnconfiguredSystemOptionPrefixes.Any(
-            prefix => option.Key.StartsWith(prefix, StringComparison.Ordinal));
+    internal static bool IsSupportedNintendoOption(CoreOption option) => !Emulators.Mesen2.Constants.OptionConstants.UnconfiguredSystemOptionPrefixes.Any(prefix => option.Key.StartsWith(prefix, StringComparison.Ordinal));
 
     internal static CoreOption WithSupportedGraphicsApis(CoreOption option)
     {
         if (option.Key is not (Emulators.Azahar.Constants.OptionConstants.GraphicsApiOption
             or Emulators.Cemu.Constants.OptionConstants.GraphicsApiOption)) return option;
-        var values = option.Values.Where(value => !value.Value.Equals(
-            HardwareRenderConstants.VulkanApiName, StringComparison.OrdinalIgnoreCase)).ToArray();
-        var defaultValue = values.Any(value => value.Value == option.DefaultValue)
-            ? option.DefaultValue : values.First().Value;
+        var values = option.Values.Where(value => !value.Value.Equals(HardwareRenderConstants.VulkanApiName, StringComparison.OrdinalIgnoreCase)).ToArray();
+        var defaultValue = values.Any(value => value.Value == option.DefaultValue) ? option.DefaultValue : values.First().Value;
         return option with { Values = values, DefaultValue = defaultValue,
-            CurrentValue = values.Any(value => value.Value == option.CurrentValue)
-                ? option.CurrentValue : defaultValue };
+            CurrentValue = values.Any(value => value.Value == option.CurrentValue) ? option.CurrentValue : defaultValue };
     }
 
     internal static MachineConfiguration Configure(MachineConfiguration configuration)
@@ -28,11 +23,8 @@ internal static class CoreSettingsFunctions
         foreach (var option in CoreCatalog.Get(configuration.EmulatorId).Options.Select(WithSupportedGraphicsApis))
         {
             var fallback = DefaultValue(configuration, option);
-            var selected = AppliesTo(option, configuration.Model)
-                ? configuration.Options?.GetValueOrDefault(option.Key) ?? fallback : fallback;
-            options[option.Key] = IsForcedOption(option.Key) ? fallback
-                : AvailableValues(option, configuration.Model).Any(value => value.Value == selected)
-                    ? selected : fallback;
+            var selected = AppliesTo(option, configuration.Model) ? configuration.Options?.GetValueOrDefault(option.Key) ?? fallback : fallback;
+            options[option.Key] = IsForcedOption(option.Key) ? fallback : AvailableValues(option, configuration.Model).Any(value => value.Value == selected) ? selected : fallback;
         }
         return configuration with { Options = options };
     }
@@ -85,12 +77,9 @@ internal static class CoreSettingsFunctions
             CoreSettingsConstants.Sections[group.Key].Icon, CoreSettingsConstants.OptionsColumnCount)).ToArray();
     }
 
-    private static bool AppliesTo(CoreOption option, string machineId) =>
-        option.IsVisible && (option.MachineIds is null || option.MachineIds.Contains(machineId));
+    private static bool AppliesTo(CoreOption option, string machineId) => option.IsVisible && (option.MachineIds is null || option.MachineIds.Contains(machineId));
 
-    private static bool IsForcedOption(string key) => key is CoreSettingsConstants.MelonDsConsoleModeOption
-        or Emulators.Skyemu.Constants.OptionConstants.CoreOverrideOption;
+    private static bool IsForcedOption(string key) => key is CoreSettingsConstants.MelonDsConsoleModeOption or Emulators.Skyemu.Constants.OptionConstants.CoreOverrideOption;
 
-    private static IEnumerable<CoreOptionValue> AvailableValues(CoreOption option, string machineId) =>
-        option.Values.Where(value => value.MachineIds is null || value.MachineIds.Contains(machineId));
+    private static IEnumerable<CoreOptionValue> AvailableValues(CoreOption option, string machineId) => option.Values.Where(value => value.MachineIds is null || value.MachineIds.Contains(machineId));
 }

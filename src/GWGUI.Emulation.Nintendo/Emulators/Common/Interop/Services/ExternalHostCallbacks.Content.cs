@@ -43,9 +43,7 @@ internal sealed partial class ExternalHostCallbacks
         return true;
     }
 
-    internal bool NeedsContentPath(string path, bool defaultValue) =>
-        _contentPathOverrides.TryGetValue(Path.GetExtension(path).TrimStart(ContentExtensionPrefix), out var value)
-            ? value : defaultValue;
+    internal bool NeedsContentPath(string path, bool defaultValue) => _contentPathOverrides.TryGetValue(Path.GetExtension(path).TrimStart(ContentExtensionPrefix), out var value) ? value : defaultValue;
 
     internal void SetExtendedGameInfo(string path, nint data, nuint size)
     {

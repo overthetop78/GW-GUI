@@ -8,8 +8,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Functions;
 
 internal static class FirmwareFunctions
 {
-    internal static IReadOnlyList<FirmwareSlot> Slots(MachineConfiguration configuration) =>
-        string.IsNullOrEmpty(configuration.EmulatorId) ? [] : CoreCatalog.Get(configuration.EmulatorId).Firmware.Where(slot => slot.MachineIds.Contains(configuration.Model)).ToArray();
+    internal static IReadOnlyList<FirmwareSlot> Slots(MachineConfiguration configuration) => string.IsNullOrEmpty(configuration.EmulatorId) ? [] : CoreCatalog.Get(configuration.EmulatorId).Firmware.Where(slot => slot.MachineIds.Contains(configuration.Model)).ToArray();
 
     internal static IReadOnlyDictionary<string, string> RuntimeOptions(MachineConfiguration configuration, string systemDirectory)
     {

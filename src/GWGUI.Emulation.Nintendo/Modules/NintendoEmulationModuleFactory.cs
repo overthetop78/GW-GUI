@@ -11,10 +11,6 @@ public sealed class NintendoEmulationModuleFactory : IEmulationModuleFactory
     {
         ArgumentNullException.ThrowIfNull(context);
         Directory.CreateDirectory(Path.Combine(context.ModuleDirectory, "Configurations"));
-        return new NintendoEmulationModule(
-            Path.Combine(context.ModuleDirectory, "Configurations"),
-            context.DataDirectory,
-            context.HttpClient,
-            Path.Combine(context.ModuleDirectory, "Core"));
+        return new NintendoEmulationModule(Path.Combine(context.ModuleDirectory, "Configurations"), context.DataDirectory, context.HttpClient, Path.Combine(context.ModuleDirectory, "Core"));
     }
 }

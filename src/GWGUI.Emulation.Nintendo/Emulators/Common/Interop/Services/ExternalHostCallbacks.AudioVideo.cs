@@ -26,9 +26,7 @@ internal sealed partial class ExternalHostCallbacks
         var byteCount = checked((int)(pitch * height));
         var pixels = new byte[byteCount];
         Marshal.Copy(data, pixels, BufferConstants.FirstBufferIndex, byteCount);
-        LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height),
-            checked((int)pitch), _pixelFormat, _aspectRatio > 0 ? _aspectRatio : width / (float)height,
-            ++_videoSequence, _clock.Elapsed);
+        LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _aspectRatio > 0 ? _aspectRatio : width / (float)height, ++_videoSequence, _clock.Elapsed);
     }
 
     internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)
@@ -74,8 +72,7 @@ internal sealed partial class ExternalHostCallbacks
         if (data == nint.Zero || frames == ExternalCoreInteropConstants.EmptyNativeSize) return frames;
         var samples = new short[checked((int)frames * 2)];
         Marshal.Copy(data, samples, BufferConstants.FirstBufferIndex, samples.Length);
-        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames),
-            ++_audioSequence, _clock.Elapsed));
+        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames), ++_audioSequence, _clock.Elapsed));
         return frames;
     }
 

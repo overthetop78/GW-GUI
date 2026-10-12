@@ -21,10 +21,8 @@ internal sealed partial class ExternalHostCallbacks
         {
             DestroyHardwareContext();
             if (!context.MakeCurrentForCore()) throw new InvalidOperationException();
-            _coreContextReset = callback.ContextReset == nint.Zero ? null
-                : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.HardwareContextReset>(callback.ContextReset);
-            _coreContextDestroy = callback.ContextDestroy == nint.Zero ? null
-                : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.HardwareContextReset>(callback.ContextDestroy);
+            _coreContextReset = callback.ContextReset == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.HardwareContextReset>(callback.ContextReset);
+            _coreContextDestroy = callback.ContextDestroy == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.HardwareContextReset>(callback.ContextDestroy);
             callback.GetCurrentFramebuffer = context.CurrentFramebufferCallback;
             callback.GetProcAddress = context.ProcAddressCallback;
             Marshal.StructureToPtr(callback, data, false);

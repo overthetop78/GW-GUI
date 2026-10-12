@@ -4,16 +4,7 @@ namespace GWGUI.Emulation.Nintendo.Emulators.MelonDs.Constants;
 internal static class OptionConstants
 {
     internal static IReadOnlyList<CoreOption> All { get; } = [
-        new(
-            "melonds_console_mode",
-            "Emulation.Option.melonds.melonds_console_mode",
-            null,
-            "system",
-            "DS",
-            "DS",
-            [new("DS", "DS"), new("DSi", "Emulation.Option.melonds.melonds_console_mode.Value.DSi")],
-            Tab: EmulationMachineTab.General
-        ),
+        new("melonds_console_mode", "Emulation.Option.melonds.melonds_console_mode", null, "system", "DS", "DS", [new("DS", "DS"), new("DSi", "Emulation.Option.melonds.melonds_console_mode.Value.DSi")], Tab: EmulationMachineTab.General),
         new(
             "melonds_boot_directly",
             "Emulation.Option.melonds.melonds_boot_directly",

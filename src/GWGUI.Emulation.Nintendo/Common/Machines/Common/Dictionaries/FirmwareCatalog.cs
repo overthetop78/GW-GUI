@@ -18,10 +18,7 @@ public sealed class FirmwareCatalog
     public IReadOnlyList<Firmware> Scan()
     {
         Directory.CreateDirectory(_directory);
-        return Directory.EnumerateFiles(_directory, FirmwareCatalogConstants.SearchPattern,
-                SearchOption.AllDirectories)
-            .Where(path => Extensions.Contains(Path.GetExtension(path)))
-            .Select(Inspect)
+        return Directory.EnumerateFiles(_directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories).Where(path => Extensions.Contains(Path.GetExtension(path))).Select(Inspect)
             .OrderBy(entry => entry.Path, StringComparer.OrdinalIgnoreCase)
             .ToArray();
     }
@@ -33,8 +30,6 @@ public sealed class FirmwareCatalog
         var md5 = Convert.ToHexString(MD5.HashData(stream));
         stream.Position = 0;
         var sha256 = Convert.ToHexString(SHA256.HashData(stream));
-        return new Firmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc,
-            FirmwareType.SystemRom, IsKnown: false, IsOfficial: false, Name: null, Version: null,
-            CompatibleModels: []);
+        return new Firmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc, FirmwareType.SystemRom, IsKnown: false, IsOfficial: false, Name: null, Version: null, CompatibleModels: []);
     }
 }

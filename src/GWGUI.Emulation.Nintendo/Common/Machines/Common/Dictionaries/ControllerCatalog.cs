@@ -11,13 +11,9 @@ public static class ControllerCatalog
         return types;
     }
 
-    public static ControllerType Default(Model model) =>
-        model.ControllerPortCount > 0
-            ? ControllerType.Joystick
-            : ControllerType.None;
+    public static ControllerType Default(Model model) => model.ControllerPortCount > 0 ? ControllerType.Joystick : ControllerType.None;
 
-    public static ControllerType Normalize(Model model, ControllerType type) =>
-        type != ControllerType.Automatic && Types(model).Contains(type) ? type : Default(model);
+    public static ControllerType Normalize(Model model, ControllerType type) => type != ControllerType.Automatic && Types(model).Contains(type) ? type : Default(model);
 
     public static IReadOnlyList<ControllerType> ParallelPortTypes { get; } =
         [ControllerType.Joystick, ControllerType.None];

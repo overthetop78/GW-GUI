@@ -82,6 +82,5 @@ public static class EmulatorCatalog
         ModelConstants.PokemonMini => Emulators.PokeMini.Constants.CoreConstants.Id,
         _ => throw new NotSupportedException(machineId)
     };
-    public static IReadOnlyList<EmulationEmulatorDefinition> GetAll(string machineId) =>
-        All.Where(definition => definition.MachineIds.Contains(machineId)).ToArray();
+    public static IReadOnlyList<EmulationEmulatorDefinition> GetAll(string machineId) => All.Where(definition => definition.MachineIds.Contains(machineId)).ToArray();
 }

@@ -110,9 +110,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
         get
         {
             var now = Stopwatch.GetTimestamp();
-            return _ledStates.Keys.Concat(_ledActivityUntil.Keys).Distinct()
-                .ToDictionary(key => key, key => _ledStates.GetValueOrDefault(key)
-                    || _ledActivityUntil.GetValueOrDefault(key) > now);
+            return _ledStates.Keys.Concat(_ledActivityUntil.Keys).Distinct().ToDictionary(key => key, key => _ledStates.GetValueOrDefault(key) || _ledActivityUntil.GetValueOrDefault(key) > now);
         }
     }
     internal int BufferedAudioFrames { get { lock (_audioGate) return _bufferedAudioFrames; } }
@@ -124,8 +122,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             throw new ArgumentOutOfRangeException(nameof(key), key, CoreExceptions.UnknownCoreOption());
         var option = OptionCatalog.First(item => item.Key.Equals(key, StringComparison.Ordinal));
         if (option.Values.Count > 0 && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(value), value,
-                CoreExceptions.InvalidOptionValue(value, key));
+            throw new ArgumentOutOfRangeException(nameof(value), value, CoreExceptions.InvalidOptionValue(value, key));
         _options[key] = value;
         Interlocked.Exchange(ref _optionsUpdated, 1);
         _updateOptionsDisplay?.Invoke();
