@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions;
-
 internal static class EmulationMediaConversionFunctions
 {
     internal static EmulationMedia ToCommon(MediaConfiguration media) => new(media.Path, media.Slot, media.Category, media.IsReadOnly, media.IsInserted);

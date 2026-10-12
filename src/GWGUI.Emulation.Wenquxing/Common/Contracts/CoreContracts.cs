@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Wenquxing.Common.Contracts;
-
 public sealed record CoreOption(
     string Key,
     string Name,

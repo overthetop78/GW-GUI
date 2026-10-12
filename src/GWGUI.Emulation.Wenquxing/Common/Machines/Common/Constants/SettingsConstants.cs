@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Wenquxing.Common.Machines.Common.Constants;
-
 internal static class SettingsConstants
 {
     internal const string AudioEnabled = "wenquxing_audio_enabled", AudioOutput = "gwgui_wenquxing_audio_output", AudioLatency = "gwgui_wenquxing_audio_latency";

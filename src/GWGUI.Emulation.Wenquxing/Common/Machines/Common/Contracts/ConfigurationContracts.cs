@@ -3,7 +3,6 @@ using GWGUI.Emulation.Wenquxing.Common.Constants;
 using GWGUI.Emulation.Wenquxing.Common.Machines.Common.Functions;
 
 namespace GWGUI.Emulation.Wenquxing.Common.Machines.Common.Contracts;
-
 internal sealed record ConfigurationDocument(
     int SchemaVersion,
     Guid Id,
@@ -16,7 +15,6 @@ internal sealed record ConfigurationDocument(
     bool AudioEnabled,
     IReadOnlyList<EmulationMediaSlot> ConfiguredSlots
 );
-
 public sealed record MachineConfiguration : IEmulationConfiguration
 {
     [JsonConstructor]
@@ -31,9 +29,21 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         InputConfiguration input,
         bool audioEnabled,
         IReadOnlyList<EmulationMediaSlot> configuredSlots
-    ) : this(model, firmware, media, options, input, id, schemaVersion, audioEnabled, core, configuredSlots)
+    ) : this(
+        model,
+        firmware,
+        media,
+        options,
+        input,
+        id,
+        schemaVersion,
+        audioEnabled,
+        core,
+        configuredSlots
+    )
     {
     }
+
     public MachineConfiguration(
         MachineModel model,
         FirmwareConfiguration? firmware = null,
@@ -59,6 +69,7 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         ConfiguredSlots = configuredSlots?.ToArray() ?? [];
         ConfigurationFunctions.Validate(this);
     }
+
     public string ModuleId => EmulationModuleConstants.ModuleId;
     public string MachineId => Model.ToString();
     public int SchemaVersion { get; init; }

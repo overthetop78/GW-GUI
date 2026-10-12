@@ -1,7 +1,6 @@
 using GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Constants;
 
 namespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Functions;
-
 internal static class KeyboardFunctions
 {
     internal static IReadOnlyDictionary<EmulationKey, uint> CreateKeyMap(MachineModel model)
@@ -39,8 +38,15 @@ internal static class KeyboardFunctions
         AddRange(map, EmulationKey.F1, KeyboardConstants.FirstFunctionKey, KeyboardConstants.CommonFunctionKeyCount);
         return map;
     }
-    private static void AddRange(Dictionary<EmulationKey, uint> map, EmulationKey first, uint nativeFirst, int count)
+
+    private static void AddRange(
+        Dictionary<EmulationKey, uint> map,
+        EmulationKey first,
+        uint nativeFirst,
+        int count
+    )
     {
-        for (var index = 0; index < count; index++) map.Add((EmulationKey)((int)first + index), nativeFirst + (uint)index);
+        for (var index = 0; index < count; index++)
+            map.Add((EmulationKey)((int)first + index), nativeFirst + (uint)index);
     }
 }

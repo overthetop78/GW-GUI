@@ -1,5 +1,4 @@
 namespace GWGUI.Emulation.Wenquxing.Common.Machines.ElectronicDictionaries.Dictionaries;
-
 internal static class HardwareModelCatalog
 {
     // Machine photographs and printed brand: AloysHF/WQXEmu res, revision 05e34f90afe9ef448eb7198e443fbce8031c781c.

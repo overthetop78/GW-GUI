@@ -7,7 +7,6 @@ using System.Reflection.PortableExecutable;
 using System.Security.Cryptography;
 
 namespace GWGUI.Emulation.Wenquxing.Emulators.Wqxemu.Interop.Functions;
-
 internal static class CoreDiagnosticFunctions
 {
     internal static string CalculateSha256(string path)
@@ -59,7 +58,8 @@ internal static class CoreDiagnosticFunctions
             using var stream = File.OpenRead(path);
             using var pe = new PEReader(stream, PEStreamOptions.LeaveOpen);
             var directory = pe.PEHeaders.PEHeader?.ExportTableDirectory ?? default;
-            if (directory.RelativeVirtualAddress == 0 || directory.Size < CoreReleaseConstants.PeExportDirectoryMinimumSize) return [];
+            if (directory.RelativeVirtualAddress == 0 || directory.Size < CoreReleaseConstants.PeExportDirectoryMinimumSize)
+                return[];
             var directoryOffset = RvaToFileOffset(pe.PEHeaders, directory.RelativeVirtualAddress);
             using var reader = new BinaryReader(stream, System.Text.Encoding.UTF8, leaveOpen: true);
             stream.Position = directoryOffset + CoreReleaseConstants.PeExportNumberOfNamesOffset;
@@ -75,33 +75,39 @@ internal static class CoreDiagnosticFunctions
                 stream.Position = nameOffset;
                 exports.Add(ReadNullTerminatedString(reader));
             }
+
             return exports.Order(StringComparer.Ordinal).ToArray();
         }
         catch (BadImageFormatException)
         {
-            return [];
+            return[];
         }
         catch (IOException)
         {
-            return [];
+            return[];
         }
         catch (InvalidDataException)
         {
-            return [];
+            return[];
         }
         catch (OverflowException)
         {
-            return [];
+            return[];
         }
     }
 
-    private static long RvaToFileOffset(PEHeaders headers, int rva)
+    private static long RvaToFileOffset(
+        PEHeaders headers,
+        int rva
+    )
     {
         foreach (var section in headers.SectionHeaders)
         {
             var size = Math.Max(section.VirtualSize, section.SizeOfRawData);
-            if (rva >= section.VirtualAddress && rva < section.VirtualAddress + size) return section.PointerToRawData + rva - section.VirtualAddress;
+            if (rva >= section.VirtualAddress && rva < section.VirtualAddress + size)
+                return section.PointerToRawData + rva - section.VirtualAddress;
         }
+
         throw new InvalidDataException(CoreReleaseErrors.InvalidExportDirectory);
     }
 
@@ -111,9 +117,11 @@ internal static class CoreDiagnosticFunctions
         while (bytes.Count < CoreReleaseConstants.MaximumExportNameLength)
         {
             var value = reader.ReadByte();
-            if (value == 0) break;
+            if (value == 0)
+                break;
             bytes.Add(value);
         }
+
         return System.Text.Encoding.ASCII.GetString(bytes.ToArray());
     }
 }
