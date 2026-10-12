@@ -5,11 +5,6 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Family.Wenquxing" xml:space="preserve"><value>Wenquxing</value></data>
-  <data name="Emulation.Wenquxing.Model.NC1020" xml:space="preserve"><value>NC1020</value></data>
-  <data name="Emulation.Wenquxing.Model.PC1000" xml:space="preserve"><value>PC1000</value></data>
-  <data name="Emulation.Wenquxing.Model.CC800" xml:space="preserve"><value>CC800</value></data>
-  <data name="Emulation.Wenquxing.Model.NC2000" xml:space="preserve"><value>NC2000</value></data>
-  <data name="Emulation.Wenquxing.Model.NC3000" xml:space="preserve"><value>NC3000</value></data>
   <data name="Emulation.Wenquxing.Firmware.NorFlash" xml:space="preserve"><value>NOR Flash</value></data>
   <data name="Emulation.Wenquxing.Firmware.NandFlash" xml:space="preserve"><value>NAND Flash</value></data>
   <data name="Emulation.Wenquxing.Firmware.NandFirstPlane" xml:space="preserve"><value>NAND0</value></data>

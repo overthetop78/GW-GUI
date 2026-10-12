@@ -275,3 +275,6 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-12 04:52:47 | 45:57:03 | -37:57:03 | Reprise. Wenquxing : catalogues et descriptions publiques. |
 | 2026-10-12 05:02:03 | 46:06:19 | -38:06:19 | Reprise. Wenquxing : visuels des cinq modèles et intégration. |
 | 2026-10-12 05:06:43 | 46:10:59 | -38:10:59 | Reprise. Wenquxing : contrôle des visuels et intégration. |
+| 2026-10-12 05:37:57 | 46:42:13 | -38:42:13 | Reprise. Panasonic/3DO : qualification Opera et contrats. |
+| 2026-10-12 06:45:08 | 47:49:24 | -39:49:24 | Reprise. Panasonic/3DO : descriptions, entrée publique et ressources. |
+| 2026-10-12 07:31:49 | 48:36:05 | -40:36:05 | Reprise. Classement des ressources et détourages des derniers modules. |

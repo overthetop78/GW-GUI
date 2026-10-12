@@ -5,7 +5,6 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Family.Watara" xml:space="preserve"><value>Watara</value></data>
-  <data name="Emulation.Watara.Model.Supervision" xml:space="preserve"><value>Supervision</value></data>
   <data name="Emulation.Emulator.potator.Description" xml:space="preserve"><value>Handheld console emulator.</value></data>
   <data name="Emulation.Watara.Video.Palette" xml:space="preserve"><value>Color palette</value></data>
   <data name="Emulation.Watara.Video.Ghosting" xml:space="preserve"><value>LCD image persistence</value></data>
