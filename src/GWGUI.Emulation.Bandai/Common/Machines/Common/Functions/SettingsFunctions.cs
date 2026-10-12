@@ -66,17 +66,7 @@ internal static class SettingsDescriptionFunctions
                 choice.ResourceKey ?? (choice.InvariantDisplayValue is not null ? string.Empty : throw new InvalidOperationException($"Missing common choice for {option.Key}/{choice.Value}.")),
                 choice.InvariantDisplayValue
             )).ToArray();
-        return new(
-            option.Key,
-            tab,
-            blockId,
-            resource,
-            EmulationSettingsEditor.Selection,
-            configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue),
-            choices,
-            ExplanationResourceKey: option.ExplanationResourceKey,
-            RequiresRestart: false
-        );
+        return new( option.Key, tab, blockId, resource, EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), choices, ExplanationResourceKey: option.ExplanationResourceKey, RequiresRestart: false );
     }
 
     private static EmulationSettingsBlock Audio(MachineConfiguration configuration) => Block(

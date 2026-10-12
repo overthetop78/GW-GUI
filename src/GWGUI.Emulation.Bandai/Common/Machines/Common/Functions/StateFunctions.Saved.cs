@@ -104,8 +104,7 @@ internal static class SavedStateFunctions
         {
             var document = new GWGUI.MediaEngine.Images.Formats.Optical.BinCue.CueSheetReader().Parse(File.ReadLines(path));
             var directory = Path.GetDirectoryName(Path.GetFullPath(path))!;
-            return HashBytes(Encoding.UTF8.GetBytes(string.Join(Environment.NewLine,
-                document.Files.Select(file => Path.GetFullPath(file.DeclaredPath, directory)).Distinct(StringComparer.OrdinalIgnoreCase).Select(HashFile).Prepend(HashFile(path)))));
+            return HashBytes(Encoding.UTF8.GetBytes(string.Join(Environment.NewLine, document.Files.Select(file => Path.GetFullPath(file.DeclaredPath, directory)).Distinct(StringComparer.OrdinalIgnoreCase).Select(HashFile).Prepend(HashFile(path)))));
         }
         if (File.Exists(path)) return HashFile(path);
         if (!Directory.Exists(path)) throw new FileNotFoundException(ErrorMessages.ContentFileMissing, path);
