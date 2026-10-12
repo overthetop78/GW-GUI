@@ -1,5 +1,4 @@
 namespace GWGUI.MediaFileSystems.FileSystems.Ucsd;
-
 /// <summary>Décrit les types de fichiers UCSD.</summary>
 public enum UcsdFileKind
 {

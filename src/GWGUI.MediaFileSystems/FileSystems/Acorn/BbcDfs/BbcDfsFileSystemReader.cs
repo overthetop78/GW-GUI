@@ -1,13 +1,8 @@
 using System.Collections.Frozen;
-
-
 using GWGUI.MediaFileSystems.Constants;
-
-
 using GWGUI.MediaFileSystems.Interfaces;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Acorn.BbcDfs;
-
 /// <summary>Lit les catalogues BBC DFS simple et double face.</summary>
 public sealed class BbcDfsFileSystemReader : IFileSystemReader
 {
@@ -35,12 +30,12 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
     {
         if (!CanRead(image))
         {
-            var count = image.TryGetBlock(BbcDfsFileSystemLayout.MetadataSector, out var block) && block.Data.Count > BbcDfsFileSystemLayout.EntryCountOffset
-                ? block.Data[BbcDfsFileSystemLayout.EntryCountOffset] / BbcDfsFileSystemLayout.EntryPartSize
+            var count = image.TryGetBlock(BbcDfsFileSystemLayout.MetadataSector, out var block) && block.Data.Count > BbcDfsFileSystemLayout.EntryCountOffset 
+                ? block.Data[BbcDfsFileSystemLayout.EntryCountOffset] / BbcDfsFileSystemLayout.EntryPartSize 
                 : -1;
             throw BbcDfsFileSystemExceptions.InvalidCatalog(count, image.BlockCount);
         }
-    
+
         image.TryGetBlock(BbcDfsFileSystemLayout.NamesSector, out var namesBlock);
         var names = namesBlock.Data.ToArray().AsSpan();
         image.TryGetBlock(BbcDfsFileSystemLayout.MetadataSector, out var metadataBlock);
@@ -80,7 +75,7 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
                     valid = false;
                     continue;
                 }
-    
+
                 var targetOffset = sector * BbcDfsFileSystemLayout.SectorSize;
                 var count = Math.Min(BbcDfsFileSystemLayout.SectorSize, length - targetOffset);
                 if (block.Data.Count < count)
@@ -88,16 +83,16 @@ public sealed class BbcDfsFileSystemReader : IFileSystemReader
                     valid = false;
                     continue;
                 }
-    
+
                 for (var byteIndex = 0; byteIndex < count; byteIndex++)
                     content[targetOffset + byteIndex] = block.Data[byteIndex];
                 copied += count;
             }
-    
+
             var comment = BbcDfsNameCodec.Description(load, execute);
             entries.Add(new(name, FileSystemEntryKind.File, length, null, comment, (uint)((directoryByte & BbcDfsFileSystemLayout.LockedBit) != 0 ? 1 : 0), start, valid, [], content));
         }
-    
+
         var capacity = (long)totalSectors * BbcDfsFileSystemLayout.SectorSize;
         return new(
             title.Trim(),

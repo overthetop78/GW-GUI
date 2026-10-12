@@ -1,5 +1,4 @@
 namespace GWGUI.MediaFileSystems.FileSystems.Apple.Dos;
-
 /// <summary>Fournit les libellés affichés des types Apple DOS.</summary>
 internal static class AppleDosFileTypeNames
 {

@@ -2,7 +2,6 @@ using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageF
 using System.Collections.Frozen;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Fat12;
-
 /// <summary>Associe explicitement chaque format sectoriel pris en charge au système FAT12.</summary>
 public static class Fat12FormatCatalog
 {

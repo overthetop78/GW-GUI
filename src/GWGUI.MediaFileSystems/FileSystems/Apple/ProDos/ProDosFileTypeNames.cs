@@ -1,5 +1,4 @@
 namespace GWGUI.MediaFileSystems.FileSystems.Apple.ProDos;
-
 /// <summary>Fournit les libellés des types de fichiers ProDOS.</summary>
 internal static class ProDosFileTypeNames
 {

@@ -1,7 +1,13 @@
 namespace GWGUI.MediaFileSystems.FileSystems.Cpm;
-
 /// <summary>Décrit les champs validés de la spécification disque Amstrad PCW.</summary>
-public sealed record AmstradCpmDiskSpecification(byte Tracks, byte SectorsPerTrack, int SectorSize, byte ReservedTracks, int AllocationSize, byte DirectoryBlocks)
+public sealed record AmstradCpmDiskSpecification(
+    byte Tracks,
+    byte SectorsPerTrack,
+    int SectorSize,
+    byte ReservedTracks,
+    int AllocationSize,
+    byte DirectoryBlocks
+)
 {
     /// <summary>Taille minimale contenant la spécification.</summary>
     public const int MinimumLength = 512;
@@ -35,9 +41,11 @@ public sealed record AmstradCpmDiskSpecification(byte Tracks, byte SectorsPerTra
     public const int MaximumAllocationSize = 16384;
     /// <summary>Masque du code exponentiel de taille.</summary>
     public const byte SizeCodeMask = 7;
-
     /// <summary>Tente de lire et valider une spécification disque PCW.</summary>
-    public static bool TryParse(ReadOnlySpan<byte> bytes, out AmstradCpmDiskSpecification specification)
+    public static bool TryParse(
+        ReadOnlySpan<byte> bytes,
+        out AmstradCpmDiskSpecification specification
+    )
     {
         specification = null!;
         if (bytes.Length < MinimumLength)

@@ -1,24 +1,26 @@
 using System.Collections.Frozen;
 using GWGUI.MediaFileSystems.Definitions;
 using GWGUI.MediaFileSystems.Constants;
-
 using GWGUI.MediaFileSystems.Interfaces;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Apple.Macintosh.Mfs;
-
 /// <summary>Lit un volume Macintosh MFS, sa carte d'allocation et son répertoire plat.</summary>
 public sealed class MacMfsFileSystemReader : IFileSystemReader
 {
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public string Id => FileSystemIds.MacMfs;
+    /// <inheritdoc/>
+    public IReadOnlySet<string> CatalogFormatIds { get; } = new[]
+    {
+        MediaImageFormatIds.AppleMacMfs,
+        MediaImageFormatIds.Mac400,
+        MediaImageFormatIds.Mac800,
+        MediaImageFormatIds.Mac1440
+    }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
-    /// <inheritdoc />
-    public IReadOnlySet<string> CatalogFormatIds { get; } = new[] { MediaImageFormatIds.AppleMacMfs, MediaImageFormatIds.Mac400, MediaImageFormatIds.Mac800, MediaImageFormatIds.Mac1440 }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
-
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public bool CanRead(IMediaSectorImage image) => image.BlockSize == MacMfsFileSystemLayout.SectorSize && image.TryGetBlock(MacMfsFileSystemLayout.MasterDirectoryBlock, out var block) && block.Data.Count >= MacMfsFileSystemLayout.MinimumMdbLength && MacFileSystemPrimitives.ReadUInt16(block.Data.ToArray(), 0) == MacMfsFileSystemLayout.Signature;
-
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public FileSystemVolume Read(IMediaSectorImage image)
     {
         var warnings = new List<string>();
@@ -28,7 +30,7 @@ public sealed class MacMfsFileSystemReader : IFileSystemReader
             var signature = volumeInformation.Bytes.Count >= sizeof(ushort) ? MacFileSystemPrimitives.ReadUInt16(volumeInformation.Bytes.ToArray(), 0) : (ushort)0;
             throw MacFileSystemExceptions.InvalidVolume(MacMfsFileSystemLayout.SystemName, signature);
         }
-    
+
         var mdb = volumeInformation.Bytes.ToArray();
         var directoryStart = MacFileSystemPrimitives.ReadUInt16(mdb, MacMfsFileSystemLayout.DirectoryStartOffset);
         var directoryLength = MacFileSystemPrimitives.ReadUInt16(mdb, MacMfsFileSystemLayout.DirectoryLengthOffset);

@@ -3,15 +3,28 @@ using System.Buffers.Binary;
 using GWGUI.MediaFileSystems.Primitives;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Acorn.FileCore;
-
 /// <summary>Contient les paramètres validés d'un DiscRecord FileCore.</summary>
-public sealed record AcornFileCoreDiscRecord(int Log2SectorSize, int IdLength, int Log2BytesPerMapBit, int ZoneCount, int ZoneSpareBits, int RootAddress, long DiscSize, string DiscName, int Log2ShareSize)
+public sealed record AcornFileCoreDiscRecord(
+    int Log2SectorSize,
+    int IdLength,
+    int Log2BytesPerMapBit,
+    int ZoneCount,
+    int ZoneSpareBits,
+    int RootAddress,
+    long DiscSize,
+    string DiscName,
+    int Log2ShareSize
+)
 {
     /// <summary>Taille utile d'une zone en bits.</summary>
     public int ZoneSizeBits => (BitConstants.BitsPerByte << Log2SectorSize) - ZoneSpareBits;
 
     /// <summary>Tente de lire et valider un DiscRecord.</summary>
-    public static bool TryParse(ReadOnlySpan<byte> data, long imageCapacity, out AcornFileCoreDiscRecord? record)
+    public static bool TryParse(
+        ReadOnlySpan<byte> data,
+        long imageCapacity,
+        out AcornFileCoreDiscRecord? record
+    )
     {
         record = null;
         if (data.Length < AcornFileCoreLayout.DiscRecordLength)

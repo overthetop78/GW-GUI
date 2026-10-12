@@ -3,29 +3,34 @@ using GWGUI.MediaFileSystems.Constants;
 using System.Buffers.Binary;
 using GWGUI.MediaFileSystems.FileSystems.Acorn.FileCore;
 using GWGUI.MediaFileSystems.Primitives;
-
 using GWGUI.MediaFileSystems.Interfaces;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Acorn.Adfs;
-
 /// <summary>Lit et valide les répertoires ADFS et parcourt récursivement leurs entrées.</summary>
 public static class AcornAdfsDirectoryReader
 {
     /// <summary>Lit un répertoire et ses descendants.</summary>
-    public static AcornAdfsDirectoryData Read(IMediaSectorImage image, int address, IFileCoreAddressResolver resolver, HashSet<int> visited, List<string> warnings, int depth)
+    public static AcornAdfsDirectoryData Read(
+        IMediaSectorImage image,
+        int address,
+        IFileCoreAddressResolver resolver,
+        HashSet<int> visited,
+        List<string> warnings,
+        int depth
+    )
     {
         if (depth > AcornAdfsLayout.MaximumDepth)
         {
             warnings.Add(AcornAdfsWarnings.DepthLimit(depth));
             return new(string.Empty, string.Empty, []);
         }
-    
+
         if (!visited.Add(address))
         {
             warnings.Add(AcornAdfsWarnings.CyclicDirectory(address));
             return new(string.Empty, string.Empty, []);
         }
-    
+
         if (!TryRead(image, address, resolver, out var directory))
             throw AcornAdfsExceptions.InvalidDirectory(address);
         var entries = new List<FileSystemEntry>();
@@ -62,48 +67,63 @@ public static class AcornAdfsDirectoryReader
                 content = AcornAdfsFileReader.Read(image, indirectAddress, length, resolver, name, warnings, ref metadataValid);
             var type = global::GWGUI.MediaFileSystems.AcornFileSystemTime.HasTimestamp(load) ? (load >> BitConstants.BitsPerByte) & 0xfff : 0u;
             entries.Add(new(
-                name,
-                isDirectory ? FileSystemEntryKind.Directory : FileSystemEntryKind.File,
-                isDirectory ? 0 : length,
-                global::GWGUI.MediaFileSystems.AcornFileSystemTime.Decode(load, execute),
-                Describe(load, execute, type),
-                attributes,
-                indirectAddress,
-                metadataValid,
-                children,
-                content
-            ));
+                    name,
+                    isDirectory ? FileSystemEntryKind.Directory : FileSystemEntryKind.File,
+                    isDirectory ? 0 : length,
+                    global::GWGUI.MediaFileSystems.AcornFileSystemTime.Decode(load, execute),
+                    Describe(load, execute, type),
+                    attributes,
+                    indirectAddress,
+                    metadataValid,
+                    children,
+                    content
+                ));
         }
-    
+
         var title = AcornAdfsNameCodec.Decode(directory.AsSpan(AcornAdfsLayout.TitleOffset, AcornAdfsLayout.TitleLength));
         var directoryName = AcornAdfsNameCodec.Decode(directory.AsSpan(AcornAdfsLayout.DirectoryNameOffset, AcornAdfsLayout.DirectoryNameLength));
         return new(directoryName, title, entries.OrderBy(entry => entry.Kind != FileSystemEntryKind.Directory).ThenBy(entry => entry.Name, StringComparer.OrdinalIgnoreCase));
     }
 
     /// <summary>Tente de lire et de valider un répertoire complet.</summary>
-    public static bool TryRead(IMediaSectorImage image, int address, IFileCoreAddressResolver resolver, out byte[] directory)
+    public static bool TryRead(
+        IMediaSectorImage image,
+        int address,
+        IFileCoreAddressResolver resolver,
+        out byte[] directory
+    )
     {
-        if (!TryReadBytes(image, address, resolver, AcornAdfsLayout.DirectorySize, out directory)) return false;
+        if (!TryReadBytes(image, address, resolver, AcornAdfsLayout.DirectorySize, out directory))
+            return false;
         var header = directory.AsSpan(AcornAdfsLayout.HeaderSignatureOffset, AcornAdfsLayout.SignatureLength);
         var footer = directory.AsSpan(AcornAdfsLayout.FooterSignatureOffset, AcornAdfsLayout.SignatureLength);
         return (header.SequenceEqual(AcornAdfsLayout.HugoSignature) || header.SequenceEqual(AcornAdfsLayout.NickSignature)) && footer.SequenceEqual(header) && directory[0] == directory[AcornAdfsLayout.TailSequenceOffset];
     }
 
     /// <summary>Tente de lire une plage d'octets à travers un résolveur FileCore.</summary>
-    public static bool TryReadBytes(IMediaSectorImage image, int address, IFileCoreAddressResolver resolver, int length, out byte[] output)
+    public static bool TryReadBytes(
+        IMediaSectorImage image,
+        int address,
+        IFileCoreAddressResolver resolver,
+        int length,
+        out byte[] output
+    )
     {
         output = new byte[length];
         var copied = 0;
         while (copied < length)
         {
-            if (!resolver.TryResolveByteOffset(address, copied, out var byteOffset)) return false;
+            if (!resolver.TryResolveByteOffset(address, copied, out var byteOffset))
+                return false;
             var blockNumber = checked((int)(byteOffset / AcornAdfsLayout.BlockSize));
             var offsetInBlock = checked((int)(byteOffset % AcornAdfsLayout.BlockSize));
-            if (!image.TryGetBlock(blockNumber, out var block) || block.Data.Count != AcornAdfsLayout.BlockSize) return false;
+            if (!image.TryGetBlock(blockNumber, out var block) || block.Data.Count != AcornAdfsLayout.BlockSize)
+                return false;
             var count = Math.Min(AcornAdfsLayout.BlockSize - offsetInBlock, length - copied);
             block.Data.ToArray().AsSpan(offsetInBlock, count).CopyTo(output.AsSpan(copied));
             copied += count;
         }
+
         return true;
     }
 

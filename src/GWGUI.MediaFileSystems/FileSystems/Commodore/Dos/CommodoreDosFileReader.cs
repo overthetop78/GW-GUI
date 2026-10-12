@@ -1,13 +1,17 @@
-
 using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Commodore.Dos;
-
 /// <summary>Reconstruit une chaîne de secteurs de fichier Commodore DOS.</summary>
 internal static class CommodoreDosFileReader
 {
     /// <summary>Lit une chaîne et conserve un état invalide lorsque sa lecture reste partielle.</summary>
-    public static CommodoreDosFileReadResult Read(IMediaSectorImage image, int firstTrack, int firstSector, List<string> warnings, string name)
+    public static CommodoreDosFileReadResult Read(
+        IMediaSectorImage image,
+        int firstTrack,
+        int firstSector,
+        List<string> warnings,
+        string name
+    )
     {
         if (firstTrack == 0)
             return new([], true, [], [], null);
@@ -26,22 +30,23 @@ internal static class CommodoreDosFileReader
                 valid = false;
                 break;
             }
-    
+
             var sectorStatus = CommodoreDosSectorReader.Read(image, track, sector, out var data);
             if (sectorStatus != CommodoreDosSectorReadStatus.Success)
             {
                 warnings.Add(CommodoreDosWarnings.FileReadFailure(
-                    name,
-                    sectorStatus switch
-                {
-                    CommodoreDosSectorReadStatus.InvalidCoordinate => $"la coordonnée {track}/{sector} est invalide.",
-                    CommodoreDosSectorReadStatus.Truncated => $"le secteur {track}/{sector} est tronqué.",
-                    _ => $"le secteur {track}/{sector} est absent."}
-                ));
+                        name,
+                        sectorStatus switch
+                        {
+                            CommodoreDosSectorReadStatus.InvalidCoordinate => $"la coordonnée {track}/{sector} est invalide.",
+                            CommodoreDosSectorReadStatus.Truncated => $"le secteur {track}/{sector} est tronqué.",
+                            _ => $"le secteur {track}/{sector} est absent."
+                        }
+                    ));
                 valid = false;
                 break;
             }
-    
+
             var nextTrack = data[CommodoreDosLayout.NextTrackOffset];
             var nextSector = data[CommodoreDosLayout.NextSectorOffset];
             var used = CommodoreDosLayout.DataBytesPerSector;
@@ -53,10 +58,10 @@ internal static class CommodoreDosFileReader
                     valid = false;
                     break;
                 }
-    
+
                 used = nextSector - 1;
             }
-    
+
             for (var index = 0; index < used; index++)
                 stream.WriteByte(data[CommodoreDosLayout.LinkLength + index]);
             track = nextTrack;
@@ -68,7 +73,7 @@ internal static class CommodoreDosFileReader
                 break;
             }
         }
-    
+
         return new(stream.ToArray(), valid, visited, warnings.Skip(firstWarningIndex), firstLogicalBlock);
     }
 }

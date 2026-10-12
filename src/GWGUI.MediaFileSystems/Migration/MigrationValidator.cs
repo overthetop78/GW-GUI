@@ -1,18 +1,25 @@
 using GWGUI.MediaFileSystems;
 
 namespace GWGUI.MediaFileSystems.Migration;
-
 public static class MigrationValidator
 {
-    public static MigrationValidationReport Validate(MigrationPlan plan, MigrationTargetCapabilities target, bool acceptMetadataLoss = false)
+    public static MigrationValidationReport Validate(
+        MigrationPlan plan,
+        MigrationTargetCapabilities target,
+        bool acceptMetadataLoss = false
+    )
     {
         ArgumentNullException.ThrowIfNull(plan);
         ArgumentNullException.ThrowIfNull(target);
-        if (!plan.TargetFileSystemId.Equals(target.FileSystemId, StringComparison.OrdinalIgnoreCase)) throw new ArgumentException("The target capabilities do not describe the migration target.", nameof(target));
-        if (target.MaximumNameLength <= 0 || target.MaximumFileSize < 0) throw new ArgumentOutOfRangeException(nameof(target), "Target name and file-size limits must be valid.");
+        if (!plan.TargetFileSystemId.Equals(target.FileSystemId, StringComparison.OrdinalIgnoreCase))
+            throw new ArgumentException("The target capabilities do not describe the migration target.", nameof(target));
+        if (target.MaximumNameLength <= 0 || target.MaximumFileSize < 0)
+            throw new ArgumentOutOfRangeException(nameof(target), "Target name and file-size limits must be valid.");
         var losses = new List<MigrationLoss>();
-        if (plan.VolumeName.Length > target.MaximumVolumeNameLength) losses.Add(new(MigrationLossKind.NameTooLong, "/", true, plan.VolumeName.Length.ToString()));
-        if (target.VolumeNamePolicy is not null && !target.VolumeNamePolicy.IsValid(plan.VolumeName)) losses.Add(new(MigrationLossKind.InvalidName, "/", true, plan.VolumeName));
+        if (plan.VolumeName.Length > target.MaximumVolumeNameLength)
+            losses.Add(new(MigrationLossKind.NameTooLong, "/", true, plan.VolumeName.Length.ToString()));
+        if (target.VolumeNamePolicy is not null && !target.VolumeNamePolicy.IsValid(plan.VolumeName))
+            losses.Add(new(MigrationLossKind.InvalidName, "/", true, plan.VolumeName));
         ValidateEntries(plan.Entries, target, losses);
         return new(losses, acceptMetadataLoss);
     }
@@ -20,16 +27,23 @@ public static class MigrationValidator
     public static void EnsureExecutable(MigrationValidationReport report)
     {
         ArgumentNullException.ThrowIfNull(report);
-        if (!report.CanExecute) throw new InvalidOperationException("The migration contains unhandled incompatibilities or unaccepted metadata losses.");
+        if (!report.CanExecute)
+            throw new InvalidOperationException("The migration contains unhandled incompatibilities or unaccepted metadata losses.");
     }
 
-    private static void ValidateEntries(IReadOnlyList<MigrationEntry> entries, MigrationTargetCapabilities target, ICollection<MigrationLoss> losses)
+    private static void ValidateEntries(
+        IReadOnlyList<MigrationEntry> entries,
+        MigrationTargetCapabilities target,
+        ICollection<MigrationLoss> losses
+    )
     {
         var comparer = target.IsCaseSensitive ? StringComparer.Ordinal : StringComparer.OrdinalIgnoreCase;
         foreach (var collision in entries.GroupBy(entry => entry.TargetName, comparer).Where(group => group.Skip(1).Any()))
         {
-            foreach (var entry in collision) losses.Add(new(MigrationLossKind.NameCollision, entry.SourcePath, true, entry.TargetName));
+            foreach (var entry in collision)
+                losses.Add(new(MigrationLossKind.NameCollision, entry.SourcePath, true, entry.TargetName));
         }
+
         foreach (var entry in entries)
         {
             ValidateEntry(entry, target, losses);
@@ -37,7 +51,11 @@ public static class MigrationValidator
         }
     }
 
-    private static void ValidateEntry(MigrationEntry entry, MigrationTargetCapabilities target, ICollection<MigrationLoss> losses)
+    private static void ValidateEntry(
+        MigrationEntry entry,
+        MigrationTargetCapabilities target,
+        ICollection<MigrationLoss> losses
+    )
     {
         if (entry.TargetName.Length == 0 || entry.TargetName.Any(character => target.ForbiddenNameCharacters.Contains(character) || !target.AllowsControlCharacters && char.IsControl(character)) || target.NamePolicy is not null && !target.NamePolicy.IsValid(entry.TargetName))
             losses.Add(new(MigrationLossKind.InvalidName, entry.SourcePath, true, entry.TargetName));

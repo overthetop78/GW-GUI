@@ -1,5 +1,4 @@
 namespace GWGUI.MediaFileSystems.FileSystems.Acorn.BbcDfs;
-
 /// <summary>Décode les champs compactés sur 18 ou 10 bits d'une entrée BBC DFS.</summary>
 public static class BbcDfsEntryDecoder
 {

@@ -1,29 +1,29 @@
 using MediaImageFormatIds = global::GWGUI.MediaFileSystems.Constants.MediaImageFormatIds;
 using GWGUI.MediaFileSystems.Primitives;
 using System.Collections.Frozen;
-
-
 using IMediaSectorImage = global::GWGUI.MediaFileSystems.Interfaces.IMediaSectorImage;
 
 namespace GWGUI.MediaFileSystems.FileSystems.Amiga;
-
 /// <summary>Lit les volumes AmigaDOS OFS et FFS ainsi que leurs variantes.</summary>
 public sealed class AmigaDosFileSystemReader : IFileSystemReader
 {
     /// <summary>Identifiant technique du lecteur AmigaDOS.</summary>
     public string Id => Definitions.FileSystemIds.AmigaDos;
     /// <summary>Formats d'images sectorielles pris en charge.</summary>
-    public IReadOnlySet<string> CatalogFormatIds { get; } = new[] { MediaImageFormatIds.AmigaDos, MediaImageFormatIds.AmigaDosHighDensity }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
+    public IReadOnlySet<string> CatalogFormatIds { get; } = new[]
+    {
+        MediaImageFormatIds.AmigaDos,
+        MediaImageFormatIds.AmigaDosHighDensity
+    }.ToFrozenSet(StringComparer.OrdinalIgnoreCase);
 
     /// <summary>Indique si l'image contient un volume AmigaDOS plausible.</summary>
-    /// <param name="image">Image sectorielle à examiner.</param>
+    /// <param name = "image">Image sectorielle à examiner.</param>
     /// <returns><see langword="true"/> si un volume AmigaDOS est reconnu.</returns>
     public bool CanRead(IMediaSectorImage image) => AmigaDosRootBlockReader.TryRead(image, out _) || AmigaDosRecoveryReader.TryRead(image, out _);
-
     /// <summary>Lit le volume AmigaDOS contenu dans l'image.</summary>
-    /// <param name="image">Image sectorielle à lire.</param>
+    /// <param name = "image">Image sectorielle à lire.</param>
     /// <returns>Volume et entrées reconstruits.</returns>
-    /// <exception cref="InvalidDataException">Le boot, la racine ou un bloc indispensable est invalide.</exception>
+    /// <exception cref = "InvalidDataException">Le boot, la racine ou un bloc indispensable est invalide.</exception>
     public FileSystemVolume Read(IMediaSectorImage image)
     {
         if (image.TryGetBlock(AmigaDosLayout.BootBlock, out var bootBlock) && AmigaDosRootBlockReader.HasDosPrefix(bootBlock.Data.ToArray()) && bootBlock.Data[AmigaDosLayout.DosVariantOffset] > (byte)AmigaDosLayout.MaximumVariant)
@@ -37,10 +37,10 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
                 var declaredRoot = BigEndianInt32.Read(bootBlock.Data.ToArray(), AmigaDosLayout.BootRootPointerOffset);
                 throw AmigaDosExceptions.InvalidRootBlock(declaredRoot > 0 ? declaredRoot : image.BlockCount / 2);
             }
-    
+
             throw AmigaDosExceptions.UnsupportedBoot();
         }
-    
+
         var warnings = new List<string>();
         var root = rootResult.Data;
         if (!AmigaDosChecksum.IsValid(root))
@@ -62,5 +62,4 @@ public sealed class AmigaDosFileSystemReader : IFileSystemReader
             warnings
         );
     }
-
 }
