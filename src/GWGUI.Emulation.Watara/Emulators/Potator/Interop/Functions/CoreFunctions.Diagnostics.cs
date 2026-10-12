@@ -23,7 +23,11 @@ internal static class CoreDiagnosticFunctions
             using var stream = File.OpenRead(path);
             using var reader = new PEReader(stream);
             return (ushort)reader.PEHeaders.CoffHeader.Machine switch
-            { CoreReleaseConstants.WindowsX64Machine => EmulatorCatalogConstants.WindowsX64Architecture, CoreReleaseConstants.WindowsX86Machine => CoreReleaseConstants.WindowsX86Architecture, CoreReleaseConstants.WindowsArm64Machine => CoreReleaseConstants.WindowsArm64Architecture, _ => CoreReleaseConstants.UnknownDiagnosticValue
+            {
+                CoreReleaseConstants.WindowsX64Machine => EmulatorCatalogConstants.WindowsX64Architecture,
+                CoreReleaseConstants.WindowsX86Machine => CoreReleaseConstants.WindowsX86Architecture,
+                CoreReleaseConstants.WindowsArm64Machine => CoreReleaseConstants.WindowsArm64Architecture,
+                _ => CoreReleaseConstants.UnknownDiagnosticValue
             };
         }
         catch (BadImageFormatException)

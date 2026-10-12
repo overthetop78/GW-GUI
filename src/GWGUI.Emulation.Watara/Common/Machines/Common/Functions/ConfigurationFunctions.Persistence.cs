@@ -11,7 +11,17 @@ internal static class ConfigurationStoreFunctions
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web) { WriteIndented = ConfigurationStoreConstants.WriteIndentedJson };
 
     internal static ConfigurationDocument Deserialize(JsonElement root) => root.Deserialize<ConfigurationDocument>(JsonOptions) ?? throw new InvalidDataException();
-    internal static ConfigurationDocument ToDocument(MachineConfiguration configuration, string pathBase) => new(ConfigurationStoreConstants.CurrentSchemaVersion, configuration.Id, configuration.Model, configuration.Core, configuration.Media.Select(media => media with { Path = StorePath(media.Path, pathBase)! }).ToArray(), new Dictionary<string, string>(configuration.Options), configuration.Input, configuration.AudioEnabled, configuration.ConfiguredSlots);
+    internal static ConfigurationDocument ToDocument(MachineConfiguration configuration, string pathBase) => new(
+        ConfigurationStoreConstants.CurrentSchemaVersion,
+        configuration.Id,
+        configuration.Model,
+        configuration.Core,
+        configuration.Media.Select(media => media with { Path = StorePath(media.Path, pathBase)! }).ToArray(),
+        new Dictionary<string, string>(configuration.Options),
+        configuration.Input,
+        configuration.AudioEnabled,
+        configuration.ConfiguredSlots
+    );
 
     internal static MachineConfiguration FromDocument(ConfigurationDocument document, string pathBase)
     {

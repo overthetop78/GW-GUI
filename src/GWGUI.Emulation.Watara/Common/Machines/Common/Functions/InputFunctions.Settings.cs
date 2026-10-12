@@ -9,9 +9,29 @@ internal static class InputSettingsFunctions
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var binding = configuration.Input.Controllers?.SingleOrDefault();
-        var choice = new EmulationControllerChoice(PeripheralCategory.Supervision.ToString(), string.Empty, "Supervision", ControllerCatalog.Definitions, [EmulationControllerVisualIds.WataraSupervisionControls], EmulationControllerVisualIds.WataraSupervisionControls, ControllerCatalog.VisualCommands);
-        var bindings = new EmulationInputBindingSet(ControllerCatalog.Definitions, binding?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true, [EmulationControllerVisualIds.WataraSupervisionControls], EmulationControllerVisualIds.WataraSupervisionControls, ControllerCatalog.VisualCommands);
-        return new(null, null, [new(1, [choice], choice.Id, binding?.DeviceId, bindings, binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId ?? EmulationControllerVisualIds.WataraSupervisionControls)]);
+        var choice = new EmulationControllerChoice(
+            PeripheralCategory.Supervision.ToString(),
+            string.Empty,
+            "Supervision",
+            ControllerCatalog.Definitions,
+            [EmulationControllerVisualIds.WataraSupervisionControls],
+            EmulationControllerVisualIds.WataraSupervisionControls,
+            ControllerCatalog.VisualCommands
+        );
+        var bindings = new EmulationInputBindingSet(
+            ControllerCatalog.Definitions,
+            binding?.Mappings ?? new Dictionary<string, string>(),
+            EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
+            true,
+            [EmulationControllerVisualIds.WataraSupervisionControls],
+            EmulationControllerVisualIds.WataraSupervisionControls,
+            ControllerCatalog.VisualCommands
+        );
+        return new(
+            null,
+            null,
+            [new(1, [choice], choice.Id, binding?.DeviceId, bindings, binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId ?? EmulationControllerVisualIds.WataraSupervisionControls)]
+        );
     }
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationInputSettings settings)
     {

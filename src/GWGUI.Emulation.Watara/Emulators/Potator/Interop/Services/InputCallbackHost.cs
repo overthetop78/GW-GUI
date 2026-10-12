@@ -19,13 +19,29 @@ internal sealed class InputCallbackHost
     {
         try
         {
-            if (port != ControllerConstants.FirstPort || (device & DeviceMask) != JoypadDevice || index != 0 || _input.Controllers.Count == 0) return 0;
+            if (port != ControllerConstants.FirstPort || (device & DeviceMask) != JoypadDevice || index != 0 || _input.Controllers.Count == 0)
+                return 0;
             var controller = _input.Controllers[ControllerConstants.FirstPort];
             var buttons = (ControllerButtons)controller.Buttons;
-            var pressed = (NativeButton)id switch { NativeButton.Up => controller.LeftY < 0, NativeButton.Down => controller.LeftY > 0, NativeButton.Left => controller.LeftX < 0, NativeButton.Right => controller.LeftX > 0, NativeButton.A => buttons.HasFlag(ControllerButtons.A), NativeButton.B => buttons.HasFlag(ControllerButtons.B), NativeButton.Start => buttons.HasFlag(ControllerButtons.Start), NativeButton.Select => buttons.HasFlag(ControllerButtons.Select), _ => false };
+            var pressed = (NativeButton)id switch
+            {
+                NativeButton.Up => controller.LeftY < 0,
+                NativeButton.Down => controller.LeftY > 0,
+                NativeButton.Left => controller.LeftX < 0,
+                NativeButton.Right => controller.LeftX > 0,
+                NativeButton.A => buttons.HasFlag(ControllerButtons.A),
+                NativeButton.B => buttons.HasFlag(ControllerButtons.B),
+                NativeButton.Start => buttons.HasFlag(ControllerButtons.Start),
+                NativeButton.Select => buttons.HasFlag(ControllerButtons.Select),
+                _ => false
+            };
             return pressed ? (short)1 : (short)0;
         }
-        catch (Exception error) { Failure ??= error; return 0; }
+        catch (Exception error)
+        {
+            Failure ??= error;
+            return 0;
+        }
     }
 
     internal void Release() { _input = EmulationInputSnapshot.Empty; Failure = null; }

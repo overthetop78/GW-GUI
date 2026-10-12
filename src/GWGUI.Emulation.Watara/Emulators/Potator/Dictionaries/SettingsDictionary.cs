@@ -41,5 +41,9 @@ internal static class SettingsDictionary
     internal static readonly IReadOnlyDictionary<FrameSkipMode, string> FrameSkipValues = new Dictionary<FrameSkipMode, string> { [FrameSkipMode.Disabled] = "disabled", [FrameSkipMode.Automatic] = "auto", [FrameSkipMode.Manual] = "manual" };
     internal static IReadOnlyList<EmulationSettingsChoice> Ghosting => Enumerable.Range(0, 9).Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture), string.Empty, value.ToString(CultureInfo.InvariantCulture))).ToArray();
     internal static IReadOnlyList<EmulationSettingsChoice> Thresholds => Enumerable.Range(0, 16).Select(index => (15 + index * 3).ToString(CultureInfo.InvariantCulture)).Select(value => new EmulationSettingsChoice(value, string.Empty, value + " %")).ToArray();
-    internal static IReadOnlyList<EmulationSettingsChoice> FrameSkip => [new(FrameSkipValues[FrameSkipMode.Disabled], "Emulation.Value.Disabled"), new(FrameSkipValues[FrameSkipMode.Automatic], "Emulation.Controller.Automatic"), new(FrameSkipValues[FrameSkipMode.Manual], "Emulation.Watara.Video.Manual")];
+    internal static IReadOnlyList<EmulationSettingsChoice> FrameSkip => [
+        new(FrameSkipValues[FrameSkipMode.Disabled], "Emulation.Value.Disabled"),
+        new(FrameSkipValues[FrameSkipMode.Automatic], "Emulation.Controller.Automatic"),
+        new(FrameSkipValues[FrameSkipMode.Manual], "Emulation.Watara.Video.Manual")
+    ];
 }

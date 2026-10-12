@@ -83,11 +83,27 @@ public sealed class WataraEmulationModule : IEmulationModule, IEmulationEmulator
         var adapter = _engine.Adapter(current);
         var corePath = await adapter.FindInstalledCorePathAsync(_managementContext, cancellationToken).ConfigureAwait(false) ?? throw new EmulationMessageException(new EmulationMessage(EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog, new EmulationEmulatorMessageContext(adapter.EmulatorId)));
         var output = current.Options.GetValueOrDefault(SettingsConstants.AudioOutput);
-        if (output == SettingsConstants.DefaultOutput) output = null;
-        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) ? parsed : SettingsConstants.DefaultLatency;
-        var context = new EmulatorCreationContext(services.SessionsDirectory, corePath, services.HostExecutablePath, () => services.CreateAudioOutput(output, latency), value => Path.Combine(services.StatesDirectory, EmulationModuleConstants.SavesDirectoryName, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat)));
+        if (output == SettingsConstants.DefaultOutput)
+            output = null;
+        var latency = current.Options.TryGetValue(SettingsConstants.AudioLatency, out var selectedLatency) && int.TryParse(selectedLatency, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)
+            ? parsed
+            : SettingsConstants.DefaultLatency;
+        var context = new EmulatorCreationContext(
+            services.SessionsDirectory,
+            corePath,
+            services.HostExecutablePath,
+            () => services.CreateAudioOutput(output, latency),
+            value => Path.Combine(services.StatesDirectory, EmulationModuleConstants.SavesDirectoryName, value.Id.ToString(ConfigurationStoreConstants.MachineIdentifierFormat))
+        );
         var storage = StorageSettingsFunctions.Describe(current);
-        return new EmulationMachineRuntime(current, media => _engine.CreateMachine(current with { Media = media.Select(item => EmulationMediaConversionFunctions.ToModule(item, current.Media)).ToArray() }, context), storage.AvailableDevices, storage.MountedMedia, ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey, false);
+        return new EmulationMachineRuntime(
+            current,
+            media => _engine.CreateMachine(current with { Media = media.Select(item => EmulationMediaConversionFunctions.ToModule(item, current.Media)).ToArray() }, context),
+            storage.AvailableDevices,
+            storage.MountedMedia,
+            ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey,
+            false
+        );
     }
     private IEmulatorAdapter Adapter(string machineId) => _engine.Adapters(ModelCatalog.Parse(machineId).ToString()).FirstOrDefault() ?? throw new ArgumentOutOfRangeException(nameof(machineId));
     private IEmulatorAdapter SelectedOrDefault(MachineConfiguration configuration) => configuration.Core == Emulator.None ? Adapter(configuration.MachineId) : _engine.Adapter(configuration);

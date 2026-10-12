@@ -20,7 +20,21 @@ internal static class RuntimeFunctions
     {
         var frame = core.LatestVideoFrame;
         var geometry = frame is null ? null : new RuntimeGeometry(frame.Width, frame.Height, frame.Pitch, frame.AspectRatio);
-        return new RuntimeStatus(configuration.Model, core.Region, core.FramesPerSecond, core.SampleRate, geometry, core.CoreName, new Dictionary<EmulationMediaSlot, bool>(), new Dictionary<int, bool>(core.LedStates), core.BufferedAudioFrames, core.AudioOverrunCount, core.AudioUnderrunCount, core.HostProcessState, core.HostProcessId);
+        return new RuntimeStatus(
+            configuration.Model,
+            core.Region,
+            core.FramesPerSecond,
+            core.SampleRate,
+            geometry,
+            core.CoreName,
+            new Dictionary<EmulationMediaSlot, bool>(),
+            new Dictionary<int, bool>(core.LedStates),
+            core.BufferedAudioFrames,
+            core.AudioOverrunCount,
+            core.AudioUnderrunCount,
+            core.HostProcessState,
+            core.HostProcessId
+        );
     }
 }
 
