@@ -160,7 +160,8 @@ internal abstract class AmigaMachineFactory : MachineFactory
     private static string ResolveKickstartSuffix(string model, int version, int revision) => (version, revision) switch
     {
         ((int)NativeKickstartVersion.Kickstart11Ntsc or (int)NativeKickstartVersion.Kickstart11Pal, (int)NativeKickstartRevision.Kickstart11) => GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A1000,
-        ((int)NativeKickstartVersion.Kickstart12, (int)NativeKickstartRevision.Kickstart12) or ((int)NativeKickstartVersion.Kickstart13, (int)NativeKickstartRevision.Kickstart13) or ((int)NativeKickstartVersion.Kickstart204, (int)NativeKickstartRevision.Kickstart204) => GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A500,
+        ((int)NativeKickstartVersion.Kickstart12, (int)NativeKickstartRevision.Kickstart12) or ((int)NativeKickstartVersion.Kickstart13, (int)NativeKickstartRevision.Kickstart13)
+            or ((int)NativeKickstartVersion.Kickstart204, (int)NativeKickstartRevision.Kickstart204) => GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A500,
         ((int)NativeKickstartVersion.Kickstart204, (int)NativeKickstartRevision.Kickstart205A600) or ((int)NativeKickstartVersion.Kickstart31, (int)NativeKickstartRevision.Kickstart31A600) => GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A600,
         ((int)NativeKickstartVersion.Kickstart31, (int)NativeKickstartRevision.Kickstart31Cd32) => GWGUI.Emulation.Commodore.Common.Machines.AmigaCD32.Constants.ModelConstants.CD32,
         ((int)NativeKickstartVersion.Kickstart30, (int)NativeKickstartRevision.Kickstart30) or ((int)NativeKickstartVersion.Kickstart31, (int)NativeKickstartRevision.Kickstart31A1200)when model.Equals(GWGUI.Emulation.Commodore.Common.Machines.AmigaComputers.Constants.ModelConstants.A3000,

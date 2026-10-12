@@ -43,9 +43,7 @@ internal abstract class MachineFactory : IEmulatorAdapter
                 cancellationToken.ThrowIfCancellationRequested();
                 using var stream = File.OpenRead(path);
                 var sha256 = Convert.ToHexString(SHA256.HashData(stream));
-                return slots.Select(slot => new EmulationFirmwareCandidate(
-                    sha256 + MachineSettingsConstants.CandidateRoleSeparator + slot.FieldId, path,
-                    Path.GetFileName(path), null, EmulationFirmwareCompatibility.PartiallyCompatible, slot.FieldId));
+                return slots.Select(slot => new EmulationFirmwareCandidate( sha256 + MachineSettingsConstants.CandidateRoleSeparator + slot.FieldId, path, Path.GetFileName(path), null, EmulationFirmwareCompatibility.PartiallyCompatible, slot.FieldId));
             }).ToArray();
     }
     public virtual ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media, string conversionDirectory) => ValueTask.FromResult(media);

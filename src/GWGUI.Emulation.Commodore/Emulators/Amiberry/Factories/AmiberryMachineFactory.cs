@@ -14,8 +14,7 @@ internal sealed class AmiberryMachineFactory : AmigaMachineFactory
 
     internal override IReadOnlyDictionary<string, string> NativeOptions(MachineConfiguration configuration, IReadOnlyList<MediaConfiguration> media)
     {
-        var options = (configuration.Options ?? new Dictionary<string, string>()).Where(pair => pair.Key.StartsWith(OptionConstants.Prefix, StringComparison.Ordinal))
-            .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal);
+        var options = (configuration.Options ?? new Dictionary<string, string>()).Where(pair => pair.Key.StartsWith(OptionConstants.Prefix, StringComparison.Ordinal)) .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal);
         options[OptionConstants.Model] = configuration.Model is OptionConstants.A2000 or OptionConstants.A3000 ? OptionConstants.A500Plus : ((AmigaModel)ModelCatalog.Get(configuration.Model)).BackendModel;
         options[OptionConstants.Kickstart] = Path.GetFullPath(configuration.FirmwarePath(SettingsConstants.KickstartPath));
         if (configuration.Options?.TryGetValue(SettingsConstants.OptionVideoStandard, out var standard) == true)
