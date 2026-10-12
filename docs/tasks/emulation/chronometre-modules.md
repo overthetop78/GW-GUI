@@ -246,3 +246,17 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-11 23:19:57 | 40:24:13 | -32:24:13 | Reprise. SNK : bornes internes du lecteur CCD. |
 | 2026-10-11 23:31:02 | 40:35:18 | -32:35:18 | Reprise. Thomson : contrats natifs et carte de fabrication ; validations SNK encore ouvertes. |
 | 2026-10-11 23:43:37 | 40:47:53 | -32:47:53 | Reprise. Nettoyage effectué ; commit SNK puis fabrication Thomson. |
+| 2026-10-11 23:47:33 | 40:51:49 | -32:51:49 | Reprise. Commits terminés ; création des bases Thomson et des métadonnées Théodore. |
+| 2026-10-11 23:57:40 | 41:01:56 | -33:01:56 | Reprise. Thomson : contrats neutres, configuration et correspondance des modèles Théodore créés ; exécution à raccorder. |
+| 2026-10-12 00:02:42 | 41:06:58 | -33:06:58 | Reprise. Thomson : prise de cœur neutre et cycle de vie de la session. |
+| 2026-10-12 00:28:04 | 41:32:20 | -33:32:20 | Reprise. Thomson : commandes spéciales et associations physiques explicites. |
+| 2026-10-12 00:47:10 | 41:51:26 | -33:51:26 | Reprise. Thomson : raccordement natif des modèles et formats de supports Théodore. |
+| 2026-10-12 00:51:09 | 41:55:25 | -33:55:25 | Reprise. Thomson : exports natifs réutilisant les signatures SDK et libération de bibliothèque. |
+| 2026-10-12 00:55:12 | 41:59:28 | -33:59:28 | Reprise. Thomson : callback vidéo vers les snapshots SDK. |
+| 2026-10-12 01:00:47 | 42:05:03 | -34:05:03 | Reprise. Thomson : variables natives et chaînes UTF8 détenues. |
+| 2026-10-12 01:08:36 | 42:12:52 | -34:12:52 | Reprise. Thomson : clavier natif et suppression des anciens alias. |
+| 2026-10-12 01:15:52 | 42:20:08 | -34:20:08 | Reprise. Thomson : propriétaire du cœur et copies de session des supports. |
+| 2026-10-12 01:24:25 | 42:28:41 | -34:28:41 | Reprise. Thomson : protocole neutre du processus isolé. |
+| 2026-10-12 01:31:31 | 42:35:47 | -34:35:47 | Reprise. Thomson : fermeture et transport du processus isolé. |
+| 2026-10-12 01:38:38 | 42:42:54 | -34:42:54 | Reprise. Thomson : catalogue et gestion du module. |
+| 2026-10-12 01:51:26 | 42:55:42 | -34:55:42 | Reprise. Thomson : visuels des machines et intégration. |

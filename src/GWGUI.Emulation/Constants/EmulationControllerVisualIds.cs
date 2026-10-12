@@ -2,6 +2,7 @@ namespace GWGUI.Emulation.Constants;
 
 public static class EmulationControllerVisualIds
 {
+    public const string ThomsonMj90102 = "thomson-mj90-102";
     public const string SharpCyberstick = "sharp-cyberstick";
     public const string MattelIntellivisionController = "mattel-intellivision-controller";
     public const string PhilipsVideopacJoystick = "philips-videopac-joystick";

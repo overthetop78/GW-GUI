@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.theodore.Description" xml:space="preserve"><value>Emuláty Thomson MO a TO počítače.</value></data>
+  <data name="Emulation.Thomson.Start" xml:space="preserve"><value>Zahájení programu</value></data>
+  <data name="Emulation.Thomson.Start.AutoRun" xml:space="preserve"><value>Automaticky spustit načtený program</value></data>
+  <data name="Emulation.Thomson.Start.UseGameHash" xml:space="preserve"><value>Identifikovat program podle jeho kontrolního součtu</value></data>
+  <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Zobrazit pokyny pro spuštění programu</value></data>
+  <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Tiskárna</value></data>
+  <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Uložit výstup tiskárny do souboru</value></data>
+</root>

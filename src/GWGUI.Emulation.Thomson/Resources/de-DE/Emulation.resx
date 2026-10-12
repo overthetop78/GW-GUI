@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.theodore.Description" xml:space="preserve"><value>Emuliert Thomson MO und TO Computer.</value></data>
+  <data name="Emulation.Thomson.Start" xml:space="preserve"><value>Startprogramm</value></data>
+  <data name="Emulation.Thomson.Start.AutoRun" xml:space="preserve"><value>Starten Sie das geladene Programm automatisch</value></data>
+  <data name="Emulation.Thomson.Start.UseGameHash" xml:space="preserve"><value>Identifizieren Sie das Programm anhand seiner Prüfsumme</value></data>
+  <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Anweisungen zum Starten des Programms anzeigen</value></data>
+  <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Drucker</value></data>
+  <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Speichern Sie die Druckerausgabe in einer Datei</value></data>
+</root>

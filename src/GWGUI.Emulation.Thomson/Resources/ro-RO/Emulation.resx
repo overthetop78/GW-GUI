@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.theodore.Description" xml:space="preserve"><value>Emulează Thomson MO şi TO calculatoare.</value></data>
+  <data name="Emulation.Thomson.Start" xml:space="preserve"><value>Pornirea programului</value></data>
+  <data name="Emulation.Thomson.Start.AutoRun" xml:space="preserve"><value>Pornește automat programul încărcat</value></data>
+  <data name="Emulation.Thomson.Start.UseGameHash" xml:space="preserve"><value>Identifică programul după ce a fost verificat</value></data>
+  <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Arată instrucțiunile pentru începerea programului</value></data>
+  <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Imprimantă</value></data>
+  <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Salvează ieşirea imprimantei într-un fișier</value></data>
+</root>

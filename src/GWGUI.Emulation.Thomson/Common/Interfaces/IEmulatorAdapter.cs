@@ -1,0 +1,22 @@
+using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Thomson.Common.Contracts;
+using GWGUI.Emulation.Thomson.Common.Machines.Common.Contracts;
+using GWGUI.Emulation.Thomson.Common.Services;
+
+namespace GWGUI.Emulation.Thomson.Common.Interfaces;
+
+internal interface IEmulatorAdapter
+{
+    string EmulatorId { get; }
+    string EmulatorKey { get; }
+    EmulationEmulatorDefinition Definition { get; }
+    bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode);
+    ValueTask<EmulationEmulatorInstallation> GetInstallationAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
+    ValueTask<IReadOnlyList<EmulationEmulatorRelease>> FindReleasesAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
+    ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken);
+    ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
+    IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration);
+    IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration);
+    IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration);
+    Machine Create(MachineConfiguration configuration, EmulatorCreationContext context);
+}

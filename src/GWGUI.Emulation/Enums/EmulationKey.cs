@@ -30,5 +30,6 @@ public enum EmulationKey
     CommodoreRestore, CommodorePound, CommodoreArrowLeft, CommodoreArrowUp,
     CommodoreLineFeed, Commodore40_80Display, CommodoreNoScroll, CommodoreAsciiDinCaps,
     CommodoreOffReverse, CommodoreNormalGraphic, CommodoreKeypadClearEntry,
-    CommodoreRepeat
+    CommodoreRepeat,
+    ThomsonStop, ThomsonAccent, ThomsonRaz, ThomsonBasic
 }

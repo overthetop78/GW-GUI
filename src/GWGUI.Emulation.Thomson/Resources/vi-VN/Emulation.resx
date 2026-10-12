@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Emulator.theodore.Description" xml:space="preserve"><value>Xếp đặt lại cho máy MO và TO Máy tính.</value></data>
+  <data name="Emulation.Thomson.Start" xml:space="preserve"><value>Chạy chương trình</value></data>
+  <data name="Emulation.Thomson.Start.AutoRun" xml:space="preserve"><value>Tự động khởi chạy chương trình đã tải</value></data>
+  <data name="Emulation.Thomson.Start.UseGameHash" xml:space="preserve"><value>Nhận diện chương trình qua tổng kiểm tra</value></data>
+  <data name="Emulation.Thomson.Start.ShowHint" xml:space="preserve"><value>Hiển thị hướng dẫn để khởi chạy chương trình</value></data>
+  <data name="Emulation.Thomson.Printer" xml:space="preserve"><value>Máy in</value></data>
+  <data name="Emulation.Thomson.Printer.SaveOutput" xml:space="preserve"><value>Lưu kết xuất máy in vào tập tin</value></data>
+</root>
