@@ -36,7 +36,22 @@ public static class FirmwareFunctions
         evidence, Values(model), noRegions,
         Values(new FirmwareFingerprint(FirmwareHashAlgorithm.Md5, md5)));
 
-    public static FirmwareDefinition Embedded(string id, FirmwareCategory category, FirmwareProvision provision, IReadOnlyList<MachineModel> models, IReadOnlyList<StRegion> noRegions, IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id, category, null, null, null, provision, FirmwareDistribution.NoExternalFile, FirmwareEvidence.VirtualJaguarCoreInformation, models, noRegions, noFingerprints);
+    public static FirmwareDefinition Embedded(string id,
+        FirmwareCategory category,
+        FirmwareProvision provision,
+        IReadOnlyList<MachineModel> models,
+        IReadOnlyList<StRegion> noRegions,
+        IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id,
+        category,
+        null,
+        null,
+        null,
+        provision,
+        FirmwareDistribution.NoExternalFile,
+        FirmwareEvidence.VirtualJaguarCoreInformation,
+        models,
+        noRegions,
+        noFingerprints);
 
     public static FirmwareDefinition JaguarCd(string id, string fileName, IReadOnlyList<StRegion> noRegions, IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(
         id, FirmwareCategory.JaguarCdBios, null, fileName, null,
@@ -44,7 +59,21 @@ public static class FirmwareFunctions
         FirmwareEvidence.VirtualJaguarCoreInformation, Values(MachineModel.JaguarCd), noRegions,
         noFingerprints);
 
-    public static FirmwareDefinition None(string id, MachineModel model, FirmwareEvidence evidence, IReadOnlyList<StRegion> noRegions, IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id, null, null, null, null, FirmwareProvision.NotUsed, FirmwareDistribution.NoExternalFile, evidence, Values(model), noRegions, noFingerprints);
+    public static FirmwareDefinition None(string id,
+        MachineModel model,
+        FirmwareEvidence evidence,
+        IReadOnlyList<StRegion> noRegions,
+        IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id,
+        null,
+        null,
+        null,
+        null,
+        FirmwareProvision.NotUsed,
+        FirmwareDistribution.NoExternalFile,
+        evidence,
+        Values(model),
+        noRegions,
+        noFingerprints);
 }
 
 public static class FirmwareRuntimeFunctions

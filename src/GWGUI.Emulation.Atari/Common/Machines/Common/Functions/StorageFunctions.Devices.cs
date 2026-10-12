@@ -85,7 +85,18 @@ internal static partial class StorageSettingsFunctions
     }
 
     private static string? Option(MachineConfiguration configuration, string prefix, EmulationMediaSlot slot) => configuration.Options.GetValueOrDefault(prefix + slot);
-    private static bool IsDeviceOption(string key) => key.StartsWith(DeviceOptionPrefix, StringComparison.Ordinal) || key.StartsWith(ModelOptionPrefix, StringComparison.Ordinal) || key.StartsWith(SpeedOptionPrefix, StringComparison.Ordinal) || key.StartsWith(WriteProtectedOptionPrefix, StringComparison.Ordinal) || key.StartsWith(RedirectWritesOptionPrefix, StringComparison.Ordinal) || key.StartsWith(InterfaceOptionPrefix, StringComparison.Ordinal);
+    private static bool IsDeviceOption(string key) => key.StartsWith(DeviceOptionPrefix,
+        StringComparison.Ordinal) 
+        || key.StartsWith(ModelOptionPrefix,
+        StringComparison.Ordinal) 
+        || key.StartsWith(SpeedOptionPrefix,
+        StringComparison.Ordinal) 
+        || key.StartsWith(WriteProtectedOptionPrefix,
+        StringComparison.Ordinal) 
+        || key.StartsWith(RedirectWritesOptionPrefix,
+        StringComparison.Ordinal) 
+        || key.StartsWith(InterfaceOptionPrefix,
+        StringComparison.Ordinal);
     private static string DisplayLabel(MachineModel model, EmulationMediaSlot slot) => slot.Category switch
     {
         EmulationMediaCategory.FloppyDrive when model is MachineModel.Atari400 or MachineModel.Atari800 or MachineModel.Atari800Xl or MachineModel.Atari130Xe or MachineModel.Xegs or MachineModel.XlXe => $"D{slot.Index + 1}:",
@@ -94,5 +105,6 @@ internal static partial class StorageSettingsFunctions
         EmulationMediaCategory.CompactDiscDrive => $"CD{slot.Index}:",
         EmulationMediaCategory.CartridgeSlot => $"CART{slot.Index}:",
         EmulationMediaCategory.CassetteDrive => $"TAPE{slot.Index}:",
-        _ => slot.ToString()};
+        _ => slot.ToString()
+    };
 }
