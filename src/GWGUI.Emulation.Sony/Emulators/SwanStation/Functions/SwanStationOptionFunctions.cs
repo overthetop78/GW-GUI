@@ -14,8 +14,7 @@ internal static class SwanStationOptionFunctions
         }
         return configuration with { Options = options };
 
-        bool HasSelection(string fieldId) =>
-            !string.IsNullOrWhiteSpace(configuration.FirmwarePaths?.GetValueOrDefault(fieldId));
+        bool HasSelection(string fieldId) => !string.IsNullOrWhiteSpace(configuration.FirmwarePaths?.GetValueOrDefault(fieldId));
     }
 }
 

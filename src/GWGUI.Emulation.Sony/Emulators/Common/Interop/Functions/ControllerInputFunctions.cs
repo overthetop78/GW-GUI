@@ -5,7 +5,11 @@ namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions;
 
 internal static class ControllerInputFunctions
 {
-    internal static bool PortButton(EmulationControllerState controller, string command, bool fallback = false) => controller.Controls.TryGetValue(command, out var pressure) ? pressure > PressedPressureThreshold : (InputSnapshotDictionary.ButtonIndexes.TryGetValue(command, out var index) && (controller.Buttons & (1u << index)) != EmptyButtonMask) || fallback;
+    internal static bool PortButton(EmulationControllerState controller,
+        string command,
+        bool fallback = false) => controller.Controls.TryGetValue(command,
+        out var pressure) ? pressure > PressedPressureThreshold : (InputSnapshotDictionary.ButtonIndexes.TryGetValue(command,
+        out var index) && (controller.Buttons & (1u << index)) != EmptyButtonMask) || fallback;
 
     internal static short AnalogButton(EmulationControllerState controller, JoypadInput button)
     {
