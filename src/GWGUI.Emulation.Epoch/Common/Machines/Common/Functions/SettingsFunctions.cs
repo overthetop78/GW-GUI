@@ -66,9 +66,7 @@ internal static class SettingsDescriptionFunctions
     {
         if (choice.InvariantDisplayValue is { } text) return text;
         if (choice.FrequencyHz is not { } frequency) return null;
-        return choice.VideoStandard is { } standard
-            ? EmulationVideoFunctions.FormatTiming(standard, frequency)
-            : $"{frequency.ToString(CultureInfo.CurrentCulture)} {SettingsConstants.HertzUnit}";
+        return choice.VideoStandard is { } standard ? EmulationVideoFunctions.FormatTiming(standard, frequency) : $"{frequency.ToString(CultureInfo.CurrentCulture)} {SettingsConstants.HertzUnit}";
     }
 
     private static EmulationSettingsBlock Audio(MachineConfiguration configuration) => Block(EmulationMachineTab.Audio,
