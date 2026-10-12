@@ -21,11 +21,9 @@ internal sealed class UpdateInstallationTransaction
         Directory.CreateDirectory(_backupDirectory);
         try
         {
-            var application = _plan.Components.FirstOrDefault(item =>
-                item.Operation == UpdateComponentOperation.UpdateApplication);
+            var application = _plan.Components.FirstOrDefault(item => item.Operation == UpdateComponentOperation.UpdateApplication);
             if (application is not null) ReplaceApplication(application.PreparedDirectory);
-            foreach (var module in _plan.Components.Where(item =>
-                         item.Operation is UpdateComponentOperation.InstallModule or UpdateComponentOperation.UpdateModule))
+            foreach (var module in _plan.Components.Where(item => item.Operation is UpdateComponentOperation.InstallModule or UpdateComponentOperation.UpdateModule))
                 ReplaceModule(module);
         }
         catch

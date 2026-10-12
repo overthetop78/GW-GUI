@@ -12,11 +12,9 @@ internal static class Program
         {
             if (args is not ["--apply", var planPath]) return 2;
             plan = UpdatePlanReader.Read(planPath);
-            if (!await UpdateProcessWaiter.WaitAsync(plan.ProcessIds,
-                    TimeSpan.FromSeconds(plan.ShutdownTimeoutSeconds)))
+            if (!await UpdateProcessWaiter.WaitAsync(plan.ProcessIds, TimeSpan.FromSeconds(plan.ShutdownTimeoutSeconds)))
             {
-                UpdatePlanReader.WriteResult(plan, UpdateTransactionStatus.FailedBeforeReplacement,
-                    "GW GUI processes did not close before the deadline.");
+                UpdatePlanReader.WriteResult(plan, UpdateTransactionStatus.FailedBeforeReplacement, "GW GUI processes did not close before the deadline.");
                 return 3;
             }
 
@@ -42,8 +40,7 @@ internal static class Program
             }
 
             transaction.Restore();
-            UpdatePlanReader.WriteResult(plan, UpdateTransactionStatus.Restored,
-                startupFailure ?? "The updated application did not report a successful startup.");
+            UpdatePlanReader.WriteResult(plan, UpdateTransactionStatus.Restored, startupFailure ?? "The updated application did not report a successful startup.");
             Launch(plan, includeSignal: false);
             return 5;
         }
