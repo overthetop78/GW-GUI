@@ -54,12 +54,10 @@ internal static class AmigaStorageSettingsFunctions
         var options = configuration.Options ?? new Dictionary<string, string>();
         var floppyCount = Count(options, StorageSettingsFunctionsConstants.GwguiFloppyDriveCount, model.HasBuiltInFloppyDrive ? (int)DriveCapacity.SingleDrive : (int)DriveCapacity.None, model.MaximumFloppyDrives);
         var hardDriveCount = model.SupportsHardDrives ? Count(options, StorageSettingsFunctionsConstants.GwguiHardDriveCount, (int)DriveCapacity.None, model.MaximumHardDrives) : (int)DriveCapacity.None;
-        var configured = configuration.ConfiguredMediaSlots 
+        var configured = configuration.ConfiguredMediaSlots
             ?? Enumerable.Range(BufferConstants.FirstCollectionIndex,
-            floppyCount).Select(index => new EmulationMediaSlot(EmulationMediaCategory.FloppyDrive,
-            index)).Concat(Enumerable.Range(BufferConstants.FirstCollectionIndex,
-            hardDriveCount).Select(index => new EmulationMediaSlot(EmulationMediaCategory.HardDisk,
-            index))).Concat(model.HasCdDrive ? [EmulationMediaSlot.Cd0] : []).Concat(mounted.Select(media => media.Slot)).Distinct().ToArray();
+            floppyCount).Select(index => new EmulationMediaSlot(EmulationMediaCategory.FloppyDrive, index)).Concat(Enumerable.Range(BufferConstants.FirstCollectionIndex,
+            hardDriveCount).Select(index => new EmulationMediaSlot(EmulationMediaCategory.HardDisk, index))).Concat(model.HasCdDrive ? [EmulationMediaSlot.Cd0] : []).Concat(mounted.Select(media => media.Slot)).Distinct().ToArray();
         var settings = configured.Select(slot => DeviceSettings(options, slot)).ToArray();
         return new EmulationStorageSettings(devices, configured, mounted, settings);
     }

@@ -6,8 +6,7 @@ namespace GWGUI.Emulation.Commodore.Emulators.ViceX64.Factories;
 
 internal sealed class MachineFactory : ViceMachineFactory
 {
-    public override EmulatorCatalogEntry CatalogEntry { get; } = new(Emulator.ViceX64,
-        new(EmulatorConstants.Id, EmulatorConstants.DisplayName, ContentConstants.DescriptionResourceKey, EmulatorConstants.Models.Keys.ToHashSet(StringComparer.Ordinal)));
+    public override EmulatorCatalogEntry CatalogEntry { get; } = new(Emulator.ViceX64, new(EmulatorConstants.Id, EmulatorConstants.DisplayName, ContentConstants.DescriptionResourceKey, EmulatorConstants.Models.Keys.ToHashSet(StringComparer.Ordinal)));
     internal override CoreDefinition CoreDefinition { get; } = new(EmulatorConstants.DisplayName, EmulatorConstants.LibraryFile, EmulatorConstants.DownloadUrl);
     internal override string ModelOption => EmulatorConstants.ModelOption;
     internal override string ResourceSection => EmulatorConstants.ResourceSection;

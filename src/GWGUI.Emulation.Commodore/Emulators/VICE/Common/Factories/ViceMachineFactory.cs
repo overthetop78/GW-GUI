@@ -8,7 +8,7 @@ namespace GWGUI.Emulation.Commodore.Emulators.VICE.Common.Factories;
 internal abstract class ViceMachineFactory : GWGUI.Emulation.Commodore.Emulators.Common.Interop.Factories.MachineFactory
 {
     public override IReadOnlyList<InputBindingDefinition> GetKeyboardDefinitions(MachineConfiguration configuration) => ViceKeyboard.Supports(configuration) ? ViceKeyboard.Definitions(configuration) : base.GetKeyboardDefinitions(configuration);
-    public override MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration) => ViceKeyboard.Supports(configuration) 
+    public override MachineConfiguration ApplyInputConfiguration(MachineConfiguration configuration) => ViceKeyboard.Supports(configuration)
         ? configuration with
     {
         Input = KeyboardBindingFunctions.Normalize(configuration.Input, ViceKeyboard.Defaults(configuration), ViceKeyboard.LegacyTargets(configuration))
@@ -33,12 +33,7 @@ internal abstract class ViceMachineFactory : GWGUI.Emulation.Commodore.Emulators
 
     public override IReadOnlyList<FirmwareSlot> GetFirmwareSlots(MachineConfiguration configuration) => RomDefinitions(configuration).Select(rom => rom.Slot).ToArray();
     public override IReadOnlyList<EmulationMediaDevice> GetMediaDevices(MachineConfiguration configuration) => Enumerable.Range(ControllerPortConstants.MinimumControllerPort,
-        ContentConstants.DriveCount).Select(index => new EmulationMediaDevice(new(EmulationMediaCategory.FloppyDrive, index),
-        EmulationMediaType.Floppy,
-        ContentConstants.DiskExtensions,
-        IsPermanent: index == ContentConstants.PrimaryMediaIndex)).Concat([new EmulationMediaDevice(new(EmulationMediaCategory.CassetteDrive, ContentConstants.PrimaryMediaIndex),
-        EmulationMediaType.Cassette,
-        ContentConstants.CassetteExtensions)]).Concat(CartridgeExtensions.Count != BufferConstants.EmptyCollectionCount
+        ContentConstants.DriveCount).Select(index => new EmulationMediaDevice(new(EmulationMediaCategory.FloppyDrive, index), EmulationMediaType.Floppy, ContentConstants.DiskExtensions, IsPermanent: index == ContentConstants.PrimaryMediaIndex)).Concat([new EmulationMediaDevice(new(EmulationMediaCategory.CassetteDrive, ContentConstants.PrimaryMediaIndex), EmulationMediaType.Cassette, ContentConstants.CassetteExtensions)]).Concat(CartridgeExtensions.Count != BufferConstants.EmptyCollectionCount
             ? [new EmulationMediaDevice(new(EmulationMediaCategory.CartridgeSlot, ContentConstants.PrimaryMediaIndex), EmulationMediaType.Cartridge, CartridgeExtensions, RequiresMachineRecreation: true)]
             : []).ToArray();
     internal override uint ControllerDevice(IReadOnlyList<IReadOnlyList<ControllerDevice>> ports, int port, ControllerType type) => type == ControllerType.None ? ContentConstants.NoControllerDevice : ContentConstants.JoypadDevice;
