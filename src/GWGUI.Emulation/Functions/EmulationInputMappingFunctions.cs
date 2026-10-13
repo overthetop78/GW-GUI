@@ -145,6 +145,33 @@ public static class EmulationInputMappingFunctions
 
     private static string SourceControlName(string source) => source.Split(EmulationInputMappingConstants.SourceSeparator, StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? string.Empty;
 
+    public static short MapControllerAxis(IReadOnlyDictionary<string, string> mappings, string positiveCommand, string negativeCommand,
+        EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
+    {
+        var positive = mappings.TryGetValue(positiveCommand, out var positiveSource) ? SourcePressure(positiveSource, controller, physical, keys, mouse) : 0f;
+        var negative = mappings.TryGetValue(negativeCommand, out var negativeSource) ? SourcePressure(negativeSource, controller, physical, keys, mouse) : 0f;
+        var value = positive - negative;
+        return (short)Math.Round(value >= 0f ? value * short.MaxValue : -value * short.MinValue);
+    }
+
+    public static short MapControllerPressure(IReadOnlyDictionary<string, string> mappings, string command, EmulationControllerState controller,
+        IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse) =>
+        mappings.TryGetValue(command, out var source) ? (short)Math.Round(SourcePressure(source, controller, physical, keys, mouse) * short.MaxValue) : (short)0;
+
+    private static float SourcePressure(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,
+        IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
+    {
+        if (string.IsNullOrWhiteSpace(source)) return 0f;
+        if (source.StartsWith(EmulationInputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
+            return Enum.TryParse<EmulationKey>(source[EmulationInputMappingConstants.KeyboardPrefix.Length..], true, out var key) && keys.Contains(key) ? 1f : 0f;
+        if (source.StartsWith(EmulationInputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
+            return mouse.GetValueOrDefault(source[EmulationInputMappingConstants.MousePrefix.Length..]) ? 1f : 0f;
+        var selected = ResolveSourceController(source, physical, controller);
+        var pressure = ControllerSourceValue(source, selected);
+        if (Math.Abs(pressure) > 1f) pressure /= short.MaxValue;
+        return Math.Clamp(pressure, 0f, 1f);
+    }
+
     public static string? OppositeControllerAxisSource(string source)
     {
         if (!source.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)) return null;

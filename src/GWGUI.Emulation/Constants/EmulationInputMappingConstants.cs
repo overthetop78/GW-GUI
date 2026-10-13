@@ -3,6 +3,8 @@ namespace GWGUI.Emulation.Constants;
 internal static class EmulationInputMappingConstants
 {
     internal const short AnalogThreshold = 14000;
+    internal const string KeyboardPrefix = "Keyboard:";
+    internal const string MousePrefix = "Mouse:";
     internal const string ControllerPrefix = "Controller:";
     internal const char SourceSeparator = ':';
     internal const string AxisPrefix = "Axis";
