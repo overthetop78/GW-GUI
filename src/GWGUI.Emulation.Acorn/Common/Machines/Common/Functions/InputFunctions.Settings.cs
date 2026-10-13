@@ -68,6 +68,16 @@ internal static class InputSettingsFunctions
     );
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory category) => category == PeripheralCategory.None 
         ? [] 
-        : InputSettingsFunctionsConstants.ControllerActions.Select(action => new InputBindingDefinition(action, InputSettingsFunctionsConstants.ResourceActionPrefix + action, string.Empty)).ToArray();
+        : InputSettingsFunctionsConstants.ControllerActions.Select(action => new InputBindingDefinition(action, InputSettingsFunctionsConstants.ResourceActionPrefix + action, string.Empty)
+        {
+            OppositeDirectionId = category is PeripheralCategory.AnalogJoystick or PeripheralCategory.Automatic ? action switch
+            {
+                EmulationControllerCommandIds.Up => EmulationControllerCommandIds.Down,
+                EmulationControllerCommandIds.Down => EmulationControllerCommandIds.Up,
+                EmulationControllerCommandIds.Left => EmulationControllerCommandIds.Right,
+                EmulationControllerCommandIds.Right => EmulationControllerCommandIds.Left,
+                _ => null
+            } : null
+        }).ToArray();
     private static IReadOnlyDictionary<string, string> ToStrings(IReadOnlyDictionary<string, EmulationKey>? mappings) => mappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal) ?? new Dictionary<string, string>(StringComparer.Ordinal);
 }
