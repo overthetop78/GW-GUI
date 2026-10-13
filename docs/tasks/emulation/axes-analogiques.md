@@ -1,14 +1,11 @@
-# Axes analogiques : raccordements restants
+# Axes analogiques : périphériques supplémentaires
 
-Socle livré : lecture progressive dans le SDK, directions opposées décrites par les modules, capture automatique du sens opposé uniquement pour un axe physique et touches indépendantes. Sony, Acorn, Apple, Nintendo, Sharp et Panasonic raccordés. 76 tests ciblés réussis et build Debug des 23 modules réussi.
+Livré : affectations par direction, association automatique du sens opposé d’un axe physique, maintien des valeurs progressives et touches indépendantes. SDK et éditeur partagés ; Sony, Acorn, Apple, Nintendo, Sharp, Panasonic, Atari, Commodore et Sega raccordés pour leurs axes décrits. Pressions Sony, GameCube et Sega composées explicitement ; requêtes de pression prises en charge par le callback Sega. Capture des mouvements progressifs corrigée. 272 tests ciblés réussis et build Debug des 23 modules réussi.
 
-- [ ] Raccorder les contrôleurs analogiques restants aux affectations explicites.
-  - [ ] Modifier `src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs` : partager la composition progressive des deux sens affectés d’un axe, avec sources physiques ou touches, sans convertir la demi-course en booléen.
-  - [ ] Modifier `src/GWGUI.Emulation.Atari/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Snapshot.cs` dans le même dossier : décrire les directions des axes réellement pris en charge, leurs paires, puis composer les axes depuis les associations persistées.
-  - [ ] Modifier `src/GWGUI.Emulation.Commodore/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Snapshot.cs` dans le même dossier : relier les directions du joystick analogique à la composition partagée ; conserver les pads numériques indépendants.
-  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Snapshot.cs` dans le même dossier : décrire les axes pris en charge par les pads analogiques et les raccorder à la composition partagée.
-  - [ ] Qualifier les autres périphériques avant de préciser leurs modifications : ne pas annoncer un axe analogique si le cœur ne fournit que des commandes numériques ou du déplacement relatif.
-- [ ] Vérifier et livrer ces raccordements.
-  - [ ] Modifier les tests existants de contrôleurs sous `tests/GWGUI.Tests/Emulation/ControllerInput` : vérifier demi-course, repos, butées, clavier et sélection du périphérique sans DLL externe.
-  - [ ] Produire la livraison Debug avec les modules, contrôler les fichiers livrés et commiter chaque module corrigé sans push.
-  - [ ] Supprimer `docs/tasks/emulation/axes-analogiques.md` lorsque tous les raccordements demandés sont effectivement terminés.
+- [ ] Compléter les périphériques analogiques particuliers réellement pris en charge par les cœurs.
+  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Snapshot.cs` dans le même dossier : qualifier les commandes du Mission Stick, Arcade Racer, XE-1AP et des autres périphériques proposés par les adaptateurs ; exposer et composer uniquement leurs axes effectivement disponibles, avec les paires de directions correspondantes.
+  - [ ] Modifier les définitions et convertisseurs des autres périphériques concernés après qualification de leurs canaux : préserver la distinction entre position analogique, mouvement relatif et commandes numériques, sans annoncer de capacité absente.
+- [ ] Vérifier et livrer les compléments.
+  - [ ] Modifier `tests/GWGUI.Tests/Emulation/ControllerInput/LegacyAnalogAxisTests.cs` avec les cas des canaux nouvellement raccordés et leurs limites.
+  - [ ] Produire Debug avec tous les modules, vérifier les fichiers livrés et commiter chaque module corrigé sans push.
+  - [ ] Supprimer `docs/tasks/emulation/axes-analogiques.md` quand tous les périphériques concernés sont effectivement traités.
