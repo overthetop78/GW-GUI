@@ -9,8 +9,10 @@ using GWGUI.Emulation.Nec.Emulators.BeetleSgx.Constants;
 
 namespace GWGUI.Emulation.Nec.Emulators.BeetleSgx.Factories;
 
-internal sealed class BeetleSgxMachineFactory : IEmulatorAdapter
+internal sealed class BeetleSgxMachineFactory : IEmulatorAdapter, IEmulatorMachineDefaults
 {
+    public bool IsDefaultFor(string machineId) => Definition.MachineIds.Contains(machineId);
+
     public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Describe(configuration);
     public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Apply(configuration, settings);
 

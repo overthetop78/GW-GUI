@@ -4,7 +4,8 @@ internal static class EmulatorCatalog
 {
     internal static IReadOnlyList<EmulationEmulatorDefinition> All => CreateAdapters().Select(adapter => adapter.Definition).OrderBy(definition => definition.Id, StringComparer.Ordinal).ToArray();
 
-    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => [new Emulators.Caprice32.Factories.Caprice32MachineFactory(), new Emulators.CrocoDS.Factories.CrocoDSMachineFactory()];
+    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() =>
+        EmulationAdapterFunctions.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly).OrderBy(adapter => Enum.Parse<Emulator>(adapter.EmulatorKey)).ToArray();
 
     internal static IEmulatorAdapter CreateAdapter(Emulator emulator) => CreateAdapters().SingleOrDefault(adapter => string.Equals(adapter.EmulatorKey, emulator.ToString(), StringComparison.Ordinal)) ?? throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);
 

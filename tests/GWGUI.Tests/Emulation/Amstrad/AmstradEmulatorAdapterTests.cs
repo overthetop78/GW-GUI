@@ -417,7 +417,7 @@ public sealed class AmstradEmulatorAdapterTests
         }
     }
     [Fact]
-    public void EmptyControllerMappingsRelayThePhysicalController()
+    public void EmptyControllerMappingsKeepTheVirtualControllerNeutral()
     {
         const uint buttons = (1u << 4) | (1u << 0);
         var configuration = new InputConfiguration(ControllerBindings:
@@ -441,7 +441,7 @@ public sealed class AmstradEmulatorAdapterTests
 
         var mapped = InputSnapshotFunctions.Apply(physical, configuration, false);
 
-        Assert.Equal(controller, mapped.Controllers[0]);
+        Assert.Equal(EmulationControllerState.Empty, mapped.Controllers[0]);
     }
 
     [Fact]

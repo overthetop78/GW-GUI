@@ -16,8 +16,11 @@ using GWGUI.Emulation.Nec.Emulators.Geargrafx.Functions;
 
 namespace GWGUI.Emulation.Nec.Emulators.Geargrafx.Factories;
 
-internal sealed class GeargrafxMachineFactory : IEmulatorAdapter
+internal sealed class GeargrafxMachineFactory : IEmulatorAdapter, IEmulatorMachineDefaults, IEmulatorFirmwareInspection
 {
+    public Firmware? IdentifyFirmware(Firmware firmware) => GeargrafxFirmwareFunctions.Identify(firmware);
+    public bool IsDefaultFor(string machineId) => machineId == LaserActiveMachineConstants.Id;
+
     public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Describe(configuration);
     public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Apply(configuration, settings);
 

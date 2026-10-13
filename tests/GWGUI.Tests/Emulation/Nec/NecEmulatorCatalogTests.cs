@@ -4,6 +4,7 @@ using GWGUI.Emulation.Nec.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Nec.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Nec.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
+using FirmwareFunctions = GWGUI.Emulation.Nec.Common.Machines.Common.Functions.FirmwareFunctions;
 
 namespace GWGUI.Tests.Emulation.Nec;
 

@@ -10,7 +10,6 @@ internal static class PcFxBackupMemoryConstants
     internal const int BankSize = 0x8000;
     internal const int BankCount = 2;
     internal const string InternalFileName = "InternalBackup.srm";
-    internal const string MemoryDirectoryName = "Memory";
     internal const string ExternalFileName = "FX-BMP.srm";
     internal const string ExternalExtension = ".srm";
     internal const string ModelName = "FX-BMP";

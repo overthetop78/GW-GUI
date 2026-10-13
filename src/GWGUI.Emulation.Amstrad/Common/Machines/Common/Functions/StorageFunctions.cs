@@ -1,17 +1,10 @@
-using CrocoDSProfile = GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Constants.EmulatorConstants;
 namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
 
 internal static class StorageSettingsFunctions
 {
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
     {
-        if (configuration.EmulatorId == CrocoDSProfile.Id)
-        {
-            var device = new EmulationMediaDevice(EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy,
-                [StorageSettingsFunctionsConstants.Dsk, StorageSettingsFunctionsConstants.Sna, StorageSettingsFunctionsConstants.Kcr], RequiresMachineRecreation: true,
-                DisplayLabel: StorageSettingsFunctionsConstants.FloppyDriveLabel, IsPermanent: true);
-            return new EmulationStorageSettings([device], [EmulationMediaSlot.Floppy0], EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []));
-        }
+        if (new Engine().Adapter(configuration) is IEmulatorStorageSettings storage) return storage.DescribeStorage(configuration);
         var model = ModelCatalog.Get(configuration.Model);
         var options = configuration.Options ?? new Dictionary<string, string>();
         var devices = new List<EmulationMediaDevice>();
@@ -67,12 +60,7 @@ internal static class StorageSettingsFunctions
             [StorageSettingsFunctionsConstants.CartridgeSlotEnabledOption] = settings.ConfiguredSlots.Contains(EmulationMediaSlot.Cartridge0).ToString()
         };
         var result = configuration with { Media = media, Options = options };
-        if (configuration.EmulatorId == CrocoDSProfile.Id)
-        {
-            if (settings.ConfiguredSlots.Any(slot => slot != EmulationMediaSlot.Floppy0))
-                throw new ArgumentOutOfRangeException(nameof(settings));
-            Emulators.CrocoDS.Factories.CrocoDSMachineFactory.Validate(result);
-        }
+        if (new Engine().Adapter(configuration) is IEmulatorStorageSettings storage) return storage.ApplyStorage(result, settings);
         return result;
     }
 

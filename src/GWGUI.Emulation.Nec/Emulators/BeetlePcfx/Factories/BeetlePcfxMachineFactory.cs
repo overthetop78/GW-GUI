@@ -6,8 +6,18 @@ using System.IO;
 
 namespace GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Factories;
 
-internal sealed class BeetlePcfxMachineFactory : IEmulatorAdapter
+internal sealed class BeetlePcfxMachineFactory : IEmulatorAdapter, IEmulatorPersistentStorage, IEmulatorMachineDefaults, IEmulatorConfigurationValidation
 {
+    public void ValidateConfiguration(MachineConfiguration configuration)
+    {
+        if (BeetlePcfxStorageFunctions.ExternalCardPath(configuration) is { } path) PcFxBackupMemoryFunctions.ValidateExternalCard(path);
+    }
+    public bool IsDefaultFor(string machineId) => Definition.MachineIds.Contains(machineId);
+
+    public void EnsurePersistentStorage(MachineConfiguration configuration, string directory)
+    {
+        if (Definition.MachineIds.Contains(configuration.Model)) PcFxBackupMemoryFunctions.EnsureInternalFile(directory);
+    }
     public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Describe(configuration);
     public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Apply(configuration, settings);
 

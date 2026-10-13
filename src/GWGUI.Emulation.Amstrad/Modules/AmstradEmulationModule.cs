@@ -1,4 +1,3 @@
-using CrocoDSProfile = GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Constants.EmulatorConstants;
 using System.IO;
 
 namespace GWGUI.Emulation.Amstrad.Modules;
@@ -35,11 +34,12 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         var current = configuration as MachineConfiguration ?? (MachineConfiguration)CreateConfiguration(machineId);
         var model = ModelCatalog.Get(current.Model);
         var blocks = SettingsDescriptionFunctions.Create(current, _engine.GetOptions(current, EmulatorManagement(_engine.Adapter(current))));
+        var capabilities = _engine.Adapter(current) as IEmulatorCapabilities;
         var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
         {
-            EmulationMachineTab.Video => current.EmulatorId != CrocoDSProfile.Id || blocks.Any(block => block.Tab == EmulationMachineTab.Video),
+            EmulationMachineTab.Video => capabilities?.SupportsVideoSettings != false || blocks.Any(block => block.Tab == EmulationMachineTab.Video),
             EmulationMachineTab.Keyboard => model.HasKeyboard,
-            EmulationMachineTab.Mouse => current.EmulatorId != CrocoDSProfile.Id && model.MouseButtonCount > BufferConstants.EmptyCollectionCount,
+            EmulationMachineTab.Mouse => capabilities?.SupportsMouse != false && model.MouseButtonCount > BufferConstants.EmptyCollectionCount,
             EmulationMachineTab.Storage => model.MaximumFloppyDriveCount > BufferConstants.EmptyCollectionCount
                 || model.SupportsCassetteDrive || model.SupportsCartridgeSlot,
             _ => item.Value
@@ -101,10 +101,10 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
 
     public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => DescribeInput(RequireConfiguration(configuration));
 
-    private static EmulationInputSettings DescribeInput(MachineConfiguration configuration)
+    private EmulationInputSettings DescribeInput(MachineConfiguration configuration)
     {
         var settings = InputSettingsFunctions.Describe(configuration);
-        return configuration.EmulatorId == CrocoDSProfile.Id ? settings with { Mouse = null } : settings;
+        return _engine.Adapter(configuration) is IEmulatorCapabilities { SupportsMouse: false } ? settings with { Mouse = null } : settings;
     }
 
     public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => InputSettingsFunctions.Apply(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
@@ -161,15 +161,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
         if (!EmulatorCatalog.GetAll(amstrad.Model).Any(item => item.Id == emulatorId))
             return ValueTask.FromException<IEmulationConfiguration>(new ArgumentOutOfRangeException(nameof(emulatorId), emulatorId, null));
         var selected = amstrad with { EmulatorId = emulatorId };
-        if (emulatorId == CrocoDSProfile.Id)
-        {
-            selected = selected with
-            {
-                Media = (amstrad.Media ?? []).Where(item => item.Category is MediaCategory.Floppy or MediaCategory.Snapshot && CrocoDSProfile.Extensions.Contains(Path.GetExtension(item.Path))).Take(CrocoDSProfile.MaximumInsertedMediaCount).ToArray(),
-                Options = (amstrad.Options ?? new Dictionary<string, string>()).Where(item => item.Key.StartsWith(CrocoDSProfile.OptionKeyPrefix, StringComparison.Ordinal))
-                    .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal)
-            };
-        }
+        if (_engine.Adapter(selected) is IEmulatorConfigurationSelection selection) selected = selection.SelectConfiguration(selected);
         return ValueTask.FromResult<IEmulationConfiguration>(selected);
     }
 
@@ -219,7 +211,7 @@ public sealed class AmstradEmulationModule : IEmulationModule, IEmulationEmulato
             media => _engine.CreateMachine(WithMedia(amstrad, media), context),
             storage.AvailableDevices.Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray(), mounted,
             MachineConfigurationConstants.ResourcePrefix + amstrad.Model,
-            SupportsPointerCapture: amstrad.EmulatorId != CrocoDSProfile.Id && ModelCatalog.Get(amstrad.Model).MouseButtonCount > BufferConstants.EmptyCollectionCount);
+            SupportsPointerCapture: adapter is not IEmulatorCapabilities { SupportsMouse: false } && ModelCatalog.Get(amstrad.Model).MouseButtonCount > BufferConstants.EmptyCollectionCount);
     }
 
     private static MachineConfiguration WithMedia(MachineConfiguration configuration, IEnumerable<EmulationMedia> media) => configuration with

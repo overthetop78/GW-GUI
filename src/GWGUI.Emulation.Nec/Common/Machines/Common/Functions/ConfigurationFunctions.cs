@@ -1,6 +1,4 @@
 using System.IO;
-using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Constants;
-using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions;
 
 namespace GWGUI.Emulation.Nec.Common.Machines.Common.Functions;
 
@@ -30,9 +28,8 @@ internal static class ConfigurationValidationFunctions
             if (!Supports(model, media.Category))
                 throw new InvalidDataException($"{model.Id}:{media.Category}");
         }
-        if (configuration.EmulatorId == BeetlePcfxConstants.Id
-            && BeetlePcfxStorageFunctions.ExternalCardPath(configuration) is { } cardPath)
-            PcFxBackupMemoryFunctions.ValidateExternalCard(cardPath);
+        if (EmulatorCatalog.CreateAdapters().FirstOrDefault(adapter => adapter.EmulatorId == configuration.EmulatorId) is IEmulatorConfigurationValidation validation)
+            validation.ValidateConfiguration(configuration);
     }
 
     internal static bool Supports(Model model, MediaCategory category) => category switch

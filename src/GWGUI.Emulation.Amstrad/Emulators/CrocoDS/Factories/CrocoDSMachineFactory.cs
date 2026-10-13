@@ -5,8 +5,33 @@ using System.IO;
 
 namespace GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Factories;
 
-internal sealed class CrocoDSMachineFactory : IEmulatorAdapter
+internal sealed class CrocoDSMachineFactory : IEmulatorAdapter, IEmulatorCapabilities, IEmulatorConfigurationSelection, IEmulatorConfigurationValidation, IEmulatorStorageSettings
 {
+    public void ValidateConfiguration(MachineConfiguration configuration) => Validate(configuration);
+
+    public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration)
+    {
+        var device = new EmulationMediaDevice(EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy,
+            [StorageSettingsFunctionsConstants.Dsk, StorageSettingsFunctionsConstants.Sna, StorageSettingsFunctionsConstants.Kcr], RequiresMachineRecreation: true,
+            DisplayLabel: StorageSettingsFunctionsConstants.FloppyDriveLabel, IsPermanent: true);
+        return new EmulationStorageSettings([device], [EmulationMediaSlot.Floppy0], EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []));
+    }
+
+    public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings)
+    {
+        if (settings.ConfiguredSlots.Any(slot => slot != EmulationMediaSlot.Floppy0)) throw new ArgumentOutOfRangeException(nameof(settings));
+        Validate(configuration);
+        return configuration;
+    }
+
+    public MachineConfiguration SelectConfiguration(MachineConfiguration configuration) => configuration with
+    {
+        Media = (configuration.Media ?? []).Where(item => item.Category is MediaCategory.Floppy or MediaCategory.Snapshot && EmulatorConstants.Extensions.Contains(Path.GetExtension(item.Path))).Take(EmulatorConstants.MaximumInsertedMediaCount).ToArray(),
+        Options = (configuration.Options ?? new Dictionary<string, string>()).Where(item => item.Key.StartsWith(EmulatorConstants.OptionKeyPrefix, StringComparison.Ordinal))
+            .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal)
+    };
+    public bool SupportsMouse => false;
+    public bool SupportsVideoSettings => false;
     private static readonly CoreDefinition Core = new(EmulatorConstants.Id,
         EmulatorConstants.LibraryName, ReleaseConstants.LibraryFile, EmulatorConstants.CoreHostCommand,
         new(ReleaseConstants.OfficialPackageUrl), ReleaseConstants.LatestReleaseDisplayName,

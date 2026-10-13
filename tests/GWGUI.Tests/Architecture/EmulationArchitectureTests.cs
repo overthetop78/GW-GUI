@@ -25,7 +25,7 @@ public sealed class EmulationArchitectureTests
     [Fact]
     public void AppAndEmulationDoNotReferenceFamilyModules()
     {
-        var forbidden = new[] { "gwgui.emulation.commodore", "gwgui.emulation.atari", "gwgui.emulation.amstrad" };
+        var forbidden = FamilyModules().Select(row => "gwgui.emulation." + ((string)row[0]).ToLowerInvariant()).ToHashSet(StringComparer.Ordinal);
         Assert.DoesNotContain(References(typeof(MainWindow).Assembly), forbidden.Contains);
         Assert.DoesNotContain(References(typeof(IEmulationModule).Assembly), forbidden.Contains);
     }
@@ -58,12 +58,12 @@ public sealed class EmulationArchitectureTests
         Assert.Contains("interface IEmulatorAdapter", amigaSource, StringComparison.Ordinal);
     }
 
-    [Fact]
-    public void FamilyNamespacesFollowFoldersAndCommonDoesNotReferenceEmulators()
+    [Theory]
+    [MemberData(nameof(FamilyModules))]
+    public void FamilyNamespacesFollowFoldersAndCommonDoesNotReferenceEmulators(string family)
     {
         var root = RepositoryRoot();
-        VerifyFamily(root, "Atari");
-        VerifyFamily(root, "Commodore");
+        VerifyFamily(root, family);
     }
 
     [Fact]
@@ -248,19 +248,22 @@ public sealed class EmulationArchitectureTests
         Assert.Empty(atari);
     }
 
-    [Fact]
-    public void FamilyAdapterContractsDoNotRequireNativeTransportTypes()
+    [Theory]
+    [MemberData(nameof(FamilyModules))]
+    public void FamilyAdapterContractsDoNotRequireNativeTransportTypes(string family)
     {
         var root = RepositoryRoot();
-        foreach (var family in new[] { "Atari", "Commodore", "Amstrad", "Nec", "Nintendo", "Sega", "Sony", "Microsoft" })
-        {
             var source = File.ReadAllText(Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common", "Interfaces", "IEmulatorAdapter.cs"));
             Assert.DoesNotContain("Libretro", source, StringComparison.OrdinalIgnoreCase);
             Assert.DoesNotContain("ExternalCoreApi", source, StringComparison.Ordinal);
             Assert.DoesNotContain("DllImport", source, StringComparison.Ordinal);
             Assert.DoesNotContain("IntPtr", source, StringComparison.Ordinal);
-        }
     }
+
+    public static IEnumerable<object[]> FamilyModules() => Directory.EnumerateDirectories(Path.Combine(RepositoryRoot(), "src"), "GWGUI.Emulation.*")
+        .Where(project => File.Exists(Path.Combine(project, "module.json")))
+        .Order(StringComparer.Ordinal)
+        .Select(project => new object[] { Path.GetFileName(project)["GWGUI.Emulation.".Length..] });
 
     private static string[] ConstantFileNames(string root, string family) =>
         Directory.EnumerateFiles(Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common", "Constants"), "*.cs", SearchOption.TopDirectoryOnly).Select(Path.GetFileName).OfType<string>()
@@ -297,15 +300,15 @@ public sealed class EmulationArchitectureTests
     private static void VerifyFamily(string repositoryRoot, string family)
     {
         var project = Path.Combine(repositoryRoot, "src", $"GWGUI.Emulation.{family}");
-        foreach (var area in new[] { "Common", "Emulators" })
+        Assert.True(Directory.Exists(Path.Combine(project, "Common")), family + " must expose Common.");
+        foreach (var area in new[] { "Common", "Emulators" }.Where(area => Directory.Exists(Path.Combine(project, area))))
         foreach (var file in Directory.EnumerateFiles(Path.Combine(project, area), "*.cs", SearchOption.AllDirectories))
         {
             var relativeDirectory = Path.GetRelativePath(project, Path.GetDirectoryName(file)!).Replace(Path.DirectorySeparatorChar, '.');
             var expected = $"GWGUI.Emulation.{family}.{relativeDirectory}";
             var source = File.ReadAllText(file);
             Assert.Contains($"namespace {expected};", source, StringComparison.Ordinal);
-            if (area == "Common" && Path.GetRelativePath(project, file) !=
-                Path.Combine("Common", "Dictionaries", "EmulatorCatalog.cs"))
+            if (area == "Common")
                 Assert.DoesNotContain($"GWGUI.Emulation.{family}.Emulators", source, StringComparison.Ordinal);
         }
 

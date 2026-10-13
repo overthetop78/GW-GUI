@@ -7,7 +7,6 @@ using GWGUI.Emulation.Nec.Common.Machines.PcEngineLt.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.SuperGrafx.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.LaserActive.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.PcFx.Constants;
-using GWGUI.Emulation.Nec.Emulators.Geargrafx.Constants;
 
 namespace GWGUI.Emulation.Nec.Common.Machines.Common.Dictionaries;
 
@@ -68,14 +67,8 @@ public sealed class FirmwareCatalog
             _ => new Firmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc, FirmwareType.Unknown, IsKnown: false, IsOfficial: false, Name: null, Version: null, CompatibleModels: [])
         };
         if (identified.IsKnown) return identified;
-        if (name.Equals(GeargrafxFirmwareConstants.PacN1, StringComparison.OrdinalIgnoreCase)
-           || name.Equals(GeargrafxFirmwareConstants.PceLp1, StringComparison.OrdinalIgnoreCase)
-           || name.Equals(GeargrafxFirmwareConstants.PacN10, StringComparison.OrdinalIgnoreCase))
-            return new Firmware(file.FullName, file.Length, md5, sha256,
-                file.LastWriteTimeUtc, FirmwareType.SystemRom,
-                IsKnown: true, IsOfficial: false,
-                Name: Path.GetFileNameWithoutExtension(name), Version: null,
-                CompatibleModels: [LaserActiveMachineConstants.Id]);
+        foreach (var adapter in EmulatorCatalog.CreateAdapters().OfType<IEmulatorFirmwareInspection>())
+            if (adapter.IdentifyFirmware(identified) is { } recognized) return recognized;
         return identified;
 
         Firmware Pce(string firmwareName, string? version, bool official = false, bool verified = true) => new(file.FullName, file.Length, md5, sha256,

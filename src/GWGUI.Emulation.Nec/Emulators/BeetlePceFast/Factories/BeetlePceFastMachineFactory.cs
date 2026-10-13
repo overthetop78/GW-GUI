@@ -14,8 +14,10 @@ using GWGUI.Emulation.Nec.Common.Machines.TurboExpress.Constants;
 
 namespace GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Factories;
 
-internal sealed class BeetlePceFastMachineFactory : IEmulatorAdapter
+internal sealed class BeetlePceFastMachineFactory : IEmulatorAdapter, IEmulatorMachineDefaults
 {
+    public bool IsDefaultFor(string machineId) => Definition.MachineIds.Contains(machineId);
+
     public EmulationStorageSettings DescribeStorage(MachineConfiguration configuration) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Describe(configuration);
     public MachineConfiguration ApplyStorage(MachineConfiguration configuration, EmulationStorageSettings settings) => GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.CoreStorageSettingsFunctions.Apply(configuration, settings);
 

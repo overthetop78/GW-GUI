@@ -1,4 +1,3 @@
-using CrocoDSProfile = GWGUI.Emulation.Amstrad.Emulators.CrocoDS.Constants.EmulatorConstants;
 using System.IO;
 
 namespace GWGUI.Emulation.Amstrad.Common.Machines.Common.Functions;
@@ -21,8 +20,7 @@ internal static class ConfigurationValidationFunctions
         var model = ModelCatalog.Get(configuration.Model);
         if (!EmulatorCatalog.GetAll(model.Id).Any(item => item.Id == configuration.EmulatorId))
             throw new InvalidDataException(nameof(configuration.EmulatorId));
-        if (configuration.EmulatorId == CrocoDSProfile.Id)
-            Emulators.CrocoDS.Factories.CrocoDSMachineFactory.Validate(configuration);
+        if (new Engine().Adapter(configuration) is IEmulatorConfigurationValidation validation) validation.ValidateConfiguration(configuration);
         if (string.IsNullOrWhiteSpace(configuration.EmulatorId))
             throw new InvalidDataException(nameof(configuration.EmulatorId));
         if (configuration.SchemaVersion != ConfigurationStoreConstants.CurrentSchemaVersion)

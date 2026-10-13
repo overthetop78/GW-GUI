@@ -4,8 +4,11 @@ using GWGUI.Emulation.Nec.Emulators.Common.Interop.Factories;
 
 namespace GWGUI.Emulation.Nec.Emulators.Quasi88.Factories;
 
-internal sealed class MachineFactory : CoreMachineFactory
+internal sealed class MachineFactory : CoreMachineFactory, IEmulatorFirmwareSettings, IEmulatorMachineDefaults
 {
+    public bool IsDefaultFor(string machineId) => Definition.MachineIds.Contains(machineId);
+
+    public IReadOnlyList<FirmwareSlot> FirmwareSlots => GWGUI.Emulation.Nec.Emulators.Quasi88.Constants.FirmwareConstants.Slots;
     protected override CoreReleaseSettings ReleaseSettings => CoreConstants.ReleaseSettings;
     public override string EmulatorId => CoreConstants.Id;
     public override EmulationEmulatorDefinition Definition { get; } = new(

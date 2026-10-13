@@ -6,8 +6,10 @@ using System.IO;
 
 namespace GWGUI.Emulation.Amstrad.Emulators.Caprice32.Factories;
 
-internal sealed class Caprice32MachineFactory : IEmulatorAdapter
+internal sealed class Caprice32MachineFactory : IEmulatorAdapter, IEmulatorCapabilities
 {
+    public bool SupportsMouse => true;
+    public bool SupportsVideoSettings => true;
     private static readonly CoreDefinition Core = new(EmulatorConstants.Id,
         EmulatorConstants.LibraryName, ReleaseConstants.LibraryFile, EmulatorConstants.CoreHostCommand,
         new(ReleaseConstants.OfficialPackageUrl), ReleaseConstants.LatestReleaseDisplayName,

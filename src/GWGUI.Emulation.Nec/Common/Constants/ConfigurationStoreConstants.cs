@@ -3,6 +3,7 @@ namespace GWGUI.Emulation.Nec.Common.Constants;
 
 internal static class ConfigurationStoreConstants
 {
+    internal const string MemoryDirectoryName = "Memory";
     internal const string MachineFileName = "machine.json";
     internal const string TemporaryFileSuffix = ".tmp";
     internal const string MachineIdentifierFormat = "N";

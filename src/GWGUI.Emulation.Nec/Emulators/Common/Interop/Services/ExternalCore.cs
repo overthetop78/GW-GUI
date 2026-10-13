@@ -1,6 +1,7 @@
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Contracts;
 using GWGUI.Emulation.Nec.Emulators.Common.Interop.Dictionaries;
 using System.IO;
+using FirmwareFunctions = GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions.FirmwareFunctions;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using GWGUI.Emulation.Nec.Emulators.BeetlePceFast.Functions;

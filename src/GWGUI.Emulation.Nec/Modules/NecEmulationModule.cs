@@ -1,11 +1,8 @@
-using GWGUI.Emulation.Nec.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Nec.Common.Machines.PcEngineDuo.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.PcEngine.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.CoreGrafx.Constants;
 using GWGUI.Emulation.Nec.Common.Machines.PcFx.Constants;
 using System.IO;
-using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Functions;
-using GWGUI.Emulation.Nec.Emulators.BeetlePcfx.Constants;
 
 namespace GWGUI.Emulation.Nec.Modules;
 
@@ -137,9 +134,8 @@ public sealed class NecEmulationModule : IEmulationModule, IEmulationEmulatorMan
     private async Task SaveMachineAsync(MachineConfiguration machine, CancellationToken cancellationToken)
     {
         await _store.SaveAsync(machine, cancellationToken).ConfigureAwait(false);
-        if (machine.Model == PcFxMachineConstants.Id
-            && machine.EmulatorId == BeetlePcfxConstants.Id)
-            PcFxBackupMemoryFunctions.EnsureInternalFile(_store.MemoryDirectory(machine.Id));
+        if (_engine.Adapter(machine) is IEmulatorPersistentStorage persistentStorage)
+            persistentStorage.EnsurePersistentStorage(machine, _store.MemoryDirectory(machine.Id));
     }
 
     public ValueTask DeleteConfigurationAsync(Guid configurationId, CancellationToken cancellationToken = default)

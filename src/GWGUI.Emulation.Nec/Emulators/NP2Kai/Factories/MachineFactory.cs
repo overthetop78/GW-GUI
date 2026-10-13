@@ -4,8 +4,9 @@ using GWGUI.Emulation.Nec.Emulators.Common.Interop.Factories;
 
 namespace GWGUI.Emulation.Nec.Emulators.NP2Kai.Factories;
 
-internal sealed class MachineFactory : CoreMachineFactory
+internal sealed class MachineFactory : CoreMachineFactory, IEmulatorFirmwareSettings
 {
+    public IReadOnlyList<FirmwareSlot> FirmwareSlots => GWGUI.Emulation.Nec.Emulators.NP2Kai.Constants.FirmwareConstants.Slots;
     protected override CoreReleaseSettings ReleaseSettings => CoreConstants.ReleaseSettings;
     public override string EmulatorId => CoreConstants.Id;
     public override EmulationEmulatorDefinition Definition { get; } = new(
