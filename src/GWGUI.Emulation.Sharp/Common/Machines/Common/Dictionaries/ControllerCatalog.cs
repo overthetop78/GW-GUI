@@ -25,6 +25,6 @@ internal static class ControllerCatalog
         var commands = Directions.Concat(Buttons.Take(count));
         if (peripheral == PeripheralCategory.CyberstickAnalog)
             commands = commands.Concat(new[] { ControllerCommand.ThrottleIncrease, ControllerCommand.ThrottleDecrease });
-        return commands.Select(command => new InputActionDefinition(command)).ToArray();
+        return commands.Select(command => new InputActionDefinition(command, peripheral == PeripheralCategory.CyberstickAnalog)).ToArray();
     }
 }
