@@ -7,11 +7,69 @@ using GWGUI.Emulation.Epoch.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Epoch.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Epoch.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Epoch.Emulators.EmuSCV.Factories;
+using GWGUI.Emulation.Epoch.Emulators.PD777.Factories;
+using GWGUI.Emulation.Epoch.Emulators.Common.Interop.Functions;
+using NativeInput = GWGUI.Emulation.Epoch.Emulators.Common.Interop.Constants.InputConstants;
 
 namespace GWGUI.Tests.Emulation.Epoch;
 
 public sealed class EpochModuleTests
 {
+    [Theory]
+    [InlineData(MachineModel.CassetteVision)]
+    [InlineData(MachineModel.CassetteVisionJr)]
+    public void EveryNativeAnalogDirectionPublishesItsOppositeInTheEditor(MachineModel model)
+    {
+        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(model));
+        foreach (var port in settings.ControllerPorts)
+        {
+            var definitions = port.Bindings.Definitions.ToDictionary(action => action.Id, StringComparer.Ordinal);
+            var analog = definitions.Values.Where(action => action.Id.StartsWith("Paddle", StringComparison.Ordinal)
+                || action.Id.StartsWith("GunX", StringComparison.Ordinal) || action.Id.StartsWith("GunY", StringComparison.Ordinal)).ToArray();
+            Assert.Equal((model == MachineModel.CassetteVision ? 4 : 0) + (port.Number == 1 ? 4 : 0), analog.Length);
+            foreach (var action in analog)
+            {
+                Assert.Empty(action.DefaultBinding);
+                Assert.NotNull(action.OppositeDirectionId);
+                Assert.Equal(action.Id, definitions[action.OppositeDirectionId].OppositeDirectionId);
+            }
+            Assert.All(definitions.Values.Except(analog), action => Assert.Null(action.OppositeDirectionId));
+        }
+    }
+
+    [Theory]
+    [InlineData(0, "Paddle2")]
+    [InlineData(1, "Paddle3")]
+    public void PaddlesKeepProgressivePhysicalValuesAndIndependentKeyboardDirections(int port, string paddle)
+    {
+        var mapper = new PD777MachineFactory();
+        var sources = Enumerable.Repeat(EmulationControllerState.Empty, 2).ToArray();
+        sources[port] = sources[port] with { LeftX = 8192 };
+        var snapshot = EmulationInputSnapshot.Empty with { Controllers = sources };
+        var unassigned = mapper.MapInput(snapshot, new InputConfiguration(), MachineModel.CassetteVision);
+        Assert.All(unassigned.Controllers, controller => Assert.Equal(0, controller.LeftX));
+        var input = new InputConfiguration(Controllers: [new(port, PeripheralCategory.Standard, Mappings: new Dictionary<string, string>
+        {
+            [paddle + "Decrease"] = "Controller:LeftStickLeft", [paddle + "Increase"] = "Controller:LeftStickRight"
+        }, DeadZonePercent: 0)]);
+        var mapped = mapper.MapInput(snapshot, input, MachineModel.CassetteVision);
+        Assert.InRange(mapped.Controllers[port].LeftX, 8191, 8193);
+        Assert.Equal(mapped.Controllers[port].LeftX, NativeInputFunctions.State(mapped, (uint)port, NativeInput.AnalogDevice, NativeInput.LeftAnalogIndex, NativeInput.AnalogXId));
+        sources[port] = sources[port] with { LeftX = -16384 };
+        mapped = mapper.MapInput(snapshot with { Controllers = sources }, input, MachineModel.CassetteVision);
+        Assert.InRange(mapped.Controllers[port].LeftX, -16385, -16383);
+        Assert.Equal(0, mapped.Controllers[1 - port].LeftX);
+        input = new InputConfiguration(Controllers: [new(port, PeripheralCategory.Standard, Mappings: new Dictionary<string, string>
+        {
+            [paddle + "Decrease"] = "Keyboard:A", [paddle + "Increase"] = "Keyboard:D"
+        })]);
+        mapped = mapper.MapInput(EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A } }, input, MachineModel.CassetteVision);
+        Assert.Equal(-short.MaxValue, mapped.Controllers[port].LeftX);
+        mapped = mapper.MapInput(EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.D } }, input, MachineModel.CassetteVision);
+        Assert.Equal(short.MaxValue, mapped.Controllers[port].LeftX);
+        mapped = mapper.MapInput(EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.A, EmulationKey.D } }, input, MachineModel.CassetteVision);
+        Assert.Equal(0, mapped.Controllers[port].LeftX);
+    }
     [Fact]
     public void EveryDisplayedEpochLabelResolvesFromTheActualModuleCatalog()
     {
