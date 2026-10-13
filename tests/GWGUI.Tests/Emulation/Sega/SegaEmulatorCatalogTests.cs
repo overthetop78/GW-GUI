@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sega.Common.Services;
 using GWGUI.Emulation.Sega.Common.Dictionaries;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Sega.Common.Machines.Common.Contracts;
@@ -16,6 +17,32 @@ namespace GWGUI.Tests.Emulation.Sega;
 
 public sealed class SegaEmulatorCatalogTests
 {
+    [Theory]
+    [InlineData("Sg1000", "genesisplusgx")]
+    [InlineData("Sc3000", "genesisplusgx")]
+    [InlineData("Sf7000", "bluemsx")]
+    [InlineData("MarkIII", "genesisplusgx")]
+    [InlineData("MasterSystem", "genesisplusgx")]
+    [InlineData("MegaDrive", "genesisplusgx")]
+    [InlineData("Pico", "genesisplusgx")]
+    [InlineData("GameGear", "genesisplusgx")]
+    [InlineData("MegaCd", "genesisplusgx")]
+    [InlineData("ThirtyTwoX", "picodrive")]
+    [InlineData("Saturn", "yabause")]
+    [InlineData("Dreamcast", "flycast")]
+    [InlineData("Naomi", "flycast")]
+    [InlineData("Naomi2", "flycast")]
+    [InlineData("Atomiswave", "flycast")]
+    [InlineData("SystemSp", "flycast")]
+    [InlineData("StV", "kronos")]
+    [InlineData("Model3", "supermodel")]
+    [InlineData("DreamcastVmu", "vemulator")]
+    public void AdapterDiscoveryPreservesEveryExistingDefault(string machine, string emulator)
+    {
+        Assert.Equal(emulator, EmulatorCatalog.DefaultFor(machine));
+        Assert.Single(EmulatorCatalog.CreateAdapters(), adapter => adapter is GWGUI.Emulation.Sega.Common.Interfaces.IEmulatorMachineDefaults defaults && defaults.IsDefaultFor(machine));
+    }
+
     [Theory]
     [InlineData("genesis_plus_gx_bios", EmulationMachineTab.Rom)]
     [InlineData("genesis_plus_gx_vdp_mode", EmulationMachineTab.Video)]
