@@ -9,8 +9,7 @@ internal static class SettingsDescriptionFunctions
 {
     internal static IReadOnlyList<CoreOption> GetOptions() => GearColecoOptionCatalog.All.Select(option => option with { IsVisible = IsExposed(option.Key) }).ToArray();
 
-    private static bool IsExposed(string key) => key is not (OptionConstants.OptionCartridgeHardware or OptionConstants.OptionAdamDiskDrive
-        or OptionConstants.OptionAdamWritableMedia or OptionConstants.OptionSpinners or OptionConstants.OptionAdamComputerReset or OptionConstants.OptionMapper);
+    private static bool IsExposed(string key) => key is not (OptionConstants.OptionCartridgeHardware or OptionConstants.OptionAdamDiskDrive or OptionConstants.OptionAdamWritableMedia or OptionConstants.OptionSpinners or OptionConstants.OptionAdamComputerReset or OptionConstants.OptionMapper);
 
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
     {
