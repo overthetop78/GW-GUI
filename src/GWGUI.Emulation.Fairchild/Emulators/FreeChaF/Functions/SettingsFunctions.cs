@@ -7,8 +7,7 @@ namespace GWGUI.Emulation.Fairchild.Emulators.FreeChaF.Functions;
 internal static class SettingsDescriptionFunctions
 {
     internal static IReadOnlyList<EmulationMediaDevice> Storage(MachineConfiguration configuration) =>
-        [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, MediaRuntimeConstants.CartridgeExtensions,
-            RequiresMachineRecreation: true, ImageDirectory: configuration.Folders.Cartridges, IsPermanent: true)];
+        [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, MediaRuntimeConstants.CartridgeExtensions, RequiresMachineRecreation: true, ImageDirectory: configuration.Folders.Cartridges, IsPermanent: true)];
 
     internal static IReadOnlyList<CoreOption> GetOptions() => FreeChaFOptionCatalog.All;
 
