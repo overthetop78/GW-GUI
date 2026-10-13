@@ -9,8 +9,7 @@ internal static class NibWriter
     /// <param name="tracks">Pistes binaires à sérialiser.</param>
     /// <param name="path">Chemin du fichier de destination.</param>
     /// <param name="cancellationToken">Jeton d'annulation.</param>
-    public static Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken = default) =>
-        WriteAsync(tracks, path, cancellationToken, File.WriteAllBytesAsync);
+    public static Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken = default) => WriteAsync(tracks, path, cancellationToken, File.WriteAllBytesAsync);
 
     internal static async Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken, Func<string, byte[], CancellationToken, Task> writeBytes)
     {

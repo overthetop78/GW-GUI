@@ -41,8 +41,7 @@ public sealed class AppleScpSectorImageReader
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture et la reconstruction.</param>
     /// <returns>L'image sectorielle Apple explicitement demandée ou la reconstruction automatique la plus complète.</returns>
     /// <exception cref="InvalidDataException">Le format demandé ne peut pas être reconstruit, ou les trois reconstructeurs automatiques ont rejeté la capture.</exception>
-    public async Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
-        => await ReadAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
+    public async Task<SectorImage> ReadAsync(string path, string? formatId = null, CancellationToken cancellationToken = default) => await ReadAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
 
     public async Task<SectorImage> ReadAsync(string path, string? formatId, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken = default)
     {

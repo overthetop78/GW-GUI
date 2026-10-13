@@ -28,6 +28,5 @@ public sealed class ScpImageExplorationService
     public Task<SectorImage> ReadAsync(string path, string? formatId, CancellationToken cancellationToken) => sectorImageReader.ReadAsync(path, formatId, cancellationToken);
 
     /// <summary>Reconstruit une représentation de flux commune sans dépendre du conteneur source.</summary>
-    public Task<SectorImage> ReadAsync(ProtectedTrackImage image, string? formatId, IProgress<ScpExplorationProgress>? progress, CancellationToken cancellationToken) =>
-        sectorImageReader.ReadAsync(image, formatId, progress, cancellationToken);
+    public Task<SectorImage> ReadAsync(ProtectedTrackImage image, string? formatId, IProgress<ScpExplorationProgress>? progress, CancellationToken cancellationToken) => sectorImageReader.ReadAsync(image, formatId, progress, cancellationToken);
 }

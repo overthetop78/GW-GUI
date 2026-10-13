@@ -15,8 +15,7 @@ internal sealed class IsoScpCandidateDecoder(IScpReader scpReader, FluxDecoderRe
     private readonly Dictionary<string, CacheEntry> cache = new(StringComparer.Ordinal);
 
     /// <summary>Retourne les candidats décodés pour la capture et l'ensemble de codecs demandés.</summary>
-    public async Task<IsoSectorCandidateSet> DecodeAsync(string path, IReadOnlyList<string> decoderIds, CancellationToken cancellationToken)
-        => await DecodeAsync(path, decoderIds, null, cancellationToken).ConfigureAwait(false);
+    public async Task<IsoSectorCandidateSet> DecodeAsync(string path, IReadOnlyList<string> decoderIds, CancellationToken cancellationToken) => await DecodeAsync(path, decoderIds, null, cancellationToken).ConfigureAwait(false);
 
     /// <summary>Décode toutes les pistes et publie chaque piste réellement terminée.</summary>
     public async Task<IsoSectorCandidateSet> DecodeAsync(string path, IReadOnlyList<string> decoderIds, IProgress<GWGUI.MediaEngine.Images.Formats.Floppy.Scp.Inspection.ScpExplorationProgress>? progress, CancellationToken cancellationToken)

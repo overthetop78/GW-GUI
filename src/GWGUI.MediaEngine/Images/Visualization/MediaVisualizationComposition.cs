@@ -17,12 +17,5 @@ public sealed class MediaVisualizationComposition
 
     public MediaVisualizationProviderRegistry Registry { get; }
 
-    public static MediaVisualizationComposition CreateDefault()
-        => new([
-            new FluxMediaVisualizationProvider(),
-            new SectorMediaVisualizationProvider(),
-            new BlockMediaVisualizationProvider(),
-            new OpticalMediaVisualizationProvider(),
-            new SequentialMediaVisualizationProvider()
-        ]);
+    public static MediaVisualizationComposition CreateDefault() => new([ new FluxMediaVisualizationProvider(), new SectorMediaVisualizationProvider(), new BlockMediaVisualizationProvider(), new OpticalMediaVisualizationProvider(), new SequentialMediaVisualizationProvider() ]);
 }

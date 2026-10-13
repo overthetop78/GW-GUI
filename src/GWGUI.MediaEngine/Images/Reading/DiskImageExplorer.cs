@@ -52,8 +52,7 @@ public sealed class DiskImageExplorer
     /// <exception cref="FileNotFoundException">Le chemin n'existe pas.</exception>
     /// <exception cref="DiskImageCandidatesRejectedException">Un conteneur candidat est identifiÃ© mais corrompu.</exception>
     /// <exception cref="OperationCanceledException">Le jeton demande l'annulation.</exception>
-    public async Task<ExploredDiskImage> ExploreAsync(string path, string? formatId = null, CancellationToken cancellationToken = default)
-        => await ExploreAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
+    public async Task<ExploredDiskImage> ExploreAsync(string path, string? formatId = null, CancellationToken cancellationToken = default) => await ExploreAsync(path, formatId, null, cancellationToken).ConfigureAwait(false);
 
     /// <summary>Explore l'image et publie les unités réelles de l'analyse SCP lorsqu'elle s'applique.</summary>
     public async Task<ExploredDiskImage> ExploreAsync(string path, string? formatId, IProgress<ScpExplorationProgress>? progress, CancellationToken cancellationToken)
