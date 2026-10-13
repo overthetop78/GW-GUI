@@ -9,7 +9,8 @@ namespace GWGUI.MediaEngine.Images.Formats.Floppy.Apple;
 /// <summary>Encode puis écrit une image Apple II représentable dans un conteneur NIB ou WOZ1.</summary>
 public sealed class AppleDiskImageWriter
 {
-    private static readonly IReadOnlyDictionary<string, (int MaximumBits, Func<IReadOnlyList<IReadOnlyList<bool>>, string, CancellationToken, Task> Write)> Outputs = new Dictionary<string, (int, Func<IReadOnlyList<IReadOnlyList<bool>>, string, CancellationToken, Task>)>(StringComparer.OrdinalIgnoreCase)
+    private static readonly IReadOnlyDictionary<string, (int MaximumBits, Func<IReadOnlyList<IReadOnlyList<bool>>, string, CancellationToken, Task> Write)> Outputs =
+        new Dictionary<string, (int, Func<IReadOnlyList<IReadOnlyList<bool>>, string, CancellationToken, Task>)>(StringComparer.OrdinalIgnoreCase)
     {
         [DiskImageFileExtensions.Nib] = (NibLayout.MaximumTrackBitCount, NibWriter.WriteAsync),
         [DiskImageFileExtensions.Woz] = (WozWriter.MaximumTrackBitCount, WozWriter.WriteAsync)

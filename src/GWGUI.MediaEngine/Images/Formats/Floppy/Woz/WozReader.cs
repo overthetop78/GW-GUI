@@ -130,8 +130,7 @@ internal static class WozReader
         var offset = checked(startBlock * WozLayout.Woz2BlockLength);
         var byteCount = bitCount == WozLayout.EmptyTrackBitCount ? 0 : MsbFirstBitPacker.RequiredByteCount((int)bitCount);
         if (startBlock == WozLayout.MissingWoz2StartBlock || blockCount == WozLayout.EmptyWoz2BlockCount || bitCount == WozLayout.EmptyTrackBitCount
-            || byteCount > blockCount * WozLayout.Woz2BlockLength || offset > file.Length - byteCount) throw WozExceptions.TrackReferenceOutOfBounds(track,
-            index);
+            || byteCount > blockCount * WozLayout.Woz2BlockLength || offset > file.Length - byteCount) throw WozExceptions.TrackReferenceOutOfBounds(track, index);
         return MsbFirstBitPacker.Unpack(file.Slice(offset, byteCount), (int)bitCount);
     }
 }
