@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.b2.Description"><value>BBC Micro and BBC المحاكاة الرئيسية مع b2.</value></data>
-  <data name="Emulation.Acorn.Option.Model"><value>متغيرات الآلات</value></data>
-  <data name="Emulation.Acorn.Option.AutoBoot"><value>اسحب القرص المضاف تلقائياً</value></data>
-  <data name="Emulation.Acorn.Firmware.Embedded"><value>ويدرج نظام التشغيل وBASIC ROM في الجوهر b2.</value></data>
+  <data name="Emulation.Acorn.Option.Model" xml:space="preserve"><value>متغيرات الآلات</value></data>
+  <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>ابدأ من القرص المضاف تلقائياً</value></data>
+  <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>المواد BBC MICRO و BBC MASTER حواسيب</value></data>
 </root>

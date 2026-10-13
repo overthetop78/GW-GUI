@@ -1,21 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>未知的环境命令 :{0}</value></data>
-  <data name="Emulation.Acorn.Error.CoreNotFound"><value>未找到所需的Acorn核.</value></data>
-  <data name="Emulation.Acorn.Error.CoreRejected"><value>无法装入选中的 Acorn 核心 。</value></data>
-  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>需要的Acorn固件不见了</value></data>
-  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Acorn的固件无效或不相容.</value></data>
-  <data name="Emulation.Acorn.Error.ContentNotFound"><value>未找到配置的 Acorn 介质 。</value></data>
-  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>此机器不支持所选的媒体 。</value></data>
-  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Acorn 选项的值无效 。</value></data>
-  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>与Acorn主机的通信失败.</value></data>
-  <data name="Emulation.Acorn.Error.StateInvalid"><value>Acorn 保存状态无效 。</value></data>
-  <data name="Emulation.Acorn.Error.StateIncompatible"><value>Acorn所保存的状态与现在的机器不相容.</value></data>
-  <data name="Emulation.Acorn.Error.Unexpected"><value>发生了意外的 Acorn 仿真错误 。</value></data>
-  <data name="Emulation.Acorn.Error.Details"><value>细节 :{0}</value></data>
-  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>Acorn 主机可执行路径无法使用 。</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound" xml:space="preserve"><value>配置的 ACORN 找不到媒体 。</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported" xml:space="preserve"><value>此机器不支持所选的媒体 。</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound" xml:space="preserve"><value>所需数额 ACORN 找不到核心 。</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected" xml:space="preserve"><value>选中的 ACORN 无法装入核心 。</value></data>
+  <data name="Emulation.Acorn.Error.Details" xml:space="preserve"><value>细节 : {0}</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid" xml:space="preserve"><value>有个 ACORN 固件无效或不兼容 。</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing" xml:space="preserve"><value>所需 ACORN 固件不见了。</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing" xml:space="preserve"><value>通往 ACORN 主机程序没有可用 。</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure" xml:space="preserve"><value>与《公约》缔约方会议 ACORN 主机失败 。</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid" xml:space="preserve"><value>有个 ACORN 选项的值无效。</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible" xml:space="preserve"><value>电话 ACORN 保存状态与当前机器不兼容 。</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>电话 ACORN 保存状态无效 。</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>出乎意料的 来个小小小小的 ACORN 发生了仿真错误 。</value></data>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知的环境命令 : {0}</value></data>
 </root>

@@ -1,21 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Comando de ambiente desconhecido: {0}</value></data>
-  <data name="Emulation.Acorn.Error.CoreNotFound"><value>O núcleo necessário Acorn não foi encontrado.</value></data>
-  <data name="Emulation.Acorn.Error.CoreRejected"><value>O núcleo Acorn selecionado não pôde ser carregado.</value></data>
-  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>Falta um firmware Acorn necessário.</value></data>
-  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Um firmware Acorn é inválido ou incompatível.</value></data>
-  <data name="Emulation.Acorn.Error.ContentNotFound"><value>Não foi encontrada a mídia Acorn configurada.</value></data>
-  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>Esta máquina não suporta a mídia selecionada.</value></data>
-  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Uma opção Acorn tem um valor inválido.</value></data>
-  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>A comunicação com o anfitrião Acorn falhou.</value></data>
-  <data name="Emulation.Acorn.Error.StateInvalid"><value>O estado salvo Acorn é inválido.</value></data>
-  <data name="Emulation.Acorn.Error.StateIncompatible"><value>O estado salvo Acorn é incompatível com a máquina atual.</value></data>
-  <data name="Emulation.Acorn.Error.Unexpected"><value>Ocorreu um inesperado erro de emulação Acorn.</value></data>
-  <data name="Emulation.Acorn.Error.Details"><value>Detalhes: {0}</value></data>
-  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>O caminho executável da máquina Acorn não está disponível.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound" xml:space="preserve"><value>O configurado ACORN A mídia não foi encontrada.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported" xml:space="preserve"><value>Esta máquina não suporta os meios seleccionados.</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound" xml:space="preserve"><value>O ACORN O núcleo não foi encontrado.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected" xml:space="preserve"><value>A seleccionada ACORN O núcleo não pôde ser carregado.</value></data>
+  <data name="Emulation.Acorn.Error.Details" xml:space="preserve"><value>Detalhes: {0}</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid" xml:space="preserve"><value>An ACORN firmware é inválido ou incompatível.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing" xml:space="preserve"><value>A necessária ACORN Falta o firmware.</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing" xml:space="preserve"><value>O caminho para o ACORN o programa de host está indisponível.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure" xml:space="preserve"><value>Comunicação com a ACORN O servidor falhou.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid" xml:space="preserve"><value>An ACORN a opção tem um valor inválido.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible" xml:space="preserve"><value>A ACORN estado salvo é incompatível com a máquina atual.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>A ACORN o estado salvo é inválido.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>Um inesperado ACORN Ocorreu um erro de emulação.</value></data>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comando de ambiente desconhecido: {0}</value></data>
 </root>

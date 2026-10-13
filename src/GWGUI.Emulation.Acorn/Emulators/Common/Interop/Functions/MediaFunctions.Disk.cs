@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Acorn.Emulators.Common.Exceptions;
 using System.IO;
 using System.Runtime.InteropServices;
 

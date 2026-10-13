@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Acorn.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Acorn.Emulators.Common.Constants;
 using System.IO;
 using System.Diagnostics;
 using System.Reflection.PortableExecutable;

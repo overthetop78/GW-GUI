@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;

@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Acorn.Emulators.Common.Contracts;
 namespace GWGUI.Emulation.Acorn.Emulators.Common.Interfaces;
 
 public interface ICoreReleaseService

@@ -33,9 +33,6 @@ public sealed record CoreInstallProgress(long DownloadedBytes, long? TotalBytes)
     public double? Fraction => TotalBytes is > 0 ? DownloadedBytes / (double)TotalBytes.Value : null;
 }
 
-public sealed record CoreOptionCategory(string Key, string Name, string? Description);
+
 
 public sealed record CoreRelease(Emulator Emulator, string Id, string DeclaredVersion, Uri DownloadUri, DateTimeOffset PublishedUtc, long? ExpectedArchiveSize);
-
-internal sealed record HostError(string Type, string Message, ErrorCategory? Category, ErrorCode? Code, IReadOnlyDictionary<string, string> Context, bool IsLocalized);
-

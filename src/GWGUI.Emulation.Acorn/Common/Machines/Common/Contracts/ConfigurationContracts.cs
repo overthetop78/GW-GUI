@@ -1,6 +1,4 @@
 using System.Text.Json.Serialization;
-using GWGUI.Emulation.Acorn.Emulators.B2.Constants;
-using GWGUI.Emulation.Acorn.Emulators.B2.Functions;
 
 namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts;
 
@@ -27,15 +25,14 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         FolderConfiguration? folders = null, Emulator? core = null)
     {
         Model = model;
-        Core = core ?? Emulator.B2;
+        Core = core ?? ConfigurationFunctions.DefaultEmulator(model);
+        if (Enum.IsDefined(Core) && Core != Emulator.None && !EmulatorCatalog.Get(Core).MachineIds.Contains(model.ToString()))
+            Core = ConfigurationFunctions.DefaultEmulator(model);
         Firmwares = firmwares?.ToArray() ?? [];
         Media = media?.ToArray() ?? [];
         var selectedOptions = options is null ? new Dictionary<string, string>(StringComparer.Ordinal) : new Dictionary<string, string>(options, StringComparer.Ordinal);
-        if (B2ModelFunctions.GetModels(model).Count > 0)
-        {
-            selectedOptions.TryAdd(OptionConstants.Model, B2ModelFunctions.DefaultValue(model));
-            selectedOptions.TryAdd(OptionConstants.AutoBoot, OptionConstants.Enabled);
-        }
+        if (Core != Emulator.None && new Engine().Adapter(Core) is IEmulatorConfigurationOptions defaults)
+            foreach (var option in defaults.GetDefaultOptions(model)) selectedOptions.TryAdd(option.Key, option.Value);
         Options = selectedOptions;
         Input = input ?? new InputConfiguration();
         Id = id == Guid.Empty ? Guid.NewGuid() : id;

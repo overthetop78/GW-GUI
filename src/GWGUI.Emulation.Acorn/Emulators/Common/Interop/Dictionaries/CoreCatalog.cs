@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Factories;
+using GWGUI.Emulation.Acorn.Emulators.Common.Functions;
+using GWGUI.Emulation.Acorn.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Acorn.Emulators.Common.Contracts;
 namespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Dictionaries;
 
 internal static class CoreCatalog

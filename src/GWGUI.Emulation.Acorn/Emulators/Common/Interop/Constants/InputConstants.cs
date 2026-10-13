@@ -6,6 +6,10 @@ namespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;
 
 internal static class InputConstants
 {
+    internal const uint TriggerAnalogIndex = 2;
+    internal const uint LeftTriggerId = 12;
+    internal const uint RightTriggerId = 13;
+
     internal const uint JoypadDevice = 1;
     internal const uint AnalogDevice = 5;
     internal const uint MouseDevice = 2;

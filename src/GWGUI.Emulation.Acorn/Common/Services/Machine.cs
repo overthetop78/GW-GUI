@@ -89,12 +89,12 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     IReadOnlyList<EmulationOption> IEmulationRuntime.AvailableOptions => AvailableOptions
         .Select(option => new EmulationOption(
             option.Key,
-            option.Name,
-            option.Description,
+            option.ResourceKey ?? option.Name,
+            option.ExplanationResourceKey ?? option.Description,
             option.Category,
             option.DefaultValue,
             option.CurrentValue,
-            option.Values.Select(value => new EmulationOptionValue(value.Value, value.Label)).ToArray(),
+            option.Values.Select(value => new EmulationOptionValue(value.Value, value.ResourceKey ?? value.InvariantDisplayValue ?? value.Label)).ToArray(),
             option.IsVisible,
             RuntimeOptionFunctions.RequiresRestart(Configuration.Core, option.Key)))
         .ToArray();

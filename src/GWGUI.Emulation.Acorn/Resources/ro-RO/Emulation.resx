@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.b2.Description"><value>BBC Micro şi BBC Master emulaţie cu b2.</value></data>
-  <data name="Emulation.Acorn.Option.Model"><value>Varianta mașinii</value></data>
-  <data name="Emulation.Acorn.Option.AutoBoot"><value>Boot discul introdus automat</value></data>
-  <data name="Emulation.Acorn.Firmware.Embedded"><value>Sistemul de operare și ROM-urile BASIC sunt incluse în nucleul b2.</value></data>
+  <data name="Emulation.Acorn.Option.Model" xml:space="preserve"><value>Varianta mașinii</value></data>
+  <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>Începeți automat de pe discul introdus</value></data>
+  <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>Emulează BBC MICRO şi BBC MASTER calculatoare.</value></data>
 </root>

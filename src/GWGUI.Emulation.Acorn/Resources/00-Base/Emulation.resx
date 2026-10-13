@@ -4,9 +4,8 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Family.Acorn"><value>Acorn</value></data>
-  <data name="Emulation.Emulator.b2.Description"><value>BBC Micro and BBC Master emulation with b2.</value></data>
-  <data name="Emulation.Acorn.Option.Model"><value>Machine variant</value></data>
-  <data name="Emulation.Acorn.Option.AutoBoot"><value>Boot the inserted disk automatically</value></data>
-  <data name="Emulation.Acorn.Firmware.Embedded"><value>The operating system and BASIC ROMs are included in the b2 core.</value></data>
+  <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>Start from the inserted disk automatically</value></data>
+  <data name="Emulation.Acorn.Option.Model" xml:space="preserve"><value>Machine variant</value></data>
+  <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>Emulates BBC MICRO and BBC MASTER computers.</value></data>
+  <data name="Emulation.Family.Acorn" xml:space="preserve"><value>Acorn</value></data>
 </root>

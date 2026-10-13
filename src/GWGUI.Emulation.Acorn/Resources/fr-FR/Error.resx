@@ -1,21 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Commande d'environnement inconnu : {0}</value></data>
-  <data name="Emulation.Acorn.Error.CoreNotFound"><value>Le noyau nécessaire Acorn n'a pas été trouvé.</value></data>
-  <data name="Emulation.Acorn.Error.CoreRejected"><value>Le noyau Acorn sélectionné n'a pas pu être chargé.</value></data>
-  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>Un firmware Acorn requis est manquant.</value></data>
-  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Un firmware Acorn est invalide ou incompatible.</value></data>
-  <data name="Emulation.Acorn.Error.ContentNotFound"><value>Le support d'Acorn configuré n'a pas été trouvé.</value></data>
-  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>Cette machine ne supporte pas les médias sélectionnés.</value></data>
-  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Une option Acorn a une valeur non valide.</value></data>
-  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>La communication avec l'hôte Acorn a échoué.</value></data>
-  <data name="Emulation.Acorn.Error.StateInvalid"><value>L'état d'Acorn sauvé est invalide.</value></data>
-  <data name="Emulation.Acorn.Error.StateIncompatible"><value>L'état d'Acorn sauvé est incompatible avec la machine actuelle.</value></data>
-  <data name="Emulation.Acorn.Error.Unexpected"><value>Une erreur inattendue d'émulation Acorn s'est produite.</value></data>
-  <data name="Emulation.Acorn.Error.Details"><value>Détails : {0}</value></data>
-  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>Le chemin exécutable de l'hôte Acorn n'est pas disponible.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound" xml:space="preserve"><value>Le support Acorn configuré est introuvable.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported" xml:space="preserve"><value>Cette machine ne prend pas en charge le support sélectionné.</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound" xml:space="preserve"><value>Le moteur Acorn requis est introuvable.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected" xml:space="preserve"><value>Impossible de charger le moteur Acorn sélectionné.</value></data>
+  <data name="Emulation.Acorn.Error.Details" xml:space="preserve"><value>Détails : {0}</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid" xml:space="preserve"><value>Un firmware Acorn est invalide ou incompatible.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing" xml:space="preserve"><value>Un firmware Acorn requis est manquant.</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing" xml:space="preserve"><value>Le chemin du programme hôte Acorn est indisponible.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure" xml:space="preserve"><value>La communication avec l’hôte Acorn a échoué.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid" xml:space="preserve"><value>Une option Acorn contient une valeur invalide.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible" xml:space="preserve"><value>L’état sauvegardé Acorn est incompatible avec la machine actuelle.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>L’état sauvegardé Acorn est invalide.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>Une erreur inattendue d’émulation Acorn s’est produite.</value></data>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Commande d’environnement inconnue : {0}</value></data>
 </root>

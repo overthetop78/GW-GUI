@@ -1,10 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Model.BbcMicroModelA"><value>BBC Micro Model A</value></data>
-  <data name="Emulation.Acorn.Model.BbcMicroModelB"><value>BBC Micro Model B</value></data>
-  <data name="Emulation.Acorn.Model.BbcMaster128"><value>BBC Master 128</value></data>
+  <data name="Emulation.Acorn.Cpu.Mos6502A" xml:space="preserve"><value>MOS 6502A</value></data>
+  <data name="Emulation.Acorn.Cpu.Rockwell65C12" xml:space="preserve"><value>Rockwell 65C12</value></data>
+  <data name="Emulation.Acorn.Model.BbcMaster128" xml:space="preserve"><value>BBC Master 128</value></data>
+  <data name="Emulation.Acorn.Model.BbcMicroModelA" xml:space="preserve"><value>BBC Micro Model A</value></data>
+  <data name="Emulation.Acorn.Model.BbcMicroModelB" xml:space="preserve"><value>BBC Micro Model B</value></data>
 </root>

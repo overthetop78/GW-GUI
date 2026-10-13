@@ -78,7 +78,8 @@ public sealed class AcornEmulationModule : IEmulationModule, IEmulationEmulatorM
         string? Folder(string id, string? original) => values.TryGetValue(id, out var value) ? value : original;
     }
 
-    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) => _engine.Adapter(Require(configuration)).GetRuntimeOptions(Require(configuration));
+    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) => Require(configuration).Core == Emulator.None
+        ? new Dictionary<string, string>() : _engine.Adapter(Require(configuration)).GetRuntimeOptions(Require(configuration));
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) => ConfigurationSummaryFunctions.Create(Require(configuration));
     public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) => InputSettingsFunctions.Describe(Require(configuration));
     public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration, EmulationInputSettings settings) => InputSettingsFunctions.Apply(Require(configuration), settings);

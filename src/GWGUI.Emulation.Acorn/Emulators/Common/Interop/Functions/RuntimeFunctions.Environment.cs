@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Enums;
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Acorn.Emulators.Common.Contracts;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;

@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;
 namespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;
 
 internal static class ControllerPortFunctions

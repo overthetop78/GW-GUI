@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.b2.Description"><value>BBC Micro和BBC Master用b2模擬.</value></data>
-  <data name="Emulation.Acorn.Option.Model"><value>機器變體</value></data>
-  <data name="Emulation.Acorn.Option.AutoBoot"><value>自動啟動已插入的磁盤</value></data>
-  <data name="Emulation.Acorn.Firmware.Embedded"><value>操作系統和BASIC ROM包含在b2核心中.</value></data>
+  <data name="Emulation.Acorn.Option.Model" xml:space="preserve"><value>机器变体</value></data>
+  <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>从插入的磁盘自动启动</value></data>
+  <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>模拟 BBC MICRO 财务报告和已审计财务报表 BBC MASTER 电脑</value></data>
 </root>

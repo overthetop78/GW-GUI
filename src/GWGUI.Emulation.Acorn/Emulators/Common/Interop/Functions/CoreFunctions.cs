@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Dictionaries;
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;
 using System.Globalization;
 using System.Runtime.InteropServices;
 

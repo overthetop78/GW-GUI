@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Contracts;
 namespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;
 
 internal static class CoreLifecycleFunctions

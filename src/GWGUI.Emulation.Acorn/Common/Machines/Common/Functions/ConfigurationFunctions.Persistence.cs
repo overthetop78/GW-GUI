@@ -40,7 +40,7 @@ internal static class ConfigurationStoreFunctions
         if (document.Firmwares is null || document.Media is null || document.Options is null
             || document.Input is null || document.Folders is null)
             throw new InvalidDataException();
-        if (!Enum.IsDefined(document.Model) || document.Core != Emulator.B2)
+        if (!Enum.IsDefined(document.Model) || !Enum.IsDefined(document.Core))
             throw new InvalidDataException();
         return new MachineConfiguration(document.Model,
             document.Firmwares.Select(firmware => firmware with

@@ -6,21 +6,19 @@ internal static class StorageSettingsFunctions
 {
     internal static EmulationStorageSettings Describe(MachineConfiguration configuration)
     {
-        IReadOnlyList<EmulationMediaDevice> devices = ConfigurationFunctions.SupportsRuntime(configuration.Model)
-            ? [new(EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy,
-                StorageSettingsFunctionsConstants.FloppyExtensions, RequiresMachineRecreation: true,
-                DisplayLabel: StorageSettingsFunctionsConstants.DriveLabel,
-                ImageDirectory: configuration.Folders.Floppies, IsPermanent: true)] : [];
+        IReadOnlyList<EmulationMediaDevice> devices = configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorStorageSettings storage
+            ? storage.DescribeMediaDevices(configuration) : [];
         return new EmulationStorageSettings(devices, devices.Select(device => device.Slot).ToArray(), configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
     }
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
-        var available = Describe(configuration).AvailableDevices.Select(device => device.Slot).ToHashSet();
+        var devices = Describe(configuration).AvailableDevices;
+        var available = devices.Select(device => device.Slot).ToHashSet();
         if (settings.ConfiguredSlots.Any(slot => !available.Contains(slot))
             || settings.MountedMedia.Any(media => !settings.ConfiguredSlots.Contains(media.Slot)
-                || !available.Contains(media.Slot) || media.Type != EmulationMediaType.Floppy
-                || !StorageSettingsFunctionsConstants.FloppyExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase)))
+                || !devices.Any(device => device.Slot == media.Slot && device.MediaType == media.Type
+                    && device.AcceptedExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase))))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
         var result = configuration with
         {

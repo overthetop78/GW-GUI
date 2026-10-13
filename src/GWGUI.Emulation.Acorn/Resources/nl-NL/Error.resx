@@ -1,21 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Onbekend omgevingscommando: {0}</value></data>
-  <data name="Emulation.Acorn.Error.CoreNotFound"><value>De vereiste kern van Acorn werd niet gevonden.</value></data>
-  <data name="Emulation.Acorn.Error.CoreRejected"><value>De geselecteerde kern van Acorn kon niet geladen worden.</value></data>
-  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>Een vereiste Acorn firmware ontbreekt.</value></data>
-  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Een Acorn firmware is ongeldig of onverenigbaar.</value></data>
-  <data name="Emulation.Acorn.Error.ContentNotFound"><value>De geconfigureerde Acorn media werd niet gevonden.</value></data>
-  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>Deze machine ondersteunt de geselecteerde media niet.</value></data>
-  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Een Acorn-optie heeft een ongeldige waarde.</value></data>
-  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>Communicatie met de Acorn-gastheer is mislukt.</value></data>
-  <data name="Emulation.Acorn.Error.StateInvalid"><value>De opgeslagen Acorn staat is ongeldig.</value></data>
-  <data name="Emulation.Acorn.Error.StateIncompatible"><value>De opgeslagen Acorn staat is onverenigbaar met de huidige machine.</value></data>
-  <data name="Emulation.Acorn.Error.Unexpected"><value>Er is een onverwachte Acorn emulatiefout opgetreden.</value></data>
-  <data name="Emulation.Acorn.Error.Details"><value>Gegevens: {0}</value></data>
-  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>Het uitvoerbare pad van de Acorn-host is niet beschikbaar.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound" xml:space="preserve"><value>De geconfigureerde ACORN media werd niet gevonden.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported" xml:space="preserve"><value>Deze machine ondersteunt de geselecteerde media niet.</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound" xml:space="preserve"><value>De vereiste ACORN kern niet gevonden.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected" xml:space="preserve"><value>De geselecteerde ACORN kern kon niet geladen worden.</value></data>
+  <data name="Emulation.Acorn.Error.Details" xml:space="preserve"><value>Details: {0}</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid" xml:space="preserve"><value>Een ACORN firmware is ongeldig of onverenigbaar.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing" xml:space="preserve"><value>A vereist ACORN firmware ontbreekt.</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing" xml:space="preserve"><value>Het pad naar de ACORN host programma is niet beschikbaar.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure" xml:space="preserve"><value>Mededeling aan de Raad ACORN gastheer is mislukt.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid" xml:space="preserve"><value>Een ACORN optie heeft een ongeldige waarde.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible" xml:space="preserve"><value>De ACORN opgeslagen toestand is niet compatibel met de huidige machine.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>De ACORN opgeslagen status is ongeldig.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>Een onverwacht ACORN emulatiefout opgetreden.</value></data>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Onbekend omgevingscommando: {0}</value></data>
 </root>

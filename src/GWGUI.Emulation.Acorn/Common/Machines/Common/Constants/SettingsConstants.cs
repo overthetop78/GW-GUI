@@ -19,7 +19,8 @@ internal static class SettingsConstants
     internal const string ResourceAutoBoot = "Emulation.Acorn.Option.AutoBoot";
     internal const string ResourceEmbeddedFirmware = "Emulation.Acorn.Firmware.Embedded";
     internal const string ResourceCpu = "Emulation.Cpu.Model";
-    internal const string ResourceFrequency = "Emulation.Cpu.Speed.Original";
+    internal const string CpuResourcePrefix = "Emulation.Acorn.Cpu.";
+    internal const string ResourceFrequency = "Emulation.Cpu.SpeedOriginal";
     internal const string ResourceMemory = "Emulation.Memory.Main";
     internal const string ResourceVideo = "Emulation.Video.Settings.Display";
     internal const string ResourceFirmware = "Emulation.Firmware.Rom.System";

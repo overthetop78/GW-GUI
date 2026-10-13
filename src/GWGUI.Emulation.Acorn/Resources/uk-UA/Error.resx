@@ -1,21 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Невідомі команди середовища: {0}</value></data>
-  <data name="Emulation.Acorn.Error.CoreNotFound"><value>Не знайдено значення Acorn.</value></data>
-  <data name="Emulation.Acorn.Error.CoreRejected"><value>Вибраний сердечник Acorn не може бути завантажений.</value></data>
-  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>Необхідна прошивка Acorn відсутня.</value></data>
-  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>Прошивка Acorn є недійсною або несумісною.</value></data>
-  <data name="Emulation.Acorn.Error.ContentNotFound"><value>Не знайдено налаштований Acorn media.</value></data>
-  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>Ця машина не підтримує вибрані медіа.</value></data>
-  <data name="Emulation.Acorn.Error.OptionInvalid"><value>Варіант Acorn має недійсне значення.</value></data>
-  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>Зв'язок з Acorn не вдалося.</value></data>
-  <data name="Emulation.Acorn.Error.StateInvalid"><value>Acorn збережений стан недійсним.</value></data>
-  <data name="Emulation.Acorn.Error.StateIncompatible"><value>Acorn збережений стан несумісний з поточною машиною.</value></data>
-  <data name="Emulation.Acorn.Error.Unexpected"><value>Несподівана Acorn помилка емульсії.</value></data>
-  <data name="Emulation.Acorn.Error.Details"><value>Детальніше: {0}</value></data>
-  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>Зручний шлях Acorn знаходиться на рівні 0.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound" xml:space="preserve"><value>Настроювання ACORN не знайдено.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported" xml:space="preserve"><value>Ця машина не підтримує вибрані медіа.</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound" xml:space="preserve"><value>Необхідність ACORN не знайдено.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected" xml:space="preserve"><value>Вибрані ACORN не можна навантажувати.</value></data>
+  <data name="Emulation.Acorn.Error.Details" xml:space="preserve"><value>Детальніше: {0}</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid" xml:space="preserve"><value>Анонім ACORN прошивка недійсна або несумісна.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing" xml:space="preserve"><value>Необхідний ACORN прошивка відсутні.</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing" xml:space="preserve"><value>Шлях до ACORN Програма для розміщення в режимі реального часу.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure" xml:space="preserve"><value>Зв'язок з ACORN не вдалося.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid" xml:space="preserve"><value>Анонім ACORN варіант має недійсне значення.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible" xml:space="preserve"><value>Мистецтво ACORN збережений стан несумісний з поточною машиною.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>Мистецтво ACORN недійсний стан.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>Несподівано ACORN емуляційною помилкою сталася.</value></data>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Невідомий командний простір: {0}</value></data>
 </root>

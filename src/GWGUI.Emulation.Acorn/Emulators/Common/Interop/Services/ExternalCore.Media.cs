@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Acorn.Emulators.Common.Functions;
+using GWGUI.Emulation.Acorn.Emulators.Common.Exceptions;
 namespace GWGUI.Emulation.Acorn.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore

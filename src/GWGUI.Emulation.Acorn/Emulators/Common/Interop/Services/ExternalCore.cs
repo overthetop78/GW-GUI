@@ -1,3 +1,8 @@
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Acorn.Emulators.Common.Functions;
+using GWGUI.Emulation.Acorn.Emulators.Common.Contracts;
 using System.IO;
 using System.Security.Cryptography;
 

@@ -1,6 +1,4 @@
 using System.Globalization;
-using GWGUI.Emulation.Acorn.Emulators.B2.Constants;
-using GWGUI.Emulation.Acorn.Emulators.B2.Functions;
 
 namespace GWGUI.Emulation.Acorn.Common.Machines.Common.Functions;
 
@@ -9,34 +7,20 @@ internal static class SettingsDescriptionFunctions
     internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration)
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
-        var variants = B2ModelFunctions.GetModels(configuration.Model);
+        var cpuResource = SettingsConstants.CpuResourcePrefix + hardware.DefaultCpu;
         var blocks = new List<EmulationSettingsBlock>
         {
             Block(EmulationMachineTab.Cpu, SettingsConstants.ResourceCpu,
-                Information(SettingsConstants.Cpu, EmulationMachineTab.Cpu, SettingsConstants.ResourceCpu, hardware.DefaultCpu.ToString()),
+                new EmulationSettingsField(SettingsConstants.Cpu, EmulationMachineTab.Cpu, EmulationMachineTab.Cpu.ToString(),
+                    SettingsConstants.ResourceCpu, EmulationSettingsEditor.Information, cpuResource, [new(cpuResource, cpuResource)]),
                 Information(SettingsConstants.CpuFrequency, EmulationMachineTab.Cpu, SettingsConstants.ResourceFrequency, $"{hardware.DefaultCpuFrequencyHz / (double)SettingsConstants.Megahertz:0.##} MHz")),
             Block(EmulationMachineTab.Ram, SettingsConstants.ResourceMemory,
                 Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemory, $"{hardware.MainMemoryBytes / SettingsConstants.Kibibyte} KiB")),
-            Block(EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware,
-                new EmulationSettingsField(SettingsConstants.Firmware, EmulationMachineTab.Rom,
-                    EmulationMachineTab.Rom.ToString(), SettingsConstants.ResourceFirmware,
-                    EmulationSettingsEditor.Information, null,
-                    ExplanationResourceKey: SettingsConstants.ResourceEmbeddedFirmware)),
             Block(EmulationMachineTab.Video, SettingsConstants.ResourceVideo, Information(SettingsConstants.Video, EmulationMachineTab.Video, SettingsConstants.ResourceVideo, string.Join(" / ", hardware.Video))),
             Audio(configuration)
         };
-        if (variants.Count > BufferConstants.EmptyCollectionCount)
-            blocks.Insert(BufferConstants.FirstCollectionIndex,
-                Block(EmulationMachineTab.General, SettingsConstants.ResourceNativeModel,
-                    new EmulationSettingsField(OptionConstants.Model, EmulationMachineTab.General,
-                        EmulationMachineTab.General.ToString(), SettingsConstants.ResourceNativeModel,
-                        EmulationSettingsEditor.Selection, configuration.Options.GetValueOrDefault(OptionConstants.Model),
-                        variants.Select(variant => new EmulationSettingsChoice(variant.NativeValue, string.Empty, variant.NativeValue)).ToArray(), RequiresRestart: true),
-                    new EmulationSettingsField(OptionConstants.AutoBoot, EmulationMachineTab.General,
-                        EmulationMachineTab.General.ToString(), SettingsConstants.ResourceAutoBoot,
-                        EmulationSettingsEditor.Toggle, configuration.Options.GetValueOrDefault(OptionConstants.AutoBoot),
-                        EnabledValue: OptionConstants.Enabled, DisabledValue: OptionConstants.Disabled,
-                        RequiresRestart: true)));
+        if (configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorSettings settings)
+            blocks.InsertRange(BufferConstants.FirstCollectionIndex, settings.DescribeSettings(configuration));
         return blocks;
     }
 

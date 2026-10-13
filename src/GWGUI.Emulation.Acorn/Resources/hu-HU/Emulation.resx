@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.b2.Description"><value>BBC Micro és BBC Master emuláció b2-vel.</value></data>
-  <data name="Emulation.Acorn.Option.Model"><value>Gépváltozat</value></data>
-  <data name="Emulation.Acorn.Option.AutoBoot"><value>A beillesztett lemez indítása automatikusan</value></data>
-  <data name="Emulation.Acorn.Firmware.Embedded"><value>A b2 mag tartalmazza az operációs rendszert és a BASIC ROM-okat.</value></data>
+  <data name="Emulation.Acorn.Option.Model" xml:space="preserve"><value>Gépváltozat</value></data>
+  <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>A beillesztett lemezről automatikusan indul</value></data>
+  <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>Emulátok BBC MICRO és BBC MASTER Számítógépek.</value></data>
 </root>

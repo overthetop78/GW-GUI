@@ -1,21 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Unknown environment command: {0}</value></data>
-  <data name="Emulation.Acorn.Error.CoreNotFound"><value>The required Acorn core was not found.</value></data>
-  <data name="Emulation.Acorn.Error.CoreRejected"><value>The selected Acorn core could not be loaded.</value></data>
-  <data name="Emulation.Acorn.Error.FirmwareMissing"><value>A required Acorn firmware is missing.</value></data>
-  <data name="Emulation.Acorn.Error.FirmwareInvalid"><value>An Acorn firmware is invalid or incompatible.</value></data>
-  <data name="Emulation.Acorn.Error.ContentNotFound"><value>The configured Acorn media was not found.</value></data>
-  <data name="Emulation.Acorn.Error.ContentUnsupported"><value>This machine does not support the selected media.</value></data>
-  <data name="Emulation.Acorn.Error.OptionInvalid"><value>An Acorn option has an invalid value.</value></data>
-  <data name="Emulation.Acorn.Error.HostProtocolFailure"><value>Communication with the Acorn host failed.</value></data>
-  <data name="Emulation.Acorn.Error.StateInvalid"><value>The Acorn saved state is invalid.</value></data>
-  <data name="Emulation.Acorn.Error.StateIncompatible"><value>The Acorn saved state is incompatible with the current machine.</value></data>
-  <data name="Emulation.Acorn.Error.Unexpected"><value>An unexpected Acorn emulation error occurred.</value></data>
-  <data name="Emulation.Acorn.Error.Details"><value>Details: {0}</value></data>
-  <data name="Emulation.Acorn.Error.HostExecutableMissing"><value>The Acorn host executable path is unavailable.</value></data>
+  <data name="Emulation.Acorn.Error.ContentNotFound" xml:space="preserve"><value>The configured ACORN media was not found.</value></data>
+  <data name="Emulation.Acorn.Error.ContentUnsupported" xml:space="preserve"><value>This machine does not support the selected media.</value></data>
+  <data name="Emulation.Acorn.Error.CoreNotFound" xml:space="preserve"><value>The required ACORN core was not found.</value></data>
+  <data name="Emulation.Acorn.Error.CoreRejected" xml:space="preserve"><value>The selected ACORN core could not be loaded.</value></data>
+  <data name="Emulation.Acorn.Error.Details" xml:space="preserve"><value>Details: {0}</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareInvalid" xml:space="preserve"><value>An ACORN firmware is invalid or incompatible.</value></data>
+  <data name="Emulation.Acorn.Error.FirmwareMissing" xml:space="preserve"><value>A required ACORN firmware is missing.</value></data>
+  <data name="Emulation.Acorn.Error.HostExecutableMissing" xml:space="preserve"><value>The path to the ACORN host program is unavailable.</value></data>
+  <data name="Emulation.Acorn.Error.HostProtocolFailure" xml:space="preserve"><value>Communication with the ACORN host failed.</value></data>
+  <data name="Emulation.Acorn.Error.OptionInvalid" xml:space="preserve"><value>An ACORN option has an invalid value.</value></data>
+  <data name="Emulation.Acorn.Error.StateIncompatible" xml:space="preserve"><value>The ACORN saved state is incompatible with the current machine.</value></data>
+  <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>The ACORN saved state is invalid.</value></data>
+  <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>An unexpected ACORN emulation error occurred.</value></data>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Unknown environment command: {0}</value></data>
 </root>
