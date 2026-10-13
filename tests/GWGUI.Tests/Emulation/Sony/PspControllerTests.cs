@@ -52,6 +52,29 @@ public sealed class PspControllerTests
         Assert.False(controls.ContainsKey(EmulationControllerCommandIds.L2));
     }
 
+    [Theory]
+    [InlineData(.625f, 8192)]
+    [InlineData(.375f, -8192)]
+    [InlineData(.5f, 0)]
+    public void AssignedPhysicalAxisKeepsIntermediateVirtualStickValues(float position, int expected)
+    {
+        var source = EmulationControllerState.Empty with
+        {
+            DeviceId = "pad",
+            Controls = new(new Dictionary<string, float> { ["Axis0"] = position })
+        };
+        var snapshot = EmulationInputSnapshot.Empty with { Controllers = [source] };
+        var configuration = new InputConfiguration(ControllerBindings:
+        [
+            new(IntegratedPortIndex, ControllerType.Joystick, "pad", new Dictionary<string, string>
+            {
+                [InputSettingsFunctionsConstants.PspStickRight] = "Controller:pad:Axis0Positive",
+                [InputSettingsFunctionsConstants.PspStickLeft] = "Controller:pad:Axis0Negative"
+            })
+        ]);
+        Assert.Equal(expected, InputSnapshotFunctions.Apply(snapshot, configuration, false).Controllers[IntegratedPortIndex].LeftX);
+    }
+
     [Fact]
     public void ProfilePublishesOneIntegratedPortAndEveryVisibleCommand()
     {
@@ -61,6 +84,8 @@ public sealed class PspControllerTests
         var choice = Assert.Single(port.ControllerChoices, item => item.Id == ControllerType.Joystick.ToString());
         Assert.Equal(EmulationControllerVisualIds.SonyPsp1000, choice.DefaultVisualId);
         var ids = choice.BindingDefinitions!.Select(item => item.Id).ToHashSet();
+        Assert.All(choice.BindingDefinitions!.Where(item => item.OppositeDirectionId is not null), item =>
+            Assert.Equal(item.Id, choice.BindingDefinitions!.Single(other => other.Id == item.OppositeDirectionId).OppositeDirectionId));
         Assert.Contains(InputSettingsFunctionsConstants.PspStickUp, ids);
         Assert.Contains(InputSettingsFunctionsConstants.PspStickDown, ids);
         Assert.Contains(InputSettingsFunctionsConstants.PspStickLeft, ids);

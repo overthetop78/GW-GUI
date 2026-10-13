@@ -168,7 +168,26 @@ internal static partial class InputSettingsFunctions
         Definition(EmulationControllerCommandIds.R3, InputSettingsFunctionsConstants.ControllerR3, string.Empty)
     ];
 
-    private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding, invariant ?? (resourceKey.Contains('.') ? null : resourceKey));
+    private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding, string? invariant = null) =>
+        new(id, resourceKey, defaultBinding, invariant ?? (resourceKey.Contains('.') ? null : resourceKey))
+        {
+            OppositeDirectionId = id switch
+            {
+                InputSettingsFunctionsConstants.PspStickUp => InputSettingsFunctionsConstants.PspStickDown,
+                InputSettingsFunctionsConstants.PspStickDown => InputSettingsFunctionsConstants.PspStickUp,
+                InputSettingsFunctionsConstants.PspStickLeft => InputSettingsFunctionsConstants.PspStickRight,
+                InputSettingsFunctionsConstants.PspStickRight => InputSettingsFunctionsConstants.PspStickLeft,
+                InputSettingsFunctionsConstants.LeftStickUp => InputSettingsFunctionsConstants.LeftStickDown,
+                InputSettingsFunctionsConstants.LeftStickDown => InputSettingsFunctionsConstants.LeftStickUp,
+                InputSettingsFunctionsConstants.LeftStickLeft => InputSettingsFunctionsConstants.LeftStickRight,
+                InputSettingsFunctionsConstants.LeftStickRight => InputSettingsFunctionsConstants.LeftStickLeft,
+                InputSettingsFunctionsConstants.RightStickUp => InputSettingsFunctionsConstants.RightStickDown,
+                InputSettingsFunctionsConstants.RightStickDown => InputSettingsFunctionsConstants.RightStickUp,
+                InputSettingsFunctionsConstants.RightStickLeft => InputSettingsFunctionsConstants.RightStickRight,
+                InputSettingsFunctionsConstants.RightStickRight => InputSettingsFunctionsConstants.RightStickLeft,
+                _ => null
+            }
+        };
 
     private static EmulationControllerChoice Choice(ControllerType type, Model model) => new(
         type.ToString(), ControllerResourceKey(type, model),
