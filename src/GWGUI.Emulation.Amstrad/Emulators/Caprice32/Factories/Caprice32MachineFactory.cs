@@ -20,10 +20,7 @@ internal sealed class Caprice32MachineFactory : IEmulatorAdapter
     public string EmulatorId => EmulatorConstants.Id;
     public string EmulatorKey => Emulator.Caprice32.ToString();
     public IReadOnlyList<CoreOption> GetOptions(EmulatorManagementContext context) => [];
-    public EmulationEmulatorDefinition Definition { get; } = new(
-        EmulatorConstants.Id, EmulatorConstants.DisplayName,
-        EmulatorConstants.DescriptionResourceKey,
-        MachineCatalog.All.Select(machine => machine.Id).ToHashSet(StringComparer.Ordinal));
+    public EmulationEmulatorDefinition Definition { get; } = new( EmulatorConstants.Id, EmulatorConstants.DisplayName, EmulatorConstants.DescriptionResourceKey, MachineCatalog.All.Select(machine => machine.Id).ToHashSet(StringComparer.Ordinal));
 
     public bool TryHandleHostCommand(IReadOnlyList<string> arguments, out int exitCode)
     {
