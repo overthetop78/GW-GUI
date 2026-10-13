@@ -8,8 +8,7 @@ namespace GWGUI.Emulation.Epoch.Emulators.EmuSCV.Functions;
 internal static class SettingsDescriptionFunctions
 {
     internal static IReadOnlyList<EmulationMediaDevice> Storage(MachineConfiguration configuration) =>
-        [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, MediaRuntimeConstants.ScvCartridgeExtensions,
-            RequiresMachineRecreation: true, ImageDirectory: configuration.Folders.Cartridges, IsPermanent: true)];
+        [new(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge, MediaRuntimeConstants.ScvCartridgeExtensions, RequiresMachineRecreation: true, ImageDirectory: configuration.Folders.Cartridges, IsPermanent: true)];
 
     internal static IReadOnlyList<CoreOption> GetOptions() => EmuSCVOptionCatalog.All;
 
