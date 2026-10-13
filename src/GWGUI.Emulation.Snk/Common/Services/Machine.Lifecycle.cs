@@ -107,7 +107,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         }
     }
 
-    public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(InputSnapshotFunctions.Apply(snapshot, CurrentConfiguration()));
+    public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(InputSnapshotFunctions.Apply(snapshot, CurrentConfiguration(), _inputMapper));
 
     public void SetControllerPortDevice(int port, PeripheralCategory peripheral) => QueueCommand(() =>
         {

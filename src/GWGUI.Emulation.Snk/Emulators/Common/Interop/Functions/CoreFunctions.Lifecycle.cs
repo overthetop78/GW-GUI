@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts;
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
 
 internal static class CoreLifecycleFunctions

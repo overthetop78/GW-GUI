@@ -1,9 +1,10 @@
-namespace GWGUI.Emulation.Snk.Emulators.Common.Constants;
+namespace GWGUI.Emulation.Snk.Common.Constants;
 
 
 // Unique to GWGUI.Emulation.Snk.
 public static class CoreHostConstants
 {
+    internal const string Windows = "windows";
     public const string CommandLineArgument = "--snk-core-host";
     internal const string HostName = "Snk";
     internal const string PipePrefix = "gwgui-snk-";

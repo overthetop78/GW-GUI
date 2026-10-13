@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Contracts;
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interfaces;
 
 public interface ICoreReleaseService

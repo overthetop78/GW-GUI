@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Snk.Emulators.Common.Constants;
 using System.IO;
 using System.Diagnostics;
 using System.Reflection.PortableExecutable;

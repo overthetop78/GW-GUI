@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts;
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
 
 internal sealed partial class ExternalCore

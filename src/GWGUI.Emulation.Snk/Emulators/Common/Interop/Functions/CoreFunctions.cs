@@ -1,3 +1,8 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Snk.Emulators.Common.Dictionaries;
 using System.Globalization;
 using System.Runtime.InteropServices;
 

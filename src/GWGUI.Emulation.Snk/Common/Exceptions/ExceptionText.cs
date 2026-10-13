@@ -1,7 +1,7 @@
 using System.Globalization;
 
 
-namespace GWGUI.Emulation.Snk.Emulators.Common.Exceptions;
+namespace GWGUI.Emulation.Snk.Common.Exceptions;
 
 internal static class ExceptionText
 {

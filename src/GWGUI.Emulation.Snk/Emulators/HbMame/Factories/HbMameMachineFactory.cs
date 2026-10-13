@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Snk.Emulators.HbMame.Functions;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Snk.Emulators.HbMame.Constants;
 using GWGUI.Emulation.Snk.Emulators.HbMame.Dictionaries;
 using NativeOptions = GWGUI.Emulation.Snk.Emulators.HbMame.Functions.RuntimeOptionFunctions;

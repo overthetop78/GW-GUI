@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
 namespace GWGUI.Emulation.Snk.Emulators.FbNeo.Constants;
 
 internal static class RuntimeOptionConstants

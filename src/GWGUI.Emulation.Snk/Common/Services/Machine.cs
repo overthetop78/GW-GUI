@@ -9,6 +9,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 {
     private readonly object _gate = new();
     private IEmulatorCore _core;
+    private readonly IEmulatorInputMapper? _inputMapper;
     private readonly Func<IEmulatorCore>? _coreFactory;
     private readonly Func<EmulationMediaSlot, string?, bool> _requiresMediaRestart;
     private readonly string _sessionDirectory;
@@ -41,7 +42,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         Func<IEmulatorCore>? coreFactory = null,
         bool supportsPointerCapture = false,
         bool requiresResetRestart = false,
-        bool supportsNoContent = false
+        bool supportsNoContent = false,
+        IEmulatorInputMapper? inputMapper = null
     )
     {
         Id = id;
@@ -49,6 +51,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
         _inputConfiguration = configuration.Input;
         _core = core;
+        _inputMapper = inputMapper;
         _coreFactory = coreFactory;
         _requiresMediaRestart = requiresMediaRestart ?? throw new ArgumentNullException(nameof(requiresMediaRestart));
         _sessionDirectory = sessionDirectory;

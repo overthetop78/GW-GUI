@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
 namespace GWGUI.Emulation.Snk.Emulators.FbAlpha2012NeoGeo.Constants;
 
 internal static class RuntimeOptionConstants

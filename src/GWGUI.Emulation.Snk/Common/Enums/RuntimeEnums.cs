@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Snk.Emulators.Common.Enums;
+namespace GWGUI.Emulation.Snk.Common.Enums;
 
 public enum ErrorCategory
 {

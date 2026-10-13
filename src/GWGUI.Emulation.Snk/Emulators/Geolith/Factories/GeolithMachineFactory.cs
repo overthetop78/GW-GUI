@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Snk.Emulators.Geolith.Functions;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Snk.Emulators.Geolith.Constants;
 using GWGUI.Emulation.Snk.Emulators.Geolith.Dictionaries;
 using NativeMedia = GWGUI.Emulation.Snk.Emulators.Geolith.Functions.MediaRuntimeFunctions;

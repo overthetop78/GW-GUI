@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
 using GWGUI.Emulation.Snk.Emulators.Race.Constants;
 using GWGUI.Emulation.Snk.Emulators.Race.Dictionaries;
 using NativeOptions = GWGUI.Emulation.Snk.Emulators.Race.Functions.RuntimeOptionFunctions;

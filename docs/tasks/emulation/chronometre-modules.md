@@ -297,3 +297,5 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-13 01:25:47 | 66:30:03 | -58:30:03 | Reprise. Sharp : ressources, compilation et livraison. |
 | 2026-10-13 01:43:30 | 66:47:46 | -58:47:46 | Reprise. Sinclair : services neutres et ressources. |
 | 2026-10-13 02:13:40 | 67:17:56 | -59:17:56 | Reprise. Acorn : services neutres et capacités B2. |
+| 2026-10-13 02:58:15 | 68:02:31 | -60:02:31 | Reprise. SNK : frontière Common/adaptateurs. |
+| 2026-10-13 03:30:22 | 68:34:38 | -60:34:38 | Reprise. SNK : contrôle des paramètres livrés et commit. |

@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
 using System.IO;
 using GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
 using GWGUI.Emulation.Snk.Emulators.FbNeo.Constants;

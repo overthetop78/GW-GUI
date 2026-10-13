@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Snk.Emulators.Common.Dictionaries;
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
 
 internal static class ControllerPortFunctions

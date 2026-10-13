@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Functions;
+using GWGUI.Emulation.Snk.Emulators.Common.Contracts;
 using GWGUI.Emulation.Snk.Common.Interfaces;
 using GWGUI.Emulation.Snk.Emulators.Common.Factories;
 

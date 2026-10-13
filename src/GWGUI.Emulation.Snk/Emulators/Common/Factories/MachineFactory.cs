@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Contracts;
 using System.IO;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Factories;
@@ -36,12 +37,6 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     : Array.Empty<string>();
     protected abstract bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path);
     public IReadOnlyList<EmulationMedia> ResolveConfiguredMedia(MachineConfiguration configuration) => configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray();
-    public virtual IReadOnlySet<string>? GetCartridgeExtensions(MachineConfiguration configuration)
-    {
-        var devices = DescribeMediaDevices(configuration).Where(device => device.MediaType == EmulationMediaType.Cartridge).ToArray();
-        return devices.Length == 0 ? null : devices.SelectMany(device => device.AcceptedExtensions).ToHashSet(StringComparer.OrdinalIgnoreCase);
-    }
-
     public virtual IReadOnlyDictionary<string, string> GetRuntimeOptions(MachineConfiguration configuration) => configuration.Options;
     public Machine Create(MachineConfiguration configuration, EmulatorCreationContext context)
     {
@@ -64,7 +59,8 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
                 coreFactory: () => CreateCore(configuration, context),
                 supportsPointerCapture: SupportsPointerCapture,
                 requiresResetRestart: RequiresResetRestart,
-                supportsNoContent: SupportsNoContent
+                supportsNoContent: SupportsNoContent,
+                inputMapper: this as IEmulatorInputMapper
             );
             completed = true;
             return machine;

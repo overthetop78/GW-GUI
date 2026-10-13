@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
 using System.IO;
 using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;

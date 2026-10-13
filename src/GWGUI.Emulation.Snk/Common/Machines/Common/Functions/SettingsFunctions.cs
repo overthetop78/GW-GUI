@@ -105,7 +105,7 @@ internal static class SettingsDescriptionFunctions
             ExplanationResourceKey: option.ExplanationResourceKey,
             EnabledValue: enabled ?? EmulationSettingConstants.Enabled,
             DisabledValue: disabled ?? EmulationSettingConstants.Disabled,
-            RequiresRestart: RuntimeOptionFunctions.RequiresRestart(configuration.Core, option.Key)
+            RequiresRestart: false
         );
     }
 

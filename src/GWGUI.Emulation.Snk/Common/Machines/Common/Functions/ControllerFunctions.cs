@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Snk.Emulators.Common.Functions;
+namespace GWGUI.Emulation.Snk.Common.Machines.Common.Functions;
 
 internal static class ControllerFunctions
 {

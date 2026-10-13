@@ -34,7 +34,7 @@ internal static class InputSettingsFunctions
             var choices = Choices(configuration.Model).Select(category => new EmulationControllerChoice(
                     category.ToString(),
                     "Emulation.Snk.Controller." + category,
-                    BindingDefinitions: ControllerProtocolDictionary.Actions(configuration.Model, category).Select(action => action.Definition).ToArray(),
+                    BindingDefinitions: ControllerCatalog.Actions(configuration.Model, category).Select(action => action.Definition).ToArray(),
                     CompatibleVisualIds: ControllerVisualDictionary.VisualIds(category),
                     DefaultVisualId: ControllerVisualDictionary.DefaultVisualId(category),
                     VisualCommandIds: ControllerVisualDictionary.Commands(category)
@@ -45,7 +45,7 @@ internal static class InputSettingsFunctions
                 peripheral.ToString(),
                 binding?.DeviceId,
                 new(
-                    ControllerProtocolDictionary.Actions(configuration.Model, peripheral).Select(action => action.Definition).ToArray(),
+                    ControllerCatalog.Actions(configuration.Model, peripheral).Select(action => action.Definition).ToArray(),
                     binding?.Mappings ?? new Dictionary<string, string>(),
                     EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
                     true
@@ -85,7 +85,7 @@ internal static class InputSettingsFunctions
         {
             if (!SupportsPeripheral(configuration, binding.Port, binding.Peripheral))
                 throw new ArgumentException(nameof(configuration.Input));
-            var ids = ControllerProtocolDictionary.Actions(configuration.Model, binding.Peripheral).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
+            var ids = ControllerCatalog.Actions(configuration.Model, binding.Peripheral).Select(action => action.Id).ToHashSet(StringComparer.Ordinal);
             if (binding.Mappings?.Any(pair => !ids.Contains(pair.Key) || !IsSource(pair.Value)) == true)
                 throw new ArgumentException(nameof(configuration.Input));
             if (!string.IsNullOrEmpty(binding.VisualId) && !ControllerVisualDictionary.VisualIds(binding.Peripheral).Contains(binding.VisualId, StringComparer.Ordinal))

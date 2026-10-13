@@ -1,9 +1,17 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Snk.Emulators.Common.Factories;
+using GWGUI.Emulation.Snk.Emulators.Common.Contracts;
 using System.IO;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
 
-internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry) : GWGUI.Emulation.Snk.Emulators.Common.Factories.MachineFactory(catalogEntry)
+internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry) : GWGUI.Emulation.Snk.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorInputMapper
 {
+    public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, MachineConfiguration configuration) => NativeInputMappingFunctions.Apply(snapshot, configuration, ControllerPortCount(configuration));
+
     internal virtual int DirectoryStringBufferCapacity => 0;
     internal virtual string ExpectedNativeLibraryName => CatalogEntry.LibraryName;
     internal abstract IReadOnlyDictionary<ControllerCommand, uint> ControllerButtonIds(MachineConfiguration configuration);

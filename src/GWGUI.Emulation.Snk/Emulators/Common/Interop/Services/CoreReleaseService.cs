@@ -1,3 +1,10 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Snk.Emulators.Common.Interfaces;
+using GWGUI.Emulation.Snk.Emulators.Common.Functions;
+using GWGUI.Emulation.Snk.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Snk.Emulators.Common.Dictionaries;
+using GWGUI.Emulation.Snk.Emulators.Common.Contracts;
+using GWGUI.Emulation.Snk.Emulators.Common.Constants;
 using System.Net.Http;
 using System.IO;
 

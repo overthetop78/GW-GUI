@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Functions;
+using GWGUI.Emulation.Snk.Emulators.Common.Contracts;
 namespace GWGUI.Emulation.Snk.Emulators.MednafenNgp.Constants;
 internal static class EmulatorConstants
 {

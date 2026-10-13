@@ -2,7 +2,7 @@ using System.IO;
 using System.Buffers.Binary;
 using System.Text.Json;
 
-namespace GWGUI.Emulation.Snk.Emulators.Common.Functions;
+namespace GWGUI.Emulation.Snk.Common.Machines.Common.Functions;
 
 internal static class StateFileFunctions
 {

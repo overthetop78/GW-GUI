@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
+using GWGUI.Emulation.Snk.Emulators.Common.Dictionaries;
 using System.IO;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;

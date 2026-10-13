@@ -1,3 +1,9 @@
+using GWGUI.Emulation.Snk.Emulators.FbNeo.Functions;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Factories;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
 using System.IO;
 using GWGUI.Emulation.Snk.Emulators.FbNeo.Constants;
 using GWGUI.Emulation.Snk.Emulators.FbNeo.Dictionaries;

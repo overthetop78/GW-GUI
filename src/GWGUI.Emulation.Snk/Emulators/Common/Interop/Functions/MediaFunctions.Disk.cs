@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Snk.Emulators.Common.Exceptions;
 using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;

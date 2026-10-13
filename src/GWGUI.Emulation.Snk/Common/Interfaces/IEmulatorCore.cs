@@ -1,6 +1,6 @@
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Snk.Emulators.Common.Interfaces;
+namespace GWGUI.Emulation.Snk.Common.Interfaces;
 
 internal interface IEmulatorCore : IDisposable
 {

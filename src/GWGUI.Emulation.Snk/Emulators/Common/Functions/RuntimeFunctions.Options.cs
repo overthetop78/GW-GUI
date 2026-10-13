@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Dictionaries;
 namespace GWGUI.Emulation.Snk.Emulators.Common.Functions;
 
 internal static class NativeRuntimeOptionFunctions

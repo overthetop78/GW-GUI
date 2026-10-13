@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Snk.Emulators.Common.Interop.Functions;
 using System.IO;
 using GWGUI.Emulation.Snk.Emulators.MednafenNgp.Constants;
 

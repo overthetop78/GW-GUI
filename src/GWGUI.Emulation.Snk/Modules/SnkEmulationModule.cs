@@ -134,6 +134,11 @@ public sealed class SnkEmulationModule : IEmulationModule, IEmulationEmulatorMan
                 Controllers = controllers
             }
         };
+        var devices = adapter is IEmulatorMediaAdapter mediaAdapter ? mediaAdapter.DescribeMediaDevices(result) : [];
+        var slots = devices.Select(device => device.Slot).ToHashSet();
+        if (result.Media.Any(media => !slots.Contains(media.Slot)))
+            throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(emulatorId));
+        result = result with { ConfiguredSlots = result.ConfiguredSlots.Where(slots.Contains).ToArray() };
         ConfigurationFunctions.Validate(result);
         return ValueTask.FromResult<IEmulationConfiguration>(result);
     }

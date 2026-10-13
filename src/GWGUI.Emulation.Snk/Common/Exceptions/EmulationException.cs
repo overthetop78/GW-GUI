@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Snk.Emulators.Common.Exceptions;
+namespace GWGUI.Emulation.Snk.Common.Exceptions;
 
 
 
