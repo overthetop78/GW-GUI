@@ -5,6 +5,7 @@ internal static class EmulationInputMappingConstants
     internal const short AnalogThreshold = 14000;
     internal const string ControllerPrefix = "Controller:";
     internal const char SourceSeparator = ':';
+    internal const string AxisPrefix = "Axis";
     internal const string PositiveSuffix = "Positive";
     internal const string NegativeSuffix = "Negative";
     internal const float PositiveThreshold = .75f;

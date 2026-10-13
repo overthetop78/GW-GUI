@@ -12,7 +12,7 @@ internal static class BindingsAndFeedbackScenarios
         Assert.Equal(new[]{GWGUI.Emulation.Enums.EmulationKey.B,GWGUI.Emulation.Enums.EmulationKey.F1}.Order(),mapped.Order()); Assert.Contains(GWGUI.Emulation.Enums.EmulationKey.A,keys);
         var first=EmulationControllerState.Empty with{DeviceId="one"}; var second=new EmulationControllerState(1u<<8,short.MinValue,short.MaxValue,0,0,0,0){DeviceId="two"};
         Assert.Same(second,GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveController("TWO",[first,second],0));
-        Assert.Same(first,GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveController("missing",[first,second],0));
+        Assert.Same(EmulationControllerState.Empty,GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveController("missing",[first,second],0));
         Assert.Same(EmulationControllerState.Empty,GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ResolveController(null,[],0));
         Assert.Equal("device:identifier",GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ParseControllerDeviceId("Controller:device:identifier:ButtonA"));
         Assert.Null(GWGUI.Emulation.Functions.EmulationInputMappingFunctions.ParseControllerDeviceId("Keyboard:A"));

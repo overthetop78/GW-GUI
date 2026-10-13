@@ -85,14 +85,21 @@ public static class EmulationInputMappingFunctions
     public static float ControllerSourceValue(string source, EmulationControllerState controller)
     {
         var name = SourceControlName(source);
+        if (name is EmulationInputMappingConstants.LeftTrigger or EmulationInputMappingConstants.L2
+            or EmulationInputMappingConstants.RightTrigger or EmulationInputMappingConstants.R2)
+        {
+            if (controller.Controls.TryGetValue(name, out var pressure)) return Math.Clamp(pressure, 0f, 1f);
+            var trigger = name is EmulationInputMappingConstants.LeftTrigger or EmulationInputMappingConstants.L2 ? controller.LeftTrigger : controller.RightTrigger;
+            if (trigger > 0) return (float)trigger / short.MaxValue;
+        }
         if (ControllerButtons.TryGetValue(name, out var button))
             return (controller.Buttons & (1u << button)) != 0 ? 1f : 0f;
         if (name.EndsWith(EmulationInputMappingConstants.PositiveSuffix, StringComparison.OrdinalIgnoreCase)
             && controller.Controls.TryGetValue(name[..^EmulationInputMappingConstants.PositiveSuffix.Length], out var positive))
-            return positive;
+            return IsGenericAxisDirection(name) ? Math.Clamp(positive * 2f - 1f, 0f, 1f) : positive;
         if (name.EndsWith(EmulationInputMappingConstants.NegativeSuffix, StringComparison.OrdinalIgnoreCase)
             && controller.Controls.TryGetValue(name[..^EmulationInputMappingConstants.NegativeSuffix.Length], out var negative))
-            return -negative;
+            return IsGenericAxisDirection(name) ? Math.Clamp(1f - negative * 2f, 0f, 1f) : -negative;
         if (controller.Controls.TryGetValue(name, out var value)) return value;
         return name switch
         {
@@ -113,6 +120,8 @@ public static class EmulationInputMappingFunctions
     public static bool IsControllerSourcePressed(string source, EmulationControllerState controller, float value)
     {
         var name = SourceControlName(source);
+        if (IsGenericAxisDirection(name))
+            return value > EmulationInputMappingConstants.PressedThreshold;
         if (ControllerButtons.ContainsKey(name))
             return value > EmulationInputMappingConstants.PressedThreshold;
         if (name.EndsWith(EmulationInputMappingConstants.PositiveSuffix, StringComparison.OrdinalIgnoreCase))
@@ -124,5 +133,41 @@ public static class EmulationInputMappingFunctions
         return value > EmulationInputMappingConstants.AnalogThreshold;
     }
 
+    private static bool IsGenericAxisDirection(string name)
+    {
+        var suffix = name.EndsWith(EmulationInputMappingConstants.PositiveSuffix, StringComparison.OrdinalIgnoreCase)
+            ? EmulationInputMappingConstants.PositiveSuffix
+            : name.EndsWith(EmulationInputMappingConstants.NegativeSuffix, StringComparison.OrdinalIgnoreCase) ? EmulationInputMappingConstants.NegativeSuffix : string.Empty;
+        var numberLength = name.Length - EmulationInputMappingConstants.AxisPrefix.Length - suffix.Length;
+        return suffix.Length > 0 && numberLength > 0 && name.StartsWith(EmulationInputMappingConstants.AxisPrefix, StringComparison.OrdinalIgnoreCase)
+            && int.TryParse(name.AsSpan(EmulationInputMappingConstants.AxisPrefix.Length, numberLength), out var index) && index >= 0;
+    }
+
     private static string SourceControlName(string source) => source.Split(EmulationInputMappingConstants.SourceSeparator, StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? string.Empty;
+
+    public static string? OppositeControllerAxisSource(string source)
+    {
+        if (!source.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)) return null;
+        var name = SourceControlName(source);
+        string? opposite = name switch
+        {
+            EmulationInputMappingConstants.LeftStickLeft => EmulationInputMappingConstants.LeftStickRight,
+            EmulationInputMappingConstants.LeftStickRight => EmulationInputMappingConstants.LeftStickLeft,
+            EmulationInputMappingConstants.LeftStickUp => EmulationInputMappingConstants.LeftStickDown,
+            EmulationInputMappingConstants.LeftStickDown => EmulationInputMappingConstants.LeftStickUp,
+            EmulationInputMappingConstants.RightStickLeft => EmulationInputMappingConstants.RightStickRight,
+            EmulationInputMappingConstants.RightStickRight => EmulationInputMappingConstants.RightStickLeft,
+            EmulationInputMappingConstants.RightStickUp => EmulationInputMappingConstants.RightStickDown,
+            EmulationInputMappingConstants.RightStickDown => EmulationInputMappingConstants.RightStickUp,
+            _ => null
+        };
+        if (IsGenericAxisDirection(name))
+        {
+            if (name.EndsWith(EmulationInputMappingConstants.PositiveSuffix, StringComparison.OrdinalIgnoreCase))
+                opposite = name[..^EmulationInputMappingConstants.PositiveSuffix.Length] + EmulationInputMappingConstants.NegativeSuffix;
+            else if (name.EndsWith(EmulationInputMappingConstants.NegativeSuffix, StringComparison.OrdinalIgnoreCase))
+                opposite = name[..^EmulationInputMappingConstants.NegativeSuffix.Length] + EmulationInputMappingConstants.PositiveSuffix;
+        }
+        return opposite is null ? null : source[..^name.Length] + opposite;
+    }
 }
