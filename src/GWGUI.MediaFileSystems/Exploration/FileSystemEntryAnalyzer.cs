@@ -32,10 +32,7 @@ public static class FileSystemEntryAnalyzer
         return entry with
         {
             Children = Array.AsReadOnly(entry.Children.Select(child => AnalyzeEntry(child, family)).ToArray()),
-            Analysis = new FileSystemEntryAnalysis(
-                type.Category.ToString(), type.IconId, type.TypeResourceKey, type.Extension,
-                type.ExecutionKind.ToString(), type.ContentFormat.ToString(),
-                type.TextEncoding.ToString(), type.PreviewKind.ToString())
+            Analysis = new FileSystemEntryAnalysis( type.Category.ToString(), type.IconId, type.TypeResourceKey, type.Extension, type.ExecutionKind.ToString(), type.ContentFormat.ToString(), type.TextEncoding.ToString(), type.PreviewKind.ToString())
         };
     }
 }
