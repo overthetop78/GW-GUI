@@ -286,5 +286,7 @@ Contrôles analogiques terminés : pression composée vérifiée dans les neuf c
 
 La tranche Acorn/associations physiques est compilée et ses 94 tests ciblés passent. Les 191 identités EmulationKey ont été regroupées par fonction et famille en conservant leurs valeurs numériques explicites ; les tests restent verts après ce regroupement. Le dernier build complet a livré les 23 modules, l'exécutable et tous les entryAssembly déclarés. Aucun parcours matériel réel supplémentaire n'est déclaré validé par ces tests.
 
-- [ ] Compléter la vérification des inscriptions de modificateurs dans les autres cultures.
-  - [ ] Modifier `src/GWGUI.App/Resources/*/Emulation/EmulationKeyboard.resx` uniquement pour les inscriptions locales attestées différentes de SHIFT, après comparaison avec les noms clavier officiels ; conserver les identités LeftShift/RightShift et les valeurs réellement identiques dans 00-Base.
+- [x] Compléter la vérification des inscriptions de modificateurs dans les autres cultures.
+  - [x] Modifier `src/GWGUI.App/Resources/*/Emulation/EmulationKeyboard.resx` uniquement pour les inscriptions locales attestées différentes de SHIFT, après comparaison avec les noms clavier officiels ; conserver les identités LeftShift/RightShift et les valeurs réellement identiques dans 00-Base.
+
+SHIFT vérifié dans les 29 pages Microsoft locales, via la combinaison de menu contextuel F10. Les cinq cultures supplémentaires da-DK, fi-FI, it-IT, nb-NO et sv-SE affichent désormais Skift, Vaihto, MAIUSC, Skift et Skift. Les 21 cultures employant Shift utilisent la base commune ; les huit variantes locales ont une entrée distincte. XML et unicité des clés vérifiés dans tous les catalogues concernés.
