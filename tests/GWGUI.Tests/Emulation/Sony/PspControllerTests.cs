@@ -135,7 +135,7 @@ public sealed class PspControllerTests
     }
 
     [Fact]
-    public void OppositeStickDirectionsCancelWithoutSuppressingUnmappedPhysicalAxis()
+    public void OppositeStickDirectionsCancelAndUnassignedAxesStayInactive()
     {
         var source = EmulationControllerState.Empty with { LeftY = short.MaxValue };
         var snapshot = EmulationInputSnapshot.Empty with
@@ -156,6 +156,6 @@ public sealed class PspControllerTests
         var mapped = InputSnapshotFunctions.Apply(snapshot, configuration, false);
 
         Assert.Equal(default, mapped.Controllers[IntegratedPortIndex].LeftX);
-        Assert.Equal(short.MaxValue, mapped.Controllers[IntegratedPortIndex].LeftY);
+        Assert.Equal(default, mapped.Controllers[IntegratedPortIndex].LeftY);
     }
 }

@@ -38,10 +38,10 @@ internal static class InputSettingsFunctionsConstants
     internal const string PspStickDownLabel = "● ↓";
     internal const string PspStickLeftLabel = "● ←";
     internal const string PspStickRightLabel = "● →";
-    internal const string LeftStickUp = "LeftStickUp";
-    internal const string LeftStickDown = "LeftStickDown";
-    internal const string LeftStickLeft = "LeftStickLeft";
-    internal const string LeftStickRight = "LeftStickRight";
+    internal const string LeftStickUp = EmulationControllerCommandIds.LeftStickUp;
+    internal const string LeftStickDown = EmulationControllerCommandIds.LeftStickDown;
+    internal const string LeftStickLeft = EmulationControllerCommandIds.LeftStickLeft;
+    internal const string LeftStickRight = EmulationControllerCommandIds.LeftStickRight;
     internal const string RightStickUp = "RightStickUp";
     internal const string RightStickDown = "RightStickDown";
     internal const string RightStickLeft = "RightStickLeft";

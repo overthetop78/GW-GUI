@@ -76,17 +76,19 @@ internal static class InputSnapshotFunctions
             result[port] = source with
             {
                 Buttons = buttons,
+                LeftTrigger = EmulationInputMappingFunctions.MapControllerPressure(binding.ButtonMappings, EmulationControllerCommandIds.L2, source, physical, keys, physicalMouse),
+                RightTrigger = EmulationInputMappingFunctions.MapControllerPressure(binding.ButtonMappings, EmulationControllerCommandIds.R2, source, physical, keys, physicalMouse),
                 Controls = MapControls(binding.ButtonMappings, source, physical, keys, physicalMouse),
                 LeftX = MappedAxis(binding.ButtonMappings,
                     binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickRight) || binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickLeft) ? InputSettingsFunctionsConstants.LeftStickRight : InputSettingsFunctionsConstants.PspStickRight,
                     binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickRight) || binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickLeft) ? InputSettingsFunctionsConstants.LeftStickLeft : InputSettingsFunctionsConstants.PspStickLeft,
-                    source.LeftX, source, physical, keys, physicalMouse),
+                    source, physical, keys, physicalMouse),
                 LeftY = MappedAxis(binding.ButtonMappings,
                     binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickDown) || binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickUp) ? InputSettingsFunctionsConstants.LeftStickDown : InputSettingsFunctionsConstants.PspStickDown,
                     binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickDown) || binding.ButtonMappings.ContainsKey(InputSettingsFunctionsConstants.LeftStickUp) ? InputSettingsFunctionsConstants.LeftStickUp : InputSettingsFunctionsConstants.PspStickUp,
-                    source.LeftY, source, physical, keys, physicalMouse),
-                RightX = MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.RightStickRight, InputSettingsFunctionsConstants.RightStickLeft, source.RightX, source, physical, keys, physicalMouse),
-                RightY = MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.RightStickDown, InputSettingsFunctionsConstants.RightStickUp, source.RightY, source, physical, keys, physicalMouse)
+                    source, physical, keys, physicalMouse),
+                RightX = MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.RightStickRight, InputSettingsFunctionsConstants.RightStickLeft, source, physical, keys, physicalMouse),
+                RightY = MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.RightStickDown, InputSettingsFunctionsConstants.RightStickUp, source, physical, keys, physicalMouse)
             };
         }
         return result;
@@ -116,21 +118,9 @@ internal static class InputSnapshotFunctions
         return IsSourcePressed(sourceName, controller, keys, mouse) ? InputSnapshotFunctionsConstants.FullPressure : InputSnapshotFunctionsConstants.ReleasedPressure;
     }
 
-    private static short MappedAxis(IReadOnlyDictionary<string, string> mappings,
-        string positiveCommand, string negativeCommand, short physicalValue,
-        EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,
-        IReadOnlySet<EmulationKey> keys,
-        IReadOnlyDictionary<string, bool> mouse)
-    {
-        var hasPositive = mappings.TryGetValue(positiveCommand, out var positiveSource) && !string.IsNullOrWhiteSpace(positiveSource);
-        var hasNegative = mappings.TryGetValue(negativeCommand, out var negativeSource) && !string.IsNullOrWhiteSpace(negativeSource);
-        if (!hasPositive && !hasNegative) return physicalValue;
-
-        var positive = hasPositive ? SourcePressure(positiveSource!, EmulationInputMappingFunctions.ResolveSourceController(positiveSource!, physical, controller), keys, mouse) : InputSnapshotFunctionsConstants.ReleasedPressure;
-        var negative = hasNegative ? SourcePressure(negativeSource!, EmulationInputMappingFunctions.ResolveSourceController(negativeSource!, physical, controller), keys, mouse) : InputSnapshotFunctionsConstants.ReleasedPressure;
-        var value = positive - negative;
-        return (short)Math.Round(value >= InputSnapshotFunctionsConstants.ReleasedPressure ? value * short.MaxValue : -value * short.MinValue);
-    }
+    private static short MappedAxis(IReadOnlyDictionary<string, string> mappings, string positiveCommand, string negativeCommand,
+        EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse) =>
+        EmulationInputMappingFunctions.MapControllerAxis(mappings, positiveCommand, negativeCommand, controller, physical, keys, mouse);
 
     private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => new Dictionary<string, bool>(
             StringComparer.OrdinalIgnoreCase)
