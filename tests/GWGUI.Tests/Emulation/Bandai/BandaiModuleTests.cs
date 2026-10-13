@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text.Json;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
+using GWGUI.Emulation.Constants;
 using GWGUI.Emulation.Bandai.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Bandai.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Bandai.Common.Machines.Common.Enums;
@@ -145,6 +146,28 @@ public sealed class BandaiModuleTests
                     Assert.True(module.TryGetString(field.LabelResourceKey, culture, out _), field.LabelResourceKey);
             }
         }
+    }
+
+    [Fact]
+    public void PlaydiaHleUsesItsEightCommandVirtualGamepadWithoutPhysicalDefaults()
+    {
+        var configuration = new MachineConfiguration(MachineModel.Playdia);
+        var port = Assert.Single(InputSettingsFunctions.Describe(configuration).ControllerPorts);
+        var choice = Assert.Single(port.ControllerChoices);
+        Assert.Equal("Controllers.Enum.Gamepad", choice.DisplayResourceKey);
+        Assert.Null(choice.InvariantDisplayValue);
+        Assert.Equal(EmulationControllerVisualIds.NintendoNesPad, port.VisualId);
+        Assert.Equal(8, choice.VisualCommandIds!.Count);
+        Assert.Equal("B", choice.VisualCommandIds[EmulationControllerVisualControl.PrimaryAction]);
+        Assert.Equal("A", choice.VisualCommandIds[EmulationControllerVisualControl.SecondaryAction]);
+        Assert.Equal("Select", choice.VisualCommandIds[EmulationControllerVisualControl.Option]);
+        Assert.Equal("Start", choice.VisualCommandIds[EmulationControllerVisualControl.Start]);
+        Assert.Equal(port.Bindings.Definitions.Select(definition => definition.Id).Order(), choice.VisualCommandIds.Values.Order());
+        Assert.Equal(8, choice.VisualBindingDefinitions![EmulationControllerVisualIds.NintendoNesPad].Count);
+        Assert.Empty(port.Bindings.Values);
+        Assert.All(port.Bindings.Definitions, definition => Assert.Empty(definition.DefaultBinding));
+        var restored = RoundTrip(InputSettingsFunctions.Apply(configuration, InputSettingsFunctions.Describe(configuration)));
+        Assert.Equal(EmulationControllerVisualIds.NintendoNesPad, Assert.Single(restored.Input.Controllers!).VisualId);
     }
 
     private static MachineConfiguration RoundTrip(MachineConfiguration configuration)

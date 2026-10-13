@@ -49,10 +49,6 @@ internal static partial class ControllerArtworkCatalog
         new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 30.47, 68.75, 6.25, 4.55)
     ]);
 
-    // The HLE core exposes eight virtual commands, not the six-button physical protocol.
-    // Keep its artwork without inventing a correspondence with the photographed buttons.
-    private static ProfileDefinition CreateBandaiPlaydia() => new(ControllerArtworkFileNames.BandaiPlaydia, []);
-
     private static ProfileDefinition CreateBandaiTamagotchi() => new(ControllerArtworkFileNames.BandaiTamagotchiP1,
     [
         new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.Ellipse, 6.84, 55.67, 8.59, 8.91),

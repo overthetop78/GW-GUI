@@ -299,6 +299,8 @@ L’arrêt doit rester idempotent après la fin effective de la boucle : Stop su
 - Vérifier les capacités exposées par le port natif effectivement téléchargé. Les fonctionnalités de la version autonome ne prouvent pas une prise en charge par sa DLL. Pour une ROM intégrée, chercher le chemin réel de remplacement externe avant de créer un champ ; pour les supports, identifier les lecteurs réellement adressés, pas seulement la liste des images interchangeables.
 - Pour les périphériques, la catégorie regroupe les visuels compatibles ; le visuel sélectionné définit les commandes proposées, avec uniquement les extensions effectivement prises en charge par le cœur. Les associations physiques restent vides tant que l’utilisateur ne les choisit pas. Réutiliser les images App sans copie ni dépendance du module vers App.
 
+- Si un cœur expose un contrôleur virtuel différent du périphérique original, relever exactement ses commandes dans son interface native. Réutiliser un visuel existant qui porte ces commandes (avec leurs inscriptions et positions vérifiées), au lieu d’inventer une relation avec les boutons du périphérique original. Ne jamais placer une console de salon dans Assets/Controllers ; conserver sa photo uniquement parmi les machines. Retirer les faux profils vides en corrigeant aussi leurs fabriques, ressources et appelants ; préserver les identifiants publics persistés par un alias compatible si nécessaire.
+
 ## Historique des mises à jour
 
 Chaque ligne décrit une amélioration de cette procédure, pas une réalisation ou un diagnostic de module. Conserver le numéro et l'heure locale réelle, une ligne physique par entrée, sans ligne vide dans le tableau.
@@ -574,3 +576,4 @@ Chaque ligne décrit une amélioration de cette procédure, pas une réalisation
 | 267 | 2026-10-13 19:37:44 | Libérer les allocations natives si leur transfert au propriétaire échoue ; partager cette opération dans le service existant. |
 | 268 | 2026-10-13 20:19:00 | Préserver les états terminaux après les arrêts répétés et conserver la synchronisation du thread propriétaire. |
 | 269 | 2026-10-13 20:42:34 | Classer les configurations natives par matériel, préserver les choix persistés et vérifier les capacités du port effectivement livré. |
+| 270 | 2026-10-13 21:03:46 | Choisir le visuel selon les commandes réellement exposées et retirer les photos de console du catalogue des manettes. |

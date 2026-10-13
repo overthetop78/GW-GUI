@@ -12,16 +12,17 @@ internal static class InputSettingsFunctions
             MachineModel.WonderSwan => EmulationControllerVisualIds.BandaiWonderSwan,
             MachineModel.WonderSwanColor => EmulationControllerVisualIds.BandaiWonderSwanColor,
             MachineModel.SwanCrystal => EmulationControllerVisualIds.BandaiSwanCrystal,
-            MachineModel.Playdia => EmulationControllerVisualIds.BandaiPlaydia,
+            MachineModel.Playdia => EmulationControllerVisualIds.NintendoNesPad,
             MachineModel.TamagotchiP1 => EmulationControllerVisualIds.BandaiTamagotchiP1,
             _ => throw new ArgumentOutOfRangeException(nameof(configuration))
         };
         EmulationControllerChoice[] choices =
         [
-            new(peripheral.ToString(), SettingsConstants.ResourceControllerPrefix + peripheral,
-                InvariantDisplayValue: peripheral.ToString(),
+            new(peripheral.ToString(), configuration.Model == MachineModel.Playdia ? "Controllers.Enum.Gamepad" : SettingsConstants.ResourceControllerPrefix + peripheral,
+                InvariantDisplayValue: configuration.Model == MachineModel.Playdia ? null : peripheral.ToString(),
                 BindingDefinitions: definitions, CompatibleVisualIds: [visualId], DefaultVisualId: visualId,
-                VisualCommandIds: VisualCommands(configuration.Model))
+                VisualCommandIds: VisualCommands(configuration.Model),
+                VisualBindingDefinitions: new Dictionary<string, IReadOnlyList<InputBindingDefinition>> { [visualId] = definitions })
         ];
         var port = new EmulationControllerPort(ControllerConstants.FirstPort + BufferConstants.IndexIncrement,
             choices, peripheral.ToString(), current?.DeviceId,
@@ -69,7 +70,17 @@ internal static class InputSettingsFunctions
             [EmulationControllerVisualControl.PrimaryAction] = InputSnapshotFunctionsConstants.Execute,
             [EmulationControllerVisualControl.SecondaryAction] = InputSnapshotFunctionsConstants.Cancel
         };
-        if (model == MachineModel.Playdia) return new Dictionary<EmulationControllerVisualControl, string>();
+        if (model == MachineModel.Playdia) return new Dictionary<EmulationControllerVisualControl, string>
+        {
+            [EmulationControllerVisualControl.DirectionUp] = EmulationInputMappingConstants.Up,
+            [EmulationControllerVisualControl.DirectionDown] = EmulationInputMappingConstants.Down,
+            [EmulationControllerVisualControl.DirectionLeft] = EmulationInputMappingConstants.Left,
+            [EmulationControllerVisualControl.DirectionRight] = EmulationInputMappingConstants.Right,
+            [EmulationControllerVisualControl.PrimaryAction] = EmulationInputMappingConstants.B,
+            [EmulationControllerVisualControl.SecondaryAction] = EmulationInputMappingConstants.A,
+            [EmulationControllerVisualControl.Start] = EmulationInputMappingConstants.Start,
+            [EmulationControllerVisualControl.Option] = EmulationInputMappingConstants.Select
+        };
         return new Dictionary<EmulationControllerVisualControl, string>
         {
             [EmulationControllerVisualControl.DirectionUp] = InputSnapshotFunctionsConstants.X1,

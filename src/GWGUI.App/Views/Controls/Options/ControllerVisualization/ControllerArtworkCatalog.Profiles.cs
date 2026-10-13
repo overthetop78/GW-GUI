@@ -27,7 +27,7 @@ internal static partial class ControllerArtworkCatalog
         profiles[EmulationControllerVisualIds.BandaiWonderSwan] = CreateBandaiWonderSwan();
         profiles[EmulationControllerVisualIds.BandaiWonderSwanColor] = CreateBandaiWonderSwanColor();
         profiles[EmulationControllerVisualIds.BandaiSwanCrystal] = CreateBandaiSwanCrystal();
-        profiles[EmulationControllerVisualIds.BandaiPlaydia] = CreateBandaiPlaydia();
+        profiles[EmulationControllerVisualIds.BandaiPlaydia] = CreateNintendoNesPad();
         profiles[EmulationControllerVisualIds.BandaiTamagotchiP1] = CreateBandaiTamagotchi();
         profiles[EmulationControllerVisualIds.NecPcEnginePad] = CreateNecPcEnginePad();
         profiles[EmulationControllerVisualIds.NecPcEngineTurboPad] = CreateNecPcEngineTurboPad();

@@ -20,7 +20,6 @@ internal static class ControllerArtworkFileNames
     internal const string BandaiWonderSwan = "bandai-wonderswan.png";
     internal const string BandaiWonderSwanColor = "bandai-wonderswan-color.png";
     internal const string BandaiSwanCrystal = "bandai-swancrystal.png";
-    internal const string BandaiPlaydia = "bandai-playdia.png";
     internal const string BandaiTamagotchiP1 = "bandai-tamagotchi-p1.png";
     internal const string Atari5200Controller = "atari-5200-controller.png";
     internal const string Atari7800ControlPadEurope = "atari-7800-control-pad-europe.png";
