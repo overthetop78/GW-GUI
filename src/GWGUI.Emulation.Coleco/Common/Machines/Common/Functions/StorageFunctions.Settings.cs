@@ -28,15 +28,13 @@ internal static class StorageSettingsFunctions
     }
 
     private static IReadOnlyList<EmulationSettingsField> CartridgeFields(MachineConfiguration configuration) =>
-        new Engine().Adapter(configuration) is IEmulatorSettings settings
-            ? settings.DescribeSettings(configuration).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray()
-            : [];
+        new Engine().Adapter(configuration) is IEmulatorSettings settings ? settings.DescribeSettings(configuration).Where(block => block.Tab == EmulationMachineTab.Storage).SelectMany(block => block.Fields).ToArray() : [];
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
     {
         var devices = Describe(configuration).AvailableDevices.ToDictionary(device => device.Slot);
         if (settings.ConfiguredSlots.Any(slot => !devices.ContainsKey(slot))
-            || settings.MountedMedia.Any(media => !devices.TryGetValue(media.Slot, out var device) || device.MediaType != media.Type || !device.AcceptedExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase)))
+           || settings.MountedMedia.Any(media => !devices.TryGetValue(media.Slot, out var device) || device.MediaType != media.Type || !device.AcceptedExtensions.Contains(Path.GetExtension(media.Path), StringComparer.OrdinalIgnoreCase)))
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
         var cartridgeFields = CartridgeFields(configuration).Select(field => field.Id).ToHashSet(StringComparer.Ordinal);
         var options = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal);
