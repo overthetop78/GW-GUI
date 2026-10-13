@@ -62,8 +62,7 @@ public sealed class ModuleDirectoryServiceTests
             "kind": "module",
             "releases": [
               {{string.Join(",",
-                  releases.Select(release => $$"""{"version":"{{release.Version}}","packageUrl":"https://example.test/{{id}}-{{release.Version}}.zip","sha256":"{{new string('a',
-                      64)}}","notesUrl":"https://example.test/{{id}}/{{release.Version}}","hostApiMinimum":"{{release.Minimum}}","hostApiMaximum":"{{release.Maximum}}"}"""))}}
+                  releases.Select(release => $$"""{"version":"{{release.Version}}","packageUrl":"https://example.test/{{id}}-{{release.Version}}.zip","sha256":"{{new string('a', 64)}}","notesUrl":"https://example.test/{{id}}/{{release.Version}}","hostApiMinimum":"{{release.Minimum}}","hostApiMaximum":"{{release.Maximum}}"}"""))}}
             ]
           }]
         }
