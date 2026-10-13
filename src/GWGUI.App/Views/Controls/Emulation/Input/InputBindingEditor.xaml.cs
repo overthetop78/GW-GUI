@@ -29,6 +29,8 @@ public partial class InputBindingEditor : UserControl
     private readonly DispatcherTimer _controllerCaptureTimer;
     private IReadOnlyList<EmulationControllerState> _controllerBaseline = [];
     private IReadOnlyList<GameInputLiveState> _controllerDetailedBaseline = [];
+    private IReadOnlyList<EmulationControllerState> _controllerAxisBaseline = [];
+    private IReadOnlyList<GameInputLiveState> _controllerDetailedAxisBaseline = [];
     private IReadOnlySet<string> _reservedBindings = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     private HwndSource? _windowSource;
 

@@ -51,6 +51,8 @@ public partial class InputBindingEditor
         }
         _controllerBaseline = _captureSources.HasFlag(InputCaptureSources.Controller) ? GameInputControllerReader.ReadAll() : [];
         _controllerDetailedBaseline = _captureSources.HasFlag(InputCaptureSources.Controller) ? GameInputControllerReader.ReadAllDetailedStates() : [];
+        _controllerAxisBaseline = _controllerBaseline;
+        _controllerDetailedAxisBaseline = _controllerDetailedBaseline;
         _controllerCaptureTimer.Start();
     }
 
@@ -167,7 +169,8 @@ public partial class InputBindingEditor
                 FinishCapture();
                 return;
             }
-            var genericAxis = NewlyMovedGenericAxis(state, baselineState);
+            var axisBaseline = _controllerAxisBaseline.FirstOrDefault(item => string.Equals(item.DeviceId, state.DeviceId, StringComparison.OrdinalIgnoreCase)) ?? EmulationControllerState.Empty;
+            var genericAxis = NewlyMovedGenericAxis(state, axisBaseline);
             if (genericAxis is not null)
             {
                 _captureRow.Binding = InputBindingSyntax.Controller(state.DeviceId, genericAxis);
@@ -186,7 +189,8 @@ public partial class InputBindingEditor
         foreach (var state in detailedStates)
         {
             var baseline = _controllerDetailedBaseline.FirstOrDefault(item => string.Equals(item.DeviceId, state.DeviceId, StringComparison.OrdinalIgnoreCase)) ?? GameInputLiveState.Empty(state.DeviceId);
-            var source = NewlyActivatedDetailedControl(state, baseline);
+            var axisBaseline = _controllerDetailedAxisBaseline.FirstOrDefault(item => string.Equals(item.DeviceId, state.DeviceId, StringComparison.OrdinalIgnoreCase)) ?? GameInputLiveState.Empty(state.DeviceId);
+            var source = NewlyActivatedDetailedControl(state, baseline, axisBaseline);
             if (source is null) continue;
             _captureRow.Binding = InputBindingSyntax.Controller(state.DeviceId, source);
             ControllerCaptured?.Invoke(this, new ControllerCapturedEventArgs(state.DeviceId));
@@ -197,7 +201,7 @@ public partial class InputBindingEditor
         _controllerDetailedBaseline = detailedStates;
     }
 
-    internal static string? NewlyActivatedDetailedControl(GameInputLiveState current, GameInputLiveState baseline)
+    internal static string? NewlyActivatedDetailedControl(GameInputLiveState current, GameInputLiveState baseline, GameInputLiveState? axisBaseline = null)
     {
         var rawController = current.DeviceId.StartsWith("rawgamecontroller:", StringComparison.OrdinalIgnoreCase);
         foreach (var control in current.Controls.Where(item => item.Type == GameInputControlType.Button))
@@ -208,7 +212,7 @@ public partial class InputBindingEditor
         }
         foreach (var control in current.Controls.Where(item => item.Type == GameInputControlType.Axis))
         {
-            var previous = baseline.Controls.FirstOrDefault(item => item.Type == control.Type && item.Index == control.Index)?.Value ?? .5f;
+            var previous = (axisBaseline ?? baseline).Controls.FirstOrDefault(item => item.Type == control.Type && item.Index == control.Index)?.Value ?? .5f;
             var delta = control.Value - previous;
             if (delta >= .35f) return $"Axis{control.Index}Positive";
             if (delta <= -.35f) return $"Axis{control.Index}Negative";
@@ -247,6 +251,8 @@ public partial class InputBindingEditor
         if (_captureButton is not null)
             _captureButton.Content = _captureButtonContent;
         _controllerCaptureTimer.Stop();
+        _controllerAxisBaseline = [];
+        _controllerDetailedAxisBaseline = [];
         _capturePressed.Clear();
         _captureOrder.Clear();
         _captureButtonContent = null;
@@ -270,6 +276,8 @@ public partial class InputBindingEditor
             _captureButton.Content = _captureButtonContent;
         }
         _controllerCaptureTimer.Stop();
+        _controllerAxisBaseline = [];
+        _controllerDetailedAxisBaseline = [];
         _captureButtonContent = null;
         _captureButton = null;
         _captureRow = null;
