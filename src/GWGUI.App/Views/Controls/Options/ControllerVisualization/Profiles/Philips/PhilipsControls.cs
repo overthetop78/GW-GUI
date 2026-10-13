@@ -21,9 +21,9 @@ internal static partial class ControllerArtworkCatalog
         new(EmulationControllerVisualControl.DirectionDown, ControllerVisualZoneShape.Ellipse, 22, 43, 9, 10),
         new(EmulationControllerVisualControl.DirectionLeft, ControllerVisualZoneShape.Ellipse, 16, 35, 9, 10),
         new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.Ellipse, 30, 35, 9, 10),
-        new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 59, 42, 10, 14),
-        new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 68, 34, 10, 14),
-        new(EmulationControllerVisualControl.TertiaryAction, ControllerVisualZoneShape.Ellipse, 77, 25, 10, 14)
+        new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 57.46, 40.80, 10, 14),
+        new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 65.77, 31.50, 10, 14),
+        new(EmulationControllerVisualControl.TertiaryAction, ControllerVisualZoneShape.Ellipse, 74.11, 22.33, 10, 14)
     ]);
 
     private static ProfileDefinition CreatePhilipsCdiMouse() => new(

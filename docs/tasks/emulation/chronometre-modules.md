@@ -305,3 +305,4 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-13 04:43:41 | 69:47:57 | -61:47:57 | Reprise. SNK : contrôle photographique des quatre profils. |
 | 2026-10-13 05:02:26 | 70:06:42 | -62:06:42 | Reprise. Visuels Coleco, Watara et Thomson contrôlés sur les photos ; aucune correction nécessaire. |
 | 2026-10-13 05:13:48 | 70:18:04 | -62:18:04 | Reprise. Sharp : clic et rendu de la manette des gaz Cyberstick. |
+| 2026-10-13 05:30:13 | 70:34:29 | -62:34:29 | Reprise. Visuels : Philips, Panasonic, Epoch et Fairchild. |
