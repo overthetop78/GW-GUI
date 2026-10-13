@@ -34,6 +34,10 @@
   - [x] Modifier `src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/OptionCallbackHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
   - [x] Modifier `docs/tasks/emulation/methode-modules.md` : préciser le transfert atomique des allocations natives vers leur propriétaire.
 
+- [x] Qualifier la livraison après les corrections communes.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : build Debug terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les 23 DLL de modules sont présents. Avertissements CA1416 et CS8602 conservés ; aucune erreur de compilation.
+  - [ ] Modifier les fichiers source explicitement signalés par le build s’il échoue, après ajout de leurs actions précises dans ce groupe.
+
 ## controller-artwork
 
 - [ ] Réaliser les profils NEC
