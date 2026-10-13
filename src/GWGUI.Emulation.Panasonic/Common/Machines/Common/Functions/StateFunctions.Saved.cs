@@ -9,15 +9,7 @@ internal static class SavedStateFunctions
 {
     internal static SavedStateHeader CreateHeader(MachineConfiguration configuration,
         IEmulatorCore core,
-        ReadOnlySpan<byte> state) => new(StateConstants.CurrentFormatVersion,
-        core.Emulator,
-        core.CoreName,
-        core.CoreVersion,
-        core.CoreSha256,
-        configuration.Model,
-        ConfigurationHash(configuration),
-        ContentHash(configuration),
-        HashBytes(state));
+        ReadOnlySpan<byte> state) => new(StateConstants.CurrentFormatVersion, core.Emulator, core.CoreName, core.CoreVersion, core.CoreSha256, configuration.Model, ConfigurationHash(configuration), ContentHash(configuration), HashBytes(state));
     internal static void Validate(SavedStateHeader header, MachineConfiguration configuration, IEmulatorCore core)
     {
         if (header.FormatVersion != StateConstants.CurrentFormatVersion)
@@ -42,8 +34,7 @@ internal static class SavedStateFunctions
 
     internal static EmulationMessageException Invalid(EmulationMessageCode code,
         string message,
-        Exception? innerException = null) => new(new EmulationMessage(EmulationMessageCategory.SavedState, code, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog),
-        innerException ?? new InvalidDataException(message));
+        Exception? innerException = null) => new(new EmulationMessage(EmulationMessageCategory.SavedState, code, EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog), innerException ?? new InvalidDataException(message));
     internal static string HashBytes(ReadOnlySpan<byte> value) => Convert.ToHexString(SHA256.HashData(value));
     internal static string ConfigurationHash(MachineConfiguration configuration)
     {
@@ -69,15 +60,15 @@ internal static class SavedStateFunctions
             $"{media.Category}:{media.Slot}",
             HashPath(media.Path)))).ToArray();
     private static EmulationMediaSlot MediaOrder(MediaConfiguration media) => media.Slot;
-    internal static bool IsHeaderValid(SavedStateHeader header) => header.FormatVersion 
-        > StateConstants.EmptyLength 
-        && Enum.IsDefined(header.Core) 
-        && Enum.IsDefined(header.Model) 
-        && !string.IsNullOrWhiteSpace(header.CoreName) 
-        && !string.IsNullOrWhiteSpace(header.CoreVersion) 
-        && !string.IsNullOrWhiteSpace(header.CoreSha256) 
-        && !string.IsNullOrWhiteSpace(header.ConfigurationSha256) 
-        && !string.IsNullOrWhiteSpace(header.ContentSha256) 
+    internal static bool IsHeaderValid(SavedStateHeader header) => header.FormatVersion
+        > StateConstants.EmptyLength
+        && Enum.IsDefined(header.Core)
+        && Enum.IsDefined(header.Model)
+        && !string.IsNullOrWhiteSpace(header.CoreName)
+        && !string.IsNullOrWhiteSpace(header.CoreVersion)
+        && !string.IsNullOrWhiteSpace(header.CoreSha256)
+        && !string.IsNullOrWhiteSpace(header.ConfigurationSha256)
+        && !string.IsNullOrWhiteSpace(header.ContentSha256)
         && !string.IsNullOrWhiteSpace(header.StateSha256);
     private static StateInputFingerprint InputFingerprint(InputConfiguration input) => new((input.Controllers ?? []).OrderBy(controller => controller.Port).Select(controller => new StateControllerFingerprint(controller.Port,
         controller.Peripheral,
