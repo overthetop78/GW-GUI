@@ -71,25 +71,31 @@ internal static class InputSnapshotFunctions
             result[port] = source with
             {
                 Buttons = buttons,
+                LeftTrigger = (short)Math.Max(
+                    EmulationInputMappingFunctions.MapControllerPressure(binding.ButtonMappings, InputSettingsFunctionsConstants.GameCubeL, source, physical, keys, physicalMouse),
+                    Math.Round(EmulationInputMappingFunctions.MapControllerPressure(binding.ButtonMappings, InputSettingsFunctionsConstants.GameCubeLHalf, source, physical, keys, physicalMouse) / 2f)),
+                RightTrigger = (short)Math.Max(
+                    EmulationInputMappingFunctions.MapControllerPressure(binding.ButtonMappings, InputSettingsFunctionsConstants.GameCubeR, source, physical, keys, physicalMouse),
+                    Math.Round(EmulationInputMappingFunctions.MapControllerPressure(binding.ButtonMappings, InputSettingsFunctionsConstants.GameCubeRHalf, source, physical, keys, physicalMouse) / 2f)),
                 LeftX = MappedAxis(binding.ButtonMappings,
                     InputSettingsFunctionsConstants.GameCubeStickRight,
                     InputSettingsFunctionsConstants.GameCubeStickLeft,
-                    MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.Nintendo64StickRight, InputSettingsFunctionsConstants.Nintendo64StickLeft, source.LeftX, source, physical, keys, physicalMouse),
+                    MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.Nintendo64StickRight, InputSettingsFunctionsConstants.Nintendo64StickLeft, 0, source, physical, keys, physicalMouse),
                     source, physical, keys, physicalMouse),
                 LeftY = MappedAxis(binding.ButtonMappings,
                     InputSettingsFunctionsConstants.GameCubeStickDown,
                     InputSettingsFunctionsConstants.GameCubeStickUp,
-                    MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.Nintendo64StickDown, InputSettingsFunctionsConstants.Nintendo64StickUp, source.LeftY, source, physical, keys, physicalMouse),
+                    MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.Nintendo64StickDown, InputSettingsFunctionsConstants.Nintendo64StickUp, 0, source, physical, keys, physicalMouse),
                     source, physical, keys, physicalMouse),
                 RightX = MappedAxis(binding.ButtonMappings,
                     InputSettingsFunctionsConstants.GameCubeCRight,
                     InputSettingsFunctionsConstants.GameCubeCLeft,
-                    MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.Nintendo64CLeft, InputSettingsFunctionsConstants.Nintendo64CRight, source.RightX, source, physical, keys, physicalMouse),
+                    MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.Nintendo64CLeft, InputSettingsFunctionsConstants.Nintendo64CRight, 0, source, physical, keys, physicalMouse),
                     source, physical, keys, physicalMouse),
                 RightY = MappedAxis(binding.ButtonMappings,
                     InputSettingsFunctionsConstants.GameCubeCDown,
                     InputSettingsFunctionsConstants.GameCubeCUp,
-                    MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.Nintendo64CDown, InputSettingsFunctionsConstants.Nintendo64CUp, source.RightY, source, physical, keys, physicalMouse),
+                    MappedAxis(binding.ButtonMappings, InputSettingsFunctionsConstants.Nintendo64CDown, InputSettingsFunctionsConstants.Nintendo64CUp, 0, source, physical, keys, physicalMouse),
                     source, physical, keys, physicalMouse)
             };
         }
@@ -97,18 +103,16 @@ internal static class InputSnapshotFunctions
     }
 
     private static short MappedAxis(IReadOnlyDictionary<string, string> mappings,
-        string positiveCommand, string negativeCommand, short physicalValue,
+        string positiveCommand, string negativeCommand, short fallbackValue,
         EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,
         IReadOnlySet<EmulationKey> keys,
         IReadOnlyDictionary<string, bool> mouse)
     {
         var hasPositive = mappings.TryGetValue(positiveCommand, out var positiveSource) && !string.IsNullOrWhiteSpace(positiveSource);
         var hasNegative = mappings.TryGetValue(negativeCommand, out var negativeSource) && !string.IsNullOrWhiteSpace(negativeSource);
-        if (!hasPositive && !hasNegative) return physicalValue;
+        if (!hasPositive && !hasNegative) return fallbackValue;
 
-        var positive = hasPositive && IsSourcePressed(positiveSource!, EmulationInputMappingFunctions.ResolveSourceController(positiveSource!, physical, controller), keys, mouse);
-        var negative = hasNegative && IsSourcePressed(negativeSource!, EmulationInputMappingFunctions.ResolveSourceController(negativeSource!, physical, controller), keys, mouse);
-        return positive == negative ? default : positive ? short.MaxValue : short.MinValue;
+        return EmulationInputMappingFunctions.MapControllerAxis(mappings, positiveCommand, negativeCommand, controller, physical, keys, mouse);
     }
 
     private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) => new Dictionary<string, bool>(

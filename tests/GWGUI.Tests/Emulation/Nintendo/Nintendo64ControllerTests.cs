@@ -85,8 +85,29 @@ public sealed class Nintendo64ControllerTests
         Assert.Equal(short.MinValue, controller.RightY);
     }
 
+    [Theory]
+    [InlineData(.625f, 8192)]
+    [InlineData(.375f, -8192)]
+    [InlineData(.5f, 0)]
+    public void PhysicalStickKeepsIntermediateValues(float position, int expected)
+    {
+        var source = EmulationControllerState.Empty with { DeviceId = "pad", Controls = new(new Dictionary<string, float> { ["Axis0"] = position }) };
+        var snapshot = EmulationInputSnapshot.Empty with { Controllers = [source] };
+        var configuration = new InputConfiguration(ControllerBindings:
+        [
+            new(FirstPortIndex, ControllerType.Joystick, "pad", new Dictionary<string, string>
+            {
+                [InputSettingsFunctionsConstants.Nintendo64StickLeft] = "Controller:pad:Axis0Negative",
+                [InputSettingsFunctionsConstants.Nintendo64StickRight] = "Controller:pad:Axis0Positive"
+            })
+        ]);
+        var controller = InputSnapshotFunctions.Apply(snapshot, ModelConstants.Nintendo64, configuration, false).Controllers[FirstPortIndex];
+        Assert.Equal(expected, controller.LeftX);
+        Assert.Equal(default, controller.LeftY);
+    }
+
     [Fact]
-    public void OppositeDirectionsCancelWithoutSuppressingUnmappedPhysicalAxes()
+    public void OppositeDirectionsCancelAndUnassignedAxesStayInactive()
     {
         var source = EmulationControllerState.Empty with
         {
@@ -111,7 +132,7 @@ public sealed class Nintendo64ControllerTests
         var mapped = InputSnapshotFunctions.Apply(snapshot, ModelConstants.Nintendo64, configuration, false);
 
         Assert.Equal(default, mapped.Controllers[FirstPortIndex].LeftX);
-        Assert.Equal(short.MaxValue, mapped.Controllers[FirstPortIndex].LeftY);
-        Assert.Equal(short.MaxValue, mapped.Controllers[FirstPortIndex].RightX);
+        Assert.Equal(default, mapped.Controllers[FirstPortIndex].LeftY);
+        Assert.Equal(default, mapped.Controllers[FirstPortIndex].RightX);
     }
 }

@@ -100,8 +100,29 @@ public sealed class GameCubeControllerTests
         Assert.Equal(short.MaxValue, controller.RightY);
     }
 
+    [Theory]
+    [InlineData(.625f, 8192)]
+    [InlineData(.375f, -8192)]
+    [InlineData(.5f, 0)]
+    public void PhysicalStickKeepsIntermediateValues(float position, int expected)
+    {
+        var source = EmulationControllerState.Empty with { DeviceId = "pad", Controls = new(new Dictionary<string, float> { ["Axis0"] = position }) };
+        var snapshot = EmulationInputSnapshot.Empty with { Controllers = [source] };
+        var configuration = new InputConfiguration(ControllerBindings:
+        [
+            new(FirstPortIndex, ControllerType.Joystick, "pad", new Dictionary<string, string>
+            {
+                [InputSettingsFunctionsConstants.GameCubeStickLeft] = "Controller:pad:Axis0Negative",
+                [InputSettingsFunctionsConstants.GameCubeStickRight] = "Controller:pad:Axis0Positive"
+            })
+        ]);
+        var controller = InputSnapshotFunctions.Apply(snapshot, ModelConstants.GameCube, configuration, false).Controllers[FirstPortIndex];
+        Assert.Equal(expected, controller.LeftX);
+        Assert.Equal(default, controller.LeftY);
+    }
+
     [Fact]
-    public void OppositeStickDirectionsCancelAndOtherPhysicalAxesRemain()
+    public void OppositeStickDirectionsCancelAndUnassignedAxesStayInactive()
     {
         var source = EmulationControllerState.Empty with
         {
@@ -126,7 +147,7 @@ public sealed class GameCubeControllerTests
         var controller = InputSnapshotFunctions.Apply(snapshot, ModelConstants.GameCube, configuration, false).Controllers[FirstPortIndex];
 
         Assert.Equal(default, controller.RightX);
-        Assert.Equal(short.MaxValue, controller.RightY);
-        Assert.Equal(short.MinValue, controller.LeftY);
+        Assert.Equal(default, controller.RightY);
+        Assert.Equal(default, controller.LeftY);
     }
 }
