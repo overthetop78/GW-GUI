@@ -290,3 +290,10 @@ La tranche Acorn/associations physiques est compilée et ses 94 tests ciblés pa
   - [x] Modifier `src/GWGUI.App/Resources/*/Emulation/EmulationKeyboard.resx` uniquement pour les inscriptions locales attestées différentes de SHIFT, après comparaison avec les noms clavier officiels ; conserver les identités LeftShift/RightShift et les valeurs réellement identiques dans 00-Base.
 
 SHIFT vérifié dans les 29 pages Microsoft locales, via la combinaison de menu contextuel F10. Les cinq cultures supplémentaires da-DK, fi-FI, it-IT, nb-NO et sv-SE affichent désormais Skift, Vaihto, MAIUSC, Skift et Skift. Les 21 cultures employant Shift utilisent la base commune ; les huit variantes locales ont une entrée distincte. XML et unicité des clés vérifiés dans tous les catalogues concernés.
+
+- [ ] Terminer le format des anciennes photographies de machines encore hors 512 px.
+  - [ ] Modifier `src/GWGUI.Emulation.Acorn/Assets/Machines/BbcMaster128.png` et `src/GWGUI.Emulation.Acorn/Assets/Machines/BbcMicro.png` : conserver les machines et leur géométrie photographique, produire des PNG transparents de 512 px ; tailles actuelles 330×214 et 500×348.
+  - [ ] Modifier `src/GWGUI.Emulation.Apple/Assets/Machines/AppleII.png` et `src/GWGUI.Emulation.Apple/Assets/Machines/Macintosh128K.png` : conserver les machines et leur géométrie photographique, produire des PNG transparents de 512 px ; tailles actuelles 330×304 et 330×387.
+  - [ ] Modifier `src/GWGUI.Emulation.Snk/Assets/Machines/NeoGeoMvs.png` : conserver le matériel représenté et produire un PNG transparent de 512 px ; taille actuelle 323×187.
+
+Audit actuel des 16 familles demandées : tous les manifestes `module.json` et registres `module-registry/<id>.json` sont présents. Les cinq photographies ci-dessus ont déjà de vrais pixels transparents, vérifiés avec les bitmaps chargés puis libérés dans finally ; le PNG BBC Micro est indexé et sa transparence ne doit pas être déduite du seul type de couleur IHDR. L'existence des registres et dimensions ne prouve pas encore la qualification native de chaque moteur ou la fidélité visuelle de toutes les images.
