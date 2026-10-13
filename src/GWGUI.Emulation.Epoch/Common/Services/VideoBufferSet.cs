@@ -1,4 +1,5 @@
 using System.Buffers;
+using System.Runtime.ExceptionServices;
 
 namespace GWGUI.Emulation.Epoch.Common.Services;
 
@@ -16,6 +17,7 @@ internal sealed class VideoBufferSet : IDisposable
         _nextBuffer = (_nextBuffer + VideoConstants.NextBufferStep) % VideoConstants.BufferCount;
         var buffer = _buffers[index];
         if (buffer is not null && buffer.Length >= length) return buffer;
+        _buffers[index] = null;
         if (buffer is not null) _pool.Return(buffer);
         buffer = _pool.Rent(length);
         _buffers[index] = buffer;
@@ -24,11 +26,14 @@ internal sealed class VideoBufferSet : IDisposable
 
     public void Dispose()
     {
+        Exception? failure = null;
         for (var index = VideoConstants.FirstBuffer; index < _buffers.Length; index++)
         {
             if (_buffers[index] is not { } buffer) continue;
-            _pool.Return(buffer);
             _buffers[index] = null;
+            try { _pool.Return(buffer); }
+            catch (Exception error) { failure ??= error; }
         }
+        if (failure is not null) ExceptionDispatchInfo.Capture(failure).Throw();
     }
 }

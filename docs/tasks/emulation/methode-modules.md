@@ -293,6 +293,7 @@ Nettoyage du suivi : conserver un seul fichier de tâches par module encore ouve
 
 Lors de la création d’une fixture graphique, installer le finally de fermeture avant le chargement des ressources : un échec avant enregistrement dans le helper central doit aussi fermer l’Application et son Dispatcher sur leur thread propriétaire. Le constructeur attend la fin du thread avant de propager cet échec. Ne pas compter sur le nettoyage de fin de test pour une fixture dont le constructeur n’a pas terminé.
 Pour les axes physiques, déterminer l’unité depuis le canal : les champs de sticks signés nécessitent leur normalisation même quand leur valeur brute vaut 1 ; les contrôles déjà normalisés conservent leur échelle. Une amplitude inférieure ou égale à 1 ne prouve pas qu’une valeur est normalisée. Utiliser ControllerSourcePressure du SDK pour normaliser une source physique et MapControllerAxis pour composer les deux sens ; les modules conservent ensuite leur zone morte native. Retirer leurs heuristiques locales fondées sur Math.Abs(value) > 1 afin que tous les consommateurs préservent les petits déplacements.
+Lors du remplacement d’une ressource détenue, retirer sa référence du propriétaire avant de la restituer ou de la détruire, puis acquérir la suivante. Si cette acquisition échoue, le finally ne doit pas restituer une seconde fois l’ancienne ressource. Pour une collection de ressources, détacher chaque élément et tenter les libérations suivantes même après une erreur, puis propager la première erreur avec sa pile.
 ## Historique des mises à jour
 
 Chaque ligne décrit une amélioration de cette procédure, pas une réalisation ou un diagnostic de module. Conserver le numéro et l'heure locale réelle, une ligne physique par entrée, sans ligne vide dans le tableau.
@@ -564,3 +565,4 @@ Chaque ligne décrit une amélioration de cette procédure, pas une réalisation
 | 263 | 2026-10-13 19:24:51 | Fermer les ressources de fixture même après une initialisation interrompue, avant enregistrement du nettoyage central. |
 | 264 | 2026-10-13 19:26:09 | Identifier les unités des axes par leur canal pour conserver les très petits déplacements physiques. |
 | 265 | 2026-10-13 19:27:36 | Réutiliser la normalisation SDK dans tous les consommateurs au lieu de reproduire une heuristique locale. |
+| 266 | 2026-10-13 19:33:20 | Détacher les ressources restituées avant réallocation et poursuivre le nettoyage après une erreur individuelle. |

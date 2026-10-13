@@ -1,5 +1,20 @@
 # Travaux communs restants
 
+- [x] Corriger la propriété des buffers vidéo après une allocation interrompue.
+  - [x] Modifier `src/GWGUI.Emulation.Acorn/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
+  - [x] Modifier `src/GWGUI.Emulation.Apple/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
+  - [x] Modifier `src/GWGUI.Emulation.Bandai/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
+  - [x] Modifier `src/GWGUI.Emulation.Coleco/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
+  - [x] Modifier `src/GWGUI.Emulation.Epoch/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
+  - [x] Modifier `src/GWGUI.Emulation.Fairchild/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
+  - [x] Modifier `src/GWGUI.Emulation.Mattel/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
+  - [x] Modifier `src/GWGUI.Emulation.Philips/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
+  - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
+  - [x] Modifier `src/GWGUI.Emulation.Sinclair/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
+  - [x] Modifier `src/GWGUI.Emulation.Snk/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
+  - [x] Modifier `docs/tasks/emulation/methode-modules.md` : retirer toute référence à une ressource restituée avant une allocation susceptible de lever une exception.
+
+
 ## controller-artwork
 
 - [ ] Réaliser les profils NEC
