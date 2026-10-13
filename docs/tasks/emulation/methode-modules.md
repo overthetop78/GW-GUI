@@ -292,6 +292,7 @@ Lors d'une revue transversale, qualifier ensemble les propriétaires présentant
 Nettoyage du suivi : conserver un seul fichier de tâches par module encore ouvert et un suivi commun des travaux transversaux. Supprimer les tâches réalisées, les sous-plans terminés et les JSON de diagnostic ; ne pas recopier ces preuves ni les historiques techniques dans un autre plan. Avant de supprimer un sous-plan contenant des tâches ouvertes, vérifier chaque action restante dans son plan conservé. Conserver séparément la méthode et le chronomètre. Supprimer les sources, téléchargements et scripts temporaires utilisés dès la fin de leur utilisation ; les enseignements réutilisables corrigent directement la méthode, sans nouveau fichier de preuve.
 
 Lors de la création d’une fixture graphique, installer le finally de fermeture avant le chargement des ressources : un échec avant enregistrement dans le helper central doit aussi fermer l’Application et son Dispatcher sur leur thread propriétaire. Le constructeur attend la fin du thread avant de propager cet échec. Ne pas compter sur le nettoyage de fin de test pour une fixture dont le constructeur n’a pas terminé.
+Pour les axes physiques, déterminer l’unité depuis le canal : les champs de sticks signés nécessitent leur normalisation même quand leur valeur brute vaut 1 ; les contrôles déjà normalisés conservent leur échelle. Une amplitude inférieure ou égale à 1 ne prouve pas qu’une valeur est normalisée. Utiliser cette conversion commune pour les pressions et les deux sens des axes afin de préserver les petits déplacements.
 ## Historique des mises à jour
 
 Chaque ligne décrit une amélioration de cette procédure, pas une réalisation ou un diagnostic de module. Conserver le numéro et l'heure locale réelle, une ligne physique par entrée, sans ligne vide dans le tableau.
@@ -561,3 +562,4 @@ Chaque ligne décrit une amélioration de cette procédure, pas une réalisation
 | 261 | 2026-10-13 18:19:39 | Garantir chaque libération après une erreur, vérifier le handle capturé et la fin effective des propriétaires. |
 | 262 | 2026-10-13 18:48:10 | Centraliser le nettoyage dans le projet de tests demandé, protéger les autres validateurs et respecter un commit sans vérification. |
 | 263 | 2026-10-13 19:24:51 | Fermer les ressources de fixture même après une initialisation interrompue, avant enregistrement du nettoyage central. |
+| 264 | 2026-10-13 19:26:09 | Identifier les unités des axes par leur canal pour conserver les très petits déplacements physiques. |

@@ -32,6 +32,9 @@ Livré : directions et valeurs progressives dans neuf familles ; Sega XE-1AP, Mi
 - [x] Terminer le nettoyage lors d’un échec de création de la fixture WPF.
   - [x] Modifier `tests/GWGUI.Tests/Application/TestInfrastructure/StaExecutionScenarios.cs` : fermer Application et Dispatcher dans finally sur le thread propriétaire si leur initialisation échoue, puis attendre la fin du thread avant de propager l’erreur du constructeur.
   - [x] Modifier `docs/tasks/emulation/methode-modules.md` : préciser que le nettoyage central couvre aussi la création interrompue de la fixture, avant son enregistrement.
+- [x] Conserver les petits déplacements analogiques dans la conversion commune.
+  - [x] Modifier `src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs` : normaliser systématiquement les canaux bruts des sticks physiques, même pour une valeur de 1, tout en conservant les valeurs déjà normalisées du dictionnaire Controls.
+  - [x] Modifier `docs/tasks/emulation/methode-modules.md` : distinguer les unités analogiques par leur canal déclaré, jamais par la seule amplitude mesurée.
 - [ ] Livrer les compléments vérifiés.
   - [x] Commiter tous les fichiers en attente sans test ni build, conformément à la dernière demande utilisateur. Commit : `4671d67e8`.
   - [ ] Supprimer `docs/tasks/emulation/axes-analogiques.md` après traitement de tous les périphériques analogiques concernés.

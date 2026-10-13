@@ -168,7 +168,13 @@ public static class EmulationInputMappingFunctions
             return mouse.GetValueOrDefault(source[EmulationInputMappingConstants.MousePrefix.Length..]) ? 1f : 0f;
         var selected = ResolveSourceController(source, physical, controller);
         var pressure = ControllerSourceValue(source, selected);
-        if (Math.Abs(pressure) > 1f) pressure /= short.MaxValue;
+        var name = SourceControlName(source);
+        var rawStick = !selected.Controls.ContainsKey(name) && name is
+            EmulationInputMappingConstants.LeftStickLeft or EmulationInputMappingConstants.LeftStickRight
+            or EmulationInputMappingConstants.LeftStickUp or EmulationInputMappingConstants.LeftStickDown
+            or EmulationInputMappingConstants.RightStickLeft or EmulationInputMappingConstants.RightStickRight
+            or EmulationInputMappingConstants.RightStickUp or EmulationInputMappingConstants.RightStickDown;
+        if (rawStick || Math.Abs(pressure) > 1f) pressure /= short.MaxValue;
         return Math.Clamp(pressure, 0f, 1f);
     }
 
