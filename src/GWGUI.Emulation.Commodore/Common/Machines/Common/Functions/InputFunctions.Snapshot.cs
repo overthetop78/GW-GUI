@@ -66,7 +66,14 @@ internal static class InputSnapshotFunctions
                 if (target >= InputSnapshotFunctionsConstants.MinimumButtonIndex && IsSourcePressed(sourceName, mappingSource, keys, physicalMouse))
                     buttons |= InputSnapshotFunctionsConstants.SingleButtonMask << target;
             }
-            result[port] = source with { Buttons = buttons };
+            result[port] = source with
+            {
+                Buttons = buttons,
+                LeftX = binding.Type == ControllerType.AnalogJoystick
+                    ? EmulationInputMappingFunctions.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.Right, EmulationControllerCommandIds.Left, source, physical, keys, physicalMouse) : source.LeftX,
+                LeftY = binding.Type == ControllerType.AnalogJoystick
+                    ? EmulationInputMappingFunctions.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Up, source, physical, keys, physicalMouse) : source.LeftY
+            };
         }
         return result;
     }

@@ -94,7 +94,17 @@ internal static partial class InputSettingsFunctions
             definitions.Add(Definition(InputSettingsFunctionsConstants.A, InputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty));
         }
         definitions.Add(Definition(InputSettingsFunctionsConstants.L2, InputSettingsFunctionsConstants.ResourceControllerActionTurboFire, string.Empty));
-        return definitions;
+        return definitions.Select(definition => type == ControllerType.AnalogJoystick ? definition with
+        {
+            OppositeDirectionId = definition.Id switch
+            {
+                EmulationControllerCommandIds.Left => EmulationControllerCommandIds.Right,
+                EmulationControllerCommandIds.Right => EmulationControllerCommandIds.Left,
+                EmulationControllerCommandIds.Up => EmulationControllerCommandIds.Down,
+                EmulationControllerCommandIds.Down => EmulationControllerCommandIds.Up,
+                _ => null
+            }
+        } : definition).ToArray();
     }
 
     internal static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding) => new(id, resourceKey, defaultBinding, resourceKey.Contains(InputSettingsFunctionsConstants.ResourceKeySeparator) ? null : resourceKey);
