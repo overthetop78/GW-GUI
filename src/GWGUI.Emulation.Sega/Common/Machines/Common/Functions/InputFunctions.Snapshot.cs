@@ -65,7 +65,15 @@ internal static class InputSnapshotFunctions
                 if (target >= 0 && IsSourcePressed(sourceName, mappingSource, keys, physicalMouse))
                     buttons |= 1u << target;
             }
-            result[port] = source with { Buttons = buttons };
+            var analog = binding.Type is ControllerType.SegaSaturnThreeDControlPad or ControllerType.SegaDreamcastController or ControllerType.SegaPaddleControl;
+            result[port] = source with
+            {
+                Buttons = buttons,
+                LeftTrigger = EmulationInputMappingFunctions.MapControllerPressure(binding.ButtonMappings, EmulationControllerCommandIds.L2, source, physical, keys, physicalMouse),
+                RightTrigger = EmulationInputMappingFunctions.MapControllerPressure(binding.ButtonMappings, EmulationControllerCommandIds.R2, source, physical, keys, physicalMouse),
+                LeftX = analog ? EmulationInputMappingFunctions.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.LeftStickRight, EmulationControllerCommandIds.LeftStickLeft, source, physical, keys, physicalMouse) : source.LeftX,
+                LeftY = analog ? EmulationInputMappingFunctions.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.LeftStickDown, EmulationControllerCommandIds.LeftStickUp, source, physical, keys, physicalMouse) : source.LeftY
+            };
         }
         return result;
     }

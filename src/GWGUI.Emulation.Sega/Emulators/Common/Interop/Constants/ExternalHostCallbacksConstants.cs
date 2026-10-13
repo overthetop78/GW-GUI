@@ -19,6 +19,9 @@ internal static class ExternalHostCallbacksConstants
     internal const uint LightGunScreenY = 14;
     internal const uint LightGunOffscreen = 15;
     internal const uint AnalogDevice = 5;
+    internal const uint TriggerAnalogIndex = 2;
+    internal const uint LeftTriggerId = 12;
+    internal const uint RightTriggerId = 13;
     internal const uint PointerDevice = 6;
     internal const uint JoypadMask = 256;
     internal const uint PointerX = 0;

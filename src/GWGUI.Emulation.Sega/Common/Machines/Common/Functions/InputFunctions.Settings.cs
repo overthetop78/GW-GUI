@@ -59,7 +59,25 @@ internal static partial class InputSettingsFunctions
 
     private static IReadOnlyDictionary<string, string> MouseValues(InputConfiguration input) => (input.MouseButtonMappings ?? new Dictionary<string, MouseAction>()).Where(item => item.Value != MouseAction.None).ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal);
 
-    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type) =>
+    private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(ControllerType type)
+    {
+        var definitions = DigitalControllerDefinitions(type);
+        if (type is not ControllerType.SegaSaturnThreeDControlPad and not ControllerType.SegaDreamcastController and not ControllerType.SegaPaddleControl)
+            return definitions;
+        var horizontal = new[]
+        {
+            new InputBindingDefinition(EmulationControllerCommandIds.LeftStickLeft, string.Empty, string.Empty, "X−") { OppositeDirectionId = EmulationControllerCommandIds.LeftStickRight },
+            new InputBindingDefinition(EmulationControllerCommandIds.LeftStickRight, string.Empty, string.Empty, "X+") { OppositeDirectionId = EmulationControllerCommandIds.LeftStickLeft }
+        };
+        if (type == ControllerType.SegaPaddleControl) return definitions.Concat(horizontal).ToArray();
+        return definitions.Concat(horizontal).Concat(new[]
+        {
+            new InputBindingDefinition(EmulationControllerCommandIds.LeftStickUp, string.Empty, string.Empty, "Y−") { OppositeDirectionId = EmulationControllerCommandIds.LeftStickDown },
+            new InputBindingDefinition(EmulationControllerCommandIds.LeftStickDown, string.Empty, string.Empty, "Y+") { OppositeDirectionId = EmulationControllerCommandIds.LeftStickUp }
+        }).ToArray();
+    }
+
+    private static IReadOnlyList<InputBindingDefinition> DigitalControllerDefinitions(ControllerType type) =>
         type switch
         {
             ControllerType.None => [],

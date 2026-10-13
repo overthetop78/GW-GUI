@@ -138,16 +138,27 @@ internal sealed partial class ExternalHostCallbacks
             if (id == JoypadMask) return unchecked((short)(buttons & ushort.MaxValue));
             return id < 32 && (buttons & (1u << (int)id)) != 0 ? (short)1 : (short)0;
         }
-        if (device == AnalogDevice)
-            return (index, id) switch
-            {
-                (0, 0) => controller.LeftX,
-                (0, 1) => controller.LeftY,
-                (1, 0) => controller.RightX,
-                (1, 1) => controller.RightY,
-                _ => 0
-            };
+        if (device == AnalogDevice) return ReadAnalogState(controller, index, id);
         return 0;
+    }
+
+    internal static short ReadAnalogState(EmulationControllerState controller, uint index, uint id)
+    {
+        if (index == TriggerAnalogIndex)
+            return id switch
+            {
+                LeftTriggerId => controller.LeftTrigger,
+                RightTriggerId => controller.RightTrigger,
+                _ => id < 32 && (controller.Buttons & (1u << (int)id)) != 0 ? short.MaxValue : (short)0
+            };
+        return (index, id) switch
+        {
+            (0, 0) => controller.LeftX,
+            (0, 1) => controller.LeftY,
+            (1, 0) => controller.RightX,
+            (1, 1) => controller.RightY,
+            _ => 0
+        };
     }
 
     internal short ReadInputState(uint port, uint device, uint index, uint id) => HandleInputState(port, device, index, id);
