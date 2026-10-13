@@ -17,10 +17,7 @@ internal static partial class InputSettingsFunctions
                 ControllerCatalog.Types(model).Select(choice => Choice(choice, model)).ToArray(),
                 type.ToString(),
                 current?.DeviceId,
-                new EmulationInputBindingSet(ControllerDefinitions(type, model),
-                    current?.ButtonMappings ?? new Dictionary<string, string>(),
-                    EmulationInputSource.Keyboard | EmulationInputSource.Mouse
-                        | EmulationInputSource.Controller, true),
+                new EmulationInputBindingSet(ControllerDefinitions(type, model), current?.ButtonMappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                 VisualId: current?.VisualId);
         }).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
