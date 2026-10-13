@@ -31,7 +31,19 @@ internal static class InputSnapshotFunctions
                 if (target >= 0 && IsPressed(mapping.Value, mappingController, withDeadZones.Keys, withDeadZones.Pointer))
                     buttons |= 1u << target;
             }
-            controllers[binding.Port] = source with { Buttons = buttons };
+            var analog = binding.Peripheral is PeripheralCategory.AnalogJoystick or PeripheralCategory.Paddle;
+            var mouse = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
+            {
+                [InputSnapshotFunctionsConstants.Left] = withDeadZones.Pointer.Left, [InputSnapshotFunctionsConstants.Right] = withDeadZones.Pointer.Right, [InputSnapshotFunctionsConstants.Middle] = withDeadZones.Pointer.Middle,
+                [InputSnapshotFunctionsConstants.XButton1] = withDeadZones.Pointer.ExtendedButton1, [InputSnapshotFunctionsConstants.XButton2] = withDeadZones.Pointer.ExtendedButton2,
+                [InputSnapshotFunctionsConstants.WheelUp] = withDeadZones.Pointer.Wheel > 0, [InputSnapshotFunctionsConstants.WheelDown] = withDeadZones.Pointer.Wheel < 0
+            };
+            controllers[binding.Port] = source with
+            {
+                Buttons = buttons,
+                LeftX = analog ? EmulationInputMappingFunctions.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.Right, EmulationControllerCommandIds.Left, source, withDeadZones.Controllers, withDeadZones.Keys, mouse) : source.LeftX,
+                LeftY = binding.Peripheral == PeripheralCategory.AnalogJoystick ? EmulationInputMappingFunctions.MapControllerAxis(binding.Mappings, EmulationControllerCommandIds.Down, EmulationControllerCommandIds.Up, source, withDeadZones.Controllers, withDeadZones.Keys, mouse) : source.LeftY
+            };
         }
         return withDeadZones with { Controllers = controllers };
     }

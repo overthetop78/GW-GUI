@@ -71,7 +71,17 @@ internal static partial class InputSettingsFunctions
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(MachineModel model, PeripheralCategory peripheral)
     {
         var actions = ControllerActions(model, peripheral);
-        return actions.Select(action => Definition(action, ActionResourceKey(action), string.Empty, ActionInvariantValue(action))).ToArray();
+        return actions.Select(action => Definition(action, ActionResourceKey(action), string.Empty, ActionInvariantValue(action)) with
+        {
+            OppositeDirectionId = peripheral is PeripheralCategory.AnalogJoystick or PeripheralCategory.Paddle ? action switch
+            {
+                EmulationControllerCommandIds.Left => EmulationControllerCommandIds.Right,
+                EmulationControllerCommandIds.Right => EmulationControllerCommandIds.Left,
+                EmulationControllerCommandIds.Up when peripheral == PeripheralCategory.AnalogJoystick => EmulationControllerCommandIds.Down,
+                EmulationControllerCommandIds.Down when peripheral == PeripheralCategory.AnalogJoystick => EmulationControllerCommandIds.Up,
+                _ => null
+            } : null
+        }).ToArray();
     }
 
     private static IEnumerable<string> ControllerActions(MachineModel model, PeripheralCategory peripheral)
@@ -81,7 +91,9 @@ internal static partial class InputSettingsFunctions
             or PeripheralCategory.NumericKeypad)
             return ControllerActionConstants.DirectionActions.Concat(ControllerActionConstants.DualFireActions).Concat(ControllerActionConstants.KeypadActions).Distinct(StringComparer.Ordinal);
         if (peripheral == PeripheralCategory.NumericKeypad) return ControllerActionConstants.KeypadActions;
-        if (peripheral is PeripheralCategory.Paddle or PeripheralCategory.DrivingController
+        if (peripheral == PeripheralCategory.Paddle)
+            return ControllerActionConstants.SingleFireActions.Concat([EmulationControllerCommandIds.Left, EmulationControllerCommandIds.Right]);
+        if (peripheral is PeripheralCategory.DrivingController
             or PeripheralCategory.LightGun) return ControllerActionConstants.SingleFireActions;
         if (peripheral == PeripheralCategory.BoosterGrip)
             return ControllerActionConstants.DirectionActions.Concat([InputSettingsFunctionsConstants.Fire1, InputSettingsFunctionsConstants.Fire2, InputSettingsFunctionsConstants.Turbo]);
