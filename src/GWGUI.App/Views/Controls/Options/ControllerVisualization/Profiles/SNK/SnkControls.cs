@@ -26,8 +26,8 @@ internal static partial class ControllerArtworkCatalog
         new(EmulationControllerVisualControl.DirectionRight, ControllerVisualZoneShape.Ellipse, 33, 27, 7, 9),
         new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.Ellipse, 63, 54, 10, 13),
         new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.Ellipse, 76, 51, 10, 13),
-        new(EmulationControllerVisualControl.TertiaryAction, ControllerVisualZoneShape.Ellipse, 62, 36, 10, 13),
-        new(EmulationControllerVisualControl.QuaternaryAction, ControllerVisualZoneShape.Ellipse, 75, 32, 10, 13),
+        new(EmulationControllerVisualControl.TertiaryAction, ControllerVisualZoneShape.Ellipse, 61.76, 37.58, 10, 13),
+        new(EmulationControllerVisualControl.QuaternaryAction, ControllerVisualZoneShape.Ellipse, 74.79, 34.12, 10, 13),
         new(EmulationControllerVisualControl.Start, ControllerVisualZoneShape.RoundedRectangle, 42, 55, 10, 7),
         new(EmulationControllerVisualControl.Option, ControllerVisualZoneShape.RoundedRectangle, 47, 40, 10, 7)
     ]);

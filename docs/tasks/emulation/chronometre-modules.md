@@ -302,3 +302,4 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-13 03:47:57 | 68:52:13 | -60:52:13 | Reprise. Sony : capacités neutres et consommateurs Common. |
 | 2026-10-13 04:11:36 | 69:15:52 | -61:15:52 | Reprise. Visuels : alignement des zones Intellivision. |
 | 2026-10-13 04:27:16 | 69:31:32 | -61:31:32 | Reprise. Bandai : zones propres aux photographies des portables. |
+| 2026-10-13 04:43:41 | 69:47:57 | -61:47:57 | Reprise. SNK : contrôle photographique des quatre profils. |
