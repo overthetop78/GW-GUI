@@ -72,7 +72,7 @@ internal static class ControllerCatalog
         ],
         _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
     };
-    internal static IReadOnlyList<InputBindingDefinition> Definitions(PeripheralCategory peripheral) => Commands(peripheral).Select(command => command switch
+    internal static IReadOnlyList<InputBindingDefinition> Definitions(PeripheralCategory peripheral) => Commands(peripheral).Select(command => (command switch
     {
         ControllerCommand.Up or ControllerCommand.Down or ControllerCommand.Left or ControllerCommand.Right => new InputBindingDefinition(command.ToString(), "Emulation.Controller.Action." + command, string.Empty),
         ControllerCommand.Fire or ControllerCommand.Trigger => new InputBindingDefinition(command.ToString(), "Emulation.Controller.Action.Fire1", string.Empty),
@@ -80,7 +80,26 @@ internal static class ControllerCatalog
         ControllerCommand.RightButton => new InputBindingDefinition(command.ToString(), "Emulation.Mouse.Button.Right", string.Empty),
         ControllerCommand.MiddleButton => new InputBindingDefinition(command.ToString(), "Emulation.Mouse.Button.Middle", string.Empty),
         _ => new InputBindingDefinition(command.ToString(), string.Empty, string.Empty, Label(command))
-    }).ToArray();
+    }) with { OppositeDirectionId = OppositeDirection(command) }).ToArray();
+    private static string? OppositeDirection(ControllerCommand command) => command switch
+    {
+        ControllerCommand.PitchUp => ControllerCommand.PitchDown.ToString(),
+        ControllerCommand.PitchDown => ControllerCommand.PitchUp.ToString(),
+        ControllerCommand.YawLeft => ControllerCommand.YawRight.ToString(),
+        ControllerCommand.YawRight => ControllerCommand.YawLeft.ToString(),
+        ControllerCommand.ThrottleUp => ControllerCommand.ThrottleDown.ToString(),
+        ControllerCommand.ThrottleDown => ControllerCommand.ThrottleUp.ToString(),
+        ControllerCommand.MoveUp => ControllerCommand.MoveDown.ToString(),
+        ControllerCommand.MoveDown => ControllerCommand.MoveUp.ToString(),
+        ControllerCommand.MoveLeft => ControllerCommand.MoveRight.ToString(),
+        ControllerCommand.MoveRight => ControllerCommand.MoveLeft.ToString(),
+        ControllerCommand.AimUp => ControllerCommand.AimDown.ToString(),
+        ControllerCommand.AimDown => ControllerCommand.AimUp.ToString(),
+        ControllerCommand.AimLeft => ControllerCommand.AimRight.ToString(),
+        ControllerCommand.AimRight => ControllerCommand.AimLeft.ToString(),
+        _ => null
+    };
+
     private static string Label(ControllerCommand command) => command switch
     {
         ControllerCommand.PitchUp or ControllerCommand.MoveUp or ControllerCommand.AimUp => "Y−",
