@@ -1,5 +1,5 @@
 using System.IO;
-using GWGUI.Emulation.Snk.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Snk.Common.Exceptions;
 using GWGUI.Emulation.Snk.Emulators.FbAlpha.Constants;
 using GWGUI.Emulation.Snk.Emulators.FbAlpha.Functions;
 using GWGUI.MediaEngine.Constants;

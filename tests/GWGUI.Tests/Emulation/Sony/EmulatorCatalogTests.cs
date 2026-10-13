@@ -1,6 +1,7 @@
 using GWGUI.Emulation.Sony.Common.Dictionaries;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Sony.Common.Machines.Common.Constants;
+using GWGUI.Emulation.Sony.Common.Interfaces;
 using BeetleCore = GWGUI.Emulation.Sony.Emulators.BeetlePsx.Constants.CoreConstants;
 using BeetleHardwareCore = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Constants.CoreConstants;
 using RearmedCore = GWGUI.Emulation.Sony.Emulators.PcsxRearmed.Constants.CoreConstants;
@@ -22,16 +23,19 @@ public sealed class EmulatorCatalogTests
     public void NewCoreUsesItsOwnMachineAndFirmwarePolicy(string id, string model, bool required)
     {
         var adapter = Assert.Single(EmulatorCatalog.CreateAdapters(), item => item.EmulatorId == id);
+        var firmware = Assert.IsAssignableFrom<IEmulatorFirmwareAdapter>(adapter);
+        var media = Assert.IsAssignableFrom<IEmulatorMediaAdapter>(adapter);
+        var settings = Assert.IsAssignableFrom<IEmulatorSettingsAdapter>(adapter);
         Assert.Equal(model, Assert.Single(adapter.Definition.MachineIds));
-        Assert.Equal(required, adapter.RequiresExternalFirmware);
+        Assert.Equal(required, firmware.RequiresExternalFirmware);
         var configuration = new MachineConfiguration(model, EmulatorId: id);
-        Assert.Equal(required, adapter.GetFirmwareSlots(configuration).Any(slot => slot.IsRequired));
+        Assert.Equal(required, firmware.GetFirmwareSlots(configuration).Any(slot => slot.IsRequired));
         Assert.Contains(EmulatorCatalog.GetAll(model), item => item.Id == id);
-        Assert.NotEmpty(adapter.SupportedContentExtensions);
+        Assert.NotEmpty(media.SupportedContentExtensions);
         if (id == PlayCore.Id)
         {
-            Assert.Empty(adapter.GetFirmwareSlots(configuration));
+            Assert.Empty(firmware.GetFirmwareSlots(configuration));
         }
-        Assert.NotEmpty(adapter.GetSettingsBlocks(configuration));
+        Assert.NotEmpty(settings.GetSettingsBlocks(configuration));
     }
 }

@@ -3,6 +3,8 @@ using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Snk.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Snk.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Snk.Common.Machines.Common.Functions;
+using GWGUI.Emulation.Snk.Common.Interfaces;
+using GWGUI.Emulation.Snk.Common.Services;
 
 namespace GWGUI.Tests.Emulation.Snk;
 
@@ -18,6 +20,7 @@ public sealed class SnkInputSettingsTests
     public void ControllerAssociationsRemainEmptyUntilExplicitlyAssigned(MachineModel model)
     {
         var configuration = new MachineConfiguration(model, core: Emulator.None);
+        var mapper = new Engine().Adapters(configuration.MachineId).OfType<IEmulatorInputMapper>().First();
         var physical = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z,
             EmulationKey.Up,
             EmulationKey.Space },
@@ -25,7 +28,7 @@ public sealed class SnkInputSettingsTests
             Controllers = [EmulationControllerState.Empty with { Buttons = uint.MaxValue,
             LeftX = short.MaxValue,
             LeftY = short.MaxValue }] };
-        Assert.All(InputSnapshotFunctions.Apply(physical, configuration).Controllers, controller => Assert.Equal(EmulationControllerState.Empty, controller));
+        Assert.All(InputSnapshotFunctions.Apply(physical, configuration, mapper).Controllers, controller => Assert.Equal(EmulationControllerState.Empty, controller));
         var settings = InputSettingsFunctions.Describe(configuration);
         Assert.Null(settings.Keyboard);
         Assert.Null(settings.Mouse);
@@ -40,7 +43,7 @@ public sealed class SnkInputSettingsTests
         var assignedPort = firstPort with { Bindings = firstPort.Bindings with { Values = new Dictionary<string, string> { [target] = "Keyboard:Z" } } };
         var assignedSettings = settings with { ControllerPorts = settings.ControllerPorts.Select(port => port.Number == firstPort.Number ? assignedPort : port).ToArray() };
         var assigned = InputSettingsFunctions.Apply(configuration, assignedSettings);
-        var assignedSnapshot = InputSnapshotFunctions.Apply(physical, assigned);
+        var assignedSnapshot = InputSnapshotFunctions.Apply(physical, assigned, mapper);
         Assert.NotEqual(0u, assignedSnapshot.Controllers[0].Buttons);
         Assert.All(assignedSnapshot.Controllers.Skip(1), controller => Assert.Equal(EmulationControllerState.Empty, controller));
         Assert.Empty(assignedSnapshot.Keys);
@@ -51,6 +54,6 @@ public sealed class SnkInputSettingsTests
         var erasedSettings = described with { ControllerPorts = described.ControllerPorts.Select(port => port.Number == firstPort.Number ? erasedPort : port).ToArray() };
         var erased = InputSettingsFunctions.Apply(assigned, erasedSettings);
         Assert.All(InputSettingsFunctions.Describe(erased).ControllerPorts, port => Assert.Empty(port.Bindings.Values));
-        Assert.All(InputSnapshotFunctions.Apply(physical, erased).Controllers, controller => Assert.Equal(EmulationControllerState.Empty, controller));
+        Assert.All(InputSnapshotFunctions.Apply(physical, erased, mapper).Controllers, controller => Assert.Equal(EmulationControllerState.Empty, controller));
     }
 }

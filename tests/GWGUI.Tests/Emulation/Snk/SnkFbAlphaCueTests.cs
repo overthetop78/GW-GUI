@@ -1,4 +1,4 @@
-using GWGUI.Emulation.Snk.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Snk.Common.Exceptions;
 using GWGUI.Emulation.Snk.Emulators.FbAlpha.Functions;
 using GWGUI.MediaEngine.Images.Formats.Optical.BinCue;
 

@@ -7,6 +7,7 @@ using GWGUI.Emulation.Fairchild.Modules;
 using GWGUI.Emulation.Fairchild.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Fairchild.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Fairchild.Common.Machines.Common.Functions;
+using GWGUI.Emulation.Fairchild.Emulators.FreeChaF.Factories;
 
 namespace GWGUI.Tests.Emulation.Fairchild;
 
@@ -47,9 +48,10 @@ public sealed class FairchildModuleTests
         var config = new MachineConfiguration(MachineModel.ChannelF, input: new InputConfiguration(Controllers: [new(0, PeripheralCategory.Standard, Mappings: new Dictionary<string, string> { ["Push"] = "Keyboard:Z" })]));
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(config))!;
         var keyboard = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z } };
-        Assert.NotEqual(0u, InputSnapshotFunctions.Apply(keyboard, restored.Input, restored.Model, restored.Core).Controllers[0].Buttons & 1u);
+        var mapper = new FreeChaFMachineFactory();
+        Assert.NotEqual(0u, InputSnapshotFunctions.Apply(keyboard, restored.Input, restored.Model, mapper).Controllers[0].Buttons & 1u);
         var original = EmulationInputSnapshot.Empty with { Controllers = [EmulationControllerState.Empty with { Buttons = 1u }] };
-        Assert.Equal(0u, InputSnapshotFunctions.Apply(original, restored.Input, restored.Model, restored.Core).Controllers[0].Buttons & 1u);
+        Assert.Equal(0u, InputSnapshotFunctions.Apply(original, restored.Input, restored.Model, mapper).Controllers[0].Buttons & 1u);
     }
 
     [Fact]
@@ -63,7 +65,8 @@ public sealed class FairchildModuleTests
             Keys = new HashSet<EmulationKey> { EmulationKey.Up, EmulationKey.Z },
             Controllers = [EmulationControllerState.Empty with { Buttons = uint.MaxValue }]
         };
-        Assert.All(InputSnapshotFunctions.Apply(physical, config.Input, config.Model, config.Core).Controllers, port => Assert.Equal(0u, port.Buttons));
+        var mapper = new FreeChaFMachineFactory();
+        Assert.All(InputSnapshotFunctions.Apply(physical, config.Input, config.Model, mapper).Controllers, port => Assert.Equal(0u, port.Buttons));
         var ports = settings.ControllerPorts.Select(port => port with
         {
             VisualId = port.ControllerChoices[0].DefaultVisualId,
@@ -73,6 +76,6 @@ public sealed class FairchildModuleTests
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(applied))!;
         Assert.All(restored.Input.Controllers!, port => Assert.All(port.Mappings!, pair => Assert.Empty(pair.Value)));
         Assert.Equal(ports[0].VisualId, InputSettingsFunctions.Describe(restored).ControllerPorts[0].VisualId);
-        Assert.All(InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty, restored.Input, restored.Model, restored.Core).Controllers, port => Assert.Equal(0u, port.Buttons));
+        Assert.All(InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty, restored.Input, restored.Model, mapper).Controllers, port => Assert.Equal(0u, port.Buttons));
     }
 }

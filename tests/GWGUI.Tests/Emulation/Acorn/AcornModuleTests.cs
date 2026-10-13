@@ -9,6 +9,7 @@ using GWGUI.Emulation.Acorn.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Acorn.Emulators.B2.Constants;
 using GWGUI.Emulation.Acorn.Emulators.B2.Functions;
 using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Dictionaries;
+using GWGUI.Emulation.Acorn.Emulators.Common.Interop.Functions;
 
 namespace GWGUI.Tests.Emulation.Acorn;
 

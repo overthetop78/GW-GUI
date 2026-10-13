@@ -9,6 +9,7 @@ using GWGUI.Emulation.Apple.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Apple.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
 using GWGUI.Emulation.Apple.Emulators.Common.Interop.Dictionaries;
+using GWGUI.Emulation.Apple.Emulators.Common.Interop.Functions;
 
 namespace GWGUI.Tests.Emulation.Apple;
 

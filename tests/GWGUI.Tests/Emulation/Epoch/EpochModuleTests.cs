@@ -6,6 +6,7 @@ using GWGUI.Emulation.Enums;
 using GWGUI.Emulation.Epoch.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Epoch.Common.Machines.Common.Enums;
 using GWGUI.Emulation.Epoch.Common.Machines.Common.Functions;
+using GWGUI.Emulation.Epoch.Emulators.EmuSCV.Factories;
 
 namespace GWGUI.Tests.Emulation.Epoch;
 
@@ -64,9 +65,10 @@ public sealed class EpochModuleTests
         var config = new MachineConfiguration(MachineModel.SuperCassetteVision, input: new InputConfiguration(Controllers: [new(0, PeripheralCategory.Standard, Mappings: new Dictionary<string, string> { ["Power"] = "Keyboard:Z" })]));
         var restored = JsonSerializer.Deserialize<MachineConfiguration>(JsonSerializer.Serialize(config))!;
         var pressed = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z } };
-        Assert.Contains(EmulationKey.EpochPower, InputSnapshotFunctions.Apply(pressed, restored.Input, restored.Model, restored.Core).Keys);
+        var mapper = new EmuSCVMachineFactory();
+        Assert.Contains(EmulationKey.EpochPower, InputSnapshotFunctions.Apply(pressed, restored.Input, restored.Model, mapper).Keys);
         var old = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.P } };
-        Assert.DoesNotContain(EmulationKey.EpochPower, InputSnapshotFunctions.Apply(old, restored.Input, restored.Model, restored.Core).Keys);
+        Assert.DoesNotContain(EmulationKey.EpochPower, InputSnapshotFunctions.Apply(old, restored.Input, restored.Model, mapper).Keys);
     }
 
     [Fact]
