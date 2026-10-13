@@ -291,11 +291,13 @@ La tranche Acorn/associations physiques est compilée et ses 94 tests ciblés pa
 
 SHIFT vérifié dans les 29 pages Microsoft locales, via la combinaison de menu contextuel F10. Les cinq cultures supplémentaires da-DK, fi-FI, it-IT, nb-NO et sv-SE affichent désormais Skift, Vaihto, MAIUSC, Skift et Skift. Les 21 cultures employant Shift utilisent la base commune ; les huit variantes locales ont une entrée distincte. XML et unicité des clés vérifiés dans tous les catalogues concernés.
 
-- [ ] Terminer le format des anciennes photographies de machines encore hors 512 px.
+- [x] Terminer le format des anciennes photographies de machines encore hors 512 px.
   - [x] Modifier `src/GWGUI.Emulation.Acorn/Assets/Machines/BbcMaster128.png` et `src/GWGUI.Emulation.Acorn/Assets/Machines/BbcMicro.png` : redimensionner classiquement les photographies originales sur des PNG transparents 512×512, sans génération et sans changer leurs proportions ; tailles actuelles 330×214 et 500×348.
   - [x] Modifier `src/GWGUI.Emulation.Apple/Assets/Machines/AppleII.png` et `src/GWGUI.Emulation.Apple/Assets/Machines/Macintosh128K.png` : redimensionner classiquement les photographies originales sur des PNG transparents 512×512, sans génération et sans changer leurs proportions ; tailles actuelles 330×304 et 330×387.
-  - [ ] Modifier `src/GWGUI.Emulation.Snk/Assets/Machines/NeoGeoMvs.png` : redimensionner classiquement la photographie originale sur un PNG transparent 512×512, sans génération et sans changer ses proportions ; taille actuelle 323×187.
+  - [x] Modifier `src/GWGUI.Emulation.Snk/Assets/Machines/NeoGeoMvs.png` : redimensionner classiquement la photographie originale sur un PNG transparent 512×512, sans génération et sans changer ses proportions ; taille actuelle 323×187.
 
 Audit actuel des 16 familles demandées : tous les manifestes `module.json` et registres `module-registry/<id>.json` sont présents. Les cinq photographies ci-dessus ont déjà de vrais pixels transparents, vérifiés avec les bitmaps chargés puis libérés dans finally ; le PNG BBC Micro est indexé et sa transparence ne doit pas être déduite du seul type de couleur IHDR. L'existence des registres et dimensions ne prouve pas encore la qualification native de chaque moteur ou la fidélité visuelle de toutes les images.
 
 Acorn : les deux photographies originales sont maintenant centrées sur une toile transparente 512×512. Redimensionnement classique validé par l'utilisateur ; aucun détail reconstruit ni généré. Les images finales ont été affichées et contrôlées. Les imperfections de détourage présentes dans les originaux ne sont pas déclarées corrigées par ce seul redimensionnement.
+
+Les cinq redimensionnements classiques sont terminés, contrôlés visuellement et vérifiés en PNG 512×512 avec fond transparent. Les photographs originales restent les sources : aucune modification de légende, touche, logo, angle ou proportion n'a été introduite. La variante générée du BBC Master, qui inventait des détails, n'a jamais été intégrée au dépôt.
