@@ -20,6 +20,5 @@ internal static class EmulatorCatalog
 
     internal static EmulationEmulatorDefinition GetDefinition(Emulator emulator) => Definitions.TryGetValue(emulator, out var definition) ? definition : throw new ArgumentOutOfRangeException(nameof(emulator));
 
-    internal static Emulator DefaultEmulator(MachineModel model) => Registrations.Where(entry => entry.Definition.MachineIds.Contains(model.ToString())).OrderBy(entry => entry.Emulator).Select(entry => (Emulator?)entry.Emulator)
-        .FirstOrDefault() ?? Emulator.None;
+    internal static Emulator DefaultEmulator(MachineModel model) => Registrations.Where(entry => entry.Definition.MachineIds.Contains(model.ToString())).OrderBy(entry => entry.Emulator).Select(entry => (Emulator?)entry.Emulator) .FirstOrDefault() ?? Emulator.None;
 }

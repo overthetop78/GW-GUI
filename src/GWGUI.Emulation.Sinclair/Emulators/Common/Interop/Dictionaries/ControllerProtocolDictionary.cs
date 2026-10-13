@@ -8,6 +8,5 @@ internal sealed record NativeInputAction(ControllerCommand Command)
 
 internal static class ControllerProtocolDictionary
 {
-    internal static IReadOnlyList<NativeInputAction> Actions(MachineModel model, PeripheralCategory peripheral) =>
-        ControllerCatalog.Actions(model, peripheral).Select(action => new NativeInputAction(action.Command)).ToArray();
+    internal static IReadOnlyList<NativeInputAction> Actions(MachineModel model, PeripheralCategory peripheral) => ControllerCatalog.Actions(model, peripheral).Select(action => new NativeInputAction(action.Command)).ToArray();
 }
