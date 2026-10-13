@@ -111,8 +111,7 @@ public sealed class MicrosoftEmulationModule : IEmulationModule, IEmulationEmula
 
     public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(CancellationToken cancellationToken = default) => (await _store.LoadAllAsync(cancellationToken).ConfigureAwait(false)).Cast<IEmulationConfiguration>().ToArray();
 
-    public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration,
-        CancellationToken cancellationToken = default) => configuration is MachineConfiguration current ? SaveValidatedAsync(current, cancellationToken) : ValueTask.FromException(new ArgumentException(nameof(configuration)));
+    public ValueTask SaveConfigurationAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) => configuration is MachineConfiguration current ? SaveValidatedAsync(current, cancellationToken) : ValueTask.FromException(new ArgumentException(nameof(configuration)));
 
     private ValueTask SaveValidatedAsync(MachineConfiguration configuration, CancellationToken cancellationToken)
     {
