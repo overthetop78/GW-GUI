@@ -90,7 +90,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         {
             if (State == EmulationMachineState.Created) return;
             loop = _runLoop;
-            if (State != EmulationMachineState.Faulted)
+            if (State is not EmulationMachineState.Faulted and not EmulationMachineState.Stopped)
             {
                 State = EmulationMachineState.Stopping;
                 _stopSource?.Cancel();
