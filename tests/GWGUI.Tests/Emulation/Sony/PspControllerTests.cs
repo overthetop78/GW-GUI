@@ -25,6 +25,34 @@ public sealed class PspControllerTests
     private const string KeyboardK = "Keyboard:K";
 
     [Fact]
+    public void AssignedCommandDoesNotInheritOtherPhysicalNamedButtons()
+    {
+        var source = EmulationControllerState.Empty with
+        {
+            Controls = new EmulationControllerControls(new Dictionary<string, float>
+            {
+                [EmulationControllerCommandIds.X] = 1,
+                [EmulationControllerCommandIds.L2] = 0.75f
+            })
+        };
+        var snapshot = EmulationInputSnapshot.Empty with
+        {
+            Keys = new HashSet<EmulationKey> { EmulationKey.A },
+            Controllers = [source]
+        };
+        var configuration = new InputConfiguration(ControllerBindings:
+        [
+            new ControllerBinding(IntegratedPortIndex, ControllerType.Joystick,
+                ButtonMappings: new Dictionary<string, string> { [EmulationControllerCommandIds.B] = KeyboardA })
+        ]);
+        var controls = InputSnapshotFunctions.Apply(snapshot, configuration, false).Controllers[IntegratedPortIndex].Controls;
+        Assert.Single(controls);
+        Assert.Equal(1f, controls[EmulationControllerCommandIds.B]);
+        Assert.False(controls.ContainsKey(EmulationControllerCommandIds.X));
+        Assert.False(controls.ContainsKey(EmulationControllerCommandIds.L2));
+    }
+
+    [Fact]
     public void ProfilePublishesOneIntegratedPortAndEveryVisibleCommand()
     {
         var settings = InputSettingsFunctions.Describe(new MachineConfiguration(ModelConstants.Psp, GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants.PpssppConstants.Id));

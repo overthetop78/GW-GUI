@@ -96,7 +96,7 @@ internal static class InputSnapshotFunctions
         EmulationControllerState source, IReadOnlyList<EmulationControllerState> physical,
         IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
     {
-        var values = source.Controls.ToDictionary(item => item.Key, item => item.Value, StringComparer.OrdinalIgnoreCase);
+        var values = new Dictionary<string, float>(StringComparer.OrdinalIgnoreCase);
         foreach (var mapping in mappings)
         {
             if (string.IsNullOrWhiteSpace(mapping.Key) || string.IsNullOrWhiteSpace(mapping.Value)) continue;
