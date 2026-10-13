@@ -21,16 +21,7 @@ internal static partial class CoreSettingsDescriptionFunctions
         string label,
         string value,
         IEnumerable<EmulationSettingsChoice> choices,
-        bool isEnabled = true) => new(id,
-        tab,
-        block,
-        label,
-        EmulationSettingsEditor.Selection,
-        value,
-        choices.ToArray(),
-        IsEnabled: isEnabled,
-        ExplanationResourceKey: ShortHelp(id),
-        DetailedExplanationResourceKey: DetailedHelp(id));
+        bool isEnabled = true) => new(id, tab, block, label, EmulationSettingsEditor.Selection, value, choices.ToArray(), IsEnabled: isEnabled, ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id));
 
     private static EmulationSettingsField FirmwarePath(string? value) => new(
         SettingsConstants.FirmwarePath, EmulationMachineTab.Rom,

@@ -64,16 +64,13 @@ public sealed class FirmwareCatalog
             FirmwareCatalogConstants.PcFxFrenchBiosMd5 => PcFx("PC-FX BIOS (FR)", "1.00", verified: false),
             FirmwareCatalogConstants.PcFxBios101Md5 => PcFx("PC-FX BIOS", "1.01", verified: false),
             FirmwareCatalogConstants.PcFxGaBiosMd5 => PcFx("PC-FX GA BIOS", null, verified: false),
-            FirmwareCatalogConstants.PcFxScsiMd5 => new Firmware(file.FullName, file.Length,
-                md5, sha256, file.LastWriteTimeUtc, FirmwareType.SystemRom,
-                IsKnown: true, IsOfficial: false, Name: "PC-FX SCSI ROM", Version: null,
-                CompatibleModels: []),
+            FirmwareCatalogConstants.PcFxScsiMd5 => new Firmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc, FirmwareType.SystemRom, IsKnown: true, IsOfficial: false, Name: "PC-FX SCSI ROM", Version: null, CompatibleModels: []),
             _ => new Firmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc, FirmwareType.Unknown, IsKnown: false, IsOfficial: false, Name: null, Version: null, CompatibleModels: [])
         };
         if (identified.IsKnown) return identified;
         if (name.Equals(GeargrafxFirmwareConstants.PacN1, StringComparison.OrdinalIgnoreCase)
-            || name.Equals(GeargrafxFirmwareConstants.PceLp1, StringComparison.OrdinalIgnoreCase)
-            || name.Equals(GeargrafxFirmwareConstants.PacN10, StringComparison.OrdinalIgnoreCase))
+           || name.Equals(GeargrafxFirmwareConstants.PceLp1, StringComparison.OrdinalIgnoreCase)
+           || name.Equals(GeargrafxFirmwareConstants.PacN10, StringComparison.OrdinalIgnoreCase))
             return new Firmware(file.FullName, file.Length, md5, sha256,
                 file.LastWriteTimeUtc, FirmwareType.SystemRom,
                 IsKnown: true, IsOfficial: false,
