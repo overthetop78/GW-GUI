@@ -41,17 +41,7 @@ public static class FirmwareFunctions
         FirmwareProvision provision,
         IReadOnlyList<MachineModel> models,
         IReadOnlyList<StRegion> noRegions,
-        IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id,
-        category,
-        null,
-        null,
-        null,
-        provision,
-        FirmwareDistribution.NoExternalFile,
-        FirmwareEvidence.VirtualJaguarCoreInformation,
-        models,
-        noRegions,
-        noFingerprints);
+        IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id, category, null, null, null, provision, FirmwareDistribution.NoExternalFile, FirmwareEvidence.VirtualJaguarCoreInformation, models, noRegions, noFingerprints);
 
     public static FirmwareDefinition JaguarCd(string id, string fileName, IReadOnlyList<StRegion> noRegions, IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(
         id, FirmwareCategory.JaguarCdBios, null, fileName, null,
@@ -63,17 +53,7 @@ public static class FirmwareFunctions
         MachineModel model,
         FirmwareEvidence evidence,
         IReadOnlyList<StRegion> noRegions,
-        IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id,
-        null,
-        null,
-        null,
-        null,
-        FirmwareProvision.NotUsed,
-        FirmwareDistribution.NoExternalFile,
-        evidence,
-        Values(model),
-        noRegions,
-        noFingerprints);
+        IReadOnlyList<FirmwareFingerprint> noFingerprints) => new(id, null, null, null, null, FirmwareProvision.NotUsed, FirmwareDistribution.NoExternalFile, evidence, Values(model), noRegions, noFingerprints);
 }
 
 public static class FirmwareRuntimeFunctions

@@ -5,8 +5,7 @@ internal static class EmulatorConstants
     internal const bool SupportsCartridgeRegion = true;
 
     internal static readonly IReadOnlySet<string> CartridgeExtensions =
-        new HashSet<string>(["j64", "jag", "rom", "abs", "cof", "bin", "prg"],
-            StringComparer.OrdinalIgnoreCase);
+        new HashSet<string>(["j64", "jag", "rom", "abs", "cof", "bin", "prg"], StringComparer.OrdinalIgnoreCase);
 
     internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(
         Emulator.VirtualJaguar, "virtual-jaguar", "Virtual Jaguar", "virtualjaguar_libretro.dll",
