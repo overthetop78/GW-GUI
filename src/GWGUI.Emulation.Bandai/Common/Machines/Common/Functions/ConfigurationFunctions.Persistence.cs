@@ -41,7 +41,7 @@ internal static class ConfigurationStoreFunctions
         if (document.Id == Guid.Empty)
             throw new InvalidDataException();
         if (document.Firmwares is null || document.Media is null || document.Options is null
-            || document.Input is null || document.Folders is null)
+           || document.Input is null || document.Folders is null)
             throw new InvalidDataException();
         if (!Enum.IsDefined(document.Model) || !Enum.IsDefined(document.Core))
             throw new InvalidDataException();
@@ -104,8 +104,7 @@ internal static class ConfigurationStoreFunctions
         && !relative.StartsWith(ConfigurationStoreConstants.ParentDirectoryName + Path.AltDirectorySeparatorChar, StringComparison.Ordinal);
 
     private static FolderConfiguration StoreFolders(FolderConfiguration folders, string pathBase) =>
-        new(StorePath(folders.Shared, pathBase), StorePath(folders.Cartridges, pathBase),
-            StorePath(folders.CompactDiscs, pathBase), StorePath(folders.Saves, pathBase), StorePath(folders.States, pathBase), StorePath(folders.Captures, pathBase));
+        new(StorePath(folders.Shared, pathBase), StorePath(folders.Cartridges, pathBase), StorePath(folders.CompactDiscs, pathBase), StorePath(folders.Saves, pathBase), StorePath(folders.States, pathBase), StorePath(folders.Captures, pathBase));
 
     private static FolderConfiguration ResolveFolders(FolderConfiguration folders, string pathBase) =>
         new(ResolvePath(folders.Shared, pathBase), ResolvePath(folders.Cartridges, pathBase),
