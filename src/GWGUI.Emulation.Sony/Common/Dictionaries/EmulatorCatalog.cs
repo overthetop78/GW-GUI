@@ -8,9 +8,7 @@ public static class EmulatorCatalog
         .Where(type => !type.IsAbstract && typeof(IEmulatorAdapter).IsAssignableFrom(type))
         .ToArray();
 
-    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => AdapterTypes
-        .Select(type => (IEmulatorAdapter)Activator.CreateInstance(type, nonPublic: true)!)
-        .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal).ToArray();
+    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => AdapterTypes .Select(type => (IEmulatorAdapter)Activator.CreateInstance(type, nonPublic: true)!) .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal).ToArray();
 
     public static string DefaultFor(string machineId) => GetAll(machineId).FirstOrDefault()?.Id ?? throw new NotSupportedException($"No Sony emulator adapter is installed for '{machineId}'.");
 
