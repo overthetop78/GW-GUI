@@ -80,9 +80,10 @@ public sealed partial class ControllerVisualizer
 
     private void DrawArtworkProfileOverlays(DrawingContext dc, ControllerArtworkProfile profile, Rect artworkBounds)
     {
-        var joystickZone = profile.Zones.FirstOrDefault(zone => zone.Shape == ControllerVisualZoneShape.JoystickDirection && HasVisualCommand(zone.Control));
-        if (joystickZone is not null)
-            DrawArtworkProfileJoystick(dc, ZoneBounds(artworkBounds, joystickZone));
+        var joysticks = profile.Zones.Where(zone => zone.Shape == ControllerVisualZoneShape.JoystickDirection && HasVisualCommand(zone.Control))
+            .GroupBy(zone => (zone.XPercent, zone.YPercent, zone.WidthPercent, zone.HeightPercent));
+        foreach (var joystick in joysticks)
+            DrawArtworkProfileJoystick(dc, ZoneBounds(artworkBounds, joystick.First()), joystick.Select(zone => zone.Control).ToHashSet());
 
         foreach (var zone in profile.Zones)
         {
@@ -108,12 +109,12 @@ public sealed partial class ControllerVisualizer
         }
     }
 
-    private void DrawArtworkProfileJoystick(DrawingContext dc, Rect bounds)
+    private void DrawArtworkProfileJoystick(DrawingContext dc, Rect bounds, IReadOnlySet<EmulationControllerVisualControl> controls)
     {
-        var left = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionLeft), HoveredVisualControl == EmulationControllerVisualControl.DirectionLeft ? 1f : 0f);
-        var right = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionRight), HoveredVisualControl == EmulationControllerVisualControl.DirectionRight ? 1f : 0f);
-        var up = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionUp), HoveredVisualControl == EmulationControllerVisualControl.DirectionUp ? 1f : 0f);
-        var down = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionDown), HoveredVisualControl == EmulationControllerVisualControl.DirectionDown ? 1f : 0f);
+        var left = JoystickValue(controls, EmulationControllerVisualControl.DirectionLeft, EmulationControllerVisualControl.StickLeft, EmulationControllerVisualControl.RightStickLeft);
+        var right = JoystickValue(controls, EmulationControllerVisualControl.DirectionRight, EmulationControllerVisualControl.StickRight, EmulationControllerVisualControl.RightStickRight);
+        var up = JoystickValue(controls, EmulationControllerVisualControl.DirectionUp, EmulationControllerVisualControl.StickUp, EmulationControllerVisualControl.RightStickUp);
+        var down = JoystickValue(controls, EmulationControllerVisualControl.DirectionDown, EmulationControllerVisualControl.StickDown, EmulationControllerVisualControl.RightStickDown);
         var x = Math.Clamp(right - left, -1f, 1f);
         var y = Math.Clamp(down - up, -1f, 1f);
         if (Math.Abs(x) <= .01f && Math.Abs(y) <= .01f) return;
@@ -124,6 +125,9 @@ public sealed partial class ControllerVisualizer
         var radius = Math.Max(6d, size * .2d);
         dc.DrawEllipse(PressedFill(), new Pen(PressedStrong(), Math.Max(1.5d, size * .025d)), center, radius, radius);
     }
+
+    private float JoystickValue(IReadOnlySet<EmulationControllerVisualControl> controls, params EmulationControllerVisualControl[] directions) => directions.Where(controls.Contains)
+        .Select(control => Math.Max(VisualZoneValue(control), HoveredVisualControl == control ? 1f : 0f)).DefaultIfEmpty().Max();
 
     private float VisualZoneValue(EmulationControllerVisualControl control)
     {
