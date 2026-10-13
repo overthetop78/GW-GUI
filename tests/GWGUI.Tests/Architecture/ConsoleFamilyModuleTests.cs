@@ -42,8 +42,11 @@ public sealed class ConsoleFamilyModuleTests
     public void ConsoleFamilyModulesExposeCommonCompositionAndContracts()
     {
         var root = RepositoryRoot();
-        foreach (var family in new[] { "Sega", "Nintendo", "Sony", "Microsoft", "Nec" })
+        var projects = Directory.EnumerateDirectories(Path.Combine(root, "src"), "GWGUI.Emulation.*")
+            .Where(directory => File.Exists(Path.Combine(directory, "module.json")));
+        foreach (var project in projects)
         {
+            var family = Path.GetFileName(project)["GWGUI.Emulation.".Length..];
             var files = CommonFiles(root, family);
             Assert.Contains(Path.Combine("Interfaces", "IEmulatorAdapter.cs"), files);
             var contractSource = string.Join(Environment.NewLine, files.Where(file => file.StartsWith("Contracts" + Path.DirectorySeparatorChar, StringComparison.Ordinal))

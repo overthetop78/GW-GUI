@@ -2,6 +2,13 @@
 
 Dernière qualification : build Debug réussi, application et 23 modules présents ; 73 tests ciblés des axes analogiques et du nettoyage WPF réussis. Les fenêtres et le thread de fixture sont fermés par le helper central. Le démarrage réel de chaque machine avec son firmware et ses médias reste à qualifier.
 
+- [x] Qualifier les contrats et paramètres des premières nouvelles familles.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : les 83 tests AcornModuleTests, AppleModuleTests, BandaiModuleTests, ColecoModuleTests, EpochModuleTests et FairchildModuleTests passent avec code 0 ; aucune qualification de démarrage natif n’est déduite de ce résultat.
+
+- [x] Étendre le contrôle architectural existant à tous les modules présents.
+  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` : découvrir les projets possédant module.json au lieu de limiter le contrôle des contrats Common à cinq familles codées en dur.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : 34 tests réussis, dont le contrôle Common découvrant les 23 projets et les cas de validation des manifestes ; code de sortie 0.
+
 ## controller-artwork
 
 - [ ] Réaliser les profils NEC
