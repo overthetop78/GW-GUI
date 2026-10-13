@@ -313,3 +313,4 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-13 07:02:06 | 72:06:22 | -64:06:22 | Reprise. Couverture des cinquante cœurs confirmée hors CDi2015 retiré ; contrôleur PSP intégré à conserver. |
 | 2026-10-13 07:22:55 | 72:27:11 | -64:27:11 | Reprise. Vérification complète des suites autonomes des nouvelles familles présentes dans le dépôt. |
 | 2026-10-13 07:45:14 | 72:49:30 | -64:49:30 | Reprise. Sony : répartition des visuels par marque. |
+| 2026-10-13 09:04:54 | 74:09:10 | -66:09:10 | Reprise. Affectation des sens analogiques : SDK, éditeur et six familles. |
