@@ -2,9 +2,9 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static class ControllerFunctions
 {
-    internal static int PortCount(MachineConfiguration configuration) => new Engine().Adapter(configuration).GetControllerPortCount(configuration);
-    internal static IReadOnlyList<ControllerType> Supported(MachineConfiguration configuration) => new Engine().Adapter(configuration).GetControllerTypes(configuration);
-    internal static IReadOnlyList<ControllerType> Supported(MachineConfiguration configuration, int port) => new Engine().Adapter(configuration).GetControllerTypes(configuration, port);
+    internal static int PortCount(MachineConfiguration configuration) => new Engine().Adapter(configuration) is IEmulatorControllerAdapter adapter ? adapter.GetControllerPortCount(configuration) : ModelCatalog.Get(configuration.Model).ControllerPortCount;
+    internal static IReadOnlyList<ControllerType> Supported(MachineConfiguration configuration) => new Engine().Adapter(configuration) is IEmulatorControllerAdapter adapter ? adapter.GetControllerTypes(configuration) : [];
+    internal static IReadOnlyList<ControllerType> Supported(MachineConfiguration configuration, int port) => new Engine().Adapter(configuration) is IEmulatorControllerAdapter adapter ? adapter.GetControllerTypes(configuration, port) : [];
 
     internal static ControllerType Resolve(MachineConfiguration configuration, int port)
     {

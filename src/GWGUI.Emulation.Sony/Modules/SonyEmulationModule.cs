@@ -75,7 +75,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
     {
         var sony = RequireConfiguration(configuration);
         var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == sony.EmulatorId);
-        var firmwareFields = (adapter?.GetFirmwareSlots(sony) ?? []).Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
+        var firmwareFields = (adapter is null ? [] : FirmwareConfigurationFunctions.Slots(sony, adapter)).Select(slot => slot.FieldId).ToHashSet(StringComparer.Ordinal);
         var options = new Dictionary<string, string>(sony.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
         foreach (var item in values)
         {
@@ -244,7 +244,7 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
     {
         var current = RequireConfiguration(configuration);
         var adapter = _engine.Adapter(current);
-        if (!adapter.GetFirmwareSlots(current).Any(slot => slot.FieldId == firmware.DestinationFieldId))
+        if (!FirmwareConfigurationFunctions.Slots(current, adapter).Any(slot => slot.FieldId == firmware.DestinationFieldId))
             throw new ArgumentException(nameof(firmware));
         if (!File.Exists(firmware.Path)) throw new FileNotFoundException(null, firmware.Path);
         return FirmwareConfigurationFunctions.Apply(current, new Dictionary<string, string?> { [firmware.DestinationFieldId!] = Path.GetFullPath(firmware.Path) }, adapter);

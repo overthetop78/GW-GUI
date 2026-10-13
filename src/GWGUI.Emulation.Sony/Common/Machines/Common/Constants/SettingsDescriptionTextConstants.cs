@@ -20,6 +20,7 @@ internal static partial class SettingsDescriptionFunctionsConstants
     internal const string Firmware = "firmware";
     internal const string Video = "video";
     internal const string Audio = "audio";
+    internal const string EmulatorAudioOptionsBlock = "emulatorOptionsAudio";
     internal const string ResourceGeneral = "Emulation.Tab.General";
     internal const string ResourceMachineModel = "Emulation.Machine.Model";
     internal const string ResourceEmulator = "Emulation.Core.Emulator";

@@ -6,8 +6,10 @@ namespace GWGUI.Emulation.Sony.Common.Machines.Common.Functions;
 
 internal static class FirmwareConfigurationFunctions
 {
+    internal static IReadOnlyList<FirmwareSlot> Slots(MachineConfiguration configuration, IEmulatorAdapter adapter) => (adapter as IEmulatorFirmwareAdapter)?.GetFirmwareSlots(configuration) ?? [];
+
     internal static IReadOnlyList<EmulationSettingsField> Fields(MachineConfiguration configuration, IEmulatorAdapter adapter) =>
-        adapter.GetFirmwareSlots(configuration).Select(slot => new EmulationSettingsField(slot.FieldId,
+        Slots(configuration, adapter).Select(slot => new EmulationSettingsField(slot.FieldId,
             EmulationMachineTab.Rom, SettingsDescriptionFunctionsConstants.Firmware,
             slot.LabelResourceKey, EmulationSettingsEditor.Path,
             configuration.FirmwarePaths?.GetValueOrDefault(slot.FieldId)
@@ -17,7 +19,7 @@ internal static class FirmwareConfigurationFunctions
     internal static MachineConfiguration Apply(MachineConfiguration configuration, IReadOnlyDictionary<string, string?> values, IEmulatorAdapter adapter)
     {
         var paths = new Dictionary<string, string>(configuration.FirmwarePaths ?? new Dictionary<string, string>(), StringComparer.Ordinal);
-        foreach (var slot in adapter.GetFirmwareSlots(configuration))
+        foreach (var slot in Slots(configuration, adapter))
             if (values.TryGetValue(slot.FieldId, out var value))
             {
                 if (configuration.Model == ModelConstants.PlayStation)
@@ -32,7 +34,7 @@ internal static class FirmwareConfigurationFunctions
     {
         if (!Directory.Exists(directory)) return [];
         var candidates = new List<EmulationFirmwareCandidate>();
-        var slots = adapter.GetFirmwareSlots(configuration);
+        var slots = Slots(configuration, adapter);
         foreach (var path in Directory.EnumerateFiles(directory, FirmwareCatalogConstants.SearchPattern, SearchOption.AllDirectories))
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -56,14 +58,14 @@ internal static class FirmwareConfigurationFunctions
                 selected = configuration.FirmwarePaths.Values.Single();
             if (string.IsNullOrWhiteSpace(selected)) return;
             Directory.CreateDirectory(destinationDirectory);
-            foreach (var fileName in adapter.GetFirmwareSlots(configuration).Select(slot => slot.FileName)
+            foreach (var fileName in Slots(configuration, adapter).Select(slot => slot.FileName)
                 .Concat(new[] { PlayStationFirmware.JapanFile, PlayStationFirmware.NorthAmericaFile,
                     PlayStationFirmware.EuropeFile, PlayStationFirmware.PspFile, PlayStationFirmware.Ps3File,
                     PlayStationFirmware.OpenBiosFile }).Distinct(StringComparer.OrdinalIgnoreCase))
                 File.Copy(selected, Path.Combine(destinationDirectory, fileName), true);
             return;
         }
-        foreach (var slot in adapter.GetFirmwareSlots(configuration))
+        foreach (var slot in Slots(configuration, adapter))
         {
             var source = configuration.FirmwarePaths?.GetValueOrDefault(slot.FieldId);
             if (string.IsNullOrWhiteSpace(source)) continue;

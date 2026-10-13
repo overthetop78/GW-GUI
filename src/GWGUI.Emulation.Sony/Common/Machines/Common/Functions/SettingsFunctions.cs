@@ -6,6 +6,7 @@ internal static partial class SettingsDescriptionFunctions
     {
         var model = ModelCatalog.Get(configuration.Model);
         var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == configuration.EmulatorId);
+        var settingsAdapter = adapter as IEmulatorSettingsAdapter;
         var blocks = new List<EmulationSettingsBlock>
         {
             Block(SettingsDescriptionFunctionsConstants.General, EmulationMachineTab.General,
@@ -33,7 +34,7 @@ internal static partial class SettingsDescriptionFunctions
                 Information(SettingsConstants.Ram, EmulationMachineTab.Ram,
                     SettingsDescriptionFunctionsConstants.Memory,
                     SettingsDescriptionFunctionsConstants.ResourceMemoryMain,
-                    $"{(model.Id == ModelConstants.Psp && configuration.Options?.GetValueOrDefault(Emulators.Ppsspp.Constants.OptionConstants.PspModelKey) != "psp_1000" ? 64 * 1024 : model.RamKib)} KiB")),
+                    $"{(settingsAdapter?.GetMemoryKib(configuration) ?? model.RamKib)} KiB")),
             Block(SettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video,
                 SettingsDescriptionFunctionsConstants.ResourceVideo,
                 SettingsDescriptionFunctionsConstants.IconVideo, 2,
@@ -63,7 +64,7 @@ internal static partial class SettingsDescriptionFunctions
                 blocks.Add(Block(SettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,
                     SettingsDescriptionFunctionsConstants.ResourceRom, SettingsDescriptionFunctionsConstants.IconFirmware,
                     SettingsDescriptionFunctionsConstants.SingleColumnLayout, [.. firmware]));
-            foreach (var coreBlock in adapter.GetSettingsBlocks(configuration))
+            foreach (var coreBlock in settingsAdapter?.GetSettingsBlocks(configuration) ?? [])
             {
                 if (coreBlock.Tab == EmulationMachineTab.Storage) continue;
                 var index = blocks.FindIndex(block => block.Id == coreBlock.Id);
@@ -78,7 +79,7 @@ internal static partial class SettingsDescriptionFunctions
             }
             if (model.Id == ModelConstants.PlayStation)
             {
-                var clock = blocks.SelectMany(block => block.Fields).FirstOrDefault(field => Emulators.Common.Interop.Constants.CoreSettingsConstants.IsCpuClock(field.Id));
+                var clock = blocks.SelectMany(block => block.Fields).FirstOrDefault(field => settingsAdapter?.IsCpuClock(field.Id) == true);
                 if (clock is not null)
                 {
                     var index = blocks.FindIndex(block => block.Id == SettingsDescriptionFunctionsConstants.Acceleration);
@@ -103,7 +104,7 @@ internal static partial class SettingsDescriptionFunctions
             blocks.RemoveAt(hardwareVideo);
         }
         var audio = blocks.FindIndex(block => block.Id == SettingsDescriptionFunctionsConstants.Audio);
-        var nativeAudio = blocks.FindIndex(block => block.Id == Emulators.Common.Interop.Constants.CoreSettingsConstants.AudioOptionsBlock);
+        var nativeAudio = blocks.FindIndex(block => block.Id == SettingsDescriptionFunctionsConstants.EmulatorAudioOptionsBlock);
         if (audio >= 0 && nativeAudio >= 0)
         {
             var chip = blocks[audio].Fields.Single(field => field.Id == SettingsConstants.Model + ".audio");

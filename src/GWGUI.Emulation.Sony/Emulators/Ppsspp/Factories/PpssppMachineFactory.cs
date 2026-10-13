@@ -6,7 +6,7 @@ using System.IO;
 
 namespace GWGUI.Emulation.Sony.Emulators.Ppsspp.Factories;
 
-internal sealed class PpssppMachineFactory : IEmulatorAdapter
+internal sealed class PpssppMachineFactory : IEmulatorAdapter, IEmulatorFirmwareAdapter, IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorMediaAdapter
 {
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
@@ -15,6 +15,7 @@ internal sealed class PpssppMachineFactory : IEmulatorAdapter
     public IReadOnlyList<EmulationSettingsBlock> GetSettingsBlocks(MachineConfiguration configuration) => Emulators.Common.Interop.Functions.CoreSettingsFunctions.Blocks(Dictionaries.OptionCatalog.All, configuration);
     public IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration) => [ControllerType.Joystick, ControllerType.None];
     public IReadOnlyList<string> SupportedContentExtensions => PpssppConstants.ContentExtensions;
+    public int GetMemoryKib(MachineConfiguration configuration) => configuration.Options?.GetValueOrDefault(OptionConstants.PspModelKey) != PpssppConstants.Psp1000Model ? PpssppConstants.ExpandedMemoryKib : ModelCatalog.Get(configuration.Model).RamKib;
     public string EmulatorId => PpssppConstants.Id;
     public string EmulatorKey => PpssppConstants.Id;
     public EmulationEmulatorDefinition Definition { get; } = new(PpssppConstants.Id, PpssppConstants.DisplayName, PpssppConstants.DescriptionResourceKey, new[] { ModelConstants.Psp }.ToHashSet(StringComparer.Ordinal));

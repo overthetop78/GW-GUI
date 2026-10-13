@@ -7,5 +7,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Play.Factories;
 internal sealed class PlayMachineFactory : CoreMachineFactory
 {
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
+    public override bool HasFixedMemoryCardDirectories => true;
+    public override string? GetMemoryCardDirectory(int index) => Emulators.Play.Functions.MemoryCardFunctions.DirectoryFor(index);
     public override int GetControllerPortCount(MachineConfiguration configuration) => ControllerPortConstants.OneControllerPort;
 }

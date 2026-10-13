@@ -7,7 +7,7 @@ using PlayStationFirmware = GWGUI.Emulation.Sony.Common.Machines.PlayStation.Con
 
 namespace GWGUI.Emulation.Sony.Emulators.Common.Interop.Factories;
 
-internal abstract class CoreMachineFactory : IEmulatorAdapter
+internal abstract class CoreMachineFactory : IEmulatorAdapter, IEmulatorFirmwareAdapter, IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorMediaAdapter
 {
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
@@ -20,6 +20,10 @@ internal abstract class CoreMachineFactory : IEmulatorAdapter
     public virtual IReadOnlyList<ControllerType> GetControllerTypes(MachineConfiguration configuration, int port) => GetControllerTypes(configuration);
     public virtual int GetControllerPortCount(MachineConfiguration configuration) => ModelCatalog.Get(configuration.Model).ControllerPortCount;
     public IReadOnlyList<string> SupportedContentExtensions => CoreDefinition.Extensions;
+    public bool IsCpuClock(string fieldId) => CoreSettingsConstants.IsCpuClock(fieldId);
+    public virtual int GetMemoryCardCount(MachineConfiguration configuration) => configuration.Model is ModelConstants.PlayStation or ModelConstants.PlayStation2 ? MemoryCardFunctions.Count(configuration) : 0;
+    public virtual bool HasFixedMemoryCardDirectories => false;
+    public virtual string? GetMemoryCardDirectory(int index) => null;
     public string EmulatorId => CoreDefinition.Id;
     public string EmulatorKey => EmulatorId;
     public EmulationEmulatorDefinition Definition => CoreDefinition.Emulator;

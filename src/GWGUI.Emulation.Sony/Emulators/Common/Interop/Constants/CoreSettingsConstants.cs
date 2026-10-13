@@ -33,7 +33,7 @@ internal static class CoreSettingsConstants
     internal const string RenderingTitle = "Emulation.Video.Settings.Rendering";
     internal const string GeometryTitle = "Emulation.Option.Sony.Group.Geometry";
     internal const string TexturesTitle = "Emulation.Option.Sony.Group.Textures";
-    internal const string AudioOptionsBlock = "emulatorOptionsAudio";
+    internal const string AudioOptionsBlock = SettingsDescriptionFunctionsConstants.EmulatorAudioOptionsBlock;
     internal const string AudioOptionsTitle = SettingsDescriptionFunctionsConstants.ResourceEmulator;
     internal const string DisplayGroup = "Display";
     internal const string ScreenGroup = "Screen";

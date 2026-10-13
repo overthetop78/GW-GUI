@@ -7,7 +7,7 @@ using System.IO;
 
 namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Factories;
 
-internal sealed class Pcsx2MachineFactory : IEmulatorAdapter
+internal sealed class Pcsx2MachineFactory : IEmulatorAdapter, IEmulatorFirmwareAdapter, IEmulatorSettingsAdapter, IEmulatorControllerAdapter, IEmulatorMediaAdapter
 {
     private IReadOnlyDictionary<string, CoreRelease> _availableReleases = new Dictionary<string, CoreRelease>(StringComparer.Ordinal);
 
