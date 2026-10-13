@@ -15,6 +15,29 @@ namespace GWGUI.Tests.Emulation.Nintendo;
 public sealed class NintendoEmulatorCatalogTests
 {
     [Theory]
+    [InlineData("GameWatch", "gw")]
+    [InlineData("Nes", "mesen")]
+    [InlineData("FamicomDisk", "mesen")]
+    [InlineData("Snes", "snes9x")]
+    [InlineData("VirtualBoy", "beetle_vb")]
+    [InlineData("Nintendo64", "mupen64plus-next")]
+    [InlineData("GameBoy", "gambatte")]
+    [InlineData("GameBoyColor", "gambatte")]
+    [InlineData("GameBoyAdvance", "mgba")]
+    [InlineData("NintendoDs", "melonds")]
+    [InlineData("NintendoDsi", "melondsds")]
+    [InlineData("Nintendo3Ds", "citra")]
+    [InlineData("GameCube", "dolphin")]
+    [InlineData("Wii", "dolphin")]
+    [InlineData("WiiU", "cemu")]
+    [InlineData("PokemonMini", "pokemini")]
+    public void AdapterDiscoveryPreservesEveryExistingDefault(string machine, string emulator)
+    {
+        Assert.Equal(emulator, EmulatorCatalog.DefaultFor(machine));
+        Assert.Single(EmulatorCatalog.CreateAdapters(), adapter => adapter is GWGUI.Emulation.Nintendo.Common.Interfaces.IEmulatorMachineDefaults defaults && defaults.IsDefaultFor(machine));
+    }
+
+    [Theory]
     [InlineData("Nintendo3Ds", "azahar", "citra_graphics_api")]
     [InlineData("WiiU", "cemu", "cemu_gpu_api")]
     public void GraphicsApiChoicesMatchTheHostCapabilities(string machine, string emulator, string optionKey)

@@ -4,7 +4,9 @@ using GWGUI.Emulation.Nintendo.Emulators.Common.Interop.Factories;
 
 namespace GWGUI.Emulation.Nintendo.Emulators.MelonDs.Factories;
 
-internal sealed class MelonDsMachineFactory : CoreMachineFactory
+internal sealed class MelonDsMachineFactory : CoreMachineFactory, IEmulatorMachineDefaults
 {
+    public bool IsDefaultFor(string machineId) => machineId is ModelConstants.NintendoDs;
+
     protected override CoreDefinition CoreDefinition => CoreConstants.Definition;
 }
