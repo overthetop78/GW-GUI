@@ -1,42 +1,6 @@
 # Travaux communs restants
 
-- [x] Corriger la propriété des buffers vidéo après une allocation interrompue.
-  - [x] Modifier `src/GWGUI.Emulation.Acorn/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
-  - [x] Modifier `src/GWGUI.Emulation.Apple/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
-  - [x] Modifier `src/GWGUI.Emulation.Bandai/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
-  - [x] Modifier `src/GWGUI.Emulation.Coleco/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
-  - [x] Modifier `src/GWGUI.Emulation.Epoch/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
-  - [x] Modifier `src/GWGUI.Emulation.Fairchild/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
-  - [x] Modifier `src/GWGUI.Emulation.Mattel/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
-  - [x] Modifier `src/GWGUI.Emulation.Philips/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
-  - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
-  - [x] Modifier `src/GWGUI.Emulation.Sinclair/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
-  - [x] Modifier `src/GWGUI.Emulation.Snk/Common/Services/VideoBufferSet.cs` : retirer la référence avant restitution au pool et tenter toutes les restitutions pendant Dispose avant de propager la première erreur.
-  - [x] Modifier `docs/tasks/emulation/methode-modules.md` : retirer toute référence à une ressource restituée avant une allocation susceptible de lever une exception.
-
-
-- [x] Libérer les chaînes natives dont la prise en charge échoue.
-  - [x] Modifier `src/GWGUI.Emulation/Services/ExternalCoreUtf8String.cs` : ajouter AddTo, qui libère en finally la chaîne nouvellement créée si son enregistrement dans le dictionnaire propriétaire échoue.
-  - [x] Modifier `src/GWGUI.Emulation.Acorn/Emulators/Common/Interop/Services/CoreOptionHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `src/GWGUI.Emulation.Apple/Emulators/Common/Interop/Services/CoreOptionHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `src/GWGUI.Emulation.Bandai/Emulators/Common/Interop/Services/CoreOptionHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `src/GWGUI.Emulation.Coleco/Emulators/Common/Interop/Services/CoreOptionHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `src/GWGUI.Emulation.Epoch/Emulators/Common/Interop/Services/CoreOptionHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `src/GWGUI.Emulation.Fairchild/Emulators/Common/Interop/Services/CoreOptionHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Services/CoreOptionHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Services/CoreOptionHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Services/CoreOptionHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Services/CoreOptionHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Services/CoreOptionHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `src/GWGUI.Emulation.Thomson/Emulators/Theodore/Interop/Services/OptionCallbackHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `src/GWGUI.Emulation.Watara/Emulators/Potator/Interop/Services/OptionCallbackHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `src/GWGUI.Emulation.Wenquxing/Emulators/Wqxemu/Interop/Services/OptionCallbackHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `src/GWGUI.Emulation.Panasonic/Emulators/Opera/Interop/Services/OptionCallbackHost.cs` : remplacer allocation et ajout séparés par ExternalCoreUtf8String.AddTo sans changer les valeurs ni les options natives.
-  - [x] Modifier `docs/tasks/emulation/methode-modules.md` : préciser le transfert atomique des allocations natives vers leur propriétaire.
-
-- [x] Qualifier la livraison après les corrections communes.
-  - [x] Modifier `docs/tasks/emulation/commun.md` : build Debug terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe` et les 23 DLL de modules sont présents. Avertissements CA1416 et CS8602 conservés ; aucune erreur de compilation.
-  - [ ] Modifier les fichiers source explicitement signalés par le build s’il échoue, après ajout de leurs actions précises dans ce groupe.
+Dernière qualification : build Debug réussi, application et 23 modules présents ; 73 tests ciblés des axes analogiques et du nettoyage WPF réussis. Les fenêtres et le thread de fixture sont fermés par le helper central. Le démarrage réel de chaque machine avec son firmware et ses médias reste à qualifier.
 
 ## controller-artwork
 

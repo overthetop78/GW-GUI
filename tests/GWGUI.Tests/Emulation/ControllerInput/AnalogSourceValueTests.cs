@@ -6,6 +6,30 @@ namespace GWGUI.Tests.Emulation.ControllerInput;
 public sealed class AnalogSourceValueTests
 {
     [Theory]
+    [InlineData((short)1, "LeftStickRight", "LeftStickLeft")]
+    [InlineData((short)-1, "LeftStickLeft", "LeftStickRight")]
+    public void OneRawStickUnitRemainsOneUnit(short position, string direction, string opposite)
+    {
+        var state = EmulationControllerState.Empty with { LeftX = position };
+        Assert.Equal(1f / short.MaxValue, EmulationInputMappingFunctions.ControllerSourcePressure("Controller:pad:" + direction, state));
+        Assert.Equal(0f, EmulationInputMappingFunctions.ControllerSourcePressure("Controller:pad:" + opposite, state));
+    }
+
+    [Theory]
+    [InlineData(1f / short.MaxValue)]
+    [InlineData(.25f)]
+    [InlineData(1f)]
+    public void NormalizedStickControlKeepsItsScale(float pressure)
+    {
+        var state = EmulationControllerState.Empty with
+        {
+            LeftX = short.MaxValue,
+            Controls = new(new Dictionary<string, float> { ["LeftStickRight"] = pressure })
+        };
+        Assert.Equal(pressure, EmulationInputMappingFunctions.ControllerSourcePressure("Controller:pad:LeftStickRight", state));
+    }
+
+    [Theory]
     [InlineData("Controller:pad:LeftTrigger")]
     [InlineData("Controller:pad:L2")]
     public void TriggerKeepsIntermediatePressure(string source)
