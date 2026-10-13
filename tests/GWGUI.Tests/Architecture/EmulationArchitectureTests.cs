@@ -309,7 +309,10 @@ public sealed class EmulationArchitectureTests
             var source = File.ReadAllText(file);
             Assert.Contains($"namespace {expected};", source, StringComparison.Ordinal);
             if (area == "Common")
+            {
                 Assert.DoesNotContain($"GWGUI.Emulation.{family}.Emulators", source, StringComparison.Ordinal);
+                Assert.False(Regex.IsMatch(source, @"\bEmulators\s*\."), file + " references an emulator through a relative namespace.");
+            }
         }
 
         foreach (var file in Directory.EnumerateFiles(Path.Combine(project, "Modules"), "*.cs"))
