@@ -68,11 +68,9 @@ internal static class KeyboardFunctions
         return map;
     }
 
-    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)((HasShift(keys) ? KeyboardConstants.ShiftModifier : KeyboardConstants.NoModifiers) 
-        | (keys.Contains(EmulationKey.LeftControl) 
-        || keys.Contains(EmulationKey.RightControl) ? KeyboardConstants.ControlModifier : KeyboardConstants.NoModifiers) 
-        | (keys.Contains(EmulationKey.LeftAlt) 
-        || keys.Contains(EmulationKey.RightAlt) ? KeyboardConstants.AltModifier : KeyboardConstants.NoModifiers));
+    internal static ushort Modifiers(IReadOnlySet<EmulationKey> keys) => (ushort)((HasShift(keys) ? KeyboardConstants.ShiftModifier : KeyboardConstants.NoModifiers)
+        | (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? KeyboardConstants.ControlModifier : KeyboardConstants.NoModifiers)
+        | (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? KeyboardConstants.AltModifier : KeyboardConstants.NoModifiers));
     internal static uint Character(uint code, IReadOnlySet<EmulationKey> keys)
     {
         var shifted = HasShift(keys);
