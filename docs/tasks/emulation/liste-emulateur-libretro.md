@@ -6,6 +6,8 @@
 | ----------------- | -------------------------------------- |
 | `b2_libretro.dll` | BBC Micro Model A, Model B, Master 128 |
 
+Le Model A reste dans le périmètre demandé. Toutefois, le port b2 à la révision `9793f6a8040c416d147003cada29363b955b54e7` expose neuf configurations B, B+ et Master 128, sans Model A : [table native `machine_types`](https://github.com/zoltanvb/b2-libretro/blob/9793f6a8040c416d147003cada29363b955b54e7/src/libretro/core.h). La ligne ci-dessus ne constitue donc pas une preuve de prise en charge du Model A par cette DLL. Un autre moteur serait nécessaire pour couvrir ce modèle sans le remplacer par un Model B.
+
 ### Amiga
 
 | DLL                     | Machines émulées                                               |
