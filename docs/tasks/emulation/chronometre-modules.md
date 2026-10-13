@@ -306,3 +306,5 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-13 05:02:26 | 70:06:42 | -62:06:42 | Reprise. Visuels Coleco, Watara et Thomson contrôlés sur les photos ; aucune correction nécessaire. |
 | 2026-10-13 05:13:48 | 70:18:04 | -62:18:04 | Reprise. Sharp : clic et rendu de la manette des gaz Cyberstick. |
 | 2026-10-13 05:30:13 | 70:34:29 | -62:34:29 | Reprise. Visuels : Philips, Panasonic, Epoch et Fairchild. |
+| 2026-10-13 05:44:34 | 70:48:50 | -62:48:50 | Reprise. Sony : invariants des multiplicateurs numériques. |
+| 2026-10-13 05:58:59 | 71:03:15 | -63:03:15 | Reprise. Sony : multiplicateurs invariants vérifiés dans les 29 cultures et livraison des 23 modules contrôlée. |

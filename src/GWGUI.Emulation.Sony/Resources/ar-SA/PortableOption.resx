@@ -34,9 +34,6 @@
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>اختيار القرار الداخلي.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA Antialiasing</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Vulkan فقط. Core</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Value.1"><value>x2</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Value.2"><value>X4</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Value.3"><value>x8</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Crop to 16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>اربط الحواف العلوية والقاعية للحصول على صورة 16:9.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Frameskip</value></data>

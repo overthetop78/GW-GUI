@@ -34,9 +34,6 @@
   <data name="Emulation.Option.ppsspp.ppsspp_internal_resolution.Help"><value>Выберите внутреннюю резолюцию рендеринга.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Label"><value>MSAA Антиалии</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Help"><value>Только Vulkan. ядро</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Value.1"><value>x2</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Value.2"><value>x4</value></data>
-  <data name="Emulation.Option.ppsspp.ppsspp_mulitsample_level.Value.3"><value>x8</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Label"><value>Посадка до 16x9</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_cropto16x9.Help"><value>Вырезать верхний и нижний края, чтобы получить изображение 16:9.</value></data>
   <data name="Emulation.Option.ppsspp.ppsspp_frameskip.Label"><value>Фреймскип</value></data>
