@@ -1,8 +1,7 @@
 namespace GWGUI.Emulation.Sinclair.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
 {
-    internal static IReadOnlyList<PeripheralCategory> Peripherals(MachineModel model, Emulator core) => core == Emulator.None ? [PeripheralCategory.None]
-        : new Engine().Adapter(core) is IEmulatorInputSettings input ? input.GetPeripherals(model) : [];
+    internal static IReadOnlyList<PeripheralCategory> Peripherals(MachineModel model, Emulator core) => core == Emulator.None ? [PeripheralCategory.None] : new Engine().Adapter(core) is IEmulatorInputSettings input ? input.GetPeripherals(model) : [];
     internal static bool SupportsMouse(MachineConfiguration configuration) => configuration.Core != Emulator.None
         && new Engine().Adapter(configuration) is IEmulatorRuntimeCapabilities { SupportsPointerSettings: true };
     internal static bool SupportsInitialContent(MachineConfiguration configuration) => configuration.Core != Emulator.None

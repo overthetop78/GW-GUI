@@ -63,7 +63,13 @@ internal static class OptionCatalog
             EmulationMachineTab.Video.ToString(),
             "full",
             "full",
-            [new("full", "full", ResourceKey: SettingsChoiceConstants.Full), new("medium", "medium", ResourceKey: SettingsChoiceConstants.Medium), new("small", "small", ResourceKey: SettingsChoiceConstants.Small), new("minimum", "minimum", ResourceKey: SettingsChoiceConstants.Minimum), new("none", "none", ResourceKey: SettingsChoiceConstants.None)],
+            [
+                new("full", "full", ResourceKey: SettingsChoiceConstants.Full),
+                new("medium", "medium", ResourceKey: SettingsChoiceConstants.Medium),
+                new("small", "small", ResourceKey: SettingsChoiceConstants.Small),
+                new("minimum", "minimum", ResourceKey: SettingsChoiceConstants.Minimum),
+                new("none", "none", ResourceKey: SettingsChoiceConstants.None)
+            ],
             IsVisible: true
         , ResourceKey: SettingsTextConstants.BorderSize, ExplanationResourceKey: SettingsTextConstants.BorderSizeHelp), new(
             OptionConstants.Palette,
@@ -169,7 +175,19 @@ internal static class OptionCatalog
             EmulationMachineTab.Audio.ToString(),
             "100",
             "100",
-            [new("100", "100", InvariantDisplayValue: "100 %"), new("90", "90", InvariantDisplayValue: "90 %"), new("80", "80", InvariantDisplayValue: "80 %"), new("70", "70", InvariantDisplayValue: "70 %"), new("60", "60", InvariantDisplayValue: "60 %"), new("50", "50", InvariantDisplayValue: "50 %"), new("40", "40", InvariantDisplayValue: "40 %"), new("30", "30", InvariantDisplayValue: "30 %"), new("20", "20", InvariantDisplayValue: "20 %"), new("10", "10", InvariantDisplayValue: "10 %"), new("0", "0", InvariantDisplayValue: "0 %")],
+            [
+                new("100", "100", InvariantDisplayValue: "100 %"),
+                new("90", "90", InvariantDisplayValue: "90 %"),
+                new("80", "80", InvariantDisplayValue: "80 %"),
+                new("70", "70", InvariantDisplayValue: "70 %"),
+                new("60", "60", InvariantDisplayValue: "60 %"),
+                new("50", "50", InvariantDisplayValue: "50 %"),
+                new("40", "40", InvariantDisplayValue: "40 %"),
+                new("30", "30", InvariantDisplayValue: "30 %"),
+                new("20", "20", InvariantDisplayValue: "20 %"),
+                new("10", "10", InvariantDisplayValue: "10 %"),
+                new("0", "0", InvariantDisplayValue: "0 %")
+            ],
             IsVisible: true
         , ResourceKey: SettingsTextConstants.AyVolume, ExplanationResourceKey: SettingsTextConstants.AyVolumeHelp), new(
             OptionConstants.VolumeBeeper,
@@ -178,7 +196,19 @@ internal static class OptionCatalog
             EmulationMachineTab.Audio.ToString(),
             "100",
             "100",
-            [new("100", "100", InvariantDisplayValue: "100 %"), new("90", "90", InvariantDisplayValue: "90 %"), new("80", "80", InvariantDisplayValue: "80 %"), new("70", "70", InvariantDisplayValue: "70 %"), new("60", "60", InvariantDisplayValue: "60 %"), new("50", "50", InvariantDisplayValue: "50 %"), new("40", "40", InvariantDisplayValue: "40 %"), new("30", "30", InvariantDisplayValue: "30 %"), new("20", "20", InvariantDisplayValue: "20 %"), new("10", "10", InvariantDisplayValue: "10 %"), new("0", "0", InvariantDisplayValue: "0 %")],
+            [
+                new("100", "100", InvariantDisplayValue: "100 %"),
+                new("90", "90", InvariantDisplayValue: "90 %"),
+                new("80", "80", InvariantDisplayValue: "80 %"),
+                new("70", "70", InvariantDisplayValue: "70 %"),
+                new("60", "60", InvariantDisplayValue: "60 %"),
+                new("50", "50", InvariantDisplayValue: "50 %"),
+                new("40", "40", InvariantDisplayValue: "40 %"),
+                new("30", "30", InvariantDisplayValue: "30 %"),
+                new("20", "20", InvariantDisplayValue: "20 %"),
+                new("10", "10", InvariantDisplayValue: "10 %"),
+                new("0", "0", InvariantDisplayValue: "0 %")
+            ],
             IsVisible: true
         , ResourceKey: SettingsTextConstants.BeeperVolume, ExplanationResourceKey: SettingsTextConstants.BeeperVolumeHelp), new(OptionConstants.KeyOvrlayTransp,
             "Transparent Keyboard Overlay",

@@ -9,8 +9,7 @@ internal static partial class ConfigurationFunctions
         _ => throw new ArgumentOutOfRangeException(nameof(model))
     };
     internal static Emulator DefaultEmulator(MachineModel model) => Enum.IsDefined(model) ? new Engine().DefaultEmulator(model) : throw new ArgumentOutOfRangeException(nameof(model));
-    internal static bool IsCompatible(MachineModel model, Emulator core) => Enum.IsDefined(model) && Enum.IsDefined(core)
-        && (core == Emulator.None || new Engine().Adapter(core).Definition.MachineIds.Contains(model.ToString()));
+    internal static bool IsCompatible(MachineModel model, Emulator core) => Enum.IsDefined(model) && Enum.IsDefined(core) && (core == Emulator.None || new Engine().Adapter(core).Definition.MachineIds.Contains(model.ToString()));
     internal static int ControllerPortCount(MachineModel model) => Family(model) == MachineFamily.Spectrum ? ControllerConstants.SpectrumPortCount : ControllerConstants.Zx81PortCount;
     internal static IReadOnlyList<EmulationMediaSlot> DefaultSlots(MachineModel model) => model switch
     {

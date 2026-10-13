@@ -3,14 +3,33 @@ using GWGUI.Emulation.Sinclair.Emulators.EightyOne.Constants;
 namespace GWGUI.Emulation.Sinclair.Emulators.EightyOne.Dictionaries;
 internal static class OptionCatalog
 {
-    internal static IReadOnlyList<CoreOption> Options { get; } = Array.AsReadOnly(new CoreOption[] { new(OptionConstants.FastLoad, "Tape Fast Load", null, EmulationMachineTab.Storage.ToString(), "enabled", "enabled", [new("enabled", "enabled", ResourceKey: SettingsChoiceConstants.Enabled), new("disabled", "disabled", ResourceKey: SettingsChoiceConstants.Disabled)], IsVisible: true, ResourceKey: SettingsTextConstants.TapeFastLoad, ExplanationResourceKey: SettingsTextConstants.TapeFastLoadHelp), new(
+    internal static IReadOnlyList<CoreOption> Options { get; } = Array.AsReadOnly(new CoreOption[]
+    {
+        new(
+            OptionConstants.FastLoad,
+            "Tape Fast Load",
+            null,
+            EmulationMachineTab.Storage.ToString(),
+            "enabled",
+            "enabled",
+            [new("enabled", "enabled", ResourceKey: SettingsChoiceConstants.Enabled), new("disabled", "disabled", ResourceKey: SettingsChoiceConstants.Disabled)],
+            IsVisible: true,
+            ResourceKey: SettingsTextConstants.TapeFastLoad,
+            ExplanationResourceKey: SettingsTextConstants.TapeFastLoadHelp
+        ),
+        new(
             OptionConstants.Value816Contents,
             "8K-16K Contents",
             null,
             EmulationMachineTab.Ram.ToString(),
             "auto",
             "auto",
-            [new("auto", "auto", ResourceKey: SettingsChoiceConstants.Automatic), new("ROM shadow", "ROM shadow", ResourceKey: SettingsChoiceConstants.RomShadow), new("RAM", "RAM", InvariantDisplayValue: "RAM"), new("dK'tronics 4K Graphics ROM + 4K RAM", "dK'tronics 4K Graphics ROM + 4K RAM", InvariantDisplayValue: "dK'tronics 4K Graphics ROM + 4K RAM")],
+            [
+                new("auto", "auto", ResourceKey: SettingsChoiceConstants.Automatic),
+                new("ROM shadow", "ROM shadow", ResourceKey: SettingsChoiceConstants.RomShadow),
+                new("RAM", "RAM", InvariantDisplayValue: "RAM"),
+                new("dK'tronics 4K Graphics ROM + 4K RAM", "dK'tronics 4K Graphics ROM + 4K RAM", InvariantDisplayValue: "dK'tronics 4K Graphics ROM + 4K RAM")
+            ],
             IsVisible: true
         , ResourceKey: SettingsTextConstants.MemoryBankContent, ExplanationResourceKey: SettingsTextConstants.MemoryBankContentHelp), new(OptionConstants.BorderSize,
             "Size Video Border",
