@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>L'état de Sinclair est incompatible avec la machine actuelle.</value></data>
-  <data name="Emulation.Sinclair.Error.Unexpected"><value>Une erreur inattendue d'émulation de Sinclair s'est produite.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>Il manque un firmware Sinclair requis.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>Le système ROM est invalide ou incompatible.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>Le support Sinclair configuré n'a pas été trouvé.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>Cette machine ne supporte pas les médias sélectionnés.</value></data>
-  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>Une option Sinclair a une valeur invalide.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>Le noyau de Sinclair requis n'a pas été trouvé.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreRejected"><value>Le noyau Sinclair sélectionné n'a pu être chargé.</value></data>
-  <data name="Emulation.Sinclair.Error.StateInvalid"><value>L'état de Sinclair est invalide.</value></data>
-  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>Le chemin exécutable Sinclair hôte n'est pas disponible.</value></data>
-  <data name="Emulation.Sinclair.Error.Details"><value>Détails : {0}</value></data>
-  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>La communication avec l'hôte Sinclair a échoué.</value></data>
-  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>Commande d'environnement inconnu : {0}</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound" xml:space="preserve"><value>Le support Sinclair configuré est introuvable.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported" xml:space="preserve"><value>Cette machine ne prend pas en charge le support sélectionné.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound" xml:space="preserve"><value>Le moteur Sinclair requis est introuvable.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected" xml:space="preserve"><value>Impossible de charger le moteur Sinclair sélectionné.</value></data>
+  <data name="Emulation.Sinclair.Error.Details" xml:space="preserve"><value>Détails : {0}</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid" xml:space="preserve"><value>La ROM système est invalide ou incompatible.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing" xml:space="preserve"><value>Un firmware Sinclair requis est manquant.</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure" xml:space="preserve"><value>La communication avec l’hôte Sinclair a échoué.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid" xml:space="preserve"><value>Une option Sinclair contient une valeur invalide.</value></data>
+  <data name="Emulation.Sinclair.Error.StateIncompatible" xml:space="preserve"><value>L’état sauvegardé Sinclair est incompatible avec la machine actuelle.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid" xml:space="preserve"><value>L’état sauvegardé Sinclair est invalide.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected" xml:space="preserve"><value>Une erreur inattendue d’émulation Sinclair s’est produite.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Commande d’environnement inconnue : {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing" xml:space="preserve"><value>Le chemin du programme hôte Sinclair est indisponible.</value></data>
 </root>

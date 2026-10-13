@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>המדינה Sinclair הצילה אינה תואמת למכונה הנוכחית.</value></data>
-  <data name="Emulation.Sinclair.Error.Unexpected"><value>טעות חיקוי בלתי צפויה של Sinclair התרחשה.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>קושחה של Sinclair הוא חסר.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>המערכת ROM היא בלתי חוקית או לא מתאימה.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>התקשורת המוגדרת של Sinclair לא נמצאה.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>מכונה זו אינה תומכת בתקשורת שנבחרה.</value></data>
-  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>לאופציה של Sinclair יש ערך לא חוקי.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>הליבה הנדרשת של Sinclair לא נמצאה.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreRejected"><value>לא ניתן לטעון את הליבה של Sinclair.</value></data>
-  <data name="Emulation.Sinclair.Error.StateInvalid"><value>המדינה שהצילה את Sinclair היא בלתי נסבלת.</value></data>
-  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>הנתיב המתואם של Sinclair אינו זמין.</value></data>
-  <data name="Emulation.Sinclair.Error.Details"><value>תגית: {0}</value></data>
-  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>תקשורת עם מארח Sinclair נכשלה.</value></data>
-  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>ארכיון תגיות: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound" xml:space="preserve"><value>התקשורת הסטויגנת של Sinclair לא נמצאה.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported" xml:space="preserve"><value>מכונה זו אינה תומכת בתקשורת הנבחרת.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound" xml:space="preserve"><value>הליבה הנדרשת של Sinclair לא נמצאה.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected" xml:space="preserve"><value>הליבה של Sinclair שנבחרה לא יכול להיות טעון.</value></data>
+  <data name="Emulation.Sinclair.Error.Details" xml:space="preserve"><value>פרטים: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid" xml:space="preserve"><value>המערכת ROM הוא לא חוקי או לא עקבי.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing" xml:space="preserve"><value>קושחה נדרשת של Sinclair נעדרת.</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure" xml:space="preserve"><value>התקשורת עם מארח סינקלייר נכשלה.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid" xml:space="preserve"><value>לאופציה של Sinclair יש ערך לא חוקי.</value></data>
+  <data name="Emulation.Sinclair.Error.StateIncompatible" xml:space="preserve"><value>המדינה הננצלת של Sinclair אינה תואמת למכונה הנוכחית.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid" xml:space="preserve"><value>המדינה שהצילה את סינקלייר היא בלתי חוקית.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected" xml:space="preserve"><value>טעות חיקוי בלתי צפויה התרחשה.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>פיקוד הסביבה הלא ידוע: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing" xml:space="preserve"><value>הדרך לתכנית המארחת של Sinclair אינה זמינה.</value></data>
 </root>

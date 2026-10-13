@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>주문 선택 AY 입체 음향 출력의 사운드 채널.</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>볼륨을 조정 AY 사운드 칩.</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>내장된 사운드 발전기의 볼륨을 조정합니다.</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>화면 경계의 얼마나 많은 표시를 선택하십시오.</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>Chroma 81 색상 그래픽 확장을 에뮬레이트합니다.</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>원래 속도의 비율로 에뮬레이션 속도를 선택합니다.</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>Fuller Box 사운드와 조이스틱 확장을 에뮬레이션합니다.</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>고해상도 그래픽 확장을 선택하십시오.</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>문제 2 하드웨어의 키보드 동작을 격리합니다.</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>8~16 KiB의 메모리뱅크의 내용을 선택하십시오.</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>좌측과 오른쪽 버튼을 묶어 마우스를 묶습니다.</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>표시된 색상에 사용되는 팔레트를 선택합니다.</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>에뮬레이션된 사운드 하드웨어를 선택하십시오.</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>에뮬레이션된 확성기에 사용되는 필터를 선택합니다.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>카세트를 자동으로 로드합니다.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>빠른 부하 카세트 데이터.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>카세트 데이터를 로딩하면서 생성된 사운드를 재생합니다.</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>TurboSound 사운드 확장을 2로 에뮬레이트 AY 칩.</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>Currah uSpeech 연설 확장을 수정합니다. 필요한 펌웨어 파일 모두 현재 있어야 합니다.</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>에뮬레이션 비디오 신호의 외관을 선택합니다.</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 MELODIK 사운드 확장.</value></data>
+</root>

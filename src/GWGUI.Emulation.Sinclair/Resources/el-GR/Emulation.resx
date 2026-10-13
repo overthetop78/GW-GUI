@@ -4,73 +4,40 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description"><value>Προσομοιάζει το Sinclair ZX81.</value></data>
-  <data name="Emulation.Emulator.fuse.Description"><value>Προσομοιάζει ZX Spectrum και συμβατούς υπολογιστές.</value></data>
-  <data name="Emulation.Sinclair.Memory.Display"><value>Μνήμη βίντεο</value></data>
-  <data name="Emulation.Sinclair.Audio.Native"><value>Υλικό ήχου</value></data>
-  <data name="Emulation.Sinclair.Keyboard.Native"><value>Πληκτρολόγιο μηχανής</value></data>
-  <data name="Emulation.Sinclair.Video.Native"><value>Απεικόνιση βίντεο</value></data>
-  <data name="Emulation.Sinclair.Controls.Native"><value>Επιλογές ελεγκτή</value></data>
-  <data name="Emulation.Sinclair.System.Native"><value>Επιλογές μηχανής</value></data>
-  <data name="Emulation.Sinclair.Content.Initial"><value>Αρχική περιεκτικότητα</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load"><value>Φόρτωση ταχείας ταινίας</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load.Help"><value>Φορτώνει ταινίες πιο γρήγορα από το αρχικό μηχάνημα.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents"><value>Μνήμη μεταξύ 8 και 16 KiB</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Help"><value>Επιλέγει τα περιεχόμενα της περιοχής μνήμης μεταξύ 8 και 16 KiB.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Value1"><value>Καθρέπτης ROM</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size"><value>Εμφάνιση περιγράμματος</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Help"><value>Επιλέγει το ποσό του περιγράμματος που εμφανίζεται γύρω από την οθόνη.</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value0"><value>Κανονικό</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value1"><value>Μικρά σύνορα</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres"><value>Υψηλή ανάλυση</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres.Help"><value>Επιλέγει την υποστήριξη γραφικών υψηλής ανάλυσης.</value></data>
-  <data name="Emulation.Sinclair.Option.81_chroma_81.Help"><value>Ενεργοποίηση της χρωματικής επέκτασης Chroma 81.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets"><value>Εμφάνιση βίντεο</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Help"><value>Επιλέγει την εμφάνιση του εικονιζόμενου σήματος βίντεο.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value0"><value>Εικόνα χωρίς οπτικά εφέ</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value1"><value>Τηλεόραση</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value2"><value>Θόρυβος βίντεο</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound"><value>Συσκευή επέκτασης ήχου</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound.Help"><value>Επιλέγει την εικονιζόμενη επέκταση ήχου.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed"><value>Ταχύτητα εξομοίωσης</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed.Help"><value>Ορίζει την ταχύτητα εξομοίωσης ως ποσοστό της αρχικής ταχύτητας.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2"><value>Αναθεώρηση υλικού πληκτρολογίου 2</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2.Help"><value>Προσομοιάζει τη συμπεριφορά πληκτρολογίου του υλικού Τεύχος 2.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border"><value>Εμφάνιση περιγράμματος</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Help"><value>Επιλέγει το ποσό του περιγράμματος που εμφανίζεται γύρω από την οθόνη.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value0"><value>Πλήρης</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value1"><value>Μεσαίο</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value2"><value>Μικρά σύνορα</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value3"><value>Ελάχιστα όρια</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette"><value>Παλέτα χρωμάτων</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Help"><value>Επιλέγει τα χρώματα που χρησιμοποιούνται για την εμφάνιση της εικόνας.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value2"><value>Ασπρόμαυρη τηλεόραση</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value3"><value>Πράσινο μονόχρωμο</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value4"><value>Μονόχρωμο κεχριμπάρι</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value6"><value>CGA: 4 χρώματα</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value7"><value>CGA: 8 χρώματα</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value8"><value>CGA: 16 χρώματα</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value9"><value>Αντεστραμμένα χρώματα</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load"><value>Αυτόματη φόρτωση ταινίας</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load.Help"><value>Αρχίζει να φορτώνει μια κασέτα αυτόματα.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load"><value>Φόρτωση ταχείας ταινίας</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load.Help"><value>Φορτώνει ταινίες πιο γρήγορα από το αρχικό μηχάνημα.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound"><value>Ήχος φόρτωσης κασέτας</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound.Help"><value>Παίζει τον ήχο της φόρτωσης κασέτα.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type"><value>Τύπος ηχείου</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Help"><value>Επιλέγει το φιλτράρισμα που χρησιμοποιείται για τον αρχικό ήχο του ηχείου.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value0"><value>Τηλεοπτικός ομιλητής</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value2"><value>Μη φιλτραρισμένο</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation"><value>⁇  καναλιών Stereo</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation.Help"><value>Επιλέγει τη στερεοφωνική διάταξη των καναλιών ήχου AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_turbosound.Help"><value>Ενεργοποιεί την επέκταση TurboSound με δύο AY τσιπ ήχου.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fuller_box.Help"><value>Ενεργοποίηση της επέκτασης ήχου Fuller Box.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_uspeech.Help"><value>Ενεργοποιεί το συνθεσάιζερ ομιλίας Currah uSpeech όταν είναι διαθέσιμο firmware του.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_melodik.Help"><value>Ενεργοποίηση της επέκτασης ήχου Melodik.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay"><value>AY ένταση ηχητικών τσιπ</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay.Help"><value>Ορίζει την ένταση των καναλιών ήχου AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper"><value>Ενσωματωμένος όγκος ηχείου</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper.Help"><value>Ορίζει την ένταση του ενσωματωμένου ηχείου.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons"><value>Αντίστροφα κουμπιά ποντικιού</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons.Help"><value>Αντιστρέφει τα αριστερά και δεξιά κουμπιά του ποντικιού Kempston.</value></data>
+  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>Προσομοιάζει τον Σινκλέρ ZX81.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Υλικό ήχου</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Αρχική περιεκτικότητα</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>μνήμη βίντεο</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY σειρά στερεοφωνικού καναλιού</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY όγκος</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>Μέγεθος περιγράμματος οθόνης</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>Ταχύτητα εξομοίωσης</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>γραφικά υψηλής ανάλυσης</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>Τράπεζα μνήμης 8 ⁇ 16 KiB</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>Εναλλαγή κουμπιών ποντικιού</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>Παλέτα χρωμάτων</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>Υλικό ήχου</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>Τύπος ηχείου</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>Αυτόματη φόρτωση κασέτας</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>Γρήγορη φόρτωση κασέτας</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>Ήχος φόρτωσης κασσέτας</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>Προεπιλεγμένο βίντεο</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>Μονόχρωμο κεχριμπάρι</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>Ενσωματωμένη γεννήτρια ήχου</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>Πράσινο μονόχρωμο</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>Αντεστραμμένα χρώματα</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>Μαύρο και άσπρο</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>Καμία</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>Κανονικό</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM καθρέπτης</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>Τηλεόραση</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Μεγάφωνο τηλεόρασης</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Μη φιλτράρεται</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Εμφάνιση βίντεο</value></data>
+  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>Εξομοίωση ZX SPECTRUM και συμβατοί υπολογιστές.</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Ενσωματωμένη ένταση ήχου</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Αναθεώρηση 2 πληκτρολογίου</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Καθαρισμός εικόνας</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>Πλήρες όριο οθόνης</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>Εικόνα με θόρυβο</value></data>
 </root>

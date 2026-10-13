@@ -62,7 +62,8 @@ internal static class SavedStateFunctions
     internal static string ContentHash(MachineConfiguration configuration) => HashBytes(JsonSerializer.SerializeToUtf8Bytes(ContentEntries(configuration), StateConstants.JsonOptions));
     private static IReadOnlyList<StateContentEntry> ContentEntries(MachineConfiguration configuration)
     {
-        var initialPaths = configuration.InitialContent is null ? Array.Empty<string>() : new Engine().Adapter(configuration).ResolveInitialContentPaths(configuration);
+        var initialPaths = configuration.InitialContent is null || configuration.Core == Emulator.None ? Array.Empty<string>()
+            : new Engine().Adapter(configuration) is IEmulatorInitialContentSettings content ? content.ResolveInitialContentPaths(configuration) : [];
         var entries = configuration.Firmwares.OrderBy(firmware => firmware.Category).Select(firmware => new StateContentEntry(StateConstants.FirmwareCategory,
             firmware.Category.ToString(),
             HashPath(firmware.Path))).Concat(configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path,

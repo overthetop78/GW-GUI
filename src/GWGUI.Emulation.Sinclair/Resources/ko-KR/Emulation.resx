@@ -4,73 +4,40 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description"><value>Sinclair ZX81을 에뮬레이트합니다.</value></data>
-  <data name="Emulation.Emulator.fuse.Description"><value>ZX Spectrum 및 호환 컴퓨터를 격리합니다.</value></data>
-  <data name="Emulation.Sinclair.Memory.Display"><value>영상 기억</value></data>
-  <data name="Emulation.Sinclair.Audio.Native"><value>오디오 하드웨어</value></data>
-  <data name="Emulation.Sinclair.Keyboard.Native"><value>기계 키보드</value></data>
-  <data name="Emulation.Sinclair.Video.Native"><value>영상 표시</value></data>
-  <data name="Emulation.Sinclair.Controls.Native"><value>관제사 선택권</value></data>
-  <data name="Emulation.Sinclair.System.Native"><value>기계 옵션</value></data>
-  <data name="Emulation.Sinclair.Content.Initial"><value>초기 내용</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load"><value>빠른 테이프 선적</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load.Help"><value>짐은 본래 기계 보다는 더 빠릅니다.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents"><value>8과 16 사이 기억 KiB</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Help"><value>8과 16 KiB 사이의 메모리 영역의 내용을 선택합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Value1"><value>ROM 거울</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size"><value>전시 국경</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Help"><value>표시 주위에 표시된 경계의 양을 선택합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value0"><value>뚱 베어</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value1"><value>작은 국경</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres"><value>높은 해결책</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres.Help"><value>고해상도 그래픽 지원 선택.</value></data>
-  <data name="Emulation.Sinclair.Option.81_chroma_81.Help"><value>Chroma 81 색상 확장을 가능하게합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets"><value>영상 외관</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Help"><value>에뮬레이션 비디오 신호의 외관을 선택합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value0"><value>시각 효과 없는 이미지</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value1"><value>TV 시청</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value2"><value>영상 소음</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound"><value>Audio 확장 장치</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound.Help"><value>에뮬레이션된 사운드 확장을 선택하십시오.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed"><value>Emulation 속도</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed.Help"><value>원래 속도의 비율로 에뮬레이션 속도를 설정합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2"><value>키보드 하드웨어 개정 2</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2.Help"><value>문제 2 하드웨어의 키보드 동작을 격리합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border"><value>전시 국경</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Help"><value>표시 주위에 표시된 경계의 양을 선택합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value0"><value>뚱 베어</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value1"><value>(주)엠씨</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value2"><value>작은 국경</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value3"><value>Minimal 국경</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette"><value>색깔 팔레트</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Help"><value>이미지를 표시하는 데 사용되는 색상을 선택합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value2"><value>검은 색과 흰색 TV</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value3"><value>녹색 monochrome</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value4"><value>호박색 monochrome</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value6"><value>CGA: 4개의 색깔</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value7"><value>CGA: 8개의 색깔</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value8"><value>CGA: 16의 색깔</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value9"><value>거꾸로 한 색깔</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load"><value>자동 테이프 로딩</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load.Help"><value>테이프를 자동으로 로드합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load"><value>빠른 테이프 선적</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load.Help"><value>짐은 본래 기계 보다는 더 빠릅니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound"><value>Tape 로딩 사운드</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound.Help"><value>테이프 로딩의 소리를 재생합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type"><value>스피커 유형</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Help"><value>원본 스피커 사운드에 사용되는 필터링을 선택합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value0"><value>TV 스피커</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value2"><value>필터링</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation"><value>Stereo 채널 구성</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation.Help"><value>AY 사운드 채널의 스테레오 배열을 선택합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_turbosound.Help"><value>2개의 AY 사운드 칩과 TurboSound 확장을 가능하게 합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fuller_box.Help"><value>Fuller Box 사운드 확장을 가능하게 합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_uspeech.Help"><value>펌웨어가 사용할 때 Currah uSpeech 연설 합성기를 활성화합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_melodik.Help"><value>Melodik 사운드 확장을 활성화합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay"><value>AY 사운드 칩 볼륨</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay.Help"><value>AY 사운드 채널의 볼륨을 설정합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper"><value>내장 스피커 볼륨</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper.Help"><value>내장 스피커의 볼륨을 설정합니다.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons"><value>반전 쥐 단추</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons.Help"><value>Kempston 마우스의 왼쪽 및 오른쪽 버튼을 반전합니다.</value></data>
+  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>Sinclair를 에뮬레이트 ZX81.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>오디오 하드웨어</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>초기 내용</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>영상 기억</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY 입체 음향 채널 순서</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY 의논하기</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>스크린 국경 크기</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>공급 능력</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>고해상도 그래픽</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8–16 KiB 메모리 은행</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>마우스 단추를 교환</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>색깔 팔레트</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>음향 하드웨어</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>스피커 유형</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>자동 카세트 적재</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>빠른 카세트 선적</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>카세트 적재 소리</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>비디오 preset</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>호박색 monochrome</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>내장형 음향 발전기</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>녹색 monochrome</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>색을 덮어</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>검정과 흰색</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>ᄋᄋᄋ</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>의 의</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM 의 특징</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>TV 시청</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>텔레비전 확성기</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>뚱 베어</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>영상 표시</value></data>
+  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 ZX SPECTRUM 호환되는 컴퓨터.</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>내장 사운드 볼륨</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>개정 2 키보드</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>맑음</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>풀 스크린 국경</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>이미지와 소음</value></data>
 </root>

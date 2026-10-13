@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>Το Sinclair σωζόμενο κράτος είναι ασυμβίβαστο με την τρέχουσα μηχανή.</value></data>
-  <data name="Emulation.Sinclair.Error.Unexpected"><value>Συνέβη ένα απροσδόκητο σφάλμα εξομοίωσης Sinclair.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>Ένα απαιτούμενο λογισμικό Sinclair λείπει.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>Το σύστημα ROM δεν είναι έγκυρο ή ασυμβίβαστο.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>Τα ρυθμισμένα μέσα Sinclair δε βρέθηκαν.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>Αυτή η μηχανή δεν υποστηρίζει τα επιλεγμένα μέσα.</value></data>
-  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>Μια επιλογή Sinclair έχει μια μη έγκυρη τιμή.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>Ο απαιτούμενος πυρήνας Sinclair δεν βρέθηκε.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreRejected"><value>Δεν ήταν δυνατή η φόρτωση του επιλεγμένου πυρήνα Sinclair.</value></data>
-  <data name="Emulation.Sinclair.Error.StateInvalid"><value>Το Sinclair σωζόμενο κράτος είναι άκυρο.</value></data>
-  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>Η εκτελέσιμη διαδρομή του Sinclair ξενιστή δεν είναι διαθέσιμη.</value></data>
-  <data name="Emulation.Sinclair.Error.Details"><value>Λεπτομέρειες: {0}</value></data>
-  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>Η επικοινωνία με τον ξενιστή Sinclair απέτυχε.</value></data>
-  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>Άγνωστη εντολή περιβάλλοντος: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound" xml:space="preserve"><value>Τα ρυθμισμένα μέσα Sinclair δε βρέθηκαν.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported" xml:space="preserve"><value>Αυτή η μηχανή δεν υποστηρίζει τα επιλεγμένα μέσα.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound" xml:space="preserve"><value>Ο απαιτούμενος πυρήνας Σινκλέρ δεν βρέθηκε.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected" xml:space="preserve"><value>Ο επιλεγμένος πυρήνας Sinclair δεν ήταν δυνατό να φορτωθεί.</value></data>
+  <data name="Emulation.Sinclair.Error.Details" xml:space="preserve"><value>Λεπτομέρειες: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid" xml:space="preserve"><value>Το σύστημα ROM είναι άκυρη ή ασυμβίβαστη.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing" xml:space="preserve"><value>Λείπει ένα απαιτούμενο λογισμικό Sinclair.</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure" xml:space="preserve"><value>Η επικοινωνία με τον οικοδεσπότη Σινκλέρ απέτυχε.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid" xml:space="preserve"><value>Μια επιλογή Sinclair έχει μια μη έγκυρη τιμή.</value></data>
+  <data name="Emulation.Sinclair.Error.StateIncompatible" xml:space="preserve"><value>Η κατάσταση που έσωσε ο Σινκλέρ είναι ασύμβατη με την τρέχουσα μηχανή.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid" xml:space="preserve"><value>Η κατάσταση που έσωσε ο Σινκλέρ είναι άκυρη.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected" xml:space="preserve"><value>Συνέβη ένα απροσδόκητο σφάλμα εξομοίωσης Σινκλέρ.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Άγνωστη εντολή περιβάλλοντος: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing" xml:space="preserve"><value>Η διαδρομή προς το πρόγραμμα υποδοχής Σινκλέρ δεν είναι διαθέσιμη.</value></data>
 </root>

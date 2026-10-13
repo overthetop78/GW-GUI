@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants;
 using System.IO;
 using System.Runtime.InteropServices;
 

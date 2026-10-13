@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Functions;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Contracts;
 using GWGUI.Emulation.Sinclair.Common.Interfaces;
 using GWGUI.Emulation.Sinclair.Emulators.Common.Factories;
 

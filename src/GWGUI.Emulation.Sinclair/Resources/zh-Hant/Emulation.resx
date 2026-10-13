@@ -4,73 +4,40 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description"><value>仿出Sinclair ZX81號機車.</value></data>
-  <data name="Emulation.Emulator.fuse.Description"><value>模擬了ZX Spectrum和相容的計算機.</value></data>
-  <data name="Emulation.Sinclair.Memory.Display"><value>視頻內存</value></data>
-  <data name="Emulation.Sinclair.Audio.Native"><value>音頻硬件</value></data>
-  <data name="Emulation.Sinclair.Keyboard.Native"><value>機器鍵盤</value></data>
-  <data name="Emulation.Sinclair.Video.Native"><value>視頻顯示</value></data>
-  <data name="Emulation.Sinclair.Controls.Native"><value>控制器選項</value></data>
-  <data name="Emulation.Sinclair.System.Native"><value>機器選項</value></data>
-  <data name="Emulation.Sinclair.Content.Initial"><value>初始內容</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load"><value>快速帶裝入</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load.Help"><value>裝入磁帶的速度比原機快.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents"><value>8至16個基B之間的內存</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Help"><value>選擇8至16 KiB之間的內存區域內容。</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Value1"><value>ROM 鏡像</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size"><value>顯示邊框</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Help"><value>選擇顯示在顯示周圍的邊框數量。</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value0"><value>常規</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value1"><value>小邊框</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres"><value>高分辨率</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres.Help"><value>選擇高分辨率圖形支持。</value></data>
-  <data name="Emulation.Sinclair.Option.81_chroma_81.Help"><value>啟用 Chroma 81 色彩擴展。</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets"><value>視頻顯示</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Help"><value>選擇模擬視頻信號的外觀。</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value0"><value>沒有視覺效果的圖像</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value1"><value>電視</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value2"><value>視頻噪音</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound"><value>音頻擴展設備</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound.Help"><value>選擇模擬的音效擴展。</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed"><value>模擬速度</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed.Help"><value>設置仿真速度為原速度的百分比.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2"><value>鍵盤硬件修訂版 2</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2.Help"><value>模擬"問題2"硬件的鍵盤行為.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border"><value>顯示邊框</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Help"><value>選擇顯示在顯示周圍的邊框數量。</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value0"><value>滿</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value1"><value>中號</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value2"><value>小邊框</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value3"><value>最小邊框</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette"><value>彩色調色板</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Help"><value>選擇用于顯示圖像的顏色。</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value2"><value>黑白電視</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value3"><value>綠色單色</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value4"><value>琥珀單色</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value6"><value>CGA: 4種顏色</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value7"><value>CGA: 8種顏色</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value8"><value>CGA: 16種顏色</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value9"><value>反向顏色</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load"><value>自動裝入磁帶</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load.Help"><value>開始自動裝入磁帶。</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load"><value>快速帶裝入</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load.Help"><value>裝入磁帶的速度比原機快.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound"><value>磁帶加載聲音</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound.Help"><value>播放磁帶加載的聲音。</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type"><value>揚聲器類型</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Help"><value>選擇用于原揚聲器聲音的過濾。</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value0"><value>電視發言人</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value2"><value>未過濾</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation"><value>立體聲頻道配置</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation.Help"><value>請選擇 AY 聲音頻道的立體安排。</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_turbosound.Help"><value>啟用TurboSound擴能,并配有2個AY音效芯片.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fuller_box.Help"><value>啟用 Fuller Box 聲音擴展。</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_uspeech.Help"><value>啟用 Currah uSpeech 語音合成器, 當其固件可用時。</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_melodik.Help"><value>啟用 Melodik 音效擴展 。</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay"><value>AY 音效芯片音量</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay.Help"><value>設置 AY 聲道的音量。</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper"><value>內置揚聲器音量</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper.Help"><value>設置內置揚聲器的音量。</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons"><value>倒轉鼠標按鈕</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons.Help"><value>反轉 Kempston 鼠標的左右按鈕。</value></data>
+  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>模仿辛克莱 ZX81.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>音频硬件</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>初始内容</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>视频内存</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY 立体声频道顺序</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY 音量</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>屏幕边框大小</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>模拟速度</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>高分辨率图形</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8-16 KiB 记忆库</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>交换鼠标按钮</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>彩色调色板</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>声音硬件</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>扬声器类型</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>自动装入磁带</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>快速装入磁带</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>装入磁盘的声音</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>视频预设</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>琥珀单色</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>内置的音效生成器</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>绿色单色</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>倒转颜色</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>黑白两色</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>无</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>普通类</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM 镜像</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>电视</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>电视扩音器</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>未过滤</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>视频显示</value></data>
+  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>模拟 ZX SPECTRUM 和相容的电脑。</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>内置音量</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>修订版 2 键盘</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>清晰的图像</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>全屏边框</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>图像有噪音</value></data>
 </root>

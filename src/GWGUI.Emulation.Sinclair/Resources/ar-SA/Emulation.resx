@@ -4,73 +4,40 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description"><value>يَمْنحُ Sinclair ZX81.</value></data>
-  <data name="Emulation.Emulator.fuse.Description"><value>يَحْملُ ZX Spectrum وحواسيب متوافقة.</value></data>
-  <data name="Emulation.Sinclair.Memory.Display"><value>ذاكرة الفيديو</value></data>
-  <data name="Emulation.Sinclair.Audio.Native"><value>معدات سمعية</value></data>
-  <data name="Emulation.Sinclair.Keyboard.Native"><value>لوحة مفاتيح للآلات</value></data>
-  <data name="Emulation.Sinclair.Video.Native"><value>عرض فيديو</value></data>
-  <data name="Emulation.Sinclair.Controls.Native"><value>خيارات المراقب المالي</value></data>
-  <data name="Emulation.Sinclair.System.Native"><value>خيارات الآلات</value></data>
-  <data name="Emulation.Sinclair.Content.Initial"><value>المحتوى الأولي</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load"><value>تحميل الأشرطة السريعة</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load.Help"><value>الشرائط أسرع من الآلة الأصلية</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents"><value>الذاكرة بين 8 و16 كيلوبايت</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Help"><value>يختار محتويات منطقة الذاكرة بين 8 و 16 كي بي.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Value1"><value>ROM مرآة</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size"><value>عرض الحدود</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Help"><value>يَختارُ كميةَ الحدودِ المبيّنة حول المعرضِ.</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value0"><value>الحالة الطبيعية</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value1"><value>الحدود الصغيرة</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres"><value>القرار الرفيع المستوى</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres.Help"><value>يَختارُ دعماً بيانياً عالي القرارِ.</value></data>
-  <data name="Emulation.Sinclair.Option.81_chroma_81.Help"><value>يمكّن من توسيع لون Chroma 81.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets"><value>مظهر فيديو</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Help"><value>يَختارُ مظهر إشارة الفيديو المؤثّرةِ.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value0"><value>التصوير بدون آثار بصرية</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value1"><value>التلفزيون</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value2"><value>ضوضاء فيديو</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound"><value>جهاز توسيع الصوت</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound.Help"><value>يُختار التوسع الصوتي المُحتسب.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed"><value>سرعة التنفيذ</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed.Help"><value>يحدد سرعة العزل كنسبة مئوية من السرعة الأصلية.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2"><value>تنقيح معدات لوحة المفاتيح 2</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2.Help"><value>يجسد سلوك لوحة المفاتيح في قضية 2 من الأجهزة.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border"><value>عرض الحدود</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Help"><value>يَختارُ كميةَ الحدودِ المبيّنة حول المعرضِ.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value0"><value>كاملة</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value1"><value>متوسطة</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value2"><value>الحدود الصغيرة</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value3"><value>الحدود الدنيا</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette"><value>شاحبة اللون</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Help"><value>يختار الألوان المستخدمة لعرض الصورة.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value2"><value>التلفزيون الأسود والبيضاء</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value3"><value>الاحتكارات الخضراء</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value4"><value>احتكار أمبير</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value6"><value>CGA: 4 colors</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value7"><value>CGA: 8 colors</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value8"><value>CGA: 16 colors</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value9"><value>الألوان المحذوفة</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load"><value>تحميل الشرائط الآلية</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load.Help"><value>يبدأ بتحميل الشريط تلقائياً</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load"><value>تحميل الأشرطة السريعة</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load.Help"><value>الشرائط أسرع من الآلة الأصلية</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound"><value>صوت تحميل التايب</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound.Help"><value>يَلْعبُ صوت تحميل الشريطِ.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type"><value>نوع المتكلّم</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Help"><value>يَختارُ التصفير المستخدم لصوتِ المكبر الأصليِ.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value0"><value>متحدث تلفزيوني</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value2"><value>غير مسروقة</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation"><value>تشكيلة قناة ستيرو</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation.Help"><value>يَختارُ ترتيبَ ستريو للقنواتِ الصوتيةِ AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_turbosound.Help"><value>يمكن توسيع TurboSound برقائق صوتين AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fuller_box.Help"><value>يمكّن من توسيع الصوت Fuller Box.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_uspeech.Help"><value>يُمكِّن مركب الخطاب البالغ Currah uSpeech عندما يكون جاهزاً</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_melodik.Help"><value>يمكّن من توسيع الصوت Melodik.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay"><value>AY رقاقة الصوت</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay.Help"><value>يحدد حجم القنوات الصوتية AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper"><value>حجم مكبرات الصوت</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper.Help"><value>يُحدِّدُ حجمَ المتكلّمِ البني.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons"><value>أزرار فأر عكسية</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons.Help"><value>عكس الأزرار اليسرى واليمن من الفأر Kempston</value></data>
+  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>يُمَدّسُ السنكلير ZX81.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>معدات سمعية</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>المحتوى الأولي</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>ذكرى فيديو</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY نظام قناة ستريو</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY الحجم</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>حجم الحدود</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>سرعة الاختراع</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>رسوم بيانية عالية الاستبانة</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8-16 مصرف الذاكرة في كي بي</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>أزرار فأر السوائب</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>شاحبة اللون</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>معدات صوتية</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>نوع المتكلّم</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>تحميل قسائم آلية</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>تحميل الكاسيت السريع</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>صوت تحميل كاسيت</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>الفيديو قبل بدء المحاكمة</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>احتكار أمبير</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>مولدات صوتية في البناء</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>الاحتكارات الخضراء</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>الألوان المحولة</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>أسود وأبيض</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>لا</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>المعيار</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM المرايا</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>التلفزيون</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Television loudspeaker</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>غير مُلْصَل</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>عرض فيديو</value></data>
+  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>المواد ZX SPECTRUM و حواسيب متوافقة</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>حجم الصوت في البناء</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>تنقيح 2 لوحة مفاتيح</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>صورة واضحة</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>شاشة الحدود الكاملة</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>تصوّر مع الضوضاء</value></data>
 </root>

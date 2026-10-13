@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>Sinclair gemt tilstand er uforenelig med den nuværende maskine.</value></data>
-  <data name="Emulation.Sinclair.Error.Unexpected"><value>En uventet Sinclair emulering fejl opstod.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>En krævet Sinclair firmware mangler.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>System ROM er ugyldig eller inkompatibel.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>De konfigurerede Sinclair medier blev ikke fundet.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>Denne maskine understøtter ikke de valgte medier.</value></data>
-  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>En Sinclair-indstilling har en ugyldig værdi.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>Den krævede Sinclair-kerne blev ikke fundet.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreRejected"><value>Den valgte Sinclair-kerne kunne ikke indlæses.</value></data>
-  <data name="Emulation.Sinclair.Error.StateInvalid"><value>Sinclair gemt tilstand er ugyldig.</value></data>
-  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>Sinclair-værtens kørbare sti er ikke tilgængelig.</value></data>
-  <data name="Emulation.Sinclair.Error.Details"><value>Detaljer: {0}</value></data>
-  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>Kommunikation med Sinclair-værten mislykkedes.</value></data>
-  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>Ukendt miljøkommando: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound" xml:space="preserve"><value>De konfigurerede Sinclair medier blev ikke fundet.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported" xml:space="preserve"><value>Denne maskine understøtter ikke de valgte medier.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound" xml:space="preserve"><value>Den krævede Sinclair-kerne blev ikke fundet.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected" xml:space="preserve"><value>Den valgte Sinclair-kerne kunne ikke indlæses.</value></data>
+  <data name="Emulation.Sinclair.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid" xml:space="preserve"><value>Systemet ROM er ugyldig eller inkompatibel.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing" xml:space="preserve"><value>Der mangler en krævet Sinclair firmware.</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure" xml:space="preserve"><value>Kommunikation med Sinclair-værten mislykkedes.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid" xml:space="preserve"><value>En Sinclair-indstilling har en ugyldig værdi.</value></data>
+  <data name="Emulation.Sinclair.Error.StateIncompatible" xml:space="preserve"><value>Sinclair-gemt tilstand er uforenelig med den nuværende maskine.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid" xml:space="preserve"><value>Sinclair gemt tilstand er ugyldig.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected" xml:space="preserve"><value>En uventet Sinclair emulering fejl opstod.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Ukendt miljøkommando: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing" xml:space="preserve"><value>Stien til Sinclair-værtsprogrammet er ikke tilgængelig.</value></data>
 </root>

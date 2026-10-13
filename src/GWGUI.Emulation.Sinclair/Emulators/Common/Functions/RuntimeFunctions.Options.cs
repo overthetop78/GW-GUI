@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Dictionaries;
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Functions;
 
 internal static class NativeRuntimeOptionFunctions

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>اختر طلب AY قنوات سليمة في إنتاج (ستريو)</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>تعديل حجم AY رقاقة الصوت</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>عدل حجم المولد الصوتي المبني</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>اختر كم من الحدود الشاشة مُعرضة</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>ضخّمْ التموينَ لونِ الكروما 81.</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>اختر سرعة العزلة كنسبة مئوية من السرعة الأصلية</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>ضخ صوت صندوق فولر و تمديد عود المرح</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>اختر ارشاداً للرسومات</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>حفز سلوك لوحة المفاتيح في العزلة 2</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>اختر محتويات بنك الذاكرة من 8 إلى 16 كي بي</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>امسح الأزرار اليسرى واليمن للفأر المُحتَطِم</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>اختر الشاليت المستخدم للألوان المُعرضة</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>اختر أجهزة الصوت المحتوية</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>اختر المرشح المستخدم للمكبر الصوتي</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>ابدأي بحمل كاسيت تلقائياً</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>بيانات السوسيت اللواد أسرع</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>شغل الصوت المنتج بينما تحميل بيانات الكاسيت</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>حفز صوت (توربوسوند) باثنين AY رقائق</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>ترجمه الى خطاب كورا او سبيك كلاهما يحتاج الى ملفات برمجيات يجب ان تكون حاضره</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>اختر ظهور اشارة الفيديو المُحتَرَضة</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>إحياء MELODIK تمديد الصوت</value></data>
+</root>

@@ -4,73 +4,40 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description"><value>Emula el Sinclair ZX81.</value></data>
-  <data name="Emulation.Emulator.fuse.Description"><value>Emula ZX Spectrum y ordenadores compatibles.</value></data>
-  <data name="Emulation.Sinclair.Memory.Display"><value>Memoria de vídeo</value></data>
-  <data name="Emulation.Sinclair.Audio.Native"><value>Equipo de audio</value></data>
-  <data name="Emulation.Sinclair.Keyboard.Native"><value>Teclado de máquina</value></data>
-  <data name="Emulation.Sinclair.Video.Native"><value>Pantalla de vídeo</value></data>
-  <data name="Emulation.Sinclair.Controls.Native"><value>Opciones de control</value></data>
-  <data name="Emulation.Sinclair.System.Native"><value>Opciones de máquina</value></data>
-  <data name="Emulation.Sinclair.Content.Initial"><value>Contenido inicial</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load"><value>Carga de cinta rápida</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load.Help"><value>Carga de cintas más rápido que la máquina original.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents"><value>Memoria entre 8 y 16 KiB</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Help"><value>Selecciona el contenido del área de memoria entre 8 y 16 KiB.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Value1"><value>ROM espejo</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size"><value>Mostrar frontera</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Help"><value>Selecciona la cantidad de frontera mostrada alrededor de la pantalla.</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value0"><value>Normal</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value1"><value>Pequeña frontera</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres"><value>Alta resolución</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres.Help"><value>Selecciona soporte gráfico de alta resolución.</value></data>
-  <data name="Emulation.Sinclair.Option.81_chroma_81.Help"><value>Permite la expansión de color Chroma 81.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets"><value>Aparición de vídeo</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Help"><value>Selecciona la apariencia de la señal de vídeo emulada.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value0"><value>Imagen sin efectos visuales</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value1"><value>Televisión</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value2"><value>Ruido de vídeo</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound"><value>Dispositivo de expansión audio</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound.Help"><value>Selecciona la expansión de sonido emulado.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed"><value>Velocidad de emulación</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed.Help"><value>Establece velocidad de emulación como porcentaje de la velocidad original.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2"><value>Revisión del hardware de teclado 2</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2.Help"><value>Emula el comportamiento de teclado del hardware Edición 2.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border"><value>Mostrar frontera</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Help"><value>Selecciona la cantidad de frontera mostrada alrededor de la pantalla.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value0"><value>Completo</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value1"><value>Mediana</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value2"><value>Pequeña frontera</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value3"><value>Frontera mínima</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette"><value>Paleta de color</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Help"><value>Selecciona los colores utilizados para mostrar la imagen.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value2"><value>Televisión blanca y negra</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value3"><value>Monocromo verde</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value4"><value>Monocromo ámbar</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value6"><value>CGA: 4 colores</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value7"><value>CGA: 8 colores</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value8"><value>CGA: 16 colores</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value9"><value>Colores invertidos</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load"><value>Carga de cinta automática</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load.Help"><value>Empieza a cargar una cinta automáticamente.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load"><value>Carga de cinta rápida</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load.Help"><value>Carga de cintas más rápido que la máquina original.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound"><value>Sonido de carga de cinta</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound.Help"><value>Reproduce el sonido de la carga de cinta.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type"><value>Tipo de altavoz</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Help"><value>Selecciona el filtro utilizado para el sonido de altavoz original.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value0"><value>Altavoz de televisión</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value2"><value>Infiltrados</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation"><value>Configuración del canal de Stereo</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation.Help"><value>Selecciona el arreglo estéreo de los canales de sonido AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_turbosound.Help"><value>Permite la expansión TurboSound con dos chips de sonido AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fuller_box.Help"><value>Permite la expansión de sonido Fuller Box.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_uspeech.Help"><value>Permite el sintetizador de palabras Currah uSpeech cuando esté disponible su firmware.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_melodik.Help"><value>Permite la expansión del sonido de Melodik.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay"><value>Volumen de sonido AY</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay.Help"><value>Establece el volumen de los canales de sonido AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper"><value>Volumen de altavoz incorporado</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper.Help"><value>Establece el volumen del altavoz incorporado.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons"><value>Botones de ratón inversos</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons.Help"><value>Revierte los botones izquierdo y derecho del ratón Kempston.</value></data>
+  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>Emula el Sinclair ZX81.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Herrajes de audio</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Contenido inicial</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>Memoria de vídeo</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY canal estéreo</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY volumen</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>Tamaño de la frontera</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>Velocidad de emulación</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>Gráficos de alta resolución</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8–16 Banco de memoria KiB</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>Cierre los botones del ratón</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>Paleta de color</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>Herrajes de sonido</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>Tipo de altavoz</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>Carga automática de casetes</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>Carga rápida de casete</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>Cassette cargando sonido</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>Predeterminado de vídeo</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>Monocromo ámbar</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>Generador de sonido integrado</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>Monocromo verde</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>Colores invertidos</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>Blanco y negro</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>Ninguno</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM espejo</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>Televisión</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Televisión altavoz</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Sin filtrar</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Pantalla de vídeo</value></data>
+  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>Emulates ZX SPECTRUM y computadoras compatibles.</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Volumen de sonido incorporado</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Revisión 2 teclado</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Imagen clara</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>Frontera de pantalla completa</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>Imagen con ruido</value></data>
 </root>

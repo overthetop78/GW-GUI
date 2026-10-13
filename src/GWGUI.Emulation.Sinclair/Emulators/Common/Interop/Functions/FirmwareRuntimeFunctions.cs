@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Factories;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Dictionaries;
 using System.IO;
 
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;

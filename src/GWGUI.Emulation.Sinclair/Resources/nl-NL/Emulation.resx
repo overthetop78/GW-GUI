@@ -4,73 +4,40 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description"><value>Emuleert de Sinclair ZX81.</value></data>
-  <data name="Emulation.Emulator.fuse.Description"><value>Emuleert ZX Spectrum en compatibele computers.</value></data>
-  <data name="Emulation.Sinclair.Memory.Display"><value>Videogeheugen</value></data>
-  <data name="Emulation.Sinclair.Audio.Native"><value>Audio hardware</value></data>
-  <data name="Emulation.Sinclair.Keyboard.Native"><value>Machinetoetsenbord</value></data>
-  <data name="Emulation.Sinclair.Video.Native"><value>Videoweergave</value></data>
-  <data name="Emulation.Sinclair.Controls.Native"><value>Controlleropties</value></data>
-  <data name="Emulation.Sinclair.System.Native"><value>Machineopties</value></data>
-  <data name="Emulation.Sinclair.Content.Initial"><value>Oorspronkelijke inhoud</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load"><value>Snel tape laden</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load.Help"><value>Laden tapes sneller dan de oorspronkelijke machine.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents"><value>Geheugen tussen 8 en 16 KiB</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Help"><value>Selecteer de inhoud van het geheugengebied tussen 8 en 16 KiB.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Value1"><value>ROM-spiegel</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size"><value>Rand weergeven</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Help"><value>Selecteer de hoeveelheid rand die rond het scherm wordt getoond.</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value0"><value>Normaal</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value1"><value>Kleine grens</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres"><value>Hoge resolutie</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres.Help"><value>Selecteer grafische ondersteuning met een hoge resolutie.</value></data>
-  <data name="Emulation.Sinclair.Option.81_chroma_81.Help"><value>Inschakelt de Chroma 81 kleuruitbreiding.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets"><value>Video-uitstraling</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Help"><value>Selecteer de verschijning van het geëmuleerde videosignaal.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value0"><value>Afbeelding zonder visuele effecten</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value1"><value>Televisie</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value2"><value>Videogeluid</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound"><value>Audio uitbreidingsapparaat</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound.Help"><value>Selecteer de geëmuleerde geluidsuitbreiding.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed"><value>Emulatiesnelheid</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed.Help"><value>Stelt emulatiesnelheid in als een percentage van de oorspronkelijke snelheid.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2"><value>Keyboard hardware revisie 2</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2.Help"><value>Emuleert het toetsenbordgedrag van Issue 2 hardware.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border"><value>Rand weergeven</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Help"><value>Selecteer de hoeveelheid rand die rond het scherm wordt getoond.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value0"><value>Vol</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value1"><value>Middel</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value2"><value>Kleine grens</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value3"><value>Minimale rand</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette"><value>Kleurpalet</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Help"><value>Selecteer de kleuren die gebruikt worden om het beeld weer te geven.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value2"><value>Zwart-wittelevisie</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value3"><value>Groen monochroom</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value4"><value>Ambermonochroom</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value6"><value>CGA: 4 kleuren</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value7"><value>CGA: 8 kleuren</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value8"><value>CGA: 16 kleuren</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value9"><value>Omgekeerde kleuren</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load"><value>Automatisch laden van tape</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load.Help"><value>Begint automatisch een tape te laden.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load"><value>Snel tape laden</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load.Help"><value>Laden tapes sneller dan de oorspronkelijke machine.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound"><value>Laadgeluid van tape</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound.Help"><value>Speelt het geluid van tape laden.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type"><value>Speakertype</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Help"><value>Selecteer de filtering die gebruikt wordt voor het originele luidsprekergeluid.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value0"><value>Televisiespeaker</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value2"><value>Niet gefilterd</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation"><value>Stereokanaalconfiguratie</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation.Help"><value>Selecteer de stereo arrangement van de AY geluidskanalen.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_turbosound.Help"><value>Inschakelt de TurboSound uitbreiding met twee AY geluidschips.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fuller_box.Help"><value>Schakel de Fuller Box geluidsuitbreiding in.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_uspeech.Help"><value>Inschakelt de Currah uSpeech spraak synthesizer wanneer zijn firmware beschikbaar is.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_melodik.Help"><value>Inschakelt de Melodik sound expansion.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay"><value>AY geluidschip volume</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay.Help"><value>Stelt het volume van de AY geluidskanalen in.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper"><value>Ingebouwd luidsprekervolume</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper.Help"><value>Stelt het volume van de ingebouwde luidspreker in.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons"><value>Omgekeerde muisknoppen</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons.Help"><value>Keer de linker- en rechterknoppen van de Kempston muis om.</value></data>
+  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>Emuleert de Sinclair ZX81.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Audio hardware</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Oorspronkelijke inhoud</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>Videogeheugen</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY stereokanaalvolgorde</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY volume</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>Schermrandgrootte</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>Emulatiesnelheid</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>Hoge resolutie afbeeldingen</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>Wissel muisknoppen</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>Kleurpalet</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>Geluidshardware</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>Speakertype</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>Automatische cassettebelasting</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>Snelle cassettebelasting</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>Cassette-laadgeluid</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>Videovoorinstelling</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>Ambermonochroom</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>Ingebouwde geluidsgenerator</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>Groen monochroom</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>Kleuren omgedraaid</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>Zwart-wit</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>Geen</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>Normaal</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM spiegel</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>Televisie</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Televisieluidspreker</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Niet gefilterd</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Videoweergave</value></data>
+  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>Emuleert ZX SPECTRUM en compatibele computers.</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Ingebouwd geluidvolume</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Revisie 2 toetsenbord</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Afbeelding wissen</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>Volledige schermrand</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>Afbeelding met geluid</value></data>
 </root>

@@ -4,73 +4,40 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description"><value>Використовуємо Sinclair ZX81.</value></data>
-  <data name="Emulation.Emulator.fuse.Description"><value>Налаштовує ZX Spectrum і сумісні комп'ютери.</value></data>
-  <data name="Emulation.Sinclair.Memory.Display"><value>Відео пам'яті</value></data>
-  <data name="Emulation.Sinclair.Audio.Native"><value>Аудіотехніка</value></data>
-  <data name="Emulation.Sinclair.Keyboard.Native"><value>Машинна клавіатура</value></data>
-  <data name="Emulation.Sinclair.Video.Native"><value>Відеопоказ</value></data>
-  <data name="Emulation.Sinclair.Controls.Native"><value>Параметри контролера</value></data>
-  <data name="Emulation.Sinclair.System.Native"><value>Параметри машини</value></data>
-  <data name="Emulation.Sinclair.Content.Initial"><value>Початковий зміст</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load"><value>Швидке завантаження стрічок</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load.Help"><value>Навантаження стрічок швидше, ніж оригінальна машина.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents"><value>Пам'ять між 8 і 16 KiB</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Help"><value>Виберіть вміст області пам'яті між 8 і 16 KiB.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Value1"><value>Дзеркало ROM</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size"><value>Дисплей кордону</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Help"><value>Вибирає кількість кордонів, показаних навколо дисплея.</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value0"><value>Нормативно</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value1"><value>Малий кордон</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres"><value>Висока роздільна здатність</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres.Help"><value>Підбір графіки високої роздільної здатності.</value></data>
-  <data name="Emulation.Sinclair.Option.81_chroma_81.Help"><value>Увімкнути розширення кольору Chroma 81.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets"><value>Відео зовнішній вигляд</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Help"><value>Вибирає зовнішній вигляд емульованої відеосигналу.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value0"><value>Зображення без візуальних ефектів</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value1"><value>Телевізор</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value2"><value>Відео шум</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound"><value>Пристрій розширення аудіо</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound.Help"><value>Вибирає емульований звук розширення.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed"><value>Швидкість емульсії</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed.Help"><value>Налаштовує швидкість емульсії у відсотках початкової швидкості.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2"><value>Клавіатура апаратна версія 2</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2.Help"><value>Поведінка клавіатури випуску 2 апаратних засобів.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border"><value>Дисплей кордону</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Help"><value>Вибирає кількість кордонів, показаних навколо дисплея.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value0"><value>Поповнення</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value1"><value>Середній</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value2"><value>Малий кордон</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value3"><value>Мінімальний кордон</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette"><value>Колірна палітра</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Help"><value>Виберіть колір, який використовується для відображення зображення.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value2"><value>Чорно-біле телебачення</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value3"><value>Зелений монохромний</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value4"><value>Янтарна монохрома</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value6"><value>CGA: 4 кольори</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value7"><value>CGA: 8 кольорів</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value8"><value>CGA: 16 кольорів</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value9"><value>Неперевершені кольори</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load"><value>Автоматичне завантаження стрічок</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load.Help"><value>Почати завантаження стрічки автоматично.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load"><value>Швидке завантаження стрічок</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load.Help"><value>Навантаження стрічок швидше, ніж оригінальна машина.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound"><value>Стрічка завантаження звуку</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound.Help"><value>Відтворює звук завантаження стрічки.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type"><value>Тип спікера</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Help"><value>Вибирає фільтрацію, що використовується для оригінального звуку.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value0"><value>Телевізор</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value2"><value>Нефільтровані</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation"><value>Конфігурація каналів стерео</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation.Help"><value>Вибирає стерео розташування звукових каналів AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_turbosound.Help"><value>Увімкнути розширення TurboSound з двома звуковими чіпами AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fuller_box.Help"><value>Увімкнути розширення звуку Fuller Box.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_uspeech.Help"><value>Увімкнено синтезатор мови Currah uSpeech при його прошивці.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_melodik.Help"><value>Увімкнено розширення звуку Melodik.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay"><value>Об'єм звукового чіпа AY</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay.Help"><value>Налаштовує гучність звукових каналів AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper"><value>Вбудований гучність динаміка</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper.Help"><value>Налаштовує обсяг вбудованого динаміка.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons"><value>Зворотні кнопки миші</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons.Help"><value>Перетворює ліву і праву гудзики Kempston мишки.</value></data>
+  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>Посилює Синклар ZX81.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Аудіотехніка</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Початковий зміст</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>Відео пам'яті</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY стереотипний порядок каналу</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY об'єм</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>Розмір бордюру екрану</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>Швидкість емульсії</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>Висока роздільна здатність графіки</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8–16 КАБ пам'яті банку</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>Обмін кнопками мишки</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>Колірна палітра</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>Звукові апарати</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>Тип спікера</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>Автоматичне завантаження касету</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>Швидка завантаження касету</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>Касетний зарядний звук</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>Відео-замінник</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>Монохромний абрикос</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>Вбудований звуковий генератор</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>Зелений монохромний</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>Збочений колір</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>Чорний і білий</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>Ні</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>Нормативно-правова форма</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM дзеркала</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>Телевізор</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Телевізор</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Нефільтровані</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Відеопоказ</value></data>
+  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>Голоси ZX SPECTRUM і сумісні комп'ютери.</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Вбудований звуковий об'єм</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Ревізія 2 клавіатури</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Очистити зображення</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>Повний екран кордону</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>Зображення з шумом</value></data>
 </root>

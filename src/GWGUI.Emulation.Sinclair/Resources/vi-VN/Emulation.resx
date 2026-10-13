@@ -4,73 +4,40 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description"><value>Kết hợp với Sinclair ZX81.</value></data>
-  <data name="Emulation.Emulator.fuse.Description"><value>Tính toán ZX Spectrum và máy tính tương thích.</value></data>
-  <data name="Emulation.Sinclair.Memory.Display"><value>Bộ nhớ phim</value></data>
-  <data name="Emulation.Sinclair.Audio.Native"><value>Phần cứng âm thanh</value></data>
-  <data name="Emulation.Sinclair.Keyboard.Native"><value>Bàn phím máy</value></data>
-  <data name="Emulation.Sinclair.Video.Native"><value>Hiển thị ảnh động</value></data>
-  <data name="Emulation.Sinclair.Controls.Native"><value>Tùy chọn Controller</value></data>
-  <data name="Emulation.Sinclair.System.Native"><value>Tùy chọn máy</value></data>
-  <data name="Emulation.Sinclair.Content.Initial"><value>Nội dung ban đầu</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load"><value>Nạp băng nhanh</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load.Help"><value>Nạp băng nhanh hơn máy gốc.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents"><value>Bộ nhớ từ 8 đến 16 KiB</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Help"><value>Chọn nội dung của vùng bộ nhớ giữa 8 và 16 KiB.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Value1"><value>Gương ROM</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size"><value>Hiện viền</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Help"><value>Chọn số lượng viền hiển thị xung quanh bộ trình bày.</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value0"><value>Chuẩn</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value1"><value>Biên giới nhỏ</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres"><value>Độ phân giải cao</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres.Help"><value>Chọn hỗ trợ đồ họa độ phân giải cao.</value></data>
-  <data name="Emulation.Sinclair.Option.81_chroma_81.Help"><value>Kích hoạt sự mở rộng màu sắc Chroma 81</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets"><value>Hiện dạng phim ảnh</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Help"><value>Chọn diện mạo của tín hiệu video đã mô phỏng.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value0"><value>Ảnh không có hiệu ứng hình ảnh</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value1"><value>Truyền hình</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value2"><value>Làm ồn ảnh động</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound"><value>Thiết bị mở rộng âm thanh</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound.Help"><value>Chọn cách mở rộng âm thanh mô phỏng.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed"><value>Tốc độ</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed.Help"><value>Đặt tốc độ mô phỏng theo tỷ lệ phần trăm tốc độ ban đầu.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2"><value>Sửa đổi phần cứng bàn phím 2</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2.Help"><value>Tính hành vi bàn phím của phần cứng số 2.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border"><value>Hiện viền</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Help"><value>Chọn số lượng viền hiển thị xung quanh bộ trình bày.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value0"><value>Đầy đủ</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value1"><value>Vừa</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value2"><value>Biên giới nhỏ</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value3"><value>Biên giới nhỏ</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette"><value>Bảng màu</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Help"><value>Chọn những màu dùng để hiển thị ảnh.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value2"><value>Truyền hình đen trắng</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value3"><value>Đơn sắc lục</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value4"><value>Amber Đơn sắc</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value6"><value>CGA: 4 màu</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value7"><value>CGA: 8 màu</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value8"><value>CGA: 16 màu</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value9"><value>Màu Đảo</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load"><value>Nạp băng tự động</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load.Help"><value>Tự động nạp băng.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load"><value>Nạp băng nhanh</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load.Help"><value>Nạp băng nhanh hơn máy gốc.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound"><value>Âm thanh nạp băng</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound.Help"><value>Phát ra âm thanh tải băng.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type"><value>Kiểu loa</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Help"><value>Chọn bộ lọc dùng cho âm thanh của loa gốc.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value0"><value>Trình diễn truyền hình</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value2"><value>Chưa lọc</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation"><value>Cấu hình kênh Stereo</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation.Help"><value>Chọn dàn âm thanh của kênh âm thanh AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_turbosound.Help"><value>Kích hoạt sự mở rộng TurboSound với 2 AY chip âm thanh.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fuller_box.Help"><value>Kích hoạt sự giãn nở âm thanh Fuller Box.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_uspeech.Help"><value>Kích hoạt trình tổng hợp giọng nói Currah uSpeech khi có sẵn phần cứng.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_melodik.Help"><value>Kích hoạt việc mở rộng âm thanh Melodik.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay"><value>âm lượng chip âm thanh AY</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay.Help"><value>Đặt âm lượng của kênh âm thanh AY</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper"><value>Âm lượng loa được xây dựng</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper.Help"><value>Đặt âm lượng của loa phóng to.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons"><value>Thay đổi cỡ cứa chuột</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons.Help"><value>Đảo ngược các nút trái và phải của chuột Kempston.</value></data>
+  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>Tính toán các bài toán ZX81.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Phần cứng âm thanh</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Nội dung ban đầu</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>Bộ nhớ phim</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY Thứ tự kênh stereo</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY âm lượng</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>Kích cỡ viền màn hình</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>Tốc độ</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>Đồ hoạ phân giải cao</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8–16 bộ nhớ KiB</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>Đổi nút chuột</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>Bảng màu</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>Phần cứng âm thanh</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>Kiểu loa</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>Nạp băng tự động</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>Nạp băng nhanh</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>Hộp băng tải âm thanh</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>Định sẵn phim</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>Amber monochrome</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>Bộ tạo âm thanh xây dựng</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>Đơn sắc xanh lá cây</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>Màu Đảo</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>Đen trắng</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>Không có</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>Chuẩn</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM phản chiếu</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>Truyền hình</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Bộ phát thanh lớn trên truyền hình</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Chưa lọc</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Hiển thị ảnh động</value></data>
+  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>Tính ZX SPECTRUM và máy tính tương thích.</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Âm lượng âm thanh được xây dựng</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Bản sửa đổi 2 bàn phím</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Xoá ảnh</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>Toàn bộ biên giới màn hình</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>Ảnh có nhiễu</value></data>
 </root>

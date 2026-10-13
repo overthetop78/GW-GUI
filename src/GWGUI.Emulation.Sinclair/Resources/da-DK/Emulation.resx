@@ -4,73 +4,40 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description"><value>Emulerer Sinclair ZX81.</value></data>
-  <data name="Emulation.Emulator.fuse.Description"><value>Emulerer ZX Spectrum og kompatible computere.</value></data>
-  <data name="Emulation.Sinclair.Memory.Display"><value>Videohukommelse</value></data>
-  <data name="Emulation.Sinclair.Audio.Native"><value>Lydhardware</value></data>
-  <data name="Emulation.Sinclair.Keyboard.Native"><value>Maskintastatur</value></data>
-  <data name="Emulation.Sinclair.Video.Native"><value>Videovisning</value></data>
-  <data name="Emulation.Sinclair.Controls.Native"><value>Indstillinger for kontrollør</value></data>
-  <data name="Emulation.Sinclair.System.Native"><value>Maskinindstillinger</value></data>
-  <data name="Emulation.Sinclair.Content.Initial"><value>Oprindeligt indhold</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load"><value>Hurtig indlæsning af bånd</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load.Help"><value>Indlæser bånd hurtigere end den oprindelige maskine.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents"><value>Hukommelse mellem 8 og 16 KiB</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Help"><value>Vælger indholdet af hukommelsesområdet mellem 8 og 16 KiB.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Value1"><value>ROM-spejl</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size"><value>Vis kant</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Help"><value>Vælger mængden af kant vist rundt om skærmen.</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value0"><value>Normal</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value1"><value>Lille grænse</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres"><value>Høj opløsning</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres.Help"><value>Vælger understøttelse af høj opløsning i grafik.</value></data>
-  <data name="Emulation.Sinclair.Option.81_chroma_81.Help"><value>Aktiverer farveudvidelsen Chroma 81.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets"><value>Videoudseende</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Help"><value>Vælger udseendet af det emulerede videosignal.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value0"><value>Billede uden visuelle effekter</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value1"><value>Fjernsyn</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value2"><value>Videostøj</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound"><value>Lydudvidelsesenhed</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound.Help"><value>Vælger den emulerede lydudvidelse.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed"><value>Emuleringshastighed</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed.Help"><value>Sætter emuleringshastigheden som en procentdel af den oprindelige hastighed.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2"><value>Tastatur- hardwarerevision 2</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2.Help"><value>Emulerer tastaturens opførsel for udgave 2 hardware.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border"><value>Vis kant</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Help"><value>Vælger mængden af kant vist rundt om skærmen.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value0"><value>Fuld</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value1"><value>Mellem</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value2"><value>Lille grænse</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value3"><value>Minimal grænse</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette"><value>Farvepalet</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Help"><value>Vælger de farver der bruges til at vise billedet.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value2"><value>Sort-hvidt fjernsyn</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value3"><value>Grøn monokromt</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value4"><value>Amber monokrom</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value6"><value>CGA: 4 farver</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value7"><value>CGA: 8 farver</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value8"><value>CGA: 16 farver</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value9"><value>Inverterede farver</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load"><value>Automatisk båndbelastning</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load.Help"><value>Starter indlæsning af et bånd automatisk.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load"><value>Hurtig indlæsning af bånd</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load.Help"><value>Indlæser bånd hurtigere end den oprindelige maskine.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound"><value>Belastningslyd til bånd</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound.Help"><value>Spiller lyden af båndbelastning.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type"><value>Højttalertype</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Help"><value>Vælger filtreringen som bruges til den oprindelige højttalerlyd.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value0"><value>Fjernsynshøjttaler</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value2"><value>Ufiltrerede</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation"><value>Stereokanalkonfiguration</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation.Help"><value>Vælger stereo arrangement af AY lydkanaler.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_turbosound.Help"><value>Aktiverer TurboSound udvidelsen med to AY-lydchips.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fuller_box.Help"><value>Aktiverer Fuller Box lydudvidelse.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_uspeech.Help"><value>Aktiverer Currah uSpeech tale- synthesizer når dens firmware er tilgængelig.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_melodik.Help"><value>Aktiverer Melodik lydekspansion.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay"><value>AY lydchip volumen</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay.Help"><value>Sætter lydstyrken af AY lydkanaler.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper"><value>Bygge- i højttalervolumen</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper.Help"><value>Indstiller bygningens volumen i højttaler.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons"><value>Omvendt museknapper</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons.Help"><value>Returnerer venstre og højre knapper på Kempston musen.</value></data>
+  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>Emulerer Sinclair ZX81.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Lydhardware</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Oprindelig indhold</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>Videohukommelse</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY stereokanalrækkefølge</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY volumen</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>Skærmgrænsemål</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>Emuleringshastighed</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>Højdeopløsnings grafik</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8- 16 KiB-hukommelsesbank</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>Swap- museknapper</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>Farvepalet</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>Lydhardware</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>Taletype</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>Automatisk indlæsning af kassette</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>Hurtig indlæsning af kassette</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>Belastningslyd fra kassette</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>Videoforudindstillet</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>Amber monokrom</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>Bygning - i lyd generator</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>Grøn monokrom</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>Omvendt farve</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>Sort og hvid</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>Ingen</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM spejl</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>Fjernsyn</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Fjernsynstelefoner</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Ufiltrerede</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Videovisning</value></data>
+  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>Emulater ZX SPECTRUM og kompatible computere.</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Bygning i lydvolumen</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Revision 2 tastatur</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Ryd billede</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>Fuldskærmsgrænse</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>Billede med støj</value></data>
 </root>

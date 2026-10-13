@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>Sinclairs sparade tillstånd är oförenligt med den nuvarande maskinen.</value></data>
-  <data name="Emulation.Sinclair.Error.Unexpected"><value>Ett oväntat Sinclair emuleringsfel inträffade.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>En nödvändig Sinclair firmware saknas.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>Systemet ROM är ogiltigt eller oförenligt.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>De konfigurerade Sinclair-medierna hittades inte.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>Denna maskin stöder inte de utvalda medierna.</value></data>
-  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>En Sinclair alternativ har ett ogiltigt värde.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>Den nödvändiga Sinclair-kärnan hittades inte.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreRejected"><value>Den valda Sinclair-kärnan kunde inte laddas.</value></data>
-  <data name="Emulation.Sinclair.Error.StateInvalid"><value>Sinclair räddade staten är ogiltig.</value></data>
-  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>Sinclair värd körbar väg är otillgänglig.</value></data>
-  <data name="Emulation.Sinclair.Error.Details"><value>Detaljer: {0}</value></data>
-  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>Kommunikation med Sinclair-värden misslyckades.</value></data>
-  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>Okänd miljökommando: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound" xml:space="preserve"><value>De konfigurerade Sinclair-medierna hittades inte.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported" xml:space="preserve"><value>Denna maskin stöder inte de valda medierna.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound" xml:space="preserve"><value>Den nödvändiga Sinclair-kärnan hittades inte.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected" xml:space="preserve"><value>Den valda Sinclair-kärnan kunde inte laddas.</value></data>
+  <data name="Emulation.Sinclair.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid" xml:space="preserve"><value>Systemet ROM är ogiltig eller oförenlig.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing" xml:space="preserve"><value>En nödvändig Sinclair firmware saknas.</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure" xml:space="preserve"><value>Kommunikation med Sinclair-värden misslyckades.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid" xml:space="preserve"><value>En Sinclair alternativ har ett ogiltigt värde.</value></data>
+  <data name="Emulation.Sinclair.Error.StateIncompatible" xml:space="preserve"><value>Sinclairs sparade tillstånd är oförenligt med den nuvarande maskinen.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid" xml:space="preserve"><value>Sinclair räddade staten är ogiltig.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected" xml:space="preserve"><value>Ett oväntat Sinclair emuleringsfel inträffade.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Okänd miljökommando: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing" xml:space="preserve"><value>Vägen till Sinclair värdprogrammet är inte tillgänglig.</value></data>
 </root>

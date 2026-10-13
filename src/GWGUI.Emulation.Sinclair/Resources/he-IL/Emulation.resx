@@ -4,73 +4,40 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description"><value>עקבו אחרי Sinclair ZX81</value></data>
-  <data name="Emulation.Emulator.fuse.Description"><value>חישוב ZX Spectrum ומחשבים תואמים.</value></data>
-  <data name="Emulation.Sinclair.Memory.Display"><value>זיכרון וידאו</value></data>
-  <data name="Emulation.Sinclair.Audio.Native"><value>חומרת אודיו</value></data>
-  <data name="Emulation.Sinclair.Keyboard.Native"><value>מקלדת Machine</value></data>
-  <data name="Emulation.Sinclair.Video.Native"><value>וידאו Display</value></data>
-  <data name="Emulation.Sinclair.Controls.Native"><value>אפשרויות פיקוח</value></data>
-  <data name="Emulation.Sinclair.System.Native"><value>אפשרויות מכונה</value></data>
-  <data name="Emulation.Sinclair.Content.Initial"><value>תוכן ראשוני</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load"><value>טעינה מהירה</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load.Help"><value>טעינה מהירה יותר מהמכונה המקורית.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents"><value>זיכרון בין 8 ל-16 KiB</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Help"><value>בחר את התוכן של אזור הזיכרון בין 8 ל-16KB.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Value1"><value>מראה ROM</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size"><value>המונחיםגבול</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Help"><value>בחר את כמות הגבול המוצגת סביב התצוגה.</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value0"><value>נורמלי</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value1"><value>גבול קטן</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres"><value>רזולוציה גבוהה</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres.Help"><value>בחר תמיכה בגרפיקה ברזולוציה גבוהה.</value></data>
-  <data name="Emulation.Sinclair.Option.81_chroma_81.Help"><value>ההרחבה של Chroma 81 צבעים.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets"><value>מראה וידאו</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Help"><value>בחר את המראה של אות וידאו חיקוי.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value0"><value>תמונה ללא אפקטים חזותיים</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value1"><value>טלוויזיה</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value2"><value>רעש וידאו</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound"><value>מכשיר הרחבה אודיו</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound.Help"><value>בחר את הרחבת הצלילים הנשגבת.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed"><value>מהירות Emulation</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed.Help"><value>הגדרת מהירות חיקוי כאחוז מהמהירות המקורית.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2"><value>Keyboard חומרה תיקון 2</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2.Help"><value>להעריך את התנהגות המקלדת של חומרה 2.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border"><value>המונחיםגבול</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Help"><value>בחר את כמות הגבול המוצגת סביב התצוגה.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value0"><value>מלא</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value1"><value>בינוני Medium</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value2"><value>גבול קטן</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value3"><value>גבול מינימלי</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette"><value>צבעי צבעים</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Help"><value>בחר את הצבעים המשמשים כדי להציג את התמונה.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value2"><value>טלוויזיה שחורה ולבן</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value3"><value>ירוק מונוכרום</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value4"><value>אמבר מונוכרום</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value6"><value>CGA: 4 צבעים</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value7"><value>CGA: 8 צבעים</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value8"><value>CGA: 16 צבעים</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value9"><value>צבעים מופנמים</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load"><value>טעינה אוטומטית</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load.Help"><value>מתחילים לטעון קלטת באופן אוטומטי.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load"><value>טעינה מהירה</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load.Help"><value>טעינה מהירה יותר מהמכונה המקורית.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound"><value>צליל טעינה</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound.Help"><value>משחק את הצליל של טעינת שטיח.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type"><value>רמקול מסוג</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Help"><value>בחר את המסנן המשמש לקול הדובר המקורי.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value0"><value>דובר טלוויזיה</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value2"><value>Unfiltered</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation"><value>תצורת ערוץ Stereo</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation.Help"><value>בחר את סידור הסטריאו של ערוצי הקול AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_turbosound.Help"><value>ניתן להרחיב את TurboSound עם שני צ'יפס קולי AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fuller_box.Help"><value>הרחבה של Fuller Box.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_uspeech.Help"><value>Enables the Currah uSpeech Speech מסונתזr כאשר קושחה שלה זמין.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_melodik.Help"><value>ניתן להרחיב את ההרחבה הקולית Melodik.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay"><value>נפח השבבים של AY</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay.Help"><value>הגדר את נפח ערוצי הקול AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper"><value>רמקול מובנה</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper.Help"><value>הגדר את נפח הדובר המובנה.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons"><value>כפתורי עכבר הפוכה</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons.Help"><value>הפוך את הכפתורים הימניים והשמאליים של עכבר Kempston.</value></data>
+  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>עקבו אחרי Sinclair ZX81.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>חומרה אודיו</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>תוכן ראשוני</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>זיכרון וידאו</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY פקודת ערוץ סטריאו</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY נפח</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>גודל הגבול</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>מהירות ה-ILO</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>גרפיקה גבוהה ברזולוציה</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8-16 בנק זיכרון קיב</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>כפתורים עכבר</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>צבעים צבעים</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>חומרת סאונד</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>תגית: type</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>טעינה אוטומטית</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>טעינה מהירה</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>תגית: Skinny</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>וידאו preset</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>אמבר מונוכרום</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>גנרטור</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>ירוק מונוכרום</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>צבעים מופנמים</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>שחור ולבן</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>אף אחד לא</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>נורמלי</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM מראה</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>טלוויזיה</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>הטלוויזיה רמקול</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Unfiltered</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>וידאו</value></data>
+  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>⁇ ZX SPECTRUM מחשבים מתאימים.</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>המונחים: sound</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Revision 2 מקלדת</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>תמונה ברורה</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>גבול מסך מלא</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>צילום: noise</value></data>
 </root>

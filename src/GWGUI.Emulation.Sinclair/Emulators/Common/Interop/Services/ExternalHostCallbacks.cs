@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants;
 using System.IO;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -53,7 +55,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
             _contentDirectory = content = new ExternalCoreUtf8String(Path.GetFullPath(contentDirectory));
             _saveDirectory = save = new ExternalCoreUtf8String(Path.GetFullPath(saveDirectory));
             _assetsDirectory = assets = new ExternalCoreUtf8String(Path.GetFullPath(assetsDirectory));
-            _optionHost = optionHost = new CoreOptionHost(configuredOptions);
+            _optionHost = optionHost = new CoreOptionHost(configuredOptions, (new Engine().Adapter(emulator) as IEmulatorSettings)?.GetSettingsOptions());
             _virtualFileSystem = virtualFileSystem = new ExternalCoreVirtualFileSystem();
             Environment = OnEnvironment;
             Video = OnVideo;

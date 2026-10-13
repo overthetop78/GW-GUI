@@ -37,7 +37,7 @@ public sealed class SinclairEmulationModule : IEmulationModule, IEmulationEmulat
             item => item.Key switch
         {
             EmulationMachineTab.Keyboard => true,
-            EmulationMachineTab.Mouse => current.Core == Emulator.Fuse,
+            EmulationMachineTab.Mouse => InputSettingsFunctions.SupportsMouse(current),
             EmulationMachineTab.Rom => FirmwareFunctions.Roles(current.Model).Count > 0,
             EmulationMachineTab.Cpu => true,
             EmulationMachineTab.Ram => HardwareModelCatalog.Get(current.Model).MainMemoryBytes is not null,
@@ -132,7 +132,7 @@ public sealed class SinclairEmulationModule : IEmulationModule, IEmulationEmulat
         var allowed = CoreOptionValidationFunctions.ForCore(core).Select(option => option.Key).ToHashSet(StringComparer.Ordinal);
         var options = current.Options.Where(option => allowed.Contains(option.Key) || option.Key == SettingsConstants.AudioOutput || option.Key == SettingsConstants.AudioLatency || option.Key == VideoAudioSettingsConstants.AudioVolumeOption).ToDictionary(option => option.Key,
             option => option.Value);
-        var controllers = current.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(core).Contains(binding.Peripheral) ? binding : binding with { Peripheral = InputSettingsFunctions.DefaultPeripheral(current.Model) }).ToArray();
+        var controllers = current.Input.Controllers?.Select(binding => InputSettingsFunctions.Peripherals(current.Model, core).Contains(binding.Peripheral) ? binding : binding with { Peripheral = InputSettingsFunctions.DefaultPeripheral(current.Model) }).ToArray();
         var result = current with
         {
             Core = core,
@@ -182,7 +182,7 @@ public sealed class SinclairEmulationModule : IEmulationModule, IEmulationEmulat
             storage.AvailableDevices,
             storage.MountedMedia,
             ModelCatalog.All.Single(model => model.Id == current.MachineId).DisplayResourceKey,
-            current.Core == Emulator.Fuse
+            current.Core != Emulator.None && _engine.Adapter(current) is IEmulatorRuntimeCapabilities { SupportsNoContent: true }
         );
     }
 

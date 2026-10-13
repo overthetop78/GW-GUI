@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;
 using GWGUI.Emulation.Sinclair.Emulators.EightyOne.Constants;
 
 namespace GWGUI.Emulation.Sinclair.Emulators.EightyOne.Functions;

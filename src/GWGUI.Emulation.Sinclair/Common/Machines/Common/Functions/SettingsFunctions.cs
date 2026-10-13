@@ -10,7 +10,7 @@ internal static class SettingsDescriptionFunctions
             Audio(configuration)
         };
         AddHardware(blocks, configuration);
-        if (configuration.Core == Emulator.Fuse)
+        if (InputSettingsFunctions.SupportsInitialContent(configuration))
             blocks.Add(Block(
                     EmulationMachineTab.Storage,
                     SettingsConstants.ResourceInitialContent,
@@ -21,10 +21,10 @@ internal static class SettingsDescriptionFunctions
                         SettingsConstants.ResourceInitialContent,
                         EmulationSettingsEditor.Path,
                         configuration.InitialContent,
-                        RequiresRestart: true
+                        RequiresRestart: false
                     )
                 ));
-        if (configuration.Core == Emulator.Fuse)
+        if (InputSettingsFunctions.SupportsMouse(configuration))
             blocks.Add(Block(
                     EmulationMachineTab.Mouse,
                     SettingsConstants.ResourceMouse,
@@ -41,21 +41,8 @@ internal static class SettingsDescriptionFunctions
                         ).Select(step => step * InputMappingConstants.MouseSpeedStepPercent).Select(value => new EmulationSettingsChoice(value.ToString(CultureInfo.InvariantCulture), string.Empty, $"{value} {SettingsConstants.PercentUnit}")).ToArray()
                     )
                 ));
-        foreach (var group in RelevantOptions(configuration).GroupBy(option => Enum.Parse<EmulationMachineTab>(option.Category!)))
-        {
-            var resource = group.Key switch
-            {
-                EmulationMachineTab.Controllers => SettingsConstants.ResourceNativeControls,
-                EmulationMachineTab.Audio => SettingsConstants.ResourceNativeAudio,
-                EmulationMachineTab.Cpu => SettingsConstants.ResourceCpuAcceleration,
-                EmulationMachineTab.Ram => SettingsConstants.ResourceMemoryMain,
-                EmulationMachineTab.Keyboard => SettingsConstants.ResourceNativeKeyboard,
-                EmulationMachineTab.General => SettingsConstants.ResourceNativeSystem,
-                EmulationMachineTab.Storage => SettingsConstants.ResourceNativeStorage,
-                _ => SettingsConstants.ResourceNativeVideo
-            };
-            blocks.Add(new(resource + ".Options", group.Key, resource, group.Select(option => Native(configuration, option, group.Key, resource)).ToArray(), IsCompact: group.Key == EmulationMachineTab.Audio));
-        }
+        if (configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorSettings settings)
+            blocks.AddRange(settings.DescribeSettings(configuration));
 
         var firmwareFields = FirmwareFunctions.Roles(configuration.Model).Select(role => new EmulationSettingsField(
                 FirmwareFunctions.Field(role),
@@ -70,7 +57,6 @@ internal static class SettingsDescriptionFunctions
         return blocks;
     }
 
-    internal static IReadOnlyList<CoreOption> RelevantOptions(MachineConfiguration configuration) => CoreOptionValidationFunctions.ForConfiguration(configuration).Where(option => option.IsVisible && option.Category is not null).ToArray();
     private static void AddHardware(List<EmulationSettingsBlock> blocks, MachineConfiguration configuration)
     {
         var hardware = HardwareModelCatalog.Get(configuration.Model);
@@ -112,38 +98,24 @@ internal static class SettingsDescriptionFunctions
 
     private static string Memory(long bytes) => bytes >= SettingsConstants.BytesPerKibibyte ? $"{(bytes / SettingsConstants.BytesPerKibibyte).ToString(CultureInfo.InvariantCulture)} {SettingsConstants.KibibyteUnit}" : $"{bytes.ToString(CultureInfo.InvariantCulture)} {SettingsConstants.ByteUnit}";
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block, string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
-    private static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
+    internal static EmulationSettingsField Native(MachineConfiguration configuration, CoreOption option, EmulationMachineTab tab, string block)
     {
-        var resource = SettingsConstants.NativeOptionResourcePrefix + option.Key;
-        var choices = option.Values.Select((choice, index) => new EmulationSettingsChoice(choice.Value, CommonChoiceResource(choice.Value) ?? string.Format(CultureInfo.InvariantCulture, SettingsConstants.NativeChoiceResourceFormat, resource, index))).ToArray();
-        var enabled = option.Values.FirstOrDefault(choice => choice.Value is "enabled" or "ON")?.Value;
-        var disabled = option.Values.FirstOrDefault(choice => choice.Value is "disabled" or "OFF")?.Value;
+        var resource = option.ResourceKey ?? throw new InvalidOperationException(option.Key);
+        var choices = option.Values.Select(choice => new EmulationSettingsChoice(choice.Value, choice.ResourceKey ?? string.Empty, choice.InvariantDisplayValue)).ToArray();
+        var enabled = option.Values.FirstOrDefault(choice => choice.ResourceKey == SettingsChoiceConstants.Enabled)?.Value;
+        var disabled = option.Values.FirstOrDefault(choice => choice.ResourceKey == SettingsChoiceConstants.Disabled)?.Value;
         var toggle = option.Values.Count == 2 && enabled is not null && disabled is not null;
-        return new(
-            option.Key,
-            tab,
-            block,
-            resource,
-            toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection,
-            configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue),
-            choices,
+        return new(option.Key, tab, block, resource, toggle ? EmulationSettingsEditor.Toggle : EmulationSettingsEditor.Selection,
+            configuration.Options.GetValueOrDefault(option.Key, option.DefaultValue), choices,
             IsEnabled: option.IsEnabled,
-            ExplanationResourceKey: resource + SettingsConstants.HelpResourceSuffix,
+            ExplanationResourceKey: option.ExplanationResourceKey,
             EnabledValue: enabled ?? EmulationSettingConstants.Enabled,
             DisabledValue: disabled ?? EmulationSettingConstants.Disabled,
-            RequiresRestart: RuntimeOptionFunctions.RequiresRestart(configuration.Core, option.Key)
-        );
+            RequiresRestart: false);
     }
 
-    private static string? CommonChoiceResource(string value) => value switch
-    {
-        "enabled" or "ON" => SettingsConstants.ResourceEnabled,
-        "disabled" or "OFF" => SettingsConstants.ResourceDisabled,
-        "default" or "Default" => SettingsConstants.ResourceDefault,
-        "auto" or "AUTO" => SettingsConstants.ResourceAutomatic,
-        "none" => SettingsConstants.ResourceNone,
-        _ => null
-    };
+    internal static string ChoiceLabel(CoreOptionValue choice) => choice.ResourceKey ?? choice.InvariantDisplayValue ?? choice.Label;
+
     private static EmulationSettingsBlock Audio(MachineConfiguration configuration) => Block(
         EmulationMachineTab.Audio,
         SettingsConstants.ResourceAudio,

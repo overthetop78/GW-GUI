@@ -1,7 +1,9 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Dictionaries;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Contracts;
 using System.IO;
 
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Factories;
-internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter
+internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmulatorAdapter, IEmulatorStorageSettings, IEmulatorInitialContentSettings, IEmulatorRuntimeCapabilities, IEmulatorInputSettings
 {
     public EmulatorCatalogEntry CatalogEntry { get; } = catalogEntry;
     public Emulator Emulator => CatalogEntry.Emulator;
@@ -15,6 +17,11 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
     public abstract ValueTask<string> InstallAsync(EmulatorManagementContext context, EmulationEmulatorRelease release, IProgress<double>? progress, CancellationToken cancellationToken);
     public abstract ValueTask<string?> FindInstalledCorePathAsync(EmulatorManagementContext context, CancellationToken cancellationToken);
     protected abstract IEmulatorCore CreateCore(MachineConfiguration configuration, EmulatorCreationContext context);
+    bool IEmulatorRuntimeCapabilities.SupportsPointerSettings => SupportsPointerCapture;
+    bool IEmulatorRuntimeCapabilities.SupportsNoContent => SupportsNoContent;
+    bool IEmulatorInitialContentSettings.SupportsInitialContent => SupportsInitialContent;
+    protected virtual bool SupportsInitialContent => false;
+    public abstract IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model);
     protected virtual bool SupportsPointerCapture => false;
     protected virtual bool RequiresResetRestart => false;
     protected virtual bool SupportsNoContent => false;
@@ -50,7 +57,8 @@ internal abstract class MachineFactory(EmulatorCatalogEntry catalogEntry) : IEmu
                 coreFactory: () => CreateCore(configuration, context),
                 supportsPointerCapture: SupportsPointerCapture,
                 requiresResetRestart: RequiresResetRestart,
-                supportsNoContent: SupportsNoContent
+                supportsNoContent: SupportsNoContent,
+                inputMapper: this as IEmulatorInputMapper
             );
             completed = true;
             return machine;

@@ -31,17 +31,7 @@ internal static class SettingsConstants
     internal const string ResourceNativeAudio = "Emulation.Sinclair.Audio.Native";
     internal const string ResourceNativeKeyboard = "Emulation.Sinclair.Keyboard.Native";
     internal const string ResourceNativeVideo = "Emulation.Sinclair.Video.Native";
-    internal const string ResourceNativeControls = "Emulation.Sinclair.Controls.Native";
-    internal const string ResourceNativeSystem = "Emulation.Sinclair.System.Native";
     internal const string ResourceNativeStorage = "Emulation.Storage.Cassettes";
-    internal const string NativeOptionResourcePrefix = "Emulation.Sinclair.Option.";
-    internal const string NativeChoiceResourceFormat = "{0}.Value{1}";
-    internal const string HelpResourceSuffix = ".Help";
-    internal const string ResourceEnabled = "Emulation.Value.Enabled";
-    internal const string ResourceDisabled = "Emulation.Value.Disabled";
-    internal const string ResourceDefault = "Emulation.Value.Default";
-    internal const string ResourceAutomatic = "Emulation.Controller.Automatic";
-    internal const string ResourceNone = "Emulation.Value.None";
     internal const string ResourceAudio = "Emulation.Audio";
     internal const string ResourceAudioEnabled = "Emulation.Audio.Enabled";
     internal const string ResourceAudioOutput = "Emulation.Audio.Output";

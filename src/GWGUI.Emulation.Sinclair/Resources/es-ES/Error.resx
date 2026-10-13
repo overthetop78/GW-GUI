@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>El estado salvado Sinclair es incompatible con la máquina actual.</value></data>
-  <data name="Emulation.Sinclair.Error.Unexpected"><value>Se produjo un error inesperado de emulación Sinclair.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>Falta un firmware de Sinclair requerido.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>El sistema ROM es inválido o incompatible.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>No se encontró el medio de Sinclair configurado.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>Esta máquina no admite los medios seleccionados.</value></data>
-  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>Una opción Sinclair tiene un valor inválido.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>No se encontró el núcleo de Sinclair requerido.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreRejected"><value>El núcleo seleccionado de Sinclair no se puede cargar.</value></data>
-  <data name="Emulation.Sinclair.Error.StateInvalid"><value>El estado salvado de Sinclair es inválido.</value></data>
-  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>El camino ejecutable de Sinclair es indisponible.</value></data>
-  <data name="Emulation.Sinclair.Error.Details"><value>Detalles: {0}</value></data>
-  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>La comunicación con el anfitrión Sinclair falló.</value></data>
-  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>desconocido medio ambiente comando: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound" xml:space="preserve"><value>No se encontró el medio de Sinclair configurado.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported" xml:space="preserve"><value>Esta máquina no admite los medios seleccionados.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound" xml:space="preserve"><value>No se encontró el núcleo de Sinclair requerido.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected" xml:space="preserve"><value>El núcleo seleccionado de Sinclair no se puede cargar.</value></data>
+  <data name="Emulation.Sinclair.Error.Details" xml:space="preserve"><value>Detalles: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid" xml:space="preserve"><value>El sistema ROM es inválido o incompatible.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing" xml:space="preserve"><value>Falta un firmware de Sinclair requerido.</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure" xml:space="preserve"><value>La comunicación con el anfitrión Sinclair falló.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid" xml:space="preserve"><value>Una opción Sinclair tiene un valor inválido.</value></data>
+  <data name="Emulation.Sinclair.Error.StateIncompatible" xml:space="preserve"><value>El estado salvado Sinclair es incompatible con la máquina actual.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid" xml:space="preserve"><value>El estado salvado Sinclair es inválido.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected" xml:space="preserve"><value>Un error inesperado de emulación Sinclair ocurrió.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Unknown environment command: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing" xml:space="preserve"><value>El camino al programa de anfitriones Sinclair no está disponible.</value></data>
 </root>

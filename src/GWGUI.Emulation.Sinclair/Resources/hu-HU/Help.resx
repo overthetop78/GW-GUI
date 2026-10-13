@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>Válassza ki a sorrendet a AY hangcsatornák sztereó kimenetben.</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>A AY Hangchip.</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>Állítsa be az épület hanggenerátorának a hangerejét.</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>Válassza ki, hogy mennyi a képernyő határa.</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>Emulálja meg a Chroma 81 színgrafikus kiterjesztést.</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>Válassza ki az emulációs sebességet az eredeti sebesség százalékában.</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>Emulálja a Fuller Box hang és joystick kiterjesztést.</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>Válasszon egy nagyfelbontású grafikus kiterjesztést.</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>A 2. hardver billentyűzetének megfejtése.</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>Válassza ki a memóriabank tartalmát 8 és 16 között.</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>Cserélje ki az emulált egér bal és jobb gombjait.</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>Válassza ki a kijelzett színek palettáját.</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>Válassza ki az emulált hanghardvert.</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>Válassza ki az emulált hangszóróhoz használt szűrőt.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>Kezdje el automatikusan betölteni a kazettát.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>A kazettás adatok gyorsabban betöltése.</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>Játszd le a hang készült betöltése közben kazetta adatok.</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>Emulálja meg a TurboSound hangkiterjesztést kettővel AY Chips.</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>Emulálja meg a Currah USpeech beszéd kiterjesztést. Mindkét szükséges firmware fájlokat kell jelen lennie.</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>Válassza ki az emulált videojel megjelenését.</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>Emulálódik a MELODIK Hangkiterjesztés.</value></data>
+</root>

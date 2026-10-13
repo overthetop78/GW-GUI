@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Exceptions;
 using System.Runtime.InteropServices;
 
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;

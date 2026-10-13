@@ -4,73 +4,40 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Emulator.81.Description"><value>Emulasi Sinclair ZX81.</value></data>
-  <data name="Emulation.Emulator.fuse.Description"><value>Emulasi ZX Spectrum dan komputer yang kompatibel.</value></data>
-  <data name="Emulation.Sinclair.Memory.Display"><value>Memori video</value></data>
-  <data name="Emulation.Sinclair.Audio.Native"><value>Perangkat keras audio</value></data>
-  <data name="Emulation.Sinclair.Keyboard.Native"><value>Keyboard mesin</value></data>
-  <data name="Emulation.Sinclair.Video.Native"><value>Tampilan video</value></data>
-  <data name="Emulation.Sinclair.Controls.Native"><value>Opsi pengontrol</value></data>
-  <data name="Emulation.Sinclair.System.Native"><value>Opsi mesin</value></data>
-  <data name="Emulation.Sinclair.Content.Initial"><value>Isi awal</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load"><value>Pemuatan cepat tape</value></data>
-  <data name="Emulation.Sinclair.Option.81_fast_load.Help"><value>Banyak kaset lebih cepat dari mesin aslinya.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents"><value>Memori antara 8 dan 16 KiB</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Help"><value>Memilih isi dari area memori antara 8 dan 16 KiB.</value></data>
-  <data name="Emulation.Sinclair.Option.81_8_16_contents.Value1"><value>Cermin ROM</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size"><value>Tampilkan batas</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Help"><value>Memilih jumlah batas yang ditampilkan di sekitar tampilan.</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value0"><value>Normal</value></data>
-  <data name="Emulation.Sinclair.Option.81_border_size.Value1"><value>Batas kecil</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres"><value>Resolusi tinggi</value></data>
-  <data name="Emulation.Sinclair.Option.81_highres.Help"><value>Memilih dukungan grafis resolusi tinggi.</value></data>
-  <data name="Emulation.Sinclair.Option.81_chroma_81.Help"><value>Mengaktifkan perluasan Chroma 81 warna.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets"><value>Tampilan video</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Help"><value>Memilih kemunculan sinyal video yang telah digandakan.</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value0"><value>Gambar tanpa efek visual</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value1"><value>Televisi</value></data>
-  <data name="Emulation.Sinclair.Option.81_video_presets.Value2"><value>Suara video</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound"><value>Perangkat ekspansi audio</value></data>
-  <data name="Emulation.Sinclair.Option.81_sound.Help"><value>Memilih peningkatan suara.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed"><value>Kecepatan emulasi</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_emulation_speed.Help"><value>Mengatur kecepatan emulasi sebagai persentase dari kecepatan asli.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2"><value>Revisi perangkat keras papan tik 2</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_issue2.Help"><value>Emulasi perilaku papan tik dari Isu 2 perangkat keras.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border"><value>Tampilkan batas</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Help"><value>Memilih jumlah batas yang ditampilkan di sekitar tampilan.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value0"><value>Penuh</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value1"><value>Sedang</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value2"><value>Batas kecil</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_size_border.Value3"><value>Batas minimal</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette"><value>Palet warna</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Help"><value>Memilih warna yang dipakai untuk menampilkan gambar.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value2"><value>Televisi hitam dan putih</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value3"><value>Monokrom hijau</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value4"><value>Amber monokrom</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value6"><value>CGA: 4 warna</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value7"><value>CGA: 8 warna</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value8"><value>CGA: 16 warna</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_palette.Value9"><value>Warna terbalik</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load"><value>Pemuatan pita otomatis</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_auto_load.Help"><value>Mulai memuat tape secara otomatis.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load"><value>Pemuatan cepat tape</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fast_load.Help"><value>Banyak kaset lebih cepat dari mesin aslinya.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound"><value>Suara penmuat Tape</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_load_sound.Help"><value>Memainkan suara tape loading.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type"><value>Tipe Speaker</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Help"><value>Memilih penyaringan yang digunakan untuk suara speaker asli.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value0"><value>Speaker televisi</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_speaker_type.Value2"><value>Tak disaring</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation"><value>Konfigurasi kanal Stereo</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_ay_stereo_separation.Help"><value>Memilih pengaturan stereo dari saluran suara AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_turbosound.Help"><value>Aktifkan ekspansi TurboSound dengan dua chip suara AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_fuller_box.Help"><value>Aktifkan ekspansi suara Fuller Box.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_uspeech.Help"><value>Mengaktifkan Currah uSpeech speech synthesizer ketika firmware nya tersedia.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_melodik.Help"><value>Mengaktifkan ekspansi suara Melodik.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay"><value>Volume chip suara AY</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_ay.Help"><value>Mengatur volume saluran suara AY.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper"><value>Bangun-dalam volume speaker</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_volume_beeper.Help"><value>Tata volume built-in speaker.</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons"><value>Balik tombol tetikus</value></data>
-  <data name="Emulation.Sinclair.Option.fuse_mouse_swap_buttons.Help"><value>Membalikkan tombol kiri dan kanan dari mouse Kempston.</value></data>
+  <data name="Emulation.Emulator.81.Description" xml:space="preserve"><value>Emulasi Sinclair ZX81.</value></data>
+  <data name="Emulation.Sinclair.Audio.Native" xml:space="preserve"><value>Perangkat keras audio</value></data>
+  <data name="Emulation.Sinclair.Content.Initial" xml:space="preserve"><value>Isi awal</value></data>
+  <data name="Emulation.Sinclair.Memory.Display" xml:space="preserve"><value>Memori video</value></data>
+  <data name="Emulation.Sinclair.Setting.AyStereoSeparation" xml:space="preserve"><value>AY Urutan kanal stereo</value></data>
+  <data name="Emulation.Sinclair.Setting.AyVolume" xml:space="preserve"><value>AY volume</value></data>
+  <data name="Emulation.Sinclair.Setting.BorderSize" xml:space="preserve"><value>Ukuran batas layar</value></data>
+  <data name="Emulation.Sinclair.Setting.EmulationSpeed" xml:space="preserve"><value>Kecepatan emulasi</value></data>
+  <data name="Emulation.Sinclair.Setting.HighResolution" xml:space="preserve"><value>Grafik resolusi tinggi</value></data>
+  <data name="Emulation.Sinclair.Setting.MemoryBankContent" xml:space="preserve"><value>8-16 KiB bank memori</value></data>
+  <data name="Emulation.Sinclair.Setting.MouseSwapButtons" xml:space="preserve"><value>Tombol tetikus swap</value></data>
+  <data name="Emulation.Sinclair.Setting.Palette" xml:space="preserve"><value>Palet warna</value></data>
+  <data name="Emulation.Sinclair.Setting.SoundHardware" xml:space="preserve"><value>Perangkat keras suara</value></data>
+  <data name="Emulation.Sinclair.Setting.SpeakerType" xml:space="preserve"><value>Tipe pembicara</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeAutoLoad" xml:space="preserve"><value>Paket otomatis dimuat</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeFastLoad" xml:space="preserve"><value>Pemuatan kaset cepat</value></data>
+  <data name="Emulation.Sinclair.Setting.TapeLoadSound" xml:space="preserve"><value>Suara penmuat Cassette</value></data>
+  <data name="Emulation.Sinclair.Setting.VideoPreset" xml:space="preserve"><value>Preset video</value></data>
+  <data name="Emulation.Sinclair.Value.AmberMonochrome" xml:space="preserve"><value>Amber monokrom</value></data>
+  <data name="Emulation.Sinclair.Value.Beeper" xml:space="preserve"><value>Bangun-dalam generator suara</value></data>
+  <data name="Emulation.Sinclair.Value.GreenMonochrome" xml:space="preserve"><value>Monokrom hijau</value></data>
+  <data name="Emulation.Sinclair.Value.InvertedColours" xml:space="preserve"><value>Warna terbalik</value></data>
+  <data name="Emulation.Sinclair.Value.Monochrome" xml:space="preserve"><value>Hitam dan putih</value></data>
+  <data name="Emulation.Sinclair.Value.None" xml:space="preserve"><value>Nihil</value></data>
+  <data name="Emulation.Sinclair.Value.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Sinclair.Value.RomShadow" xml:space="preserve"><value>ROM cermin</value></data>
+  <data name="Emulation.Sinclair.Value.Television" xml:space="preserve"><value>Televisi</value></data>
+  <data name="Emulation.Sinclair.Value.TvSpeaker" xml:space="preserve"><value>Pembicara Televisi</value></data>
+  <data name="Emulation.Sinclair.Value.Unfiltered" xml:space="preserve"><value>Tanpa penyaring</value></data>
+  <data name="Emulation.Sinclair.Video.Native" xml:space="preserve"><value>Tampilan video</value></data>
+  <data name="Emulation.Emulator.fuse.Description" xml:space="preserve"><value>Emulasi ZX SPECTRUM dan komputer yang kompatibel.</value></data>
+  <data name="Emulation.Sinclair.Setting.BeeperVolume" xml:space="preserve"><value>Bangun-dalam volume suara</value></data>
+  <data name="Emulation.Sinclair.Setting.Issue2Keyboard" xml:space="preserve"><value>Revisi 2 papan tik</value></data>
+  <data name="Emulation.Sinclair.Value.Clean" xml:space="preserve"><value>Bersihkan gambar</value></data>
+  <data name="Emulation.Sinclair.Value.Full" xml:space="preserve"><value>Batas layar penuh</value></data>
+  <data name="Emulation.Sinclair.Value.Noisy" xml:space="preserve"><value>Gambar dengan kebisingan</value></data>
 </root>

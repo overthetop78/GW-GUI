@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Functions;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Contracts;
 namespace GWGUI.Emulation.Sinclair.Emulators.Fuse.Constants;
 internal static class EmulatorConstants
 {

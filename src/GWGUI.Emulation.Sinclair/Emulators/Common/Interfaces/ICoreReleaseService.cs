@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Contracts;
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interfaces;
 
 public interface ICoreReleaseService

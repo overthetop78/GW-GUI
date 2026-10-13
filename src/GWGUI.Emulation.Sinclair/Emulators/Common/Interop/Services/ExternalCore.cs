@@ -1,3 +1,7 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Functions;
 using System.IO;
 using System.Security.Cryptography;
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services;

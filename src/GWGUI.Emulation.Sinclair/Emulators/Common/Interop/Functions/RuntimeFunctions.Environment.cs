@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Enums;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;

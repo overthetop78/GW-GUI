@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Contracts;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Constants;
 using System.IO;
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Functions;
 

@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts;
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;
 
 internal static class CoreLifecycleFunctions

@@ -1,3 +1,10 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interfaces;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Functions;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Exceptions;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Dictionaries;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Contracts;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Constants;
 using System.Net.Http;
 using System.IO;
 

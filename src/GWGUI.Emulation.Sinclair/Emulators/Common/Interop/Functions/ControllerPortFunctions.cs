@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Contracts;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants;
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;
 internal static class ControllerPortFunctions
 {

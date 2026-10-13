@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>O estado salvo de Sinclair é incompatível com a máquina atual.</value></data>
-  <data name="Emulation.Sinclair.Error.Unexpected"><value>Ocorreu um inesperado erro de emulação Sinclair.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>Falta um firmware Sinclair necessário.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>A ROM do sistema é inválida ou incompatível.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>A mídia Sinclair configurada não foi encontrada.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>Esta máquina não suporta a mídia selecionada.</value></data>
-  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>Uma opção Sinclair tem um valor inválido.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>O núcleo necessário de Sinclair não foi encontrado.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreRejected"><value>O núcleo Sinclair selecionado não pôde ser carregado.</value></data>
-  <data name="Emulation.Sinclair.Error.StateInvalid"><value>O estado salvo de Sinclair é inválido.</value></data>
-  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>O caminho executável do servidor Sinclair está indisponível.</value></data>
-  <data name="Emulation.Sinclair.Error.Details"><value>Detalhes: {0}</value></data>
-  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>A comunicação com o anfitrião Sinclair falhou.</value></data>
-  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>Comando de ambiente desconhecido: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound" xml:space="preserve"><value>A mídia configurada Sinclair não foi encontrada.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported" xml:space="preserve"><value>Esta máquina não suporta os meios seleccionados.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound" xml:space="preserve"><value>O núcleo necessário de Sinclair não foi encontrado.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected" xml:space="preserve"><value>O núcleo Sinclair selecionado não pôde ser carregado.</value></data>
+  <data name="Emulation.Sinclair.Error.Details" xml:space="preserve"><value>Detalhes: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid" xml:space="preserve"><value>O sistema ROM é inválido ou incompatível.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing" xml:space="preserve"><value>Falta um firmware Sinclair necessário.</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure" xml:space="preserve"><value>A comunicação com o anfitrião Sinclair falhou.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid" xml:space="preserve"><value>Uma opção Sinclair tem um valor inválido.</value></data>
+  <data name="Emulation.Sinclair.Error.StateIncompatible" xml:space="preserve"><value>O estado salvo de Sinclair é incompatível com a máquina atual.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid" xml:space="preserve"><value>O estado salvo de Sinclair é inválido.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected" xml:space="preserve"><value>Ocorreu um inesperado erro de emulação de Sinclair.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comando de ambiente desconhecido: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing" xml:space="preserve"><value>O caminho para o programa de acolhimento Sinclair está indisponível.</value></data>
 </root>

@@ -1,3 +1,6 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Factories;
+using NativeSettings = GWGUI.Emulation.Sinclair.Emulators.Fuse.Functions.SettingsDescriptionFunctions;
 using GWGUI.Emulation.Sinclair.Emulators.Fuse.Constants;
 using NativeMedia = GWGUI.Emulation.Sinclair.Emulators.Fuse.Functions.MediaRuntimeFunctions;
 using NativeOptions = GWGUI.Emulation.Sinclair.Emulators.Fuse.Functions.RuntimeOptionFunctions;
@@ -5,8 +8,14 @@ using NativeFirmware = GWGUI.Emulation.Sinclair.Emulators.Fuse.Functions.Firmwar
 
 namespace GWGUI.Emulation.Sinclair.Emulators.Fuse.Factories;
 
-internal sealed class FuseMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry)
+internal sealed class FuseMachineFactory() : LibretroMachineFactory(EmulatorConstants.Entry), IEmulatorSettings
 {
+    public override IReadOnlyList<PeripheralCategory> GetPeripherals(MachineModel model) => Enum.GetValues<PeripheralCategory>();
+    protected override bool SupportsInitialContent => true;
+
+    public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration) => NativeSettings.Create(configuration);
+    public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null) => NativeSettings.GetOptions(configuration);
+
     protected override bool SupportsNoContent => true;
     protected override bool SupportsPointerCapture => true;
     protected override bool RequiresMediaRestart(MachineConfiguration configuration, EmulationMediaSlot slot, string? path) => !NativeMedia.CanExchange(configuration, slot);

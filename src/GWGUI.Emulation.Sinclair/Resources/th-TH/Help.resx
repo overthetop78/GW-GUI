@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Sinclair.Help.AyStereoSeparation" xml:space="preserve"><value>เลือกลําดับของ AY ช่องเสียงในเสียงส่งเสียง</value></data>
+  <data name="Emulation.Sinclair.Help.AyVolume" xml:space="preserve"><value>ปรับระดับเสียงของ AY ชิปเสียง</value></data>
+  <data name="Emulation.Sinclair.Help.BeeperVolume" xml:space="preserve"><value>ปรับระดับเสียงของเครื่องกําเนิดเสียงภายใน</value></data>
+  <data name="Emulation.Sinclair.Help.BorderSize" xml:space="preserve"><value>เลือกว่าจะให้แสดงกรอบจอกี่อัน</value></data>
+  <data name="Emulation.Sinclair.Help.Chroma81" xml:space="preserve"><value>จําลองส่วนขยายกราฟแสดงความถี่ของ Charoma 81</value></data>
+  <data name="Emulation.Sinclair.Help.EmulationSpeed" xml:space="preserve"><value>เลือกความเร็วการจําลองเป็นเปอร์เซ็นต์ของความเร็วเดิม</value></data>
+  <data name="Emulation.Sinclair.Help.FullerBox" xml:space="preserve"><value>จําลองการขยายเสียงกล่องฟูลเลอร์และตัวควบคุม</value></data>
+  <data name="Emulation.Sinclair.Help.HighResolution" xml:space="preserve"><value>เลือกส่วนขยายกราฟฟิกแบบปรับคุณภาพสูง</value></data>
+  <data name="Emulation.Sinclair.Help.Issue2Keyboard" xml:space="preserve"><value>จําลองพฤติกรรมคีย์บอร์ดของอุปกรณ์ปัญหา 2</value></data>
+  <data name="Emulation.Sinclair.Help.MemoryBankContent" xml:space="preserve"><value>เลือกเนื้อหาจากหน่วยความจําจาก 8 ถึง 16 กิโลไบต์</value></data>
+  <data name="Emulation.Sinclair.Help.MouseSwapButtons" xml:space="preserve"><value>สลับปุ่มซ้ายและขวาของเมาส์แบบย่อ</value></data>
+  <data name="Emulation.Sinclair.Help.Palette" xml:space="preserve"><value>เลือกจานสีที่จะใช้แสดงสี</value></data>
+  <data name="Emulation.Sinclair.Help.SoundHardware" xml:space="preserve"><value>เลือกฮาร์ดแวร์เสียงแบบเลียนแบบ</value></data>
+  <data name="Emulation.Sinclair.Help.SpeakerType" xml:space="preserve"><value>เลือกตัวกรองที่จะใช้สําหรับลําโพงเสียงแบบย่อ</value></data>
+  <data name="Emulation.Sinclair.Help.TapeAutoLoad" xml:space="preserve"><value>เริ่มทําการโหลดเทปอัตโนมัติ</value></data>
+  <data name="Emulation.Sinclair.Help.TapeFastLoad" xml:space="preserve"><value>โหลดข้อมูลเทปได้เร็วขึ้น</value></data>
+  <data name="Emulation.Sinclair.Help.TapeLoadSound" xml:space="preserve"><value>เล่นเพลงที่ผลิตมาขณะโหลดข้อมูลเทป</value></data>
+  <data name="Emulation.Sinclair.Help.TurboSound" xml:space="preserve"><value>จําลองส่วนขยายเสียงเทอร์โบซ็อง ด้วยสอง AY มันฝรั่งทอด</value></data>
+  <data name="Emulation.Sinclair.Help.USpeech" xml:space="preserve"><value>จําลองการขยายส่วนคําพูดของเคอร์ราห์ที่โปรแกรมอยู่ (Kerah) ทั้ง 2 จําเป็นต้องใช้แฟ้ม coundแวร์</value></data>
+  <data name="Emulation.Sinclair.Help.VideoPreset" xml:space="preserve"><value>เลือกลักษณะการแสดงของสัญญาณวิดีโอแบบย่อ</value></data>
+  <data name="Emulation.Sinclair.Help.Melodik" xml:space="preserve"><value>เลียนแบบ MELODIK ส่วนขยายเสียง</value></data>
+</root>

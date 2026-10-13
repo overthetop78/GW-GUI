@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants;
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services;
 
 internal sealed class KeyboardState

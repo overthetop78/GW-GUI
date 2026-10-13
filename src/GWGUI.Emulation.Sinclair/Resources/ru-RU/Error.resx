@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>Сохраненное состояние Sinclair несовместимо с текущей машиной.</value></data>
-  <data name="Emulation.Sinclair.Error.Unexpected"><value>Неожиданная ошибка эмуляции Sinclair.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>Необходимая прошивка Sinclair отсутствует.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>Система ROM является недействительной или несовместимой.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>Настроенных носителей Sinclair обнаружено не было.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>Данная машина не поддерживает выбранные носители.</value></data>
-  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>Опцион Sinclair имеет недействительное значение.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>Требуемое ядро Sinclair найдено не было.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreRejected"><value>Выбранное ядро Sinclair не могло быть загружено.</value></data>
-  <data name="Emulation.Sinclair.Error.StateInvalid"><value>Sinclair сохраненное состояние является недействительным.</value></data>
-  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>Исполняемый путь Sinclair host недоступен.</value></data>
-  <data name="Emulation.Sinclair.Error.Details"><value>Подробности: {0}</value></data>
-  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>Связь с хостом Sinclair не удалось.</value></data>
-  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>Неизвестная команда окружения: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound" xml:space="preserve"><value>Настроенные СМИ Синклера не были найдены.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported" xml:space="preserve"><value>Данная машина не поддерживает выбранные носители.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound" xml:space="preserve"><value>Требуемое ядро Синклера не было найдено.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected" xml:space="preserve"><value>Выбранное ядро Синклера не могло быть загружено.</value></data>
+  <data name="Emulation.Sinclair.Error.Details" xml:space="preserve"><value>Подробности: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid" xml:space="preserve"><value>Система ROM является недействительным или несовместимым.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing" xml:space="preserve"><value>Не хватает необходимого прошивки Sinclair.</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure" xml:space="preserve"><value>Общение с ведущим Синклера провалилось.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid" xml:space="preserve"><value>Вариант Синклера имеет недействительное значение.</value></data>
+  <data name="Emulation.Sinclair.Error.StateIncompatible" xml:space="preserve"><value>Сохранённое состояние Синклера несовместимо с текущей машиной.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid" xml:space="preserve"><value>Состояние Синклера, спасенного, недействительно.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected" xml:space="preserve"><value>Неожиданная ошибка эмуляции Синклера произошла.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Неизвестная команда окружения: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing" xml:space="preserve"><value>Путь к принимающей программе Синклера недоступен.</value></data>
 </root>

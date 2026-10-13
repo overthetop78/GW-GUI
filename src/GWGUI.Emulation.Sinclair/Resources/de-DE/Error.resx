@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>Der gespeicherte Zustand von Sinclair ist mit der aktuellen Maschine nicht kompatibel.</value></data>
-  <data name="Emulation.Sinclair.Error.Unexpected"><value>Ein unerwarteter Sinclair-Emulationsfehler trat auf.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>Eine erforderliche Sinclair-Firmware fehlt.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>Das System-ROM ist ungültig oder inkompatibel.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>Das konfigurierte Sinclair-Medien wurde nicht gefunden.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>Diese Maschine unterstützt die ausgewählten Medien nicht.</value></data>
-  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>Eine Sinclair Option hat einen ungültigen Wert.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>Der benötigte Sinclair-Kern wurde nicht gefunden.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreRejected"><value>Der ausgewählte Sinclair-Kern konnte nicht geladen werden.</value></data>
-  <data name="Emulation.Sinclair.Error.StateInvalid"><value>Der Sinclair-gespeicherte Zustand ist ungültig.</value></data>
-  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>Der ausführbare Pfad des Sinclair-Hosts ist nicht verfügbar.</value></data>
-  <data name="Emulation.Sinclair.Error.Details"><value>Einzelheiten: {0}</value></data>
-  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>Die Kommunikation mit dem Sinclair-Host ist fehlgeschlagen.</value></data>
-  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>Unbekannter Umgebungsbefehl: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound" xml:space="preserve"><value>Das konfigurierte Sinclair-Medien wurde nicht gefunden.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported" xml:space="preserve"><value>Diese Maschine unterstützt die ausgewählten Medien nicht.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound" xml:space="preserve"><value>Der benötigte Sinclair-Kern wurde nicht gefunden.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected" xml:space="preserve"><value>Der ausgewählte Sinclair-Kern konnte nicht geladen werden.</value></data>
+  <data name="Emulation.Sinclair.Error.Details" xml:space="preserve"><value>Einzelheiten: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid" xml:space="preserve"><value>Das System ROM ist ungültig oder inkompatibel.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing" xml:space="preserve"><value>Eine erforderliche Sinclair Firmware fehlt.</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure" xml:space="preserve"><value>Die Kommunikation mit dem Sinclair-Host ist fehlgeschlagen.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid" xml:space="preserve"><value>Eine Sinclair-Option hat einen ungültigen Wert.</value></data>
+  <data name="Emulation.Sinclair.Error.StateIncompatible" xml:space="preserve"><value>Der gespeicherte Zustand von Sinclair ist mit der aktuellen Maschine nicht kompatibel.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid" xml:space="preserve"><value>Der Sinclair-gespeicherte Zustand ist ungültig.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected" xml:space="preserve"><value>Ein unerwarteter Sinclair-Emulationsfehler trat auf.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Befehl Umgebung unbekannt: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing" xml:space="preserve"><value>Der Pfad zum Sinclair-Hostprogramm ist nicht verfügbar.</value></data>
 </root>

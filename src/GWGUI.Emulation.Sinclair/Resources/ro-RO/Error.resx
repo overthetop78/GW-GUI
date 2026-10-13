@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>Starea salvată de Sinclair este incompatibilă cu maşina curentă.</value></data>
-  <data name="Emulation.Sinclair.Error.Unexpected"><value>A apărut o eroare neaşteptată de emulare Sinclair.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>Un firmware Sinclair necesar lipseste.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>Sistemul ROM este invalid sau incompatibil.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>Configurat Sinclair mass-media nu a fost găsit.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>Această mașină nu suportă media selectată.</value></data>
-  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>O opțiune Sinclair are o valoare invalidă.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>Nucleul Sinclair necesar nu a fost găsit.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreRejected"><value>Miezul Sinclair selectat nu a putut fi încărcat.</value></data>
-  <data name="Emulation.Sinclair.Error.StateInvalid"><value>Starea salvată de Sinclair este invalidă.</value></data>
-  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>Calea executabilă a gazdei Sinclair nu este disponibilă.</value></data>
-  <data name="Emulation.Sinclair.Error.Details"><value>Detalii: {0}</value></data>
-  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>Comunicarea cu gazda Sinclair a eşuat.</value></data>
-  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>Comandă de mediu necunoscută: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound" xml:space="preserve"><value>Configurat Sinclair media nu a fost găsit.</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported" xml:space="preserve"><value>Această mașină nu suportă media selectată.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound" xml:space="preserve"><value>Nu s-a găsit miezul necesar Sinclair.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected" xml:space="preserve"><value>Miezul Sinclair selectat nu a putut fi încărcat.</value></data>
+  <data name="Emulation.Sinclair.Error.Details" xml:space="preserve"><value>Detalii: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid" xml:space="preserve"><value>Sistemul ROM este invalidă sau incompatibilă.</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing" xml:space="preserve"><value>Un firmware Sinclair necesar lipseşte.</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure" xml:space="preserve"><value>Comunicarea cu gazda Sinclair a eşuat.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid" xml:space="preserve"><value>O opțiune Sinclair are o valoare invalidă.</value></data>
+  <data name="Emulation.Sinclair.Error.StateIncompatible" xml:space="preserve"><value>Starea salvată de Sinclair este incompatibilă cu maşina curentă.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid" xml:space="preserve"><value>Starea salvată de Sinclair nu este validă.</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected" xml:space="preserve"><value>O eroare neaşteptată de emulare Sinclair a apărut.</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Comandă de mediu necunoscută: {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing" xml:space="preserve"><value>Calea către programul gazdelor Sinclair nu este disponibilă.</value></data>
 </root>

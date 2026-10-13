@@ -4,12 +4,15 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sinclair.Model.Zx80" xml:space="preserve"><value>Sinclair ZX80</value></data>
-  <data name="Emulation.Sinclair.Model.Zx81" xml:space="preserve"><value>Sinclair ZX81</value></data>
+  <data name="Emulation.Sinclair.Cpu.Z80" xml:space="preserve"><value>Zilog Z80</value></data>
+  <data name="Emulation.Sinclair.Model.Pentagon1024K" xml:space="preserve"><value>Pentagon 1024K</value></data>
+  <data name="Emulation.Sinclair.Model.Pentagon128K" xml:space="preserve"><value>Pentagon 128K</value></data>
+  <data name="Emulation.Sinclair.Model.Pentagon512K" xml:space="preserve"><value>Pentagon 512K</value></data>
+  <data name="Emulation.Sinclair.Model.Scorpion256K" xml:space="preserve"><value>Scorpion ZS-256</value></data>
+  <data name="Emulation.Sinclair.Model.Spectrum128K" xml:space="preserve"><value>ZX Spectrum 128K</value></data>
   <data name="Emulation.Sinclair.Model.Spectrum16K" xml:space="preserve"><value>ZX Spectrum 16K</value></data>
   <data name="Emulation.Sinclair.Model.Spectrum48K" xml:space="preserve"><value>ZX Spectrum 48K</value></data>
   <data name="Emulation.Sinclair.Model.Spectrum48KNtsc" xml:space="preserve"><value>ZX Spectrum 48K (NTSC)</value></data>
-  <data name="Emulation.Sinclair.Model.Spectrum128K" xml:space="preserve"><value>ZX Spectrum 128K</value></data>
   <data name="Emulation.Sinclair.Model.SpectrumPlus2" xml:space="preserve"><value>ZX Spectrum +2</value></data>
   <data name="Emulation.Sinclair.Model.SpectrumPlus2A" xml:space="preserve"><value>ZX Spectrum +2A</value></data>
   <data name="Emulation.Sinclair.Model.SpectrumPlus3" xml:space="preserve"><value>ZX Spectrum +3</value></data>
@@ -18,8 +21,6 @@
   <data name="Emulation.Sinclair.Model.TimexTc2048" xml:space="preserve"><value>Timex TC2048</value></data>
   <data name="Emulation.Sinclair.Model.TimexTc2068" xml:space="preserve"><value>Timex TC2068</value></data>
   <data name="Emulation.Sinclair.Model.TimexTs2068" xml:space="preserve"><value>Timex TS2068</value></data>
-  <data name="Emulation.Sinclair.Model.Pentagon128K" xml:space="preserve"><value>Pentagon 128K</value></data>
-  <data name="Emulation.Sinclair.Model.Pentagon512K" xml:space="preserve"><value>Pentagon 512K</value></data>
-  <data name="Emulation.Sinclair.Model.Pentagon1024K" xml:space="preserve"><value>Pentagon 1024K</value></data>
-  <data name="Emulation.Sinclair.Model.Scorpion256K" xml:space="preserve"><value>Scorpion ZS-256</value></data>
+  <data name="Emulation.Sinclair.Model.Zx80" xml:space="preserve"><value>Sinclair ZX80</value></data>
+  <data name="Emulation.Sinclair.Model.Zx81" xml:space="preserve"><value>Sinclair ZX81</value></data>
 </root>

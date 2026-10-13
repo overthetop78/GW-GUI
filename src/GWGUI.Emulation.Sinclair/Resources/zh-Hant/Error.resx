@@ -4,18 +4,18 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Sinclair.Error.StateIncompatible"><value>Sinclair所保存的狀態與現在的機器不相容.</value></data>
-  <data name="Emulation.Sinclair.Error.Unexpected"><value>發生了意外的 Sinclair 模擬錯誤 。</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareMissing"><value>需要的Sinclair號固件不見了.</value></data>
-  <data name="Emulation.Sinclair.Error.FirmwareInvalid"><value>系統ROM無效或不兼容.</value></data>
-  <data name="Emulation.Sinclair.Error.ContentNotFound"><value>未找到已配置的 Sinclair 介質 。</value></data>
-  <data name="Emulation.Sinclair.Error.ContentUnsupported"><value>此機器不支持所選的媒體 。</value></data>
-  <data name="Emulation.Sinclair.Error.OptionInvalid"><value>Sinclair 選項的值無效 。</value></data>
-  <data name="Emulation.Sinclair.Error.CoreNotFound"><value>未找到所需的Sinclair核.</value></data>
-  <data name="Emulation.Sinclair.Error.CoreRejected"><value>無法裝入選定的 Sinclair 核心 。</value></data>
-  <data name="Emulation.Sinclair.Error.StateInvalid"><value>Sinclair的保存狀態無效.</value></data>
-  <data name="Emulation.Sinclair.Error.HostExecutableMissing"><value>無法使用 Sinclair 主機可執行路徑 。</value></data>
-  <data name="Emulation.Sinclair.Error.Details"><value>細節 :{0}</value></data>
-  <data name="Emulation.Sinclair.Error.HostProtocolFailure"><value>與Sinclair主機通信失敗.</value></data>
-  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand"><value>未知的環境命令 :{0}</value></data>
+  <data name="Emulation.Sinclair.Error.ContentNotFound" xml:space="preserve"><value>找不到配置的 Sinclair 媒体 。</value></data>
+  <data name="Emulation.Sinclair.Error.ContentUnsupported" xml:space="preserve"><value>此机器不支持所选的媒体 。</value></data>
+  <data name="Emulation.Sinclair.Error.CoreNotFound" xml:space="preserve"><value>所需的辛克莱核心没有找到.</value></data>
+  <data name="Emulation.Sinclair.Error.CoreRejected" xml:space="preserve"><value>无法装入选定的 Sinclair 核心 。</value></data>
+  <data name="Emulation.Sinclair.Error.Details" xml:space="preserve"><value>细节 : {0}</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareInvalid" xml:space="preserve"><value>系统 ROM 无效或不兼容。</value></data>
+  <data name="Emulation.Sinclair.Error.FirmwareMissing" xml:space="preserve"><value>缺少一个需要的辛克莱固件</value></data>
+  <data name="Emulation.Sinclair.Error.HostProtocolFailure" xml:space="preserve"><value>与辛克莱主机的通信失败.</value></data>
+  <data name="Emulation.Sinclair.Error.OptionInvalid" xml:space="preserve"><value>一个辛克莱选项的值无效 。</value></data>
+  <data name="Emulation.Sinclair.Error.StateIncompatible" xml:space="preserve"><value>辛克莱所救状态与目前的机器不相容.</value></data>
+  <data name="Emulation.Sinclair.Error.StateInvalid" xml:space="preserve"><value>辛克莱保存的状态无效 。</value></data>
+  <data name="Emulation.Sinclair.Error.Unexpected" xml:space="preserve"><value>发生了意外的辛克莱仿真错误 。</value></data>
+  <data name="Emulation.Sinclair.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>未知的环境命令 : {0}</value></data>
+  <data name="Emulation.Sinclair.Error.HostExecutableMissing" xml:space="preserve"><value>通往辛克莱主机程序的路径无法使用.</value></data>
 </root>

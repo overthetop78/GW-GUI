@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services;
 using System.IO;
 using GWGUI.Emulation;
 using System.Globalization;

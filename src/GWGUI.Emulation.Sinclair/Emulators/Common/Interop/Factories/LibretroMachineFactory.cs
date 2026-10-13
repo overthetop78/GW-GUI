@@ -1,9 +1,16 @@
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Services;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Functions;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Constants;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Factories;
+using GWGUI.Emulation.Sinclair.Emulators.Common.Contracts;
 using System.IO;
 
 namespace GWGUI.Emulation.Sinclair.Emulators.Common.Interop.Factories;
 
-internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry) : GWGUI.Emulation.Sinclair.Emulators.Common.Factories.MachineFactory(catalogEntry)
+internal abstract class LibretroMachineFactory(EmulatorCatalogEntry catalogEntry) : GWGUI.Emulation.Sinclair.Emulators.Common.Factories.MachineFactory(catalogEntry), IEmulatorInputMapper
 {
+    public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => NativeInputMappingFunctions.Apply(snapshot, input, model, Emulator);
+
     internal abstract void PrepareFirmware(MachineConfiguration configuration, string systemDirectory);
     internal abstract LoadedContent? PrepareContent(MachineConfiguration configuration, string sessionDirectory, IReadOnlySet<string> supportedExtensions);
     internal virtual bool SupportsMediaExchange(MachineConfiguration configuration, EmulationMediaSlot slot) => false;
