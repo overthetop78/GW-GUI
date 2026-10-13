@@ -300,4 +300,12 @@ Audit actuel des 16 familles demandées : tous les manifestes `module.json` et r
 
 Acorn : les deux photographies originales sont maintenant centrées sur une toile transparente 512×512. Redimensionnement classique validé par l'utilisateur ; aucun détail reconstruit ni généré. Les images finales ont été affichées et contrôlées. Les imperfections de détourage présentes dans les originaux ne sont pas déclarées corrigées par ce seul redimensionnement.
 
-Les cinq redimensionnements classiques sont terminés, contrôlés visuellement et vérifiés en PNG 512×512 avec fond transparent. Les photographs originales restent les sources : aucune modification de légende, touche, logo, angle ou proportion n'a été introduite. La variante générée du BBC Master, qui inventait des détails, n'a jamais été intégrée au dépôt.
+Les cinq redimensionnements classiques sont terminés, contrôlés visuellement et vérifiés en PNG 512×512 avec fond transparent. Les photographies originales restent les sources : aucune modification de légende, touche, logo, angle ou proportion n'a été introduite. La variante générée du BBC Master, qui inventait des détails, n'a jamais été intégrée au dépôt.
+
+- [x] Consigner la livraison et la couverture déclarée.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : noter le build Debug réussi, la présence des 23 modules et des cinq PNG embarqués 512×512 transparents ; distinguer la présence des références DLL de leur qualification native.
+  - [x] Modifier `docs/tasks/emulation/methode-modules.md` : comparer le champ machine des tableaux au propriétaire réel ; utiliser les URL SourceUri du module avant toute recherche de dépôt.
+
+Livraison vérifiée après redimensionnement : `scripts/local-building.cmd --building=debug --modules=A` terminé avec code 0 ; `build/Debug/GW GUI/gwgui.exe`, 23 manifestes et leurs entryAssembly sont présents. Les cinq flux PNG ont été ouverts depuis les ressources des DLL livrées : dimensions 512×512 et pixel de fond transparent confirmés, streams et bitmaps libérés dans finally.
+
+La comparaison des références DLL des 16 familles avec les colonnes Machines du catalogue inclut les autres titres (Thomson, Wenquxing, 3DO, ColecoVision/blueMSX). Aucun nom de DLL d'émulation attendu n'est absent du code hors CDi2015 retiré explicitement. RemoteJoy correspond à la fonction d'affichage distant PSP du tableau ; sa présence n'a pas été déclarée comme un moteur d'émulation. Cette comparaison textuelle ne prouve pas l'implémentation ou la qualification complète des adaptateurs. Le BBC Micro Model A demeure sans entrée native dans `B2ModelCatalog` et `B2ModelFunctions.DefaultValue` : la couverture des modèles Acorn reste donc incomplète, même si la DLL b2 est référencée.
