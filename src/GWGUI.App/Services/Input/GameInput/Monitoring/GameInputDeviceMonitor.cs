@@ -54,7 +54,8 @@ internal static partial class GameInputDeviceMonitor
                 }
                 else
                 {
-                    _gameInput.SetFocusPolicy(GameInputFocusPolicy.ExclusiveForegroundGuideButton);
+                    _gameInput.SetFocusPolicy(GameInputFocusPolicy.ExclusiveForegroundInput
+                        | GameInputFocusPolicy.ExclusiveForegroundGuideButton | GameInputFocusPolicy.ExclusiveForegroundShareButton);
                     foreach (var filter in DeviceCallbackFilters)
                     {
                         result = _gameInput.RegisterDeviceCallback(null, filter, GameInputDeviceStatus.Any, GameInputEnumerationKind.Async, new IntPtr(unchecked((long)(uint)filter)), Marshal.GetFunctionPointerForDelegate(DeviceCallback), out var deviceToken);

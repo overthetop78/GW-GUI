@@ -109,6 +109,7 @@ internal static class InputSnapshotFunctions
 
     private static float SourcePressure(string sourceName, EmulationControllerState controller, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
     {
+        if (sourceName.Contains('+' ) && !sourceName.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(sourceName, controller, [controller], keys, mouse);
         if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Controller, out var control))
         {
             return EmulationInputMappingFunctions.ControllerSourcePressure(control, controller);
@@ -136,6 +137,7 @@ internal static class InputSnapshotFunctions
 
     private static bool IsSourcePressed(string sourceName, EmulationControllerState controller, IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
     {
+        if (sourceName.Contains('+' ) && !sourceName.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(sourceName, controller, [controller], keys, mouse) > .5f;
         if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Controller, out var controllerSource))
         {
             var value = EmulationInputMappingFunctions.ControllerSourceValue(controllerSource, controller);

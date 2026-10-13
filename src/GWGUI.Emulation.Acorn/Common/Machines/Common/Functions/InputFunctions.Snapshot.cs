@@ -74,6 +74,7 @@ internal static class InputSnapshotFunctions
 
     private static float Magnitude(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
+        if (source.Contains('+' ) && !source.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(source, controller, snapshot);
         if (source.StartsWith(InputSnapshotFunctionsConstants.Keyboard, StringComparison.OrdinalIgnoreCase)
             || source.StartsWith(InputSnapshotFunctionsConstants.Mouse, StringComparison.OrdinalIgnoreCase))
             return IsPressed(source, controller, snapshot) ? 1f : 0f;
@@ -82,6 +83,7 @@ internal static class InputSnapshotFunctions
 
     private static bool IsPressed(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
+        if (source.Contains('+' ) && !source.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(source, controller, snapshot) > .5f;
         if (TryRemovePrefix(source, InputSnapshotFunctionsConstants.Keyboard, out var keyboard)
             && Enum.TryParse<EmulationKey>(keyboard, true, out var key)) return snapshot.Keys.Contains(key);
         if (TryRemovePrefix(source, InputSnapshotFunctionsConstants.Mouse, out var mouse))

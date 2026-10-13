@@ -275,3 +275,16 @@ Les qualifications précédentes restent acquises : 83 contrôles des six premi�
 
 - [ ] Commiter les corrections restantes autorisées.
   - [ ] Commiter tous les fichiers restants, y compris le catalogue Libretro restauré, les modules, le SDK, les ressources, les registres et la restauration des outils, sans push.
+
+### Entrées mixtes et correction Acorn — vérification actuelle
+
+Les 94 tests ciblés `ControllerInputTests`, `EmulationViewsTests` et `AcornModuleTests` passent. Le script `scripts/local-building.cmd --building=debug --modules=A` a terminé avec le code 0 ; `build/Debug/GW GUI/gwgui.exe` et les assemblages des 23 manifestes de modules sont présents. La capture conserve plusieurs boutons détaillés simultanés et attend le dernier relâchement après un réappui. La rangée supérieure et le pavé numérique restent distincts ; aucune suppression automatique de MAJ/AltGr ni interdiction générale des touches alphanumériques n'a été ajoutée.
+
+Ce résultat ne vaut pas validation matérielle de l'interception Windows/GameInput. Les contrôles analogiques et les doubles représentations ont été corrigés et vérifiés dans la tranche suivante.
+
+Contrôles analogiques terminés : pression composée vérifiée dans les neuf consommateurs (Mattel, Philips, Sharp, Sinclair, SNK, Thomson, Watara, Panasonic, Epoch), sous la zone morte, à mi-course et sans modificateur maintenu. Les 94 tests ciblés passent après ajout des références de modules nécessaires dans le projet de tests. Joystick est conservé uniquement dans la base commune ; les 29 copies localisées ont été retirées. Les nouveaux libellés SHIFT allemand et espagnol sont Umschalt et Mayús ; le classement des autres inscriptions reste à examiner avant de prétendre à une revue exhaustive.
+
+La tranche Acorn/associations physiques est compilée et ses 94 tests ciblés passent. Les 191 identités EmulationKey ont été regroupées par fonction et famille en conservant leurs valeurs numériques explicites ; les tests restent verts après ce regroupement. Le dernier build complet a livré les 23 modules, l'exécutable et tous les entryAssembly déclarés. Aucun parcours matériel réel supplémentaire n'est déclaré validé par ces tests.
+
+- [ ] Compléter la vérification des inscriptions de modificateurs dans les autres cultures.
+  - [ ] Modifier `src/GWGUI.App/Resources/*/Emulation/EmulationKeyboard.resx` uniquement pour les inscriptions locales attestées différentes de SHIFT, après comparaison avec les noms clavier officiels ; conserver les identités LeftShift/RightShift et les valeurs réellement identiques dans 00-Base.

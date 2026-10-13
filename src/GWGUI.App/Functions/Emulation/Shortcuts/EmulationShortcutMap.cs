@@ -24,7 +24,7 @@ internal static class EmulationShortcutMap
         foreach (var mapping in mappings)
         {
             if (Enum.TryParse<EmulationKey>(mapping.Key, true, out var emulationKey) &&
-                KeyboardChordFunctions.TryParse(mapping.Value, out var chord))
+                KeyboardChordFunctions.TryParse(mapping.Value, out var chord) && !KeyboardChordFunctions.IsWindowsReserved(chord))
                 result.Add(new KeyboardShortcutBinding(chord, emulationKey));
         }
         return result;
@@ -32,5 +32,12 @@ internal static class EmulationShortcutMap
 
     internal static IReadOnlyList<GlobalShortcutBinding> GlobalShortcuts(IReadOnlyDictionary<string, string>? mappings) => mappings is null
         ? []
-        : mappings.Select(mapping => KeyboardChordFunctions.TryParse(mapping.Value, out var chord) ? new GlobalShortcutBinding(mapping.Key, chord) : null).Where(binding => binding is not null).Cast<GlobalShortcutBinding>().ToArray();
+        : mappings.Select(mapping =>
+        {
+            var hasKeyboard = InputBindingSyntax.TryGetKeyboardChord(mapping.Value, out var chord);
+            if (hasKeyboard && KeyboardChordFunctions.IsWindowsReserved(chord)) return null;
+            if (InputBindingSyntax.HasNonKeyboardSource(mapping.Value))
+                return EmulationKeyboardBindingFunctions.IsValid(mapping.Value) ? new GlobalShortcutBinding(mapping.Key, chord, mapping.Value) : null;
+            return hasKeyboard ? new GlobalShortcutBinding(mapping.Key, chord) : null;
+        }).Where(binding => binding is not null).Cast<GlobalShortcutBinding>().ToArray();
 }

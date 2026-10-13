@@ -56,6 +56,211 @@ public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaE
         }
     });
 
+    [Fact]
+    public Task KeyboardCaptureWaitsForEveryReleaseAndAcceptsModifiersAlone() => sta.Run(() =>
+    {
+        var editor = new GWGUI.App.Views.Controls.Emulation.Input.InputBindingEditor();
+        editor.SetRows([new GWGUI.Emulation.Contracts.InputBindingDefinition("Copy", "Emulation.Input.Actions", "")], null);
+        var notifications = 0;
+        editor.BindingsChanged += (_, _) => notifications++;
+        try
+        {
+            Assert.True(editor.SelectAndStartCapture("Copy"));
+            editor.CaptureKeyboardKeyDown(System.Windows.Input.Key.LeftCtrl, System.Windows.Input.ModifierKeys.Control);
+            editor.CaptureKeyboardKeyDown(System.Windows.Input.Key.LeftShift, System.Windows.Input.ModifierKeys.Control | System.Windows.Input.ModifierKeys.Shift);
+            editor.CaptureKeyboardKeyDown(System.Windows.Input.Key.A, System.Windows.Input.ModifierKeys.Control | System.Windows.Input.ModifierKeys.Shift);
+            editor.CaptureKeyboardKeyUp(System.Windows.Input.Key.A);
+            Assert.Equal(0, notifications);
+            editor.CaptureKeyboardKeyUp(System.Windows.Input.Key.LeftCtrl);
+            Assert.Equal(0, notifications);
+            editor.CaptureKeyboardKeyUp(System.Windows.Input.Key.LeftShift);
+            Assert.Equal("LeftCtrl+LeftShift+A", editor.Rows[0].Binding);
+            Assert.Equal(1, notifications);
+            Assert.True(editor.SelectAndStartCapture("Copy"));
+            editor.CaptureKeyboardKeyDown(System.Windows.Input.Key.RightAlt, System.Windows.Input.ModifierKeys.Alt);
+            Assert.Equal(1, notifications);
+            editor.CaptureKeyboardKeyUp(System.Windows.Input.Key.RightAlt);
+            Assert.Equal("RightAlt", editor.Rows[0].Binding);
+            Assert.False(editor.HasErrors);
+            Assert.Equal(2, notifications);
+            Assert.True(editor.SelectAndStartCapture("Copy"));
+            editor.CaptureKeyboardKeyDown(System.Windows.Input.Key.RightShift, System.Windows.Input.ModifierKeys.Shift);
+            editor.CaptureKeyboardKeyDown(System.Windows.Input.Key.LeftAlt, System.Windows.Input.ModifierKeys.Shift | System.Windows.Input.ModifierKeys.Alt);
+            editor.CaptureKeyboardKeyDown(System.Windows.Input.Key.RightCtrl, System.Windows.Input.ModifierKeys.Shift | System.Windows.Input.ModifierKeys.Alt | System.Windows.Input.ModifierKeys.Control);
+            editor.CaptureKeyboardKeyDown(System.Windows.Input.Key.F8, System.Windows.Input.ModifierKeys.Shift | System.Windows.Input.ModifierKeys.Alt | System.Windows.Input.ModifierKeys.Control);
+            editor.CaptureKeyboardKeyDown(System.Windows.Input.Key.F6, System.Windows.Input.ModifierKeys.Shift | System.Windows.Input.ModifierKeys.Alt | System.Windows.Input.ModifierKeys.Control);
+            editor.CaptureKeyboardKeyUp(System.Windows.Input.Key.F6);
+            editor.CaptureKeyboardKeyUp(System.Windows.Input.Key.RightCtrl);
+            editor.CaptureKeyboardKeyUp(System.Windows.Input.Key.LeftAlt);
+            editor.CaptureKeyboardKeyUp(System.Windows.Input.Key.F8);
+            Assert.Equal(2, notifications);
+            editor.CaptureKeyboardKeyUp(System.Windows.Input.Key.RightShift);
+            Assert.Equal("RightCtrl+LeftAlt+RightShift+F6+F8", editor.Rows[0].Binding);
+            Assert.Equal(3, notifications);
+            Assert.True(editor.SelectAndStartCapture("Copy"));
+            editor.CaptureKeyboardKeyDown(System.Windows.Input.Key.LeftAlt, System.Windows.Input.ModifierKeys.Alt);
+            Assert.False(editor.CaptureKeyboardKeyDown(System.Windows.Input.Key.Tab, System.Windows.Input.ModifierKeys.Alt));
+            Assert.Equal(3, notifications);
+        }
+        finally
+        {
+            editor.RaiseEvent(new System.Windows.RoutedEventArgs(System.Windows.FrameworkElement.UnloadedEvent));
+        }
+    });
+
+    [Fact]
+    public Task ConflictingMouseBindingsStayEditableAndKeyboardChordsPersist() => sta.Run(() =>
+    {
+        using var http = new HttpClient();
+        var module = new GWGUI.Emulation.Amstrad.Modules.AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), http, Path.GetTempPath());
+        var configuration = module.CreateConfiguration("cpc-6128");
+        var controller = new GWGUI.App.Controllers.Emulation.Input.EmulationInputSettingsController(module);
+        var root = controller.CreateContent(GWGUI.Emulation.Enums.EmulationMachineTab.Mouse, configuration, []);
+        var editor = Descendants(root).OfType<GWGUI.App.Views.Controls.Emulation.Input.InputBindingEditor>().Single();
+        var original = module.DescribeInputSettings(configuration).Mouse!;
+        editor.SetRows(original.Definitions, original.Definitions.ToDictionary(definition => definition.Id, _ => "Mouse:Right"));
+        Assert.True(controller.HasErrors);
+        Assert.Same(configuration, controller.Apply(configuration));
+        editor.SetRows(original.Definitions, original.Values);
+        Assert.False(controller.HasErrors);
+        controller.Apply(configuration);
+        root = controller.CreateContent(GWGUI.Emulation.Enums.EmulationMachineTab.Keyboard, configuration, []);
+        editor = Descendants(root).OfType<GWGUI.App.Views.Controls.Emulation.Input.InputBindingEditor>().Single();
+        var definitions = module.DescribeInputSettings(configuration).Keyboard!.Definitions;
+        editor.SetRows(definitions, new Dictionary<string, string> { [definitions[0].Id] = "Ctrl+Shift+A" });
+        var captured = controller.Apply(configuration);
+        Assert.Equal("Ctrl+Shift+A", module.DescribeInputSettings(captured).Keyboard!.Values[definitions[0].Id]);
+    });
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(3)]
+    public Task AudioCardsKeepHostOnTheRightAndStackWhenNarrow(int nativeCount) => sta.RunAsync(async () =>
+    {
+        var host = new System.Windows.Controls.Border();
+        var cards = Enumerable.Range(0, nativeCount).Select(_ => (System.Windows.FrameworkElement)new System.Windows.Controls.Border()).Append(host).ToArray();
+        var page = GWGUI.App.Functions.Views.Emulation.Settings.EmulationSettingsLayout.CompactCards(cards, card => ReferenceEquals(card, host) ? 1 : 0);
+        var window = new System.Windows.Window { Content = page, Width = 1200, Height = 400, ShowInTaskbar = false };
+        try
+        {
+            window.Show();
+            await System.Windows.Threading.Dispatcher.Yield(System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+            var columns = page.Children.OfType<System.Windows.Controls.StackPanel>().ToArray();
+            Assert.Equal(nativeCount, columns[0].Children.Count);
+            Assert.Same(host, Assert.Single(columns[1].Children.Cast<System.Windows.FrameworkElement>()));
+            window.Width = 600;
+            await System.Windows.Threading.Dispatcher.Yield(System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+            Assert.Equal(nativeCount + 1, columns[0].Children.Count);
+            Assert.Empty(columns[1].Children);
+        }
+        finally { GWGUI.Tests.Application.TestInfrastructure.TestResourceCleanup.ReleaseWindows(System.Windows.Application.Current); }
+    });
+
+    [Theory]
+    [InlineData(GWGUI.Emulation.Enums.EmulationMachineTab.Keyboard)]
+    [InlineData(GWGUI.Emulation.Enums.EmulationMachineTab.Mouse)]
+    [InlineData(GWGUI.Emulation.Enums.EmulationMachineTab.Controllers)]
+    public Task EveryInputEditorRejectsAppShortcutsAndSystemExceptions(GWGUI.Emulation.Enums.EmulationMachineTab tab) => sta.Run(() =>
+    {
+        using var http = new HttpClient();
+        var module = new GWGUI.Emulation.Amstrad.Modules.AmstradEmulationModule(Path.GetTempPath(), Path.GetTempPath(), http, Path.GetTempPath());
+        var configuration = module.CreateConfiguration("cpc-6128");
+        var controller = new GWGUI.App.Controllers.Emulation.Input.EmulationInputSettingsController(module, ["Alt+Enter"]);
+        var root = controller.CreateContent(tab, configuration, []);
+        var editors = Descendants(root).OfType<GWGUI.App.Views.Controls.Emulation.Input.InputBindingEditor>().ToArray();
+        Assert.NotEmpty(editors);
+        foreach (var editor in editors)
+        {
+            var rows = editor.Rows;
+            if (rows.Count == 0) continue;
+            var definitions = rows.Select(row => new GWGUI.Emulation.Contracts.InputBindingDefinition(row.Id, "Emulation.Input.Actions", "")).ToArray();
+            foreach (var reserved in new[] { "Alt+Return", "Alt+Tab", "Ctrl+Shift+Escape", "Ctrl+Alt+Delete", "Win+A", "Alt+F4" })
+            {
+                editor.SetRows(definitions, new Dictionary<string, string> { [rows[0].Id] = tab == GWGUI.Emulation.Enums.EmulationMachineTab.Keyboard ? reserved : "Keyboard:" + reserved });
+                Assert.True(editor.HasErrors);
+                Assert.Same(configuration, controller.Apply(configuration));
+            }
+        }
+    });
+
+    [Fact]
+    public Task AtariKeyboardChordSurvivesSettingsAndConfigurationSerialization() => sta.Run(() =>
+    {
+        using var http = new HttpClient();
+        var module = new GWGUI.Emulation.Atari.Modules.AtariEmulationModule(Path.GetTempPath(), Path.GetTempPath(), http, Path.GetTempPath());
+        var configuration = module.Machines.Select(machine => module.CreateConfiguration(machine.Id)).First(candidate => module.DescribeInputSettings(candidate).Keyboard?.Definitions.Count > 0);
+        var controller = new GWGUI.App.Controllers.Emulation.Input.EmulationInputSettingsController(module);
+        var root = controller.CreateContent(GWGUI.Emulation.Enums.EmulationMachineTab.Keyboard, configuration, []);
+        var editor = Descendants(root).OfType<GWGUI.App.Views.Controls.Emulation.Input.InputBindingEditor>().Single();
+        var definitions = module.DescribeInputSettings(configuration).Keyboard!.Definitions;
+        editor.SetRows(definitions, new Dictionary<string, string> { [definitions[0].Id] = "Ctrl+Shift+A" });
+        var captured = controller.Apply(configuration);
+        var document = GWGUI.Emulation.Atari.Common.Machines.Common.Functions.ConfigurationStoreFunctions.ToDocument((GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.MachineConfiguration)captured, Path.GetTempPath());
+        var serialized = System.Text.Json.JsonSerializer.Serialize(document);
+        var parsed = System.Text.Json.JsonSerializer.Deserialize<GWGUI.Emulation.Atari.Common.Machines.Common.Contracts.ConfigurationDocument>(serialized)!;
+        var restored = GWGUI.Emulation.Atari.Common.Machines.Common.Functions.ConfigurationStoreFunctions.FromDocument(parsed, Path.GetTempPath());
+        Assert.Equal("Ctrl+Shift+A", module.DescribeInputSettings(restored).Keyboard!.Values[definitions[0].Id]);
+    });
+
+    [Fact]
+    public Task AcornFloppyDialogAppliesControllerAndBootToItsDrive() => sta.Run(() =>
+    {
+        using var http = new HttpClient();
+        var module = new GWGUI.Emulation.Acorn.Modules.AcornEmulationModule(Path.GetTempPath(), Path.GetTempPath(), http, Path.GetTempPath());
+        var configuration = module.CreateConfiguration("BbcMicroModelB");
+        var storage = module.DescribeStorageSettings(configuration);
+        var device = Assert.Single(storage.AvailableDevices);
+        var drive = Assert.Single(storage.DeviceSettings!);
+        var dialog = new GWGUI.App.Views.Dialogs.Emulation.Storage.FloppyDriveConfigurationDialog("D0:", "BBC Micro Model B", drive.Floppy!, device.FloppyOptions!, Guid.NewGuid(), module.Id, device.ConfigurationFields);
+        try
+        {
+            dialog.Show();
+            var selector = Descendants(dialog).OfType<System.Windows.Controls.ComboBox>().Single(combo => combo.Items.OfType<GWGUI.App.Contracts.Emulation.Settings.EmulationSettingsChoiceView>().Any());
+            selector.SelectedItem = selector.Items.OfType<GWGUI.App.Contracts.Emulation.Settings.EmulationSettingsChoiceView>().Single(choice => choice.Choice.Id == GWGUI.Emulation.Acorn.Emulators.B2.Constants.OptionConstants.ChallengerController);
+            var boot = Descendants(dialog).OfType<System.Windows.Controls.CheckBox>().Single();
+            boot.IsChecked = false;
+            var result = module.ApplyStorageSettings(configuration, storage with { DeviceSettings = [drive with { Floppy = dialog.Settings }] });
+            var fields = Assert.Single(module.DescribeStorageSettings(result).AvailableDevices).ConfigurationFields!;
+            Assert.Equal(GWGUI.Emulation.Acorn.Emulators.B2.Constants.OptionConstants.ChallengerController, fields.Single(field => field.Id == GWGUI.Emulation.Acorn.Emulators.B2.Constants.OptionConstants.DiscController).Value);
+            Assert.Equal("false", fields.Single(field => field.Id == GWGUI.Emulation.Acorn.Emulators.B2.Constants.OptionConstants.AutoBoot).Value);
+        }
+        finally { GWGUI.Tests.Application.TestInfrastructure.TestResourceCleanup.ReleaseWindows(System.Windows.Application.Current); }
+    });
+
+    [Fact]
+    public Task MixedCaptureAccumulatesKeysMouseAndControllerUntilAllAreReleased() => sta.Run(() =>
+    {
+        var editor = new GWGUI.App.Views.Controls.Emulation.Input.InputBindingEditor();
+        editor.ConfigureCaptureSources(GWGUI.App.Enums.Input.InputCaptureSources.Keyboard | GWGUI.App.Enums.Input.InputCaptureSources.Mouse | GWGUI.App.Enums.Input.InputCaptureSources.Controller, true);
+        editor.SetRows([new GWGUI.Emulation.Contracts.InputBindingDefinition("action", "Emulation.Input.Actions", "")], null);
+        var changes = 0;
+        editor.BindingsChanged += (_, _) => changes++;
+        try
+        {
+            editor.SelectAndStartCapture("action");
+            editor.CaptureKeyboardKeyDown(System.Windows.Input.Key.LeftCtrl, System.Windows.Input.ModifierKeys.Control);
+            editor.CaptureKeyboardKeyDown(System.Windows.Input.Key.A, System.Windows.Input.ModifierKeys.Control);
+            editor.CapturePhysicalSourceDown("Mouse:Left");
+            editor.CapturePhysicalSourceDown("Mouse:Middle");
+            editor.CapturePhysicalSourceDown("Controller:test:ButtonA");
+            editor.CapturePhysicalSourceDown("Controller:test:ButtonX");
+            editor.CaptureKeyboardKeyUp(System.Windows.Input.Key.A);
+            editor.CaptureKeyboardKeyUp(System.Windows.Input.Key.LeftCtrl);
+            editor.CapturePhysicalSourceUp("Mouse:Left");
+            editor.CapturePhysicalSourceDown("Mouse:Left");
+            editor.CapturePhysicalSourceUp("Controller:test:ButtonA");
+            editor.CapturePhysicalSourceUp("Mouse:Middle");
+            Assert.Equal(0, changes);
+            editor.CapturePhysicalSourceUp("Controller:test:ButtonX");
+            Assert.Equal(0, changes);
+            editor.CapturePhysicalSourceUp("Mouse:Left");
+            Assert.Equal(1, changes);
+            Assert.Equal("Keyboard:LeftCtrl+A+Mouse:Left+Mouse:Middle+Controller:test:ButtonA+Controller:test:ButtonX", editor.Rows[0].Binding);
+            Assert.False(editor.HasErrors);
+        }
+        finally { editor.RaiseEvent(new System.Windows.RoutedEventArgs(System.Windows.FrameworkElement.UnloadedEvent)); }
+    });
+
     private static IEnumerable<System.Windows.DependencyObject> Descendants(System.Windows.DependencyObject root)
     {
         yield return root;

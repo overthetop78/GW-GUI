@@ -94,7 +94,6 @@
   <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Ma sát</value></data>
   <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Bộ giảm chấn</value></data>
   <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Quán tính</value></data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Cần điều khiển</value></data>
   <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Bộ điều khiển đa trục</value></data>
   <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Công dụng HID</value></data>
   <data name="Controllers.Enum.Axes" xml:space="preserve"><value>trục</value></data>

@@ -1,4 +1,4 @@
-﻿using GWGUI.Emulation.Philips.Emulators.Common.Interop.Dictionaries;
+using GWGUI.Emulation.Philips.Emulators.Common.Interop.Dictionaries;
 using GWGUI.Emulation.Philips.Common.Machines.P2000.Dictionaries;
 
 namespace GWGUI.Emulation.Philips.Emulators.Common.Interop.Functions;
@@ -42,6 +42,11 @@ internal static class NativeInputMappingFunctions
     private static short Axis(float value) => (short)(Math.Clamp(value, -1f, 1f) * short.MaxValue);
     private static float Magnitude(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot, int deadZone)
     {
+        if (mapping.Contains('+') && !mapping.EndsWith('+'))
+        {
+            var combined = EmulationInputMappingFunctions.InputSourcePressure(mapping, controller, snapshot);
+            return combined <= deadZone / 100f ? 0f : Math.Clamp(combined, 0f, 1f);
+        }
         if (!mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase))
             return IsPressed(mapping, controller, snapshot) ? 1f : 0f;
         var value = EmulationInputMappingFunctions.ControllerSourcePressure(mapping, controller);
@@ -49,6 +54,7 @@ internal static class NativeInputMappingFunctions
     }
     private static bool IsPressed(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
+        if (mapping.Contains('+' ) && !mapping.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(mapping, controller, snapshot) > .5f;
         if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
             return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key);
         if (mapping.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))

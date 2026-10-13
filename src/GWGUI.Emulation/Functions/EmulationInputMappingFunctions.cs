@@ -60,6 +60,8 @@ public static class EmulationInputMappingFunctions
 
     public static string? ParseControllerDeviceId(string? source)
     {
+        if (source?.Contains('+') == true && !source.EndsWith('+'))
+            source = source.Split('+', StringSplitOptions.TrimEntries).FirstOrDefault(part => part.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase));
         if (string.IsNullOrWhiteSpace(source) ||
             !source.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)) return null;
         var controlSeparator = source.LastIndexOf(EmulationInputMappingConstants.SourceSeparator);
@@ -162,13 +164,28 @@ public static class EmulationInputMappingFunctions
         IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
     {
         if (string.IsNullOrWhiteSpace(source)) return 0f;
+        if (source.Contains('+') && !source.EndsWith('+')) return source.Split('+', StringSplitOptions.TrimEntries).Min(part => SourcePressure(
+            part.Contains(':') ? part : EmulationInputMappingConstants.KeyboardPrefix + part, controller, physical, keys, mouse));
         if (source.StartsWith(EmulationInputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
-            return Enum.TryParse<EmulationKey>(source[EmulationInputMappingConstants.KeyboardPrefix.Length..], true, out var key) && keys.Contains(key) ? 1f : 0f;
+            return EmulationKeyboardBindingFunctions.IsPressed(source, keys) ? 1f : 0f;
         if (source.StartsWith(EmulationInputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
             return mouse.GetValueOrDefault(source[EmulationInputMappingConstants.MousePrefix.Length..]) ? 1f : 0f;
         var selected = ResolveSourceController(source, physical, controller);
         return ControllerSourcePressure(source, selected);
     }
+
+    public static float InputSourcePressure(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot) => SourcePressure(
+        source.Contains(':') ? source : EmulationInputMappingConstants.KeyboardPrefix + source, controller, snapshot.Controllers, snapshot.Keys,
+        new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["Left"] = snapshot.Pointer.Left, ["Right"] = snapshot.Pointer.Right, ["Middle"] = snapshot.Pointer.Middle,
+            ["XButton1"] = snapshot.Pointer.ExtendedButton1, ["XButton2"] = snapshot.Pointer.ExtendedButton2,
+            ["WheelUp"] = snapshot.Pointer.Wheel > 0, ["WheelDown"] = snapshot.Pointer.Wheel < 0,
+            ["WheelLeft"] = snapshot.Pointer.HorizontalWheel < 0, ["WheelRight"] = snapshot.Pointer.HorizontalWheel > 0
+        });
+
+    public static float InputSourcePressure(string source, EmulationControllerState controller, IReadOnlyList<EmulationControllerState> physical,
+        IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse) => SourcePressure(source, controller, physical, keys, mouse);
 
     public static float ControllerSourcePressure(string source, EmulationControllerState controller)
     {
@@ -185,6 +202,18 @@ public static class EmulationInputMappingFunctions
 
     public static string? OppositeControllerAxisSource(string source)
     {
+        if (source.Contains('+') && !source.EndsWith('+'))
+        {
+            var parts = source.Split('+', StringSplitOptions.TrimEntries);
+            var found = false;
+            for (var index = 0; index < parts.Length; index++)
+                if (OppositeControllerAxisSource(parts[index]) is { } oppositePart)
+                {
+                    parts[index] = oppositePart;
+                    found = true;
+                }
+            return found ? string.Join("+", parts) : null;
+        }
         if (!source.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)) return null;
         var name = SourceControlName(source);
         string? opposite = name switch

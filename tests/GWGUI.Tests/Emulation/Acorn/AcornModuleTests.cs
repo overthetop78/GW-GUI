@@ -174,9 +174,16 @@ public sealed class AcornModuleTests
         var module = new GWGUI.Emulation.Acorn.Modules.AcornEmulationModule(Path.GetTempPath(), Path.GetTempPath(), http, Path.GetTempPath());
         var configuration = new MachineConfiguration(MachineModel.BbcMicroModelB);
         Assert.DoesNotContain(SettingsDescriptionFunctions.Create(configuration), block => block.Tab == EmulationMachineTab.General);
-        var challenger = (MachineConfiguration)module.ApplySettings(configuration, new Dictionary<string, string?>
+        Assert.DoesNotContain(SettingsDescriptionFunctions.Create(configuration), block => block.Tab == EmulationMachineTab.Storage);
+        var storage = module.DescribeStorageSettings(configuration);
+        var device = Assert.Single(storage.AvailableDevices);
+        Assert.Equal(EmulationStorageConfigurationKind.FloppyDrive, device.ConfigurationKind);
+        Assert.Contains(device.ConfigurationFields!, field => field.Id == OptionConstants.DiscController);
+        var drive = Assert.Single(storage.DeviceSettings!);
+        var options = new Dictionary<string, string>(drive.Floppy!.Options!) { [OptionConstants.DiscController] = OptionConstants.ChallengerController };
+        var challenger = (MachineConfiguration)module.ApplyStorageSettings(configuration, storage with
         {
-            [OptionConstants.DiscController] = OptionConstants.ChallengerController
+            DeviceSettings = [drive with { Floppy = drive.Floppy with { Options = options } }]
         });
         Assert.Equal(OptionConstants.ModelBOpusChallenger256K, challenger.Options[OptionConstants.Model]);
         var memory = SettingsDescriptionFunctions.Create(challenger).SelectMany(block => block.Fields).Single(field => field.Id == OptionConstants.DiscMemory);
@@ -185,6 +192,9 @@ public sealed class AcornModuleTests
         Assert.Equal(OptionConstants.ModelBOpusChallenger512K, expanded.Options[OptionConstants.Model]);
         Assert.DoesNotContain(OptionConstants.DiscMemory, expanded.Options.Keys);
         Assert.DoesNotContain(OptionConstants.DiscController, expanded.Options.Keys);
+        var restored = ConfigurationStoreFunctions.FromDocument(ConfigurationStoreFunctions.ToDocument(expanded, Path.GetTempPath()), Path.GetTempPath());
+        Assert.Equal(expanded.Options[OptionConstants.Model], restored.Options[OptionConstants.Model]);
+        Assert.Equal(expanded.Id, restored.Id);
         Assert.True(SettingsDescriptionFunctions.Create(expanded).Single(block => block.Tab == EmulationMachineTab.Audio).IsCompact);
     }
 

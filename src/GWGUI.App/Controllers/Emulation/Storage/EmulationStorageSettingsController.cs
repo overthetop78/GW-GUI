@@ -261,7 +261,7 @@ internal sealed class EmulationStorageSettingsController
         var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot)?.Floppy ?? new FloppyDriveSettings(device.FloppyOptions!.Models[0].Value, "100", false, false);
         var dialog = new FloppyDriveConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(),
             _configuration?.MachineId ?? string.Empty, current, device.FloppyOptions!,
-            EmulationMediaDialogFunctions.ClientGuid(_moduleId, _configuration?.MachineId ?? string.Empty, device.Slot), _moduleId);
+            EmulationMediaDialogFunctions.ClientGuid(_moduleId, _configuration?.MachineId ?? string.Empty, device.Slot), _moduleId, device.ConfigurationFields);
         FloppyDriveSettings selectedSettings;
         try
         {

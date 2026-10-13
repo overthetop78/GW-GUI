@@ -5,6 +5,24 @@ namespace GWGUI.App.Functions.Input.Keyboard;
 
 public static class EmulationKeyMapper
 {
+    private static readonly EmulationKey[] FunctionKeys =
+    [
+        EmulationKey.F1, EmulationKey.F2, EmulationKey.F3, EmulationKey.F4,
+        EmulationKey.F5, EmulationKey.F6, EmulationKey.F7, EmulationKey.F8,
+        EmulationKey.F9, EmulationKey.F10, EmulationKey.F11, EmulationKey.F12
+    ];
+    public static bool TryMap(EmulationKey source, out Key result)
+    {
+        foreach (var key in Enum.GetValues<Key>())
+            if (TryMap(key, out var mapped) && mapped == source)
+            {
+                result = key;
+                return true;
+            }
+        result = Key.None;
+        return false;
+    }
+
     public static bool TryMap(Key key, out EmulationKey result)
     {
         if (key is >= Key.A and <= Key.Z)
@@ -17,9 +35,9 @@ public static class EmulationKeyMapper
             result = (EmulationKey)((int)EmulationKey.D0 + key - Key.D0);
             return true;
         }
-        if (key is >= Key.F1 and <= Key.F10)
+        if (key is >= Key.F1 and <= Key.F12)
         {
-            result = (EmulationKey)((int)EmulationKey.F1 + key - Key.F1);
+            result = FunctionKeys[key - Key.F1];
             return true;
         }
         if (key is >= Key.NumPad0 and <= Key.NumPad9)
@@ -29,14 +47,13 @@ public static class EmulationKeyMapper
         }
         result = key switch
         {
-            Key.F11 => EmulationKey.F11, Key.F12 => EmulationKey.F12,
             Key.Back => EmulationKey.Backspace, Key.Tab => EmulationKey.Tab, Key.Enter => EmulationKey.Return,
             Key.Escape => EmulationKey.Escape, Key.Space => EmulationKey.Space, Key.Left => EmulationKey.Left,
             Key.Right => EmulationKey.Right, Key.Up => EmulationKey.Up, Key.Down => EmulationKey.Down,
             Key.LeftShift => EmulationKey.LeftShift, Key.RightShift => EmulationKey.RightShift,
             Key.LeftCtrl => EmulationKey.LeftControl, Key.RightCtrl => EmulationKey.RightControl,
             Key.LeftAlt => EmulationKey.LeftAlt, Key.RightAlt => EmulationKey.RightAlt,
-            Key.LWin => EmulationKey.LeftAmiga, Key.RWin => EmulationKey.RightAmiga,
+            Key.LWin => EmulationKey.LeftWindows, Key.RWin => EmulationKey.RightWindows,
             Key.Delete => EmulationKey.Delete, Key.Insert => EmulationKey.Insert,
             Key.Home => EmulationKey.Home, Key.End => EmulationKey.End,
             Key.PageUp => EmulationKey.PageUp, Key.PageDown => EmulationKey.PageDown,

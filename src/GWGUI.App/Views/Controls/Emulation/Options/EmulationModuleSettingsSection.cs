@@ -54,7 +54,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
     private readonly SemaphoreSlim _saveInputGate = new(1, 1);
     private EmulationMachineTab _selectedTab = EmulationMachineTab.General;
 
-    internal EmulationModuleSettingsSection(IEmulationModule module, GWGUI.VideoPresentation.Services.VideoPresentationProfileStore? profiles = null, Action<Exception>? showError = null)
+    internal EmulationModuleSettingsSection(IEmulationModule module, GWGUI.VideoPresentation.Services.VideoPresentationProfileStore? profiles = null, Action<Exception>? showError = null, IEnumerable<string>? reservedBindings = null)
     {
         FlowDirection = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         _module = module;
@@ -78,13 +78,17 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl, IAsy
         }
         if (module is IEmulationInputSettingsManager inputManager)
         {
-            _inputSettings = new EmulationInputSettingsController(inputManager);
+            _inputSettings = new EmulationInputSettingsController(inputManager, reservedBindings);
             _inputSettings.SettingsChanged += async (_, _) => await ExecuteUserChangeAsync();
         }
         if (module is IEmulationStorageSettingsManager storageManager)
         {
             _storageSettings = new EmulationStorageSettingsController(_module.Id, storageManager, DefaultFolder);
-            _storageSettings.SettingsChanged += async (_, _) => await ExecuteUserChangeAsync();
+            _storageSettings.SettingsChanged += async (_, _) =>
+            {
+                await ExecuteUserChangeAsync();
+                RebuildEditor();
+            };
         }
         _machines.SelectionChanged += MachineChanged;
         _videoProcessing.ConfigurationChanged += async (_, _) =>

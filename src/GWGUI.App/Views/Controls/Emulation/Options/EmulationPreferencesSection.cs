@@ -43,6 +43,7 @@ public sealed partial class EmulationPreferencesSection : UserControl
 
     public EmulationPreferencesSection()
     {
+        _shortcuts.ConfigureCaptureSources(GWGUI.App.Enums.Input.InputCaptureSources.Keyboard | GWGUI.App.Enums.Input.InputCaptureSources.Mouse | GWGUI.App.Enums.Input.InputCaptureSources.Controller, true);
         _tabs = new TabControl
         {
             Margin = new Thickness(8),

@@ -29,6 +29,7 @@ public partial class App : Application
 {
     private AppTheme _theme;
     private UpdateStartupCoordinator? _updateStartup;
+    private GWGUI.App.Services.Input.Keyboard.ForegroundKeyboardShortcutGuard? _keyboardShortcutGuard;
     protected override void OnStartup(StartupEventArgs e)
     {
         _updateStartup = UpdateStartupCoordinator.FromArguments(e.Args);
@@ -89,7 +90,21 @@ public partial class App : Application
         SystemEvents.UserPreferenceChanged += SystemPreferenceChanged;
         GameInputControllerSource.Instance.StartMonitoring();
         MainWindow = new MainWindow(null, initialSettings: settings);
-        MainWindow.Show();
+        try
+        {
+            _keyboardShortcutGuard = new GWGUI.App.Services.Input.Keyboard.ForegroundKeyboardShortcutGuard();
+            MainWindow.Show();
+        }
+        catch
+        {
+            try { MainWindow.Close(); }
+            finally
+            {
+                try { _keyboardShortcutGuard?.Dispose(); }
+                finally { _keyboardShortcutGuard = null; }
+            }
+            throw;
+        }
     }
 
     private void SystemPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
@@ -99,6 +114,8 @@ public partial class App : Application
 
     protected override void OnExit(ExitEventArgs e)
     {
+        try
+        {
         ReleaseRemainingWindows();
         try { GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.FlushPending(); }
         catch (Exception error) { System.Diagnostics.Trace.TraceError(error.ToString()); }
@@ -107,7 +124,16 @@ public partial class App : Application
         DispatcherUnhandledException -= OnDispatcherUnhandledException;
         AppDomain.CurrentDomain.UnhandledException -= OnDomainUnhandledException;
         TaskScheduler.UnobservedTaskException -= OnUnobservedTaskException;
-        base.OnExit(e);
+        }
+        finally
+        {
+            try { _keyboardShortcutGuard?.Dispose(); }
+            finally
+            {
+                _keyboardShortcutGuard = null;
+                base.OnExit(e);
+            }
+        }
     }
 
     private void ReleaseRemainingWindows()

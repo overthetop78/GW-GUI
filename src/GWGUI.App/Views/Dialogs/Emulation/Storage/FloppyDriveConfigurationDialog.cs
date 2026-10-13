@@ -21,10 +21,13 @@ public sealed class FloppyDriveConfigurationDialog : Window
     private readonly CheckBox _redirectWrites = new();
     private readonly FloppyDriveDialogOptions _options;
     private readonly Guid _clientGuid;
+    private readonly Dictionary<string, FrameworkElement> _fields = new(StringComparer.Ordinal);
 
-    public FloppyDriveSettings Settings => new((_model.SelectedItem as StorageDialogChoice)?.Value ?? "35dd", (_speed.SelectedItem as StorageDialogChoice)?.Value ?? "100", _writeProtected.IsChecked == true, _redirectWrites.IsChecked == true);
+    public FloppyDriveSettings Settings => new((_model.SelectedItem as StorageDialogChoice)?.Value ?? "35dd", (_speed.SelectedItem as StorageDialogChoice)?.Value ?? "100",
+        _writeProtected.IsChecked == true, _redirectWrites.IsChecked == true, _fields.ToDictionary(item => item.Key, item => StorageConfigurationFieldFunctions.Read(item.Value), StringComparer.Ordinal));
 
-    public FloppyDriveConfigurationDialog(string identifier, string machineName, FloppyDriveSettings settings, FloppyDriveDialogOptions options, Guid clientGuid, string? moduleId = null)
+    public FloppyDriveConfigurationDialog(string identifier, string machineName, FloppyDriveSettings settings, FloppyDriveDialogOptions options, Guid clientGuid,
+        string? moduleId = null, IReadOnlyList<EmulationSettingsField>? configurationFields = null)
     {
         _options = options;
         _clientGuid = clientGuid;
@@ -59,9 +62,16 @@ public sealed class FloppyDriveConfigurationDialog : Window
         behavior.Children.Add(_writeProtected);
         behavior.Children.Add(_redirectWrites);
         var body = new StackPanel();
-        body.Children.Add(StorageDialogUi.SideBySide(
-            StorageDialogUi.IconCard(IconGlyphs.Memory, LocExtension.Get("Emulation.Storage.Floppy.Drive"), drive),
-            StorageDialogUi.IconCard(IconGlyphs.Settings, LocExtension.Get("Emulation.Input.Behavior"), behavior)));
+        var driveCard = StorageDialogUi.IconCard(IconGlyphs.Memory, LocExtension.Get("Emulation.Storage.Floppy.Drive"), drive);
+        body.Children.Add(options.CanConfigureBehavior
+            ? StorageDialogUi.SideBySide(driveCard, StorageDialogUi.IconCard(IconGlyphs.Settings, LocExtension.Get("Emulation.Input.Behavior"), behavior))
+            : driveCard);
+        foreach (var field in configurationFields ?? [])
+        {
+            var control = StorageConfigurationFieldFunctions.Create(field, moduleId, settings.Options);
+            _fields[field.Id] = control;
+            body.Children.Add(StorageConfigurationFieldFunctions.Present(field, control, moduleId));
+        }
         if (options.CanCreateBlankMedia)
         {
             var create = new Button

@@ -66,6 +66,7 @@ internal static class InputSnapshotFunctions
 
     private static bool IsPressed(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot)
     {
+        if (source.Contains('+' ) && !source.EndsWith('+')) return EmulationInputMappingFunctions.InputSourcePressure(source, controller, snapshot) > .5f;
         if (source.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
             return Enum.TryParse<EmulationKey>(source[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key);
         if (source.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase)) return source[InputMappingConstants.MousePrefix.Length..] switch

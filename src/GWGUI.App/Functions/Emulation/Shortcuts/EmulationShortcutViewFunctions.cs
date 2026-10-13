@@ -72,7 +72,9 @@ internal static class EmulationShortcutViewFunctions
 
     private static string ResolveShortcutText(IReadOnlyList<GlobalShortcutBinding> configuredShortcuts, string action)
     {
-        var binding = configuredShortcuts.FirstOrDefault(item => item.Action == action)?.Chord;
+        var configured = configuredShortcuts.FirstOrDefault(item => item.Action == action);
+        if (configured?.SourceBinding is { } sourceBinding) return sourceBinding;
+        var binding = configured?.Chord;
         if (binding is null && EmulationShortcutDefaults.Values.TryGetValue(action, out var fallback))
             KeyboardChordFunctions.TryParse(fallback, out binding);
         return binding is null ? string.Empty : KeyboardChordFunctions.Format(binding.Modifiers, binding.Keys);

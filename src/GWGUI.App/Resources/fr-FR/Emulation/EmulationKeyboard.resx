@@ -12,4 +12,5 @@
   <data name="Emulation.Keyboard.Priority.Description"><value>Les raccourcis de GW GUI et de Windows restent actifs et ne sont pas capturés par la machine.</value></data>
   <data name="Emulation.Keyboard.EmulatedKey"><value>Touche de la machine</value></data>
   <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Les lettres, les chiffres et les modificateurs ordinaires sont transmis directement. Seules les touches de fonction et les touches spéciales de l’Amiga doivent être associées ici.</value></data>
+  <data name="Emulation.Keyboard.Modifier.Shift"><value>MAJ</value></data>
 </root>

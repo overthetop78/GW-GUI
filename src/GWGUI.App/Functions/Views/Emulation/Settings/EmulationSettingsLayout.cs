@@ -107,7 +107,7 @@ internal static partial class EmulationSettingsLayout
         return form;
     }
 
-    internal static Grid CompactCards(IEnumerable<FrameworkElement> cards)
+    internal static Grid CompactCards(IEnumerable<FrameworkElement> cards, Func<FrameworkElement, int>? preferredColumn = null)
     {
         var page = new Grid { Margin = new Thickness(12) };
         page.ColumnDefinitions.Add(new ColumnDefinition());
@@ -131,7 +131,8 @@ internal static partial class EmulationSettingsLayout
             for (var index = 0; index < items.Count; index++)
             {
                 items[index].Margin = new Thickness(0, 0, 0, 12);
-                columns[index % count].Children.Add(items[index]);
+                var column = count == 1 ? 0 : preferredColumn?.Invoke(items[index]) ?? index % count;
+                columns[column].Children.Add(items[index]);
             }
         }
         page.Tag = (Action<FrameworkElement>)(card =>

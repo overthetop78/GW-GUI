@@ -18,12 +18,12 @@ public partial class EmulationModuleOptionsWindow : Window
     private bool _cleanupStarted;
     private bool _cleanupCompleted;
 
-    public EmulationModuleOptionsWindow(IEmulationModule module, IEmulationConfiguration? initialConfiguration = null, Action<Exception>? showError = null, GWGUI.VideoPresentation.Services.VideoPresentationProfileStore? profiles = null)
+    public EmulationModuleOptionsWindow(IEmulationModule module, IEmulationConfiguration? initialConfiguration = null, Action<Exception>? showError = null, GWGUI.VideoPresentation.Services.VideoPresentationProfileStore? profiles = null, IEnumerable<string>? reservedBindings = null)
     {
         InitializeComponent();
         _module = module;
         _initialConfiguration = initialConfiguration;
-        _section = new EmulationModuleSettingsSection(module, profiles, showError);
+        _section = new EmulationModuleSettingsSection(module, profiles, showError, reservedBindings);
         _section.ConfigurationSaved += ConfigurationSaved;
         _section.VideoConfigurationChanged += VideoConfigurationChanged;
         EmulationVideoShaderLoadingStatus.Changed += VideoShaderLoadingChanged;

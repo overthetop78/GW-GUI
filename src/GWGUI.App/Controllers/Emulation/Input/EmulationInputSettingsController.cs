@@ -22,6 +22,7 @@ internal sealed class EmulationInputSettingsController
 {
     private const string ControllerVisualResourceKeyPrefix = "Emulation.Controller.Visual.Model.";
     private readonly IEmulationInputSettingsManager _manager;
+    private readonly IReadOnlyList<string> _reservedBindings;
     private InputBindingEditor? _keyboard;
     private InputBindingEditor? _mouse;
     private IReadOnlyList<EmulationControllerPortEditor> _ports = [];
@@ -31,9 +32,14 @@ internal sealed class EmulationInputSettingsController
     private string? _machineId;
     private IEmulationConfiguration? _loadedConfiguration;
 
-    internal EmulationInputSettingsController(IEmulationInputSettingsManager manager) => _manager = manager;
+    internal EmulationInputSettingsController(IEmulationInputSettingsManager manager, IEnumerable<string>? reservedBindings = null)
+    {
+        _manager = manager;
+        _reservedBindings = (reservedBindings ?? GWGUI.Infrastructure.Settings.Emulation.EmulationShortcutDefaults.Values.Values).ToArray();
+    }
 
     internal event EventHandler? SettingsChanged;
+    internal bool HasErrors => _keyboard?.HasErrors == true || _mouse?.HasErrors == true || _ports.Any(port => port.Bindings.HasErrors);
 
     internal UIElement CreateContent(EmulationMachineTab tab, IEmulationConfiguration configuration, IReadOnlyList<EmulationSettingsControlField> fields)
     {
@@ -59,6 +65,7 @@ internal sealed class EmulationInputSettingsController
 
     internal IEmulationConfiguration Apply(IEmulationConfiguration configuration)
     {
+        if (HasErrors) return configuration;
         if (_loadedConfiguration is null || _loadedConfiguration.ModuleId != configuration.ModuleId
             || _loadedConfiguration.MachineId != configuration.MachineId)
             return configuration;
@@ -122,10 +129,11 @@ internal sealed class EmulationInputSettingsController
     private InputBindingEditor CreateEditor(EmulationInputBindingSet? set)
     {
         var editor = new InputBindingEditor();
+        editor.SetReservedBindings(_reservedBindings);
         editor.BindingsChanged += (_, _) => SettingsChanged?.Invoke(this, EventArgs.Empty);
         editor.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"), LocExtension.Get("Emulation.Input.Binding.Search"));
         if (set is null) return editor;
-        editor.ConfigureCaptureSources(ToCaptureSources(set.Sources), set.PrefixKeyboardSource);
+        editor.ConfigureCaptureSources(InputCaptureSources.Keyboard | InputCaptureSources.Mouse | InputCaptureSources.Controller, set.PrefixKeyboardSource);
         editor.SetRows(set.Definitions, set.Values, _moduleId);
         return editor;
     }
@@ -133,7 +141,7 @@ internal sealed class EmulationInputSettingsController
     private EmulationControllerPortEditor CreatePort(EmulationControllerPort port)
     {
         var editor = EmulationControllerSettingsSection.CreatePort(port.Number,
-            ToCaptureSources(port.Bindings.Sources), port.Bindings.PrefixKeyboardSource,
+            InputCaptureSources.Keyboard | InputCaptureSources.Mouse | InputCaptureSources.Controller, port.Bindings.PrefixKeyboardSource,
             LocExtension.Get("Emulation.Input.Actions"),
             LocExtension.Get("Emulation.Input.Binding.Search"),
             _moduleId ?? string.Empty, _machineId ?? string.Empty);
@@ -142,6 +150,7 @@ internal sealed class EmulationInputSettingsController
         editor.Type.DisplayMemberPath = nameof(EmulationControllerChoiceView.DisplayName);
         editor.Type.SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == port.SelectedControllerId) ?? choices.FirstOrDefault();
         editor.PhysicalDeviceId = port.PhysicalDeviceId;
+        editor.Bindings.SetReservedBindings(_reservedBindings);
         editor.DeadZonePercent = port.DeadZonePercent;
         editor.Bindings.SetRows(port.Bindings.Definitions, port.Bindings.Values, _moduleId);
         UpdateControllerBindings(editor, port.VisualId, preserveCurrentBindings: true);
@@ -219,21 +228,40 @@ internal sealed class EmulationInputSettingsController
 
     private static EmulationInputBindingSet? ReadBindings(EmulationInputBindingSet? original, InputBindingEditor? editor) => original is null || editor is null ? original : original with
     {
-        Values = editor.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal)
+        Values = editor.Rows.ToDictionary(row => row.Id, row => NormalizeSourceBinding(row.Binding), StringComparer.Ordinal)
     };
 
     private static EmulationInputBindingSet? ReadKeyboardBindings(EmulationInputBindingSet? original, InputBindingEditor? editor) => original is null || editor is null ? original : original with
     {
-        Values = editor.Rows.Select(row => (row.Id, Key: ParseKeyboardBinding(row.Binding))).Where(item => item.Key != EmulationKey.Unknown).ToDictionary(item => item.Id, item => item.Key.ToString(), StringComparer.Ordinal)
+        Values = editor.Rows.ToDictionary(row => row.Id, row => NormalizeKeyboardBinding(row.Binding), StringComparer.Ordinal)
     };
 
-    private static EmulationKey ParseKeyboardBinding(string binding)
+    private static string NormalizeKeyboardBinding(string binding)
     {
-        if (Enum.TryParse<EmulationKey>(binding, true, out var direct)) return direct;
-        if (!KeyboardChordFunctions.TryParse(binding, out var chord) || chord.Keys.Count != 1)
-            return EmulationKey.Unknown;
-        return EmulationKeyMapper.TryMap(chord.Keys[0], out var mapped) ? mapped : EmulationKey.Unknown;
+        if (string.IsNullOrWhiteSpace(binding)) return string.Empty;
+        if (binding.Split('+').Any(part => part.StartsWith("Mouse:", StringComparison.OrdinalIgnoreCase) || part.StartsWith("Controller:", StringComparison.OrdinalIgnoreCase))) return NormalizeSourceBinding(binding);
+        binding = string.Join("+", binding.Split('+', StringSplitOptions.TrimEntries).Select(part => InputBindingSyntax.TryRemovePrefix(part, "Keyboard:", out var source) ? source : part));
+        if (!KeyboardChordFunctions.TryParse(binding, out var chord)) return string.Empty;
+        var parts = new List<string>();
+        var explicitModifiers = chord.Keys.Aggregate(System.Windows.Input.ModifierKeys.None, (value, key) => value | KeyboardChordFunctions.ModifierForKey(key));
+        var prefix = KeyboardChordFunctions.Format(chord.Modifiers & ~explicitModifiers, []);
+        if (prefix.Length > 0) parts.Add(prefix);
+        foreach (var key in chord.Keys)
+        {
+            if (!EmulationKeyMapper.TryMap(key, out var mapped)) return string.Empty;
+            parts.Add(mapped.ToString());
+        }
+        return string.Join("+", parts);
     }
+
+    private static string NormalizeSourceBinding(string binding) => string.Join("+", binding.Split('+', StringSplitOptions.TrimEntries).Select(part =>
+    {
+        if (GWGUI.App.Constants.Input.Controllers.ControllerInputConstants.LegacyButtonNames.Contains(part, StringComparer.OrdinalIgnoreCase)) return part;
+        if (part.StartsWith("Mouse:", StringComparison.OrdinalIgnoreCase) || part.StartsWith("Controller:", StringComparison.OrdinalIgnoreCase)) return part;
+        var key = InputBindingSyntax.TryRemovePrefix(part, "Keyboard:", out var source) ? source : part;
+        var normalized = NormalizeKeyboardBinding(key);
+        return normalized.Length == 0 ? string.Empty : "Keyboard:" + normalized;
+    }));
 
     private EmulationControllerPort ReadPort(EmulationControllerPortEditor editor)
     {
@@ -244,7 +272,7 @@ internal sealed class EmulationInputSettingsController
         {
             Definitions = editor.SelectedVisualId is { } visualId && selected?.VisualBindingDefinitions?.TryGetValue(visualId, out var definitions) == true
                 ? definitions : selected?.BindingDefinitions ?? original.Bindings.Definitions,
-            Values = editor.Bindings.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal)
+            Values = editor.Bindings.Rows.ToDictionary(row => row.Id, row => NormalizeSourceBinding(row.Binding), StringComparer.Ordinal)
         };
         return original with
         {

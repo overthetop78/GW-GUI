@@ -30,7 +30,7 @@ public partial class EmulationPreferencesWindow : Window
         _reportSaveError = reportSaveError ?? (error => ShowLoggedError(error, "Saving Emulation options"));
         EmulationSection.EditConfigurationRequested += async (module, configuration) =>
         {
-            var window = new EmulationModuleOptionsWindow(module, configuration) { Owner = this };
+            var window = new EmulationModuleOptionsWindow(module, configuration, reservedBindings: _settings.EmulationShortcuts.Values) { Owner = this };
             window.ShowDialog();
             await EmulationSection.ReloadConfigurationsForWindowAsync();
         };

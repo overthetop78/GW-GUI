@@ -40,6 +40,7 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private async Task ApplyUserChangeAsync()
     {
+        if (_inputSettings?.HasErrors == true) return;
         _profiles.Get(_module.Id, _configuration.Id);
         CaptureEditorValues();
         var configuration = _configuration;
@@ -62,6 +63,7 @@ internal sealed partial class EmulationModuleSettingsSection
 
     private async Task SaveAsync()
     {
+        if (_inputSettings?.HasErrors == true) return;
         _profiles.Get(_module.Id, _configuration.Id);
         var values = _fieldControls.ToDictionary(item => item.Key, item => ReadValue(item.Value), StringComparer.Ordinal);
         _configuration = _module.ApplySettings(_configuration, values);

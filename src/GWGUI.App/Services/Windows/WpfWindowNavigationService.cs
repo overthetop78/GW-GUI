@@ -44,10 +44,10 @@ public sealed class WpfWindowNavigationService : IWindowNavigationService
         var commands = commandBuilder ?? new GwCommandBuilder();
         _preferences = (settings, section) => new PreferencesWindow(settings, new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), commandRunner, commands), hostTools, section);
         _emulationPreferences = settings => new EmulationPreferencesWindow(settings);
-        _emulationModuleOptions = (_, moduleId) =>
+        _emulationModuleOptions = (settings, moduleId) =>
         {
             var module = EmulationModuleRegistry.Modules.FirstOrDefault(candidate => string.Equals(candidate.Id, moduleId, StringComparison.OrdinalIgnoreCase)) ?? throw new InvalidOperationException($"Emulation module '{moduleId}' is not loaded.");
-            return new EmulationModuleOptionsWindow(module);
+            return new EmulationModuleOptionsWindow(module, reservedBindings: settings.EmulationShortcuts.Values);
         };
         _updates = () => new UpdatesWindow(pendingInstallations);
         _logs = directory => new LogHistoryWindow(directory);

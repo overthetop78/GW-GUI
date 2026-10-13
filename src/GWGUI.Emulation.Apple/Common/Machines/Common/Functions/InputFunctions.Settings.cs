@@ -49,7 +49,7 @@ internal static class InputSettingsFunctions
         var allowedKeys = KeyboardDefinitions(configuration).Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         var keyboardBindings = settings.Keyboard is null 
             ? configuration.Input.KeyboardBindings ?? ToStrings(configuration.Input.KeyboardMappings) 
-            : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key) && (string.IsNullOrWhiteSpace(item.Value) || Enum.TryParse<EmulationKey>(item.Value, true, out var key) && Enum.IsDefined(key))).ToDictionary(item => item.Key,
+            : settings.Keyboard.Values.Where(item => allowedKeys.Contains(item.Key) && EmulationKeyboardBindingFunctions.IsValid(item.Value)).ToDictionary(item => item.Key,
                 item => string.IsNullOrWhiteSpace(item.Value) ? string.Empty : item.Value,
                 StringComparer.Ordinal);
         var keyboard = keyboardBindings.Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);

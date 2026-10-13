@@ -49,6 +49,11 @@ internal static class InputSnapshotFunctions
         or ControllerCommand.AimRight;
     private static float Value(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot, int deadZone)
     {
+        if (mapping.Contains('+') && !mapping.EndsWith('+'))
+        {
+            var combined = EmulationInputMappingFunctions.InputSourcePressure(mapping, controller, snapshot);
+            return combined <= (float)deadZone / InputMappingConstants.PercentScale ? 0f : Math.Clamp(combined, 0f, 1f);
+        }
         if (mapping.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
             return Enum.TryParse<EmulationKey>(mapping[InputMappingConstants.KeyboardPrefix.Length..], out var key) && snapshot.Keys.Contains(key) ? 1 : 0;
         if (mapping.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))

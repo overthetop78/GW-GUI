@@ -26,7 +26,7 @@ internal static class EmulatorSettingsFunctions
         return options;
     }
 
-    internal static IReadOnlyList<EmulationSettingsBlock> Describe(MachineConfiguration configuration)
+    internal static IReadOnlyList<EmulationSettingsField> DeviceFields(MachineConfiguration configuration)
     {
         var native = configuration.Options.GetValueOrDefault(OptionConstants.Model, B2ModelFunctions.DefaultValue(configuration.Model));
         var storage = new List<EmulationSettingsField>();
@@ -40,9 +40,14 @@ internal static class EmulatorSettingsFunctions
             SettingsConstants.ResourceAutoBoot, EmulationSettingsEditor.Toggle,
             configuration.Options.GetValueOrDefault(OptionConstants.AutoBoot, OptionConstants.Enabled),
             EnabledValue: OptionConstants.Enabled, DisabledValue: OptionConstants.Disabled));
+        return storage;
+    }
+
+    internal static IReadOnlyList<EmulationSettingsBlock> Describe(MachineConfiguration configuration)
+    {
+        var native = configuration.Options.GetValueOrDefault(OptionConstants.Model, B2ModelFunctions.DefaultValue(configuration.Model));
         var blocks = new List<EmulationSettingsBlock>
         {
-            new(SettingsConstants.ResourceDiscController, EmulationMachineTab.Storage, "Emulation.Tab.Storage", storage),
             new(SettingsConstants.ResourceFirmware, EmulationMachineTab.Rom, SettingsConstants.ResourceFirmware,
                 [new EmulationSettingsField(SettingsConstants.Firmware, EmulationMachineTab.Rom, EmulationMachineTab.Rom.ToString(),
                     SettingsConstants.ResourceFirmware, EmulationSettingsEditor.Information, "embedded",

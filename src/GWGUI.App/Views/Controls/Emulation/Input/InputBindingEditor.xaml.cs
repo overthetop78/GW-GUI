@@ -19,6 +19,9 @@ public partial class InputBindingEditor : UserControl
     private readonly ObservableCollection<InputBindingRow> _rows = [];
     private readonly HashSet<Key> _capturePressed = [];
     private readonly List<Key> _captureOrder = [];
+    private readonly HashSet<string> _captureSourcesPressed = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _capturedSources = new(StringComparer.OrdinalIgnoreCase);
+    private readonly GWGUI.App.Functions.Input.Keyboard.KeyboardModifierState _captureModifierState = new();
     private InputBindingRow? _captureRow;
     private Button? _captureButton;
     private object? _captureButtonContent;
@@ -33,6 +36,7 @@ public partial class InputBindingEditor : UserControl
     private IReadOnlyList<GameInputLiveState> _controllerDetailedAxisBaseline = [];
     private IReadOnlySet<string> _reservedBindings = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     private HwndSource? _windowSource;
+    private System.Windows.Window? _captureWindow;
 
     public InputBindingEditor()
     {
@@ -42,6 +46,7 @@ public partial class InputBindingEditor : UserControl
         AddHandler(PreviewKeyDownEvent, new KeyEventHandler(CaptureKeyDown), true);
         AddHandler(PreviewKeyUpEvent, new KeyEventHandler(CaptureKeyUp), true);
         AddHandler(PreviewMouseDownEvent, new MouseButtonEventHandler(CaptureMouseDown), true);
+        AddHandler(PreviewMouseUpEvent, new MouseButtonEventHandler(CaptureMouseUp), true);
         AddHandler(PreviewMouseWheelEvent, new MouseWheelEventHandler(CaptureMouseWheel), true);
         _controllerCaptureTimer = new DispatcherTimer(ControllerCaptureConstants.PollingInterval, DispatcherPriority.Input, CaptureControllerInput, Dispatcher);
         _controllerCaptureTimer.Stop();

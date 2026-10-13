@@ -7,9 +7,6 @@ using System.Windows;
 using System.Windows.Controls;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
-using GWGUI.App.Contracts.Emulation.Settings;
-using GWGUI.App.Functions.Views.Emulation.Settings;
-using System.Globalization;
 
 namespace GWGUI.App.Views.Dialogs.Emulation.Storage;
 
@@ -24,13 +21,7 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
         (_speed.SelectedItem as StorageDialogChoice)?.Value
             ?? new EmulationCompactDiscDriveSettings().Speed,
         _cache.IsChecked == true, _ignoreErrors.IsChecked == true,
-        _options.ToDictionary(item => item.Key, item => item.Value switch
-        {
-            CheckBox { Tag: EmulationSettingsField definition } toggle => toggle.IsChecked == true ? definition.EnabledValue : definition.DisabledValue,
-            ComboBox { SelectedItem: EmulationSettingsChoiceView choice } => choice.Choice.Id,
-            Slider slider => slider.Value.ToString(CultureInfo.InvariantCulture),
-            _ => string.Empty
-        }, StringComparer.Ordinal));
+        _options.ToDictionary(item => item.Key, item => StorageConfigurationFieldFunctions.Read(item.Value), StringComparer.Ordinal));
 
     public CompactDiscDriveConfigurationDialog(string identifier, string machineName,
         string modelName,
@@ -67,42 +58,9 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
         body.Children.Add(fields);
         foreach (var field in configurationFields ?? [])
         {
-            FrameworkElement control;
-            if (field.Editor == EmulationSettingsEditor.Toggle)
-                control = new CheckBox { IsChecked = field.Value == field.EnabledValue, Tag = field };
-            else if (field.NumericRange is { } range)
-            {
-                var value = double.TryParse(field.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out var parsed) ? parsed : range.Minimum;
-                control = new Slider { Minimum = range.Minimum, Maximum = range.Maximum,
-                    TickFrequency = range.Step, SmallChange = range.Step, LargeChange = range.Step,
-                    IsSnapToTickEnabled = true, Value = Math.Clamp(value, range.Minimum, range.Maximum) };
-            }
-            else
-            {
-                var choices = (field.Choices ?? []).Select(choice => new EmulationSettingsChoiceView(choice, choice.InvariantDisplayValue ?? LocExtension.GetForModule(moduleId ?? string.Empty, choice.DisplayResourceKey))).ToArray();
-                control = new ComboBox { ItemsSource = choices,
-                    SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == field.Value) ?? choices.FirstOrDefault() };
-            }
+            var control = StorageConfigurationFieldFunctions.Create(field, moduleId, settings.Options);
             _options[field.Id] = control;
-            FrameworkElement presentation = control;
-            if (control is Slider slider)
-            {
-                var number = new TextBlock { VerticalAlignment = VerticalAlignment.Center,
-                    Margin = new Thickness(8, 0, 0, 0) };
-                void UpdateNumber() => number.Text = slider.Value.ToString(CultureInfo.CurrentCulture) + field.NumericRange!.UnitSuffix;
-                UpdateNumber();
-                slider.ValueChanged += (_, _) => UpdateNumber();
-                var row = new Grid();
-                row.ColumnDefinitions.Add(new ColumnDefinition());
-                row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-                row.Children.Add(slider);
-                Grid.SetColumn(number, 1); row.Children.Add(number);
-                presentation = row;
-            }
-            body.Children.Add(EmulationSettingsLayout.BoundedForm(1, new EmulationSettingsControlField(
-                LocExtension.GetForModule(moduleId ?? string.Empty, field.LabelResourceKey), presentation,
-                field.ExplanationResourceKey is null ? null : LocExtension.GetForModule(moduleId ?? string.Empty, field.ExplanationResourceKey),
-                field.DetailedExplanationResourceKey is null ? null : LocExtension.GetForModule(moduleId ?? string.Empty, field.DetailedExplanationResourceKey))));
+            body.Children.Add(StorageConfigurationFieldFunctions.Present(field, control, moduleId));
         }
         body.Children.Add(StorageDialogUi.Info(LocExtension.Get(EmulationResourceKeys.StorageRuntimeHint)));
         Content = StorageDialogUi.DialogLayout(

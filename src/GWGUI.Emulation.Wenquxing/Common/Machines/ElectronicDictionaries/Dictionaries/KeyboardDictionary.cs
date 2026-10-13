@@ -42,7 +42,7 @@ internal static class KeyboardDictionary
             if (!bindings.ContainsKey(pair.Key) || pair.Value is null)
                 throw new ArgumentException(nameof(input));
             var physical = pair.Value.StartsWith("Keyboard:", StringComparison.OrdinalIgnoreCase) ? pair.Value["Keyboard:".Length..] : pair.Value;
-            if (physical.Length != 0 && (!Enum.TryParse<EmulationKey>(physical, out var key) || !Enum.IsDefined(key) || key == EmulationKey.Unknown))
+            if (!EmulationKeyboardBindingFunctions.IsValid(physical))
                 throw new ArgumentException(nameof(input));
             bindings[pair.Key] = physical;
         }
@@ -52,7 +52,7 @@ internal static class KeyboardDictionary
 
     internal static IReadOnlySet<EmulationKey> Apply(IReadOnlySet<EmulationKey> keys, InputConfiguration input, MachineModel model)
     {
-        var mappings = Bindings(input, model).Where(pair => pair.Value.Length != 0).ToDictionary(pair => pair.Key, pair => Enum.Parse<EmulationKey>(pair.Value), StringComparer.Ordinal);
+        var mappings = Bindings(input, model).Where(pair => Enum.TryParse<EmulationKey>(pair.Value, out _)).ToDictionary(pair => pair.Key, pair => Enum.Parse<EmulationKey>(pair.Value), StringComparer.Ordinal);
         return EmulationInputMappingFunctions.MapKeyboard(keys, mappings);
     }
 }
