@@ -78,8 +78,8 @@ internal static class InputSnapshotFunctions
             controllers[binding.Port] = source with
             {
                 Buttons = buttons,
-                LeftX = horizontalMapped ? Axis(horizontal) : source.LeftX,
-                LeftY = verticalMapped ? Axis(vertical) : source.LeftY
+                LeftX = horizontalMapped ? Axis(horizontal) : (short)0,
+                LeftY = verticalMapped ? Axis(vertical) : (short)0
             };
         }
         // Dead zones are applied once, by the native host, after port/device mapping.
