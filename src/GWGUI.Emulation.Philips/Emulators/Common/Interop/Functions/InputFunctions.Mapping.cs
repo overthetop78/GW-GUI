@@ -44,8 +44,7 @@ internal static class NativeInputMappingFunctions
     {
         if (!mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase))
             return IsPressed(mapping, controller, snapshot) ? 1f : 0f;
-        var value = EmulationInputMappingFunctions.ControllerSourceValue(mapping, controller);
-        if (Math.Abs(value) > 1f) value /= short.MaxValue;
+        var value = EmulationInputMappingFunctions.ControllerSourcePressure(mapping, controller);
         return value <= deadZone / 100f ? 0f : Math.Clamp(value, 0f, 1f);
     }
     private static bool IsPressed(string mapping, EmulationControllerState controller, EmulationInputSnapshot snapshot)

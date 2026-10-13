@@ -35,6 +35,13 @@ Livré : directions et valeurs progressives dans neuf familles ; Sega XE-1AP, Mi
 - [x] Conserver les petits déplacements analogiques dans la conversion commune.
   - [x] Modifier `src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs` : normaliser systématiquement les canaux bruts des sticks physiques, même pour une valeur de 1, tout en conservant les valeurs déjà normalisées du dictionnaire Controls.
   - [x] Modifier `docs/tasks/emulation/methode-modules.md` : distinguer les unités analogiques par leur canal déclaré, jamais par la seule amplitude mesurée.
+- [x] Réutiliser la conversion de pression physique dans les autres consommateurs.
+  - [x] Modifier `src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs` : exposer ControllerSourcePressure et lui déléguer la normalisation depuis MapControllerAxis et MapControllerPressure.
+  - [x] Modifier `src/GWGUI.Emulation.Sharp/Emulators/Common/Interop/Functions/InputFunctions.Mapping.cs` : appeler la conversion SDK tout en conservant la zone morte configurée.
+  - [x] Modifier `src/GWGUI.Emulation.Mattel/Emulators/Common/Interop/Functions/InputFunctions.Mapping.cs` : reprendre la même conversion physique sans changer les commandes natives.
+  - [x] Modifier `src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/InputFunctions.Mapping.cs` : reprendre la même conversion physique sans changer la zone morte.
+  - [x] Modifier `src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/InputFunctions.Mapping.cs` : reprendre la même conversion physique pour les valeurs progressives.
+  - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : utiliser ControllerSourcePressure pour les sources physiques des pressions.
 - [ ] Livrer les compléments vérifiés.
   - [x] Commiter tous les fichiers en attente sans test ni build, conformément à la dernière demande utilisateur. Commit : `4671d67e8`.
   - [ ] Supprimer `docs/tasks/emulation/axes-analogiques.md` après traitement de tous les périphériques analogiques concernés.

@@ -111,9 +111,7 @@ internal static class InputSnapshotFunctions
     {
         if (TryRemovePrefix(sourceName, InputSnapshotFunctionsConstants.Controller, out var control))
         {
-            var value = EmulationInputMappingFunctions.ControllerSourceValue(control, controller);
-            if (Math.Abs(value) > InputSnapshotFunctionsConstants.FullPressure) value /= short.MaxValue;
-            return Math.Clamp(value, InputSnapshotFunctionsConstants.ReleasedPressure, InputSnapshotFunctionsConstants.FullPressure);
+            return EmulationInputMappingFunctions.ControllerSourcePressure(control, controller);
         }
         return IsSourcePressed(sourceName, controller, keys, mouse) ? InputSnapshotFunctionsConstants.FullPressure : InputSnapshotFunctionsConstants.ReleasedPressure;
     }
