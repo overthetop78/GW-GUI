@@ -254,8 +254,17 @@ public partial class InputBindingEditor
         _captureRow = null;
     }
 
+    internal void ApplyOppositeAxisBinding(InputBindingRow row)
+    {
+        if (row.OppositeDirectionId is { } oppositeId
+            && EmulationInputMappingFunctions.OppositeControllerAxisSource(row.Binding) is { } oppositeSource
+            && _rows.FirstOrDefault(candidate => candidate.Id == oppositeId) is { } oppositeRow)
+            oppositeRow.Binding = oppositeSource;
+    }
+
     private void FinishCapture()
     {
+        if (_captureRow is { } capturedRow) ApplyOppositeAxisBinding(capturedRow);
         if (_captureButton is not null)
         {
             _captureButton.Content = _captureButtonContent;

@@ -71,7 +71,8 @@ public partial class InputBindingEditor : UserControl
         foreach (var definition in definitions)
             _rows.Add(new InputBindingRow(definition.Id,
                 definition.InvariantDisplayValue ?? (moduleId is null ? LocExtension.Get(definition.DisplayResourceKey) : LocExtension.GetForModule(moduleId, definition.DisplayResourceKey)),
-                values?.GetValueOrDefault(definition.Id) ?? definition.DefaultBinding, definition.DefaultBinding));
+                values?.GetValueOrDefault(definition.Id) ?? definition.DefaultBinding, definition.DefaultBinding)
+            { OppositeDirectionId = definition.OppositeDirectionId });
         ValidateBindings();
     }
 

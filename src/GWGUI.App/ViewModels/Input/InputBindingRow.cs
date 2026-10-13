@@ -21,6 +21,7 @@ public sealed class InputBindingRow(string id, string label, string binding, str
     public string Id { get; } = id;
     public string Label { get; } = label;
     public string DefaultBinding { get; } = defaultBinding;
+    public string? OppositeDirectionId { get; init; }
     public string Binding
     {
         get => _binding;
