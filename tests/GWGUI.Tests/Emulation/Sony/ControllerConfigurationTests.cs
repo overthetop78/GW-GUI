@@ -21,11 +21,38 @@ using BeetleOptions = GWGUI.Emulation.Sony.Emulators.BeetlePsx.Constants.OptionC
 using BeetleHwCore = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Constants.CoreConstants;
 using BeetleHwOptions = GWGUI.Emulation.Sony.Emulators.BeetlePsxHw.Constants.OptionConstants;
 using Toggle = GWGUI.Emulation.Sony.Emulators.Common.Interop.Constants.ToggleValueConstants;
+using PspCore = GWGUI.Emulation.Sony.Emulators.Ppsspp.Constants.PpssppConstants;
 
 namespace GWGUI.Tests.Emulation.Sony;
 
 public sealed class ControllerConfigurationTests
 {
+    [Fact]
+    public void PspBuiltInControllerCannotBeDisconnected()
+    {
+        var configuration = new MachineConfiguration(ModelConstants.Psp, PspCore.Id);
+        var port = Assert.Single(InputSettingsFunctions.Describe(configuration).ControllerPorts);
+        Assert.Equal(nameof(ControllerType.Joystick), Assert.Single(port.ControllerChoices).Id);
+        Assert.Equal(nameof(ControllerType.Joystick), port.SelectedControllerId);
+        Assert.Empty(port.Bindings.Values);
+        Assert.Throws<ArgumentOutOfRangeException>(() => ControllerFunctions.WithControllerType(configuration, FirstPort, ControllerType.None));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void PspPreviouslyDisconnectedControllerCanBeOpened(bool usesBindings)
+    {
+        var configuration = new MachineConfiguration(ModelConstants.Psp, PspCore.Id,
+            Controllers: usesBindings ? null : [ControllerType.None],
+            Input: usesBindings ? new InputConfiguration(ControllerBindings: [new ControllerBinding(FirstPort, ControllerType.None)]) : null);
+        var port = Assert.Single(InputSettingsFunctions.Describe(configuration).ControllerPorts);
+        Assert.Equal(nameof(ControllerType.Joystick), port.SelectedControllerId);
+        Assert.DoesNotContain(port.ControllerChoices, choice => choice.Id == nameof(ControllerType.None));
+        Assert.Empty(port.Bindings.Values);
+        Assert.Equal(ControllerType.Joystick, ControllerFunctions.Resolve(configuration, FirstPort));
+    }
+
     private const int FirstPort = 0;
     private const string KeyboardA = "Keyboard:A";
     private const string PhysicalDevice = "controller-test";

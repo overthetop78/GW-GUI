@@ -11,7 +11,7 @@ internal static class ControllerFunctions
         ValidatePort(configuration, port);
         var binding = configuration.Input?.ControllerBindings?.FirstOrDefault(item => item.Port == port);
         var type = binding?.Type ?? configuration.Controllers?.ElementAtOrDefault(port) ?? ControllerType.Automatic;
-        if (type == ControllerType.Automatic) type = ControllerCatalog.Default(configuration);
+        if (type == ControllerType.Automatic || type == ControllerType.None && !Supported(configuration, port).Contains(ControllerType.None)) type = ControllerCatalog.Default(configuration);
         Validate(configuration, port, type);
         return type;
     }
