@@ -4,6 +4,7 @@ using GWGUI.Emulation.Apple.Common.Machines.Macintosh.Dictionaries;
 namespace GWGUI.Emulation.Apple.Common.Machines.Common.Functions;
 internal static class InputSettingsFunctions
 {
+    internal static bool SupportsPointer(MachineConfiguration configuration) => new Engine().Adapter(configuration) is IEmulatorPointerCapabilities capabilities && capabilities.SupportsPointer(configuration);
     internal static IReadOnlyDictionary<EmulationKey, EmulationKey> DefaultHostKeys(MachineModel model) => model switch
     {
         MachineModel.AppleIIe or MachineModel.AppleIIeEnhanced => AppleIIKeyboardDictionary.DefaultHostKeys,
@@ -34,9 +35,12 @@ internal static class InputSettingsFunctions
                 current?.VisualId
             );
         }).ToArray();
-        var mouse = configuration.Family == MachineFamily.Macintosh 
+        var mouse = SupportsPointer(configuration)
             ? new EmulationInputBindingSet(
-            [new InputBindingDefinition(InputSnapshotFunctionsConstants.Left, InputSettingsFunctionsConstants.ResourceMouseButtonLeft, InputSettingsFunctionsConstants.MouseLeft)],
+            configuration.Family == MachineFamily.Macintosh
+                ? [new InputBindingDefinition(InputSnapshotFunctionsConstants.Left, InputSettingsFunctionsConstants.ResourceMouseButtonLeft, InputSettingsFunctionsConstants.MouseLeft)]
+                : [new InputBindingDefinition(InputSnapshotFunctionsConstants.Left, InputSettingsFunctionsConstants.ResourceMouseButtonLeft, InputSettingsFunctionsConstants.MouseLeft),
+                   new InputBindingDefinition(InputSnapshotFunctionsConstants.Right, InputSettingsFunctionsConstants.ResourceMouseButtonRight, InputSettingsFunctionsConstants.MouseRight)],
             input.MouseMappings ?? new Dictionary<string, string>(),
             EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller
         )
@@ -66,7 +70,9 @@ internal static class InputSettingsFunctions
                 KeyboardMappings = keyboard,
                 KeyboardBindings = keyboardBindings,
                 Controllers = controllers,
-                MouseMappings = configuration.Family == MachineFamily.Macintosh ? settings.Mouse?.Values.Where(pair => pair.Key == InputSnapshotFunctionsConstants.Left).ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal) ?? configuration.Input.MouseMappings : null
+                MouseMappings = settings.Mouse is null ? configuration.Input.MouseMappings : settings.Mouse.Values
+                    .Where(pair => pair.Key == InputSnapshotFunctionsConstants.Left || configuration.Family == MachineFamily.AppleII && pair.Key == InputSnapshotFunctionsConstants.Right)
+                    .ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal)
             }
         };
         ConfigurationFunctions.Validate(result);

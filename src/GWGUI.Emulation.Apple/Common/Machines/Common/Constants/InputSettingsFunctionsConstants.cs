@@ -5,6 +5,8 @@ internal static class InputSettingsFunctionsConstants
     internal const string ResourceKeyboardPrefix = "Emulation.Apple.Keyboard.";
     internal const string ResourceMouseButtonLeft = "Emulation.Mouse.Button.Left";
     internal const string MouseLeft = "Mouse:Left";
+    internal const string ResourceMouseButtonRight = "Emulation.Mouse.Button.Right";
+    internal const string MouseRight = "Mouse:Right";
     internal const string ResourceControllerNone = "Emulation.Controller.None";
     internal const string ResourceControllerAutomatic = "Emulation.Controller.Automatic";
     internal const string ResourceControllerAnalogJoystick = "Emulation.Controller.AnalogJoystick";

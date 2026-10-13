@@ -44,6 +44,8 @@ internal static class StorageSettingsFunctions
             Options = options,
             Media = settings.MountedMedia.Select(media => EmulationMediaConversionFunctions.ToApple(media, configuration.Media)).ToArray()
         };
+        if (new Engine().Adapter(result) is IEmulatorStorageConfiguration adapter)
+            result = adapter.ApplyStorageConfiguration(result, settings.ConfiguredSlots);
         ConfigurationFunctions.Validate(result);
         return result;
     }

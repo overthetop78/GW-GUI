@@ -15,6 +15,96 @@ namespace GWGUI.Tests.Emulation.Apple;
 
 public sealed class AppleModuleTests
 {
+    [Fact]
+    public void ExpansionCardsUseTheirFunctionalTabsAndRefreshTheirSlotAvailability()
+    {
+        using var client = new System.Net.Http.HttpClient();
+        var module = new GWGUI.Emulation.Apple.Modules.AppleEmulationModule(".", ".", client, ".");
+        var configuration = new MachineConfiguration(MachineModel.AppleII);
+        var settings = module.Describe(configuration.MachineId, configuration);
+        var fields = settings.Blocks.SelectMany(block => block.Fields).ToDictionary(field => field.Id);
+        Assert.True(settings.Visibility.Tabs[EmulationMachineTab.Mouse]);
+        Assert.DoesNotContain(fields.Values, field => field.Tab == EmulationMachineTab.General);
+        Assert.Equal(EmulationMachineTab.Video, fields["expansion.video"].Tab);
+        Assert.Equal(EmulationMachineTab.Cpu, fields["expansion.z80"].Tab);
+        Assert.Equal(EmulationMachineTab.Mouse, fields["expansion.mouse"].Tab);
+        foreach (var id in new[] { "expansion.mockingboard", "expansion.phasor", "expansion.sam" }) Assert.Equal(EmulationMachineTab.Audio, fields[id].Tab);
+        Assert.False(fields["expansion.mouse"].IsEnabled); // The native default owns slot 4.
+        Assert.All(fields.Values.Where(field => field.Id.StartsWith("expansion.")), field => Assert.True(field.RefreshSettingsOnChange));
+        Assert.DoesNotContain("applewin_slot7", fields.Keys);
+    }
+
+    [Fact]
+    public void CardsInDifferentTabsCannotReplaceAnOccupiedSlot()
+    {
+        using var client = new System.Net.Http.HttpClient();
+        var module = new GWGUI.Emulation.Apple.Modules.AppleEmulationModule(".", ".", client, ".");
+        var configuration = new MachineConfiguration(MachineModel.AppleII);
+        MachineConfiguration Apply(MachineConfiguration current, string id, string value) => (MachineConfiguration)module.ApplySettings(current, new Dictionary<string, string?> { [id] = value });
+        EmulationSettingsField Field(MachineConfiguration current, string id) => module.Describe(current.MachineId, current).Blocks.SelectMany(block => block.Fields).Single(field => field.Id == id);
+        configuration = Apply(configuration, "expansion.z80", EmulationSettingConstants.Enabled);
+        Assert.Equal("Z80 SoftCard", configuration.Options["applewin_slot5"]);
+        Assert.False(Field(configuration, "expansion.sam").IsEnabled);
+        Assert.DoesNotContain(Field(configuration, "expansion.mockingboard").Choices!, choice => choice.Id is "5" or "4+5");
+        Assert.Equal(configuration.Options, Apply(configuration, "expansion.sam", EmulationSettingConstants.Enabled).Options);
+        configuration = Apply(configuration, "expansion.z80", EmulationSettingConstants.Disabled);
+        configuration = Apply(configuration, "expansion.mockingboard", "none");
+        configuration = Apply(configuration, "expansion.mouse", EmulationSettingConstants.Enabled);
+        configuration = Apply(configuration, "expansion.phasor", "5");
+        Assert.Equal("Mouse Card", configuration.Options["applewin_slot4"]);
+        Assert.Equal("Phasor", configuration.Options["applewin_slot5"]);
+        Assert.False(Field(configuration, "expansion.z80").IsEnabled);
+        configuration = Apply(configuration, "expansion.phasor", "none");
+        configuration = Apply(configuration, "expansion.sam", EmulationSettingConstants.Enabled);
+        Assert.Equal("SAM", configuration.Options["applewin_slot5"]);
+        Assert.DoesNotContain(configuration.Options.Keys, key => key.StartsWith("expansion."));
+    }
+
+    [Theory]
+    [InlineData("expansion.mockingboard", "Mockingboard C")]
+    [InlineData("expansion.phasor", "Phasor")]
+    public void AudioCardsCanUseBothNativeSlots(string id, string card)
+    {
+        using var client = new System.Net.Http.HttpClient();
+        var module = new GWGUI.Emulation.Apple.Modules.AppleEmulationModule(".", ".", client, ".");
+        var configuration = new MachineConfiguration(MachineModel.AppleII, options: new Dictionary<string, string> { ["applewin_slot4"] = "Empty" });
+        var updated = (MachineConfiguration)module.ApplySettings(configuration, new Dictionary<string, string?> { [id] = "4+5" });
+        Assert.Equal(card, updated.Options["applewin_slot4"]);
+        Assert.Equal(card, updated.Options["applewin_slot5"]);
+    }
+
+    [Fact]
+    public void HardDiskDeviceAutomaticallyControlsSlotSeven()
+    {
+        var configuration = new MachineConfiguration(MachineModel.AppleII);
+        var settings = StorageSettingsFunctions.Describe(configuration);
+        var added = StorageSettingsFunctions.Apply(configuration, settings with { ConfiguredSlots = settings.ConfiguredSlots.Append(EmulationMediaSlot.HardDisk0).ToArray() });
+        Assert.Equal("Hard Disk Controller", added.Options["applewin_slot7"]);
+        var removed = StorageSettingsFunctions.Apply(added, StorageSettingsFunctions.Describe(added) with { ConfiguredSlots = settings.ConfiguredSlots });
+        Assert.Equal("Empty", removed.Options["applewin_slot7"]);
+        Assert.Empty(removed.Media);
+    }
+
+    [Fact]
+    public void EnabledAppleMouseCardExposesTwoAssignableButtonsAndPointerCapture()
+    {
+        using var client = new System.Net.Http.HttpClient();
+        var module = new GWGUI.Emulation.Apple.Modules.AppleEmulationModule(".", ".", client, ".");
+        var configuration = new MachineConfiguration(MachineModel.AppleII, options: new Dictionary<string, string> { ["applewin_slot4"] = "Empty" });
+        Assert.False(InputSettingsFunctions.SupportsPointer(configuration));
+        Assert.Null(module.DescribeInputSettings(configuration).Mouse);
+        configuration = (MachineConfiguration)module.ApplySettings(configuration, new Dictionary<string, string?> { ["expansion.mouse"] = EmulationSettingConstants.Enabled });
+        Assert.True(InputSettingsFunctions.SupportsPointer(configuration));
+        var settings = module.DescribeInputSettings(configuration);
+        Assert.Equal(new[] { "Left", "Right" }, settings.Mouse!.Definitions.Select(item => item.Id));
+        configuration = (MachineConfiguration)module.ApplyInputSettings(configuration, settings with
+        {
+            Mouse = settings.Mouse with { Values = new Dictionary<string, string> { ["Right"] = "Keyboard:A" } }
+        });
+        Assert.True(InputSnapshotFunctions.Apply(Pressed(EmulationKey.A), configuration.Input, configuration.Model).Pointer.Right);
+        Assert.False(InputSnapshotFunctions.Apply(Pressed(EmulationKey.B), configuration.Input, configuration.Model).Pointer.Right);
+    }
+
     [Theory]
     [InlineData(MachineModel.AppleIIe, EmulationKey.AppleOpenApple, EmulationKey.LeftAlt)]
     [InlineData(MachineModel.AppleIIe, EmulationKey.AppleSolidApple, EmulationKey.RightAlt)]

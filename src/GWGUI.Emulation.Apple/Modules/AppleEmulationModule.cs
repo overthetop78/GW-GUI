@@ -38,7 +38,7 @@ public sealed class AppleEmulationModule : IEmulationModule, IEmulationEmulatorM
         if (current.Model != model) throw new ArgumentException(nameof(configuration));
         var tabs = DefaultVisibility.Tabs.ToDictionary(item => item.Key, item => item.Key switch
         {
-            EmulationMachineTab.Mouse => current.Family == MachineFamily.Macintosh,
+            EmulationMachineTab.Mouse => current.Family == MachineFamily.Macintosh || ConfigurationFunctions.SupportsRuntime(model),
             EmulationMachineTab.Controllers => ConfigurationFunctions.ControllerPortCount(model)
                 > BufferConstants.EmptyCollectionCount,
             EmulationMachineTab.Storage => ConfigurationFunctions.SupportsRuntime(model),
@@ -82,6 +82,8 @@ public sealed class AppleEmulationModule : IEmulationModule, IEmulationEmulatorM
             Options = options, Folders = folders,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) ? enabled == EmulationSettingConstants.Enabled : current.AudioEnabled
         };
+        if (_engine.Adapter(result) is IEmulatorSettingsApplication settingsAdapter)
+            result = settingsAdapter.ApplySettings(result, values.Where(value => editable.Contains(value.Key)).ToDictionary(value => value.Key, value => value.Value, StringComparer.Ordinal));
         ConfigurationFunctions.Validate(result);
         return result;
         string? Folder(string id, string? original) => values.TryGetValue(id, out var value) ? value : original;
@@ -154,7 +156,7 @@ public sealed class AppleEmulationModule : IEmulationModule, IEmulationEmulatorM
             };
             return _engine.CreateMachine(selected, context);
         }, storage.AvailableDevices, storage.MountedMedia,
-            HardwareModelCatalog.Get(current.Model).DisplayNameResourceKey, false);
+            HardwareModelCatalog.Get(current.Model).DisplayNameResourceKey, InputSettingsFunctions.SupportsPointer(current));
     }
 
     private IEmulatorAdapter Adapter(string machineId) => _engine.Adapters(ModelCatalog.Parse(machineId).ToString()).SingleOrDefault() ?? throw new ArgumentOutOfRangeException(nameof(machineId));

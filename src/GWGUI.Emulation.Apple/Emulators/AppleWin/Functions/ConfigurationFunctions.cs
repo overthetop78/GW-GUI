@@ -8,6 +8,7 @@ internal static class ConfigurationFunctions
     internal static void InitializeOptions(MachineConfiguration configuration, IDictionary<string, string> options)
     {
         if (configuration.Family == MachineFamily.AppleII) options.TryAdd(OptionConstants.Machine, AppleWinModelCatalog.GetNativeValue(configuration.Model));
+        ExpansionFunctions.InitializeStorage(configuration, options);
     }
 
     internal static void ValidateConfiguration(MachineConfiguration configuration)
