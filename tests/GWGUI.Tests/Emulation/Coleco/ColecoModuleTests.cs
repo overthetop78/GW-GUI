@@ -14,6 +14,21 @@ namespace GWGUI.Tests.Emulation.Coleco;
 
 public sealed class ColecoModuleTests
 {
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void BlueMsxAcceptsRawCartridgesWithoutChangingOtherAdapters(bool requiresFilePath)
+    {
+        var engine = new GWGUI.Emulation.Coleco.Common.Services.Engine();
+        var formats = Assert.IsAssignableFrom<GWGUI.Emulation.Coleco.Common.Interfaces.IEmulatorContentFormats>(engine.Adapter(Emulator.BlueMSX));
+        var declared = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "col", "rom" };
+        var supported = formats.SupportedContentExtensions(declared, requiresFilePath);
+        Assert.Contains("bin", supported);
+        Assert.Contains("col", supported);
+        Assert.DoesNotContain("bin", declared);
+        Assert.False(engine.Adapter(Emulator.GearColeco) is GWGUI.Emulation.Coleco.Common.Interfaces.IEmulatorContentFormats);
+        Assert.False(engine.Adapter(Emulator.JollyCV) is GWGUI.Emulation.Coleco.Common.Interfaces.IEmulatorContentFormats);
+    }
     [Fact]
     public void CartridgeMapperIsConfiguredAndPersistedThroughItsDevice()
     {
