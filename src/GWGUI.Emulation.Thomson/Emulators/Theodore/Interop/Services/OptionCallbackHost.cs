@@ -43,7 +43,7 @@ internal sealed class OptionCallbackHost : IDisposable
         var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
         var key = Marshal.PtrToStringUTF8(variable.Key);
         if (key is null || !_values.TryGetValue(key, out var value)) return false;
-        if (!_strings.TryGetValue(key, out var text)) { text = new ExternalCoreUtf8String(value); _strings.Add(key, text); }
+        if (!_strings.TryGetValue(key, out var text)) text = ExternalCoreUtf8String.AddTo(_strings, key, value);
         variable.Value = text.Pointer;
         Marshal.StructureToPtr(variable, data, false);
         return true;

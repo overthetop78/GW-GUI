@@ -157,7 +157,7 @@ internal sealed class CoreOptionHost : IDisposable
     private void ReplaceNativeValue(string key, string value)
     {
         if (_nativeValues.Remove(key, out var previous)) previous.Dispose();
-        _nativeValues.Add(key, new ExternalCoreUtf8String(value));
+        ExternalCoreUtf8String.AddTo(_nativeValues, key, value);
     }
 
     public void Dispose()

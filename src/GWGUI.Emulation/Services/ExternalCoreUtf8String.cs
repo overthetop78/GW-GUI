@@ -28,6 +28,22 @@ internal sealed class ExternalCoreUtf8String : IDisposable
         }
     }
 
+    internal static ExternalCoreUtf8String AddTo(IDictionary<string, ExternalCoreUtf8String> owner, string key, string value)
+    {
+        var text = new ExternalCoreUtf8String(value);
+        var registered = false;
+        try
+        {
+            owner.Add(key, text);
+            registered = true;
+            return text;
+        }
+        finally
+        {
+            if (!registered) text.Dispose();
+        }
+    }
+
     public void Dispose()
     {
         if (Pointer == 0) return;

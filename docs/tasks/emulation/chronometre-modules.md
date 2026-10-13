@@ -320,3 +320,4 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-13 18:48:10 | 83:52:26 | -75:52:26 | Reprise. Méthode alignée sur le nettoyage central des tests et le commit sans vérification demandé. |
 | 2026-10-13 19:24:51 | 84:29:07 | -76:29:07 | Reprise. Nettoyage des fixtures WPF interrompues avant initialisation complète. |
 | 2026-10-13 19:33:37 | 84:37:53 | -76:37:53 | Reprise. Buffers vidéo : restitution unique et nettoyage complet après erreur dans les onze nouvelles familles concernées. |
+| 2026-10-13 19:37:44 | 84:42:00 | -76:42:00 | Reprise. Allocations UTF-8 natives : transfert sécurisé au dictionnaire propriétaire dans les quinze nouveaux modules. |

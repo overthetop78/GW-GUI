@@ -61,8 +61,7 @@ internal sealed class OptionCallbackHost : IDisposable
             return false;
         if (!_strings.TryGetValue(key, out var text))
         {
-            text = new ExternalCoreUtf8String(value);
-            _strings.Add(key, text);
+            text = ExternalCoreUtf8String.AddTo(_strings, key, value);
         }
 
         variable.Value = text.Pointer;
