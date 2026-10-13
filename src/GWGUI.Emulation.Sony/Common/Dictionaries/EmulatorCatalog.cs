@@ -4,11 +4,8 @@ public static class EmulatorCatalog
 {
     internal static IReadOnlyList<EmulationEmulatorDefinition> All => CreateAdapters().Select(adapter => adapter.Definition).OrderBy(definition => definition.Id, StringComparer.Ordinal).ToArray();
 
-    private static readonly IReadOnlyList<Type> AdapterTypes = typeof(EmulatorCatalog).Assembly.GetTypes()
-        .Where(type => !type.IsAbstract && typeof(IEmulatorAdapter).IsAssignableFrom(type))
-        .ToArray();
-
-    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => AdapterTypes .Select(type => (IEmulatorAdapter)Activator.CreateInstance(type, nonPublic: true)!) .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal).ToArray();
+    internal static IReadOnlyList<IEmulatorAdapter> CreateAdapters() => EmulationAdapterFunctions.Create<IEmulatorAdapter>(typeof(EmulatorCatalog).Assembly)
+        .OrderBy(adapter => adapter.EmulatorId, StringComparer.Ordinal).ToArray();
 
     public static string DefaultFor(string machineId) => GetAll(machineId).FirstOrDefault()?.Id ?? throw new NotSupportedException($"No Sony emulator adapter is installed for '{machineId}'.");
 
