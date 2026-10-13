@@ -77,15 +77,7 @@ internal static class InputSnapshotFunctions
         if (source.StartsWith(InputSnapshotFunctionsConstants.Keyboard, StringComparison.OrdinalIgnoreCase)
             || source.StartsWith(InputSnapshotFunctionsConstants.Mouse, StringComparison.OrdinalIgnoreCase))
             return IsPressed(source, controller, snapshot) ? 1f : 0f;
-        var value = EmulationInputMappingFunctions.ControllerSourceValue(source, controller);
-        var name = source.Split(EmulationInputMappingConstants.SourceSeparator, StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? string.Empty;
-        if (!controller.Controls.ContainsKey(name) && name is
-            EmulationInputMappingConstants.LeftStickLeft or EmulationInputMappingConstants.LeftStickRight
-            or EmulationInputMappingConstants.LeftStickUp or EmulationInputMappingConstants.LeftStickDown
-            or EmulationInputMappingConstants.RightStickLeft or EmulationInputMappingConstants.RightStickRight
-            or EmulationInputMappingConstants.RightStickUp or EmulationInputMappingConstants.RightStickDown)
-            value /= ControllerConstants.MaximumAxisMagnitude;
-        return Math.Clamp(value, 0f, 1f);
+        return EmulationInputMappingFunctions.ControllerSourcePressure(source, controller);
     }
 
     private static bool IsPressed(string source, EmulationControllerState controller, EmulationInputSnapshot snapshot)

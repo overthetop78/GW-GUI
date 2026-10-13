@@ -42,6 +42,13 @@ Livré : directions et valeurs progressives dans neuf familles ; Sega XE-1AP, Mi
   - [x] Modifier `src/GWGUI.Emulation.Philips/Emulators/Common/Interop/Functions/InputFunctions.Mapping.cs` : reprendre la même conversion physique sans changer la zone morte.
   - [x] Modifier `src/GWGUI.Emulation.Snk/Emulators/Common/Interop/Functions/InputFunctions.Mapping.cs` : reprendre la même conversion physique pour les valeurs progressives.
   - [x] Modifier `src/GWGUI.Emulation.Sony/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : utiliser ControllerSourcePressure pour les sources physiques des pressions.
+- [x] Terminer la réutilisation de la pression SDK dans les familles restantes.
+  - [x] Modifier `src/GWGUI.Emulation.Acorn/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : remplacer la normalisation locale des sources physiques par ControllerSourcePressure, en conservant clavier, souris et zones mortes.
+  - [x] Modifier `src/GWGUI.Emulation.Apple/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : remplacer la normalisation locale des sources physiques par ControllerSourcePressure, en conservant clavier, souris et zones mortes.
+  - [x] Modifier `src/GWGUI.Emulation.Thomson/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : remplacer la normalisation locale des sources physiques par ControllerSourcePressure, en conservant clavier, souris et zones mortes.
+  - [x] Modifier `src/GWGUI.Emulation.Watara/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : remplacer la normalisation locale des sources physiques par ControllerSourcePressure, en conservant clavier, souris et zones mortes.
+  - [x] Modifier `src/GWGUI.Emulation.Sinclair/Emulators/Common/Interop/Functions/InputFunctions.Mapping.cs` : remplacer la normalisation locale des sources physiques par ControllerSourcePressure, en conservant clavier, souris et zones mortes.
+  - [x] Modifier `src/GWGUI.Emulation.Panasonic/Common/Machines/Common/Functions/InputFunctions.Snapshot.cs` : remplacer la normalisation locale des sources physiques par ControllerSourcePressure, en conservant clavier, souris et zones mortes.
 - [ ] Livrer les compléments vérifiés.
   - [x] Commiter tous les fichiers en attente sans test ni build, conformément à la dernière demande utilisateur. Commit : `4671d67e8`.
   - [ ] Supprimer `docs/tasks/emulation/axes-analogiques.md` après traitement de tous les périphériques analogiques concernés.

@@ -71,9 +71,7 @@ internal static class InputSnapshotFunctions
             };
         if (!mapping.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase))
             return 0;
-        var value = EmulationInputMappingFunctions.ControllerSourceValue(mapping, controller);
-        if (Math.Abs(value) > 1)
-            value /= short.MaxValue;
+        var value = EmulationInputMappingFunctions.ControllerSourcePressure(mapping, controller);
         return value <= (float)deadZone / InputMappingConstants.PercentScale ? 0 : Math.Clamp(value, 0, 1);
     }
 }
