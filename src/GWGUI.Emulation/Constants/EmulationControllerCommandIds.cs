@@ -10,6 +10,10 @@ public static class EmulationControllerCommandIds
     public const string LeftStickDown = "LeftStickDown";
     public const string LeftStickLeft = "LeftStickLeft";
     public const string LeftStickRight = "LeftStickRight";
+    public const string RightStickUp = "RightStickUp";
+    public const string RightStickDown = "RightStickDown";
+    public const string RightStickLeft = "RightStickLeft";
+    public const string RightStickRight = "RightStickRight";
     public const string Fire1 = "Fire1";
     public const string Fire2 = "Fire2";
     public const string Turbo = "Turbo";
