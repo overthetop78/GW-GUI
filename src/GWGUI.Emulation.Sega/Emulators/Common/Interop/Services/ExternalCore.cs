@@ -150,7 +150,9 @@ internal sealed class ExternalCore : IEmulatorCore
     internal static uint ResolveControllerDevice(IReadOnlyList<ControllerDevice> devices, ControllerType type)
     {
         if (type == ControllerType.None) return 0;
-        if (devices.Count == 0) return ExternalHostCallbacksConstants.JoypadDevice;
+        if (devices.Count == 0)
+            return type is ControllerType.SegaXe1Ap or ControllerType.SegaSaturnMissionStick or ControllerType.SegaSaturnArcadeRacer
+                ? 0 : ExternalHostCallbacksConstants.JoypadDevice;
         var exactName = type switch
         {
             ControllerType.SegaSg1000Joystick or ControllerType.SegaSg1000IiJoypad
@@ -161,15 +163,22 @@ internal sealed class ExternalCore : IEmulatorCore
                 ExternalCoreConstants.MegaDriveThreeButtonName,
             ControllerType.SegaMegaDriveSixButton or ControllerType.SegaArcadePowerStickSixButton =>
                 ExternalCoreConstants.MegaDriveSixButtonName,
+            ControllerType.SegaXe1Ap => ExternalCoreConstants.ControllerXe1Ap,
+            ControllerType.SegaSaturnThreeDControlPad => ExternalCoreConstants.ControllerThreeDPad,
+            ControllerType.SegaSaturnMissionStick => ExternalCoreConstants.ControllerMissionStick,
+            ControllerType.SegaSaturnArcadeRacer => ExternalCoreConstants.ControllerArcadeRacer,
             _ => null
         };
         if (exactName is not null)
         {
-            var exactDevice = devices.FirstOrDefault(device => device.Name.Contains(exactName, StringComparison.OrdinalIgnoreCase));
+            var exactDevice = devices.FirstOrDefault(device => device.Name.Equals(exactName, StringComparison.OrdinalIgnoreCase))
+                ?? devices.FirstOrDefault(device => device.Name.Contains(exactName, StringComparison.OrdinalIgnoreCase)
+                    && (type != ControllerType.SegaSaturnMissionStick || device.Name.EndsWith(exactName, StringComparison.OrdinalIgnoreCase)));
             if (exactDevice is not null) return exactDevice.Id;
         }
         var aliases = ControllerAliases(type);
-        return devices.FirstOrDefault(device => aliases.Any(alias => device.Name.Contains(alias, StringComparison.OrdinalIgnoreCase)))?.Id ?? 0;
+        return devices.FirstOrDefault(device => aliases.Any(alias => device.Name.Contains(alias, StringComparison.OrdinalIgnoreCase)
+            && (type != ControllerType.SegaSaturnMissionStick || device.Name.EndsWith(alias, StringComparison.OrdinalIgnoreCase))))?.Id ?? 0;
     }
 
     private static IReadOnlyList<string> ControllerAliases(ControllerType type) => type switch
@@ -179,9 +188,14 @@ internal sealed class ExternalCore : IEmulatorCore
             or ControllerType.SegaDreamcastMouse => [ExternalCoreConstants.ControllerMouse],
         ControllerType.SegaMenacer or ControllerType.SegaSaturnVirtuaGun
             or ControllerType.SegaDreamcastLightGun => [ExternalCoreConstants.ControllerMenacer, ExternalCoreConstants.ControllerLightGun, ExternalCoreConstants.ControllerLightgun],
-        ControllerType.SegaPaddleControl or ControllerType.SegaSportsPad => [ExternalCoreConstants.ControllerPaddle, ExternalCoreConstants.ControllerSports],
+        ControllerType.SegaPaddleControl => [ExternalCoreConstants.ControllerPaddle],
+        ControllerType.SegaSportsPad => [ExternalCoreConstants.ControllerSports],
         ControllerType.SegaSc3000Keyboard or ControllerType.SegaDreamcastKeyboard => [ExternalCoreConstants.ControllerKeyboard],
         ControllerType.SegaActivator => [ExternalCoreConstants.ControllerActivator],
+        ControllerType.SegaXe1Ap => [ExternalCoreConstants.ControllerXe1Ap],
+        ControllerType.SegaSaturnThreeDControlPad => [ExternalCoreConstants.ControllerThreeDPad],
+        ControllerType.SegaSaturnMissionStick => [ExternalCoreConstants.ControllerMissionStick],
+        ControllerType.SegaSaturnArcadeRacer => [ExternalCoreConstants.ControllerArcadeRacer],
         _ => [ExternalCoreConstants.ControllerJoypad, ExternalCoreConstants.ControllerController, ExternalCoreConstants.ControllerGamepad]
     };
 

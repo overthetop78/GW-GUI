@@ -12,6 +12,77 @@ namespace GWGUI.Tests.Emulation.ControllerInput;
 public sealed class LegacyAnalogAxisTests
 {
     [Fact]
+    public void SingleMissionStickDoesNotSelectTheDualPeripheral()
+    {
+        var devices = new GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts.ControllerDevice[] { new("Dual Mission Sticks", 1029), new("Mission Stick", 773) };
+        Assert.Equal(773u, GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore.ResolveControllerDevice(devices, SegaEnums.ControllerType.SegaSaturnMissionStick));
+        Assert.Equal(0u, GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore.ResolveControllerDevice([devices[0]], SegaEnums.ControllerType.SegaSaturnMissionStick));
+    }
+
+    [Theory]
+    [InlineData(SegaEnums.ControllerType.SegaXe1Ap, "MegaDrive", 8)]
+    [InlineData(SegaEnums.ControllerType.SegaSportsPad, "MegaDrive", 4)]
+    [InlineData(SegaEnums.ControllerType.SegaSaturnMissionStick, "Saturn", 6)]
+    [InlineData(SegaEnums.ControllerType.SegaSaturnArcadeRacer, "Saturn", 2)]
+    public void SpecialControllerAxesArePairedUnassignedAndPersisted(SegaEnums.ControllerType type, string model, int count)
+    {
+        var input = new SegaInput.InputConfiguration(ControllerBindings: [new(0, type, "pad", new Dictionary<string, string>())]);
+        var configuration = new SegaInput.MachineConfiguration(model, string.Empty, Input: input);
+        var settings = GWGUI.Emulation.Sega.Common.Machines.Common.Functions.InputSettingsFunctions.Describe(configuration);
+        var port = settings.ControllerPorts[0];
+        var axes = port.Bindings.Definitions.Where(item => item.OppositeDirectionId is not null).ToArray();
+        Assert.Equal(count, axes.Length);
+        foreach (var axis in axes)
+        {
+            Assert.Empty(axis.DefaultBinding);
+            Assert.Equal(axis.Id, Assert.Single(axes, item => item.Id == axis.OppositeDirectionId).OppositeDirectionId);
+        }
+        var values = new Dictionary<string, string> { ["LeftStickRight"] = "Keyboard:A" };
+        var changed = settings with { ControllerPorts = [port with { Bindings = port.Bindings with { Values = values } }] };
+        var applied = GWGUI.Emulation.Sega.Common.Machines.Common.Functions.InputSettingsFunctions.Apply(configuration, changed);
+        Assert.Equal("Keyboard:A", applied.Input!.ControllerBindings![0].ButtonMappings!["LeftStickRight"]);
+    }
+
+    [Theory]
+    [InlineData(SegaEnums.ControllerType.SegaXe1Ap, true, true)]
+    [InlineData(SegaEnums.ControllerType.SegaSportsPad, false, false)]
+    [InlineData(SegaEnums.ControllerType.SegaSaturnMissionStick, false, true)]
+    [InlineData(SegaEnums.ControllerType.SegaSaturnArcadeRacer, false, false)]
+    public void SpecialControllerAxesKeepTheirOwnExplicitCourse(SegaEnums.ControllerType type, bool rightX, bool rightY)
+    {
+        var physical = EmulationControllerState.Empty with { DeviceId = "pad", LeftY = short.MaxValue, RightX = short.MaxValue, RightY = short.MaxValue };
+        var mappings = new Dictionary<string, string>
+        {
+            ["LeftStickRight"] = "Controller:pad:Axis0Positive", ["LeftStickLeft"] = "Controller:pad:Axis0Negative",
+            ["RightStickDown"] = "Controller:pad:Axis0Positive", ["RightStickUp"] = "Controller:pad:Axis0Negative",
+            ["RightStickRight"] = "Controller:pad:Axis0Positive", ["RightStickLeft"] = "Controller:pad:Axis0Negative"
+        };
+        physical = physical with { Controls = new(new Dictionary<string, float> { ["Axis0"] = .625f }) };
+        var snapshot = EmulationInputSnapshot.Empty with { Controllers = [physical] };
+        var input = new SegaInput.InputConfiguration(ControllerBindings: [new(0, type, "pad", mappings)]);
+        var mapped = GWGUI.Emulation.Sega.Common.Machines.Common.Functions.InputSnapshotFunctions.Apply(snapshot, input, false).Controllers[0];
+        Assert.Equal(8192, mapped.LeftX);
+        Assert.Equal(0, mapped.LeftY);
+        Assert.Equal(rightX ? 8192 : 0, mapped.RightX);
+        Assert.Equal(rightY ? 8192 : 0, mapped.RightY);
+        Assert.Equal(rightY ? 8192 : 0, GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks.ReadAnalogState(mapped, 1, 1));
+    }
+
+    [Theory]
+    [InlineData(SegaEnums.ControllerType.SegaXe1Ap, "MD XE-1AP", 773u)]
+    [InlineData(SegaEnums.ControllerType.SegaSaturnMissionStick, "Mission Stick", 773u)]
+    [InlineData(SegaEnums.ControllerType.SegaSaturnArcadeRacer, "Arcade Racer", 517u)]
+    [InlineData(SegaEnums.ControllerType.SegaSaturnThreeDControlPad, "3D Control Pad", 261u)]
+    [InlineData(SegaEnums.ControllerType.SegaSportsPad, "MS Sports Pad", 517u)]
+    [InlineData(SegaEnums.ControllerType.SegaPaddleControl, "MS Paddle Control", 261u)]
+    public void NativePeripheralSelectionDoesNotSubstituteTheDigitalPad(SegaEnums.ControllerType type, string name, uint id)
+    {
+        var devices = new GWGUI.Emulation.Sega.Emulators.Common.Interop.Contracts.ControllerDevice[] { new("Control Pad", 1), new(name, id) };
+        Assert.Equal(id, GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore.ResolveControllerDevice(devices, type));
+        Assert.Equal(0u, GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore.ResolveControllerDevice([new("Control Pad", 1)], type));
+    }
+
+    [Fact]
     public void TriggerReassignmentKeepsPressureAndDoesNotInheritAnotherTrigger()
     {
         var source = EmulationControllerState.Empty with { DeviceId = "pad", LeftTrigger = short.MaxValue, RightTrigger = 8192 };
