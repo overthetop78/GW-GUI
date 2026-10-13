@@ -155,7 +155,26 @@ internal static partial class InputSettingsFunctions
         Definition(InputSettingsFunctionsConstants.GameCubeCRight, InputSettingsFunctionsConstants.GameCubeCRightLabel, string.Empty)
     ];
 
-    private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding, string? invariant = null) => new(id, resourceKey, defaultBinding, invariant ?? (resourceKey.Contains('.') ? null : resourceKey));
+    private static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding, string? invariant = null) =>
+        new(id, resourceKey, defaultBinding, invariant ?? (resourceKey.Contains('.') ? null : resourceKey))
+        {
+            OppositeDirectionId = id switch
+            {
+                InputSettingsFunctionsConstants.Nintendo64StickUp => InputSettingsFunctionsConstants.Nintendo64StickDown,
+                InputSettingsFunctionsConstants.Nintendo64StickDown => InputSettingsFunctionsConstants.Nintendo64StickUp,
+                InputSettingsFunctionsConstants.Nintendo64StickLeft => InputSettingsFunctionsConstants.Nintendo64StickRight,
+                InputSettingsFunctionsConstants.Nintendo64StickRight => InputSettingsFunctionsConstants.Nintendo64StickLeft,
+                InputSettingsFunctionsConstants.GameCubeStickUp => InputSettingsFunctionsConstants.GameCubeStickDown,
+                InputSettingsFunctionsConstants.GameCubeStickDown => InputSettingsFunctionsConstants.GameCubeStickUp,
+                InputSettingsFunctionsConstants.GameCubeStickLeft => InputSettingsFunctionsConstants.GameCubeStickRight,
+                InputSettingsFunctionsConstants.GameCubeStickRight => InputSettingsFunctionsConstants.GameCubeStickLeft,
+                InputSettingsFunctionsConstants.GameCubeCUp => InputSettingsFunctionsConstants.GameCubeCDown,
+                InputSettingsFunctionsConstants.GameCubeCDown => InputSettingsFunctionsConstants.GameCubeCUp,
+                InputSettingsFunctionsConstants.GameCubeCLeft => InputSettingsFunctionsConstants.GameCubeCRight,
+                InputSettingsFunctionsConstants.GameCubeCRight => InputSettingsFunctionsConstants.GameCubeCLeft,
+                _ => null
+            }
+        };
 
     private static EmulationControllerChoice Choice(ControllerType type, Model model) => new(
         type.ToString(), ControllerResourceKey(type, model),
