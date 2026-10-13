@@ -14,23 +14,56 @@ public sealed class StaExecutionScenarios : IDisposable
         var ready = new TaskCompletionSource<(Dispatcher Dispatcher, ResourceApplication Application)>(TaskCreationOptions.RunContinuationsAsynchronously);
         thread = new Thread(() =>
         {
+            Dispatcher? current = null;
+            ResourceApplication? resources = null;
             try
             {
-                var current = Dispatcher.CurrentDispatcher;
+                current = Dispatcher.CurrentDispatcher;
                 SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(current));
-                var resources = new ResourceApplication { ShutdownMode = System.Windows.ShutdownMode.OnExplicitShutdown };
-                resources.Resources = new System.Windows.ResourceDictionary
+                try
                 {
-                    Source = new Uri("/gwgui.app;component/Resources/ApplicationStyles.xaml", UriKind.Relative)
-                };
-                ready.SetResult((current, resources));
-                Dispatcher.Run();
+                    resources = new ResourceApplication { ShutdownMode = System.Windows.ShutdownMode.OnExplicitShutdown };
+                    resources.Resources = new System.Windows.ResourceDictionary
+                    {
+                        Source = new Uri("/gwgui.app;component/Resources/ApplicationStyles.xaml", UriKind.Relative)
+                    };
+                    ready.SetResult((current, resources));
+                    Dispatcher.Run();
+                }
+                finally
+                {
+                    try
+                    {
+                        if (resources is not null && !current.HasShutdownStarted)
+                        {
+                            try { TestResourceCleanup.ReleaseWindows(resources); }
+                            finally
+                            {
+                                try { resources.Resources.MergedDictionaries.Clear(); }
+                                finally
+                                {
+                                    try { resources.Resources.Clear(); }
+                                    finally { resources.Shutdown(); }
+                                }
+                            }
+                        }
+                    }
+                    finally
+                    {
+                        if (!current.HasShutdownStarted) current.InvokeShutdown();
+                    }
+                }
             }
             catch (Exception exception) { ready.TrySetException(exception); }
         }) { IsBackground = true, Name = "GWGUI test dispatcher" };
         thread.SetApartmentState(ApartmentState.STA);
         thread.Start();
-        (dispatcher, application) = ready.Task.GetAwaiter().GetResult();
+        try { (dispatcher, application) = ready.Task.GetAwaiter().GetResult(); }
+        catch
+        {
+            if (!thread.Join(TimeSpan.FromSeconds(10))) throw new TimeoutException("The failed test dispatcher thread did not terminate.");
+            throw;
+        }
         TestResourceCleanup.Register(application);
     }
 

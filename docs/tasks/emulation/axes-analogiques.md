@@ -29,6 +29,9 @@ Livré : directions et valeurs progressives dans neuf familles ; Sega XE-1AP, Mi
   - [x] Créer `tests/GWGUI.Tests/Application/TestInfrastructure/TestResourceCleanup.cs` : fermer et détacher les fenêtres de test, vider leurs ressources, attendre les opérations de Dispatcher et centraliser son arrêt en fin de fixture.
   - [x] Modifier `tests/GWGUI.Tests/Application/TestInfrastructure/TestResourceCleanup.cs` : inclure le hook xUnit au niveau de assembly pour appeler le helper après chaque cas.
   - [x] Modifier `tests/GWGUI.Tests/Application/TestInfrastructure/StaExecutionScenarios.cs` : réutiliser ce helper après chaque scénario et à la fin de fixture, sans fermer le Dispatcher partagé entre les cas.
+- [x] Terminer le nettoyage lors d’un échec de création de la fixture WPF.
+  - [x] Modifier `tests/GWGUI.Tests/Application/TestInfrastructure/StaExecutionScenarios.cs` : fermer Application et Dispatcher dans finally sur le thread propriétaire si leur initialisation échoue, puis attendre la fin du thread avant de propager l’erreur du constructeur.
+  - [x] Modifier `docs/tasks/emulation/methode-modules.md` : préciser que le nettoyage central couvre aussi la création interrompue de la fixture, avant son enregistrement.
 - [ ] Livrer les compléments vérifiés.
   - [x] Commiter tous les fichiers en attente sans test ni build, conformément à la dernière demande utilisateur. Commit : `4671d67e8`.
   - [ ] Supprimer `docs/tasks/emulation/axes-analogiques.md` après traitement de tous les périphériques analogiques concernés.
