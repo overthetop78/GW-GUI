@@ -1,11 +1,34 @@
-# Axes analogiques : périphériques supplémentaires
+# Axes analogiques : périphériques restants
 
-Livré : affectations par direction, association automatique du sens opposé d’un axe physique, maintien des valeurs progressives et touches indépendantes. SDK et éditeur partagés ; Sony, Acorn, Apple, Nintendo, Sharp, Panasonic, Atari, Commodore et Sega raccordés pour leurs axes décrits. Pressions Sony, GameCube et Sega composées explicitement ; requêtes de pression prises en charge par le callback Sega. Capture des mouvements progressifs corrigée. 272 tests ciblés réussis et build Debug des 23 modules réussi.
+Livré : directions et valeurs progressives dans neuf familles ; Sega XE-1AP, Mission Stick, Arcade Racer et Sports Pad complétés. 92 tests ciblés réussis ; Debug et 23 modules vérifiés. SDK `85f445fef`, Sega `3ecf87a61`, sans push. Coleco JollyCV lit des commandes numériques de rotation : ne pas annoncer un axe de position absent du port natif.
 
-- [ ] Compléter les périphériques analogiques particuliers réellement pris en charge par les cœurs.
-  - [ ] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Snapshot.cs` dans le même dossier : qualifier les commandes du Mission Stick, Arcade Racer, XE-1AP et des autres périphériques proposés par les adaptateurs ; exposer et composer uniquement leurs axes effectivement disponibles, avec les paires de directions correspondantes.
-  - [ ] Modifier les définitions et convertisseurs des autres périphériques concernés après qualification de leurs canaux : préserver la distinction entre position analogique, mouvement relatif et commandes numériques, sans annoncer de capacité absente.
-- [ ] Vérifier et livrer les compléments.
-  - [ ] Modifier `tests/GWGUI.Tests/Emulation/ControllerInput/LegacyAnalogAxisTests.cs` avec les cas des canaux nouvellement raccordés et leurs limites.
-  - [ ] Produire Debug avec tous les modules, vérifier les fichiers livrés et commiter chaque module corrigé sans push.
-  - [ ] Supprimer `docs/tasks/emulation/axes-analogiques.md` quand tous les périphériques concernés sont effectivement traités.
+- [ ] Raccorder les canaux Dreamcast spéciaux exposés par Flycast.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Common/Machines/Common/Functions/InputFunctions.Settings.cs` et `InputFunctions.Snapshot.cs` : décrire seulement leurs boutons natifs et composer les deux paires X/Y pour la canne à pêche et les maracas ; conserver les deux pressions de la canne à pêche et les associations vides par défaut.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Constants/ExternalCoreConstants.cs` et `Services/ExternalCore.cs` : sélectionner Fishing Controller et Maracas par leurs descriptions natives.
+  - [x] Modifier `src/GWGUI.Emulation.Sega/Emulators/Common/Interop/Constants/ExternalHostCallbacksConstants.cs` et `Services/ExternalHostCallbacks.Input.cs` : traiter les requêtes des sous-types de périphériques en conservant leur type de base natif.
+- [ ] Sécuriser les libérations graphiques avant de reprendre les essais.
+  - [x] Créer `src/GWGUI.App/Functions/Rendering/Emulation/EmulationVideoCleanupFunctions.cs` : exécuter toutes les actions de libération même si une action échoue, puis restituer la première erreur.
+  - [x] Modifier `src/GWGUI.App/Rendering/Emulation/Surfaces/VeldridVideoSurface.cs` : libérer toutes les ressources GPU et la fenêtre native dans les chemins finally, même après une erreur de destruction ou d’attente GPU.
+  - [x] Modifier `src/GWGUI.App/Rendering/Emulation/Surfaces/OpenGlVideoSurface.cs` et `WpfVideoSurface.cs` : garantir destruction du contexte, des textures, du DC, de la fenêtre et des pipelines après une erreur de nettoyage.
+  - [x] Modifier `src/GWGUI.App/Rendering/Emulation/Processing/SoftwareVideoFrameProcessingWorker.cs` : libérer le pipeline dans finally après attente de la tâche, y compris si celle-ci échoue.
+  - [x] Modifier `tests/GWGUI.Tests/Application/TestInfrastructure/StaExecutionScenarios.cs` : vérifier la disparition du handle capturé avant fermeture, sans se fier à une collection de fenêtres devenue vide ; fermer Application et Dispatcher dans finally aussi après échec de création.
+  - [x] Modifier `src/GWGUI.App/Functions/Rendering/Emulation/NativeVideoWindowFunctions.cs` : vérifier le résultat de destruction et la disparition effective du HWND.
+  - [x] Créer `tests/GWGUI.Tests/Application/Rendering/EmulationVideoCleanupTests.cs` : vérifier sans fenêtre ni GPU que toutes les libérations restent exécutées après une erreur.
+  - [x] Modifier `src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs` : attendre la fin du worker et garantir libération de la surface, du signal et de son annulation même si une étape échoue.
+  - [x] Modifier `docs/tasks/emulation/methode-modules.md` : préciser les nettoyages indépendants, le contrôle du handle capturé et la vérification de la sortie effective des processus de compilation.
+- [ ] Vérifier les axes Dreamcast.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/ControllerInput/LegacyAnalogAxisTests.cs` : vérifier directions opposées, demi-course, canaux non affectés, sélection native et sous-types.
+- [ ] Réutiliser les contrôles existants conformément à la correction utilisateur.
+  - [x] Restaurer `tests/GWGUI.Tests/Application/TestInfrastructure/StaExecutionScenarios.cs` et son fichier projet : conserver leur infrastructure initiale sans lien vers LocalDiskImageTests.
+  - [x] Modifier `tests/GWGUI.Tests/Interface/EmulationViews/HiddenMachineRenderingTests.cs` : reprendre les deux cas de nettoyage en erreur dans les tests de rendu existants ; supprimer `tests/GWGUI.Tests/Application/Rendering/EmulationVideoCleanupTests.cs` devenu redondant.
+- [ ] Libérer aussi les créations graphiques partielles.
+  - [x] Modifier `src/GWGUI.App/Rendering/Emulation/Surfaces/OpenGlVideoSurface.cs` et `src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs` : libérer dans finally les fenêtres, contextes et workers lorsque leur initialisation échoue.
+  - [x] Modifier `src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs` : libérer aussi après un échec de détachement et terminer la surface précédente même si le changement de vue échoue.
+  - [x] Modifier `tests/GWGUI.Tests/Interface/EmulationViews/HiddenMachineRenderingTests.cs` : vérifier la libération de la surface après un échec de création du présentateur avec les doubles de test existants.
+- [ ] Ajouter le nettoyage demandé après chaque test de GWGUI.Tests.
+  - [x] Créer `tests/GWGUI.Tests/Application/TestInfrastructure/TestResourceCleanup.cs` : fermer et détacher les fenêtres de test, vider leurs ressources, attendre les opérations de Dispatcher et centraliser son arrêt en fin de fixture.
+  - [x] Modifier `tests/GWGUI.Tests/Application/TestInfrastructure/TestResourceCleanup.cs` : inclure le hook xUnit au niveau de assembly pour appeler le helper après chaque cas.
+  - [x] Modifier `tests/GWGUI.Tests/Application/TestInfrastructure/StaExecutionScenarios.cs` : réutiliser ce helper après chaque scénario et à la fin de fixture, sans fermer le Dispatcher partagé entre les cas.
+- [ ] Livrer les compléments vérifiés.
+  - [ ] Commiter tous les fichiers en attente sans test ni build, conformément à la dernière demande utilisateur.
+  - [ ] Supprimer `docs/tasks/emulation/axes-analogiques.md` après traitement de tous les périphériques analogiques concernés.

@@ -314,3 +314,6 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-13 07:22:55 | 72:27:11 | -64:27:11 | Reprise. Vérification complète des suites autonomes des nouvelles familles présentes dans le dépôt. |
 | 2026-10-13 07:45:14 | 72:49:30 | -64:49:30 | Reprise. Sony : répartition des visuels par marque. |
 | 2026-10-13 09:04:54 | 74:09:10 | -66:09:10 | Reprise. Affectation des sens analogiques : SDK, éditeur et six familles. |
+| 2026-10-13 17:40:24 | 82:44:40 | -74:44:40 | Reprise. Affectations analogiques : périphériques Sega supplémentaires. |
+| 2026-10-13 18:07:00 | 83:11:16 | -75:11:16 | Reprise. Canaux analogiques des périphériques Dreamcast ; fermeture des processus de compilation et de test. |
+| 2026-10-13 18:37:20 | 83:41:36 | -75:41:36 | Reprise. Finalisation App et Sega ; projet LocalDiskImageTests préservé. |

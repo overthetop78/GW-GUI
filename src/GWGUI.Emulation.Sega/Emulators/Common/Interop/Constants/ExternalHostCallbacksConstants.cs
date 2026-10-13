@@ -11,6 +11,7 @@ internal static class ExternalHostCallbacksConstants
     internal const int CoreOptionV1DescriptionPointerIndex = 2;
     internal const string Extended = "-extended";
     internal const uint JoypadDevice = 1;
+    internal const uint DeviceTypeMask = 0xff;
     internal const uint MouseDevice = 2;
     internal const uint KeyboardDevice = 3;
     internal const uint LightGunDevice = 4;

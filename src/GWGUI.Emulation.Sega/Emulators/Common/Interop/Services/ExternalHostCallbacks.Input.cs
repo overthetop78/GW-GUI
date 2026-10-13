@@ -95,6 +95,7 @@ internal sealed partial class ExternalHostCallbacks
 
     private short HandleInputState(uint port, uint device, uint index, uint id)
     {
+        device &= DeviceTypeMask;
         var input = _polledInput;
         if (device == KeyboardDevice)
             return KeyboardMap.TryGetValue(id, out var key) && input.Keys.Contains(key) ? (short)1 : (short)0;
@@ -132,6 +133,12 @@ internal sealed partial class ExternalHostCallbacks
 
         if (port >= input.Controllers.Count) return 0;
         var controller = input.Controllers[(int)port];
+        return ReadControllerState(controller, device, index, id);
+    }
+
+    internal static short ReadControllerState(EmulationControllerState controller, uint device, uint index, uint id)
+    {
+        device &= DeviceTypeMask;
         if (device == JoypadDevice)
         {
             var buttons = controller.Buttons;

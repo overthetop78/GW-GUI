@@ -152,6 +152,7 @@ internal sealed class ExternalCore : IEmulatorCore
         if (type == ControllerType.None) return 0;
         if (devices.Count == 0)
             return type is ControllerType.SegaXe1Ap or ControllerType.SegaSaturnMissionStick or ControllerType.SegaSaturnArcadeRacer
+                or ControllerType.SegaDreamcastFishingController or ControllerType.SegaDreamcastMaracas
                 ? 0 : ExternalHostCallbacksConstants.JoypadDevice;
         var exactName = type switch
         {
@@ -167,6 +168,8 @@ internal sealed class ExternalCore : IEmulatorCore
             ControllerType.SegaSaturnThreeDControlPad => ExternalCoreConstants.ControllerThreeDPad,
             ControllerType.SegaSaturnMissionStick => ExternalCoreConstants.ControllerMissionStick,
             ControllerType.SegaSaturnArcadeRacer => ExternalCoreConstants.ControllerArcadeRacer,
+            ControllerType.SegaDreamcastFishingController => ExternalCoreConstants.ControllerFishing,
+            ControllerType.SegaDreamcastMaracas => ExternalCoreConstants.ControllerMaracas,
             _ => null
         };
         if (exactName is not null)
@@ -196,6 +199,8 @@ internal sealed class ExternalCore : IEmulatorCore
         ControllerType.SegaSaturnThreeDControlPad => [ExternalCoreConstants.ControllerThreeDPad],
         ControllerType.SegaSaturnMissionStick => [ExternalCoreConstants.ControllerMissionStick],
         ControllerType.SegaSaturnArcadeRacer => [ExternalCoreConstants.ControllerArcadeRacer],
+        ControllerType.SegaDreamcastFishingController => [ExternalCoreConstants.ControllerFishing],
+        ControllerType.SegaDreamcastMaracas => [ExternalCoreConstants.ControllerMaracas],
         _ => [ExternalCoreConstants.ControllerJoypad, ExternalCoreConstants.ControllerController, ExternalCoreConstants.ControllerGamepad]
     };
 

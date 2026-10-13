@@ -66,8 +66,13 @@ internal static partial class InputSettingsFunctions
             definitions = DigitalControllerDefinitions(ControllerType.SegaSaturnController)
                 .Where(item => item.Id is not EmulationControllerCommandIds.Up and not EmulationControllerCommandIds.Down
                     and not EmulationControllerCommandIds.Left and not EmulationControllerCommandIds.Right).ToArray();
+        if (type == ControllerType.SegaDreamcastFishingController)
+            definitions = DigitalControllerDefinitions(ControllerType.SegaDreamcastController)
+                .Where(item => item.Id is not EmulationControllerCommandIds.Up and not EmulationControllerCommandIds.Down
+                    and not EmulationControllerCommandIds.Left and not EmulationControllerCommandIds.Right).ToArray();
         if (type is not ControllerType.SegaSaturnThreeDControlPad and not ControllerType.SegaDreamcastController and not ControllerType.SegaPaddleControl
-            and not ControllerType.SegaSaturnMissionStick and not ControllerType.SegaSaturnArcadeRacer and not ControllerType.SegaXe1Ap and not ControllerType.SegaSportsPad)
+            and not ControllerType.SegaSaturnMissionStick and not ControllerType.SegaSaturnArcadeRacer and not ControllerType.SegaXe1Ap and not ControllerType.SegaSportsPad
+            and not ControllerType.SegaDreamcastFishingController and not ControllerType.SegaDreamcastMaracas)
             return definitions;
         var horizontal = new[]
         {
@@ -80,12 +85,13 @@ internal static partial class InputSettingsFunctions
             new InputBindingDefinition(EmulationControllerCommandIds.LeftStickUp, string.Empty, string.Empty, "Y−") { OppositeDirectionId = EmulationControllerCommandIds.LeftStickDown },
             new InputBindingDefinition(EmulationControllerCommandIds.LeftStickDown, string.Empty, string.Empty, "Y+") { OppositeDirectionId = EmulationControllerCommandIds.LeftStickUp }
         }).ToArray();
-        if (type is not ControllerType.SegaSaturnMissionStick and not ControllerType.SegaXe1Ap) return axes;
+        if (type is not ControllerType.SegaSaturnMissionStick and not ControllerType.SegaXe1Ap
+            and not ControllerType.SegaDreamcastFishingController and not ControllerType.SegaDreamcastMaracas) return axes;
         return axes.Concat(new[]
         {
             new InputBindingDefinition(EmulationControllerCommandIds.RightStickUp, string.Empty, string.Empty, "RY−") { OppositeDirectionId = EmulationControllerCommandIds.RightStickDown },
             new InputBindingDefinition(EmulationControllerCommandIds.RightStickDown, string.Empty, string.Empty, "RY+") { OppositeDirectionId = EmulationControllerCommandIds.RightStickUp }
-        }).Concat(type == ControllerType.SegaXe1Ap ? new[]
+        }).Concat(type is ControllerType.SegaXe1Ap or ControllerType.SegaDreamcastFishingController or ControllerType.SegaDreamcastMaracas ? new[]
         {
             new InputBindingDefinition(EmulationControllerCommandIds.RightStickLeft, string.Empty, string.Empty, "RX−") { OppositeDirectionId = EmulationControllerCommandIds.RightStickRight },
             new InputBindingDefinition(EmulationControllerCommandIds.RightStickRight, string.Empty, string.Empty, "RX+") { OppositeDirectionId = EmulationControllerCommandIds.RightStickLeft }
@@ -145,6 +151,15 @@ internal static partial class InputSettingsFunctions
                 Definition(InputSettingsFunctionsConstants.Start, InputSettingsFunctionsConstants.ButtonStart, string.Empty),
                 Definition(InputSettingsFunctionsConstants.L2, InputSettingsFunctionsConstants.TriggerLeft, string.Empty),
                 Definition(InputSettingsFunctionsConstants.R2, InputSettingsFunctionsConstants.TriggerRight, string.Empty)
+            ],
+            ControllerType.SegaDreamcastMaracas =>
+            [
+                Definition(EmulationControllerCommandIds.B, string.Empty, string.Empty, "A"),
+                Definition(EmulationControllerCommandIds.A, string.Empty, string.Empty, "B"),
+                Definition(EmulationControllerCommandIds.X, string.Empty, string.Empty, "C"),
+                Definition(EmulationControllerCommandIds.L, string.Empty, string.Empty, "D"),
+                Definition(EmulationControllerCommandIds.R, string.Empty, string.Empty, "Z"),
+                Definition(EmulationControllerCommandIds.Start, string.Empty, string.Empty, "START")
             ],
             ControllerType.SegaDreamcastController =>
             [

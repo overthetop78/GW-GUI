@@ -59,66 +59,91 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
 
     protected override HandleRef BuildWindowCore(HandleRef hwndParent)
     {
-        _hwnd = NativeVideoWindowFunctions.Create(hwndParent.Handle, (int)ActualWidth, (int)ActualHeight);
-        if (_hwnd == IntPtr.Zero) throw new InvalidOperationException("Unable to create the OpenGL video window.");
-        _dc = GetDC(_hwnd);
-        var descriptor = new PixelFormatDescriptor
+        var initialized = false;
+        try
         {
-            Size = (ushort)Marshal.SizeOf<PixelFormatDescriptor>(), Version = 1,
-            Flags = OpenGlVideoConstants.PixelFormatDrawToWindow |
-                OpenGlVideoConstants.PixelFormatSupportOpenGl |
-                OpenGlVideoConstants.PixelFormatDoubleBuffer,
-            PixelType = OpenGlVideoConstants.PixelTypeRgba,
-            ColorBits = 32,
-            DepthBits = 0,
-            LayerType = OpenGlVideoConstants.MainPlane
-        };
-        var format = ChoosePixelFormat(_dc, ref descriptor);
-        if (format == 0 || !SetPixelFormat(_dc, format, ref descriptor))
-            throw new InvalidOperationException("OpenGL could not select a compatible pixel format.");
-        _context = WglCreateContext(_dc);
-        if (_context == IntPtr.Zero) throw new InvalidOperationException("OpenGL could not create a rendering context.");
-        WglMakeCurrent(_dc, _context);
-        _activeTexture = LoadActiveTexture();
-        _program = new OpenGlVideoProcessingProgram(_videoProcessing.Sampling, _videoProcessing.DisplayTechnology);
-        _programSampling = _videoProcessing.Sampling;
-        _programDisplayTechnology = _videoProcessing.DisplayTechnology;
-        _activeTexture(OpenGlVideoConstants.Texture0);
-        GlGenTextures(1, out _texture);
-        GlBindTexture(OpenGlVideoConstants.Texture2D, _texture);
-        GlTexParameteri(OpenGlVideoConstants.Texture2D, OpenGlVideoConstants.TextureWrapS, OpenGlVideoConstants.Clamp);
-        GlTexParameteri(OpenGlVideoConstants.Texture2D, OpenGlVideoConstants.TextureWrapT, OpenGlVideoConstants.Clamp);
-        _activeTexture(OpenGlVideoConstants.Texture1);
-        GlGenTextures(1, out _historyTexture);
-        GlBindTexture(OpenGlVideoConstants.Texture2D, _historyTexture);
-        GlTexParameteri(OpenGlVideoConstants.Texture2D, OpenGlVideoConstants.TextureWrapS, OpenGlVideoConstants.Clamp);
-        GlTexParameteri(OpenGlVideoConstants.Texture2D, OpenGlVideoConstants.TextureWrapT, OpenGlVideoConstants.Clamp);
-        _activeTexture(OpenGlVideoConstants.Texture0);
-        WglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
-        return new HandleRef(this, _hwnd);
+            _hwnd = NativeVideoWindowFunctions.Create(hwndParent.Handle, (int)ActualWidth, (int)ActualHeight);
+            if (_hwnd == IntPtr.Zero) throw new InvalidOperationException("Unable to create the OpenGL video window.");
+            _dc = GetDC(_hwnd);
+            var descriptor = new PixelFormatDescriptor
+            {
+                Size = (ushort)Marshal.SizeOf<PixelFormatDescriptor>(), Version = 1,
+                Flags = OpenGlVideoConstants.PixelFormatDrawToWindow |
+                    OpenGlVideoConstants.PixelFormatSupportOpenGl |
+                    OpenGlVideoConstants.PixelFormatDoubleBuffer,
+                PixelType = OpenGlVideoConstants.PixelTypeRgba,
+                ColorBits = 32,
+                DepthBits = 0,
+                LayerType = OpenGlVideoConstants.MainPlane
+            };
+            var format = ChoosePixelFormat(_dc, ref descriptor);
+            if (format == 0 || !SetPixelFormat(_dc, format, ref descriptor))
+                throw new InvalidOperationException("OpenGL could not select a compatible pixel format.");
+            _context = WglCreateContext(_dc);
+            if (_context == IntPtr.Zero) throw new InvalidOperationException("OpenGL could not create a rendering context.");
+            WglMakeCurrent(_dc, _context);
+            _activeTexture = LoadActiveTexture();
+            _program = new OpenGlVideoProcessingProgram(_videoProcessing.Sampling, _videoProcessing.DisplayTechnology);
+            _programSampling = _videoProcessing.Sampling;
+            _programDisplayTechnology = _videoProcessing.DisplayTechnology;
+            _activeTexture(OpenGlVideoConstants.Texture0);
+            GlGenTextures(1, out _texture);
+            GlBindTexture(OpenGlVideoConstants.Texture2D, _texture);
+            GlTexParameteri(OpenGlVideoConstants.Texture2D, OpenGlVideoConstants.TextureWrapS, OpenGlVideoConstants.Clamp);
+            GlTexParameteri(OpenGlVideoConstants.Texture2D, OpenGlVideoConstants.TextureWrapT, OpenGlVideoConstants.Clamp);
+            _activeTexture(OpenGlVideoConstants.Texture1);
+            GlGenTextures(1, out _historyTexture);
+            GlBindTexture(OpenGlVideoConstants.Texture2D, _historyTexture);
+            GlTexParameteri(OpenGlVideoConstants.Texture2D, OpenGlVideoConstants.TextureWrapS, OpenGlVideoConstants.Clamp);
+            GlTexParameteri(OpenGlVideoConstants.Texture2D, OpenGlVideoConstants.TextureWrapT, OpenGlVideoConstants.Clamp);
+            _activeTexture(OpenGlVideoConstants.Texture0);
+            WglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
+            initialized = true;
+            return new HandleRef(this, _hwnd);
+        
+        }
+        finally
+        {
+            if (!initialized && _hwnd != IntPtr.Zero) DestroyWindowCore(new HandleRef(this, _hwnd));
+        }
     }
-
     protected override void DestroyWindowCore(HandleRef hwnd)
     {
-        if (_context != IntPtr.Zero)
+        try
         {
-            WglMakeCurrent(_dc, _context);
-            _program?.Dispose(); _program = null;
-            if (_texture != 0) { GlDeleteTextures(1, ref _texture); _texture = 0; }
-            if (_historyTexture != 0)
+            if (_context != IntPtr.Zero)
             {
-                GlDeleteTextures(1, ref _historyTexture);
-                _historyTexture = 0;
+                WglMakeCurrent(_dc, _context);
+                try
+                {
+                    EmulationVideoCleanupFunctions.RunAll(
+                        () => _program?.Dispose(),
+                        () => { if (_texture != 0) GlDeleteTextures(1, ref _texture); },
+                        () => { if (_historyTexture != 0) GlDeleteTextures(1, ref _historyTexture); },
+                        ResetHistory);
+                }
+                finally
+                {
+                    try { WglMakeCurrent(IntPtr.Zero, IntPtr.Zero); }
+                    finally { WglDeleteContext(_context); }
+                }
             }
-            _activeTexture = null;
-            ResetHistory();
-            WglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
-            WglDeleteContext(_context);
-            _context = IntPtr.Zero;
         }
-        if (_dc != IntPtr.Zero) { ReleaseDC(hwnd.Handle, _dc); _dc = IntPtr.Zero; }
-        NativeVideoWindowFunctions.Destroy(hwnd.Handle);
-        _hwnd = IntPtr.Zero;
+        finally
+        {
+            _program = null;
+            _texture = 0;
+            _historyTexture = 0;
+            _activeTexture = null;
+            _context = IntPtr.Zero;
+            try { if (_dc != IntPtr.Zero) ReleaseDC(hwnd.Handle, _dc); }
+            finally
+            {
+                _dc = IntPtr.Zero;
+                try { NativeVideoWindowFunctions.Destroy(hwnd.Handle); }
+                finally { _hwnd = IntPtr.Zero; }
+            }
+        }
     }
 
     public void Present(VideoFrame frame)
@@ -214,8 +239,7 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
         {
             _snapshot = null;
             _snapshotSourceFrame = null;
-            _videoProcessingPipeline.Dispose();
-            _snapshotPipeline.Dispose();
+            EmulationVideoCleanupFunctions.RunAll(_videoProcessingPipeline.Dispose, _snapshotPipeline.Dispose);
         }
     }
 

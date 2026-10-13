@@ -54,8 +54,8 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
             _pending = null;
             processingTask = _processingTask;
         }
-        processingTask?.GetAwaiter().GetResult();
-        _pipeline.Dispose();
+        try { processingTask?.GetAwaiter().GetResult(); }
+        finally { _pipeline.Dispose(); }
     }
 
     private void ProcessPending()

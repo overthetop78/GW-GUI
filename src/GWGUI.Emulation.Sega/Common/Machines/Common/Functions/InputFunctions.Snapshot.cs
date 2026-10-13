@@ -66,9 +66,11 @@ internal static class InputSnapshotFunctions
                     buttons |= 1u << target;
             }
             var analog = binding.Type is ControllerType.SegaSaturnThreeDControlPad or ControllerType.SegaDreamcastController or ControllerType.SegaPaddleControl
-                or ControllerType.SegaSaturnMissionStick or ControllerType.SegaSaturnArcadeRacer or ControllerType.SegaXe1Ap or ControllerType.SegaSportsPad;
+                or ControllerType.SegaSaturnMissionStick or ControllerType.SegaSaturnArcadeRacer or ControllerType.SegaXe1Ap or ControllerType.SegaSportsPad
+                or ControllerType.SegaDreamcastFishingController or ControllerType.SegaDreamcastMaracas;
             var vertical = analog && binding.Type is not ControllerType.SegaPaddleControl and not ControllerType.SegaSaturnArcadeRacer;
-            var throttle = binding.Type is ControllerType.SegaSaturnMissionStick or ControllerType.SegaXe1Ap;
+            var throttle = binding.Type is ControllerType.SegaSaturnMissionStick or ControllerType.SegaXe1Ap
+                or ControllerType.SegaDreamcastFishingController or ControllerType.SegaDreamcastMaracas;
             result[port] = source with
             {
                 Buttons = buttons,
@@ -76,7 +78,8 @@ internal static class InputSnapshotFunctions
                 RightTrigger = EmulationInputMappingFunctions.MapControllerPressure(binding.ButtonMappings, EmulationControllerCommandIds.R2, source, physical, keys, physicalMouse),
                 LeftX = analog ? EmulationInputMappingFunctions.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.LeftStickRight, EmulationControllerCommandIds.LeftStickLeft, source, physical, keys, physicalMouse) : (short)0,
                 LeftY = vertical ? EmulationInputMappingFunctions.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.LeftStickDown, EmulationControllerCommandIds.LeftStickUp, source, physical, keys, physicalMouse) : (short)0,
-                RightX = binding.Type == ControllerType.SegaXe1Ap ? EmulationInputMappingFunctions.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.RightStickRight, EmulationControllerCommandIds.RightStickLeft, source, physical, keys, physicalMouse) : (short)0,
+                RightX = throttle && binding.Type != ControllerType.SegaSaturnMissionStick
+                    ? EmulationInputMappingFunctions.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.RightStickRight, EmulationControllerCommandIds.RightStickLeft, source, physical, keys, physicalMouse) : (short)0,
                 RightY = throttle ? EmulationInputMappingFunctions.MapControllerAxis(binding.ButtonMappings, EmulationControllerCommandIds.RightStickDown, EmulationControllerCommandIds.RightStickUp, source, physical, keys, physicalMouse) : (short)0
             };
         }

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using GWGUI.App.Interfaces.Rendering.Emulation;
+using GWGUI.App.Functions.Rendering.Emulation;
 using GWGUI.App.Presenters.Emulation.Machine;
 using GWGUI.App.Views.Controls.Emulation.Machine;
 using GWGUI.Emulation.Contracts;
@@ -17,6 +18,33 @@ namespace GWGUI.Tests.Interface.EmulationViews;
 [Collection("WPF")]
 public sealed class HiddenMachineRenderingTests(StaExecutionScenarios sta)
 {
+    [Fact]
+    public void EveryCleanupRunsAndTheFirstFailureIsPreserved()
+    {
+        var releases = new List<int>();
+        var first = new InvalidOperationException("First cleanup failure");
+        var observed = Assert.Throws<InvalidOperationException>(() => EmulationVideoCleanupFunctions.RunAll(
+            () => { releases.Add(1); throw first; },
+            () => { releases.Add(2); throw new ArgumentException("Another cleanup failure"); },
+            () => releases.Add(3)));
+        Assert.Same(first, observed);
+        Assert.Equal(new[] { 1, 2, 3 }, releases);
+    }
+
+    [Fact]
+    public void MissingAndFailedResourcesDoNotPreventLaterDisposal()
+    {
+        var releases = new List<int>();
+        Assert.Throws<InvalidOperationException>(() => EmulationVideoCleanupFunctions.DisposeAll(
+            [null, new CleanupResource(() => { releases.Add(1); throw new InvalidOperationException(); }), new CleanupResource(() => releases.Add(2))]));
+        Assert.Equal(new[] { 1, 2 }, releases);
+    }
+
+    private sealed class CleanupResource(Action release) : IDisposable
+    {
+        public void Dispose() => release();
+    }
+
     [Fact]
     public void TemporalResetDoesNotWeaveAnImageFromBeforeSuspension()
     {
@@ -74,7 +102,8 @@ public sealed class HiddenMachineRenderingTests(StaExecutionScenarios sta)
 
     private sealed class Surface(EmulationVideoRenderer renderer) : IEmulationVideoSurface
     {
-        public FrameworkElement View { get; } = new Border();
+        private readonly FrameworkElement view = new Border();
+        public FrameworkElement View { get { BeforeView?.Invoke(); return view; } }
         public System.Windows.Media.Imaging.BitmapSource? Snapshot => null;
         public EmulationVideoRenderer Renderer => renderer;
         public IntPtr InputHandle => IntPtr.Zero;
@@ -82,11 +111,27 @@ public sealed class HiddenMachineRenderingTests(StaExecutionScenarios sta)
         public int Resets;
         public bool Disposed;
         public Action? BeforePresent;
+        public Action? BeforeView;
         public void Present(VideoFrame frame) { BeforePresent?.Invoke(); Frames.Enqueue(frame.Sequence); }
         public void SetVideoProcessing(EmulationVideoProcessingConfiguration configuration) { }
         public void ResetHistory() => Interlocked.Increment(ref Resets);
         public void Dispose() => Disposed = true;
     }
+
+    [Fact]
+    public Task PresenterCreationFailureReleasesItsSurfaceAndWorker() => sta.Run(() =>
+    {
+        var source = new VideoProcessingScenarios.VideoSource();
+        var view = new MachineView();
+        var surface = new Surface(EmulationVideoRenderer.Wpf) { BeforeView = () => throw new InvalidOperationException("Failed view attachment") };
+        try
+        {
+            Assert.Throws<InvalidOperationException>(() => new MachineVideoPresenter(view, source.Machine, surface.Renderer, createSurface: _ => surface));
+            Assert.True(surface.Disposed);
+            Assert.Equal(0, source.Subscribers);
+        }
+        finally { if (!surface.Disposed) surface.Dispose(); }
+    });
 
     private static VideoFrame Frame(long sequence) => new(new byte[] { 1, 2, 3, 255 }, 1, 1, 4, EmulationPixelFormat.Xrgb8888, 1, sequence, TimeSpan.FromMilliseconds(sequence * 20));
     private static Window Host(object content) => new()

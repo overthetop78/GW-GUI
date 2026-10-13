@@ -257,16 +257,10 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         }
         finally
         {
-            pipeline?.Dispose();
-            set?.Dispose();
-            layout?.Dispose();
-            parameterBuffer?.Dispose();
-            textureView?.Dispose();
-            texture?.Dispose();
-            historyTextureView?.Dispose();
-            historyTexture?.Dispose();
-            vertexBuffer?.Dispose();
-            if (shaders is not null) foreach (var shader in shaders) shader.Dispose();
+            EmulationVideoCleanupFunctions.DisposeAll(new IDisposable?[]
+            {
+                pipeline, set, layout, parameterBuffer, textureView, texture, historyTextureView, historyTexture, vertexBuffer
+            }.Concat(shaders ?? Array.Empty<Shader>()));
         }
     }
 
@@ -299,20 +293,24 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
 
     private void DisposeFrameResources()
     {
-        _pipeline?.Dispose(); _pipeline = null;
-        _set?.Dispose(); _set = null;
-        _layout?.Dispose(); _layout = null;
-        _parameterBuffer?.Dispose(); _parameterBuffer = null;
-        _textureView?.Dispose(); _textureView = null;
-        _texture?.Dispose(); _texture = null;
-        _historyTextureView?.Dispose(); _historyTextureView = null;
-        _historyTexture?.Dispose(); _historyTexture = null;
-        _vertexBuffer?.Dispose(); _vertexBuffer = null;
-        if (_shaders is not null) foreach (var shader in _shaders) shader.Dispose();
+        var resources = new IDisposable?[]
+        {
+            _pipeline, _set, _layout, _parameterBuffer, _textureView, _texture, _historyTextureView, _historyTexture, _vertexBuffer
+        }.Concat(_shaders ?? Array.Empty<Shader>()).ToArray();
+        _pipeline = null;
+        _set = null;
+        _layout = null;
+        _parameterBuffer = null;
+        _textureView = null;
+        _texture = null;
+        _historyTextureView = null;
+        _historyTexture = null;
+        _vertexBuffer = null;
         _shaders = null;
         _hasHistory = false;
         _historyTimestamp = TimeSpan.Zero;
         _historySequence = 0;
+        EmulationVideoCleanupFunctions.DisposeAll(resources);
     }
 
     public new void Dispose()
@@ -326,21 +324,17 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
                 try { _device?.WaitForIdle(); }
                 finally
                 {
-                    DisposeFrameResources();
-                    _commands?.Dispose();
-                    _commands = null;
-                    _device?.Dispose();
-                    _device = null;
+                    EmulationVideoCleanupFunctions.RunAll(DisposeFrameResources, () => _commands?.Dispose(), () => _device?.Dispose());
                 }
             }
-            base.Dispose();
         }
         finally
         {
             _snapshot = null;
             _snapshotSourceFrame = null;
-            _videoProcessingPipeline.Dispose();
-            _snapshotPipeline.Dispose();
+            _commands = null;
+            _device = null;
+            EmulationVideoCleanupFunctions.RunAll(() => base.Dispose(), _videoProcessingPipeline.Dispose, _snapshotPipeline.Dispose);
         }
     }
 

@@ -84,10 +84,12 @@ internal sealed class WpfVideoSurface : IEmulationVideoSurface
         if (_disposed) return;
         _disposed = true;
         Interlocked.Increment(ref _configurationVersion);
-        _worker?.Dispose();
-        _synchronousPipeline?.Dispose();
-        _image.Source = null;
-        _bitmap = null;
+        try { EmulationVideoCleanupFunctions.RunAll(() => _worker?.Dispose(), () => _synchronousPipeline?.Dispose()); }
+        finally
+        {
+            _image.Source = null;
+            _bitmap = null;
+        }
     }
 
     private void UpdateBitmap(VideoFrame processed, byte[] pixels)

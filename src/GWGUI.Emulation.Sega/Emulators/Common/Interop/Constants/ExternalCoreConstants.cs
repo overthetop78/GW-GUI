@@ -42,6 +42,8 @@ internal static class ExternalCoreConstants
     internal const string ControllerThreeDPad = "3D Control Pad";
     internal const string ControllerMissionStick = "Mission Stick";
     internal const string ControllerArcadeRacer = "Arcade Racer";
+    internal const string ControllerFishing = "Fishing Controller";
+    internal const string ControllerMaracas = "Maracas";
     internal const string ControllerJoypad = "joypad";
     internal const string ControllerController = "controller";
     internal const string ControllerGamepad = "gamepad";

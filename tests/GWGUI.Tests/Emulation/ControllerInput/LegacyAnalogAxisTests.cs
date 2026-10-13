@@ -21,6 +21,8 @@ public sealed class LegacyAnalogAxisTests
 
     [Theory]
     [InlineData(SegaEnums.ControllerType.SegaXe1Ap, "MegaDrive", 8)]
+    [InlineData(SegaEnums.ControllerType.SegaDreamcastFishingController, "Dreamcast", 8)]
+    [InlineData(SegaEnums.ControllerType.SegaDreamcastMaracas, "Dreamcast", 8)]
     [InlineData(SegaEnums.ControllerType.SegaSportsPad, "MegaDrive", 4)]
     [InlineData(SegaEnums.ControllerType.SegaSaturnMissionStick, "Saturn", 6)]
     [InlineData(SegaEnums.ControllerType.SegaSaturnArcadeRacer, "Saturn", 2)]
@@ -45,6 +47,8 @@ public sealed class LegacyAnalogAxisTests
 
     [Theory]
     [InlineData(SegaEnums.ControllerType.SegaXe1Ap, true, true)]
+    [InlineData(SegaEnums.ControllerType.SegaDreamcastFishingController, true, true)]
+    [InlineData(SegaEnums.ControllerType.SegaDreamcastMaracas, true, true)]
     [InlineData(SegaEnums.ControllerType.SegaSportsPad, false, false)]
     [InlineData(SegaEnums.ControllerType.SegaSaturnMissionStick, false, true)]
     [InlineData(SegaEnums.ControllerType.SegaSaturnArcadeRacer, false, false)]
@@ -70,6 +74,8 @@ public sealed class LegacyAnalogAxisTests
 
     [Theory]
     [InlineData(SegaEnums.ControllerType.SegaXe1Ap, "MD XE-1AP", 773u)]
+    [InlineData(SegaEnums.ControllerType.SegaDreamcastFishingController, "Fishing Controller", 1537u)]
+    [InlineData(SegaEnums.ControllerType.SegaDreamcastMaracas, "Maracas", 1281u)]
     [InlineData(SegaEnums.ControllerType.SegaSaturnMissionStick, "Mission Stick", 773u)]
     [InlineData(SegaEnums.ControllerType.SegaSaturnArcadeRacer, "Arcade Racer", 517u)]
     [InlineData(SegaEnums.ControllerType.SegaSaturnThreeDControlPad, "3D Control Pad", 261u)]
@@ -82,17 +88,31 @@ public sealed class LegacyAnalogAxisTests
         Assert.Equal(0u, GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalCore.ResolveControllerDevice([new("Control Pad", 1)], type));
     }
 
-    [Fact]
-    public void TriggerReassignmentKeepsPressureAndDoesNotInheritAnotherTrigger()
+    [Theory]
+    [InlineData(SegaEnums.ControllerType.SegaDreamcastController)]
+    [InlineData(SegaEnums.ControllerType.SegaDreamcastFishingController)]
+    public void TriggerReassignmentKeepsPressureAndDoesNotInheritAnotherTrigger(SegaEnums.ControllerType type)
     {
         var source = EmulationControllerState.Empty with { DeviceId = "pad", LeftTrigger = short.MaxValue, RightTrigger = 8192 };
         var snapshot = EmulationInputSnapshot.Empty with { Controllers = [source] };
         var mappings = new Dictionary<string, string> { ["L2"] = "Controller:pad:RightTrigger" };
-        var configuration = new SegaInput.InputConfiguration(ControllerBindings: [new(0, SegaEnums.ControllerType.SegaDreamcastController, "pad", mappings)]);
+        var configuration = new SegaInput.InputConfiguration(ControllerBindings: [new(0, type, "pad", mappings)]);
         var mapped = GWGUI.Emulation.Sega.Common.Machines.Common.Functions.InputSnapshotFunctions.Apply(snapshot, configuration, false).Controllers[0];
         Assert.Equal(8192, mapped.LeftTrigger);
         Assert.Equal(0, mapped.RightTrigger);
         Assert.Equal(8192, GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks.ReadAnalogState(mapped, 2, 12));
+    }
+
+    [Theory]
+    [InlineData(1537u, 0u, 0u, 1)]
+    [InlineData(1281u, 0u, 256u, 1)]
+    [InlineData(773u, 1u, 1u, 8192)]
+    [InlineData(5u, 1u, 1u, 8192)]
+    [InlineData(0u, 1u, 1u, 0)]
+    public void NativeSubtypeKeepsItsBaseInputChannels(uint device, uint index, uint id, int expected)
+    {
+        var state = EmulationControllerState.Empty with { Buttons = 1, RightY = 8192 };
+        Assert.Equal(expected, GWGUI.Emulation.Sega.Emulators.Common.Interop.Services.ExternalHostCallbacks.ReadControllerState(state, device, index, id));
     }
 
     [Theory]

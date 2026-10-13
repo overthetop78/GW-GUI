@@ -1,5 +1,6 @@
 using GWGUI.App.Constants.Rendering.Emulation;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace GWGUI.App.Functions.Rendering.Emulation;
 
@@ -7,7 +8,12 @@ internal static class NativeVideoWindowFunctions
 {
     internal static IntPtr Create(IntPtr parent, int width, int height) => CreateWindowEx(0, "STATIC", string.Empty, NativeChildWindowStyleConstants.Value, 0, 0, Math.Max(1, width), Math.Max(1, height), parent, IntPtr.Zero, ModuleHandle, IntPtr.Zero);
 
-    internal static void Destroy(IntPtr window) => DestroyWindow(window);
+    internal static void Destroy(IntPtr window)
+    {
+        if (window == IntPtr.Zero || !IsWindow(window)) return;
+        if (!DestroyWindow(window) && IsWindow(window)) throw new Win32Exception(Marshal.GetLastWin32Error());
+        if (IsWindow(window)) throw new InvalidOperationException("The emulation video window remains alive after destruction.");
+    }
 
     internal static NativeVideoWindowSize GetClientSize(IntPtr window)
     {
@@ -22,8 +28,11 @@ internal static class NativeVideoWindowFunctions
     [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     private static extern IntPtr CreateWindowEx(int extendedStyle, string className, string windowName, int style, int x, int y, int width, int height, IntPtr parent, IntPtr menu, IntPtr instance, IntPtr parameter);
 
-    [DllImport("user32.dll")]
+    [DllImport("user32.dll", SetLastError = true)]
     private static extern bool DestroyWindow(IntPtr window);
+
+    [DllImport("user32.dll")]
+    private static extern bool IsWindow(IntPtr window);
 
     [DllImport("user32.dll")]
     private static extern bool GetClientRect(IntPtr window, out NativeVideoWindowRectangle rectangle);
