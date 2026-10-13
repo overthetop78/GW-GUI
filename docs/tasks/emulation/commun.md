@@ -390,3 +390,22 @@ ROM Macintosh II demandée téléchargée dans F:/Retro/ROMS-BOOT/Apple/Macintos
 - [x] Corriger le lien de provenance de la ROM.
   - [x] Modifier `docs/tasks/emulation/commun.md` : remplacer master par la branche libretro retournée dans html_url ; consigner la source exacte.
   - [x] Modifier `docs/tasks/emulation/methode-modules.md` : conserver html_url et download_url du même résultat API avant téléchargement pour éviter les branches devinées et les recherches répétées.
+
+- [x] Consigner la qualification des supports réels et des fonctions de tous les modules familiaux.
+  - [x] Modifier `docs/tasks/emulation/methode-modules.md` : vérifier rangement et appels dans chaque Emulation.xxx ; utiliser les supports commerciaux locaux puis télécharger deux ou trois jeux/applications manquants dans F:/Retro ; qualifier la création de HDD par les dialogues Stockage de l'application, sans fabriquer leur image hors application.
+
+- [x] Raccorder les cartouches WonderSwan .bin existantes et qualifier leur chargement.
+  - [x] Créer `src/GWGUI.Emulation.Bandai/Common/Interfaces/IEmulatorContentFormats.cs` : exposer la résolution des suffixes acceptés sans type Libretro.
+  - [x] Modifier `src/GWGUI.Emulation.Bandai/Emulators/BeetleWonderSwan/Constants/EmulatorConstants.cs` et `Factories/BeetleWonderSwanMachineFactory.cs` : ajouter l'alias bin pour le chargeur mémoire natif ; modifier `Emulators/Common/Interop/Services/ExternalCore.cs` pour appliquer cette capacité après lecture des métadonnées.
+  - [x] Modifier `src/GWGUI.Emulation.Bandai/Common/Machines/Common/Constants/SettingsConstants.cs` : proposer les dumps bin dans le lecteur de cartouche, en conservant ws/wsc/pc2.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Bandai/BandaiModuleTests.cs` : vérifier l'alias côté adaptateur mémoire, sa désactivation pour un chargeur fichier et sa présence dans le lecteur de cartouche.
+  - [x] Créer `tests/GWGUI.Tests/Emulation/Bandai/BandaiNativeQualificationTests.cs` : installer le cœur officiel temporairement et charger directement GunPey et XI-sai locaux sur WonderSwan, WonderSwan Color et SwanCrystal, avec Stop/Dispose et vérification de libération ; nettoyer le dossier GUID possédé dans finally.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Bandai/BandaiNativeQualificationTests.cs` : importer les contrats SDK qui définissent EmulationMediaSlot, avant compilation.
+  - [x] Modifier `docs/tasks/emulation/commun.md` et `methode-modules.md` : consigner les résultats, les supports réels et la résolution des suffixes par adaptateur sans renommer les dumps ; construire l'application et tous les modules.
+  - [x] Supprimer `tests/GWGUI.Tests/Emulation/Bandai/BandaiNativeQualificationTests.cs` après utilisation et ses artefacts temporaires ; commiter les corrections validées.
+Bandai : 20 tests de configuration réussis après ajout de l'alias bin dans le seul adaptateur BeetleWonderSwan quand il charge les octets en mémoire. Le suffixe bin est proposé dans le lecteur de cartouche ; les cartouches commerciales locales restent à qualifier après livraison de cette correction au processus hôte.
+WonderSwan : qualification native réussie avec le cœur officiel 20261012-081218, téléchargé par FindEmulatorReleasesAsync/InstallEmulatorAsync dans le dossier GUID du test. Six sessions : deux WonderSwan avec GunPey (1999-03-04, Bandai, SWJ-BAN001), deux WonderSwan Color et deux SwanCrystal avec XI -sai- Little (2001-12-20, Bandai, SWJ-BANC1F). Les deux cartouches commerciales .bin de F:/Retro/ef_tosec_backup_2024 ont été chargées directement, sans renommage ni modification des sources. Chaque session a émis des images 224×144, repris après pause, atteint Stopped après Stop/Dispose, et libéré thread, PID et mapping vidéo. Les 20 tests de configuration passent. Build Debug complet terminé code 0 ; exe et 23 entryAssembly présents. Ce contrôle ne qualifie pas encore Playdia/Tamagotchi, le son joué, une fenêtre GPU ou chaque option et commande du module.
+
+- [x] Retirer le projet WPF transitoire du commit local.
+  - [x] Supprimer `src/GWGUI.App/GWGUI.App_wlkq403h_wpftmp.csproj` du commit : le compilateur a déjà supprimé ce fichier après sa fin confirmée, enregistrer sa suppression puis amender le dernier commit non poussé.
+  - [x] Modifier `docs/tasks/emulation/methode-modules.md` : attendre le résultat terminal de toute compilation de nettoyage avant git add -A afin de ne pas enregistrer les fichiers transitoires WPF.

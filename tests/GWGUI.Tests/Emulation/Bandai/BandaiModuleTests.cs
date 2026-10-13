@@ -15,6 +15,18 @@ namespace GWGUI.Tests.Emulation.Bandai;
 
 public sealed class BandaiModuleTests
 {
+    [Fact]
+    public void RawCartridgeSuffixBelongsToTheMemoryLoadingAdapter()
+    {
+        var adapter = new GWGUI.Emulation.Bandai.Emulators.BeetleWonderSwan.Factories.BeetleWonderSwanMachineFactory();
+        var declared = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "ws", "wsc", "pc2" };
+        Assert.Contains("bin", adapter.SupportedContentExtensions(declared, requiresFilePath: false));
+        Assert.DoesNotContain("bin", adapter.SupportedContentExtensions(declared, requiresFilePath: true));
+        Assert.DoesNotContain("bin", declared);
+        var configuration = new MachineConfiguration(MachineModel.WonderSwan);
+        var cartridge = StorageSettingsFunctions.Describe(configuration).AvailableDevices.Single(device => device.Slot == EmulationMediaSlot.Cartridge0);
+        Assert.Contains(".bin", cartridge.AcceptedExtensions);
+    }
     [Theory]
     [InlineData(MachineModel.WonderSwan)]
     [InlineData(MachineModel.WonderSwanColor)]

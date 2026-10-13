@@ -9,6 +9,7 @@ internal static class EmulatorConstants
         MachineModel.WonderSwan, MachineModel.WonderSwanColor, MachineModel.SwanCrystal)
         with { DescriptionResourceKey = DescriptionResourceKey };
     internal const string Id = "mednafen_wswan";
+    internal const string RawCartridgeExtension = "bin";
     internal const string LibraryName = "Beetle WonderSwan";
     internal const string DllName = "mednafen_wswan_libretro.dll";
     internal const string SourceUri = "https://github.com/libretro/beetle-wswan-libretro";

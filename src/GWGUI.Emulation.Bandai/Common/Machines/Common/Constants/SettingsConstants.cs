@@ -50,7 +50,7 @@ internal static class SettingsConstants
     internal const string ResourceDefaultOutput = "Emulation.Audio.DefaultOutput";
     internal const string MillisecondsUnit = "ms";
     internal const string PercentUnit = "%";
-    internal static readonly IReadOnlyList<string> CartridgeExtensions = [".ws", ".wsc", ".pc2"];
+    internal static readonly IReadOnlyList<string> CartridgeExtensions = [".ws", ".wsc", ".pc2", ".bin"];
     internal static readonly IReadOnlyList<string> CompactDiscExtensions = [".cue", ".zip", ".iso", ".bin"];
     internal const int DefaultLatency = 50;
     internal const int DefaultVolume = 100;
