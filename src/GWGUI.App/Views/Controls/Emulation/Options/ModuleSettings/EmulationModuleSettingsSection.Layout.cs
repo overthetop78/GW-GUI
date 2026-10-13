@@ -146,9 +146,7 @@ internal sealed partial class EmulationModuleSettingsSection
             await ExecuteAsync(SaveVideoProfileAsync);
         };
         var rendererChoice = EmulationSettingsLayout.VideoSettingsChoice(
-            new EmulationVideoSettingsField(LocExtension.Get(rendererResourceKey), renderer,
-                Explanation: LocExtension.Get("Emulation.Help.Video.Rendering.Short"),
-                DetailedExplanation: LocExtension.Get("Emulation.Help.Video.Rendering.Detailed")));
+            new EmulationVideoSettingsField(LocExtension.Get(rendererResourceKey), renderer, Explanation: LocExtension.Get("Emulation.Help.Video.Rendering.Short"), DetailedExplanation: LocExtension.Get("Emulation.Help.Video.Rendering.Detailed")));
         _videoProcessing.SetConfiguration(profile.Processing, display, rendererChoice, nativeSettings: nativeSettings);
         _videoProcessing.SetShaderLoading(EmulationVideoShaderLoadingStatus.IsLoading(_module.Id, _configuration.Id));
         ApplySettingsRules(settings);
