@@ -317,3 +317,4 @@ Interruption exclue à la demande de l'utilisateur : **2026-10-10 02:01:19 à 09
 | 2026-10-13 17:40:24 | 82:44:40 | -74:44:40 | Reprise. Affectations analogiques : périphériques Sega supplémentaires. |
 | 2026-10-13 18:07:00 | 83:11:16 | -75:11:16 | Reprise. Canaux analogiques des périphériques Dreamcast ; fermeture des processus de compilation et de test. |
 | 2026-10-13 18:37:20 | 83:41:36 | -75:41:36 | Reprise. Finalisation App et Sega ; projet LocalDiskImageTests préservé. |
+| 2026-10-13 18:48:10 | 83:52:26 | -75:52:26 | Reprise. Méthode alignée sur le nettoyage central des tests et le commit sans vérification demandé. |

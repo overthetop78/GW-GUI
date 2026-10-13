@@ -25,10 +25,10 @@ Livré : directions et valeurs progressives dans neuf familles ; Sega XE-1AP, Mi
   - [x] Modifier `src/GWGUI.App/Rendering/Emulation/Surfaces/OpenGlVideoSurface.cs` et `src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs` : libérer dans finally les fenêtres, contextes et workers lorsque leur initialisation échoue.
   - [x] Modifier `src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs` : libérer aussi après un échec de détachement et terminer la surface précédente même si le changement de vue échoue.
   - [x] Modifier `tests/GWGUI.Tests/Interface/EmulationViews/HiddenMachineRenderingTests.cs` : vérifier la libération de la surface après un échec de création du présentateur avec les doubles de test existants.
-- [ ] Ajouter le nettoyage demandé après chaque test de GWGUI.Tests.
+- [x] Ajouter le nettoyage demandé après chaque test de GWGUI.Tests.
   - [x] Créer `tests/GWGUI.Tests/Application/TestInfrastructure/TestResourceCleanup.cs` : fermer et détacher les fenêtres de test, vider leurs ressources, attendre les opérations de Dispatcher et centraliser son arrêt en fin de fixture.
   - [x] Modifier `tests/GWGUI.Tests/Application/TestInfrastructure/TestResourceCleanup.cs` : inclure le hook xUnit au niveau de assembly pour appeler le helper après chaque cas.
   - [x] Modifier `tests/GWGUI.Tests/Application/TestInfrastructure/StaExecutionScenarios.cs` : réutiliser ce helper après chaque scénario et à la fin de fixture, sans fermer le Dispatcher partagé entre les cas.
 - [ ] Livrer les compléments vérifiés.
-  - [ ] Commiter tous les fichiers en attente sans test ni build, conformément à la dernière demande utilisateur.
+  - [x] Commiter tous les fichiers en attente sans test ni build, conformément à la dernière demande utilisateur. Commit : `4671d67e8`.
   - [ ] Supprimer `docs/tasks/emulation/axes-analogiques.md` après traitement de tous les périphériques analogiques concernés.
