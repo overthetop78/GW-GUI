@@ -178,7 +178,7 @@ public sealed class ControllerConfigurationTests
     }
 
     [Fact]
-    public void RightStickMappingKeepsPartialPressureAndUnmappedAxes()
+    public void RightStickMappingKeepsPartialPressureAndNeutralizesUnmappedAxes()
     {
         var controller = EmulationControllerState.Empty with
         {
@@ -190,9 +190,9 @@ public sealed class ControllerConfigurationTests
         var input = new InputConfiguration(ControllerBindings:
         [new ControllerBinding(FirstPort, ControllerType.DualShock, PhysicalDevice, new Dictionary<string, string> { [InputSettingsFunctionsConstants.RightStickRight] = PositiveAxisSource })]);
         var mapped = InputSnapshotFunctions.Apply(snapshot, input, false).Controllers[FirstPort];
-        Assert.Equal(controller.LeftX, mapped.LeftX);
-        Assert.Equal(controller.LeftY, mapped.LeftY);
-        Assert.Equal(controller.RightY, mapped.RightY);
+        Assert.Equal((short)0, mapped.LeftX);
+        Assert.Equal((short)0, mapped.LeftY);
+        Assert.Equal((short)0, mapped.RightY);
         Assert.Equal((short)Math.Round(PartialPressure * short.MaxValue), mapped.RightX);
     }
 

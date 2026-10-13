@@ -316,3 +316,9 @@ La comparaison des références DLL des 16 familles avec les colonnes Machines d
   - [x] Modifier `docs/tasks/emulation/methode-modules.md` : vérifier le tableau natif qui construit les options plutôt qu'un README ou le nom générique du système.
 
 Limite Acorn établie depuis les sources épinglées : `src/libretro/core.h` déclare `MACHINE_TYPES_COUNT 9` et les mêmes neuf entrées que `B2ModelCatalog` ; `core.cpp` construit l'option b2_model à partir de cette table et crée le BBCMicro depuis son entrée sélectionnée. Aucune valeur Model A n'est exposée. Le défaut de couverture n'est donc pas une conversion oubliée dans GW GUI pour cette révision. La recherche et l'intégration d'un autre moteur ont été proposées à l'utilisateur ; aucune substitution Model A → Model B et aucune modification de cœur ne sont réalisées.
+
+- [x] Exécuter les contrôles existants des contrats de modules.
+  - [x] Modifier `docs/tasks/emulation/commun.md` : consigner les résultats des tests existants Acorn, Apple, Bandai, Coleco, Epoch, Fairchild, Sony, SNK et contrats SDK, en distinguant ces tests de l'exécution de chaque DLL native.
+  - [x] Modifier `tests/GWGUI.Tests/Emulation/Sony/ControllerConfigurationTests.cs` : renommer le cas de pression partielle, attendre zéro pour les trois axes non associés et conserver l'assertion de pression progressive de l'axe associé.
+
+Contrôles existants Acorn, Apple, Bandai, Coleco, Epoch, Fairchild, Sony, SNK et contrats SDK : 293 réussites. Un test Sony attendait encore la transmission implicite des axes non associés, supprimée dans le commit 5317ac74f ; son attente est maintenant zéro pour les trois canaux non affectés, en conservant le contrôle de pression partielle de l'axe affecté. Aucun changement du code de production n'a été requis par ce contrôle.
