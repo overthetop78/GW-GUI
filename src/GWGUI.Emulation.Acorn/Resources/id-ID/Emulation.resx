@@ -4,7 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Option.Model" xml:space="preserve"><value>Varian mesin</value></data>
   <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>Mulai dari diska yang dimasukkan secara otomatis</value></data>
   <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>Emulasi BBC MICRO dan BBC MASTER komputer.</value></data>
+  <data name="Emulation.Acorn.Storage.DiscController"><value>Pengontrol disket</value></data>
+  <data name="Emulation.Acorn.Video.Controller"><value>Pengontrol waktu video</value></data>
+  <data name="Emulation.Acorn.Video.Pixels"><value>Generator piksel dan warna</value></data>
+  <data name="Emulation.Acorn.Video.Teletext"><value>Generator karakter teleteks</value></data>
 </root>

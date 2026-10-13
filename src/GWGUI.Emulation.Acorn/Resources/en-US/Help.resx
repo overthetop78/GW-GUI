@@ -4,5 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Firmware.Embedded" xml:space="preserve"><value>The operating system and BASIC ROMs are supplied by the emulator.</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded" xml:space="preserve"><value>The selected b2 configuration includes its operating system, BASIC and disk filing system ROMs. This core does not allow external replacement ROMs.</value></data>
 </root>

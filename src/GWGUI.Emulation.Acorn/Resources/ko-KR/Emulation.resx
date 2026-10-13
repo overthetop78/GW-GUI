@@ -4,7 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Option.Model" xml:space="preserve"><value>기계 변종</value></data>
   <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>삽입된 디스크에서 자동으로 시작</value></data>
   <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 BBC MICRO 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 BBC MASTER 컴퓨터.</value></data>
+  <data name="Emulation.Acorn.Storage.DiscController"><value>Diskette 관제사</value></data>
+  <data name="Emulation.Acorn.Video.Controller"><value>Video 타이밍 컨트롤러</value></data>
+  <data name="Emulation.Acorn.Video.Pixels"><value>화소와 색깔 발전기</value></data>
+  <data name="Emulation.Acorn.Video.Teletext"><value>Teletext 문자 생성기</value></data>
 </root>

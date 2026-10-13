@@ -10,6 +10,14 @@ internal sealed class B2MachineFactory() : MachineFactory(EmulatorConstants.Entr
 
     public IReadOnlyDictionary<string, string> GetDefaultOptions(MachineModel model) => ConfigurationOptionFunctions.Defaults(model);
     public void ValidateOptions(MachineConfiguration configuration) => ConfigurationOptionFunctions.Validate(configuration);
+    public IReadOnlyDictionary<string, string> NormalizeOptions(MachineModel model, IReadOnlyDictionary<string, string> options) => ConfigurationOptionFunctions.Normalize(model, options);
+    public MachineModel ResolveModel(MachineModel model, IReadOnlyDictionary<string, string> options) =>
+        model == MachineModel.BbcMicroModelB && options.TryGetValue(OptionConstants.Model, out var nativeModel) ? nativeModel switch
+        {
+            OptionConstants.ModelBPlus => MachineModel.BbcMicroModelBPlus,
+            OptionConstants.ModelBPlus128 => MachineModel.BbcMicroModelBPlus128,
+            _ => model
+        } : model;
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration) => EmulatorSettingsFunctions.Describe(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions(MachineConfiguration? configuration = null) => EmulatorSettingsFunctions.Options(configuration);
 

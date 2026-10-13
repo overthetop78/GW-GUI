@@ -24,8 +24,10 @@ public sealed record MachineConfiguration : IEmulationConfiguration
         int schemaVersion = ConfigurationStoreConstants.CurrentSchemaVersion, bool audioEnabled = true,
         FolderConfiguration? folders = null, Emulator? core = null)
     {
-        Model = model;
         Core = core ?? ConfigurationFunctions.DefaultEmulator(model);
+        if (Enum.IsDefined(Core) && Core != Emulator.None && new Engine().Adapter(Core) is IEmulatorConfigurationOptions modelOptions)
+            model = modelOptions.ResolveModel(model, options ?? new Dictionary<string, string>());
+        Model = model;
         if (Enum.IsDefined(Core) && Core != Emulator.None && !EmulatorCatalog.Get(Core).MachineIds.Contains(model.ToString()))
             Core = ConfigurationFunctions.DefaultEmulator(model);
         Firmwares = firmwares?.ToArray() ?? [];

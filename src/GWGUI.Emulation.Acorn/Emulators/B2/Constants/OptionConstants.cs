@@ -3,6 +3,11 @@ namespace GWGUI.Emulation.Acorn.Emulators.B2.Constants;
 internal static class OptionConstants
 {
     internal const string Model = "b2_model";
+    internal const string DiscController = "acorn_disc_controller";
+    internal const string DiscMemory = "acorn_disc_memory";
+    internal const string ChallengerController = "Opus CHALLENGER";
+    internal const string Challenger256 = "256";
+    internal const string Challenger512 = "512";
     internal const string AutoBoot = "b2_autoboot";
     internal const string Enabled = "true";
     internal const string Disabled = "false";

@@ -4,7 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Option.Model" xml:space="preserve"><value>Variante di macchina</value></data>
   <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>Avviare dal disco inserito automaticamente</value></data>
   <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>Emulates BBC MICRO e BBC MASTER computer.</value></data>
+  <data name="Emulation.Acorn.Storage.DiscController"><value>Controller Diskette</value></data>
+  <data name="Emulation.Acorn.Video.Controller"><value>Controller di sincronizzazione video</value></data>
+  <data name="Emulation.Acorn.Video.Pixels"><value>Generatore di pixel e colore</value></data>
+  <data name="Emulation.Acorn.Video.Teletext"><value>Generatore di caratteri teletext</value></data>
 </root>

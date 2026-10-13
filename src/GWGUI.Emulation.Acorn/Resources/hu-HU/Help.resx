@@ -4,5 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Firmware.Embedded" xml:space="preserve"><value>Az operációs rendszer és BASIC A ROM-okat az emulátor szállítja.</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>A kiválasztott b2 konfiguráció tartalmazza az operációs rendszert, BASIC és lemezes adatfeldolgozó rendszer ROM. Ez a mag nem teszi lehetővé a külső csere ROM.</value></data>
 </root>

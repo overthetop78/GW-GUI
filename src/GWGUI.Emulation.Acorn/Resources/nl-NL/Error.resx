@@ -8,7 +8,7 @@
   <data name="Emulation.Acorn.Error.ContentUnsupported" xml:space="preserve"><value>Deze machine ondersteunt de geselecteerde media niet.</value></data>
   <data name="Emulation.Acorn.Error.CoreNotFound" xml:space="preserve"><value>De vereiste ACORN kern niet gevonden.</value></data>
   <data name="Emulation.Acorn.Error.CoreRejected" xml:space="preserve"><value>De geselecteerde ACORN kern kon niet geladen worden.</value></data>
-  <data name="Emulation.Acorn.Error.Details" xml:space="preserve"><value>Details: {0}</value></data>
+  <data name="Emulation.Acorn.Error.Details"><value>Details: {0}</value></data>
   <data name="Emulation.Acorn.Error.FirmwareInvalid" xml:space="preserve"><value>Een ACORN firmware is ongeldig of onverenigbaar.</value></data>
   <data name="Emulation.Acorn.Error.FirmwareMissing" xml:space="preserve"><value>A vereist ACORN firmware ontbreekt.</value></data>
   <data name="Emulation.Acorn.Error.HostExecutableMissing" xml:space="preserve"><value>Het pad naar de ACORN host programma is niet beschikbaar.</value></data>

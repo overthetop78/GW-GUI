@@ -70,7 +70,9 @@ public sealed class AcornEmulationModule : IEmulationModule, IEmulationEmulatorM
         };
         var result = current with
         {
-            Options = options, Folders = folders,
+            Options = current.Core != Emulator.None && _engine.Adapter(current) is IEmulatorConfigurationOptions adapter
+                ? adapter.NormalizeOptions(current.Model, options) : options,
+            Folders = folders,
             AudioEnabled = values.TryGetValue(SettingsConstants.AudioEnabled, out var enabled) ? enabled == EmulationSettingConstants.Enabled : current.AudioEnabled
         };
         ConfigurationFunctions.Validate(result);

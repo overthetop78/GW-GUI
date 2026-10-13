@@ -4,5 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Firmware.Embedded" xml:space="preserve"><value>オペレーティング システムおよび BASIC ROMはエミュレーターによって供給されます。</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>選択した b2 構成には、オペレーティングシステムが含まれています。 BASIC ディスクファイリングシステムROM。このコアは、外部の交換ROMを許可しません。</value></data>
 </root>

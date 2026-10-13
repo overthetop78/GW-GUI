@@ -13,7 +13,7 @@ public static class B2ModelCatalog
         new B2ModelDefinition(B2Model.ModelBOpus1770, MachineModel.BbcMicroModelB, OptionConstants.ModelBOpus1770),
         new B2ModelDefinition(B2Model.ModelBOpusChallenger256K, MachineModel.BbcMicroModelB, OptionConstants.ModelBOpusChallenger256K),
         new B2ModelDefinition(B2Model.ModelBOpusChallenger512K, MachineModel.BbcMicroModelB, OptionConstants.ModelBOpusChallenger512K),
-        new B2ModelDefinition(B2Model.ModelBPlus, MachineModel.BbcMicroModelB, OptionConstants.ModelBPlus),
-        new B2ModelDefinition(B2Model.ModelBPlus128, MachineModel.BbcMicroModelB, OptionConstants.ModelBPlus128),
+        new B2ModelDefinition(B2Model.ModelBPlus, MachineModel.BbcMicroModelBPlus, OptionConstants.ModelBPlus),
+        new B2ModelDefinition(B2Model.ModelBPlus128, MachineModel.BbcMicroModelBPlus128, OptionConstants.ModelBPlus128),
         new B2ModelDefinition(B2Model.Master128Mos320, MachineModel.BbcMaster128, OptionConstants.Master128));
 }

@@ -4,7 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Option.Model" xml:space="preserve"><value>גירסאות מכונה</value></data>
   <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>התחל מהדיסק המוכנס באופן אוטומטי</value></data>
   <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>⁇ BBC MICRO ו BBC MASTER מחשבים</value></data>
+  <data name="Emulation.Acorn.Storage.DiscController"><value>ביקורת דיסקרטי</value></data>
+  <data name="Emulation.Acorn.Video.Controller"><value>וידאו תזמון בקר</value></data>
+  <data name="Emulation.Acorn.Video.Pixels"><value>Pixel and Color גנרטור</value></data>
+  <data name="Emulation.Acorn.Video.Teletext"><value>תגית:</value></data>
 </root>

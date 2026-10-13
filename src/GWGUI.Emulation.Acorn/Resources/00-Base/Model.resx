@@ -9,4 +9,7 @@
   <data name="Emulation.Acorn.Model.BbcMaster128" xml:space="preserve"><value>BBC Master 128</value></data>
   <data name="Emulation.Acorn.Model.BbcMicroModelA" xml:space="preserve"><value>BBC Micro Model A</value></data>
   <data name="Emulation.Acorn.Model.BbcMicroModelB" xml:space="preserve"><value>BBC Micro Model B</value></data>
+  <data name="Emulation.Acorn.Cpu.Rockwell6512"><value>Rockwell 6512</value></data>
+  <data name="Emulation.Acorn.Model.BbcMicroModelBPlus"><value>BBC Micro Model B+ 64</value></data>
+  <data name="Emulation.Acorn.Model.BbcMicroModelBPlus128"><value>BBC Micro Model B+ 128</value></data>
 </root>

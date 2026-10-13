@@ -4,7 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Option.Model" xml:space="preserve"><value>Maskinvariant</value></data>
   <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>Börja från den insatta disken automatiskt</value></data>
   <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>Emulerar BBC MICRO och BBC MASTER datorer.</value></data>
+  <data name="Emulation.Acorn.Storage.DiscController"><value>Diskette Controller</value></data>
+  <data name="Emulation.Acorn.Video.Controller"><value>Video timing controller</value></data>
+  <data name="Emulation.Acorn.Video.Pixels"><value>Pixel och färggenerator</value></data>
+  <data name="Emulation.Acorn.Video.Teletext"><value>Teletextkaraktärgenerator</value></data>
 </root>

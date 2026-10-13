@@ -5,6 +5,31 @@ namespace GWGUI.Emulation.Acorn.Emulators.B2.Functions;
 
 internal static class ConfigurationOptionFunctions
 {
+    internal static IReadOnlyDictionary<string, string> Normalize(MachineModel model, IReadOnlyDictionary<string, string> options)
+    {
+        var result = new Dictionary<string, string>(options, StringComparer.Ordinal);
+        if (model == MachineModel.BbcMicroModelB)
+        {
+            var native = options.GetValueOrDefault(OptionConstants.Model, B2ModelFunctions.DefaultValue(model));
+            var controller = options.GetValueOrDefault(OptionConstants.DiscController, DiscController(native));
+            var memory = options.GetValueOrDefault(OptionConstants.DiscMemory, DiscMemory(native));
+            result[OptionConstants.Model] = controller == OptionConstants.ChallengerController ? memory switch
+            {
+                OptionConstants.Challenger256 => OptionConstants.ModelBOpusChallenger256K,
+                OptionConstants.Challenger512 => OptionConstants.ModelBOpusChallenger512K,
+                _ => throw new ArgumentException(ErrorMessages.OptionValueInvalidFormat, nameof(options))
+            } : "B/" + controller;
+        }
+        result.Remove(OptionConstants.DiscController);
+        result.Remove(OptionConstants.DiscMemory);
+        return result;
+    }
+
+    internal static string DiscController(string native) => native is OptionConstants.ModelBOpusChallenger256K or OptionConstants.ModelBOpusChallenger512K
+        ? OptionConstants.ChallengerController : native.StartsWith("B/", StringComparison.Ordinal) ? native[2..] : native;
+
+    internal static string DiscMemory(string native) => native == OptionConstants.ModelBOpusChallenger512K ? OptionConstants.Challenger512 : OptionConstants.Challenger256;
+
     internal static IReadOnlyDictionary<string, string> Defaults(MachineModel model) => B2ModelFunctions.GetModels(model).Count == 0 ? new Dictionary<string, string>()
         : new Dictionary<string, string>(StringComparer.Ordinal)
         {

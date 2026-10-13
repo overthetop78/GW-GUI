@@ -2,30 +2,9 @@
 
 Dernière qualification : build Debug réussi, application et 23 modules présents ; 73 tests ciblés des axes analogiques et du nettoyage WPF réussis. Les fenêtres et le thread de fixture sont fermés par le helper central. Le démarrage réel de chaque machine avec son firmware et ses médias reste à qualifier.
 
-- [x] Qualifier les contrats et paramètres des premières nouvelles familles.
-  - [x] Modifier `docs/tasks/emulation/commun.md` : les 83 tests AcornModuleTests, AppleModuleTests, BandaiModuleTests, ColecoModuleTests, EpochModuleTests et FairchildModuleTests passent avec code 0 ; aucune qualification de démarrage natif n’est déduite de ce résultat.
+Qualification Acorn : 38 contrôles Acorn et vues WPF existantes réussis (configuration, persistance B+, mémoire Opus et vraie vue WPF). La vue accepte Joystick → Aucun → Joystick avec visuel et associations vides ; sa fenêtre est fermée par le helper central, puis le thread de fixture est détruit. Audit RESX réussi : 28 cultures. Build Debug final réussi avec code 0 ; gwgui.exe et les 23 DLL de modules vérifiés dans build/Debug/GW GUI. Le contrôle global ControllerArtworkCatalogTests échoue sur CreateBandaiPlaydia, dont les zones sont déjà vides dans HEAD ; ce profil et son contrôle ne sont pas modifiés par la correction Acorn.
 
-- [x] Étendre le contrôle architectural existant à tous les modules présents.
-  - [x] Modifier `tests/GWGUI.Tests/Architecture/ConsoleFamilyModuleTests.cs` : découvrir les projets possédant module.json au lieu de limiter le contrôle des contrats Common à cinq familles codées en dur.
-  - [x] Modifier `docs/tasks/emulation/commun.md` : 34 tests réussis, dont le contrôle Common découvrant les 23 projets et les cas de validation des manifestes ; code de sortie 0.
-
-- [x] Préserver Stopped lors des appels répétés à StopAsync.
-  - [x] Modifier `src/GWGUI.Emulation.Acorn/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `src/GWGUI.Emulation.Apple/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `src/GWGUI.Emulation.Bandai/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `src/GWGUI.Emulation.Coleco/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `src/GWGUI.Emulation.Epoch/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `src/GWGUI.Emulation.Fairchild/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `src/GWGUI.Emulation.Philips/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `src/GWGUI.Emulation.Mattel/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `src/GWGUI.Emulation.Sharp/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `src/GWGUI.Emulation.Sinclair/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `src/GWGUI.Emulation.Snk/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `src/GWGUI.Emulation.Thomson/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `src/GWGUI.Emulation.Watara/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `src/GWGUI.Emulation.Wenquxing/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `src/GWGUI.Emulation.Panasonic/Common/Services/Machine.Lifecycle.cs` : ne pas remettre une machine déjà Stopped dans Stopping ; maintenir attente de la boucle et Join du thread à chaque arrêt.
-  - [x] Modifier `docs/tasks/emulation/methode-modules.md` : préciser que Stop puis Dispose restent idempotents sur leur état terminal et attendent la destruction effective.
+Les qualifications précédentes restent acquises : 83 contrôles des six premières familles, 34 contrôles architecturaux et de manifestes ; les 23 projets Common sont découverts automatiquement. Stop puis Dispose préservent Stopped dans les quinze nouvelles familles et attendent le thread ; le parcours natif Wenquxing a confirmé la libération des cinq sessions.
 
 ## controller-artwork
 

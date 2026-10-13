@@ -4,5 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Firmware.Embedded" xml:space="preserve"><value>Операционная система и BASIC ПЗУ поставляются эмулятором.</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>Выбранная конфигурация b2 включает в себя операционную систему, BASIC и дисковой системы подачи ПЗУ. Это ядро не допускает внешней замены ПЗУ.</value></data>
 </root>

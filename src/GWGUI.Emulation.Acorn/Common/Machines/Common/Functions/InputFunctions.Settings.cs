@@ -9,11 +9,12 @@ internal static class InputSettingsFunctions
         var definitions = BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration);
         var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard);
         var configured = input.Controllers ?? [];
-        var choices = ControllerFunctions.Peripherals(configuration.Model).OrderBy(category => category).Select(Choice).ToArray();
+        var choices = ControllerFunctions.Peripherals(configuration.Model).Where(category => category != PeripheralCategory.Automatic).OrderBy(category => category).Select(Choice).ToArray();
         var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(index =>
         {
             var current = configured.FirstOrDefault(binding => binding.Port == index);
             var peripheral = current?.Peripheral ?? PeripheralCategory.AnalogJoystick;
+            if (peripheral == PeripheralCategory.Automatic) peripheral = PeripheralCategory.AnalogJoystick;
             return new EmulationControllerPort(
                 index + BufferConstants.IndexIncrement,
                 choices,
@@ -61,10 +62,25 @@ internal static class InputSettingsFunctions
         {
             PeripheralCategory.None => InputSettingsFunctionsConstants.ResourceControllerNone,
             PeripheralCategory.Automatic => InputSettingsFunctionsConstants.ResourceControllerAutomatic,
-            PeripheralCategory.AnalogJoystick => InputSettingsFunctionsConstants.ResourceControllerAnalogJoystick,
+            PeripheralCategory.AnalogJoystick => "Controllers.Enum.Joystick",
             _ => throw new ArgumentOutOfRangeException(nameof(category), category, null)
         },
-        BindingDefinitions: ControllerDefinitions(category)
+        BindingDefinitions: ControllerDefinitions(category),
+        CompatibleVisualIds: category == PeripheralCategory.AnalogJoystick ? [EmulationControllerVisualIds.CompetitionPro5000] : [],
+        DefaultVisualId: category == PeripheralCategory.AnalogJoystick ? EmulationControllerVisualIds.CompetitionPro5000 : null,
+        VisualCommandIds: category == PeripheralCategory.AnalogJoystick ? new Dictionary<EmulationControllerVisualControl, string>
+        {
+            [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
+            [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
+            [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
+            [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
+            [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.Fire1,
+            [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.Fire1
+        } : null,
+        VisualBindingDefinitions: category == PeripheralCategory.AnalogJoystick ? new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
+        {
+            [EmulationControllerVisualIds.CompetitionPro5000] = ControllerDefinitions(category)
+        } : null
     );
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory category) => category == PeripheralCategory.None 
         ? [] 

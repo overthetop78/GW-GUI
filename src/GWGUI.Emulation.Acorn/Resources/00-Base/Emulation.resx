@@ -5,7 +5,10 @@
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
   <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>Start from the inserted disk automatically</value></data>
-  <data name="Emulation.Acorn.Option.Model" xml:space="preserve"><value>Machine variant</value></data>
   <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>Emulates BBC MICRO and BBC MASTER computers.</value></data>
   <data name="Emulation.Family.Acorn" xml:space="preserve"><value>Acorn</value></data>
+  <data name="Emulation.Acorn.Storage.DiscController"><value>Diskette controller</value></data>
+  <data name="Emulation.Acorn.Video.Controller" xml:space="preserve"><value>Video timing controller</value></data>
+  <data name="Emulation.Acorn.Video.Pixels" xml:space="preserve"><value>Pixel and colour generator</value></data>
+  <data name="Emulation.Acorn.Video.Teletext" xml:space="preserve"><value>Teletext character generator</value></data>
 </root>

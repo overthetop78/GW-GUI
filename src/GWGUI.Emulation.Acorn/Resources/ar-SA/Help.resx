@@ -4,5 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Firmware.Embedded" xml:space="preserve"><value>نظام التشغيل BASIC تم تزويد الصرافة من قبل المرشد</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>ويشمل تشكيلة (ب-2) المختارة نظام التشغيل الخاص بها، BASIC و نظام ملفات الأقراص المدمجة هذا الجوهر لا يسمح باستبدال أقراص ذاكرة قراءة فقط من الخارج</value></data>
 </root>

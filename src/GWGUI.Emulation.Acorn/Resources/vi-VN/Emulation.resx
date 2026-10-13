@@ -4,7 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Option.Model" xml:space="preserve"><value>Biến thế máy</value></data>
   <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>Tự động khởi chạy từ đĩa chèn</value></data>
   <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>Tính BBC MICRO và BBC MASTER Máy tính.</value></data>
+  <data name="Emulation.Acorn.Storage.DiscController"><value>Điều khiển đĩa mềm</value></data>
+  <data name="Emulation.Acorn.Video.Controller"><value>Điều khiển thời gian ảnh động</value></data>
+  <data name="Emulation.Acorn.Video.Pixels"><value>Trình tạo điểm ảnh và màu</value></data>
+  <data name="Emulation.Acorn.Video.Teletext"><value>Trình tạo ký tự điện tử điện thoại</value></data>
 </root>

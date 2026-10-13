@@ -4,5 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Firmware.Embedded" xml:space="preserve"><value>İşletim sistemi ve BASIC ROM'lar, emülatör tarafından sağlanır.</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>Seçilen b2 yapılandırma, işletim sistemini içeriyor, BASIC ve disk filing sistemi ROM'lar. Bu temel dış yedek ROM'lara izin vermez.</value></data>
 </root>

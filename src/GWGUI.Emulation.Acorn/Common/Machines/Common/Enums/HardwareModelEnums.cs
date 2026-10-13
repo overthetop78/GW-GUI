@@ -4,7 +4,7 @@ public enum HardwareAudioCapability { Sn76489 }
 
 public enum HardwareVideoCapability { Mc6845, VideoUla, Saa5050 }
 
-public enum HardwareCpu { Mos6502A, Rockwell65C12 }
+public enum HardwareCpu { Mos6502A, Rockwell65C12, Rockwell6512 }
 
 public enum HardwareRegion { Pal }
 

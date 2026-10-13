@@ -11,6 +11,8 @@ internal static class B2ModelFunctions
     internal static string DefaultValue(MachineModel model) => model switch
     {
         MachineModel.BbcMicroModelB => OptionConstants.ModelBAcorn1770,
+        MachineModel.BbcMicroModelBPlus => OptionConstants.ModelBPlus,
+        MachineModel.BbcMicroModelBPlus128 => OptionConstants.ModelBPlus128,
         MachineModel.BbcMaster128 => OptionConstants.Master128,
         _ => throw new ArgumentOutOfRangeException(nameof(model), model, null)
     };

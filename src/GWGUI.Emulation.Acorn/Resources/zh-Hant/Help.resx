@@ -4,5 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Firmware.Embedded" xml:space="preserve"><value>操作系统 BASIC ROM由模拟器提供.</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>所选的b2配置包括它的操作系统, BASIC 和磁盘归档系统 ROM 。此核心不允许外部替换 ROM 。</value></data>
 </root>

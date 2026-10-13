@@ -17,5 +17,5 @@
   <data name="Emulation.Acorn.Error.StateIncompatible" xml:space="preserve"><value>El ACORN estado salvado es incompatible con la máquina actual.</value></data>
   <data name="Emulation.Acorn.Error.StateInvalid" xml:space="preserve"><value>El ACORN Estado salvo es inválido.</value></data>
   <data name="Emulation.Acorn.Error.Unexpected" xml:space="preserve"><value>Un inesperado ACORN error de emulación ocurrió.</value></data>
-  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand" xml:space="preserve"><value>Unknown environment command: {0}</value></data>
+  <data name="Emulation.Acorn.Error.UnknownEnvironmentCommand"><value>Unknown environment command: {0}</value></data>
 </root>

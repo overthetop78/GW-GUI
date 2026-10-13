@@ -15,7 +15,10 @@ internal static class SettingsConstants
     internal const string StateFolder = "acorn_state_folder";
     internal const string CaptureFolder = "acorn_capture_folder";
     internal const string DefaultOutput = "default";
-    internal const string ResourceNativeModel = "Emulation.Acorn.Option.Model";
+    internal const string ResourceDiscController = "Emulation.Acorn.Storage.DiscController";
+    internal const string ResourceVideoController = "Emulation.Acorn.Video.Controller";
+    internal const string ResourceVideoPixels = "Emulation.Acorn.Video.Pixels";
+    internal const string ResourceTeletext = "Emulation.Acorn.Video.Teletext";
     internal const string ResourceAutoBoot = "Emulation.Acorn.Option.AutoBoot";
     internal const string ResourceEmbeddedFirmware = "Emulation.Acorn.Firmware.Embedded";
     internal const string ResourceCpu = "Emulation.Cpu.Model";

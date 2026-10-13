@@ -12,6 +12,7 @@ using GWGUI.App.Views.Controls.Options;
 using GWGUI.App.Views.Controls.Options.ControllerVisualization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using GWGUI.Emulation;
 
 
@@ -172,24 +173,44 @@ internal sealed class EmulationInputSettingsController
     {
         var selectedChoice = (editor.Type.SelectedItem as EmulationControllerChoiceView)?.Choice;
         var profiles = ControllerArtworkCatalog.AvailableProfiles(selectedChoice?.CompatibleVisualIds);
-        var choices = profiles.Select(profile => new KeyValuePair<string, string>(profile.VisualId, LocExtension.Get(ControllerVisualResourceKeyPrefix + profile.VisualId))).ToArray();
+        var choices = profiles.Select(profile => new EmulationControllerVisualChoiceView(profile.VisualId,
+            LocExtension.Get(ControllerVisualResourceKeyPrefix + profile.VisualId), profile.Artwork)).ToArray();
+        var item = new FrameworkElementFactory(typeof(StackPanel));
+        item.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
+        var image = new FrameworkElementFactory(typeof(Image));
+        image.SetValue(FrameworkElement.WidthProperty, 56d);
+        image.SetValue(FrameworkElement.HeightProperty, 40d);
+        image.SetValue(FrameworkElement.MarginProperty, new Thickness(0, 0, 10, 0));
+        image.SetBinding(Image.SourceProperty, new Binding(nameof(EmulationControllerVisualChoiceView.Artwork)));
+        item.AppendChild(image);
+        var name = new FrameworkElementFactory(typeof(TextBlock));
+        name.SetValue(FrameworkElement.VerticalAlignmentProperty, VerticalAlignment.Center);
+        name.SetBinding(TextBlock.TextProperty, new Binding(nameof(EmulationControllerVisualChoiceView.Value)));
+        item.AppendChild(name);
+        editor.Visual.DisplayMemberPath = string.Empty;
+        editor.Visual.ItemTemplate = new DataTemplate { VisualTree = item };
         editor.Visual.ItemsSource = choices;
 
         var visualId = preferredVisualId;
         if (string.IsNullOrWhiteSpace(visualId)
             || choices.All(choice => !string.Equals(choice.Key, visualId, StringComparison.Ordinal)))
-            visualId = choices.Any(choice => string.Equals(choice.Key, selectedChoice?.DefaultVisualId, StringComparison.Ordinal)) ? selectedChoice?.DefaultVisualId : choices.FirstOrDefault().Key;
+            visualId = choices.Any(choice => string.Equals(choice.Key, selectedChoice?.DefaultVisualId, StringComparison.Ordinal)) ? selectedChoice?.DefaultVisualId : choices.FirstOrDefault()?.Key;
 
         editor.Visual.SelectedValue = visualId;
         editor.Visual.IsEnabled = choices.Length > 1;
     }
 
-    private static void UpdateControllerVisualProfile(EmulationControllerPortEditor editor)
+    private void UpdateControllerVisualProfile(EmulationControllerPortEditor editor)
     {
         var selectedChoice = (editor.Type.SelectedItem as EmulationControllerChoiceView)?.Choice;
         if (editor.SelectedVisualId is { } visualId
             && ControllerArtworkCatalog.TryGetProfile(visualId, out var profile))
         {
+            if (selectedChoice?.VisualBindingDefinitions?.TryGetValue(visualId, out var definitions) == true)
+            {
+                var current = editor.Bindings.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal);
+                editor.Bindings.SetRows(definitions, current, _moduleId);
+            }
             editor.SetVisualProfile(profile, selectedChoice?.VisualCommandIds);
             return;
         }
@@ -221,7 +242,8 @@ internal sealed class EmulationInputSettingsController
         var choice = selected?.Id ?? string.Empty;
         var bindings = original.Bindings with
         {
-            Definitions = selected?.BindingDefinitions ?? original.Bindings.Definitions,
+            Definitions = editor.SelectedVisualId is { } visualId && selected?.VisualBindingDefinitions?.TryGetValue(visualId, out var definitions) == true
+                ? definitions : selected?.BindingDefinitions ?? original.Bindings.Definitions,
             Values = editor.Bindings.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal)
         };
         return original with

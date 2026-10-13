@@ -4,5 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Firmware.Embedded" xml:space="preserve"><value>Hệ điều hành và BASIC ROM được cung cấp bởi trình giả lập.</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>Cấu hình b2 đã chọn bao gồm hệ điều hành của nó, BASIC &amp; Bộ lọc hệ thống ROM trong đĩa. Cái lõi này không cho phép thay thế ROM bên ngoài.</value></data>
 </root>

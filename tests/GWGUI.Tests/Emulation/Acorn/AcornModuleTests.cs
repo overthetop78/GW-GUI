@@ -1,7 +1,10 @@
 using System.IO;
+using System.Net.Http;
 using System.Text.Json;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Enums;
+using GWGUI.Emulation.Constants;
+using GWGUI.Emulation.Acorn.Common.Machines.Common.Constants;
 using GWGUI.Emulation.Acorn.Common.Machines.Common.Contracts;
 using GWGUI.Emulation.Acorn.Common.Machines.Common.Dictionaries;
 using GWGUI.Emulation.Acorn.Common.Machines.Common.Enums;
@@ -64,7 +67,7 @@ public sealed class AcornModuleTests
     [Fact]
     public void ModelARemainsDistinctWithoutPretendingB2SupportsIt()
     {
-        Assert.Equal(3, ModelCatalog.All.Count);
+        Assert.Equal(5, ModelCatalog.All.Count);
         var modelA = new MachineConfiguration(MachineModel.BbcMicroModelA);
         Assert.False(ConfigurationFunctions.SupportsRuntime(modelA.Model));
         Assert.Empty(CoreCatalog.GetAll(modelA.Model));
@@ -79,6 +82,8 @@ public sealed class AcornModuleTests
     [Theory]
     [InlineData(MachineModel.BbcMicroModelA, 3)]
     [InlineData(MachineModel.BbcMicroModelB, 3)]
+    [InlineData(MachineModel.BbcMicroModelBPlus, 3)]
+    [InlineData(MachineModel.BbcMicroModelBPlus128, 3)]
     [InlineData(MachineModel.BbcMaster128, 6)]
     public void KeyboardEditorContainsOnlyMachineSpecificKeys(MachineModel model, int count)
     {
@@ -142,6 +147,62 @@ public sealed class AcornModuleTests
         Assert.Throws<ArgumentException>(() => new MachineConfiguration(MachineModel.BbcMicroModelB, media: [new("tape.uef", MediaCategory.Cassette, EmulationMediaSlot.Floppy0)]));
         var accepted = new MachineConfiguration(MachineModel.BbcMicroModelB, media: [new("disk.ssd", MediaCategory.Floppy, EmulationMediaSlot.Floppy0)]);
         Assert.Single(accepted.Media);
+    }
+
+    [Theory]
+    [InlineData(OptionConstants.ModelBPlus, MachineModel.BbcMicroModelBPlus, 64)]
+    [InlineData(OptionConstants.ModelBPlus128, MachineModel.BbcMicroModelBPlus128, 128)]
+    public void LegacyBPlusConfigurationKeepsItsNativeChoiceAndMachineIdentity(string native, MachineModel expectedModel, int kibibytes)
+    {
+        var id = Guid.NewGuid();
+        var configuration = new MachineConfiguration(MachineModel.BbcMicroModelB, id: id,
+            options: new Dictionary<string, string> { [OptionConstants.Model] = native });
+        Assert.Equal(expectedModel, configuration.Model);
+        Assert.Equal(id, configuration.Id);
+        Assert.Equal(native, configuration.Options[OptionConstants.Model]);
+        Assert.Equal(kibibytes * 1024L, HardwareModelCatalog.Get(configuration.Model).MainMemoryBytes);
+        Assert.Equal(HardwareCpu.Rockwell6512, HardwareModelCatalog.Get(configuration.Model).DefaultCpu);
+        var restored = ConfigurationStoreFunctions.FromDocument(ConfigurationStoreFunctions.ToDocument(configuration, Path.GetTempPath()), Path.GetTempPath());
+        Assert.Equal(expectedModel, restored.Model);
+        Assert.Equal(id, restored.Id);
+    }
+
+    [Fact]
+    public void StorageAndMemoryChoicesTranslateBackToTheExactNativeConfiguration()
+    {
+        using var http = new HttpClient();
+        var module = new GWGUI.Emulation.Acorn.Modules.AcornEmulationModule(Path.GetTempPath(), Path.GetTempPath(), http, Path.GetTempPath());
+        var configuration = new MachineConfiguration(MachineModel.BbcMicroModelB);
+        Assert.DoesNotContain(SettingsDescriptionFunctions.Create(configuration), block => block.Tab == EmulationMachineTab.General);
+        var challenger = (MachineConfiguration)module.ApplySettings(configuration, new Dictionary<string, string?>
+        {
+            [OptionConstants.DiscController] = OptionConstants.ChallengerController
+        });
+        Assert.Equal(OptionConstants.ModelBOpusChallenger256K, challenger.Options[OptionConstants.Model]);
+        var memory = SettingsDescriptionFunctions.Create(challenger).SelectMany(block => block.Fields).Single(field => field.Id == OptionConstants.DiscMemory);
+        Assert.Equal(EmulationMachineTab.Ram, memory.Tab);
+        var expanded = (MachineConfiguration)module.ApplySettings(challenger, new Dictionary<string, string?> { [OptionConstants.DiscMemory] = OptionConstants.Challenger512 });
+        Assert.Equal(OptionConstants.ModelBOpusChallenger512K, expanded.Options[OptionConstants.Model]);
+        Assert.DoesNotContain(OptionConstants.DiscMemory, expanded.Options.Keys);
+        Assert.DoesNotContain(OptionConstants.DiscController, expanded.Options.Keys);
+        Assert.True(SettingsDescriptionFunctions.Create(expanded).Single(block => block.Tab == EmulationMachineTab.Audio).IsCompact);
+    }
+
+    [Fact]
+    public void JoystickVisualDefinesOnlySupportedUnassignedAnalogCommands()
+    {
+        var ports = InputSettingsFunctions.Describe(new MachineConfiguration(MachineModel.BbcMicroModelB)).ControllerPorts;
+        Assert.Equal(2, ports.Count);
+        foreach (var port in ports)
+        {
+            Assert.DoesNotContain(port.ControllerChoices, choice => choice.Id == nameof(PeripheralCategory.Automatic));
+            var choice = port.ControllerChoices.Single(choice => choice.Id == nameof(PeripheralCategory.AnalogJoystick));
+            Assert.Contains(EmulationControllerVisualIds.CompetitionPro5000, choice.CompatibleVisualIds!);
+            Assert.Equal(5, choice.VisualBindingDefinitions![EmulationControllerVisualIds.CompetitionPro5000].Count);
+            Assert.All(port.Bindings.Definitions, definition => Assert.Empty(definition.DefaultBinding));
+            Assert.Empty(port.Bindings.Values);
+            Assert.Equal(EmulationControllerCommandIds.Down, port.Bindings.Definitions.Single(definition => definition.Id == EmulationControllerCommandIds.Up).OppositeDirectionId);
+        }
     }
 
     private static EmulationInputSnapshot Pressed(params EmulationKey[] keys) => EmulationInputSnapshot.Empty with { Keys = keys.ToHashSet() };

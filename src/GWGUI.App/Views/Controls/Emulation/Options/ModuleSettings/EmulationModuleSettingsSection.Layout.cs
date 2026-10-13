@@ -162,6 +162,18 @@ internal sealed partial class EmulationModuleSettingsSection
     private void AddBlocks(Panel panel, EmulationMachineSettings settings, EmulationMachineTab tab)
     {
         bool IsDisplayed(EmulationSettingsField field) => field.IsVisible && !(tab == EmulationMachineTab.General && field.Editor == EmulationSettingsEditor.DirectoryPath);
+        if (tab == EmulationMachineTab.Audio && settings.Blocks.Any(block => block.Tab == tab && block.IsCompact))
+        {
+            var blocks = settings.Blocks.Where(block => block.Tab == tab && block.IsVisible && block.Fields.Any(IsDisplayed))
+                .OrderBy(block => block.Fields.Any(field => field.ChoiceSource == EmulationSettingsChoiceSource.AudioOutputDevices) ? 1 : 0).ToArray();
+            var cards = blocks.Select(block => (FrameworkElement)EmulationSettingsLayout.IconCard(
+                EmulationSettingsLayout.BoundedForm(1, block.Fields.Where(IsDisplayed).Select(CreateControlField).ToArray()),
+                LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? IconGlyphs.Audio)).ToList();
+            if (blocks.Length == 1 && blocks[0].Fields.Any(field => field.ChoiceSource == EmulationSettingsChoiceSource.AudioOutputDevices))
+                cards.Insert(0, new Border());
+            panel.Children.Add(EmulationSettingsLayout.CompactCards(cards));
+            return;
+        }
         if (settings.Blocks.Any(block => block.Tab == tab && block.IsCompact))
         {
             panel.Children.Add(EmulationSettingsLayout.CompactCards(settings.Blocks.Where(block => block.Tab == tab && block.IsVisible && block.Fields.Any(IsDisplayed))

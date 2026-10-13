@@ -9,4 +9,5 @@ public sealed record EmulationControllerChoice(
     IReadOnlyList<InputBindingDefinition>? BindingDefinitions = null,
     IReadOnlyList<string>? CompatibleVisualIds = null,
     string? DefaultVisualId = null,
-    IReadOnlyDictionary<EmulationControllerVisualControl, string>? VisualCommandIds = null);
+    IReadOnlyDictionary<EmulationControllerVisualControl, string>? VisualCommandIds = null,
+    IReadOnlyDictionary<string, IReadOnlyList<InputBindingDefinition>>? VisualBindingDefinitions = null);

@@ -4,5 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Firmware.Embedded" xml:space="preserve"><value>Det er ikke nødvendigt at foretage en sådan kontrol. BASIC Omdrejninger leveres af emulatoren.</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>den valgte b2-konfiguration omfatter sit operativsystem BASIC og disk filsystem ROM. Denne kerne tillader ikke ekstern udskiftning ROM.</value></data>
 </root>

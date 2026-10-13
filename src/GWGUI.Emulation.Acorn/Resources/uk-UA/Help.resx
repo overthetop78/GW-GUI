@@ -4,5 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Firmware.Embedded" xml:space="preserve"><value>Система операцій і BASIC ROMs подається емулятором.</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>У вибраній конфігурації b2 входить її операційна система, BASIC Система затирання диска ROMs. Ця ядро не дозволяє замінювати зовнішні ROMs.</value></data>
 </root>

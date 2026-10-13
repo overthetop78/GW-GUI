@@ -11,6 +11,7 @@ internal static class EmulatorConstants
     internal const string InspectedRevision = "9793f6a8040c416d147003cada29363b955b54e7";
     internal const string DescriptionResourceKey = "Emulation.Emulator.b2.Description";
 
-    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.B2, Id, LibraryName, DllName, SourceUri, InspectedRevision, MachineModel.BbcMicroModelB, MachineModel.BbcMaster128)
+    internal static readonly EmulatorCatalogEntry Entry = EmulatorCatalogFunctions.Create(Emulator.B2, Id, LibraryName, DllName, SourceUri, InspectedRevision,
+        MachineModel.BbcMicroModelB, MachineModel.BbcMaster128, MachineModel.BbcMicroModelBPlus, MachineModel.BbcMicroModelBPlus128)
         with { DescriptionResourceKey = DescriptionResourceKey };
 }

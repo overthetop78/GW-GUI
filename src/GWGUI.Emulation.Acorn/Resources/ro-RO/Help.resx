@@ -4,5 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Firmware.Embedded" xml:space="preserve"><value>Sistemul de operare și BASIC ROM-urile sunt furnizate de către emulator.</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>Configurația b2 selectată include sistemul său de operare, BASIC Acest nucleu nu permite înlocuirea ROM-urilor externe.</value></data>
 </root>

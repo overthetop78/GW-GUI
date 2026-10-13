@@ -4,5 +4,5 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Firmware.Embedded" xml:space="preserve"><value>Operační systém a BASIC Romy dodávají emulátor.</value></data>
+  <data name="Emulation.Acorn.Firmware.Embedded"><value>Vybraná konfigurace b2 obsahuje jeho operační systém, BASIC a systém pro ukládání disků ROM. Toto jádro neumožňuje externí náhradní ROM.</value></data>
 </root>

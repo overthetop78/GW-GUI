@@ -4,7 +4,10 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
-  <data name="Emulation.Acorn.Option.Model" xml:space="preserve"><value>Varianta mașinii</value></data>
   <data name="Emulation.Acorn.Option.AutoBoot" xml:space="preserve"><value>Începeți automat de pe discul introdus</value></data>
   <data name="Emulation.Emulator.b2.Description" xml:space="preserve"><value>Emulează BBC MICRO şi BBC MASTER calculatoare.</value></data>
+  <data name="Emulation.Acorn.Storage.DiscController"><value>Controlor disc</value></data>
+  <data name="Emulation.Acorn.Video.Controller"><value>Controlor de sincronizare video</value></data>
+  <data name="Emulation.Acorn.Video.Pixels"><value>Generator de pixel și de culoare</value></data>
+  <data name="Emulation.Acorn.Video.Teletext"><value>Generator de caractere de text</value></data>
 </root>

@@ -15,7 +15,10 @@ internal static class SettingsDescriptionFunctions
                 Information(SettingsConstants.CpuFrequency, EmulationMachineTab.Cpu, SettingsConstants.ResourceFrequency, $"{hardware.DefaultCpuFrequencyHz / (double)SettingsConstants.Megahertz:0.##} MHz")),
             Block(EmulationMachineTab.Ram, SettingsConstants.ResourceMemory,
                 Information(SettingsConstants.MainMemory, EmulationMachineTab.Ram, SettingsConstants.ResourceMemory, $"{hardware.MainMemoryBytes / SettingsConstants.Kibibyte} KiB")),
-            Block(EmulationMachineTab.Video, SettingsConstants.ResourceVideo, Information(SettingsConstants.Video, EmulationMachineTab.Video, SettingsConstants.ResourceVideo, string.Join(" / ", hardware.Video))),
+            Block(EmulationMachineTab.Video, SettingsConstants.ResourceVideo,
+                Information(SettingsConstants.Video + "_controller", EmulationMachineTab.Video, SettingsConstants.ResourceVideoController, "Motorola MC6845"),
+                Information(SettingsConstants.Video + "_pixels", EmulationMachineTab.Video, SettingsConstants.ResourceVideoPixels, "Acorn Video ULA"),
+                Information(SettingsConstants.Video + "_teletext", EmulationMachineTab.Video, SettingsConstants.ResourceTeletext, "Mullard SAA5050")),
             Audio(configuration)
         };
         if (configuration.Core != Emulator.None && new Engine().Adapter(configuration) is IEmulatorSettings settings)
@@ -34,7 +37,7 @@ internal static class SettingsDescriptionFunctions
                 [new(SettingsConstants.DefaultOutput, SettingsConstants.ResourceDefaultOutput)],
                 ChoiceSource: EmulationSettingsChoiceSource.AudioOutputDevices),
             Selection(configuration, SettingsConstants.AudioLatency, SettingsConstants.ResourceAudioLatency, SettingsConstants.DefaultLatency, SettingsConstants.Latencies, "ms"),
-            Selection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume, SettingsConstants.DefaultVolume, SettingsConstants.Volumes, "%"));
+            Selection(configuration, VideoAudioSettingsConstants.AudioVolumeOption, SettingsConstants.ResourceAudioVolume, SettingsConstants.DefaultVolume, SettingsConstants.Volumes, "%")) with { IsCompact = true };
 
     private static EmulationSettingsField Selection(MachineConfiguration configuration, string id, string resource, int defaultValue, IReadOnlyList<int> values, string unit) =>
         new(id, EmulationMachineTab.Audio, EmulationMachineTab.Audio.ToString(), resource,
