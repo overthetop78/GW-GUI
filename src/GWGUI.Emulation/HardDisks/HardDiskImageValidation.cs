@@ -7,8 +7,8 @@ public static class HardDiskImageValidation
     public static void Validate(string path, long length, HardDiskImageFormat format)
     {
         ValidateExtension(path, format);
-        if (length < SectorBytes || length > format.MaximumBytes || length % SectorBytes != 0)
-            throw new ArgumentOutOfRangeException(nameof(length), $"512 … {format.MaximumBytes} bytes; sectors: 512 bytes.");
+        if (length < format.MinimumBytes || length > format.MaximumBytes || !format.LogicalSectorSizes.Any(sectorBytes => sectorBytes > 0 && length % sectorBytes == 0))
+            throw new ArgumentOutOfRangeException(nameof(length), $"{format.MinimumBytes} … {format.MaximumBytes} bytes; sectors: {string.Join(", ", format.LogicalSectorSizes.Order())} bytes.");
     }
 
     public static void ValidateExisting(string path, HardDiskImageFormat format)

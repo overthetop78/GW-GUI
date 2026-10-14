@@ -22,7 +22,7 @@ public static class HardDiskImageCreation
                     if (preparation == HardDiskPreparation.Blank && format.InitializeBlankImage is { } initialize)
                         initialize(content);
                     else HardDiskPreparationWriter.Prepare(content, preparation, formatId: format.Id);
-                }, fixedSize: preallocate));
+                }, fixedSize: preallocate, logicalSectorBytes: format.LogicalSectorSizes.Order().First(sectorBytes => sectorBytes > 0 && bytes % sectorBytes == 0)));
     }
 
     private static void Publish(string path, long preallocationBytes, Action<Stream> write)

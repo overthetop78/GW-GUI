@@ -23,6 +23,7 @@ internal sealed class Px68kMachineFactory() : LibretroMachineFactory(EmulatorCon
     public override IReadOnlyList<EmulationMediaDevice> DescribeMediaDevices(MachineConfiguration configuration) => [
         new(EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy, MediaRuntimeConstants.FloppyExtensions, RequiresMachineRecreation: true),
         new(EmulationMediaSlot.Floppy1, EmulationMediaType.Floppy, MediaRuntimeConstants.FloppyExtensions, RequiresMachineRecreation: true),
-        new(EmulationMediaSlot.HardDisk0, EmulationMediaType.HardDisk, MediaRuntimeConstants.HardDiskExtensions, RequiresMachineRecreation: true)
+        new(EmulationMediaSlot.HardDisk0, EmulationMediaType.HardDisk, MediaRuntimeConstants.HardDiskExtensions, RequiresMachineRecreation: true,
+            ImageDirectory: configuration.Folders.HardDisks, HardDiskFormats: HardDiskConstants.Formats, ConfigurationKind: EmulationStorageConfigurationKind.HardDiskDrive)
     ];
 }

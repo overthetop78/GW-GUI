@@ -8,7 +8,9 @@ internal static class StorageSettingsFunctions
         if (configuration.Core == Emulator.None)
             return new(Array.Empty<EmulationMediaDevice>(), Array.Empty<EmulationMediaSlot>(), Array.Empty<EmulationMedia>());
         var devices = new Engine().Adapter(configuration) is IEmulatorStorageSettings storage ? storage.DescribeMediaDevices(configuration).ToArray() : [];
-        return new(devices, configuration.ConfiguredSlots, configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray());
+        var interfaces = devices.Where(device => configuration.ConfiguredSlots.Contains(device.Slot) && device.HardDiskFormats?.Count > 0)
+            .Select(device => new EmulationStorageDeviceSettings(device.Slot, InterfaceId: device.HardDiskFormats![0].InterfaceName.ToLowerInvariant())).ToArray();
+        return new(devices, configuration.ConfiguredSlots, configuration.Media.Select(EmulationMediaConversionFunctions.ToCommon).ToArray(), interfaces);
     }
 
     internal static MachineConfiguration Apply(MachineConfiguration configuration, EmulationStorageSettings settings)
@@ -20,8 +22,10 @@ internal static class StorageSettingsFunctions
             == slot)) 
             || settings.MountedMedia.Select(media => media.Slot).Distinct().Count() 
             != settings.MountedMedia.Count 
-            || settings.DeviceSettings?.Count 
-            > 0)
+            || settings.DeviceSettings?.Any(setting => setting.Floppy is not null || setting.Cartridge is not null || setting.CompactDisc is not null || setting.MemoryCardPath is not null
+                || !settings.ConfiguredSlots.Contains(setting.Slot)
+                || !devices.Any(device => device.Slot == setting.Slot && device.HardDiskFormats?.Count > 0
+                    && (string.IsNullOrEmpty(setting.InterfaceId) || device.HardDiskFormats.Any(format => string.Equals(format.InterfaceName, setting.InterfaceId, StringComparison.OrdinalIgnoreCase))))) == true)
             throw new ArgumentException(ErrorMessages.IncompatibleMedia, nameof(settings));
         foreach (var media in settings.MountedMedia)
         {
