@@ -8,7 +8,9 @@ namespace GWGUI.Emulation.Coleco.Emulators.BlueMSX.Factories;
 internal sealed class BlueMSXMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorInputMapper, IEmulatorSettings, IEmulatorConfigurationValidator, IEmulatorContentFormats
 {
     public IReadOnlyList<PeripheralCategory> GetPeripherals() => [PeripheralCategory.None, PeripheralCategory.Standard, PeripheralCategory.SuperAction];
-    public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => NativeInputSnapshotFunctions.Apply(snapshot, input, model, Emulator.BlueMSX);
+    public IReadOnlyList<InputBindingDefinition> DescribeInput(PeripheralCategory peripheral, int port) => InputSettingsFunctions.Definitions(peripheral)
+        .Where(action => action.Id is not (ControllerActionConstants.SpinnerLeft or ControllerActionConstants.SpinnerRight)).ToArray();
+    public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => NativeInputSnapshotFunctions.Apply(snapshot, input, model, Emulator.BlueMSX, DescribeInput);
 
     public IReadOnlySet<string> SupportedContentExtensions(IReadOnlySet<string> declaredExtensions, bool requiresFilePath)
     {

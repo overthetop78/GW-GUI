@@ -77,12 +77,51 @@ public sealed class ColecoModuleTests
                     {
                         Assert.Equal("Down", Assert.Single(definitions, action => action.Id == "Up").OppositeDirectionId);
                         Assert.Equal("Right", Assert.Single(definitions, action => action.Id == "Left").OppositeDirectionId);
-                        if (choice.Id != PeripheralCategory.Standard.ToString())
+                        var spinner = choice.Id != PeripheralCategory.Standard.ToString() && core != Emulator.BlueMSX
+                            && (core != Emulator.GearColeco || port.Number == 1 || choice.Id == PeripheralCategory.Roller.ToString());
+                        if (spinner)
                             Assert.Equal("SpinnerRight", Assert.Single(definitions, action => action.Id == "SpinnerLeft").OppositeDirectionId);
+                        else Assert.DoesNotContain(definitions, action => action.Id is "SpinnerLeft" or "SpinnerRight");
                     }
                 }
             }
         }
+    }
+
+    [Theory]
+    [InlineData(0, "SpinnerRight", 10)]
+    [InlineData(0, "SpinnerLeft", 11)]
+    [InlineData(1, "SpinnerRight", 10)]
+    [InlineData(1, "SpinnerLeft", 11)]
+    public void JollyCvRotaryCommandsReachTheirNativeButtonOnEachPort(int port, string action, uint nativeButton)
+    {
+        var input = new InputConfiguration(Controllers: [new(port, PeripheralCategory.Paddle, Mappings: new Dictionary<string, string> { [action] = "Keyboard:Z+Mouse:Middle" })]);
+        var physical = EmulationInputSnapshot.Empty with
+        {
+            Keys = new HashSet<EmulationKey> { EmulationKey.Z },
+            Pointer = EmulationInputSnapshot.Empty.Pointer with { Middle = true }
+        };
+        var mapped = InputSnapshotFunctions.Apply(physical, input, MachineModel.ColecoVision, Emulator.JollyCV);
+        Assert.Equal(1, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.NativeInputFunctions.State(mapped, (uint)port, 1, 0, nativeButton));
+        Assert.Equal(0u, mapped.Controllers[1 - port].Buttons);
+        var released = InputSnapshotFunctions.Apply(physical with { Pointer = EmulationInputSnapshot.Empty.Pointer }, input, MachineModel.ColecoVision, Emulator.JollyCV);
+        Assert.Equal(0, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.NativeInputFunctions.State(released, (uint)port, 1, 0, nativeButton));
+    }
+
+    [Theory]
+    [InlineData(0, "Purple", short.MinValue)]
+    [InlineData(0, "Blue", short.MaxValue)]
+    [InlineData(1, "Purple", short.MinValue)]
+    [InlineData(1, "Blue", short.MaxValue)]
+    public void BlueMsxExtraControllerButtonsKeepTheirNativeCarrierOnBothPorts(int port, string action, short expected)
+    {
+        var input = new InputConfiguration(Controllers: [new(port, PeripheralCategory.SuperAction, Mappings: new Dictionary<string, string> { [action] = "Keyboard:Z" })]);
+        var physical = EmulationInputSnapshot.Empty with { Keys = new HashSet<EmulationKey> { EmulationKey.Z } };
+        var mapped = InputSnapshotFunctions.Apply(physical, input, MachineModel.ColecoVision, Emulator.BlueMSX);
+        Assert.Equal(expected, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.NativeInputFunctions.State(mapped, (uint)port, 5, 1, 1));
+        Assert.Equal(0, mapped.Controllers[1 - port].RightY);
+        Assert.Equal(0, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.NativeInputFunctions.State(
+            InputSnapshotFunctions.Apply(EmulationInputSnapshot.Empty, input, MachineModel.ColecoVision, Emulator.BlueMSX), (uint)port, 5, 1, 1));
     }
 
     [Theory]

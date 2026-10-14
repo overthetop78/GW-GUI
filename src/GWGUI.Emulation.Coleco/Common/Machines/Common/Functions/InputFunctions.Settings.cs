@@ -63,18 +63,19 @@ internal static class InputSettingsFunctions
         var keyboard = configuration.Model == MachineModel.Adam ? new EmulationInputBindingSet(
             KeyboardDefaults.Select(pair => new InputBindingDefinition(pair.Key, "Emulation.Coleco.Key." + pair.Key, pair.Value.ToString(), pair.Key.StartsWith("Smart", StringComparison.Ordinal) ? "Smart " + pair.Key[5..] : null)).ToArray(),
             configuration.Input.Keyboard ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
-        var choices = Peripherals(configuration.Core).Select(peripheral => new EmulationControllerChoice(peripheral.ToString(),
-            peripheral == PeripheralCategory.None ? "Emulation.Controller.None" : "Emulation.Coleco.Controller." + peripheral,
-            BindingDefinitions: Definitions(peripheral),
-            CompatibleVisualIds: peripheral == PeripheralCategory.Standard ? [EmulationControllerVisualIds.ColecoController] : [],
-            DefaultVisualId: peripheral == PeripheralCategory.Standard ? EmulationControllerVisualIds.ColecoController : null,
-            VisualCommandIds: peripheral == PeripheralCategory.Standard ? VisualCommands : null)).ToArray();
+        var mapper = new Engine().Adapter(configuration.Core) as IEmulatorInputMapper;
         var ports = Enumerable.Range(0, ControllerConstants.PortCount).Select(index =>
         {
+            var choices = (mapper?.GetPeripherals() ?? []).Select(category => new EmulationControllerChoice(category.ToString(),
+                category == PeripheralCategory.None ? "Emulation.Controller.None" : "Emulation.Coleco.Controller." + category,
+                BindingDefinitions: mapper?.DescribeInput(category, index) ?? [],
+                CompatibleVisualIds: category == PeripheralCategory.Standard ? [EmulationControllerVisualIds.ColecoController] : [],
+                DefaultVisualId: category == PeripheralCategory.Standard ? EmulationControllerVisualIds.ColecoController : null,
+                VisualCommandIds: category == PeripheralCategory.Standard ? VisualCommands : null)).ToArray();
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == index);
             var peripheral = binding?.Peripheral ?? PeripheralCategory.Standard;
             return new EmulationControllerPort(index + 1, choices, peripheral.ToString(), binding?.DeviceId,
-                new(Definitions(peripheral), binding?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
+                new(mapper?.DescribeInput(peripheral, index) ?? [], binding?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                 binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId);
         }).ToArray();
         return new(keyboard, null, ports);

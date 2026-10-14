@@ -8,7 +8,9 @@ namespace GWGUI.Emulation.Coleco.Emulators.GearColeco.Factories;
 internal sealed class GearColecoMachineFactory() : MachineFactory(EmulatorConstants.Entry), IEmulatorInputMapper, IEmulatorSettings, IEmulatorConfigurationValidator
 {
     public IReadOnlyList<PeripheralCategory> GetPeripherals() => [PeripheralCategory.None, PeripheralCategory.Standard, PeripheralCategory.SuperAction, PeripheralCategory.Roller, PeripheralCategory.Driving];
-    public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => NativeInputSnapshotFunctions.Apply(snapshot, input, model, Emulator.GearColeco);
+    public IReadOnlyList<InputBindingDefinition> DescribeInput(PeripheralCategory peripheral, int port) => InputSettingsFunctions.Definitions(peripheral)
+        .Where(action => port == ControllerConstants.FirstPort || peripheral == PeripheralCategory.Roller || action.Id is not (ControllerActionConstants.SpinnerLeft or ControllerActionConstants.SpinnerRight)).ToArray();
+    public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => NativeInputSnapshotFunctions.Apply(snapshot, input, model, Emulator.GearColeco, DescribeInput);
 
     public IReadOnlyList<EmulationSettingsBlock> DescribeSettings(MachineConfiguration configuration) => Settings.Create(configuration);
     public IReadOnlyList<CoreOption> GetSettingsOptions() => Settings.GetOptions();
