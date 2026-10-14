@@ -9,7 +9,7 @@ internal static class InputSettingsFunctions
     ];
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
-        var keyboard = new EmulationInputBindingSet(KeyboardDictionary.Definitions(configuration.Model), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard);
+        var keyboard = new EmulationInputBindingSet(KeyboardDictionary.Definitions(configuration.Model), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
         var mouseValues = MouseDefinitions().ToDictionary(definition => definition.Id, definition => configuration.Input.Mouse?.GetValueOrDefault(definition.Id, definition.DefaultBinding) ?? definition.DefaultBinding, StringComparer.Ordinal);
         var mouse = new EmulationInputBindingSet(MouseDefinitions(), mouseValues, EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true);
         var choices = new[]
@@ -85,12 +85,5 @@ internal static class InputSettingsFunctions
                 throw new ArgumentException(nameof(configuration.Input));
     }
 
-    private static bool IsSource(string source)
-    {
-        if (string.IsNullOrEmpty(source))
-            return true;
-        if (source.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
-            return Enum.TryParse<EmulationKey>(source[InputMappingConstants.KeyboardPrefix.Length..], out var key) && Enum.IsDefined(key) && key != EmulationKey.Unknown;
-        return source.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase) || source.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase);
-    }
+    private static bool IsSource(string source) => EmulationKeyboardBindingFunctions.IsValid(source);
 }

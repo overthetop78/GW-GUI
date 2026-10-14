@@ -63,7 +63,7 @@ internal static class InputSnapshotFunctions
         };
         return snapshot with
         {
-            Keys = KeyboardDictionary.Apply(snapshot.Keys, input, model),
+            Keys = KeyboardDictionary.Apply(snapshot, input, model),
             Pointer = pointer,
             Controllers = controllers
         };
