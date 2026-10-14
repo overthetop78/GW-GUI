@@ -2,6 +2,7 @@ using System.Reflection;
 using System.Net.Http;
 using System.IO;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Xml;
 using GWGUI.Emulation.Contracts;
 using GWGUI.Emulation.Constants;
@@ -83,7 +84,7 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
-    public void ConsoleFamiliesExposeOptionsWithoutAnInstalledAdapter()
+    public async Task ConsoleFamiliesExposeOptionsWithoutAnInstalledAdapter()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-console-unsupported-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
@@ -105,7 +106,9 @@ public sealed class ConsoleFamilyModuleTests
             {
                 var configuration = module.CreateConfiguration(machineId);
                 Assert.Equal(machineId, configuration.MachineId);
-                Assert.Equal(string.Empty, configuration.GetType().GetProperty("EmulatorId")?.GetValue(configuration));
+                Assert.NotEmpty(module.Describe(machineId, configuration).Blocks);
+                var installations = await Assert.IsAssignableFrom<IEmulationEmulatorManager>(module).GetEmulatorInstallationsAsync(configuration);
+                Assert.All(installations, installation => Assert.Null(installation.InstalledVersion));
             }
         }
         finally
@@ -299,7 +302,7 @@ public sealed class ConsoleFamilyModuleTests
         var resources = Path.Combine(root, "src", "GWGUI.Emulation.Sony", "Resources");
         var baseEntries = ReadEntries(Path.Combine(resources, "00-Base"));
         var englishEntries = ReadEntries(Path.Combine(resources, "en-US"));
-        var expectedModels = new[] { "PlayStation", "PlayStation2", "Psp", "PsVita", "PlayStation3", "PlayStation4", "PlayStation5" };
+        var expectedModels = new[] { "PocketStation", "PlayStation", "PlayStation2", "Psp", "PsVita", "PlayStation3", "PlayStation4", "PlayStation5" };
         Assert.Contains("Emulation.Family.Sony", baseEntries.Keys);
         Assert.All(expectedModels, model => Assert.Contains(GWGUI.Emulation.Sony.Common.Machines.Common.Constants.MachineConfigurationConstants.ResourceKey(model), baseEntries.Keys));
         Assert.DoesNotContain(englishEntries.Keys, key => key == "Emulation.Family.Sony" || key.StartsWith("Emulation.Sony.Machine.", StringComparison.Ordinal));
@@ -307,7 +310,7 @@ public sealed class ConsoleFamilyModuleTests
         Assert.Contains("Emulation.Emulator.pcsx2.Description", englishEntries.Keys);
         Assert.Equal("Sony", baseEntries["Emulation.Family.Sony"]);
         var forbidden = new[] { "Caprice32", "Amstrad", "GenesisPlusGX", "Sega", "Nintendo", "SonyCore" };
-        Assert.DoesNotContain(englishEntries.Values, value => forbidden.Any(name => value.Contains(name, StringComparison.OrdinalIgnoreCase)));
+        Assert.DoesNotContain(englishEntries.Values, value => forbidden.Any(name => Regex.IsMatch(value, @"\b" + Regex.Escape(name) + @"\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)));
         var files = Directory.EnumerateFiles(Path.Combine(resources, "en-US"), "*.resx").Select(Path.GetFileName).Order(StringComparer.Ordinal).ToArray();
         foreach (var culture in Directory.EnumerateDirectories(resources).Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal) && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
         {
@@ -315,7 +318,7 @@ public sealed class ConsoleFamilyModuleTests
             Assert.Equal(files, Directory.EnumerateFiles(culture, "*.resx").Select(Path.GetFileName).Order(StringComparer.Ordinal));
             var entries = ReadEntries(culture);
             Assert.Equal(englishEntries.Keys.Order(StringComparer.Ordinal), entries.Keys.Order(StringComparer.Ordinal));
-            Assert.DoesNotContain(entries.Values, value => forbidden.Any(name => value.Contains(name, StringComparison.OrdinalIgnoreCase)));
+            Assert.DoesNotContain(entries.Values, value => forbidden.Any(name => Regex.IsMatch(value, @"\b" + Regex.Escape(name) + @"\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)));
         }
 
         static IReadOnlyDictionary<string, string> ReadEntries(string directory)
@@ -557,7 +560,7 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
-    public void SonySwanStationSelectsPlayStation()
+    public async Task SonySwanStationSelectsPlayStation()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-sony-swanstation-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
@@ -566,7 +569,8 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new SonyEmulationModuleFactory().Create(context);
-            var playStation = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("PlayStation"));
+            var initial = module.CreateConfiguration("PlayStation");
+            var playStation = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(await Assert.IsAssignableFrom<IEmulationEmulatorManager>(module).UseEmulatorAsync(initial, "swanstation"));
             Assert.Equal("swanstation", playStation.EmulatorId);
         }
         finally
@@ -655,7 +659,7 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
-    public void SonyPcsx2SelectsPlayStation2()
+    public async Task SonyPcee2SelectsPlayStation2()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-sony-pcsx2-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
@@ -664,8 +668,9 @@ public sealed class ConsoleFamilyModuleTests
             using var http = new HttpClient();
             var context = new EmulationModuleContext(root, root, http);
             var module = new SonyEmulationModuleFactory().Create(context);
-            var configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration("PlayStation2"));
-            Assert.Equal("pcsx2", configuration.EmulatorId);
+            var initial = module.CreateConfiguration("PlayStation2");
+            var configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(await Assert.IsAssignableFrom<IEmulationEmulatorManager>(module).UseEmulatorAsync(initial, "pcee2"));
+            Assert.Equal("pcee2", configuration.EmulatorId);
         }
         finally
         {
@@ -693,7 +698,7 @@ public sealed class ConsoleFamilyModuleTests
     }
 
     [Fact]
-    public void SonyModelsAndStorageMatchPublishedHardware()
+    public async Task SonyModelsAndStorageMatchPublishedHardware()
     {
         var root = Path.Combine(Path.GetTempPath(), "gwgui-sony-settings-tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
@@ -701,29 +706,51 @@ public sealed class ConsoleFamilyModuleTests
         {
             using var http = new HttpClient();
             var module = new SonyEmulationModuleFactory().Create(new EmulationModuleContext(root, root, http));
-            var expected = new[] { "PlayStation", "PlayStation2", "Psp", "PsVita", "PlayStation3", "PlayStation4", "PlayStation5" };
+            var expected = new[] { "PocketStation", "PlayStation", "PlayStation2", "Psp", "PsVita", "PlayStation3", "PlayStation4", "PlayStation5" };
             Assert.Equal(expected, SonyModelCatalog.All.Select(model => model.Id));
             Assert.DoesNotContain(SonyModelCatalog.All, model => model.BackendModel is "sg1000" or "mastersystem" or "megadrive" or "saturn" or "dreamcast");
             var supported = SonyModelCatalog.All.Where(model => SonyEmulatorCatalog.All.Any(definition => definition.MachineIds.Contains(model.Id, StringComparer.Ordinal)));
             foreach (var model in supported)
             {
                 var configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(module.CreateConfiguration(model.Id));
+                if (model.Id == "PlayStation")
+                    configuration = Assert.IsType<GWGUI.Emulation.Sony.Common.Machines.Common.Contracts.MachineConfiguration>(await Assert.IsAssignableFrom<IEmulationEmulatorManager>(module).UseEmulatorAsync(configuration, "swanstation"));
                 var storage = Assert.IsAssignableFrom<IEmulationStorageSettingsManager>(module).DescribeStorageSettings(configuration);
-                var optical = Assert.Single(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cd0);
-                Assert.Contains(EmulationMediaSlot.Cd0, storage.ConfiguredSlots);
                 Assert.DoesNotContain(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cartridge0);
-                var expectedExtensions = model.Id switch
+                if (model.Id == "PocketStation")
                 {
-                    "Psp" => new[] { ".elf", ".iso", ".cso", ".prx", ".pbp", ".chd" },
-                    "PlayStation2" => new[] { ".elf", ".iso", ".ciso", ".cue", ".bin", ".gz", ".chd", ".cso", ".zso", ".mdf", ".nrg", ".dump", ".img" },
-                    _ => new[] { ".exe", ".psexe", ".cue", ".bin", ".img", ".iso", ".chd", ".pbp", ".ecm", ".mds", ".psf" }
-                };
-                Assert.Equal(expectedExtensions, optical.AcceptedExtensions);
+                    var flash = Assert.Single(storage.AvailableDevices);
+                    Assert.Equal(EmulationMediaSlot.MemoryCard0, flash.Slot);
+                    Assert.True(flash.IsPermanent);
+                    Assert.Equal(new[] { ".bin", ".gme", ".mcr", ".mcd", ".mcs", ".pss" }, flash.AcceptedExtensions);
+                    Assert.Contains(EmulationMediaSlot.MemoryCard0, storage.ConfiguredSlots);
+                }
+                if (model.Id == "PocketStation")
+                    Assert.DoesNotContain(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cd0);
+                else
+                {
+                    var optical = Assert.Single(storage.AvailableDevices, device => device.Slot == EmulationMediaSlot.Cd0);
+                    Assert.Contains(EmulationMediaSlot.Cd0, storage.ConfiguredSlots);
+                    var expectedExtensions = model.Id switch
+                    {
+                        "Psp" => new[] { ".elf", ".iso", ".cso", ".prx", ".pbp", ".chd" },
+                        "PlayStation2" => new[] { ".iso", ".chd", ".cue", ".cso", ".zso", ".gz", ".bin", ".mdf", ".nrg", ".elf", ".irx" },
+                        "PlayStation3" => new[] { ".bin", ".self", ".elf", ".pkg", ".iso", ".sfo", ".sfb" },
+                        _ => new[] { ".exe", ".psexe", ".cue", ".bin", ".img", ".iso", ".chd", ".pbp", ".ecm", ".mds", ".psf" }
+                    };
+                    Assert.Equal(expectedExtensions, optical.AcceptedExtensions);
+                }
 
                 var fields = module.Describe(model.Id, configuration).Blocks.SelectMany(block => block.Fields).ToArray();
                 Assert.DoesNotContain(fields, field => field.Id is "configuration.videoResolution" or "configuration.videoMonitor" or "configuration.videoIntensity" or "configuration.videoCrop" or "configuration.floppySound");
                 Assert.Equal(EmulationSettingsEditor.Information, fields.Single(field => field.Id == "configuration.ramKib").Editor);
-                Assert.Equal($"{model.RamKib} KiB", fields.Single(field => field.Id == "configuration.ramKib").Value);
+                Assert.Equal($"{(model.Id == "Psp" ? 65536 : model.RamKib)} KiB", fields.Single(field => field.Id == "configuration.ramKib").Value);
+                if (model.Id == "Psp")
+                {
+                    var psp1000 = module.ApplySettings(configuration, new Dictionary<string, string?> { ["ppsspp_psp_model"] = "psp_1000" });
+                    var ram = module.Describe(model.Id, psp1000).Blocks.SelectMany(block => block.Fields).Single(field => field.Id == "configuration.ramKib");
+                    Assert.Equal("32768 KiB", ram.Value);
+                }
                 Assert.Equal(string.Join(" / ", model.Processors), fields.Single(field => field.Id == "configuration.model.cpu").Value);
                 Assert.Equal(model.VideoChip, fields.Single(field => field.Id == "configuration.model.video").Value);
                 Assert.Equal(model.AudioChip, fields.Single(field => field.Id == "configuration.model.audio").Value);
@@ -1443,25 +1470,38 @@ public sealed class ConsoleFamilyModuleTests
         }
     }
 
-    [Fact]
-    public void SegaNeutralResourcesContainOnlyInvariantEntries()
+    [Theory]
+    [InlineData("Nec")]
+    [InlineData("Sega")]
+    public void FamilyBaseResourcesContainEnglishSourceAndCultureIndependentEntries(string family)
     {
         var root = RepositoryRoot();
-        var baseDirectory = Path.Combine(root, "src", "GWGUI.Emulation.Sega", "Resources", "00-Base");
-        var fallbackDirectory = Path.Combine(root, "src", "GWGUI.Emulation.Sega", "Resources", "en-US");
-        foreach (var baseFile in Directory.EnumerateFiles(baseDirectory, "*.resx"))
+        var resources = Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Resources");
+        var baseDirectory = Path.Combine(resources, "00-Base");
+        var fallbackDirectory = Path.Combine(resources, "en-US");
+        foreach (var fallbackFile in Directory.EnumerateFiles(fallbackDirectory, "*.resx"))
         {
-            var fallbackFile = Path.Combine(fallbackDirectory, Path.GetFileName(baseFile));
-            Assert.True(File.Exists(fallbackFile), fallbackFile);
-            var duplicateKeys = ResxKeys(baseFile).Intersect(ResxKeys(fallbackFile)).ToArray();
-            Assert.Empty(duplicateKeys);
+            var baseFile = Path.Combine(baseDirectory, Path.GetFileName(fallbackFile));
+            Assert.True(File.Exists(baseFile), baseFile);
+            var source = ResxEntries(baseFile);
+            foreach (var entry in ResxEntries(fallbackFile))
+            {
+                Assert.True(source.TryGetValue(entry.Key, out var value), entry.Key);
+                Assert.Equal(entry.Value, value);
+            }
         }
+        var invariantKeys = Directory.EnumerateFiles(baseDirectory, "*.resx").SelectMany(path => ResxEntries(path).Keys)
+            .Where(key => key.StartsWith("Emulation.Family.", StringComparison.Ordinal) || key.StartsWith($"Emulation.{family}.Machine.", StringComparison.Ordinal)).ToArray();
+        Assert.NotEmpty(invariantKeys);
+        foreach (var culture in Directory.EnumerateDirectories(resources).Where(path => Path.GetFileName(path) != "00-Base"))
+            foreach (var file in Directory.EnumerateFiles(culture, "*.resx"))
+                Assert.DoesNotContain(ResxEntries(file).Keys, key => invariantKeys.Contains(key, StringComparer.Ordinal));
 
-        static IReadOnlySet<string> ResxKeys(string path)
+        static IReadOnlyDictionary<string, string> ResxEntries(string path)
         {
             var document = new XmlDocument();
             document.Load(path);
-            return document.SelectNodes("/root/data")!.Cast<XmlElement>().Select(element => element.GetAttribute("name")).ToHashSet(StringComparer.Ordinal);
+            return document.SelectNodes("/root/data")!.Cast<XmlElement>().ToDictionary(element => element.GetAttribute("name"), element => element.SelectSingleNode("value")!.InnerText, StringComparer.Ordinal);
         }
     }
 
@@ -1470,8 +1510,8 @@ public sealed class ConsoleFamilyModuleTests
     {
         var root = RepositoryRoot();
         var resources = Path.Combine(root, "src", "GWGUI.Emulation.Sega", "Resources");
-        Assert.DoesNotContain("Emulation.Sega.Video.Chipset", ResxKeys(Path.Combine(resources, "00-Base", "Video.resx")));
-        Assert.DoesNotContain("Emulation.Sega.Audio.Chip", ResxKeys(Path.Combine(resources, "00-Base", "Machine.resx")));
+        Assert.Contains("Emulation.Sega.Video.Chipset", ResxKeys(Path.Combine(resources, "00-Base", "Video.resx")));
+        Assert.Contains("Emulation.Sega.Audio.Chip", ResxKeys(Path.Combine(resources, "00-Base", "Machine.resx")));
         Assert.Contains("Emulation.Sega.Video.Chipset", ResxKeys(Path.Combine(resources, "en-US", "Video.resx")));
         Assert.Contains("Emulation.Sega.Audio.Chip", ResxKeys(Path.Combine(resources, "en-US", "Machine.resx")));
         foreach (var culture in Directory.EnumerateDirectories(resources).Where(path => !Path.GetFileName(path).Equals("00-Base", StringComparison.Ordinal) && !Path.GetFileName(path).Equals("en-US", StringComparison.Ordinal)))
