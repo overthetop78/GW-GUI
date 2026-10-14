@@ -4,15 +4,14 @@ internal static class InputSnapshotFunctions
 {
     internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration? configuration, MachineModel model)
     {
-        var keyboardMappings = InputSettingsFunctions.DefaultHostKeys(model).ToDictionary(item => item.Key.ToString(), item => item.Value, StringComparer.Ordinal);
+        var keyboardMappings = InputSettingsFunctions.DefaultHostKeys(model).ToDictionary(item => item.Key.ToString(), item => item.Value.ToString(), StringComparer.Ordinal);
         var bindings = configuration?.KeyboardBindings ?? configuration?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal);
         if (bindings is not null)
             foreach (var mapping in bindings)
-                if (Enum.TryParse<EmulationKey>(mapping.Value, true, out var physical)) keyboardMappings[mapping.Key] = physical;
-                else keyboardMappings.Remove(mapping.Key);
+                keyboardMappings[mapping.Key] = mapping.Value;
         var mapped = snapshot with
         {
-            Keys = EmulationInputMappingFunctions.MapKeyboard(snapshot.Keys, keyboardMappings)
+            Keys = EmulationInputMappingFunctions.MapKeyboard(snapshot, keyboardMappings)
         };
         // Alt is the native transport for Apple/Command, not an additional immutable alias.
         if (InputSettingsFunctions.DefaultHostKeys(model).Count > 0)

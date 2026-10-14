@@ -18,7 +18,7 @@ internal static class InputSettingsFunctions
     {
         var input = configuration.Input;
         var definitions = KeyboardDefinitions(configuration);
-        var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard);
+        var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
         var configured = input.Controllers ?? [];
         var choices = configuration.Family == MachineFamily.AppleII ? ControllerFunctions.Peripherals(configuration.Model).OrderBy(category => category).Select(Choice).ToArray() : Array.Empty<EmulationControllerChoice>();
         var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(index =>
