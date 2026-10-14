@@ -201,5 +201,17 @@ internal static partial class InputSettingsFunctions
         BindingDefinitions: ControllerDefinitions(type, model),
         CompatibleVisualIds: CompatibleVisualIds(type, model),
         DefaultVisualId: DefaultVisualId(type, model),
-        VisualCommandIds: VisualCommandIds(type, model));
+        VisualCommandIds: VisualCommandIds(type, model))
+    {
+        Category = type switch
+        {
+            ControllerType.None => EmulationControllerCategory.None,
+            ControllerType.Automatic => EmulationControllerCategory.Unspecified,
+            ControllerType.AnalogJoystick => EmulationControllerCategory.Joystick,
+            ControllerType.NeGcon or ControllerType.NeGconRumble => EmulationControllerCategory.RacingSimulation,
+            ControllerType.GunCon or ControllerType.Justifier or ControllerType.Mouse => EmulationControllerCategory.PointingDevice,
+            ControllerType.Keyboard or ControllerType.KeyboardAndMouse => EmulationControllerCategory.OtherSimulation,
+            _ => EmulationControllerCategory.Gamepad
+        }
+    };
 }
