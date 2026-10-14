@@ -22,7 +22,7 @@ internal static class InputSettingsFunctions
                 InvariantDisplayValue: configuration.Model == MachineModel.Playdia ? null : peripheral.ToString(),
                 BindingDefinitions: definitions, CompatibleVisualIds: [visualId], DefaultVisualId: visualId,
                 VisualCommandIds: VisualCommands(configuration.Model),
-                VisualBindingDefinitions: new Dictionary<string, IReadOnlyList<InputBindingDefinition>> { [visualId] = definitions })
+                VisualBindingDefinitions: new Dictionary<string, IReadOnlyList<InputBindingDefinition>> { [visualId] = definitions }) { Category = EmulationControllerCategory.Gamepad }
         ];
         var port = new EmulationControllerPort(ControllerConstants.FirstPort + BufferConstants.IndexIncrement,
             choices, peripheral.ToString(), current?.DeviceId,
