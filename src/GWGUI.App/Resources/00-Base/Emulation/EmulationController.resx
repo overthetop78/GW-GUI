@@ -144,4 +144,5 @@
   <data name="Emulation.Controller.Category.Joystick"><value>Joystick</value></data>
   <data name="Emulation.Controller.Visual.Model.coleco-driving-controller"><value>ColecoVision Expansion Module #2</value></data>
   <data name="Emulation.Controller.Visual.Model.coleco-super-action-controller"><value>ColecoVision Super Action Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.coleco-roller-controller"><value>ColecoVision Roller Controller</value></data>
 </root>

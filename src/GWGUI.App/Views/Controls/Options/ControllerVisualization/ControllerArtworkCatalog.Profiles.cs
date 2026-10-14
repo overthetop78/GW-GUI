@@ -26,6 +26,7 @@ internal static partial class ControllerArtworkCatalog
         profiles[EmulationControllerVisualIds.ColecoController] = CreateColecoController();
         profiles[EmulationControllerVisualIds.ColecoDrivingController] = CreateColecoDrivingController();
         profiles[EmulationControllerVisualIds.ColecoSuperActionController] = CreateColecoSuperActionController();
+        profiles[EmulationControllerVisualIds.ColecoRollerController] = CreateColecoRollerController();
         profiles[EmulationControllerVisualIds.BandaiWonderSwan] = CreateBandaiWonderSwan();
         profiles[EmulationControllerVisualIds.BandaiWonderSwanColor] = CreateBandaiWonderSwanColor();
         profiles[EmulationControllerVisualIds.BandaiSwanCrystal] = CreateBandaiSwanCrystal();

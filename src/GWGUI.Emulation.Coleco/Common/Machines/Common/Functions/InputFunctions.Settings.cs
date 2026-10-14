@@ -63,6 +63,7 @@ internal static class InputSettingsFunctions
         PeripheralCategory.Standard => EmulationControllerVisualIds.ColecoController,
         PeripheralCategory.Driving => EmulationControllerVisualIds.ColecoDrivingController,
         PeripheralCategory.SuperAction => EmulationControllerVisualIds.ColecoSuperActionController,
+        PeripheralCategory.Roller => EmulationControllerVisualIds.ColecoRollerController,
         _ => null
     };
 
@@ -81,6 +82,48 @@ internal static class InputSettingsFunctions
                 [EmulationControllerVisualControl.StickRight] = ControllerActionConstants.SpinnerRight
             }).ToDictionary(pair => pair.Key, pair => pair.Value);
 
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string> RollerVisualCommands(int port) => new Dictionary<EmulationControllerVisualControl, string>
+    {
+        [port == ControllerConstants.FirstPort ? EmulationControllerVisualControl.StickLeft : EmulationControllerVisualControl.StickUp] = ControllerActionConstants.SpinnerLeft,
+        [port == ControllerConstants.FirstPort ? EmulationControllerVisualControl.StickRight : EmulationControllerVisualControl.StickDown] = ControllerActionConstants.SpinnerRight,
+        [port == ControllerConstants.FirstPort ? EmulationControllerVisualControl.PrimaryAction : EmulationControllerVisualControl.TertiaryAction] = ControllerActionConstants.FireLeft,
+        [port == ControllerConstants.FirstPort ? EmulationControllerVisualControl.SecondaryAction : EmulationControllerVisualControl.QuaternaryAction] = ControllerActionConstants.FireRight
+    };
+
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? CommandsForVisual(PeripheralCategory category, int port, IReadOnlyList<InputBindingDefinition> definitions)
+    {
+        var commands = category switch
+        {
+            PeripheralCategory.Standard => VisualCommands,
+            PeripheralCategory.Driving => DrivingVisualCommands,
+            PeripheralCategory.SuperAction => SuperActionVisualCommands,
+            PeripheralCategory.Roller => RollerVisualCommands(port),
+            _ => null
+        };
+        return commands?.Where(pair => definitions.Any(definition => definition.Id == pair.Value)).ToDictionary(pair => pair.Key, pair => pair.Value);
+    }
+
+    private static IReadOnlyDictionary<string, IReadOnlyList<InputBindingDefinition>>? BindingsForVisual(PeripheralCategory category, int port, IReadOnlyList<InputBindingDefinition> definitions)
+    {
+        if (category is not (PeripheralCategory.Driving or PeripheralCategory.SuperAction or PeripheralCategory.Roller) || VisualId(category) is not { } visualId) return null;
+        var visibleDefinitions = category == PeripheralCategory.Driving
+            ? definitions.Where(definition => DrivingVisualCommands.Values.Contains(definition.Id, StringComparer.Ordinal)) : definitions;
+        return new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
+        {
+            [visualId] = visibleDefinitions.Select(definition =>
+            {
+                if (category == PeripheralCategory.Driving && definition.Id == ControllerActionConstants.FireLeft)
+                    return definition with { DisplayResourceKey = "Controllers.Throttle" };
+                if (category == PeripheralCategory.Roller && port != ControllerConstants.FirstPort)
+                {
+                    if (definition.Id == ControllerActionConstants.SpinnerLeft) return definition with { DisplayResourceKey = "Emulation.Controller.Action.Up" };
+                    if (definition.Id == ControllerActionConstants.SpinnerRight) return definition with { DisplayResourceKey = "Emulation.Controller.Action.Down" };
+                }
+                return definition;
+            }).ToArray()
+        };
+    }
+
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var keyboard = configuration.Model == MachineModel.Adam ? new EmulationInputBindingSet(
@@ -89,35 +132,27 @@ internal static class InputSettingsFunctions
         var mapper = new Engine().Adapter(configuration.Core) as IEmulatorInputMapper;
         var ports = Enumerable.Range(0, ControllerConstants.PortCount).Select(index =>
         {
-            var choices = (mapper?.GetPeripherals() ?? []).Select(category => new EmulationControllerChoice(category.ToString(),
-                category == PeripheralCategory.None ? "Emulation.Controller.None" : "Emulation.Coleco.Controller." + category,
-                BindingDefinitions: mapper?.DescribeInput(category, index) ?? [],
-                CompatibleVisualIds: VisualId(category) is { } visualId ? [visualId] : [],
-                DefaultVisualId: VisualId(category),
-                VisualCommandIds: category == PeripheralCategory.Standard ? VisualCommands : category == PeripheralCategory.Driving
-                    ? DrivingVisualCommands.Where(pair => (mapper?.DescribeInput(category, index) ?? []).Any(definition => definition.Id == pair.Value))
-                        .ToDictionary(pair => pair.Key, pair => pair.Value) : category == PeripheralCategory.SuperAction
-                    ? SuperActionVisualCommands.Where(pair => (mapper?.DescribeInput(category, index) ?? []).Any(definition => definition.Id == pair.Value))
-                        .ToDictionary(pair => pair.Key, pair => pair.Value) : null,
-                VisualBindingDefinitions: category == PeripheralCategory.Driving ? new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
-                {
-                    [EmulationControllerVisualIds.ColecoDrivingController] = (mapper?.DescribeInput(category, index) ?? [])
-                        .Where(definition => DrivingVisualCommands.Values.Contains(definition.Id, StringComparer.Ordinal))
-                        .Select(definition => definition.Id == ControllerActionConstants.FireLeft ? definition with { DisplayResourceKey = "Controllers.Throttle" } : definition).ToArray()
-                } : category == PeripheralCategory.SuperAction ? new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
-                {
-                    [EmulationControllerVisualIds.ColecoSuperActionController] = mapper?.DescribeInput(category, index) ?? []
-                } : null)
+            var choices = (mapper?.GetPeripherals() ?? []).Select(category =>
             {
-                Category = category switch
+                var definitions = mapper?.DescribeInput(category, index) ?? [];
+                return new EmulationControllerChoice(category.ToString(),
+                    category == PeripheralCategory.None ? "Emulation.Controller.None" : "Emulation.Coleco.Controller." + category,
+                    BindingDefinitions: definitions,
+                    CompatibleVisualIds: VisualId(category) is { } visualId ? [visualId] : [],
+                    DefaultVisualId: VisualId(category),
+                    VisualCommandIds: CommandsForVisual(category, index, definitions),
+                    VisualBindingDefinitions: BindingsForVisual(category, index, definitions))
                 {
-                    PeripheralCategory.None => EmulationControllerCategory.None,
-                    PeripheralCategory.Standard => EmulationControllerCategory.Gamepad,
-                    PeripheralCategory.SuperAction or PeripheralCategory.Paddle => EmulationControllerCategory.Joystick,
-                    PeripheralCategory.Roller => EmulationControllerCategory.PointingDevice,
-                    PeripheralCategory.Driving => EmulationControllerCategory.RacingSimulation,
-                    _ => EmulationControllerCategory.Unspecified
-                }
+                    Category = category switch
+                    {
+                        PeripheralCategory.None => EmulationControllerCategory.None,
+                        PeripheralCategory.Standard => EmulationControllerCategory.Gamepad,
+                        PeripheralCategory.SuperAction or PeripheralCategory.Paddle => EmulationControllerCategory.Joystick,
+                        PeripheralCategory.Roller => EmulationControllerCategory.PointingDevice,
+                        PeripheralCategory.Driving => EmulationControllerCategory.RacingSimulation,
+                        _ => EmulationControllerCategory.Unspecified
+                    }
+                };
             }).ToArray();
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == index);
             var peripheral = binding?.Peripheral ?? PeripheralCategory.Standard;

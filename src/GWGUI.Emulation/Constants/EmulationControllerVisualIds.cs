@@ -15,6 +15,7 @@ public static class EmulationControllerVisualIds
     public const string ColecoController = "coleco-controller";
     public const string ColecoDrivingController = "coleco-driving-controller";
     public const string ColecoSuperActionController = "coleco-super-action-controller";
+    public const string ColecoRollerController = "coleco-roller-controller";
     public const string BandaiWonderSwan = "bandai-wonderswan";
     public const string BandaiWonderSwanColor = "bandai-wonderswan-color";
     public const string BandaiSwanCrystal = "bandai-swancrystal";

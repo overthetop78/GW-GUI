@@ -337,6 +337,22 @@ public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaE
                     Assert.Single(port.Bindings.Values);
                 }
             });
+            foreach (var selector in selectors)
+                selector.SelectedItem = selector.Items.OfType<GWGUI.App.Contracts.Emulation.Controllers.EmulationControllerCategoryChoiceView>()
+                    .Single(choice => choice.Category == GWGUI.Emulation.Enums.EmulationControllerCategory.PointingDevice);
+            var roller = module.DescribeInputSettings(controller.Apply(configuration));
+            Assert.All(roller.ControllerPorts, port =>
+            {
+                Assert.Equal("Roller", port.SelectedControllerId);
+                Assert.Equal(GWGUI.Emulation.Constants.EmulationControllerVisualIds.ColecoRollerController, port.VisualId);
+                Assert.All(port.Bindings.Values.Values, Assert.Empty);
+                Assert.Contains("FireLeft", port.Bindings.Values.Keys);
+                Assert.Contains("FireRight", port.Bindings.Values.Keys);
+                var commands = port.ControllerChoices.Single(choice => choice.Id == "Roller").VisualCommandIds!;
+                var fireButton = port.Number == 1 ? GWGUI.Emulation.Enums.EmulationControllerVisualControl.PrimaryAction : GWGUI.Emulation.Enums.EmulationControllerVisualControl.TertiaryAction;
+                Assert.Equal("FireLeft", commands[fireButton]);
+                Assert.Equal(4, commands.Count);
+            });
         }
         finally
         {

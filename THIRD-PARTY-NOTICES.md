@@ -121,3 +121,10 @@ Source: https://commons.wikimedia.org/wiki/File:Super_Action_Controller_Coleco_D
 Original: https://upload.wikimedia.org/wikipedia/commons/e/ef/Super_Action_Controller_Coleco_DSCF0353.JPG
 License for the original photograph and this adaptation: Creative Commons Attribution-ShareAlike 3.0 Unported, https://creativecommons.org/licenses/by-sa/3.0/.
 Adaptation: crop of the front-facing controller, classical silhouette alpha masking and proportional resizing to 300 x 512 pixels. No generated hardware, controls, lettering or logos. The side buttons are outside this view and remain available through the command list.
+
+## ColecoVision Roller Controller photograph
+
+Asset: `src/GWGUI.App/Assets/Controllers/coleco-roller-controller.png`.
+Source photograph published by Atariboy2600 in "Life as a Retro Video Gamer - Colecovision", AtariAge, September 2024: https://forums.atariage.com/topic/372301-life-as-a-retro-video-gamer-colecovision/.
+Original: https://media.invisioncic.com/r322239/monthly_2024_09/image.jpeg.06f9185257de0896433a83378044139c.jpeg
+Adaptation: crop of the actual Roller Controller, classical silhouette alpha masking and proportional resizing to 512 x 312 pixels. No generated or reconstructed hardware, controls, lettering or logos. No open license is asserted for this source photograph.

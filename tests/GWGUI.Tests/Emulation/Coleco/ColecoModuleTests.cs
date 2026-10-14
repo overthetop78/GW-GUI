@@ -90,6 +90,25 @@ public sealed class ColecoModuleTests
                             Assert.Equal(spinner, choice.VisualCommandIds.ContainsKey(GWGUI.Emulation.Enums.EmulationControllerVisualControl.StickRight));
                             Assert.All(choice.VisualCommandIds.Values, id => Assert.Contains(definitions, action => action.Id == id));
                         }
+                        if (choice.Id == PeripheralCategory.Roller.ToString())
+                        {
+                            Assert.Equal(GWGUI.Emulation.Constants.EmulationControllerVisualIds.ColecoRollerController, choice.DefaultVisualId);
+                            var visualDefinitions = choice.VisualBindingDefinitions![choice.DefaultVisualId!];
+                            Assert.Equal(definitions.Select(action => action.Id), visualDefinitions.Select(action => action.Id));
+                            Assert.All(visualDefinitions, action => Assert.Empty(action.DefaultBinding));
+                            var commands = choice.VisualCommandIds!;
+                            Assert.Equal(4, commands.Count);
+                            var negative = port.Number == 1 ? GWGUI.Emulation.Enums.EmulationControllerVisualControl.StickLeft : GWGUI.Emulation.Enums.EmulationControllerVisualControl.StickUp;
+                            var positive = port.Number == 1 ? GWGUI.Emulation.Enums.EmulationControllerVisualControl.StickRight : GWGUI.Emulation.Enums.EmulationControllerVisualControl.StickDown;
+                            Assert.Equal("SpinnerLeft", commands[negative]);
+                            Assert.Equal("SpinnerRight", commands[positive]);
+                            Assert.All(commands.Values, id => Assert.Contains(definitions, action => action.Id == id));
+                            if (port.Number == 2)
+                            {
+                                Assert.Equal("Emulation.Controller.Action.Up", visualDefinitions.Single(action => action.Id == "SpinnerLeft").DisplayResourceKey);
+                                Assert.Equal("Emulation.Controller.Action.Down", visualDefinitions.Single(action => action.Id == "SpinnerRight").DisplayResourceKey);
+                            }
+                        }
                     }
                 }
             }
