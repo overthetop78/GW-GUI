@@ -15,6 +15,37 @@ namespace GWGUI.Tests.Emulation.Coleco;
 public sealed class ColecoModuleTests
 {
     [Theory]
+    [InlineData(MachineModel.ColecoVision)]
+    [InlineData(MachineModel.Adam)]
+    public void EverySupportedControllerExposesOppositeDirectionsWithoutPhysicalDefaults(MachineModel model)
+    {
+        foreach (var core in new[] { Emulator.GearColeco, Emulator.JollyCV, Emulator.BlueMSX })
+        {
+            if (!ConfigurationFunctions.IsCompatible(model, core)) continue;
+            var settings = InputSettingsFunctions.Describe(new MachineConfiguration(model, core: core));
+            foreach (var port in settings.ControllerPorts)
+            {
+                Assert.Empty(port.Bindings.Values);
+                foreach (var choice in port.ControllerChoices)
+                {
+                    var definitions = choice.BindingDefinitions!;
+                    Assert.All(definitions, action => Assert.Empty(action.DefaultBinding));
+                    foreach (var action in definitions.Where(action => action.OppositeDirectionId is not null))
+                        Assert.Equal(action.Id, Assert.Single(definitions, other => other.Id == action.OppositeDirectionId).OppositeDirectionId);
+                    if (choice.Id == PeripheralCategory.None.ToString()) Assert.Empty(definitions);
+                    else
+                    {
+                        Assert.Equal("Down", Assert.Single(definitions, action => action.Id == "Up").OppositeDirectionId);
+                        Assert.Equal("Right", Assert.Single(definitions, action => action.Id == "Left").OppositeDirectionId);
+                        if (choice.Id != PeripheralCategory.Standard.ToString())
+                            Assert.Equal("SpinnerRight", Assert.Single(definitions, action => action.Id == "SpinnerLeft").OppositeDirectionId);
+                    }
+                }
+            }
+        }
+    }
+
+    [Theory]
     [InlineData(false)]
     [InlineData(true)]
     public void BlueMsxAcceptsRawCartridgesWithoutChangingOtherAdapters(bool requiresFilePath)

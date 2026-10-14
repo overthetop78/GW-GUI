@@ -16,6 +16,28 @@ public sealed class FairchildModuleTests
     [Theory]
     [InlineData(MachineModel.ChannelF)]
     [InlineData(MachineModel.ChannelFSystemII)]
+    public void ControllerDirectionsExposeOppositeCommandsWithoutPhysicalDefaults(MachineModel model)
+    {
+        var settings = InputSettingsFunctions.Describe(new MachineConfiguration(model));
+        Assert.Equal(2, settings.ControllerPorts.Count);
+        foreach (var port in settings.ControllerPorts)
+        {
+            Assert.Empty(port.Bindings.Values);
+            var definitions = port.Bindings.Definitions;
+            Assert.All(definitions, action => Assert.Empty(action.DefaultBinding));
+            Assert.Equal(8, definitions.Count(action => action.OppositeDirectionId is not null));
+            foreach (var action in definitions.Where(action => action.OppositeDirectionId is not null))
+                Assert.Equal(action.Id, Assert.Single(definitions, other => other.Id == action.OppositeDirectionId).OppositeDirectionId);
+            Assert.Equal("Down", Assert.Single(definitions, action => action.Id == "Up").OppositeDirectionId);
+            Assert.Equal("Right", Assert.Single(definitions, action => action.Id == "Left").OppositeDirectionId);
+            Assert.Equal("RotateRight", Assert.Single(definitions, action => action.Id == "RotateLeft").OppositeDirectionId);
+            Assert.Equal("Pull", Assert.Single(definitions, action => action.Id == "Push").OppositeDirectionId);
+        }
+    }
+
+    [Theory]
+    [InlineData(MachineModel.ChannelF)]
+    [InlineData(MachineModel.ChannelFSystemII)]
     public void EveryDisplayedModuleLabelResolvesInEveryEmbeddedCulture(MachineModel model)
     {
         var http = new HttpClient();

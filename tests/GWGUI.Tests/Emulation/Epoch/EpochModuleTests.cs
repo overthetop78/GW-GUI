@@ -18,7 +18,10 @@ public sealed class EpochModuleTests
     [Theory]
     [InlineData(MachineModel.CassetteVision)]
     [InlineData(MachineModel.CassetteVisionJr)]
-    public void EveryNativeAnalogDirectionPublishesItsOppositeInTheEditor(MachineModel model)
+    [InlineData(MachineModel.SuperCassetteVision)]
+    [InlineData(MachineModel.SuperCassetteVisionYeno)]
+    [InlineData(MachineModel.SuperCassetteVisionLady)]
+    public void EveryNativeDirectionPublishesItsOppositeInTheEditor(MachineModel model)
     {
         var settings = InputSettingsFunctions.Describe(new MachineConfiguration(model));
         foreach (var port in settings.ControllerPorts)
@@ -26,14 +29,30 @@ public sealed class EpochModuleTests
             var definitions = port.Bindings.Definitions.ToDictionary(action => action.Id, StringComparer.Ordinal);
             var analog = definitions.Values.Where(action => action.Id.StartsWith("Paddle", StringComparison.Ordinal)
                 || action.Id.StartsWith("GunX", StringComparison.Ordinal) || action.Id.StartsWith("GunY", StringComparison.Ordinal)).ToArray();
-            Assert.Equal((model == MachineModel.CassetteVision ? 4 : 0) + (port.Number == 1 ? 4 : 0), analog.Length);
+            var cassette = model is MachineModel.CassetteVision or MachineModel.CassetteVisionJr;
+            Assert.Equal(cassette ? (model == MachineModel.CassetteVision ? 4 : 0) + (port.Number == 1 ? 4 : 0) : 0, analog.Length);
             foreach (var action in analog)
             {
                 Assert.Empty(action.DefaultBinding);
                 Assert.NotNull(action.OppositeDirectionId);
                 Assert.Equal(action.Id, definitions[action.OppositeDirectionId].OppositeDirectionId);
             }
-            Assert.All(definitions.Values.Except(analog), action => Assert.Null(action.OppositeDirectionId));
+            if (cassette)
+            {
+                Assert.Equal("LeverRight", definitions["LeverLeft"].OppositeDirectionId);
+                Assert.Equal("LeverLeft", definitions["LeverRight"].OppositeDirectionId);
+                Assert.All(definitions.Values.Except(analog).Where(action => action.Id is not ("LeverLeft" or "LeverRight")), action => Assert.Null(action.OppositeDirectionId));
+            }
+            else
+            {
+                Assert.Empty(port.Bindings.Values);
+                Assert.Equal(4, definitions.Values.Count(action => action.OppositeDirectionId is not null));
+                Assert.All(definitions.Values, action => Assert.Empty(action.DefaultBinding));
+                Assert.Equal("Down", definitions["Up"].OppositeDirectionId);
+                Assert.Equal("Right", definitions["Left"].OppositeDirectionId);
+                foreach (var action in definitions.Values.Where(action => action.OppositeDirectionId is not null))
+                    Assert.Equal(action.Id, definitions[action.OppositeDirectionId!].OppositeDirectionId);
+            }
         }
     }
 
