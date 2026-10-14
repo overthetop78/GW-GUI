@@ -1540,7 +1540,12 @@ public sealed class ConsoleFamilyModuleTests
         Assert.Equal(EmulationMediaSlot.Cartridge1, EmulationMediaSlot.FromProtocolValue(8));
     }
 
-    private static string RepositoryRoot() => Path.GetFullPath(Path.Combine(Path.GetDirectoryName(typeof(ConsoleFamilyModuleTests).Assembly.Location)!, "..", "..", "..", "..", ".."));
+    private static string RepositoryRoot()
+    {
+        for (var directory = new DirectoryInfo(Path.GetDirectoryName(typeof(ConsoleFamilyModuleTests).Assembly.Location)!); directory is not null; directory = directory.Parent)
+            if (Directory.Exists(Path.Combine(directory.FullName, "src", "GWGUI.Emulation"))) return directory.FullName;
+        throw new DirectoryNotFoundException("Repository source directory not found.");
+    }
 
     private static string[] CommonFiles(string root, string family) =>
         Directory.EnumerateFiles(Path.Combine(root, "src", $"GWGUI.Emulation.{family}", "Common"), "*.cs", SearchOption.AllDirectories)
