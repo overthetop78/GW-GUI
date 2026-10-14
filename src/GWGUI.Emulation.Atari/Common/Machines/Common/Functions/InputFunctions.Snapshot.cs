@@ -8,7 +8,7 @@ internal static class InputSnapshotFunctions
     {
         var mappedKeyboard = snapshot with
         {
-            Keys = EmulationInputMappingFunctions.MapKeyboard(snapshot.Keys, configuration?.KeyboardMappings)
+            Keys = EmulationInputMappingFunctions.MapKeyboard(snapshot, configuration?.KeyboardBindings ?? configuration?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal))
         };
         var withDeadZones = ControllerFunctions.ApplyDeadZones(mappedKeyboard, configuration?.Controllers);
         if (configuration?.Controllers is not { Count: > 0 }) return withDeadZones with { Controllers = [] };

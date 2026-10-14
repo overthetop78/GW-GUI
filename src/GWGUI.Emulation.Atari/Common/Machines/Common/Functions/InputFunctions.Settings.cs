@@ -14,7 +14,7 @@ internal static partial class InputSettingsFunctions
     {
         var compatibility = CompatibilityCatalog.Get(configuration.Model);
         var input = configuration.Input ?? new InputConfiguration();
-        var keyboard = compatibility.VisibleTabs.Contains(SettingsTab.Keyboard) ? new EmulationInputBindingSet(KeyboardDefinitions(configuration.Model), input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard) : null;
+        var keyboard = compatibility.VisibleTabs.Contains(SettingsTab.Keyboard) ? new EmulationInputBindingSet(KeyboardDefinitions(configuration.Model), input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mouse = compatibility.VisibleTabs.Contains(SettingsTab.Mouse) ? new EmulationInputBindingSet(MouseDefinitions(), MouseValues(configuration.Options), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         var configured = input.Controllers ?? [];
         var ports = Enumerable.Range(0, compatibility.ControllerPortCount).Select(index =>
