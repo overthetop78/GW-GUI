@@ -30,7 +30,7 @@ internal static class InputSettingsFunctions
                     [EmulationControllerVisualControl.SecondaryAction] = "Pull",
                     [EmulationControllerVisualControl.TertiaryAction] = "RotateLeft",
                     [EmulationControllerVisualControl.QuaternaryAction] = "RotateRight"
-                });
+                }) { Category = EmulationControllerCategory.Joystick };
             return new EmulationControllerPort(port + 1, [choice], PeripheralCategory.Standard.ToString(), binding?.DeviceId,
                 new(definitions, binding?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                 binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId);
