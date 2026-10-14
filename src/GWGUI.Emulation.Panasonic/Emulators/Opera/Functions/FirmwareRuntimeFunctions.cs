@@ -8,7 +8,12 @@ internal static class FirmwareRuntimeFunctions
     internal static bool IsCompatible(MachineConfiguration configuration, FirmwareRole role, string path)
     {
         if (configuration.Model != MachineModel.ThreeDO || !Enum.IsDefined(role)) return false;
-        try { var file = new FileInfo(path); return file.Exists && file.Length == NativeFirmwareConstants.RomSizeBytes && file.Extension.ToLowerInvariant() is ".bin" or ".rom"; }
+        try
+        {
+            var file = new FileInfo(path);
+            return file.Exists && file.Extension.ToLowerInvariant() is ".bin" or ".rom"
+                && (file.Length == NativeFirmwareConstants.RomSizeBytes || role == FirmwareRole.FontRom && file.Length == NativeFirmwareConstants.Fz1KanjiRomSizeBytes);
+        }
         catch (IOException) { return false; }
         catch (UnauthorizedAccessException) { return false; }
     }
