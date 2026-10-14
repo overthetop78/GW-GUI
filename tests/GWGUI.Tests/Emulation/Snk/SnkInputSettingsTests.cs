@@ -40,20 +40,30 @@ public sealed class SnkInputSettingsTests
         }
         var firstPort = settings.ControllerPorts[0];
         var target = firstPort.Bindings.Definitions[0].Id;
-        var assignedPort = firstPort with { Bindings = firstPort.Bindings with { Values = new Dictionary<string, string> { [target] = "Keyboard:Z" } } };
-        var assignedSettings = settings with { ControllerPorts = settings.ControllerPorts.Select(port => port.Number == firstPort.Number ? assignedPort : port).ToArray() };
-        var assigned = InputSettingsFunctions.Apply(configuration, assignedSettings);
-        var assignedSnapshot = InputSnapshotFunctions.Apply(physical, assigned, mapper);
-        Assert.NotEqual(0u, assignedSnapshot.Controllers[0].Buttons);
-        Assert.All(assignedSnapshot.Controllers.Skip(1), controller => Assert.Equal(EmulationControllerState.Empty, controller));
-        Assert.Empty(assignedSnapshot.Keys);
-        Assert.Equal(EmulationInputSnapshot.Empty.Pointer, assignedSnapshot.Pointer);
-        var described = InputSettingsFunctions.Describe(assigned);
-        Assert.Equal("Keyboard:Z", described.ControllerPorts[0].Bindings.Values[target]);
-        var erasedPort = described.ControllerPorts[0] with { Bindings = described.ControllerPorts[0].Bindings with { Values = new Dictionary<string, string>() } };
-        var erasedSettings = described with { ControllerPorts = described.ControllerPorts.Select(port => port.Number == firstPort.Number ? erasedPort : port).ToArray() };
-        var erased = InputSettingsFunctions.Apply(assigned, erasedSettings);
-        Assert.All(InputSettingsFunctions.Describe(erased).ControllerPorts, port => Assert.Empty(port.Bindings.Values));
-        Assert.All(InputSnapshotFunctions.Apply(physical, erased, mapper).Controllers, controller => Assert.Equal(EmulationControllerState.Empty, controller));
+        foreach (var source in new[] { "Keyboard:Z", "Keyboard:Z+Mouse:Left+Controller:A" })
+        {
+            var assignedPort = firstPort with { Bindings = firstPort.Bindings with { Values = new Dictionary<string, string> { [target] = source } } };
+            var assignedSettings = settings with { ControllerPorts = settings.ControllerPorts.Select(port => port.Number == firstPort.Number ? assignedPort : port).ToArray() };
+            var assigned = InputSettingsFunctions.Apply(configuration, assignedSettings);
+            var assignedSnapshot = InputSnapshotFunctions.Apply(physical, assigned, mapper);
+            Assert.NotEqual(0u, assignedSnapshot.Controllers[0].Buttons);
+            Assert.All(assignedSnapshot.Controllers.Skip(1), controller => Assert.Equal(EmulationControllerState.Empty, controller));
+            Assert.Empty(assignedSnapshot.Keys);
+            Assert.Equal(EmulationInputSnapshot.Empty.Pointer, assignedSnapshot.Pointer);
+            var described = InputSettingsFunctions.Describe(assigned);
+            Assert.Equal(source, described.ControllerPorts[0].Bindings.Values[target]);
+            if (source.Contains('+'))
+                foreach (var released in new[]
+                {
+                    physical with { Keys = EmulationInputSnapshot.Empty.Keys },
+                    physical with { Pointer = EmulationInputSnapshot.Empty.Pointer },
+                    physical with { Controllers = [EmulationControllerState.Empty] }
+                }) Assert.Equal(0u, InputSnapshotFunctions.Apply(released, assigned, mapper).Controllers[0].Buttons);
+            var erasedPort = described.ControllerPorts[0] with { Bindings = described.ControllerPorts[0].Bindings with { Values = new Dictionary<string, string>() } };
+            var erasedSettings = described with { ControllerPorts = described.ControllerPorts.Select(port => port.Number == firstPort.Number ? erasedPort : port).ToArray() };
+            var erased = InputSettingsFunctions.Apply(assigned, erasedSettings);
+            Assert.All(InputSettingsFunctions.Describe(erased).ControllerPorts, port => Assert.Empty(port.Bindings.Values));
+            Assert.All(InputSnapshotFunctions.Apply(physical, erased, mapper).Controllers, controller => Assert.Equal(EmulationControllerState.Empty, controller));
+        }
     }
 }
