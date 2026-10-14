@@ -21,7 +21,8 @@ internal static class InputSettingsFunctions
 
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
-        var keyboard = configuration.Family == MachineFamily.P2000 ? new EmulationInputBindingSet(P2000KeyboardDictionary.Definitions, configuration.Input.Keyboard ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard) : null;
+        var keyboard = configuration.Family == MachineFamily.P2000 ? new EmulationInputBindingSet(P2000KeyboardDictionary.Definitions, configuration.Input.Keyboard ?? new Dictionary<string, string>(),
+            EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var ports = Enumerable.Range(ControllerConstants.FirstPort, ConfigurationFunctions.ControllerPortCount(configuration.Model))
             .Select(port =>
             {

@@ -15,15 +15,16 @@ internal static class P2000KeyboardDictionary
 
     internal static IReadOnlyList<InputBindingDefinition> Definitions { get; } = Defaults.Select(pair => new InputBindingDefinition(pair.Key.ToString(), InputMappingConstants.KeyboardResourcePrefix + pair.Key, pair.Value.ToString())).ToArray();
 
-    internal static IReadOnlySet<EmulationKey> Apply(IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, string>? configured)
+    internal static IReadOnlySet<EmulationKey> Apply(EmulationInputSnapshot snapshot, IReadOnlyDictionary<string, string>? configured)
     {
-        var result = new HashSet<EmulationKey>(keys);
+        var result = new HashSet<EmulationKey>(snapshot.Keys);
+        var controller = snapshot.Controllers.Count > 0 ? snapshot.Controllers[0] : EmulationControllerState.Empty;
         // Default host keys do not remain immutable aliases after reassignment.
         foreach (var nativeAlias in Defaults.Values) result.Remove(nativeAlias);
         foreach (var binding in Definitions)
         {
             var source = configured?.GetValueOrDefault(binding.Id, binding.DefaultBinding) ?? binding.DefaultBinding;
-            if (TrySource(source, out var hostKey) && keys.Contains(hostKey))
+            if (!string.IsNullOrWhiteSpace(source) && EmulationInputMappingFunctions.InputSourcePressure(source, controller, snapshot) > .5f)
                 result.Add(Enum.Parse<EmulationKey>(binding.Id));
         }
         return result;
