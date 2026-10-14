@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Thomson\GWGUI.Emulation.Thomson.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Watara\GWGUI.Emulation.Watara.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation.Wenquxing\GWGUI.Emulation.Wenquxing.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Emulation.Panasonic\GWGUI.Emulation.Panasonic.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.MediaFileSystems\GWGUI.MediaFileSystems.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.MediaAnalysis\GWGUI.MediaAnalysis.csproj" />
