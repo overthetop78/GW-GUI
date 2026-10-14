@@ -82,6 +82,14 @@ public sealed class ColecoModuleTests
                         if (spinner)
                             Assert.Equal("SpinnerRight", Assert.Single(definitions, action => action.Id == "SpinnerLeft").OppositeDirectionId);
                         else Assert.DoesNotContain(definitions, action => action.Id is "SpinnerLeft" or "SpinnerRight");
+                        if (choice.Id == PeripheralCategory.SuperAction.ToString())
+                        {
+                            Assert.Equal(GWGUI.Emulation.Constants.EmulationControllerVisualIds.ColecoSuperActionController, choice.DefaultVisualId);
+                            Assert.Equal(definitions, choice.VisualBindingDefinitions![choice.DefaultVisualId!]);
+                            Assert.Equal(spinner, choice.VisualCommandIds!.ContainsKey(GWGUI.Emulation.Enums.EmulationControllerVisualControl.StickLeft));
+                            Assert.Equal(spinner, choice.VisualCommandIds.ContainsKey(GWGUI.Emulation.Enums.EmulationControllerVisualControl.StickRight));
+                            Assert.All(choice.VisualCommandIds.Values, id => Assert.Contains(definitions, action => action.Id == id));
+                        }
                     }
                 }
             }

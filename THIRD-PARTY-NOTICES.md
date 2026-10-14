@@ -112,3 +112,12 @@ Photograph by Evan-Amos, 2 August 2016, dedicated to the public domain by the au
 Source: https://commons.wikimedia.org/wiki/File:ColecoVision-Expansion2.jpg
 Original: https://upload.wikimedia.org/wikipedia/commons/7/7f/ColecoVision-Expansion2.jpg
 Adaptation: proportional resizing to 512 x 407 pixels and removal of the exterior white background by classical alpha processing. No generated or reconstructed hardware, controls, lettering or logos.
+
+## ColecoVision Super Action Controller photograph
+
+Asset: `src/GWGUI.App/Assets/Controllers/coleco-super-action-controller.png`.
+Photograph by Miguel Durán (Museo8bits), https://www.museo8bits.es/.
+Source: https://commons.wikimedia.org/wiki/File:Super_Action_Controller_Coleco_DSCF0353.JPG
+Original: https://upload.wikimedia.org/wikipedia/commons/e/ef/Super_Action_Controller_Coleco_DSCF0353.JPG
+License for the original photograph and this adaptation: Creative Commons Attribution-ShareAlike 3.0 Unported, https://creativecommons.org/licenses/by-sa/3.0/.
+Adaptation: crop of the front-facing controller, classical silhouette alpha masking and proportional resizing to 300 x 512 pixels. No generated hardware, controls, lettering or logos. The side buttons are outside this view and remain available through the command list.

@@ -293,9 +293,16 @@ public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaE
             Assert.All(restored.ControllerPorts, port =>
             {
                 Assert.Equal("SuperAction", port.SelectedControllerId);
-                Assert.Null(port.VisualId);
+                Assert.Equal(GWGUI.Emulation.Constants.EmulationControllerVisualIds.ColecoSuperActionController, port.VisualId);
                 Assert.NotEmpty(port.Bindings.Definitions);
                 Assert.All(port.Bindings.Values.Values, Assert.Empty);
+                Assert.Contains("Purple", port.Bindings.Values.Keys);
+                Assert.Contains("Blue", port.Bindings.Values.Keys);
+                var choice = port.ControllerChoices.Single(item => item.Id == "SuperAction");
+                if (port.Number == 1)
+                    Assert.Equal("SpinnerLeft", choice.VisualCommandIds![GWGUI.Emulation.Enums.EmulationControllerVisualControl.StickLeft]);
+                else
+                    Assert.DoesNotContain(GWGUI.Emulation.Enums.EmulationControllerVisualControl.StickLeft, choice.VisualCommandIds!.Keys);
             });
             foreach (var selector in selectors)
                 selector.SelectedItem = selector.Items.OfType<GWGUI.App.Contracts.Emulation.Controllers.EmulationControllerCategoryChoiceView>()

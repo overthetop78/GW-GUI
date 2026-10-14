@@ -18,6 +18,7 @@ internal static class ControllerArtworkFileNames
     internal const string EpochSuperCassetteVisionController = "epoch-super-cassette-vision-controller.png";
     internal const string ColecoController = "colecovision-controller.png";
     internal const string ColecoDrivingController = "coleco-driving-controller.png";
+    internal const string ColecoSuperActionController = "coleco-super-action-controller.png";
     internal const string BandaiWonderSwan = "bandai-wonderswan.png";
     internal const string BandaiWonderSwanColor = "bandai-wonderswan-color.png";
     internal const string BandaiSwanCrystal = "bandai-swancrystal.png";

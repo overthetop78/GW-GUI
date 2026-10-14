@@ -62,6 +62,7 @@ internal static class InputSettingsFunctions
     {
         PeripheralCategory.Standard => EmulationControllerVisualIds.ColecoController,
         PeripheralCategory.Driving => EmulationControllerVisualIds.ColecoDrivingController,
+        PeripheralCategory.SuperAction => EmulationControllerVisualIds.ColecoSuperActionController,
         _ => null
     };
 
@@ -71,6 +72,14 @@ internal static class InputSettingsFunctions
         [EmulationControllerVisualControl.DirectionRight] = ControllerActionConstants.SpinnerRight,
         [EmulationControllerVisualControl.PrimaryAction] = ControllerActionConstants.FireLeft
     };
+
+    private static readonly IReadOnlyDictionary<EmulationControllerVisualControl, string> SuperActionVisualCommands =
+        VisualCommands.Where(pair => pair.Key is not (EmulationControllerVisualControl.PrimaryAction or EmulationControllerVisualControl.SecondaryAction))
+            .Concat(new Dictionary<EmulationControllerVisualControl, string>
+            {
+                [EmulationControllerVisualControl.StickLeft] = ControllerActionConstants.SpinnerLeft,
+                [EmulationControllerVisualControl.StickRight] = ControllerActionConstants.SpinnerRight
+            }).ToDictionary(pair => pair.Key, pair => pair.Value);
 
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
@@ -87,12 +96,17 @@ internal static class InputSettingsFunctions
                 DefaultVisualId: VisualId(category),
                 VisualCommandIds: category == PeripheralCategory.Standard ? VisualCommands : category == PeripheralCategory.Driving
                     ? DrivingVisualCommands.Where(pair => (mapper?.DescribeInput(category, index) ?? []).Any(definition => definition.Id == pair.Value))
+                        .ToDictionary(pair => pair.Key, pair => pair.Value) : category == PeripheralCategory.SuperAction
+                    ? SuperActionVisualCommands.Where(pair => (mapper?.DescribeInput(category, index) ?? []).Any(definition => definition.Id == pair.Value))
                         .ToDictionary(pair => pair.Key, pair => pair.Value) : null,
                 VisualBindingDefinitions: category == PeripheralCategory.Driving ? new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
                 {
                     [EmulationControllerVisualIds.ColecoDrivingController] = (mapper?.DescribeInput(category, index) ?? [])
                         .Where(definition => DrivingVisualCommands.Values.Contains(definition.Id, StringComparer.Ordinal))
                         .Select(definition => definition.Id == ControllerActionConstants.FireLeft ? definition with { DisplayResourceKey = "Controllers.Throttle" } : definition).ToArray()
+                } : category == PeripheralCategory.SuperAction ? new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
+                {
+                    [EmulationControllerVisualIds.ColecoSuperActionController] = mapper?.DescribeInput(category, index) ?? []
                 } : null)
             {
                 Category = category switch
