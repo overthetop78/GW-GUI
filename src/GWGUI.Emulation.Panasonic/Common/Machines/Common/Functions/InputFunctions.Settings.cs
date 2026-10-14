@@ -15,7 +15,17 @@ internal static class InputSettingsFunctions
                 Visuals(peripheral),
                 Visuals(peripheral).FirstOrDefault(),
                 ControllerCatalog.VisualCommands(peripheral)
-            )).ToArray();
+            )
+            {
+                Category = peripheral switch
+                {
+                    PeripheralCategory.None => EmulationControllerCategory.None,
+                    PeripheralCategory.ThreeDOPad => EmulationControllerCategory.Gamepad,
+                    PeripheralCategory.Flightstick => EmulationControllerCategory.FlightSimulation,
+                    PeripheralCategory.Mouse or PeripheralCategory.Lightgun or PeripheralCategory.ArcadeLightgun or PeripheralCategory.OrbatakTrackball => EmulationControllerCategory.PointingDevice,
+                    _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
+                }
+            }).ToArray();
         var ports = Enumerable.Range(ControllerConstants.FirstPort, ControllerConstants.PortCount).Select(port =>
         {
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
