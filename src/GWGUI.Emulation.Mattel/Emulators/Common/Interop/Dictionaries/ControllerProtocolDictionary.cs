@@ -5,7 +5,17 @@ internal sealed record NativeInputAction(ControllerCommand Command)
     internal string Id => Command.ToString();
     internal uint ButtonMask => 1u << (int)Command;
     internal string DefaultBinding => string.Empty;
-    internal InputBindingDefinition Definition => new(Id, Command is ControllerCommand.Up or ControllerCommand.Down or ControllerCommand.Left or ControllerCommand.Right ? "Emulation.Controller.Action." + Id : InputMappingConstants.ResourcePrefix + Id, DefaultBinding);
+    internal InputBindingDefinition Definition => new(Id, Command is ControllerCommand.Up or ControllerCommand.Down or ControllerCommand.Left or ControllerCommand.Right ? "Emulation.Controller.Action." + Id : InputMappingConstants.ResourcePrefix + Id, DefaultBinding)
+    {
+        OppositeDirectionId = Command switch
+        {
+            ControllerCommand.Up => nameof(ControllerCommand.Down),
+            ControllerCommand.Down => nameof(ControllerCommand.Up),
+            ControllerCommand.Left => nameof(ControllerCommand.Right),
+            ControllerCommand.Right => nameof(ControllerCommand.Left),
+            _ => null
+        }
+    };
 }
 
 internal static class ControllerProtocolDictionary
