@@ -994,11 +994,36 @@ Livraison des deux reprises Coleco : 32 contrôles ciblés réussis ; build Debu
   - [x] Modifier docs/tasks/emulation/commun.md : consigner le build Debug complet et la présence des 23 modules et de gwgui.exe après remplacement du PNG, avec les dernières corrections App livrées.
   - [x] Modifier docs/tasks/emulation/commun.md : consigner les corrections réellement effectuées, leurs contrôles et leur livraison ; commiter avec les fichiers de production modifiés, sans commit de suivi isolé.
 
-- [ ] Reprendre Spectrum SE lorsque sa photographie complète sera disponible.
-  - [ ] Modifier src/GWGUI.Emulation.Sinclair/Assets/Machines/SpectrumSe.png si un défaut restant est confirmé : conserver la façade, les commandes, les proportions et la photographie réelle.
+- [x] Examiner les deux autres publications photographiques du prototype Spectrum SE pour préparer son remplacement.
+  - [x] Créer artifacts/spectrum-se-rework/ZXF03.pdf et ses images photographiques extraites : examiner la publication originale présentant le prototype et son clavier externe, sans utiliser une photo d un autre modèle.
+  - [x] Créer artifacts/spectrum-se-rework/Spectrumpedia.pdf : comparer la photographie du Spectrum SE publiée dans cette autre référence ; rejeter le candidat sombre de ZXF03 avant toute modification de production.
+  - [x] Créer artifacts/spectrum-se-rework/candidate.png et preview.png : détourer classiquement la photographie retenue, conserver le matériel réel et les proportions, maximum 512 px ; examiner les deux fonds avant remplacement.
+  - [x] Supprimer artifacts/spectrum-se-rework : retirer les publications et candidats rejetés, conserver le PNG de production jusqu à obtention d une vraie amélioration.
+
+- [x] Revoir le deuxième lot de dix photographies de machines Apple, Bandai, Coleco et Epoch.
+  - [x] Créer artifacts/machine-artwork-batch-02/preview.png : composer les dix photos sur fonds clair et sombre, avec leurs noms et leurs proportions ; libérer les ressources graphiques dans finally.
+  - [x] Modifier docs/tasks/emulation/commun.md : consigner les défauts réellement visibles et préparer les corrections précises de ces fichiers, sans modifier les images sur la seule couleur du fond transparent.
+  - [x] Créer artifacts/machine-artwork-batch-02/adam-source.jpg : récupérer la photographie haute définition de l ADAM publiée par Akbkuku et vérifier le cadrage réel avant remplacement du visuel actuel crénelé.
+  - [x] Créer artifacts/machine-artwork-batch-02/adam-candidate.png et adam-preview.png : détourer la machine réelle à partir de cette photographie, sans reconstruire les pièces, puis contrôler la transparence et la netteté sur deux fonds.
+  - [x] Modifier src/GWGUI.Emulation.Coleco/Assets/Machines/Adam.png et THIRD-PARTY-NOTICES.md : intégrer seulement le candidat fidèle améliorant effectivement le visuel, avec source et licence.
+  - [x] Supprimer les sources, candidats et planches possédés sous artifacts/machine-artwork-batch-02 après examen, puis le dossier temporaire vide.
+
+- [x] Poursuivre la revue des photographies de machines restantes avant un build groupé.
+  - [x] Créer artifacts/machine-artwork-remaining/batch-03.png à batch-08.png : afficher les photos restantes par lots de dix sur fond clair et sombre, noms et proportions conservés, libérer les ressources graphiques dans finally.
+  - [x] Modifier docs/tasks/emulation/commun.md : inscrire les défauts effectivement confirmés et les actions de leurs fichiers avant toute retouche supplémentaire.
+  - [x] Supprimer les planches possédées dans artifacts/machine-artwork-remaining après examen, puis le dossier vide.
+  - [x] Modifier docs/tasks/emulation/commun.md : consigner les modifications effectives et leur livraison après build complet ; commiter le groupe des visuels avec les crédits, sans push.
+- [ ] Terminer le remplacement de la photo Spectrum SE lorsque la source respecte la fidélité exigée.
+  - [ ] Modifier src/GWGUI.Emulation.Sinclair/Assets/Machines/SpectrumSe.png : intégrer une photographie du modèle exact mieux définie et mieux cadrée, sans substituer un Spectrum 48K ou Timex de série au prototype.
 
 Premier lot Acorn/Apple : contrôlé sur fonds clair et sombre. AppleIIJPlus montre un crénelage marqué et une définition insuffisante ; remplacement par une photo réelle plus nette à préparer. Les neuf autres photos ne montrent pas de large fond extérieur dans cette composition. La couleur claire des contours des IIe nécessite un examen rapproché avant de la supprimer ; aucune retouche fondée seulement sur leur couleur blanche.
 
 Revue des périphériques : 38 photos examinées sur fond clair et sombre. Franges extérieures corrigées pour Fairchild Channel F, Thomson MJ 90-102, Neo Geo Pocket et Neo Geo Pocket Color ; dimensions et cadrages conservés, aucune association ni zone modifiée. Spectrum SE est uniquement une photo de machine dans le module Sinclair, absente du catalogue App des manettes. La revue des machines est suspendue au profit des périphériques ; aucun candidat Apple J-Plus intégré. Sources et aperçus temporaires des deux revues supprimés, toutes les surfaces de traitement libérées. Aucun build ni test lancé pour ces seules corrections de pixels. Cette revue ne vaut pas acceptation visuelle de l utilisateur.
 
 Apple II J-Plus : photographie originale 2000 x 1497 remplacée après masque classique de la silhouette, sortie transparente 512 px maximum ; badge et caractères katakana conservés, contrôle sur fonds clair et sombre. Crédit RR Auction ajouté au fichier central. Source et candidats supprimés. Build Debug complet terminé code 0 via le script PowerShell existant ; gwgui.exe et 23 entryAssembly présents. SHA256 du PNG embarqué dans le module Apple identique au fichier source. Stream et contexte de lecture libérés, aucune fenêtre créée. Les corrections des quatre PNG de périphériques App précédentes sont également recompilées dans cette livraison. Aucun nouveau test ni script conservé.
+
+Recherche Spectrum SE : ZXF03 montre le prototype modifié sur base TC2048 avec clavier Cherry externe. Image extraite et remise à l endroit ; candidat du boîtier seul examiné puis rejeté car sombre et insuffisamment défini. Spectrumpedia volume 2 page 55 décrit le SE sans fournir une meilleure photographie. Site du constructeur inaccessible lors de la consultation. Aucun candidat intégré, aucune image de clavier ajoutée au catalogue des manettes ; remplacement SE toujours requis.
+
+Revue des lots 2 à 8 : les 70 autres photos examinées sur deux fonds. ADAM repris depuis l original Akbkuku 5885 x 3036, contour antialiasé, intérieur du câble détaché du fond, sortie 512 x 240 ; légendes et pièces conservées. Le candidat a été examiné avant intégration. Les photos de machines intègrent parfois leur clavier, leurs manettes ou leur carte mère : cela ne crée aucun périphérique de commande dans le catalogue App. Aucune substitution de modèle effectuée. Spectrum SE reste explicitement ouvert ; les sources comparées ne donnent pas encore un remplacement visuellement acceptable.
+
+Livraison ADAM : build Debug complet terminé code 0 ; application et 23 entryAssembly présents. Le PNG embarqué dans gwgui.emulation.coleco.dll a le même SHA256 que le fichier source. Stream et contexte de lecture libérés dans finally, aucune fenêtre créée pour ce contrôle. Tous les dossiers temporaires de cette tranche ont été supprimés. Cette livraison concerne la photo ADAM ; le remplacement Spectrum SE reste requis, aucun candidat rejeté n est livré.

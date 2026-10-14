@@ -133,3 +133,11 @@ Asset: `src/GWGUI.Emulation.Apple/Assets/Machines/AppleIIJPlus.png`.
 Source photograph published by RR Auction: https://www.rrauction.com/auctions/lot-detail/349793807146036-apple-ii-j-plus-computer/.
 Original: https://cdn.rrauction.com/auction/714/3497938_1.jpg
 Adaptation: classical silhouette alpha masking of the actual computer and proportional resizing to a maximum dimension of 512 pixels, with transparent padding. The original Apple II J-Plus badge, katakana keyboard legends and complete case are preserved. No generated hardware, lettering or logos. No open license is asserted for this source photograph.
+
+## Coleco ADAM photograph
+
+Asset: `src/GWGUI.Emulation.Coleco/Assets/Machines/Adam.png`.
+Photograph by Akbkuku (Shelby Jueden), 16 July 2023. Published under Creative Commons Attribution 4.0 International: https://creativecommons.org/licenses/by/4.0/.
+Source: https://commons.wikimedia.org/wiki/File:Coleco-ADAM-computer-with-parts_(edit).jpg ; packaging edit by DigitalIceAge.
+Original: https://upload.wikimedia.org/wikipedia/commons/e/eb/Coleco-ADAM-computer-with-parts_%28edit%29.jpg
+Adaptation: classical silhouette alpha mask, removal of exterior background enclosed by the cable, proportional resizing to 512 x 240 pixels with transparent padding. Photographed hardware, cable, software and documentation are preserved; no generated or reconstructed components or lettering.
