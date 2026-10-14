@@ -25,9 +25,7 @@ internal static class KeyboardBindingFunctions
         return result;
     }
 
-    internal static IReadOnlySet<EmulationKey> Apply(IReadOnlySet<EmulationKey> hostKeys, InputConfiguration input)
-    {
-        var mappings = Normalize(input).Where(item => Enum.TryParse<EmulationKey>(item.Value, true, out _)).ToDictionary(item => item.Key, item => Enum.Parse<EmulationKey>(item.Value, true), StringComparer.Ordinal);
-        return EmulationInputMappingFunctions.MapKeyboard(hostKeys, mappings);
-    }
+    internal static IReadOnlySet<EmulationKey> Apply(EmulationInputSnapshot snapshot, InputConfiguration input) => EmulationInputMappingFunctions.MapKeyboard(snapshot, Normalize(input));
+
+    internal static IReadOnlySet<EmulationKey> Apply(IReadOnlySet<EmulationKey> hostKeys, InputConfiguration input) => Apply(EmulationInputSnapshot.Empty with { Keys = hostKeys }, input);
 }
