@@ -116,15 +116,13 @@ Adaptation: proportional resizing to 512 x 407 pixels and removal of the exterio
 ## ColecoVision Super Action Controller photograph
 
 Asset: `src/GWGUI.App/Assets/Controllers/coleco-super-action-controller.png`.
-Photograph by Miguel Durán (Museo8bits), https://www.museo8bits.es/.
-Source: https://commons.wikimedia.org/wiki/File:Super_Action_Controller_Coleco_DSCF0353.JPG
-Original: https://upload.wikimedia.org/wikipedia/commons/e/ef/Super_Action_Controller_Coleco_DSCF0353.JPG
-License for the original photograph and this adaptation: Creative Commons Attribution-ShareAlike 3.0 Unported, https://creativecommons.org/licenses/by-sa/3.0/.
-Adaptation: crop of the front-facing controller, classical silhouette alpha masking and proportional resizing to 300 x 512 pixels. No generated hardware, controls, lettering or logos. The side buttons are outside this view and remain available through the command list.
+Product photograph published by PowerUp Gaming.
+Original: https://www.powerupgaming.ca/cdn/shop/products/colecovision-super-action-controller.png?v=1751239228
+Adaptation: 90-degree rotation, classical removal of the exterior white background, removal of detached background speckles, edge matte cleanup and proportional resizing to 355 x 512 pixels. The complete photographed controller and its cable are preserved. No generated hardware, controls, lettering or logos. No open license is asserted for this source photograph.
 
 ## ColecoVision Roller Controller photograph
 
 Asset: `src/GWGUI.App/Assets/Controllers/coleco-roller-controller.png`.
 Source photograph published by Atariboy2600 in "Life as a Retro Video Gamer - Colecovision", AtariAge, September 2024: https://forums.atariage.com/topic/372301-life-as-a-retro-video-gamer-colecovision/.
 Original: https://media.invisioncic.com/r322239/monthly_2024_09/image.jpeg.06f9185257de0896433a83378044139c.jpeg
-Adaptation: crop of the actual Roller Controller, classical silhouette alpha masking and proportional resizing to 512 x 312 pixels. No generated or reconstructed hardware, controls, lettering or logos. No open license is asserted for this source photograph.
+Adaptation: crop of the actual Roller Controller, classical silhouette alpha masking, 10-degree rotation to straighten its photographed face and proportional resizing to 512 x 259 pixels. No generated or reconstructed hardware, controls, lettering or logos. No open license is asserted for this source photograph.

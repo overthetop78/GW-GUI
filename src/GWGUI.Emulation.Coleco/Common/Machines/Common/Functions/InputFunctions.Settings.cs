@@ -79,7 +79,9 @@ internal static class InputSettingsFunctions
             .Concat(new Dictionary<EmulationControllerVisualControl, string>
             {
                 [EmulationControllerVisualControl.StickLeft] = ControllerActionConstants.SpinnerLeft,
-                [EmulationControllerVisualControl.StickRight] = ControllerActionConstants.SpinnerRight
+                [EmulationControllerVisualControl.StickRight] = ControllerActionConstants.SpinnerRight,
+                [EmulationControllerVisualControl.TertiaryAction] = ControllerActionConstants.Purple,
+                [EmulationControllerVisualControl.QuaternaryAction] = ControllerActionConstants.Blue
             }).ToDictionary(pair => pair.Key, pair => pair.Value);
 
     private static IReadOnlyDictionary<EmulationControllerVisualControl, string> RollerVisualCommands(int port) => new Dictionary<EmulationControllerVisualControl, string>

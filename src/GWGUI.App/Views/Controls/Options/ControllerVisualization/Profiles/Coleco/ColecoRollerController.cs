@@ -6,13 +6,13 @@ internal static partial class ControllerArtworkCatalog
 {
     private static ProfileDefinition CreateColecoRollerController() => new(ControllerArtworkFileNames.ColecoRollerController,
     [
-        new(EmulationControllerVisualControl.StickLeft, ControllerVisualZoneShape.Ellipse, 40, 19, 6, 7),
-        new(EmulationControllerVisualControl.StickRight, ControllerVisualZoneShape.Ellipse, 49, 19, 6, 7),
-        new(EmulationControllerVisualControl.StickUp, ControllerVisualZoneShape.Ellipse, 44, 15, 6, 5),
-        new(EmulationControllerVisualControl.StickDown, ControllerVisualZoneShape.Ellipse, 44, 26, 6, 5),
-        new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.RoundedRectangle, 33, 57, 6, 9),
-        new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.RoundedRectangle, 40.5, 65, 6, 9),
-        new(EmulationControllerVisualControl.TertiaryAction, ControllerVisualZoneShape.RoundedRectangle, 61, 50, 6, 10),
-        new(EmulationControllerVisualControl.QuaternaryAction, ControllerVisualZoneShape.RoundedRectangle, 56, 60, 6, 9)
+        new(EmulationControllerVisualControl.StickLeft, ControllerVisualZoneShape.Ellipse, 46, 20.5, 5, 8),
+        new(EmulationControllerVisualControl.StickRight, ControllerVisualZoneShape.Ellipse, 54, 20.5, 5, 8),
+        new(EmulationControllerVisualControl.StickUp, ControllerVisualZoneShape.Ellipse, 50, 13.5, 5, 7),
+        new(EmulationControllerVisualControl.StickDown, ControllerVisualZoneShape.Ellipse, 50, 28, 5, 7),
+        new(EmulationControllerVisualControl.PrimaryAction, ControllerVisualZoneShape.RoundedRectangle, 35.5, 60.5, 5.5, 10),
+        new(EmulationControllerVisualControl.SecondaryAction, ControllerVisualZoneShape.RoundedRectangle, 41.8, 71.8, 5.5, 10),
+        new(EmulationControllerVisualControl.TertiaryAction, ControllerVisualZoneShape.RoundedRectangle, 63.5, 60.5, 5.5, 10),
+        new(EmulationControllerVisualControl.QuaternaryAction, ControllerVisualZoneShape.RoundedRectangle, 57.4, 71.8, 5.5, 10)
     ]);
 }
