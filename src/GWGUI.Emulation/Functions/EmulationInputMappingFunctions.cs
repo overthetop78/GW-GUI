@@ -58,6 +58,26 @@ public static class EmulationInputMappingFunctions
         return result;
     }
 
+    public static IReadOnlySet<EmulationKey> MapKeyboard(EmulationInputSnapshot snapshot, IReadOnlyDictionary<string, string>? mappings)
+    {
+        if (mappings is null || mappings.Count == 0) return new HashSet<EmulationKey>(snapshot.Keys);
+        var simple = new Dictionary<string, EmulationKey>(StringComparer.Ordinal);
+        foreach (var mapping in mappings)
+        {
+            var source = mapping.Value.StartsWith(EmulationInputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase)
+                ? mapping.Value[EmulationInputMappingConstants.KeyboardPrefix.Length..] : mapping.Value;
+            if (Enum.TryParse<EmulationKey>(source, out var key)) simple[mapping.Key] = key;
+        }
+        var result = new HashSet<EmulationKey>(MapKeyboard(snapshot.Keys, simple));
+        var controller = snapshot.Controllers.Count > 0 ? snapshot.Controllers[0] : EmulationControllerState.Empty;
+        foreach (var mapping in mappings)
+        {
+            if (simple.ContainsKey(mapping.Key) || string.IsNullOrWhiteSpace(mapping.Value)) continue;
+            if (Enum.TryParse<EmulationKey>(mapping.Key, out var target) && InputSourcePressure(mapping.Value, controller, snapshot) > .5f) result.Add(target);
+        }
+        return result;
+    }
+
     public static string? ParseControllerDeviceId(string? source)
     {
         if (source?.Contains('+') == true && !source.EndsWith('+'))
