@@ -20,11 +20,12 @@ internal static class InputSettingsFunctions
         var definitions = KeyboardDefinitions(configuration);
         var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
         var configured = input.Controllers ?? [];
-        var choices = configuration.Family == MachineFamily.AppleII ? ControllerFunctions.Peripherals(configuration.Model).OrderBy(category => category).Select(Choice).ToArray() : Array.Empty<EmulationControllerChoice>();
+        var choices = configuration.Family == MachineFamily.AppleII ? ControllerFunctions.Peripherals(configuration.Model).Where(category => category != PeripheralCategory.Automatic).OrderBy(category => category).Select(Choice).ToArray() : Array.Empty<EmulationControllerChoice>();
         var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(index =>
         {
             var current = configured.FirstOrDefault(binding => binding.Port == index);
             var peripheral = current?.Peripheral ?? PeripheralCategory.AnalogJoystick;
+            if (peripheral == PeripheralCategory.Automatic) peripheral = PeripheralCategory.AnalogJoystick;
             return new EmulationControllerPort(
                 index + BufferConstants.IndexIncrement,
                 choices,
@@ -89,7 +90,7 @@ internal static class InputSettingsFunctions
             _ => throw new ArgumentOutOfRangeException(nameof(category), category, null)
         },
         BindingDefinitions: ControllerDefinitions(category)
-    );
+    ) { Category = category == PeripheralCategory.None ? EmulationControllerCategory.None : EmulationControllerCategory.Joystick };
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory category) => category == PeripheralCategory.None 
         ? [] 
         : InputSettingsFunctionsConstants.ControllerActions.Select(action => new InputBindingDefinition(action, InputSettingsFunctionsConstants.ResourceActionPrefix + action, string.Empty)
