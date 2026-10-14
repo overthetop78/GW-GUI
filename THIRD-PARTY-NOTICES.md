@@ -126,3 +126,10 @@ Asset: `src/GWGUI.App/Assets/Controllers/coleco-roller-controller.png`.
 Source photograph published by Atariboy2600 in "Life as a Retro Video Gamer - Colecovision", AtariAge, September 2024: https://forums.atariage.com/topic/372301-life-as-a-retro-video-gamer-colecovision/.
 Original: https://media.invisioncic.com/r322239/monthly_2024_09/image.jpeg.06f9185257de0896433a83378044139c.jpeg
 Adaptation: crop of the actual Roller Controller, classical silhouette alpha masking, 10-degree rotation to straighten its photographed face and proportional resizing to 512 x 259 pixels. No generated or reconstructed hardware, controls, lettering or logos. No open license is asserted for this source photograph.
+
+## Apple II J-Plus photograph
+
+Asset: `src/GWGUI.Emulation.Apple/Assets/Machines/AppleIIJPlus.png`.
+Source photograph published by RR Auction: https://www.rrauction.com/auctions/lot-detail/349793807146036-apple-ii-j-plus-computer/.
+Original: https://cdn.rrauction.com/auction/714/3497938_1.jpg
+Adaptation: classical silhouette alpha masking of the actual computer and proportional resizing to a maximum dimension of 512 pixels, with transparent padding. The original Apple II J-Plus badge, katakana keyboard legends and complete case are preserved. No generated hardware, lettering or logos. No open license is asserted for this source photograph.

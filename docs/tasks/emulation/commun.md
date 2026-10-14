@@ -982,15 +982,17 @@ Livraison des deux reprises Coleco : 32 contrôles ciblés réussis ; build Debu
   - [x] Supprimer artifacts/machine-artwork-rework : retirer les seuls aperçus et sources temporaires de la revue de machines suspendue, sans modifier les PNG de production.
   - [x] Supprimer les planches, candidats et aperçus possédés dans artifacts/controller-artwork-rework après utilisation, puis le dossier temporaire vide.
   - [x] Modifier docs/tasks/emulation/commun.md : consigner les images réellement corrigées et commiter le groupe avec les PNG et la méthode, sans push ni commit de suivi isolé.
-- [ ] Revoir le premier lot de dix photographies Acorn et Apple.
+- [x] Revoir le premier lot de dix photographies Acorn et Apple.
   - [x] Créer artifacts/machine-artwork-rework/batch-01.png : composer les dix images existantes sur fonds clair et sombre, avec leurs noms, proportions conservées et rectangles en pixels ; libérer toutes les ressources graphiques dans finally.
   - [x] Modifier docs/tasks/emulation/commun.md : identifier les défauts visuels concrets de ce lot et écrire leurs actions de fichiers avant toute correction.
   - [x] Créer artifacts/machine-artwork-rework/apple-jplus-source.jpg : télécharger la photo du vrai Apple II J-Plus présentant le badge du modèle et le clavier katakana, examiner la source avant traitement.
-  - [ ] Créer artifacts/machine-artwork-rework/apple-jplus-candidate.png et apple-jplus-preview.png : masquer le fond selon le contour de la photo réelle, sans seuil global sur son boîtier clair ; vérifier le candidat avant remplacement.
-  - [ ] Modifier src/GWGUI.Emulation.Apple/Assets/Machines/AppleIIJPlus.png : remplacer la photo crénelée par les pixels de la source plus nette, détourage classique, maximum 512 et proportions conservées.
-  - [ ] Modifier THIRD-PARTY-NOTICES.md : indiquer la source photographique et les transformations réellement utilisées pour AppleIIJPlus.
-  - [ ] Supprimer artifacts/machine-artwork-rework/batch-01.png et les aperçus possédés après usage, puis le dossier vide.
-  - [ ] Modifier docs/tasks/emulation/commun.md : consigner les corrections réellement effectuées, leurs contrôles et leur livraison ; commiter avec les fichiers de production modifiés, sans commit de suivi isolé.
+  - [x] Créer à nouveau artifacts/machine-artwork-rework/apple-jplus-source.jpg : récupérer la photographie originale supprimée lors du nettoyage de la revue suspendue.
+  - [x] Créer artifacts/machine-artwork-rework/apple-jplus-candidate.png et apple-jplus-preview.png : masquer le fond selon le contour de la photo réelle, sans seuil global sur son boîtier clair ; vérifier le candidat avant remplacement.
+  - [x] Modifier src/GWGUI.Emulation.Apple/Assets/Machines/AppleIIJPlus.png : remplacer la photo crénelée par les pixels de la source plus nette, détourage classique, maximum 512 et proportions conservées.
+  - [x] Modifier THIRD-PARTY-NOTICES.md : indiquer la source photographique et les transformations réellement utilisées pour AppleIIJPlus.
+  - [x] Supprimer la source et les aperçus possédés dans artifacts/machine-artwork-rework après usage, puis le dossier vide.
+  - [x] Modifier docs/tasks/emulation/commun.md : consigner le build Debug complet et la présence des 23 modules et de gwgui.exe après remplacement du PNG, avec les dernières corrections App livrées.
+  - [x] Modifier docs/tasks/emulation/commun.md : consigner les corrections réellement effectuées, leurs contrôles et leur livraison ; commiter avec les fichiers de production modifiés, sans commit de suivi isolé.
 
 - [ ] Reprendre Spectrum SE lorsque sa photographie complète sera disponible.
   - [ ] Modifier src/GWGUI.Emulation.Sinclair/Assets/Machines/SpectrumSe.png si un défaut restant est confirmé : conserver la façade, les commandes, les proportions et la photographie réelle.
@@ -998,3 +1000,5 @@ Livraison des deux reprises Coleco : 32 contrôles ciblés réussis ; build Debu
 Premier lot Acorn/Apple : contrôlé sur fonds clair et sombre. AppleIIJPlus montre un crénelage marqué et une définition insuffisante ; remplacement par une photo réelle plus nette à préparer. Les neuf autres photos ne montrent pas de large fond extérieur dans cette composition. La couleur claire des contours des IIe nécessite un examen rapproché avant de la supprimer ; aucune retouche fondée seulement sur leur couleur blanche.
 
 Revue des périphériques : 38 photos examinées sur fond clair et sombre. Franges extérieures corrigées pour Fairchild Channel F, Thomson MJ 90-102, Neo Geo Pocket et Neo Geo Pocket Color ; dimensions et cadrages conservés, aucune association ni zone modifiée. Spectrum SE est uniquement une photo de machine dans le module Sinclair, absente du catalogue App des manettes. La revue des machines est suspendue au profit des périphériques ; aucun candidat Apple J-Plus intégré. Sources et aperçus temporaires des deux revues supprimés, toutes les surfaces de traitement libérées. Aucun build ni test lancé pour ces seules corrections de pixels. Cette revue ne vaut pas acceptation visuelle de l utilisateur.
+
+Apple II J-Plus : photographie originale 2000 x 1497 remplacée après masque classique de la silhouette, sortie transparente 512 px maximum ; badge et caractères katakana conservés, contrôle sur fonds clair et sombre. Crédit RR Auction ajouté au fichier central. Source et candidats supprimés. Build Debug complet terminé code 0 via le script PowerShell existant ; gwgui.exe et 23 entryAssembly présents. SHA256 du PNG embarqué dans le module Apple identique au fichier source. Stream et contexte de lecture libérés, aucune fenêtre créée. Les corrections des quatre PNG de périphériques App précédentes sont également recompilées dans cette livraison. Aucun nouveau test ni script conservé.
