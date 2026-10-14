@@ -148,5 +148,18 @@ internal static partial class InputSettingsFunctions
         BindingDefinitions: ControllerDefinitions(model, category),
         CompatibleVisualIds: CompatibleVisualIds(model, category),
         DefaultVisualId: DefaultVisualId(model, category),
-        VisualCommandIds: VisualCommandIds(model, category));
+        VisualCommandIds: VisualCommandIds(model, category))
+    {
+        Category = category switch
+        {
+            PeripheralCategory.None => EmulationControllerCategory.None,
+            PeripheralCategory.Automatic => EmulationControllerCategory.Unspecified,
+            PeripheralCategory.Mouse or PeripheralCategory.LightGun => EmulationControllerCategory.PointingDevice,
+            PeripheralCategory.DrivingController => EmulationControllerCategory.RacingSimulation,
+            PeripheralCategory.GenesisController or PeripheralCategory.EnhancedController => EmulationControllerCategory.Gamepad,
+            PeripheralCategory.Keyboard => EmulationControllerCategory.OtherSimulation,
+            PeripheralCategory.NumericKeypad when model != MachineModel.Atari5200 => EmulationControllerCategory.OtherSimulation,
+            _ => EmulationControllerCategory.Joystick
+        }
+    };
 }
