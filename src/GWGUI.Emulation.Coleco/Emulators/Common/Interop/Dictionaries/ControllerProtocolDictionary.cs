@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Coleco.Common.Machines.Common.Dictionaries;
+namespace GWGUI.Emulation.Coleco.Emulators.Common.Interop.Dictionaries;
 
 internal static class ControllerProtocolDictionary
 {

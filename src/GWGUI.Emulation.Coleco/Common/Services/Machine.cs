@@ -11,6 +11,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
     private readonly object _gate = new();
     private IEmulatorCore _core;
     private readonly Func<IEmulatorCore>? _coreFactory;
+    private readonly IEmulatorInputMapper? _inputMapper;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
     private readonly ConcurrentQueue<MachineCommand> _commands = new();
@@ -29,7 +30,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
 
     internal Machine(Guid id, MachineConfiguration configuration, IEmulatorCore core,
         string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
-        Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null)
+        Func<IAudioOutput?>? audioOutputFactory = null, Func<IEmulatorCore>? coreFactory = null, IEmulatorInputMapper? inputMapper = null)
     {
         Id = id;
         Configuration = configuration;
@@ -37,6 +38,7 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
         _inputConfiguration = configuration.Input;
         _core = core;
         _coreFactory = coreFactory;
+        _inputMapper = inputMapper;
         _sessionDirectory = sessionDirectory;
         _audio = new AudioOutputController(audioOutput, audioOutputFactory);
         _audio.SetMuted(!configuration.AudioEnabled);

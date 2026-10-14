@@ -15,6 +15,46 @@ namespace GWGUI.Tests.Emulation.Coleco;
 public sealed class ColecoModuleTests
 {
     [Theory]
+    [InlineData(Emulator.GearColeco)]
+    [InlineData(Emulator.JollyCV)]
+    [InlineData(Emulator.BlueMSX)]
+    public void PhysicalMouseDoesNotReachTheCoreWithoutAnExplicitBinding(Emulator core)
+    {
+        var physical = EmulationInputSnapshot.Empty with
+        {
+            Pointer = EmulationInputSnapshot.Empty.Pointer with { DeltaX = 12, DeltaY = -9, Left = true, Right = true, Middle = true, Wheel = 3 },
+            Controllers = [EmulationControllerState.Empty with { Buttons = uint.MaxValue }]
+        };
+        var mapped = InputSnapshotFunctions.Apply(physical, new InputConfiguration(), MachineModel.ColecoVision, core);
+        Assert.Equal(EmulationInputSnapshot.Empty.Pointer, mapped.Pointer);
+        Assert.All(mapped.Controllers, controller => Assert.Equal(0u, controller.Buttons));
+        for (uint id = 0; id <= 2; id++)
+            Assert.Equal(0, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.NativeInputFunctions.State(mapped, 0, 2, 0, id));
+    }
+
+    [Theory]
+    [InlineData(0, "SpinnerRight", 1, 0)]
+    [InlineData(0, "SpinnerLeft", -1, 0)]
+    [InlineData(1, "SpinnerRight", 0, 1)]
+    [InlineData(1, "SpinnerLeft", 0, -1)]
+    public void GearColecoRollerMapsExplicitDirectionsToBothNativeMouseAxes(int port, string action, int x, int y)
+    {
+        var input = new InputConfiguration(Controllers: [new(port, PeripheralCategory.Roller, Mappings: new Dictionary<string, string> { [action] = "Keyboard:Z" })]);
+        var physical = EmulationInputSnapshot.Empty with
+        {
+            Keys = new HashSet<EmulationKey> { EmulationKey.Z },
+            Pointer = EmulationInputSnapshot.Empty.Pointer with { DeltaX = 12, DeltaY = -9, Left = true }
+        };
+        var mapped = InputSnapshotFunctions.Apply(physical, input, MachineModel.ColecoVision, Emulator.GearColeco);
+        Assert.Equal(x, mapped.Pointer.DeltaX);
+        Assert.Equal(y, mapped.Pointer.DeltaY);
+        Assert.False(mapped.Pointer.Left);
+        Assert.Equal(x, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.NativeInputFunctions.State(mapped, 0, 2, 0, 0));
+        Assert.Equal(y, GWGUI.Emulation.Coleco.Emulators.Common.Interop.Functions.NativeInputFunctions.State(mapped, 0, 2, 0, 1));
+        Assert.Equal(EmulationInputSnapshot.Empty.Pointer, InputSnapshotFunctions.Apply(physical with { Keys = EmulationInputSnapshot.Empty.Keys }, input, MachineModel.ColecoVision, Emulator.GearColeco).Pointer);
+    }
+
+    [Theory]
     [InlineData(MachineModel.ColecoVision)]
     [InlineData(MachineModel.Adam)]
     public void EverySupportedControllerExposesOppositeDirectionsWithoutPhysicalDefaults(MachineModel model)
