@@ -181,5 +181,5 @@ internal static partial class InputSettingsFunctions
         BindingDefinitions: ControllerDefinitions(type, model),
         CompatibleVisualIds: CompatibleVisualIds(type, model),
         DefaultVisualId: DefaultVisualId(type, model),
-        VisualCommandIds: VisualCommandIds(type, model));
+        VisualCommandIds: VisualCommandIds(type, model)) { Category = type == ControllerType.None ? EmulationControllerCategory.None : EmulationControllerCategory.Gamepad };
 }
