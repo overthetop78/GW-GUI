@@ -56,7 +56,7 @@ internal static class InputSettingsFunctions
     {
         var keyboard = configuration.Model == MachineModel.Adam ? new EmulationInputBindingSet(
             KeyboardDefaults.Select(pair => new InputBindingDefinition(pair.Key, "Emulation.Coleco.Key." + pair.Key, pair.Value.ToString(), pair.Key.StartsWith("Smart", StringComparison.Ordinal) ? "Smart " + pair.Key[5..] : null)).ToArray(),
-            configuration.Input.Keyboard ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard) : null;
+            configuration.Input.Keyboard ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var choices = Peripherals(configuration.Core).Select(peripheral => new EmulationControllerChoice(peripheral.ToString(),
             peripheral == PeripheralCategory.None ? "Emulation.Controller.None" : "Emulation.Coleco.Controller." + peripheral,
             BindingDefinitions: Definitions(peripheral),

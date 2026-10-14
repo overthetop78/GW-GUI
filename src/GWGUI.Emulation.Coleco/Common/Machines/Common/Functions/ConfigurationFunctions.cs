@@ -58,7 +58,7 @@ internal static class ConfigurationFunctions
         }
         if (configuration.Input.Keyboard is { Count: > 0 } keys
             && (configuration.Model != MachineModel.Adam
-                || keys.Any(mapping => !KeyboardActionConstants.All.Contains(mapping.Key) || !string.IsNullOrEmpty(mapping.Value) && (!Enum.TryParse<EmulationKey>(mapping.Value, out var key) || !Enum.IsDefined(key)))))
+                || keys.Any(mapping => !KeyboardActionConstants.All.Contains(mapping.Key) || !EmulationKeyboardBindingFunctions.IsValid(mapping.Value))))
             throw new ArgumentException(nameof(configuration.Input));
         if (configuration.Core == Emulator.GearColeco)
         {
