@@ -6,6 +6,16 @@ internal static class ControllerCatalog
     {
         ControllerCommand.Up or ControllerCommand.Down or ControllerCommand.Left or ControllerCommand.Right => new InputBindingDefinition(command.ToString(), "Emulation.Controller.Action." + command, string.Empty),
         _ => new InputBindingDefinition(command.ToString(), string.Empty, string.Empty, command.ToString().ToUpperInvariant())
+    }).Select(definition => definition with
+    {
+        OppositeDirectionId = definition.Id switch
+        {
+            nameof(ControllerCommand.Up) => nameof(ControllerCommand.Down),
+            nameof(ControllerCommand.Down) => nameof(ControllerCommand.Up),
+            nameof(ControllerCommand.Left) => nameof(ControllerCommand.Right),
+            nameof(ControllerCommand.Right) => nameof(ControllerCommand.Left),
+            _ => null
+        }
     }).ToArray();
     internal static IReadOnlyDictionary<EmulationControllerVisualControl, string> VisualCommands { get; } = new Dictionary<EmulationControllerVisualControl, string>
     {

@@ -47,17 +47,11 @@ internal static class InputSettingsFunctions
 
     internal static void Validate(MachineConfiguration configuration)
     {
+        var commands = ControllerCatalog.Definitions.Select(definition => definition.Id).ToHashSet(StringComparer.Ordinal);
         foreach (var binding in configuration.Input.Controllers ?? [])
-            if (binding.Mappings?.Any(pair => !IsSource(pair.Value)) == true || binding.VisualId is not (null or EmulationControllerVisualIds.WataraSupervisionControls))
+            if (binding.Mappings?.Any(pair => !commands.Contains(pair.Key) || !IsSource(pair.Value)) == true || binding.VisualId is not (null or EmulationControllerVisualIds.WataraSupervisionControls))
                 throw new ArgumentException(nameof(configuration.Input));
     }
 
-    private static bool IsSource(string source)
-    {
-        if (string.IsNullOrEmpty(source))
-            return true;
-        if (source.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
-            return Enum.TryParse<EmulationKey>(source[InputMappingConstants.KeyboardPrefix.Length..], out var key) && Enum.IsDefined(key) && key != EmulationKey.Unknown;
-        return source.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase) || source.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase);
-    }
+    private static bool IsSource(string source) => EmulationKeyboardBindingFunctions.IsValid(source);
 }
