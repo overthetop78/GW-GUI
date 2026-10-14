@@ -35,7 +35,7 @@ internal static class InputSettingsFunctions
                 "Emulation.Epoch.Controller." + configuration.Model, BindingDefinitions: definitions,
                 CompatibleVisualIds: Visuals(configuration.Model, port),
                 DefaultVisualId: Visuals(configuration.Model, port).FirstOrDefault(),
-                VisualCommandIds: VisualCommands(configuration.Model, port, definitions));
+                VisualCommandIds: VisualCommands(configuration.Model, port, definitions)) { Category = EmulationControllerCategory.Gamepad };
             return new EmulationControllerPort(port + 1, [choice], PeripheralCategory.Standard.ToString(), binding?.DeviceId,
                 new(definitions, binding?.Mappings ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
                 binding?.DeadZonePercent ?? ControllerConstants.DefaultDeadZonePercent, binding?.VisualId);
