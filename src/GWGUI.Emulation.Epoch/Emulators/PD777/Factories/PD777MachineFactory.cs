@@ -13,7 +13,7 @@ internal sealed class PD777MachineFactory() : MachineFactory(EmulatorConstants.E
         var actions = ControllerProtocolDictionary.Actions(model, Emulator.PD777, port);
         return actions.Select(action => new InputActionDefinition(action.Definition with
         {
-            OppositeDirectionId = action.Axis >= 0 ? actions.Single(other => other.Axis == action.Axis && other.Direction == -action.Direction).Id : null
+            OppositeDirectionId = action.Axis >= 0 ? actions.Single(other => other.Axis == action.Axis && other.Direction == -action.Direction).Id : action.Definition.OppositeDirectionId
         }, action.Key)).ToArray();
     }
     public EmulationInputSnapshot MapInput(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => NativeInputSnapshotFunctions.Apply(snapshot, input, model, Emulator.PD777);

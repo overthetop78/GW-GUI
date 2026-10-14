@@ -9,7 +9,15 @@ internal sealed record NativeInputAction(string Id, int Button = InputMappingCon
 
     internal InputBindingDefinition Definition => new(Id,
         Id is "Up" or "Down" or "Left" or "Right" ? "Emulation.Controller.Action." + Id : InputMappingConstants.ResourcePrefix + Id, DefaultBinding,
-        Id.StartsWith(InputMappingConstants.KeypadPrefix, StringComparison.Ordinal) ? Id[InputMappingConstants.KeypadPrefix.Length..] : null);
+        Id.StartsWith(InputMappingConstants.KeypadPrefix, StringComparison.Ordinal) ? Id[InputMappingConstants.KeypadPrefix.Length..] : null)
+    {
+        OppositeDirectionId = Id switch
+        {
+            "Up" => "Down", "Down" => "Up", "Left" => "Right", "Right" => "Left",
+            "LeverLeft" => "LeverRight", "LeverRight" => "LeverLeft",
+            _ => null
+        }
+    };
 }
 
 internal static class ControllerProtocolDictionary
