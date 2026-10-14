@@ -29,9 +29,14 @@ internal static class CoreSettingsFunctions
 
     internal static IReadOnlyList<EmulationSettingsBlock> Blocks(CoreDefinition definition, MachineConfiguration configuration) => Blocks(definition.Options, configuration);
 
+    internal static bool IsVisible(CoreOption option) => option.IsVisible
+        && !CoreSettingsConstants.HiddenOptions.Contains(option.Key)
+        && !MemoryCardFunctions.IsManagedOption(option.Key)
+        && !AnalogToggleFunctions.IsManagedOption(option.Key);
+
     internal static IReadOnlyList<EmulationSettingsBlock> Blocks(IReadOnlyList<CoreOption> options, MachineConfiguration configuration)
     {
-        var fields = options.Where(option => option.IsVisible && !CoreSettingsConstants.HiddenOptions.Contains(option.Key) && !MemoryCardFunctions.IsManagedOption(option.Key) && !AnalogToggleFunctions.IsManagedOption(option.Key)).Select(option =>
+        var fields = options.Where(IsVisible).Select(option =>
         {
             var tab = option.Tab == EmulationMachineTab.General && configuration.Model is not (ModelConstants.PlayStation2 or ModelConstants.Psp) ? EmulationMachineTab.Cpu : option.Tab;
             if (CoreSettingsConstants.IsCdAudio(option.Key)) tab = EmulationMachineTab.Storage;
@@ -119,7 +124,7 @@ internal static class CoreSettingsFunctions
         return Math.Clamp(range.Minimum + Math.Round((clamped - range.Minimum) / range.Step, MidpointRounding.AwayFromZero) * range.Step, range.Minimum, range.Maximum);
     }
 
-    private static string NativeNumber(CoreOption option, string selected)
+    internal static string NativeNumber(CoreOption option, string selected)
     {
         var number = ReadNumber(option, selected);
         return number == 0 && option.NativeZeroValue is not null ? option.NativeZeroValue : number.ToString(option.NativeNumericFormat ?? CoreSettingsConstants.NumericFormat, CultureInfo.InvariantCulture) + option.NumericRange!.UnitSuffix;

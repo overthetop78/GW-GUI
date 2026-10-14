@@ -33,7 +33,7 @@ public sealed class CoreOptionsDialog : Window
         {
             var fields = group.Select(CreateField).ToArray();
             var content = StorageDialogUi.CompactFields(fields);
-            body.Children.Add(StorageDialogUi.IconCard(IconGlyphs.Settings, string.IsNullOrWhiteSpace(group.Key) ? LocExtension.Get("Emulation.Core.NameOptions") : group.Key, content));
+            body.Children.Add(StorageDialogUi.IconCard(IconGlyphs.Settings, string.IsNullOrWhiteSpace(group.Key) ? LocExtension.Get("Emulation.Core.NameOptions") : Resolve(group.Key), content));
         }
 
         Content = StorageDialogUi.DialogLayout(StorageDialogUi.DialogHeader(IconGlyphs.Settings, Title, subtitle), body, StorageDialogUi.Footer(this, LocExtension.Get("Common.Save")));

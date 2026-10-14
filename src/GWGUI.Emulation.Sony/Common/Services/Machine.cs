@@ -125,7 +125,8 @@ internal sealed partial class Machine : IEmulatedMachine, IEmulationLifecycle, I
             option.DefaultValue,
             _currentOptions.GetValueOrDefault(option.Key, option.DefaultValue),
             option.Values.Select(value => new EmulationOptionValue(value.Value, value.Label)).ToArray(),
-            option.IsVisible))
+            option.IsVisible,
+            option.RequiresRestart))
         .ToArray();
     VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;
     double IEmulationVideo.FramesPerSecond => _core.FramesPerSecond;

@@ -72,6 +72,35 @@ public sealed class NumericOptionRangeTests
         Assert.Equal(expected, native.Options![OptionConstants.ImageOffsetKey]);
     }
 
+    [Theory]
+    [InlineData("12", "12%")]
+    [InlineData("12%", "12%")]
+    [InlineData("999", "50%")]
+    [InlineData("not-a-number", "15%")]
+    public void Pcsx2ConvertsTheSelectedPortWithoutChangingTheOtherPort(string value, string expected)
+    {
+        var configuration = new MachineConfiguration(GWGUI.Emulation.Sony.Common.Machines.Common.Constants.ModelConstants.PlayStation2, "pcsx2",
+            Options: new Dictionary<string, string> { ["pcsx2_axis_deadzone1"] = value, ["pcsx2_axis_deadzone2"] = "27%" });
+        var native = GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions.Pcsx2OptionFunctions.ToNative(configuration);
+        Assert.Equal(expected, native.Options!["pcsx2_axis_deadzone1"]);
+        Assert.Equal("27%", native.Options["pcsx2_axis_deadzone2"]);
+        Assert.Equal(value, configuration.Options!["pcsx2_axis_deadzone1"]);
+    }
+
+    [Theory]
+    [InlineData("0", "disabled")]
+    [InlineData("disabled", "disabled")]
+    [InlineData("14", "15%")]
+    [InlineData("999", "100%")]
+    public void Pcsx2VibrationZeroIsDisabledAndOtherLevelsUseNativeSteps(string value, string expected)
+    {
+        var configuration = new MachineConfiguration(GWGUI.Emulation.Sony.Common.Machines.Common.Constants.ModelConstants.PlayStation2, "pcsx2",
+            Options: new Dictionary<string, string> { ["pcsx2_enable_rumble1"] = value });
+        var native = GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions.Pcsx2OptionFunctions.ToNative(configuration);
+        Assert.Equal(expected, native.Options!["pcsx2_enable_rumble1"]);
+        Assert.False(native.Options.ContainsKey("pcsx2_enable_rumble2"));
+    }
+
     private static MachineConfiguration Configuration(string key, string value) => new(GWGUI.Emulation.Sony.Common.Machines.Common.Constants.ModelConstants.PlayStation, "test", Options: new Dictionary<string, string> { [key] = value });
 
     private static CoreDefinition Definition() => GWGUI.Emulation.Sony.Emulators.SwanStation.Constants.CoreConstants.Definition with { Options = OptionCatalog.All };

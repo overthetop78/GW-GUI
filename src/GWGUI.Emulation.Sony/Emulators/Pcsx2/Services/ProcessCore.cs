@@ -6,6 +6,7 @@ using GWGUI.Emulation.Sony.Emulators.Pcsx2.Factories;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions;
 using GWGUI.Emulation.Sony.Emulators.Pcsx2.Services;
 
+using CoreOptionMetadataFunctions = GWGUI.Emulation.Sony.Emulators.Common.Interop.Functions.CoreOptionMetadataFunctions;
 using System.IO;
 using System.Collections.Concurrent;
 using System.Buffers.Binary;
@@ -110,6 +111,7 @@ internal sealed class ProcessCore : IEmulatorCore
             FramesPerSecond = Response.ReadDouble();
             SampleRate = Response.ReadInt32();
             Options = JsonSerializer.Deserialize<IReadOnlyList<CoreOption>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
+            Options = CoreOptionMetadataFunctions.Merge(Options, Dictionaries.OptionCatalog.All);
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), CoreHostProtocol.JsonOptions) ?? [];
             CoreName = Response.ReadString();
             CoreVersion = Response.ReadString();

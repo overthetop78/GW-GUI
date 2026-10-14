@@ -98,7 +98,12 @@ public sealed class SonyEmulationModule : IEmulationModule, IEmulationEmulatorMa
         };
     }
 
-    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) => configuration is MachineConfiguration sony ? sony.Options ?? new Dictionary<string, string>() : throw new ArgumentException(nameof(configuration));
+    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration)
+    {
+        var sony = configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration));
+        var adapter = EmulatorCatalog.CreateAdapters().FirstOrDefault(item => item.EmulatorId == sony.EmulatorId) as IEmulatorSettingsAdapter;
+        return adapter?.GetRuntimeOptions(sony) ?? sony.Options ?? new Dictionary<string, string>();
+    }
 
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) => ConfigurationSummaryFunctions.Create(configuration as MachineConfiguration ?? throw new ArgumentException(nameof(configuration)));
 

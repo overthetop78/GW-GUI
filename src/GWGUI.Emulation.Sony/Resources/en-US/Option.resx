@@ -1187,4 +1187,113 @@
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Steering response</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Scales the measured analog axis range for games that expect larger input values. Move the axes through their full range after loading a game.</value></data>
   <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Software rendering with hardware presentation</value></data>
+  <data name="Emulation.Option.Sony.Setting.Fastboot.Help" xml:space="preserve"><value>Skips BIOS startup screen and boots straight to the game. Disable this if you want to access the PS2 system settings or access the Memory Card manager.</value></data>
+  <data name="Emulation.Option.Sony.Setting.Fastcdvd.Label"><value>Reduce CD/DVD access times</value></data>
+  <data name="Emulation.Option.Sony.Setting.Fastcdvd.Help" xml:space="preserve"><value>Fast CD/DVD access/seek times. A small handful of games will have compatibility problems with this enabled.</value></data>
+  <data name="Emulation.Option.Sony.Setting.SharedMemoryCards.Help" xml:space="preserve"><value>Use per-content or shared memory cards.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Label"><value>Enable game cheat codes</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableCheats.Help" xml:space="preserve"><value>Enable cheat files to be read from the 'cheats' directory in the system folder.</value></data>
+  <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Label"><value>Unlock additional game languages</value></data>
+  <data name="Emulation.Option.Sony.Setting.HintLanguageUnlock.Help" xml:space="preserve"><value>If enabled, will look inside the internal database for language unlock options. Examples include: forcing an international Japanese version to English, unlocking more European languages, etc</value></data>
+  <data name="Emulation.Option.Sony.Setting.Dev9Hdd.Help" xml:space="preserve"><value>Emulate the SPEED expansion's ATA hard drive. The image lives at 'pcsx2/DEV9hdd.raw' in the frontend system directory and is created on first use at the configured size.</value></data>
+  <data name="Emulation.Option.Sony.Setting.Dev9HddSize.Label"><value>Hard disk capacity</value></data>
+  <data name="Emulation.Option.Sony.Setting.Dev9HddSize.Help" xml:space="preserve"><value>Capacity used when a new HDD image is created. An existing image keeps the size it was created with.</value></data>
+  <data name="Emulation.Option.Sony.Setting.Dev9Eth.Help" xml:space="preserve"><value>Emulate the SPEED expansion's ethernet adapter through the Sockets backend: a userspace TCP/UDP stack with an internal DHCP server, needing no host network configuration or privileges.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UpscaleMultiplier.Help" xml:space="preserve"><value>Draw at a multiple of the PS2's resolution. The software renderers draw at 2x for 2x and above.</value></data>
+  <data name="Emulation.Option.Sony.Setting.NativeScaling.Label"><value>Keep effects at the console's original resolution</value></data>
+  <data name="Emulation.Option.Sony.Setting.NativeScaling.Help" xml:space="preserve"><value>Render the buffers a game draws at a fraction of its frame, such as a bloom or blur pass, at native resolution instead of the internal resolution. Keeps a blur's radius and position as on the console, at the cost of the resolution of the blurred picture; 'Aggressive' also applies to the draws that scale those buffers back up. 'Automatic' uses the game database's setting for the game, or 'Normal' where it has none. Any other value is used regardless of the database and of 'Enable HW Hacks'.</value></data>
+  <data name="Emulation.Option.Sony.Value.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Emulation.Option.Sony.Setting.PgsSsaa.Help" xml:space="preserve"><value>Apply supersampled anti-aliasing (SSAA). Unlike straight upscaling, supersampling retains a coherent visual look where 3D elements have similar resolution as UI elements. For 2x high-res scanout you need at least '4x SSAA ordered' (or higher); 4x high-res scanout needs '16x SSAA (ordered)' specifically -- the plain 16x mode uses a sparse grid that only supports 2x. '32x SSAA (ordered)' is a 4x8 grid, four samples across and eight down: it also feeds the 4x scanout at the full field height, which gives field-rendered games twice the vertical resolution of 16x ordered, at twice its cost. Setting this to 'Native' disables super sampling.</value></data>
+  <data name="Emulation.Option.Sony.Setting.PgsHighResScanout.Label"><value>Experimental high-resolution video output</value></data>
+  <data name="Emulation.Option.Sony.Setting.PgsHighResScanout.Help" xml:space="preserve"><value>Scans out above native resolution with paraLLEl (2x: 640x448 becomes 1280x896; 4x: 2560x1792). Doesn't work with every game, some might require patches on top. 2x requires Supersampling at 4x SSAA ordered or higher; 4x requires 16x SSAA ordered, and falls back to 2x on lower grids. At 16x SSAA with plain 4x scanout the whole sample grid is spent on resolution, so edges keep no residual anti-aliasing; the anti-aliased 4x mode instead reconstructs each output pixel from the neighboring samples with a tent filter, trading a slight softness for far less texture shimmer. A game that renders one field at a time gets half the height from 4x (2560x896); the full field height mode gives it the whole 2560x1792 and needs 32x SSAA ordered, falling back to the plain 4x on smaller grids. Its anti-aliased variant applies the same tent reconstruction at that height, and falls back to the anti-aliased 4x on smaller grids.</value></data>
+  <data name="Emulation.Option.Sony.Value.Enabled4XFullFieldHeight"><value>4× (full video field height)</value></data>
+  <data name="Emulation.Option.Sony.Value.Enabled4XAntiAliasedFullFieldHeight"><value>4× (AA, full video field height)</value></data>
+  <data name="Emulation.Option.Sony.Setting.PgsSsTex.Label"><value>Experimental texture supersampling</value></data>
+  <data name="Emulation.Option.Sony.Setting.PgsSsTex.Help" xml:space="preserve"><value>Feedback higher resolution textures. With super sampling on, a copy of the picture (a post-processing pass that moves it texel for pixel) always keeps its super samples; enabling this also feeds them to blurs and other effects that read the picture back. May help high-res scanout image quality. Highly experimental and may cause rendering glitches.</value></data>
+  <data name="Emulation.Option.Sony.Setting.PgsDeblur.Label"><value>Experimental image sharpening</value></data>
+  <data name="Emulation.Option.Sony.Setting.PgsDeblur.Help" xml:space="preserve"><value>Attempts to workaround games that add extra blit passes before scanning out. May lead to better image quality in certain games which do this.</value></data>
+  <data name="Emulation.Option.Sony.Setting.PgsDisableMipmaps.Label"><value>Force texture level LOD0</value></data>
+  <data name="Emulation.Option.Sony.Setting.PgsDisableMipmaps.Help" xml:space="preserve"><value>Disable this for traditional hardware mipmapping. Enabling this will bypass mipmapping and always use texture LOD0 instead. The result is better image quality. Only a small handful of games have graphics rendering issues with this enabled.</value></data>
+  <data name="Emulation.Option.Sony.Setting.DeinterlaceMode.Help" xml:space="preserve"><value>Select a deinterlacing method. Use 'Automatic' if unsure what to pick.</value></data>
+  <data name="Emulation.Option.Sony.Setting.HwDownloadMode.Help" xml:space="preserve"><value>Controls how the GS reads rendered data back to the CPU (e.g. memory-card save images). 'Accurate' is the safest and matches hardware, but forces a CPU/GPU synchronization on every readback, which can sharply reduce the frame rate on screens that read back often (some save/load and stage-select menus) - this is especially severe with the paraLLEl-GS renderer. 'Unsynchronized' avoids that stall and is much faster, at the risk of incorrect results in the rare games that read back GPU-rendered content. 'Disable Readbacks' and 'Disabled' trade more accuracy for speed.</value></data>
+  <data name="Emulation.Option.Sony.Value.DisableReadbacks"><value>Disable GPU data readback</value></data>
+  <data name="Emulation.Option.Sony.Value.Unsynchronized" xml:space="preserve"><value>Unsynchronized</value></data>
+  <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Label"><value>Enable deinterlacing patches</value></data>
+  <data name="Emulation.Option.Sony.Setting.NointerlacingHint.Help" xml:space="preserve"><value>If enabled, will look in the internal database if a patch is available for the game to turn the image into either a non-interlaced, full frame, or progressive scan video signal, and/or a combination of all the above. Image will be more stable and Deinterlacing can be turned off.</value></data>
+  <data name="Emulation.Option.Sony.Value.BilinearForcedExcludingSprite" xml:space="preserve"><value>Bilinear (Forced excluding sprite)</value></data>
+  <data name="Emulation.Option.Sony.Value.Scaled"><value>Scaled to the internal resolution</value></data>
+  <data name="Emulation.Option.Sony.Value.Unscaled"><value>Original console resolution</value></data>
+  <data name="Emulation.Option.Sony.Value.Force32Bit" xml:space="preserve"><value>Force 32bit</value></data>
+  <data name="Emulation.Option.Sony.Value.Basic" xml:space="preserve"><value>Basic</value></data>
+  <data name="Emulation.Option.Sony.Value.Maximum" xml:space="preserve"><value>Maximum</value></data>
+  <data name="Emulation.Option.Sony.Setting.WidescreenHint.Label"><value>Widescreen patches</value></data>
+  <data name="Emulation.Option.Sony.Setting.WidescreenHint.Help" xml:space="preserve"><value>Applies a widescreen patch if a patch for the game can be found inside the internal database.</value></data>
+  <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Label"><value>Reduce image blur (PCRTC)</value></data>
+  <data name="Emulation.Option.Sony.Setting.PcrtcAntiblur.Help" xml:space="preserve"><value>Disable this for the most accurate output image. Enabling this will attempt to deblur the image. Most noticeable on software renderer and paraLLEl.</value></data>
+  <data name="Emulation.Option.Sony.Setting.PcrtcScreenOffsets.Label"><value>Screen position offsets (PCRTC)</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisableInterlaceOffset.Label"><value>Disable the vertical offset used for interlaced video</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlushSoftware.Label"><value>Automatic cache flush (software rendering)</value></data>
+  <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Label"><value>CPU threads used for software rendering</value></data>
+  <data name="Emulation.Option.Sony.Setting.SwRendererThreads.Help" xml:space="preserve"><value>Number of extra worker threads the software renderer rasterizes with, on top of the GS thread itself. 0 rasterizes on the GS thread alone (lowest latency, best on 2-4 core CPUs). More threads help scenes with many alpha effects on CPUs with spare cores. Only used by the software renderer.</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Label"><value>Accurate addition and subtraction (VU)</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuAccurateAddsub.Help" xml:space="preserve"><value>Model the VU adder's exponent-distance truncation on every add and subtract. The Tri-Ace games that require this behaviour (Star Ocean 3, Radiata Stories, Valkyrie Profile 2) get it automatically per title via the game database even when this is disabled; enable it globally only when chasing accuracy in other titles. Costs speed on VU-heavy games.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Label"><value>Accurate floating-point arithmetic (EE FPU)</value></data>
+  <data name="Emulation.Option.Sony.Setting.EeAccurateFpu.Help" xml:space="preserve"><value>Run EE FPU add, sub, mul and the fused chains through the extended-range double pipeline: exact add/sub against the hardware model, near-exact multiplies, correct handling of the huge values the PS2 allows, exact integer conversion, and pure-bitop ABS/NEG. Measured free at workload level (within run noise on frame throughput); enabled by default.</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuExactMul.Label"><value>Exact multiplication (VU)</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuExactMul.Help" xml:space="preserve"><value>Bit-exact hardware model of the VU multiplier. Real game data trips the full model on most multiplies - zeros, ones and quantized values dominate - so expect a real speed cost on VU-heavy games.</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuExactDiv.Label"><value>Exact division (VU)</value></data>
+  <data name="Emulation.Option.Sony.Setting.VuExactDiv.Help" xml:space="preserve"><value>Bit-exact hardware model of the VU divider (DIV, SQRT, RSQRT).</value></data>
+  <data name="Emulation.Option.Sony.Setting.FpuSoftfloat.Label"><value>Software floating-point emulation (EE recompiler)</value></data>
+  <data name="Emulation.Option.Sony.Setting.FpuSoftfloat.Help" xml:space="preserve"><value>Route recompiled EE FPU arithmetic through the bit-exact software FPU. Interpreted FPU code is always bit-exact; this extends it to the recompiler at some speed cost. Fixes games whose logic depends on exact console FPU results.</value></data>
+  <data name="Emulation.Option.Sony.Setting.Vu0Softfloat.Label"><value>Software floating-point emulation (VU0 microprograms)</value></data>
+  <data name="Emulation.Option.Sony.Setting.Vu0Softfloat.Help" xml:space="preserve"><value>Run VU0 micro programs on the bit-exact interpreter, whose float ops compute through the console-exact software model, instead of the SSE recompiler. Macro-mode COP2 code is not covered by this option. Costly; enable per game when exact VU0 results matter.</value></data>
+  <data name="Emulation.Option.Sony.Setting.Vu1Softfloat.Label"><value>Software floating-point emulation (VU1)</value></data>
+  <data name="Emulation.Option.Sony.Setting.Vu1Softfloat.Help" xml:space="preserve"><value>Run VU1 on the bit-exact interpreter, whose float ops compute through the console-exact software model, instead of the SSE recompiler. Fixes games whose rendering depends on exact console VU results. Significantly costly and scales with scene complexity; enable per game only when required.</value></data>
+  <data name="Emulation.Option.Sony.Setting.EeCpu.Label"><value>CPU execution engine (EE)</value></data>
+  <data name="Emulation.Option.Sony.Setting.EeCpu.Help" xml:space="preserve"><value>Selects what executes Emotion Engine code. Recompiler is the normal choice. Interpreter runs the EE in plain C: far too slow for play, but it takes the EE recompiler out of the picture entirely, so a hang that survives it is not a codegen bug. Selecting Interpreter also disables Fastmem, which only applies to the recompiler.</value></data>
+  <data name="Emulation.Option.Sony.Setting.Fastmem.Label"><value>Fast memory access</value></data>
+  <data name="Emulation.Option.Sony.Setting.Fastmem.Help" xml:space="preserve"><value>Backs guest memory accesses with a direct 4GB mapping and patches out the ones that fault. Disable to route every access through the software memory handlers - slower, but takes the fastmem fault/backpatch machinery out of the picture entirely, which is useful when hunting a hang.</value></data>
+  <data name="Emulation.Option.Sony.Setting.Mtvu.Help" xml:space="preserve"><value>Runs VU1 on its own thread. Large speedup on multi-core CPUs; a small number of games hang with it. The default matches the platform default (on arm64, MTVU is on whenever the native VU1 recompiler drives VU1).</value></data>
+  <data name="Emulation.Option.Sony.Setting.EeCycleSkip.Label"><value>CPU cycle skipping (EE)</value></data>
+  <data name="Emulation.Option.Sony.Setting.GameEnhancementsHint.Label"><value>Enable game-specific improvements</value></data>
+  <data name="Emulation.Option.Sony.Setting.GameEnhancementsHint.Help" xml:space="preserve"><value>Applies game-specific enhancements if patches for the game can be found inside the internal database. Examples of enhancements: LOD [Level of Detail] enhancements, better draw distance, ability to skip FMVs, etc.</value></data>
+  <data name="Emulation.Option.Sony.Setting.UncappedFramerateHint.Label"><value>Remove game frame rate limits</value></data>
+  <data name="Emulation.Option.Sony.Setting.UncappedFramerateHint.Help" xml:space="preserve"><value>Uncaps the framerate if a patch for the game can be found inside the internal database. This can turn a 30fps game into 60fps locked, or stabilize the framerate. You might have to increase EE Cycle Rate in combination with this for a stable locked framerate. 60fps PAL-to-NTSC does what it says if it can find a patch, otherwise it will just try to use the default uncapped framerate patch (50fps for PAL, 60fps for NTSC)</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableHwHacks.Label"><value>Manual hardware rendering fixes (not recommended)</value></data>
+  <data name="Emulation.Option.Sony.Setting.EnableHwHacks.Help" xml:space="preserve"><value>This will disable automatic settings from the database. Unless you know what you are doing it is NOT RECOMMENDED to turn this ON.</value></data>
+  <data name="Emulation.Option.Sony.Setting.CpuSpriteSize.Label"><value>Maximum width of 2D SPRITES rendered by CPU</value></data>
+  <data name="Emulation.Option.Sony.Setting.CpuSpriteLevel.Label"><value>Primitive types rendered by CPU</value></data>
+  <data name="Emulation.Option.Sony.Value.SpritesOnly" xml:space="preserve"><value>Sprites Only</value></data>
+  <data name="Emulation.Option.Sony.Value.SpritesTriangles" xml:space="preserve"><value>Sprites/Triangles</value></data>
+  <data name="Emulation.Option.Sony.Value.BlendedSpritesTriangles" xml:space="preserve"><value>Blended Sprites/Triangles</value></data>
+  <data name="Emulation.Option.Sony.Setting.SoftwareClutRender.Label"><value>Software rendering for CLUT palettes</value></data>
+  <data name="Emulation.Option.Sony.Setting.AutoFlush.Label"><value>Automatic cache flush</value></data>
+  <data name="Emulation.Option.Sony.Value.AllPrimitives"><value>All graphics primitives</value></data>
+  <data name="Emulation.Option.Sony.Setting.TextureInsideRt.Label"><value>Textures stored inside render targets</value></data>
+  <data name="Emulation.Option.Sony.Value.InsideTarget"><value>Inside the render target</value></data>
+  <data name="Emulation.Option.Sony.Value.MergeTargets"><value>Merge render targets</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisableDepthConversion.Label"><value>Disable depth-buffer conversion</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Label" xml:space="preserve"><value>Use External GameIndex Database</value></data>
+  <data name="Emulation.Option.Sony.Setting.UseExternalGameindex.Help" xml:space="preserve"><value>Load the game-compatibility database from &lt;system&gt;/resources/GameIndex.yaml if present, falling back to the built-in database when it is missing. When disabled, always use the database built into the core.</value></data>
+  <data name="Emulation.Option.Sony.Setting.FramebufferConversion.Label"><value>Convert the rendering framebuffer</value></data>
+  <data name="Emulation.Option.Sony.Setting.DisablePartialInvalidation.Label" xml:space="preserve"><value>Disable Partial Source Invalidation</value></data>
+  <data name="Emulation.Option.Sony.Setting.GpuPaletteConversion.Label"><value>Palette conversion on GPU</value></data>
+  <data name="Emulation.Option.Sony.Setting.PreloadFrameData.Label"><value>Load frame data in advance</value></data>
+  <data name="Emulation.Option.Sony.Setting.HalfPixelOffset.Label"><value>Half-pixel position offset</value></data>
+  <data name="Emulation.Option.Sony.Value.NormalVertex"><value>Normal vertex offset</value></data>
+  <data name="Emulation.Option.Sony.Value.SpecialTexture"><value>Special texture offset</value></data>
+  <data name="Emulation.Option.Sony.Value.SpecialTextureAggressive"><value>Aggressive texture offset</value></data>
+  <data name="Emulation.Option.Sony.Value.AlignToNative"><value>Align to the original resolution</value></data>
+  <data name="Emulation.Option.Sony.Setting.RoundSprite.Label"><value>Round 2D SPRITE coordinates</value></data>
+  <data name="Emulation.Option.Sony.Value.Half" xml:space="preserve"><value>Half</value></data>
+  <data name="Emulation.Option.Sony.Setting.AlignSprite.Label"><value>Align 2D SPRITE coordinates</value></data>
+  <data name="Emulation.Option.Sony.Setting.MergeSprite.Label"><value>Merge 2D SPRITES</value></data>
+  <data name="Emulation.Option.Sony.Setting.UnscaledPaletteDraw.Label"><value>Draw palette textures at the original resolution</value></data>
+  <data name="Emulation.Option.Sony.Setting.ForceSpritePosition.Label"><value>Force even-numbered 2D SPRITE coordinates</value></data>
+  <data name="Emulation.Option.Sony.Setting.ButtonDeadzone.Label"><value>Gamepad trigger deadzone</value></data>
+  <data name="Emulation.Option.Sony.Setting.AxisScale.Label" xml:space="preserve"><value>Analog Sensitivity</value></data>
+  <data name="Emulation.Option.Sony.Setting.InvertLeftStick.Label"><value>Invert the axes of the left analog stick</value></data>
+  <data name="Emulation.Option.Sony.Setting.InvertRightStick.Label"><value>Invert the axes of the right analog stick</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogMode.Label" xml:space="preserve"><value>Start in Analog Mode</value></data>
+  <data name="Emulation.Option.Sony.Setting.AnalogMode.Help" xml:space="preserve"><value>Start the controller in analog mode rather than digital. Some games (e.g. Ridge Racer V) boot the pad in digital and normally require pressing the controller's ANALOG button to enable the sticks; enable this to get analog controls from the start. Games that lock the controller mode are unaffected.</value></data>
 </root>

@@ -374,6 +374,29 @@ public sealed class ConfigurationPresentationTests
         Assert.Equal("Software (HW)", fields.Single(field => field.Id == "pcsx2_renderer").Value);
     }
 
+    [Fact]
+    public void Pcsx2SeparatesPortCalibrationFromCpuVideoAndDiscSettings()
+    {
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcsx2");
+        var fields = SettingsDescriptionFunctions.Create(configuration).SelectMany(block => block.Fields).ToArray();
+        foreach (var port in new[] { 1, 2 })
+        {
+            var deadzone = Assert.Single(fields, field => field.Id == "pcsx2_axis_deadzone" + port);
+            Assert.Equal(EmulationMachineTab.Controllers, deadzone.Tab);
+            Assert.Equal(port, deadzone.ControllerPortNumber);
+            Assert.Equal(EmulationSettingsEditor.Slider, deadzone.Editor);
+            Assert.Equal(0, deadzone.NumericRange!.Minimum);
+            Assert.Equal(50, deadzone.NumericRange.Maximum);
+            Assert.Equal("15", deadzone.Value);
+        }
+        Assert.Equal(EmulationMachineTab.Cpu, fields.Single(field => field.Id == "pcsx2_ee_cpu").Tab);
+        Assert.Equal(EmulationMachineTab.Video, fields.Single(field => field.Id == "pcsx2_deinterlace_mode").Tab);
+        var cd = Assert.Single(StorageSettingsFunctions.Describe(configuration).AvailableDevices, device => device.MediaType == EmulationMediaType.CompactDisc);
+        Assert.Equal(EmulationMachineTab.Storage, cd.ConfigurationFields!.Single(field => field.Id == "pcsx2_fastcdvd").Tab);
+        Assert.DoesNotContain(fields, field => field.Id == "pcsx2_bios");
+        Assert.DoesNotContain(fields, field => field.Id == "pcsx2_dev9_hdd");
+    }
+
     private static EmulationSettingsField[] Fields(string emulator) => SettingsDescriptionFunctions.Create(Configuration(emulator)).SelectMany(block => block.Fields).ToArray();
 
     [Theory]
