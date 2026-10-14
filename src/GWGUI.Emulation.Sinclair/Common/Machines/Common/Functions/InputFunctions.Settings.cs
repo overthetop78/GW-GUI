@@ -43,7 +43,7 @@ internal static class InputSettingsFunctions
                     CompatibleVisualIds: ControllerVisualDictionary.VisualIds(category),
                     DefaultVisualId: ControllerVisualDictionary.DefaultVisualId(category),
                     VisualCommandIds: ControllerVisualDictionary.Commands(category)
-                )).ToArray();
+                ) { Category = category == PeripheralCategory.None ? EmulationControllerCategory.None : EmulationControllerCategory.Joystick }).ToArray();
             return new EmulationControllerPort(
                 port + 1,
                 choices,
