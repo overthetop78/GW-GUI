@@ -38,7 +38,16 @@ internal static class InputSettingsFunctions
                     CompatibleVisualIds: ControllerVisualDictionary.VisualIds(category),
                     DefaultVisualId: ControllerVisualDictionary.DefaultVisualId(category),
                     VisualCommandIds: ControllerVisualDictionary.Commands(category)
-                )).ToArray();
+                )
+                {
+                    Category = category switch
+                    {
+                        PeripheralCategory.None => EmulationControllerCategory.None,
+                        PeripheralCategory.NeoGeoArcadeStick => EmulationControllerCategory.Joystick,
+                        PeripheralCategory.NeoGeoCdPad or PeripheralCategory.NeoGeoPocket or PeripheralCategory.NeoGeoPocketColor => EmulationControllerCategory.Gamepad,
+                        _ => throw new ArgumentOutOfRangeException(nameof(category))
+                    }
+                }).ToArray();
             return new EmulationControllerPort(
                 port + 1,
                 choices,
