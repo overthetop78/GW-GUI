@@ -3413,7 +3413,6 @@
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.Normal"><value>법선</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.mirrored"><value>뚱 베어</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.basic"><value>기본 정보</value></data>
-  <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.0xC000"><value>0xC000의</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii8"><value>ascii8의</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii8sram"><value>ascii8sram, 러시아</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii16"><value>ascii16의</value></data>

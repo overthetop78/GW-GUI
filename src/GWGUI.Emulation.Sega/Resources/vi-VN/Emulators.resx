@@ -3413,7 +3413,6 @@
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.Normal"><value>Bình thường</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.mirrored"><value>đã phản chiếu</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.basic"><value>căn bản</value></data>
-  <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.0xC000"><value>0xC000</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii8"><value>aci8</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii8sram"><value>aci8sram</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii16"><value>ascoi16</value></data>

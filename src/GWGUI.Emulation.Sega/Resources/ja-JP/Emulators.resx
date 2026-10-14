@@ -3413,7 +3413,6 @@
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.Normal"><value>法線</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.mirrored"><value>ミラーリング</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.basic"><value>基本情報</value></data>
-  <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.0xC000"><value>0xC000の</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii8"><value>アシイ8</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii8sram"><value>アシイ8スラム</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii16"><value>アシイ16</value></data>

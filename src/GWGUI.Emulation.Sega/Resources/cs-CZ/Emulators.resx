@@ -3413,7 +3413,6 @@
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.Normal"><value>Normální</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.mirrored"><value>zrcadlový</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.basic"><value>základní</value></data>
-  <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.0xC000"><value>0xC000</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii8"><value>ascii8</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii8sram"><value>ascii8sram</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii16"><value>ascii16</value></data>

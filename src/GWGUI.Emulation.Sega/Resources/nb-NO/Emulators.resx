@@ -3413,7 +3413,6 @@
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.Normal"><value>Normal</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.mirrored"><value>speilet</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.basic"><value>Basic</value></data>
-  <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.0xC000"><value>0xC000</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii8"><value>STORLEK8</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii8sram"><value>Tittenfick8sram</value></data>
   <data name="Emulation.Option.bluemsx.bluemsx_cartmapper.Value.ascii16"><value>STORLEK16</value></data>
