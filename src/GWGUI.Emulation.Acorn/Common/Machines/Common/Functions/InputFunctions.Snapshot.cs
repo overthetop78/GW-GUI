@@ -4,15 +4,14 @@ internal static class InputSnapshotFunctions
 {
     internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot, InputConfiguration? configuration)
     {
-        var keyboardMappings = BbcMicroKeyboardDictionary.DefaultHostKeys.ToDictionary(item => item.Key.ToString(), item => item.Value, StringComparer.Ordinal);
+        var keyboardMappings = BbcMicroKeyboardDictionary.DefaultHostKeys.ToDictionary(item => item.Key.ToString(), item => item.Value.ToString(), StringComparer.Ordinal);
         var bindings = configuration?.KeyboardBindings ?? configuration?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal);
         if (bindings is not null)
             foreach (var mapping in bindings)
-                if (Enum.TryParse<EmulationKey>(mapping.Value, true, out var physical)) keyboardMappings[mapping.Key] = physical;
-                else keyboardMappings.Remove(mapping.Key);
+                keyboardMappings[mapping.Key] = mapping.Value;
         var mapped = snapshot with
         {
-            Keys = EmulationInputMappingFunctions.MapKeyboard(snapshot.Keys, keyboardMappings)
+            Keys = EmulationInputMappingFunctions.MapKeyboard(snapshot, keyboardMappings)
         };
         if (configuration?.Controllers is not { Count: > 0 }) return mapped with { Controllers = [] };
         var controllers = Enumerable.Repeat(EmulationControllerState.Empty, ControllerPortConstants.MaximumControllerPortCount).ToArray();

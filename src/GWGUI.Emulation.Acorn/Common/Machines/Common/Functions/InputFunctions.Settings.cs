@@ -7,7 +7,7 @@ internal static class InputSettingsFunctions
     {
         var input = configuration.Input;
         var definitions = BbcMicroInputSettingsFunctions.KeyboardDefinitions(configuration);
-        var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard);
+        var keyboard = new EmulationInputBindingSet(definitions, input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
         var configured = input.Controllers ?? [];
         var choices = ControllerFunctions.Peripherals(configuration.Model).Where(category => category != PeripheralCategory.Automatic).OrderBy(category => category).Select(Choice).ToArray();
         var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(index =>
