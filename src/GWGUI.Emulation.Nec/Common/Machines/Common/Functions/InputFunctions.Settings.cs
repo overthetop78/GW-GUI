@@ -9,7 +9,7 @@ internal static partial class InputSettingsFunctions
         var model = ModelCatalog.Get(configuration.Model);
         var input = configuration.Input ?? new InputConfiguration();
         var mouseType = model.Id == PcFxMachineConstants.Id ? ControllerType.PcFxMouse : ControllerType.PcEngineMouse;
-        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(KeyboardDefinitions(model), input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard) : null;
+        var keyboard = model.HasKeyboard ? new EmulationInputBindingSet(KeyboardDefinitions(model), input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mouse = model.MouseButtonCount > InputSettingsFunctionsConstants.FirstPortIndex
             ? new EmulationInputBindingSet(
             MouseDefinitions(), MouseValues(input), EmulationInputSource.Mouse
