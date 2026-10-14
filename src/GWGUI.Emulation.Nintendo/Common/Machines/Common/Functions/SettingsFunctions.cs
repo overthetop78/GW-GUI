@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Nintendo.Common.Machines.Common.Functions;
 
 internal static partial class SettingsDescriptionFunctions
 {
-    internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration, IEmulatorAdapter adapter)
+    internal static IReadOnlyList<EmulationSettingsBlock> Create(MachineConfiguration configuration, IEmulatorAdapter? adapter)
     {
         var model = ModelCatalog.Get(configuration.Model);
         List<EmulationSettingsBlock> blocks =
@@ -27,7 +27,7 @@ internal static partial class SettingsDescriptionFunctions
             Block(SettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,
                 SettingsDescriptionFunctionsConstants.ResourceRom,
                 SettingsDescriptionFunctionsConstants.IconFirmware, 2,
-                [.. FirmwareConfigurationFunctions.Fields(configuration, adapter)]),
+                adapter is null ? [] : [.. FirmwareConfigurationFunctions.Fields(configuration, adapter)]),
             Block(SettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video,
                 SettingsDescriptionFunctionsConstants.ResourceVideo,
                 SettingsDescriptionFunctionsConstants.IconVideo, 2,
@@ -50,7 +50,7 @@ internal static partial class SettingsDescriptionFunctions
                     SettingsDescriptionFunctionsConstants.ResourceAudio,
                     model.AudioChip ?? SettingsDescriptionFunctionsConstants.CpuFrequency))
         ];
-        foreach (var coreBlock in adapter.GetSettingsBlocks(configuration))
+        foreach (var coreBlock in adapter?.GetSettingsBlocks(configuration) ?? [])
         {
             var index = blocks.FindIndex(block => block.Tab == coreBlock.Tab);
             if (index < 0)
