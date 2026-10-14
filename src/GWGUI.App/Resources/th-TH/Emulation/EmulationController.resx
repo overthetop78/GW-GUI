@@ -36,4 +36,10 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix สปีดกิง (ขวามือ)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>รูปลักษณ์</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>ตัวควบคุม {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>อุปกรณ์ชี้</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>การจําลองการบิน</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>การจําลองการกระตือรือล้น</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>การจําลองการเต้น</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>จําลองการร้อง</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>อนุภาค อื่น ๆ ที่ เห็น ด้วย ตา</value></data>
 </root>

@@ -36,4 +36,10 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (jobb kéz)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Megjelenés</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Vezérlő {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Mutatókészülék</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Repülési szimuláció</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Versenyszimuláció</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Táncszimuláció</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Éneklés szimulációja</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Egyéb szimuláció-perifériák</value></data>
 </root>

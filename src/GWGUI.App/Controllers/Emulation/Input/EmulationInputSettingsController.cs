@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using GWGUI.Emulation;
+using GWGUI.Emulation.Enums;
 
 
 namespace GWGUI.App.Controllers.Emulation.Input;
@@ -146,14 +147,30 @@ internal sealed class EmulationInputSettingsController
             LocExtension.Get("Emulation.Input.Binding.Search"),
             _moduleId ?? string.Empty, _machineId ?? string.Empty);
         var choices = port.ControllerChoices.Select(choice => new EmulationControllerChoiceView(choice, choice.InvariantDisplayValue ?? LocExtension.GetForModule(_moduleId, choice.DisplayResourceKey))).ToArray();
-        editor.Type.ItemsSource = choices;
-        editor.Type.DisplayMemberPath = nameof(EmulationControllerChoiceView.DisplayName);
-        editor.Type.SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == port.SelectedControllerId) ?? choices.FirstOrDefault();
+        if (choices.Length > 0 && choices.All(choice => choice.Choice.Category != EmulationControllerCategory.Unspecified))
+        {
+            var categories = choices.GroupBy(choice => choice.Choice.Category).Select(group => new EmulationControllerCategoryChoiceView(
+                group.Key, LocExtension.Get(group.Key switch
+                {
+                    EmulationControllerCategory.None => "Emulation.Controller.None",
+                    EmulationControllerCategory.Gamepad => "Controllers.Enum.Gamepad",
+                    _ => "Emulation.Controller.Category." + group.Key
+                }), group.Select(choice => choice.Choice).ToArray())).ToArray();
+            editor.Type.ItemsSource = categories;
+            editor.Type.DisplayMemberPath = nameof(EmulationControllerCategoryChoiceView.DisplayName);
+            editor.Type.SelectedItem = categories.FirstOrDefault(category => category.Choices.Any(choice => choice.Id == port.SelectedControllerId)) ?? categories.FirstOrDefault();
+        }
+        else
+        {
+            editor.Type.ItemsSource = choices;
+            editor.Type.DisplayMemberPath = nameof(EmulationControllerChoiceView.DisplayName);
+            editor.Type.SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == port.SelectedControllerId) ?? choices.FirstOrDefault();
+        }
         editor.PhysicalDeviceId = port.PhysicalDeviceId;
         editor.Bindings.SetReservedBindings(_reservedBindings);
         editor.DeadZonePercent = port.DeadZonePercent;
         editor.Bindings.SetRows(port.Bindings.Definitions, port.Bindings.Values, _moduleId);
-        UpdateControllerBindings(editor, port.VisualId, preserveCurrentBindings: true);
+        UpdateControllerBindings(editor, port.VisualId, preserveCurrentBindings: true, preferredControllerId: port.SelectedControllerId);
         editor.Type.SelectionChanged += (_, _) =>
         {
             UpdateControllerBindings(editor, preserveCurrentBindings: false);
@@ -168,8 +185,15 @@ internal sealed class EmulationInputSettingsController
         return editor;
     }
 
-    private void UpdateControllerBindings(EmulationControllerPortEditor editor, string? preferredVisualId = null, bool preserveCurrentBindings = true)
+    private void UpdateControllerBindings(EmulationControllerPortEditor editor, string? preferredVisualId = null, bool preserveCurrentBindings = true, string? preferredControllerId = null)
     {
+        if (editor.Type.SelectedItem is EmulationControllerCategoryChoiceView)
+        {
+            if (!preserveCurrentBindings) editor.Bindings.SetRows([], null, _moduleId);
+            UpdateControllerVisuals(editor, preferredVisualId, preferredControllerId);
+            UpdateControllerVisualProfile(editor);
+            return;
+        }
         if (editor.Type.SelectedItem is not EmulationControllerChoiceView selected
             || selected.Choice.BindingDefinitions is null) return;
         var current = preserveCurrentBindings ? editor.Bindings.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal) : new Dictionary<string, string>(StringComparer.Ordinal);
@@ -178,12 +202,23 @@ internal sealed class EmulationInputSettingsController
         UpdateControllerVisualProfile(editor);
     }
 
-    private static void UpdateControllerVisuals(EmulationControllerPortEditor editor, string? preferredVisualId = null)
+    private static void UpdateControllerVisuals(EmulationControllerPortEditor editor, string? preferredVisualId = null, string? preferredControllerId = null)
     {
         var selectedChoice = (editor.Type.SelectedItem as EmulationControllerChoiceView)?.Choice;
         var profiles = ControllerArtworkCatalog.AvailableProfiles(selectedChoice?.CompatibleVisualIds);
         var choices = profiles.Select(profile => new EmulationControllerVisualChoiceView(profile.VisualId,
             LocExtension.Get(ControllerVisualResourceKeyPrefix + profile.VisualId), profile.Artwork)).ToArray();
+        if (editor.Type.SelectedItem is EmulationControllerCategoryChoiceView category)
+        {
+            choices = category.Choices.SelectMany(choice =>
+            {
+                var compatible = ControllerArtworkCatalog.AvailableProfiles(choice.CompatibleVisualIds);
+                if (compatible.Count == 0)
+                    return new[] { new EmulationControllerVisualChoiceView(choice.Id, choice.InvariantDisplayValue ?? LocExtension.GetForModule(editor.ModuleId, choice.DisplayResourceKey), null) { ControllerChoice = choice } };
+                return compatible.Select(profile => new EmulationControllerVisualChoiceView(choice.Id + ":" + profile.VisualId,
+                    LocExtension.Get(ControllerVisualResourceKeyPrefix + profile.VisualId), profile.Artwork) { ControllerChoice = choice, VisualId = profile.VisualId });
+            }).ToArray();
+        }
         var item = new FrameworkElementFactory(typeof(StackPanel));
         item.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
         var image = new FrameworkElementFactory(typeof(Image));
@@ -205,17 +240,29 @@ internal sealed class EmulationInputSettingsController
             || choices.All(choice => !string.Equals(choice.Key, visualId, StringComparison.Ordinal)))
             visualId = choices.Any(choice => string.Equals(choice.Key, selectedChoice?.DefaultVisualId, StringComparison.Ordinal)) ? selectedChoice?.DefaultVisualId : choices.FirstOrDefault()?.Key;
 
-        editor.Visual.SelectedValue = visualId;
+        if (editor.Type.SelectedItem is EmulationControllerCategoryChoiceView)
+        {
+            editor.Visual.SelectedItem = choices.FirstOrDefault(choice => choice.ControllerChoice?.Id == preferredControllerId && choice.VisualId == preferredVisualId)
+                ?? choices.FirstOrDefault(choice => choice.ControllerChoice is { } controller && controller.Id == preferredControllerId && choice.VisualId == controller.DefaultVisualId)
+                ?? choices.FirstOrDefault(choice => choice.ControllerChoice?.Id == preferredControllerId) ?? choices.FirstOrDefault();
+        }
+        else editor.Visual.SelectedValue = visualId;
         editor.Visual.IsEnabled = choices.Length > 1;
     }
 
     private void UpdateControllerVisualProfile(EmulationControllerPortEditor editor)
     {
-        var selectedChoice = (editor.Type.SelectedItem as EmulationControllerChoiceView)?.Choice;
+        var selectedChoice = editor.SelectedControllerChoice;
+        if (editor.Type.SelectedItem is EmulationControllerCategoryChoiceView && selectedChoice?.BindingDefinitions is { } bindings)
+        {
+            if (editor.SelectedVisualId is { } selectedVisual && selectedChoice.VisualBindingDefinitions?.TryGetValue(selectedVisual, out var visualBindings) == true) bindings = visualBindings;
+            var current = editor.Bindings.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal);
+            editor.Bindings.SetRows(bindings, current, _moduleId);
+        }
         if (editor.SelectedVisualId is { } visualId
             && ControllerArtworkCatalog.TryGetProfile(visualId, out var profile))
         {
-            if (selectedChoice?.VisualBindingDefinitions?.TryGetValue(visualId, out var definitions) == true)
+            if (editor.Type.SelectedItem is not EmulationControllerCategoryChoiceView && selectedChoice?.VisualBindingDefinitions?.TryGetValue(visualId, out var definitions) == true)
             {
                 var current = editor.Bindings.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal);
                 editor.Bindings.SetRows(definitions, current, _moduleId);
@@ -266,7 +313,7 @@ internal sealed class EmulationInputSettingsController
     private EmulationControllerPort ReadPort(EmulationControllerPortEditor editor)
     {
         var original = _portDefinitions[editor.Number];
-        var selected = (editor.Type.SelectedItem as EmulationControllerChoiceView)?.Choice;
+        var selected = editor.SelectedControllerChoice;
         var choice = selected?.Id ?? string.Empty;
         var bindings = original.Bindings with
         {

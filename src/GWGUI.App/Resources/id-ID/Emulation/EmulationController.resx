@@ -36,4 +36,10 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (tangan kanan)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Tampilan</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Pengontrol {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Perangkat penunjuk</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Simulasi penerbangan</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Simulasi balap</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Simulasi tari</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Simulasi bernyanyi</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Periferal simulasi lainnya</value></data>
 </root>

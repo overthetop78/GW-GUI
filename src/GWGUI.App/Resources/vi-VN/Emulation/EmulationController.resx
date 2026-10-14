@@ -36,4 +36,10 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Tốc độ Konix (tay phải)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Giao diện</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Điều khiển {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Thiết bị trỏ</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Trình mô phỏng bay</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Đang chạy mô phỏng</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Mô phỏng nhảy</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Trình mô phỏng ca hát</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Các ngoại biên mô phỏng khác</value></data>
 </root>

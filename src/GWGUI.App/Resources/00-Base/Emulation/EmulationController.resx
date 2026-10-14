@@ -135,4 +135,11 @@
   <data name="Emulation.Controller.Visual.Model.philips-cdi-gamepad"><value>Philips CD-i Gamepad</value></data>
   <data name="Emulation.Controller.Visual.Model.philips-cdi-mouse"><value>Philips CD-i Mouse</value></data>
   <data name="Emulation.Controller.Visual.Model.panasonic-fz-jp1" xml:space="preserve"><value>Panasonic FZ-JP1</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Pointing device</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Flight simulation</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Racing simulation</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Dance simulation</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Singing simulation</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Other simulation peripherals</value></data>
+  <data name="Emulation.Controller.Category.Joystick"><value>Joystick</value></data>
 </root>

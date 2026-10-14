@@ -261,6 +261,57 @@ public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaE
         finally { editor.RaiseEvent(new System.Windows.RoutedEventArgs(System.Windows.FrameworkElement.UnloadedEvent)); }
     });
 
+    [Fact]
+    public Task ColecoCategoriesSelectNativeDevicesAndPreserveStoredIdentifiers() => sta.Run(() =>
+    {
+        using var http = new HttpClient();
+        var module = new GWGUI.Emulation.Coleco.Modules.ColecoEmulationModule(Path.GetTempPath(), Path.GetTempPath(), http, Path.GetTempPath());
+        var configuration = module.CreateConfiguration("ColecoVision");
+        var controller = new GWGUI.App.Controllers.Emulation.Input.EmulationInputSettingsController(module);
+        var root = controller.CreateContent(GWGUI.Emulation.Enums.EmulationMachineTab.Controllers, configuration, []);
+        try
+        {
+            var selectors = Descendants(root).OfType<System.Windows.Controls.ComboBox>()
+                .Where(combo => combo.Items.OfType<GWGUI.App.Contracts.Emulation.Controllers.EmulationControllerCategoryChoiceView>().Any()).ToArray();
+            Assert.Equal(2, selectors.Length);
+            foreach (var selector in selectors)
+            {
+                var joystick = selector.Items.OfType<GWGUI.App.Contracts.Emulation.Controllers.EmulationControllerCategoryChoiceView>()
+                    .Single(choice => choice.Category == GWGUI.Emulation.Enums.EmulationControllerCategory.Joystick);
+                selector.SelectedItem = joystick;
+            }
+            var visuals = Descendants(root).OfType<System.Windows.Controls.ComboBox>()
+                .Where(combo => combo.Items.OfType<GWGUI.App.Contracts.Emulation.Controllers.EmulationControllerVisualChoiceView>()
+                    .Any(choice => choice.ControllerChoice?.Id == "SuperAction")).ToArray();
+            Assert.Equal(2, visuals.Length);
+            foreach (var visual in visuals)
+                visual.SelectedItem = visual.Items.OfType<GWGUI.App.Contracts.Emulation.Controllers.EmulationControllerVisualChoiceView>()
+                    .Single(choice => choice.ControllerChoice?.Id == "SuperAction");
+            var restored = module.DescribeInputSettings(controller.Apply(configuration));
+            Assert.All(restored.ControllerPorts, port =>
+            {
+                Assert.Equal("SuperAction", port.SelectedControllerId);
+                Assert.Null(port.VisualId);
+                Assert.NotEmpty(port.Bindings.Definitions);
+                Assert.All(port.Bindings.Values.Values, Assert.Empty);
+            });
+            foreach (var selector in selectors)
+                selector.SelectedItem = selector.Items.OfType<GWGUI.App.Contracts.Emulation.Controllers.EmulationControllerCategoryChoiceView>()
+                    .Single(choice => choice.Category == GWGUI.Emulation.Enums.EmulationControllerCategory.Gamepad);
+            var standard = module.DescribeInputSettings(controller.Apply(configuration));
+            Assert.All(standard.ControllerPorts, port =>
+            {
+                Assert.Equal("Standard", port.SelectedControllerId);
+                Assert.Equal(GWGUI.Emulation.Constants.EmulationControllerVisualIds.ColecoController, port.VisualId);
+            });
+        }
+        finally
+        {
+            foreach (var editor in Descendants(root).OfType<GWGUI.App.Views.Controls.Emulation.Input.InputBindingEditor>())
+                editor.RaiseEvent(new System.Windows.RoutedEventArgs(System.Windows.FrameworkElement.UnloadedEvent));
+        }
+    });
+
     private static IEnumerable<System.Windows.DependencyObject> Descendants(System.Windows.DependencyObject root)
     {
         yield return root;

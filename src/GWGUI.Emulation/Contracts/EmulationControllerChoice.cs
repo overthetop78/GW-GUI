@@ -10,4 +10,7 @@ public sealed record EmulationControllerChoice(
     IReadOnlyList<string>? CompatibleVisualIds = null,
     string? DefaultVisualId = null,
     IReadOnlyDictionary<EmulationControllerVisualControl, string>? VisualCommandIds = null,
-    IReadOnlyDictionary<string, IReadOnlyList<InputBindingDefinition>>? VisualBindingDefinitions = null);
+    IReadOnlyDictionary<string, IReadOnlyList<InputBindingDefinition>>? VisualBindingDefinitions = null)
+{
+    public EmulationControllerCategory Category { get; init; }
+}

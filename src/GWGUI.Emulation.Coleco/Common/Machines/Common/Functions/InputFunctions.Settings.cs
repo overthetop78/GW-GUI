@@ -71,7 +71,18 @@ internal static class InputSettingsFunctions
                 BindingDefinitions: mapper?.DescribeInput(category, index) ?? [],
                 CompatibleVisualIds: category == PeripheralCategory.Standard ? [EmulationControllerVisualIds.ColecoController] : [],
                 DefaultVisualId: category == PeripheralCategory.Standard ? EmulationControllerVisualIds.ColecoController : null,
-                VisualCommandIds: category == PeripheralCategory.Standard ? VisualCommands : null)).ToArray();
+                VisualCommandIds: category == PeripheralCategory.Standard ? VisualCommands : null)
+            {
+                Category = category switch
+                {
+                    PeripheralCategory.None => EmulationControllerCategory.None,
+                    PeripheralCategory.Standard => EmulationControllerCategory.Gamepad,
+                    PeripheralCategory.SuperAction or PeripheralCategory.Paddle => EmulationControllerCategory.Joystick,
+                    PeripheralCategory.Roller => EmulationControllerCategory.PointingDevice,
+                    PeripheralCategory.Driving => EmulationControllerCategory.RacingSimulation,
+                    _ => EmulationControllerCategory.Unspecified
+                }
+            }).ToArray();
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == index);
             var peripheral = binding?.Peripheral ?? PeripheralCategory.Standard;
             return new EmulationControllerPort(index + 1, choices, peripheral.ToString(), binding?.DeviceId,

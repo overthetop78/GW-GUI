@@ -36,4 +36,10 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>קוניקס ספיגה (יד ימין)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>מראה</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>המפקח {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>המונחים:</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>סימולציה טיסה</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>סימולציה מרוץ</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>סימולציה ריקוד</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>שירה סימולציה</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>סימולציה נוספת</value></data>
 </root>

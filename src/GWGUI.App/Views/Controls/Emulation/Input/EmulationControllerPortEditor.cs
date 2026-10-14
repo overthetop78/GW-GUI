@@ -48,7 +48,11 @@ internal sealed class EmulationControllerPortEditor
     internal string MachineId { get; }
     internal ComboBox Type { get; }
     internal ComboBox Visual { get; }
-    internal string? SelectedVisualId => Visual.SelectedValue as string;
+    internal string? SelectedVisualId => Visual.SelectedItem is EmulationControllerVisualChoiceView { ControllerChoice: not null } choice ? choice.VisualId : Visual.SelectedValue as string;
+    internal GWGUI.Emulation.Contracts.EmulationControllerChoice? SelectedControllerChoice =>
+        Type.SelectedItem is EmulationControllerCategoryChoiceView
+            ? (Visual.SelectedItem as EmulationControllerVisualChoiceView)?.ControllerChoice
+            : (Type.SelectedItem as EmulationControllerChoiceView)?.Choice;
     internal string? PhysicalDeviceId { get; set; }
     internal ControllerVisualizer Visualizer { get; }
     internal InputBindingEditor Bindings { get; }

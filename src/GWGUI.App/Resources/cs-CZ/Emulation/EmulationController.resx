@@ -36,4 +36,10 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (pravá ruka)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Vzhled</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Kontrolor {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Ukazovací zařízení</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Letová simulace</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Racing simulace</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Simulace tance</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Simulace zpěvu</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Ostatní simulační periferie</value></data>
 </root>

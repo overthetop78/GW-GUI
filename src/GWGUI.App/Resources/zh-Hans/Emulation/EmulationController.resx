@@ -36,4 +36,10 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix 速度( 右手)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>外观</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>主计长 {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>指向设备</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>飞行模拟</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>赛跑模拟</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>舞蹈模拟</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>唱歌模拟</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>其他模拟外围</value></data>
 </root>

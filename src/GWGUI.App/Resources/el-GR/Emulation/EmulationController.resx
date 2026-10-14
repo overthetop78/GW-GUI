@@ -36,4 +36,10 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (δεξιά)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Εμφάνιση</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Ελεγκτής {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Συσκευή σκόπευσης</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Προσομοίωση πτήσης</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Προσομοίωση αγωνισμών</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Εξομοίωση χορού</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Εξομοίωση τραγουδιών</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Άλλα περιφερειακά προσομοιώσεων</value></data>
 </root>

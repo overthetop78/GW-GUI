@@ -36,4 +36,10 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>Konix Speedking (rechte Hand)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Darstellung</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Regler {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>Zeigevorrichtung</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>Flugsimulation</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>Rennsimulation</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>Tanzsimulation</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>Singsimulation</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>Sonstige Simulationsperipheriegeräte</value></data>
 </root>

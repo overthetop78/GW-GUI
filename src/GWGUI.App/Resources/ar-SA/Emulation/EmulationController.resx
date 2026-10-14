@@ -36,4 +36,10 @@
   <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand"><value>كونكس سبيدنغ (اليد اليمنى)</value></data>
   <data name="Emulation.Controller.Visual" xml:space="preserve"><value>المظهر</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>المراقب المالي {0}</value></data>
+  <data name="Emulation.Controller.Category.PointingDevice"><value>جهاز توجيه</value></data>
+  <data name="Emulation.Controller.Category.FlightSimulation"><value>محاكاة الرحلات</value></data>
+  <data name="Emulation.Controller.Category.RacingSimulation"><value>المحاكاة المتحركة</value></data>
+  <data name="Emulation.Controller.Category.DanceSimulation"><value>محاكاة الرقص</value></data>
+  <data name="Emulation.Controller.Category.SingingSimulation"><value>محاكاة الغناء</value></data>
+  <data name="Emulation.Controller.Category.OtherSimulation"><value>المحوريات المحاكاة الأخرى</value></data>
 </root>
