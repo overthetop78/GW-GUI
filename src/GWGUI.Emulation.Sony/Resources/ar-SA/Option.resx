@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>خلية مميتة</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>الرد التوجيهي</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>يُسجّل نطاق المحور التناظري المقيس للألعاب التي تتوقّع قيماً أكبر للمدخلات. حرّكْ الفؤوسَ من خلال كامل نطاقِهم بعد تحميل a لعبة.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>برمجيات تقدم مع عرض المعدات</value></data>
 </root>

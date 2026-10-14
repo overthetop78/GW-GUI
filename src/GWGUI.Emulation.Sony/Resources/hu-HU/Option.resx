@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Kormányzati holtzóna</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Kormányzati válasz</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Méri a mért analóg tengely tartományát játékok, amelyek elvárják nagyobb bemeneti értékek. Mozgassa át a tengelyeket a teljes hatótávolságon, miután betöltötte a játékot.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Szoftver renderelés hardveres megjelenítéssel</value></data>
 </root>

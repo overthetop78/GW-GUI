@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Deadzone układu kierowniczego</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Reakcja kierownicza</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Skaluje zmierzony zakres osi analogowej dla gier, które oczekują większych wartości wejściowych. Przenieś osie przez ich pełny zakres po załadowaniu gry.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Oprogramowanie renderujące z prezentacją sprzętu</value></data>
 </root>

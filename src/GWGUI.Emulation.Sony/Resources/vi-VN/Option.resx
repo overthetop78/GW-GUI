@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Chặn vùng chết.</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Phản ứng dây</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Phóng phạm vi hình trục được đo cho trò chơi mà mong đợi các giá trị nhập lớn hơn. Chuyển các trục qua phạm vi đầy đủ sau khi tải một trò chơi.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Trình diễn phần mềm</value></data>
 </root>

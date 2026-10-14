@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Рульовий бордюр</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Відповідність керма</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Ваги вимірюваного аналогового діапазону осі для ігор, які очікують більших значень введення. Перемістіть осі через повний діапазон після завантаження гри.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Програмне забезпечення, що надає апаратну презентацію</value></data>
 </root>

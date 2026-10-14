@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Zona inoperante de direcção</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Resposta da direcção</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Escala o intervalo do eixo analógico medido para jogos que esperam valores de entrada maiores. Mova os eixos através de sua gama completa após o carregamento de um jogo.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>renderização de software com apresentação de hardware</value></data>
 </root>

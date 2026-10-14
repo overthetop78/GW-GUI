@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Stuurgebied dood</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Stuurrespons</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Schaalt het gemeten analoge asbereik voor games die grotere inputwaarden verwachten. Beweeg de assen door hun volledige bereik na het laden van een spel.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Software rendering met hardware presentatie</value></data>
 </root>

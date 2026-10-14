@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>ステアリングデッドゾーン</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>ステアリング応答</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>より大きい入力値が期待するゲームのための測定されたアナログの軸線の範囲をスケールで計ります。 ゲームをロードした後、そのフルレンジで軸を動かします。</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>ハードウェアプレゼンテーションによるソフトウェアレンダリング</value></data>
 </root>

@@ -339,14 +339,39 @@ public sealed class ConfigurationPresentationTests
     }
 
     [Fact]
-    public void Pcsx2UsesItsOwnNativeValuesRatherThanLrps2Options()
+    public void Pcsx2SettingsUseTheValuesOfTheOfficialLrps2Binary()
     {
         var native = GWGUI.Emulation.Sony.Emulators.Pcsx2.Dictionaries.OptionCatalog.All;
-        Assert.Equal(3, native.Count);
         var resolution = native.Single(option => option.Key == "pcsx2_upscale_multiplier");
-        Assert.Equal("Native PS2", resolution.DefaultValue);
-        Assert.Contains(resolution.Values, choice => choice.Value == "3x Native ~1080p");
-        Assert.DoesNotContain(native, option => option.Key == "pcsx2_mtvu");
+        Assert.Equal("1x (Native)", resolution.DefaultValue);
+        Assert.Equal(new[] { "1x (Native)", "2x", "4x", "8x" }, resolution.Values.Select(choice => choice.Value));
+        var renderer = native.Single(option => option.Key == "pcsx2_renderer");
+        Assert.Contains(renderer.Values, choice => choice.Value == "Software (HW)");
+        Assert.Contains(renderer.Values, choice => choice.Value == "Software (SW)");
+        Assert.DoesNotContain(renderer.Values, choice => choice.Value is "Software" or "Null");
+    }
+
+    [Theory]
+    [InlineData("Native PS2", "1x (Native)")]
+    [InlineData("2x Native ~720p", "2x")]
+    [InlineData("4x Native ~1440p 2K", "4x")]
+    [InlineData("8x Native ~2880p 5K", "8x")]
+    [InlineData("3x Native ~1080p", "3x Native ~1080p")]
+    public void Pcsx2LegacySettingsArePresentedAndConvertedWithoutRewritingTheConfiguration(string previousResolution, string currentResolution)
+    {
+        var configuration = new MachineConfiguration(ModelConstants.PlayStation2, "pcsx2", Options: new Dictionary<string, string>
+        {
+            ["pcsx2_upscale_multiplier"] = previousResolution,
+            ["pcsx2_renderer"] = "Software"
+        });
+        var native = GWGUI.Emulation.Sony.Emulators.Pcsx2.Functions.Pcsx2OptionFunctions.ToNative(configuration);
+        Assert.Equal(currentResolution, native.Options!["pcsx2_upscale_multiplier"]);
+        Assert.Equal("Software (HW)", native.Options["pcsx2_renderer"]);
+        Assert.Equal(previousResolution, configuration.Options!["pcsx2_upscale_multiplier"]);
+        Assert.Equal("Software", configuration.Options["pcsx2_renderer"]);
+        var fields = SettingsDescriptionFunctions.Create(configuration).SelectMany(block => block.Fields).ToArray();
+        Assert.Equal(currentResolution, fields.Single(field => field.Id == "pcsx2_upscale_multiplier").Value);
+        Assert.Equal("Software (HW)", fields.Single(field => field.Id == "pcsx2_renderer").Value);
     }
 
     private static EmulationSettingsField[] Fields(string emulator) => SettingsDescriptionFunctions.Create(Configuration(emulator)).SelectMany(block => block.Fields).ToArray();

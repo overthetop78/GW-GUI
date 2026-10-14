@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Ohjaamon kuollut vyöhyke</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Ohjausvaste</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Skaalaa mitattua analogista akselialuetta peleille, jotka odottavat suurempia syöttöarvoja. Siirrä akselit läpi niiden täyden valikoiman jälkeen lataa peli.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Ohjelmistojen renderöinti laitteiston esittely</value></data>
 </root>

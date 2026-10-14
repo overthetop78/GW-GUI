@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Mendorong zona mati.</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Mendorong respon</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Skala jangkauan sumbu analog yang diukur untuk game yang mengharapkan nilai masukan yang lebih besar. Pindahkan kapaknya melalui jangkauan penuh mereka setelah memuat sebuah permainan.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Percikan perangkat lunak dengan presentasi perangkat keras</value></data>
 </root>

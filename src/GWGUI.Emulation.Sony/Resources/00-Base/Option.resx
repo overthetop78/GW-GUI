@@ -1199,4 +1199,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Steering deadzone</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Steering response</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Scales the measured analog axis range for games that expect larger input values. Move the axes through their full range after loading a game.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Software rendering with hardware presentation</value></data>
 </root>

@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>บริเวณ ที่ ตาย แล้ว</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>การตอบสนองของการเยื้อง</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>วัดช่วงแกนความคล้ายที่วัดได้ของเกม ที่คาดหวังค่า input มากขึ้น ย้ายแกนผ่านช่วงเต็ม หลังจากที่โหลดเกม</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>ส่วนแสดงซอฟต์แวร์ด้วยการนําเสนอฮาร์ดแวร์</value></data>
 </root>

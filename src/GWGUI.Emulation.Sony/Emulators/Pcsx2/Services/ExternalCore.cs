@@ -91,7 +91,8 @@ internal sealed class ExternalCore : IEmulatorCore
                 throw new NotSupportedException(Pcsx2Exceptions.UnsupportedApiVersion(apiVersion));
             Export<ExternalCoreApi.GetSystemInfo>(ExternalCoreConstants.RetroGetSystemInfo)(out var info);
             var libraryName = Marshal.PtrToStringUTF8(info.LibraryName);
-            if (!string.Equals(libraryName, Pcsx2Constants.LibraryName, StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(libraryName, Pcsx2Constants.LibraryName, StringComparison.OrdinalIgnoreCase)
+                && !string.Equals(libraryName, Pcsx2Constants.CurrentLibraryName, StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException(Pcsx2Exceptions.LibraryIdentityMismatch(libraryName));
             if (!info.NeedFullPath)
                 throw new InvalidDataException(Pcsx2Exceptions.FullContentPathsRequired());

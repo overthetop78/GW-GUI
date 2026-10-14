@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Setrvačná zóna řízení</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Reakce na řízení</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Zvyšuje rozsah naměřených analogových os pro hry, které očekávají větší vstupní hodnoty. Přesuňte osy přes jejich plný rozsah po načítání hry.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Software renderování s hardwarovou prezentací</value></data>
 </root>

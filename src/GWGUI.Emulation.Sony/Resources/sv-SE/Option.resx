@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Styr deadzone</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Styrrespons</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Skalar det uppmätta analoga axelområdet för spel som förväntar sig större ingångsvärden. Flytta axlarna genom hela sortimentet efter att ha laddat ett spel.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Programvaruåtergivning med hårdvarupresentation</value></data>
 </root>

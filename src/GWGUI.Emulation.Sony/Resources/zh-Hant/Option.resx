@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>引導死區</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>指導反應</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>為期望更大輸入值的游戲縮放所測量的模擬軸范圍。 裝入游戲后將軸通過全程移動.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>软件渲染硬件演示</value></data>
 </root>

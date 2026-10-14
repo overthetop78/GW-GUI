@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Рулевой мертвецон</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Руководящий ответ</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Масштабирует измеренный диапазон аналоговой оси для игр, которые ожидают больших входных значений. Переместите топоры через их полный диапазон после загрузки игры.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Программный рендеринг с аппаратной презентацией</value></data>
 </root>

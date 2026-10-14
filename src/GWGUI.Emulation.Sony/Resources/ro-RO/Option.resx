@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Deadzone directoare</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Răspunsul direcției</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Scales gama de axe analogice măsurate pentru jocuri care se așteaptă la valori mai mari de intrare. Mutați axele prin gama lor completă după încărcarea unui joc.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Redarea software-ului cu prezentare hardware</value></data>
 </root>

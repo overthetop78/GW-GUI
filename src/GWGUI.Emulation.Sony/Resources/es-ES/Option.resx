@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Zona muerta</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Respuesta de la dirección</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Escala el rango de eje analógico medido para juegos que esperan valores de entrada más grandes. Mueva los ejes a través de su gama completa después de cargar un juego.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Reproducción de software con presentación de hardware</value></data>
 </root>

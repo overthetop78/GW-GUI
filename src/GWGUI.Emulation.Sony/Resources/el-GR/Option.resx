@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Καθοδηγούμενη νεκρή ζώνη</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Ανταπόκριση διεύθυνσης</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Κλιμακώνει το μετρούμενο εύρος αναλογικών αξόνων για παιχνίδια που αναμένουν μεγαλύτερες τιμές εισόδου. Μετακινήστε τους άξονες μέσα από το πλήρες εύρος μετά τη φόρτωση ενός παιχνιδιού.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Αποτύπωση λογισμικού με παρουσίαση υλικού</value></data>
 </root>

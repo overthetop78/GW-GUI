@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Zone morte de la direction</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Réponse de la direction</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Adapte l’amplitude des axes aux valeurs attendues par certains jeux. Après le chargement du jeu, déplacez les axes jusqu’à leurs limites pour effectuer l’étalonnage.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>rendu logiciel avec présentation matérielle</value></data>
 </root>

@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>스티어링 deadzone</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>스티칭 응답</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>더 큰 입력값을 기대하는 게임의 측정된 아날로그 축선 범위. 게임 로딩 후 전체 범위를 통해 axes를 이동합니다.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>하드웨어 프레젠테이션과 소프트웨어 렌더링</value></data>
 </root>

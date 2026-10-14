@@ -5,7 +5,7 @@ namespace GWGUI.Emulation.Sony.Emulators.Pcsx2.Dictionaries;
 
 internal static class OptionCatalog
 {
-    // pcsx2_libretro.dll exposes these variables; LRPS2 is a different native core.
+    // The official pcsx2_libretro.dll now identifies itself as LRPS2.
     internal static IReadOnlyList<CoreOption> All { get; } =
     [
         new(OptionConstants.FastbootKey, OptionConstants.FastbootLabel, OptionConstants.FastbootHelp,
@@ -20,14 +20,26 @@ internal static class OptionCatalog
              new("D3D11", "Emulation.Option.pcsx2.pcsx2_renderer.Value.2"),
              new("D3D12", "Emulation.Option.pcsx2.pcsx2_renderer.Value.3"),
              new("Vulkan", "Emulation.Option.pcsx2.pcsx2_renderer.Value.4"),
-             new("Software", OptionValueResourceConstants.SoftwareLabelResource),
-             new("Null", OptionValueResourceConstants.DisabledLabelResource)],
+             new("paraLLEl-GS", "paraLLEl-GS"),
+             new("Software (HW)", "Emulation.Option.Sony.Value.SoftwareHardwarePresentation"),
+             new("Software (SW)", OptionValueResourceConstants.SoftwareLabelResource)],
             Tab: EmulationMachineTab.Video, RequiresRestart: true),
         new(OptionConstants.UpscaleMultiplierKey, OptionConstants.UpscaleMultiplierLabel,
-            OptionConstants.UpscaleMultiplierHelp, null, "Native PS2", "Native PS2",
-            [new("Native PS2", "1x"), new("2x Native ~720p", "2x"),
-             new("3x Native ~1080p", "3x"), new("4x Native ~1440p 2K", "4x"),
-             new("5x Native ~1620p 3K", "5x"), new("6x Native ~2160p 4K", "6x"),
-             new("8x Native ~2880p 5K", "8x")], Tab: EmulationMachineTab.Video)
+            OptionConstants.UpscaleMultiplierHelp, null, "1x (Native)", "1x (Native)",
+            [new("1x (Native)", "1×"), new("2x", "2×"), new("4x", "4×"), new("8x", "8×")],
+            Tab: EmulationMachineTab.Video, RequiresRestart: true)
     ];
+
+    internal static IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> LegacyValues { get; } =
+        new Dictionary<string, IReadOnlyDictionary<string, string>>(StringComparer.Ordinal)
+        {
+            [OptionConstants.RendererKey] = new Dictionary<string, string>(StringComparer.Ordinal) { ["Software"] = "Software (HW)" },
+            [OptionConstants.UpscaleMultiplierKey] = new Dictionary<string, string>(StringComparer.Ordinal)
+            {
+                ["Native PS2"] = "1x (Native)",
+                ["2x Native ~720p"] = "2x",
+                ["4x Native ~1440p 2K"] = "4x",
+                ["8x Native ~2880p 5K"] = "8x"
+            }
+        };
 }

@@ -104,7 +104,7 @@ internal sealed partial class ExternalHostCallbacks : IDisposable
     internal ExternalCoreApi.AudioBatchCallback AudioBatch { get; }
     internal ExternalCoreApi.InputPollCallback InputPoll { get; }
     internal ExternalCoreApi.InputStateCallback InputState { get; }
-    internal ExternalCoreApi.LogCallback Log { get; }
+    internal NativeLogFunctions.WindowsX64Callback Log { get; }
     internal ExternalCoreApi.SetLedState Led { get; }
     internal int SampleRate { get; set; } = ExternalCoreConstants.FallbackSampleRate;
     internal double FramesPerSecond { get; private set; } = ExternalCoreConstants.FallbackFramesPerSecond;

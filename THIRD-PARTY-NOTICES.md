@@ -141,3 +141,9 @@ Photograph by Akbkuku (Shelby Jueden), 16 July 2023. Published under Creative Co
 Source: https://commons.wikimedia.org/wiki/File:Coleco-ADAM-computer-with-parts_(edit).jpg ; packaging edit by DigitalIceAge.
 Original: https://upload.wikimedia.org/wikipedia/commons/e/eb/Coleco-ADAM-computer-with-parts_%28edit%29.jpg
 Adaptation: classical silhouette alpha mask, removal of exterior background enclosed by the cable, proportional resizing to 512 x 240 pixels with transparent padding. Photographed hardware, cable, software and documentation are preserved; no generated or reconstructed components or lettering.
+
+## ZX Spectrum SE prototype photograph
+
+Asset: `src/GWGUI.Emulation.Sinclair/Assets/Machines/SpectrumSe.png`.
+Source: the prototype photograph published in ZX Shed issue 2, preserved by World of Spectrum: https://worldofspectrum.org/files/large/6b6c3ef9a7a2c60 (ZXShedIssue02.pdf).
+Adaptation: lossless assembly of the two embedded JPEG strips into the original 2048 x 653 photograph, classical silhouette alpha masking and proportional resizing to 512 pixels wide with transparent padding. The photographed rack enclosure, Cherry keyboard, connectors and controls are retained. The original photograph crops the top edge of the equipment; no missing parts or lettering have been generated or reconstructed. No open license is asserted for this source photograph.

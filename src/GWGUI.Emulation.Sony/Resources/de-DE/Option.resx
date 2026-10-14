@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Totpunkt der Lenkung</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Lenkungsreaktion</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Skaliert den gemessenen analogen Achsenbereich für Spiele, die größere Eingangswerte erwarten. Bewegen Sie die Achsen durch ihre volle Reichweite nach dem Laden eines Spiels.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Software-Rendering mit Hardware-Präsentation</value></data>
 </root>

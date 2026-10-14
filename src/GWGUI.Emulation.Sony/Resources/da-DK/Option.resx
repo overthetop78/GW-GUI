@@ -1186,4 +1186,5 @@
   <data name="Emulation.Option.Sony.Controller.SteeringDeadzone"><value>Styredødzone</value></data>
   <data name="Emulation.Option.Sony.Controller.TwistResponse"><value>Styreevne</value></data>
   <data name="Emulation.Option.Sony.Controller.AnalogCalibration.Short"><value>Skalerer det målte analoge akseområde for spil, der forventer større inputværdier. Flyt økserne gennem deres fulde rækkevidde efter indlæsning af et spil.</value></data>
+  <data name="Emulation.Option.Sony.Value.SoftwareHardwarePresentation"><value>Software rendering med hardware præsentation</value></data>
 </root>
