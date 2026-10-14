@@ -71,12 +71,8 @@ internal static class InputSettingsFunctions
 
     private static bool IsSource(string source)
     {
-        if (string.IsNullOrEmpty(source))
+        if (source.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase) && source[InputMappingConstants.MousePrefix.Length..] is "X+" or "X−" or "Y+" or "Y−")
             return true;
-        if (source.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
-            return Enum.TryParse<EmulationKey>(source[InputMappingConstants.KeyboardPrefix.Length..], out var key) && Enum.IsDefined(key) && key != EmulationKey.Unknown;
-        if (source.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase))
-            return source[InputMappingConstants.MousePrefix.Length..] is "Left" or "Right" or "Middle" or "XButton1" or "XButton2" or "WheelUp" or "WheelDown" or "WheelLeft" or "WheelRight" or "X+" or "X−" or "Y+" or "Y−";
-        return source.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase) && source.Length > InputMappingConstants.ControllerPrefix.Length;
+        return EmulationKeyboardBindingFunctions.IsValid(source);
     }
 }

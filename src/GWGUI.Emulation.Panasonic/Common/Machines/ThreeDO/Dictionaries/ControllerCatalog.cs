@@ -83,6 +83,10 @@ internal static class ControllerCatalog
     }) with { OppositeDirectionId = OppositeDirection(command) }).ToArray();
     private static string? OppositeDirection(ControllerCommand command) => command switch
     {
+        ControllerCommand.Up => ControllerCommand.Down.ToString(),
+        ControllerCommand.Down => ControllerCommand.Up.ToString(),
+        ControllerCommand.Left => ControllerCommand.Right.ToString(),
+        ControllerCommand.Right => ControllerCommand.Left.ToString(),
         ControllerCommand.PitchUp => ControllerCommand.PitchDown.ToString(),
         ControllerCommand.PitchDown => ControllerCommand.PitchUp.ToString(),
         ControllerCommand.YawLeft => ControllerCommand.YawRight.ToString(),
