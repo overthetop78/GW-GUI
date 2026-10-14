@@ -214,5 +214,23 @@ internal static partial class InputSettingsFunctions
     private static EmulationControllerChoice Choice(ControllerType type) => new(
         type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type),
         CompatibleVisualIds: CompatibleVisualIds(type), DefaultVisualId: DefaultVisualId(type),
-        VisualCommandIds: VisualCommandIds(type));
+        VisualCommandIds: VisualCommandIds(type))
+    {
+        Category = type switch
+        {
+            ControllerType.None => EmulationControllerCategory.None,
+            ControllerType.Automatic => EmulationControllerCategory.Unspecified,
+            ControllerType.SegaSg1000Joystick or ControllerType.SegaControlStick or ControllerType.SegaArcadePowerStick
+                or ControllerType.SegaArcadePowerStickSixButton or ControllerType.SegaSaturnTwinStick or ControllerType.SegaSaturnVirtuaStick
+                or ControllerType.SegaDreamcastArcadeStick or ControllerType.SegaDreamcastTwinStick or ControllerType.SegaPaddleControl => EmulationControllerCategory.Joystick,
+            ControllerType.SegaXe1Ap or ControllerType.SegaSaturnMissionStick => EmulationControllerCategory.FlightSimulation,
+            ControllerType.SegaHandleController or ControllerType.SegaSaturnArcadeRacer => EmulationControllerCategory.RacingSimulation,
+            ControllerType.SegaLightPhaser or ControllerType.SegaMegaMouse or ControllerType.SegaMenacer or ControllerType.SegaSportsPad
+                or ControllerType.SegaSaturnVirtuaGun or ControllerType.SegaSaturnShuttleMouse or ControllerType.SegaDreamcastMouse
+                or ControllerType.SegaDreamcastLightGun => EmulationControllerCategory.PointingDevice,
+            ControllerType.SegaSc3000Keyboard or ControllerType.SegaDreamcastKeyboard or ControllerType.SegaActivator
+                or ControllerType.SegaDreamcastFishingController or ControllerType.SegaDreamcastMaracas => EmulationControllerCategory.OtherSimulation,
+            _ => EmulationControllerCategory.Gamepad
+        }
+    };
 }
