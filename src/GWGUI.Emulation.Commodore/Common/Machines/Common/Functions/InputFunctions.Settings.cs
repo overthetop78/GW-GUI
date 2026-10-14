@@ -110,5 +110,15 @@ internal static partial class InputSettingsFunctions
     internal static InputBindingDefinition Definition(string id, string resourceKey, string defaultBinding) => new(id, resourceKey, defaultBinding, resourceKey.Contains(InputSettingsFunctionsConstants.ResourceKeySeparator) ? null : resourceKey);
 
     private static EmulationControllerChoice Choice(ControllerType type) =>
-        new(type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type), CompatibleVisualIds: CompatibleVisualIds(type), DefaultVisualId: DefaultVisualId(type), VisualCommandIds: VisualCommandIds(type));
+        new(type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type), CompatibleVisualIds: CompatibleVisualIds(type), DefaultVisualId: DefaultVisualId(type), VisualCommandIds: VisualCommandIds(type))
+        {
+            Category = type switch
+            {
+                ControllerType.None => EmulationControllerCategory.None,
+                ControllerType.RetroPad or ControllerType.Cd32Pad => EmulationControllerCategory.Gamepad,
+                ControllerType.Keyboard => EmulationControllerCategory.OtherSimulation,
+                ControllerType.AnalogJoystick or ControllerType.Joystick => EmulationControllerCategory.Joystick,
+                _ => EmulationControllerCategory.Unspecified
+            }
+        };
 }
