@@ -98,5 +98,15 @@ internal static partial class InputSettingsFunctions
     private static EmulationControllerChoice Choice(ControllerType type) => new(
         type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type),
         CompatibleVisualIds: CompatibleVisualIds(type), DefaultVisualId: DefaultVisualId(type),
-        VisualCommandIds: VisualCommandIds(type));
+        VisualCommandIds: VisualCommandIds(type))
+    {
+        Category = type switch
+        {
+            ControllerType.None => EmulationControllerCategory.None,
+            ControllerType.Automatic => EmulationControllerCategory.Unspecified,
+            ControllerType.Mouse or ControllerType.PcEngineMouse or ControllerType.PcFxMouse => EmulationControllerCategory.PointingDevice,
+            ControllerType.Joystick or ControllerType.PcEngineTurboStick or ControllerType.TurboGrafxTurboStick => EmulationControllerCategory.Joystick,
+            _ => EmulationControllerCategory.Gamepad
+        }
+    };
 }
