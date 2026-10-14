@@ -10,7 +10,7 @@ internal static class InputSnapshotFunctions
         configuration ??= new InputConfiguration();
         var hostKeys = snapshot.Keys;
         var physicalMouse = PhysicalMouse(snapshot.Pointer);
-        var mappedKeys = EmulationInputMappingFunctions.MapKeyboard(hostKeys, configuration.KeyboardMappings);
+        var mappedKeys = EmulationInputMappingFunctions.MapKeyboard(snapshot, configuration.KeyboardBindings ?? configuration.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(), StringComparer.Ordinal));
         if (controllerPointerSwitchPressed)
             mappedKeys = new HashSet<EmulationKey>(mappedKeys) { EmulationKey.RightControl };
         return snapshot with

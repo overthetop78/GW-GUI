@@ -9,7 +9,7 @@ internal static partial class InputSettingsFunctions
             return new EmulationInputSettings(null, null, []);
         var input = configuration.Input ?? new InputConfiguration();
         var types = ControllerCatalog.Types(configuration);
-        var keyboard = model.HasKeyboard || types.Any(type => type is ControllerType.Keyboard or ControllerType.KeyboardAndMouse) ? new EmulationInputBindingSet([], input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard) : null;
+        var keyboard = model.HasKeyboard || types.Any(type => type is ControllerType.Keyboard or ControllerType.KeyboardAndMouse) ? new EmulationInputBindingSet([], input.KeyboardBindings ?? ToStrings(input.KeyboardMappings), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller) : null;
         var mouse = model.MouseButtonCount > 0 ? new EmulationInputBindingSet(MouseDefinitions(), MouseValues(input), EmulationInputSource.Mouse | EmulationInputSource.Keyboard | EmulationInputSource.Controller, true) : null;
         var configured = input.ControllerBindings ?? [];
         var ports = Enumerable.Range(ControllerPortConstants.MinimumControllerPort, ControllerFunctions.PortCount(configuration)).Select(index =>
