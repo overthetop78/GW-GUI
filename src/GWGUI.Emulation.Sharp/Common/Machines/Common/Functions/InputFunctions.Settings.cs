@@ -41,7 +41,17 @@ internal static class InputSettingsFunctions
                     CompatibleVisualIds: ControllerVisualDictionary.VisualIds(category),
                     DefaultVisualId: ControllerVisualDictionary.DefaultVisualId(category),
                     VisualCommandIds: ControllerVisualDictionary.Commands(category)
-                )).ToArray();
+                )
+                {
+                    Category = category switch
+                    {
+                        PeripheralCategory.None => EmulationControllerCategory.None,
+                        PeripheralCategory.Joystick or PeripheralCategory.X1Joystick => EmulationControllerCategory.Joystick,
+                        PeripheralCategory.CpsfMd or PeripheralCategory.CpsfSfc => EmulationControllerCategory.Gamepad,
+                        PeripheralCategory.CyberstickDigital or PeripheralCategory.CyberstickAnalog => EmulationControllerCategory.FlightSimulation,
+                        _ => throw new ArgumentOutOfRangeException(nameof(category))
+                    }
+                }).ToArray();
             return new EmulationControllerPort(
                 port + 1,
                 choices,
