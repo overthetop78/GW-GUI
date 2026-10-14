@@ -23,4 +23,11 @@
   <data name="Emulation.Nec.Video.FrameSkip.Auto"><value>Automatic</value></data>
   <data name="Emulation.Nec.Video.FrameSkip.Manual"><value>Manual</value></data>
   <data name="Emulation.Nec.Video.FrameSkipThreshold"><value>Frame skip threshold</value></data>
+  <data name="Emulation.Nec.Video.Overscan"><value>Show image borders</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming"><value>Displayed image height</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming"><value>Displayed image width</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Cropped"><value>Visible image (240 lines)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveFraming.Full"><value>All 263 lines</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Cropped"><value>Visible image (348 pixels)</value></data>
+  <data name="Emulation.Nec.Video.LaserActiveHorizontalFraming.Full"><value>All 392 pixels</value></data>
 </root>

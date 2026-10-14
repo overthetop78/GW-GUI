@@ -50,4 +50,6 @@
   <data name="Emulation.Error.BeetlePcfx.UnsupportedContentExtension"><value>Beetle PC-FX does not support the content extension {0}.</value></data>
   <data name="Emulation.Error.BeetlePcfx.InvalidStateSize"><value>Beetle PC-FX returned an invalid saved-state size: {0}.</value></data>
   <data name="Emulation.Error.BeetlePcfx.UnknownHostCommand"><value>The Beetle PC-FX host received the unknown command {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.InvalidBackupSize"><value>The PC-FX backup file has an invalid size: {0}.</value></data>
+  <data name="Emulation.Error.BeetlePcfx.UnexpectedBackupMemorySize"><value>The PC-FX backup memory has an unexpected size.</value></data>
 </root>

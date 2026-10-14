@@ -24,4 +24,10 @@
   <data name="Emulation.Nec.Audio.BuggyCodec"><value>Emulate buggy ADPCM codec</value></data>
   <data name="Emulation.Nec.Storage.CdImageCache"><value>Load CD image into memory</value></data>
   <data name="Emulation.Nec.Storage.CdIgnoreErrors"><value>Ignore CD correction errors</value></data>
+  <data name="Emulation.Emulator.beetle_sgx.Description"><value>Emulates PC Engine SuperGrafx games, HuCards and CD-ROM² media.</value></data>
+  <data name="Emulation.Emulator.geargrafx.Description"><value>Emulates PC Engine, SuperGrafx and NEC LaserActive systems.</value></data>
+  <data name="Emulation.Nec.Cpu.Region"><value>Console region</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Auto"><value>Automatic</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Japan"><value>Japan</value></data>
+  <data name="Emulation.Nec.Cpu.Region.Usa"><value>United States</value></data>
 </root>
