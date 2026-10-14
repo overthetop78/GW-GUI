@@ -19,7 +19,7 @@ internal static class InputSettingsFunctions
                     BindingDefinitions: InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, category).Select(action => action.Definition).ToArray(),
                     CompatibleVisualIds: ControllerVisualDictionary.VisualId(category) is { } visualId ? [visualId] : [],
                     DefaultVisualId: ControllerVisualDictionary.VisualId(category),
-                    VisualCommandIds: ControllerVisualDictionary.Commands(category))).ToArray();
+                    VisualCommandIds: ControllerVisualDictionary.Commands(category)) { Category = EmulationControllerCategory.Gamepad }).ToArray();
                 return new EmulationControllerPort(port + 1, choices, peripheral.ToString(), binding?.DeviceId,
                     new(InputSnapshotDictionary.Actions(configuration.Model, configuration.Core, peripheral).Select(action => action.Definition).ToArray(),
                         binding?.Mappings ?? new Dictionary<string, string>(),
