@@ -104,3 +104,11 @@ NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPO
 NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
 DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
 OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## ColecoVision Expansion Module #2 photograph
+
+Asset: `src/GWGUI.App/Assets/Controllers/coleco-driving-controller.png`.
+Photograph by Evan-Amos, 2 August 2016, dedicated to the public domain by the author.
+Source: https://commons.wikimedia.org/wiki/File:ColecoVision-Expansion2.jpg
+Original: https://upload.wikimedia.org/wikipedia/commons/7/7f/ColecoVision-Expansion2.jpg
+Adaptation: proportional resizing to 512 x 407 pixels and removal of the exterior white background by classical alpha processing. No generated or reconstructed hardware, controls, lettering or logos.

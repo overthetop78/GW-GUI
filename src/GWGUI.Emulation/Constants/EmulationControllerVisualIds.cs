@@ -13,6 +13,7 @@ public static class EmulationControllerVisualIds
     public const string FairchildChannelFController = "fairchild-channel-f-controller";
     public const string EpochSuperCassetteVisionController = "epoch-super-cassette-vision-controller";
     public const string ColecoController = "coleco-controller";
+    public const string ColecoDrivingController = "coleco-driving-controller";
     public const string BandaiWonderSwan = "bandai-wonderswan";
     public const string BandaiWonderSwanColor = "bandai-wonderswan-color";
     public const string BandaiSwanCrystal = "bandai-swancrystal";

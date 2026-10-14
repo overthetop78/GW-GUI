@@ -58,6 +58,20 @@ internal static class InputSettingsFunctions
         [EmulationControllerVisualControl.KeyHash] = "Pound"
     };
 
+    private static string? VisualId(PeripheralCategory peripheral) => peripheral switch
+    {
+        PeripheralCategory.Standard => EmulationControllerVisualIds.ColecoController,
+        PeripheralCategory.Driving => EmulationControllerVisualIds.ColecoDrivingController,
+        _ => null
+    };
+
+    private static readonly IReadOnlyDictionary<EmulationControllerVisualControl, string> DrivingVisualCommands = new Dictionary<EmulationControllerVisualControl, string>
+    {
+        [EmulationControllerVisualControl.DirectionLeft] = ControllerActionConstants.SpinnerLeft,
+        [EmulationControllerVisualControl.DirectionRight] = ControllerActionConstants.SpinnerRight,
+        [EmulationControllerVisualControl.PrimaryAction] = ControllerActionConstants.FireLeft
+    };
+
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
         var keyboard = configuration.Model == MachineModel.Adam ? new EmulationInputBindingSet(
@@ -69,9 +83,17 @@ internal static class InputSettingsFunctions
             var choices = (mapper?.GetPeripherals() ?? []).Select(category => new EmulationControllerChoice(category.ToString(),
                 category == PeripheralCategory.None ? "Emulation.Controller.None" : "Emulation.Coleco.Controller." + category,
                 BindingDefinitions: mapper?.DescribeInput(category, index) ?? [],
-                CompatibleVisualIds: category == PeripheralCategory.Standard ? [EmulationControllerVisualIds.ColecoController] : [],
-                DefaultVisualId: category == PeripheralCategory.Standard ? EmulationControllerVisualIds.ColecoController : null,
-                VisualCommandIds: category == PeripheralCategory.Standard ? VisualCommands : null)
+                CompatibleVisualIds: VisualId(category) is { } visualId ? [visualId] : [],
+                DefaultVisualId: VisualId(category),
+                VisualCommandIds: category == PeripheralCategory.Standard ? VisualCommands : category == PeripheralCategory.Driving
+                    ? DrivingVisualCommands.Where(pair => (mapper?.DescribeInput(category, index) ?? []).Any(definition => definition.Id == pair.Value))
+                        .ToDictionary(pair => pair.Key, pair => pair.Value) : null,
+                VisualBindingDefinitions: category == PeripheralCategory.Driving ? new Dictionary<string, IReadOnlyList<InputBindingDefinition>>
+                {
+                    [EmulationControllerVisualIds.ColecoDrivingController] = (mapper?.DescribeInput(category, index) ?? [])
+                        .Where(definition => DrivingVisualCommands.Values.Contains(definition.Id, StringComparer.Ordinal))
+                        .Select(definition => definition.Id == ControllerActionConstants.FireLeft ? definition with { DisplayResourceKey = "Controllers.Throttle" } : definition).ToArray()
+                } : null)
             {
                 Category = category switch
                 {

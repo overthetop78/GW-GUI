@@ -24,6 +24,7 @@ internal static partial class ControllerArtworkCatalog
         profiles[EmulationControllerVisualIds.FairchildChannelFController] = CreateFairchildChannelFController();
         profiles[EmulationControllerVisualIds.EpochSuperCassetteVisionController] = CreateEpochSuperCassetteVisionController();
         profiles[EmulationControllerVisualIds.ColecoController] = CreateColecoController();
+        profiles[EmulationControllerVisualIds.ColecoDrivingController] = CreateColecoDrivingController();
         profiles[EmulationControllerVisualIds.BandaiWonderSwan] = CreateBandaiWonderSwan();
         profiles[EmulationControllerVisualIds.BandaiWonderSwanColor] = CreateBandaiWonderSwanColor();
         profiles[EmulationControllerVisualIds.BandaiSwanCrystal] = CreateBandaiSwanCrystal();

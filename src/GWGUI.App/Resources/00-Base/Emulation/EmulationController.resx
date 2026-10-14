@@ -142,4 +142,5 @@
   <data name="Emulation.Controller.Category.SingingSimulation"><value>Singing simulation</value></data>
   <data name="Emulation.Controller.Category.OtherSimulation"><value>Other simulation peripherals</value></data>
   <data name="Emulation.Controller.Category.Joystick"><value>Joystick</value></data>
+  <data name="Emulation.Controller.Visual.Model.coleco-driving-controller"><value>ColecoVision Expansion Module #2</value></data>
 </root>
