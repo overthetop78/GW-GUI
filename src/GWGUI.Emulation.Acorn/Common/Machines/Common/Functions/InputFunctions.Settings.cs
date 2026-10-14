@@ -81,7 +81,7 @@ internal static class InputSettingsFunctions
         {
             [EmulationControllerVisualIds.CompetitionPro5000] = ControllerDefinitions(category)
         } : null
-    );
+    ) { Category = category == PeripheralCategory.None ? EmulationControllerCategory.None : EmulationControllerCategory.Joystick };
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(PeripheralCategory category) => category == PeripheralCategory.None 
         ? [] 
         : InputSettingsFunctionsConstants.ControllerActions.Select(action => new InputBindingDefinition(action, InputSettingsFunctionsConstants.ResourceActionPrefix + action, string.Empty)
