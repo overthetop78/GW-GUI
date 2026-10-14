@@ -31,12 +31,14 @@ public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaE
         {
             window.Show();
             var selectors = Descendants(root).OfType<System.Windows.Controls.ComboBox>()
-                .Where(combo => combo.Items.OfType<GWGUI.App.Contracts.Emulation.Controllers.EmulationControllerChoiceView>().Any()).ToArray();
+                .Where(combo => combo.Items.OfType<GWGUI.App.Contracts.Emulation.Controllers.EmulationControllerCategoryChoiceView>().Any()).ToArray();
             Assert.Equal(2, selectors.Length);
             foreach (var selector in selectors)
             {
-                var disconnected = selector.Items.OfType<GWGUI.App.Contracts.Emulation.Controllers.EmulationControllerChoiceView>().Single(choice => choice.Choice.Id == "None");
-                var joystick = selector.Items.OfType<GWGUI.App.Contracts.Emulation.Controllers.EmulationControllerChoiceView>().Single(choice => choice.Choice.Id == "AnalogJoystick");
+                var disconnected = selector.Items.OfType<GWGUI.App.Contracts.Emulation.Controllers.EmulationControllerCategoryChoiceView>()
+                    .Single(choice => choice.Category == GWGUI.Emulation.Enums.EmulationControllerCategory.None);
+                var joystick = selector.Items.OfType<GWGUI.App.Contracts.Emulation.Controllers.EmulationControllerCategoryChoiceView>()
+                    .Single(choice => choice.Category == GWGUI.Emulation.Enums.EmulationControllerCategory.Joystick);
                 selector.SelectedItem = disconnected;
                 var without = module.DescribeInputSettings(controller.Apply(configuration));
                 Assert.Contains(without.ControllerPorts, port => port.SelectedControllerId == "None");
@@ -311,6 +313,79 @@ public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaE
                 editor.RaiseEvent(new System.Windows.RoutedEventArgs(System.Windows.FrameworkElement.UnloadedEvent));
         }
     });
+
+    [Theory]
+    [InlineData("Acorn")] [InlineData("Apple")] [InlineData("Bandai")] [InlineData("Epoch")]
+    [InlineData("Fairchild")] [InlineData("Mattel")] [InlineData("Philips")] [InlineData("Sharp")]
+    [InlineData("Sinclair")] [InlineData("Snk")] [InlineData("Thomson")] [InlineData("Watara")] [InlineData("Panasonic")]
+    [InlineData("Coleco")] [InlineData("Wenquxing")]
+    public void AddedFamiliesDescribeCategorizedNativeControllerChoices(string family)
+    {
+        using var http = new HttpClient();
+        var context = new GWGUI.Emulation.Contracts.EmulationModuleContext(Path.GetTempPath(), Path.GetTempPath(), http);
+        GWGUI.Emulation.Interfaces.IEmulationModuleFactory factory = family switch
+        {
+            "Acorn" => new GWGUI.Emulation.Acorn.Modules.AcornEmulationModuleFactory(),
+            "Apple" => new GWGUI.Emulation.Apple.Modules.AppleEmulationModuleFactory(),
+            "Bandai" => new GWGUI.Emulation.Bandai.Modules.BandaiEmulationModuleFactory(),
+            "Epoch" => new GWGUI.Emulation.Epoch.Modules.EpochEmulationModuleFactory(),
+            "Fairchild" => new GWGUI.Emulation.Fairchild.Modules.FairchildEmulationModuleFactory(),
+            "Mattel" => new GWGUI.Emulation.Mattel.Modules.MattelEmulationModuleFactory(),
+            "Philips" => new GWGUI.Emulation.Philips.Modules.PhilipsEmulationModuleFactory(),
+            "Sharp" => new GWGUI.Emulation.Sharp.Modules.SharpEmulationModuleFactory(),
+            "Sinclair" => new GWGUI.Emulation.Sinclair.Modules.SinclairEmulationModuleFactory(),
+            "Snk" => new GWGUI.Emulation.Snk.Modules.SnkEmulationModuleFactory(),
+            "Thomson" => new GWGUI.Emulation.Thomson.Modules.ThomsonEmulationModuleFactory(),
+            "Watara" => new GWGUI.Emulation.Watara.Modules.WataraEmulationModuleFactory(),
+            "Panasonic" => new GWGUI.Emulation.Panasonic.Modules.PanasonicEmulationModuleFactory(),
+            "Coleco" => new GWGUI.Emulation.Coleco.Modules.ColecoEmulationModuleFactory(),
+            "Wenquxing" => new GWGUI.Emulation.Wenquxing.Modules.WenquxingEmulationModuleFactory(),
+            _ => throw new ArgumentOutOfRangeException(nameof(family))
+        };
+        var module = factory.Create(context);
+        AssertCategorizedChoices(module);
+    }
+
+    [Theory]
+    [InlineData("Atari")] [InlineData("Amstrad")] [InlineData("Commodore")] [InlineData("Microsoft")]
+    [InlineData("Nec")] [InlineData("Nintendo")] [InlineData("Sega")] [InlineData("Sony")]
+    public void ExistingFamiliesDescribeCategorizedNativeControllerChoices(string family)
+    {
+        using var http = new HttpClient();
+        var root = Path.GetTempPath();
+        GWGUI.Emulation.Interfaces.IEmulationModule module = family switch
+        {
+            "Atari" => new GWGUI.Emulation.Atari.Modules.AtariEmulationModule(root, root, http, root),
+            "Amstrad" => new GWGUI.Emulation.Amstrad.Modules.AmstradEmulationModule(root, root, http, root),
+            "Commodore" => new GWGUI.Emulation.Commodore.Modules.CommodoreEmulationModule(root, root, http, root),
+            "Microsoft" => new GWGUI.Emulation.Microsoft.Modules.MicrosoftEmulationModule(root, root, http, root),
+            "Nec" => new GWGUI.Emulation.Nec.Modules.NecEmulationModule(root, root, http, root),
+            "Nintendo" => new GWGUI.Emulation.Nintendo.Modules.NintendoEmulationModule(root, root, http, root),
+            "Sega" => new GWGUI.Emulation.Sega.Modules.SegaEmulationModule(root, root, http, root),
+            "Sony" => new GWGUI.Emulation.Sony.Modules.SonyEmulationModule(root, root, http, root),
+            _ => throw new ArgumentOutOfRangeException(nameof(family))
+        };
+        AssertCategorizedChoices(module);
+    }
+
+    private static void AssertCategorizedChoices(GWGUI.Emulation.Interfaces.IEmulationModule module)
+    {
+        var manager = Assert.IsAssignableFrom<GWGUI.Emulation.Interfaces.IEmulationInputSettingsManager>(module);
+        foreach (var machine in module.Machines)
+        {
+            var settings = manager.DescribeInputSettings(module.CreateConfiguration(machine.Id));
+            foreach (var port in settings.ControllerPorts)
+            {
+                Assert.Contains(port.ControllerChoices, choice => choice.Id == port.SelectedControllerId);
+                Assert.All(port.ControllerChoices, choice =>
+                {
+                    Assert.NotEqual(GWGUI.Emulation.Enums.EmulationControllerCategory.Unspecified, choice.Category);
+                    Assert.NotNull(choice.BindingDefinitions);
+                    Assert.Equal(choice.Id == "None", choice.Category == GWGUI.Emulation.Enums.EmulationControllerCategory.None);
+                });
+            }
+        }
+    }
 
     private static IEnumerable<System.Windows.DependencyObject> Descendants(System.Windows.DependencyObject root)
     {
