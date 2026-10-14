@@ -25,11 +25,7 @@ internal static class KeyboardDictionary
         return bindings;
     }
 
-    internal static IReadOnlySet<EmulationKey> Apply(IReadOnlySet<EmulationKey> keys, InputConfiguration input, MachineModel model)
-    {
-        var mappings = Bindings(input, model).Where(pair => Enum.TryParse<EmulationKey>(pair.Value, out _)).ToDictionary(pair => pair.Key, pair => Enum.Parse<EmulationKey>(pair.Value), StringComparer.Ordinal);
-        return EmulationInputMappingFunctions.MapKeyboard(keys, mappings);
-    }
+    internal static IReadOnlySet<EmulationKey> Apply(EmulationInputSnapshot snapshot, InputConfiguration input, MachineModel model) => EmulationInputMappingFunctions.MapKeyboard(snapshot, Bindings(input, model));
 
     private static bool IsPhysicalKey(string value) => EmulationKeyboardBindingFunctions.IsValid(value);
 }

@@ -28,13 +28,15 @@ internal static class InputSettingsFunctions
     internal static bool SupportsPeripheral(MachineConfiguration configuration, int port, PeripheralCategory peripheral) => port >= ControllerConstants.FirstPort && port < ConfigurationFunctions.ControllerPortCount(configuration.Model) && Choices(configuration, port).Contains(peripheral);
     internal static EmulationInputSettings Describe(MachineConfiguration configuration)
     {
-        var keyboard = new EmulationInputBindingSet(KeyboardDictionary.Definitions(configuration.Model), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard);
+        var keyboard = new EmulationInputBindingSet(KeyboardDictionary.Definitions(configuration.Model), KeyboardBindings(configuration.Input, configuration.Model), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller);
         var mouse = SupportsMouse(configuration) ? new EmulationInputBindingSet(MouseDefinitions(), MouseBindings(configuration.Input), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true) : null;
         var ports = Enumerable.Range(ControllerConstants.FirstPort, ConfigurationFunctions.ControllerPortCount(configuration.Model)).Select(port =>
         {
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
-            var peripheral = binding?.Peripheral ?? DefaultPeripheral(configuration.Model);
-            var choices = Choices(configuration, port).Select(category => new EmulationControllerChoice(
+            var available = Choices(configuration, port);
+            var defaultPeripheral = DefaultPeripheral(configuration.Model);
+            var peripheral = binding?.Peripheral ?? (available.Contains(defaultPeripheral) ? defaultPeripheral : available.FirstOrDefault(PeripheralCategory.None));
+            var choices = available.Select(category => new EmulationControllerChoice(
                     category.ToString(),
                     category == PeripheralCategory.None ? "Emulation.Controller.None" : "Emulation.Sinclair.Controller." + category,
                     BindingDefinitions: ControllerCatalog.Actions(configuration.Model, category).Select(action => action.Definition).ToArray(),
@@ -103,12 +105,5 @@ internal static class InputSettingsFunctions
         }
     }
 
-    private static bool IsSource(string source)
-    {
-        if (string.IsNullOrEmpty(source))
-            return true;
-        if (source.StartsWith(InputMappingConstants.KeyboardPrefix, StringComparison.OrdinalIgnoreCase))
-            return Enum.TryParse<EmulationKey>(source[InputMappingConstants.KeyboardPrefix.Length..], out var key) && Enum.IsDefined(key) && key != EmulationKey.Unknown;
-        return source.StartsWith(InputMappingConstants.MousePrefix, StringComparison.OrdinalIgnoreCase) || source.StartsWith(InputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase);
-    }
+    private static bool IsSource(string source) => EmulationKeyboardBindingFunctions.IsValid(source);
 }
