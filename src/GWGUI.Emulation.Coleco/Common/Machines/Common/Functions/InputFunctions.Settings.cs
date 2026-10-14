@@ -27,7 +27,19 @@ internal static class InputSettingsFunctions
         var actions = ControllerActionConstants.All.Where(action => (action is not ("Purple" or "Blue") || peripheral == PeripheralCategory.SuperAction) && (action is not ("SpinnerLeft" or "SpinnerRight") || peripheral is not PeripheralCategory.Standard));
         return actions.Select(action => new InputBindingDefinition(action,
             action is "Up" or "Down" or "Left" or "Right" ? "Emulation.Controller.Action." + action : "Emulation.Coleco.Action." + action,
-            string.Empty, action.StartsWith("Keypad", StringComparison.Ordinal) ? action[6..] : action == "Star" ? "*" : action == "Pound" ? "#" : null)).ToArray();
+            string.Empty, action.StartsWith("Keypad", StringComparison.Ordinal) ? action[6..] : action == "Star" ? "*" : action == "Pound" ? "#" : null)
+        {
+            OppositeDirectionId = action switch
+            {
+                ControllerActionConstants.Up => ControllerActionConstants.Down,
+                ControllerActionConstants.Down => ControllerActionConstants.Up,
+                ControllerActionConstants.Left => ControllerActionConstants.Right,
+                ControllerActionConstants.Right => ControllerActionConstants.Left,
+                ControllerActionConstants.SpinnerLeft => ControllerActionConstants.SpinnerRight,
+                ControllerActionConstants.SpinnerRight => ControllerActionConstants.SpinnerLeft,
+                _ => null
+            }
+        }).ToArray();
     }
 
     private static readonly IReadOnlyDictionary<EmulationControllerVisualControl,string> VisualCommands = new Dictionary<EmulationControllerVisualControl,string>
