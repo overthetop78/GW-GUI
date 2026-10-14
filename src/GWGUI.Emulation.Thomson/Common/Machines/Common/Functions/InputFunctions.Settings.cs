@@ -14,7 +14,7 @@ internal static class InputSettingsFunctions
         var mouse = new EmulationInputBindingSet(MouseDefinitions(), mouseValues, EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true);
         var choices = new[]
         {
-            new EmulationControllerChoice(PeripheralCategory.None.ToString(), "Emulation.Controller.None", BindingDefinitions: []),
+            new EmulationControllerChoice(PeripheralCategory.None.ToString(), "Emulation.Controller.None", BindingDefinitions: []) { Category = EmulationControllerCategory.None },
             new EmulationControllerChoice(
                 PeripheralCategory.Joystick.ToString(),
                 "Emulation.Thomson.Controller.Joystick",
@@ -22,7 +22,7 @@ internal static class InputSettingsFunctions
                 CompatibleVisualIds: [EmulationControllerVisualIds.ThomsonMj90102],
                 DefaultVisualId: EmulationControllerVisualIds.ThomsonMj90102,
                 VisualCommandIds: ControllerCatalog.VisualCommands
-            )
+            ) { Category = EmulationControllerCategory.Joystick }
         };
         var ports = Enumerable.Range(ControllerConstants.FirstPort, ControllerConstants.PortCount).Select(port =>
         {
