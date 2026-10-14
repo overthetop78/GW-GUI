@@ -16,7 +16,7 @@ internal static class InputSettingsFunctions
             [EmulationControllerVisualIds.WataraSupervisionControls],
             EmulationControllerVisualIds.WataraSupervisionControls,
             ControllerCatalog.VisualCommands
-        );
+        ) { Category = EmulationControllerCategory.Gamepad };
         var bindings = new EmulationInputBindingSet(
             ControllerCatalog.Definitions,
             binding?.Mappings ?? new Dictionary<string, string>(),
